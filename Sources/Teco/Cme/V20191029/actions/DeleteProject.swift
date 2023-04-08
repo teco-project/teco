@@ -51,7 +51,7 @@ extension Cme {
 
     /// 删除项目
     ///
-    /// 删除项目。
+    /// 删除项目。处于推流状态的云转推和点播转直播项目不允许删除，若强行调用删除项目接口会返回失败。
     @inlinable @discardableResult
     public func deleteProject(_ input: DeleteProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Cme {
 
     /// 删除项目
     ///
-    /// 删除项目。
+    /// 删除项目。处于推流状态的云转推和点播转直播项目不允许删除，若强行调用删除项目接口会返回失败。
     @inlinable @discardableResult
     public func deleteProject(_ input: DeleteProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Cme {
 
     /// 删除项目
     ///
-    /// 删除项目。
+    /// 删除项目。处于推流状态的云转推和点播转直播项目不允许删除，若强行调用删除项目接口会返回失败。
     @inlinable @discardableResult
     public func deleteProject(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.deleteProject(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Cme {
 
     /// 删除项目
     ///
-    /// 删除项目。
+    /// 删除项目。处于推流状态的云转推和点播转直播项目不允许删除，若强行调用删除项目接口会返回失败。
     @inlinable @discardableResult
     public func deleteProject(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.deleteProject(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)

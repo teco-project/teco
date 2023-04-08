@@ -17,7 +17,7 @@
 extension Essbasic {
     /// ChannelCreateFlowReminds请求参数结构体
     public struct ChannelCreateFlowRemindsRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 签署流程Id数组，最多100个，超过100不处理
@@ -48,41 +48,41 @@ extension Essbasic {
         }
     }
 
-    /// 电子签渠道版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func channelCreateFlowReminds(_ input: ChannelCreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowRemindsResponse> {
         self.client.execute(action: "ChannelCreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 电子签渠道版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func channelCreateFlowReminds(_ input: ChannelCreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowRemindsResponse {
         try await self.client.execute(action: "ChannelCreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 电子签渠道版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func channelCreateFlowReminds(agent: Agent, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowRemindsResponse> {
         self.channelCreateFlowReminds(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 电子签渠道版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个；接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func channelCreateFlowReminds(agent: Agent, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowRemindsResponse {
         try await self.channelCreateFlowReminds(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)

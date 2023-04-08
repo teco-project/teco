@@ -64,6 +64,7 @@ public struct TCClsError: TCClsErrorType {
         case limitExceeded = "LimitExceeded"
         case limitExceeded_Config = "LimitExceeded.Config"
         case limitExceeded_Export = "LimitExceeded.Export"
+        case limitExceeded_IndexOperating = "LimitExceeded.IndexOperating"
         case limitExceeded_LogSearch = "LimitExceeded.LogSearch"
         case limitExceeded_LogSize = "LimitExceeded.LogSize"
         case limitExceeded_Logset = "LimitExceeded.Logset"
@@ -297,6 +298,7 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.invalidParameter_DbDuplication)
     }
 
+    /// 导出任务已经存在。
     public static var invalidParameter_ExportConflict: TCClsError {
         TCClsError(.invalidParameter_ExportConflict)
     }
@@ -341,9 +343,14 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.limitExceeded_Config)
     }
 
-    /// 日志导出数量超出限制。
+    /// 创建日志导出任务数量超出限制。
     public static var limitExceeded_Export: TCClsError {
         TCClsError(.limitExceeded_Export)
+    }
+
+    /// 索引操作超过频率限制。
+    public static var limitExceeded_IndexOperating: TCClsError {
+        TCClsError(.limitExceeded_IndexOperating)
     }
 
     /// 并发查询超过限制，单topic并发最大值15。
@@ -381,6 +388,8 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.limitExceeded_Partition)
     }
 
+    /// 检索内存超限。
+    ///
     /// 修改检索语句，减少查询范围。
     public static var limitExceeded_SearchResources: TCClsError {
         TCClsError(.limitExceeded_SearchResources)
@@ -452,6 +461,8 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.operationDenied_AnalysisSwitchClose)
     }
 
+    /// 不支持新语法。
+    ///
     /// 该资源暂不支持新语法，联系helper处理。
     public static var operationDenied_NewSyntaxNotSupported: TCClsError {
         TCClsError(.operationDenied_NewSyntaxNotSupported)
@@ -479,6 +490,7 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.operationDenied_TopicHasDeliverFunction)
     }
 
+    /// topic绑定了scheduleSql任务。
     public static var operationDenied_TopicHasScheduleSqlTask: TCClsError {
         TCClsError(.operationDenied_TopicHasScheduleSqlTask)
     }

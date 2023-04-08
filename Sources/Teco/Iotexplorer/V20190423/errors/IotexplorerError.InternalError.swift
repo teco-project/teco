@@ -49,6 +49,7 @@ extension TCIotexplorerError {
             self.context = context
         }
 
+        /// DB操作错误。
         public static var dbOperationError: InternalError {
             InternalError(.dbOperationError)
         }

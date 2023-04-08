@@ -56,7 +56,7 @@ extension Tsf {
     }
 
     /// 部署javaagent的类型、版本信息
-    public struct AgentProfile: TCInputModel {
+    public struct AgentProfile: TCInputModel, TCOutputModel {
         /// Agent类型
         public let agentType: String?
 
@@ -178,6 +178,22 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiMatchType: String?
 
+        /// RPC 额外信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rpcExt: String?
+
+        /// 部署组id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayDeployGroupId: String?
+
+        /// md5
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let md5: String?
+
+        /// RPC 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rpcType: String?
+
         enum CodingKeys: String, CodingKey {
             case apiId = "ApiId"
             case namespaceId = "NamespaceId"
@@ -201,6 +217,10 @@ extension Tsf {
             case apiType = "ApiType"
             case description = "Description"
             case apiMatchType = "ApiMatchType"
+            case rpcExt = "RpcExt"
+            case gatewayDeployGroupId = "GatewayDeployGroupId"
+            case md5 = "Md5"
+            case rpcType = "RpcType"
         }
     }
 
@@ -602,6 +622,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceConfigList: [ServiceConfig]?
 
+        /// IgnoreCreateImageRepository
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ignoreCreateImageRepository: Bool?
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
@@ -616,6 +640,7 @@ extension Tsf {
             case apigatewayServiceId = "ApigatewayServiceId"
             case applicationRemarkName = "ApplicationRemarkName"
             case serviceConfigList = "ServiceConfigList"
+            case ignoreCreateImageRepository = "IgnoreCreateImageRepository"
         }
     }
 
@@ -1504,6 +1529,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeInjectEnable: Bool?
 
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedTime: String?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1521,6 +1550,7 @@ extension Tsf {
             case memLimit = "MemLimit"
             case alias = "Alias"
             case kubeInjectEnable = "KubeInjectEnable"
+            case updatedTime = "UpdatedTime"
         }
     }
 
@@ -1931,6 +1961,22 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckSettings: HealthCheckSettings?
 
+        /// 允许PlainYamlDeploy
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allowPlainYamlDeploy: Bool?
+
+        /// 是否不等于ServiceConfig
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNotEqualServiceConfig: Bool?
+
+        /// 仓库名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repoName: String?
+
+        /// 别名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alias: String?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1969,6 +2015,10 @@ extension Tsf {
             case maxSurge = "MaxSurge"
             case maxUnavailable = "MaxUnavailable"
             case healthCheckSettings = "HealthCheckSettings"
+            case allowPlainYamlDeploy = "AllowPlainYamlDeploy"
+            case isNotEqualServiceConfig = "IsNotEqualServiceConfig"
+            case repoName = "RepoName"
+            case alias = "Alias"
         }
     }
 
@@ -2121,12 +2171,67 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
 
-        public init(configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String) {
+        /// KafkaVIp
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaVIp: String?
+
+        /// KafkaAddress
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaAddress: String?
+
+        /// KafkaVPort
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaVPort: String?
+
+        /// Topic
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topic: String?
+
+        /// LineRule
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lineRule: String?
+
+        /// CustomRule
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customRule: String?
+
+        /// EnableGlobalLineRule
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableGlobalLineRule: Bool?
+
+        /// EnableAuth
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableAuth: Bool?
+
+        /// Username
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let username: String?
+
+        /// Password
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let password: String?
+
+        /// KafkaInfos
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaInfos: [DeliveryKafkaInfo]?
+
+        public init(configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String, kafkaVIp: String? = nil, kafkaAddress: String? = nil, kafkaVPort: String? = nil, topic: String? = nil, lineRule: String? = nil, customRule: String? = nil, enableGlobalLineRule: Bool? = nil, enableAuth: Bool? = nil, username: String? = nil, password: String? = nil, kafkaInfos: [DeliveryKafkaInfo]? = nil) {
             self.configId = configId
             self.configName = configName
             self.collectPath = collectPath
             self.groups = groups
             self.createTime = createTime
+            self.kafkaVIp = kafkaVIp
+            self.kafkaAddress = kafkaAddress
+            self.kafkaVPort = kafkaVPort
+            self.topic = topic
+            self.lineRule = lineRule
+            self.customRule = customRule
+            self.enableGlobalLineRule = enableGlobalLineRule
+            self.enableAuth = enableAuth
+            self.username = username
+            self.password = password
+            self.kafkaInfos = kafkaInfos
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2135,6 +2240,17 @@ extension Tsf {
             case collectPath = "CollectPath"
             case groups = "Groups"
             case createTime = "CreateTime"
+            case kafkaVIp = "KafkaVIp"
+            case kafkaAddress = "KafkaAddress"
+            case kafkaVPort = "KafkaVPort"
+            case topic = "Topic"
+            case lineRule = "LineRule"
+            case customRule = "CustomRule"
+            case enableGlobalLineRule = "EnableGlobalLineRule"
+            case enableAuth = "EnableAuth"
+            case username = "Username"
+            case password = "Password"
+            case kafkaInfos = "KafkaInfos"
         }
     }
 
@@ -2401,7 +2517,7 @@ extension Tsf {
     }
 
     /// 用于请求参数中的条件过滤字段
-    public struct Filter: TCInputModel {
+    public struct Filter: TCInputModel, TCOutputModel {
         /// 过滤条件名
         public let name: String
 
@@ -3124,6 +3240,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationNameReal: String?
 
+        /// 是否公共,1:公有,0:私有
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `public`: Int64?
+
         enum CodingKeys: String, CodingKey {
             case reponame = "Reponame"
             case repotype = "Repotype"
@@ -3141,6 +3261,7 @@ extension Tsf {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
             case applicationNameReal = "ApplicationNameReal"
+            case `public` = "Public"
         }
     }
 
@@ -3786,6 +3907,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customRule: String?
 
+        /// KafkaAddress
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaAddress: String?
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -3800,6 +3925,7 @@ extension Tsf {
             case kafkaInfos = "KafkaInfos"
             case enableGlobalLineRule = "EnableGlobalLineRule"
             case customRule = "CustomRule"
+            case kafkaAddress = "KafkaAddress"
         }
     }
 
@@ -5223,6 +5349,17 @@ extension Tsf {
         }
     }
 
+    /// 资源任务转态结果
+    public struct ResourceTaskStatusResult: TCOutputModel {
+        /// 任务的执行状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskStatus: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case taskStatus = "TaskStatus"
+        }
+    }
+
     /// ScalableRule值
     public struct ScalableRule: TCOutputModel {
         /// RuleId值
@@ -5253,6 +5390,14 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
+        /// 是否关闭指标伸缩, 默认0, 0:打开指标伸缩 1:关闭指标伸缩
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disableMetricAS: UInt64?
+
+        /// 开启定时伸缩规则, 默认0, 0:关闭定时伸缩 1:开启定时伸缩
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableCronAS: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case name = "Name"
@@ -5261,6 +5406,8 @@ extension Tsf {
             case groupCount = "GroupCount"
             case desc = "Desc"
             case description = "Description"
+            case disableMetricAS = "DisableMetricAS"
+            case enableCronAS = "EnableCronAS"
         }
     }
 
@@ -6475,16 +6622,34 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
 
-        public init(namespaceId: String, namespaceName: String, id: String? = nil) {
+        /// 网关实体ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayInstanceId: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedTime: String?
+
+        public init(namespaceId: String, namespaceName: String, id: String? = nil, gatewayInstanceId: String? = nil, createdTime: String? = nil, updatedTime: String? = nil) {
             self.namespaceId = namespaceId
             self.namespaceName = namespaceName
             self.id = id
+            self.gatewayInstanceId = gatewayInstanceId
+            self.createdTime = createdTime
+            self.updatedTime = updatedTime
         }
 
         enum CodingKeys: String, CodingKey {
             case namespaceId = "NamespaceId"
             case namespaceName = "NamespaceName"
             case id = "Id"
+            case gatewayInstanceId = "GatewayInstanceId"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
         }
     }
 
@@ -6513,13 +6678,23 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleItemList: [UnitRuleItem]?
 
-        public init(name: String, id: String? = nil, gatewayInstanceId: String? = nil, description: String? = nil, status: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
+        /// CreatedTime
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// UpdatedTime
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedTime: String?
+
+        public init(name: String, id: String? = nil, gatewayInstanceId: String? = nil, description: String? = nil, status: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, createdTime: String? = nil, updatedTime: String? = nil) {
             self.name = name
             self.id = id
             self.gatewayInstanceId = gatewayInstanceId
             self.description = description
             self.status = status
             self.unitRuleItemList = unitRuleItemList
+            self.createdTime = createdTime
+            self.updatedTime = updatedTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6529,6 +6704,8 @@ extension Tsf {
             case description = "Description"
             case status = "Status"
             case unitRuleItemList = "UnitRuleItemList"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
         }
     }
 
@@ -6887,6 +7064,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNotEqualServiceConfig: Bool?
 
+        /// HealthCheckSettings
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let healthCheckSettings: HealthCheckSettings?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case packageId = "PackageId"
@@ -6897,6 +7078,7 @@ extension Tsf {
             case offInstanceCount = "OffInstanceCount"
             case groupStatus = "GroupStatus"
             case isNotEqualServiceConfig = "IsNotEqualServiceConfig"
+            case healthCheckSettings = "HealthCheckSettings"
         }
     }
 
@@ -6997,7 +7179,7 @@ extension Tsf {
     }
 
     /// 容器卷挂载信息
-    public struct VolumeInfo: TCInputModel {
+    public struct VolumeInfo: TCInputModel, TCOutputModel {
         /// 数据卷类型
         public let volumeType: String
 
@@ -7021,7 +7203,7 @@ extension Tsf {
     }
 
     /// 容器卷挂载点信息
-    public struct VolumeMountInfo: TCInputModel {
+    public struct VolumeMountInfo: TCInputModel, TCOutputModel {
         /// 挂载数据卷名称
         public let volumeMountName: String
 

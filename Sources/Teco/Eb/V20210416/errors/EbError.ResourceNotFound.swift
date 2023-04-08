@@ -92,10 +92,12 @@ extension TCEbError {
             ResourceNotFound(.namespace)
         }
 
+        /// 未找到网络资源关联记录。
         public static var netAssociation: ResourceNotFound {
             ResourceNotFound(.netAssociation)
         }
 
+        /// 未找到privatelink记录。
         public static var privateLinkResource: ResourceNotFound {
             ResourceNotFound(.privateLinkResource)
         }
@@ -110,6 +112,7 @@ extension TCEbError {
             ResourceNotFound(.rule)
         }
 
+        /// 未找到指定标签。
         public static var tag: ResourceNotFound {
             ResourceNotFound(.tag)
         }

@@ -60,25 +60,25 @@ extension Bmeip {
         }
     }
 
-    /// 创建黑石弹性公网 EIPACL
+    /// 创建黑石弹性公网 EIP ACL
     @inlinable
     public func createEipAcl(_ input: CreateEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipAclResponse> {
         self.client.execute(action: "CreateEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建黑石弹性公网 EIPACL
+    /// 创建黑石弹性公网 EIP ACL
     @inlinable
     public func createEipAcl(_ input: CreateEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {
         try await self.client.execute(action: "CreateEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建黑石弹性公网 EIPACL
+    /// 创建黑石弹性公网 EIP ACL
     @inlinable
     public func createEipAcl(aclName: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipAclResponse> {
         self.createEipAcl(.init(aclName: aclName, status: status), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建黑石弹性公网 EIPACL
+    /// 创建黑石弹性公网 EIP ACL
     @inlinable
     public func createEipAcl(aclName: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {
         try await self.createEipAcl(.init(aclName: aclName, status: status), region: region, logger: logger, on: eventLoop)

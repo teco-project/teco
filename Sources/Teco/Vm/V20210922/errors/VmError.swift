@@ -154,6 +154,7 @@ public struct TCVmError: TCVmErrorType {
         TCVmError(.unauthorizedOperation)
     }
 
+    /// 未开通权限/无有效套餐包/账号已欠费。
     public static var unauthorizedOperation_Unauthorized: TCVmError {
         TCVmError(.unauthorizedOperation_Unauthorized)
     }

@@ -20,6 +20,7 @@ extension TCTatError {
             case commandNotFound = "ResourceNotFound.CommandNotFound"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
             case invocationNotFound = "ResourceNotFound.InvocationNotFound"
+            case roleNotFound = "ResourceNotFound.RoleNotFound"
             case other = "ResourceNotFound"
         }
 
@@ -62,6 +63,11 @@ extension TCTatError {
             ResourceNotFound(.invocationNotFound)
         }
 
+        /// 角色不存在。
+        public static var roleNotFound: ResourceNotFound {
+            ResourceNotFound(.roleNotFound)
+        }
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
@@ -76,6 +82,8 @@ extension TCTatError {
                 code = .resourceNotFound_InstanceNotFound
             case .invocationNotFound:
                 code = .resourceNotFound_InvocationNotFound
+            case .roleNotFound:
+                code = .resourceNotFound_RoleNotFound
             case .other:
                 code = .resourceNotFound
             }

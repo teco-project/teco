@@ -18,6 +18,7 @@ extension TCLcicError {
     public struct ResourceUnavailable: TCLcicErrorType {
         enum Code: String {
             case roomStatistics = "ResourceUnavailable.RoomStatistics"
+            case other = "ResourceUnavailable"
         }
 
         private let error: Code
@@ -42,8 +43,14 @@ extension TCLcicError {
             self.context = context
         }
 
+        /// 房间统计结果计算中，请稍候。
         public static var roomStatistics: ResourceUnavailable {
             ResourceUnavailable(.roomStatistics)
+        }
+
+        /// 资源不可用。
+        public static var other: ResourceUnavailable {
+            ResourceUnavailable(.other)
         }
 
         public func asLcicError() -> TCLcicError {
@@ -51,6 +58,8 @@ extension TCLcicError {
             switch self.error {
             case .roomStatistics:
                 code = .resourceUnavailable_RoomStatistics
+            case .other:
+                code = .resourceUnavailable
             }
             return TCLcicError(code, context: self.context)
         }

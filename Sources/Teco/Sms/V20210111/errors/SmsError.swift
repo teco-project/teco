@@ -41,6 +41,7 @@ public struct TCSmsError: TCSmsErrorType {
         case failedOperation_PhoneNumberInBlacklist = "FailedOperation.PhoneNumberInBlacklist"
         case failedOperation_PhoneNumberParseFail = "FailedOperation.PhoneNumberParseFail"
         case failedOperation_ProhibitSubAccountUse = "FailedOperation.ProhibitSubAccountUse"
+        case failedOperation_SignIdNotExist = "FailedOperation.SignIdNotExist"
         case failedOperation_SignNumberLimit = "FailedOperation.SignNumberLimit"
         case failedOperation_SignatureIncorrectOrUnapproved = "FailedOperation.SignatureIncorrectOrUnapproved"
         case failedOperation_TemplateAlreadyPassedCheck = "FailedOperation.TemplateAlreadyPassedCheck"
@@ -77,6 +78,7 @@ public struct TCSmsError: TCSmsErrorType {
         case invalidParameterValue_SdkAppIdNotExist = "InvalidParameterValue.SdkAppIdNotExist"
         case invalidParameterValue_SignAlreadyPassedCheck = "InvalidParameterValue.SignAlreadyPassedCheck"
         case invalidParameterValue_SignExistAndUnapproved = "InvalidParameterValue.SignExistAndUnapproved"
+        case invalidParameterValue_SignNameLengthTooLong = "InvalidParameterValue.SignNameLengthTooLong"
         case invalidParameterValue_TemplateParameterFormatError = "InvalidParameterValue.TemplateParameterFormatError"
         case invalidParameterValue_TemplateParameterLengthLimit = "InvalidParameterValue.TemplateParameterLengthLimit"
         case invalidParameterValue_TemplateWithDirtyWords = "InvalidParameterValue.TemplateWithDirtyWords"
@@ -222,6 +224,11 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.failedOperation_ProhibitSubAccountUse)
     }
 
+    /// 签名 ID 不存在。
+    public static var failedOperation_SignIdNotExist: TCSmsError {
+        TCSmsError(.failedOperation_SignIdNotExist)
+    }
+
     /// 签名个数达到最大值。
     public static var failedOperation_SignNumberLimit: TCSmsError {
         TCSmsError(.failedOperation_SignNumberLimit)
@@ -239,14 +246,14 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.failedOperation_TemplateAlreadyPassedCheck)
     }
 
-    /// 模板 ID 或签名 ID 不存在。
+    /// 模板 ID 不存在。
     ///
-    /// 请排查模板 ID 或签名 ID 是否填写正确
+    /// 请排查模板 ID 是否填写正确
     public static var failedOperation_TemplateIdNotExist: TCSmsError {
         TCSmsError(.failedOperation_TemplateIdNotExist)
     }
 
-    /// 模板未审批或内容不匹配。（1）可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过；（2）核查是否符合 [格式规范](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+    /// 模板未审批或内容不匹配。（1）可登录 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过；（2）核查是否符合 [格式规范](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     ///
     /// 可参考 [短信发送提示：FailedOperation.TemplateIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_TemplateIncorrectOrUnapproved: TCSmsError {
@@ -265,7 +272,7 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.failedOperation_TemplateParamSetNotMatchApprovedTemplate)
     }
 
-    /// 模板未审批或不存在。可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+    /// 模板未审批或不存在。可登录 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     ///
     /// 可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var failedOperation_TemplateUnapprovedOrNotExist: TCSmsError {
@@ -347,7 +354,7 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.invalidParameterValue_ImageInvalid)
     }
 
-    /// 手机号格式错误，请参考 [1016错误详解](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1016.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)。
+    /// 手机号格式错误。
     public static var invalidParameterValue_IncorrectPhoneNumber: TCSmsError {
         TCSmsError(.invalidParameterValue_IncorrectPhoneNumber)
     }
@@ -414,6 +421,11 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.invalidParameterValue_SignExistAndUnapproved)
     }
 
+    /// 签名内容长度过长。
+    public static var invalidParameterValue_SignNameLengthTooLong: TCSmsError {
+        TCSmsError(.invalidParameterValue_SignNameLengthTooLong)
+    }
+
     /// 验证码模板参数格式错误，验证码类模板，模板变量只能传入0 - 6位（包括6位）纯数字。
     public static var invalidParameterValue_TemplateParameterFormatError: TCSmsError {
         TCSmsError(.invalidParameterValue_TemplateParameterFormatError)
@@ -439,7 +451,7 @@ public struct TCSmsError: TCSmsErrorType {
         TCSmsError(.invalidParameter_DirtyWordFound)
     }
 
-    /// International 或者 SmsType 参数有误，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+    /// 参数有误，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
     public static var invalidParameter_InvalidParameters: TCSmsError {
         TCSmsError(.invalidParameter_InvalidParameters)
     }

@@ -108,6 +108,8 @@ extension TCCvmError {
             InvalidParameter(.instanceImageNotSupport)
         }
 
+        /// 不支持设置公网带宽相关信息。
+        ///
         /// 去掉该请求参数。
         public static var internetAccessibleNotSupported: InvalidParameter {
             InvalidParameter(.internetAccessibleNotSupported)
@@ -158,7 +160,7 @@ extension TCCvmError {
             InvalidParameter(.parameterConflict)
         }
 
-        /// 不支持设置登陆密码。
+        /// 不支持设置登录密码。
         public static var passwordNotSupported: InvalidParameter {
             InvalidParameter(.passwordNotSupported)
         }

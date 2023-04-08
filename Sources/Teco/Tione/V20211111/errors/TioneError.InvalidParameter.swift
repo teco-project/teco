@@ -17,6 +17,7 @@
 extension TCTioneError {
     public struct InvalidParameter: TCTioneErrorType {
         enum Code: String {
+            case modelFileInvalid = "InvalidParameter.ModelFileInvalid"
             case tgwInvalidInterface = "InvalidParameter.TgwInvalidInterface"
             case tgwInvalidRequestBody = "InvalidParameter.TgwInvalidRequestBody"
             case validateError = "InvalidParameter.ValidateError"
@@ -43,6 +44,11 @@ extension TCTioneError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 模型包不符合规范。
+        public static var modelFileInvalid: InvalidParameter {
+            InvalidParameter(.modelFileInvalid)
         }
 
         /// 无效的接口。
@@ -72,6 +78,8 @@ extension TCTioneError {
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
+            case .modelFileInvalid:
+                code = .invalidParameter_ModelFileInvalid
             case .tgwInvalidInterface:
                 code = .invalidParameter_TgwInvalidInterface
             case .tgwInvalidRequestBody:

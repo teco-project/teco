@@ -42,19 +42,25 @@ public struct TCMonitorError: TCMonitorErrorType {
         case failedOperation_AlertPolicyModifyFailed = "FailedOperation.AlertPolicyModifyFailed"
         case failedOperation_AlertTriggerRuleDeleteFailed = "FailedOperation.AlertTriggerRuleDeleteFailed"
         case failedOperation_BadYamlFormat = "FailedOperation.BadYamlFormat"
+        case failedOperation_ComponentClientCommon = "FailedOperation.ComponentClientCommon"
+        case failedOperation_ComponentClientHttp = "FailedOperation.ComponentClientHttp"
+        case failedOperation_ComponentClientUnpack = "FailedOperation.ComponentClientUnpack"
         case failedOperation_CreateInstance = "FailedOperation.CreateInstance"
         case failedOperation_CreateInstanceLimited = "FailedOperation.CreateInstanceLimited"
         case failedOperation_DataColumnNotFound = "FailedOperation.DataColumnNotFound"
         case failedOperation_DataQueryFailed = "FailedOperation.DataQueryFailed"
         case failedOperation_DataTableNotFound = "FailedOperation.DataTableNotFound"
+        case failedOperation_Db = "FailedOperation.Db"
         case failedOperation_DbQueryFailed = "FailedOperation.DbQueryFailed"
         case failedOperation_DbRecordCreateFailed = "FailedOperation.DbRecordCreateFailed"
         case failedOperation_DbRecordDeleteFailed = "FailedOperation.DbRecordDeleteFailed"
+        case failedOperation_DbRecordNotFound = "FailedOperation.DbRecordNotFound"
         case failedOperation_DbRecordUpdateFailed = "FailedOperation.DbRecordUpdateFailed"
         case failedOperation_DbTransactionBeginFailed = "FailedOperation.DbTransactionBeginFailed"
         case failedOperation_DbTransactionCommitFailed = "FailedOperation.DbTransactionCommitFailed"
         case failedOperation_DimQueryRequestFailed = "FailedOperation.DimQueryRequestFailed"
         case failedOperation_DivisionByZero = "FailedOperation.DivisionByZero"
+        case failedOperation_DoHTTPTransferFailed = "FailedOperation.DoHTTPTransferFailed"
         case failedOperation_DruidQueryFailed = "FailedOperation.DruidQueryFailed"
         case failedOperation_DruidTableNotFound = "FailedOperation.DruidTableNotFound"
         case failedOperation_DuplicateName = "FailedOperation.DuplicateName"
@@ -64,6 +70,8 @@ public struct TCMonitorError: TCMonitorErrorType {
         case failedOperation_InstanceNotFound = "FailedOperation.InstanceNotFound"
         case failedOperation_InstanceNotRunning = "FailedOperation.InstanceNotRunning"
         case failedOperation_InternalError = "FailedOperation.InternalError"
+        case failedOperation_KubeClientConf = "FailedOperation.KubeClientConf"
+        case failedOperation_KubeCommon = "FailedOperation.KubeCommon"
         case failedOperation_RegionUnavailable = "FailedOperation.RegionUnavailable"
         case failedOperation_ResourceExist = "FailedOperation.ResourceExist"
         case failedOperation_ResourceNotFound = "FailedOperation.ResourceNotFound"
@@ -76,21 +84,31 @@ public struct TCMonitorError: TCMonitorErrorType {
         case failedOperation_ZoneUnavailable = "FailedOperation.ZoneUnavailable"
         case internalError = "InternalError"
         case internalError_CallbackFail = "InternalError.CallbackFail"
+        case internalError_Db = "InternalError.Db"
+        case internalError_DbRecordNotFound = "InternalError.DbRecordNotFound"
         case internalError_DependsApi = "InternalError.DependsApi"
         case internalError_DependsDb = "InternalError.DependsDb"
         case internalError_DependsMq = "InternalError.DependsMq"
         case internalError_ExeTimeout = "InternalError.ExeTimeout"
+        case internalError_Param = "InternalError.Param"
         case internalError_System = "InternalError.System"
+        case internalError_TaskNotFound = "InternalError.TaskNotFound"
         case internalError_TaskResultFormat = "InternalError.TaskResultFormat"
+        case internalError_UnexpectedInternal = "InternalError.UnexpectedInternal"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_DashboardNameExists = "InvalidParameterValue.DashboardNameExists"
         case invalidParameterValue_VersionMismatch = "InvalidParameterValue.VersionMismatch"
+        case invalidParameter_ClusterNotFound = "InvalidParameter.ClusterNotFound"
         case invalidParameter_DupTask = "InvalidParameter.DupTask"
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
         case invalidParameter_InvalidParameterParam = "InvalidParameter.InvalidParameterParam"
         case invalidParameter_MissAKSK = "InvalidParameter.MissAKSK"
+        case invalidParameter_Param = "InvalidParameter.Param"
         case invalidParameter_ParamError = "InvalidParameter.ParamError"
+        case invalidParameter_PromClusterNotFound = "InvalidParameter.PromClusterNotFound"
+        case invalidParameter_PromInstanceNotFound = "InvalidParameter.PromInstanceNotFound"
+        case invalidParameter_ResourceNotFound = "InvalidParameter.ResourceNotFound"
         case invalidParameter_SecretIdOrSecretKeyError = "InvalidParameter.SecretIdOrSecretKeyError"
         case invalidParameter_UnsupportedProduct = "InvalidParameter.UnsupportedProduct"
         case limitExceeded = "LimitExceeded"
@@ -99,6 +117,7 @@ public struct TCMonitorError: TCMonitorErrorType {
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_ResourceExistAlready = "ResourceInUse.ResourceExistAlready"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_NotExistTask = "ResourceNotFound.NotExistTask"
@@ -111,7 +130,7 @@ public struct TCMonitorError: TCMonitorErrorType {
 
     /// Error domains affliated to ``TCMonitorError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self]
+        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceNotFound.self]
     }
 
     private let error: Code
@@ -141,6 +160,7 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.authFailure)
     }
 
+    /// 访问鉴权失败。
     public static var authFailure_AccessCAMFail: TCMonitorError {
         TCMonitorError(.authFailure_AccessCAMFail)
     }
@@ -227,6 +247,21 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.failedOperation_BadYamlFormat)
     }
 
+    /// FailedOperation.ComponentClientCommon
+    public static var failedOperation_ComponentClientCommon: TCMonitorError {
+        TCMonitorError(.failedOperation_ComponentClientCommon)
+    }
+
+    /// FailedOperation.ComponentClientHttp
+    public static var failedOperation_ComponentClientHttp: TCMonitorError {
+        TCMonitorError(.failedOperation_ComponentClientHttp)
+    }
+
+    /// FailedOperation.ComponentClientUnpack
+    public static var failedOperation_ComponentClientUnpack: TCMonitorError {
+        TCMonitorError(.failedOperation_ComponentClientUnpack)
+    }
+
     /// 创建实例失败。
     public static var failedOperation_CreateInstance: TCMonitorError {
         TCMonitorError(.failedOperation_CreateInstance)
@@ -252,6 +287,11 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.failedOperation_DataTableNotFound)
     }
 
+    /// FailedOperation.Db
+    public static var failedOperation_Db: TCMonitorError {
+        TCMonitorError(.failedOperation_Db)
+    }
+
     /// 数据库查询失败。
     public static var failedOperation_DbQueryFailed: TCMonitorError {
         TCMonitorError(.failedOperation_DbQueryFailed)
@@ -265,6 +305,11 @@ public struct TCMonitorError: TCMonitorErrorType {
     /// 数据库记录删除失败。
     public static var failedOperation_DbRecordDeleteFailed: TCMonitorError {
         TCMonitorError(.failedOperation_DbRecordDeleteFailed)
+    }
+
+    /// FailedOperation.DbRecordNotFound
+    public static var failedOperation_DbRecordNotFound: TCMonitorError {
+        TCMonitorError(.failedOperation_DbRecordNotFound)
     }
 
     /// 数据库记录更新失败。
@@ -292,6 +337,11 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.failedOperation_DivisionByZero)
     }
 
+    /// 后端服务超时
+    public static var failedOperation_DoHTTPTransferFailed: TCMonitorError {
+        TCMonitorError(.failedOperation_DoHTTPTransferFailed)
+    }
+
     /// 查询分析数据失败。
     public static var failedOperation_DruidQueryFailed: TCMonitorError {
         TCMonitorError(.failedOperation_DruidQueryFailed)
@@ -307,10 +357,12 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.failedOperation_DuplicateName)
     }
 
+    /// 未开通。
     public static var failedOperation_ErrNotOpen: TCMonitorError {
         TCMonitorError(.failedOperation_ErrNotOpen)
     }
 
+    /// 欠费。
     public static var failedOperation_ErrOwed: TCMonitorError {
         TCMonitorError(.failedOperation_ErrOwed)
     }
@@ -330,8 +382,19 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.failedOperation_InstanceNotRunning)
     }
 
+    /// 内部服务错误。
     public static var failedOperation_InternalError: TCMonitorError {
         TCMonitorError(.failedOperation_InternalError)
+    }
+
+    /// FailedOperation.KubeClientConf
+    public static var failedOperation_KubeClientConf: TCMonitorError {
+        TCMonitorError(.failedOperation_KubeClientConf)
+    }
+
+    /// FailedOperation.KubeCommon
+    public static var failedOperation_KubeCommon: TCMonitorError {
+        TCMonitorError(.failedOperation_KubeCommon)
     }
 
     /// 地区不可用。
@@ -394,6 +457,16 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.internalError_CallbackFail)
     }
 
+    /// InternalError.Db
+    public static var internalError_Db: TCMonitorError {
+        TCMonitorError(.internalError_Db)
+    }
+
+    /// InternalError.DbRecordNotFound
+    public static var internalError_DbRecordNotFound: TCMonitorError {
+        TCMonitorError(.internalError_DbRecordNotFound)
+    }
+
     /// 依赖的其他api出错。
     public static var internalError_DependsApi: TCMonitorError {
         TCMonitorError(.internalError_DependsApi)
@@ -414,14 +487,29 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.internalError_ExeTimeout)
     }
 
+    /// InternalError.Param
+    public static var internalError_Param: TCMonitorError {
+        TCMonitorError(.internalError_Param)
+    }
+
     /// 系统错误。
     public static var internalError_System: TCMonitorError {
         TCMonitorError(.internalError_System)
     }
 
+    /// InternalError.TaskNotFound
+    public static var internalError_TaskNotFound: TCMonitorError {
+        TCMonitorError(.internalError_TaskNotFound)
+    }
+
     /// 任务结果解析错误。
     public static var internalError_TaskResultFormat: TCMonitorError {
         TCMonitorError(.internalError_TaskResultFormat)
+    }
+
+    /// InternalError.UnexpectedInternal
+    public static var internalError_UnexpectedInternal: TCMonitorError {
+        TCMonitorError(.internalError_UnexpectedInternal)
     }
 
     /// 参数错误。
@@ -444,6 +532,11 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.invalidParameterValue_VersionMismatch)
     }
 
+    /// InvalidParameter.ClusterNotFound
+    public static var invalidParameter_ClusterNotFound: TCMonitorError {
+        TCMonitorError(.invalidParameter_ClusterNotFound)
+    }
+
     /// 重复提交任务。
     public static var invalidParameter_DupTask: TCMonitorError {
         TCMonitorError(.invalidParameter_DupTask)
@@ -464,9 +557,29 @@ public struct TCMonitorError: TCMonitorErrorType {
         TCMonitorError(.invalidParameter_MissAKSK)
     }
 
+    /// InvalidParameter.Param
+    public static var invalidParameter_Param: TCMonitorError {
+        TCMonitorError(.invalidParameter_Param)
+    }
+
     /// 参数错误。
     public static var invalidParameter_ParamError: TCMonitorError {
         TCMonitorError(.invalidParameter_ParamError)
+    }
+
+    /// InvalidParameter.PromClusterNotFound
+    public static var invalidParameter_PromClusterNotFound: TCMonitorError {
+        TCMonitorError(.invalidParameter_PromClusterNotFound)
+    }
+
+    /// InvalidParameter.PromInstanceNotFound
+    public static var invalidParameter_PromInstanceNotFound: TCMonitorError {
+        TCMonitorError(.invalidParameter_PromInstanceNotFound)
+    }
+
+    /// InvalidParameter.ResourceNotFound
+    public static var invalidParameter_ResourceNotFound: TCMonitorError {
+        TCMonitorError(.invalidParameter_ResourceNotFound)
     }
 
     /// 平台配置错误。
@@ -507,6 +620,11 @@ public struct TCMonitorError: TCMonitorErrorType {
     /// 资源被占用。
     public static var resourceInUse: TCMonitorError {
         TCMonitorError(.resourceInUse)
+    }
+
+    /// ResourceInUse.ResourceExistAlready
+    public static var resourceInUse_ResourceExistAlready: TCMonitorError {
+        TCMonitorError(.resourceInUse_ResourceExistAlready)
     }
 
     /// 资源不足。

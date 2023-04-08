@@ -23,14 +23,19 @@ extension Ess {
         /// 待移除员工的信息，userId和openId二选一，必填一个
         public let employees: [Staff]
 
-        public init(operator: UserInfo, employees: [Staff]) {
+        /// 代理信息
+        public let agent: Agent?
+
+        public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
             self.operator = `operator`
             self.employees = employees
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case employees = "Employees"
+            case agent = "Agent"
         }
     }
 
@@ -62,13 +67,13 @@ extension Ess {
 
     /// 移除员工
     @inlinable
-    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
-        self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
+        self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移除员工
     @inlinable
-    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
-        try await self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
+        try await self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

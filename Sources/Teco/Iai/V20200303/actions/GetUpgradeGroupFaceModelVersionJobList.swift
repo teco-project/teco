@@ -73,46 +73,53 @@ extension Iai {
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
-        self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
-        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
-        self.getUpgradeGroupFaceModelVersionJobList(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
-        try await self.getUpgradeGroupFaceModelVersionJobList(.init(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginated(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UpgradeJobInfo])> {
-        self.client.paginate(input: input, region: region, command: self.getUpgradeGroupFaceModelVersionJobList, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable @discardableResult
     public func getUpgradeGroupFaceModelVersionJobListPaginated(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, onResponse: @escaping (GetUpgradeGroupFaceModelVersionJobListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.getUpgradeGroupFaceModelVersionJobList, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 
     /// 获取人员库升级任务列表
     ///
     /// - Returns: `AsyncSequence`s of `UpgradeJobInfo` and `GetUpgradeGroupFaceModelVersionJobListResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeGroupFaceModelVersionJobListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getUpgradeGroupFaceModelVersionJobList, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionJobList is no longer available.")
     }
 }

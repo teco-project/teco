@@ -46,7 +46,7 @@ extension Vpc {
 
     /// 终端节点解绑安全组
     ///
-    /// 终端节点解绑安全组。
+    /// 本接口（DisassociateVpcEndPointSecurityGroups）用于终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
         self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +54,7 @@ extension Vpc {
 
     /// 终端节点解绑安全组
     ///
-    /// 终端节点解绑安全组。
+    /// 本接口（DisassociateVpcEndPointSecurityGroups）用于终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 终端节点解绑安全组
     ///
-    /// 终端节点解绑安全组。
+    /// 本接口（DisassociateVpcEndPointSecurityGroups）用于终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
         self.disassociateVpcEndPointSecurityGroups(.init(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 终端节点解绑安全组
     ///
-    /// 终端节点解绑安全组。
+    /// 本接口（DisassociateVpcEndPointSecurityGroups）用于终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
         try await self.disassociateVpcEndPointSecurityGroups(.init(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)

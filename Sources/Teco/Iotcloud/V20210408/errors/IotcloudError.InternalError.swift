@@ -43,6 +43,7 @@ extension TCIotcloudError {
             self.context = context
         }
 
+        /// 数据库内部错误。
         public static var dbOperationError: InternalError {
             InternalError(.dbOperationError)
         }

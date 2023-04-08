@@ -81,7 +81,7 @@ extension Cls {
 
     /// CreateShipper返回参数结构体
     public struct CreateShipperResponse: TCResponseModel {
-        /// 投递规则ID
+        /// 投递任务ID
         public let shipperId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -93,33 +93,33 @@ extension Cls {
         }
     }
 
-    /// 创建投递规则
+    /// 新建投递到COS的任务
     ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
     public func createShipper(_ input: CreateShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShipperResponse> {
         self.client.execute(action: "CreateShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建投递规则
+    /// 新建投递到COS的任务
     ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
     public func createShipper(_ input: CreateShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
         try await self.client.execute(action: "CreateShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建投递规则
+    /// 新建投递到COS的任务
     ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
     public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShipperResponse> {
         self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建投递规则
+    /// 新建投递到COS的任务
     ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
     public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
         try await self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)

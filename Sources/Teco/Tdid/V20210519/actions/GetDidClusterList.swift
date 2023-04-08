@@ -38,32 +38,36 @@ extension Tdid {
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterList(_ input: GetDidClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
-        self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterList is no longer available.")
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterList(_ input: GetDidClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidClusterList is no longer available.")
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
-        self.getDidClusterList(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterList is no longer available.")
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.getDidClusterList(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidClusterList is no longer available.")
     }
 }

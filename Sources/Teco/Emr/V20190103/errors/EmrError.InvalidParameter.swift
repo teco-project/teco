@@ -21,6 +21,7 @@ extension TCEmrError {
             case haLessMasterCount = "InvalidParameter.HALessMasterCount"
             case incorrectCommonCount = "InvalidParameter.IncorrectCommonCount"
             case incorrectMasterCount = "InvalidParameter.IncorrectMasterCount"
+            case invalidAllNodeResourceSpec = "InvalidParameter.InvalidAllNodeResourceSpec"
             case invalidAppId = "InvalidParameter.InvalidAppId"
             case invalidAutoRenew = "InvalidParameter.InvalidAutoRenew"
             case invalidBootstrapAction = "InvalidParameter.InvalidBootstrapAction"
@@ -34,11 +35,13 @@ extension TCEmrError {
             case invalidCount = "InvalidParameter.InvalidCount"
             case invalidCountNum = "InvalidParameter.InvalidCountNum"
             case invalidCustomizedPodParam = "InvalidParameter.InvalidCustomizedPodParam"
+            case invalidDependServiceAndEnableKerberosConflict = "InvalidParameter.InvalidDependServiceAndEnableKerberosConflict"
             case invalidDiskSize = "InvalidParameter.InvalidDiskSize"
             case invalidEksInstance = "InvalidParameter.InvalidEksInstance"
             case invalidExtendField = "InvalidParameter.InvalidExtendField"
             case invalidFailurePolicy = "InvalidParameter.InvalidFailurePolicy"
             case invalidInstance = "InvalidParameter.InvalidInstance"
+            case invalidInstanceChargeType = "InvalidParameter.InvalidInstanceChargeType"
             case invalidInstanceName = "InvalidParameter.InvalidInstanceName"
             case invalidInstancePolicy = "InvalidParameter.InvalidInstancePolicy"
             case invalidInstanceType = "InvalidParameter.InvalidInstanceType"
@@ -55,9 +58,12 @@ extension TCEmrError {
             case invalidPreExecutedFile = "InvalidParameter.InvalidPreExecutedFile"
             case invalidProduct = "InvalidParameter.InvalidProduct"
             case invalidProductId = "InvalidParameter.InvalidProductId"
+            case invalidProductVersion = "InvalidParameter.InvalidProductVersion"
             case invalidProjectId = "InvalidParameter.InvalidProjectId"
+            case invalidRenewFlag = "InvalidParameter.InvalidRenewFlag"
             case invalidResourceIds = "InvalidParameter.InvalidResourceIds"
             case invalidResourceSpec = "InvalidParameter.InvalidResourceSpec"
+            case invalidScriptBootstrapActionConfig = "InvalidParameter.InvalidScriptBootstrapActionConfig"
             case invalidSecuritySupport = "InvalidParameter.InvalidSecuritySupport"
             case invalidSercurityGrpupId = "InvalidParameter.InvalidSercurityGrpupId"
             case invalidServiceName = "InvalidParameter.InvalidServiceName"
@@ -77,6 +83,7 @@ extension TCEmrError {
             case invalidUnifyMeta = "InvalidParameter.InvalidUnifyMeta"
             case invalidVpcId = "InvalidParameter.InvalidVpcId"
             case invalidZone = "InvalidParameter.InvalidZone"
+            case kerberosSupport = "InvalidParameter.KerberosSupport"
             case notContainMustSelectSoftware = "InvalidParameter.NotContainMustSelectSoftware"
             case orderFieldNotMatch = "InvalidParameter.OrderFieldNotMatch"
             case payModeResourceNotMatch = "InvalidParameter.PayModeResourceNotMatch"
@@ -128,6 +135,11 @@ extension TCEmrError {
         /// Master节点数量无效。
         public static var incorrectMasterCount: InvalidParameter {
             InvalidParameter(.incorrectMasterCount)
+        }
+
+        /// 不合法的AllNodeResourceSpec参数。
+        public static var invalidAllNodeResourceSpec: InvalidParameter {
+            InvalidParameter(.invalidAllNodeResourceSpec)
         }
 
         /// 无效参数，AppId。
@@ -195,6 +207,11 @@ extension TCEmrError {
             InvalidParameter(.invalidCustomizedPodParam)
         }
 
+        /// DependService和EnableKerberos参数冲突。
+        public static var invalidDependServiceAndEnableKerberosConflict: InvalidParameter {
+            InvalidParameter(.invalidDependServiceAndEnableKerberosConflict)
+        }
+
         /// 无效的磁盘大小。
         public static var invalidDiskSize: InvalidParameter {
             InvalidParameter(.invalidDiskSize)
@@ -218,6 +235,11 @@ extension TCEmrError {
         /// 无效参数，EMR实例不符合要求。
         public static var invalidInstance: InvalidParameter {
             InvalidParameter(.invalidInstance)
+        }
+
+        /// 不合法的实例计费模式。
+        public static var invalidInstanceChargeType: InvalidParameter {
+            InvalidParameter(.invalidInstanceChargeType)
         }
 
         /// 无效的集群名称。
@@ -255,6 +277,7 @@ extension TCEmrError {
             InvalidParameter(.invalidMasterDiskType)
         }
 
+        /// 无效的元数据库URL。
         public static var invalidMetaDataJdbcUrl: InvalidParameter {
             InvalidParameter(.invalidMetaDataJdbcUrl)
         }
@@ -299,9 +322,19 @@ extension TCEmrError {
             InvalidParameter(.invalidProductId)
         }
 
+        /// 不合法的产品版本。
+        public static var invalidProductVersion: InvalidParameter {
+            InvalidParameter(.invalidProductVersion)
+        }
+
         /// 无效的项目ID。
         public static var invalidProjectId: InvalidParameter {
             InvalidParameter(.invalidProjectId)
+        }
+
+        /// 不合法自动续费标识。
+        public static var invalidRenewFlag: InvalidParameter {
+            InvalidParameter(.invalidRenewFlag)
         }
 
         /// 资源ID无效。
@@ -312,6 +345,11 @@ extension TCEmrError {
         /// 无效的资源规格。
         public static var invalidResourceSpec: InvalidParameter {
             InvalidParameter(.invalidResourceSpec)
+        }
+
+        /// 不合法的引导脚本执行参数。
+        public static var invalidScriptBootstrapActionConfig: InvalidParameter {
+            InvalidParameter(.invalidScriptBootstrapActionConfig)
         }
 
         /// 该EMR版本不支持开启安全模式。
@@ -409,6 +447,11 @@ extension TCEmrError {
             InvalidParameter(.invalidZone)
         }
 
+        /// 不合法的支持Kerberos标识。
+        public static var kerberosSupport: InvalidParameter {
+            InvalidParameter(.kerberosSupport)
+        }
+
         /// 无效参数，不满足必须组件。
         public static var notContainMustSelectSoftware: InvalidParameter {
             InvalidParameter(.notContainMustSelectSoftware)
@@ -465,6 +508,8 @@ extension TCEmrError {
                 code = .invalidParameter_IncorrectCommonCount
             case .incorrectMasterCount:
                 code = .invalidParameter_IncorrectMasterCount
+            case .invalidAllNodeResourceSpec:
+                code = .invalidParameter_InvalidAllNodeResourceSpec
             case .invalidAppId:
                 code = .invalidParameter_InvalidAppId
             case .invalidAutoRenew:
@@ -491,6 +536,8 @@ extension TCEmrError {
                 code = .invalidParameter_InvalidCountNum
             case .invalidCustomizedPodParam:
                 code = .invalidParameter_InvalidCustomizedPodParam
+            case .invalidDependServiceAndEnableKerberosConflict:
+                code = .invalidParameter_InvalidDependServiceAndEnableKerberosConflict
             case .invalidDiskSize:
                 code = .invalidParameter_InvalidDiskSize
             case .invalidEksInstance:
@@ -501,6 +548,8 @@ extension TCEmrError {
                 code = .invalidParameter_InvalidFailurePolicy
             case .invalidInstance:
                 code = .invalidParameter_InvalidInstance
+            case .invalidInstanceChargeType:
+                code = .invalidParameter_InvalidInstanceChargeType
             case .invalidInstanceName:
                 code = .invalidParameter_InvalidInstanceName
             case .invalidInstancePolicy:
@@ -533,12 +582,18 @@ extension TCEmrError {
                 code = .invalidParameter_InvalidProduct
             case .invalidProductId:
                 code = .invalidParameter_InvalidProductId
+            case .invalidProductVersion:
+                code = .invalidParameter_InvalidProductVersion
             case .invalidProjectId:
                 code = .invalidParameter_InvalidProjectId
+            case .invalidRenewFlag:
+                code = .invalidParameter_InvalidRenewFlag
             case .invalidResourceIds:
                 code = .invalidParameter_InvalidResourceIds
             case .invalidResourceSpec:
                 code = .invalidParameter_InvalidResourceSpec
+            case .invalidScriptBootstrapActionConfig:
+                code = .invalidParameter_InvalidScriptBootstrapActionConfig
             case .invalidSecuritySupport:
                 code = .invalidParameter_InvalidSecuritySupport
             case .invalidSercurityGrpupId:
@@ -577,6 +632,8 @@ extension TCEmrError {
                 code = .invalidParameter_InvalidVpcId
             case .invalidZone:
                 code = .invalidParameter_InvalidZone
+            case .kerberosSupport:
+                code = .invalidParameter_KerberosSupport
             case .notContainMustSelectSoftware:
                 code = .invalidParameter_NotContainMustSelectSoftware
             case .orderFieldNotMatch:

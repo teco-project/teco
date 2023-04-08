@@ -56,6 +56,14 @@ extension Cam {
         /// 邮箱
         public let email: String
 
+        /// 最近一次登录ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recentlyLoginIP: String?
+
+        /// 最近一次登录时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recentlyLoginTime: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -68,6 +76,8 @@ extension Cam {
             case phoneNum = "PhoneNum"
             case countryCode = "CountryCode"
             case email = "Email"
+            case recentlyLoginIP = "RecentlyLoginIP"
+            case recentlyLoginTime = "RecentlyLoginTime"
             case requestId = "RequestId"
         }
     }

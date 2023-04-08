@@ -56,26 +56,30 @@ extension Tdid {
     }
 
     /// 披露策略Policy查看
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func queryPolicy(_ input: QueryPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
-        self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("QueryPolicy is no longer available.")
     }
 
     /// 披露策略Policy查看
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func queryPolicy(_ input: QueryPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
-        try await self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("QueryPolicy is no longer available.")
     }
 
     /// 披露策略Policy查看
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
-        self.queryPolicy(.init(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
+        fatalError("QueryPolicy is no longer available.")
     }
 
     /// 披露策略Policy查看
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
-        try await self.queryPolicy(.init(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
+        fatalError("QueryPolicy is no longer available.")
     }
 }

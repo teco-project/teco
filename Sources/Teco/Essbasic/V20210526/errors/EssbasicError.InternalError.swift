@@ -25,8 +25,10 @@ extension TCEssbasicError {
             case dbUpdate = "InternalError.DbUpdate"
             case decryption = "InternalError.Decryption"
             case dependsApi = "InternalError.DependsApi"
+            case dependsDb = "InternalError.DependsDb"
             case encryption = "InternalError.Encryption"
             case generateId = "InternalError.GenerateId"
+            case pdf = "InternalError.Pdf"
             case sealUpload = "InternalError.SealUpload"
             case serialize = "InternalError.Serialize"
             case system = "InternalError.System"
@@ -112,6 +114,11 @@ extension TCEssbasicError {
             InternalError(.dependsApi)
         }
 
+        /// 数据库异常。
+        public static var dependsDb: InternalError {
+            InternalError(.dependsDb)
+        }
+
         /// 加密错误。
         ///
         /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
@@ -126,6 +133,14 @@ extension TCEssbasicError {
             InternalError(.generateId)
         }
 
+        /// Pdf合成错误。
+        ///
+        /// 请稍后重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
+        public static var pdf: InternalError {
+            InternalError(.pdf)
+        }
+
+        /// 上传印章失败。
         public static var sealUpload: InternalError {
             InternalError(.sealUpload)
         }
@@ -175,10 +190,14 @@ extension TCEssbasicError {
                 code = .internalError_Decryption
             case .dependsApi:
                 code = .internalError_DependsApi
+            case .dependsDb:
+                code = .internalError_DependsDb
             case .encryption:
                 code = .internalError_Encryption
             case .generateId:
                 code = .internalError_GenerateId
+            case .pdf:
+                code = .internalError_Pdf
             case .sealUpload:
                 code = .internalError_SealUpload
             case .serialize:

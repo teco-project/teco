@@ -17,6 +17,7 @@
 extension TCTdmqError {
     public struct InvalidParameter: TCTdmqErrorType {
         enum Code: String {
+            case invalidAdminUrl = "InvalidParameter.InvalidAdminUrl"
             case partition = "InvalidParameter.Partition"
             case tenantNotFound = "InvalidParameter.TenantNotFound"
             case tokenNotFound = "InvalidParameter.TokenNotFound"
@@ -45,6 +46,13 @@ extension TCTdmqError {
             self.context = context
         }
 
+        /// 无效的管理端接口地址。
+        public static var invalidAdminUrl: InvalidParameter {
+            InvalidParameter(.invalidAdminUrl)
+        }
+
+        /// 错误的分区数。
+        ///
         /// 调整分区数到合理的范围内
         public static var partition: InvalidParameter {
             InvalidParameter(.partition)
@@ -68,6 +76,8 @@ extension TCTdmqError {
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
+            case .invalidAdminUrl:
+                code = .invalidParameter_InvalidAdminUrl
             case .partition:
                 code = .invalidParameter_Partition
             case .tenantNotFound:

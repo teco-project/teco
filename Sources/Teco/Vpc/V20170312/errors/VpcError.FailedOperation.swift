@@ -52,6 +52,7 @@ extension TCVpcError {
             FailedOperation(.addressEniInfoNotFound)
         }
 
+        /// 账户余额不足。
         public static var balanceInsufficient: FailedOperation {
             FailedOperation(.balanceInsufficient)
         }
@@ -71,7 +72,7 @@ extension TCVpcError {
             FailedOperation(.netDetectTimeOut)
         }
 
-        /// DES任务失败。
+        /// 任务执行失败。
         public static var taskFailed: FailedOperation {
             FailedOperation(.taskFailed)
         }

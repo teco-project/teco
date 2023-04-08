@@ -491,7 +491,7 @@ extension Live {
         /// 该值为1时，output_stream_id 不能出现在 input_stram_list 中，且直播后台中，不能存在相同 ID 的流。
         public let outputStreamType: Int64?
 
-        /// 输出流比特率。取值范围[1，50000]。
+        /// 输出流比特率。取值范围[1，10000]。
         /// 不填的情况下，系统会自动判断。
         public let outputStreamBitRate: Int64?
 
@@ -2129,6 +2129,7 @@ extension Live {
         public let duration: UInt64
 
         /// 主播 IP。
+        /// 当客户端为内网推流时，展示为: - 。
         public let clientIp: String
 
         /// 分辨率。
@@ -2424,6 +2425,65 @@ extension Live {
             case transCodeId = "TransCodeId"
             case streamType = "StreamType"
             case duration = "Duration"
+        }
+    }
+
+    /// 直播时移模板配置
+    public struct TimeShiftTemplate: TCInputModel, TCOutputModel {
+        /// 模板名称。
+        public let templateName: String
+
+        /// 时移时长。
+        /// 单位：秒。
+        public let duration: UInt64
+
+        /// 分片时长。
+        /// 可取3-10。
+        /// 单位：s。
+        /// 默认值：5。
+        public let itemDuration: UInt64
+
+        /// 模板id。
+        public let templateId: UInt64?
+
+        /// 模板描述。
+        public let description: String?
+
+        /// 地域：
+        /// Mainland：中国大陆；
+        /// Overseas：海外及港澳台地区；
+        /// 默认值：Mainland。
+        public let area: String?
+
+        /// 是否去除水印。
+        /// 为true则将录制原始流。
+        /// 默认值：false。
+        public let removeWatermark: Bool?
+
+        /// 转码流id列表。
+        /// 此参数仅在 RemoveWatermark为false时生效。
+        public let transcodeTemplateIds: [UInt64]?
+
+        public init(templateName: String, duration: UInt64, itemDuration: UInt64, templateId: UInt64? = nil, description: String? = nil, area: String? = nil, removeWatermark: Bool? = nil, transcodeTemplateIds: [UInt64]? = nil) {
+            self.templateName = templateName
+            self.duration = duration
+            self.itemDuration = itemDuration
+            self.templateId = templateId
+            self.description = description
+            self.area = area
+            self.removeWatermark = removeWatermark
+            self.transcodeTemplateIds = transcodeTemplateIds
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case templateName = "TemplateName"
+            case duration = "Duration"
+            case itemDuration = "ItemDuration"
+            case templateId = "TemplateId"
+            case description = "Description"
+            case area = "Area"
+            case removeWatermark = "RemoveWatermark"
+            case transcodeTemplateIds = "TranscodeTemplateIds"
         }
     }
 

@@ -57,10 +57,10 @@ extension Clb {
         /// 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
         public let multiCertInfo: MultiCertInfo?
 
-        /// 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        /// 监听器粒度并发连接数上限，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持。取值范围：1-实例规格并发连接上限，其中-1表示关闭监听器粒度并发连接数限速。
         public let maxConn: Int64?
 
-        /// 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        /// 监听器粒度新建连接数上限，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持。取值范围：1-实例规格新建连接上限，其中-1表示关闭监听器粒度新建连接数限速。
         public let maxCps: Int64?
 
         public init(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil) {

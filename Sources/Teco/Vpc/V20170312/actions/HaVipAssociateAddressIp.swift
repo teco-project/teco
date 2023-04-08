@@ -17,10 +17,10 @@
 extension Vpc {
     /// HaVipAssociateAddressIp请求参数结构体
     public struct HaVipAssociateAddressIpRequest: TCRequestModel {
-        /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是没有绑定`EIP`的`HAVIP`
+        /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是没有绑定`EIP`的`HAVIP`。
         public let haVipId: String
 
-        /// 弹性公网`IP`。必须是没有绑定`HAVIP`的`EIP`
+        /// 弹性公网`IP`。必须是没有绑定`HAVIP`的`EIP`。
         public let addressIp: String
 
         public init(haVipId: String, addressIp: String) {

@@ -17,7 +17,7 @@
 extension As {
     /// ExecuteScalingPolicy请求参数结构体
     public struct ExecuteScalingPolicyRequest: TCRequestModel {
-        /// 告警伸缩策略ID
+        /// 告警伸缩策略ID，不支持目标追踪策略。
         public let autoScalingPolicyId: String
 
         /// 是否检查伸缩组活动处于冷却时间内，默认值为false
@@ -59,6 +59,7 @@ extension As {
     ///
     /// * 可以根据伸缩策略ID执行伸缩策略。
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    /// * 本接口不支持执行目标追踪策略。
     @inlinable
     public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteScalingPolicyResponse> {
         self.client.execute(action: "ExecuteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,6 +71,7 @@ extension As {
     ///
     /// * 可以根据伸缩策略ID执行伸缩策略。
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    /// * 本接口不支持执行目标追踪策略。
     @inlinable
     public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
         try await self.client.execute(action: "ExecuteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,6 +83,7 @@ extension As {
     ///
     /// * 可以根据伸缩策略ID执行伸缩策略。
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    /// * 本接口不支持执行目标追踪策略。
     @inlinable
     public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteScalingPolicyResponse> {
         self.executeScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), region: region, logger: logger, on: eventLoop)
@@ -92,6 +95,7 @@ extension As {
     ///
     /// * 可以根据伸缩策略ID执行伸缩策略。
     /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    /// * 本接口不支持执行目标追踪策略。
     @inlinable
     public func executeScalingPolicy(autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
         try await self.executeScalingPolicy(.init(autoScalingPolicyId: autoScalingPolicyId, honorCooldown: honorCooldown, triggerSource: triggerSource), region: region, logger: logger, on: eventLoop)

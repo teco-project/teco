@@ -40,6 +40,7 @@ extension TCAsError {
             case invalidAutoScalingNotificationId = "InvalidParameterValue.InvalidAutoScalingNotificationId"
             case invalidAutoScalingPolicyId = "InvalidParameterValue.InvalidAutoScalingPolicyId"
             case invalidClbRegion = "InvalidParameterValue.InvalidClbRegion"
+            case invalidDisasterRecoverGroupId = "InvalidParameterValue.InvalidDisasterRecoverGroupId"
             case invalidFilter = "InvalidParameterValue.InvalidFilter"
             case invalidHpcClusterId = "InvalidParameterValue.InvalidHpcClusterId"
             case invalidImageId = "InvalidParameterValue.InvalidImageId"
@@ -71,6 +72,7 @@ extension TCAsError {
             case startTimeBeforeCurrentTime = "InvalidParameterValue.StartTimeBeforeCurrentTime"
             case subnetIds = "InvalidParameterValue.SubnetIds"
             case targetPortDuplicated = "InvalidParameterValue.TargetPortDuplicated"
+            case targetTrackingScalingPolicy = "InvalidParameterValue.TargetTrackingScalingPolicy"
             case thresholdOutOfRange = "InvalidParameterValue.ThresholdOutOfRange"
             case timeFormat = "InvalidParameterValue.TimeFormat"
             case tooLong = "InvalidParameterValue.TooLong"
@@ -104,6 +106,7 @@ extension TCAsError {
             self.context = context
         }
 
+        /// 当前账户不支持带宽包ID参数。
         public static var accountNotSupportBandwidthPackageId: InvalidParameterValue {
             InvalidParameterValue(.accountNotSupportBandwidthPackageId)
         }
@@ -175,6 +178,7 @@ extension TCAsError {
             InvalidParameterValue(.hostNameIllegal)
         }
 
+        /// 指定的IPv6公网带宽计费模式不合法。
         public static var iPv6InternetChargeType: InvalidParameterValue {
             InvalidParameterValue(.iPv6InternetChargeType)
         }
@@ -221,11 +225,17 @@ extension TCAsError {
             InvalidParameterValue(.invalidClbRegion)
         }
 
+        /// 请提供规范的置放群组ID，类似ps-xxxxxxxx，字母x代表小写字符或者数字。
+        public static var invalidDisasterRecoverGroupId: InvalidParameterValue {
+            InvalidParameterValue(.invalidDisasterRecoverGroupId)
+        }
+
         /// 过滤条件无效。
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
         }
 
+        /// 高性能计算集群ID无效。
         public static var invalidHpcClusterId: InvalidParameterValue {
             InvalidParameterValue(.invalidHpcClusterId)
         }
@@ -277,6 +287,7 @@ extension TCAsError {
             InvalidParameterValue(.invalidScheduledActionNameIncludeIllegalChar)
         }
 
+        /// 安全组ID无效。
         public static var invalidSecurityGroupId: InvalidParameterValue {
             InvalidParameterValue(.invalidSecurityGroupId)
         }
@@ -316,6 +327,7 @@ extension TCAsError {
             InvalidParameterValue(.limitExceeded)
         }
 
+        /// 当前账户在带宽包模式中必须填写带宽包ID参数。
         public static var missingBandwidthPackageId: InvalidParameterValue {
             InvalidParameterValue(.missingBandwidthPackageId)
         }
@@ -373,6 +385,11 @@ extension TCAsError {
         /// 负载均衡器四层监听器的后端端口重复。
         public static var targetPortDuplicated: InvalidParameterValue {
             InvalidParameterValue(.targetPortDuplicated)
+        }
+
+        /// 不支持执行目标追踪策略。
+        public static var targetTrackingScalingPolicy: InvalidParameterValue {
+            InvalidParameterValue(.targetTrackingScalingPolicy)
         }
 
         /// 指定的阈值不在有效范围。
@@ -469,6 +486,8 @@ extension TCAsError {
                 code = .invalidParameterValue_InvalidAutoScalingPolicyId
             case .invalidClbRegion:
                 code = .invalidParameterValue_InvalidClbRegion
+            case .invalidDisasterRecoverGroupId:
+                code = .invalidParameterValue_InvalidDisasterRecoverGroupId
             case .invalidFilter:
                 code = .invalidParameterValue_InvalidFilter
             case .invalidHpcClusterId:
@@ -531,6 +550,8 @@ extension TCAsError {
                 code = .invalidParameterValue_SubnetIds
             case .targetPortDuplicated:
                 code = .invalidParameterValue_TargetPortDuplicated
+            case .targetTrackingScalingPolicy:
+                code = .invalidParameterValue_TargetTrackingScalingPolicy
             case .thresholdOutOfRange:
                 code = .invalidParameterValue_ThresholdOutOfRange
             case .timeFormat:

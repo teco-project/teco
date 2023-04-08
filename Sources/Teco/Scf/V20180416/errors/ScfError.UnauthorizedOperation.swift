@@ -27,6 +27,7 @@ extension TCScfError {
             case role = "UnauthorizedOperation.Role"
             case tempCosAppid = "UnauthorizedOperation.TempCosAppid"
             case updateFunctionCode = "UnauthorizedOperation.UpdateFunctionCode"
+            case updateTriggerStatus = "UnauthorizedOperation.UpdateTriggerStatus"
             case other = "UnauthorizedOperation"
         }
 
@@ -102,6 +103,11 @@ extension TCScfError {
             UnauthorizedOperation(.updateFunctionCode)
         }
 
+        /// 没有权限。
+        public static var updateTriggerStatus: UnauthorizedOperation {
+            UnauthorizedOperation(.updateTriggerStatus)
+        }
+
         /// 未授权操作。
         public static var other: UnauthorizedOperation {
             UnauthorizedOperation(.other)
@@ -130,6 +136,8 @@ extension TCScfError {
                 code = .unauthorizedOperation_TempCosAppid
             case .updateFunctionCode:
                 code = .unauthorizedOperation_UpdateFunctionCode
+            case .updateTriggerStatus:
+                code = .unauthorizedOperation_UpdateTriggerStatus
             case .other:
                 code = .unauthorizedOperation
             }

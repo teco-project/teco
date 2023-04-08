@@ -20,7 +20,7 @@ extension Ess {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
-        /// 需要执行撤回的签署流程id数组，最多100个
+        /// 需要执行催办的签署流程id数组，最多100个
         public let flowIds: [String]
 
         public init(operator: UserInfo, flowIds: [String]) {
@@ -48,41 +48,41 @@ extension Ess {
         }
     }
 
-    /// 电子签企业版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func createFlowReminds(_ input: CreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowRemindsResponse> {
         self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 电子签企业版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func createFlowReminds(_ input: CreateFlowRemindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowRemindsResponse {
         try await self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 电子签企业版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowRemindsResponse> {
         self.createFlowReminds(.init(operator: `operator`, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 电子签企业版-合同催办接口
+    /// 合同催办
     ///
     /// 指定需要批量催办的签署流程Id，批量催办合同，最多100个; 接口失败后返回错误信息
     /// 注意:
-    /// 该接口需要开白后使用
+    /// 该接口不可直接调用，请联系客户经理申请使用
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowRemindsResponse {
         try await self.createFlowReminds(.init(operator: `operator`, flowIds: flowIds), region: region, logger: logger, on: eventLoop)

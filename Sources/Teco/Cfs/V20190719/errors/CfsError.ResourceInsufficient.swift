@@ -21,6 +21,7 @@ extension TCCfsError {
             case pgroupNumberLimitExceeded = "ResourceInsufficient.PgroupNumberLimitExceeded"
             case regionSoldOut = "ResourceInsufficient.RegionSoldOut"
             case ruleLimitExceeded = "ResourceInsufficient.RuleLimitExceeded"
+            case snapshotSizeLimitExceeded = "ResourceInsufficient.SnapshotSizeLimitExceeded"
             case subnetIpAllOccupied = "ResourceInsufficient.SubnetIpAllOccupied"
             case tagLimitExceeded = "ResourceInsufficient.TagLimitExceeded"
             case tagQuotasExceeded = "ResourceInsufficient.TagQuotasExceeded"
@@ -68,6 +69,10 @@ extension TCCfsError {
             ResourceInsufficient(.ruleLimitExceeded)
         }
 
+        public static var snapshotSizeLimitExceeded: ResourceInsufficient {
+            ResourceInsufficient(.snapshotSizeLimitExceeded)
+        }
+
         /// 该子网下已无可用IP。
         public static var subnetIpAllOccupied: ResourceInsufficient {
             ResourceInsufficient(.subnetIpAllOccupied)
@@ -78,6 +83,7 @@ extension TCCfsError {
             ResourceInsufficient(.tagLimitExceeded)
         }
 
+        /// 标签限额不足。
         public static var tagQuotasExceeded: ResourceInsufficient {
             ResourceInsufficient(.tagQuotasExceeded)
         }
@@ -93,6 +99,8 @@ extension TCCfsError {
                 code = .resourceInsufficient_RegionSoldOut
             case .ruleLimitExceeded:
                 code = .resourceInsufficient_RuleLimitExceeded
+            case .snapshotSizeLimitExceeded:
+                code = .resourceInsufficient_SnapshotSizeLimitExceeded
             case .subnetIpAllOccupied:
                 code = .resourceInsufficient_SubnetIpAllOccupied
             case .tagLimitExceeded:

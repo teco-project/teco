@@ -45,7 +45,7 @@ extension TCDtsError {
             self.context = context
         }
 
-        /// 自研上云用户创建同步任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
+        /// 自研上云用户创建迁移任务时未指定标签，需要补齐“运营部门”、“运营产品”、“负责人”这三类标签。
         ///
         /// 【官方】自研上云的“标签”及其作用介绍https://km.woa.com/group/35679/docs/show/218713【官方】云上PAAS服务标签自动补齐规则说明及指引 https://km.woa.com/group/35679/docs/show/222609
         public static var intraNetUserNotTaggedError: UnsupportedOperation {
@@ -60,6 +60,7 @@ extension TCDtsError {
             UnsupportedOperation(.intraNetUserNotTaggedForSyncJobError)
         }
 
+        /// 不支持的操作。
         public static var unsupportedOperationError: UnsupportedOperation {
             UnsupportedOperation(.unsupportedOperationError)
         }

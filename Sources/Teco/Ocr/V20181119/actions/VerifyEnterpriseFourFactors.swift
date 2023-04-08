@@ -67,32 +67,36 @@ extension Ocr {
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
+    @available(*, unavailable, message: "库源服务调整，该接口在2023年6月1日将正式下线。")
     @inlinable
     public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
-        self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("VerifyEnterpriseFourFactors is no longer available.")
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
+    @available(*, unavailable, message: "库源服务调整，该接口在2023年6月1日将正式下线。")
     @inlinable
     public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
-        try await self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("VerifyEnterpriseFourFactors is no longer available.")
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
+    @available(*, unavailable, message: "库源服务调整，该接口在2023年6月1日将正式下线。")
     @inlinable
     public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
-        self.verifyEnterpriseFourFactors(.init(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
+        fatalError("VerifyEnterpriseFourFactors is no longer available.")
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
+    @available(*, unavailable, message: "库源服务调整，该接口在2023年6月1日将正式下线。")
     @inlinable
     public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
-        try await self.verifyEnterpriseFourFactors(.init(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
+        fatalError("VerifyEnterpriseFourFactors is no longer available.")
     }
 }

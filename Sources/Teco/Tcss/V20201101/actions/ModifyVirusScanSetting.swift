@@ -47,7 +47,13 @@ extension Tcss {
         /// 扫描路径
         public let scanPath: [String]?
 
-        public init(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil) {
+        /// 扫描路径模式：
+        /// SCAN_PATH_ALL：全部路径
+        /// SCAN_PATH_DEFAULT：默认路径
+        /// SCAN_PATH_USER_DEFINE：用户自定义路径
+        public let scanPathMode: String?
+
+        public init(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil) {
             self.enableScan = enableScan
             self.cycle = cycle
             self.beginScanAt = beginScanAt
@@ -58,6 +64,7 @@ extension Tcss {
             self.scanRangeAll = scanRangeAll
             self.scanIds = scanIds
             self.scanPath = scanPath
+            self.scanPathMode = scanPathMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -71,6 +78,7 @@ extension Tcss {
             case scanRangeAll = "ScanRangeAll"
             case scanIds = "ScanIds"
             case scanPath = "ScanPath"
+            case scanPathMode = "ScanPathMode"
         }
     }
 
@@ -98,13 +106,13 @@ extension Tcss {
 
     /// 运行时更新文件查杀设置
     @inlinable @discardableResult
-    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
-        self.modifyVirusScanSetting(.init(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
+        self.modifyVirusScanSetting(.init(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀设置
     @inlinable @discardableResult
-    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
-        try await self.modifyVirusScanSetting(.init(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
+        try await self.modifyVirusScanSetting(.init(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 }

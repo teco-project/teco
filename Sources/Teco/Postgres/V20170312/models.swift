@@ -134,6 +134,124 @@ extension Postgres {
         }
     }
 
+    /// 实例备份统计项
+    public struct BackupSummary: TCOutputModel {
+        /// 实例ID。
+        public let dbInstanceId: String
+
+        /// 实例日志备份数量。
+        public let logBackupCount: UInt64
+
+        /// 实例日志备份大小。
+        public let logBackupSize: UInt64
+
+        /// 手动创建的实例基础备份数量。
+        public let manualBaseBackupCount: UInt64
+
+        /// 手动创建的实例基础备份大小。
+        public let manualBaseBackupSize: UInt64
+
+        /// 自动创建的实例基础备份数量。
+        public let autoBaseBackupCount: UInt64
+
+        /// 自动创建的实例基础备份大小。
+        public let autoBaseBackupSize: UInt64
+
+        /// 总备份数量
+        public let totalBackupCount: UInt64
+
+        /// 总备份大小
+        public let totalBackupSize: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case dbInstanceId = "DBInstanceId"
+            case logBackupCount = "LogBackupCount"
+            case logBackupSize = "LogBackupSize"
+            case manualBaseBackupCount = "ManualBaseBackupCount"
+            case manualBaseBackupSize = "ManualBaseBackupSize"
+            case autoBaseBackupCount = "AutoBaseBackupCount"
+            case autoBaseBackupSize = "AutoBaseBackupSize"
+            case totalBackupCount = "TotalBackupCount"
+            case totalBackupSize = "TotalBackupSize"
+        }
+    }
+
+    /// 数据库基础备份信息
+    public struct BaseBackup: TCOutputModel {
+        /// 实例ID。
+        public let dbInstanceId: String
+
+        /// 备份文件唯一标识。
+        public let id: String
+
+        /// 备份文件名称。
+        public let name: String
+
+        /// 备份方式：物理备份、逻辑备份。
+        public let backupMethod: String
+
+        /// 备份模式：自动备份、手动备份。
+        public let backupMode: String
+
+        /// 备份任务状态。
+        public let state: String
+
+        /// 备份集大小，单位bytes。
+        public let size: UInt64
+
+        /// 备份的开始时间。
+        public let startTime: String
+
+        /// 备份的结束时间。
+        public let finishTime: String
+
+        /// 备份的过期时间。
+        public let expireTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case dbInstanceId = "DBInstanceId"
+            case id = "Id"
+            case name = "Name"
+            case backupMethod = "BackupMethod"
+            case backupMode = "BackupMode"
+            case state = "State"
+            case size = "Size"
+            case startTime = "StartTime"
+            case finishTime = "FinishTime"
+            case expireTime = "ExpireTime"
+        }
+    }
+
+    /// 数据库实例规格
+    public struct ClassInfo: TCOutputModel {
+        /// 规格ID
+        public let specCode: String
+
+        /// CPU核数
+        public let cpu: UInt64
+
+        /// 内存大小，单位：MB
+        public let memory: UInt64
+
+        /// 该规格所支持最大存储容量，单位：GB
+        public let maxStorage: UInt64
+
+        /// 该规格所支持最小存储容量，单位：GB
+        public let minStorage: UInt64
+
+        /// 该规格的预估QPS
+        public let qps: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case specCode = "SpecCode"
+            case cpu = "CPU"
+            case memory = "Memory"
+            case maxStorage = "MaxStorage"
+            case minStorage = "MinStorage"
+            case qps = "QPS"
+        }
+    }
+
     /// 数据库备份信息
     public struct DBBackup: TCOutputModel {
         /// 备份文件唯一标识
@@ -212,7 +330,7 @@ extension Postgres {
         /// 实例名称
         public let dbInstanceName: String
 
-        /// 实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolated（已隔离）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）
+        /// 实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolated（已隔离）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）、upgrading（内核版本升级中）
         public let dbInstanceStatus: String
 
         /// 实例分配的内存大小，单位：GB
@@ -615,6 +733,52 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
+        }
+    }
+
+    /// 数据库日志备份信息
+    public struct LogBackup: TCOutputModel {
+        /// 实例ID。
+        public let dbInstanceId: String
+
+        /// 备份文件唯一标识。
+        public let id: String
+
+        /// 备份文件名称。
+        public let name: String
+
+        /// 备份方式：物理备份、逻辑备份。
+        public let backupMethod: String
+
+        /// 备份模式：自动备份、手动备份。
+        public let backupMode: String
+
+        /// 备份任务状态。
+        public let state: String
+
+        /// 备份集大小，单位bytes。
+        public let size: UInt64
+
+        /// 备份的开始时间。
+        public let startTime: String
+
+        /// 备份的结束时间。
+        public let finishTime: String
+
+        /// 备份的过期时间。
+        public let expireTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case dbInstanceId = "DBInstanceId"
+            case id = "Id"
+            case name = "Name"
+            case backupMethod = "BackupMethod"
+            case backupMode = "BackupMode"
+            case state = "State"
+            case size = "Size"
+            case startTime = "StartTime"
+            case finishTime = "FinishTime"
+            case expireTime = "ExpireTime"
         }
     }
 
@@ -1482,6 +1646,45 @@ extension Postgres {
         }
     }
 
+    /// 数据库版本号信息
+    public struct Version: TCOutputModel {
+        /// 数据库引擎，支持：
+        /// 1、postgresql（云数据库PostgreSQL）；
+        /// 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        public let dbEngine: String
+
+        /// 数据库版本，例如：12.4
+        public let dbVersion: String
+
+        /// 数据库主要版本，例如：12
+        public let dbMajorVersion: String
+
+        /// 数据库内核版本，例如：v12.4_r1.3
+        public let dbKernelVersion: String
+
+        /// 数据库内核支持的特性列表。例如，
+        /// TDE：支持数据加密。
+        public let supportedFeatureNames: [String]
+
+        /// 数据库版本状态，包括：
+        /// AVAILABLE：可用；
+        /// DEPRECATED：已弃用。
+        public let status: String
+
+        /// 该数据库版本（DBKernelVersion）可以升级到的版本号列表。
+        public let availableUpgradeTarget: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case dbEngine = "DBEngine"
+            case dbVersion = "DBVersion"
+            case dbMajorVersion = "DBMajorVersion"
+            case dbKernelVersion = "DBKernelVersion"
+            case supportedFeatureNames = "SupportedFeatureNames"
+            case status = "Status"
+            case availableUpgradeTarget = "AvailableUpgradeTarget"
+        }
+    }
+
     /// 数据库Xlog信息
     public struct Xlog: TCOutputModel {
         /// 备份文件唯一标识
@@ -1529,7 +1732,11 @@ extension Postgres {
         /// 该可用区对应的数字编号
         public let zoneId: UInt64
 
-        /// 可用状态，UNAVAILABLE表示不可用，AVAILABLE表示可用，SELLOUT表示售罄
+        /// 可用状态包含，
+        /// UNAVAILABLE：不可用。
+        /// AVAILABLE：可用。
+        /// SELLOUT：售罄。
+        /// SUPPORTMODIFYONLY：支持变配。
         public let zoneState: String
 
         /// 该可用区是否支持Ipv6

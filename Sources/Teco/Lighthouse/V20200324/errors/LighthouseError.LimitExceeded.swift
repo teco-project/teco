@@ -18,6 +18,7 @@ extension TCLighthouseError {
     public struct LimitExceeded: TCLighthouseErrorType {
         enum Code: String {
             case attachDataDiskQuotaLimitExceeded = "LimitExceeded.AttachDataDiskQuotaLimitExceeded"
+            case diskBackupQuotaLimitExceeded = "LimitExceeded.DiskBackupQuotaLimitExceeded"
             case firewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
             case instanceQuotaLimitExceeded = "LimitExceeded.InstanceQuotaLimitExceeded"
             case isolateResourcesLimitExceeded = "LimitExceeded.IsolateResourcesLimitExceeded"
@@ -51,6 +52,11 @@ extension TCLighthouseError {
         /// 实例挂载数据盘配额不足，无法挂载磁盘。
         public static var attachDataDiskQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.attachDataDiskQuotaLimitExceeded)
+        }
+
+        /// 超过磁盘备份点配额限制。
+        public static var diskBackupQuotaLimitExceeded: LimitExceeded {
+            LimitExceeded(.diskBackupQuotaLimitExceeded)
         }
 
         /// 超过防火墙规则配额。
@@ -88,6 +94,8 @@ extension TCLighthouseError {
             switch self.error {
             case .attachDataDiskQuotaLimitExceeded:
                 code = .limitExceeded_AttachDataDiskQuotaLimitExceeded
+            case .diskBackupQuotaLimitExceeded:
+                code = .limitExceeded_DiskBackupQuotaLimitExceeded
             case .firewallRulesLimitExceeded:
                 code = .limitExceeded_FirewallRulesLimitExceeded
             case .instanceQuotaLimitExceeded:

@@ -22,6 +22,7 @@ extension TCAsError {
             case autoScalingGroupInActivity = "ResourceUnavailable.AutoScalingGroupInActivity"
             case cmqTopicHasNoSubscriber = "ResourceUnavailable.CmqTopicHasNoSubscriber"
             case cvmVpcInconsistent = "ResourceUnavailable.CvmVpcInconsistent"
+            case forbiddenModifyVpc = "ResourceUnavailable.ForbiddenModifyVpc"
             case instanceCannotAttach = "ResourceUnavailable.InstanceCannotAttach"
             case instanceInOperation = "ResourceUnavailable.InstanceInOperation"
             case instanceNotSupportStopCharging = "ResourceUnavailable.InstanceNotSupportStopCharging"
@@ -87,6 +88,14 @@ extension TCAsError {
             ResourceUnavailable(.cvmVpcInconsistent)
         }
 
+        /// 绑定负载均衡器的伸缩组禁止修改Vpc。
+        ///
+        /// 先解绑负载均衡器，再修改伸缩组的Vpc。
+        public static var forbiddenModifyVpc: ResourceUnavailable {
+            ResourceUnavailable(.forbiddenModifyVpc)
+        }
+
+        /// 实例无法添加至伸缩组。
         public static var instanceCannotAttach: ResourceUnavailable {
             ResourceUnavailable(.instanceCannotAttach)
         }
@@ -169,6 +178,8 @@ extension TCAsError {
                 code = .resourceUnavailable_CmqTopicHasNoSubscriber
             case .cvmVpcInconsistent:
                 code = .resourceUnavailable_CvmVpcInconsistent
+            case .forbiddenModifyVpc:
+                code = .resourceUnavailable_ForbiddenModifyVpc
             case .instanceCannotAttach:
                 code = .resourceUnavailable_InstanceCannotAttach
             case .instanceInOperation:

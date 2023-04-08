@@ -353,6 +353,7 @@ public struct TCCbsError: TCCbsErrorType {
         TCCbsError(.resourceUnavailable_Attached)
     }
 
+    /// 云硬盘快照链长度过长，拒绝创建快照。
     public static var resourceUnavailable_DiskSnapshotChainTooLarge: TCCbsError {
         TCCbsError(.resourceUnavailable_DiskSnapshotChainTooLarge)
     }

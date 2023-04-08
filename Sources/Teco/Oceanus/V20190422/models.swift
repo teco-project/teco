@@ -223,6 +223,39 @@ extension Oceanus {
     public struct CopyJobResult: TCOutputModel {
     }
 
+    /// 树状结构资源列表对象
+    public struct DescribeTreeResourcesRsp: TCOutputModel {
+        /// 父节点ID
+        public let parentId: String?
+
+        /// 文件夹ID
+        public let id: String?
+
+        /// 文件夹名称
+        public let name: String?
+
+        /// 文件夹下资源数字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let items: [TreeResourceItem]?
+
+        /// 子节点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let children: [DescribeTreeResourcesRsp]?
+
+        /// 资源总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case parentId = "ParentId"
+            case id = "Id"
+            case name = "Name"
+            case items = "Items"
+            case children = "Children"
+            case totalCount = "TotalCount"
+        }
+    }
+
     /// 查询作业列表时的过滤器
     public struct Filter: TCInputModel {
         /// 要过滤的字段
@@ -530,6 +563,22 @@ extension Oceanus {
         }
     }
 
+    /// 依赖作业分状态计数信息
+    public struct RefJobStatusCountItem: TCOutputModel {
+        /// 作业状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobStatus: Int64?
+
+        /// 作业数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case jobStatus = "JobStatus"
+            case count = "Count"
+        }
+    }
+
     /// 描述资源配置的返回参数
     public struct ResourceConfigItem: TCOutputModel {
         /// 资源ID
@@ -570,6 +619,10 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refJobCount: Int64?
 
+        /// 分状态统计关联作业数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refJobStatusCountSet: [RefJobStatusCountItem]?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceType = "ResourceType"
@@ -583,43 +636,44 @@ extension Oceanus {
             case remark = "Remark"
             case status = "Status"
             case refJobCount = "RefJobCount"
+            case refJobStatusCountSet = "RefJobStatusCountSet"
         }
     }
 
     /// 资源详细描述
     public struct ResourceItem: TCOutputModel {
         /// 资源ID
-        public let resourceId: String
+        public let resourceId: String?
 
         /// 资源名称
-        public let name: String
+        public let name: String?
 
         /// 资源类型
-        public let resourceType: UInt64
+        public let resourceType: UInt64?
 
         /// 资源位置
-        public let resourceLoc: ResourceLoc
+        public let resourceLoc: ResourceLoc?
 
         /// 资源地域
-        public let region: String
+        public let region: String?
 
         /// 应用ID
-        public let appId: UInt64
+        public let appId: UInt64?
 
         /// 主账号Uin
-        public let ownerUin: String
+        public let ownerUin: String?
 
         /// 子账号Uin
-        public let creatorUin: String
+        public let creatorUin: String?
 
         /// 资源创建时间
-        public let createTime: String
+        public let createTime: String?
 
         /// 资源最后更新时间
-        public let updateTime: String
+        public let updateTime: String?
 
         /// 资源的资源版本ID
-        public let latestResourceConfigVersion: Int64
+        public let latestResourceConfigVersion: Int64?
 
         /// 资源备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -632,6 +686,22 @@ extension Oceanus {
         /// 关联作业数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refJobCount: Int64?
+
+        /// 作业运行状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isJobRun: Int64?
+
+        /// 文件名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileName: String?
+
+        /// 工作空间ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let workSpaceId: Int64?
+
+        /// 分状态统计关联作业数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refJobStatusCountSet: [RefJobStatusCountItem]?
 
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
@@ -648,6 +718,10 @@ extension Oceanus {
             case remark = "Remark"
             case versionCount = "VersionCount"
             case refJobCount = "RefJobCount"
+            case isJobRun = "IsJobRun"
+            case fileName = "FileName"
+            case workSpaceId = "WorkSpaceId"
+            case refJobStatusCountSet = "RefJobStatusCountSet"
         }
     }
 
@@ -771,7 +845,7 @@ extension Oceanus {
         /// 运行类型，1：启动，2：恢复
         public let runType: Int64
 
-        /// 已废弃。旧版 SQL 类型作业启动参数：指定数据源消费起始时间点
+        /// 兼容旧版 SQL 类型作业启动参数：指定数据源消费起始时间点（例:T1557394288000）
         public let startMode: String?
 
         /// 当前作业的某个版本
@@ -783,13 +857,17 @@ extension Oceanus {
         /// Savepoint的Id
         public let savepointId: String?
 
-        public init(jobId: String, runType: Int64, startMode: String? = nil, jobConfigVersion: UInt64? = nil, savepointPath: String? = nil, savepointId: String? = nil) {
+        /// 使用历史版本系统依赖
+        public let useOldSystemConnector: Bool?
+
+        public init(jobId: String, runType: Int64, startMode: String? = nil, jobConfigVersion: UInt64? = nil, savepointPath: String? = nil, savepointId: String? = nil, useOldSystemConnector: Bool? = nil) {
             self.jobId = jobId
             self.runType = runType
             self.startMode = startMode
             self.jobConfigVersion = jobConfigVersion
             self.savepointPath = savepointPath
             self.savepointId = savepointId
+            self.useOldSystemConnector = useOldSystemConnector
         }
 
         enum CodingKeys: String, CodingKey {
@@ -799,6 +877,7 @@ extension Oceanus {
             case jobConfigVersion = "JobConfigVersion"
             case savepointPath = "SavepointPath"
             case savepointId = "SavepointId"
+            case useOldSystemConnector = "UseOldSystemConnector"
         }
     }
 
@@ -945,6 +1024,40 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// 树状结构资源对象
+    public struct TreeResourceItem: TCOutputModel {
+        /// 资源ID
+        public let resourceId: String
+
+        /// 资源名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 资源类型
+        public let resourceType: Int64
+
+        /// 备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        /// 文件名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileName: String?
+
+        /// 目录ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let folderId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case resourceId = "ResourceId"
+            case name = "Name"
+            case resourceType = "ResourceType"
+            case remark = "Remark"
+            case fileName = "FileName"
+            case folderId = "FolderId"
         }
     }
 

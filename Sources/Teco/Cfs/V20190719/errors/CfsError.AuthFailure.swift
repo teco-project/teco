@@ -17,6 +17,7 @@
 extension TCCfsError {
     public struct AuthFailure: TCCfsErrorType {
         enum Code: String {
+            case getRoleFailed = "AuthFailure.GetRoleFailed"
             case unauthorizedOperation = "AuthFailure.UnauthorizedOperation"
             case other = "AuthFailure"
         }
@@ -43,6 +44,11 @@ extension TCCfsError {
             self.context = context
         }
 
+        /// 获取CFS服务角色错误
+        public static var getRoleFailed: AuthFailure {
+            AuthFailure(.getRoleFailed)
+        }
+
         /// 请求未CAM授权。
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)
@@ -56,6 +62,8 @@ extension TCCfsError {
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {
+            case .getRoleFailed:
+                code = .authFailure_GetRoleFailed
             case .unauthorizedOperation:
                 code = .authFailure_UnauthorizedOperation
             case .other:

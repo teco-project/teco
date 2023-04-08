@@ -17,6 +17,7 @@
 extension TCTsfError {
     public struct InvalidParameterValue: TCTsfErrorType {
         enum Code: String {
+            case applicationDescLength = "InvalidParameterValue.ApplicationDescLength"
             case applicationMicroTypeInvalid = "InvalidParameterValue.ApplicationMicroTypeInvalid"
             case applicationNameExist = "InvalidParameterValue.ApplicationNameExist"
             case applicationNameLength = "InvalidParameterValue.ApplicationNameLength"
@@ -28,6 +29,7 @@ extension TCTsfError {
             case clusterCidrConflict = "InvalidParameterValue.ClusterCidrConflict"
             case clusterNameExist = "InvalidParameterValue.ClusterNameExist"
             case clusterNameRequired = "InvalidParameterValue.ClusterNameRequired"
+            case clusterPageLimitInvalid = "InvalidParameterValue.ClusterPageLimitInvalid"
             case clusterRegionInvalid = "InvalidParameterValue.ClusterRegionInvalid"
             case clusterTypeInvalid = "InvalidParameterValue.ClusterTypeInvalid"
             case clusterZoneInvalid = "InvalidParameterValue.ClusterZoneInvalid"
@@ -37,6 +39,10 @@ extension TCTsfError {
             case configNameInvalid = "InvalidParameterValue.ConfigNameInvalid"
             case configNotExistsOrPermissionDenied = "InvalidParameterValue.ConfigNotExistsOrPermissionDenied"
             case configReleaseNotExists = "InvalidParameterValue.ConfigReleaseNotExists"
+            case configTemplateDescTooLong = "InvalidParameterValue.ConfigTemplateDescTooLong"
+            case configTemplateNameInvalid = "InvalidParameterValue.ConfigTemplateNameInvalid"
+            case configTemplateNameTooLong = "InvalidParameterValue.ConfigTemplateNameTooLong"
+            case configTemplateTypeInvalid = "InvalidParameterValue.ConfigTemplateTypeInvalid"
             case configValueFormatInvalid = "InvalidParameterValue.ConfigValueFormatInvalid"
             case configValueTooLong = "InvalidParameterValue.ConfigValueTooLong"
             case configVersionDescInvalid = "InvalidParameterValue.ConfigVersionDescInvalid"
@@ -71,16 +77,20 @@ extension TCTsfError {
             case cvmCaeMasterAgentBusy = "InvalidParameterValue.CvmCaeMasterAgentBusy"
             case cvmCaeMasterAgentNotFound = "InvalidParameterValue.CvmCaeMasterAgentNotFound"
             case cvmCaeMasterGroupNoAgent = "InvalidParameterValue.CvmCaeMasterGroupNoAgent"
+            case cvmCaeMasterTaskNotExist = "InvalidParameterValue.CvmCaeMasterTaskNotExist"
             case deployGroupNotExists = "InvalidParameterValue.DeployGroupNotExists"
             case fileConfigAlreadyReleased = "InvalidParameterValue.FileConfigAlreadyReleased"
             case fileConfigExists = "InvalidParameterValue.FileConfigExists"
             case fileConfigExistsPath = "InvalidParameterValue.FileConfigExistsPath"
             case fileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
+            case fileConfigFileNameInvalid = "InvalidParameterValue.FileConfigFileNameInvalid"
             case fileConfigFilePathInvalid = "InvalidParameterValue.FileConfigFilePathInvalid"
             case fileConfigNameInvalid = "InvalidParameterValue.FileConfigNameInvalid"
             case fileConfigNotExistsOrPermissionDenied = "InvalidParameterValue.FileConfigNotExistsOrPermissionDenied"
             case fileConfigPathExists = "InvalidParameterValue.FileConfigPathExists"
+            case fileConfigReleaseNotExists = "InvalidParameterValue.FileConfigReleaseNotExists"
             case fileConfigVersionDescInvalid = "InvalidParameterValue.FileConfigVersionDescInvalid"
+            case fileConfigVersionInvalid = "InvalidParameterValue.FileConfigVersionInvalid"
             case gatewayParameterError = "InvalidParameterValue.GatewayParameterError"
             case gatewayParameterInvalid = "InvalidParameterValue.GatewayParameterInvalid"
             case globalNamespaceNameExist = "InvalidParameterValue.GlobalNamespaceNameExist"
@@ -128,6 +138,7 @@ extension TCTsfError {
             case namespaceNameInvalid = "InvalidParameterValue.NamespaceNameInvalid"
             case namespaceNotExists = "InvalidParameterValue.NamespaceNotExists"
             case releasedConfigCanNotBeDeleted = "InvalidParameterValue.ReleasedConfigCanNotBeDeleted"
+            case releasedFileConfigCanNotBeDeleted = "InvalidParameterValue.ReleasedFileConfigCanNotBeDeleted"
             case resourcePermissionDenied = "InvalidParameterValue.ResourcePermissionDenied"
             case resourceTypeError = "InvalidParameterValue.ResourceTypeError"
             case serviceDescLength = "InvalidParameterValue.ServiceDescLength"
@@ -158,6 +169,11 @@ extension TCTsfError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 应用描述不能大于200组字符。
+        public static var applicationDescLength: InvalidParameterValue {
+            InvalidParameterValue(.applicationDescLength)
         }
 
         /// 无效的微服务类型。
@@ -215,6 +231,11 @@ extension TCTsfError {
             InvalidParameterValue(.clusterNameRequired)
         }
 
+        /// 集群无效的分页参数。
+        public static var clusterPageLimitInvalid: InvalidParameterValue {
+            InvalidParameterValue(.clusterPageLimitInvalid)
+        }
+
         /// 创建集群，无效的地域字段。
         public static var clusterRegionInvalid: InvalidParameterValue {
             InvalidParameterValue(.clusterRegionInvalid)
@@ -258,6 +279,26 @@ extension TCTsfError {
         /// 无法获取配置项发布信息。
         public static var configReleaseNotExists: InvalidParameterValue {
             InvalidParameterValue(.configReleaseNotExists)
+        }
+
+        /// 配置模板描述过长。
+        public static var configTemplateDescTooLong: InvalidParameterValue {
+            InvalidParameterValue(.configTemplateDescTooLong)
+        }
+
+        /// 配置模板名称不合规。
+        public static var configTemplateNameInvalid: InvalidParameterValue {
+            InvalidParameterValue(.configTemplateNameInvalid)
+        }
+
+        /// 配置模板内容过长。
+        public static var configTemplateNameTooLong: InvalidParameterValue {
+            InvalidParameterValue(.configTemplateNameTooLong)
+        }
+
+        /// 配置模板类型不合规。
+        public static var configTemplateTypeInvalid: InvalidParameterValue {
+            InvalidParameterValue(.configTemplateTypeInvalid)
         }
 
         /// 配置格式不符合YAML要求。
@@ -430,6 +471,11 @@ extension TCTsfError {
             InvalidParameterValue(.cvmCaeMasterGroupNoAgent)
         }
 
+        /// 任务不存在。
+        public static var cvmCaeMasterTaskNotExist: InvalidParameterValue {
+            InvalidParameterValue(.cvmCaeMasterTaskNotExist)
+        }
+
         /// 部署组不存在。
         public static var deployGroupNotExists: InvalidParameterValue {
             InvalidParameterValue(.deployGroupNotExists)
@@ -455,6 +501,11 @@ extension TCTsfError {
             InvalidParameterValue(.fileConfigExistsPathOther)
         }
 
+        /// 文件配置项文件名称不合规。
+        public static var fileConfigFileNameInvalid: InvalidParameterValue {
+            InvalidParameterValue(.fileConfigFileNameInvalid)
+        }
+
         /// 文件配置项文件路径不合规。
         public static var fileConfigFilePathInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigFilePathInvalid)
@@ -475,9 +526,19 @@ extension TCTsfError {
             InvalidParameterValue(.fileConfigPathExists)
         }
 
+        /// 无法获取文件配置项发布信息。
+        public static var fileConfigReleaseNotExists: InvalidParameterValue {
+            InvalidParameterValue(.fileConfigReleaseNotExists)
+        }
+
         /// 文件配置项版本描述不合规。
         public static var fileConfigVersionDescInvalid: InvalidParameterValue {
             InvalidParameterValue(.fileConfigVersionDescInvalid)
+        }
+
+        /// 文件配置项版本不合规。
+        public static var fileConfigVersionInvalid: InvalidParameterValue {
+            InvalidParameterValue(.fileConfigVersionInvalid)
         }
 
         /// 请求参数异常:%s。
@@ -715,6 +776,11 @@ extension TCTsfError {
             InvalidParameterValue(.releasedConfigCanNotBeDeleted)
         }
 
+        /// 文件配置项已经发布，不允许删除。
+        public static var releasedFileConfigCanNotBeDeleted: InvalidParameterValue {
+            InvalidParameterValue(.releasedFileConfigCanNotBeDeleted)
+        }
+
         /// 无权限操作资源%s。
         public static var resourcePermissionDenied: InvalidParameterValue {
             InvalidParameterValue(.resourcePermissionDenied)
@@ -758,6 +824,8 @@ extension TCTsfError {
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
+            case .applicationDescLength:
+                code = .invalidParameterValue_ApplicationDescLength
             case .applicationMicroTypeInvalid:
                 code = .invalidParameterValue_ApplicationMicroTypeInvalid
             case .applicationNameExist:
@@ -780,6 +848,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_ClusterNameExist
             case .clusterNameRequired:
                 code = .invalidParameterValue_ClusterNameRequired
+            case .clusterPageLimitInvalid:
+                code = .invalidParameterValue_ClusterPageLimitInvalid
             case .clusterRegionInvalid:
                 code = .invalidParameterValue_ClusterRegionInvalid
             case .clusterTypeInvalid:
@@ -798,6 +868,14 @@ extension TCTsfError {
                 code = .invalidParameterValue_ConfigNotExistsOrPermissionDenied
             case .configReleaseNotExists:
                 code = .invalidParameterValue_ConfigReleaseNotExists
+            case .configTemplateDescTooLong:
+                code = .invalidParameterValue_ConfigTemplateDescTooLong
+            case .configTemplateNameInvalid:
+                code = .invalidParameterValue_ConfigTemplateNameInvalid
+            case .configTemplateNameTooLong:
+                code = .invalidParameterValue_ConfigTemplateNameTooLong
+            case .configTemplateTypeInvalid:
+                code = .invalidParameterValue_ConfigTemplateTypeInvalid
             case .configValueFormatInvalid:
                 code = .invalidParameterValue_ConfigValueFormatInvalid
             case .configValueTooLong:
@@ -866,6 +944,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_CvmCaeMasterAgentNotFound
             case .cvmCaeMasterGroupNoAgent:
                 code = .invalidParameterValue_CvmCaeMasterGroupNoAgent
+            case .cvmCaeMasterTaskNotExist:
+                code = .invalidParameterValue_CvmCaeMasterTaskNotExist
             case .deployGroupNotExists:
                 code = .invalidParameterValue_DeployGroupNotExists
             case .fileConfigAlreadyReleased:
@@ -876,6 +956,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_FileConfigExistsPath
             case .fileConfigExistsPathOther:
                 code = .invalidParameterValue_FileConfigExistsPathOther
+            case .fileConfigFileNameInvalid:
+                code = .invalidParameterValue_FileConfigFileNameInvalid
             case .fileConfigFilePathInvalid:
                 code = .invalidParameterValue_FileConfigFilePathInvalid
             case .fileConfigNameInvalid:
@@ -884,8 +966,12 @@ extension TCTsfError {
                 code = .invalidParameterValue_FileConfigNotExistsOrPermissionDenied
             case .fileConfigPathExists:
                 code = .invalidParameterValue_FileConfigPathExists
+            case .fileConfigReleaseNotExists:
+                code = .invalidParameterValue_FileConfigReleaseNotExists
             case .fileConfigVersionDescInvalid:
                 code = .invalidParameterValue_FileConfigVersionDescInvalid
+            case .fileConfigVersionInvalid:
+                code = .invalidParameterValue_FileConfigVersionInvalid
             case .gatewayParameterError:
                 code = .invalidParameterValue_GatewayParameterError
             case .gatewayParameterInvalid:
@@ -980,6 +1066,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_NamespaceNotExists
             case .releasedConfigCanNotBeDeleted:
                 code = .invalidParameterValue_ReleasedConfigCanNotBeDeleted
+            case .releasedFileConfigCanNotBeDeleted:
+                code = .invalidParameterValue_ReleasedFileConfigCanNotBeDeleted
             case .resourcePermissionDenied:
                 code = .invalidParameterValue_ResourcePermissionDenied
             case .resourceTypeError:

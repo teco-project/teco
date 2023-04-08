@@ -55,18 +55,23 @@ extension TCTkeError {
             case kubernetesDeleteOperationError = "FailedOperation.KubernetesDeleteOperationError"
             case kubernetesGetOperationError = "FailedOperation.KubernetesGetOperationError"
             case kubernetesInternal = "FailedOperation.KubernetesInternal"
+            case kubernetesListOperationError = "FailedOperation.KubernetesListOperationError"
             case kubernetesPatchOperationError = "FailedOperation.KubernetesPatchOperationError"
             case lbCommon = "FailedOperation.LbCommon"
+            case marketGetAuthFailed = "FailedOperation.MarketGetAuthFailed"
+            case marketReleaseOperation = "FailedOperation.MarketReleaseOperation"
             case modifyClsIndex = "FailedOperation.ModifyClsIndex"
             case networkScaleError = "FailedOperation.NetworkScaleError"
             case osNotSupport = "FailedOperation.OsNotSupport"
             case param = "FailedOperation.Param"
+            case policyServerCommonError = "FailedOperation.PolicyServerCommonError"
             case quotaMaxClsLimit = "FailedOperation.QuotaMaxClsLimit"
             case quotaMaxNodLimit = "FailedOperation.QuotaMaxNodLimit"
             case quotaUSGLimit = "FailedOperation.QuotaUSGLimit"
             case rbacForbidden = "FailedOperation.RBACForbidden"
             case recordNotFound = "FailedOperation.RecordNotFound"
             case taskAlreadyRunning = "FailedOperation.TaskAlreadyRunning"
+            case taskLifeStateError = "FailedOperation.TaskLifeStateError"
             case tradeCommon = "FailedOperation.TradeCommon"
             case unexpectedError = "FailedOperation.UnexpectedError"
             case vpcCommon = "FailedOperation.VpcCommon"
@@ -126,6 +131,8 @@ extension TCTkeError {
             FailedOperation(.camNoAuth)
         }
 
+        /// 集群禁止删除。
+        ///
         /// 请先删除包年包月计费资源。
         public static var clusterForbiddenToDelete: FailedOperation {
             FailedOperation(.clusterForbiddenToDelete)
@@ -152,6 +159,8 @@ extension TCTkeError {
             FailedOperation(.clusterUpgradeNodeVersion)
         }
 
+        /// 内部Client错误。
+        ///
         /// 请向腾讯云提工单寻求支持。
         public static var componentClientCommon: FailedOperation {
             FailedOperation(.componentClientCommon)
@@ -178,26 +187,33 @@ extension TCTkeError {
             FailedOperation(.componentClinetHttp)
         }
 
+        /// 创建CLS客户端失败。
         public static var createClsClient: FailedOperation {
             FailedOperation(.createClsClient)
         }
 
+        /// 创建CLS采集配置失败。
         public static var createClsConfig: FailedOperation {
             FailedOperation(.createClsConfig)
         }
 
+        /// 创建CLS索引失败。
         public static var createClsIndex: FailedOperation {
             FailedOperation(.createClsIndex)
         }
 
+        /// 创建CLS日志集失败。
         public static var createClsLogSet: FailedOperation {
             FailedOperation(.createClsLogSet)
         }
 
+        /// 创建CLS机器组失败。
         public static var createClsMachineGroup: FailedOperation {
             FailedOperation(.createClsMachineGroup)
         }
 
+        /// 创建 CLS 主题失败。
+        ///
         /// 请向腾讯云提工单寻求支持。
         public static var createClsTopic: FailedOperation {
             FailedOperation(.createClsTopic)
@@ -252,27 +268,34 @@ extension TCTkeError {
             FailedOperation(.dfwGetUSGQuota)
         }
 
+        /// 集群关闭 VPC-CNI 模式失败。
         public static var disableVPCCNIFailed: FailedOperation {
             FailedOperation(.disableVPCCNIFailed)
         }
 
+        /// 开启 VPC-CNI 模式失败。
         public static var enableVPCCNIFailed: FailedOperation {
             FailedOperation(.enableVPCCNIFailed)
         }
 
+        /// 获取CLS采集配置失败。
         public static var getClsConfig: FailedOperation {
             FailedOperation(.getClsConfig)
         }
 
+        /// 查询主题集失败。
+        ///
         /// 请向腾讯云提工单寻求支持。
         public static var getClsLogSet: FailedOperation {
             FailedOperation(.getClsLogSet)
         }
 
+        /// 获取CLS机器组失败。
         public static var getClsMachineGroup: FailedOperation {
             FailedOperation(.getClsMachineGroup)
         }
 
+        /// 通过配置文件创建集群Client错误。
         public static var kubeClientConf: FailedOperation {
             FailedOperation(.kubeClientConf)
         }
@@ -305,6 +328,8 @@ extension TCTkeError {
             FailedOperation(.kubernetesCreateOperationError)
         }
 
+        /// Kubernetes Delete 操作错误。
+        ///
         /// 请重试。
         public static var kubernetesDeleteOperationError: FailedOperation {
             FailedOperation(.kubernetesDeleteOperationError)
@@ -322,6 +347,15 @@ extension TCTkeError {
             FailedOperation(.kubernetesInternal)
         }
 
+        /// 获取Kubernetes资源列表失败。
+        ///
+        /// 请提交工单联系我们协助处理
+        public static var kubernetesListOperationError: FailedOperation {
+            FailedOperation(.kubernetesListOperationError)
+        }
+
+        /// Kubernetes patch 操作失败。
+        ///
         /// 请重试。
         public static var kubernetesPatchOperationError: FailedOperation {
             FailedOperation(.kubernetesPatchOperationError)
@@ -334,6 +368,21 @@ extension TCTkeError {
             FailedOperation(.lbCommon)
         }
 
+        /// 获取集群认证信息失败。
+        ///
+        /// 请提交工单联系我们协助处理
+        public static var marketGetAuthFailed: FailedOperation {
+            FailedOperation(.marketGetAuthFailed)
+        }
+
+        /// 操作应用Release失败。
+        ///
+        /// 请提交工单联系我们协助处理
+        public static var marketReleaseOperation: FailedOperation {
+            FailedOperation(.marketReleaseOperation)
+        }
+
+        /// 修改CLS索引失败。
         public static var modifyClsIndex: FailedOperation {
             FailedOperation(.modifyClsIndex)
         }
@@ -357,6 +406,11 @@ extension TCTkeError {
         /// 请提交工单联系我们协助处理
         public static var param: FailedOperation {
             FailedOperation(.param)
+        }
+
+        /// gpe错误。
+        public static var policyServerCommonError: FailedOperation {
+            FailedOperation(.policyServerCommonError)
         }
 
         /// 超过配额限制。
@@ -385,6 +439,7 @@ extension TCTkeError {
             FailedOperation(.rbacForbidden)
         }
 
+        /// 记录没有发现。
         public static var recordNotFound: FailedOperation {
             FailedOperation(.recordNotFound)
         }
@@ -396,6 +451,13 @@ extension TCTkeError {
             FailedOperation(.taskAlreadyRunning)
         }
 
+        /// 任务当前所处状态不支持此操作。
+        ///
+        /// 请提交工单联系我们协助处理
+        public static var taskLifeStateError: FailedOperation {
+            FailedOperation(.taskLifeStateError)
+        }
+
         /// 询价错误。
         ///
         /// 请提交工单联系我们协助处理
@@ -403,6 +465,7 @@ extension TCTkeError {
             FailedOperation(.tradeCommon)
         }
 
+        /// 不可预知的错误。
         public static var unexpectedError: FailedOperation {
             FailedOperation(.unexpectedError)
         }
@@ -428,6 +491,8 @@ extension TCTkeError {
             FailedOperation(.vpcUnexpectedError)
         }
 
+        /// 白名单错误。
+        ///
         /// 请提单申请。
         public static var whitelistUnexpectedError: FailedOperation {
             FailedOperation(.whitelistUnexpectedError)
@@ -517,10 +582,16 @@ extension TCTkeError {
                 code = .failedOperation_KubernetesGetOperationError
             case .kubernetesInternal:
                 code = .failedOperation_KubernetesInternal
+            case .kubernetesListOperationError:
+                code = .failedOperation_KubernetesListOperationError
             case .kubernetesPatchOperationError:
                 code = .failedOperation_KubernetesPatchOperationError
             case .lbCommon:
                 code = .failedOperation_LbCommon
+            case .marketGetAuthFailed:
+                code = .failedOperation_MarketGetAuthFailed
+            case .marketReleaseOperation:
+                code = .failedOperation_MarketReleaseOperation
             case .modifyClsIndex:
                 code = .failedOperation_ModifyClsIndex
             case .networkScaleError:
@@ -529,6 +600,8 @@ extension TCTkeError {
                 code = .failedOperation_OsNotSupport
             case .param:
                 code = .failedOperation_Param
+            case .policyServerCommonError:
+                code = .failedOperation_PolicyServerCommonError
             case .quotaMaxClsLimit:
                 code = .failedOperation_QuotaMaxClsLimit
             case .quotaMaxNodLimit:
@@ -541,6 +614,8 @@ extension TCTkeError {
                 code = .failedOperation_RecordNotFound
             case .taskAlreadyRunning:
                 code = .failedOperation_TaskAlreadyRunning
+            case .taskLifeStateError:
+                code = .failedOperation_TaskLifeStateError
             case .tradeCommon:
                 code = .failedOperation_TradeCommon
             case .unexpectedError:

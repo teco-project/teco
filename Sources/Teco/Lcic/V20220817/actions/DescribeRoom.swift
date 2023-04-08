@@ -68,7 +68,6 @@ extension Lcic {
         /// 房间子类型，可以有以下取值：
         /// videodoc 文档+视频
         /// video 纯视频
-        /// coteaching 双师
         public let subType: String
 
         /// 上课后是否禁止自动录制。可以有以下取值：
@@ -81,9 +80,17 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assistants: [String]?
 
-        /// 录制地址。仅在房间结束后存在。
+        /// 录制地址（协议为https)。仅在房间结束后存在。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordUrl: String?
+
+        /// 课堂状态。0为未开始，1为已开始，2为已结束，3为已过期。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 房间绑定的群组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -102,6 +109,8 @@ extension Lcic {
             case disableRecord = "DisableRecord"
             case assistants = "Assistants"
             case recordUrl = "RecordUrl"
+            case status = "Status"
+            case groupId = "GroupId"
             case requestId = "RequestId"
         }
     }

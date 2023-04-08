@@ -47,7 +47,7 @@ public struct Bizlive: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCBizliveError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

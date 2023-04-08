@@ -31,7 +31,8 @@ extension Ame {
         /// <li>SetAudioParam：音频参数变更</li>
         /// <li>SendMessage：发送自定义消息</li>
         /// <li>SetDestroyMode：设置销毁模式</li>
-        /// <li>SetVolume：设置音量</li>
+        /// <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
+        /// <li>SetRealVolume：设置真实音量</li>
         public let command: String
 
         /// 播放参数。
@@ -55,10 +56,14 @@ extension Ame {
         /// 销毁模式，当Command取SetDestroyMode时，必填。
         public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
 
-        /// 音量，当Command取SetVolume时，必填。
+        /// <del>音量，当Command取SetVolume时，必填。</del>
+        /// （已废弃，请采用 SetRealVolumeCommandInput ）
         public let setVolumeCommandInput: SetVolumeCommandInput?
 
-        public init(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil) {
+        /// 真实音量，当Command取SetRealVolume时，必填。
+        public let setRealVolumeCommandInput: SetRealVolumeCommandInput?
+
+        public init(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, setRealVolumeCommandInput: SetRealVolumeCommandInput? = nil) {
             self.robotId = robotId
             self.command = command
             self.playCommandInput = playCommandInput
@@ -69,6 +74,7 @@ extension Ame {
             self.setPlayModeCommandInput = setPlayModeCommandInput
             self.setDestroyModeCommandInput = setDestroyModeCommandInput
             self.setVolumeCommandInput = setVolumeCommandInput
+            self.setRealVolumeCommandInput = setRealVolumeCommandInput
         }
 
         enum CodingKeys: String, CodingKey {
@@ -82,6 +88,7 @@ extension Ame {
             case setPlayModeCommandInput = "SetPlayModeCommandInput"
             case setDestroyModeCommandInput = "SetDestroyModeCommandInput"
             case setVolumeCommandInput = "SetVolumeCommandInput"
+            case setRealVolumeCommandInput = "SetRealVolumeCommandInput"
         }
     }
 
@@ -115,15 +122,15 @@ extension Ame {
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable @discardableResult
-    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
-        self.syncKTVRobotCommand(.init(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), region: region, logger: logger, on: eventLoop)
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, setRealVolumeCommandInput: SetRealVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
+        self.syncKTVRobotCommand(.init(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput, setRealVolumeCommandInput: setRealVolumeCommandInput), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步直播互动机器人指令
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable @discardableResult
-    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
-        try await self.syncKTVRobotCommand(.init(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), region: region, logger: logger, on: eventLoop)
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, setRealVolumeCommandInput: SetRealVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
+        try await self.syncKTVRobotCommand(.init(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput, setRealVolumeCommandInput: setRealVolumeCommandInput), region: region, logger: logger, on: eventLoop)
     }
 }

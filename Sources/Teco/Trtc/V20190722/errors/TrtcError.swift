@@ -35,7 +35,6 @@ public struct TCTrtcError: TCTrtcErrorType {
         case failedOperation_RestrictedConcurrency = "FailedOperation.RestrictedConcurrency"
         case failedOperation_RoomNotExist = "FailedOperation.RoomNotExist"
         case failedOperation_SdkAppIdNotExist = "FailedOperation.SdkAppIdNotExist"
-        case failedOperation_UserNotExist = "FailedOperation.UserNotExist"
         case internalError = "InternalError"
         case internalError_CRInternalError = "InternalError.CRInternalError"
         case internalError_DBError = "InternalError.DBError"
@@ -46,11 +45,11 @@ public struct TCTrtcError: TCTrtcErrorType {
         case internalError_InterfaceErr = "InternalError.InterfaceErr"
         case internalError_InternalError = "InternalError.InternalError"
         case internalError_MethodErr = "InternalError.MethodErr"
-        case internalError_UserNotExist = "InternalError.UserNotExist"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue_RoomId = "InvalidParameterValue.RoomId"
         case invalidParameter_AppId = "InvalidParameter.AppId"
         case invalidParameter_AudioEncodeParams = "InvalidParameter.AudioEncodeParams"
+        case invalidParameter_BackgroundImageUrl = "InvalidParameter.BackgroundImageUrl"
         case invalidParameter_BodyParamsError = "InvalidParameter.BodyParamsError"
         case invalidParameter_CheckContentFailed = "InvalidParameter.CheckContentFailed"
         case invalidParameter_CheckSuffixFailed = "InvalidParameter.CheckSuffixFailed"
@@ -207,11 +206,6 @@ public struct TCTrtcError: TCTrtcErrorType {
         TCTrtcError(.failedOperation_SdkAppIdNotExist)
     }
 
-    /// 用户不在房间内。
-    public static var failedOperation_UserNotExist: TCTrtcError {
-        TCTrtcError(.failedOperation_UserNotExist)
-    }
-
     /// 内部错误。
     public static var internalError: TCTrtcError {
         TCTrtcError(.internalError)
@@ -262,11 +256,6 @@ public struct TCTrtcError: TCTrtcErrorType {
         TCTrtcError(.internalError_MethodErr)
     }
 
-    /// 用户不在房间中。
-    public static var internalError_UserNotExist: TCTrtcError {
-        TCTrtcError(.internalError_UserNotExist)
-    }
-
     /// 参数错误。
     public static var invalidParameter: TCTrtcError {
         TCTrtcError(.invalidParameter)
@@ -285,6 +274,11 @@ public struct TCTrtcError: TCTrtcErrorType {
     /// 音频编码参数错误。
     public static var invalidParameter_AudioEncodeParams: TCTrtcError {
         TCTrtcError(.invalidParameter_AudioEncodeParams)
+    }
+
+    /// BackgroundImageUrl参数错误。
+    public static var invalidParameter_BackgroundImageUrl: TCTrtcError {
+        TCTrtcError(.invalidParameter_BackgroundImageUrl)
     }
 
     /// body 解析参数失败。
@@ -414,6 +408,8 @@ public struct TCTrtcError: TCTrtcErrorType {
         TCTrtcError(.invalidParameter_StartTimeExpire)
     }
 
+    /// 查询起始时间超过当前监控仪表盘功能版本限制，详情请见:https://cloud.tencent.com/document/product/647/81331。
+    ///
     /// 详情请见:https://cloud.tencent.com/document/product/647/81331。
     public static var invalidParameter_StartTimeOversize: TCTrtcError {
         TCTrtcError(.invalidParameter_StartTimeOversize)
@@ -429,6 +425,7 @@ public struct TCTrtcError: TCTrtcErrorType {
         TCTrtcError(.invalidParameter_StartTsOversize)
     }
 
+    /// StrRoomId参数错误。
     public static var invalidParameter_StrRoomId: TCTrtcError {
         TCTrtcError(.invalidParameter_StrRoomId)
     }
@@ -623,6 +620,7 @@ public struct TCTrtcError: TCTrtcErrorType {
         TCTrtcError(.missingParameter_VideoEncodeParams)
     }
 
+    /// 资源不足。
     public static var resourceInsufficient_RequestRejection: TCTrtcError {
         TCTrtcError(.resourceInsufficient_RequestRejection)
     }

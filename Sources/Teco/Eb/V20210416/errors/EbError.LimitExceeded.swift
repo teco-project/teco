@@ -58,6 +58,7 @@ extension TCEbError {
             LimitExceeded(.bannedAccount)
         }
 
+        /// 集群私有链接超限。
         public static var clusterPrivateLinkExceeded: LimitExceeded {
             LimitExceeded(.clusterPrivateLinkExceeded)
         }
@@ -107,6 +108,7 @@ extension TCEbError {
             LimitExceeded(.trigger)
         }
 
+        /// 用户私有链接超限。
         public static var userPrivateLinkExceeded: LimitExceeded {
             LimitExceeded(.userPrivateLinkExceeded)
         }

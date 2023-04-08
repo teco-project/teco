@@ -88,6 +88,8 @@ extension TCClsError {
             OperationDenied(.analysisSwitchClose)
         }
 
+        /// 不支持新语法。
+        ///
         /// 该资源暂不支持新语法，联系helper处理。
         public static var newSyntaxNotSupported: OperationDenied {
             OperationDenied(.newSyntaxNotSupported)
@@ -115,6 +117,7 @@ extension TCClsError {
             OperationDenied(.topicHasDeliverFunction)
         }
 
+        /// topic绑定了scheduleSql任务。
         public static var topicHasScheduleSqlTask: OperationDenied {
             OperationDenied(.topicHasScheduleSqlTask)
         }

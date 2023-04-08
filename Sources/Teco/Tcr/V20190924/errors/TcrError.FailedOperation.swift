@@ -18,6 +18,7 @@ extension TCTcrError {
     public struct FailedOperation: TCTcrErrorType {
         enum Code: String {
             case dependenceError = "FailedOperation.DependenceError"
+            case emptyCoreBody = "FailedOperation.EmptyCoreBody"
             case errorGetDBDataError = "FailedOperation.ErrorGetDBDataError"
             case errorTcrInvalidMediaType = "FailedOperation.ErrorTcrInvalidMediaType"
             case errorTcrResourceConflict = "FailedOperation.ErrorTcrResourceConflict"
@@ -61,18 +62,30 @@ extension TCTcrError {
             FailedOperation(.dependenceError)
         }
 
+        /// Core 返回内容为空
+        ///
+        /// 1. 检查 Global 日志
+        /// 2. 检查 Core 是否 panic 了
+        public static var emptyCoreBody: FailedOperation {
+            FailedOperation(.emptyCoreBody)
+        }
+
+        /// 获取数据库数据错误。
         public static var errorGetDBDataError: FailedOperation {
             FailedOperation(.errorGetDBDataError)
         }
 
+        /// Tcr实例请求无效的Hearder类型。
         public static var errorTcrInvalidMediaType: FailedOperation {
             FailedOperation(.errorTcrInvalidMediaType)
         }
 
+        /// Tcr实例资源冲突。
         public static var errorTcrResourceConflict: FailedOperation {
             FailedOperation(.errorTcrResourceConflict)
         }
 
+        /// 没有Tcr操作权限。
         public static var errorTcrUnauthorized: FailedOperation {
             FailedOperation(.errorTcrUnauthorized)
         }
@@ -124,6 +137,8 @@ extension TCTcrError {
             switch self.error {
             case .dependenceError:
                 code = .failedOperation_DependenceError
+            case .emptyCoreBody:
+                code = .failedOperation_EmptyCoreBody
             case .errorGetDBDataError:
                 code = .failedOperation_ErrorGetDBDataError
             case .errorTcrInvalidMediaType:

@@ -32,9 +32,6 @@ extension Wedata {
         /// 告警级别,0表示普通，1表示重要，2表示紧急
         public let alarmLevel: UInt64
 
-        /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
-        public let alarmIndicator: UInt64
-
         /// 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         public let alarmWay: UInt64
 
@@ -43,6 +40,9 @@ extension Wedata {
 
         /// 项目ID
         public let projectId: String
+
+        /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        public let alarmIndicator: UInt64?
 
         /// 告警指标描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -76,16 +76,16 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: Int64?
 
-        public init(alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, operator: Int64? = nil) {
+        public init(alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicator: UInt64? = nil, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, operator: Int64? = nil) {
             self.alarmId = alarmId
             self.alarmTime = alarmTime
             self.taskId = taskId
             self.regularName = regularName
             self.alarmLevel = alarmLevel
-            self.alarmIndicator = alarmIndicator
             self.alarmWay = alarmWay
             self.alarmRecipientId = alarmRecipientId
             self.projectId = projectId
+            self.alarmIndicator = alarmIndicator
             self.alarmIndicatorDesc = alarmIndicatorDesc
             self.triggerType = triggerType
             self.estimatedTime = estimatedTime
@@ -102,10 +102,10 @@ extension Wedata {
             case taskId = "TaskId"
             case regularName = "RegularName"
             case alarmLevel = "AlarmLevel"
-            case alarmIndicator = "AlarmIndicator"
             case alarmWay = "AlarmWay"
             case alarmRecipientId = "AlarmRecipientId"
             case projectId = "ProjectId"
+            case alarmIndicator = "AlarmIndicator"
             case alarmIndicatorDesc = "AlarmIndicatorDesc"
             case triggerType = "TriggerType"
             case estimatedTime = "EstimatedTime"
@@ -113,6 +113,51 @@ extension Wedata {
             case taskName = "TaskName"
             case isSendSuccess = "IsSendSuccess"
             case messageId = "MessageId"
+            case `operator` = "Operator"
+        }
+    }
+
+    /// 告警指标
+    public struct AlarmIndicatorInfo: TCInputModel, TCOutputModel {
+        /// 指标id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmIndicator: UInt64?
+
+        /// 告警指标描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmIndicatorDesc: String?
+
+        /// 指标阈值，1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let triggerType: UInt64?
+
+        /// 预计的超时时间，分钟级别
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let estimatedTime: UInt64?
+
+        /// 实时任务告警需要的参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `operator`: UInt64?
+
+        public init(id: String? = nil, alarmIndicator: UInt64? = nil, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, operator: UInt64? = nil) {
+            self.id = id
+            self.alarmIndicator = alarmIndicator
+            self.alarmIndicatorDesc = alarmIndicatorDesc
+            self.triggerType = triggerType
+            self.estimatedTime = estimatedTime
+            self.operator = `operator`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case alarmIndicator = "AlarmIndicator"
+            case alarmIndicatorDesc = "AlarmIndicatorDesc"
+            case triggerType = "TriggerType"
+            case estimatedTime = "EstimatedTime"
             case `operator` = "Operator"
         }
     }
@@ -202,7 +247,11 @@ extension Wedata {
         /// http，0：未设置，1：成功，2：失败
         public let http: UInt64
 
-        public init(alarmId: String, alarmReceiver: String, email: UInt64, sms: UInt64, wechat: UInt64, voice: UInt64, wecom: UInt64, http: UInt64) {
+        /// 企业微信群，0：未设置，1：成功，2：失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wecomGroup: UInt64?
+
+        public init(alarmId: String, alarmReceiver: String, email: UInt64, sms: UInt64, wechat: UInt64, voice: UInt64, wecom: UInt64, http: UInt64, wecomGroup: UInt64? = nil) {
             self.alarmId = alarmId
             self.alarmReceiver = alarmReceiver
             self.email = email
@@ -211,6 +260,7 @@ extension Wedata {
             self.voice = voice
             self.wecom = wecom
             self.http = http
+            self.wecomGroup = wecomGroup
         }
 
         enum CodingKeys: String, CodingKey {
@@ -222,6 +272,7 @@ extension Wedata {
             case voice = "Voice"
             case wecom = "Wecom"
             case http = "Http"
+            case wecomGroup = "WecomGroup"
         }
     }
 
@@ -1273,6 +1324,10 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let agentTotal: UInt64?
 
+        /// 生命周期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lifeDays: Int64?
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case agentName = "AgentName"
@@ -1287,6 +1342,7 @@ extension Wedata {
             case agentGroupId = "AgentGroupId"
             case cvmAgentStatusList = "CvmAgentStatusList"
             case agentTotal = "AgentTotal"
+            case lifeDays = "LifeDays"
         }
     }
 
@@ -1950,7 +2006,15 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inLongManagerVersion: String?
 
-        public init(taskName: String? = nil, description: String? = nil, syncType: Int64? = nil, taskType: Int64? = nil, workflowId: String? = nil, taskId: String? = nil, scheduleTaskId: String? = nil, taskGroupId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, appId: String? = nil, status: Int64? = nil, nodes: [IntegrationNodeInfo]? = nil, executorId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, executeContext: [RecordField]? = nil, mappings: [IntegrationNodeMapping]? = nil, taskMode: String? = nil, incharge: String? = nil, offlineTaskAddEntity: OfflineTaskAddParam? = nil, executorGroupName: String? = nil, inLongManagerUrl: String? = nil, inLongStreamId: String? = nil, inLongManagerVersion: String? = nil) {
+        /// dataproxy url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataProxyUrl: [String]?
+
+        /// 任务版本是否已提交运维
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let submit: Bool?
+
+        public init(taskName: String? = nil, description: String? = nil, syncType: Int64? = nil, taskType: Int64? = nil, workflowId: String? = nil, taskId: String? = nil, scheduleTaskId: String? = nil, taskGroupId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, appId: String? = nil, status: Int64? = nil, nodes: [IntegrationNodeInfo]? = nil, executorId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, executeContext: [RecordField]? = nil, mappings: [IntegrationNodeMapping]? = nil, taskMode: String? = nil, incharge: String? = nil, offlineTaskAddEntity: OfflineTaskAddParam? = nil, executorGroupName: String? = nil, inLongManagerUrl: String? = nil, inLongStreamId: String? = nil, inLongManagerVersion: String? = nil, dataProxyUrl: [String]? = nil, submit: Bool? = nil) {
             self.taskName = taskName
             self.description = description
             self.syncType = syncType
@@ -1978,6 +2042,8 @@ extension Wedata {
             self.inLongManagerUrl = inLongManagerUrl
             self.inLongStreamId = inLongStreamId
             self.inLongManagerVersion = inLongManagerVersion
+            self.dataProxyUrl = dataProxyUrl
+            self.submit = submit
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2008,6 +2074,8 @@ extension Wedata {
             case inLongManagerUrl = "InLongManagerUrl"
             case inLongStreamId = "InLongStreamId"
             case inLongManagerVersion = "InLongManagerVersion"
+            case dataProxyUrl = "DataProxyUrl"
+            case submit = "Submit"
         }
     }
 
@@ -2445,6 +2513,30 @@ extension Wedata {
         }
     }
 
+    /// 分区参数
+    public struct Partition: TCInputModel {
+        /// 分区转换策略
+        public let transform: String?
+
+        /// 分区字段名
+        public let name: String?
+
+        /// 策略参数
+        public let transformArgs: [String]?
+
+        public init(transform: String? = nil, name: String? = nil, transformArgs: [String]? = nil) {
+            self.transform = transform
+            self.name = name
+            self.transformArgs = transformArgs
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case transform = "Transform"
+            case name = "Name"
+            case transformArgs = "TransformArgs"
+        }
+    }
+
     /// 数据质量生产调度任务业务实体
     public struct ProdSchedulerTask: TCInputModel, TCOutputModel {
         /// 生产调度任务工作流ID
@@ -2469,6 +2561,25 @@ extension Wedata {
             case workflowId = "WorkflowId"
             case taskId = "TaskId"
             case taskName = "TaskName"
+        }
+    }
+
+    /// dlc建表属性
+    public struct Property: TCInputModel {
+        /// key值
+        public let key: String
+
+        /// value值
+        public let value: String
+
+        public init(key: String, value: String) {
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
         }
     }
 
@@ -2527,6 +2638,20 @@ extension Wedata {
             case taskName = "TaskName"
             case taskId = "TaskId"
             case instanceNodeInfoList = "InstanceNodeInfoList"
+        }
+    }
+
+    /// 实时任务同步速度趋势
+    public struct RealTimeTaskSpeed: TCOutputModel {
+        /// 同步速度条/s列表
+        public let recordsSpeedList: [RecordsSpeed]
+
+        /// 同步速度字节/s列表
+        public let bytesSpeedList: [BytesSpeed]
+
+        enum CodingKeys: String, CodingKey {
+            case recordsSpeedList = "RecordsSpeedList"
+            case bytesSpeedList = "BytesSpeedList"
         }
     }
 
@@ -2779,7 +2904,31 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereFlag: Bool?
 
-        public init(ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, operator: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
+        /// 模版原始SQL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateSql: String?
+
+        /// 模版子维度：0.父维度类型,1.一致性: 枚举范围一致性,2.一致性：数值范围一致性,3.一致性：字段数据相关性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subQualityDim: UInt64?
+
+        /// 规则适用的目标数据对象类型（1：常量，2：离线表级，3：离线字段级别）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetObjectType: UInt64?
+
+        /// 规则适用的目标数据对象类型（1：数值，2：字符串）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetObjectDataType: UInt64?
+
+        /// 目标字段详细类型，INT、STRING
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetObjectDataTypeName: String?
+
+        /// 目标字段名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetObjectValue: String?
+
+        public init(ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, operator: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil, templateSql: String? = nil, subQualityDim: UInt64? = nil, targetObjectType: UInt64? = nil, targetObjectDataType: UInt64? = nil, targetObjectDataTypeName: String? = nil, targetObjectValue: String? = nil) {
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
@@ -2808,6 +2957,12 @@ extension Wedata {
             self.fieldConfig = fieldConfig
             self.multiSourceFlag = multiSourceFlag
             self.whereFlag = whereFlag
+            self.templateSql = templateSql
+            self.subQualityDim = subQualityDim
+            self.targetObjectType = targetObjectType
+            self.targetObjectDataType = targetObjectDataType
+            self.targetObjectDataTypeName = targetObjectDataTypeName
+            self.targetObjectValue = targetObjectValue
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2839,6 +2994,12 @@ extension Wedata {
             case fieldConfig = "FieldConfig"
             case multiSourceFlag = "MultiSourceFlag"
             case whereFlag = "WhereFlag"
+            case templateSql = "TemplateSql"
+            case subQualityDim = "SubQualityDim"
+            case targetObjectType = "TargetObjectType"
+            case targetObjectDataType = "TargetObjectDataType"
+            case targetObjectDataTypeName = "TargetObjectDataTypeName"
+            case targetObjectValue = "TargetObjectValue"
         }
     }
 
@@ -4173,11 +4334,9 @@ extension Wedata {
         public let executionSpace: UInt64
 
         /// 产品名称，可选
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: UInt64?
 
         /// 资源组
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroup: UInt64?
 
         public init(executionSpace: UInt64, productName: UInt64? = nil, resourceGroup: UInt64? = nil) {
@@ -4266,7 +4425,7 @@ extension Wedata {
     }
 
     /// 上游节点字段信息
-    public struct SourceFieldInfo: TCInputModel {
+    public struct SourceFieldInfo: TCInputModel, TCOutputModel {
         /// 字段名称
         public let fieldName: String?
 
@@ -4448,9 +4607,19 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
 
+        /// 表databaseName
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originDatabaseName: String?
+
+        /// 表schemaName
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originSchemaName: String?
+
         enum CodingKeys: String, CodingKey {
             case tableId = "TableId"
             case tableName = "TableName"
+            case originDatabaseName = "OriginDatabaseName"
+            case originSchemaName = "OriginSchemaName"
         }
     }
 
@@ -4556,22 +4725,11 @@ extension Wedata {
         /// 告警级别(0表示普通，1表示重要，2表示紧急)
         public let alarmLevel: UInt64
 
-        /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
-        /// ，4写入速度，5读取速度，6读取吞吐，7写入吞吐, 8脏数据字节数，9脏数据条数
-        public let alarmIndicator: UInt64
-
         /// 告警方式,多个用逗号隔开（1:邮件，2:短信，3:微信，4:语音，5:代表企业微信，6:http）
         public let alarmWay: String
 
-        /// 告警接收人ID，多个用逗号隔开
-        public let alarmRecipientId: String
-
         /// 任务类型(201表示实时，202表示离线)
         public let taskType: UInt64
-
-        /// 告警接收人昵称，多个用逗号隔开
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let alarmRecipientName: String?
 
         /// 主键ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4579,6 +4737,10 @@ extension Wedata {
 
         /// 规则ID
         public let regularId: String?
+
+        /// 告警指标,0表示任务失败，1表示任务运行超时，2表示任务停止，3表示任务暂停
+        /// ，4写入速度，5读取速度，6读取吞吐，7写入吞吐, 8脏数据字节数，9脏数据条数
+        public let alarmIndicator: UInt64?
 
         /// 指标阈值(1表示离线任务第一次运行失败，2表示离线任务所有重试完成后失败)
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4588,6 +4750,9 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let estimatedTime: UInt64?
 
+        /// 告警接收人ID，多个用逗号隔开
+        public let alarmRecipientId: String?
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
@@ -4595,6 +4760,10 @@ extension Wedata {
         /// 创建人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creater: String?
+
+        /// 告警接收人昵称，多个用逗号隔开
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmRecipientName: String?
 
         /// 告警指标描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4612,26 +4781,41 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
 
-        public init(taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, operator: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
+        /// 指标列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmIndicatorInfos: [AlarmIndicatorInfo]?
+
+        /// 告警接收人类型，0指定人员；1任务责任人
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmRecipientType: UInt64?
+
+        /// 企业微信群Hook地址，多个hook地址使用,隔开
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weComHook: String?
+
+        public init(taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmWay: String, taskType: UInt64, id: String? = nil, regularId: String? = nil, alarmIndicator: UInt64? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, alarmRecipientId: String? = nil, projectId: String? = nil, creater: String? = nil, alarmRecipientName: String? = nil, alarmIndicatorDesc: String? = nil, operator: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil, alarmIndicatorInfos: [AlarmIndicatorInfo]? = nil, alarmRecipientType: UInt64? = nil, weComHook: String? = nil) {
             self.taskId = taskId
             self.regularName = regularName
             self.regularStatus = regularStatus
             self.alarmLevel = alarmLevel
-            self.alarmIndicator = alarmIndicator
             self.alarmWay = alarmWay
-            self.alarmRecipientId = alarmRecipientId
             self.taskType = taskType
-            self.alarmRecipientName = alarmRecipientName
             self.id = id
             self.regularId = regularId
+            self.alarmIndicator = alarmIndicator
             self.triggerType = triggerType
             self.estimatedTime = estimatedTime
+            self.alarmRecipientId = alarmRecipientId
             self.projectId = projectId
             self.creater = creater
+            self.alarmRecipientName = alarmRecipientName
             self.alarmIndicatorDesc = alarmIndicatorDesc
             self.operator = `operator`
             self.nodeId = nodeId
             self.nodeName = nodeName
+            self.alarmIndicatorInfos = alarmIndicatorInfos
+            self.alarmRecipientType = alarmRecipientType
+            self.weComHook = weComHook
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4639,21 +4823,24 @@ extension Wedata {
             case regularName = "RegularName"
             case regularStatus = "RegularStatus"
             case alarmLevel = "AlarmLevel"
-            case alarmIndicator = "AlarmIndicator"
             case alarmWay = "AlarmWay"
-            case alarmRecipientId = "AlarmRecipientId"
             case taskType = "TaskType"
-            case alarmRecipientName = "AlarmRecipientName"
             case id = "Id"
             case regularId = "RegularId"
+            case alarmIndicator = "AlarmIndicator"
             case triggerType = "TriggerType"
             case estimatedTime = "EstimatedTime"
+            case alarmRecipientId = "AlarmRecipientId"
             case projectId = "ProjectId"
             case creater = "Creater"
+            case alarmRecipientName = "AlarmRecipientName"
             case alarmIndicatorDesc = "AlarmIndicatorDesc"
             case `operator` = "Operator"
             case nodeId = "NodeId"
             case nodeName = "NodeName"
+            case alarmIndicatorInfos = "AlarmIndicatorInfos"
+            case alarmRecipientType = "AlarmRecipientType"
+            case weComHook = "WeComHook"
         }
     }
 

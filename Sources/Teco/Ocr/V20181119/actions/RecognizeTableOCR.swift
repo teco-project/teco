@@ -82,6 +82,8 @@ extension Ocr {
     /// 表格识别（V2)
     ///
     /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTableOCRResponse> {
         self.client.execute(action: "RecognizeTableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -90,6 +92,8 @@ extension Ocr {
     /// 表格识别（V2)
     ///
     /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTableOCRResponse {
         try await self.client.execute(action: "RecognizeTableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,6 +102,8 @@ extension Ocr {
     /// 表格识别（V2)
     ///
     /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeTableOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, tableLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeTableOCRResponse> {
         self.recognizeTableOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber, tableLanguage: tableLanguage), region: region, logger: logger, on: eventLoop)
@@ -106,6 +112,8 @@ extension Ocr {
     /// 表格识别（V2)
     ///
     /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func recognizeTableOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, tableLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTableOCRResponse {
         try await self.recognizeTableOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber, tableLanguage: tableLanguage), region: region, logger: logger, on: eventLoop)

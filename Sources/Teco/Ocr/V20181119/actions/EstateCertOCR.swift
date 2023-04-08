@@ -102,6 +102,8 @@ extension Ocr {
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func estateCertOCR(_ input: EstateCertOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstateCertOCRResponse> {
         self.client.execute(action: "EstateCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,6 +112,8 @@ extension Ocr {
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func estateCertOCR(_ input: EstateCertOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
         try await self.client.execute(action: "EstateCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -118,6 +122,8 @@ extension Ocr {
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstateCertOCRResponse> {
         self.estateCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -126,6 +132,8 @@ extension Ocr {
     /// 不动产权证识别
     ///
     /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func estateCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
         try await self.estateCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

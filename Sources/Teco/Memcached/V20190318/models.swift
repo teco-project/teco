@@ -45,7 +45,6 @@ extension Memcached {
         public let cmemId: Int64?
 
         /// 实例关联的标签信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfo]?
 
         /// 实例ID

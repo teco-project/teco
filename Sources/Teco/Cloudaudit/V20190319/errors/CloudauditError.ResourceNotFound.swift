@@ -19,6 +19,7 @@ extension TCCloudauditError {
         enum Code: String {
             case auditNotExist = "ResourceNotFound.AuditNotExist"
             case roleNotExist = "ResourceNotFound.RoleNotExist"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -48,8 +49,14 @@ extension TCCloudauditError {
             ResourceNotFound(.auditNotExist)
         }
 
+        /// 角色不存在。
         public static var roleNotExist: ResourceNotFound {
             ResourceNotFound(.roleNotExist)
+        }
+
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
         }
 
         public func asCloudauditError() -> TCCloudauditError {
@@ -59,6 +66,8 @@ extension TCCloudauditError {
                 code = .resourceNotFound_AuditNotExist
             case .roleNotExist:
                 code = .resourceNotFound_RoleNotExist
+            case .other:
+                code = .resourceNotFound
             }
             return TCCloudauditError(code, context: self.context)
         }

@@ -146,6 +146,22 @@ extension Eb {
         }
     }
 
+    /// 连接器基础信息
+    public struct ConnectionBrief: TCOutputModel {
+        /// 连接器类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 连接器状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case status = "Status"
+        }
+    }
+
     /// ConnectionDescription描述
     public struct ConnectionDescription: TCInputModel, TCOutputModel {
         /// 资源qcs六段式，更多参考 [资源六段式](https://cloud.tencent.com/document/product/598/10606)
@@ -159,16 +175,28 @@ extension Eb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ckafkaParams: CkafkaParams?
 
-        public init(resourceDescription: String, apigwParams: APIGWParams? = nil, ckafkaParams: CkafkaParams? = nil) {
+        /// data transfer service (DTS)参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dtsParams: DTSParams?
+
+        public init(resourceDescription: String, apigwParams: APIGWParams? = nil, ckafkaParams: CkafkaParams? = nil, dtsParams: DTSParams? = nil) {
             self.resourceDescription = resourceDescription
             self.apigwParams = apigwParams
             self.ckafkaParams = ckafkaParams
+            self.dtsParams = dtsParams
         }
 
         enum CodingKeys: String, CodingKey {
             case resourceDescription = "ResourceDescription"
             case apigwParams = "APIGWParams"
             case ckafkaParams = "CkafkaParams"
+            case dtsParams = "DTSParams"
+        }
+    }
+
+    /// Data Transfer Service参数
+    public struct DTSParams: TCInputModel, TCOutputModel {
+        public init() {
         }
     }
 
@@ -306,6 +334,18 @@ extension Eb {
         /// 事件集类型
         public let type: String
 
+        /// 计费模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let payMode: String?
+
+        /// 连接器基础信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionBriefs: [ConnectionBrief]?
+
+        /// 目标简要信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetBriefs: [TargetBrief]?
+
         enum CodingKeys: String, CodingKey {
             case modTime = "ModTime"
             case description = "Description"
@@ -313,6 +353,9 @@ extension Eb {
             case eventBusName = "EventBusName"
             case eventBusId = "EventBusId"
             case type = "Type"
+            case payMode = "PayMode"
+            case connectionBriefs = "ConnectionBriefs"
+            case targetBriefs = "TargetBriefs"
         }
     }
 
@@ -359,6 +402,64 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case values = "Values"
             case name = "Name"
+        }
+    }
+
+    /// 日志查询相关接口filter参数定义
+    public struct LogFilter: TCInputModel {
+        /// 过滤字段名称
+        public let key: String?
+
+        /// 运算符，全等 eq，不等 neq，相似 like，排除相似 not like,  小于 lt，小于且等于 lte，大于 gt，大于且等于 gte，在范围内 range，不在范围内 norange
+        public let `operator`: String?
+
+        /// 过滤值,范围运算需要同时输入两个值，以英文逗号分隔
+        public let value: String?
+
+        /// 该层级filters逻辑关系，取值 "AND" 或 "OR"
+        public let type: String?
+
+        /// LogFilters数组
+        public let filters: [LogFilters]?
+
+        public init(key: String? = nil, operator: String? = nil, value: String? = nil, type: String? = nil, filters: [LogFilters]? = nil) {
+            self.key = key
+            self.operator = `operator`
+            self.value = value
+            self.type = type
+            self.filters = filters
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case `operator` = "Operator"
+            case value = "Value"
+            case type = "Type"
+            case filters = "Filters"
+        }
+    }
+
+    /// 日志存储过滤条件
+    public struct LogFilters: TCInputModel {
+        /// 过滤字段名称
+        public let key: String?
+
+        /// 运算符, 全等 eq，不等 neq，相似 like，排除相似 not like,  小于 lt，小于且等于 lte，大于 gt，大于且等于 gte，在范围内 range，不在范围内 norange
+        public let `operator`: String?
+
+        /// 过滤值，范围运算需要同时输入两个值，以英文逗号分隔
+        public let value: String?
+
+        public init(key: String, operator: String, value: String) {
+            self.key = key
+            self.operator = `operator`
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case `operator` = "Operator"
+            case value = "Value"
         }
     }
 
@@ -480,6 +581,52 @@ extension Eb {
             case batchTimeout = "BatchTimeout"
             case batchEventCount = "BatchEventCount"
             case enableBatchDelivery = "EnableBatchDelivery"
+        }
+    }
+
+    /// 日志检索详情
+    public struct SearchLogResult: TCOutputModel {
+        /// 单条日志上报时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: String?
+
+        /// 日志内容详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 事件来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let source: String?
+
+        /// 事件类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 事件匹配规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleIds: String?
+
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subject: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 事件状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case message = "Message"
+            case source = "Source"
+            case type = "Type"
+            case ruleIds = "RuleIds"
+            case subject = "Subject"
+            case region = "Region"
+            case status = "Status"
         }
     }
 

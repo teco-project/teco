@@ -17,7 +17,7 @@
 extension Vpc {
     /// CreateNetDetect请求参数结构体
     public struct CreateNetDetectRequest: TCRequestModel {
-        /// `VPC`实例`ID`。形如：`vpc-12345678`
+        /// `VPC`实例`ID`。形如：`vpc-12345678`。
         public let vpcId: String
 
         /// 子网实例ID。形如：subnet-12345678。
@@ -36,6 +36,7 @@ extension Vpc {
         /// NAT：NAT网关；
         /// NORMAL_CVM：普通云服务器；
         /// CCN：云联网网关；
+        /// NONEXTHOP：无下一跳；
         public let nextHopType: String?
 
         /// 下一跳目的网关，取值与“下一跳类型”相关：
@@ -44,7 +45,8 @@ extension Vpc {
         /// 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        /// 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
+        /// 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         public let nextHopDestination: String?
 
         /// 网络探测描述。
@@ -87,7 +89,7 @@ extension Vpc {
 
     /// 创建网络探测
     ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
+    /// 本接口（CreateNetDetect）用于创建网络探测。
     @inlinable
     public func createNetDetect(_ input: CreateNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
         self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -95,7 +97,7 @@ extension Vpc {
 
     /// 创建网络探测
     ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
+    /// 本接口（CreateNetDetect）用于创建网络探测。
     @inlinable
     public func createNetDetect(_ input: CreateNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
         try await self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -103,7 +105,7 @@ extension Vpc {
 
     /// 创建网络探测
     ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
+    /// 本接口（CreateNetDetect）用于创建网络探测。
     @inlinable
     public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
         self.createNetDetect(.init(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
@@ -111,7 +113,7 @@ extension Vpc {
 
     /// 创建网络探测
     ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
+    /// 本接口（CreateNetDetect）用于创建网络探测。
     @inlinable
     public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
         try await self.createNetDetect(.init(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)

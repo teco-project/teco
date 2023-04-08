@@ -81,6 +81,7 @@ extension TCClsError {
             InvalidParameter(.dbDuplication)
         }
 
+        /// 导出任务已经存在。
         public static var exportConflict: InvalidParameter {
             InvalidParameter(.exportConflict)
         }

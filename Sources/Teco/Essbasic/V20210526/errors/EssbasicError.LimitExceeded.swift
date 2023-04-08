@@ -48,26 +48,32 @@ extension TCEssbasicError {
             self.context = context
         }
 
+        /// 超出调用次数限制。
         public static var callTimes: LimitExceeded {
             LimitExceeded(.callTimes)
         }
 
+        /// 超出流程创建数量限制。
         public static var createFlowNum: LimitExceeded {
             LimitExceeded(.createFlowNum)
         }
 
+        /// 文件大小限制。
         public static var fileSize: LimitExceeded {
             LimitExceeded(.fileSize)
         }
 
+        /// 合同id数超出限制。
         public static var flowIds: LimitExceeded {
             LimitExceeded(.flowIds)
         }
 
+        /// 超出流程数量限制。
         public static var flowInfos: LimitExceeded {
             LimitExceeded(.flowInfos)
         }
 
+        /// 经办人数据超出。
         public static var proxyOrganizationOperator: LimitExceeded {
             LimitExceeded(.proxyOrganizationOperator)
         }

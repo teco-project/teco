@@ -43,6 +43,7 @@ extension TCTatError {
             self.context = context
         }
 
+        /// 填写的 Filter 取值过多。
         public static var filterValueExceeded: LimitExceeded {
             LimitExceeded(.filterValueExceeded)
         }

@@ -974,10 +974,10 @@ extension Billing {
         /// 用量结束时间
         public let dosageEndTime: String
 
-        /// 一级产品类型名称
+        /// 子产品名称
         public let subProductCodeName: String
 
-        /// 二级产品类型名称
+        /// 计费项名称
         public let billingItemCodeName: String
 
         /// 用量

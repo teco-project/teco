@@ -83,46 +83,53 @@ extension Tdid {
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelList(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
-        self.client.execute(action: "GetLabelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelList(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
-        try await self.client.execute(action: "GetLabelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
-        self.getLabelList(.init(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
-        try await self.getLabelList(.init(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelListPaginated(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Label])> {
-        self.client.paginate(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func getLabelListPaginated(_ input: GetLabelListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLabelListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.getLabelList, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 
     /// 标签列表
     ///
     /// - Returns: `AsyncSequence`s of `Label` and `GetLabelListResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getLabelListPaginator(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLabelListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
+        fatalError("GetLabelList is no longer available.")
     }
 }

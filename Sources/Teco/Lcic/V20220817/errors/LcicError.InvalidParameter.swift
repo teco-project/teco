@@ -17,7 +17,13 @@
 extension TCLcicError {
     public struct InvalidParameter: TCLcicErrorType {
         enum Code: String {
+            case content = "InvalidParameter.Content"
             case endTime = "InvalidParameter.EndTime"
+            case groupMemberOverLimit = "InvalidParameter.GroupMemberOverLimit"
+            case groupParamInvalid = "InvalidParameter.GroupParamInvalid"
+            case groupTeacherNotMember = "InvalidParameter.GroupTeacherNotMember"
+            case groupTeachersNotExist = "InvalidParameter.GroupTeachersNotExist"
+            case groupTypeInvalid = "InvalidParameter.GroupTypeInvalid"
             case sdkAppId = "InvalidParameter.SdkAppId"
             case startTime = "InvalidParameter.StartTime"
             case other = "InvalidParameter"
@@ -45,18 +51,60 @@ extension TCLcicError {
             self.context = context
         }
 
+        /// 内容包含非法信息（如色情，恐暴，政治等）。
+        public static var content: InvalidParameter {
+            InvalidParameter(.content)
+        }
+
+        /// 结束时间不能早于开始时间。
         public static var endTime: InvalidParameter {
             InvalidParameter(.endTime)
         }
 
+        /// 操作的群组成员超过限制
+        ///
+        /// 减少操作的群组成员
+        public static var groupMemberOverLimit: InvalidParameter {
+            InvalidParameter(.groupMemberOverLimit)
+        }
+
+        /// 参数错误，主讲人与成员都为空
+        ///
+        /// 主讲人与成员不能同时为空
+        public static var groupParamInvalid: InvalidParameter {
+            InvalidParameter(.groupParamInvalid)
+        }
+
+        /// 主讲人不能同时是群组成员
+        public static var groupTeacherNotMember: InvalidParameter {
+            InvalidParameter(.groupTeacherNotMember)
+        }
+
+        /// 群组主讲老师不存在
+        ///
+        /// 检查teacher id是否正确
+        public static var groupTeachersNotExist: InvalidParameter {
+            InvalidParameter(.groupTeachersNotExist)
+        }
+
+        /// 群组类型错误
+        ///
+        /// 请查看文档，输入正确的群组类型
+        public static var groupTypeInvalid: InvalidParameter {
+            InvalidParameter(.groupTypeInvalid)
+        }
+
+        /// SdkAppId参数错误。
         public static var sdkAppId: InvalidParameter {
             InvalidParameter(.sdkAppId)
         }
 
+        /// 开始时间不能早于当前时间。
         public static var startTime: InvalidParameter {
             InvalidParameter(.startTime)
         }
 
+        /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
@@ -64,8 +112,20 @@ extension TCLcicError {
         public func asLcicError() -> TCLcicError {
             let code: TCLcicError.Code
             switch self.error {
+            case .content:
+                code = .invalidParameter_Content
             case .endTime:
                 code = .invalidParameter_EndTime
+            case .groupMemberOverLimit:
+                code = .invalidParameter_GroupMemberOverLimit
+            case .groupParamInvalid:
+                code = .invalidParameter_GroupParamInvalid
+            case .groupTeacherNotMember:
+                code = .invalidParameter_GroupTeacherNotMember
+            case .groupTeachersNotExist:
+                code = .invalidParameter_GroupTeachersNotExist
+            case .groupTypeInvalid:
+                code = .invalidParameter_GroupTypeInvalid
             case .sdkAppId:
                 code = .invalidParameter_SdkAppId
             case .startTime:

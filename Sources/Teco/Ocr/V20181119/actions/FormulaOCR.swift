@@ -62,6 +62,8 @@ extension Ocr {
     /// 数学公式识别
     ///
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func formulaOCR(_ input: FormulaOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FormulaOCRResponse> {
         self.client.execute(action: "FormulaOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,6 +72,8 @@ extension Ocr {
     /// 数学公式识别
     ///
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func formulaOCR(_ input: FormulaOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
         try await self.client.execute(action: "FormulaOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,6 +82,8 @@ extension Ocr {
     /// 数学公式识别
     ///
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FormulaOCRResponse> {
         self.formulaOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -86,6 +92,8 @@ extension Ocr {
     /// 数学公式识别
     ///
     /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func formulaOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
         try await self.formulaOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

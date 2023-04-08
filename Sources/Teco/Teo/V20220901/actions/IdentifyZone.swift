@@ -20,12 +20,17 @@ extension Teo {
         /// 站点名称。
         public let zoneName: String
 
-        public init(zoneName: String) {
+        /// 站点下的子域名。如果验证站点下的子域名，则传该值，否则为空。
+        public let domain: String?
+
+        public init(zoneName: String, domain: String? = nil) {
             self.zoneName = zoneName
+            self.domain = domain
         }
 
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
+            case domain = "Domain"
         }
     }
 
@@ -67,15 +72,15 @@ extension Teo {
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
-        self.identifyZone(.init(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
+    public func identifyZone(zoneName: String, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
+        self.identifyZone(.init(zoneName: zoneName, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
-        try await self.identifyZone(.init(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
+    public func identifyZone(zoneName: String, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
+        try await self.identifyZone(.init(zoneName: zoneName, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

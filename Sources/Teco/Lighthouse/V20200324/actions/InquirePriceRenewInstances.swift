@@ -20,8 +20,8 @@ extension Lighthouse {
         /// 待续费的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573 )接口返回值中的InstanceId获取。每次请求批量实例的上限为50。
         public let instanceIds: [String]
 
-        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid?
+        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        public let instanceChargePrepaid: InstanceChargePrepaid
 
         /// 是否续费数据盘。默认值: false, 即不续费。
         public let renewDataDisk: Bool?
@@ -29,7 +29,7 @@ extension Lighthouse {
         /// 数据盘是否对齐实例到期时间。默认值: false, 即不对齐。
         public let alignInstanceExpiredTime: Bool?
 
-        public init(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil) {
+        public init(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceChargePrepaid = instanceChargePrepaid
             self.renewDataDisk = renewDataDisk
@@ -92,7 +92,7 @@ extension Lighthouse {
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
+    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
         self.inquirePriceRenewInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 
@@ -100,7 +100,7 @@ extension Lighthouse {
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
+    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
         try await self.inquirePriceRenewInstances(.init(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 }

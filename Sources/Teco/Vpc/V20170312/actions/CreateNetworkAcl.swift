@@ -17,13 +17,13 @@
 extension Vpc {
     /// CreateNetworkAcl请求参数结构体
     public struct CreateNetworkAclRequest: TCRequestModel {
-        /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        /// VPC实例ID。可通过<a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a>接口返回值中的VpcId获取。
         public let vpcId: String
 
         /// 网络ACL名称，最大长度不能超过60个字节。
         public let networkAclName: String
 
-        /// 网络ACL类型，三元组(TRIPLE)或五元组(QUINTUPLE)
+        /// 网络ACL类型，三元组(TRIPLE)或五元组(QUINTUPLE)。默认值三元组(TRIPLE)。
         public let networkAclType: String?
 
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。

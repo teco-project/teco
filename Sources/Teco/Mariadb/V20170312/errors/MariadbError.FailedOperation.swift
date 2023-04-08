@@ -127,6 +127,7 @@ extension TCMariadbError {
             FailedOperation(.disassociateSecurityGroupsFailed)
         }
 
+        /// 拉取安全组详情失败。
         public static var getSecurityGroupDetailFailed: FailedOperation {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
@@ -146,6 +147,7 @@ extension TCMariadbError {
             FailedOperation(.modifyRightFailed)
         }
 
+        /// 隔离实例失败。
         public static var ossIsolateInstanceFailed: FailedOperation {
             FailedOperation(.ossIsolateInstanceFailed)
         }
@@ -170,6 +172,7 @@ extension TCMariadbError {
             FailedOperation(.setRuleLocationFailed)
         }
 
+        /// 安全组规则下发失败。
         public static var setSvcLocationFailed: FailedOperation {
             FailedOperation(.setSvcLocationFailed)
         }
@@ -184,6 +187,7 @@ extension TCMariadbError {
             FailedOperation(.tagDryRunError)
         }
 
+        /// 标签配额不足。
         public static var tagQuotaExceedLimit: FailedOperation {
             FailedOperation(.tagQuotaExceedLimit)
         }
@@ -193,6 +197,7 @@ extension TCMariadbError {
             FailedOperation(.updateInstanceInfoFailed)
         }
 
+        /// 用户未经鉴权。
         public static var userNotAuthed: FailedOperation {
             FailedOperation(.userNotAuthed)
         }

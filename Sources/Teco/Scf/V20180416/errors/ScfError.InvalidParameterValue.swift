@@ -304,6 +304,8 @@ extension TCScfError {
             InvalidParameterValue(.cosBucketRegion)
         }
 
+        /// COS通知规则冲突。
+        ///
         /// 请传递有效的COS通知规则。
         public static var cosNotifyRuleConflict: InvalidParameterValue {
             InvalidParameterValue(.cosNotifyRuleConflict)

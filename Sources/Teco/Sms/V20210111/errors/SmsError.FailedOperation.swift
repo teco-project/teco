@@ -34,6 +34,7 @@ extension TCSmsError {
             case phoneNumberInBlacklist = "FailedOperation.PhoneNumberInBlacklist"
             case phoneNumberParseFail = "FailedOperation.PhoneNumberParseFail"
             case prohibitSubAccountUse = "FailedOperation.ProhibitSubAccountUse"
+            case signIdNotExist = "FailedOperation.SignIdNotExist"
             case signNumberLimit = "FailedOperation.SignNumberLimit"
             case signatureIncorrectOrUnapproved = "FailedOperation.SignatureIncorrectOrUnapproved"
             case templateAlreadyPassedCheck = "FailedOperation.TemplateAlreadyPassedCheck"
@@ -151,6 +152,11 @@ extension TCSmsError {
             FailedOperation(.prohibitSubAccountUse)
         }
 
+        /// 签名 ID 不存在。
+        public static var signIdNotExist: FailedOperation {
+            FailedOperation(.signIdNotExist)
+        }
+
         /// 签名个数达到最大值。
         public static var signNumberLimit: FailedOperation {
             FailedOperation(.signNumberLimit)
@@ -168,14 +174,14 @@ extension TCSmsError {
             FailedOperation(.templateAlreadyPassedCheck)
         }
 
-        /// 模板 ID 或签名 ID 不存在。
+        /// 模板 ID 不存在。
         ///
-        /// 请排查模板 ID 或签名 ID 是否填写正确
+        /// 请排查模板 ID 是否填写正确
         public static var templateIdNotExist: FailedOperation {
             FailedOperation(.templateIdNotExist)
         }
 
-        /// 模板未审批或内容不匹配。（1）可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过；（2）核查是否符合 [格式规范](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+        /// 模板未审批或内容不匹配。（1）可登录 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过；（2）核查是否符合 [格式规范](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1014.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         ///
         /// 可参考 [短信发送提示：FailedOperation.TemplateIncorrectOrUnapproved 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var templateIncorrectOrUnapproved: FailedOperation {
@@ -194,7 +200,7 @@ extension TCSmsError {
             FailedOperation(.templateParamSetNotMatchApprovedTemplate)
         }
 
-        /// 模板未审批或不存在。可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
+        /// 模板未审批或不存在。可登录 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         ///
         /// 可登陆 [短信控制台](https://console.cloud.tencent.com/smsv2)，核查模板是否已审批并审批通过。若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var templateUnapprovedOrNotExist: FailedOperation {
@@ -238,6 +244,8 @@ extension TCSmsError {
                 code = .failedOperation_PhoneNumberParseFail
             case .prohibitSubAccountUse:
                 code = .failedOperation_ProhibitSubAccountUse
+            case .signIdNotExist:
+                code = .failedOperation_SignIdNotExist
             case .signNumberLimit:
                 code = .failedOperation_SignNumberLimit
             case .signatureIncorrectOrUnapproved:

@@ -26,7 +26,6 @@ extension TCTrtcError {
             case interfaceErr = "InternalError.InterfaceErr"
             case internalError = "InternalError.InternalError"
             case methodErr = "InternalError.MethodErr"
-            case userNotExist = "InternalError.UserNotExist"
             case other = "InternalError"
         }
 
@@ -97,11 +96,6 @@ extension TCTrtcError {
             InternalError(.methodErr)
         }
 
-        /// 用户不在房间中。
-        public static var userNotExist: InternalError {
-            InternalError(.userNotExist)
-        }
-
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -128,8 +122,6 @@ extension TCTrtcError {
                 code = .internalError_InternalError
             case .methodErr:
                 code = .internalError_MethodErr
-            case .userNotExist:
-                code = .internalError_UserNotExist
             case .other:
                 code = .internalError
             }

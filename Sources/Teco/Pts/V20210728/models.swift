@@ -309,11 +309,16 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gracefulStopSeconds: Int64?
 
-        public init(stages: [Stage]? = nil, iterationCount: Int64? = nil, maxRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
+        /// 资源数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resources: Int64?
+
+        public init(stages: [Stage]? = nil, iterationCount: Int64? = nil, maxRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil, resources: Int64? = nil) {
             self.stages = stages
             self.iterationCount = iterationCount
             self.maxRequestsPerSecond = maxRequestsPerSecond
             self.gracefulStopSeconds = gracefulStopSeconds
+            self.resources = resources
         }
 
         enum CodingKeys: String, CodingKey {
@@ -321,6 +326,7 @@ extension Pts {
             case iterationCount = "IterationCount"
             case maxRequestsPerSecond = "MaxRequestsPerSecond"
             case gracefulStopSeconds = "GracefulStopSeconds"
+            case resources = "Resources"
         }
     }
 
@@ -544,6 +550,42 @@ extension Pts {
         }
     }
 
+    /// 错误信息汇总
+    public struct ErrorSummary: TCOutputModel {
+        /// 状态码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 结果码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: String?
+
+        /// 错误出现次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
+        /// 错误率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rate: Float?
+
+        /// 错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 请求协议类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proto: String?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case result = "Result"
+            case count = "Count"
+            case rate = "Rate"
+            case message = "Message"
+            case proto = "Proto"
+        }
+    }
+
     /// 文件列表
     public struct File: TCOutputModel {
         /// 文件 ID
@@ -697,10 +739,22 @@ extension Pts {
         /// 等于：0，不等于：1
         public let `operator`: Int64
 
-        /// 指标名
+        /// 标签名，可选值包括：
+        /// 1. method，请求方法名；
+        /// 2. proto：协议名；
+        /// 3. service：服务名；
+        /// 4. status：响应状态码；
+        /// 5. result：响应详情；
+        /// 6. check：检查名。
         public let labelName: String
 
-        /// 指标值
+        /// 标签值：
+        /// 1. method：请求方法名，以 http 协议为例，method 为 GET、POST、PUT 等；
+        /// 2. proto：协议名，以 http 协议为例，proto 为 HTTP/1.1、HTTP/2 等；
+        /// 3. service：服务名，以 http 协议为例，service 为请求 url，如 http://httpbin.org/get 等；
+        /// 4. status：响应状态码，以 http 协议为例，状态码包括 200、404、500 等；
+        /// 5. result：响应详情，通过 result 判断请求成功或失败；请求正常，result 标签值为 ok；请求失败，result 标签携带错误码和描述；
+        /// 6. check：检查名，标签值为用户设置的检查点名称。
         public let labelValue: String
 
         public init(operator: Int64, labelName: String, labelValue: String) {
@@ -972,7 +1026,15 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
 
-        public init(jobId: String? = nil, scenarioId: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, status: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, maxVirtualUserCount: Int64? = nil, note: String? = nil, errorRate: Float? = nil, jobOwner: String? = nil, loadSources: LoadSource? = nil, duration: Int64? = nil, maxRequestsPerSecond: Int64? = nil, requestTotal: Float? = nil, requestsPerSecond: Float? = nil, responseTimeAverage: Float? = nil, responseTimeP99: Float? = nil, responseTimeP95: Float? = nil, responseTimeP90: Float? = nil, scripts: [String]? = nil, responseTimeMax: Float? = nil, responseTimeMin: Float? = nil, loadSourceInfos: [LoadSource]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, plugins: [FileInfo]? = nil, cronId: String? = nil, type: String? = nil, domainNameConfig: DomainNameConfig? = nil, debug: Bool? = nil, abortReason: Int64? = nil, createdAt: Date? = nil, projectId: String? = nil, notificationHooks: [NotificationHook]? = nil, networkReceiveRate: Float? = nil, networkSendRate: Float? = nil, message: String? = nil) {
+        /// test-project
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let projectName: String?
+
+        /// test-scenario
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scenarioName: String?
+
+        public init(jobId: String? = nil, scenarioId: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, status: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, maxVirtualUserCount: Int64? = nil, note: String? = nil, errorRate: Float? = nil, jobOwner: String? = nil, loadSources: LoadSource? = nil, duration: Int64? = nil, maxRequestsPerSecond: Int64? = nil, requestTotal: Float? = nil, requestsPerSecond: Float? = nil, responseTimeAverage: Float? = nil, responseTimeP99: Float? = nil, responseTimeP95: Float? = nil, responseTimeP90: Float? = nil, scripts: [String]? = nil, responseTimeMax: Float? = nil, responseTimeMin: Float? = nil, loadSourceInfos: [LoadSource]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, plugins: [FileInfo]? = nil, cronId: String? = nil, type: String? = nil, domainNameConfig: DomainNameConfig? = nil, debug: Bool? = nil, abortReason: Int64? = nil, createdAt: Date? = nil, projectId: String? = nil, notificationHooks: [NotificationHook]? = nil, networkReceiveRate: Float? = nil, networkSendRate: Float? = nil, message: String? = nil, projectName: String? = nil, scenarioName: String? = nil) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.load = load
@@ -1014,6 +1076,8 @@ extension Pts {
             self.networkReceiveRate = networkReceiveRate
             self.networkSendRate = networkSendRate
             self.message = message
+            self.projectName = projectName
+            self.scenarioName = scenarioName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1058,6 +1122,8 @@ extension Pts {
             case networkReceiveRate = "NetworkReceiveRate"
             case networkSendRate = "NetworkSendRate"
             case message = "Message"
+            case projectName = "ProjectName"
+            case scenarioName = "ScenarioName"
         }
     }
 
@@ -1805,6 +1871,10 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let owner: String?
 
+        /// 场景所在的项目的名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let projectName: String?
+
         enum CodingKeys: String, CodingKey {
             case scenarioId = "ScenarioId"
             case name = "Name"
@@ -1832,6 +1902,7 @@ extension Pts {
             case domainNameConfig = "DomainNameConfig"
             case notificationHooks = "NotificationHooks"
             case owner = "Owner"
+            case projectName = "ProjectName"
         }
     }
 

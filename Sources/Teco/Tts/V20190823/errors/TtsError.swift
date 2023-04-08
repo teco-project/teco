@@ -179,6 +179,8 @@ public struct TCTtsError: TCTtsErrorType {
         TCTtsError(.invalidParameterValue_ModelType)
     }
 
+    /// 文本分词错误。
+    ///
     /// 文本无效，请检查文本信息。
     public static var invalidParameterValue_ParticipleError: TCTtsError {
         TCTtsError(.invalidParameterValue_ParticipleError)
@@ -189,6 +191,8 @@ public struct TCTtsError: TCTtsErrorType {
         TCTtsError(.invalidParameterValue_PrimaryLanguage)
     }
 
+    /// SSML标签非法。
+    ///
     /// 请检查SSML标签，修改文本内容。
     public static var invalidParameterValue_SSMLInvalid: TCTtsError {
         TCTtsError(.invalidParameterValue_SSMLInvalid)
@@ -299,6 +303,8 @@ public struct TCTtsError: TCTtsErrorType {
         TCTtsError(.unsupportedOperation_NoFreeAccount)
     }
 
+    /// 资源包余量已用尽。
+    ///
     /// 请检查资源包余量。
     public static var unsupportedOperation_PkgExhausted: TCTtsError {
         TCTtsError(.unsupportedOperation_PkgExhausted)

@@ -78,7 +78,7 @@ public struct TCCaptchaError: TCCaptchaErrorType {
         TCCaptchaError(.unauthorizedOperation_ErrAuth)
     }
 
-    /// 未开通权限。
+    /// 未开通权限/无有效套餐包/账号已欠费。
     public static var unauthorizedOperation_Unauthorized: TCCaptchaError {
         TCCaptchaError(.unauthorizedOperation_Unauthorized)
     }

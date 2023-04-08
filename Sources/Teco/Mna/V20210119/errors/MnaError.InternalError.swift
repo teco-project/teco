@@ -21,6 +21,7 @@ extension TCMnaError {
             case duplicateDataKey = "InternalError.DuplicateDataKey"
             case duplicateDeviceName = "InternalError.DuplicateDeviceName"
             case fileIOError = "InternalError.FileIOError"
+            case monitorDataRequestError = "InternalError.MonitorDataRequestError"
             case networkInfoRequestError = "InternalError.NetworkInfoRequestError"
             case undefinedEncryptedKey = "InternalError.UndefinedEncryptedKey"
             case other = "InternalError"
@@ -48,26 +49,37 @@ extension TCMnaError {
             self.context = context
         }
 
+        /// 请求控制器发生错误。
         public static var controlRequestError: InternalError {
             InternalError(.controlRequestError)
         }
 
+        /// 设备密钥已存在。
         public static var duplicateDataKey: InternalError {
             InternalError(.duplicateDataKey)
         }
 
+        /// 设备名已存在。
         public static var duplicateDeviceName: InternalError {
             InternalError(.duplicateDeviceName)
         }
 
+        /// 文件读写异常。
         public static var fileIOError: InternalError {
             InternalError(.fileIOError)
         }
 
+        /// 监控数据请求错误。
+        public static var monitorDataRequestError: InternalError {
+            InternalError(.monitorDataRequestError)
+        }
+
+        /// 智研流量数据请求错误。
         public static var networkInfoRequestError: InternalError {
             InternalError(.networkInfoRequestError)
         }
 
+        /// 预置密钥尚未创建。
         public static var undefinedEncryptedKey: InternalError {
             InternalError(.undefinedEncryptedKey)
         }
@@ -88,6 +100,8 @@ extension TCMnaError {
                 code = .internalError_DuplicateDeviceName
             case .fileIOError:
                 code = .internalError_FileIOError
+            case .monitorDataRequestError:
+                code = .internalError_MonitorDataRequestError
             case .networkInfoRequestError:
                 code = .internalError_NetworkInfoRequestError
             case .undefinedEncryptedKey:

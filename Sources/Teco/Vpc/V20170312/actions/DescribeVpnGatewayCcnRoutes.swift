@@ -19,13 +19,13 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeVpnGatewayCcnRoutes请求参数结构体
     public struct DescribeVpnGatewayCcnRoutesRequest: TCPaginatedRequest {
-        /// VPN网关实例ID
+        /// VPN网关实例ID。
         public let vpnGatewayId: String
 
-        /// 偏移量
+        /// 偏移量。默认值：0
         public let offset: UInt64?
 
-        /// 返回数量
+        /// 返回数量。默认值：20
         public let limit: UInt64?
 
         public init(vpnGatewayId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
@@ -79,7 +79,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable
     public func describeVpnGatewayCcnRoutes(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewayCcnRoutesResponse> {
         self.client.execute(action: "DescribeVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -87,7 +87,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable
     public func describeVpnGatewayCcnRoutes(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayCcnRoutesResponse {
         try await self.client.execute(action: "DescribeVpnGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -95,7 +95,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable
     public func describeVpnGatewayCcnRoutes(vpnGatewayId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewayCcnRoutesResponse> {
         self.describeVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -103,7 +103,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable
     public func describeVpnGatewayCcnRoutes(vpnGatewayId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayCcnRoutesResponse {
         try await self.describeVpnGatewayCcnRoutes(.init(vpnGatewayId: vpnGatewayId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -111,7 +111,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable
     public func describeVpnGatewayCcnRoutesPaginated(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpngwCcnRoutes])> {
         self.client.paginate(input: input, region: region, command: self.describeVpnGatewayCcnRoutes, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     @inlinable @discardableResult
     public func describeVpnGatewayCcnRoutesPaginated(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewayCcnRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpnGatewayCcnRoutes, callback: onResponse, logger: logger, on: eventLoop)
@@ -127,7 +127,7 @@ extension Vpc {
 
     /// 查询VPN网关云联网路由
     ///
-    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
+    /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     ///
     /// - Returns: `AsyncSequence`s of `VpngwCcnRoutes` and `DescribeVpnGatewayCcnRoutesResponse` that can be iterated over asynchronously on demand.
     @inlinable

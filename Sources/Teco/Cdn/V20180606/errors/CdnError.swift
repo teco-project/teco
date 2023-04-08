@@ -698,6 +698,7 @@ public struct TCCdnError: TCCdnErrorType {
         TCCdnError(.limitExceeded_CamTagKeyTooManyTagValue)
     }
 
+    /// 域名绑定标签数量超出限制。
     public static var limitExceeded_CamTagQuotaExceedLimit: TCCdnError {
         TCCdnError(.limitExceeded_CamTagQuotaExceedLimit)
     }

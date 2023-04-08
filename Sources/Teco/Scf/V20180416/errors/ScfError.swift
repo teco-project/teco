@@ -30,7 +30,9 @@ public struct TCScfError: TCScfErrorType {
         case failedOperation_ApmConfigInstanceId = "FailedOperation.ApmConfigInstanceId"
         case failedOperation_AsyncEventStatus = "FailedOperation.AsyncEventStatus"
         case failedOperation_AuthFailure = "FailedOperation.AuthFailure"
+        case failedOperation_CallNetDeployFailed = "FailedOperation.CallNetDeployFailed"
         case failedOperation_CallRoleFailed = "FailedOperation.CallRoleFailed"
+        case failedOperation_ClsServiceUnregistered = "FailedOperation.ClsServiceUnregistered"
         case failedOperation_CopyAsyncRun = "FailedOperation.CopyAsyncRun"
         case failedOperation_CopyFailed = "FailedOperation.CopyFailed"
         case failedOperation_CopyFunction = "FailedOperation.CopyFunction"
@@ -74,6 +76,8 @@ public struct TCScfError: TCScfErrorType {
         case failedOperation_UpdateAlias = "FailedOperation.UpdateAlias"
         case failedOperation_UpdateFunctionCode = "FailedOperation.UpdateFunctionCode"
         case failedOperation_UpdateFunctionConfiguration = "FailedOperation.UpdateFunctionConfiguration"
+        case failedOperation_UpdateStatus = "FailedOperation.UpdateStatus"
+        case failedOperation_UpdateTriggerStatus = "FailedOperation.UpdateTriggerStatus"
         case internalError = "InternalError"
         case internalError_ApiGateway = "InternalError.ApiGateway"
         case internalError_Ckafka = "InternalError.Ckafka"
@@ -82,6 +86,7 @@ public struct TCScfError: TCScfErrorType {
         case internalError_ES = "InternalError.ES"
         case internalError_Exception = "InternalError.Exception"
         case internalError_GetRoleError = "InternalError.GetRoleError"
+        case internalError_GetStsTokenFailed = "InternalError.GetStsTokenFailed"
         case internalError_System = "InternalError.System"
         case internalError_SystemError = "InternalError.SystemError"
         case invalidParameterValue = "InvalidParameterValue"
@@ -210,6 +215,7 @@ public struct TCScfError: TCScfErrorType {
         case invalidParameter_RoutingConfig = "InvalidParameter.RoutingConfig"
         case limitExceeded_Alias = "LimitExceeded.Alias"
         case limitExceeded_Cdn = "LimitExceeded.Cdn"
+        case limitExceeded_ContainerImageAccelerate = "LimitExceeded.ContainerImageAccelerate"
         case limitExceeded_ContainerImageAccelerateQuota = "LimitExceeded.ContainerImageAccelerateQuota"
         case limitExceeded_Eip = "LimitExceeded.Eip"
         case limitExceeded_Function = "LimitExceeded.Function"
@@ -219,6 +225,7 @@ public struct TCScfError: TCScfErrorType {
         case limitExceeded_FunctionTotalProvisionedConcurrencyMemory = "LimitExceeded.FunctionTotalProvisionedConcurrencyMemory"
         case limitExceeded_FunctionTotalProvisionedConcurrencyNum = "LimitExceeded.FunctionTotalProvisionedConcurrencyNum"
         case limitExceeded_InitTimeout = "LimitExceeded.InitTimeout"
+        case limitExceeded_IntraIp = "LimitExceeded.IntraIp"
         case limitExceeded_LayerVersions = "LimitExceeded.LayerVersions"
         case limitExceeded_Layers = "LimitExceeded.Layers"
         case limitExceeded_MaxCapacity = "LimitExceeded.MaxCapacity"
@@ -253,6 +260,7 @@ public struct TCScfError: TCScfErrorType {
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_Alias = "ResourceNotFound.Alias"
         case resourceNotFound_AsyncEvent = "ResourceNotFound.AsyncEvent"
+        case resourceNotFound_AttachedTagKeyNotFound = "ResourceNotFound.AttachedTagKeyNotFound"
         case resourceNotFound_Cdn = "ResourceNotFound.Cdn"
         case resourceNotFound_CfsMountInsNotMatch = "ResourceNotFound.CfsMountInsNotMatch"
         case resourceNotFound_CfsProtocolError = "ResourceNotFound.CfsProtocolError"
@@ -292,6 +300,7 @@ public struct TCScfError: TCScfErrorType {
         case unauthorizedOperation_Role = "UnauthorizedOperation.Role"
         case unauthorizedOperation_TempCosAppid = "UnauthorizedOperation.TempCosAppid"
         case unauthorizedOperation_UpdateFunctionCode = "UnauthorizedOperation.UpdateFunctionCode"
+        case unauthorizedOperation_UpdateTriggerStatus = "UnauthorizedOperation.UpdateTriggerStatus"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AliasBind = "UnsupportedOperation.AliasBind"
         case unsupportedOperation_AsyncRunEnable = "UnsupportedOperation.AsyncRunEnable"
@@ -364,9 +373,19 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.failedOperation_AuthFailure)
     }
 
+    /// 调用 NetDeploy 失败。
+    public static var failedOperation_CallNetDeployFailed: TCScfError {
+        TCScfError(.failedOperation_CallNetDeployFailed)
+    }
+
     /// 请求role信息失败。
     public static var failedOperation_CallRoleFailed: TCScfError {
         TCScfError(.failedOperation_CallRoleFailed)
+    }
+
+    /// CLS服务未注册。
+    public static var failedOperation_ClsServiceUnregistered: TCScfError {
+        TCScfError(.failedOperation_ClsServiceUnregistered)
     }
 
     /// CopyAsyncRun 传参异常。
@@ -584,6 +603,16 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.failedOperation_UpdateFunctionConfiguration)
     }
 
+    /// 更新状态操作失败。
+    public static var failedOperation_UpdateStatus: TCScfError {
+        TCScfError(.failedOperation_UpdateStatus)
+    }
+
+    /// 与原状态一致，无需更改。
+    public static var failedOperation_UpdateTriggerStatus: TCScfError {
+        TCScfError(.failedOperation_UpdateTriggerStatus)
+    }
+
     /// 内部错误。
     public static var internalError: TCScfError {
         TCScfError(.internalError)
@@ -622,6 +651,11 @@ public struct TCScfError: TCScfErrorType {
     /// 内部服务错误。
     public static var internalError_GetRoleError: TCScfError {
         TCScfError(.internalError_GetRoleError)
+    }
+
+    /// 获取sts票据信息失败。
+    public static var internalError_GetStsTokenFailed: TCScfError {
+        TCScfError(.internalError_GetStsTokenFailed)
     }
 
     /// 内部系统错误。
@@ -785,6 +819,8 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.invalidParameterValue_CosBucketRegion)
     }
 
+    /// COS通知规则冲突。
+    ///
     /// 请传递有效的COS通知规则。
     public static var invalidParameterValue_CosNotifyRuleConflict: TCScfError {
         TCScfError(.invalidParameterValue_CosNotifyRuleConflict)
@@ -1233,6 +1269,8 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.invalidParameterValue_ZipFileBase64BinasciiError)
     }
 
+    /// 日志参数有误。
+    ///
     /// 请传递有效的日志相关参数。
     public static var invalidParameter_Cls: TCScfError {
         TCScfError(.invalidParameter_Cls)
@@ -1253,6 +1291,8 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.invalidParameter_Payload)
     }
 
+    /// 请求大小超限。
+    ///
     /// 请求大小超限，请参照官方文档
     public static var invalidParameter_RequestTooLarge: TCScfError {
         TCScfError(.invalidParameter_RequestTooLarge)
@@ -1278,6 +1318,12 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.limitExceeded_Cdn)
     }
 
+    /// 用户开启镜像加速函数版本超限。
+    public static var limitExceeded_ContainerImageAccelerate: TCScfError {
+        TCScfError(.limitExceeded_ContainerImageAccelerate)
+    }
+
+    /// 用户开启镜像加速函数版本超限。
     public static var limitExceeded_ContainerImageAccelerateQuota: TCScfError {
         TCScfError(.limitExceeded_ContainerImageAccelerateQuota)
     }
@@ -1320,6 +1366,11 @@ public struct TCScfError: TCScfErrorType {
     /// InitTimeout达到限制，可提交工单申请提升限制：https://tencentcs.com/7Fixwt63。
     public static var limitExceeded_InitTimeout: TCScfError {
         TCScfError(.limitExceeded_InitTimeout)
+    }
+
+    /// 内网固定IP个数超限。
+    public static var limitExceeded_IntraIp: TCScfError {
+        TCScfError(.limitExceeded_IntraIp)
     }
 
     /// layer版本数量超出最大限制。
@@ -1412,6 +1463,8 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.missingParameter_Runtime)
     }
 
+    /// 账号已被隔离。
+    ///
     /// 查询账号是否因欠费或其他原因被隔离。
     public static var operationDenied_AccountIsolate: TCScfError {
         TCScfError(.operationDenied_AccountIsolate)
@@ -1490,6 +1543,11 @@ public struct TCScfError: TCScfErrorType {
     /// 未找到指定的AsyncEvent，请创建后再试。
     public static var resourceNotFound_AsyncEvent: TCScfError {
         TCScfError(.resourceNotFound_AsyncEvent)
+    }
+
+    /// 函数需要关联的标签Key不存在。
+    public static var resourceNotFound_AttachedTagKeyNotFound: TCScfError {
+        TCScfError(.resourceNotFound_AttachedTagKeyNotFound)
     }
 
     /// Cdn不存在。
@@ -1689,6 +1747,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.unauthorizedOperation_UpdateFunctionCode)
     }
 
+    /// 没有权限。
+    public static var unauthorizedOperation_UpdateTriggerStatus: TCScfError {
+        TCScfError(.unauthorizedOperation_UpdateTriggerStatus)
+    }
+
     /// 操作不支持。
     public static var unsupportedOperation: TCScfError {
         TCScfError(.unsupportedOperation)
@@ -1719,6 +1782,8 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.unsupportedOperation_EipFixed)
     }
 
+    /// 不支持的地域。
+    ///
     /// 请传递正确的地域。
     public static var unsupportedOperation_NotSupportRegion: TCScfError {
         TCScfError(.unsupportedOperation_NotSupportRegion)

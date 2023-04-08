@@ -75,6 +75,8 @@ extension TCCatError {
             FailedOperation(.dbRecordUpdateFailed)
         }
 
+        /// 任务绑定的预付费套餐已过期。
+        ///
         /// 任务绑定的预付费套餐已过期，请续期对应的套餐包。
         public static var errPrePaidResourceExpire: FailedOperation {
             FailedOperation(.errPrePaidResourceExpire)
@@ -97,6 +99,8 @@ extension TCCatError {
             FailedOperation(.orderOutOfCredit)
         }
 
+        /// 预付费资源id绑定错误。
+        ///
         /// 未查询到此id对应的预付费资源或者此预付费资源已经绑定其他任务，请更换资源id或者删除已经绑定此资源的任务。
         public static var preResourceIDFailed: FailedOperation {
             FailedOperation(.preResourceIDFailed)
@@ -107,10 +111,13 @@ extension TCCatError {
             FailedOperation(.resourceNotFound)
         }
 
+        /// 发送授权请求失败。
         public static var sendRequest: FailedOperation {
             FailedOperation(.sendRequest)
         }
 
+        /// 标签验证错误。
+        ///
         /// 需要标签中需要包含 运营产品，运营部门，负责人。
         public static var tagRequiredVerifyFailed: FailedOperation {
             FailedOperation(.tagRequiredVerifyFailed)
@@ -143,11 +150,15 @@ extension TCCatError {
             FailedOperation(.trialTaskExceed)
         }
 
+        /// json解析失败。
+        ///
         /// 检查api调用逻辑
         public static var unmarshalResponse: FailedOperation {
             FailedOperation(.unmarshalResponse)
         }
 
+        /// 鉴权失败。
+        ///
         /// 当前子用户无相关标签写权限，请联系主账号管理员协助授予QcloudTAGFullAccess
         public static var userNoQcloudTAGFullAccess: FailedOperation {
             FailedOperation(.userNoQcloudTAGFullAccess)

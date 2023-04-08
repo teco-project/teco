@@ -23,7 +23,6 @@ extension TCTrtcError {
             case restrictedConcurrency = "FailedOperation.RestrictedConcurrency"
             case roomNotExist = "FailedOperation.RoomNotExist"
             case sdkAppIdNotExist = "FailedOperation.SdkAppIdNotExist"
-            case userNotExist = "FailedOperation.UserNotExist"
             case other = "FailedOperation"
         }
 
@@ -79,11 +78,6 @@ extension TCTrtcError {
             FailedOperation(.sdkAppIdNotExist)
         }
 
-        /// 用户不在房间内。
-        public static var userNotExist: FailedOperation {
-            FailedOperation(.userNotExist)
-        }
-
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -104,8 +98,6 @@ extension TCTrtcError {
                 code = .failedOperation_RoomNotExist
             case .sdkAppIdNotExist:
                 code = .failedOperation_SdkAppIdNotExist
-            case .userNotExist:
-                code = .failedOperation_UserNotExist
             case .other:
                 code = .failedOperation
             }

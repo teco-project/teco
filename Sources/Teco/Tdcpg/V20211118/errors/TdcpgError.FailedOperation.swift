@@ -93,6 +93,7 @@ extension TCTdcpgError {
             FailedOperation(.statusError)
         }
 
+        /// 当前存储的付费模式不支持此操作。
         public static var storagePayModeInvalid: FailedOperation {
             FailedOperation(.storagePayModeInvalid)
         }

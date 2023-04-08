@@ -31,10 +31,10 @@ extension Cwp {
 
     /// ExportIgnoreBaselineRule返回参数结构体
     public struct ExportIgnoreBaselineRuleResponse: TCResponseModel {
-        /// 文件下载地址
+        /// 该参数已废弃
         public let downloadUrl: String
 
-        /// 导出任务Id , 可通过ExportTasks 接口下载
+        /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

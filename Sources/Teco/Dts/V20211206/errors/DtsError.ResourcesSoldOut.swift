@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 资源售罄。
         public static var resourcesSoldOutError: ResourcesSoldOut {
             ResourcesSoldOut(.resourcesSoldOutError)
         }

@@ -61,6 +61,7 @@ extension TCEssError {
             case requiredComponentNotFill = "OperationDenied.RequiredComponentNotFill"
             case serverSignNoAllowComponent = "OperationDenied.ServerSignNoAllowComponent"
             case serverSignNoSupportSignature = "OperationDenied.ServerSignNoSupportSignature"
+            case subOrgNotJoin = "OperationDenied.SubOrgNotJoin"
             case userNotInOrganization = "OperationDenied.UserNotInOrganization"
             case whiteListForbid = "OperationDenied.WhiteListForbid"
             case other = "OperationDenied"
@@ -88,70 +89,87 @@ extension TCEssError {
             self.context = context
         }
 
+        /// 签署人设置与模板中签署人配置信息不一致，请检查模板修改参数后重试。
         public static var approverNoMatchTemplate: OperationDenied {
             OperationDenied(.approverNoMatchTemplate)
         }
 
+        /// 签署人重复，请联系客服了解发起签署流程签署人规则，修改后重试。
         public static var approverRepeat: OperationDenied {
             OperationDenied(.approverRepeat)
         }
 
+        /// 授权码已失效，请检查是否传递正确，是否已经过期，并在修改后重试。
         public static var authCodeInvalid: OperationDenied {
             OperationDenied(.authCodeInvalid)
         }
 
+        /// 不允许批量撤销签署流程，请检查批量撤销合同信息。
         public static var batchCancelForbid: OperationDenied {
             OperationDenied(.batchCancelForbid)
         }
 
+        /// 子公司不能发起本方母体公司的合同。
         public static var branchSendFlowToParentNotAllow: OperationDenied {
             OperationDenied(.branchSendFlowToParentNotAllow)
         }
 
+        /// 当前不支持抄送，请联系客服咨询处理。
         public static var ccForbid: OperationDenied {
             OperationDenied(.ccForbid)
         }
 
+        /// 抄送方存在相同抄送人，请检查修改后重试。
         public static var ccUserRepeat: OperationDenied {
             OperationDenied(.ccUserRepeat)
         }
 
+        /// 电子文档不可用，请稍后重试。
         public static var documentNoAvailable: OperationDenied {
             OperationDenied(.documentNoAvailable)
         }
 
+        /// 此企业无该资源使用权限。
         public static var errNoResourceAccess: OperationDenied {
             OperationDenied(.errNoResourceAccess)
         }
 
+        /// 个人签署方不支持设置企业名称，请确认签署人类型后重试。
         public static var errNoSupportIndividualHasOrganizationName: OperationDenied {
             OperationDenied(.errNoSupportIndividualHasOrganizationName)
         }
 
+        /// 文件已被删除，请联系客服处理。
         public static var fileDeleted: OperationDenied {
             OperationDenied(.fileDeleted)
         }
 
+        /// 文件与资源不匹配，请检查文件名与资源id数量以及对应关系，并在修改后重试。
         public static var fileNoMatchResource: OperationDenied {
             OperationDenied(.fileNoMatchResource)
         }
 
+        /// 签署流程无法撤销，请检查签署流程状态，检查签署流程归属企业，检查当前操作人是否有权限，并在修改后重试。
         public static var flowCancelForbid: OperationDenied {
             OperationDenied(.flowCancelForbid)
         }
 
+        /// 签署流程已经被发起，请检查。
         public static var flowHasStarted: OperationDenied {
             OperationDenied(.flowHasStarted)
         }
 
+        /// 签署流程已经被终止，请检查。
         public static var flowHasTerminated: OperationDenied {
             OperationDenied(.flowHasTerminated)
         }
 
+        /// 签署流程不需要进行审核,请修改后重试。
         public static var flowNoNeedReview: OperationDenied {
             OperationDenied(.flowNoNeedReview)
         }
 
+        /// 签署流程状态不正确，请检查后重试。
         public static var flowStatusForbid: OperationDenied {
             OperationDenied(.flowStatusForbid)
         }
@@ -161,14 +179,17 @@ extension TCEssError {
             OperationDenied(.forbid)
         }
 
+        /// 签署人年龄限制无法使用电子签服务。
         public static var invalidApproverAge: OperationDenied {
             OperationDenied(.invalidApproverAge)
         }
 
+        /// 资源id超过使用上限限制，请联系客服了解规则，并在修改后重试。
         public static var manyResourceId: OperationDenied {
             OperationDenied(.manyResourceId)
         }
 
+        /// 无权限操作签署流程，请联系客服了解权限，并在修改后重试。
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
         }
@@ -183,46 +204,56 @@ extension TCEssError {
             OperationDenied(.noLogin)
         }
 
+        /// 未开通静默签功能，请联系签署方企业开通后重试。
         public static var noOpenServerSign: OperationDenied {
             OperationDenied(.noOpenServerSign)
         }
 
+        /// 无权限使用文件资源，请检查资源有效性以及资源归属，并在修改后重试。
         public static var noPermissionUseResource: OperationDenied {
             OperationDenied(.noPermissionUseResource)
         }
 
+        /// 无权限使用印章做静默签，请检查印章是否有效，是否有使用权限，并在修改后重试。
         public static var noPermissionUseServerSignSeal: OperationDenied {
             OperationDenied(.noPermissionUseServerSignSeal)
         }
 
-        /// 流程配额不足。
+        /// 企业额度不足，请检查企业额度后处理。
         public static var noQuota: OperationDenied {
             OperationDenied(.noQuota)
         }
 
+        /// 不支持的控件类型，请联系客服了解支持的控件类型，并在修改后重试。
         public static var noSupportComponentType: OperationDenied {
             OperationDenied(.noSupportComponentType)
         }
 
+        /// 不支持的跳转页，请联系客服了解跳转配置规则，修改后重试。
         public static var noSupportJumpPage: OperationDenied {
             OperationDenied(.noSupportJumpPage)
         }
 
-        /// 未在腾讯云实名。
+        /// 未完成实名认证，请检查后重试。
         public static var noVerify: OperationDenied {
             OperationDenied(.noVerify)
         }
 
+        /// 不属于企业超管或者法人。
+        ///
         /// 使用超管/法人进行接口调用。
         public static var notBelongSuperAdminOrLegalPerson: OperationDenied {
             OperationDenied(.notBelongSuperAdminOrLegalPerson)
         }
 
+        /// 操作者权限不足。
+        ///
         /// 联系管理员获取权限。
         public static var operatorHasNoPermission: OperationDenied {
             OperationDenied(.operatorHasNoPermission)
         }
 
+        /// 此社会信用编码未查询到结果，请检查后重试。
         public static var orgUniformSocialCreditCodeErr: OperationDenied {
             OperationDenied(.orgUniformSocialCreditCodeErr)
         }
@@ -232,50 +263,66 @@ extension TCEssError {
             OperationDenied(.organizationNotActivated)
         }
 
+        /// 查询限频，请先联系客服了解限频策略，稍后重试。
         public static var outQueryLimit: OperationDenied {
             OperationDenied(.outQueryLimit)
         }
 
+        /// 当前不支持境外用户，请联系客服咨询处理。
         public static var overSeaForbid: OperationDenied {
             OperationDenied(.overSeaForbid)
         }
 
+        /// 个人名下没用可使用的签名，请联系个人配置签名后重试。
         public static var personHasNoSignature: OperationDenied {
             OperationDenied(.personHasNoSignature)
         }
 
+        /// 该用户已关闭或者未开启自动签服务，请检查后重试。
         public static var personNoOpenServerSign: OperationDenied {
             OperationDenied(.personNoOpenServerSign)
         }
 
+        /// 拒绝个人静默签，请检查个人静默签签署人，并在修改后重试。
         public static var personServerSignForbid: OperationDenied {
             OperationDenied(.personServerSignForbid)
         }
 
+        /// 签署二维码已过期，请检查后重试。
         public static var qrHasExpire: OperationDenied {
             OperationDenied(.qrHasExpire)
         }
 
+        /// 签署二维码不可用，请检查后重试。
         public static var qrInvalid: OperationDenied {
             OperationDenied(.qrInvalid)
         }
 
+        /// 必填控件未设置填写内容，将检查修改后重试。
         public static var requiredComponentNotFill: OperationDenied {
             OperationDenied(.requiredComponentNotFill)
         }
 
+        /// 静默签署方不允许有填写控件，请修改模板，修改参数后重试。
         public static var serverSignNoAllowComponent: OperationDenied {
             OperationDenied(.serverSignNoAllowComponent)
         }
 
+        /// 静默签署不支持手写签名，请配置印章并使用印章重试。
         public static var serverSignNoSupportSignature: OperationDenied {
             OperationDenied(.serverSignNoSupportSignature)
         }
 
+        public static var subOrgNotJoin: OperationDenied {
+            OperationDenied(.subOrgNotJoin)
+        }
+
+        /// 用户不归属于当前企业，无法操作，请检查后重试。
         public static var userNotInOrganization: OperationDenied {
             OperationDenied(.userNotInOrganization)
         }
 
+        /// 未开通功能白名单，请联系客服处理。
         public static var whiteListForbid: OperationDenied {
             OperationDenied(.whiteListForbid)
         }
@@ -376,6 +423,8 @@ extension TCEssError {
                 code = .operationDenied_ServerSignNoAllowComponent
             case .serverSignNoSupportSignature:
                 code = .operationDenied_ServerSignNoSupportSignature
+            case .subOrgNotJoin:
+                code = .operationDenied_SubOrgNotJoin
             case .userNotInOrganization:
                 code = .operationDenied_UserNotInOrganization
             case .whiteListForbid:

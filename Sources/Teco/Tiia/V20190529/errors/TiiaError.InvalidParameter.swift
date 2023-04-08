@@ -43,6 +43,7 @@ extension TCTiiaError {
             self.context = context
         }
 
+        /// 不支持的图片格式。
         public static var imageFormatNotSupport: InvalidParameter {
             InvalidParameter(.imageFormatNotSupport)
         }

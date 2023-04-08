@@ -50,7 +50,7 @@ extension Vpc {
 
     /// 创建IP地址模板集合
     ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合。
     @inlinable
     public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
         self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -58,7 +58,7 @@ extension Vpc {
 
     /// 创建IP地址模板集合
     ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合。
     @inlinable
     public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
         try await self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,7 +66,7 @@ extension Vpc {
 
     /// 创建IP地址模板集合
     ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合。
     @inlinable
     public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
         self.createAddressTemplateGroup(.init(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
@@ -74,7 +74,7 @@ extension Vpc {
 
     /// 创建IP地址模板集合
     ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合。
     @inlinable
     public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
         try await self.createAddressTemplateGroup(.init(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)

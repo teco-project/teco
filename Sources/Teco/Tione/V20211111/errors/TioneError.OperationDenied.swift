@@ -18,8 +18,10 @@ extension TCTioneError {
     public struct OperationDenied: TCTioneErrorType {
         enum Code: String {
             case balanceInsufficient = "OperationDenied.BalanceInsufficient"
+            case billingStatusResourceInsufficient = "OperationDenied.BillingStatusResourceInsufficient"
             case miyingBalanceInsufficient = "OperationDenied.MIYINGBalanceInsufficient"
             case networkCidrIllegal = "OperationDenied.NetworkCidrIllegal"
+            case resourceGroupInsufficient = "OperationDenied.ResourceGroupInsufficient"
             case whitelistQuotaExceed = "OperationDenied.WhitelistQuotaExceed"
             case other = "OperationDenied"
         }
@@ -53,12 +55,24 @@ extension TCTioneError {
             OperationDenied(.balanceInsufficient)
         }
 
+        /// 后付费资源售罄。
+        public static var billingStatusResourceInsufficient: OperationDenied {
+            OperationDenied(.billingStatusResourceInsufficient)
+        }
+
+        /// 觅影资源包余额不足，请先充值。
         public static var miyingBalanceInsufficient: OperationDenied {
             OperationDenied(.miyingBalanceInsufficient)
         }
 
+        /// 网段不合法。
         public static var networkCidrIllegal: OperationDenied {
             OperationDenied(.networkCidrIllegal)
+        }
+
+        /// 预付费资源组余量不足。
+        public static var resourceGroupInsufficient: OperationDenied {
+            OperationDenied(.resourceGroupInsufficient)
         }
 
         /// 白名单免费配额不足。
@@ -76,10 +90,14 @@ extension TCTioneError {
             switch self.error {
             case .balanceInsufficient:
                 code = .operationDenied_BalanceInsufficient
+            case .billingStatusResourceInsufficient:
+                code = .operationDenied_BillingStatusResourceInsufficient
             case .miyingBalanceInsufficient:
                 code = .operationDenied_MIYINGBalanceInsufficient
             case .networkCidrIllegal:
                 code = .operationDenied_NetworkCidrIllegal
+            case .resourceGroupInsufficient:
+                code = .operationDenied_ResourceGroupInsufficient
             case .whitelistQuotaExceed:
                 code = .operationDenied_WhitelistQuotaExceed
             case .other:

@@ -19,10 +19,10 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeCcnRoutes请求参数结构体
     public struct DescribeCcnRoutesRequest: TCPaginatedRequest {
-        /// CCN实例ID，形如：ccn-gree226l。
+        /// CCN实例ID，形如：`ccn-gree226l`。
         public let ccnId: String
 
-        /// CCN路由策略唯一ID。形如：ccnr-f49l6u0z。
+        /// CCN路由策略唯一ID，形如：`ccnr-f49l6u0z`。
         public let routeIds: [String]?
 
         /// 过滤条件，参数不支持同时指定RouteIds和Filters。
@@ -95,7 +95,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable
     public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
         self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -103,7 +103,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable
     public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
         try await self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -111,7 +111,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable
     public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
         self.describeCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable
     public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
         try await self.describeCcnRoutes(.init(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -127,7 +127,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable
     public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [CcnRoute])> {
         self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
@@ -135,7 +135,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     @inlinable @discardableResult
     public func describeCcnRoutesPaginated(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCcnRoutesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeCcnRoutes, callback: onResponse, logger: logger, on: eventLoop)
@@ -143,7 +143,7 @@ extension Vpc {
 
     /// 查询云联网路由策略
     ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由。
     ///
     /// - Returns: `AsyncSequence`s of `CcnRoute` and `DescribeCcnRoutesResponse` that can be iterated over asynchronously on demand.
     @inlinable

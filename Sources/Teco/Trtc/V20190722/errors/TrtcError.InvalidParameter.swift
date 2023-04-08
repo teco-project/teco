@@ -19,6 +19,7 @@ extension TCTrtcError {
         enum Code: String {
             case appId = "InvalidParameter.AppId"
             case audioEncodeParams = "InvalidParameter.AudioEncodeParams"
+            case backgroundImageUrl = "InvalidParameter.BackgroundImageUrl"
             case bodyParamsError = "InvalidParameter.BodyParamsError"
             case checkContentFailed = "InvalidParameter.CheckContentFailed"
             case checkSuffixFailed = "InvalidParameter.CheckSuffixFailed"
@@ -87,6 +88,11 @@ extension TCTrtcError {
         /// 音频编码参数错误。
         public static var audioEncodeParams: InvalidParameter {
             InvalidParameter(.audioEncodeParams)
+        }
+
+        /// BackgroundImageUrl参数错误。
+        public static var backgroundImageUrl: InvalidParameter {
+            InvalidParameter(.backgroundImageUrl)
         }
 
         /// body 解析参数失败。
@@ -216,6 +222,8 @@ extension TCTrtcError {
             InvalidParameter(.startTimeExpire)
         }
 
+        /// 查询起始时间超过当前监控仪表盘功能版本限制，详情请见:https://cloud.tencent.com/document/product/647/81331。
+        ///
         /// 详情请见:https://cloud.tencent.com/document/product/647/81331。
         public static var startTimeOversize: InvalidParameter {
             InvalidParameter(.startTimeOversize)
@@ -231,6 +239,7 @@ extension TCTrtcError {
             InvalidParameter(.startTsOversize)
         }
 
+        /// StrRoomId参数错误。
         public static var strRoomId: InvalidParameter {
             InvalidParameter(.strRoomId)
         }
@@ -277,6 +286,8 @@ extension TCTrtcError {
                 code = .invalidParameter_AppId
             case .audioEncodeParams:
                 code = .invalidParameter_AudioEncodeParams
+            case .backgroundImageUrl:
+                code = .invalidParameter_BackgroundImageUrl
             case .bodyParamsError:
                 code = .invalidParameter_BodyParamsError
             case .checkContentFailed:

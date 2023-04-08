@@ -83,6 +83,14 @@ extension Ocr {
         /// 最下方第二行 MRZ Code 序列
         public let codeCrc: String
 
+        /// 姓
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let surname: String?
+
+        /// 名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let givenName: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -99,6 +107,8 @@ extension Ocr {
             case advancedInfo = "AdvancedInfo"
             case codeSet = "CodeSet"
             case codeCrc = "CodeCrc"
+            case surname = "Surname"
+            case givenName = "GivenName"
             case requestId = "RequestId"
         }
     }

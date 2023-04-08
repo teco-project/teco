@@ -17,7 +17,7 @@
 extension Ess {
     /// CreateFlowByFiles请求参数结构体
     public struct CreateFlowByFilesRequest: TCRequestModel {
-        /// 调用方用户信息，userId 必填
+        /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
         public let `operator`: UserInfo
 
         /// 签署流程名称,最大长度200个字符
@@ -70,9 +70,6 @@ extension Ess {
         /// 用户自定义字段，回调的时候会进行透传，长度需要小于20480
         public let userData: String?
 
-        /// 应用号信息
-        public let agent: Agent?
-
         /// 签署人校验方式
         /// VerifyCheck: 人脸识别（默认）
         /// MobileCheck：手机号验证
@@ -85,7 +82,13 @@ extension Ess {
         /// 标识是否允许发起后添加控件。0为不允许1为允许。如果为1，创建的时候不能有签署控件，只能创建后添加。注意发起后添加控件功能不支持添加骑缝章和签批控件
         public let signBeanTag: Int64?
 
-        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        /// 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
+        public let ccNotifyType: Int64?
+
+        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil) {
             self.operator = `operator`
             self.flowName = flowName
             self.approvers = approvers
@@ -100,10 +103,11 @@ extension Ess {
             self.customShowMap = customShowMap
             self.needSignReview = needSignReview
             self.userData = userData
-            self.agent = agent
             self.approverVerifyType = approverVerifyType
             self.flowDescription = flowDescription
             self.signBeanTag = signBeanTag
+            self.agent = agent
+            self.ccNotifyType = ccNotifyType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -121,10 +125,11 @@ extension Ess {
             case customShowMap = "CustomShowMap"
             case needSignReview = "NeedSignReview"
             case userData = "UserData"
-            case agent = "Agent"
             case approverVerifyType = "ApproverVerifyType"
             case flowDescription = "FlowDescription"
             case signBeanTag = "SignBeanTag"
+            case agent = "Agent"
+            case ccNotifyType = "CcNotifyType"
         }
     }
 
@@ -180,8 +185,8 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建签署流程
@@ -191,7 +196,7 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType), region: region, logger: logger, on: eventLoop)
     }
 }

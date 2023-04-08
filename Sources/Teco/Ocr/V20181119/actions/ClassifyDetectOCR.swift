@@ -81,6 +81,8 @@ extension Ocr {
     /// 智能卡证分类
     ///
     /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClassifyDetectOCRResponse> {
         self.client.execute(action: "ClassifyDetectOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,6 +91,8 @@ extension Ocr {
     /// 智能卡证分类
     ///
     /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClassifyDetectOCRResponse {
         try await self.client.execute(action: "ClassifyDetectOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,6 +101,8 @@ extension Ocr {
     /// 智能卡证分类
     ///
     /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func classifyDetectOCR(imageBase64: String? = nil, imageUrl: String? = nil, discernType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClassifyDetectOCRResponse> {
         self.classifyDetectOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, discernType: discernType), region: region, logger: logger, on: eventLoop)
@@ -105,6 +111,8 @@ extension Ocr {
     /// 智能卡证分类
     ///
     /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func classifyDetectOCR(imageBase64: String? = nil, imageUrl: String? = nil, discernType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClassifyDetectOCRResponse {
         try await self.classifyDetectOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, discernType: discernType), region: region, logger: logger, on: eventLoop)

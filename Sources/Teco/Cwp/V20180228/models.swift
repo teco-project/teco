@@ -32,6 +32,20 @@ extension Cwp {
         }
     }
 
+    /// 节点关联的告警信息
+    public struct AlarmInfo: TCOutputModel {
+        /// 该节点关联的告警，告警的table_name+id（t1:id1,t2:id2,...)
+        public let alarmId: String
+
+        /// 告警事件表状态，当该节点为告警点时生效
+        public let status: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case alarmId = "AlarmId"
+            case status = "Status"
+        }
+    }
+
     /// 资源管理进程基本信息
     public struct AssetAppBaseInfo: TCOutputModel {
         /// 主机内网IP
@@ -2257,6 +2271,40 @@ extension Cwp {
         }
     }
 
+    /// 基线规则或项的分类
+    public struct BaselineCategory: TCOutputModel {
+        /// 分类Id
+        public let categoryId: Int64
+
+        /// 分类名称
+        public let categoryName: String
+
+        /// 父分类ID,如果为0则没有父分类
+        public let parentCategoryId: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case categoryId = "CategoryId"
+            case categoryName = "CategoryName"
+            case parentCategoryId = "ParentCategoryId"
+        }
+    }
+
+    /// 基线自定规则ID和名字
+    public struct BaselineCustomRuleIdName: TCOutputModel {
+        /// 自定义规则ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleId: Int64?
+
+        /// 自定义规则名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleId = "RuleId"
+            case ruleName = "RuleName"
+        }
+    }
+
     /// 基线详情
     public struct BaselineDetail: TCOutputModel {
         /// 基线描述
@@ -2314,6 +2362,36 @@ extension Cwp {
             case ruleIds = "RuleIds"
             case itemIds = "ItemIds"
             case hostIds = "HostIds"
+        }
+    }
+
+    /// 基线导出结果下载
+    public struct BaselineDownload: TCOutputModel {
+        /// 任务Id
+        public let taskId: Int64
+
+        /// 任务名称
+        public let taskName: String
+
+        /// 状态0:未完成 1:完成
+        public let status: Int64
+
+        /// 开始时间
+        public let startTime: String
+
+        /// 完成时间
+        public let endTime: String
+
+        /// 下载地址
+        public let downloadUrl: String
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case taskName = "TaskName"
+            case status = "Status"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case downloadUrl = "DownloadUrl"
         }
     }
 
@@ -2386,6 +2464,76 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case eventLevel = "EventLevel"
             case eventCount = "EventCount"
+        }
+    }
+
+    /// 基线密码修复
+    public struct BaselineFix: TCOutputModel {
+        /// 修复项名称
+        public let itemName: String?
+
+        /// 主机Ip
+        public let hostIp: String?
+
+        /// 首次检测时间
+        public let createTime: String?
+
+        /// 最后检测时间
+        public let modifyTime: String?
+
+        /// 修复时间
+        public let fixTime: String?
+
+        /// 基线检测项结果ID
+        public let id: Int64?
+
+        /// 主机额外信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineExtraInfo: MachineExtraInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case itemName = "ItemName"
+            case hostIp = "HostIp"
+            case createTime = "CreateTime"
+            case modifyTime = "ModifyTime"
+            case fixTime = "FixTime"
+            case id = "Id"
+            case machineExtraInfo = "MachineExtraInfo"
+        }
+    }
+
+    /// 基线主机信息
+    public struct BaselineHost: TCOutputModel {
+        /// 主机Id
+        public let hostId: String?
+
+        /// 主机名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostName: String?
+
+        /// 主机标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostTag: String?
+
+        /// 内网Ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostIp: String?
+
+        /// 外网Ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanIp: String?
+
+        /// 主机额外信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineExtraInfo: MachineExtraInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case hostId = "HostId"
+            case hostName = "HostName"
+            case hostTag = "HostTag"
+            case hostIp = "HostIp"
+            case wanIp = "WanIp"
+            case machineExtraInfo = "MachineExtraInfo"
         }
     }
 
@@ -2688,6 +2836,51 @@ extension Cwp {
         }
     }
 
+    /// 基线信息
+    public struct BaselineItemInfo: TCOutputModel {
+        /// 基线检测项ID
+        public let itemId: Int64
+
+        /// 检测项名字
+        public let itemName: String
+
+        /// 检测项所属规则的ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleId: UInt64?
+
+        /// 检测项描述
+        public let itemDesc: String
+
+        /// 检测项的修复方法
+        public let fixMethod: String
+
+        /// 检测项所属规则名字
+        public let ruleName: String
+
+        /// 危险等级
+        public let level: Int64
+
+        /// 系统规则ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sysRuleId: Int64?
+
+        /// 被引自定义规则信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let relatedCustomRuleInfo: [BaselineCustomRuleIdName]?
+
+        enum CodingKeys: String, CodingKey {
+            case itemId = "ItemId"
+            case itemName = "ItemName"
+            case ruleId = "RuleId"
+            case itemDesc = "ItemDesc"
+            case fixMethod = "FixMethod"
+            case ruleName = "RuleName"
+            case level = "Level"
+            case sysRuleId = "SysRuleId"
+            case relatedCustomRuleInfo = "RelatedCustomRuleInfo"
+        }
+    }
+
     /// 基线策略信息
     public struct BaselinePolicy: TCInputModel, TCOutputModel {
         /// 策略名称,长度不超过128英文字符
@@ -2762,6 +2955,181 @@ extension Cwp {
         }
     }
 
+    /// 基线检测策略
+    public struct BaselinePolicyDetect: TCOutputModel {
+        /// 策略Id
+        public let policyId: Int64
+
+        /// 检测任务Id
+        public let taskId: Int64
+
+        /// 关联主机数
+        public let hostCount: Int64
+
+        /// 开始时间
+        public let startTime: String
+
+        /// 结束时间
+        public let finishTime: String
+
+        /// 策略名称
+        public let policyName: String
+
+        /// 成功主机数
+        public let successCount: Int64
+
+        /// 失败主技数
+        public let failedCount: Int64
+
+        /// 失败主机数
+        public let timeoutCount: Int64
+
+        /// 1:检测中 2:检测完成
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyDetectStatus: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case policyId = "PolicyId"
+            case taskId = "TaskId"
+            case hostCount = "HostCount"
+            case startTime = "StartTime"
+            case finishTime = "FinishTime"
+            case policyName = "PolicyName"
+            case successCount = "SuccessCount"
+            case failedCount = "FailedCount"
+            case timeoutCount = "TimeoutCount"
+            case policyDetectStatus = "PolicyDetectStatus"
+        }
+    }
+
+    /// 基线检测项top5
+    public struct BaselineRiskItem: TCOutputModel {
+        /// 检测项Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let itemId: Int64?
+
+        /// 检测项名字
+        public let itemName: String
+
+        /// 风险等级
+        public let level: Int64
+
+        /// 影响服务器数
+        public let hostCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case itemId = "ItemId"
+            case itemName = "ItemName"
+            case level = "Level"
+            case hostCount = "HostCount"
+        }
+    }
+
+    /// 基线规则
+    public struct BaselineRule: TCInputModel, TCOutputModel {
+        /// 规则名称,长度不超过128英文字符
+        public let ruleName: String
+
+        /// 规则Id
+        public let ruleId: Int64?
+
+        /// 规则类型 [0:系统|1:自定义]
+        public let ruleType: Int64?
+
+        /// 规则分类
+        public let categoryId: Int64?
+
+        /// 规则描述
+        public let ruleDesc: String?
+
+        /// 主机数
+        public let hostCount: Int64?
+
+        /// 适配项ID列表
+        public let items: [Item]?
+
+        /// [0:所有专业版旗舰版|1:hostID|2:ip]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetType: Int64?
+
+        /// 主机Id集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostIds: [String]?
+
+        /// 主机IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostIps: [String]?
+
+        public init(ruleName: String, ruleId: Int64? = nil, ruleType: Int64? = nil, categoryId: Int64? = nil, ruleDesc: String? = nil, hostCount: Int64? = nil, items: [Item]? = nil, assetType: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil) {
+            self.ruleName = ruleName
+            self.ruleId = ruleId
+            self.ruleType = ruleType
+            self.categoryId = categoryId
+            self.ruleDesc = ruleDesc
+            self.hostCount = hostCount
+            self.items = items
+            self.assetType = assetType
+            self.hostIds = hostIds
+            self.hostIps = hostIps
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleName = "RuleName"
+            case ruleId = "RuleId"
+            case ruleType = "RuleType"
+            case categoryId = "CategoryId"
+            case ruleDesc = "RuleDesc"
+            case hostCount = "HostCount"
+            case items = "Items"
+            case assetType = "AssetType"
+            case hostIds = "HostIds"
+            case hostIps = "HostIps"
+        }
+    }
+
+    /// 基线规则检测
+    public struct BaselineRuleDetect: TCOutputModel {
+        /// 规则Id
+        public let ruleId: Int64
+
+        /// 规则名称
+        public let ruleName: String
+
+        /// 规则描述
+        public let ruleDesc: String
+
+        /// 关联项数
+        public let itemCount: Int64
+
+        /// 关联主机数
+        public let hostCount: Int64
+
+        /// 首次检测时间
+        public let firstTime: String
+
+        /// string
+        public let lastTime: String
+
+        /// 0:未通过 1:忽略 3:通过 5:检测中
+        public let detectStatus: Int64
+
+        /// ItemID集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let itemIds: [Int64]?
+
+        enum CodingKeys: String, CodingKey {
+            case ruleId = "RuleId"
+            case ruleName = "RuleName"
+            case ruleDesc = "RuleDesc"
+            case itemCount = "ItemCount"
+            case hostCount = "HostCount"
+            case firstTime = "FirstTime"
+            case lastTime = "LastTime"
+            case detectStatus = "DetectStatus"
+            case itemIds = "ItemIds"
+        }
+    }
+
     /// 基线检测信息
     public struct BaselineRuleInfo: TCOutputModel {
         /// 检测项名称
@@ -2831,6 +3199,35 @@ extension Cwp {
             case level = "Level"
             case eventCount = "EventCount"
             case ruleId = "RuleId"
+        }
+    }
+
+    /// 基线弱口令
+    public struct BaselineWeakPassword: TCInputModel, TCOutputModel {
+        /// 密码Id
+        public let passwordId: Int64
+
+        /// 密码
+        public let weakPassword: String
+
+        /// 创建时间
+        public let createTime: String?
+
+        /// 修改时间
+        public let modifyTime: String?
+
+        public init(passwordId: Int64, weakPassword: String, createTime: String? = nil, modifyTime: String? = nil) {
+            self.passwordId = passwordId
+            self.weakPassword = weakPassword
+            self.createTime = createTime
+            self.modifyTime = modifyTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case passwordId = "PasswordId"
+            case weakPassword = "WeakPassword"
+            case createTime = "CreateTime"
+            case modifyTime = "ModifyTime"
         }
     }
 
@@ -3020,6 +3417,135 @@ extension Cwp {
         }
     }
 
+    /// 高危命令数据详情(新)
+    public struct BashEventsInfoNew: TCOutputModel {
+        /// 数据ID
+        public let id: UInt64
+
+        /// 云镜ID
+        public let uuid: String
+
+        /// 主机ID
+        public let quuid: String
+
+        /// 主机内网IP
+        public let hostIp: String
+
+        /// 平台类型
+        public let platform: UInt64
+
+        /// 执行命令
+        public let bashCmd: String
+
+        /// 规则ID,等于0表示已规则已被删除或生效范围已修改
+        public let ruleId: UInt64
+
+        /// 规则名称
+        public let ruleName: String
+
+        /// 规则等级：1-高 2-中 3-低
+        public let ruleLevel: UInt64
+
+        /// 处理状态： 0 = 待处理 1= 已处理, 2 = 已加白， 3= 已忽略
+        public let status: UInt64
+
+        /// 发生时间
+        public let createTime: String
+
+        /// 主机名
+        public let machineName: String
+
+        /// 进程名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let exe: String?
+
+        /// 处理时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modifyTime: String?
+
+        /// 规则类别  0=系统规则，1=用户规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleCategory: UInt64?
+
+        /// 自动生成的正则表达式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regexBashCmd: String?
+
+        /// 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let psTree: String?
+
+        /// 建议方案
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let suggestScheme: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let harmDescribe: String?
+
+        /// 标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [String]?
+
+        /// 参考链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let references: [String]?
+
+        /// 主机外网ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineWanIp: String?
+
+        /// 主机在线状态 OFFLINE  ONLINE
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineStatus: String?
+
+        /// 登录用户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 进程号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: String?
+
+        /// 0:普通 1:专业版 2:旗舰版
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineType: Int64?
+
+        /// 检测来源 0:bash日志 1:实时监控
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let detectBy: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case uuid = "Uuid"
+            case quuid = "Quuid"
+            case hostIp = "HostIp"
+            case platform = "Platform"
+            case bashCmd = "BashCmd"
+            case ruleId = "RuleId"
+            case ruleName = "RuleName"
+            case ruleLevel = "RuleLevel"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case machineName = "MachineName"
+            case exe = "Exe"
+            case modifyTime = "ModifyTime"
+            case ruleCategory = "RuleCategory"
+            case regexBashCmd = "RegexBashCmd"
+            case psTree = "PsTree"
+            case suggestScheme = "SuggestScheme"
+            case harmDescribe = "HarmDescribe"
+            case tags = "Tags"
+            case references = "References"
+            case machineWanIp = "MachineWanIp"
+            case machineStatus = "MachineStatus"
+            case user = "User"
+            case pid = "Pid"
+            case machineType = "MachineType"
+            case detectBy = "DetectBy"
+        }
+    }
+
     /// 高危命令规则
     public struct BashRule: TCOutputModel {
         /// 规则ID
@@ -3178,6 +3704,10 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineExtraInfo: MachineExtraInfo?
 
+        /// 地理位置中文名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -3201,6 +3731,7 @@ extension Cwp {
             case instanceId = "InstanceId"
             case dataStatus = "DataStatus"
             case machineExtraInfo = "MachineExtraInfo"
+            case location = "Location"
         }
     }
 
@@ -3741,6 +4272,10 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineExtraInfo: MachineExtraInfo?
 
+        /// 请求目的端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -3763,6 +4298,38 @@ extension Cwp {
             case quuid = "Quuid"
             case desc = "Desc"
             case machineExtraInfo = "MachineExtraInfo"
+            case port = "Port"
+        }
+    }
+
+    /// 主机风险计数
+    public struct HostRiskLevelCount: TCOutputModel {
+        /// 主机ID
+        public let hostId: String
+
+        /// 主机名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostName: String?
+
+        /// 严重个数
+        public let seriousCount: Int64
+
+        /// 高危个数
+        public let highCount: Int64
+
+        /// 中危个数
+        public let mediumCount: Int64
+
+        /// 低危个数
+        public let lowCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case hostId = "HostId"
+            case hostName = "HostName"
+            case seriousCount = "SeriousCount"
+            case highCount = "HighCount"
+            case mediumCount = "MediumCount"
+            case lowCount = "LowCount"
         }
     }
 
@@ -3838,6 +4405,51 @@ extension Cwp {
         }
     }
 
+    /// 事件点信息
+    public struct IncidentVertexInfo: TCOutputModel {
+        /// 事件id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incidentId: String?
+
+        /// 事件所在表名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableName: String?
+
+        /// 节点信息列表，数组项中包含节点详细信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vertex: [VertexInfo]?
+
+        /// 节点总个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vertexCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case incidentId = "IncidentId"
+            case tableName = "TableName"
+            case vertex = "Vertex"
+            case vertexCount = "VertexCount"
+        }
+    }
+
+    /// 项
+    public struct Item: TCInputModel, TCOutputModel {
+        /// Id
+        public let itemId: Int64
+
+        /// 名称
+        public let itemName: String?
+
+        public init(itemId: Int64, itemName: String? = nil) {
+            self.itemId = itemId
+            self.itemName = itemName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case itemId = "ItemId"
+            case itemName = "ItemName"
+        }
+    }
+
     /// java内存马事件信息
     public struct JavaMemShellInfo: TCOutputModel {
         /// 事件ID
@@ -3873,6 +4485,10 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineExtraInfo: MachineExtraInfo?
 
+        /// 服务器uuid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uuid: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case alias = "Alias"
@@ -3884,6 +4500,7 @@ extension Cwp {
             case status = "Status"
             case quuid = "Quuid"
             case machineExtraInfo = "MachineExtraInfo"
+            case uuid = "Uuid"
         }
     }
 
@@ -4291,6 +4908,10 @@ extension Cwp {
         /// 实例ID
         public let instanceId: String?
 
+        /// 备注信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
         enum CodingKeys: String, CodingKey {
             case machineName = "MachineName"
             case machineOs = "MachineOs"
@@ -4322,6 +4943,7 @@ extension Cwp {
             case vpcId = "VpcId"
             case machineExtraInfo = "MachineExtraInfo"
             case instanceId = "InstanceId"
+            case remark = "Remark"
         }
     }
 
@@ -4811,6 +5433,10 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineExtraInfo: MachineExtraInfo?
 
+        /// 进程id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: Int64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -4831,6 +5457,117 @@ extension Cwp {
             case createTime = "CreateTime"
             case machineName = "MachineName"
             case machineExtraInfo = "MachineExtraInfo"
+            case pid = "Pid"
+        }
+    }
+
+    /// 本地提权数据
+    public struct PrivilegeEventInfo: TCOutputModel {
+        /// 数据ID
+        public let id: UInt64
+
+        /// 云镜ID
+        public let uuid: String
+
+        /// 主机ID
+        public let quuid: String
+
+        /// 主机内网IP
+        public let hostIp: String
+
+        /// 进程名
+        public let processName: String
+
+        /// 进程路径
+        public let fullPath: String
+
+        /// 执行命令
+        public let cmdLine: String
+
+        /// 用户名
+        public let userName: String
+
+        /// 用户组
+        public let userGroup: String
+
+        /// 进程文件权限
+        public let procFilePrivilege: String
+
+        /// 父进程名
+        public let parentProcName: String
+
+        /// 父进程用户名
+        public let parentProcUser: String
+
+        /// 父进程用户组
+        public let parentProcGroup: String
+
+        /// 父进程路径
+        public let parentProcPath: String
+
+        /// 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        public let psTree: String
+
+        /// 处理状态：0-待处理 2-白名单 3-已处理 4-已忽略
+        public let status: UInt64
+
+        /// 发生时间
+        public let createTime: String
+
+        /// 机器名
+        public let machineName: String
+
+        /// 建议方案
+        public let suggestScheme: String
+
+        /// 危害描述信息
+        public let harmDescribe: String
+
+        /// 标签
+        public let tags: [String]
+
+        /// 参考链接
+        public let references: [String]
+
+        /// 主机外网ip
+        public let machineWanIp: String
+
+        /// 权限列表|隔开
+        public let newCaps: String
+
+        /// 主机在线状态 OFFLINE  ONLINE
+        public let machineStatus: String
+
+        /// 处理时间
+        public let modifyTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case uuid = "Uuid"
+            case quuid = "Quuid"
+            case hostIp = "HostIp"
+            case processName = "ProcessName"
+            case fullPath = "FullPath"
+            case cmdLine = "CmdLine"
+            case userName = "UserName"
+            case userGroup = "UserGroup"
+            case procFilePrivilege = "ProcFilePrivilege"
+            case parentProcName = "ParentProcName"
+            case parentProcUser = "ParentProcUser"
+            case parentProcGroup = "ParentProcGroup"
+            case parentProcPath = "ParentProcPath"
+            case psTree = "PsTree"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case machineName = "MachineName"
+            case suggestScheme = "SuggestScheme"
+            case harmDescribe = "HarmDescribe"
+            case tags = "Tags"
+            case references = "References"
+            case machineWanIp = "MachineWanIp"
+            case newCaps = "NewCaps"
+            case machineStatus = "MachineStatus"
+            case modifyTime = "ModifyTime"
         }
     }
 
@@ -5290,6 +6027,10 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineExtraInfo: MachineExtraInfo?
 
+        /// 进程id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: Int64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uuid = "Uuid"
@@ -5312,6 +6053,122 @@ extension Cwp {
             case procTree = "ProcTree"
             case detectBy = "DetectBy"
             case machineExtraInfo = "MachineExtraInfo"
+            case pid = "Pid"
+        }
+    }
+
+    /// 反弹Shell数据详情
+    public struct ReverseShellEventInfo: TCOutputModel {
+        /// ID 主键
+        public let id: UInt64
+
+        /// 云镜UUID
+        public let uuid: String
+
+        /// 主机ID
+        public let quuid: String
+
+        /// 主机内网IP
+        public let hostIp: String
+
+        /// 目标IP
+        public let dstIp: String
+
+        /// 目标端口
+        public let dstPort: UInt64
+
+        /// 进程名
+        public let processName: String
+
+        /// 进程路径
+        public let fullPath: String
+
+        /// 命令详情
+        public let cmdLine: String
+
+        /// 执行用户
+        public let userName: String
+
+        /// 执行用户组
+        public let userGroup: String
+
+        /// 父进程名
+        public let parentProcName: String
+
+        /// 父进程用户
+        public let parentProcUser: String
+
+        /// 父进程用户组
+        public let parentProcGroup: String
+
+        /// 父进程路径
+        public let parentProcPath: String
+
+        /// 处理状态：0-待处理 2-白名单 3-已处理 4-已忽略
+        public let status: UInt64
+
+        /// 产生时间
+        public let createTime: String
+
+        /// 主机名
+        public let machineName: String
+
+        /// 检测方法
+        public let detectBy: UInt64
+
+        /// 进程树 json  pid:进程id，exe:文件路径 ，account:进程所属用组和用户 ,cmdline:执行命令，ssh_service: SSH服务ip, ssh_soure:登录源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let psTree: String?
+
+        /// 建议方案
+        public let suggestScheme: String
+
+        /// 描述
+        public let harmDescribe: String
+
+        /// 标签
+        public let tags: [String]
+
+        /// 参考链接
+        public let references: [String]
+
+        /// 主机外网ip
+        public let machineWanIp: String
+
+        /// 主机在线状态 OFFLINE  ONLINE
+        public let machineStatus: String
+
+        /// 处理时间
+        public let modifyTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case uuid = "Uuid"
+            case quuid = "Quuid"
+            case hostIp = "HostIp"
+            case dstIp = "DstIp"
+            case dstPort = "DstPort"
+            case processName = "ProcessName"
+            case fullPath = "FullPath"
+            case cmdLine = "CmdLine"
+            case userName = "UserName"
+            case userGroup = "UserGroup"
+            case parentProcName = "ParentProcName"
+            case parentProcUser = "ParentProcUser"
+            case parentProcGroup = "ParentProcGroup"
+            case parentProcPath = "ParentProcPath"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case machineName = "MachineName"
+            case detectBy = "DetectBy"
+            case psTree = "PsTree"
+            case suggestScheme = "SuggestScheme"
+            case harmDescribe = "HarmDescribe"
+            case tags = "Tags"
+            case references = "References"
+            case machineWanIp = "MachineWanIp"
+            case machineStatus = "MachineStatus"
+            case modifyTime = "ModifyTime"
         }
     }
 
@@ -5362,6 +6219,113 @@ extension Cwp {
             case createTime = "CreateTime"
             case modifyTime = "ModifyTime"
             case hostip = "Hostip"
+        }
+    }
+
+    /// 恶意请求事件
+    public struct RiskDnsEvent: TCOutputModel {
+        /// 事件Id
+        public let id: Int64?
+
+        /// 策略ID
+        public let policyId: Int64?
+
+        /// 命中策略类型[-1:未知|0系统|1:用户]
+        public let policyType: Int64?
+
+        /// 命中策略名称
+        public let policyName: String?
+
+        /// 保护级别[0:基础版|1:专业版|2:旗舰版]
+        public let protectLevel: Int64?
+
+        /// 主机ID
+        public let hostId: String?
+
+        /// 主机名称
+        public let hostName: String?
+
+        /// 主机IP
+        public let hostIp: String?
+
+        /// 外网IP
+        public let wanIp: String?
+
+        /// 客户端ID
+        public let agentId: String?
+
+        /// 访问域名
+        public let domain: String?
+
+        /// 标签特性
+        public let tags: [String]?
+
+        /// 访问次数
+        public let accessCount: Int64?
+
+        /// 威胁描述
+        public let threatDesc: String?
+
+        /// 修复方案
+        public let suggestSolution: String?
+
+        /// 参考链接
+        public let referenceLink: String?
+
+        /// 处理状态；[0:待处理|2:已加白|3:非信任状态|4:已处理|5:已忽略]
+        public let handleStatus: Int64?
+
+        /// 进程ID
+        public let pid: Int64?
+
+        /// 进程名
+        public let processName: String?
+
+        /// 进程MD5
+        public let processMd5: String?
+
+        /// 命令行
+        public let cmdLine: String?
+
+        /// 首次访问时间
+        public let firstTime: String?
+
+        /// 最近访问时间
+        public let lastTime: String?
+
+        /// 主机在线状态[OFFLINE:离线|ONLINE:在线|UNKNOWN:未知]
+        public let hostStatus: String?
+
+        /// 附加信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineExtraInfo: MachineExtraInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case policyId = "PolicyId"
+            case policyType = "PolicyType"
+            case policyName = "PolicyName"
+            case protectLevel = "ProtectLevel"
+            case hostId = "HostId"
+            case hostName = "HostName"
+            case hostIp = "HostIp"
+            case wanIp = "WanIp"
+            case agentId = "AgentId"
+            case domain = "Domain"
+            case tags = "Tags"
+            case accessCount = "AccessCount"
+            case threatDesc = "ThreatDesc"
+            case suggestSolution = "SuggestSolution"
+            case referenceLink = "ReferenceLink"
+            case handleStatus = "HandleStatus"
+            case pid = "Pid"
+            case processName = "ProcessName"
+            case processMd5 = "ProcessMd5"
+            case cmdLine = "CmdLine"
+            case firstTime = "FirstTime"
+            case lastTime = "LastTime"
+            case hostStatus = "HostStatus"
+            case machineExtraInfo = "MachineExtraInfo"
         }
     }
 
@@ -5431,7 +6395,7 @@ extension Cwp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineWanIp: String?
 
-        /// 主机在线状态 OFFLINE  ONLINE
+        /// 主机在线状态[OFFLINE:离线|ONLINE:在线|UNKNOWN:未知]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineStatus: String?
 
@@ -5646,6 +6610,7 @@ extension Cwp {
         /// <li>HIGH: 高危</li>
         /// <li>NORMAL: 中危</li>
         /// <li>LOW: 低危</li>
+        /// <li>UNKNOWNED: 可疑</li>
         public let securityLevel: String
 
         enum CodingKeys: String, CodingKey {
@@ -5871,6 +6836,177 @@ extension Cwp {
             case countryId = "CountryId"
             case provinceId = "ProvinceId"
             case cityId = "CityId"
+        }
+    }
+
+    /// 点详细信息
+    public struct VertexDetail: TCOutputModel {
+        /// 该节点类型，进程:1；网络:2；文件:3；ssh:4
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 各节点类型用到的时间，2022-11-29 00:00:00 格式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: String?
+
+        /// 告警信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmInfo: [AlarmInfo]?
+
+        /// 进程名，当该节点为进程时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procName: String?
+
+        /// 命令行，当该节点为进程时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cmdLine: String?
+
+        /// 进程id，当该节点为进程时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: String?
+
+        /// 文件md5，当该节点为文件时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileMd5: String?
+
+        /// 文件写入内容，当该节点为文件时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileContent: String?
+
+        /// 文件路径，当该节点为文件时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let filePath: String?
+
+        /// 文件创建时间，当该节点为文件时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileCreateTime: String?
+
+        /// 请求目的地址，当该节点为网络时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let address: String?
+
+        /// 目标端口，当该节点为网络时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstPort: UInt64?
+
+        /// 登录源ip，当该节点为ssh时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcIP: String?
+
+        /// 登录用户名用户组，当该节点为ssh时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 漏洞名称，当该节点为漏洞时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulName: String?
+
+        /// 漏洞利用时间，当该节点为漏洞时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulTime: String?
+
+        /// http请求内容，当该节点为漏洞时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpContent: String?
+
+        /// 漏洞利用者来源ip，当该节点为漏洞时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vulSrcIP: String?
+
+        /// 点id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vertexId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case time = "Time"
+            case alarmInfo = "AlarmInfo"
+            case procName = "ProcName"
+            case cmdLine = "CmdLine"
+            case pid = "Pid"
+            case fileMd5 = "FileMd5"
+            case fileContent = "FileContent"
+            case filePath = "FilePath"
+            case fileCreateTime = "FileCreateTime"
+            case address = "Address"
+            case dstPort = "DstPort"
+            case srcIP = "SrcIP"
+            case user = "User"
+            case vulName = "VulName"
+            case vulTime = "VulTime"
+            case httpContent = "HttpContent"
+            case vulSrcIP = "VulSrcIP"
+            case vertexId = "VertexId"
+        }
+    }
+
+    /// 攻击溯源节点信息
+    public struct VertexInfo: TCOutputModel {
+        /// 该结点类型，进程:1；网络:2；文件:3；ssh:4；
+        public let type: Int64
+
+        /// 该节点包含的vid
+        public let vid: String
+
+        /// 该节点的父节点vid
+        public let parentVid: String
+
+        /// 是否叶子
+        public let isLeaf: Bool
+
+        /// 进程名，当Type=1时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procNamePrefix: String?
+
+        /// 进程名md5，当Type=1时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procNameMd5: String?
+
+        /// 命令行，当Type=1时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cmdLinePrefix: String?
+
+        /// 命令行md5，当Type=1时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cmdLineMd5: String?
+
+        /// 文件路径，当Type=3时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let filePathPrefix: String?
+
+        /// 请求目的地址，当Type=2时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addressPrefix: String?
+
+        /// 是否漏洞节点
+        public let isWeDetect: Bool
+
+        /// 是否告警节点
+        public let isAlarm: Bool
+
+        /// 文件路径md5，当Type=3时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let filePathMd5: String?
+
+        /// 请求目的地址md5，当Type=2时使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addressMd5: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case vid = "Vid"
+            case parentVid = "ParentVid"
+            case isLeaf = "IsLeaf"
+            case procNamePrefix = "ProcNamePrefix"
+            case procNameMd5 = "ProcNameMd5"
+            case cmdLinePrefix = "CmdLinePrefix"
+            case cmdLineMd5 = "CmdLineMd5"
+            case filePathPrefix = "FilePathPrefix"
+            case addressPrefix = "AddressPrefix"
+            case isWeDetect = "IsWeDetect"
+            case isAlarm = "IsAlarm"
+            case filePathMd5 = "FilePathMd5"
+            case addressMd5 = "AddressMd5"
         }
     }
 
@@ -6236,6 +7372,14 @@ extension Cwp {
         /// 漏洞等级控制位二进制，每一位对应页面漏洞等级的开启关闭：低中高（0:关闭；1：开启），例如：101 → 同时勾选低+高
         public let controlBits: String
 
+        /// 告警主机范围类型，0:全部主机，1:按所属项目选，2:按腾讯云标签选，3:按主机安全标签选，4:自选主机
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostRange: Int64?
+
+        /// 配置的告警范围主机个数，前端用此判断展示提示信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case disablePhoneWarning = "DisablePhoneWarning"
@@ -6244,12 +7388,14 @@ extension Cwp {
             case timeZone = "TimeZone"
             case controlBit = "ControlBit"
             case controlBits = "ControlBits"
+            case hostRange = "HostRange"
+            case count = "Count"
         }
     }
 
     /// 告警更新或插入的参数
     public struct WarningObject: TCInputModel {
-        /// 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高位命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线
+        /// 事件告警类型；1：离线，2：木马，3：异常登录，4：爆破，5：漏洞（已拆分为9-12四种类型）6：高位命令，7：反弹sell，8：本地提权，9：系统组件漏洞，10：web应用漏洞，11：应急漏洞，12：安全基线，14：恶意请求，15: 网络攻击，16：Windows系统漏洞，17：Linux软件漏洞
         public let type: UInt64?
 
         /// 1: 关闭告警 0: 开启告警
@@ -6264,12 +7410,16 @@ extension Cwp {
         /// 漏洞等级控制位二进制，每一位对应页面漏洞等级的开启关闭：低中高（0:关闭；1：开启），例如：101 → 同时勾选低+高；01→(登录审计)疑似不告警，高危告警
         public let controlBits: String?
 
-        public init(type: UInt64? = nil, disablePhoneWarning: UInt64? = nil, beginTime: String? = nil, endTime: String? = nil, controlBits: String? = nil) {
+        /// 告警主机范围类型，0:全部主机，1:按所属项目选，2:按腾讯云标签选，3:按主机安全标签选，4:自选主机
+        public let hostRange: Int64?
+
+        public init(type: UInt64? = nil, disablePhoneWarning: UInt64? = nil, beginTime: String? = nil, endTime: String? = nil, controlBits: String? = nil, hostRange: Int64? = nil) {
             self.type = type
             self.disablePhoneWarning = disablePhoneWarning
             self.beginTime = beginTime
             self.endTime = endTime
             self.controlBits = controlBits
+            self.hostRange = hostRange
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6278,6 +7428,7 @@ extension Cwp {
             case beginTime = "BeginTime"
             case endTime = "EndTime"
             case controlBits = "ControlBits"
+            case hostRange = "HostRange"
         }
     }
 

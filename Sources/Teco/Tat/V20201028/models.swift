@@ -42,12 +42,16 @@ extension Tat {
         /// <li> Windows：Windows实例
         public let environment: String
 
+        /// Agent 支持的功能列表。
+        public let supportFeatures: [String]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case version = "Version"
             case lastHeartbeatTime = "LastHeartbeatTime"
             case agentStatus = "AgentStatus"
             case environment = "Environment"
+            case supportFeatures = "SupportFeatures"
         }
     }
 
@@ -148,12 +152,20 @@ extension Tat {
         /// 执行用户。
         public let username: String
 
+        /// 保存输出的 COS Bucket 链接。
+        public let outputCOSBucketUrl: String?
+
+        /// 保存输出的文件名称前缀。
+        public let outputCOSKeyPrefix: String?
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case commandType = "CommandType"
             case timeout = "Timeout"
             case workingDirectory = "WorkingDirectory"
             case username = "Username"
+            case outputCOSBucketUrl = "OutputCOSBucketUrl"
+            case outputCOSKeyPrefix = "OutputCOSKeyPrefix"
         }
     }
 

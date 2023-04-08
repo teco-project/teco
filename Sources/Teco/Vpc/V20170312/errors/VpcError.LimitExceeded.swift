@@ -40,6 +40,7 @@ extension TCVpcError {
             case tagQuota = "LimitExceeded.TagQuota"
             case tagQuotaExceeded = "LimitExceeded.TagQuotaExceeded"
             case tagTagsExceeded = "LimitExceeded.TagTagsExceeded"
+            case trafficPackageQuota = "LimitExceeded.TrafficPackageQuota"
             case other = "LimitExceeded"
         }
 
@@ -150,28 +151,39 @@ extension TCVpcError {
             LimitExceeded(.subnetCidrBlock)
         }
 
+        /// 标签键已达到上限。
         public static var tagKeyExceeded: LimitExceeded {
             LimitExceeded(.tagKeyExceeded)
         }
 
+        /// 每个资源的标签键已达到上限。
         public static var tagKeyPerResourceExceeded: LimitExceeded {
             LimitExceeded(.tagKeyPerResourceExceeded)
         }
 
+        /// 没有足够的标签配额。
         public static var tagNotEnoughQuota: LimitExceeded {
             LimitExceeded(.tagNotEnoughQuota)
         }
 
+        /// 标签配额已满，无法创建资源。
         public static var tagQuota: LimitExceeded {
             LimitExceeded(.tagQuota)
         }
 
+        /// 标签配额已达到上限。
         public static var tagQuotaExceeded: LimitExceeded {
             LimitExceeded(.tagQuotaExceeded)
         }
 
+        /// 标签键的数目已达到上限。
         public static var tagTagsExceeded: LimitExceeded {
             LimitExceeded(.tagTagsExceeded)
+        }
+
+        /// 流量包配额超过限制。
+        public static var trafficPackageQuota: LimitExceeded {
+            LimitExceeded(.trafficPackageQuota)
         }
 
         /// 超过配额限制。
@@ -228,6 +240,8 @@ extension TCVpcError {
                 code = .limitExceeded_TagQuotaExceeded
             case .tagTagsExceeded:
                 code = .limitExceeded_TagTagsExceeded
+            case .trafficPackageQuota:
+                code = .limitExceeded_TrafficPackageQuota
             case .other:
                 code = .limitExceeded
             }

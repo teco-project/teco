@@ -27,6 +27,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_AuthInfoEmpty = "FailedOperation.AuthInfoEmpty"
         case failedOperation_AuthNotEnterprise = "FailedOperation.AuthNotEnterprise"
         case failedOperation_CreateAccount = "FailedOperation.CreateAccount"
+        case failedOperation_CreateBillingPermissionErr = "FailedOperation.CreateBillingPermissionErr"
         case failedOperation_CreateMemberAuthOverLimit = "FailedOperation.CreateMemberAuthOverLimit"
         case failedOperation_CreatePolicy = "FailedOperation.CreatePolicy"
         case failedOperation_CreateRecordAlreadySuccess = "FailedOperation.CreateRecordAlreadySuccess"
@@ -73,6 +74,8 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case unsupportedOperation_AddDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
         case unsupportedOperation_AddDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
         case unsupportedOperation_CreateMemberNotAllowDelete = "UnsupportedOperation.CreateMemberNotAllowDelete"
+        case unsupportedOperation_ExistedAgent = "UnsupportedOperation.ExistedAgent"
+        case unsupportedOperation_ExistedClient = "UnsupportedOperation.ExistedClient"
         case unsupportedOperation_InconsistentUserTypes = "UnsupportedOperation.InconsistentUserTypes"
         case unsupportedOperation_ManagementSystemError = "UnsupportedOperation.ManagementSystemError"
         case unsupportedOperation_MemberAccountArrears = "UnsupportedOperation.MemberAccountArrears"
@@ -81,6 +84,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case unsupportedOperation_MemberExistOperateProcessNotAllowDelete = "UnsupportedOperation.MemberExistOperateProcessNotAllowDelete"
         case unsupportedOperation_MemberExistServiceNotAllowDelete = "UnsupportedOperation.MemberExistServiceNotAllowDelete"
         case unsupportedOperation_MemberIsAgent = "UnsupportedOperation.MemberIsAgent"
+        case unsupportedOperation_MemberNoPayment = "UnsupportedOperation.MemberNoPayment"
         case unsupportedOperation_OrderInProgressExisted = "UnsupportedOperation.OrderInProgressExisted"
         case unsupportedOperation_OwnerDiscountInheritExisted = "UnsupportedOperation.OwnerDiscountInheritExisted"
         case unsupportedOperation_PayerArrearsAndNoCreditAccount = "UnsupportedOperation.PayerArrearsAndNoCreditAccount"
@@ -129,12 +133,17 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_CreateAccount)
     }
 
+    /// 添加计费权限失败。
+    public static var failedOperation_CreateBillingPermissionErr: TCOrganizationError {
+        TCOrganizationError(.failedOperation_CreateBillingPermissionErr)
+    }
+
     /// 账号实名认证超过上限。
     public static var failedOperation_CreateMemberAuthOverLimit: TCOrganizationError {
         TCOrganizationError(.failedOperation_CreateMemberAuthOverLimit)
     }
 
-    /// 创建测试失败。
+    /// 创建策略失败。
     public static var failedOperation_CreatePolicy: TCOrganizationError {
         TCOrganizationError(.failedOperation_CreatePolicy)
     }
@@ -154,7 +163,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_CreateRole)
     }
 
-    /// 不能退出自己创业的企业组织。
+    /// 不能退出自己创建的企业组织。
     public static var failedOperation_DisableQuitSelfCreatedOrganization: TCOrganizationError {
         TCOrganizationError(.failedOperation_DisableQuitSelfCreatedOrganization)
     }
@@ -359,6 +368,16 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.unsupportedOperation_CreateMemberNotAllowDelete)
     }
 
+    /// 成员或者代付者存在经销商。
+    public static var unsupportedOperation_ExistedAgent: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_ExistedAgent)
+    }
+
+    /// 成员或者代付者存在经销商子客。
+    public static var unsupportedOperation_ExistedClient: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_ExistedClient)
+    }
+
     /// 用户类型不一致。
     public static var unsupportedOperation_InconsistentUserTypes: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_InconsistentUserTypes)
@@ -384,6 +403,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.unsupportedOperation_MemberExistAccountLevelDiscountInherit)
     }
 
+    /// 成员设置了操作审批,不允许删除。
     public static var unsupportedOperation_MemberExistOperateProcessNotAllowDelete: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_MemberExistOperateProcessNotAllowDelete)
     }
@@ -396,6 +416,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 成员是代理商或代客。
     public static var unsupportedOperation_MemberIsAgent: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_MemberIsAgent)
+    }
+
+    /// 成员没有绑卡。
+    public static var unsupportedOperation_MemberNoPayment: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_MemberNoPayment)
     }
 
     /// 存在在途订单。

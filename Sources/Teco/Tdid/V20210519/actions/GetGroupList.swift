@@ -49,26 +49,30 @@ extension Tdid {
     }
 
     /// 主群组配置列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getGroupList(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupListResponse> {
-        self.client.execute(action: "GetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetGroupList is no longer available.")
     }
 
     /// 主群组配置列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getGroupList(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
-        try await self.client.execute(action: "GetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetGroupList is no longer available.")
     }
 
     /// 主群组配置列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getGroupList(status: Int64, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupListResponse> {
-        self.getGroupList(.init(status: status, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetGroupList is no longer available.")
     }
 
     /// 主群组配置列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getGroupList(status: Int64, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
-        try await self.getGroupList(.init(status: status, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetGroupList is no longer available.")
     }
 }

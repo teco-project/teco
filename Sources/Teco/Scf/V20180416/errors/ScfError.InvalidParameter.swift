@@ -48,6 +48,8 @@ extension TCScfError {
             self.context = context
         }
 
+        /// 日志参数有误。
+        ///
         /// 请传递有效的日志相关参数。
         public static var cls: InvalidParameter {
             InvalidParameter(.cls)
@@ -68,6 +70,8 @@ extension TCScfError {
             InvalidParameter(.payload)
         }
 
+        /// 请求大小超限。
+        ///
         /// 请求大小超限，请参照官方文档
         public static var requestTooLarge: InvalidParameter {
             InvalidParameter(.requestTooLarge)

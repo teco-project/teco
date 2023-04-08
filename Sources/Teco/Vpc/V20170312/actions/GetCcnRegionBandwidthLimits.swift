@@ -27,16 +27,16 @@ extension Vpc {
         /// <li>dregion - String - （过滤条件）目的地域，形如：ap-shanghai-bm</li>
         public let filters: [Filter]?
 
-        /// 排序条件，目前支持带宽（BandwidthLimit）和过期时间（ExpireTime）
+        /// 排序条件，目前支持带宽（`BandwidthLimit`）和过期时间（`ExpireTime`），默认按 `ExpireTime` 排序。
         public let sortedBy: String?
 
-        /// 偏移量
+        /// 偏移量。
         public let offset: UInt64?
 
-        /// 返回数量
+        /// 返回数量。
         public let limit: UInt64?
 
-        /// 排序方式，'ASC':升序,'DESC':降序。
+        /// 排序方式，'ASC':升序,'DESC':降序。默认按'ASC'排序。
         public let orderBy: String?
 
         public init(ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil) {
@@ -68,7 +68,7 @@ extension Vpc {
 
     /// GetCcnRegionBandwidthLimits返回参数结构体
     public struct GetCcnRegionBandwidthLimitsResponse: TCPaginatedResponse {
-        /// 云联网（CCN）各地域出带宽带宽详情。
+        /// 云联网（CCN）各地域出带宽详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnBandwidthSet: [CcnBandwidthInfo]?
 

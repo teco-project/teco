@@ -78,6 +78,7 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         case invalidParameterValue_ModelDefineEventParamsExceedLimit = "InvalidParameterValue.ModelDefineEventParamsExceedLimit"
         case invalidParameterValue_ModelDefineEventPropError = "InvalidParameterValue.ModelDefineEventPropError"
         case invalidParameterValue_ModelDefineEventPropNameError = "InvalidParameterValue.ModelDefineEventPropNameError"
+        case invalidParameterValue_ModelDefineEventTypeError = "InvalidParameterValue.ModelDefineEventTypeError"
         case invalidParameterValue_ModelDefineInvalid = "InvalidParameterValue.ModelDefineInvalid"
         case invalidParameterValue_ModelDefineNil = "InvalidParameterValue.ModelDefineNil"
         case invalidParameterValue_ModelDefinePropBoolMappingError = "InvalidParameterValue.ModelDefinePropBoolMappingError"
@@ -123,7 +124,9 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         case limitExceeded_ThingModelExceedLimit = "LimitExceeded.ThingModelExceedLimit"
         case limitExceeded_TopicPolicyExceedLimit = "LimitExceeded.TopicPolicyExceedLimit"
         case missingParameter_ModelDefineEventTypeError = "MissingParameter.ModelDefineEventTypeError"
+        case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_BatchProductionIsRunning = "ResourceInsufficient.BatchProductionIsRunning"
+        case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_BatchProductionNotExist = "ResourceNotFound.BatchProductionNotExist"
         case resourceNotFound_CannotGetFromUrl = "ResourceNotFound.CannotGetFromUrl"
         case resourceNotFound_DeviceDupKeyExist = "ResourceNotFound.DeviceDupKeyExist"
@@ -306,6 +309,7 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         TCIotexplorerError(.internalError)
     }
 
+    /// DB操作错误。
     public static var internalError_DBOperationError: TCIotexplorerError {
         TCIotexplorerError(.internalError_DBOperationError)
     }
@@ -417,6 +421,7 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         TCIotexplorerError(.invalidParameterValue_DeviceNotExist)
     }
 
+    /// 使用标准蓝牙广播协议的产品，DeviceName最多不超过8个字符。
     public static var invalidParameterValue_ErrLLSyncBroadcastDeviceNameLengthExceed: TCIotexplorerError {
         TCIotexplorerError(.invalidParameterValue_ErrLLSyncBroadcastDeviceNameLengthExceed)
     }
@@ -489,6 +494,11 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
     /// 物模型事件/属性 Name 错误。
     public static var invalidParameterValue_ModelDefineEventPropNameError: TCIotexplorerError {
         TCIotexplorerError(.invalidParameterValue_ModelDefineEventPropNameError)
+    }
+
+    /// 物模型事件 Type 错误:lac 。
+    public static var invalidParameterValue_ModelDefineEventTypeError: TCIotexplorerError {
+        TCIotexplorerError(.invalidParameterValue_ModelDefineEventTypeError)
     }
 
     /// 数据模板未定义。
@@ -716,9 +726,19 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         TCIotexplorerError(.missingParameter_ModelDefineEventTypeError)
     }
 
+    /// 资源不足。
+    public static var resourceInsufficient: TCIotexplorerError {
+        TCIotexplorerError(.resourceInsufficient)
+    }
+
     /// 已有量产进行，请等待量产完成。
     public static var resourceInsufficient_BatchProductionIsRunning: TCIotexplorerError {
         TCIotexplorerError(.resourceInsufficient_BatchProductionIsRunning)
+    }
+
+    /// 资源不存在。
+    public static var resourceNotFound: TCIotexplorerError {
+        TCIotexplorerError(.resourceNotFound)
     }
 
     /// 量产不存在。
@@ -1051,10 +1071,12 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         TCIotexplorerError(.unsupportedOperation_VPNDupKeyExist)
     }
 
+    /// Video账户未创建，请检查后重新操作。
     public static var unsupportedOperation_VideoAccountNotExist: TCIotexplorerError {
         TCIotexplorerError(.unsupportedOperation_VideoAccountNotExist)
     }
 
+    /// Video平台license数量不足。
     public static var unsupportedOperation_VideoInsufficientLicenses: TCIotexplorerError {
         TCIotexplorerError(.unsupportedOperation_VideoInsufficientLicenses)
     }

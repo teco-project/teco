@@ -43,6 +43,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 数量超出限制。
         public static var limitExceededError: LimitExceeded {
             LimitExceeded(.limitExceededError)
         }

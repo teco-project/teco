@@ -43,6 +43,7 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 缺少容器服务的 CLS 日志角色，请打开控制台授权。
         public static var missingEksLogRole: UnauthorizedOperation {
             UnauthorizedOperation(.missingEksLogRole)
         }

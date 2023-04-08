@@ -19,26 +19,33 @@ extension Live {
     public struct DescribeLogDownloadListRequest: TCRequestModel {
         /// 开始时间，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
+        /// 注：此字段为北京时间（UTC+8时区）。
         public let startTime: String
 
         /// 结束时间，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
         /// 注意：结束时间 - 开始时间 <=7天。
+        /// 注：此字段为北京时间（UTC+8时区）。
         public let endTime: String
 
         /// 域名列表。
         public let playDomains: [String]
 
-        public init(startTime: String, endTime: String, playDomains: [String]) {
+        /// 快直播还是标准直播，0：标准直播，1：快直播。默认为0。
+        public let isFastLive: Int64?
+
+        public init(startTime: String, endTime: String, playDomains: [String], isFastLive: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
+            self.isFastLive = isFastLive
         }
 
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case playDomains = "PlayDomains"
+            case isFastLive = "IsFastLive"
         }
     }
 
@@ -80,15 +87,15 @@ extension Live {
     ///
     /// 批量获取日志URL。
     @inlinable
-    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogDownloadListResponse> {
-        self.describeLogDownloadList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], isFastLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogDownloadListResponse> {
+        self.describeLogDownloadList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, isFastLive: isFastLive), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取日志URL
     ///
     /// 批量获取日志URL。
     @inlinable
-    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
-        try await self.describeLogDownloadList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+    public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], isFastLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
+        try await self.describeLogDownloadList(.init(startTime: startTime, endTime: endTime, playDomains: playDomains, isFastLive: isFastLive), region: region, logger: logger, on: eventLoop)
     }
 }

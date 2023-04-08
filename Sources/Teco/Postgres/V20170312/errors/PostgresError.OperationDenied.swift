@@ -123,6 +123,7 @@ extension TCPostgresError {
             OperationDenied(.roInstanceIpv6NotSupportedError)
         }
 
+        /// 只读实例状态限制当前操作。
         public static var roInstanceStatusLimitOpError: OperationDenied {
             OperationDenied(.roInstanceStatusLimitOpError)
         }

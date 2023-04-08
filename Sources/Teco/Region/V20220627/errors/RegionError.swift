@@ -51,14 +51,17 @@ public struct TCRegionError: TCRegionErrorType {
         self.context = context
     }
 
+    /// 参数错误。
     public static var invalidParameter: TCRegionError {
         TCRegionError(.invalidParameter)
     }
 
+    /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCRegionError {
         TCRegionError(.requestLimitExceeded)
     }
 
+    /// 操作不支持。
     public static var unsupportedOperation: TCRegionError {
         TCRegionError(.unsupportedOperation)
     }

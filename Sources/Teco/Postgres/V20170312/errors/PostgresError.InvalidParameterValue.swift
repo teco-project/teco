@@ -44,6 +44,7 @@ extension TCPostgresError {
             case invalidPasswordValueError = "InvalidParameterValue.InvalidPasswordValueError"
             case invalidPid = "InvalidParameterValue.InvalidPid"
             case invalidReadOnlyGroupStatus = "InvalidParameterValue.InvalidReadOnlyGroupStatus"
+            case invalidRegionIdError = "InvalidParameterValue.InvalidRegionIdError"
             case invalidZoneIdError = "InvalidParameterValue.InvalidZoneIdError"
             case nullDealNames = "InvalidParameterValue.NullDealNames"
             case parameterCharacterError = "InvalidParameterValue.ParameterCharacterError"
@@ -217,6 +218,11 @@ extension TCPostgresError {
             InvalidParameterValue(.invalidReadOnlyGroupStatus)
         }
 
+        /// 无效地域。
+        public static var invalidRegionIdError: InvalidParameterValue {
+            InvalidParameterValue(.invalidRegionIdError)
+        }
+
         /// 无效的可用区。
         public static var invalidZoneIdError: InvalidParameterValue {
             InvalidParameterValue(.invalidZoneIdError)
@@ -344,6 +350,8 @@ extension TCPostgresError {
                 code = .invalidParameterValue_InvalidPid
             case .invalidReadOnlyGroupStatus:
                 code = .invalidParameterValue_InvalidReadOnlyGroupStatus
+            case .invalidRegionIdError:
+                code = .invalidParameterValue_InvalidRegionIdError
             case .invalidZoneIdError:
                 code = .invalidParameterValue_InvalidZoneIdError
             case .nullDealNames:

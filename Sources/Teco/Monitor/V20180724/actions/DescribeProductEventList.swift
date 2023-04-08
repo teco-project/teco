@@ -22,19 +22,19 @@ extension Monitor {
         /// 接口模块名，固定值"monitor"
         public let module: String
 
-        /// 产品类型过滤，比如"cvm"表示云服务器
+        /// 产品类型过滤，例如"cvm"表示云服务器
         public let productName: [String]?
 
-        /// 事件名称过滤，比如"guest_reboot"表示机器重启
+        /// 事件名称过滤，例如"guest_reboot"表示机器重启
         public let eventName: [String]?
 
-        /// 影响对象，比如"ins-19708ino"
+        /// 影响对象，例如"ins-19708ino"
         public let instanceId: [String]?
 
-        /// 维度过滤，比如外网IP:10.0.0.1
+        /// 维度过滤，例如外网IP:10.0.0.1
         public let dimensions: [DescribeProductEventListDimensions]?
 
-        /// 产品事件地域过滤参数，比如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
+        /// 产品事件地域过滤参数，例如gz，各地域缩写可参见[地域列表](https://cloud.tencent.com/document/product/248/50863)
         public let regionList: [String]?
 
         /// 事件类型过滤，取值范围["status_change","abnormal"]，分别表示状态变更、异常事件

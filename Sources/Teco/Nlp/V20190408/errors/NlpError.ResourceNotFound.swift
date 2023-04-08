@@ -19,6 +19,7 @@ extension TCNlpError {
         enum Code: String {
             case dataNotFound = "ResourceNotFound.DataNotFound"
             case fileNotFound = "ResourceNotFound.FileNotFound"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -53,6 +54,11 @@ extension TCNlpError {
             ResourceNotFound(.fileNotFound)
         }
 
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
+        }
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
@@ -60,6 +66,8 @@ extension TCNlpError {
                 code = .resourceNotFound_DataNotFound
             case .fileNotFound:
                 code = .resourceNotFound_FileNotFound
+            case .other:
+                code = .resourceNotFound
             }
             return TCNlpError(code, context: self.context)
         }

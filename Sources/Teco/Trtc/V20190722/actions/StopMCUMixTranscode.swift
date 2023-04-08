@@ -44,7 +44,7 @@ extension Trtc {
         }
     }
 
-    /// 结束云端混流
+    /// 结束云端混流（旧）
     ///
     /// 接口说明：结束云端混流
     @inlinable @discardableResult
@@ -52,7 +52,7 @@ extension Trtc {
         self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 结束云端混流
+    /// 结束云端混流（旧）
     ///
     /// 接口说明：结束云端混流
     @inlinable @discardableResult
@@ -60,7 +60,7 @@ extension Trtc {
         try await self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 结束云端混流
+    /// 结束云端混流（旧）
     ///
     /// 接口说明：结束云端混流
     @inlinable @discardableResult
@@ -68,7 +68,7 @@ extension Trtc {
         self.stopMCUMixTranscode(.init(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 结束云端混流
+    /// 结束云端混流（旧）
     ///
     /// 接口说明：结束云端混流
     @inlinable @discardableResult

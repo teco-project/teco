@@ -139,6 +139,108 @@ extension Cfw {
         }
     }
 
+    /// 规则关联的beta任务
+    public struct BetaInfoByACL: TCOutputModel {
+        /// 任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskId: Int64?
+
+        /// 任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskName: String?
+
+        /// 上次执行时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case taskName = "TaskName"
+            case lastTime = "LastTime"
+        }
+    }
+
+    /// 入侵防御放通封禁规则
+    public struct BlockIgnoreRule: TCOutputModel {
+        /// 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        /// 规则ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ioc: String?
+
+        /// 危险等级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// 来源事件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventName: String?
+
+        /// 方向：1入站，0出站
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let direction: Int64?
+
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 地理位置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let address: String?
+
+        /// 规则类型：1封禁，2放通
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let action: Int64?
+
+        /// 规则生效开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 规则生效结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 忽略原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ignoreReason: String?
+
+        /// 安全事件来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let source: String?
+
+        /// 规则id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqueId: String?
+
+        /// 规则命中次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let matchTimes: Int64?
+
+        /// 国家
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let country: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case ioc = "Ioc"
+            case level = "Level"
+            case eventName = "EventName"
+            case direction = "Direction"
+            case `protocol` = "Protocol"
+            case address = "Address"
+            case action = "Action"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case ignoreReason = "IgnoreReason"
+            case source = "Source"
+            case uniqueId = "UniqueId"
+            case matchTimes = "MatchTimes"
+            case country = "Country"
+        }
+    }
+
     /// NAT防火墙Dnat规则
     public struct CfwNatDnatRule: TCInputModel {
         /// 网络协议，可选值：TCP、UDP。
@@ -174,6 +276,127 @@ extension Cfw {
             case publicPort = "PublicPort"
             case privateIpAddress = "PrivateIpAddress"
             case privatePort = "PrivatePort"
+            case description = "Description"
+        }
+    }
+
+    /// 通用的列表检索过滤选项
+    public struct CommonFilter: TCInputModel {
+        /// 检索的键值
+        public let name: String
+
+        /// 检索的值
+        public let values: [String]
+
+        /// 枚举类型，代表name与values之间的匹配关系
+        /// enum FilterOperatorType {
+        ///     //INVALID
+        ///     FILTER_OPERATOR_TYPE_INVALID = 0;
+        ///     //等于
+        ///     FILTER_OPERATOR_TYPE_EQUAL = 1;
+        ///     //大于
+        ///     FILTER_OPERATOR_TYPE_GREATER = 2;
+        ///     //小于
+        ///     FILTER_OPERATOR_TYPE_LESS = 3;
+        ///     //大于等于
+        ///     FILTER_OPERATOR_TYPE_GREATER_EQ = 4;
+        ///     //小于等于
+        ///     FILTER_OPERATOR_TYPE_LESS_EQ = 5;
+        ///     //不等于
+        ///     FILTER_OPERATOR_TYPE_NO_EQ = 6;
+        ///     //in，数组中包含
+        ///     FILTER_OPERATOR_TYPE_IN = 7;
+        ///     //not in
+        ///     FILTER_OPERATOR_TYPE_NOT_IN = 8;
+        ///     //模糊匹配
+        ///     FILTER_OPERATOR_TYPE_FUZZINESS = 9;
+        ///     //存在
+        ///     FILTER_OPERATOR_TYPE_EXIST = 10;
+        ///     //不存在
+        ///     FILTER_OPERATOR_TYPE_NOT_EXIST = 11;
+        ///     //正则
+        ///     FILTER_OPERATOR_TYPE_REGULAR = 12;
+        /// }
+        public let operatorType: Int64
+
+        public init(name: String, values: [String], operatorType: Int64) {
+            self.name = name
+            self.values = values
+            self.operatorType = operatorType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case values = "Values"
+            case operatorType = "OperatorType"
+        }
+    }
+
+    /// 创建NAT ACL规则参数结构
+    public struct CreateNatRuleItem: TCInputModel {
+        /// 访问源示例： net：IP/CIDR(192.168.0.2)
+        public let sourceContent: String?
+
+        /// 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        public let sourceType: String?
+
+        /// 访问目的示例： net：IP/CIDR(192.168.0.2) domain：域名规则，例如*.qq.com
+        public let targetContent: String?
+
+        /// 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为  ip,net,domain,template,location
+        public let targetType: String?
+
+        /// 协议，可选的值： TCP UDP ICMP ANY HTTP HTTPS HTTP/HTTPS SMTP SMTPS SMTP/SMTPS FTP DNS
+        public let `protocol`: String?
+
+        /// 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        public let ruleAction: String?
+
+        /// 访问控制策略的端口。取值： -1/-1：全部端口 80：80端口
+        public let port: String?
+
+        /// 规则方向：1，入站；0，出站
+        public let direction: UInt64?
+
+        /// 规则序号
+        public let orderIndex: Int64?
+
+        /// 规则状态，true表示启用，false表示禁用
+        public let enable: String?
+
+        /// 规则对应的唯一id，创建规则时无需填写
+        public let uuid: Int64?
+
+        /// 描述
+        public let description: String?
+
+        public init(sourceContent: String, sourceType: String, targetContent: String, targetType: String, protocol: String, ruleAction: String, port: String, direction: UInt64, orderIndex: Int64, enable: String, uuid: Int64? = nil, description: String? = nil) {
+            self.sourceContent = sourceContent
+            self.sourceType = sourceType
+            self.targetContent = targetContent
+            self.targetType = targetType
+            self.protocol = `protocol`
+            self.ruleAction = ruleAction
+            self.port = port
+            self.direction = direction
+            self.orderIndex = orderIndex
+            self.enable = enable
+            self.uuid = uuid
+            self.description = description
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceContent = "SourceContent"
+            case sourceType = "SourceType"
+            case targetContent = "TargetContent"
+            case targetType = "TargetType"
+            case `protocol` = "Protocol"
+            case ruleAction = "RuleAction"
+            case port = "Port"
+            case direction = "Direction"
+            case orderIndex = "OrderIndex"
+            case enable = "Enable"
+            case uuid = "Uuid"
             case description = "Description"
         }
     }
@@ -249,6 +472,135 @@ extension Cfw {
             case firstLevelRegionName = "FirstLevelRegionName"
             case secondLevelRegionName = "SecondLevelRegionName"
             case cloudCode = "CloudCode"
+        }
+    }
+
+    /// 访问控制列表对象
+    public struct DescAcItem: TCOutputModel {
+        /// 访问源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceContent: String?
+
+        /// 访问目的
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetContent: String?
+
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: String?
+
+        /// 访问控制策略中设置的流量通过云防火墙的方式。取值： accept：放行 drop：拒绝 log：观察
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleAction: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 命中次数
+        public let count: UInt64
+
+        /// 执行顺序
+        public let orderIndex: UInt64
+
+        /// 访问源类型：入向规则时类型可以为 ip,net,template,location；出向规则时可以为 ip,net,template,instance,group,tag
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceType: String?
+
+        /// 访问目的类型：入向规则时类型可以为ip,net,template,instance,group,tag；出向规则时可以为 ip,net,domain,template,location
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetType: String?
+
+        /// 规则对应的唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uuid: UInt64?
+
+        /// 规则有效性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let invalid: UInt64?
+
+        /// 0为正常规则,1为地域规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isRegion: UInt64?
+
+        /// 国家id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let countryCode: UInt64?
+
+        /// 城市id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cityCode: UInt64?
+
+        /// 国家名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let countryName: String?
+
+        /// 省名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cityName: String?
+
+        /// 云厂商code
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudCode: String?
+
+        /// 0为正常规则,1为云厂商规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isCloud: UInt64?
+
+        /// 规则状态，true表示启用，false表示禁用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: String?
+
+        /// 规则方向：1，入向；0，出向
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let direction: UInt64?
+
+        /// 实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 内部使用的uuid，一般情况下不会使用到该字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalUuid: Int64?
+
+        /// 规则状态，查询规则命中详情时该字段有效，0：新增，1: 已删除, 2: 编辑删除
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 关联任务详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let betaList: [BetaInfoByACL]?
+
+        enum CodingKeys: String, CodingKey {
+            case sourceContent = "SourceContent"
+            case targetContent = "TargetContent"
+            case `protocol` = "Protocol"
+            case port = "Port"
+            case ruleAction = "RuleAction"
+            case description = "Description"
+            case count = "Count"
+            case orderIndex = "OrderIndex"
+            case sourceType = "SourceType"
+            case targetType = "TargetType"
+            case uuid = "Uuid"
+            case invalid = "Invalid"
+            case isRegion = "IsRegion"
+            case countryCode = "CountryCode"
+            case cityCode = "CityCode"
+            case countryName = "CountryName"
+            case cityName = "CityName"
+            case cloudCode = "CloudCode"
+            case isCloud = "IsCloud"
+            case enable = "Enable"
+            case direction = "Direction"
+            case instanceName = "InstanceName"
+            case internalUuid = "InternalUuid"
+            case status = "Status"
+            case betaList = "BetaList"
         }
     }
 
@@ -575,6 +927,14 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneZhBak: String?
 
+        /// 已使用规则数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleUsed: UInt64?
+
+        /// 实例的规则限制最大规格数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleMax: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case natinsId = "NatinsId"
             case natinsName = "NatinsName"
@@ -591,6 +951,8 @@ extension Cfw {
             case regionDetail = "RegionDetail"
             case zoneZh = "ZoneZh"
             case zoneZhBak = "ZoneZhBak"
+            case ruleUsed = "RuleUsed"
+            case ruleMax = "RuleMax"
         }
     }
 
@@ -615,6 +977,25 @@ extension Cfw {
             case vpcList = "VpcList"
             case eips = "Eips"
             case addCount = "AddCount"
+        }
+    }
+
+    /// 规则顺序变更项，由原始id值变为新的id值。
+    public struct RuleChangeItem: TCInputModel {
+        /// 原始sequence 值
+        public let orderIndex: Int64
+
+        /// 新的sequence 值
+        public let newOrderIndex: Int64
+
+        public init(orderIndex: Int64, newOrderIndex: Int64) {
+            self.orderIndex = orderIndex
+            self.newOrderIndex = newOrderIndex
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case orderIndex = "OrderIndex"
+            case newOrderIndex = "NewOrderIndex"
         }
     }
 

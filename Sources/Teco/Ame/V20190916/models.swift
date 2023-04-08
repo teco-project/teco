@@ -431,8 +431,11 @@ extension Ame {
         /// <li>Shuffle：随机播放</li>
         public let setPlayModeInput: SetPlayModeCommandInput
 
-        /// 音量，范围 0~100，默认为 50。
+        /// <del>音量，范围 0~100，默认为 50。</del>（已废弃，请采用 SetRealVolumeInput ）
         public let setVolumeInput: SetVolumeCommandInput
+
+        /// 真实音量，范围 0~100，默认为 50。
+        public let setRealVolumeInput: SetRealVolumeCommandInput
 
         enum CodingKeys: String, CodingKey {
             case robotId = "RobotId"
@@ -445,6 +448,7 @@ extension Ame {
             case rtcSystem = "RTCSystem"
             case setPlayModeInput = "SetPlayModeInput"
             case setVolumeInput = "SetVolumeInput"
+            case setRealVolumeInput = "SetRealVolumeInput"
         }
     }
 
@@ -945,14 +949,19 @@ extension Ame {
         /// 当 Type 取 Move 时，必填，表示移动歌曲的目标位置。
         public let changedIndex: Int64?
 
-        /// 歌曲 ID 列表，当 Type 取 Add 时，必填。
+        /// 歌曲 ID 列表，当 Type 取 Add 时，与MusicURLs必填其中一项。
         public let musicIds: [String]?
 
-        public init(type: String, index: Int64? = nil, changedIndex: Int64? = nil, musicIds: [String]? = nil) {
+        /// 歌曲 URL 列表，当 Type 取 Add 时，与MusicIds必填其中一项。
+        /// 注：URL必须以.mp3结尾且必须是mp3编码文件。
+        public let musicURLs: [String]?
+
+        public init(type: String, index: Int64? = nil, changedIndex: Int64? = nil, musicIds: [String]? = nil, musicURLs: [String]? = nil) {
             self.type = type
             self.index = index
             self.changedIndex = changedIndex
             self.musicIds = musicIds
+            self.musicURLs = musicURLs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -960,6 +969,21 @@ extension Ame {
             case index = "Index"
             case changedIndex = "ChangedIndex"
             case musicIds = "MusicIds"
+            case musicURLs = "MusicURLs"
+        }
+    }
+
+    /// 设置真实音量。
+    public struct SetRealVolumeCommandInput: TCInputModel {
+        /// 真实音量大小，取值范围为 0~100，默认值为 50。
+        public let realVolume: Int64
+
+        public init(realVolume: Int64) {
+            self.realVolume = realVolume
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case realVolume = "RealVolume"
         }
     }
 
@@ -1039,7 +1063,8 @@ extension Ame {
         /// <li>SetAudioParam：音频参数变更</li>
         /// <li>SendMessage：发送自定义消息</li>
         /// <li>SetDestroyMode：设置销毁模式</li>
-        /// <li>SetVolume：设置音量</li>
+        /// <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
+        /// <li>SetRealVolume：设置真实音量</li>
         public let command: String
 
         /// 播放参数。
@@ -1063,10 +1088,14 @@ extension Ame {
         /// 销毁模式，当Command取SetDestroyMode时，必填。
         public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
 
-        /// 音量，当Command取SetVolume时，必填。
+        /// <del>音量，当Command取SetVolume时，必填。</del>
+        /// （已废弃，请采用 SetRealVolumeCommandInput）
         public let setVolumeCommandInput: SetVolumeCommandInput?
 
-        public init(command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil) {
+        /// 真实音量，当Command取SetRealVolume时，必填。
+        public let setRealVolumeCommandInput: SetRealVolumeCommandInput?
+
+        public init(command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, setRealVolumeCommandInput: SetRealVolumeCommandInput? = nil) {
             self.command = command
             self.playCommandInput = playCommandInput
             self.setPlaylistCommandInput = setPlaylistCommandInput
@@ -1076,6 +1105,7 @@ extension Ame {
             self.setPlayModeCommandInput = setPlayModeCommandInput
             self.setDestroyModeCommandInput = setDestroyModeCommandInput
             self.setVolumeCommandInput = setVolumeCommandInput
+            self.setRealVolumeCommandInput = setRealVolumeCommandInput
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1088,6 +1118,7 @@ extension Ame {
             case setPlayModeCommandInput = "SetPlayModeCommandInput"
             case setDestroyModeCommandInput = "SetDestroyModeCommandInput"
             case setVolumeCommandInput = "SetVolumeCommandInput"
+            case setRealVolumeCommandInput = "SetRealVolumeCommandInput"
         }
     }
 
@@ -1105,11 +1136,22 @@ extension Ame {
         /// 用户唯一标识。
         public let userId: String
 
-        public init(sign: String, roomId: String, sdkAppId: String, userId: String) {
+        /// 进房钥匙，若需要权限控制请携带该参数。
+        ///  [privateMapKey 权限设置](/document/product/647/32240)
+        public let privateMapKey: String?
+
+        /// 用户角色，目前支持两种角色：
+        /// <li>anchor：主播</li>
+        /// <li>audience：观众</li>
+        public let role: String?
+
+        public init(sign: String, roomId: String, sdkAppId: String, userId: String, privateMapKey: String? = nil, role: String? = nil) {
             self.sign = sign
             self.roomId = roomId
             self.sdkAppId = sdkAppId
             self.userId = userId
+            self.privateMapKey = privateMapKey
+            self.role = role
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1117,6 +1159,8 @@ extension Ame {
             case roomId = "RoomId"
             case sdkAppId = "SdkAppId"
             case userId = "UserId"
+            case privateMapKey = "PrivateMapKey"
+            case role = "Role"
         }
     }
 

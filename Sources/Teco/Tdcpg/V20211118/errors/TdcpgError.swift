@@ -150,6 +150,7 @@ public struct TCTdcpgError: TCTdcpgErrorType {
         TCTdcpgError(.failedOperation_StatusError)
     }
 
+    /// 当前存储的付费模式不支持此操作。
     public static var failedOperation_StoragePayModeInvalid: TCTdcpgError {
         TCTdcpgError(.failedOperation_StoragePayModeInvalid)
     }
@@ -194,6 +195,8 @@ public struct TCTdcpgError: TCTdcpgErrorType {
         TCTdcpgError(.invalidParameterValue_ClusterNotFound)
     }
 
+    /// 数据库版本号相关参数数量错误。
+    ///
     /// DBMajorVersion、DBVersion、DBKernelVersion三个参数只能选择一个传递，且必须传递一个。
     public static var invalidParameterValue_DatabaseVersionParamCountError: TCTdcpgError {
         TCTdcpgError(.invalidParameterValue_DatabaseVersionParamCountError)
@@ -229,6 +232,8 @@ public struct TCTdcpgError: TCTdcpgErrorType {
         TCTdcpgError(.invalidParameterValue_InvalidDBVersion)
     }
 
+    /// 数据库版本号相关参数不合法。
+    ///
     /// 请检查DBMajorVersion、DBVersion、DBKernelVersion参数值是否合法。
     public static var invalidParameterValue_InvalidDatabaseVersion: TCTdcpgError {
         TCTdcpgError(.invalidParameterValue_InvalidDatabaseVersion)

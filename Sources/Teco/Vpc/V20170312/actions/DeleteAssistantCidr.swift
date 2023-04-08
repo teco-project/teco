@@ -17,10 +17,10 @@
 extension Vpc {
     /// DeleteAssistantCidr请求参数结构体
     public struct DeleteAssistantCidrRequest: TCRequestModel {
-        /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
+        /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         public let vpcId: String
 
-        /// CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]
+        /// CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。
         public let cidrBlocks: [String]
 
         public init(vpcId: String, cidrBlocks: [String]) {
@@ -46,7 +46,7 @@ extension Vpc {
 
     /// 删除辅助CIDR
     ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    /// 本接口（DeleteAssistantCidr）用于删除辅助CIDR。
     @inlinable @discardableResult
     public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
         self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +54,7 @@ extension Vpc {
 
     /// 删除辅助CIDR
     ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    /// 本接口（DeleteAssistantCidr）用于删除辅助CIDR。
     @inlinable @discardableResult
     public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
         try await self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 删除辅助CIDR
     ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    /// 本接口（DeleteAssistantCidr）用于删除辅助CIDR。
     @inlinable @discardableResult
     public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
         self.deleteAssistantCidr(.init(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 删除辅助CIDR
     ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    /// 本接口（DeleteAssistantCidr）用于删除辅助CIDR。
     @inlinable @discardableResult
     public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
         try await self.deleteAssistantCidr(.init(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)

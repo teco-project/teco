@@ -79,6 +79,7 @@ extension TCPostgresError {
             case updateResourceProjectTagValueError = "FailedOperation.UpdateResourceProjectTagValueError"
             case vpcResetServiceError = "FailedOperation.VPCResetServiceError"
             case vpcUpdateRouteError = "FailedOperation.VPCUpdateRouteError"
+            case whitelistConnectError = "FailedOperation.WhitelistConnectError"
             case other = "FailedOperation"
         }
 
@@ -104,6 +105,8 @@ extension TCPostgresError {
             self.context = context
         }
 
+        /// 申请资源标签的配额失败。
+        ///
         /// 请前往标签控制台添加配额，如果持续不成功，请联系客服进行处理。
         public static var allocateQuotasError: FailedOperation {
             FailedOperation(.allocateQuotasError)
@@ -249,7 +252,7 @@ extension TCPostgresError {
             FailedOperation(.modifyROGroupError)
         }
 
-        /// 不符合资源所拥有的的网络数量要求。
+        /// 不符合资源所拥有的网络数量要求。
         public static var networkNumLimitError: FailedOperation {
             FailedOperation(.networkNumLimitError)
         }
@@ -414,6 +417,11 @@ extension TCPostgresError {
             FailedOperation(.vpcUpdateRouteError)
         }
 
+        /// 查询白名单失败，请稍后重试。如果持续不成功，请联系客服进行处理。
+        public static var whitelistConnectError: FailedOperation {
+            FailedOperation(.whitelistConnectError)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -546,6 +554,8 @@ extension TCPostgresError {
                 code = .failedOperation_VPCResetServiceError
             case .vpcUpdateRouteError:
                 code = .failedOperation_VPCUpdateRouteError
+            case .whitelistConnectError:
+                code = .failedOperation_WhitelistConnectError
             case .other:
                 code = .failedOperation
             }

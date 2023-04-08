@@ -19,6 +19,7 @@ extension TCClsError {
         enum Code: String {
             case config = "LimitExceeded.Config"
             case export = "LimitExceeded.Export"
+            case indexOperating = "LimitExceeded.IndexOperating"
             case logSearch = "LimitExceeded.LogSearch"
             case logSize = "LimitExceeded.LogSize"
             case logset = "LimitExceeded.Logset"
@@ -61,9 +62,14 @@ extension TCClsError {
             LimitExceeded(.config)
         }
 
-        /// 日志导出数量超出限制。
+        /// 创建日志导出任务数量超出限制。
         public static var export: LimitExceeded {
             LimitExceeded(.export)
+        }
+
+        /// 索引操作超过频率限制。
+        public static var indexOperating: LimitExceeded {
+            LimitExceeded(.indexOperating)
         }
 
         /// 并发查询超过限制，单topic并发最大值15。
@@ -101,6 +107,8 @@ extension TCClsError {
             LimitExceeded(.partition)
         }
 
+        /// 检索内存超限。
+        ///
         /// 修改检索语句，减少查询范围。
         public static var searchResources: LimitExceeded {
             LimitExceeded(.searchResources)
@@ -140,6 +148,8 @@ extension TCClsError {
                 code = .limitExceeded_Config
             case .export:
                 code = .limitExceeded_Export
+            case .indexOperating:
+                code = .limitExceeded_IndexOperating
             case .logSearch:
                 code = .limitExceeded_LogSearch
             case .logSize:

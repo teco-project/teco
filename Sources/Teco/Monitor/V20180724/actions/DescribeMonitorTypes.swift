@@ -49,7 +49,7 @@ extension Monitor {
 
     /// 查询监控类型
     ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    /// 腾讯云可观测平台支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorTypesResponse> {
         self.client.execute(action: "DescribeMonitorTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Monitor {
 
     /// 查询监控类型
     ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    /// 腾讯云可观测平台支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
         try await self.client.execute(action: "DescribeMonitorTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Monitor {
 
     /// 查询监控类型
     ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    /// 腾讯云可观测平台支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorTypesResponse> {
         self.describeMonitorTypes(.init(module: module), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Monitor {
 
     /// 查询监控类型
     ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    /// 腾讯云可观测平台支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
         try await self.describeMonitorTypes(.init(module: module), region: region, logger: logger, on: eventLoop)

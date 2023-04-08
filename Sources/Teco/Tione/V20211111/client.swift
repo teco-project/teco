@@ -16,7 +16,7 @@
 
 @_exported import TecoCore
 
-/// 腾讯云 TI 平台 TI-ONE (tione)
+/// TI-ONE 训练平台 (tione)
 ///
 /// 对腾讯云 TI 平台 TI-ONE 进行操作，包括存储库、Notebook、任务训练等。
 public struct Tione: TCService {

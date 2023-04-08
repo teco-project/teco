@@ -24,6 +24,15 @@ public protocol TCTemErrorType: TCServiceErrorType {
 
 public struct TCTemError: TCTemErrorType {
     enum Code: String {
+        case failedOperation_ActionReadTimeout = "FailedOperation.ActionReadTimeout"
+        case failedOperation_CreateServiceError = "FailedOperation.CreateServiceError"
+        case failedOperation_DefaultInternalError = "FailedOperation.DefaultInternalError"
+        case failedOperation_DeleteServiceError = "FailedOperation.DeleteServiceError"
+        case failedOperation_DescribeIngressListError = "FailedOperation.DescribeIngressListError"
+        case failedOperation_DescribeRunPodListError = "FailedOperation.DescribeRunPodListError"
+        case failedOperation_DescribeServiceError = "FailedOperation.DescribeServiceError"
+        case failedOperation_DescribeServiceListError = "FailedOperation.DescribeServiceListError"
+        case failedOperation_UpdateIngressError = "FailedOperation.UpdateIngressError"
         case internalError_ActionReadTimeout = "InternalError.ActionReadTimeout"
         case internalError_AddNewNodeError = "InternalError.AddNewNodeError"
         case internalError_CreateApmResourceError = "InternalError.CreateApmResourceError"
@@ -39,6 +48,7 @@ public struct TCTemError: TCTemErrorType {
         case internalError_DescribeConfigDataError = "InternalError.DescribeConfigDataError"
         case internalError_DescribeConfigDataListError = "InternalError.DescribeConfigDataListError"
         case internalError_DescribeIngressError = "InternalError.DescribeIngressError"
+        case internalError_DescribeIngressListError = "InternalError.DescribeIngressListError"
         case internalError_DescribeLogConfigError = "InternalError.DescribeLogConfigError"
         case internalError_DescribeLogConfigListError = "InternalError.DescribeLogConfigListError"
         case internalError_DescribeRunPodListError = "InternalError.DescribeRunPodListError"
@@ -88,6 +98,7 @@ public struct TCTemError: TCTemErrorType {
         case invalidParameterValue_OsNotSupport = "InvalidParameterValue.OsNotSupport"
         case invalidParameterValue_PortDuplicateError = "InvalidParameterValue.PortDuplicateError"
         case invalidParameterValue_PortIsReserved = "InvalidParameterValue.PortIsReserved"
+        case invalidParameterValue_PostStartNotValid = "InvalidParameterValue.PostStartNotValid"
         case invalidParameterValue_PublicRepoTypeParameterError = "InvalidParameterValue.PublicRepoTypeParameterError"
         case invalidParameterValue_RegistryNotBind = "InvalidParameterValue.RegistryNotBind"
         case invalidParameterValue_ScalerNameDuplicated = "InvalidParameterValue.ScalerNameDuplicated"
@@ -104,16 +115,20 @@ public struct TCTemError: TCTemErrorType {
         case invalidParameterValue_VersionLengthLimit = "InvalidParameterValue.VersionLengthLimit"
         case invalidParameterValue_VersionLowerCase = "InvalidParameterValue.VersionLowerCase"
         case invalidParameterValue_VersionRouteRateNotZero = "InvalidParameterValue.VersionRouteRateNotZero"
+        case invalidParameterValue_VpcInvalid = "InvalidParameterValue.VpcInvalid"
         case invalidParameter_ApplicationAccessServiceReachMaximum = "InvalidParameter.ApplicationAccessServiceReachMaximum"
         case invalidParameter_LBServiceCannotSupportTcpUdpSameTime = "InvalidParameter.LBServiceCannotSupportTcpUdpSameTime"
         case invalidParameter_MustProvidePortMappingRules = "InvalidParameter.MustProvidePortMappingRules"
         case invalidParameter_ServiceNameNotValid = "InvalidParameter.ServiceNameNotValid"
         case invalidParameter_ServiceUseReserveSuffix = "InvalidParameter.ServiceUseReserveSuffix"
         case invalidParameter_TooManyPortMappingRules = "InvalidParameter.TooManyPortMappingRules"
+        case invalidParameter_UnauthorizedOrMissingRole = "InvalidParameter.UnauthorizedOrMissingRole"
+        case invalidParameter_VpcOverQuota = "InvalidParameter.VpcOverQuota"
         case missingParameter_AutoScalerNameNull = "MissingParameter.AutoScalerNameNull"
         case missingParameter_DeployModeNull = "MissingParameter.DeployModeNull"
         case missingParameter_DeployVersionNull = "MissingParameter.DeployVersionNull"
         case missingParameter_EnvironmentNameNull = "MissingParameter.EnvironmentNameNull"
+        case missingParameter_ImgRepoNull = "MissingParameter.ImgRepoNull"
         case missingParameter_LogsetOrTopicNull = "MissingParameter.LogsetOrTopicNull"
         case missingParameter_MinMaxNumNull = "MissingParameter.MinMaxNumNull"
         case missingParameter_NamespaceIdNull = "MissingParameter.NamespaceIdNull"
@@ -129,7 +144,9 @@ public struct TCTemError: TCTemErrorType {
         case resourceInUse_ResourceAlreadyLocked = "ResourceInUse.ResourceAlreadyLocked"
         case resourceInUse_ResourceAlreadyUsed = "ResourceInUse.ResourceAlreadyUsed"
         case resourceInUse_ServiceDeploying = "ResourceInUse.ServiceDeploying"
+        case resourceNotFound_ConfigDataNotFound = "ResourceNotFound.ConfigDataNotFound"
         case resourceNotFound_InterfaceNotFound = "ResourceNotFound.InterfaceNotFound"
+        case resourceNotFound_LogConfigNotFound = "ResourceNotFound.LogConfigNotFound"
         case resourceNotFound_MicroserviceOffline = "ResourceNotFound.MicroserviceOffline"
         case resourceNotFound_NamespaceNotFound = "ResourceNotFound.NamespaceNotFound"
         case resourceNotFound_ServiceNotFound = "ResourceNotFound.ServiceNotFound"
@@ -146,7 +163,7 @@ public struct TCTemError: TCTemErrorType {
 
     /// Error domains affliated to ``TCTemError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, OperationDenied.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, OperationDenied.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -169,6 +186,51 @@ public struct TCTemError: TCTemErrorType {
     internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
+    }
+
+    /// 请求响应超时。
+    public static var failedOperation_ActionReadTimeout: TCTemError {
+        TCTemError(.failedOperation_ActionReadTimeout)
+    }
+
+    /// 创建服务失败。
+    public static var failedOperation_CreateServiceError: TCTemError {
+        TCTemError(.failedOperation_CreateServiceError)
+    }
+
+    /// 服务器繁忙,请稍后再试。
+    public static var failedOperation_DefaultInternalError: TCTemError {
+        TCTemError(.failedOperation_DefaultInternalError)
+    }
+
+    /// 删除应用失败。
+    public static var failedOperation_DeleteServiceError: TCTemError {
+        TCTemError(.failedOperation_DeleteServiceError)
+    }
+
+    /// 查询 ingress 列表失败。
+    public static var failedOperation_DescribeIngressListError: TCTemError {
+        TCTemError(.failedOperation_DescribeIngressListError)
+    }
+
+    /// 查询实例信息失败。
+    public static var failedOperation_DescribeRunPodListError: TCTemError {
+        TCTemError(.failedOperation_DescribeRunPodListError)
+    }
+
+    /// 查询service失败。
+    public static var failedOperation_DescribeServiceError: TCTemError {
+        TCTemError(.failedOperation_DescribeServiceError)
+    }
+
+    /// 查询service列表失败。
+    public static var failedOperation_DescribeServiceListError: TCTemError {
+        TCTemError(.failedOperation_DescribeServiceListError)
+    }
+
+    /// 更新 ingress 失败。
+    public static var failedOperation_UpdateIngressError: TCTemError {
+        TCTemError(.failedOperation_UpdateIngressError)
     }
 
     /// 请求响应超时。
@@ -196,6 +258,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_CreateEksClusterError)
     }
 
+    /// 创建 LogConfig 错误。
     public static var internalError_CreateLogConfigError: TCTemError {
         TCTemError(.internalError_CreateLogConfigError)
     }
@@ -215,6 +278,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_DeleteIngressError)
     }
 
+    /// 删除 LogConfig 错误。
     public static var internalError_DeleteLogConfigError: TCTemError {
         TCTemError(.internalError_DeleteLogConfigError)
     }
@@ -244,10 +308,17 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_DescribeIngressError)
     }
 
+    /// 查询 ingress 列表失败。
+    public static var internalError_DescribeIngressListError: TCTemError {
+        TCTemError(.internalError_DescribeIngressListError)
+    }
+
+    /// 查询 LogConfig 错误。
     public static var internalError_DescribeLogConfigError: TCTemError {
         TCTemError(.internalError_DescribeLogConfigError)
     }
 
+    /// 查询 LogConfig 列表错误。
     public static var internalError_DescribeLogConfigListError: TCTemError {
         TCTemError(.internalError_DescribeLogConfigListError)
     }
@@ -277,6 +348,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_ModifyConfigDataError)
     }
 
+    /// 修改 LogConfig 错误。
     public static var internalError_ModifyLogConfigError: TCTemError {
         TCTemError(.internalError_ModifyLogConfigError)
     }
@@ -291,6 +363,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_StopApplicationError)
     }
 
+    /// 调用标签接口异常。
     public static var internalError_TagInterfaceError: TCTemError {
         TCTemError(.internalError_TagInterfaceError)
     }
@@ -300,22 +373,27 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.internalError_UpdateIngressError)
     }
 
+    /// APM 没有与当前环境绑定。
     public static var invalidParameterValue_ApmNotBind: TCTemError {
         TCTemError(.invalidParameterValue_ApmNotBind)
     }
 
+    /// 应用访问配置服务数量达到上限。
     public static var invalidParameterValue_ApplicationAccessServiceReachMaximum: TCTemError {
         TCTemError(.invalidParameterValue_ApplicationAccessServiceReachMaximum)
     }
 
+    /// 已存在同名访问方式。
     public static var invalidParameterValue_ApplicationServiceAlreadyExist: TCTemError {
         TCTemError(.invalidParameterValue_ApplicationServiceAlreadyExist)
     }
 
+    /// 没有找到该访问方式。
     public static var invalidParameterValue_ApplicationServiceNotFound: TCTemError {
         TCTemError(.invalidParameterValue_ApplicationServiceNotFound)
     }
 
+    /// 请至少启用一种弹性规则。
     public static var invalidParameterValue_AtLeastOneScalerRuleShouldBeApplied: TCTemError {
         TCTemError(.invalidParameterValue_AtLeastOneScalerRuleShouldBeApplied)
     }
@@ -325,10 +403,12 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_AutoScalerLargerThanOne)
     }
 
+    /// 不能覆盖其他应用的访问方式。
     public static var invalidParameterValue_CannotOverWriteOtherApplicationService: TCTemError {
         TCTemError(.invalidParameterValue_CannotOverWriteOtherApplicationService)
     }
 
+    /// 不能同时使用全量以及单条更新。
     public static var invalidParameterValue_CannotUpdateServiceByBothMethods: TCTemError {
         TCTemError(.invalidParameterValue_CannotUpdateServiceByBothMethods)
     }
@@ -343,34 +423,42 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_ConfigDataInvalid)
     }
 
+    /// 定时弹性伸缩目标实例数不合法。
     public static var invalidParameterValue_CronHpaReplicasInvalid: TCTemError {
         TCTemError(.invalidParameterValue_CronHpaReplicasInvalid)
     }
 
+    /// 每日环境创建次数超过上限。
     public static var invalidParameterValue_DailyCreateNamespaceReachMaximum: TCTemError {
         TCTemError(.invalidParameterValue_DailyCreateNamespaceReachMaximum)
     }
 
+    /// 弹性伸缩启用中，请停用后再删除。
     public static var invalidParameterValue_DisableScalerBeforeDelete: TCTemError {
         TCTemError(.invalidParameterValue_DisableScalerBeforeDelete)
     }
 
+    /// 环境名称不可变。
     public static var invalidParameterValue_EnvironmentNameImmutable: TCTemError {
         TCTemError(.invalidParameterValue_EnvironmentNameImmutable)
     }
 
+    /// 弹性伸缩指标不合法。
     public static var invalidParameterValue_HpaMetricsInvalid: TCTemError {
         TCTemError(.invalidParameterValue_HpaMetricsInvalid)
     }
 
+    /// 弹性伸缩最小值/最大值不合法。
     public static var invalidParameterValue_HpaMinMaxInvalid: TCTemError {
         TCTemError(.invalidParameterValue_HpaMinMaxInvalid)
     }
 
+    /// 弹性伸缩阈值不合法。
     public static var invalidParameterValue_HpaThresholdInvalid: TCTemError {
         TCTemError(.invalidParameterValue_HpaThresholdInvalid)
     }
 
+    /// 访问配置重定向需要启用 HTTPS。
     public static var invalidParameterValue_IngressRewriteRequiredHttpsEnable: TCTemError {
         TCTemError(.invalidParameterValue_IngressRewriteRequiredHttpsEnable)
     }
@@ -390,14 +478,17 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_InvalidEksServiceType)
     }
 
+    /// 环境变量名非法，要求有由字母、数字，"."，"_" 和 "-" 组成，不能由数字开头。
     public static var invalidParameterValue_InvalidEnvName: TCTemError {
         TCTemError(.invalidParameterValue_InvalidEnvName)
     }
 
+    /// 环境变量长度不能超过1000。
     public static var invalidParameterValue_InvalidEnvValue: TCTemError {
         TCTemError(.invalidParameterValue_InvalidEnvValue)
     }
 
+    /// 挂载路径不合法，不能为 /app。
     public static var invalidParameterValue_InvalidMountPath: TCTemError {
         TCTemError(.invalidParameterValue_InvalidMountPath)
     }
@@ -412,14 +503,17 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_InvalidTenantInfo)
     }
 
+    /// JDK 版本不能为空。
     public static var invalidParameterValue_JdkVersionRequired: TCTemError {
         TCTemError(.invalidParameterValue_JdkVersionRequired)
     }
 
+    /// LogConfig 配置已存在。
     public static var invalidParameterValue_LogConfigAlreadyExist: TCTemError {
         TCTemError(.invalidParameterValue_LogConfigAlreadyExist)
     }
 
+    /// 必须提供PortMapping规则。
     public static var invalidParameterValue_MustProvidePortMappingRules: TCTemError {
         TCTemError(.invalidParameterValue_MustProvidePortMappingRules)
     }
@@ -449,6 +543,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_NamespaceResourceReachMaximum)
     }
 
+    /// 操作系统不支持。
     public static var invalidParameterValue_OsNotSupport: TCTemError {
         TCTemError(.invalidParameterValue_OsNotSupport)
     }
@@ -458,8 +553,14 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_PortDuplicateError)
     }
 
+    /// 服务端口是保留端口。
     public static var invalidParameterValue_PortIsReserved: TCTemError {
         TCTemError(.invalidParameterValue_PortIsReserved)
+    }
+
+    /// post start 不合法。
+    public static var invalidParameterValue_PostStartNotValid: TCTemError {
+        TCTemError(.invalidParameterValue_PostStartNotValid)
     }
 
     /// 公有镜像参数错误。
@@ -467,10 +568,12 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_PublicRepoTypeParameterError)
     }
 
+    /// 注册中心没有与当前环境绑定。
     public static var invalidParameterValue_RegistryNotBind: TCTemError {
         TCTemError(.invalidParameterValue_RegistryNotBind)
     }
 
+    /// 弹性伸缩名称已存在。
     public static var invalidParameterValue_ScalerNameDuplicated: TCTemError {
         TCTemError(.invalidParameterValue_ScalerNameDuplicated)
     }
@@ -505,14 +608,17 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_ServiceReachMaximum)
     }
 
+    /// 服务名使用了保留后缀。
     public static var invalidParameterValue_ServiceUseReserveSuffix: TCTemError {
         TCTemError(.invalidParameterValue_ServiceUseReserveSuffix)
     }
 
+    /// 企业版 TCR 实例名称不合法。
     public static var invalidParameterValue_TcrEntInstanceNameNotValid: TCTemError {
         TCTemError(.invalidParameterValue_TcrEntInstanceNameNotValid)
     }
 
+    /// 不是合法的TEM ID。
     public static var invalidParameterValue_TemIdInvalid: TCTemError {
         TCTemError(.invalidParameterValue_TemIdInvalid)
     }
@@ -522,6 +628,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_TraitsTracingNotSupported)
     }
 
+    /// version 不能超过128位。
     public static var invalidParameterValue_VersionLengthLimit: TCTemError {
         TCTemError(.invalidParameterValue_VersionLengthLimit)
     }
@@ -536,34 +643,57 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.invalidParameterValue_VersionRouteRateNotZero)
     }
 
+    /// vpc错误, 与环境vpc不一致。
+    public static var invalidParameterValue_VpcInvalid: TCTemError {
+        TCTemError(.invalidParameterValue_VpcInvalid)
+    }
+
+    /// 应用访问配置服务数量达到上限。
     public static var invalidParameter_ApplicationAccessServiceReachMaximum: TCTemError {
         TCTemError(.invalidParameter_ApplicationAccessServiceReachMaximum)
     }
 
+    /// LB类型服务不能同时支持TCP和UDP。
     public static var invalidParameter_LBServiceCannotSupportTcpUdpSameTime: TCTemError {
         TCTemError(.invalidParameter_LBServiceCannotSupportTcpUdpSameTime)
     }
 
+    /// 必须提供PortMapping规则。
     public static var invalidParameter_MustProvidePortMappingRules: TCTemError {
         TCTemError(.invalidParameter_MustProvidePortMappingRules)
     }
 
+    /// 服务名不符合规范。
     public static var invalidParameter_ServiceNameNotValid: TCTemError {
         TCTemError(.invalidParameter_ServiceNameNotValid)
     }
 
+    /// 服务名使用了保留后缀。
     public static var invalidParameter_ServiceUseReserveSuffix: TCTemError {
         TCTemError(.invalidParameter_ServiceUseReserveSuffix)
     }
 
+    /// PortMapping规则数量超过限制。
     public static var invalidParameter_TooManyPortMappingRules: TCTemError {
         TCTemError(.invalidParameter_TooManyPortMappingRules)
     }
 
+    /// 权限不足或缺少相关角色
+    public static var invalidParameter_UnauthorizedOrMissingRole: TCTemError {
+        TCTemError(.invalidParameter_UnauthorizedOrMissingRole)
+    }
+
+    /// 自动创建将超过 vpc 限额。
+    public static var invalidParameter_VpcOverQuota: TCTemError {
+        TCTemError(.invalidParameter_VpcOverQuota)
+    }
+
+    /// 弹性规则名称不能为空。
     public static var missingParameter_AutoScalerNameNull: TCTemError {
         TCTemError(.missingParameter_AutoScalerNameNull)
     }
 
+    /// 部署方式不能为空。
     public static var missingParameter_DeployModeNull: TCTemError {
         TCTemError(.missingParameter_DeployModeNull)
     }
@@ -573,14 +703,22 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.missingParameter_DeployVersionNull)
     }
 
+    /// 环境名称不能为空。
     public static var missingParameter_EnvironmentNameNull: TCTemError {
         TCTemError(.missingParameter_EnvironmentNameNull)
     }
 
+    /// 镜像仓库不能为空。
+    public static var missingParameter_ImgRepoNull: TCTemError {
+        TCTemError(.missingParameter_ImgRepoNull)
+    }
+
+    /// logset 和 topic 不能为空。
     public static var missingParameter_LogsetOrTopicNull: TCTemError {
         TCTemError(.missingParameter_LogsetOrTopicNull)
     }
 
+    /// 弹性伸缩配置最大值/最小值不能为空。
     public static var missingParameter_MinMaxNumNull: TCTemError {
         TCTemError(.missingParameter_MinMaxNumNull)
     }
@@ -595,6 +733,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.missingParameter_PkgNameNull)
     }
 
+    /// 弹性规则ID不能为空。
     public static var missingParameter_ScalerIdNull: TCTemError {
         TCTemError(.missingParameter_ScalerIdNull)
     }
@@ -611,6 +750,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.missingParameter_SvcRepoNotReady)
     }
 
+    /// 企业版 TCR 实例名称不能为空。
     public static var missingParameter_TcrEntInstanceNameNull: TCTemError {
         TCTemError(.missingParameter_TcrEntInstanceNameNull)
     }
@@ -620,19 +760,24 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.missingParameter_VpcServiceSubnetNull)
     }
 
+    /// 账户余额不足。
     public static var operationDenied_BalanceNotEnough: TCTemError {
         TCTemError(.operationDenied_BalanceNotEnough)
     }
 
+    /// 账号欠费状态下不支持该操作，请冲正后重试。
+    ///
     /// 账户欠费，请充值。
     public static var operationDenied_ResourceIsolated: TCTemError {
         TCTemError(.operationDenied_ResourceIsolated)
     }
 
+    /// 环境已锁定。
     public static var resourceInUse_EnvironmentAlreadyLocked: TCTemError {
         TCTemError(.resourceInUse_EnvironmentAlreadyLocked)
     }
 
+    /// 你操作的资源已被其他操作占用，请稍后重试。
     public static var resourceInUse_ResourceAlreadyLocked: TCTemError {
         TCTemError(.resourceInUse_ResourceAlreadyLocked)
     }
@@ -647,9 +792,19 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.resourceInUse_ServiceDeploying)
     }
 
+    /// 配置不存在。
+    public static var resourceNotFound_ConfigDataNotFound: TCTemError {
+        TCTemError(.resourceNotFound_ConfigDataNotFound)
+    }
+
     /// 未提供该接口。
     public static var resourceNotFound_InterfaceNotFound: TCTemError {
         TCTemError(.resourceNotFound_InterfaceNotFound)
+    }
+
+    /// 日志配置不存在。
+    public static var resourceNotFound_LogConfigNotFound: TCTemError {
+        TCTemError(.resourceNotFound_LogConfigNotFound)
     }
 
     /// 目标微服务已离线。
@@ -682,10 +837,12 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.resourceNotFound_VersionServiceNotFound)
     }
 
+    /// 有资源依赖，无法直接删除应用。
     public static var resourceUnavailable_ApplicationNotDeletable: TCTemError {
         TCTemError(.resourceUnavailable_ApplicationNotDeletable)
     }
 
+    /// 应用已停止。
     public static var resourceUnavailable_ApplicationStopped: TCTemError {
         TCTemError(.resourceUnavailable_ApplicationStopped)
     }
@@ -695,6 +852,7 @@ public struct TCTemError: TCTemErrorType {
         TCTemError(.resourceUnavailable_WaitForKruise)
     }
 
+    /// 缺少容器服务的 CLS 日志角色，请打开控制台授权。
     public static var unauthorizedOperation_MissingEksLogRole: TCTemError {
         TCTemError(.unauthorizedOperation_MissingEksLogRole)
     }

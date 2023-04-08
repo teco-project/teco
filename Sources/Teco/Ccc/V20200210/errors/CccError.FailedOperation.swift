@@ -56,14 +56,17 @@ extension TCCccError {
             FailedOperation(.callOutFailed)
         }
 
+        /// 被叫号码外呼受限。
         public static var calleeIsLimited: FailedOperation {
             FailedOperation(.calleeIsLimited)
         }
 
+        /// 主叫号码外呼超频。
         public static var callerOverFrequency: FailedOperation {
             FailedOperation(.callerOverFrequency)
         }
 
+        /// 当前号码状态不能被修改。
         public static var curStateNotAllowModify: FailedOperation {
             FailedOperation(.curStateNotAllowModify)
         }
@@ -73,6 +76,7 @@ extension TCCccError {
             FailedOperation(.duplicatedAccount)
         }
 
+        /// 无可用的外呼号码。
         public static var noCallOutNumber: FailedOperation {
             FailedOperation(.noCallOutNumber)
         }
@@ -84,6 +88,7 @@ extension TCCccError {
             FailedOperation(.permissionDenied)
         }
 
+        /// 坐席处于忙碌状态。
         public static var seatStatusBusy: FailedOperation {
             FailedOperation(.seatStatusBusy)
         }

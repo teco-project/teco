@@ -26,6 +26,7 @@ extension TCSesError {
             case illegalSenderName = "InvalidParameterValue.IllegalSenderName"
             case inValidTemplateData = "InvalidParameterValue.InValidTemplateData"
             case invalidEmailIdentity = "InvalidParameterValue.InvalidEmailIdentity"
+            case invalidSmtpPassWord = "InvalidParameterValue.InvalidSmtpPassWord"
             case noSuchSender = "InvalidParameterValue.NoSuchSender"
             case notExistDomain = "InvalidParameterValue.NotExistDomain"
             case receiverDescIllegal = "InvalidParameterValue.ReceiverDescIllegal"
@@ -102,11 +103,15 @@ extension TCSesError {
             InvalidParameterValue(.illegalEmailAddress)
         }
 
+        /// 发信人别名错误。
+        ///
         /// 创建发信人地址时，别名错误。别名不能为一个邮箱地址
         public static var illegalSenderName: InvalidParameterValue {
             InvalidParameterValue(.illegalSenderName)
         }
 
+        /// 收件人地址附带的模板参数不能包含html标签。
+        ///
         /// 存在某一个收件人地址附带的模板参数不能包含html标签。请逐条检查收件人地址附带的模板参数。
         public static var inValidTemplateData: InvalidParameterValue {
             InvalidParameterValue(.inValidTemplateData)
@@ -115,6 +120,11 @@ extension TCSesError {
         /// 域名取值错误。
         public static var invalidEmailIdentity: InvalidParameterValue {
             InvalidParameterValue(.invalidEmailIdentity)
+        }
+
+        /// 密码长度为10~20位，且必须至少包含2位不重复的数字、小写字母、大写字母。
+        public static var invalidSmtpPassWord: InvalidParameterValue {
+            InvalidParameterValue(.invalidSmtpPassWord)
         }
 
         /// 您没有这个发件地址，请检查是否存在。
@@ -132,6 +142,8 @@ extension TCSesError {
             InvalidParameterValue(.receiverDescIllegal)
         }
 
+        /// 收件人地址错误。
+        ///
         /// 批量发信或单条发信，，收件人地址错误
         public static var receiverEmailInvalid: InvalidParameterValue {
             InvalidParameterValue(.receiverEmailInvalid)
@@ -176,18 +188,20 @@ extension TCSesError {
             InvalidParameterValue(.templateContentIsWrong)
         }
 
-        /// 变量设置必须为json格式。
-        ///
         /// 模板参数必须为json格式。
         public static var templateDataError: InvalidParameterValue {
             InvalidParameterValue(.templateDataError)
         }
 
+        /// 模板参数变量名与之前不一致。
+        ///
         /// 模板参数变量与之前不一致。向收件人列表追加收件人地址及模板参数变量时，模板参数变量名与首次上传时不一致造成。请修改模板参数变量名。
         public static var templateDataInconsistent: InvalidParameterValue {
             InvalidParameterValue(.templateDataInconsistent)
         }
 
+        /// 单条收件人地址附带的模板参数(整个 JSON 结构)， 长度超过限制 800 bytes
+        ///
         /// 收件人地址附带的模板参数长度超过限制，具体指TemplateData字段的长度。在控制台上传时，变量名和变量值为转成成json字符串，再计算长度。请参考API文档，调整TemplateData字段长度，在控制台上传时，减少变量个数或者缩短变量值
         public static var templateDataLenLimit: InvalidParameterValue {
             InvalidParameterValue(.templateDataLenLimit)
@@ -246,6 +260,8 @@ extension TCSesError {
                 code = .invalidParameterValue_InValidTemplateData
             case .invalidEmailIdentity:
                 code = .invalidParameterValue_InvalidEmailIdentity
+            case .invalidSmtpPassWord:
+                code = .invalidParameterValue_InvalidSmtpPassWord
             case .noSuchSender:
                 code = .invalidParameterValue_NoSuchSender
             case .notExistDomain:

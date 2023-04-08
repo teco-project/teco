@@ -58,6 +58,8 @@ extension Ocr {
     /// 金融票据整单识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillOCR(_ input: FinanBillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FinanBillOCRResponse> {
         self.client.execute(action: "FinanBillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,6 +68,8 @@ extension Ocr {
     /// 金融票据整单识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillOCR(_ input: FinanBillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillOCRResponse {
         try await self.client.execute(action: "FinanBillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -74,6 +78,8 @@ extension Ocr {
     /// 金融票据整单识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FinanBillOCRResponse> {
         self.finanBillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -82,6 +88,8 @@ extension Ocr {
     /// 金融票据整单识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。整单识别包括支票（含现金支票、普通支票、转账支票），承兑汇票（含银行承兑汇票、商业承兑汇票）以及进账单等，适用于中国人民银行印发的 2010 版银行票据凭证版式（银发[2010]299 号）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillOCRResponse {
         try await self.finanBillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

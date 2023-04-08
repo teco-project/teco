@@ -20,6 +20,7 @@ extension TCIotcloudError {
             case accountIsolated = "FailedOperation.AccountIsolated"
             case alreadyDistributionDevice = "FailedOperation.AlreadyDistributionDevice"
             case bindDeviceOverLimit = "FailedOperation.BindDeviceOverLimit"
+            case bindDevicePerOnceOverLimit = "FailedOperation.BindDevicePerOnceOverLimit"
             case broadcastTaskIsRunning = "FailedOperation.BroadcastTaskIsRunning"
             case deviceAlreadyDisabled = "FailedOperation.DeviceAlreadyDisabled"
             case deviceFirmwareTaskAlreadDone = "FailedOperation.DeviceFirmwareTaskAlreadDone"
@@ -34,6 +35,7 @@ extension TCIotcloudError {
             case productNotBind = "FailedOperation.ProductNotBind"
             case productResourceDuplicate = "FailedOperation.ProductResourceDuplicate"
             case proxyIPIsNotEnough = "FailedOperation.ProxyIPIsNotEnough"
+            case resourceFileNotMatch = "FailedOperation.ResourceFileNotMatch"
             case rrpcTimeout = "FailedOperation.RRPCTimeout"
             case ruleAlreadyDisabled = "FailedOperation.RuleAlreadyDisabled"
             case ruleAlreadyEnabled = "FailedOperation.RuleAlreadyEnabled"
@@ -79,6 +81,13 @@ extension TCIotcloudError {
         /// 绑定设备超过限制。
         public static var bindDeviceOverLimit: FailedOperation {
             FailedOperation(.bindDeviceOverLimit)
+        }
+
+        /// 单次绑定的设备数量超过限制。
+        ///
+        /// 减少绑定的设备数
+        public static var bindDevicePerOnceOverLimit: FailedOperation {
+            FailedOperation(.bindDevicePerOnceOverLimit)
         }
 
         /// 广播任务正在执行。
@@ -151,6 +160,11 @@ extension TCIotcloudError {
             FailedOperation(.proxyIPIsNotEnough)
         }
 
+        /// 资源文件MD5或者大小不一致。
+        public static var resourceFileNotMatch: FailedOperation {
+            FailedOperation(.resourceFileNotMatch)
+        }
+
         /// RRPC接口未收到设备端响应。
         public static var rrpcTimeout: FailedOperation {
             FailedOperation(.rrpcTimeout)
@@ -190,6 +204,8 @@ extension TCIotcloudError {
                 code = .failedOperation_AlreadyDistributionDevice
             case .bindDeviceOverLimit:
                 code = .failedOperation_BindDeviceOverLimit
+            case .bindDevicePerOnceOverLimit:
+                code = .failedOperation_BindDevicePerOnceOverLimit
             case .broadcastTaskIsRunning:
                 code = .failedOperation_BroadcastTaskIsRunning
             case .deviceAlreadyDisabled:
@@ -218,6 +234,8 @@ extension TCIotcloudError {
                 code = .failedOperation_ProductResourceDuplicate
             case .proxyIPIsNotEnough:
                 code = .failedOperation_ProxyIPIsNotEnough
+            case .resourceFileNotMatch:
+                code = .failedOperation_ResourceFileNotMatch
             case .rrpcTimeout:
                 code = .failedOperation_RRPCTimeout
             case .ruleAlreadyDisabled:

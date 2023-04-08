@@ -50,26 +50,30 @@ extension Tdmq {
     }
 
     /// 删除Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
-        self.client.execute(action: "DeleteAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPExchange is no longer available.")
     }
 
     /// 删除Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
-        try await self.client.execute(action: "DeleteAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAMQPExchange is no longer available.")
     }
 
     /// 删除Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
-        self.deleteAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPExchange is no longer available.")
     }
 
     /// 删除Amqp交换机
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
-        try await self.deleteAMQPExchange(.init(clusterId: clusterId, vHostId: vHostId, exchange: exchange), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPExchange is no longer available.")
     }
 }

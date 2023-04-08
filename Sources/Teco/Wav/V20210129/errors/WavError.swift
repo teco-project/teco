@@ -38,6 +38,7 @@ public struct TCWavError: TCWavErrorType {
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
         case unauthorizedOperation = "UnauthorizedOperation"
+        case unknownParameter = "UnknownParameter"
     }
 
     /// Error domains affliated to ``TCWavError``.
@@ -143,6 +144,11 @@ public struct TCWavError: TCWavErrorType {
     /// 未授权操作。
     public static var unauthorizedOperation: TCWavError {
         TCWavError(.unauthorizedOperation)
+    }
+
+    /// 未知参数错误。
+    public static var unknownParameter: TCWavError {
+        TCWavError(.unknownParameter)
     }
 
     public func asWavError() -> TCWavError {

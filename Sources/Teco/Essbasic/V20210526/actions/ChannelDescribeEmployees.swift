@@ -22,7 +22,7 @@ extension Essbasic {
         /// 返回最大数量，最大为20
         public let limit: Int64
 
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
 
         /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]
@@ -33,7 +33,7 @@ extension Essbasic {
         /// 偏移量，默认为0，最大为20000
         public let offset: Int64?
 
-        /// 操作者的信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, operator: UserInfo? = nil) {

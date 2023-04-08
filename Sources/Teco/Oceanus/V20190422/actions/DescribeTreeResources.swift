@@ -31,34 +31,64 @@ extension Oceanus {
 
     /// DescribeTreeResources返回参数结构体
     public struct DescribeTreeResourcesResponse: TCResponseModel {
+        /// 父节点ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentId: String?
+
+        /// 文件夹ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 文件夹名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 文件列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let items: [TreeResourceItem]?
+
+        /// 子目录列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let children: [DescribeTreeResourcesRsp]?
+
+        /// 资源总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case parentId = "ParentId"
+            case id = "Id"
+            case name = "Name"
+            case items = "Items"
+            case children = "Children"
+            case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
 
     /// 查询树状结构资源列表
-    @inlinable @discardableResult
+    @inlinable
     public func describeTreeResources(_ input: DescribeTreeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeResourcesResponse> {
         self.client.execute(action: "DescribeTreeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询树状结构资源列表
-    @inlinable @discardableResult
+    @inlinable
     public func describeTreeResources(_ input: DescribeTreeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
         try await self.client.execute(action: "DescribeTreeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询树状结构资源列表
-    @inlinable @discardableResult
+    @inlinable
     public func describeTreeResources(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeResourcesResponse> {
         self.describeTreeResources(.init(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询树状结构资源列表
-    @inlinable @discardableResult
+    @inlinable
     public func describeTreeResources(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
         try await self.describeTreeResources(.init(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

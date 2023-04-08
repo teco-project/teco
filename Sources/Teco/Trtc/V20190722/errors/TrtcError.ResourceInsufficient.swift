@@ -42,6 +42,7 @@ extension TCTrtcError {
             self.context = context
         }
 
+        /// 资源不足。
         public static var requestRejection: ResourceInsufficient {
             ResourceInsufficient(.requestRejection)
         }

@@ -32,12 +32,16 @@ extension Iotexplorer {
         /// 是否打开二进制转Json功能, 取值为字符串 true/false
         public let enableProductScript: String?
 
-        public init(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil) {
+        /// 传1或者2；1代表强踢，2代表非强踢。传其它值不做任何处理
+        public let bindStrategy: UInt64?
+
+        public init(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, bindStrategy: UInt64? = nil) {
             self.productId = productId
             self.productName = productName
             self.productDesc = productDesc
             self.moduleId = moduleId
             self.enableProductScript = enableProductScript
+            self.bindStrategy = bindStrategy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +50,7 @@ extension Iotexplorer {
             case productDesc = "ProductDesc"
             case moduleId = "ModuleId"
             case enableProductScript = "EnableProductScript"
+            case bindStrategy = "BindStrategy"
         }
     }
 
@@ -83,15 +88,15 @@ extension Iotexplorer {
     ///
     /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
     @inlinable
-    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStudioProductResponse> {
-        self.modifyStudioProduct(.init(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript), region: region, logger: logger, on: eventLoop)
+    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, bindStrategy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStudioProductResponse> {
+        self.modifyStudioProduct(.init(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript, bindStrategy: bindStrategy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改产品
     ///
     /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
     @inlinable
-    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
-        try await self.modifyStudioProduct(.init(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript), region: region, logger: logger, on: eventLoop)
+    public func modifyStudioProduct(productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil, bindStrategy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
+        try await self.modifyStudioProduct(.init(productId: productId, productName: productName, productDesc: productDesc, moduleId: moduleId, enableProductScript: enableProductScript, bindStrategy: bindStrategy), region: region, logger: logger, on: eventLoop)
     }
 }

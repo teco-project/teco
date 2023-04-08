@@ -23,14 +23,19 @@ extension Cwp {
         /// 自选服务器时生效，主机uuid的string数组
         public let uuids: [String]?
 
-        public init(vulId: UInt64, uuids: [String]? = nil) {
+        /// 扫描超时时长 ，单位秒
+        public let timeoutPeriod: UInt64?
+
+        public init(vulId: UInt64, uuids: [String]? = nil, timeoutPeriod: UInt64? = nil) {
             self.vulId = vulId
             self.uuids = uuids
+            self.timeoutPeriod = timeoutPeriod
         }
 
         enum CodingKeys: String, CodingKey {
             case vulId = "VulId"
             case uuids = "Uuids"
+            case timeoutPeriod = "TimeoutPeriod"
         }
     }
 
@@ -64,15 +69,15 @@ extension Cwp {
     ///
     /// 创建应急漏洞扫描任务
     @inlinable @discardableResult
-    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmergencyVulScanResponse> {
-        self.createEmergencyVulScan(.init(vulId: vulId, uuids: uuids), region: region, logger: logger, on: eventLoop)
+    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, timeoutPeriod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmergencyVulScanResponse> {
+        self.createEmergencyVulScan(.init(vulId: vulId, uuids: uuids, timeoutPeriod: timeoutPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应急漏洞扫描
     ///
     /// 创建应急漏洞扫描任务
     @inlinable @discardableResult
-    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
-        try await self.createEmergencyVulScan(.init(vulId: vulId, uuids: uuids), region: region, logger: logger, on: eventLoop)
+    public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, timeoutPeriod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
+        try await self.createEmergencyVulScan(.init(vulId: vulId, uuids: uuids, timeoutPeriod: timeoutPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

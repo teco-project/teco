@@ -25,8 +25,10 @@ public protocol TCEmrErrorType: TCServiceErrorType {
 public struct TCEmrError: TCEmrErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
+        case failedOperation_CheckIfSupportPodStretch = "FailedOperation.CheckIfSupportPodStretch"
         case failedOperation_DuplicateOrderNotAllowed = "FailedOperation.DuplicateOrderNotAllowed"
         case failedOperation_NotSupportPod = "FailedOperation.NotSupportPod"
+        case failedOperation_RefundCvmFailed = "FailedOperation.RefundCvmFailed"
         case internalError = "InternalError"
         case internalError_AccountCgwError = "InternalError.AccountCgwError"
         case internalError_CamCgwError = "InternalError.CamCgwError"
@@ -55,6 +57,7 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_HALessMasterCount = "InvalidParameter.HALessMasterCount"
         case invalidParameter_IncorrectCommonCount = "InvalidParameter.IncorrectCommonCount"
         case invalidParameter_IncorrectMasterCount = "InvalidParameter.IncorrectMasterCount"
+        case invalidParameter_InvalidAllNodeResourceSpec = "InvalidParameter.InvalidAllNodeResourceSpec"
         case invalidParameter_InvalidAppId = "InvalidParameter.InvalidAppId"
         case invalidParameter_InvalidAutoRenew = "InvalidParameter.InvalidAutoRenew"
         case invalidParameter_InvalidBootstrapAction = "InvalidParameter.InvalidBootstrapAction"
@@ -68,11 +71,13 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_InvalidCount = "InvalidParameter.InvalidCount"
         case invalidParameter_InvalidCountNum = "InvalidParameter.InvalidCountNum"
         case invalidParameter_InvalidCustomizedPodParam = "InvalidParameter.InvalidCustomizedPodParam"
+        case invalidParameter_InvalidDependServiceAndEnableKerberosConflict = "InvalidParameter.InvalidDependServiceAndEnableKerberosConflict"
         case invalidParameter_InvalidDiskSize = "InvalidParameter.InvalidDiskSize"
         case invalidParameter_InvalidEksInstance = "InvalidParameter.InvalidEksInstance"
         case invalidParameter_InvalidExtendField = "InvalidParameter.InvalidExtendField"
         case invalidParameter_InvalidFailurePolicy = "InvalidParameter.InvalidFailurePolicy"
         case invalidParameter_InvalidInstance = "InvalidParameter.InvalidInstance"
+        case invalidParameter_InvalidInstanceChargeType = "InvalidParameter.InvalidInstanceChargeType"
         case invalidParameter_InvalidInstanceName = "InvalidParameter.InvalidInstanceName"
         case invalidParameter_InvalidInstancePolicy = "InvalidParameter.InvalidInstancePolicy"
         case invalidParameter_InvalidInstanceType = "InvalidParameter.InvalidInstanceType"
@@ -89,9 +94,12 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_InvalidPreExecutedFile = "InvalidParameter.InvalidPreExecutedFile"
         case invalidParameter_InvalidProduct = "InvalidParameter.InvalidProduct"
         case invalidParameter_InvalidProductId = "InvalidParameter.InvalidProductId"
+        case invalidParameter_InvalidProductVersion = "InvalidParameter.InvalidProductVersion"
         case invalidParameter_InvalidProjectId = "InvalidParameter.InvalidProjectId"
+        case invalidParameter_InvalidRenewFlag = "InvalidParameter.InvalidRenewFlag"
         case invalidParameter_InvalidResourceIds = "InvalidParameter.InvalidResourceIds"
         case invalidParameter_InvalidResourceSpec = "InvalidParameter.InvalidResourceSpec"
+        case invalidParameter_InvalidScriptBootstrapActionConfig = "InvalidParameter.InvalidScriptBootstrapActionConfig"
         case invalidParameter_InvalidSecuritySupport = "InvalidParameter.InvalidSecuritySupport"
         case invalidParameter_InvalidSercurityGrpupId = "InvalidParameter.InvalidSercurityGrpupId"
         case invalidParameter_InvalidServiceName = "InvalidParameter.InvalidServiceName"
@@ -111,6 +119,7 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_InvalidUnifyMeta = "InvalidParameter.InvalidUnifyMeta"
         case invalidParameter_InvalidVpcId = "InvalidParameter.InvalidVpcId"
         case invalidParameter_InvalidZone = "InvalidParameter.InvalidZone"
+        case invalidParameter_KerberosSupport = "InvalidParameter.KerberosSupport"
         case invalidParameter_NotContainMustSelectSoftware = "InvalidParameter.NotContainMustSelectSoftware"
         case invalidParameter_OrderFieldNotMatch = "InvalidParameter.OrderFieldNotMatch"
         case invalidParameter_PayModeResourceNotMatch = "InvalidParameter.PayModeResourceNotMatch"
@@ -120,6 +129,7 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_UngrantedRole = "InvalidParameter.UngrantedRole"
         case invalidParameter_ZoneResourceNotMatch = "InvalidParameter.ZoneResourceNotMatch"
         case limitExceeded_BootstrapActionsNumLimitExceeded = "LimitExceeded.BootstrapActionsNumLimitExceeded"
+        case limitExceeded_SecurityGroupNumLimitExceeded = "LimitExceeded.SecurityGroupNumLimitExceeded"
         case missingParameter = "MissingParameter"
         case resourceInUse_InstanceInProcess = "ResourceInUse.InstanceInProcess"
         case resourceInsufficient_DiskInsufficient = "ResourceInsufficient.DiskInsufficient"
@@ -136,6 +146,7 @@ public struct TCEmrError: TCEmrErrorType {
         case resourcesSoldOut = "ResourcesSoldOut"
         case resourcesSoldOut_CbsSoldOut = "ResourcesSoldOut.CbsSoldOut"
         case resourcesSoldOut_CvmSoldOut = "ResourcesSoldOut.CvmSoldOut"
+        case unauthorizedOperation_CheckCamAuth = "UnauthorizedOperation.CheckCamAuth"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_ServiceNotSupport = "UnsupportedOperation.ServiceNotSupport"
@@ -143,7 +154,7 @@ public struct TCEmrError: TCEmrErrorType {
 
     /// Error domains affliated to ``TCEmrError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnsupportedOperation.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -173,6 +184,11 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.failedOperation)
     }
 
+    /// 操作失败。
+    public static var failedOperation_CheckIfSupportPodStretch: TCEmrError {
+        TCEmrError(.failedOperation_CheckIfSupportPodStretch)
+    }
+
     /// 重复的订单，请检查emr控制台。
     public static var failedOperation_DuplicateOrderNotAllowed: TCEmrError {
         TCEmrError(.failedOperation_DuplicateOrderNotAllowed)
@@ -181,6 +197,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 操作失败，不支持pod。
     public static var failedOperation_NotSupportPod: TCEmrError {
         TCEmrError(.failedOperation_NotSupportPod)
+    }
+
+    /// 操作失败。
+    public static var failedOperation_RefundCvmFailed: TCEmrError {
+        TCEmrError(.failedOperation_RefundCvmFailed)
     }
 
     /// 内部错误。
@@ -323,6 +344,11 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameter_IncorrectMasterCount)
     }
 
+    /// 不合法的AllNodeResourceSpec参数。
+    public static var invalidParameter_InvalidAllNodeResourceSpec: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidAllNodeResourceSpec)
+    }
+
     /// 无效参数，AppId。
     public static var invalidParameter_InvalidAppId: TCEmrError {
         TCEmrError(.invalidParameter_InvalidAppId)
@@ -388,6 +414,11 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameter_InvalidCustomizedPodParam)
     }
 
+    /// DependService和EnableKerberos参数冲突。
+    public static var invalidParameter_InvalidDependServiceAndEnableKerberosConflict: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidDependServiceAndEnableKerberosConflict)
+    }
+
     /// 无效的磁盘大小。
     public static var invalidParameter_InvalidDiskSize: TCEmrError {
         TCEmrError(.invalidParameter_InvalidDiskSize)
@@ -411,6 +442,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 无效参数，EMR实例不符合要求。
     public static var invalidParameter_InvalidInstance: TCEmrError {
         TCEmrError(.invalidParameter_InvalidInstance)
+    }
+
+    /// 不合法的实例计费模式。
+    public static var invalidParameter_InvalidInstanceChargeType: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidInstanceChargeType)
     }
 
     /// 无效的集群名称。
@@ -448,6 +484,7 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameter_InvalidMasterDiskType)
     }
 
+    /// 无效的元数据库URL。
     public static var invalidParameter_InvalidMetaDataJdbcUrl: TCEmrError {
         TCEmrError(.invalidParameter_InvalidMetaDataJdbcUrl)
     }
@@ -492,9 +529,19 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameter_InvalidProductId)
     }
 
+    /// 不合法的产品版本。
+    public static var invalidParameter_InvalidProductVersion: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidProductVersion)
+    }
+
     /// 无效的项目ID。
     public static var invalidParameter_InvalidProjectId: TCEmrError {
         TCEmrError(.invalidParameter_InvalidProjectId)
+    }
+
+    /// 不合法自动续费标识。
+    public static var invalidParameter_InvalidRenewFlag: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidRenewFlag)
     }
 
     /// 资源ID无效。
@@ -505,6 +552,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 无效的资源规格。
     public static var invalidParameter_InvalidResourceSpec: TCEmrError {
         TCEmrError(.invalidParameter_InvalidResourceSpec)
+    }
+
+    /// 不合法的引导脚本执行参数。
+    public static var invalidParameter_InvalidScriptBootstrapActionConfig: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidScriptBootstrapActionConfig)
     }
 
     /// 该EMR版本不支持开启安全模式。
@@ -602,6 +654,11 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameter_InvalidZone)
     }
 
+    /// 不合法的支持Kerberos标识。
+    public static var invalidParameter_KerberosSupport: TCEmrError {
+        TCEmrError(.invalidParameter_KerberosSupport)
+    }
+
     /// 无效参数，不满足必须组件。
     public static var invalidParameter_NotContainMustSelectSoftware: TCEmrError {
         TCEmrError(.invalidParameter_NotContainMustSelectSoftware)
@@ -645,6 +702,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 引导脚本数量超过限制。
     public static var limitExceeded_BootstrapActionsNumLimitExceeded: TCEmrError {
         TCEmrError(.limitExceeded_BootstrapActionsNumLimitExceeded)
+    }
+
+    /// 安全组数量超过限制。
+    public static var limitExceeded_SecurityGroupNumLimitExceeded: TCEmrError {
+        TCEmrError(.limitExceeded_SecurityGroupNumLimitExceeded)
     }
 
     /// 缺少参数错误。
@@ -725,6 +787,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 云服务器已售罄。
     public static var resourcesSoldOut_CvmSoldOut: TCEmrError {
         TCEmrError(.resourcesSoldOut_CvmSoldOut)
+    }
+
+    /// 校验账号操作无权限。
+    public static var unauthorizedOperation_CheckCamAuth: TCEmrError {
+        TCEmrError(.unauthorizedOperation_CheckCamAuth)
     }
 
     /// 未知参数错误。

@@ -38,7 +38,7 @@ extension Monitor {
         /// 推送CLS日志服务的操作 最多1个
         public let clsNotices: [CLSNotice]?
 
-        /// 模版绑定的标签
+        /// 模板绑定的标签
         public let tags: [Tag]?
 
         public init(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil) {

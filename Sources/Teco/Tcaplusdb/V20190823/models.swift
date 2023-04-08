@@ -209,11 +209,11 @@ extension Tcaplusdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiAccessIpv6: String?
 
-        /// 集群类型
+        /// 集群类型，0,1:共享集群; 2:独立集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: Int64?
 
-        /// 集群状态
+        /// 集群状态, 0：表示正常运行中，1：表示冻结隔离一般欠费进入此状态，2：表示待回收，一般用户主动触发删除进入这个状态，3：待释放，进入这个状态，表示可以释放此表占用的资源了，4：变更中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterStatus: Int64?
 
@@ -264,6 +264,10 @@ extension Tcaplusdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isReadOnlyUlogBackupExpireDay: UInt64?
 
+        /// restproxy状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let restProxyStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case clusterName = "ClusterName"
             case clusterId = "ClusterId"
@@ -294,6 +298,7 @@ extension Tcaplusdb {
             case txhBackupExpireDay = "TxhBackupExpireDay"
             case ulogBackupExpireDay = "UlogBackupExpireDay"
             case isReadOnlyUlogBackupExpireDay = "IsReadOnlyUlogBackupExpireDay"
+            case restProxyStatus = "RestProxyStatus"
         }
     }
 
@@ -760,12 +765,17 @@ extension Tcaplusdb {
         /// 慢处理包速度
         public let slowProcessSpeed: Int64
 
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
         enum CodingKeys: String, CodingKey {
             case proxyUid = "ProxyUid"
             case machineType = "MachineType"
             case processSpeed = "ProcessSpeed"
             case averageProcessDelay = "AverageProcessDelay"
             case slowProcessSpeed = "SlowProcessSpeed"
+            case version = "Version"
         }
     }
 
@@ -957,6 +967,10 @@ extension Tcaplusdb {
         /// 写次数
         public let writeNum: Int64
 
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
         enum CodingKeys: String, CodingKey {
             case serverUid = "ServerUid"
             case machineType = "MachineType"
@@ -964,6 +978,7 @@ extension Tcaplusdb {
             case diskRate = "DiskRate"
             case readNum = "ReadNum"
             case writeNum = "WriteNum"
+            case version = "Version"
         }
     }
 
@@ -1207,12 +1222,31 @@ extension Tcaplusdb {
         /// 表格组包含的表格存储总量（MB）
         public let totalSize: UInt64
 
+        /// 表格Txh备份文件多少天后过期删除
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let txhBackupExpireDay: UInt64?
+
+        /// 是否开启mysql负载均衡,0未开启 1开启中 2已开启
+        public let enableMysql: UInt64
+
+        /// mysql负载均衡vip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mysqlConnIp: String?
+
+        /// mysql负载均衡vport
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mysqlConnPort: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableGroupName = "TableGroupName"
             case createdTime = "CreatedTime"
             case tableCount = "TableCount"
             case totalSize = "TotalSize"
+            case txhBackupExpireDay = "TxhBackupExpireDay"
+            case enableMysql = "EnableMysql"
+            case mysqlConnIp = "MysqlConnIp"
+            case mysqlConnPort = "MysqlConnPort"
         }
     }
 

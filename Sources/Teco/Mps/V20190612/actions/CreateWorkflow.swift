@@ -26,7 +26,8 @@ extension Mps {
         /// 媒体处理的文件输出存储位置。不填则继承 Trigger 中的存储位置。
         public let outputStorage: TaskOutputStorage?
 
-        /// 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致。
+        /// 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
+        /// 如果不填，表示与触发文件所在的目录一致。
         public let outputDir: String?
 
         /// 媒体处理类型任务参数。

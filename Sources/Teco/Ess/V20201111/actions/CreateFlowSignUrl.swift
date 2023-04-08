@@ -60,7 +60,7 @@ extension Ess {
 
     /// 创建签署链接
     ///
-    /// 创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
     @inlinable
     public func createFlowSignUrl(_ input: CreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
         self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Ess {
 
     /// 创建签署链接
     ///
-    /// 创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
     @inlinable
     public func createFlowSignUrl(_ input: CreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {
         try await self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Ess {
 
     /// 创建签署链接
     ///
-    /// 创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], organization: OrganizationInfo, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
         self.createFlowSignUrl(.init(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Ess {
 
     /// 创建签署链接
     ///
-    /// 创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], organization: OrganizationInfo, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {
         try await self.createFlowSignUrl(.init(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)

@@ -61,6 +61,7 @@ extension TCKmsError {
             FailedOperation(.encryptionError)
         }
 
+        /// 标签服务错误。
         public static var taggingError: FailedOperation {
             FailedOperation(.taggingError)
         }

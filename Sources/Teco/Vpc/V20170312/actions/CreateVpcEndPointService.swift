@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 创建终端节点服务
     ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    /// 本接口（CreateVpcEndPointService）用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
         self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -78,7 +78,7 @@ extension Vpc {
 
     /// 创建终端节点服务
     ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    /// 本接口（CreateVpcEndPointService）用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
         try await self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -86,7 +86,7 @@ extension Vpc {
 
     /// 创建终端节点服务
     ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    /// 本接口（CreateVpcEndPointService）用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
         self.createVpcEndPointService(.init(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
@@ -94,7 +94,7 @@ extension Vpc {
 
     /// 创建终端节点服务
     ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    /// 本接口（CreateVpcEndPointService）用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
         try await self.createVpcEndPointService(.init(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType), region: region, logger: logger, on: eventLoop)

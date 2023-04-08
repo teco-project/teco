@@ -48,26 +48,30 @@ extension Tdid {
     }
 
     /// 查看公钥
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPublicKey(_ input: GetPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
-        self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetPublicKey is no longer available.")
     }
 
     /// 查看公钥
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPublicKey(_ input: GetPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
-        try await self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetPublicKey is no longer available.")
     }
 
     /// 查看公钥
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPublicKey(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
-        self.getPublicKey(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetPublicKey is no longer available.")
     }
 
     /// 查看公钥
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getPublicKey(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
-        try await self.getPublicKey(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetPublicKey is no longer available.")
     }
 }

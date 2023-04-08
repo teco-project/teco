@@ -17,7 +17,10 @@
 extension TCTsfError {
     public struct InvalidParameter: TCTsfErrorType {
         enum Code: String {
+            case applicationDeleteFailed = "InvalidParameter.ApplicationDeleteFailed"
             case badRequest = "InvalidParameter.BadRequest"
+            case configTemplateNameInvalid = "InvalidParameter.ConfigTemplateNameInvalid"
+            case cvmCaeMasterJsonDecodeFail = "InvalidParameter.CvmCaeMasterJsonDecodeFail"
             case cvmCaeMasterUnknownInstanceStatus = "InvalidParameter.CvmCaeMasterUnknownInstanceStatus"
             case imagerepoTcrNamespaceNotFound = "InvalidParameter.ImagerepoTcrNamespaceNotFound"
             case kubernetesParamError = "InvalidParameter.KubernetesParamError"
@@ -81,9 +84,24 @@ extension TCTsfError {
             self.context = context
         }
 
+        /// 删除应用失败。
+        public static var applicationDeleteFailed: InvalidParameter {
+            InvalidParameter(.applicationDeleteFailed)
+        }
+
         /// [%s]模块接口[%s]请求不正确（400 BAD REQUEST）。。
         public static var badRequest: InvalidParameter {
             InvalidParameter(.badRequest)
+        }
+
+        /// 配置模板名称不符合规范。
+        public static var configTemplateNameInvalid: InvalidParameter {
+            InvalidParameter(.configTemplateNameInvalid)
+        }
+
+        /// TSF MASTER 解包失败。
+        public static var cvmCaeMasterJsonDecodeFail: InvalidParameter {
+            InvalidParameter(.cvmCaeMasterJsonDecodeFail)
         }
 
         /// TSF MASTER 实例状态异常。
@@ -284,8 +302,14 @@ extension TCTsfError {
         public func asTsfError() -> TCTsfError {
             let code: TCTsfError.Code
             switch self.error {
+            case .applicationDeleteFailed:
+                code = .invalidParameter_ApplicationDeleteFailed
             case .badRequest:
                 code = .invalidParameter_BadRequest
+            case .configTemplateNameInvalid:
+                code = .invalidParameter_ConfigTemplateNameInvalid
+            case .cvmCaeMasterJsonDecodeFail:
+                code = .invalidParameter_CvmCaeMasterJsonDecodeFail
             case .cvmCaeMasterUnknownInstanceStatus:
                 code = .invalidParameter_CvmCaeMasterUnknownInstanceStatus
             case .imagerepoTcrNamespaceNotFound:

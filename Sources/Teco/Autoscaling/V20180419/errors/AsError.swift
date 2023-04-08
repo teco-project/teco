@@ -69,6 +69,7 @@ public struct TCAsError: TCAsErrorType {
         case invalidParameterValue_InvalidAutoScalingNotificationId = "InvalidParameterValue.InvalidAutoScalingNotificationId"
         case invalidParameterValue_InvalidAutoScalingPolicyId = "InvalidParameterValue.InvalidAutoScalingPolicyId"
         case invalidParameterValue_InvalidClbRegion = "InvalidParameterValue.InvalidClbRegion"
+        case invalidParameterValue_InvalidDisasterRecoverGroupId = "InvalidParameterValue.InvalidDisasterRecoverGroupId"
         case invalidParameterValue_InvalidFilter = "InvalidParameterValue.InvalidFilter"
         case invalidParameterValue_InvalidHpcClusterId = "InvalidParameterValue.InvalidHpcClusterId"
         case invalidParameterValue_InvalidImageId = "InvalidParameterValue.InvalidImageId"
@@ -100,6 +101,7 @@ public struct TCAsError: TCAsErrorType {
         case invalidParameterValue_StartTimeBeforeCurrentTime = "InvalidParameterValue.StartTimeBeforeCurrentTime"
         case invalidParameterValue_SubnetIds = "InvalidParameterValue.SubnetIds"
         case invalidParameterValue_TargetPortDuplicated = "InvalidParameterValue.TargetPortDuplicated"
+        case invalidParameterValue_TargetTrackingScalingPolicy = "InvalidParameterValue.TargetTrackingScalingPolicy"
         case invalidParameterValue_ThresholdOutOfRange = "InvalidParameterValue.ThresholdOutOfRange"
         case invalidParameterValue_TimeFormat = "InvalidParameterValue.TimeFormat"
         case invalidParameterValue_TooLong = "InvalidParameterValue.TooLong"
@@ -128,6 +130,7 @@ public struct TCAsError: TCAsErrorType {
         case limitExceeded_MinSizeLimitExceeded = "LimitExceeded.MinSizeLimitExceeded"
         case limitExceeded_QuotaNotEnough = "LimitExceeded.QuotaNotEnough"
         case limitExceeded_ScheduledActionLimitExceeded = "LimitExceeded.ScheduledActionLimitExceeded"
+        case limitExceeded_TargetTrackingScalingPolicy = "LimitExceeded.TargetTrackingScalingPolicy"
         case missingParameter = "MissingParameter"
         case missingParameter_InScenario = "MissingParameter.InScenario"
         case missingParameter_InstanceMarketOptions = "MissingParameter.InstanceMarketOptions"
@@ -144,11 +147,13 @@ public struct TCAsError: TCAsErrorType {
         case resourceNotFound_BandwidthPackageIdNotFound = "ResourceNotFound.BandwidthPackageIdNotFound"
         case resourceNotFound_CmqQueueNotFound = "ResourceNotFound.CmqQueueNotFound"
         case resourceNotFound_CommandNotFound = "ResourceNotFound.CommandNotFound"
+        case resourceNotFound_DisasterRecoverGroupNotFound = "ResourceNotFound.DisasterRecoverGroupNotFound"
         case resourceNotFound_InstancesNotFound = "ResourceNotFound.InstancesNotFound"
         case resourceNotFound_InstancesNotInAutoScalingGroup = "ResourceNotFound.InstancesNotInAutoScalingGroup"
         case resourceNotFound_LaunchConfigurationIdNotFound = "ResourceNotFound.LaunchConfigurationIdNotFound"
         case resourceNotFound_LifecycleHookInstanceNotFound = "ResourceNotFound.LifecycleHookInstanceNotFound"
         case resourceNotFound_LifecycleHookNotFound = "ResourceNotFound.LifecycleHookNotFound"
+        case resourceNotFound_LifecycleHookTokenNotFound = "ResourceNotFound.LifecycleHookTokenNotFound"
         case resourceNotFound_ListenerNotFound = "ResourceNotFound.ListenerNotFound"
         case resourceNotFound_LoadBalancerNotFound = "ResourceNotFound.LoadBalancerNotFound"
         case resourceNotFound_LoadBalancerNotInAutoScalingGroup = "ResourceNotFound.LoadBalancerNotInAutoScalingGroup"
@@ -162,6 +167,7 @@ public struct TCAsError: TCAsErrorType {
         case resourceUnavailable_AutoScalingGroupInActivity = "ResourceUnavailable.AutoScalingGroupInActivity"
         case resourceUnavailable_CmqTopicHasNoSubscriber = "ResourceUnavailable.CmqTopicHasNoSubscriber"
         case resourceUnavailable_CvmVpcInconsistent = "ResourceUnavailable.CvmVpcInconsistent"
+        case resourceUnavailable_ForbiddenModifyVpc = "ResourceUnavailable.ForbiddenModifyVpc"
         case resourceUnavailable_InstanceCannotAttach = "ResourceUnavailable.InstanceCannotAttach"
         case resourceUnavailable_InstanceInOperation = "ResourceUnavailable.InstanceInOperation"
         case resourceUnavailable_InstanceNotSupportStopCharging = "ResourceUnavailable.InstanceNotSupportStopCharging"
@@ -256,6 +262,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.internalError_CallStsError)
     }
 
+    /// TAT 接口调用失败。
     public static var internalError_CallTATError: TCAsError {
         TCAsError(.internalError_CallTATError)
     }
@@ -315,6 +322,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue)
     }
 
+    /// 当前账户不支持带宽包ID参数。
     public static var invalidParameterValue_AccountNotSupportBandwidthPackageId: TCAsError {
         TCAsError(.invalidParameterValue_AccountNotSupportBandwidthPackageId)
     }
@@ -386,6 +394,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_HostNameIllegal)
     }
 
+    /// 指定的IPv6公网带宽计费模式不合法。
     public static var invalidParameterValue_IPv6InternetChargeType: TCAsError {
         TCAsError(.invalidParameterValue_IPv6InternetChargeType)
     }
@@ -432,11 +441,17 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_InvalidClbRegion)
     }
 
+    /// 请提供规范的置放群组ID，类似ps-xxxxxxxx，字母x代表小写字符或者数字。
+    public static var invalidParameterValue_InvalidDisasterRecoverGroupId: TCAsError {
+        TCAsError(.invalidParameterValue_InvalidDisasterRecoverGroupId)
+    }
+
     /// 过滤条件无效。
     public static var invalidParameterValue_InvalidFilter: TCAsError {
         TCAsError(.invalidParameterValue_InvalidFilter)
     }
 
+    /// 高性能计算集群ID无效。
     public static var invalidParameterValue_InvalidHpcClusterId: TCAsError {
         TCAsError(.invalidParameterValue_InvalidHpcClusterId)
     }
@@ -488,6 +503,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_InvalidScheduledActionNameIncludeIllegalChar)
     }
 
+    /// 安全组ID无效。
     public static var invalidParameterValue_InvalidSecurityGroupId: TCAsError {
         TCAsError(.invalidParameterValue_InvalidSecurityGroupId)
     }
@@ -527,6 +543,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_LimitExceeded)
     }
 
+    /// 当前账户在带宽包模式中必须填写带宽包ID参数。
     public static var invalidParameterValue_MissingBandwidthPackageId: TCAsError {
         TCAsError(.invalidParameterValue_MissingBandwidthPackageId)
     }
@@ -586,6 +603,11 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_TargetPortDuplicated)
     }
 
+    /// 不支持执行目标追踪策略。
+    public static var invalidParameterValue_TargetTrackingScalingPolicy: TCAsError {
+        TCAsError(.invalidParameterValue_TargetTrackingScalingPolicy)
+    }
+
     /// 指定的阈值不在有效范围。
     public static var invalidParameterValue_ThresholdOutOfRange: TCAsError {
         TCAsError(.invalidParameterValue_ThresholdOutOfRange)
@@ -626,6 +648,8 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_ZoneMismatchRegion)
     }
 
+    /// 无效的Action请求。
+    ///
     /// 请检查Action参数是否正确。
     public static var invalidParameter_ActionNotFound: TCAsError {
         TCAsError(.invalidParameter_ActionNotFound)
@@ -661,6 +685,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameter_MustOneParameter)
     }
 
+    /// 该参数已废弃。
     public static var invalidParameter_ParameterDeprecated: TCAsError {
         TCAsError(.invalidParameter_ParameterDeprecated)
     }
@@ -725,6 +750,11 @@ public struct TCAsError: TCAsErrorType {
     /// 定时任务数量超过限制。
     public static var limitExceeded_ScheduledActionLimitExceeded: TCAsError {
         TCAsError(.limitExceeded_ScheduledActionLimitExceeded)
+    }
+
+    /// 每个伸缩组限制创建一个目标追踪策略。
+    public static var limitExceeded_TargetTrackingScalingPolicy: TCAsError {
+        TCAsError(.limitExceeded_TargetTrackingScalingPolicy)
     }
 
     /// 缺少参数错误。
@@ -792,6 +822,7 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceNotFound_AutoScalingNotificationNotFound)
     }
 
+    /// 指定的带宽包ID不存在。
     public static var resourceNotFound_BandwidthPackageIdNotFound: TCAsError {
         TCAsError(.resourceNotFound_BandwidthPackageIdNotFound)
     }
@@ -803,8 +834,14 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceNotFound_CmqQueueNotFound)
     }
 
+    /// 命令不存在。
     public static var resourceNotFound_CommandNotFound: TCAsError {
         TCAsError(.resourceNotFound_CommandNotFound)
+    }
+
+    /// 请检查输入的置放群组ID是否正确，是否为当前地域的置放群组。
+    public static var resourceNotFound_DisasterRecoverGroupNotFound: TCAsError {
+        TCAsError(.resourceNotFound_DisasterRecoverGroupNotFound)
     }
 
     /// 指定的实例不存在。
@@ -830,6 +867,13 @@ public struct TCAsError: TCAsErrorType {
     /// 无法找到指定生命周期挂钩。
     public static var resourceNotFound_LifecycleHookNotFound: TCAsError {
         TCAsError(.resourceNotFound_LifecycleHookNotFound)
+    }
+
+    /// 指定的生命周期挂钩Token不存在。
+    ///
+    /// 配置TDMQ接收生命周期挂钩通知的消息，可从消息中获取对应Token，也可使用InstanceId代替该参数。
+    public static var resourceNotFound_LifecycleHookTokenNotFound: TCAsError {
+        TCAsError(.resourceNotFound_LifecycleHookTokenNotFound)
     }
 
     /// 指定的Listener不存在。
@@ -899,6 +943,14 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceUnavailable_CvmVpcInconsistent)
     }
 
+    /// 绑定负载均衡器的伸缩组禁止修改Vpc。
+    ///
+    /// 先解绑负载均衡器，再修改伸缩组的Vpc。
+    public static var resourceUnavailable_ForbiddenModifyVpc: TCAsError {
+        TCAsError(.resourceUnavailable_ForbiddenModifyVpc)
+    }
+
+    /// 实例无法添加至伸缩组。
     public static var resourceUnavailable_InstanceCannotAttach: TCAsError {
         TCAsError(.resourceUnavailable_InstanceCannotAttach)
     }

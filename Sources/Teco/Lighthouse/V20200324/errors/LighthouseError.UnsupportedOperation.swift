@@ -17,6 +17,7 @@
 extension TCLighthouseError {
     public struct UnsupportedOperation: TCLighthouseErrorType {
         enum Code: String {
+            case applyDiskBackupToAnotherDisk = "UnsupportedOperation.ApplyDiskBackupToAnotherDisk"
             case attachCcnConditionUnsatisfied = "UnsupportedOperation.AttachCcnConditionUnsatisfied"
             case attachCcnFailed = "UnsupportedOperation.AttachCcnFailed"
             case blueprintCurStateInvalid = "UnsupportedOperation.BlueprintCurStateInvalid"
@@ -25,12 +26,14 @@ extension TCLighthouseError {
             case ccnNotAttached = "UnsupportedOperation.CcnNotAttached"
             case describeCcnAttachedInstancesFailed = "UnsupportedOperation.DescribeCcnAttachedInstancesFailed"
             case detachCcnFailed = "UnsupportedOperation.DetachCcnFailed"
+            case diskBackupLatestOperationUnfinished = "UnsupportedOperation.DiskBackupLatestOperationUnfinished"
             case diskBusy = "UnsupportedOperation.DiskBusy"
             case diskLatestOperationUnfinished = "UnsupportedOperation.DiskLatestOperationUnfinished"
             case firewallBusy = "UnsupportedOperation.FirewallBusy"
             case firewallVersionMismatch = "UnsupportedOperation.FirewallVersionMismatch"
             case instanceExpired = "UnsupportedOperation.InstanceExpired"
             case instanceLinuxUnixCreatingNotSupportPassword = "UnsupportedOperation.InstanceLinuxUnixCreatingNotSupportPassword"
+            case invalidDiskBackupState = "UnsupportedOperation.InvalidDiskBackupState"
             case invalidDiskState = "UnsupportedOperation.InvalidDiskState"
             case invalidInstanceState = "UnsupportedOperation.InvalidInstanceState"
             case invalidSnapshotState = "UnsupportedOperation.InvalidSnapshotState"
@@ -69,6 +72,11 @@ extension TCLighthouseError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 将磁盘备份点回滚到其他盘，不支持该操作。
+        public static var applyDiskBackupToAnotherDisk: UnsupportedOperation {
+            UnsupportedOperation(.applyDiskBackupToAnotherDisk)
         }
 
         /// 没有实例不支持关联到云联网。
@@ -111,6 +119,11 @@ extension TCLighthouseError {
             UnsupportedOperation(.detachCcnFailed)
         }
 
+        /// 磁盘备份点上一次操作未结束，不支持当前操作。
+        public static var diskBackupLatestOperationUnfinished: UnsupportedOperation {
+            UnsupportedOperation(.diskBackupLatestOperationUnfinished)
+        }
+
         /// 磁盘忙。
         public static var diskBusy: UnsupportedOperation {
             UnsupportedOperation(.diskBusy)
@@ -139,6 +152,11 @@ extension TCLighthouseError {
         /// LinuxUnix实例在创建时不支持设置密码。
         public static var instanceLinuxUnixCreatingNotSupportPassword: UnsupportedOperation {
             UnsupportedOperation(.instanceLinuxUnixCreatingNotSupportPassword)
+        }
+
+        /// 磁盘备份点状态不支持该操作。
+        public static var invalidDiskBackupState: UnsupportedOperation {
+            UnsupportedOperation(.invalidDiskBackupState)
         }
 
         /// 磁盘状态不支持该操作。
@@ -203,6 +221,7 @@ extension TCLighthouseError {
             UnsupportedOperation(.snapshotBusy)
         }
 
+        /// 系统忙。
         public static var systemBusy: UnsupportedOperation {
             UnsupportedOperation(.systemBusy)
         }
@@ -212,6 +231,8 @@ extension TCLighthouseError {
             UnsupportedOperation(.windowsNotAllowToAssociateKeyPair)
         }
 
+        /// windows类型实例不支持密钥对功能。
+        ///
         /// 请不要对windows类型实例进行密钥对功能操作，或者将实例更换为Linux类型实例。
         public static var windowsNotSupportKeyPair: UnsupportedOperation {
             UnsupportedOperation(.windowsNotSupportKeyPair)
@@ -225,6 +246,8 @@ extension TCLighthouseError {
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
+            case .applyDiskBackupToAnotherDisk:
+                code = .unsupportedOperation_ApplyDiskBackupToAnotherDisk
             case .attachCcnConditionUnsatisfied:
                 code = .unsupportedOperation_AttachCcnConditionUnsatisfied
             case .attachCcnFailed:
@@ -241,6 +264,8 @@ extension TCLighthouseError {
                 code = .unsupportedOperation_DescribeCcnAttachedInstancesFailed
             case .detachCcnFailed:
                 code = .unsupportedOperation_DetachCcnFailed
+            case .diskBackupLatestOperationUnfinished:
+                code = .unsupportedOperation_DiskBackupLatestOperationUnfinished
             case .diskBusy:
                 code = .unsupportedOperation_DiskBusy
             case .diskLatestOperationUnfinished:
@@ -253,6 +278,8 @@ extension TCLighthouseError {
                 code = .unsupportedOperation_InstanceExpired
             case .instanceLinuxUnixCreatingNotSupportPassword:
                 code = .unsupportedOperation_InstanceLinuxUnixCreatingNotSupportPassword
+            case .invalidDiskBackupState:
+                code = .unsupportedOperation_InvalidDiskBackupState
             case .invalidDiskState:
                 code = .unsupportedOperation_InvalidDiskState
             case .invalidInstanceState:

@@ -55,6 +55,8 @@ extension TCLiveError {
             LimitExceeded(.maximumTask)
         }
 
+        /// 单位时间内接口请求频率达到限制。
+        ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var rateLimitExceeded: LimitExceeded {
             LimitExceeded(.rateLimitExceeded)

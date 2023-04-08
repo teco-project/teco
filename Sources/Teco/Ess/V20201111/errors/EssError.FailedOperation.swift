@@ -62,56 +62,68 @@ extension TCEssError {
             FailedOperation(.accountVerifyFail)
         }
 
-        /// 16岁以下不提供电子签服务。
+        /// 年龄限制无法使用电子签服务，请联系客服咨询处理。
         public static var ageNotAchieveNormalLegal: FailedOperation {
             FailedOperation(.ageNotAchieveNormalLegal)
         }
 
-        /// 流程已关联文档。
+        /// 签署流程已有关联文档，请检查参数修改后重试。
         public static var flowHasDocument: FailedOperation {
             FailedOperation(.flowHasDocument)
         }
 
+        /// 流程未找到关联的电子文件信息，请检查操作步骤，检查参数，并在修改后重试。
         public static var flowHasNoDocument: FailedOperation {
             FailedOperation(.flowHasNoDocument)
         }
 
+        /// 签署审核未通过，请先完成审核。
         public static var noSignReviewPass: FailedOperation {
             FailedOperation(.noSignReviewPass)
         }
 
+        /// 企业经营状态与工商局信息不符。
         public static var organizationExperienceChange: FailedOperation {
             FailedOperation(.organizationExperienceChange)
         }
 
+        /// 企业名称与工商局信息不符。
         public static var organizationNameChanged: FailedOperation {
             FailedOperation(.organizationNameChanged)
         }
 
+        /// 企业名称与工商局信息不符,需要超管修改。
         public static var organizationNameNeedChange: FailedOperation {
             FailedOperation(.organizationNameNeedChange)
         }
 
+        /// 创建签署流程预览链接失败，请稍后重试。
         public static var preViewUrlFail: FailedOperation {
             FailedOperation(.preViewUrlFail)
         }
 
+        /// 签署二维码模板发起方签署人存在签署控件，请检查模板后重试。
+        ///
         /// 请确认是否模板配置存在填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeCreatorSignComponents: FailedOperation {
             FailedOperation(.qrCodeCreatorSignComponents)
         }
 
+        /// 签署二维码模板签署人不存在，请检查模板后重试。
+        ///
         /// 请确认模板是否缺少签署人。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeSignUsers: FailedOperation {
             FailedOperation(.qrCodeSignUsers)
         }
 
+        /// 一码多人二维码模板有误。
+        ///
         /// 适用的模版仅限于B2C（无序签署，顺序签署时B静默签署，顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var qrCodeTemplateId: FailedOperation {
             FailedOperation(.qrCodeTemplateId)
         }
 
-        /// 短信发送频率超出限制。
+        /// 请求的次数超过了频率限制，请联系客服处理。
         public static var requestLimitExceeded: FailedOperation {
             FailedOperation(.requestLimitExceeded)
         }
@@ -121,6 +133,7 @@ extension TCEssError {
             FailedOperation(.templateHasNoResource)
         }
 
+        /// 用户信息不匹配，请检查后重试。
         public static var userInfoNoMatch: FailedOperation {
             FailedOperation(.userInfoNoMatch)
         }

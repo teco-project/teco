@@ -92,6 +92,8 @@ extension TCCiamError {
             FailedOperation(.emailIsNull)
         }
 
+        /// 导入用户时，用户为空。
+        ///
         /// 在接口中传入用户数据。
         public static var importUserIsEmpty: FailedOperation {
             FailedOperation(.importUserIsEmpty)
@@ -137,16 +139,22 @@ extension TCCiamError {
             FailedOperation(.primaryUserNotFound)
         }
 
+        /// 查询条件必须包含id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId, qqUnionId,lastModifiedDate, indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5重的一个或者多个。
+        ///
         /// 查询条件必须包含id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId, qqUnionId,lastModifiedDate, createdDate,indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5中的一个或者多个。
         public static var queryUsersParameterMustInWhitelist: FailedOperation {
             FailedOperation(.queryUsersParameterMustInWhitelist)
         }
 
+        /// 查询用户条件不能有重复的条件。
+        ///
         /// 将filter中的重复propertyKey去掉。
         public static var queryUsersParameterRepeat: FailedOperation {
             FailedOperation(.queryUsersParameterRepeat)
         }
 
+        /// Sort条件的PropertyKey必须在id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId, qqUnionId,lastModifiedDate, indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5中。
+        ///
         /// Sort条件的PropertyKey必须在id, userName, phoneNumber, email, userGroup, alipayUserId, wechatOpenId,wechatUnionId, qqOpenId,qqUnionId,lastModifiedDate, createdDate,indexedAttribute1, indexedAttribute2,indexedAttribute3, indexedAttribute4, indexedAttribute5中。
         public static var queryUsersSortParameterMustInWhitelist: FailedOperation {
             FailedOperation(.queryUsersSortParameterMustInWhitelist)

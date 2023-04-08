@@ -52,6 +52,21 @@ extension Tcss {
         /// 受严重或高危漏洞影响的最新版本镜像数
         public let seriousVulNewestImageCount: Int64
 
+        /// 系统漏洞重点关注数
+        public let systemVulnerabilityFocusCount: Int64
+
+        /// web漏洞重点关注数
+        public let webVulnerabilityFocusCount: Int64
+
+        /// 受影响本地镜像数
+        public let seriousVulnerabilityLocalImageCount: Int64
+
+        /// 受影响仓库镜像数
+        public let seriousVulnerabilityRegistryImageCount: Int64
+
+        /// 应急漏洞数量
+        public let emergencyVulnerabilityCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -62,6 +77,11 @@ extension Tcss {
             case pocExpLevelVulCount = "PocExpLevelVulCount"
             case remoteExpLevelVulCount = "RemoteExpLevelVulCount"
             case seriousVulNewestImageCount = "SeriousVulNewestImageCount"
+            case systemVulnerabilityFocusCount = "SystemVulnerabilityFocusCount"
+            case webVulnerabilityFocusCount = "WebVulnerabilityFocusCount"
+            case seriousVulnerabilityLocalImageCount = "SeriousVulnerabilityLocalImageCount"
+            case seriousVulnerabilityRegistryImageCount = "SeriousVulnerabilityRegistryImageCount"
+            case emergencyVulnerabilityCount = "EmergencyVulnerabilityCount"
             case requestId = "RequestId"
         }
     }

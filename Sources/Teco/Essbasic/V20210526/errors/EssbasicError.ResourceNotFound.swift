@@ -22,12 +22,15 @@ extension TCEssbasicError {
             case applicationId = "ResourceNotFound.ApplicationId"
             case file = "ResourceNotFound.File"
             case flow = "ResourceNotFound.Flow"
+            case flowApprover = "ResourceNotFound.FlowApprover"
             case flowApprovers = "ResourceNotFound.FlowApprovers"
+            case flowGroup = "ResourceNotFound.FlowGroup"
             case organization = "ResourceNotFound.Organization"
             case resource = "ResourceNotFound.Resource"
             case seal = "ResourceNotFound.Seal"
             case teamWorkOrganization = "ResourceNotFound.TeamWorkOrganization"
             case template = "ResourceNotFound.Template"
+            case url = "ResourceNotFound.URL"
             case user = "ResourceNotFound.User"
             case verifyUser = "ResourceNotFound.VerifyUser"
             case other = "ResourceNotFound"
@@ -62,14 +65,17 @@ extension TCEssbasicError {
             ResourceNotFound(.application)
         }
 
+        /// 应用授权记录未找到。
         public static var applicationAuth: ResourceNotFound {
             ResourceNotFound(.applicationAuth)
         }
 
+        /// ApplicationId不存在。
         public static var applicationId: ResourceNotFound {
             ResourceNotFound(.applicationId)
         }
 
+        /// 文件不存在。
         public static var file: ResourceNotFound {
             ResourceNotFound(.file)
         }
@@ -81,8 +87,19 @@ extension TCEssbasicError {
             ResourceNotFound(.flow)
         }
 
+        /// 签署流程的签署人不存在，请检查后重试。
+        public static var flowApprover: ResourceNotFound {
+            ResourceNotFound(.flowApprover)
+        }
+
+        /// 签署人信息不存在，请检查后重试。
         public static var flowApprovers: ResourceNotFound {
             ResourceNotFound(.flowApprovers)
+        }
+
+        /// 合同组不存在。
+        public static var flowGroup: ResourceNotFound {
+            ResourceNotFound(.flowGroup)
         }
 
         /// 机构不存在。
@@ -92,14 +109,17 @@ extension TCEssbasicError {
             ResourceNotFound(.organization)
         }
 
+        /// 资源不存在。
         public static var resource: ResourceNotFound {
             ResourceNotFound(.resource)
         }
 
+        /// 印章不存在，请检查后重试。
         public static var seal: ResourceNotFound {
             ResourceNotFound(.seal)
         }
 
+        /// 合作企业不存在。
         public static var teamWorkOrganization: ResourceNotFound {
             ResourceNotFound(.teamWorkOrganization)
         }
@@ -111,10 +131,19 @@ extension TCEssbasicError {
             ResourceNotFound(.template)
         }
 
+        /// Url不存在。
+        ///
+        /// Url 不存在，请检查查询参数
+        public static var url: ResourceNotFound {
+            ResourceNotFound(.url)
+        }
+
+        /// 用户信息不存在。
         public static var user: ResourceNotFound {
             ResourceNotFound(.user)
         }
 
+        /// 实名用户信息不存在。
         public static var verifyUser: ResourceNotFound {
             ResourceNotFound(.verifyUser)
         }
@@ -137,8 +166,12 @@ extension TCEssbasicError {
                 code = .resourceNotFound_File
             case .flow:
                 code = .resourceNotFound_Flow
+            case .flowApprover:
+                code = .resourceNotFound_FlowApprover
             case .flowApprovers:
                 code = .resourceNotFound_FlowApprovers
+            case .flowGroup:
+                code = .resourceNotFound_FlowGroup
             case .organization:
                 code = .resourceNotFound_Organization
             case .resource:
@@ -149,6 +182,8 @@ extension TCEssbasicError {
                 code = .resourceNotFound_TeamWorkOrganization
             case .template:
                 code = .resourceNotFound_Template
+            case .url:
+                code = .resourceNotFound_URL
             case .user:
                 code = .resourceNotFound_User
             case .verifyUser:

@@ -43,10 +43,10 @@ extension Billing {
         /// 代金券名称
         public let voucherName: String?
 
-        /// 发放开始时间
+        /// 发放开始时间,例：2021-01-01
         public let timeFrom: String?
 
-        /// 发放结束时间
+        /// 发放结束时间，例：2021-01-01
         public let timeTo: String?
 
         /// 指定排序字段：BeginTime开始时间、EndTime到期时间、CreateTime创建时间

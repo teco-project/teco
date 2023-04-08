@@ -33,6 +33,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case failedOperation_ImageDeleteFailed = "FailedOperation.ImageDeleteFailed"
         case failedOperation_ImageDownloadError = "FailedOperation.ImageDownloadError"
         case failedOperation_ImageEntityCountExceed = "FailedOperation.ImageEntityCountExceed"
+        case failedOperation_ImageGroupChargeStatusClose = "FailedOperation.ImageGroupChargeStatusClose"
         case failedOperation_ImageGroupEmpty = "FailedOperation.ImageGroupEmpty"
         case failedOperation_ImageNotFoundInfo = "FailedOperation.ImageNotFoundInfo"
         case failedOperation_ImageNotSupported = "FailedOperation.ImageNotSupported"
@@ -82,6 +83,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
         case limitExceeded_TooLargeFileError = "LimitExceeded.TooLargeFileError"
         case missingParameter_ErrorParameterEmpty = "MissingParameter.ErrorParameterEmpty"
+        case requestLimitExceeded = "RequestLimitExceeded"
         case resourceUnavailable_InArrears = "ResourceUnavailable.InArrears"
         case resourceUnavailable_IsOpening = "ResourceUnavailable.IsOpening"
         case resourceUnavailable_NotExist = "ResourceUnavailable.NotExist"
@@ -160,6 +162,11 @@ public struct TCTiiaError: TCTiiaErrorType {
         TCTiiaError(.failedOperation_ImageEntityCountExceed)
     }
 
+    /// 停止服务，控制台开关关闭。
+    public static var failedOperation_ImageGroupChargeStatusClose: TCTiiaError {
+        TCTiiaError(.failedOperation_ImageGroupChargeStatusClose)
+    }
+
     /// 图库为空。
     public static var failedOperation_ImageGroupEmpty: TCTiiaError {
         TCTiiaError(.failedOperation_ImageGroupEmpty)
@@ -215,6 +222,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         TCTiiaError(.failedOperation_InvokeChargeError)
     }
 
+    /// 图片中没有人体。
     public static var failedOperation_NoBodyInPhoto: TCTiiaError {
         TCTiiaError(.failedOperation_NoBodyInPhoto)
     }
@@ -349,7 +357,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         TCTiiaError(.invalidParameterValue_LimitExceed)
     }
 
-    /// 图片已经存在。
+    /// 图片名称重复。
     public static var invalidParameterValue_PicNameAlreadyExist: TCTiiaError {
         TCTiiaError(.invalidParameterValue_PicNameAlreadyExist)
     }
@@ -384,6 +392,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         TCTiiaError(.invalidParameterValue_UrlIllegal)
     }
 
+    /// 不支持的图片格式。
     public static var invalidParameter_ImageFormatNotSupport: TCTiiaError {
         TCTiiaError(.invalidParameter_ImageFormatNotSupport)
     }
@@ -401,6 +410,11 @@ public struct TCTiiaError: TCTiiaErrorType {
     /// 必选参数为空。
     public static var missingParameter_ErrorParameterEmpty: TCTiiaError {
         TCTiiaError(.missingParameter_ErrorParameterEmpty)
+    }
+
+    /// 请求的次数超过了频率限制。
+    public static var requestLimitExceeded: TCTiiaError {
+        TCTiiaError(.requestLimitExceeded)
     }
 
     /// 账号已欠费。

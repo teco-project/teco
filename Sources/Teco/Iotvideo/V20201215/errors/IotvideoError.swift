@@ -92,6 +92,7 @@ public struct TCIotvideoError: TCIotvideoErrorType {
         TCIotvideoError(.internalError)
     }
 
+    /// 数据库内部错误。
     public static var internalError_DBOperationError: TCIotvideoError {
         TCIotvideoError(.internalError_DBOperationError)
     }

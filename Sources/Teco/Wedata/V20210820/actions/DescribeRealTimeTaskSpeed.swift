@@ -57,12 +57,16 @@ extension Wedata {
         /// 同步速度字节/s列表
         public let bytesSpeedList: [BytesSpeed]
 
+        /// 同步速度，包括了RecordsSpeedList和BytesSpeedList
+        public let data: RealTimeTaskSpeed
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case recordsSpeedList = "RecordsSpeedList"
             case bytesSpeedList = "BytesSpeedList"
+            case data = "Data"
             case requestId = "RequestId"
         }
     }

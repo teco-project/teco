@@ -19,6 +19,7 @@ extension TCVodError {
         enum Code: String {
             case existedProcedureName = "InvalidParameter.ExistedProcedureName"
             case expireTime = "InvalidParameter.ExpireTime"
+            case labels = "InvalidParameter.Labels"
             case procedureNameNotExist = "InvalidParameter.ProcedureNameNotExist"
             case storageRegion = "InvalidParameter.StorageRegion"
             case other = "InvalidParameter"
@@ -56,6 +57,11 @@ extension TCVodError {
             InvalidParameter(.expireTime)
         }
 
+        /// 参数错误：标签错误。
+        public static var labels: InvalidParameter {
+            InvalidParameter(.labels)
+        }
+
         /// 任务流模板名字不存在。
         public static var procedureNameNotExist: InvalidParameter {
             InvalidParameter(.procedureNameNotExist)
@@ -78,6 +84,8 @@ extension TCVodError {
                 code = .invalidParameter_ExistedProcedureName
             case .expireTime:
                 code = .invalidParameter_ExpireTime
+            case .labels:
+                code = .invalidParameter_Labels
             case .procedureNameNotExist:
                 code = .invalidParameter_ProcedureNameNotExist
             case .storageRegion:

@@ -33,8 +33,10 @@ extension TCTatError {
             case invalidInvokerId = "InvalidParameterValue.InvalidInvokerId"
             case invalidOutputCOSBucketUrl = "InvalidParameterValue.InvalidOutputCOSBucketUrl"
             case invalidOutputCOSKeyPrefix = "InvalidParameterValue.InvalidOutputCOSKeyPrefix"
+            case invalidTimeFormat = "InvalidParameterValue.InvalidTimeFormat"
             case invalidUsername = "InvalidParameterValue.InvalidUsername"
             case invalidWorkingDirectory = "InvalidParameterValue.InvalidWorkingDirectory"
+            case invokeTimeExpired = "InvalidParameterValue.InvokeTimeExpired"
             case lackOfParameterInfo = "InvalidParameterValue.LackOfParameterInfo"
             case lackOfParameters = "InvalidParameterValue.LackOfParameters"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
@@ -159,6 +161,12 @@ extension TCTatError {
             InvalidParameterValue(.invalidOutputCOSKeyPrefix)
         }
 
+        /// 无效的时间格式。
+        public static var invalidTimeFormat: InvalidParameterValue {
+            InvalidParameterValue(.invalidTimeFormat)
+        }
+
+        /// 用户名不合法。
         public static var invalidUsername: InvalidParameterValue {
             InvalidParameterValue(.invalidUsername)
         }
@@ -166,6 +174,11 @@ extension TCTatError {
         /// 命令执行路径不合法。
         public static var invalidWorkingDirectory: InvalidParameterValue {
             InvalidParameterValue(.invalidWorkingDirectory)
+        }
+
+        /// 调用时间已过期。
+        public static var invokeTimeExpired: InvalidParameterValue {
+            InvalidParameterValue(.invokeTimeExpired)
         }
 
         /// 已启用自定义参数功能，但缺失自定义参数信息。
@@ -273,10 +286,14 @@ extension TCTatError {
                 code = .invalidParameterValue_InvalidOutputCOSBucketUrl
             case .invalidOutputCOSKeyPrefix:
                 code = .invalidParameterValue_InvalidOutputCOSKeyPrefix
+            case .invalidTimeFormat:
+                code = .invalidParameterValue_InvalidTimeFormat
             case .invalidUsername:
                 code = .invalidParameterValue_InvalidUsername
             case .invalidWorkingDirectory:
                 code = .invalidParameterValue_InvalidWorkingDirectory
+            case .invokeTimeExpired:
+                code = .invalidParameterValue_InvokeTimeExpired
             case .lackOfParameterInfo:
                 code = .invalidParameterValue_LackOfParameterInfo
             case .lackOfParameters:

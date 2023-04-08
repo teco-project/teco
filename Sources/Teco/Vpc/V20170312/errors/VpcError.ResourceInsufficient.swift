@@ -49,6 +49,7 @@ extension TCVpcError {
             ResourceInsufficient(.cidrBlock)
         }
 
+        /// 子网IP资源不足, 无法分配IP。
         public static var subnet: ResourceInsufficient {
             ResourceInsufficient(.subnet)
         }

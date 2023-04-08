@@ -492,6 +492,29 @@ extension Gme {
         }
     }
 
+    /// 房间内录制信息信息
+    /// 注意：此字段可能返回 null，表示取不到有效值。
+    public struct RecordInfo: TCOutputModel {
+        /// 用户ID（当混流模式时，取值为0）。
+        public let userId: String
+
+        /// 录制文件名。
+        public let fileName: String
+
+        /// 录制开始时间（unix时间戳如：1234567868）。
+        public let recordBeginTime: UInt64
+
+        /// 录制状态：2代表正在录制  10代表等待转码  11代表正在转码  12正在上传  13代表上传完成  14代表通知用户完成。
+        public let recordStatus: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case userId = "UserId"
+            case fileName = "FileName"
+            case recordBeginTime = "RecordBeginTime"
+            case recordStatus = "RecordStatus"
+        }
+    }
+
     /// 房间内用户信息
     public struct RoomUser: TCOutputModel {
         /// 房间id
@@ -680,6 +703,27 @@ extension Gme {
         }
     }
 
+    /// 指定订阅流白名单或者黑名单。
+    public struct SubscribeRecordUserIds: TCInputModel {
+        /// 订阅音频流黑名单，指定不订阅哪几个UserId的音频流，例如["1", "2", "3"], 代表不订阅UserId 1，2，3的音频流。默认不填订阅房间内所有音频流，订阅列表用户数不超过20。
+        /// 注意：只能同时设置UnSubscribeAudioUserIds、SubscribeAudioUserIds 其中1个参数
+        public let unSubscribeUserIds: [String]?
+
+        /// 订阅音频流白名单，指定订阅哪几个UserId的音频流，例如["1", "2", "3"], 代表订阅UserId 1，2，3的音频流。默认不填订阅房间内所有音频流，订阅列表用户数不超过20。
+        /// 注意：只能同时设置UnSubscribeAudioUserIds、SubscribeAudioUserIds 其中1个参数。
+        public let subscribeUserIds: [String]?
+
+        public init(unSubscribeUserIds: [String]? = nil, subscribeUserIds: [String]? = nil) {
+            self.unSubscribeUserIds = unSubscribeUserIds
+            self.subscribeUserIds = subscribeUserIds
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case unSubscribeUserIds = "UnSubscribeUserIds"
+            case subscribeUserIds = "SubscribeUserIds"
+        }
+    }
+
     /// 标签列表
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
@@ -739,7 +783,6 @@ extension Gme {
         public let uid: Int64?
 
         /// 客户端用于标识字符串型用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strUid: String?
 
         public init(enableMic: Int64, uid: Int64? = nil, strUid: String? = nil) {

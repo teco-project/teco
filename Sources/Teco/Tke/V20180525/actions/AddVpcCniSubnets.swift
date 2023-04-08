@@ -26,16 +26,21 @@ extension Tke {
         /// 集群所属的VPC的ID
         public let vpcId: String
 
-        public init(clusterId: String, subnetIds: [String], vpcId: String) {
+        /// 是否同步添加 vpc 网段到 ip-masq-agent-config 的 NonMasqueradeCIDRs 字段，默认 false 会同步添加
+        public let skipAddingNonMasqueradeCIDRs: Bool?
+
+        public init(clusterId: String, subnetIds: [String], vpcId: String, skipAddingNonMasqueradeCIDRs: Bool? = nil) {
             self.clusterId = clusterId
             self.subnetIds = subnetIds
             self.vpcId = vpcId
+            self.skipAddingNonMasqueradeCIDRs = skipAddingNonMasqueradeCIDRs
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case subnetIds = "SubnetIds"
             case vpcId = "VpcId"
+            case skipAddingNonMasqueradeCIDRs = "SkipAddingNonMasqueradeCIDRs"
         }
     }
 
@@ -69,15 +74,15 @@ extension Tke {
     ///
     /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
     @inlinable @discardableResult
-    public func addVpcCniSubnets(clusterId: String, subnetIds: [String], vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddVpcCniSubnetsResponse> {
-        self.addVpcCniSubnets(.init(clusterId: clusterId, subnetIds: subnetIds, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+    public func addVpcCniSubnets(clusterId: String, subnetIds: [String], vpcId: String, skipAddingNonMasqueradeCIDRs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddVpcCniSubnetsResponse> {
+        self.addVpcCniSubnets(.init(clusterId: clusterId, subnetIds: subnetIds, vpcId: vpcId, skipAddingNonMasqueradeCIDRs: skipAddingNonMasqueradeCIDRs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加集群子网
     ///
     /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
     @inlinable @discardableResult
-    public func addVpcCniSubnets(clusterId: String, subnetIds: [String], vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddVpcCniSubnetsResponse {
-        try await self.addVpcCniSubnets(.init(clusterId: clusterId, subnetIds: subnetIds, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+    public func addVpcCniSubnets(clusterId: String, subnetIds: [String], vpcId: String, skipAddingNonMasqueradeCIDRs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddVpcCniSubnetsResponse {
+        try await self.addVpcCniSubnets(.init(clusterId: clusterId, subnetIds: subnetIds, vpcId: vpcId, skipAddingNonMasqueradeCIDRs: skipAddingNonMasqueradeCIDRs), region: region, logger: logger, on: eventLoop)
     }
 }

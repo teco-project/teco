@@ -20,12 +20,17 @@ extension Cvm {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
 
-        public init(instanceIds: [String]) {
+        /// 释放实例挂载的包年包月数据盘。
+        public let releasePrepaidDataDisks: Bool?
+
+        public init(instanceIds: [String], releasePrepaidDataDisks: Bool? = nil) {
             self.instanceIds = instanceIds
+            self.releasePrepaidDataDisks = releasePrepaidDataDisks
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
+            case releasePrepaidDataDisks = "ReleasePrepaidDataDisks"
         }
     }
 
@@ -46,6 +51,7 @@ extension Cvm {
     /// * 不再使用的实例，可通过本接口主动退还。
     /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
     /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 包年包月实例首次调用本接口，入参中包含ReleasePrepaidDataDisks时，包年包月数据盘同时也会被移至回收站。
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
@@ -60,6 +66,7 @@ extension Cvm {
     /// * 不再使用的实例，可通过本接口主动退还。
     /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
     /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 包年包月实例首次调用本接口，入参中包含ReleasePrepaidDataDisks时，包年包月数据盘同时也会被移至回收站。
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
@@ -74,11 +81,12 @@ extension Cvm {
     /// * 不再使用的实例，可通过本接口主动退还。
     /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
     /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 包年包月实例首次调用本接口，入参中包含ReleasePrepaidDataDisks时，包年包月数据盘同时也会被移至回收站。
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
-    public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.terminateInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIds: [String], releasePrepaidDataDisks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
+        self.terminateInstances(.init(instanceIds: instanceIds, releasePrepaidDataDisks: releasePrepaidDataDisks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退还实例
@@ -88,10 +96,11 @@ extension Cvm {
     /// * 不再使用的实例，可通过本接口主动退还。
     /// * 按量计费的实例通过本接口可直接退还；包年包月实例如符合[退还规则](https://cloud.tencent.com/document/product/213/9711)，也可通过本接口主动退还。
     /// * 包年包月实例首次调用本接口，实例将被移至回收站，再次调用本接口，实例将被销毁，且不可恢复。按量计费实例调用本接口将被直接销毁。
+    /// * 包年包月实例首次调用本接口，入参中包含ReleasePrepaidDataDisks时，包年包月数据盘同时也会被移至回收站。
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
-    public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.terminateInstances(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIds: [String], releasePrepaidDataDisks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.terminateInstances(.init(instanceIds: instanceIds, releasePrepaidDataDisks: releasePrepaidDataDisks), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -20,6 +20,7 @@ extension TCTseError {
             case createError = "InternalError.CreateError"
             case getCredential = "InternalError.GetCredential"
             case getRoleError = "InternalError.GetRoleError"
+            case httpStatusCodeError = "InternalError.HttpStatusCodeError"
             case internalError = "InternalError.InternalError"
             case ioError = "InternalError.IOError"
             case operationFailed = "InternalError.OperationFailed"
@@ -66,6 +67,11 @@ extension TCTseError {
         /// 角色获取错误。
         public static var getRoleError: InternalError {
             InternalError(.getRoleError)
+        }
+
+        /// 状态码错误。
+        public static var httpStatusCodeError: InternalError {
+            InternalError(.httpStatusCodeError)
         }
 
         /// 服务内部错误。
@@ -122,6 +128,8 @@ extension TCTseError {
                 code = .internalError_GetCredential
             case .getRoleError:
                 code = .internalError_GetRoleError
+            case .httpStatusCodeError:
+                code = .internalError_HttpStatusCodeError
             case .internalError:
                 code = .internalError_InternalError
             case .ioError:

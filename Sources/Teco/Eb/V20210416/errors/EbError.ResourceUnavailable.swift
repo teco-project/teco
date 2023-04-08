@@ -49,6 +49,7 @@ extension TCEbError {
             ResourceUnavailable(.connection)
         }
 
+        /// ES集群状态异常。
         public static var esUnhealth: ResourceUnavailable {
             ResourceUnavailable(.esUnhealth)
         }

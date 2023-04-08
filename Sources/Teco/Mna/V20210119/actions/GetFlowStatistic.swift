@@ -17,7 +17,7 @@
 extension Mna {
     /// GetFlowStatistic请求参数结构体
     public struct GetFlowStatisticRequest: TCRequestModel {
-        /// 设备ID，ID="-1"时默认查找所有设备
+        /// 设备ID
         public let deviceId: String
 
         /// 开始查找时间

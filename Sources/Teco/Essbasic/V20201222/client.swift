@@ -49,7 +49,7 @@ public struct Essbasic: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCEssbasicError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

@@ -31,9 +31,12 @@ public struct TCDomainError: TCDomainErrorType {
         case failedOperation_DescribeDomainFailed = "FailedOperation.DescribeDomainFailed"
         case failedOperation_DescribeDomainListFailed = "FailedOperation.DescribeDomainListFailed"
         case failedOperation_DescribeTemplateFailed = "FailedOperation.DescribeTemplateFailed"
+        case failedOperation_DomainExpiredUnsupported = "FailedOperation.DomainExpiredUnsupported"
         case failedOperation_DomainPriceListFailed = "FailedOperation.DomainPriceListFailed"
         case failedOperation_DuplicatePhoneEmail = "FailedOperation.DuplicatePhoneEmail"
+        case failedOperation_GetDomainPriceFailed = "FailedOperation.GetDomainPriceFailed"
         case failedOperation_ModifyDomainOwnerFailed = "FailedOperation.ModifyDomainOwnerFailed"
+        case failedOperation_ProhibitPhoneEmail = "FailedOperation.ProhibitPhoneEmail"
         case failedOperation_RegisterDomain = "FailedOperation.RegisterDomain"
         case failedOperation_RegisterDomainFailed = "FailedOperation.RegisterDomainFailed"
         case failedOperation_SendTcbPhoneEmailCodeFailed = "FailedOperation.SendTcbPhoneEmailCodeFailed"
@@ -123,7 +126,7 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.failedOperation)
     }
 
-    /// 域名查询失败，请稍后重试。
+    /// 域名查询失败，请稍后重试该功能。
     public static var failedOperation_CheckDomainFailed: TCDomainError {
         TCDomainError(.failedOperation_CheckDomainFailed)
     }
@@ -153,6 +156,11 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.failedOperation_DescribeTemplateFailed)
     }
 
+    /// 域名已过期，不允许操作。
+    public static var failedOperation_DomainExpiredUnsupported: TCDomainError {
+        TCDomainError(.failedOperation_DomainExpiredUnsupported)
+    }
+
     /// 获取域名价格列表失败。
     public static var failedOperation_DomainPriceListFailed: TCDomainError {
         TCDomainError(.failedOperation_DomainPriceListFailed)
@@ -163,9 +171,21 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.failedOperation_DuplicatePhoneEmail)
     }
 
+    /// 获取域名价格失败。
+    public static var failedOperation_GetDomainPriceFailed: TCDomainError {
+        TCDomainError(.failedOperation_GetDomainPriceFailed)
+    }
+
     /// 域名过户失败。
     public static var failedOperation_ModifyDomainOwnerFailed: TCDomainError {
         TCDomainError(.failedOperation_ModifyDomainOwnerFailed)
+    }
+
+    /// 禁止的手机或邮箱。
+    ///
+    /// 更换手机或邮箱
+    public static var failedOperation_ProhibitPhoneEmail: TCDomainError {
+        TCDomainError(.failedOperation_ProhibitPhoneEmail)
     }
 
     /// 域名注册操作失败，请稍后重试。
@@ -213,7 +233,7 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.internalError)
     }
 
-    /// 网络错误，请稍后重试。
+    /// 网络报错，请稍后重试。
     public static var internalError_DomainInternalError: TCDomainError {
         TCDomainError(.internalError_DomainInternalError)
     }
@@ -243,7 +263,7 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.invalidParameter_CustomDnsNotAllowed)
     }
 
-    /// 域名输入为空或者不合法。
+    /// 域名输入为空或者不正确。
     public static var invalidParameter_DomainNameIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_DomainNameIsInvalid)
     }
@@ -253,7 +273,7 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.invalidParameter_DuplicateDomainExists)
     }
 
-    /// 邮箱为空或者不合法。
+    /// 邮箱为空或者不正确。
     public static var invalidParameter_EmailIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_EmailIsInvalid)
     }

@@ -72,6 +72,8 @@ extension Ocr {
     /// 完税证明识别
     ///
     /// 本接口支持对完税证明的税号、纳税人识别号、纳税人名称、金额合计大写、金额合计小写、填发日期、税务机关、填票人等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func dutyPaidProofOCR(_ input: DutyPaidProofOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DutyPaidProofOCRResponse> {
         self.client.execute(action: "DutyPaidProofOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 完税证明识别
     ///
     /// 本接口支持对完税证明的税号、纳税人识别号、纳税人名称、金额合计大写、金额合计小写、填发日期、税务机关、填票人等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func dutyPaidProofOCR(_ input: DutyPaidProofOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DutyPaidProofOCRResponse {
         try await self.client.execute(action: "DutyPaidProofOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 完税证明识别
     ///
     /// 本接口支持对完税证明的税号、纳税人识别号、纳税人名称、金额合计大写、金额合计小写、填发日期、税务机关、填票人等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func dutyPaidProofOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DutyPaidProofOCRResponse> {
         self.dutyPaidProofOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 完税证明识别
     ///
     /// 本接口支持对完税证明的税号、纳税人识别号、纳税人名称、金额合计大写、金额合计小写、填发日期、税务机关、填票人等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func dutyPaidProofOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DutyPaidProofOCRResponse {
         try await self.dutyPaidProofOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

@@ -66,6 +66,7 @@ extension TCGaapError {
             self.context = context
         }
 
+        /// 证书和私钥不匹配。
         public static var certificateContentNotMatchKey: InvalidParameterValue {
             InvalidParameterValue(.certificateContentNotMatchKey)
         }

@@ -113,7 +113,10 @@ extension Tione {
         /// SavedModel保存时配置的签名
         public let modelSignature: String?
 
-        public init(modelId: String, modelVersion: String, modelSource: String, modelFormat: String, tensorInfos: [String], accEngineVersion: String, modelInputPath: CosPathInfo, modelName: String? = nil, modelSignature: String? = nil) {
+        /// 加速引擎对应的框架版本
+        public let frameworkVersion: String?
+
+        public init(modelId: String, modelVersion: String, modelSource: String, modelFormat: String, tensorInfos: [String], accEngineVersion: String, modelInputPath: CosPathInfo, modelName: String? = nil, modelSignature: String? = nil, frameworkVersion: String? = nil) {
             self.modelId = modelId
             self.modelVersion = modelVersion
             self.modelSource = modelSource
@@ -123,6 +126,7 @@ extension Tione {
             self.modelInputPath = modelInputPath
             self.modelName = modelName
             self.modelSignature = modelSignature
+            self.frameworkVersion = frameworkVersion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -135,6 +139,7 @@ extension Tione {
             case modelInputPath = "ModelInputPath"
             case modelName = "ModelName"
             case modelSignature = "ModelSignature"
+            case frameworkVersion = "FrameworkVersion"
         }
     }
 
@@ -251,6 +256,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billingInfo: String?
 
+        /// 运行中的Pod的名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podList: [String]?
+
         enum CodingKeys: String, CodingKey {
             case batchTaskId = "BatchTaskId"
             case batchTaskName = "BatchTaskName"
@@ -283,6 +292,7 @@ extension Tione {
             case remark = "Remark"
             case failureReason = "FailureReason"
             case billingInfo = "BillingInfo"
+            case podList = "PodList"
         }
     }
 
@@ -421,6 +431,63 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case path = "Path"
+        }
+    }
+
+    /// 容器信息
+    public struct Container: TCOutputModel {
+        /// 名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let containerId: String?
+
+        /// 镜像地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let image: String?
+
+        /// 容器状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: ContainerStatus?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case containerId = "ContainerId"
+            case image = "Image"
+            case status = "Status"
+        }
+    }
+
+    /// 容器状态
+    public struct ContainerStatus: TCOutputModel {
+        /// 重启次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let restartCount: Int64?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 是否就绪
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ready: Bool?
+
+        /// 状态原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        /// 容器的错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        enum CodingKeys: String, CodingKey {
+            case restartCount = "RestartCount"
+            case state = "State"
+            case ready = "Ready"
+            case reason = "Reason"
+            case message = "Message"
         }
     }
 
@@ -588,9 +655,9 @@ extension Tione {
     }
 
     /// 数据配置
-    public struct DataConfig: TCOutputModel {
+    public struct DataConfig: TCInputModel, TCOutputModel {
         /// 映射路径
-        public let mappingPath: String
+        public let mappingPath: String?
 
         /// DATASET、COS、CFS、HDFS、WEDATA_HDFS
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -611,6 +678,15 @@ extension Tione {
         /// 来自HDFS的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hdfsSource: HDFSConfig?
+
+        public init(mappingPath: String? = nil, dataSourceType: String? = nil, dataSetSource: DataSetConfig? = nil, cosSource: CosPathInfo? = nil, cfsSource: CFSConfig? = nil, hdfsSource: HDFSConfig? = nil) {
+            self.mappingPath = mappingPath
+            self.dataSourceType = dataSourceType
+            self.dataSetSource = dataSetSource
+            self.cosSource = cosSource
+            self.cfsSource = cfsSource
+            self.hdfsSource = hdfsSource
+        }
 
         enum CodingKeys: String, CodingKey {
             case mappingPath = "MappingPath"
@@ -749,6 +825,18 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasetScope: String?
 
+        /// 数据集OCR子场景
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ocrScene: String?
+
+        /// 数据集字典修改状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let annotationKeyStatus: String?
+
+        /// 文本数据集导入方式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let contentType: String?
+
         enum CodingKeys: String, CodingKey {
             case datasetId = "DatasetId"
             case datasetName = "DatasetName"
@@ -773,6 +861,9 @@ extension Tione {
             case annotationType = "AnnotationType"
             case annotationFormat = "AnnotationFormat"
             case datasetScope = "DatasetScope"
+            case ocrScene = "OcrScene"
+            case annotationKeyStatus = "AnnotationKeyStatus"
+            case contentType = "ContentType"
         }
     }
 
@@ -866,6 +957,14 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasetScope: String?
 
+        /// 数据集OCR子场景
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ocrScene: String?
+
+        /// 数据集字典修改状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let annotationKeyStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case datasetId = "DatasetId"
             case datasetName = "DatasetName"
@@ -889,6 +988,19 @@ extension Tione {
             case annotationType = "AnnotationType"
             case annotationFormat = "AnnotationFormat"
             case datasetScope = "DatasetScope"
+            case ocrScene = "OcrScene"
+            case annotationKeyStatus = "AnnotationKeyStatus"
+        }
+    }
+
+    /// 默认Nginx网关结构
+    public struct DefaultNginxGatewayCallInfo: TCOutputModel {
+        /// host
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let host: String?
+
+        enum CodingKeys: String, CodingKey {
+            case host = "Host"
         }
     }
 
@@ -923,9 +1035,19 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let image: String?
 
+        /// 是否支持int8量化
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSupportIntEightQuantization: Bool?
+
+        /// 框架版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let frameworkVersion: String?
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case image = "Image"
+            case isSupportIntEightQuantization = "IsSupportIntEightQuantization"
+            case frameworkVersion = "FrameworkVersion"
         }
     }
 
@@ -1640,6 +1762,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qatModel: Bool?
 
+        /// 加速引擎对应的框架版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let frameworkVersion: String?
+
         enum CodingKeys: String, CodingKey {
             case modelAccTaskId = "ModelAccTaskId"
             case modelAccTaskName = "ModelAccTaskName"
@@ -1669,6 +1795,7 @@ extension Tione {
             case isSaved = "IsSaved"
             case modelSignature = "ModelSignature"
             case qatModel = "QATModel"
+            case frameworkVersion = "FrameworkVersion"
         }
     }
 
@@ -1809,6 +1936,63 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
+        }
+    }
+
+    /// Pod信息展示
+    public struct Pod: TCInputModel, TCOutputModel {
+        /// pod名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// pod的唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uid: String?
+
+        /// 服务付费模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeType: String?
+
+        /// pod的状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phase: String?
+
+        /// pod的IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        /// pod的创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 容器列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let containers: Container?
+
+        /// 容器列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let containerInfos: [Container]?
+
+        public init(name: String? = nil, uid: String? = nil, chargeType: String? = nil, phase: String? = nil, ip: String? = nil, createTime: String? = nil, containers: Container? = nil, containerInfos: [Container]? = nil) {
+            self.name = name
+            self.uid = uid
+            self.chargeType = chargeType
+            self.phase = phase
+            self.ip = ip
+            self.createTime = createTime
+            self.containers = containers
+            self.containerInfos = containerInfos
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case uid = "Uid"
+            case chargeType = "ChargeType"
+            case phase = "Phase"
+            case ip = "IP"
+            case createTime = "CreateTime"
+            case containers = "Containers"
+            case containerInfos = "ContainerInfos"
         }
     }
 
@@ -2421,7 +2605,7 @@ extension Tione {
     }
 
     /// 推理服务在集群中的信息
-    public struct ServiceInfo: TCOutputModel {
+    public struct ServiceInfo: TCInputModel, TCOutputModel {
         /// 期望运行的Pod数量，停止状态是0
         /// 不同计费模式和调节模式下对应关系如下
         /// PREPAID 和 POSTPAID_BY_HOUR:
@@ -2501,6 +2685,37 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelHotUpdateEnable: Bool?
 
+        /// Pod列表信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pods: Pod?
+
+        /// Pod列表信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podInfos: [Pod]?
+
+        public init(replicas: Int64, imageInfo: ImageInfo, env: [EnvVar], resources: ResourceInfo, instanceType: String, modelInfo: ModelInfo, logEnable: Bool, logConfig: LogConfig, authorizationEnable: Bool, horizontalPodAutoscaler: HorizontalPodAutoscaler, status: WorkloadStatus, weight: UInt64, podList: [String], resourceTotal: ResourceInfo, oldReplicas: Int64, hybridBillingPrepaidReplicas: Int64, oldHybridBillingPrepaidReplicas: Int64, modelHotUpdateEnable: Bool, pods: Pod? = nil, podInfos: [Pod]? = nil) {
+            self.replicas = replicas
+            self.imageInfo = imageInfo
+            self.env = env
+            self.resources = resources
+            self.instanceType = instanceType
+            self.modelInfo = modelInfo
+            self.logEnable = logEnable
+            self.logConfig = logConfig
+            self.authorizationEnable = authorizationEnable
+            self.horizontalPodAutoscaler = horizontalPodAutoscaler
+            self.status = status
+            self.weight = weight
+            self.podList = podList
+            self.resourceTotal = resourceTotal
+            self.oldReplicas = oldReplicas
+            self.hybridBillingPrepaidReplicas = hybridBillingPrepaidReplicas
+            self.oldHybridBillingPrepaidReplicas = oldHybridBillingPrepaidReplicas
+            self.modelHotUpdateEnable = modelHotUpdateEnable
+            self.pods = pods
+            self.podInfos = podInfos
+        }
+
         enum CodingKeys: String, CodingKey {
             case replicas = "Replicas"
             case imageInfo = "ImageInfo"
@@ -2520,6 +2735,8 @@ extension Tione {
             case hybridBillingPrepaidReplicas = "HybridBillingPrepaidReplicas"
             case oldHybridBillingPrepaidReplicas = "OldHybridBillingPrepaidReplicas"
             case modelHotUpdateEnable = "ModelHotUpdateEnable"
+            case pods = "Pods"
+            case podInfos = "PodInfos"
         }
     }
 
@@ -2579,10 +2796,14 @@ extension Tione {
         /// 优惠后的价格，单位：分
         public let realTotalCost: UInt64
 
+        /// 计费项数量
+        public let specCount: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case specName = "SpecName"
             case totalCost = "TotalCost"
             case realTotalCost = "RealTotalCost"
+            case specCount = "SpecCount"
         }
     }
 
@@ -2940,11 +3161,16 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
 
+        /// 模型版本列表。默认不返回，仅在指定请求参数开启时返回。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trainingModelVersions: [TrainingModelVersionDTO]?
+
         enum CodingKeys: String, CodingKey {
             case trainingModelId = "TrainingModelId"
             case trainingModelName = "TrainingModelName"
             case tags = "Tags"
             case createTime = "CreateTime"
+            case trainingModelVersions = "TrainingModelVersions"
         }
     }
 
@@ -3039,6 +3265,26 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelHotUpdatePath: CosPathInfo?
 
+        /// 推理环境id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reasoningEnvironmentId: String?
+
+        /// 训练任务版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trainingJobVersion: String?
+
+        /// 训练偏好
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trainingPreference: String?
+
+        /// 自动学习任务id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoMLTaskId: String?
+
+        /// 是否QAT模型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isQAT: Bool?
+
         enum CodingKeys: String, CodingKey {
             case trainingModelId = "TrainingModelId"
             case trainingModelVersionId = "TrainingModelVersionId"
@@ -3066,6 +3312,11 @@ extension Tione {
             case modelCleanPeriod = "ModelCleanPeriod"
             case maxReservedModels = "MaxReservedModels"
             case modelHotUpdatePath = "ModelHotUpdatePath"
+            case reasoningEnvironmentId = "ReasoningEnvironmentId"
+            case trainingJobVersion = "TrainingJobVersion"
+            case trainingPreference = "TrainingPreference"
+            case autoMLTaskId = "AutoMLTaskId"
+            case isQAT = "IsQAT"
         }
     }
 

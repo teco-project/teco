@@ -17,6 +17,7 @@
 extension TCVpcError {
     public struct UnsupportedOperation: TCVpcErrorType {
         enum Code: String {
+            case accountNotSupported = "UnsupportedOperation.AccountNotSupported"
             case actionNotFound = "UnsupportedOperation.ActionNotFound"
             case addressIpInArrear = "UnsupportedOperation.AddressIpInArrear"
             case addressIpInternetChargeTypeNotPermit = "UnsupportedOperation.AddressIpInternetChargeTypeNotPermit"
@@ -25,6 +26,7 @@ extension TCVpcError {
             case addressStatusNotPermit = "UnsupportedOperation.AddressStatusNotPermit"
             case appIdMismatch = "UnsupportedOperation.AppIdMismatch"
             case appIdNotFound = "UnsupportedOperation.AppIdNotFound"
+            case associatedVpcOfCcnHadNatRoute = "UnsupportedOperation.AssociatedVpcOfCcnHadNatRoute"
             case attachmentAlreadyExists = "UnsupportedOperation.AttachmentAlreadyExists"
             case attachmentNotFound = "UnsupportedOperation.AttachmentNotFound"
             case bandwidthNotExpired = "UnsupportedOperation.BandwidthNotExpired"
@@ -39,6 +41,7 @@ extension TCVpcError {
             case cdcSubnetNotSupportUnLocalGateway = "UnsupportedOperation.CdcSubnetNotSupportUnLocalGateway"
             case cidrUnSupportedClassicLink = "UnsupportedOperation.CIDRUnSupportedClassicLink"
             case classicInstanceIdAlreadyExists = "UnsupportedOperation.ClassicInstanceIdAlreadyExists"
+            case clbPolicyExceedLimit = "UnsupportedOperation.ClbPolicyExceedLimit"
             case clbPolicyLimit = "UnsupportedOperation.ClbPolicyLimit"
             case conflictWithDockerRoute = "UnsupportedOperation.ConflictWithDockerRoute"
             case currentAccountIsNotUnicomAccount = "UnsupportedOperation.CurrentAccountIsNotUnicomAccount"
@@ -47,8 +50,10 @@ extension TCVpcError {
             case dcGatewaysNotFoundInVpc = "UnsupportedOperation.DcGatewaysNotFoundInVpc"
             case delDefaultRoute = "UnsupportedOperation.DelDefaultRoute"
             case delRouteWithSubnet = "UnsupportedOperation.DelRouteWithSubnet"
+            case deleteVpnConnInvalidState = "UnsupportedOperation.DeleteVpnConnInvalidState"
             case directConnectGatewayIsUpdatingCommunity = "UnsupportedOperation.DirectConnectGatewayIsUpdatingCommunity"
             case disabledNotifyCcn = "UnsupportedOperation.DisabledNotifyCcn"
+            case dpdkNatFlowLogOnlySupportAllTrafficType = "UnsupportedOperation.DpdkNatFlowLogOnlySupportAllTrafficType"
             case duplicatePolicy = "UnsupportedOperation.DuplicatePolicy"
             case ecmp = "UnsupportedOperation.Ecmp"
             case ecmpWithCcnRoute = "UnsupportedOperation.EcmpWithCcnRoute"
@@ -73,6 +78,7 @@ extension TCVpcError {
             case isNotFinanceAccount = "UnsupportedOperation.IsNotFinanceAccount"
             case ispNotSupported = "UnsupportedOperation.IspNotSupported"
             case localGatewayAlreadyExists = "UnsupportedOperation.LocalGatewayAlreadyExists"
+            case lockedResources = "UnsupportedOperation.LockedResources"
             case modifyAddressAttribute = "UnsupportedOperation.ModifyAddressAttribute"
             case mutexOperationTaskRunning = "UnsupportedOperation.MutexOperationTaskRunning"
             case natGatewayEipNotExists = "UnsupportedOperation.NatGatewayEipNotExists"
@@ -82,10 +88,13 @@ extension TCVpcError {
             case natNotSupported = "UnsupportedOperation.NatNotSupported"
             case normalSubnetNotSupportLocalGateway = "UnsupportedOperation.NormalSubnetNotSupportLocalGateway"
             case notLockedInstanceOperation = "UnsupportedOperation.NotLockedInstanceOperation"
+            case notMatchTargetService = "UnsupportedOperation.NotMatchTargetService"
             case notPendingCcnInstance = "UnsupportedOperation.NotPendingCcnInstance"
             case notPostpaidCcnOperation = "UnsupportedOperation.NotPostpaidCcnOperation"
             case notSupportAttachEdgeAndCrossBorderInstance = "UnsupportedOperation.NotSupportAttachEdgeAndCrossBorderInstance"
             case notSupportDeleteDefaultRouteTable = "UnsupportedOperation.NotSupportDeleteDefaultRouteTable"
+            case notSupportedAddressIpsChargeType = "UnsupportedOperation.NotSupportedAddressIpsChargeType"
+            case notSupportedPurchaseCenterEgressResource = "UnsupportedOperation.NotSupportedPurchaseCenterEgressResource"
             case notSupportedUpdateCcnRoutePublish = "UnsupportedOperation.NotSupportedUpdateCcnRoutePublish"
             case notifyCcn = "UnsupportedOperation.NotifyCcn"
             case offlineChargeType = "UnsupportedOperation.OfflineChargeType"
@@ -102,6 +111,13 @@ extension TCVpcError {
             case resourceMismatch = "UnsupportedOperation.ResourceMismatch"
             case roleNotFound = "UnsupportedOperation.RoleNotFound"
             case routeTableHasSubnetRule = "UnsupportedOperation.RouteTableHasSubnetRule"
+            case snapshotAttached = "UnsupportedOperation.SnapshotAttached"
+            case snapshotBackupTypeModify = "UnsupportedOperation.SnapshotBackupTypeModify"
+            case snapshotFileFailed = "UnsupportedOperation.SnapshotFileFailed"
+            case snapshotFileNoExist = "UnsupportedOperation.SnapshotFileNoExist"
+            case snapshotFileProcessing = "UnsupportedOperation.SnapshotFileProcessing"
+            case snapshotInstanceRegionDiff = "UnsupportedOperation.SnapshotInstanceRegionDiff"
+            case snapshotNotAttached = "UnsupportedOperation.SnapshotNotAttached"
             case snatSubnet = "UnsupportedOperation.SnatSubnet"
             case specialEndPointService = "UnsupportedOperation.SpecialEndPointService"
             case sslVpnClientIdNotFound = "UnsupportedOperation.SslVpnClientIdNotFound"
@@ -123,6 +139,8 @@ extension TCVpcError {
             case userAndCcnChargeTypeNotMatch = "UnsupportedOperation.UserAndCcnChargeTypeNotMatch"
             case versionMismatch = "UnsupportedOperation.VersionMismatch"
             case vpcMismatch = "UnsupportedOperation.VpcMismatch"
+            case vpnConnInvalidState = "UnsupportedOperation.VpnConnInvalidState"
+            case vpnGwVpcIdMustHave = "UnsupportedOperation.VpnGwVpcIdMustHave"
             case zoneMismatch = "UnsupportedOperation.ZoneMismatch"
             case other = "UnsupportedOperation"
         }
@@ -147,6 +165,11 @@ extension TCVpcError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 不支持的账户。
+        public static var accountNotSupported: UnsupportedOperation {
+            UnsupportedOperation(.accountNotSupported)
         }
 
         /// 接口不存在。
@@ -189,6 +212,11 @@ extension TCVpcError {
             UnsupportedOperation(.appIdNotFound)
         }
 
+        /// CCN关联的其他vpc已经存在nat的路由
+        public static var associatedVpcOfCcnHadNatRoute: UnsupportedOperation {
+            UnsupportedOperation(.associatedVpcOfCcnHadNatRoute)
+        }
+
         /// 绑定关系已存在。
         public static var attachmentAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.attachmentAlreadyExists)
@@ -224,6 +252,7 @@ extension TCVpcError {
             UnsupportedOperation(.ccnHasFlowLog)
         }
 
+        /// CCN实例所属账号未通过联通审批。
         public static var ccnInstanceAccountNotApprovedByUnicom: UnsupportedOperation {
             UnsupportedOperation(.ccnInstanceAccountNotApprovedByUnicom)
         }
@@ -258,6 +287,13 @@ extension TCVpcError {
             UnsupportedOperation(.classicInstanceIdAlreadyExists)
         }
 
+        /// 负载均衡的安全组规则已达到上限。
+        ///
+        /// 减少负载均衡的安全组规则条数。
+        public static var clbPolicyExceedLimit: UnsupportedOperation {
+            UnsupportedOperation(.clbPolicyExceedLimit)
+        }
+
         /// 公网Clb不支持该规则。
         public static var clbPolicyLimit: UnsupportedOperation {
             UnsupportedOperation(.clbPolicyLimit)
@@ -268,14 +304,17 @@ extension TCVpcError {
             UnsupportedOperation(.conflictWithDockerRoute)
         }
 
+        /// 当前账号非联通账号。
         public static var currentAccountIsNotUnicomAccount: UnsupportedOperation {
             UnsupportedOperation(.currentAccountIsNotUnicomAccount)
         }
 
+        /// 当前查询地域非跨境。
         public static var currentQueryRegionIsNotCrossBorder: UnsupportedOperation {
             UnsupportedOperation(.currentQueryRegionIsNotCrossBorder)
         }
 
+        /// 该专线网关存在关联的NAT规则，不允许删除，请先删调所有的NAT规则。
         public static var dcGatewayNatRuleExists: UnsupportedOperation {
             UnsupportedOperation(.dcGatewayNatRuleExists)
         }
@@ -295,6 +334,11 @@ extension TCVpcError {
             UnsupportedOperation(.delRouteWithSubnet)
         }
 
+        /// VPN通道状态为更新中/销毁中/创建中，不支持此操作。
+        public static var deleteVpnConnInvalidState: UnsupportedOperation {
+            UnsupportedOperation(.deleteVpnConnInvalidState)
+        }
+
         /// 专线网关正在更新BGP Community属性。
         public static var directConnectGatewayIsUpdatingCommunity: UnsupportedOperation {
             UnsupportedOperation(.directConnectGatewayIsUpdatingCommunity)
@@ -303,6 +347,13 @@ extension TCVpcError {
         /// 指定的路由策略已发布至云联网，请先撤销。
         public static var disabledNotifyCcn: UnsupportedOperation {
             UnsupportedOperation(.disabledNotifyCcn)
+        }
+
+        /// 创建DPDK NAT流日志时，采集类型只支持全部。
+        ///
+        /// 用户创建DPDK NAT流日志时，采集类型只能选择全部。
+        public static var dpdkNatFlowLogOnlySupportAllTrafficType: UnsupportedOperation {
+            UnsupportedOperation(.dpdkNatFlowLogOnlySupportAllTrafficType)
         }
 
         /// 安全组规则重复。
@@ -350,6 +401,7 @@ extension TCVpcError {
             UnsupportedOperation(.instanceAndRtbNotMatch)
         }
 
+        /// 指定实例资源不匹配。
         public static var instanceMismatch: UnsupportedOperation {
             UnsupportedOperation(.instanceMismatch)
         }
@@ -426,6 +478,14 @@ extension TCVpcError {
             UnsupportedOperation(.localGatewayAlreadyExists)
         }
 
+        /// 资源被锁定。
+        ///
+        /// BPAAS服务审批时，对同一个资源的访问需要加锁确保顺序审批后执行。可以等该资源相关的BPAAS申请都审批通过或拒绝后，再重试。
+        public static var lockedResources: UnsupportedOperation {
+            UnsupportedOperation(.lockedResources)
+        }
+
+        /// 账户不支持修改公网IP的该属性。
         public static var modifyAddressAttribute: UnsupportedOperation {
             UnsupportedOperation(.modifyAddressAttribute)
         }
@@ -470,6 +530,11 @@ extension TCVpcError {
             UnsupportedOperation(.notLockedInstanceOperation)
         }
 
+        /// 目的端的服务在IP申请中使用的实例ID和这里传入的不匹配。
+        public static var notMatchTargetService: UnsupportedOperation {
+            UnsupportedOperation(.notMatchTargetService)
+        }
+
         /// 当前云联网实例未处于申请中状态，无法进行操作。
         public static var notPendingCcnInstance: UnsupportedOperation {
             UnsupportedOperation(.notPendingCcnInstance)
@@ -480,14 +545,28 @@ extension TCVpcError {
             UnsupportedOperation(.notPostpaidCcnOperation)
         }
 
+        /// 当前云联网不支持同时关联EDGE实例和跨境实例
         public static var notSupportAttachEdgeAndCrossBorderInstance: UnsupportedOperation {
             UnsupportedOperation(.notSupportAttachEdgeAndCrossBorderInstance)
         }
 
+        /// 不支持删除默认路由表。
         public static var notSupportDeleteDefaultRouteTable: UnsupportedOperation {
             UnsupportedOperation(.notSupportDeleteDefaultRouteTable)
         }
 
+        /// 该地址类型不支持释放操作。
+        public static var notSupportedAddressIpsChargeType: UnsupportedOperation {
+            UnsupportedOperation(.notSupportedAddressIpsChargeType)
+        }
+
+        /// 此地域没有上线出口二资源，请到北京/广州/南京购买。
+        public static var notSupportedPurchaseCenterEgressResource: UnsupportedOperation {
+            UnsupportedOperation(.notSupportedPurchaseCenterEgressResource)
+        }
+
+        /// 当前云联网不支持更新路由发布。
+        ///
         /// 确认云联网是否开启了路由重叠选项。
         public static var notSupportedUpdateCcnRoutePublish: UnsupportedOperation {
             UnsupportedOperation(.notSupportedUpdateCcnRoutePublish)
@@ -543,10 +622,12 @@ extension TCVpcError {
             UnsupportedOperation(.purchaseLimit)
         }
 
+        /// 记录已存在。
         public static var recordExists: UnsupportedOperation {
             UnsupportedOperation(.recordExists)
         }
 
+        /// 记录不存在。
         public static var recordNotExists: UnsupportedOperation {
             UnsupportedOperation(.recordNotExists)
         }
@@ -563,11 +644,49 @@ extension TCVpcError {
             UnsupportedOperation(.roleNotFound)
         }
 
+        /// 路由表绑定了子网。
+        ///
         /// 请解除该路由表和子网的绑定后重试。
         public static var routeTableHasSubnetRule: UnsupportedOperation {
             UnsupportedOperation(.routeTableHasSubnetRule)
         }
 
+        /// 实例已关联快照策略。
+        public static var snapshotAttached: UnsupportedOperation {
+            UnsupportedOperation(.snapshotAttached)
+        }
+
+        /// 快照备份策略不支持修改。
+        public static var snapshotBackupTypeModify: UnsupportedOperation {
+            UnsupportedOperation(.snapshotBackupTypeModify)
+        }
+
+        /// 快照文件生成失败。
+        public static var snapshotFileFailed: UnsupportedOperation {
+            UnsupportedOperation(.snapshotFileFailed)
+        }
+
+        /// 快照文件已过期或删除。
+        public static var snapshotFileNoExist: UnsupportedOperation {
+            UnsupportedOperation(.snapshotFileNoExist)
+        }
+
+        /// 快照文件正在生成中，请稍后查看。
+        public static var snapshotFileProcessing: UnsupportedOperation {
+            UnsupportedOperation(.snapshotFileProcessing)
+        }
+
+        /// 一次仅支持关联一个地域的实例。
+        public static var snapshotInstanceRegionDiff: UnsupportedOperation {
+            UnsupportedOperation(.snapshotInstanceRegionDiff)
+        }
+
+        /// 实例未关联快照策略。
+        public static var snapshotNotAttached: UnsupportedOperation {
+            UnsupportedOperation(.snapshotNotAttached)
+        }
+
+        /// SNAT子网 不支持分配IP。
         public static var snatSubnet: UnsupportedOperation {
             UnsupportedOperation(.snatSubnet)
         }
@@ -577,6 +696,7 @@ extension TCVpcError {
             UnsupportedOperation(.specialEndPointService)
         }
 
+        /// SslVpnClientId 不存在。
         public static var sslVpnClientIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.sslVpnClientIdNotFound)
         }
@@ -591,18 +711,22 @@ extension TCVpcError {
             UnsupportedOperation(.systemRoute)
         }
 
+        /// 标签正在分配中。
         public static var tagAllocate: UnsupportedOperation {
             UnsupportedOperation(.tagAllocate)
         }
 
+        /// 标签正在释放中。
         public static var tagFree: UnsupportedOperation {
             UnsupportedOperation(.tagFree)
         }
 
+        /// 标签没有权限。
         public static var tagNotPermit: UnsupportedOperation {
             UnsupportedOperation(.tagNotPermit)
         }
 
+        /// 不支持使用系统预留的标签键。
         public static var tagSystemReservedTagKey: UnsupportedOperation {
             UnsupportedOperation(.tagSystemReservedTagKey)
         }
@@ -637,6 +761,7 @@ extension TCVpcError {
             UnsupportedOperation(.unpaidOrderAlreadyExists)
         }
 
+        /// 不支持绑定LocalZone弹性公网IP。
         public static var unsupportedBindLocalZoneEIP: UnsupportedOperation {
             UnsupportedOperation(.unsupportedBindLocalZoneEIP)
         }
@@ -666,6 +791,16 @@ extension TCVpcError {
             UnsupportedOperation(.vpcMismatch)
         }
 
+        /// 当前通道为非可用状态，不支持该操作。
+        public static var vpnConnInvalidState: UnsupportedOperation {
+            UnsupportedOperation(.vpnConnInvalidState)
+        }
+
+        /// VPC类型VPN网关必须携带VpcId。
+        public static var vpnGwVpcIdMustHave: UnsupportedOperation {
+            UnsupportedOperation(.vpnGwVpcIdMustHave)
+        }
+
         /// 指定资源在不同的可用区。
         public static var zoneMismatch: UnsupportedOperation {
             UnsupportedOperation(.zoneMismatch)
@@ -679,6 +814,8 @@ extension TCVpcError {
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
+            case .accountNotSupported:
+                code = .unsupportedOperation_AccountNotSupported
             case .actionNotFound:
                 code = .unsupportedOperation_ActionNotFound
             case .addressIpInArrear:
@@ -695,6 +832,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_AppIdMismatch
             case .appIdNotFound:
                 code = .unsupportedOperation_AppIdNotFound
+            case .associatedVpcOfCcnHadNatRoute:
+                code = .unsupportedOperation_AssociatedVpcOfCcnHadNatRoute
             case .attachmentAlreadyExists:
                 code = .unsupportedOperation_AttachmentAlreadyExists
             case .attachmentNotFound:
@@ -723,6 +862,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_CIDRUnSupportedClassicLink
             case .classicInstanceIdAlreadyExists:
                 code = .unsupportedOperation_ClassicInstanceIdAlreadyExists
+            case .clbPolicyExceedLimit:
+                code = .unsupportedOperation_ClbPolicyExceedLimit
             case .clbPolicyLimit:
                 code = .unsupportedOperation_ClbPolicyLimit
             case .conflictWithDockerRoute:
@@ -739,10 +880,14 @@ extension TCVpcError {
                 code = .unsupportedOperation_DelDefaultRoute
             case .delRouteWithSubnet:
                 code = .unsupportedOperation_DelRouteWithSubnet
+            case .deleteVpnConnInvalidState:
+                code = .unsupportedOperation_DeleteVpnConnInvalidState
             case .directConnectGatewayIsUpdatingCommunity:
                 code = .unsupportedOperation_DirectConnectGatewayIsUpdatingCommunity
             case .disabledNotifyCcn:
                 code = .unsupportedOperation_DisabledNotifyCcn
+            case .dpdkNatFlowLogOnlySupportAllTrafficType:
+                code = .unsupportedOperation_DpdkNatFlowLogOnlySupportAllTrafficType
             case .duplicatePolicy:
                 code = .unsupportedOperation_DuplicatePolicy
             case .ecmp:
@@ -791,6 +936,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_IspNotSupported
             case .localGatewayAlreadyExists:
                 code = .unsupportedOperation_LocalGatewayAlreadyExists
+            case .lockedResources:
+                code = .unsupportedOperation_LockedResources
             case .modifyAddressAttribute:
                 code = .unsupportedOperation_ModifyAddressAttribute
             case .mutexOperationTaskRunning:
@@ -809,6 +956,8 @@ extension TCVpcError {
                 code = .unsupportedOperation_NormalSubnetNotSupportLocalGateway
             case .notLockedInstanceOperation:
                 code = .unsupportedOperation_NotLockedInstanceOperation
+            case .notMatchTargetService:
+                code = .unsupportedOperation_NotMatchTargetService
             case .notPendingCcnInstance:
                 code = .unsupportedOperation_NotPendingCcnInstance
             case .notPostpaidCcnOperation:
@@ -817,6 +966,10 @@ extension TCVpcError {
                 code = .unsupportedOperation_NotSupportAttachEdgeAndCrossBorderInstance
             case .notSupportDeleteDefaultRouteTable:
                 code = .unsupportedOperation_NotSupportDeleteDefaultRouteTable
+            case .notSupportedAddressIpsChargeType:
+                code = .unsupportedOperation_NotSupportedAddressIpsChargeType
+            case .notSupportedPurchaseCenterEgressResource:
+                code = .unsupportedOperation_NotSupportedPurchaseCenterEgressResource
             case .notSupportedUpdateCcnRoutePublish:
                 code = .unsupportedOperation_NotSupportedUpdateCcnRoutePublish
             case .notifyCcn:
@@ -849,6 +1002,20 @@ extension TCVpcError {
                 code = .unsupportedOperation_RoleNotFound
             case .routeTableHasSubnetRule:
                 code = .unsupportedOperation_RouteTableHasSubnetRule
+            case .snapshotAttached:
+                code = .unsupportedOperation_SnapshotAttached
+            case .snapshotBackupTypeModify:
+                code = .unsupportedOperation_SnapshotBackupTypeModify
+            case .snapshotFileFailed:
+                code = .unsupportedOperation_SnapshotFileFailed
+            case .snapshotFileNoExist:
+                code = .unsupportedOperation_SnapshotFileNoExist
+            case .snapshotFileProcessing:
+                code = .unsupportedOperation_SnapshotFileProcessing
+            case .snapshotInstanceRegionDiff:
+                code = .unsupportedOperation_SnapshotInstanceRegionDiff
+            case .snapshotNotAttached:
+                code = .unsupportedOperation_SnapshotNotAttached
             case .snatSubnet:
                 code = .unsupportedOperation_SnatSubnet
             case .specialEndPointService:
@@ -891,6 +1058,10 @@ extension TCVpcError {
                 code = .unsupportedOperation_VersionMismatch
             case .vpcMismatch:
                 code = .unsupportedOperation_VpcMismatch
+            case .vpnConnInvalidState:
+                code = .unsupportedOperation_VpnConnInvalidState
+            case .vpnGwVpcIdMustHave:
+                code = .unsupportedOperation_VpnGwVpcIdMustHave
             case .zoneMismatch:
                 code = .unsupportedOperation_ZoneMismatch
             case .other:

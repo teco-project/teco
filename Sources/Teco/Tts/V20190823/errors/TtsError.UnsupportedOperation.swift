@@ -84,6 +84,8 @@ extension TCTtsError {
             UnsupportedOperation(.noFreeAccount)
         }
 
+        /// 资源包余量已用尽。
+        ///
         /// 请检查资源包余量。
         public static var pkgExhausted: UnsupportedOperation {
             UnsupportedOperation(.pkgExhausted)

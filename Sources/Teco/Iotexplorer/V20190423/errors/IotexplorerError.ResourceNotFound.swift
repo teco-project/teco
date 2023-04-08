@@ -41,6 +41,7 @@ extension TCIotexplorerError {
             case studioProductNotExist = "ResourceNotFound.StudioProductNotExist"
             case topicPolicyNotExist = "ResourceNotFound.TopicPolicyNotExist"
             case topicRuleNotExist = "ResourceNotFound.TopicRuleNotExist"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -185,6 +186,11 @@ extension TCIotexplorerError {
             ResourceNotFound(.topicRuleNotExist)
         }
 
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
+        }
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {
@@ -236,6 +242,8 @@ extension TCIotexplorerError {
                 code = .resourceNotFound_TopicPolicyNotExist
             case .topicRuleNotExist:
                 code = .resourceNotFound_TopicRuleNotExist
+            case .other:
+                code = .resourceNotFound
             }
             return TCIotexplorerError(code, context: self.context)
         }

@@ -48,6 +48,8 @@ extension TCEcmError {
             ResourcesSoldOut(.loadBalancerSoldOut)
         }
 
+        /// 特定机型售罄。
+        ///
         /// 更换机型或者可用区。
         public static var specifiedInstanceType: ResourcesSoldOut {
             ResourcesSoldOut(.specifiedInstanceType)

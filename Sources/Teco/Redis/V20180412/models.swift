@@ -73,6 +73,25 @@ extension Redis {
         }
     }
 
+    /// 自定义的备份文件下载地址的 VPC 信息。
+    public struct BackupLimitVpcItem: TCInputModel, TCOutputModel {
+        /// 自定义下载备份文件的VPC 所属地域。
+        public let region: String
+
+        /// 自定义下载备份文件的 VPC 列表。
+        public let vpcList: [String]
+
+        public init(region: String, vpcList: [String]) {
+            self.region = region
+            self.vpcList = vpcList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case vpcList = "VpcList"
+        }
+    }
+
     /// 大Key详情
     public struct BigKeyInfo: TCOutputModel {
         /// 所属的database
@@ -210,27 +229,50 @@ extension Redis {
         /// 用户AppID
         public let appId: Int64
 
-        /// 地域ID 1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
+        /// 地域ID 。
+        /// - 1：广州
+        /// - 4：上海
+        /// - 5：中国香港
+        /// - 6：多伦多
+        /// - 7：上海金融
+        /// - 8：北京
+        /// - 9：新加坡
+        /// - 11：深圳金融
+        /// - 15：美西（硅谷）
+        /// - 16：成都
+        /// - 17：德国
+        /// - 18：韩国
+        /// - 19：重庆
+        /// - 21：印度
+        /// - 22：美东（弗吉尼亚）
+        /// - 23：泰国
+        /// - 24：俄罗斯
+        /// - 25：日本
         public let regionId: Int64
 
-        /// 复制组信息
+        /// 复制组 ID。
         public let groupId: String
 
-        /// 复制组名称
+        /// 复制组名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
 
-        /// 复制组状态，37："绑定复制组中"，38："复制组重连中"，51："解绑复制组中"，52："复制组实例切主中"，53："角色变更中"
+        /// 复制组状态。
+        /// - 37：绑定复制组中。
+        /// - 38：复制组重连中。
+        /// - 51：解绑复制组中。
+        /// - 52：复制组实例切主中。
+        /// - 53：角色变更中。
         public let status: Int64
 
-        /// 复制组数量
+        /// 复制组数量。
         public let instanceCount: Int64
 
-        /// 复制组实例
+        /// 复制组中的实例信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instances: [Instances]?
 
-        /// 备注信息
+        /// 备注信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
@@ -586,19 +628,19 @@ extension Redis {
 
     /// 代理慢查询详情
     public struct InstanceProxySlowlogDetail: TCOutputModel {
-        /// 慢查询耗时
+        /// 慢查询耗时（单位：毫秒）。
         public let duration: Int64
 
-        /// 客户端地址
+        /// 客户端地址。
         public let client: String
 
-        /// 命令
+        /// 命令。
         public let command: String
 
-        /// 详细命令行信息
+        /// 详细命令行信息。
         public let commandLine: String
 
-        /// 执行时间
+        /// 执行时间。
         public let executeTime: String
 
         enum CodingKeys: String, CodingKey {
@@ -769,7 +811,7 @@ extension Redis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
-        /// 监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
+        /// 监控版本。<ul><li>1m：1分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorVersion: String?
 
@@ -1223,35 +1265,65 @@ extension Redis {
 
     /// 实例的备份数组
     public struct RedisBackupSet: TCOutputModel {
-        /// 开始备份的时间
+        /// 备份开始时间。
         public let startTime: String
 
-        /// 备份ID
+        /// 备份ID。
         public let backupId: String
 
-        /// 备份类型。1：用户发起的手动备份； 0：凌晨系统发起的备份
+        /// 备份类型。
+        ///
+        /// - 1：用户发起的手动备份。
+        /// - 0：凌晨系统发起的备份。
         public let backupType: String
 
-        /// 备份状态。  1:"备份被其它流程锁定";  2:"备份正常，没有被任何流程锁定";  -1:"备份已过期"； 3:"备份正在被导出";  4:"备份导出成功"
+        /// 备份状态。
+        ///
+        /// - 1：备份被其它流程锁定。
+        /// - 2：备份正常，没有被任何流程锁定。
+        /// - -1：备份已过期。
+        /// - 3：备份正在被导出。
+        /// - 4：备份导出成功。
         public let status: Int64
 
-        /// 备份的备注信息
+        /// 备份的备注信息。
         public let remark: String
 
-        /// 备份是否被锁定，0：未被锁定；1：已被锁定
+        /// 备份是否被锁定。
+        ///
+        /// - 0：未被锁定。
+        /// - 1：已被锁定。
         public let locked: Int64
 
-        /// 内部字段，用户可忽略
+        /// 内部字段，用户可忽略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupSize: Int64?
 
-        /// 内部字段，用户可忽略
+        /// 内部字段，用户可忽略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullBackup: Int64?
 
-        /// 内部字段，用户可忽略
+        /// 内部字段，用户可忽略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: Int64?
+
+        /// 实例 ID。
+        public let instanceId: String
+
+        /// 实例名称。
+        public let instanceName: String
+
+        /// 本地备份所在地域。
+        public let region: String
+
+        /// 备份结束时间。
+        public let endTime: String
+
+        /// 备份文件类型。
+        public let fileType: String
+
+        /// 备份文件过期时间。
+        public let expireTime: String
 
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
@@ -1263,6 +1335,12 @@ extension Redis {
             case backupSize = "BackupSize"
             case fullBackup = "FullBackup"
             case instanceType = "InstanceType"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case region = "Region"
+            case endTime = "EndTime"
+            case fileType = "FileType"
+            case expireTime = "ExpireTime"
         }
     }
 

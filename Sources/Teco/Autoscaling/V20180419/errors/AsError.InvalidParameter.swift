@@ -51,6 +51,8 @@ extension TCAsError {
             self.context = context
         }
 
+        /// 无效的Action请求。
+        ///
         /// 请检查Action参数是否正确。
         public static var actionNotFound: InvalidParameter {
             InvalidParameter(.actionNotFound)
@@ -86,6 +88,7 @@ extension TCAsError {
             InvalidParameter(.mustOneParameter)
         }
 
+        /// 该参数已废弃。
         public static var parameterDeprecated: InvalidParameter {
             InvalidParameter(.parameterDeprecated)
         }

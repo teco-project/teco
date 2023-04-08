@@ -17,31 +17,31 @@
 extension Vpc {
     /// CreateFlowLog请求参数结构体
     public struct CreateFlowLogRequest: TCRequestModel {
-        /// 流日志实例名字
+        /// 流日志实例名字。
         public let flowLogName: String
 
-        /// 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG
+        /// 流日志所属资源类型，VPC|SUBNET|NETWORKINTERFACE|CCN|NAT|DCG。
         public let resourceType: String
 
-        /// 资源唯一ID
+        /// 资源唯一ID。
         public let resourceId: String
 
-        /// 流日志采集类型，ACCEPT|REJECT|ALL
+        /// 流日志采集类型，ACCEPT|REJECT|ALL。
         public let trafficType: String
 
         /// 私用网络ID或者统一ID，建议使用统一ID，当ResourceType为CCN时不填，其他类型必填。
         public let vpcId: String?
 
-        /// 流日志实例描述
+        /// 流日志实例描述。
         public let flowLogDescription: String?
 
-        /// 流日志存储ID
+        /// 流日志存储ID。
         public let cloudLogId: String?
 
-        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         public let tags: [Tag]?
 
-        /// 消费端类型：cls、ckafka
+        /// 消费端类型：cls、ckafka。默认值cls。
         public let storageType: String?
 
         /// 流日志消费端信息，当消费端类型为ckafka时，必填。
@@ -81,7 +81,7 @@ extension Vpc {
 
     /// CreateFlowLog返回参数结构体
     public struct CreateFlowLogResponse: TCResponseModel {
-        /// 创建的流日志信息
+        /// 创建的流日志信息。
         public let flowLog: [FlowLog]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -95,7 +95,7 @@ extension Vpc {
 
     /// 创建流日志
     ///
-    /// 本接口（CreateFlowLog）用于创建流日志
+    /// 本接口（CreateFlowLog）用于创建网络流日志。
     @inlinable
     public func createFlowLog(_ input: CreateFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
         self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -103,7 +103,7 @@ extension Vpc {
 
     /// 创建流日志
     ///
-    /// 本接口（CreateFlowLog）用于创建流日志
+    /// 本接口（CreateFlowLog）用于创建网络流日志。
     @inlinable
     public func createFlowLog(_ input: CreateFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
         try await self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -111,7 +111,7 @@ extension Vpc {
 
     /// 创建流日志
     ///
-    /// 本接口（CreateFlowLog）用于创建流日志
+    /// 本接口（CreateFlowLog）用于创建网络流日志。
     @inlinable
     public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
         self.createFlowLog(.init(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Vpc {
 
     /// 创建流日志
     ///
-    /// 本接口（CreateFlowLog）用于创建流日志
+    /// 本接口（CreateFlowLog）用于创建网络流日志。
     @inlinable
     public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
         try await self.createFlowLog(.init(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)

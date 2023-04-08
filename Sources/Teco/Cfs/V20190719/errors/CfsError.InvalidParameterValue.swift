@@ -31,6 +31,8 @@ extension TCCfsError {
             case invalidFsStatus = "InvalidParameterValue.InvalidFsStatus"
             case invalidMountTargetIp = "InvalidParameterValue.InvalidMountTargetIp"
             case invalidNetInterface = "InvalidParameterValue.InvalidNetInterface"
+            case invalidParamDayOfMonth = "InvalidParameterValue.InvalidParamDayOfMonth"
+            case invalidParamIntervalDays = "InvalidParameterValue.InvalidParamIntervalDays"
             case invalidPgroup = "InvalidParameterValue.InvalidPgroup"
             case invalidPgroupId = "InvalidParameterValue.InvalidPgroupId"
             case invalidPgroupName = "InvalidParameterValue.InvalidPgroupName"
@@ -58,6 +60,7 @@ extension TCCfsError {
             case missingKmsKeyId = "InvalidParameterValue.MissingKmsKeyId"
             case missingNameOrDescinfo = "InvalidParameterValue.MissingNameOrDescinfo"
             case missingPgroupName = "InvalidParameterValue.MissingPgroupName"
+            case missingPolicyParam = "InvalidParameterValue.MissingPolicyParam"
             case missingStorageResourcePkg = "InvalidParameterValue.MissingStorageResourcePkg"
             case missingSubnetidOrUnsubnetid = "InvalidParameterValue.MissingSubnetidOrUnsubnetid"
             case missingVpcParameter = "InvalidParameterValue.MissingVpcParameter"
@@ -73,6 +76,7 @@ extension TCCfsError {
             case ruleNotMatchPgroup = "InvalidParameterValue.RuleNotMatchPgroup"
             case tagKeyFilterLimitExceeded = "InvalidParameterValue.TagKeyFilterLimitExceeded"
             case tagKeyLimitExceeded = "InvalidParameterValue.TagKeyLimitExceeded"
+            case tagValueFilterLimitExceeded = "InvalidParameterValue.TagValueFilterLimitExceeded"
             case tagValueLimitExceeded = "InvalidParameterValue.TagValueLimitExceeded"
             case unavailableRegion = "InvalidParameterValue.UnavailableRegion"
             case unavailableZone = "InvalidParameterValue.UnavailableZone"
@@ -172,6 +176,16 @@ extension TCCfsError {
             InvalidParameterValue(.invalidNetInterface)
         }
 
+        /// 该参数是字符串类型
+        public static var invalidParamDayOfMonth: InvalidParameterValue {
+            InvalidParameterValue(.invalidParamDayOfMonth)
+        }
+
+        /// 该值范围是1-365
+        public static var invalidParamIntervalDays: InvalidParameterValue {
+            InvalidParameterValue(.invalidParamIntervalDays)
+        }
+
         /// 权限组不属于该用户。
         public static var invalidPgroup: InvalidParameterValue {
             InvalidParameterValue(.invalidPgroup)
@@ -239,10 +253,12 @@ extension TCCfsError {
             InvalidParameterValue(.invalidTagKey)
         }
 
+        /// 标签值为空或字符无效。
         public static var invalidTagValue: InvalidParameterValue {
             InvalidParameterValue(.invalidTagValue)
         }
 
+        /// 无效的容量值。
         public static var invalidTurboCapacity: InvalidParameterValue {
             InvalidParameterValue(.invalidTurboCapacity)
         }
@@ -307,6 +323,12 @@ extension TCCfsError {
             InvalidParameterValue(.missingPgroupName)
         }
 
+        /// 添加IsActivated，PolicyName，DayOfWeek，
+        /// Hour，AliveDays，DayOfMonth，IntervalDays 中的一个或者多个参数
+        public static var missingPolicyParam: InvalidParameterValue {
+            InvalidParameterValue(.missingPolicyParam)
+        }
+
         /// 未绑定存储包。
         public static var missingStorageResourcePkg: InvalidParameterValue {
             InvalidParameterValue(.missingStorageResourcePkg)
@@ -347,18 +369,22 @@ extension TCCfsError {
             InvalidParameterValue(.pgroupNameLimitExceeded)
         }
 
+        /// 容量硬限制取值范围错误。
         public static var quotaCapLimitError: InvalidParameterValue {
             InvalidParameterValue(.quotaCapLimitError)
         }
 
+        /// 文件硬限制取值范围错误。
         public static var quotaFileLimitError: InvalidParameterValue {
             InvalidParameterValue(.quotaFileLimitError)
         }
 
+        /// USER ID类型错误。
         public static var quotaUserIdError: InvalidParameterValue {
             InvalidParameterValue(.quotaUserIdError)
         }
 
+        /// 配额类型错误。
         public static var quotaUserTypeError: InvalidParameterValue {
             InvalidParameterValue(.quotaUserTypeError)
         }
@@ -376,6 +402,11 @@ extension TCCfsError {
         /// 标签键长度超过限制（不能超过127字节）。
         public static var tagKeyLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagKeyLimitExceeded)
+        }
+
+        /// 标签值个数超过上限（10个）。
+        public static var tagValueFilterLimitExceeded: InvalidParameterValue {
+            InvalidParameterValue(.tagValueFilterLimitExceeded)
         }
 
         /// 标签值长度超过限制（不能超过255字节）。
@@ -434,6 +465,10 @@ extension TCCfsError {
                 code = .invalidParameterValue_InvalidMountTargetIp
             case .invalidNetInterface:
                 code = .invalidParameterValue_InvalidNetInterface
+            case .invalidParamDayOfMonth:
+                code = .invalidParameterValue_InvalidParamDayOfMonth
+            case .invalidParamIntervalDays:
+                code = .invalidParameterValue_InvalidParamIntervalDays
             case .invalidPgroup:
                 code = .invalidParameterValue_InvalidPgroup
             case .invalidPgroupId:
@@ -488,6 +523,8 @@ extension TCCfsError {
                 code = .invalidParameterValue_MissingNameOrDescinfo
             case .missingPgroupName:
                 code = .invalidParameterValue_MissingPgroupName
+            case .missingPolicyParam:
+                code = .invalidParameterValue_MissingPolicyParam
             case .missingStorageResourcePkg:
                 code = .invalidParameterValue_MissingStorageResourcePkg
             case .missingSubnetidOrUnsubnetid:
@@ -518,6 +555,8 @@ extension TCCfsError {
                 code = .invalidParameterValue_TagKeyFilterLimitExceeded
             case .tagKeyLimitExceeded:
                 code = .invalidParameterValue_TagKeyLimitExceeded
+            case .tagValueFilterLimitExceeded:
+                code = .invalidParameterValue_TagValueFilterLimitExceeded
             case .tagValueLimitExceeded:
                 code = .invalidParameterValue_TagValueLimitExceeded
             case .unavailableRegion:

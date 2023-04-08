@@ -44,6 +44,7 @@ public struct TCMsError: TCMsErrorType {
         case missingParameter_MissingAppInfo = "MissingParameter.MissingAppInfo"
         case missingParameter_MissingItemId = "MissingParameter.MissingItemId"
         case missingParameter_MissingItemIds = "MissingParameter.MissingItemIds"
+        case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_ItemIdNotFound = "ResourceNotFound.ItemIdNotFound"
         case resourceNotFound_PlanIdNotFound = "ResourceNotFound.PlanIdNotFound"
         case resourceUnavailable = "ResourceUnavailable"
@@ -91,6 +92,8 @@ public struct TCMsError: TCMsErrorType {
         TCMsError(.internalError)
     }
 
+    /// Apk检测服务端无法响应。
+    ///
     /// 请联系客服或稍后重试。
     public static var internalError_ApkServerError: TCMsError {
         TCMsError(.internalError_ApkServerError)
@@ -179,6 +182,11 @@ public struct TCMsError: TCMsErrorType {
     /// 缺少ItemIds字段。
     public static var missingParameter_MissingItemIds: TCMsError {
         TCMsError(.missingParameter_MissingItemIds)
+    }
+
+    /// 资源不存在。
+    public static var resourceNotFound: TCMsError {
+        TCMsError(.resourceNotFound)
     }
 
     /// ItemId不存在。

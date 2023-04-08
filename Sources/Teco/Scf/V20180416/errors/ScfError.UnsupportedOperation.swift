@@ -77,6 +77,8 @@ extension TCScfError {
             UnsupportedOperation(.eipFixed)
         }
 
+        /// 不支持的地域。
+        ///
         /// 请传递正确的地域。
         public static var notSupportRegion: UnsupportedOperation {
             UnsupportedOperation(.notSupportRegion)

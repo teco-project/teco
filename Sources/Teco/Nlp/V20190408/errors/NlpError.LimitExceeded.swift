@@ -42,7 +42,7 @@ extension TCNlpError {
             self.context = context
         }
 
-        /// 资源用量达到上限
+        /// 资源用量达到上限。
         public static var resourceReachedLimit: LimitExceeded {
             LimitExceeded(.resourceReachedLimit)
         }

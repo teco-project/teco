@@ -21,6 +21,7 @@ extension TCDtsError {
             case notAllowOperation = "FailedOperation.NotAllowOperation"
             case startJobFailed = "FailedOperation.StartJobFailed"
             case statusInConflict = "FailedOperation.StatusInConflict"
+            case other = "FailedOperation"
         }
 
         private let error: Code
@@ -45,6 +46,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 操作失败。
         public static var failedOperationError: FailedOperation {
             FailedOperation(.failedOperationError)
         }
@@ -64,6 +66,11 @@ extension TCDtsError {
             FailedOperation(.statusInConflict)
         }
 
+        /// 操作失败。
+        public static var other: FailedOperation {
+            FailedOperation(.other)
+        }
+
         public func asDtsError() -> TCDtsError {
             let code: TCDtsError.Code
             switch self.error {
@@ -75,6 +82,8 @@ extension TCDtsError {
                 code = .failedOperation_StartJobFailed
             case .statusInConflict:
                 code = .failedOperation_StatusInConflict
+            case .other:
+                code = .failedOperation
             }
             return TCDtsError(code, context: self.context)
         }

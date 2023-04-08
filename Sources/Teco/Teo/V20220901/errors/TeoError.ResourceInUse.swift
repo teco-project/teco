@@ -18,8 +18,10 @@ extension TCTeoError {
     public struct ResourceInUse: TCTeoErrorType {
         enum Code: String {
             case aliasDomain = "ResourceInUse.AliasDomain"
+            case aliasName = "ResourceInUse.AliasName"
             case cname = "ResourceInUse.Cname"
             case dns = "ResourceInUse.Dns"
+            case dnsRecord = "ResourceInUse.DnsRecord"
             case duplicateName = "ResourceInUse.DuplicateName"
             case genericHost = "ResourceInUse.GenericHost"
             case host = "ResourceInUse.Host"
@@ -56,30 +58,47 @@ extension TCTeoError {
             self.context = context
         }
 
+        /// 资源被本账号别称域名占用。
         public static var aliasDomain: ResourceInUse {
             ResourceInUse(.aliasDomain)
         }
 
+        /// 当前已存在相同的别称域名，不支持重复添加
+        public static var aliasName: ResourceInUse {
+            ResourceInUse(.aliasName)
+        }
+
+        /// 资源被本账号Cname接入占用。
         public static var cname: ResourceInUse {
             ResourceInUse(.cname)
         }
 
+        /// Dns资源被占用。
         public static var dns: ResourceInUse {
             ResourceInUse(.dns)
         }
 
+        /// 该域名正在解析中，如果您需要开启加速，请前往 DNS 记录页开启加速。
+        public static var dnsRecord: ResourceInUse {
+            ResourceInUse(.dnsRecord)
+        }
+
+        /// 已存在相同的别称域名。
         public static var duplicateName: ResourceInUse {
             ResourceInUse(.duplicateName)
         }
 
+        /// 资源已被泛域名占用。
         public static var genericHost: ResourceInUse {
             ResourceInUse(.genericHost)
         }
 
+        /// 资源被本账号的子域名占用。
         public static var host: ResourceInUse {
             ResourceInUse(.host)
         }
 
+        /// 资源被本账号NS接入占用。
         public static var ns: ResourceInUse {
             ResourceInUse(.ns)
         }
@@ -89,26 +108,32 @@ extension TCTeoError {
             ResourceInUse(.others)
         }
 
+        /// 资源被其他账号别称域名占用。
         public static var othersAliasDomain: ResourceInUse {
             ResourceInUse(.othersAliasDomain)
         }
 
+        /// 资源被其他账号Cname接入占用。
         public static var othersCname: ResourceInUse {
             ResourceInUse(.othersCname)
         }
 
+        /// 资源被其他账号的子域名占用。
         public static var othersHost: ResourceInUse {
             ResourceInUse(.othersHost)
         }
 
+        /// 资源被其他账号NS接入占用。
         public static var othersNS: ResourceInUse {
             ResourceInUse(.othersNS)
         }
 
+        /// 资源被本账号和其他账号同时Cname接入占用。
         public static var selfAndOthersCname: ResourceInUse {
             ResourceInUse(.selfAndOthersCname)
         }
 
+        /// 别称域名已站点接入。
         public static var zone: ResourceInUse {
             ResourceInUse(.zone)
         }
@@ -123,10 +148,14 @@ extension TCTeoError {
             switch self.error {
             case .aliasDomain:
                 code = .resourceInUse_AliasDomain
+            case .aliasName:
+                code = .resourceInUse_AliasName
             case .cname:
                 code = .resourceInUse_Cname
             case .dns:
                 code = .resourceInUse_Dns
+            case .dnsRecord:
+                code = .resourceInUse_DnsRecord
             case .duplicateName:
                 code = .resourceInUse_DuplicateName
             case .genericHost:

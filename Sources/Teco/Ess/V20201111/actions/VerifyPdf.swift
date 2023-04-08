@@ -17,7 +17,7 @@
 extension Ess {
     /// VerifyPdf请求参数结构体
     public struct VerifyPdfRequest: TCRequestModel {
-        /// 合同Id，流程Id
+        /// 流程ID
         public let flowId: String
 
         /// 调用方用户信息，userId 必填
@@ -39,8 +39,7 @@ extension Ess {
         /// 验签结果，1-文件未被篡改，全部签名在腾讯电子签完成； 2-文件未被篡改，部分签名在腾讯电子签完成；3-文件被篡改；4-异常：文件内没有签名域；5-异常：文件签名格式错误
         public let verifyResult: Int64
 
-        /// 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域
-        /// ；5-文件签名格式错误
+        /// 验签结果详情,内部状态1-验签成功，在电子签签署；2-验签成功，在其他平台签署；3-验签失败；4-pdf文件没有签名域；5-文件签名格式错误
         public let pdfVerifyResults: [PdfVerifyResult]
 
         /// 验签序列号

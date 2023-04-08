@@ -18,22 +18,27 @@ extension TCOcrError {
     public struct FailedOperation: TCOcrErrorType {
         enum Code: String {
             case arrearsError = "FailedOperation.ArrearsError"
+            case cardSideError = "FailedOperation.CardSideError"
             case countLimitError = "FailedOperation.CountLimitError"
             case dataSourceQueryFailed = "FailedOperation.DataSourceQueryFailed"
+            case dbError = "FailedOperation.DbError"
             case detectFailed = "FailedOperation.DetectFailed"
             case downLoadError = "FailedOperation.DownLoadError"
             case emptyImageError = "FailedOperation.EmptyImageError"
             case engineRecognizeTimeout = "FailedOperation.EngineRecognizeTimeout"
             case idCardInfoIllegal = "FailedOperation.IdCardInfoIllegal"
+            case illegalBankCardError = "FailedOperation.IllegalBankCardError"
             case imageBlur = "FailedOperation.ImageBlur"
             case imageDecodeFailed = "FailedOperation.ImageDecodeFailed"
             case imageNoBusinessCard = "FailedOperation.ImageNoBusinessCard"
             case imageNoIdCard = "FailedOperation.ImageNoIdCard"
+            case imageNoSpecifiedCard = "FailedOperation.ImageNoSpecifiedCard"
             case imageNoText = "FailedOperation.ImageNoText"
             case imageSizeTooLarge = "FailedOperation.ImageSizeTooLarge"
             case invoiceMismatch = "FailedOperation.InvoiceMismatch"
             case languageNotSupport = "FailedOperation.LanguageNotSupport"
             case multiCardError = "FailedOperation.MultiCardError"
+            case noBankCardError = "FailedOperation.NoBankCardError"
             case noBizLicense = "FailedOperation.NoBizLicense"
             case noHKIDCard = "FailedOperation.NoHKIDCard"
             case noMASIDCard = "FailedOperation.NoMASIDCard"
@@ -42,6 +47,7 @@ extension TCOcrError {
             case queryNoRecord = "FailedOperation.QueryNoRecord"
             case unKnowError = "FailedOperation.UnKnowError"
             case unOpenError = "FailedOperation.UnOpenError"
+            case userQuotaError = "FailedOperation.UserQuotaError"
         }
 
         private let error: Code
@@ -71,6 +77,10 @@ extension TCOcrError {
             FailedOperation(.arrearsError)
         }
 
+        public static var cardSideError: FailedOperation {
+            FailedOperation(.cardSideError)
+        }
+
         /// 今日次数达到限制。
         public static var countLimitError: FailedOperation {
             FailedOperation(.countLimitError)
@@ -79,6 +89,11 @@ extension TCOcrError {
         /// 数据源查询失败。
         public static var dataSourceQueryFailed: FailedOperation {
             FailedOperation(.dataSourceQueryFailed)
+        }
+
+        /// 数据库异常。
+        public static var dbError: FailedOperation {
+            FailedOperation(.dbError)
         }
 
         /// 检测失败。
@@ -106,6 +121,11 @@ extension TCOcrError {
             FailedOperation(.idCardInfoIllegal)
         }
 
+        /// 银行卡信息非法。
+        public static var illegalBankCardError: FailedOperation {
+            FailedOperation(.illegalBankCardError)
+        }
+
         /// 图片模糊。
         public static var imageBlur: FailedOperation {
             FailedOperation(.imageBlur)
@@ -126,6 +146,11 @@ extension TCOcrError {
             FailedOperation(.imageNoIdCard)
         }
 
+        /// 非指定卡类别图片
+        public static var imageNoSpecifiedCard: FailedOperation {
+            FailedOperation(.imageNoSpecifiedCard)
+        }
+
         /// 图片中未检测到文本。
         public static var imageNoText: FailedOperation {
             FailedOperation(.imageNoText)
@@ -136,7 +161,7 @@ extension TCOcrError {
             FailedOperation(.imageSizeTooLarge)
         }
 
-        /// 发票数据不一致。
+        /// 发票数据不一致。温馨提示：新版发票核验接口功能更完整，请尽快切换，如已切换请忽略。
         public static var invoiceMismatch: FailedOperation {
             FailedOperation(.invoiceMismatch)
         }
@@ -153,6 +178,12 @@ extension TCOcrError {
             FailedOperation(.multiCardError)
         }
 
+        /// 非银行卡。
+        public static var noBankCardError: FailedOperation {
+            FailedOperation(.noBankCardError)
+        }
+
+        /// 非营业执照。
         public static var noBizLicense: FailedOperation {
             FailedOperation(.noBizLicense)
         }
@@ -192,15 +223,24 @@ extension TCOcrError {
             FailedOperation(.unOpenError)
         }
 
+        /// 剩余识别次数不足，请检查资源包状态。
+        public static var userQuotaError: FailedOperation {
+            FailedOperation(.userQuotaError)
+        }
+
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
             case .arrearsError:
                 code = .failedOperation_ArrearsError
+            case .cardSideError:
+                code = .failedOperation_CardSideError
             case .countLimitError:
                 code = .failedOperation_CountLimitError
             case .dataSourceQueryFailed:
                 code = .failedOperation_DataSourceQueryFailed
+            case .dbError:
+                code = .failedOperation_DbError
             case .detectFailed:
                 code = .failedOperation_DetectFailed
             case .downLoadError:
@@ -211,6 +251,8 @@ extension TCOcrError {
                 code = .failedOperation_EngineRecognizeTimeout
             case .idCardInfoIllegal:
                 code = .failedOperation_IdCardInfoIllegal
+            case .illegalBankCardError:
+                code = .failedOperation_IllegalBankCardError
             case .imageBlur:
                 code = .failedOperation_ImageBlur
             case .imageDecodeFailed:
@@ -219,6 +261,8 @@ extension TCOcrError {
                 code = .failedOperation_ImageNoBusinessCard
             case .imageNoIdCard:
                 code = .failedOperation_ImageNoIdCard
+            case .imageNoSpecifiedCard:
+                code = .failedOperation_ImageNoSpecifiedCard
             case .imageNoText:
                 code = .failedOperation_ImageNoText
             case .imageSizeTooLarge:
@@ -229,6 +273,8 @@ extension TCOcrError {
                 code = .failedOperation_LanguageNotSupport
             case .multiCardError:
                 code = .failedOperation_MultiCardError
+            case .noBankCardError:
+                code = .failedOperation_NoBankCardError
             case .noBizLicense:
                 code = .failedOperation_NoBizLicense
             case .noHKIDCard:
@@ -245,6 +291,8 @@ extension TCOcrError {
                 code = .failedOperation_UnKnowError
             case .unOpenError:
                 code = .failedOperation_UnOpenError
+            case .userQuotaError:
+                code = .failedOperation_UserQuotaError
             }
             return TCOcrError(code, context: self.context)
         }

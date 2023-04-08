@@ -285,14 +285,20 @@ extension Dbbrain {
         /// 实例概览开关，Yes/No。
         public let overviewDisplay: String?
 
-        public init(dailyInspection: String? = nil, overviewDisplay: String? = nil) {
+        /// redis大key分析的自定义分割符，仅redis使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keyDelimiters: [String]?
+
+        public init(dailyInspection: String? = nil, overviewDisplay: String? = nil, keyDelimiters: [String]? = nil) {
             self.dailyInspection = dailyInspection
             self.overviewDisplay = overviewDisplay
+            self.keyDelimiters = keyDelimiters
         }
 
         enum CodingKeys: String, CodingKey {
             case dailyInspection = "DailyInspection"
             case overviewDisplay = "OverviewDisplay"
+            case keyDelimiters = "KeyDelimiters"
         }
     }
 
@@ -385,6 +391,17 @@ extension Dbbrain {
         /// 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         public let auditRunningStatus: String
 
+        /// 内网vip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalVip: String?
+
+        /// 内网port
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalVport: Int64?
+
+        /// 创建时间
+        public let createTime: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -414,6 +431,9 @@ extension Dbbrain {
             case secAuditStatus = "SecAuditStatus"
             case auditPolicyStatus = "AuditPolicyStatus"
             case auditRunningStatus = "AuditRunningStatus"
+            case internalVip = "InternalVip"
+            case internalVport = "InternalVport"
+            case createTime = "CreateTime"
         }
     }
 

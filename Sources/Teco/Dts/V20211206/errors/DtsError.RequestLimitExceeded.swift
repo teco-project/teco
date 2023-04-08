@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 请求次数超限。
         public static var requestLimitExceededError: RequestLimitExceeded {
             RequestLimitExceeded(.requestLimitExceededError)
         }

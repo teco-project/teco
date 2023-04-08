@@ -16,7 +16,7 @@
 
 @_exported import TecoCore
 
-/// 弹性微服务 TEM (tem)
+/// 弹性微服务 (tem)
 ///
 /// 腾讯云弹性微服务（TEM）相关接口。
 public struct Tem: TCService {

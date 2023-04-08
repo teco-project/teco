@@ -29,11 +29,27 @@ extension Tcr {
         /// 云标签描述
         public let tagSpecification: TagSpecification?
 
-        public init(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil) {
+        /// 自动扫描级别，true为自动，false为手动
+        public let isAutoScan: Bool?
+
+        /// 安全阻断级别，true为自动，false为手动
+        public let isPreventVUL: Bool?
+
+        /// 阻断漏洞等级，目前仅支持low、medium、high
+        public let severity: String?
+
+        /// 漏洞白名单列表
+        public let cveWhitelistItems: [CVEWhitelistItem]?
+
+        public init(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.isPublic = isPublic
             self.tagSpecification = tagSpecification
+            self.isAutoScan = isAutoScan
+            self.isPreventVUL = isPreventVUL
+            self.severity = severity
+            self.cveWhitelistItems = cveWhitelistItems
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +57,10 @@ extension Tcr {
             case namespaceName = "NamespaceName"
             case isPublic = "IsPublic"
             case tagSpecification = "TagSpecification"
+            case isAutoScan = "IsAutoScan"
+            case isPreventVUL = "IsPreventVUL"
+            case severity = "Severity"
+            case cveWhitelistItems = "CVEWhitelistItems"
         }
     }
 
@@ -74,15 +94,15 @@ extension Tcr {
     ///
     /// 用于在企业版中创建命名空间
     @inlinable @discardableResult
-    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
-        self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
+        self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification, isAutoScan: isAutoScan, isPreventVUL: isPreventVUL, severity: severity, cveWhitelistItems: cveWhitelistItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
     ///
     /// 用于在企业版中创建命名空间
     @inlinable @discardableResult
-    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        try await self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+    public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, isAutoScan: Bool? = nil, isPreventVUL: Bool? = nil, severity: String? = nil, cveWhitelistItems: [CVEWhitelistItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.createNamespace(.init(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification, isAutoScan: isAutoScan, isPreventVUL: isPreventVUL, severity: severity, cveWhitelistItems: cveWhitelistItems), region: region, logger: logger, on: eventLoop)
     }
 }

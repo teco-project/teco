@@ -47,6 +47,7 @@ extension TCTmtError {
             self.context = context
         }
 
+        /// 数据插入错误。
         public static var insertErr: FailedOperation {
             FailedOperation(.insertErr)
         }
@@ -56,6 +57,7 @@ extension TCTmtError {
             FailedOperation(.noFreeAmount)
         }
 
+        /// 内部请求错误。
         public static var requestAiLabErr: FailedOperation {
             FailedOperation(.requestAiLabErr)
         }

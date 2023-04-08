@@ -18,6 +18,11 @@ extension TCNlpError {
     public struct InvalidParameterValue: TCNlpErrorType {
         enum Code: String {
             case emptyValueError = "InvalidParameterValue.EmptyValueError"
+            case genre = "InvalidParameterValue.Genre"
+            case poetryType = "InvalidParameterValue.PoetryType"
+            case sensitiveText = "InvalidParameterValue.SensitiveText"
+            case targetType = "InvalidParameterValue.TargetType"
+            case text = "InvalidParameterValue.Text"
             case textEncodeError = "InvalidParameterValue.TextEncodeError"
             case textFormatError = "InvalidParameterValue.TextFormatError"
             case textNumTooMuch = "InvalidParameterValue.TextNumTooMuch"
@@ -52,6 +57,31 @@ extension TCNlpError {
             InvalidParameterValue(.emptyValueError)
         }
 
+        /// Genre非法，请参考Genre参数说明。
+        public static var genre: InvalidParameterValue {
+            InvalidParameterValue(.genre)
+        }
+
+        /// PoetryType非法，请参考PoetryType参数说明。
+        public static var poetryType: InvalidParameterValue {
+            InvalidParameterValue(.poetryType)
+        }
+
+        /// Text输入含有敏感信息。
+        public static var sensitiveText: InvalidParameterValue {
+            InvalidParameterValue(.sensitiveText)
+        }
+
+        /// TargetType非法，请参考TargetType参数说明。
+        public static var targetType: InvalidParameterValue {
+            InvalidParameterValue(.targetType)
+        }
+
+        /// Text非法，请参考Text参数说明。
+        public static var text: InvalidParameterValue {
+            InvalidParameterValue(.text)
+        }
+
         /// 文本编码错误，不符合utf-8
         public static var textEncodeError: InvalidParameterValue {
             InvalidParameterValue(.textEncodeError)
@@ -82,6 +112,16 @@ extension TCNlpError {
             switch self.error {
             case .emptyValueError:
                 code = .invalidParameterValue_EmptyValueError
+            case .genre:
+                code = .invalidParameterValue_Genre
+            case .poetryType:
+                code = .invalidParameterValue_PoetryType
+            case .sensitiveText:
+                code = .invalidParameterValue_SensitiveText
+            case .targetType:
+                code = .invalidParameterValue_TargetType
+            case .text:
+                code = .invalidParameterValue_Text
             case .textEncodeError:
                 code = .invalidParameterValue_TextEncodeError
             case .textFormatError:

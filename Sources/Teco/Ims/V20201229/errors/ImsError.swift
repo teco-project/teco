@@ -32,6 +32,7 @@ public struct TCImsError: TCImsErrorType {
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_EmptyImageContent = "InvalidParameterValue.EmptyImageContent"
         case invalidParameterValue_ImageSizeTooSmall = "InvalidParameterValue.ImageSizeTooSmall"
+        case invalidParameterValue_InvalidCallbackUrl = "InvalidParameterValue.InvalidCallbackUrl"
         case invalidParameterValue_InvalidContent = "InvalidParameterValue.InvalidContent"
         case invalidParameterValue_InvalidDataId = "InvalidParameterValue.InvalidDataId"
         case invalidParameterValue_InvalidFileContentSize = "InvalidParameterValue.InvalidFileContentSize"
@@ -122,6 +123,13 @@ public struct TCImsError: TCImsErrorType {
     /// 图片分辨率太低。
     public static var invalidParameterValue_ImageSizeTooSmall: TCImsError {
         TCImsError(.invalidParameterValue_ImageSizeTooSmall)
+    }
+
+    /// 回调地址错误。
+    ///
+    /// 检查回调地址格式及是否为内网地址。
+    public static var invalidParameterValue_InvalidCallbackUrl: TCImsError {
+        TCImsError(.invalidParameterValue_InvalidCallbackUrl)
     }
 
     /// FileContent和FileUrl为空。
@@ -224,6 +232,7 @@ public struct TCImsError: TCImsErrorType {
         TCImsError(.unauthorizedOperation)
     }
 
+    /// 未开通权限/无有效套餐包/账号已欠费。
     public static var unauthorizedOperation_Unauthorized: TCImsError {
         TCImsError(.unauthorizedOperation_Unauthorized)
     }

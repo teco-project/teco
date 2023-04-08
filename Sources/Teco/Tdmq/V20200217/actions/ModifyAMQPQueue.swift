@@ -70,26 +70,30 @@ extension Tdmq {
     }
 
     /// 更新Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPQueueResponse> {
-        self.client.execute(action: "ModifyAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPQueue is no longer available.")
     }
 
     /// 更新Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
-        try await self.client.execute(action: "ModifyAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("ModifyAMQPQueue is no longer available.")
     }
 
     /// 更新Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPQueueResponse> {
-        self.modifyAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPQueue is no longer available.")
     }
 
     /// 更新Amqp队列
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func modifyAMQPQueue(clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
-        try await self.modifyAMQPQueue(.init(clusterId: clusterId, vHostId: vHostId, queue: queue, autoDelete: autoDelete, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
+        fatalError("ModifyAMQPQueue is no longer available.")
     }
 }

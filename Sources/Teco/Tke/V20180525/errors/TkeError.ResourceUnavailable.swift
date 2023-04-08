@@ -20,6 +20,7 @@ extension TCTkeError {
             case clusterInAbnormalStat = "ResourceUnavailable.ClusterInAbnormalStat"
             case clusterState = "ResourceUnavailable.ClusterState"
             case eksContainerStatus = "ResourceUnavailable.EksContainerStatus"
+            case nodePoolStateNotNormal = "ResourceUnavailable.NodePoolStateNotNormal"
             case other = "ResourceUnavailable"
         }
 
@@ -60,6 +61,11 @@ extension TCTkeError {
             ResourceUnavailable(.eksContainerStatus)
         }
 
+        /// 节点池状态不正常。
+        public static var nodePoolStateNotNormal: ResourceUnavailable {
+            ResourceUnavailable(.nodePoolStateNotNormal)
+        }
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
@@ -74,6 +80,8 @@ extension TCTkeError {
                 code = .resourceUnavailable_ClusterState
             case .eksContainerStatus:
                 code = .resourceUnavailable_EksContainerStatus
+            case .nodePoolStateNotNormal:
+                code = .resourceUnavailable_NodePoolStateNotNormal
             case .other:
                 code = .resourceUnavailable
             }

@@ -21,6 +21,7 @@ extension TCTemError {
             case deployModeNull = "MissingParameter.DeployModeNull"
             case deployVersionNull = "MissingParameter.DeployVersionNull"
             case environmentNameNull = "MissingParameter.EnvironmentNameNull"
+            case imgRepoNull = "MissingParameter.ImgRepoNull"
             case logsetOrTopicNull = "MissingParameter.LogsetOrTopicNull"
             case minMaxNumNull = "MissingParameter.MinMaxNumNull"
             case namespaceIdNull = "MissingParameter.NamespaceIdNull"
@@ -54,10 +55,12 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 弹性规则名称不能为空。
         public static var autoScalerNameNull: MissingParameter {
             MissingParameter(.autoScalerNameNull)
         }
 
+        /// 部署方式不能为空。
         public static var deployModeNull: MissingParameter {
             MissingParameter(.deployModeNull)
         }
@@ -67,14 +70,22 @@ extension TCTemError {
             MissingParameter(.deployVersionNull)
         }
 
+        /// 环境名称不能为空。
         public static var environmentNameNull: MissingParameter {
             MissingParameter(.environmentNameNull)
         }
 
+        /// 镜像仓库不能为空。
+        public static var imgRepoNull: MissingParameter {
+            MissingParameter(.imgRepoNull)
+        }
+
+        /// logset 和 topic 不能为空。
         public static var logsetOrTopicNull: MissingParameter {
             MissingParameter(.logsetOrTopicNull)
         }
 
+        /// 弹性伸缩配置最大值/最小值不能为空。
         public static var minMaxNumNull: MissingParameter {
             MissingParameter(.minMaxNumNull)
         }
@@ -89,6 +100,7 @@ extension TCTemError {
             MissingParameter(.pkgNameNull)
         }
 
+        /// 弹性规则ID不能为空。
         public static var scalerIdNull: MissingParameter {
             MissingParameter(.scalerIdNull)
         }
@@ -105,6 +117,7 @@ extension TCTemError {
             MissingParameter(.svcRepoNotReady)
         }
 
+        /// 企业版 TCR 实例名称不能为空。
         public static var tcrEntInstanceNameNull: MissingParameter {
             MissingParameter(.tcrEntInstanceNameNull)
         }
@@ -125,6 +138,8 @@ extension TCTemError {
                 code = .missingParameter_DeployVersionNull
             case .environmentNameNull:
                 code = .missingParameter_EnvironmentNameNull
+            case .imgRepoNull:
+                code = .missingParameter_ImgRepoNull
             case .logsetOrTopicNull:
                 code = .missingParameter_LogsetOrTopicNull
             case .minMaxNumNull:

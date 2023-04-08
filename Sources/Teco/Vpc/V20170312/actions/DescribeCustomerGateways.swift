@@ -28,7 +28,7 @@ extension Vpc {
         /// <li>ip-address - String - （过滤条件）公网地址形如：`58.211.1.12`。</li>
         public let filters: [Filter]?
 
-        /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         public let offset: UInt64?
 
         /// 返回数量，默认为20，最大值为100。
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// DescribeCustomerGateways返回参数结构体
     public struct DescribeCustomerGatewaysResponse: TCPaginatedResponse {
-        /// 对端网关对象列表
+        /// 对端网关对象列表。
         public let customerGatewaySet: [CustomerGateway]
 
         /// 符合条件的实例数量。

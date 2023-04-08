@@ -50,6 +50,15 @@ extension Ccc {
         /// 坐席使用统计个数
         public let seatUsedCount: Int64
 
+        /// 音频套餐包消耗分钟数
+        public let voipCallInCount: Int64
+
+        /// 离线语音转文字套餐包消耗分钟数
+        public let asrOfflineCount: Int64
+
+        /// 实时语音转文字套餐包消耗分钟数
+        public let asrRealtimeCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -57,6 +66,9 @@ extension Ccc {
             case telCallOutCount = "TelCallOutCount"
             case telCallInCount = "TelCallInCount"
             case seatUsedCount = "SeatUsedCount"
+            case voipCallInCount = "VoipCallInCount"
+            case asrOfflineCount = "AsrOfflineCount"
+            case asrRealtimeCount = "AsrRealtimeCount"
             case requestId = "RequestId"
         }
     }

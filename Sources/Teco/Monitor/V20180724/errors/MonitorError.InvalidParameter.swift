@@ -17,11 +17,16 @@
 extension TCMonitorError {
     public struct InvalidParameter: TCMonitorErrorType {
         enum Code: String {
+            case clusterNotFound = "InvalidParameter.ClusterNotFound"
             case dupTask = "InvalidParameter.DupTask"
             case invalidParameter = "InvalidParameter.InvalidParameter"
             case invalidParameterParam = "InvalidParameter.InvalidParameterParam"
             case missAKSK = "InvalidParameter.MissAKSK"
+            case param = "InvalidParameter.Param"
             case paramError = "InvalidParameter.ParamError"
+            case promClusterNotFound = "InvalidParameter.PromClusterNotFound"
+            case promInstanceNotFound = "InvalidParameter.PromInstanceNotFound"
+            case resourceNotFound = "InvalidParameter.ResourceNotFound"
             case secretIdOrSecretKeyError = "InvalidParameter.SecretIdOrSecretKeyError"
             case unsupportedProduct = "InvalidParameter.UnsupportedProduct"
             case other = "InvalidParameter"
@@ -49,6 +54,11 @@ extension TCMonitorError {
             self.context = context
         }
 
+        /// InvalidParameter.ClusterNotFound
+        public static var clusterNotFound: InvalidParameter {
+            InvalidParameter(.clusterNotFound)
+        }
+
         /// 重复提交任务。
         public static var dupTask: InvalidParameter {
             InvalidParameter(.dupTask)
@@ -69,9 +79,29 @@ extension TCMonitorError {
             InvalidParameter(.missAKSK)
         }
 
+        /// InvalidParameter.Param
+        public static var param: InvalidParameter {
+            InvalidParameter(.param)
+        }
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
+        }
+
+        /// InvalidParameter.PromClusterNotFound
+        public static var promClusterNotFound: InvalidParameter {
+            InvalidParameter(.promClusterNotFound)
+        }
+
+        /// InvalidParameter.PromInstanceNotFound
+        public static var promInstanceNotFound: InvalidParameter {
+            InvalidParameter(.promInstanceNotFound)
+        }
+
+        /// InvalidParameter.ResourceNotFound
+        public static var resourceNotFound: InvalidParameter {
+            InvalidParameter(.resourceNotFound)
         }
 
         /// 平台配置错误。
@@ -92,6 +122,8 @@ extension TCMonitorError {
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {
+            case .clusterNotFound:
+                code = .invalidParameter_ClusterNotFound
             case .dupTask:
                 code = .invalidParameter_DupTask
             case .invalidParameter:
@@ -100,8 +132,16 @@ extension TCMonitorError {
                 code = .invalidParameter_InvalidParameterParam
             case .missAKSK:
                 code = .invalidParameter_MissAKSK
+            case .param:
+                code = .invalidParameter_Param
             case .paramError:
                 code = .invalidParameter_ParamError
+            case .promClusterNotFound:
+                code = .invalidParameter_PromClusterNotFound
+            case .promInstanceNotFound:
+                code = .invalidParameter_PromInstanceNotFound
+            case .resourceNotFound:
+                code = .invalidParameter_ResourceNotFound
             case .secretIdOrSecretKeyError:
                 code = .invalidParameter_SecretIdOrSecretKeyError
             case .unsupportedProduct:

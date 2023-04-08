@@ -32,10 +32,10 @@ extension TCCdbError {
             case jsonMarshalError = "FailedOperation.JsonMarshalError"
             case jsonUnmarshalError = "FailedOperation.JsonUnmarshalError"
             case notDelayRo = "FailedOperation.NotDelayRo"
+            case operationInConflictErr = "FailedOperation.OperationInConflictErr"
             case privilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
             case proxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
             case queryLogError = "FailedOperation.QueryLogError"
-            case repeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
             case responseValueError = "FailedOperation.ResponseValueError"
             case startFlowError = "FailedOperation.StartFlowError"
             case statusConflict = "FailedOperation.StatusConflict"
@@ -144,6 +144,11 @@ extension TCCdbError {
             FailedOperation(.notDelayRo)
         }
 
+        /// 实例正在执行其他操作，请稍后重试。
+        public static var operationInConflictErr: FailedOperation {
+            FailedOperation(.operationInConflictErr)
+        }
+
         /// 执行的权限修改操作非法。您可以参照产品文档，了解当前实例支持哪些权限修改操作，如有疑问，请您咨询客服进行处理。
         public static var privilegeDataIllegal: FailedOperation {
             FailedOperation(.privilegeDataIllegal)
@@ -157,11 +162,6 @@ extension TCCdbError {
         /// 查询日志失败。
         public static var queryLogError: FailedOperation {
             FailedOperation(.queryLogError)
-        }
-
-        /// 代理创建中或则已存在，请勿重复创建。
-        public static var repeatCreateProxyError: FailedOperation {
-            FailedOperation(.repeatCreateProxyError)
         }
 
         /// 后台请求服务异常，请您联系客服解决。
@@ -234,14 +234,14 @@ extension TCCdbError {
                 code = .failedOperation_JsonUnmarshalError
             case .notDelayRo:
                 code = .failedOperation_NotDelayRo
+            case .operationInConflictErr:
+                code = .failedOperation_OperationInConflictErr
             case .privilegeDataIllegal:
                 code = .failedOperation_PrivilegeDataIllegal
             case .proxyGroupStatusError:
                 code = .failedOperation_ProxyGroupStatusError
             case .queryLogError:
                 code = .failedOperation_QueryLogError
-            case .repeatCreateProxyError:
-                code = .failedOperation_RepeatCreateProxyError
             case .responseValueError:
                 code = .failedOperation_ResponseValueError
             case .startFlowError:

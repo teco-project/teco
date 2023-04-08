@@ -53,25 +53,25 @@ extension Bmeip {
         }
     }
 
-    /// 黑石EIP绑定VPCIP
+    /// 黑石EIP绑定VPC IP
     @inlinable
     public func bindVpcIp(_ input: BindVpcIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
         self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 黑石EIP绑定VPCIP
+    /// 黑石EIP绑定VPC IP
     @inlinable
     public func bindVpcIp(_ input: BindVpcIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
         try await self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 黑石EIP绑定VPCIP
+    /// 黑石EIP绑定VPC IP
     @inlinable
     public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
         self.bindVpcIp(.init(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 黑石EIP绑定VPCIP
+    /// 黑石EIP绑定VPC IP
     @inlinable
     public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
         try await self.bindVpcIp(.init(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)

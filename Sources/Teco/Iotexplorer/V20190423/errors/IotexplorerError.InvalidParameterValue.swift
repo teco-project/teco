@@ -45,6 +45,7 @@ extension TCIotexplorerError {
             case modelDefineEventParamsExceedLimit = "InvalidParameterValue.ModelDefineEventParamsExceedLimit"
             case modelDefineEventPropError = "InvalidParameterValue.ModelDefineEventPropError"
             case modelDefineEventPropNameError = "InvalidParameterValue.ModelDefineEventPropNameError"
+            case modelDefineEventTypeError = "InvalidParameterValue.ModelDefineEventTypeError"
             case modelDefineInvalid = "InvalidParameterValue.ModelDefineInvalid"
             case modelDefineNil = "InvalidParameterValue.ModelDefineNil"
             case modelDefinePropBoolMappingError = "InvalidParameterValue.ModelDefinePropBoolMappingError"
@@ -163,6 +164,7 @@ extension TCIotexplorerError {
             InvalidParameterValue(.deviceNotExist)
         }
 
+        /// 使用标准蓝牙广播协议的产品，DeviceName最多不超过8个字符。
         public static var errLLSyncBroadcastDeviceNameLengthExceed: InvalidParameterValue {
             InvalidParameterValue(.errLLSyncBroadcastDeviceNameLengthExceed)
         }
@@ -235,6 +237,11 @@ extension TCIotexplorerError {
         /// 物模型事件/属性 Name 错误。
         public static var modelDefineEventPropNameError: InvalidParameterValue {
             InvalidParameterValue(.modelDefineEventPropNameError)
+        }
+
+        /// 物模型事件 Type 错误:lac 。
+        public static var modelDefineEventTypeError: InvalidParameterValue {
+            InvalidParameterValue(.modelDefineEventTypeError)
         }
 
         /// 数据模板未定义。
@@ -441,6 +448,8 @@ extension TCIotexplorerError {
                 code = .invalidParameterValue_ModelDefineEventPropError
             case .modelDefineEventPropNameError:
                 code = .invalidParameterValue_ModelDefineEventPropNameError
+            case .modelDefineEventTypeError:
+                code = .invalidParameterValue_ModelDefineEventTypeError
             case .modelDefineInvalid:
                 code = .invalidParameterValue_ModelDefineInvalid
             case .modelDefineNil:

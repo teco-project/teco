@@ -96,6 +96,8 @@ extension TCLiveError {
             FailedOperation(.alterTaskState)
         }
 
+        /// 请检查是否有权限。
+        ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var authError: FailedOperation {
             FailedOperation(.authError)
@@ -116,36 +118,42 @@ extension TCLiveError {
             FailedOperation(.cancelSessionNotExist)
         }
 
+        /// 该证书已颁发，不能删除。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedIssued: FailedOperation {
             FailedOperation(.cannotBeDeletedIssued)
         }
 
+        /// 免费证书申请1小时内不允许删除。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedWithinHour: FailedOperation {
             FailedOperation(.cannotBeDeletedWithinHour)
         }
 
+        /// 证书已存在。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateExists: FailedOperation {
             FailedOperation(.certificateExists)
         }
 
-        /// ssl接口返回：证书格式错误。
+        /// 证书不符合标准。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateInvalid: FailedOperation {
             FailedOperation(.certificateInvalid)
         }
 
-        /// ssl接口返回：私钥与证书不匹配。
+        /// 证书与私钥不对应。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateMismatch: FailedOperation {
             FailedOperation(.certificateMismatch)
         }
 
-        /// 证书在证书中心不存在。
+        /// 证书不存在。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateNotFound: FailedOperation {
@@ -162,14 +170,17 @@ extension TCLiveError {
             FailedOperation(.configCDNFailed)
         }
 
+        /// Cos bucket 不存在。
         public static var cosBucketNotExist: FailedOperation {
             FailedOperation(.cosBucketNotExist)
         }
 
+        /// 无权限访问 Cos bucket。
         public static var cosBucketNotPermission: FailedOperation {
             FailedOperation(.cosBucketNotPermission)
         }
 
+        /// Cos 角色不存在，请前往 控制台 -&gt; 功能配置 -&gt; 直播截图&amp;鉴黄 页面进行授权。
         public static var cosRoleNotExists: FailedOperation {
             FailedOperation(.cosRoleNotExists)
         }
@@ -179,26 +190,36 @@ extension TCLiveError {
             FailedOperation(.deleteDomainInLockedTime)
         }
 
+        /// 域名已添加。
+        ///
         /// 当前域名已添加，不可重复添加。
         public static var domainAdded: FailedOperation {
             FailedOperation(.domainAdded)
         }
 
+        /// 配置域名规则失败。
+        ///
         /// 自动配置域名规则失败，可能由于您的域名是人工维护，请联系售后同学解决。
         public static var domainGslbFail: FailedOperation {
             FailedOperation(.domainGslbFail)
         }
 
+        /// 域名需要实名认证。
+        ///
         /// 国内域名需要您通过实名认证。
         public static var domainNeedRealName: FailedOperation {
             FailedOperation(.domainNeedRealName)
         }
 
+        /// 域名归属待验证。
+        ///
         /// 请按提示进行域名归属验证。
         public static var domainNeedVerifyOwner: FailedOperation {
             FailedOperation(.domainNeedVerifyOwner)
         }
 
+        /// 免费证书数量超出限制。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var exceedsFreeLimit: FailedOperation {
             FailedOperation(.exceedsFreeLimit)
@@ -224,12 +245,14 @@ extension TCLiveError {
             FailedOperation(.hostOutLimit)
         }
 
+        /// 证书状态不正确。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var invalidCertificateStatusCode: FailedOperation {
             FailedOperation(.invalidCertificateStatusCode)
         }
 
-        /// ssl接口返回：Type参数错误。
+        /// 参数有误。
         ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var invalidParam: FailedOperation {
@@ -251,18 +274,22 @@ extension TCLiveError {
             FailedOperation(.jiFeiNoEnoughFund)
         }
 
+        /// 当前 CA 机构访问繁忙，请稍后重试。
+        ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var networkError: FailedOperation {
             FailedOperation(.networkError)
         }
 
-        /// ssl接口返回：没有项目权限。
+        /// 您没有该项目的操作权限。
         ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noProjectPermission: FailedOperation {
             FailedOperation(.noProjectPermission)
         }
 
+        /// 尚未通过实名认证。
+        ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noRealNameAuth: FailedOperation {
             FailedOperation(.noRealNameAuth)
@@ -273,6 +300,8 @@ extension TCLiveError {
             FailedOperation(.notFound)
         }
 
+        /// 父域名已添加。
+        ///
         /// 您已添加该域名父域名，与当前域名冲突。
         public static var parentDomainAdded: FailedOperation {
             FailedOperation(.parentDomainAdded)
@@ -303,6 +332,8 @@ extension TCLiveError {
             FailedOperation(.streamNotExist)
         }
 
+        /// 子域名已添加。
+        ///
         /// 您已添加该域名子域名，与当前域名冲突。
         public static var subDomainAdded: FailedOperation {
             FailedOperation(.subDomainAdded)

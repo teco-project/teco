@@ -26,16 +26,22 @@ extension Yinsuda {
         /// 歌曲 Id 列表。
         public let musicIds: [String]
 
-        public init(appName: String, userId: String, musicIds: [String]) {
+        /// 播放场景。默认为Chat
+        /// <li>Live：直播</li><li>Chat：语聊</li>
+        public let playScene: String?
+
+        public init(appName: String, userId: String, musicIds: [String], playScene: String? = nil) {
             self.appName = appName
             self.userId = userId
             self.musicIds = musicIds
+            self.playScene = playScene
         }
 
         enum CodingKeys: String, CodingKey {
             case appName = "AppName"
             case userId = "UserId"
             case musicIds = "MusicIds"
+            case playScene = "PlayScene"
         }
     }
 
@@ -77,15 +83,15 @@ extension Yinsuda {
     ///
     /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
     @inlinable
-    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
-        self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds), region: region, logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
+        self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取歌曲详情
     ///
     /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
     @inlinable
-    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds), region: region, logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,6 +21,9 @@ extension Tse {
         public let name: String
 
         /// 环境内引擎的节点规格 ID
+        /// -1C2G
+        /// -2C4G
+        /// 兼容原spec-xxxxxx形式的规格ID
         public let engineResourceSpec: String
 
         /// 环境内引擎的节点数量
@@ -35,13 +38,17 @@ extension Tse {
         /// 子网 ID。在 VPC 的子网内分配一个 IP 作为 ConfigServer 的访问地址
         public let subnetId: String
 
-        public init(name: String, engineResourceSpec: String, engineNodeNum: Int64, storageCapacity: Int64, vpcId: String, subnetId: String) {
+        /// 环境描述
+        public let envDesc: String?
+
+        public init(name: String, engineResourceSpec: String, engineNodeNum: Int64, storageCapacity: Int64, vpcId: String, subnetId: String, envDesc: String? = nil) {
             self.name = name
             self.engineResourceSpec = engineResourceSpec
             self.engineNodeNum = engineNodeNum
             self.storageCapacity = storageCapacity
             self.vpcId = vpcId
             self.subnetId = subnetId
+            self.envDesc = envDesc
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +58,7 @@ extension Tse {
             case storageCapacity = "StorageCapacity"
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+            case envDesc = "EnvDesc"
         }
     }
 
@@ -88,9 +96,34 @@ extension Tse {
         /// 节点 ip
         public let nodeIp: String
 
+        /// Zone id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneId: String?
+
+        /// Zone
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 分组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: String?
+
+        /// 分组名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case nodeIp = "NodeIp"
+            case zoneId = "ZoneId"
+            case zone = "Zone"
+            case groupId = "GroupId"
+            case groupName = "GroupName"
+            case status = "Status"
         }
     }
 
@@ -163,6 +196,30 @@ extension Tse {
         }
     }
 
+    /// 引擎地域配置详情
+    public struct EngineRegionInfo: TCInputModel {
+        /// 引擎节点所在地域
+        public let engineRegion: String?
+
+        /// 此地域节点分配数量
+        public let replica: Int64?
+
+        /// 集群网络信息
+        public let vpcInfos: [VpcInfo]?
+
+        public init(engineRegion: String, replica: Int64, vpcInfos: [VpcInfo]) {
+            self.engineRegion = engineRegion
+            self.replica = replica
+            self.vpcInfos = vpcInfos
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case engineRegion = "EngineRegion"
+            case replica = "Replica"
+            case vpcInfos = "VpcInfos"
+        }
+    }
+
     /// 多环境网络信息
     public struct EnvAddressInfo: TCOutputModel {
         /// 环境名
@@ -178,11 +235,21 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configIntranetAddress: String?
 
+        /// 是否开启config内网clb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableConfigIntranet: Bool?
+
+        /// 客户端公网带宽
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetBandWidth: Int64?
+
         enum CodingKeys: String, CodingKey {
             case envName = "EnvName"
             case enableConfigInternet = "EnableConfigInternet"
             case configInternetServiceIp = "ConfigInternetServiceIp"
             case configIntranetAddress = "ConfigIntranetAddress"
+            case enableConfigIntranet = "EnableConfigIntranet"
+            case internetBandWidth = "InternetBandWidth"
         }
     }
 
@@ -340,6 +407,10 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneId: String?
 
+        /// VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case role = "Role"
@@ -347,6 +418,7 @@ extension Tse {
             case subnetId = "SubnetId"
             case zone = "Zone"
             case zoneId = "ZoneId"
+            case vpcId = "VpcId"
         }
     }
 
@@ -486,6 +558,18 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionInfos: [DescribeInstanceRegionInfo]?
 
+        /// 所在EKS环境，分为common和yunti
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eksType: String?
+
+        /// 引擎的产品版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let featureVersion: String?
+
+        /// 引擎实例是否开启客户端内网访问地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableClientIntranet: Bool?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -517,6 +601,9 @@ extension Tse {
             case curDeadline = "CurDeadline"
             case isolateTime = "IsolateTime"
             case regionInfos = "RegionInfos"
+            case eksType = "EKSType"
+            case featureVersion = "FeatureVersion"
+            case enableClientIntranet = "EnableClientIntranet"
         }
     }
 
@@ -621,6 +708,10 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliasName: String?
 
+        /// VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case role = "Role"
@@ -629,6 +720,7 @@ extension Tse {
             case zone = "Zone"
             case zoneId = "ZoneId"
             case aliasName = "AliasName"
+            case vpcId = "VpcId"
         }
     }
 

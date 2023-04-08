@@ -35,13 +35,17 @@ extension Sqlserver {
         /// UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
         public let backupFiles: [String]?
 
-        public init(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil) {
+        /// 需要重命名的数据库名称集合
+        public let dbRename: [RenameRestoreDatabase]?
+
+        public init(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, dbRename: [RenameRestoreDatabase]? = nil) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
             self.migrationName = migrationName
             self.recoveryType = recoveryType
             self.uploadType = uploadType
             self.backupFiles = backupFiles
+            self.dbRename = dbRename
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Sqlserver {
             case recoveryType = "RecoveryType"
             case uploadType = "UploadType"
             case backupFiles = "BackupFiles"
+            case dbRename = "DBRename"
         }
     }
 
@@ -88,15 +93,15 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
     @inlinable
-    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupMigrationResponse> {
-        self.modifyBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, dbRename: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupMigrationResponse> {
+        self.modifyBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles, dbRename: dbRename), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份导入任务
     ///
     /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
     @inlinable
-    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupMigrationResponse {
-        try await self.modifyBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, dbRename: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupMigrationResponse {
+        try await self.modifyBackupMigration(.init(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles, dbRename: dbRename), region: region, logger: logger, on: eventLoop)
     }
 }

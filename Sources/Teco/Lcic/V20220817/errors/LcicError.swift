@@ -24,21 +24,49 @@ public protocol TCLcicErrorType: TCServiceErrorType {
 
 public struct TCLcicError: TCLcicErrorType {
     enum Code: String {
+        case authFailure = "AuthFailure"
+        case dryRunOperation = "DryRunOperation"
+        case failedOperation = "FailedOperation"
+        case failedOperation_ClassEnded = "FailedOperation.ClassEnded"
+        case failedOperation_ClassExpired = "FailedOperation.ClassExpired"
+        case failedOperation_ClassStarted = "FailedOperation.ClassStarted"
         case failedOperation_ClassTooLong = "FailedOperation.ClassTooLong"
+        case failedOperation_ImageArgInvalid = "FailedOperation.ImageArgInvalid"
         case failedOperation_OriginIdExists = "FailedOperation.OriginIdExists"
+        case failedOperation_RequestTimedOut = "FailedOperation.RequestTimedOut"
         case failedOperation_RoomNotEnd = "FailedOperation.RoomNotEnd"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameter_Content = "InvalidParameter.Content"
         case invalidParameter_EndTime = "InvalidParameter.EndTime"
+        case invalidParameter_GroupMemberOverLimit = "InvalidParameter.GroupMemberOverLimit"
+        case invalidParameter_GroupParamInvalid = "InvalidParameter.GroupParamInvalid"
+        case invalidParameter_GroupTeacherNotMember = "InvalidParameter.GroupTeacherNotMember"
+        case invalidParameter_GroupTeachersNotExist = "InvalidParameter.GroupTeachersNotExist"
+        case invalidParameter_GroupTypeInvalid = "InvalidParameter.GroupTypeInvalid"
         case invalidParameter_SdkAppId = "InvalidParameter.SdkAppId"
         case invalidParameter_StartTime = "InvalidParameter.StartTime"
+        case limitExceeded = "LimitExceeded"
+        case missingParameter = "MissingParameter"
+        case operationDenied = "OperationDenied"
+        case requestLimitExceeded = "RequestLimitExceeded"
+        case resourceInUse = "ResourceInUse"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceInsufficient_Record = "ResourceInsufficient.Record"
         case resourceInsufficient_Room = "ResourceInsufficient.Room"
+        case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_Document = "ResourceNotFound.Document"
+        case resourceNotFound_GroupNotExist = "ResourceNotFound.GroupNotExist"
+        case resourceNotFound_GroupPartUsersNotExist = "ResourceNotFound.GroupPartUsersNotExist"
         case resourceNotFound_Room = "ResourceNotFound.Room"
         case resourceNotFound_User = "ResourceNotFound.User"
+        case resourceUnavailable = "ResourceUnavailable"
         case resourceUnavailable_RoomStatistics = "ResourceUnavailable.RoomStatistics"
+        case resourcesSoldOut = "ResourcesSoldOut"
+        case unauthorizedOperation = "UnauthorizedOperation"
+        case unknownParameter = "UnknownParameter"
+        case unsupportedOperation = "UnsupportedOperation"
     }
 
     /// Error domains affliated to ``TCLcicError``.
@@ -68,64 +96,235 @@ public struct TCLcicError: TCLcicErrorType {
         self.context = context
     }
 
+    /// CAM签名/鉴权错误。
+    public static var authFailure: TCLcicError {
+        TCLcicError(.authFailure)
+    }
+
+    /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
+    public static var dryRunOperation: TCLcicError {
+        TCLcicError(.dryRunOperation)
+    }
+
+    /// 操作失败。
+    public static var failedOperation: TCLcicError {
+        TCLcicError(.failedOperation)
+    }
+
+    /// 房间状态错误，房间已结束。
+    ///
+    /// 已经结束的房间使用房间统计接口。
+    public static var failedOperation_ClassEnded: TCLcicError {
+        TCLcicError(.failedOperation_ClassEnded)
+    }
+
+    /// 房间状态错误，房间已过期。
+    ///
+    /// 已过期的房间无法使用该接口查询。
+    public static var failedOperation_ClassExpired: TCLcicError {
+        TCLcicError(.failedOperation_ClassExpired)
+    }
+
+    /// 课堂状态错误，课堂已开始。
+    public static var failedOperation_ClassStarted: TCLcicError {
+        TCLcicError(.failedOperation_ClassStarted)
+    }
+
+    /// 课堂时长不能超过5小时。
     public static var failedOperation_ClassTooLong: TCLcicError {
         TCLcicError(.failedOperation_ClassTooLong)
     }
 
+    /// 图片参数错误。
+    public static var failedOperation_ImageArgInvalid: TCLcicError {
+        TCLcicError(.failedOperation_ImageArgInvalid)
+    }
+
+    /// 源账号已存在。
     public static var failedOperation_OriginIdExists: TCLcicError {
         TCLcicError(.failedOperation_OriginIdExists)
     }
 
+    /// 请重新尝试
+    public static var failedOperation_RequestTimedOut: TCLcicError {
+        TCLcicError(.failedOperation_RequestTimedOut)
+    }
+
+    /// 房间暂未结束。
     public static var failedOperation_RoomNotEnd: TCLcicError {
         TCLcicError(.failedOperation_RoomNotEnd)
     }
 
+    /// 内部错误。
     public static var internalError: TCLcicError {
         TCLcicError(.internalError)
     }
 
+    /// 参数错误。
     public static var invalidParameter: TCLcicError {
         TCLcicError(.invalidParameter)
     }
 
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCLcicError {
+        TCLcicError(.invalidParameterValue)
+    }
+
+    /// 内容包含非法信息（如色情，恐暴，政治等）。
+    public static var invalidParameter_Content: TCLcicError {
+        TCLcicError(.invalidParameter_Content)
+    }
+
+    /// 结束时间不能早于开始时间。
     public static var invalidParameter_EndTime: TCLcicError {
         TCLcicError(.invalidParameter_EndTime)
     }
 
+    /// 操作的群组成员超过限制
+    ///
+    /// 减少操作的群组成员
+    public static var invalidParameter_GroupMemberOverLimit: TCLcicError {
+        TCLcicError(.invalidParameter_GroupMemberOverLimit)
+    }
+
+    /// 参数错误，主讲人与成员都为空
+    ///
+    /// 主讲人与成员不能同时为空
+    public static var invalidParameter_GroupParamInvalid: TCLcicError {
+        TCLcicError(.invalidParameter_GroupParamInvalid)
+    }
+
+    /// 主讲人不能同时是群组成员
+    public static var invalidParameter_GroupTeacherNotMember: TCLcicError {
+        TCLcicError(.invalidParameter_GroupTeacherNotMember)
+    }
+
+    /// 群组主讲老师不存在
+    ///
+    /// 检查teacher id是否正确
+    public static var invalidParameter_GroupTeachersNotExist: TCLcicError {
+        TCLcicError(.invalidParameter_GroupTeachersNotExist)
+    }
+
+    /// 群组类型错误
+    ///
+    /// 请查看文档，输入正确的群组类型
+    public static var invalidParameter_GroupTypeInvalid: TCLcicError {
+        TCLcicError(.invalidParameter_GroupTypeInvalid)
+    }
+
+    /// SdkAppId参数错误。
     public static var invalidParameter_SdkAppId: TCLcicError {
         TCLcicError(.invalidParameter_SdkAppId)
     }
 
+    /// 开始时间不能早于当前时间。
     public static var invalidParameter_StartTime: TCLcicError {
         TCLcicError(.invalidParameter_StartTime)
     }
 
+    /// 超过配额限制。
+    public static var limitExceeded: TCLcicError {
+        TCLcicError(.limitExceeded)
+    }
+
+    /// 缺少参数错误。
+    public static var missingParameter: TCLcicError {
+        TCLcicError(.missingParameter)
+    }
+
+    /// 操作被拒绝。
+    public static var operationDenied: TCLcicError {
+        TCLcicError(.operationDenied)
+    }
+
+    /// 请求的次数超过了频率限制。
+    public static var requestLimitExceeded: TCLcicError {
+        TCLcicError(.requestLimitExceeded)
+    }
+
+    /// 资源被占用。
+    public static var resourceInUse: TCLcicError {
+        TCLcicError(.resourceInUse)
+    }
+
+    /// 资源不足。
     public static var resourceInsufficient: TCLcicError {
         TCLcicError(.resourceInsufficient)
     }
 
+    /// 存储空间已无剩余，无法使用存储功能。
     public static var resourceInsufficient_Record: TCLcicError {
         TCLcicError(.resourceInsufficient_Record)
     }
 
+    /// 打开课堂失败，请前往控制台查看用量情况。
     public static var resourceInsufficient_Room: TCLcicError {
         TCLcicError(.resourceInsufficient_Room)
     }
 
+    /// 资源不存在。
+    public static var resourceNotFound: TCLcicError {
+        TCLcicError(.resourceNotFound)
+    }
+
+    /// 文档不存在。
     public static var resourceNotFound_Document: TCLcicError {
         TCLcicError(.resourceNotFound_Document)
     }
 
+    /// 群组不存在
+    ///
+    /// 检测群组ID参数，或先创建群组
+    public static var resourceNotFound_GroupNotExist: TCLcicError {
+        TCLcicError(.resourceNotFound_GroupNotExist)
+    }
+
+    /// 用户ID不存在
+    ///
+    /// 检查用户ID是否已注册
+    public static var resourceNotFound_GroupPartUsersNotExist: TCLcicError {
+        TCLcicError(.resourceNotFound_GroupPartUsersNotExist)
+    }
+
+    /// 房间不存在。
     public static var resourceNotFound_Room: TCLcicError {
         TCLcicError(.resourceNotFound_Room)
     }
 
+    /// 用户不存在。
     public static var resourceNotFound_User: TCLcicError {
         TCLcicError(.resourceNotFound_User)
     }
 
+    /// 资源不可用。
+    public static var resourceUnavailable: TCLcicError {
+        TCLcicError(.resourceUnavailable)
+    }
+
+    /// 房间统计结果计算中，请稍候。
     public static var resourceUnavailable_RoomStatistics: TCLcicError {
         TCLcicError(.resourceUnavailable_RoomStatistics)
+    }
+
+    /// 资源售罄。
+    public static var resourcesSoldOut: TCLcicError {
+        TCLcicError(.resourcesSoldOut)
+    }
+
+    /// 未授权操作。
+    public static var unauthorizedOperation: TCLcicError {
+        TCLcicError(.unauthorizedOperation)
+    }
+
+    /// 未知参数错误。
+    public static var unknownParameter: TCLcicError {
+        TCLcicError(.unknownParameter)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCLcicError {
+        TCLcicError(.unsupportedOperation)
     }
 
     public func asLcicError() -> TCLcicError {

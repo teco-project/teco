@@ -57,6 +57,8 @@ extension Ocr {
     /// 二维码和条形码识别
     ///
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func qrcodeOCR(_ input: QrcodeOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QrcodeOCRResponse> {
         self.client.execute(action: "QrcodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -65,6 +67,8 @@ extension Ocr {
     /// 二维码和条形码识别
     ///
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func qrcodeOCR(_ input: QrcodeOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
         try await self.client.execute(action: "QrcodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -73,6 +77,8 @@ extension Ocr {
     /// 二维码和条形码识别
     ///
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QrcodeOCRResponse> {
         self.qrcodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -81,6 +87,8 @@ extension Ocr {
     /// 二维码和条形码识别
     ///
     /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func qrcodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
         try await self.qrcodeOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

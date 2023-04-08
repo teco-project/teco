@@ -97,6 +97,8 @@ extension TCIeError {
             InvalidParameterValue(.liveSourceNotSupport)
         }
 
+        /// 存储信息不存在。
+        ///
         /// 请确认准确填写存储信息。
         public static var saveInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.saveInfoNotExist)

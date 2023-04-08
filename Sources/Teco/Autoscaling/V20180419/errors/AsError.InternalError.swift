@@ -84,6 +84,7 @@ extension TCAsError {
             InternalError(.callStsError)
         }
 
+        /// TAT 接口调用失败。
         public static var callTATError: InternalError {
             InternalError(.callTATError)
         }

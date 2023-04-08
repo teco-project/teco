@@ -31,17 +31,27 @@ public struct TCGmeError: TCGmeErrorType {
         case failedOperation_UserFeeNegative = "FailedOperation.UserFeeNegative"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameterValue_InvalidBizId = "InvalidParameterValue.InvalidBizId"
+        case invalidParameterValue_InvalidRecordMode = "InvalidParameterValue.InvalidRecordMode"
+        case invalidParameterValue_InvalidRoomId = "InvalidParameterValue.InvalidRoomId"
+        case invalidParameterValue_InvalidSubscribeRecordUserIds = "InvalidParameterValue.InvalidSubscribeRecordUserIds"
+        case invalidParameterValue_InvalidSubscribeUserIds = "InvalidParameterValue.InvalidSubscribeUserIds"
+        case invalidParameterValue_InvalidTaskId = "InvalidParameterValue.InvalidTaskId"
+        case invalidParameterValue_InvalidUNSubscribeUserIds = "InvalidParameterValue.InvalidUNSubscribeUserIds"
         case invalidParameter_CallbackAddress = "InvalidParameter.CallbackAddress"
         case invalidParameter_DateInvalid = "InvalidParameter.DateInvalid"
+        case invalidParameter_DateOutOfSixtyDays = "InvalidParameter.DateOutOfSixtyDays"
         case invalidParameter_TagKey = "InvalidParameter.TagKey"
         case invalidParameter_TimeRangeError = "InvalidParameter.TimeRangeError"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_Application = "LimitExceeded.Application"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
+        case resourceInUse_TaskInUse = "ResourceInUse.TaskInUse"
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_BizidIsNotFound = "ResourceNotFound.BizidIsNotFound"
+        case resourceNotFound_RoomNotFound = "ResourceNotFound.RoomNotFound"
         case resourceNotFound_TaskNotFound = "ResourceNotFound.TaskNotFound"
         case resourceUnavailable = "ResourceUnavailable"
         case resourcesSoldOut = "ResourcesSoldOut"
@@ -51,11 +61,12 @@ public struct TCGmeError: TCGmeErrorType {
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_PTTSwitchOff = "UnsupportedOperation.PTTSwitchOff"
+        case unsupportedOperation_ServiceNotOpened = "UnsupportedOperation.ServiceNotOpened"
     }
 
     /// Error domains affliated to ``TCGmeError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, LimitExceeded.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -115,6 +126,41 @@ public struct TCGmeError: TCGmeErrorType {
         TCGmeError(.invalidParameter)
     }
 
+    /// BizId 参数错误
+    public static var invalidParameterValue_InvalidBizId: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidBizId)
+    }
+
+    /// RecordMode参数错误
+    public static var invalidParameterValue_InvalidRecordMode: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidRecordMode)
+    }
+
+    /// RoomId 参数错误
+    public static var invalidParameterValue_InvalidRoomId: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidRoomId)
+    }
+
+    /// 黑白名单格式错误
+    public static var invalidParameterValue_InvalidSubscribeRecordUserIds: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidSubscribeRecordUserIds)
+    }
+
+    /// 白名单个数超过20个
+    public static var invalidParameterValue_InvalidSubscribeUserIds: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidSubscribeUserIds)
+    }
+
+    /// taskid参数错误
+    public static var invalidParameterValue_InvalidTaskId: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidTaskId)
+    }
+
+    /// 黑名单个数超过20个
+    public static var invalidParameterValue_InvalidUNSubscribeUserIds: TCGmeError {
+        TCGmeError(.invalidParameterValue_InvalidUNSubscribeUserIds)
+    }
+
     /// 回调地址不正确
     public static var invalidParameter_CallbackAddress: TCGmeError {
         TCGmeError(.invalidParameter_CallbackAddress)
@@ -123,6 +169,11 @@ public struct TCGmeError: TCGmeErrorType {
     /// 日期无效。
     public static var invalidParameter_DateInvalid: TCGmeError {
         TCGmeError(.invalidParameter_DateInvalid)
+    }
+
+    /// 输入日期超出60天查询范围。
+    public static var invalidParameter_DateOutOfSixtyDays: TCGmeError {
+        TCGmeError(.invalidParameter_DateOutOfSixtyDays)
     }
 
     /// 标签不正确
@@ -155,6 +206,11 @@ public struct TCGmeError: TCGmeErrorType {
         TCGmeError(.operationDenied)
     }
 
+    /// task已存在
+    public static var resourceInUse_TaskInUse: TCGmeError {
+        TCGmeError(.resourceInUse_TaskInUse)
+    }
+
     /// 资源不足。
     public static var resourceInsufficient: TCGmeError {
         TCGmeError(.resourceInsufficient)
@@ -170,7 +226,12 @@ public struct TCGmeError: TCGmeErrorType {
         TCGmeError(.resourceNotFound_BizidIsNotFound)
     }
 
-    /// 任务ID不正确
+    /// 房间不存在
+    public static var resourceNotFound_RoomNotFound: TCGmeError {
+        TCGmeError(.resourceNotFound_RoomNotFound)
+    }
+
+    /// 任务ID不存在
     public static var resourceNotFound_TaskNotFound: TCGmeError {
         TCGmeError(.resourceNotFound_TaskNotFound)
     }
@@ -210,8 +271,14 @@ public struct TCGmeError: TCGmeErrorType {
         TCGmeError(.unsupportedOperation)
     }
 
+    /// 语音转文本开关未开启。
     public static var unsupportedOperation_PTTSwitchOff: TCGmeError {
         TCGmeError(.unsupportedOperation_PTTSwitchOff)
+    }
+
+    /// 录制服务未开通
+    public static var unsupportedOperation_ServiceNotOpened: TCGmeError {
+        TCGmeError(.unsupportedOperation_ServiceNotOpened)
     }
 
     public func asGmeError() -> TCGmeError {

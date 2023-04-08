@@ -64,6 +64,25 @@ extension Eb {
         /// （已废弃）事件集类型
         public let type: String
 
+        /// 计费模式
+        public let payMode: String
+
+        /// EB日志存储时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let saveDays: Int64?
+
+        /// EB日志主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logTopicId: String?
+
+        /// 是否开启存储
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableStore: Bool?
+
+        /// 消息序列，是否有序
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let linkMode: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -76,6 +95,11 @@ extension Eb {
             case eventBusName = "EventBusName"
             case eventBusId = "EventBusId"
             case type = "Type"
+            case payMode = "PayMode"
+            case saveDays = "SaveDays"
+            case logTopicId = "LogTopicId"
+            case enableStore = "EnableStore"
+            case linkMode = "LinkMode"
             case requestId = "RequestId"
         }
     }

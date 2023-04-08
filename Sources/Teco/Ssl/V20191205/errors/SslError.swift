@@ -53,6 +53,8 @@ public struct TCSslError: TCSslErrorType {
         case failedOperation_InvalidFileType = "FailedOperation.InvalidFileType"
         case failedOperation_InvalidParam = "FailedOperation.InvalidParam"
         case failedOperation_MainDomainCertificateCountLimit = "FailedOperation.MainDomainCertificateCountLimit"
+        case failedOperation_ManagerCanNotDeleteCa = "FailedOperation.ManagerCanNotDeleteCa"
+        case failedOperation_ManagerCanNotDeleteCert = "FailedOperation.ManagerCanNotDeleteCert"
         case failedOperation_NetworkError = "FailedOperation.NetworkError"
         case failedOperation_NoProjectPermission = "FailedOperation.NoProjectPermission"
         case failedOperation_NoRealNameAuth = "FailedOperation.NoRealNameAuth"
@@ -63,6 +65,7 @@ public struct TCSslError: TCSslErrorType {
         case failedOperation_RevokeFailed = "FailedOperation.RevokeFailed"
         case failedOperation_RevokeResourceFailed = "FailedOperation.RevokeResourceFailed"
         case failedOperation_RoleNotFoundAuthorization = "FailedOperation.RoleNotFoundAuthorization"
+        case failedOperation_SystemError = "FailedOperation.SystemError"
         case internalError = "InternalError"
         case internalError_BackendResponseEmpty = "InternalError.BackendResponseEmpty"
         case internalError_BackendResponseError = "InternalError.BackendResponseError"
@@ -212,6 +215,7 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.failedOperation_FileTooSmall)
     }
 
+    /// 公司管理人状态错误。
     public static var failedOperation_IllegalManagerStatus: TCSslError {
         TCSslError(.failedOperation_IllegalManagerStatus)
     }
@@ -251,6 +255,16 @@ public struct TCSslError: TCSslErrorType {
     /// 主域申请的免费证书数量已达到20个上限，请购买付费证书
     public static var failedOperation_MainDomainCertificateCountLimit: TCSslError {
         TCSslError(.failedOperation_MainDomainCertificateCountLimit)
+    }
+
+    /// 管理人信息已提交CA，不可以删除。
+    public static var failedOperation_ManagerCanNotDeleteCa: TCSslError {
+        TCSslError(.failedOperation_ManagerCanNotDeleteCa)
+    }
+
+    /// 管理人信息已关联证书，不可以删除。
+    public static var failedOperation_ManagerCanNotDeleteCert: TCSslError {
+        TCSslError(.failedOperation_ManagerCanNotDeleteCert)
     }
 
     /// 当前 CA 机构访问繁忙，请稍后重试。
@@ -305,11 +319,19 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.failedOperation_RoleNotFoundAuthorization)
     }
 
+    /// 系统错误。
+    ///
+    /// 系统错误
+    public static var failedOperation_SystemError: TCSslError {
+        TCSslError(.failedOperation_SystemError)
+    }
+
     /// 内部错误。
     public static var internalError: TCSslError {
         TCSslError(.internalError)
     }
 
+    /// 后端服务响应为空。
     public static var internalError_BackendResponseEmpty: TCSslError {
         TCSslError(.internalError_BackendResponseEmpty)
     }
@@ -349,6 +371,7 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.invalidParameter_PackageIdsInvalid)
     }
 
+    /// 参数有误。
     public static var invalidParameter_WithDetailReason: TCSslError {
         TCSslError(.invalidParameter_WithDetailReason)
     }

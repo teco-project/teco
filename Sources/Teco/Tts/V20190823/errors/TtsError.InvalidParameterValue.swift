@@ -103,6 +103,8 @@ extension TCTtsError {
             InvalidParameterValue(.modelType)
         }
 
+        /// 文本分词错误。
+        ///
         /// 文本无效，请检查文本信息。
         public static var participleError: InvalidParameterValue {
             InvalidParameterValue(.participleError)
@@ -128,6 +130,8 @@ extension TCTtsError {
             InvalidParameterValue(.speed)
         }
 
+        /// SSML标签非法。
+        ///
         /// 请检查SSML标签，修改文本内容。
         public static var ssmlInvalid: InvalidParameterValue {
             InvalidParameterValue(.ssmlInvalid)

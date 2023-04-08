@@ -38,6 +38,7 @@ public struct TCTcaplusdbError: TCTcaplusdbErrorType {
         case invalidParameterValue_InvalidClusterName = "InvalidParameterValue.InvalidClusterName"
         case invalidParameterValue_InvalidTableGroupName = "InvalidParameterValue.InvalidTableGroupName"
         case invalidParameterValue_InvalidTimeValue = "InvalidParameterValue.InvalidTimeValue"
+        case invalidParameterValue_InvalidZoneName = "InvalidParameterValue.InvalidZoneName"
         case invalidParameterValue_UnsupportIdlType = "InvalidParameterValue.UnsupportIdlType"
         case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
@@ -153,6 +154,11 @@ public struct TCTcaplusdbError: TCTcaplusdbErrorType {
     /// 非法的时间格式。
     public static var invalidParameterValue_InvalidTimeValue: TCTcaplusdbError {
         TCTcaplusdbError(.invalidParameterValue_InvalidTimeValue)
+    }
+
+    /// 非法的大区名称。
+    public static var invalidParameterValue_InvalidZoneName: TCTcaplusdbError {
+        TCTcaplusdbError(.invalidParameterValue_InvalidZoneName)
     }
 
     /// 不支持的应用数据描述类型。

@@ -19,10 +19,10 @@ import TecoPaginationHelpers
 extension Organization {
     /// DescribeOrganizationMemberAuthIdentities请求参数结构体
     public struct DescribeOrganizationMemberAuthIdentitiesRequest: TCPaginatedRequest {
-        /// 偏移量。
+        /// 偏移量。取值是limit的整数倍，默认值 : 0
         public let offset: Int64
 
-        /// 限制数目。最大50
+        /// 限制数目。取值范围：1~50，默认值：10
         public let limit: Int64
 
         /// 组织成员Uin。
@@ -51,7 +51,7 @@ extension Organization {
 
     /// DescribeOrganizationMemberAuthIdentities返回参数结构体
     public struct DescribeOrganizationMemberAuthIdentitiesResponse: TCPaginatedResponse {
-        /// 列表。
+        /// 授权身份列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [OrgMemberAuthIdentity]?
 

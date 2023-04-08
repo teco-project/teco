@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Cdwch {
+    /// 集群内节点的规格磁盘规格描述
+    public struct AttachCBSSpec: TCInputModel, TCOutputModel {
+        /// 节点磁盘类型，例如“CLOUD_SSD”\"CLOUD_PREMIUM"
+        public let diskType: String?
+
+        /// 磁盘容量，单位G
+        public let diskSize: Int64?
+
+        /// 磁盘总数
+        public let diskCount: Int64?
+
+        /// 描述
+        public let diskDesc: String?
+
+        public init(diskType: String? = nil, diskSize: Int64? = nil, diskCount: Int64? = nil, diskDesc: String? = nil) {
+            self.diskType = diskType
+            self.diskSize = diskSize
+            self.diskCount = diskCount
+            self.diskDesc = diskDesc
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case diskType = "DiskType"
+            case diskSize = "DiskSize"
+            case diskCount = "DiskCount"
+            case diskDesc = "DiskDesc"
+        }
+    }
+
     /// 备份表信息
     public struct BackupTableContent: TCInputModel {
         /// 数据库
@@ -102,6 +131,53 @@ extension Cdwch {
         }
     }
 
+    /// 用于返回XML格式的配置文件和内容以及其他配置文件有关的信息
+    public struct ClusterConfigsInfoFromEMR: TCOutputModel {
+        /// 配置文件名称
+        public let fileName: String
+
+        /// 配置文件对应的相关属性信息
+        public let fileConf: String
+
+        /// 配置文件对应的其他属性信息
+        public let keyConf: String
+
+        /// 配置文件的内容，base64编码
+        public let oriParam: String
+
+        /// 用于表示当前配置文件是不是有过修改后没有重启，提醒用户需要重启
+        public let needRestart: Int64
+
+        /// 保存配置文件的路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let filePath: String?
+
+        enum CodingKeys: String, CodingKey {
+            case fileName = "FileName"
+            case fileConf = "FileConf"
+            case keyConf = "KeyConf"
+            case oriParam = "OriParam"
+            case needRestart = "NeedRestart"
+            case filePath = "FilePath"
+        }
+    }
+
+    /// clickhouse vcluster信息
+    public struct ClusterInfo: TCOutputModel {
+        /// vcluster名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 当前cluster的IP列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeIps: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterName = "ClusterName"
+            case nodeIps = "NodeIps"
+        }
+    }
+
     /// 配置文件修改信息
     public struct ConfigSubmitContext: TCInputModel {
         /// 配置文件名称
@@ -154,6 +230,89 @@ extension Cdwch {
             case minDiskSize = "MinDiskSize"
             case maxDiskSize = "MaxDiskSize"
             case diskCount = "DiskCount"
+        }
+    }
+
+    /// 集群配置信息
+    public struct InstanceConfigInfo: TCInputModel, TCOutputModel {
+        /// 配置项名称
+        public let confKey: String
+
+        /// 配置项内容
+        public let confValue: String
+
+        /// 默认值
+        public let defaultValue: String?
+
+        /// 是否需要重启
+        public let needRestart: Bool?
+
+        /// 是否可编辑
+        public let editable: Bool?
+
+        /// 配置项解释
+        public let confDesc: String?
+
+        /// 文件名称
+        public let fileName: String?
+
+        /// 规则名称类型
+        public let modifyRuleType: String?
+
+        /// 规则名称内容
+        public let modifyRuleValue: String?
+
+        /// 修改人的uin
+        public let uin: String?
+
+        /// 修改时间
+        public let modifyTime: String?
+
+        public init(confKey: String, confValue: String, defaultValue: String? = nil, needRestart: Bool? = nil, editable: Bool? = nil, confDesc: String? = nil, fileName: String? = nil, modifyRuleType: String? = nil, modifyRuleValue: String? = nil, uin: String? = nil, modifyTime: String? = nil) {
+            self.confKey = confKey
+            self.confValue = confValue
+            self.defaultValue = defaultValue
+            self.needRestart = needRestart
+            self.editable = editable
+            self.confDesc = confDesc
+            self.fileName = fileName
+            self.modifyRuleType = modifyRuleType
+            self.modifyRuleValue = modifyRuleValue
+            self.uin = uin
+            self.modifyTime = modifyTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case confKey = "ConfKey"
+            case confValue = "ConfValue"
+            case defaultValue = "DefaultValue"
+            case needRestart = "NeedRestart"
+            case editable = "Editable"
+            case confDesc = "ConfDesc"
+            case fileName = "FileName"
+            case modifyRuleType = "ModifyRuleType"
+            case modifyRuleValue = "ModifyRuleValue"
+            case uin = "Uin"
+            case modifyTime = "ModifyTime"
+        }
+    }
+
+    /// KV配置
+    public struct InstanceConfigItem: TCInputModel {
+        /// key
+        public let confKey: String
+
+        /// value
+        public let confValue: String
+
+        public init(confKey: String, confValue: String) {
+            self.confKey = confKey
+            self.confValue = confValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case confKey = "ConfKey"
+            case confValue = "ConfValue"
         }
     }
 
@@ -282,6 +441,54 @@ extension Cdwch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosMoveFactor: Int64?
 
+        /// external/local/yunti
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kind: String?
+
+        /// 是否弹性ck
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isElastic: Bool?
+
+        /// 集群详细状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceStateInfo: InstanceStateInfo?
+
+        /// ZK高可用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let haZk: Bool?
+
+        /// 挂载盘,默认0:没有类型；1:裸盘;2:lvm
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mountDiskType: Int64?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chProxyVip: String?
+
+        /// cos buket的名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosBucketName: String?
+
+        /// 是否可以挂载云盘
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let canAttachCbs: Bool?
+
+        /// 是否可以挂载云盘阵列
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let canAttachCbsLvm: Bool?
+
+        /// 是否可以挂载cos
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let canAttachCos: Bool?
+
+        /// 服务信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let components: [ServiceInfo]?
+
+        /// 可升级的内核版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upgradeVersions: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -313,6 +520,78 @@ extension Cdwch {
             case regionDesc = "RegionDesc"
             case eip = "Eip"
             case cosMoveFactor = "CosMoveFactor"
+            case kind = "Kind"
+            case isElastic = "IsElastic"
+            case instanceStateInfo = "InstanceStateInfo"
+            case haZk = "HAZk"
+            case mountDiskType = "MountDiskType"
+            case chProxyVip = "CHProxyVip"
+            case cosBucketName = "CosBucketName"
+            case canAttachCbs = "CanAttachCbs"
+            case canAttachCbsLvm = "CanAttachCbsLvm"
+            case canAttachCos = "CanAttachCos"
+            case components = "Components"
+            case upgradeVersions = "UpgradeVersions"
+        }
+    }
+
+    /// 集群状态抽象后的结构体
+    public struct InstanceStateInfo: TCOutputModel {
+        /// 集群状态，例如：Serving
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceState: String?
+
+        /// 集群操作创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowCreateTime: String?
+
+        /// 集群操作名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowName: String?
+
+        /// 集群操作进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowProgress: Int64?
+
+        /// 集群状态描述，例如：运行中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceStateDesc: String?
+
+        /// 集群流程错误信息，例如：“创建失败，资源不足”
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowMsg: String?
+
+        /// 当前步骤的名称，例如：”购买资源中“
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processName: String?
+
+        /// 请求id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let requestId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceState = "InstanceState"
+            case flowCreateTime = "FlowCreateTime"
+            case flowName = "FlowName"
+            case flowProgress = "FlowProgress"
+            case instanceStateDesc = "InstanceStateDesc"
+            case flowMsg = "FlowMsg"
+            case processName = "ProcessName"
+            case requestId = "RequestId"
+        }
+    }
+
+    /// kv配置，多层级item
+    public struct MapConfigItem: TCOutputModel {
+        /// key
+        public let confKey: String
+
+        /// 列表
+        public let items: [InstanceConfigInfo]
+
+        enum CodingKeys: String, CodingKey {
+            case confKey = "ConfKey"
+            case items = "Items"
         }
     }
 
@@ -363,6 +642,34 @@ extension Cdwch {
         /// 磁盘描述
         public let diskDesc: String
 
+        /// 挂载云盘信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let attachCBSSpec: AttachCBSSpec?
+
+        /// 子产品类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subProductType: String?
+
+        /// 规格对应的核数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specCore: Int64?
+
+        /// 规格对应的内存大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specMemory: Int64?
+
+        /// 磁盘的数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskCount: Int64?
+
+        /// 磁盘的最大大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxDiskSize: Int64?
+
+        /// 是否为加密云盘
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let encrypt: Int64?
+
         enum CodingKeys: String, CodingKey {
             case spec = "Spec"
             case nodeSize = "NodeSize"
@@ -371,6 +678,13 @@ extension Cdwch {
             case disk = "Disk"
             case diskType = "DiskType"
             case diskDesc = "DiskDesc"
+            case attachCBSSpec = "AttachCBSSpec"
+            case subProductType = "SubProductType"
+            case specCore = "SpecCore"
+            case specMemory = "SpecMemory"
+            case diskCount = "DiskCount"
+            case maxDiskSize = "MaxDiskSize"
+            case encrypt = "Encrypt"
         }
     }
 
@@ -425,6 +739,49 @@ extension Cdwch {
             case computeSpecDesc = "ComputeSpecDesc"
             case displayName = "DisplayName"
             case instanceQuota = "InstanceQuota"
+        }
+    }
+
+    /// 策略详情
+    public struct ScheduleStrategy: TCOutputModel {
+        /// 备份桶列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosBucketName: String?
+
+        /// 备份保留天数
+        public let retainDays: Int64
+
+        /// 备份的天
+        public let weekDays: String
+
+        /// 备份小时
+        public let executeHour: Int64
+
+        /// 策略id
+        public let scheduleId: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case cosBucketName = "CosBucketName"
+            case retainDays = "RetainDays"
+            case weekDays = "WeekDays"
+            case executeHour = "ExecuteHour"
+            case scheduleId = "ScheduleId"
+        }
+    }
+
+    /// 服务详细信息描述。
+    public struct ServiceInfo: TCOutputModel {
+        /// 服务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 服务的版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case version = "Version"
         }
     }
 

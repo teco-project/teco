@@ -17,7 +17,7 @@
 extension Vpc {
     /// DescribeSecurityGroupReferences请求参数结构体
     public struct DescribeSecurityGroupReferencesRequest: TCRequestModel {
-        /// 安全组实例ID数组。格式如：['sg-12345678']
+        /// 安全组实例ID数组。格式如：['sg-12345678']。
         public let securityGroupIds: [String]
 
         public init(securityGroupIds: [String]) {

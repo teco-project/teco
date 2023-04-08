@@ -22,6 +22,7 @@ extension TCLighthouseError {
             case blueprintIdMalformed = "InvalidParameterValue.BlueprintIdMalformed"
             case bundleAndBlueprintNotMatch = "InvalidParameterValue.BundleAndBlueprintNotMatch"
             case ccnIdMalformed = "InvalidParameterValue.CcnIdMalformed"
+            case diskBackupIdMalformed = "InvalidParameterValue.DiskBackupIdMalformed"
             case diskNameTooLong = "InvalidParameterValue.DiskNameTooLong"
             case diskSizeNotMatch = "InvalidParameterValue.DiskSizeNotMatch"
             case duplicateParameterValue = "InvalidParameterValue.DuplicateParameterValue"
@@ -44,6 +45,7 @@ extension TCLighthouseError {
             case invalidParameterCombination = "InvalidParameterValue.InvalidParameterCombination"
             case invalidPassword = "InvalidParameterValue.InvalidPassword"
             case invalidResourceQuotaResourceName = "InvalidParameterValue.InvalidResourceQuotaResourceName"
+            case invalidSceneIdMalformed = "InvalidParameterValue.InvalidSceneIdMalformed"
             case invalidZone = "InvalidParameterValue.InvalidZone"
             case keyPairIdMalformed = "InvalidParameterValue.KeyPairIdMalformed"
             case keyPairPublicKeyDuplicated = "InvalidParameterValue.KeyPairPublicKeyDuplicated"
@@ -52,6 +54,10 @@ extension TCLighthouseError {
             case negative = "InvalidParameterValue.Negative"
             case notAllowToChangePlatformType = "InvalidParameterValue.NotAllowToChangePlatformType"
             case outOfRange = "InvalidParameterValue.OutOfRange"
+            case regionNotFound = "InvalidParameterValue.RegionNotFound"
+            case regionNotMatch = "InvalidParameterValue.RegionNotMatch"
+            case regionNotSupported = "InvalidParameterValue.RegionNotSupported"
+            case regionUnavailable = "InvalidParameterValue.RegionUnavailable"
             case snapshotIdMalformed = "InvalidParameterValue.SnapshotIdMalformed"
             case snapshotNameTooLong = "InvalidParameterValue.SnapshotNameTooLong"
             case tooLong = "InvalidParameterValue.TooLong"
@@ -96,6 +102,8 @@ extension TCLighthouseError {
             InvalidParameterValue(.blueprintIdMalformed)
         }
 
+        /// 套餐和镜像不匹配。
+        ///
         /// 一般是套餐内存或者系统盘大小不满足镜像要求，请更换套餐或者镜像。
         public static var bundleAndBlueprintNotMatch: InvalidParameterValue {
             InvalidParameterValue(.bundleAndBlueprintNotMatch)
@@ -104,6 +112,11 @@ extension TCLighthouseError {
         /// 云联网实例ID格式非法。
         public static var ccnIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.ccnIdMalformed)
+        }
+
+        /// 参数值非法，云硬盘备份点 ID 格式非法。
+        public static var diskBackupIdMalformed: InvalidParameterValue {
+            InvalidParameterValue(.diskBackupIdMalformed)
         }
 
         /// 磁盘名称长度超出限制。
@@ -218,6 +231,11 @@ extension TCLighthouseError {
             InvalidParameterValue(.invalidResourceQuotaResourceName)
         }
 
+        /// 使用场景Id不合法。
+        public static var invalidSceneIdMalformed: InvalidParameterValue {
+            InvalidParameterValue(.invalidSceneIdMalformed)
+        }
+
         /// 参数Zone的取值不合法。
         public static var invalidZone: InvalidParameterValue {
             InvalidParameterValue(.invalidZone)
@@ -258,6 +276,26 @@ extension TCLighthouseError {
             InvalidParameterValue(.outOfRange)
         }
 
+        /// 地域不存在。
+        public static var regionNotFound: InvalidParameterValue {
+            InvalidParameterValue(.regionNotFound)
+        }
+
+        /// 地域不匹配。
+        public static var regionNotMatch: InvalidParameterValue {
+            InvalidParameterValue(.regionNotMatch)
+        }
+
+        /// 不支持的地域。
+        public static var regionNotSupported: InvalidParameterValue {
+            InvalidParameterValue(.regionNotSupported)
+        }
+
+        /// 该地域不可用。
+        public static var regionUnavailable: InvalidParameterValue {
+            InvalidParameterValue(.regionUnavailable)
+        }
+
         /// 参数值非法，快照 ID 格式非法。
         public static var snapshotIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.snapshotIdMalformed)
@@ -296,6 +334,8 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_BundleAndBlueprintNotMatch
             case .ccnIdMalformed:
                 code = .invalidParameterValue_CcnIdMalformed
+            case .diskBackupIdMalformed:
+                code = .invalidParameterValue_DiskBackupIdMalformed
             case .diskNameTooLong:
                 code = .invalidParameterValue_DiskNameTooLong
             case .diskSizeNotMatch:
@@ -340,6 +380,8 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_InvalidPassword
             case .invalidResourceQuotaResourceName:
                 code = .invalidParameterValue_InvalidResourceQuotaResourceName
+            case .invalidSceneIdMalformed:
+                code = .invalidParameterValue_InvalidSceneIdMalformed
             case .invalidZone:
                 code = .invalidParameterValue_InvalidZone
             case .keyPairIdMalformed:
@@ -356,6 +398,14 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_NotAllowToChangePlatformType
             case .outOfRange:
                 code = .invalidParameterValue_OutOfRange
+            case .regionNotFound:
+                code = .invalidParameterValue_RegionNotFound
+            case .regionNotMatch:
+                code = .invalidParameterValue_RegionNotMatch
+            case .regionNotSupported:
+                code = .invalidParameterValue_RegionNotSupported
+            case .regionUnavailable:
+                code = .invalidParameterValue_RegionUnavailable
             case .snapshotIdMalformed:
                 code = .invalidParameterValue_SnapshotIdMalformed
             case .snapshotNameTooLong:

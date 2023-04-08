@@ -59,10 +59,12 @@ extension TCEbError {
             self.context = context
         }
 
+        /// 添加私有链接失败。
         public static var addPrivateLink: FailedOperation {
             FailedOperation(.addPrivateLink)
         }
 
+        /// 用户鉴权错误。
         public static var authenticateUserFailed: FailedOperation {
             FailedOperation(.authenticateUserFailed)
         }
@@ -77,6 +79,7 @@ extension TCEbError {
             FailedOperation(.deleteConnection)
         }
 
+        /// 删除私有链接失败。
         public static var deletePrivateLink: FailedOperation {
             FailedOperation(.deletePrivateLink)
         }
@@ -91,18 +94,22 @@ extension TCEbError {
             FailedOperation(.errorFilter)
         }
 
+        /// ES集群内部错误。
         public static var esInternalError: FailedOperation {
             FailedOperation(.esInternalError)
         }
 
+        /// ES集群操作失败。
         public static var esRequestFailed: FailedOperation {
             FailedOperation(.esRequestFailed)
         }
 
+        /// ES索引模板冲突错误。
         public static var esTemplateConflict: FailedOperation {
             FailedOperation(.esTemplateConflict)
         }
 
+        /// 注册CLS服务失败。
         public static var registerCLSService: FailedOperation {
             FailedOperation(.registerCLSService)
         }
@@ -112,14 +119,17 @@ extension TCEbError {
             FailedOperation(.serviceError)
         }
 
+        /// 标签绑定操作失败。
         public static var tagResource: FailedOperation {
             FailedOperation(.tagResource)
         }
 
+        /// 申请标签配额失败。
         public static var tagResourceAllocateQuotas: FailedOperation {
             FailedOperation(.tagResourceAllocateQuotas)
         }
 
+        /// 标签解绑操作失败。
         public static var unTagResource: FailedOperation {
             FailedOperation(.unTagResource)
         }

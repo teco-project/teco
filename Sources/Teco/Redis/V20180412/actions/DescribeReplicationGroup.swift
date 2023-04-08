@@ -28,7 +28,7 @@ extension Redis {
         /// 复制组ID。
         public let groupId: String?
 
-        /// 设置模糊查询的关键字，可以设置为实例ID或实例名称进行模糊查询。
+        /// 模糊查询的关键字，可以设置为复制组ID或复制组名称进行模糊查询。
         public let searchKey: String?
 
         public init(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil) {

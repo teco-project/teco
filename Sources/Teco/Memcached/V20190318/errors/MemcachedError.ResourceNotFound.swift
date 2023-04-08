@@ -18,6 +18,7 @@ extension TCMemcachedError {
     public struct ResourceNotFound: TCMemcachedErrorType {
         enum Code: String {
             case accountDoesNotExists = "ResourceNotFound.AccountDoesNotExists"
+            case instanceNotExists = "ResourceNotFound.InstanceNotExists"
         }
 
         private let error: Code
@@ -47,11 +48,18 @@ extension TCMemcachedError {
             ResourceNotFound(.accountDoesNotExists)
         }
 
+        /// 请求的实例不存在
+        public static var instanceNotExists: ResourceNotFound {
+            ResourceNotFound(.instanceNotExists)
+        }
+
         public func asMemcachedError() -> TCMemcachedError {
             let code: TCMemcachedError.Code
             switch self.error {
             case .accountDoesNotExists:
                 code = .resourceNotFound_AccountDoesNotExists
+            case .instanceNotExists:
+                code = .resourceNotFound_InstanceNotExists
             }
             return TCMemcachedError(code, context: self.context)
         }

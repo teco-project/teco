@@ -17,7 +17,7 @@
 extension Lighthouse {
     /// DeleteDiskBackups请求参数结构体
     public struct DeleteDiskBackupsRequest: TCRequestModel {
-        /// 云硬盘备份点ID列表，可通过 DescribeDiskBackups接口查询。
+        /// 云硬盘备份点ID列表，可通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询。
         public let diskBackupIds: [String]
 
         public init(diskBackupIds: [String]) {
@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 删除云硬盘备份点
     ///
     /// 本接口（DeleteDiskBackups）用于删除云硬盘备份点。
-    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
+    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDiskBackupsResponse> {
         self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Lighthouse {
     /// 删除云硬盘备份点
     ///
     /// 本接口（DeleteDiskBackups）用于删除云硬盘备份点。
-    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
+    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
         try await self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Lighthouse {
     /// 删除云硬盘备份点
     ///
     /// 本接口（DeleteDiskBackups）用于删除云硬盘备份点。
-    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
+    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDiskBackupsResponse> {
         self.deleteDiskBackups(.init(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Lighthouse {
     /// 删除云硬盘备份点
     ///
     /// 本接口（DeleteDiskBackups）用于删除云硬盘备份点。
-    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
+    /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
         try await self.deleteDiskBackups(.init(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)

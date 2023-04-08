@@ -19,10 +19,10 @@ import TecoPaginationHelpers
 extension Organization {
     /// DescribeOrganizationMembers请求参数结构体
     public struct DescribeOrganizationMembersRequest: TCPaginatedRequest {
-        /// 偏移量。
+        /// 偏移量。取值是limit的整数倍，默认值 : 0
         public let offset: UInt64
 
-        /// 限制数目。最大50
+        /// 限制数目。取值范围：1~50，默认值：10
         public let limit: UInt64
 
         /// 国际站：en，国内站：zh

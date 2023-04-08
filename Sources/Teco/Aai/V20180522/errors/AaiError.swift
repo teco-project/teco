@@ -73,6 +73,7 @@ public struct TCAaiError: TCAaiErrorType {
         case limitExceeded_AccessLimit = "LimitExceeded.AccessLimit"
         case unsupportedOperation_AccountArrears = "UnsupportedOperation.AccountArrears"
         case unsupportedOperation_NoFreeAccount = "UnsupportedOperation.NoFreeAccount"
+        case unsupportedOperation_PkgExhausted = "UnsupportedOperation.PkgExhausted"
         case unsupportedOperation_ServerNotOpen = "UnsupportedOperation.ServerNotOpen"
         case unsupportedOperation_ServerStopped = "UnsupportedOperation.ServerStopped"
         case unsupportedOperation_TextTooLong = "UnsupportedOperation.TextTooLong"
@@ -280,6 +281,7 @@ public struct TCAaiError: TCAaiErrorType {
         TCAaiError(.invalidParameterValue_PrimaryLanguage)
     }
 
+    /// SampleRate参数错误。
     public static var invalidParameterValue_SampleRate: TCAaiError {
         TCAaiError(.invalidParameterValue_SampleRate)
     }
@@ -353,11 +355,17 @@ public struct TCAaiError: TCAaiErrorType {
         TCAaiError(.unsupportedOperation_NoFreeAccount)
     }
 
+    /// 资源包余量已用尽。
+    public static var unsupportedOperation_PkgExhausted: TCAaiError {
+        TCAaiError(.unsupportedOperation_PkgExhausted)
+    }
+
     /// 服务未开通。
     public static var unsupportedOperation_ServerNotOpen: TCAaiError {
         TCAaiError(.unsupportedOperation_ServerNotOpen)
     }
 
+    /// 服务停服。
     public static var unsupportedOperation_ServerStopped: TCAaiError {
         TCAaiError(.unsupportedOperation_ServerStopped)
     }

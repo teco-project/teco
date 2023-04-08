@@ -46,6 +46,7 @@ extension TCSmhError {
             self.context = context
         }
 
+        /// 尚未开通 COS 数据处理（数据万象）服务。
         public static var createMediaBucket: UnauthorizedOperation {
             UnauthorizedOperation(.createMediaBucket)
         }

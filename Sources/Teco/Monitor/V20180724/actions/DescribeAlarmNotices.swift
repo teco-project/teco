@@ -49,7 +49,7 @@ extension Monitor {
         /// 根据通知模板 id 过滤，空数组/不传则不过滤
         public let noticeIds: [String]?
 
-        /// 模版根据标签过滤
+        /// 模板根据标签过滤
         public let tags: [Tag]?
 
         public init(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil) {

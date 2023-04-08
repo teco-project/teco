@@ -73,6 +73,8 @@ extension Ocr {
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
         self.client.execute(action: "RideHailingTransportLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -81,6 +83,8 @@ extension Ocr {
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
         try await self.client.execute(action: "RideHailingTransportLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -89,6 +93,8 @@ extension Ocr {
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
         self.rideHailingTransportLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -97,6 +103,8 @@ extension Ocr {
     /// 网约车运输证识别
     ///
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
         try await self.rideHailingTransportLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

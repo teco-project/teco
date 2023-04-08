@@ -23,7 +23,7 @@ extension Essbasic {
         /// 合同组名称，长度不超过200个字符
         public let flowGroupName: String
 
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
 
         /// 签署人校验方式
@@ -32,7 +32,7 @@ extension Essbasic {
         /// 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
         public let approverVerifyType: String?
 
-        /// 操作者的信息
+        /// 操作者的信息，此参数不用传
         public let `operator`: UserInfo?
 
         public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil) {

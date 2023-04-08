@@ -22,10 +22,10 @@ extension Ess {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
-        /// 企业组织相关信息
+        /// 企业组织相关信息，一般不用填
         public let organization: OrganizationInfo?
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         /// 查询偏移位置，默认0
@@ -39,12 +39,12 @@ extension Ess {
 
         /// 这个参数跟下面的IsChannel参数配合使用。
         /// IsChannel=false时，ApplicationId参数不起任何作用。
-        /// IsChannel=true时，ApplicationId为空，查询所有渠道模板列表；ApplicationId不为空，查询指定渠道下的模板列表
-        /// ApplicationId为空，查询渠道模板列表
+        /// IsChannel=true时，ApplicationId为空，查询所有第三方应用集成平台企业模板列表；ApplicationId不为空，查询指定应用下的模板列表
+        /// ApplicationId为空，查询所有应用下的模板列表
         public let applicationId: String?
 
         /// 默认为false，查询SaaS模板库列表；
-        /// 为true，查询渠道模板库管理列表
+        /// 为true，查询第三方应用集成平台企业模板库管理列表
         public let isChannel: Bool?
 
         /// 暂未开放

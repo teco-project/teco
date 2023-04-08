@@ -23,13 +23,13 @@ extension Iotexplorer {
         /// 产品分组模板ID , ( 自定义模板填写1 , 控制台调用会使用预置的其他ID)
         public let categoryId: Int64
 
-        /// 产品类型 填写 ( 0 普通产品 )
+        /// 产品类型 填写 ( 0 普通产品 ， 5 网关产品)
         public let productType: Int64
 
-        /// 加密类型 加密类型，1表示证书认证，2表示签名认证。
+        /// 加密类型 ，1表示证书认证，2表示秘钥认证，21表示TID认证-SE方式，22表示TID认证-软加固方式
         public let encryptionType: String
 
-        /// 连接类型 可以填写 wifi cellular else
+        /// 连接类型 可以填写 wifi、wifi-ble、cellular、5g、lorawan、ble、ethernet、wifi-ethernet、else、sub_zigbee、sub_ble、sub_433mhz、sub_else、sub_blemesh
         public let netType: String
 
         /// 数据协议 (1 使用物模型 2 为自定义)

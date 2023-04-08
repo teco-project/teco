@@ -53,7 +53,10 @@ extension Ckafka {
         /// Doris 配置，Type为 DORIS 时必填
         public let dorisConnectParam: DorisConnectParam?
 
-        public init(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil) {
+        /// Kafka配置，Type为 KAFKA 时必填
+        public let kafkaConnectParam: KafkaConnectParam?
+
+        public init(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil) {
             self.resourceName = resourceName
             self.type = type
             self.description = description
@@ -66,6 +69,7 @@ extension Ckafka {
             self.mariaDBConnectParam = mariaDBConnectParam
             self.sqlServerConnectParam = sqlServerConnectParam
             self.dorisConnectParam = dorisConnectParam
+            self.kafkaConnectParam = kafkaConnectParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -81,6 +85,7 @@ extension Ckafka {
             case mariaDBConnectParam = "MariaDBConnectParam"
             case sqlServerConnectParam = "SQLServerConnectParam"
             case dorisConnectParam = "DorisConnectParam"
+            case kafkaConnectParam = "KafkaConnectParam"
         }
     }
 
@@ -112,13 +117,13 @@ extension Ckafka {
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
-        self.createConnectResource(.init(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
+    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
+        self.createConnectResource(.init(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam, kafkaConnectParam: kafkaConnectParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
-        try await self.createConnectResource(.init(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
+    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
+        try await self.createConnectResource(.init(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam, kafkaConnectParam: kafkaConnectParam), region: region, logger: logger, on: eventLoop)
     }
 }

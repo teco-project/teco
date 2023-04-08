@@ -15,6 +15,36 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
+    /// 告警策略
+    public struct AlarmPolicy: TCOutputModel {
+        /// 用户账号
+        public let uin: String?
+
+        /// 告警事件
+        public let event: String?
+
+        /// 告警阈值
+        public let limit: Int64?
+
+        /// 告警策略是否生效，0：停用，1：启用
+        public let status: Int64?
+
+        /// 在这个时间后才允许发送告警
+        public let beginTime: String?
+
+        /// 在这个时间前才允许发送告警
+        public let endTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case uin = "Uin"
+            case event = "Event"
+            case limit = "Limit"
+            case status = "Status"
+            case beginTime = "BeginTime"
+            case endTime = "EndTime"
+        }
+    }
+
     /// 设备厂商信息
     public struct DeviceInfo: TCOutputModel {
         /// 厂商名称
@@ -37,9 +67,13 @@ extension Cloudhsm {
         /// 此类型的加密机所支持的VSM类型列表
         public let vsmTypes: [VsmInfo]
 
+        /// 加密机母机类型：virtualization、GHSM、EHSM、SHSM
+        public let hsmType: String?
+
         enum CodingKeys: String, CodingKey {
             case model = "Model"
             case vsmTypes = "VsmTypes"
+            case hsmType = "HsmType"
         }
     }
 
@@ -133,6 +167,10 @@ extension Cloudhsm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manufacturer: String?
 
+        /// 告警状态，0：停用，1：启用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceName = "ResourceName"
@@ -156,6 +194,7 @@ extension Cloudhsm {
             case renewFlag = "RenewFlag"
             case tags = "Tags"
             case manufacturer = "Manufacturer"
+            case alarmStatus = "AlarmStatus"
         }
     }
 

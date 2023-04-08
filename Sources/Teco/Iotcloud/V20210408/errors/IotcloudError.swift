@@ -28,6 +28,7 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         case failedOperation_AccountIsolated = "FailedOperation.AccountIsolated"
         case failedOperation_AlreadyDistributionDevice = "FailedOperation.AlreadyDistributionDevice"
         case failedOperation_BindDeviceOverLimit = "FailedOperation.BindDeviceOverLimit"
+        case failedOperation_BindDevicePerOnceOverLimit = "FailedOperation.BindDevicePerOnceOverLimit"
         case failedOperation_BroadcastTaskIsRunning = "FailedOperation.BroadcastTaskIsRunning"
         case failedOperation_DeviceAlreadyDisabled = "FailedOperation.DeviceAlreadyDisabled"
         case failedOperation_DeviceFirmwareTaskAlreadDone = "FailedOperation.DeviceFirmwareTaskAlreadDone"
@@ -43,6 +44,7 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         case failedOperation_ProductResourceDuplicate = "FailedOperation.ProductResourceDuplicate"
         case failedOperation_ProxyIPIsNotEnough = "FailedOperation.ProxyIPIsNotEnough"
         case failedOperation_RRPCTimeout = "FailedOperation.RRPCTimeout"
+        case failedOperation_ResourceFileNotMatch = "FailedOperation.ResourceFileNotMatch"
         case failedOperation_RuleAlreadyDisabled = "FailedOperation.RuleAlreadyDisabled"
         case failedOperation_RuleAlreadyEnabled = "FailedOperation.RuleAlreadyEnabled"
         case failedOperation_TidWhiteListNotOpen = "FailedOperation.TidWhiteListNotOpen"
@@ -81,6 +83,7 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         case invalidParameterValue_TopicRuleSqlNotEdited = "InvalidParameterValue.TopicRuleSqlNotEdited"
         case invalidParameterValue_UpdateTopicRuleDBFail = "InvalidParameterValue.UpdateTopicRuleDBFail"
         case limitExceeded_CAAlreadyBindProduct = "LimitExceeded.CAAlreadyBindProduct"
+        case limitExceeded_CACertLimit = "LimitExceeded.CACertLimit"
         case limitExceeded_CACertNameRepeat = "LimitExceeded.CACertNameRepeat"
         case limitExceeded_CACertNotSupport = "LimitExceeded.CACertNotSupport"
         case limitExceeded_CARepeat = "LimitExceeded.CARepeat"
@@ -177,6 +180,13 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         TCIotcloudError(.failedOperation_BindDeviceOverLimit)
     }
 
+    /// 单次绑定的设备数量超过限制。
+    ///
+    /// 减少绑定的设备数
+    public static var failedOperation_BindDevicePerOnceOverLimit: TCIotcloudError {
+        TCIotcloudError(.failedOperation_BindDevicePerOnceOverLimit)
+    }
+
     /// 广播任务正在执行。
     public static var failedOperation_BroadcastTaskIsRunning: TCIotcloudError {
         TCIotcloudError(.failedOperation_BroadcastTaskIsRunning)
@@ -252,6 +262,11 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         TCIotcloudError(.failedOperation_RRPCTimeout)
     }
 
+    /// 资源文件MD5或者大小不一致。
+    public static var failedOperation_ResourceFileNotMatch: TCIotcloudError {
+        TCIotcloudError(.failedOperation_ResourceFileNotMatch)
+    }
+
     /// 该规则引擎已经是禁用状态，不需要再被禁用。
     public static var failedOperation_RuleAlreadyDisabled: TCIotcloudError {
         TCIotcloudError(.failedOperation_RuleAlreadyDisabled)
@@ -277,6 +292,7 @@ public struct TCIotcloudError: TCIotcloudErrorType {
         TCIotcloudError(.internalError)
     }
 
+    /// 数据库内部错误。
     public static var internalError_DBOperationError: TCIotcloudError {
         TCIotcloudError(.internalError_DBOperationError)
     }
@@ -443,6 +459,11 @@ public struct TCIotcloudError: TCIotcloudErrorType {
     /// CA证书已经绑定了产品，无法操作。
     public static var limitExceeded_CAAlreadyBindProduct: TCIotcloudError {
         TCIotcloudError(.limitExceeded_CAAlreadyBindProduct)
+    }
+
+    /// CA证书达到上限。
+    public static var limitExceeded_CACertLimit: TCIotcloudError {
+        TCIotcloudError(.limitExceeded_CACertLimit)
     }
 
     /// CA证书名称重复。

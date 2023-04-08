@@ -41,7 +41,10 @@ extension Cwp {
         /// 是否开启扫描 1开启 0不开启
         public let enableScan: UInt64?
 
-        public init(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil) {
+        /// 为空默认扫描全部专业版、旗舰版、普惠版主机，不为空只扫描选中主机
+        public let uuids: [String]?
+
+        public init(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, uuids: [String]? = nil) {
             self.timerInterval = timerInterval
             self.vulCategories = vulCategories
             self.vulLevels = vulLevels
@@ -50,6 +53,7 @@ extension Cwp {
             self.startTime = startTime
             self.endTime = endTime
             self.enableScan = enableScan
+            self.uuids = uuids
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Cwp {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case enableScan = "EnableScan"
+            case uuids = "Uuids"
         }
     }
 
@@ -88,13 +93,13 @@ extension Cwp {
 
     /// 定期扫描漏洞设置
     @inlinable @discardableResult
-    public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulSettingResponse> {
-        self.scanVulSetting(.init(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan), region: region, logger: logger, on: eventLoop)
+    public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulSettingResponse> {
+        self.scanVulSetting(.init(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 定期扫描漏洞设置
     @inlinable @discardableResult
-    public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {
-        try await self.scanVulSetting(.init(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan), region: region, logger: logger, on: eventLoop)
+    public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {
+        try await self.scanVulSetting(.init(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }
 }

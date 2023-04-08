@@ -49,7 +49,7 @@ extension TCOcrError {
             ResourceNotFound(.noAreaCode)
         }
 
-        /// 发票不存在。
+        /// 发票不存在。温馨提示：新版发票核验接口功能更完整，请尽快切换，如已切换请忽略。
         public static var noInvoice: ResourceNotFound {
             ResourceNotFound(.noInvoice)
         }

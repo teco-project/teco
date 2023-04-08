@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 资源在使用中。
         public static var resourceInUseError: ResourceInUse {
             ResourceInUse(.resourceInUseError)
         }

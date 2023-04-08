@@ -30,6 +30,7 @@ public struct TCMongodbError: TCMongodbErrorType {
         case internalError = "InternalError"
         case internalError_CheckAppIdFailed = "InternalError.CheckAppIdFailed"
         case internalError_FindInstanceFailed = "InternalError.FindInstanceFailed"
+        case internalError_PasswordError = "InternalError.PasswordError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_BackupFileNotFound = "InvalidParameterValue.BackupFileNotFound"
@@ -63,6 +64,7 @@ public struct TCMongodbError: TCMongodbErrorType {
         case invalidParameterValue_ReplicaNotFound = "InvalidParameterValue.ReplicaNotFound"
         case invalidParameterValue_ReplicaSetNumError = "InvalidParameterValue.ReplicaSetNumError"
         case invalidParameterValue_SecondaryNumError = "InvalidParameterValue.SecondaryNumError"
+        case invalidParameterValue_SecurityGroupId = "InvalidParameterValue.SecurityGroupId"
         case invalidParameterValue_SetDiskLessThanUsed = "InvalidParameterValue.SetDiskLessThanUsed"
         case invalidParameterValue_SlowMSBelowLimit = "InvalidParameterValue.SlowMSBelowLimit"
         case invalidParameterValue_SpecNotOnSale = "InvalidParameterValue.SpecNotOnSale"
@@ -119,6 +121,8 @@ public struct TCMongodbError: TCMongodbErrorType {
         TCMongodbError(.failedOperation)
     }
 
+    /// 内核响应超时。
+    ///
     /// 稍后重新尝试。
     public static var failedOperation_KernelResponseTimeout: TCMongodbError {
         TCMongodbError(.failedOperation_KernelResponseTimeout)
@@ -139,6 +143,11 @@ public struct TCMongodbError: TCMongodbErrorType {
     /// 请输入正确的实例instanceId。
     public static var internalError_FindInstanceFailed: TCMongodbError {
         TCMongodbError(.internalError_FindInstanceFailed)
+    }
+
+    /// password与原先记录的password不同。
+    public static var internalError_PasswordError: TCMongodbError {
+        TCMongodbError(.internalError_PasswordError)
     }
 
     /// 参数错误。
@@ -304,6 +313,13 @@ public struct TCMongodbError: TCMongodbErrorType {
     /// 从节点数错误。
     public static var invalidParameterValue_SecondaryNumError: TCMongodbError {
         TCMongodbError(.invalidParameterValue_SecondaryNumError)
+    }
+
+    /// 安全组ID无效。
+    ///
+    /// 请输入正确的安全组ID。
+    public static var invalidParameterValue_SecurityGroupId: TCMongodbError {
+        TCMongodbError(.invalidParameterValue_SecurityGroupId)
     }
 
     /// 设置的磁盘大小不得低于已用磁盘的1.2倍。

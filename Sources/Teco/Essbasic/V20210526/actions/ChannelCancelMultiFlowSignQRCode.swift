@@ -17,13 +17,13 @@
 extension Essbasic {
     /// ChannelCancelMultiFlowSignQRCode请求参数结构体
     public struct ChannelCancelMultiFlowSignQRCodeRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 二维码id
         public let qrCodeId: String
 
-        /// 用户信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, qrCodeId: String, operator: UserInfo? = nil) {

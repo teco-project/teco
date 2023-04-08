@@ -72,6 +72,8 @@ extension Ocr {
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
         self.client.execute(action: "BusInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
         try await self.client.execute(action: "BusInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
         self.busInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
         try await self.busInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

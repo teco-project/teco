@@ -18,6 +18,9 @@ extension TCLighthouseError {
     public struct OperationDenied: TCLighthouseErrorType {
         enum Code: String {
             case bundleNotSupportModify = "OperationDenied.BundleNotSupportModify"
+            case diskBackupBusy = "OperationDenied.DiskBackupBusy"
+            case diskBackupOperationInProgress = "OperationDenied.DiskBackupOperationInProgress"
+            case diskBusyForBackupOperation = "OperationDenied.DiskBusyForBackupOperation"
             case diskCreating = "OperationDenied.DiskCreating"
             case diskOperationInProgress = "OperationDenied.DiskOperationInProgress"
             case diskUsageNotSupportOperation = "OperationDenied.DiskUsageNotSupportOperation"
@@ -55,6 +58,21 @@ extension TCLighthouseError {
             OperationDenied(.bundleNotSupportModify)
         }
 
+        /// 磁盘备份点忙，请稍后重新操作。
+        public static var diskBackupBusy: OperationDenied {
+            OperationDenied(.diskBackupBusy)
+        }
+
+        /// 磁盘备份点正在操作过程中，请稍后重试。
+        public static var diskBackupOperationInProgress: OperationDenied {
+            OperationDenied(.diskBackupOperationInProgress)
+        }
+
+        /// 磁盘正在操作备份点过程中，请稍后重新操作。
+        public static var diskBusyForBackupOperation: OperationDenied {
+            OperationDenied(.diskBusyForBackupOperation)
+        }
+
         /// 磁盘处于创建过程中。
         public static var diskCreating: OperationDenied {
             OperationDenied(.diskCreating)
@@ -90,6 +108,12 @@ extension TCLighthouseError {
             switch self.error {
             case .bundleNotSupportModify:
                 code = .operationDenied_BundleNotSupportModify
+            case .diskBackupBusy:
+                code = .operationDenied_DiskBackupBusy
+            case .diskBackupOperationInProgress:
+                code = .operationDenied_DiskBackupOperationInProgress
+            case .diskBusyForBackupOperation:
+                code = .operationDenied_DiskBusyForBackupOperation
             case .diskCreating:
                 code = .operationDenied_DiskCreating
             case .diskOperationInProgress:

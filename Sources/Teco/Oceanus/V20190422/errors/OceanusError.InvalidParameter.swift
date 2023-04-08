@@ -92,6 +92,8 @@ extension TCOceanusError {
             InvalidParameter(.invalidResourceIds)
         }
 
+        /// 创建作业配置错误。
+        ///
         /// 请输入有效的日志采集方式或者存储桶名称。
         public static var jobConfigLogCollectParamError: InvalidParameter {
             InvalidParameter(.jobConfigLogCollectParamError)

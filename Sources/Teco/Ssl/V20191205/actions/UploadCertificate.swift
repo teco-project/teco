@@ -23,7 +23,7 @@ extension Ssl {
         /// 私钥内容，证书类型为 SVR 时必填，为 CA 时可不填。
         public let certificatePrivateKey: String?
 
-        /// 证书类型，默认 SVR。CA = 客户端证书，SVR = 服务器证书。
+        /// 证书类型，默认 SVR。CA = CA证书，SVR = 服务器证书。
         public let certificateType: String?
 
         /// 备注名称。
@@ -35,13 +35,17 @@ extension Ssl {
         /// 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         public let certificateUse: String?
 
-        public init(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil) {
+        /// 相同的证书是否允许重复上传
+        public let repeatable: Bool?
+
+        public init(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil) {
             self.certificatePublicKey = certificatePublicKey
             self.certificatePrivateKey = certificatePrivateKey
             self.certificateType = certificateType
             self.alias = alias
             self.projectId = projectId
             self.certificateUse = certificateUse
+            self.repeatable = repeatable
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Ssl {
             case alias = "Alias"
             case projectId = "ProjectId"
             case certificateUse = "CertificateUse"
+            case repeatable = "Repeatable"
         }
     }
 
@@ -59,11 +64,16 @@ extension Ssl {
         /// 证书 ID。
         public let certificateId: String
 
+        /// 重复证书的ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repeatCertId: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
+            case repeatCertId = "RepeatCertId"
             case requestId = "RequestId"
         }
     }
@@ -88,15 +98,15 @@ extension Ssl {
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
-        self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
+        self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        try await self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, repeatable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
+        try await self.uploadCertificate(.init(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse, repeatable: repeatable), region: region, logger: logger, on: eventLoop)
     }
 }

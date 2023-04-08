@@ -85,6 +85,21 @@ extension Tcr {
         }
     }
 
+    /// 命名空间漏洞白名单列表
+    public struct CVEWhitelistItem: TCInputModel, TCOutputModel {
+        /// 漏洞白名单 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cveid: String?
+
+        public init(cveid: String? = nil) {
+            self.cveid = cveid
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cveid = "CVEID"
+        }
+    }
+
     /// 自定义域名信息
     public struct CustomizedDomainInfo: TCOutputModel {
         /// 实例ID
@@ -1287,6 +1302,18 @@ extension Tcr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metadata: [KeyValueString]?
 
+        /// 漏洞白名单列表
+        public let cveWhitelistItems: [CVEWhitelistItem]?
+
+        /// 扫描级别，true为自动，false为手动
+        public let autoScan: Bool?
+
+        /// 安全阻断级别，true为开启，false为关闭
+        public let preventVUL: Bool?
+
+        /// 阻断漏洞等级，目前仅支持low、medium、high, 为""时表示没有设置
+        public let severity: String?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case creationTime = "CreationTime"
@@ -1294,6 +1321,10 @@ extension Tcr {
             case namespaceId = "NamespaceId"
             case tagSpecification = "TagSpecification"
             case metadata = "Metadata"
+            case cveWhitelistItems = "CVEWhitelistItems"
+            case autoScan = "AutoScan"
+            case preventVUL = "PreventVUL"
+            case severity = "Severity"
         }
     }
 

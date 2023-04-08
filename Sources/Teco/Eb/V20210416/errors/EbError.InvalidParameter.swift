@@ -44,6 +44,7 @@ extension TCEbError {
             self.context = context
         }
 
+        /// APIGateway连接器不支持开启或关闭操作，请修正后重试。
         public static var enableAPIGateway: InvalidParameter {
             InvalidParameter(.enableAPIGateway)
         }

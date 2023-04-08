@@ -110,7 +110,7 @@ extension Partners {
         }
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
@@ -118,7 +118,7 @@ extension Partners {
         self.client.execute(action: "DescribeAgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
@@ -126,7 +126,7 @@ extension Partners {
         try await self.client.execute(action: "DescribeAgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
@@ -134,7 +134,7 @@ extension Partners {
         self.describeAgentPayDeals(.init(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
@@ -142,7 +142,7 @@ extension Partners {
         try await self.describeAgentPayDeals(.init(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
@@ -150,7 +150,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeAgentPayDeals, logger: logger, on: eventLoop)
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable @discardableResult
@@ -158,7 +158,7 @@ extension Partners {
         self.client.paginate(input: input, region: region, command: self.describeAgentPayDeals, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 代理商代付订单查询接口（禁止接入）
+    /// 【已切换至DescribeAgentPayDealsV2】代理商代付订单查询接口
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     ///

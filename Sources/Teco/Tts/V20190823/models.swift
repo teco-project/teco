@@ -68,12 +68,17 @@ extension Tts {
         /// 该字在整句中的结束位置，从0开始。
         public let endIndex: Int64
 
+        /// 该字的音素
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneme: String?
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case beginTime = "BeginTime"
             case endTime = "EndTime"
             case beginIndex = "BeginIndex"
             case endIndex = "EndIndex"
+            case phoneme = "Phoneme"
         }
     }
 }

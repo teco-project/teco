@@ -26,6 +26,7 @@ extension TCAsError {
             case minSizeLimitExceeded = "LimitExceeded.MinSizeLimitExceeded"
             case quotaNotEnough = "LimitExceeded.QuotaNotEnough"
             case scheduledActionLimitExceeded = "LimitExceeded.ScheduledActionLimitExceeded"
+            case targetTrackingScalingPolicy = "LimitExceeded.TargetTrackingScalingPolicy"
             case other = "LimitExceeded"
         }
 
@@ -98,6 +99,11 @@ extension TCAsError {
             LimitExceeded(.scheduledActionLimitExceeded)
         }
 
+        /// 每个伸缩组限制创建一个目标追踪策略。
+        public static var targetTrackingScalingPolicy: LimitExceeded {
+            LimitExceeded(.targetTrackingScalingPolicy)
+        }
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
@@ -124,6 +130,8 @@ extension TCAsError {
                 code = .limitExceeded_QuotaNotEnough
             case .scheduledActionLimitExceeded:
                 code = .limitExceeded_ScheduledActionLimitExceeded
+            case .targetTrackingScalingPolicy:
+                code = .limitExceeded_TargetTrackingScalingPolicy
             case .other:
                 code = .limitExceeded
             }

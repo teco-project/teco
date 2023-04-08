@@ -24,6 +24,7 @@ public protocol TCFaceidErrorType: TCServiceErrorType {
 
 public struct TCFaceidError: TCFaceidErrorType {
     enum Code: String {
+        case authFailure_InvalidAuthorization = "AuthFailure.InvalidAuthorization"
         case failedOperation_ActionCloseEye = "FailedOperation.ActionCloseEye"
         case failedOperation_ActionFaceClose = "FailedOperation.ActionFaceClose"
         case failedOperation_ActionFaceFar = "FailedOperation.ActionFaceFar"
@@ -122,7 +123,7 @@ public struct TCFaceidError: TCFaceidErrorType {
 
     /// Error domains affliated to ``TCFaceidError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, UnauthorizedOperation.self]
+        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, UnauthorizedOperation.self]
     }
 
     private let error: Code
@@ -145,6 +146,11 @@ public struct TCFaceidError: TCFaceidErrorType {
     internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
+    }
+
+    /// CAM签名/鉴权错误。
+    public static var authFailure_InvalidAuthorization: TCFaceidError {
+        TCFaceidError(.authFailure_InvalidAuthorization)
     }
 
     /// 未检测到闭眼动作。

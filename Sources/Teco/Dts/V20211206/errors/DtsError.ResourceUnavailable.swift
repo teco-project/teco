@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 资源不可用。
         public static var resourceUnavailableError: ResourceUnavailable {
             ResourceUnavailable(.resourceUnavailableError)
         }

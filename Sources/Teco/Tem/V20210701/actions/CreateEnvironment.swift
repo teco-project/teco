@@ -20,14 +20,14 @@ extension Tem {
         /// 环境名称
         public let environmentName: String
 
-        /// 私有网络名称
-        public let vpc: String
-
-        /// 子网列表
-        public let subnetIds: [String]
-
         /// 环境描述
         public let description: String?
+
+        /// 私有网络名称
+        public let vpc: String?
+
+        /// 子网列表
+        public let subnetIds: [String]?
 
         /// K8s version
         public let k8sVersion: String?
@@ -47,30 +47,50 @@ extension Tem {
         /// 创建环境的region
         public let createRegion: String?
 
-        public init(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil) {
+        /// 是否创建私有网络
+        public let setupVpc: Bool?
+
+        /// 是否创建 Prometheus 实例
+        public let setupPrometheus: Bool?
+
+        /// prometheus 实例 id
+        public let prometheusId: String?
+
+        /// apm id
+        public let apmId: String?
+
+        public init(environmentName: String, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, setupVpc: Bool? = nil, setupPrometheus: Bool? = nil, prometheusId: String? = nil, apmId: String? = nil) {
             self.environmentName = environmentName
+            self.description = description
             self.vpc = vpc
             self.subnetIds = subnetIds
-            self.description = description
             self.k8sVersion = k8sVersion
             self.sourceChannel = sourceChannel
             self.enableTswTraceService = enableTswTraceService
             self.tags = tags
             self.envType = envType
             self.createRegion = createRegion
+            self.setupVpc = setupVpc
+            self.setupPrometheus = setupPrometheus
+            self.prometheusId = prometheusId
+            self.apmId = apmId
         }
 
         enum CodingKeys: String, CodingKey {
             case environmentName = "EnvironmentName"
+            case description = "Description"
             case vpc = "Vpc"
             case subnetIds = "SubnetIds"
-            case description = "Description"
             case k8sVersion = "K8sVersion"
             case sourceChannel = "SourceChannel"
             case enableTswTraceService = "EnableTswTraceService"
             case tags = "Tags"
             case envType = "EnvType"
             case createRegion = "CreateRegion"
+            case setupVpc = "SetupVpc"
+            case setupPrometheus = "SetupPrometheus"
+            case prometheusId = "PrometheusId"
+            case apmId = "ApmId"
         }
     }
 
@@ -103,13 +123,13 @@ extension Tem {
 
     /// 创建环境
     @inlinable
-    public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
-        self.createEnvironment(.init(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentName: String, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, setupVpc: Bool? = nil, setupPrometheus: Bool? = nil, prometheusId: String? = nil, apmId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
+        self.createEnvironment(.init(environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion, setupVpc: setupVpc, setupPrometheus: setupPrometheus, prometheusId: prometheusId, apmId: apmId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建环境
     @inlinable
-    public func createEnvironment(environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.createEnvironment(.init(environmentName: environmentName, vpc: vpc, subnetIds: subnetIds, description: description, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentName: String, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil, setupVpc: Bool? = nil, setupPrometheus: Bool? = nil, prometheusId: String? = nil, apmId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.createEnvironment(.init(environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, k8sVersion: k8sVersion, sourceChannel: sourceChannel, enableTswTraceService: enableTswTraceService, tags: tags, envType: envType, createRegion: createRegion, setupVpc: setupVpc, setupPrometheus: setupPrometheus, prometheusId: prometheusId, apmId: apmId), region: region, logger: logger, on: eventLoop)
     }
 }

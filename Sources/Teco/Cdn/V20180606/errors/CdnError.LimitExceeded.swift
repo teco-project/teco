@@ -84,6 +84,7 @@ extension TCCdnError {
             LimitExceeded(.camTagKeyTooManyTagValue)
         }
 
+        /// 域名绑定标签数量超出限制。
         public static var camTagQuotaExceedLimit: LimitExceeded {
             LimitExceeded(.camTagQuotaExceedLimit)
         }

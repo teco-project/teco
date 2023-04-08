@@ -76,6 +76,7 @@ public struct TCRedisError: TCRedisErrorType {
         case invalidParameter_IllegalParameterError = "InvalidParameter.IllegalParameterError"
         case invalidParameter_InstanceSGOverLimitError = "InvalidParameter.InstanceSGOverLimitError"
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
+        case invalidParameter_IsNotVpcInstance = "InvalidParameter.IsNotVpcInstance"
         case invalidParameter_NotSupported = "InvalidParameter.NotSupported"
         case invalidParameter_OnlyVPCOnSpecZoneId = "InvalidParameter.OnlyVPCOnSpecZoneId"
         case invalidParameter_Period = "InvalidParameter.Period"
@@ -88,6 +89,7 @@ public struct TCRedisError: TCRedisErrorType {
         case limitExceeded_MemSizeNotInRange = "LimitExceeded.MemSizeNotInRange"
         case limitExceeded_PeriodExceedMaxLimit = "LimitExceeded.PeriodExceedMaxLimit"
         case limitExceeded_PeriodLessThanMinLimit = "LimitExceeded.PeriodLessThanMinLimit"
+        case limitExceeded_ReachTheAmountLimit = "LimitExceeded.ReachTheAmountLimit"
         case limitExceeded_ReplicationGroupLocked = "LimitExceeded.ReplicationGroupLocked"
         case resourceInUse_InstanceBeenLocked = "ResourceInUse.InstanceBeenLocked"
         case resourceInsufficient = "ResourceInsufficient"
@@ -113,6 +115,7 @@ public struct TCRedisError: TCRedisErrorType {
         case resourceUnavailable_InstanceUnLockedError = "ResourceUnavailable.InstanceUnLockedError"
         case resourceUnavailable_NoEnoughVipInVPC = "ResourceUnavailable.NoEnoughVipInVPC"
         case resourceUnavailable_NoRedisService = "ResourceUnavailable.NoRedisService"
+        case resourceUnavailable_NoServiceAvailableForThisZoneId = "ResourceUnavailable.NoServiceAvailableForThisZoneId"
         case resourceUnavailable_NoTypeIdRedisService = "ResourceUnavailable.NoTypeIdRedisService"
         case resourceUnavailable_SaleOut = "ResourceUnavailable.SaleOut"
         case resourceUnavailable_SecurityGroupNotSupported = "ResourceUnavailable.SecurityGroupNotSupported"
@@ -417,6 +420,11 @@ public struct TCRedisError: TCRedisErrorType {
         TCRedisError(.invalidParameter_InvalidParameter)
     }
 
+    /// 不是vpc网络下实例。
+    public static var invalidParameter_IsNotVpcInstance: TCRedisError {
+        TCRedisError(.invalidParameter_IsNotVpcInstance)
+    }
+
     /// 参数错误，不支持操作。
     public static var invalidParameter_NotSupported: TCRedisError {
         TCRedisError(.invalidParameter_NotSupported)
@@ -475,6 +483,11 @@ public struct TCRedisError: TCRedisErrorType {
     /// 购买时长非法，时长最少1个月。
     public static var limitExceeded_PeriodLessThanMinLimit: TCRedisError {
         TCRedisError(.limitExceeded_PeriodLessThanMinLimit)
+    }
+
+    /// 请的 redis 数量超过最大/最小购买数限制。
+    public static var limitExceeded_ReachTheAmountLimit: TCRedisError {
+        TCRedisError(.limitExceeded_ReachTheAmountLimit)
     }
 
     /// 复制组已锁定。
@@ -587,6 +600,7 @@ public struct TCRedisError: TCRedisErrorType {
         TCRedisError(.resourceUnavailable_InstanceStatusError)
     }
 
+    /// 实例已经被其它流程锁定。
     public static var resourceUnavailable_InstanceUnLockedError: TCRedisError {
         TCRedisError(.resourceUnavailable_InstanceUnLockedError)
     }
@@ -599,6 +613,11 @@ public struct TCRedisError: TCRedisErrorType {
     /// 请求的区域暂时不提供redis服务。
     public static var resourceUnavailable_NoRedisService: TCRedisError {
         TCRedisError(.resourceUnavailable_NoRedisService)
+    }
+
+    /// 请求的 zoneId 不提供 redis服务。
+    public static var resourceUnavailable_NoServiceAvailableForThisZoneId: TCRedisError {
+        TCRedisError(.resourceUnavailable_NoServiceAvailableForThisZoneId)
     }
 
     /// 请求的区域暂时不提供请求类型的redis服务。
@@ -656,6 +675,8 @@ public struct TCRedisError: TCRedisErrorType {
         TCRedisError(.unsupportedOperation_IsAutoRenewError)
     }
 
+    /// 实例版本过低。
+    ///
     /// 实例版本过低，如需使用该功能请提交工单申请。
     public static var unsupportedOperation_LimitProxyVersion: TCRedisError {
         TCRedisError(.unsupportedOperation_LimitProxyVersion)

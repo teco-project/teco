@@ -51,7 +51,7 @@ extension Vpc {
 
     /// 修改终端节点服务白名单属性
     ///
-    /// 修改终端节点服务白名单属性。
+    /// 本接口（ModifyVpcEndPointServiceWhiteList）用于修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(_ input: ModifyVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceWhiteListResponse> {
         self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// 修改终端节点服务白名单属性
     ///
-    /// 修改终端节点服务白名单属性。
+    /// 本接口（ModifyVpcEndPointServiceWhiteList）用于修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(_ input: ModifyVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "ModifyVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 修改终端节点服务白名单属性
     ///
-    /// 修改终端节点服务白名单属性。
+    /// 本接口（ModifyVpcEndPointServiceWhiteList）用于修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcEndPointServiceWhiteListResponse> {
         self.modifyVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Vpc {
 
     /// 修改终端节点服务白名单属性
     ///
-    /// 修改终端节点服务白名单属性。
+    /// 本接口（ModifyVpcEndPointServiceWhiteList）用于修改终端节点服务白名单属性。
     @inlinable @discardableResult
     public func modifyVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointServiceWhiteListResponse {
         try await self.modifyVpcEndPointServiceWhiteList(.init(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)

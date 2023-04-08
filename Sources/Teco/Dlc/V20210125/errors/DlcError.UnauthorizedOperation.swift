@@ -26,6 +26,8 @@ extension TCDlcError {
             case grantPolicy = "UnauthorizedOperation.GrantPolicy"
             case modifyUserInfo = "UnauthorizedOperation.ModifyUserInfo"
             case modifyWorkgroupInfo = "UnauthorizedOperation.ModifyWorkgroupInfo"
+            case noPaymentAuthority = "UnauthorizedOperation.NoPaymentAuthority"
+            case operateComputingEngine = "UnauthorizedOperation.OperateComputingEngine"
             case revokePolicy = "UnauthorizedOperation.RevokePolicy"
             case unbindWorkgroupsFromUser = "UnauthorizedOperation.UnbindWorkgroupsFromUser"
             case useComputingEngine = "UnauthorizedOperation.UseComputingEngine"
@@ -118,6 +120,20 @@ extension TCDlcError {
             UnauthorizedOperation(.modifyWorkgroupInfo)
         }
 
+        /// 没有支付权限。
+        ///
+        /// 子用户没有支付权限，请联系主账号进行购买或者添加权限。
+        public static var noPaymentAuthority: UnauthorizedOperation {
+            UnauthorizedOperation(.noPaymentAuthority)
+        }
+
+        /// 子用户无权操作引擎。
+        ///
+        /// 请DLC管理员前往【权限管理】为您授权后重试操作
+        public static var operateComputingEngine: UnauthorizedOperation {
+            UnauthorizedOperation(.operateComputingEngine)
+        }
+
         /// 子用户无权取消特定权限。
         ///
         /// 请DLC管理员前往【权限管理】为您授权后重试操作
@@ -172,6 +188,10 @@ extension TCDlcError {
                 code = .unauthorizedOperation_ModifyUserInfo
             case .modifyWorkgroupInfo:
                 code = .unauthorizedOperation_ModifyWorkgroupInfo
+            case .noPaymentAuthority:
+                code = .unauthorizedOperation_NoPaymentAuthority
+            case .operateComputingEngine:
+                code = .unauthorizedOperation_OperateComputingEngine
             case .revokePolicy:
                 code = .unauthorizedOperation_RevokePolicy
             case .unbindWorkgroupsFromUser:

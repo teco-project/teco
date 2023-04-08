@@ -26,10 +26,10 @@ extension Vpc {
         /// 是否开启组播。true: 开启, false: 关闭。
         public let enableMulticast: String?
 
-        /// DNS地址，最多支持4个，第1个默认为主，其余为备
+        /// DNS地址，最多支持4个，第1个默认为主，其余为备。
         public let dnsServers: [String]?
 
-        /// 域名
+        /// 域名。
         public let domainName: String?
 
         public init(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil) {

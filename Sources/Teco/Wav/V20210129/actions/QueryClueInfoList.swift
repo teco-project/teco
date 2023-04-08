@@ -25,14 +25,24 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
 
-        public init(cursor: String? = nil, limit: Int64? = nil) {
+        /// 查询开始时间， 单位秒
+        public let beginTime: UInt64?
+
+        /// 查询结束时间， 单位秒
+        public let endTime: UInt64?
+
+        public init(cursor: String? = nil, limit: Int64? = nil, beginTime: UInt64? = nil, endTime: UInt64? = nil) {
             self.cursor = cursor
             self.limit = limit
+            self.beginTime = beginTime
+            self.endTime = endTime
         }
 
         enum CodingKeys: String, CodingKey {
             case cursor = "Cursor"
             case limit = "Limit"
+            case beginTime = "BeginTime"
+            case endTime = "EndTime"
         }
 
         /// Compute the next request based on API response.
@@ -40,7 +50,7 @@ extension Wav {
             guard response.hasMore == 1 else {
                 return nil
             }
-            return QueryClueInfoListRequest(cursor: response.nextCursor, limit: self.limit)
+            return QueryClueInfoListRequest(cursor: response.nextCursor, limit: self.limit, beginTime: self.beginTime, endTime: self.endTime)
         }
     }
 
@@ -94,16 +104,16 @@ extension Wav {
     ///
     /// 企业可通过此接口获取线索列表。
     @inlinable
-    public func queryClueInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryClueInfoListResponse> {
-        self.queryClueInfoList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func queryClueInfoList(cursor: String? = nil, limit: Int64? = nil, beginTime: UInt64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryClueInfoListResponse> {
+        self.queryClueInfoList(.init(cursor: cursor, limit: limit, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询线索列表接口
     ///
     /// 企业可通过此接口获取线索列表。
     @inlinable
-    public func queryClueInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryClueInfoListResponse {
-        try await self.queryClueInfoList(.init(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func queryClueInfoList(cursor: String? = nil, limit: Int64? = nil, beginTime: UInt64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryClueInfoListResponse {
+        try await self.queryClueInfoList(.init(cursor: cursor, limit: limit, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询线索列表接口

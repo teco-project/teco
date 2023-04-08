@@ -17,7 +17,7 @@
 extension Essbasic {
     /// ChannelCreateReleaseFlow请求参数结构体
     public struct ChannelCreateReleaseFlowRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 待解除的流程编号（即原流程的编号）
@@ -32,10 +32,10 @@ extension Essbasic {
         /// 签署完回调url，最大长度1000个字符
         public let callbackUrl: String?
 
-        /// 机构信息
+        /// 暂未开放
         public let organization: OrganizationInfo?
 
-        /// 用户信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
@@ -75,7 +75,7 @@ extension Essbasic {
 
     /// 发起解除协议
     ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
@@ -84,7 +84,7 @@ extension Essbasic {
 
     /// 发起解除协议
     ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
@@ -93,7 +93,7 @@ extension Essbasic {
 
     /// 发起解除协议
     ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
@@ -102,7 +102,7 @@ extension Essbasic {
 
     /// 发起解除协议
     ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {

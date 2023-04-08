@@ -26,11 +26,16 @@ extension Wedata {
         /// 长连接临时token
         public let token: String
 
+        /// 长连接临时token。与Token相同含义，优先取Data，Data为空时，取Token。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let data: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case token = "Token"
+            case data = "Data"
             case requestId = "RequestId"
         }
     }

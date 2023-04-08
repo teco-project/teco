@@ -121,6 +121,7 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_InsufficientOffering = "InvalidParameterValue.InsufficientOffering"
         case invalidParameterValue_InsufficientPrice = "InvalidParameterValue.InsufficientPrice"
         case invalidParameterValue_InvalidAppIdFormat = "InvalidParameterValue.InvalidAppIdFormat"
+        case invalidParameterValue_InvalidBootMode = "InvalidParameterValue.InvalidBootMode"
         case invalidParameterValue_InvalidBucketPermissionForExport = "InvalidParameterValue.InvalidBucketPermissionForExport"
         case invalidParameterValue_InvalidFileNamePrefixList = "InvalidParameterValue.InvalidFileNamePrefixList"
         case invalidParameterValue_InvalidGPUFamilyChange = "InvalidParameterValue.InvalidGPUFamilyChange"
@@ -155,7 +156,10 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_LocalDiskSizeRange = "InvalidParameterValue.LocalDiskSizeRange"
         case invalidParameterValue_MustDhcpEnabledVpc = "InvalidParameterValue.MustDhcpEnabledVpc"
         case invalidParameterValue_NotCdcSubnet = "InvalidParameterValue.NotCdcSubnet"
+        case invalidParameterValue_NotEmpty = "InvalidParameterValue.NotEmpty"
         case invalidParameterValue_NotSupported = "InvalidParameterValue.NotSupported"
+        case invalidParameterValue_PreheatNotSupportedInstanceType = "InvalidParameterValue.PreheatNotSupportedInstanceType"
+        case invalidParameterValue_PreheatNotSupportedZone = "InvalidParameterValue.PreheatNotSupportedZone"
         case invalidParameterValue_Range = "InvalidParameterValue.Range"
         case invalidParameterValue_SnapshotIdMalformed = "InvalidParameterValue.SnapshotIdMalformed"
         case invalidParameterValue_SubnetIdMalformed = "InvalidParameterValue.SubnetIdMalformed"
@@ -165,6 +169,7 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_ThreadPerCoreValue = "InvalidParameterValue.ThreadPerCoreValue"
         case invalidParameterValue_TooLarge = "InvalidParameterValue.TooLarge"
         case invalidParameterValue_TooLong = "InvalidParameterValue.TooLong"
+        case invalidParameterValue_UuidMalformed = "InvalidParameterValue.UuidMalformed"
         case invalidParameterValue_VpcIdMalformed = "InvalidParameterValue.VpcIdMalformed"
         case invalidParameterValue_VpcIdNotExist = "InvalidParameterValue.VpcIdNotExist"
         case invalidParameterValue_VpcIdZoneIdNotMatch = "InvalidParameterValue.VpcIdZoneIdNotMatch"
@@ -218,6 +223,7 @@ public struct TCCvmError: TCCvmErrorType {
         case limitExceeded_InstanceTypeBandwidth = "LimitExceeded.InstanceTypeBandwidth"
         case limitExceeded_LaunchTemplateQuota = "LimitExceeded.LaunchTemplateQuota"
         case limitExceeded_LaunchTemplateVersionQuota = "LimitExceeded.LaunchTemplateVersionQuota"
+        case limitExceeded_PreheatImageSnapshotOutOfQuota = "LimitExceeded.PreheatImageSnapshotOutOfQuota"
         case limitExceeded_PrepayQuota = "LimitExceeded.PrepayQuota"
         case limitExceeded_SingleUSGQuota = "LimitExceeded.SingleUSGQuota"
         case limitExceeded_SpotQuota = "LimitExceeded.SpotQuota"
@@ -263,10 +269,12 @@ public struct TCCvmError: TCCvmErrorType {
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_BandwidthPackageIdNotSupported = "UnsupportedOperation.BandwidthPackageIdNotSupported"
+        case unsupportedOperation_DiskSnapCreateTimeTooOld = "UnsupportedOperation.DiskSnapCreateTimeTooOld"
         case unsupportedOperation_EdgeZoneNotSupportCloudDisk = "UnsupportedOperation.EdgeZoneNotSupportCloudDisk"
         case unsupportedOperation_ElasticNetworkInterface = "UnsupportedOperation.ElasticNetworkInterface"
         case unsupportedOperation_EncryptedImagesNotSupported = "UnsupportedOperation.EncryptedImagesNotSupported"
         case unsupportedOperation_HeterogeneousChangeInstanceFamily = "UnsupportedOperation.HeterogeneousChangeInstanceFamily"
+        case unsupportedOperation_HibernationForNormalInstance = "UnsupportedOperation.HibernationForNormalInstance"
         case unsupportedOperation_IPv6NotSupportVpcMigrate = "UnsupportedOperation.IPv6NotSupportVpcMigrate"
         case unsupportedOperation_ImageTooLargeExportUnsupported = "UnsupportedOperation.ImageTooLargeExportUnsupported"
         case unsupportedOperation_InstanceChargeType = "UnsupportedOperation.InstanceChargeType"
@@ -297,8 +305,10 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation_InsufficientClusterQuota = "UnsupportedOperation.InsufficientClusterQuota"
         case unsupportedOperation_InvalidDataDisk = "UnsupportedOperation.InvalidDataDisk"
         case unsupportedOperation_InvalidDisk = "UnsupportedOperation.InvalidDisk"
+        case unsupportedOperation_InvalidDiskBackupQuota = "UnsupportedOperation.InvalidDiskBackupQuota"
         case unsupportedOperation_InvalidImageLicenseTypeForReset = "UnsupportedOperation.InvalidImageLicenseTypeForReset"
         case unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance = "UnsupportedOperation.InvalidInstanceNotSupportedProtectedInstance"
+        case unsupportedOperation_InvalidInstanceWithSwapDisk = "UnsupportedOperation.InvalidInstanceWithSwapDisk"
         case unsupportedOperation_InvalidPermissionNonInternationalAccount = "UnsupportedOperation.InvalidPermissionNonInternationalAccount"
         case unsupportedOperation_InvalidRegionDiskEncrypt = "UnsupportedOperation.InvalidRegionDiskEncrypt"
         case unsupportedOperation_InvalidZone = "UnsupportedOperation.InvalidZone"
@@ -308,6 +318,7 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation_MarketImageExportUnsupported = "UnsupportedOperation.MarketImageExportUnsupported"
         case unsupportedOperation_ModifyEncryptionNotSupported = "UnsupportedOperation.ModifyEncryptionNotSupported"
         case unsupportedOperation_ModifyVPCWithCLB = "UnsupportedOperation.ModifyVPCWithCLB"
+        case unsupportedOperation_ModifyVPCWithClassLink = "UnsupportedOperation.ModifyVPCWithClassLink"
         case unsupportedOperation_NoInstanceTypeSupportSpot = "UnsupportedOperation.NoInstanceTypeSupportSpot"
         case unsupportedOperation_NoVpcNetwork = "UnsupportedOperation.NoVpcNetwork"
         case unsupportedOperation_NotFpgaInstance = "UnsupportedOperation.NotFpgaInstance"
@@ -315,8 +326,10 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation_NotSupportInstanceImage = "UnsupportedOperation.NotSupportInstanceImage"
         case unsupportedOperation_OnlyForPrepaidAccount = "UnsupportedOperation.OnlyForPrepaidAccount"
         case unsupportedOperation_OriginalInstanceTypeInvalid = "UnsupportedOperation.OriginalInstanceTypeInvalid"
+        case unsupportedOperation_PreheatImage = "UnsupportedOperation.PreheatImage"
         case unsupportedOperation_PublicImageExportUnsupported = "UnsupportedOperation.PublicImageExportUnsupported"
         case unsupportedOperation_RawLocalDiskInsReinstalltoQcow2 = "UnsupportedOperation.RawLocalDiskInsReinstalltoQcow2"
+        case unsupportedOperation_RedHatImageExportUnsupported = "UnsupportedOperation.RedHatImageExportUnsupported"
         case unsupportedOperation_RedHatInstanceTerminateUnsupported = "UnsupportedOperation.RedHatInstanceTerminateUnsupported"
         case unsupportedOperation_RedHatInstanceUnsupported = "UnsupportedOperation.RedHatInstanceUnsupported"
         case unsupportedOperation_Region = "UnsupportedOperation.Region"
@@ -390,6 +403,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.failedOperation_AccountIsYourSelf)
     }
 
+    /// 自带许可镜像暂时不支持共享。
     public static var failedOperation_BYOLImageShareFailed: TCCvmError {
         TCCvmError(.failedOperation_BYOLImageShareFailed)
     }
@@ -419,6 +433,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.failedOperation_InquiryRefundPriceFailed)
     }
 
+    /// 镜像状态繁忙，请稍后重试。
     public static var failedOperation_InvalidImageState: TCCvmError {
         TCCvmError(.failedOperation_InvalidImageState)
     }
@@ -778,6 +793,8 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_Duplicate)
     }
 
+    /// 重复标签。
+    ///
     /// 入参中包含重复的标签信息，请删除重复的标签信息后重试。
     public static var invalidParameterValue_DuplicateTags: TCCvmError {
         TCCvmError(.invalidParameterValue_DuplicateTags)
@@ -808,6 +825,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_IncorrectFormat)
     }
 
+    /// 实例ID不合要求，请提供规范的实例ID，类似ins-xxxxxxxx，字母x代表小写字符或数字。
     public static var invalidParameterValue_InstanceIdMalformed: TCCvmError {
         TCCvmError(.invalidParameterValue_InstanceIdMalformed)
     }
@@ -845,6 +863,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 无效的appid。
     public static var invalidParameterValue_InvalidAppIdFormat: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidAppIdFormat)
+    }
+
+    /// 不支持指定的启动模式。
+    public static var invalidParameterValue_InvalidBootMode: TCCvmError {
+        TCCvmError(.invalidParameterValue_InvalidBootMode)
     }
 
     /// 请检查存储桶的写入权限是否已放通。
@@ -1019,9 +1042,26 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_NotCdcSubnet)
     }
 
+    /// 输入参数值不能为空。
+    public static var invalidParameterValue_NotEmpty: TCCvmError {
+        TCCvmError(.invalidParameterValue_NotEmpty)
+    }
+
     /// 不支持的操作。
     public static var invalidParameterValue_NotSupported: TCCvmError {
         TCCvmError(.invalidParameterValue_NotSupported)
+    }
+
+    /// 该机型不支持预热
+    ///
+    /// 请使用RS2t、RS3t、RS4t机型来创建镜像
+    public static var invalidParameterValue_PreheatNotSupportedInstanceType: TCCvmError {
+        TCCvmError(.invalidParameterValue_PreheatNotSupportedInstanceType)
+    }
+
+    /// 该可用区目前不支持预热功能
+    public static var invalidParameterValue_PreheatNotSupportedZone: TCCvmError {
+        TCCvmError(.invalidParameterValue_PreheatNotSupportedZone)
     }
 
     /// 无效参数值。参数值取值范围不合法。
@@ -1049,6 +1089,8 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_TagKeyNotFound)
     }
 
+    /// 标签配额超限。
+    ///
     /// 输入的标签信息绑定的资源将超过标签配额上线，请降低CVM购买数量或在标签控制台提高标签配额。
     public static var invalidParameterValue_TagQuotaLimitExceeded: TCCvmError {
         TCCvmError(.invalidParameterValue_TagQuotaLimitExceeded)
@@ -1067,6 +1109,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 无效参数值。参数值太长。
     public static var invalidParameterValue_TooLong: TCCvmError {
         TCCvmError(.invalidParameterValue_TooLong)
+    }
+
+    /// uuid不合要求。
+    public static var invalidParameterValue_UuidMalformed: TCCvmError {
+        TCCvmError(.invalidParameterValue_UuidMalformed)
     }
 
     /// VPC ID`xxx`不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
@@ -1136,6 +1183,8 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameter_InstanceImageNotSupport)
     }
 
+    /// 不支持设置公网带宽相关信息。
+    ///
     /// 去掉该请求参数。
     public static var invalidParameter_InternetAccessibleNotSupported: TCCvmError {
         TCCvmError(.invalidParameter_InternetAccessibleNotSupported)
@@ -1186,7 +1235,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameter_ParameterConflict)
     }
 
-    /// 不支持设置登陆密码。
+    /// 不支持设置登录密码。
     public static var invalidParameter_PasswordNotSupported: TCCvmError {
         TCCvmError(.invalidParameter_PasswordNotSupported)
     }
@@ -1338,6 +1387,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.limitExceeded_LaunchTemplateVersionQuota)
     }
 
+    /// 您在该可用区的预热额度已达上限，建议取消不再使用的快照预热
+    public static var limitExceeded_PreheatImageSnapshotOutOfQuota: TCCvmError {
+        TCCvmError(.limitExceeded_PreheatImageSnapshotOutOfQuota)
+    }
+
     /// 预付费实例已购买数量已达到最大配额，请提升配额后重试。
     public static var limitExceeded_PrepayQuota: TCCvmError {
         TCCvmError(.limitExceeded_PrepayQuota)
@@ -1353,6 +1407,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.limitExceeded_SpotQuota)
     }
 
+    /// 标签绑定的资源数量已达到配额限制。
     public static var limitExceeded_TagResourceQuota: TCCvmError {
         TCCvmError(.limitExceeded_TagResourceQuota)
     }
@@ -1402,6 +1457,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.operationDenied_ChcInstallCloudImageWithoutDeployNetwork)
     }
 
+    /// 禁止管控账号操作。
     public static var operationDenied_InnerUserProhibitAction: TCCvmError {
         TCCvmError(.operationDenied_InnerUserProhibitAction)
     }
@@ -1471,6 +1527,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.resourceNotFound_InvalidPlacementSet)
     }
 
+    /// 可用区不支持此机型。
     public static var resourceNotFound_InvalidZoneInstanceType: TCCvmError {
         TCCvmError(.resourceNotFound_InvalidZoneInstanceType)
     }
@@ -1567,14 +1624,22 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_BandwidthPackageIdNotSupported)
     }
 
+    /// 实例创建快照的时间距今不到24小时。
+    public static var unsupportedOperation_DiskSnapCreateTimeTooOld: TCCvmError {
+        TCCvmError(.unsupportedOperation_DiskSnapCreateTimeTooOld)
+    }
+
+    /// 所选择的边缘可用区不支持云盘操作。
     public static var unsupportedOperation_EdgeZoneNotSupportCloudDisk: TCCvmError {
         TCCvmError(.unsupportedOperation_EdgeZoneNotSupportCloudDisk)
     }
 
+    /// 云服务器绑定了弹性网卡，请解绑弹性网卡后再切换私有网络。
     public static var unsupportedOperation_ElasticNetworkInterface: TCCvmError {
         TCCvmError(.unsupportedOperation_ElasticNetworkInterface)
     }
 
+    /// 不支持加密镜像。
     public static var unsupportedOperation_EncryptedImagesNotSupported: TCCvmError {
         TCCvmError(.unsupportedOperation_EncryptedImagesNotSupported)
     }
@@ -1582,6 +1647,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 异构机型不支持跨机型调整。
     public static var unsupportedOperation_HeterogeneousChangeInstanceFamily: TCCvmError {
         TCCvmError(.unsupportedOperation_HeterogeneousChangeInstanceFamily)
+    }
+
+    /// 不支持未开启休眠功能的实例。
+    public static var unsupportedOperation_HibernationForNormalInstance: TCCvmError {
+        TCCvmError(.unsupportedOperation_HibernationForNormalInstance)
     }
 
     /// IPv6实例不支持VPC迁移
@@ -1604,6 +1674,8 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InstanceMixedPricingModel)
     }
 
+    /// 中心可用区和边缘可用区实例不能混用批量操作。
+    ///
     /// 请单独选择中心可用区实例或者边缘可用区实例进行批量操作。
     public static var unsupportedOperation_InstanceMixedZoneType: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceMixedZoneType)
@@ -1654,6 +1726,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InstanceStateIsolating)
     }
 
+    /// 不支持操作创建失败的实例。
     public static var unsupportedOperation_InstanceStateLaunchFailed: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateLaunchFailed)
     }
@@ -1733,6 +1806,12 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InvalidDisk)
     }
 
+    /// 不支持带有云硬盘备份点。
+    public static var unsupportedOperation_InvalidDiskBackupQuota: TCCvmError {
+        TCCvmError(.unsupportedOperation_InvalidDiskBackupQuota)
+    }
+
+    /// 镜像许可类型与实例不符，请选择其他镜像。
     public static var unsupportedOperation_InvalidImageLicenseTypeForReset: TCCvmError {
         TCCvmError(.unsupportedOperation_InvalidImageLicenseTypeForReset)
     }
@@ -1740,6 +1819,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 不支持已经设置了释放时间的实例，请在实例详情页撤销实例定时销毁后再试。
     public static var unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance: TCCvmError {
         TCCvmError(.unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance)
+    }
+
+    /// 不支持有swap盘的实例。
+    public static var unsupportedOperation_InvalidInstanceWithSwapDisk: TCCvmError {
+        TCCvmError(.unsupportedOperation_InvalidInstanceWithSwapDisk)
     }
 
     /// 当前操作只支持国际版用户。
@@ -1752,6 +1836,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InvalidRegionDiskEncrypt)
     }
 
+    /// 该可用区不可售卖。
     public static var unsupportedOperation_InvalidZone: TCCvmError {
         TCCvmError(.unsupportedOperation_InvalidZone)
     }
@@ -1776,6 +1861,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_MarketImageExportUnsupported)
     }
 
+    /// 不支持修改系统盘的加密属性，例如使用非加密镜像重装加密系统盘。
     public static var unsupportedOperation_ModifyEncryptionNotSupported: TCCvmError {
         TCCvmError(.unsupportedOperation_ModifyEncryptionNotSupported)
     }
@@ -1785,6 +1871,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 实例已绑定CLB，不支持修改VPC，请自行解绑内外网 CLB 以及弹性网卡，并释放主网卡的辅助 IP，迁移后再进行绑定。
     public static var unsupportedOperation_ModifyVPCWithCLB: TCCvmError {
         TCCvmError(.unsupportedOperation_ModifyVPCWithCLB)
+    }
+
+    /// 实例基础网络已互通VPC网络，请自行解除关联，再进行切换VPC。
+    public static var unsupportedOperation_ModifyVPCWithClassLink: TCCvmError {
+        TCCvmError(.unsupportedOperation_ModifyVPCWithClassLink)
     }
 
     /// 该实例类型不支持竞价计费
@@ -1826,6 +1917,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_OriginalInstanceTypeInvalid)
     }
 
+    /// 你的账户不支持镜像预热
+    public static var unsupportedOperation_PreheatImage: TCCvmError {
+        TCCvmError(.unsupportedOperation_PreheatImage)
+    }
+
     /// 公共镜像或市场镜像不支持导出。
     public static var unsupportedOperation_PublicImageExportUnsupported: TCCvmError {
         TCCvmError(.unsupportedOperation_PublicImageExportUnsupported)
@@ -1836,10 +1932,17 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_RawLocalDiskInsReinstalltoQcow2)
     }
 
+    /// RedHat镜像不支持导出。
+    public static var unsupportedOperation_RedHatImageExportUnsupported: TCCvmError {
+        TCCvmError(.unsupportedOperation_RedHatImageExportUnsupported)
+    }
+
+    /// 实例使用商业操作系统，不支持退还。
     public static var unsupportedOperation_RedHatInstanceTerminateUnsupported: TCCvmError {
         TCCvmError(.unsupportedOperation_RedHatInstanceTerminateUnsupported)
     }
 
+    /// 请求不支持操作系统为RedHat的实例。
     public static var unsupportedOperation_RedHatInstanceUnsupported: TCCvmError {
         TCCvmError(.unsupportedOperation_RedHatInstanceUnsupported)
     }
@@ -1869,6 +1972,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_SpecialInstanceType)
     }
 
+    /// 该地域不支持竞价实例。
     public static var unsupportedOperation_SpotUnsupportedRegion: TCCvmError {
         TCCvmError(.unsupportedOperation_SpotUnsupportedRegion)
     }

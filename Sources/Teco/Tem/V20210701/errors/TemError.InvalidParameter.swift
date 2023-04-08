@@ -23,6 +23,8 @@ extension TCTemError {
             case serviceNameNotValid = "InvalidParameter.ServiceNameNotValid"
             case serviceUseReserveSuffix = "InvalidParameter.ServiceUseReserveSuffix"
             case tooManyPortMappingRules = "InvalidParameter.TooManyPortMappingRules"
+            case unauthorizedOrMissingRole = "InvalidParameter.UnauthorizedOrMissingRole"
+            case vpcOverQuota = "InvalidParameter.VpcOverQuota"
         }
 
         private let error: Code
@@ -47,28 +49,44 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 应用访问配置服务数量达到上限。
         public static var applicationAccessServiceReachMaximum: InvalidParameter {
             InvalidParameter(.applicationAccessServiceReachMaximum)
         }
 
+        /// LB类型服务不能同时支持TCP和UDP。
         public static var lbServiceCannotSupportTcpUdpSameTime: InvalidParameter {
             InvalidParameter(.lbServiceCannotSupportTcpUdpSameTime)
         }
 
+        /// 必须提供PortMapping规则。
         public static var mustProvidePortMappingRules: InvalidParameter {
             InvalidParameter(.mustProvidePortMappingRules)
         }
 
+        /// 服务名不符合规范。
         public static var serviceNameNotValid: InvalidParameter {
             InvalidParameter(.serviceNameNotValid)
         }
 
+        /// 服务名使用了保留后缀。
         public static var serviceUseReserveSuffix: InvalidParameter {
             InvalidParameter(.serviceUseReserveSuffix)
         }
 
+        /// PortMapping规则数量超过限制。
         public static var tooManyPortMappingRules: InvalidParameter {
             InvalidParameter(.tooManyPortMappingRules)
+        }
+
+        /// 权限不足或缺少相关角色
+        public static var unauthorizedOrMissingRole: InvalidParameter {
+            InvalidParameter(.unauthorizedOrMissingRole)
+        }
+
+        /// 自动创建将超过 vpc 限额。
+        public static var vpcOverQuota: InvalidParameter {
+            InvalidParameter(.vpcOverQuota)
         }
 
         public func asTemError() -> TCTemError {
@@ -86,6 +104,10 @@ extension TCTemError {
                 code = .invalidParameter_ServiceUseReserveSuffix
             case .tooManyPortMappingRules:
                 code = .invalidParameter_TooManyPortMappingRules
+            case .unauthorizedOrMissingRole:
+                code = .invalidParameter_UnauthorizedOrMissingRole
+            case .vpcOverQuota:
+                code = .invalidParameter_VpcOverQuota
             }
             return TCTemError(code, context: self.context)
         }

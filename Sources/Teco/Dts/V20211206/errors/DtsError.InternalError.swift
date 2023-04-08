@@ -83,6 +83,7 @@ extension TCDtsError {
             InternalError(.duplicateJob)
         }
 
+        /// 内部错误。
         public static var internalErrorError: InternalError {
             InternalError(.internalErrorError)
         }

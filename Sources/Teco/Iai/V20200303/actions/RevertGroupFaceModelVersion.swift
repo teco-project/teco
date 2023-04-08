@@ -44,9 +44,10 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     ///
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @available(*, unavailable, message: "同理")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        self.client.execute(action: "RevertGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RevertGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -54,9 +55,10 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     ///
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @available(*, unavailable, message: "同理")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "RevertGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RevertGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -64,9 +66,10 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     ///
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @available(*, unavailable, message: "同理")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        self.revertGroupFaceModelVersion(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        fatalError("RevertGroupFaceModelVersion is no longer available.")
     }
 
     /// 人员库版本回滚
@@ -74,8 +77,9 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     ///
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @available(*, unavailable, message: "同理")
     @inlinable @discardableResult
     public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        try await self.revertGroupFaceModelVersion(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        fatalError("RevertGroupFaceModelVersion is no longer available.")
     }
 }

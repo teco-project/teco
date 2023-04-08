@@ -26,7 +26,7 @@ extension Vpc {
         /// `DhcpIp`名称。
         public let dhcpIpName: String
 
-        /// 新申请的内网IP地址个数。总数不能超过64个。
+        /// 新申请的内网IP地址个数。总数不能超过64个，为了兼容性，当前参数必填。
         public let secondaryPrivateIpAddressCount: UInt64?
 
         public init(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil) {
@@ -46,7 +46,7 @@ extension Vpc {
 
     /// CreateDhcpIp返回参数结构体
     public struct CreateDhcpIpResponse: TCResponseModel {
-        /// 新创建的`DhcpIp`信息
+        /// 新创建的`DhcpIp`信息。
         public let dhcpIpSet: [DhcpIp]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -60,7 +60,7 @@ extension Vpc {
 
     /// 创建DhcpIp
     ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp。
     @inlinable
     public func createDhcpIp(_ input: CreateDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
         self.client.execute(action: "CreateDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Vpc {
 
     /// 创建DhcpIp
     ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp。
     @inlinable
     public func createDhcpIp(_ input: CreateDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
         try await self.client.execute(action: "CreateDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Vpc {
 
     /// 创建DhcpIp
     ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp。
     @inlinable
     public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
         self.createDhcpIp(.init(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Vpc {
 
     /// 创建DhcpIp
     ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp。
     @inlinable
     public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
         try await self.createDhcpIp(.init(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)

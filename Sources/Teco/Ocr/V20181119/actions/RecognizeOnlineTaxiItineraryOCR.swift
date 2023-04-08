@@ -68,6 +68,8 @@ extension Ocr {
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
         self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -76,6 +78,8 @@ extension Ocr {
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
         try await self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -84,6 +88,8 @@ extension Ocr {
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
         self.recognizeOnlineTaxiItineraryOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -92,6 +98,8 @@ extension Ocr {
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
         try await self.recognizeOnlineTaxiItineraryOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

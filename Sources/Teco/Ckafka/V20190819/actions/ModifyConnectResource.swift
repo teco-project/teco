@@ -59,7 +59,10 @@ extension Ckafka {
         /// Doris配置，Type为DORIS
         public let dorisConnectParam: DorisModifyConnectParam?
 
-        public init(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil) {
+        /// Kafka配置，Type为 KAFKA 时必填
+        public let kafkaConnectParam: KafkaConnectParam?
+
+        public init(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil) {
             self.resourceId = resourceId
             self.resourceName = resourceName
             self.description = description
@@ -74,6 +77,7 @@ extension Ckafka {
             self.sqlServerConnectParam = sqlServerConnectParam
             self.ctsdbConnectParam = ctsdbConnectParam
             self.dorisConnectParam = dorisConnectParam
+            self.kafkaConnectParam = kafkaConnectParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -91,6 +95,7 @@ extension Ckafka {
             case sqlServerConnectParam = "SQLServerConnectParam"
             case ctsdbConnectParam = "CtsdbConnectParam"
             case dorisConnectParam = "DorisConnectParam"
+            case kafkaConnectParam = "KafkaConnectParam"
         }
     }
 
@@ -122,13 +127,13 @@ extension Ckafka {
 
     /// 编辑Datahub连接源
     @inlinable
-    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectResourceResponse> {
-        self.modifyConnectResource(.init(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
+    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectResourceResponse> {
+        self.modifyConnectResource(.init(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam, kafkaConnectParam: kafkaConnectParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑Datahub连接源
     @inlinable
-    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectResourceResponse {
-        try await self.modifyConnectResource(.init(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
+    public func modifyConnectResource(resourceId: String, resourceName: String? = nil, description: String? = nil, type: String? = nil, dtsConnectParam: DtsModifyConnectParam? = nil, mongoDBConnectParam: MongoDBModifyConnectParam? = nil, esConnectParam: EsModifyConnectParam? = nil, clickHouseConnectParam: ClickHouseModifyConnectParam? = nil, mySQLConnectParam: MySQLModifyConnectParam? = nil, postgreSQLConnectParam: PostgreSQLModifyConnectParam? = nil, mariaDBConnectParam: MariaDBModifyConnectParam? = nil, sqlServerConnectParam: SQLServerModifyConnectParam? = nil, ctsdbConnectParam: CtsdbModifyConnectParam? = nil, dorisConnectParam: DorisModifyConnectParam? = nil, kafkaConnectParam: KafkaConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectResourceResponse {
+        try await self.modifyConnectResource(.init(resourceId: resourceId, resourceName: resourceName, description: description, type: type, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, ctsdbConnectParam: ctsdbConnectParam, dorisConnectParam: dorisConnectParam, kafkaConnectParam: kafkaConnectParam), region: region, logger: logger, on: eventLoop)
     }
 }

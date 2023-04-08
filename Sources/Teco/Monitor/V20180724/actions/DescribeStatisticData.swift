@@ -20,7 +20,7 @@ extension Monitor {
         /// 所属模块，固定值，为monitor
         public let module: String
 
-        /// 命名空间，目前只支持QCE/TKE
+        /// 命名空间，目前只支持QCE/TKE2
         public let namespace: String
 
         /// 指标名列表

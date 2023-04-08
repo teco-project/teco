@@ -23,6 +23,7 @@ extension TCSesError {
             case receiverIsOperating = "OperationDenied.ReceiverIsOperating"
             case receiverNotExist = "OperationDenied.ReceiverNotExist"
             case receiverStatusError = "OperationDenied.ReceiverStatusError"
+            case repeatPassWord = "OperationDenied.RepeatPassWord"
             case sendAddressStatusError = "OperationDenied.SendAddressStatusError"
             case templateStatusError = "OperationDenied.TemplateStatusError"
             case other = "OperationDenied"
@@ -65,7 +66,7 @@ extension TCSesError {
             OperationDenied(.exceedSenderLimit)
         }
 
-        /// 收件人列表正在被操作，请稍后操作。
+        /// 收件人列表正在上传中，请稍后操作。
         ///
         /// 可能是收件人列表正在上传收件人地址，等待一段时间再操作，必要时可以反馈问题
         public static var receiverIsOperating: OperationDenied {
@@ -84,6 +85,11 @@ extension TCSesError {
         /// 检查收件人列表中是否存在收件人地址或者正在进行上传，尚未完成全部上传工作
         public static var receiverStatusError: OperationDenied {
             OperationDenied(.receiverStatusError)
+        }
+
+        /// 不能与上一次设置密码相同。
+        public static var repeatPassWord: OperationDenied {
+            OperationDenied(.repeatPassWord)
         }
 
         /// 发信地址不存在或者状态不是通过状态。
@@ -120,6 +126,8 @@ extension TCSesError {
                 code = .operationDenied_ReceiverNotExist
             case .receiverStatusError:
                 code = .operationDenied_ReceiverStatusError
+            case .repeatPassWord:
+                code = .operationDenied_RepeatPassWord
             case .sendAddressStatusError:
                 code = .operationDenied_SendAddressStatusError
             case .templateStatusError:

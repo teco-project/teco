@@ -25,6 +25,7 @@ public protocol TCCfsErrorType: TCServiceErrorType {
 public struct TCCfsError: TCCfsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_GetRoleFailed = "AuthFailure.GetRoleFailed"
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_BindResourcePkgFailed = "FailedOperation.BindResourcePkgFailed"
@@ -53,6 +54,8 @@ public struct TCCfsError: TCCfsErrorType {
         case invalidParameterValue_InvalidFsStatus = "InvalidParameterValue.InvalidFsStatus"
         case invalidParameterValue_InvalidMountTargetIp = "InvalidParameterValue.InvalidMountTargetIp"
         case invalidParameterValue_InvalidNetInterface = "InvalidParameterValue.InvalidNetInterface"
+        case invalidParameterValue_InvalidParamDayOfMonth = "InvalidParameterValue.InvalidParamDayOfMonth"
+        case invalidParameterValue_InvalidParamIntervalDays = "InvalidParameterValue.InvalidParamIntervalDays"
         case invalidParameterValue_InvalidPgroup = "InvalidParameterValue.InvalidPgroup"
         case invalidParameterValue_InvalidPgroupId = "InvalidParameterValue.InvalidPgroupId"
         case invalidParameterValue_InvalidPgroupName = "InvalidParameterValue.InvalidPgroupName"
@@ -80,6 +83,7 @@ public struct TCCfsError: TCCfsErrorType {
         case invalidParameterValue_MissingKmsKeyId = "InvalidParameterValue.MissingKmsKeyId"
         case invalidParameterValue_MissingNameOrDescinfo = "InvalidParameterValue.MissingNameOrDescinfo"
         case invalidParameterValue_MissingPgroupName = "InvalidParameterValue.MissingPgroupName"
+        case invalidParameterValue_MissingPolicyParam = "InvalidParameterValue.MissingPolicyParam"
         case invalidParameterValue_MissingStorageResourcePkg = "InvalidParameterValue.MissingStorageResourcePkg"
         case invalidParameterValue_MissingSubnetidOrUnsubnetid = "InvalidParameterValue.MissingSubnetidOrUnsubnetid"
         case invalidParameterValue_MissingVpcParameter = "InvalidParameterValue.MissingVpcParameter"
@@ -95,6 +99,7 @@ public struct TCCfsError: TCCfsErrorType {
         case invalidParameterValue_RuleNotMatchPgroup = "InvalidParameterValue.RuleNotMatchPgroup"
         case invalidParameterValue_TagKeyFilterLimitExceeded = "InvalidParameterValue.TagKeyFilterLimitExceeded"
         case invalidParameterValue_TagKeyLimitExceeded = "InvalidParameterValue.TagKeyLimitExceeded"
+        case invalidParameterValue_TagValueFilterLimitExceeded = "InvalidParameterValue.TagValueFilterLimitExceeded"
         case invalidParameterValue_TagValueLimitExceeded = "InvalidParameterValue.TagValueLimitExceeded"
         case invalidParameterValue_UnavailableRegion = "InvalidParameterValue.UnavailableRegion"
         case invalidParameterValue_UnavailableZone = "InvalidParameterValue.UnavailableZone"
@@ -113,6 +118,7 @@ public struct TCCfsError: TCCfsErrorType {
         case resourceInsufficient_PgroupNumberLimitExceeded = "ResourceInsufficient.PgroupNumberLimitExceeded"
         case resourceInsufficient_RegionSoldOut = "ResourceInsufficient.RegionSoldOut"
         case resourceInsufficient_RuleLimitExceeded = "ResourceInsufficient.RuleLimitExceeded"
+        case resourceInsufficient_SnapshotSizeLimitExceeded = "ResourceInsufficient.SnapshotSizeLimitExceeded"
         case resourceInsufficient_SubnetIpAllOccupied = "ResourceInsufficient.SubnetIpAllOccupied"
         case resourceInsufficient_TagLimitExceeded = "ResourceInsufficient.TagLimitExceeded"
         case resourceInsufficient_TagQuotasExceeded = "ResourceInsufficient.TagQuotasExceeded"
@@ -159,6 +165,11 @@ public struct TCCfsError: TCCfsErrorType {
     /// CAM签名/鉴权错误。
     public static var authFailure: TCCfsError {
         TCCfsError(.authFailure)
+    }
+
+    /// 获取CFS服务角色错误
+    public static var authFailure_GetRoleFailed: TCCfsError {
+        TCCfsError(.authFailure_GetRoleFailed)
     }
 
     /// 请求未CAM授权。
@@ -301,6 +312,16 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.invalidParameterValue_InvalidNetInterface)
     }
 
+    /// 该参数是字符串类型
+    public static var invalidParameterValue_InvalidParamDayOfMonth: TCCfsError {
+        TCCfsError(.invalidParameterValue_InvalidParamDayOfMonth)
+    }
+
+    /// 该值范围是1-365
+    public static var invalidParameterValue_InvalidParamIntervalDays: TCCfsError {
+        TCCfsError(.invalidParameterValue_InvalidParamIntervalDays)
+    }
+
     /// 权限组不属于该用户。
     public static var invalidParameterValue_InvalidPgroup: TCCfsError {
         TCCfsError(.invalidParameterValue_InvalidPgroup)
@@ -368,10 +389,12 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.invalidParameterValue_InvalidTagKey)
     }
 
+    /// 标签值为空或字符无效。
     public static var invalidParameterValue_InvalidTagValue: TCCfsError {
         TCCfsError(.invalidParameterValue_InvalidTagValue)
     }
 
+    /// 无效的容量值。
     public static var invalidParameterValue_InvalidTurboCapacity: TCCfsError {
         TCCfsError(.invalidParameterValue_InvalidTurboCapacity)
     }
@@ -436,6 +459,12 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.invalidParameterValue_MissingPgroupName)
     }
 
+    /// 添加IsActivated，PolicyName，DayOfWeek，
+    /// Hour，AliveDays，DayOfMonth，IntervalDays 中的一个或者多个参数
+    public static var invalidParameterValue_MissingPolicyParam: TCCfsError {
+        TCCfsError(.invalidParameterValue_MissingPolicyParam)
+    }
+
     /// 未绑定存储包。
     public static var invalidParameterValue_MissingStorageResourcePkg: TCCfsError {
         TCCfsError(.invalidParameterValue_MissingStorageResourcePkg)
@@ -476,18 +505,22 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.invalidParameterValue_PgroupNameLimitExceeded)
     }
 
+    /// 容量硬限制取值范围错误。
     public static var invalidParameterValue_QuotaCapLimitError: TCCfsError {
         TCCfsError(.invalidParameterValue_QuotaCapLimitError)
     }
 
+    /// 文件硬限制取值范围错误。
     public static var invalidParameterValue_QuotaFileLimitError: TCCfsError {
         TCCfsError(.invalidParameterValue_QuotaFileLimitError)
     }
 
+    /// USER ID类型错误。
     public static var invalidParameterValue_QuotaUserIdError: TCCfsError {
         TCCfsError(.invalidParameterValue_QuotaUserIdError)
     }
 
+    /// 配额类型错误。
     public static var invalidParameterValue_QuotaUserTypeError: TCCfsError {
         TCCfsError(.invalidParameterValue_QuotaUserTypeError)
     }
@@ -505,6 +538,11 @@ public struct TCCfsError: TCCfsErrorType {
     /// 标签键长度超过限制（不能超过127字节）。
     public static var invalidParameterValue_TagKeyLimitExceeded: TCCfsError {
         TCCfsError(.invalidParameterValue_TagKeyLimitExceeded)
+    }
+
+    /// 标签值个数超过上限（10个）。
+    public static var invalidParameterValue_TagValueFilterLimitExceeded: TCCfsError {
+        TCCfsError(.invalidParameterValue_TagValueFilterLimitExceeded)
     }
 
     /// 标签值长度超过限制（不能超过255字节）。
@@ -597,6 +635,10 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.resourceInsufficient_RuleLimitExceeded)
     }
 
+    public static var resourceInsufficient_SnapshotSizeLimitExceeded: TCCfsError {
+        TCCfsError(.resourceInsufficient_SnapshotSizeLimitExceeded)
+    }
+
     /// 该子网下已无可用IP。
     public static var resourceInsufficient_SubnetIpAllOccupied: TCCfsError {
         TCCfsError(.resourceInsufficient_SubnetIpAllOccupied)
@@ -607,6 +649,7 @@ public struct TCCfsError: TCCfsErrorType {
         TCCfsError(.resourceInsufficient_TagLimitExceeded)
     }
 
+    /// 标签限额不足。
     public static var resourceInsufficient_TagQuotasExceeded: TCCfsError {
         TCCfsError(.resourceInsufficient_TagQuotasExceeded)
     }

@@ -166,6 +166,8 @@ extension Ocr {
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
         self.client.execute(action: "ResidenceBookletOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -174,6 +176,8 @@ extension Ocr {
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
         try await self.client.execute(action: "ResidenceBookletOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -182,6 +186,8 @@ extension Ocr {
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
         self.residenceBookletOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -190,6 +196,8 @@ extension Ocr {
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
         try await self.residenceBookletOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

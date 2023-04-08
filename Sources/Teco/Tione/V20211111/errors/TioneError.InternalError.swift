@@ -21,7 +21,10 @@ extension TCTioneError {
             case insufficientBalance = "InternalError.InsufficientBalance"
             case noPermission = "InternalError.NoPermission"
             case notAllow = "InternalError.NotAllow"
+            case queryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
             case queryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
+            case queryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+            case stopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
             case other = "InternalError"
         }
 
@@ -61,18 +64,38 @@ extension TCTioneError {
             InternalError(.insufficientBalance)
         }
 
+        /// 没有权限。
+        ///
         /// 请检查相关权限是否允许操作。
         public static var noPermission: InternalError {
             InternalError(.noPermission)
         }
 
+        /// 操作不允许。
+        ///
         /// 请检查操作是否正确。
         public static var notAllow: InternalError {
             InternalError(.notAllow)
         }
 
+        /// 查询标签失败。
+        public static var queryBindingTagsFailed: InternalError {
+            InternalError(.queryBindingTagsFailed)
+        }
+
+        /// 获取HDFS存储信息失败。
         public static var queryHDFSInfoFailed: InternalError {
             InternalError(.queryHDFSInfoFailed)
+        }
+
+        /// 查询预付费资源组详情失败。
+        public static var queryResourceGroupFailed: InternalError {
+            InternalError(.queryResourceGroupFailed)
+        }
+
+        /// 停止任务失败。
+        public static var stopJobInstanceFailed: InternalError {
+            InternalError(.stopJobInstanceFailed)
         }
 
         /// 内部错误。
@@ -91,8 +114,14 @@ extension TCTioneError {
                 code = .internalError_NoPermission
             case .notAllow:
                 code = .internalError_NotAllow
+            case .queryBindingTagsFailed:
+                code = .internalError_QueryBindingTagsFailed
             case .queryHDFSInfoFailed:
                 code = .internalError_QueryHDFSInfoFailed
+            case .queryResourceGroupFailed:
+                code = .internalError_QueryResourceGroupFailed
+            case .stopJobInstanceFailed:
+                code = .internalError_StopJobInstanceFailed
             case .other:
                 code = .internalError
             }

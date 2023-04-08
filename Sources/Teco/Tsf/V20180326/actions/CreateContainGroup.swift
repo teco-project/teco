@@ -159,24 +159,32 @@ extension Tsf {
     }
 
     /// 创建容器部署组
+    ///
+    /// （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
     @inlinable
     public func createContainGroup(_ input: CreateContainGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
         self.client.execute(action: "CreateContainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建容器部署组
+    ///
+    /// （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
     @inlinable
     public func createContainGroup(_ input: CreateContainGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
         try await self.client.execute(action: "CreateContainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建容器部署组
+    ///
+    /// （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
     @inlinable
     public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
         self.createContainGroup(.init(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建容器部署组
+    ///
+    /// （已废弃，请使用 CreateGroup 和 DeployContainerGroup 创建和部署容器部署组）创建容器部署组
     @inlinable
     public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
         try await self.createContainGroup(.init(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), region: region, logger: logger, on: eventLoop)

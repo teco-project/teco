@@ -74,6 +74,8 @@ extension Ocr {
     /// 事业单位法人证书识别
     ///
     /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func institutionOCR(_ input: InstitutionOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstitutionOCRResponse> {
         self.client.execute(action: "InstitutionOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -82,6 +84,8 @@ extension Ocr {
     /// 事业单位法人证书识别
     ///
     /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func institutionOCR(_ input: InstitutionOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
         try await self.client.execute(action: "InstitutionOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -90,6 +94,8 @@ extension Ocr {
     /// 事业单位法人证书识别
     ///
     /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func institutionOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstitutionOCRResponse> {
         self.institutionOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -98,6 +104,8 @@ extension Ocr {
     /// 事业单位法人证书识别
     ///
     /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func institutionOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
         try await self.institutionOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

@@ -48,6 +48,7 @@ extension TCCpdpError {
             self.context = context
         }
 
+        /// 聚鑫可用余额不足。
         public static var midasBalance: ResourceUnavailable {
             ResourceUnavailable(.midasBalance)
         }

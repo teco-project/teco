@@ -49,6 +49,7 @@ extension TCVpcError {
             InternalError(.createCkafkaRouteError)
         }
 
+        /// 内部模块错误。
         public static var moduleError: InternalError {
             InternalError(.moduleError)
         }

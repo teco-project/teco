@@ -80,26 +80,30 @@ extension Tdid {
     }
 
     /// DID详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidDetail(_ input: GetDidDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDetailResponse> {
-        self.client.execute(action: "GetDidDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidDetail is no longer available.")
     }
 
     /// DID详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidDetail(_ input: GetDidDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
-        try await self.client.execute(action: "GetDidDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidDetail is no longer available.")
     }
 
     /// DID详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidDetail(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDetailResponse> {
-        self.getDidDetail(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidDetail is no longer available.")
     }
 
     /// DID详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidDetail(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
-        try await self.getDidDetail(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidDetail is no longer available.")
     }
 }

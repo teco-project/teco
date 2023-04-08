@@ -1442,6 +1442,59 @@ extension Ssa {
         }
     }
 
+    /// DataSaEventPub
+    public struct ListDataSaEventPub: TCOutputModel {
+        /// 时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var time: Date
+
+        /// 安全事件1级分类
+        public let eventType1: Int64
+
+        /// 安全事件2级分类
+        public let eventType2: Int64
+
+        /// 安全事件名称
+        public let eventName: String
+
+        /// 风险等级
+        public let level: Int64
+
+        /// 安全事件状态
+        public let status: Int64
+
+        /// 攻击源ip
+        public let srcIp: String
+
+        /// 攻击目标ip
+        public let dstIp: String
+
+        /// 攻击目标端口
+        public let dstPort: Int64
+
+        /// 受影响资产
+        public let asset: String
+
+        /// 私有字段和公有字段映射的原始采集数据唯一标识的MD5值
+        public let oldIdMd5: String
+
+        enum CodingKeys: String, CodingKey {
+            case time = "Time"
+            case eventType1 = "EventType1"
+            case eventType2 = "EventType2"
+            case eventName = "EventName"
+            case level = "Level"
+            case status = "Status"
+            case srcIp = "SrcIp"
+            case dstIp = "DstIp"
+            case dstPort = "DstPort"
+            case asset = "Asset"
+            case oldIdMd5 = "OldIdMd5"
+        }
+    }
+
     /// 测绘记录
     public struct MappingResult: TCOutputModel {
         /// 资产名称
@@ -1535,6 +1588,20 @@ extension Ssa {
             case mappingStatus = "MappingStatus"
             case region = "Region"
             case securityStatus = "SecurityStatus"
+        }
+    }
+
+    /// DataSaEventPub
+    public struct ObjDataSaEventPub: TCOutputModel {
+        /// Count
+        public let count: Int64
+
+        /// List
+        public let list: [ListDataSaEventPub]
+
+        enum CodingKeys: String, CodingKey {
+            case count = "Count"
+            case list = "List"
         }
     }
 

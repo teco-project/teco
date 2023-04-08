@@ -58,6 +58,7 @@ extension TCCbsError {
             ResourceUnavailable(.attached)
         }
 
+        /// 云硬盘快照链长度过长，拒绝创建快照。
         public static var diskSnapshotChainTooLarge: ResourceUnavailable {
             ResourceUnavailable(.diskSnapshotChainTooLarge)
         }

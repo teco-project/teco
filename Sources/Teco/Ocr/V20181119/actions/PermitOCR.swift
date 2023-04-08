@@ -86,6 +86,8 @@ extension Ocr {
     /// 港澳台通行证识别
     ///
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func permitOCR(_ input: PermitOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PermitOCRResponse> {
         self.client.execute(action: "PermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -94,6 +96,8 @@ extension Ocr {
     /// 港澳台通行证识别
     ///
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func permitOCR(_ input: PermitOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PermitOCRResponse {
         try await self.client.execute(action: "PermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -102,6 +106,8 @@ extension Ocr {
     /// 港澳台通行证识别
     ///
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func permitOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PermitOCRResponse> {
         self.permitOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -110,6 +116,8 @@ extension Ocr {
     /// 港澳台通行证识别
     ///
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    ///
+    /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func permitOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PermitOCRResponse {
         try await self.permitOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

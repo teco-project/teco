@@ -17,7 +17,7 @@
 extension Essbasic {
     /// ChannelCreateFlowSignUrl请求参数结构体
     public struct ChannelCreateFlowSignUrlRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         public let agent: Agent
 
         /// 流程编号
@@ -63,33 +63,45 @@ extension Essbasic {
         }
     }
 
-    /// 渠道版创建签署链接
+    /// 创建签署链接
     ///
-    /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
+    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
     @inlinable
     public func channelCreateFlowSignUrl(_ input: ChannelCreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
         self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 渠道版创建签署链接
+    /// 创建签署链接
     ///
-    /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
+    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
     @inlinable
     public func channelCreateFlowSignUrl(_ input: ChannelCreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
         try await self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 渠道版创建签署链接
+    /// 创建签署链接
     ///
-    /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
+    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
     @inlinable
     public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
         self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 渠道版创建签署链接
+    /// 创建签署链接
     ///
-    /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
+    /// 创建签署链接，请联系客户经理申请使用
+    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
     @inlinable
     public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
         try await self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)

@@ -58,26 +58,30 @@ extension Tdid {
     }
 
     /// 凭证模版列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCptList(_ input: GetCptListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
-        self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetCptList is no longer available.")
     }
 
     /// 凭证模版列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCptList(_ input: GetCptListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        try await self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetCptList is no longer available.")
     }
 
     /// 凭证模版列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
-        self.getCptList(.init(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
+        fatalError("GetCptList is no longer available.")
     }
 
     /// 凭证模版列表
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        try await self.getCptList(.init(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
+        fatalError("GetCptList is no longer available.")
     }
 }

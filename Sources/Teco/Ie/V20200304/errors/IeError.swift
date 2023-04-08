@@ -135,6 +135,7 @@ public struct TCIeError: TCIeErrorType {
         TCIeError(.failedOperation_ServerError)
     }
 
+    /// 任务重复提交。
     public static var failedOperation_TaskResubmit: TCIeError {
         TCIeError(.failedOperation_TaskResubmit)
     }
@@ -219,6 +220,8 @@ public struct TCIeError: TCIeErrorType {
         TCIeError(.invalidParameterValue_LiveSourceNotSupport)
     }
 
+    /// 存储信息不存在。
+    ///
     /// 请确认准确填写存储信息。
     public static var invalidParameterValue_SaveInfoNotExist: TCIeError {
         TCIeError(.invalidParameterValue_SaveInfoNotExist)
@@ -254,6 +257,7 @@ public struct TCIeError: TCIeErrorType {
         TCIeError(.invalidParameterValue_VideoFormatError)
     }
 
+    /// 不支持直播流。
     public static var invalidParameter_LiveStreamNotSupport: TCIeError {
         TCIeError(.invalidParameter_LiveStreamNotSupport)
     }

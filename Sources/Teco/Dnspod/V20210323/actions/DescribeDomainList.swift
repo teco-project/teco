@@ -19,7 +19,7 @@ import TecoPaginationHelpers
 extension Dnspod {
     /// DescribeDomainList请求参数结构体
     public struct DescribeDomainListRequest: TCPaginatedRequest {
-        /// 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
+        /// 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT，FREE。
         public let type: String?
 
         /// 记录开始的偏移, 第一条记录为 0, 依次类推。默认值为0。

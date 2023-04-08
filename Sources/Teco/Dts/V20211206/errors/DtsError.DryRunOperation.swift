@@ -42,6 +42,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
         public static var dryRunOperationError: DryRunOperation {
             DryRunOperation(.dryRunOperationError)
         }

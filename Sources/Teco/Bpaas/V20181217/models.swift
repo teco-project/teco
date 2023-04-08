@@ -238,6 +238,10 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalUrl: String?
 
+        /// 并行节点 3-4
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parallelNodes: String?
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case nodeName = "NodeName"
@@ -259,6 +263,7 @@ extension Bpaas {
             case taskName = "TaskName"
             case cKafkaRegion = "CKafkaRegion"
             case externalUrl = "ExternalUrl"
+            case parallelNodes = "ParallelNodes"
         }
     }
 }

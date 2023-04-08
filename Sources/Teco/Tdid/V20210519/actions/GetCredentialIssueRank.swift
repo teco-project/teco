@@ -56,32 +56,36 @@ extension Tdid {
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
-        self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetCredentialIssueRank is no longer available.")
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
-        try await self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetCredentialIssueRank is no longer available.")
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
-        self.getCredentialIssueRank(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetCredentialIssueRank is no longer available.")
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
-        try await self.getCredentialIssueRank(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetCredentialIssueRank is no longer available.")
     }
 }

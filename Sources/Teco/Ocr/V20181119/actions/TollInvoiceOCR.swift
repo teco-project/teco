@@ -72,6 +72,8 @@ extension Ocr {
     /// 过路过桥费发票识别
     ///
     /// 本接口支持对过路过桥费发票的发票代码、发票号码、日期、小写金额等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func tollInvoiceOCR(_ input: TollInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TollInvoiceOCRResponse> {
         self.client.execute(action: "TollInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 过路过桥费发票识别
     ///
     /// 本接口支持对过路过桥费发票的发票代码、发票号码、日期、小写金额等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func tollInvoiceOCR(_ input: TollInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TollInvoiceOCRResponse {
         try await self.client.execute(action: "TollInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 过路过桥费发票识别
     ///
     /// 本接口支持对过路过桥费发票的发票代码、发票号码、日期、小写金额等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func tollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TollInvoiceOCRResponse> {
         self.tollInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 过路过桥费发票识别
     ///
     /// 本接口支持对过路过桥费发票的发票代码、发票号码、日期、小写金额等关键字段的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func tollInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TollInvoiceOCRResponse {
         try await self.tollInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

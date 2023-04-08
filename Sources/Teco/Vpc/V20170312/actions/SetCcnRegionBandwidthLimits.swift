@@ -17,7 +17,7 @@
 extension Vpc {
     /// SetCcnRegionBandwidthLimits请求参数结构体
     public struct SetCcnRegionBandwidthLimitsRequest: TCRequestModel {
-        /// CCN实例ID。形如：ccn-f49l6u0z。
+        /// CCN实例ID，形如：ccn-f49l6u0z。
         public let ccnId: String
 
         /// 云联网（CCN）各地域出带宽上限。

@@ -290,11 +290,9 @@ extension Ccc {
     /// 筛选条件
     public struct Filter: TCInputModel {
         /// 筛选字段名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
 
         /// 筛选条件值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [String]?
 
         public init(name: String, values: [String]) {
@@ -431,6 +429,20 @@ extension Ccc {
             case timestamp = "Timestamp"
             case from = "From"
             case messages = "Messages"
+        }
+    }
+
+    /// 号码信息
+    public struct NumberInfo: TCOutputModel {
+        /// 号码
+        public let number: String?
+
+        /// 绑定的外呼技能组
+        public let callOutSkillGroupIds: [UInt64]?
+
+        enum CodingKeys: String, CodingKey {
+            case number = "Number"
+            case callOutSkillGroupIds = "CallOutSkillGroupIds"
         }
     }
 
@@ -651,10 +663,14 @@ extension Ccc {
     /// 坐席用户信息
     public struct SeatUserInfo: TCInputModel, TCOutputModel {
         /// 坐席名称
-        public let name: String?
+        public let name: String
 
         /// 坐席邮箱
-        public let mail: String?
+        public let mail: String
+
+        /// 工号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let staffNumber: String?
 
         /// 坐席电话号码（带0086前缀）
         public let phone: String?
@@ -669,28 +685,24 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupNameList: [String]?
 
-        /// 工号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let staffNumber: String?
-
-        public init(name: String? = nil, mail: String? = nil, phone: String? = nil, nick: String? = nil, userId: String? = nil, skillGroupNameList: [String]? = nil, staffNumber: String? = nil) {
+        public init(name: String, mail: String, staffNumber: String, phone: String? = nil, nick: String? = nil, userId: String? = nil, skillGroupNameList: [String]? = nil) {
             self.name = name
             self.mail = mail
+            self.staffNumber = staffNumber
             self.phone = phone
             self.nick = nick
             self.userId = userId
             self.skillGroupNameList = skillGroupNameList
-            self.staffNumber = staffNumber
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mail = "Mail"
+            case staffNumber = "StaffNumber"
             case phone = "Phone"
             case nick = "Nick"
             case userId = "UserId"
             case skillGroupNameList = "SkillGroupNameList"
-            case staffNumber = "StaffNumber"
         }
     }
 
@@ -966,6 +978,14 @@ extension Ccc {
         /// 手机外呼开关
         public let useMobileCallOut: Bool
 
+        /// 最近一次上线时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastOnlineTimestamp: Int64?
+
+        /// 最近一次状态时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastStatusTimestamp: Int64?
+
         enum CodingKeys: String, CodingKey {
             case email = "Email"
             case status = "Status"
@@ -981,6 +1001,8 @@ extension Ccc {
             case reserveNotReady = "ReserveNotReady"
             case useMobileAccept = "UseMobileAccept"
             case useMobileCallOut = "UseMobileCallOut"
+            case lastOnlineTimestamp = "LastOnlineTimestamp"
+            case lastStatusTimestamp = "LastStatusTimestamp"
         }
     }
 
@@ -1007,29 +1029,47 @@ extension Ccc {
         /// 坐席信息
         public let seatUser: SeatUserInfo?
 
-        /// 结束状态
-        /// 0	错误
-        /// 1	正常结束
-        /// 2	未接通
-        /// 17	坐席未接
-        /// 100	黑名单
-        /// 101	坐席转接
-        /// 102	IVR 期间用户放弃
-        /// 103	会话排队期间用户放弃
-        /// 104	会话振铃期间用户放弃
-        /// 105	无坐席在线
-        /// 106	非工作时间
-        /// 107	IVR后直接结束
-        /// 201	未知状态
-        /// 202	未接听
-        /// 203	拒接挂断
-        /// 204	关机
-        /// 205	空号
-        /// 206	通话中
-        /// 207	欠费
-        /// 208	运营商线路异常
-        /// 209	主叫取消
-        /// 210	不在服务区
+        /// EndStatus与EndStatusString一一对应，具体枚举如下：
+        ///
+        /// **场景	         EndStatus	EndStatusString	状态说明**
+        ///
+        /// 电话呼入&呼出	1	        ok	                        正常结束
+        ///
+        /// 电话呼入&呼出	0	        error	                系统错误
+        ///
+        /// 电话呼入	             102	        ivrGiveUp	        IVR 期间用户放弃
+        ///
+        /// 电话呼入	             103	        waitingGiveUp	       会话排队期间用户放弃
+        ///
+        /// 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
+        ///
+        /// 电话呼入	             105	        noSeatOnline	       无坐席在线
+        ///
+        /// 电话呼入              106	       notWorkTime	       非工作时间
+        ///
+        /// 电话呼入	            107	       ivrEnd	               IVR 后直接结束
+        ///
+        /// 电话呼入	            100	      CallinBlockedContact  呼入黑名单
+        ///
+        /// 电话呼出               2	              unconnected	未接通
+        ///
+        /// 电话呼出             201            unknown	未知状态
+        ///
+        /// 电话呼出            203	    userReject	拒接挂断
+        ///
+        /// 电话呼出	          204	    powerOff	关机
+        ///
+        /// 电话呼出           205            numberNotExist	空号
+        ///
+        /// 电话呼出	         206	           busy	通话中
+        ///
+        /// 电话呼出   	 207	           outOfCredit	欠费
+        ///
+        /// 电话呼出	         208	           operatorError	运营商线路异常
+        ///
+        /// 电话呼出         	209	           callerCancel	主叫取消
+        ///
+        /// 电话呼出	        210	           notInService	不在服务区
         public let endStatus: Int64?
 
         /// 技能组名称
@@ -1070,28 +1110,49 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skillGroupId: Int64?
 
-        /// error                   错误
-        /// ok                       正常结束
-        /// unconnected      未接通
-        /// seatGiveUp         坐席未接
-        /// blackList             黑名单
-        /// seatForward       坐席转接
-        /// ivrGiveUp           IVR 期间用户放弃
-        /// waitingGiveUp   会话排队期间用户放弃
-        /// ringingGiveUp   会话振铃期间用户放弃
-        /// noSeatOnline     无坐席在线
-        /// notWorkTime     非工作时间
-        /// ivrEnd                 IVR后直接结束
-        /// unknown            未知状态
-        /// notAnswer          未接听
-        /// userReject          拒接挂断
-        /// powerOff            关机
-        /// numberNotExist  空号
-        /// busy                    通话中
-        /// outOfCredit        欠费
-        /// operatorError     运营商线路异常
-        /// callerCancel        主叫取消
-        /// notInService       不在服务区
+        /// EndStatus与EndStatusString一一对应，具体枚举如下：
+        ///
+        /// **场景	         EndStatus	EndStatusString	状态说明**
+        ///
+        /// 电话呼入&呼出	1	        ok	                        正常结束
+        ///
+        /// 电话呼入&呼出	0	        error	                系统错误
+        ///
+        /// 电话呼入	             102	        ivrGiveUp	        IVR 期间用户放弃
+        ///
+        /// 电话呼入	             103	        waitingGiveUp	       会话排队期间用户放弃
+        ///
+        /// 电话呼入	             104	        ringingGiveUp	       会话振铃期间用户放弃
+        ///
+        /// 电话呼入	             105	        noSeatOnline	       无坐席在线
+        ///
+        /// 电话呼入              106	       notWorkTime	       非工作时间
+        ///
+        /// 电话呼入	            107	       ivrEnd	               IVR 后直接结束
+        ///
+        /// 电话呼入	            100	      CallinBlockedContact  呼入黑名单
+        ///
+        /// 电话呼出               2	              unconnected	未接通
+        ///
+        /// 电话呼出             201            unknown	未知状态
+        /// 听
+        /// 电话呼出            203	    userReject	拒接挂断
+        ///
+        /// 电话呼出	          204	    powerOff	关机
+        ///
+        /// 电话呼出           205            numberNotExist	空号
+        ///
+        /// 电话呼出	         206	           busy	通话中
+        ///
+        /// 电话呼出   	 207	           outOfCredit	欠费
+        ///
+        /// 电话呼出	         208	           operatorError	运营商线路异常
+        ///
+        /// 电话呼出         	209	           callerCancel	主叫取消
+        ///
+        /// 电话呼出	        210	           notInService	不在服务区
+        ///
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endStatusString: String?
 
@@ -1147,6 +1208,10 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let queuedSkillGroupName: String?
 
+        /// 通话中语音留言录音URL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voicemailRecordURL: [String]?
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case callee = "Callee"
@@ -1180,6 +1245,7 @@ extension Ccc {
             case customRecordURL = "CustomRecordURL"
             case remark = "Remark"
             case queuedSkillGroupName = "QueuedSkillGroupName"
+            case voicemailRecordURL = "VoicemailRecordURL"
         }
     }
 

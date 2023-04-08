@@ -105,6 +105,8 @@ public struct TCCatError: TCCatErrorType {
         TCCatError(.failedOperation_ESQueryError)
     }
 
+    /// 任务绑定的预付费套餐已过期。
+    ///
     /// 任务绑定的预付费套餐已过期，请续期对应的套餐包。
     public static var failedOperation_ErrPrePaidResourceExpire: TCCatError {
         TCCatError(.failedOperation_ErrPrePaidResourceExpire)
@@ -120,6 +122,8 @@ public struct TCCatError: TCCatErrorType {
         TCCatError(.failedOperation_OrderOutOfCredit)
     }
 
+    /// 预付费资源id绑定错误。
+    ///
     /// 未查询到此id对应的预付费资源或者此预付费资源已经绑定其他任务，请更换资源id或者删除已经绑定此资源的任务。
     public static var failedOperation_PreResourceIDFailed: TCCatError {
         TCCatError(.failedOperation_PreResourceIDFailed)
@@ -130,10 +134,13 @@ public struct TCCatError: TCCatErrorType {
         TCCatError(.failedOperation_ResourceNotFound)
     }
 
+    /// 发送授权请求失败。
     public static var failedOperation_SendRequest: TCCatError {
         TCCatError(.failedOperation_SendRequest)
     }
 
+    /// 标签验证错误。
+    ///
     /// 需要标签中需要包含 运营产品，运营部门，负责人。
     public static var failedOperation_TagRequiredVerifyFailed: TCCatError {
         TCCatError(.failedOperation_TagRequiredVerifyFailed)
@@ -166,11 +173,15 @@ public struct TCCatError: TCCatErrorType {
         TCCatError(.failedOperation_TrialTaskExceed)
     }
 
+    /// json解析失败。
+    ///
     /// 检查api调用逻辑
     public static var failedOperation_UnmarshalResponse: TCCatError {
         TCCatError(.failedOperation_UnmarshalResponse)
     }
 
+    /// 鉴权失败。
+    ///
     /// 当前子用户无相关标签写权限，请联系主账号管理员协助授予QcloudTAGFullAccess
     public static var failedOperation_UserNoQcloudTAGFullAccess: TCCatError {
         TCCatError(.failedOperation_UserNoQcloudTAGFullAccess)

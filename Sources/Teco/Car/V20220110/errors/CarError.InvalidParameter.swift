@@ -18,6 +18,7 @@ extension TCCarError {
     public struct InvalidParameter: TCCarErrorType {
         enum Code: String {
             case jsonParseError = "InvalidParameter.JsonParseError"
+            case other = "InvalidParameter"
         }
 
         private let error: Code
@@ -47,11 +48,18 @@ extension TCCarError {
             InvalidParameter(.jsonParseError)
         }
 
+        /// 参数错误。
+        public static var other: InvalidParameter {
+            InvalidParameter(.other)
+        }
+
         public func asCarError() -> TCCarError {
             let code: TCCarError.Code
             switch self.error {
             case .jsonParseError:
                 code = .invalidParameter_JsonParseError
+            case .other:
+                code = .invalidParameter
             }
             return TCCarError(code, context: self.context)
         }

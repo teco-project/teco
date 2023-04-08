@@ -46,7 +46,7 @@ extension Tke {
 
     /// 查询边缘集群日志开关列表
     ///
-    /// 获取事件、审计和日志的状态接口
+    /// 获取事件、审计和日志的状态
     @inlinable
     public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
         self.client.execute(action: "DescribeEdgeLogSwitches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +54,7 @@ extension Tke {
 
     /// 查询边缘集群日志开关列表
     ///
-    /// 获取事件、审计和日志的状态接口
+    /// 获取事件、审计和日志的状态
     @inlinable
     public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
         try await self.client.execute(action: "DescribeEdgeLogSwitches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +62,7 @@ extension Tke {
 
     /// 查询边缘集群日志开关列表
     ///
-    /// 获取事件、审计和日志的状态接口
+    /// 获取事件、审计和日志的状态
     @inlinable
     public func describeEdgeLogSwitches(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
         self.describeEdgeLogSwitches(.init(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Tke {
 
     /// 查询边缘集群日志开关列表
     ///
-    /// 获取事件、审计和日志的状态接口
+    /// 获取事件、审计和日志的状态
     @inlinable
     public func describeEdgeLogSwitches(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
         try await self.describeEdgeLogSwitches(.init(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)

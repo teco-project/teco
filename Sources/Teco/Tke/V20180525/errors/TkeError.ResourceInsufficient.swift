@@ -43,6 +43,7 @@ extension TCTkeError {
             self.context = context
         }
 
+        /// CVM资源不足。
         public static var specifiedInstanceType: ResourceInsufficient {
             ResourceInsufficient(.specifiedInstanceType)
         }

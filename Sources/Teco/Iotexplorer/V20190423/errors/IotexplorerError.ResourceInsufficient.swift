@@ -18,6 +18,7 @@ extension TCIotexplorerError {
     public struct ResourceInsufficient: TCIotexplorerErrorType {
         enum Code: String {
             case batchProductionIsRunning = "ResourceInsufficient.BatchProductionIsRunning"
+            case other = "ResourceInsufficient"
         }
 
         private let error: Code
@@ -47,11 +48,18 @@ extension TCIotexplorerError {
             ResourceInsufficient(.batchProductionIsRunning)
         }
 
+        /// 资源不足。
+        public static var other: ResourceInsufficient {
+            ResourceInsufficient(.other)
+        }
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {
             case .batchProductionIsRunning:
                 code = .resourceInsufficient_BatchProductionIsRunning
+            case .other:
+                code = .resourceInsufficient
             }
             return TCIotexplorerError(code, context: self.context)
         }

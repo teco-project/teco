@@ -41,7 +41,6 @@ extension Lcic {
         /// 房间子类型，可以有以下取值：
         /// videodoc 文档+视频
         /// video 纯视频
-        /// coteaching 双师
         public let subType: String
 
         /// 老师ID。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有老师权限。
@@ -66,10 +65,13 @@ extension Lcic {
         /// 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
         public let assistants: [String]?
 
-        /// 录制布局。
+        /// 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         public let recordLayout: UInt64?
 
-        public init(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil) {
+        /// 房间绑定的群组ID,非空时限制组成员进入
+        public let groupId: String?
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -83,6 +85,7 @@ extension Lcic {
             self.disableRecord = disableRecord
             self.assistants = assistants
             self.recordLayout = recordLayout
+            self.groupId = groupId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -99,6 +102,7 @@ extension Lcic {
             case disableRecord = "DisableRecord"
             case assistants = "Assistants"
             case recordLayout = "RecordLayout"
+            case groupId = "GroupId"
         }
     }
 
@@ -130,13 +134,13 @@ extension Lcic {
 
     /// 创建房间
     @inlinable
-    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
-        self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout), region: region, logger: logger, on: eventLoop)
+    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
+        self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建房间
     @inlinable
-    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
-        try await self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout), region: region, logger: logger, on: eventLoop)
+    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
+        try await self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

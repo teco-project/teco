@@ -45,26 +45,30 @@ extension Tdid {
     }
 
     /// DID添加标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func addLabel(_ input: AddLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLabelResponse> {
-        self.client.execute(action: "AddLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("AddLabel is no longer available.")
     }
 
     /// DID添加标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func addLabel(_ input: AddLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
-        try await self.client.execute(action: "AddLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("AddLabel is no longer available.")
     }
 
     /// DID添加标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func addLabel(labelId: UInt64, did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLabelResponse> {
-        self.addLabel(.init(labelId: labelId, did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("AddLabel is no longer available.")
     }
 
     /// DID添加标签
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func addLabel(labelId: UInt64, did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
-        try await self.addLabel(.init(labelId: labelId, did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("AddLabel is no longer available.")
     }
 }

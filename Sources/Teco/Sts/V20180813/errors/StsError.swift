@@ -47,6 +47,7 @@ public struct TCStsError: TCStsErrorType {
         case invalidParameter_StrategyInvalid = "InvalidParameter.StrategyInvalid"
         case invalidParameter_TempCodeNotAvaliable = "InvalidParameter.TempCodeNotAvaliable"
         case invalidParameter_WebIdentityTokenError = "InvalidParameter.WebIdentityTokenError"
+        case requestLimitExceeded = "RequestLimitExceeded"
         case resourceNotFound_RoleNotFound = "ResourceNotFound.RoleNotFound"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unsupportedOperation = "UnsupportedOperation"
@@ -192,6 +193,11 @@ public struct TCStsError: TCStsErrorType {
     /// WebIdentityToken参数错误。
     public static var invalidParameter_WebIdentityTokenError: TCStsError {
         TCStsError(.invalidParameter_WebIdentityTokenError)
+    }
+
+    /// 请求的次数超过了频率限制。
+    public static var requestLimitExceeded: TCStsError {
+        TCStsError(.requestLimitExceeded)
     }
 
     /// 账号对应的角色不存在。

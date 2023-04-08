@@ -25,10 +25,10 @@ extension Vpc {
         /// <li>instance-name - String - （过滤条件）云主机名称。</li>
         public let filters: [Filter]
 
-        /// 偏移量。
+        /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 请求对象个数。
+        /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
 
         public init(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil) {

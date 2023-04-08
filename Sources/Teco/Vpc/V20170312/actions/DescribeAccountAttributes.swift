@@ -23,7 +23,7 @@ extension Vpc {
 
     /// DescribeAccountAttributes返回参数结构体
     public struct DescribeAccountAttributesResponse: TCResponseModel {
-        /// 用户账号属性对象
+        /// 用户账号属性对象。
         public let accountAttributeSet: [AccountAttribute]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

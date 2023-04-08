@@ -17,6 +17,7 @@
 extension TCCdbError {
     public struct OperationDenied: TCCdbErrorType {
         enum Code: String {
+            case accountOperationDenied = "OperationDenied.AccountOperationDenied"
             case actionInProcess = "OperationDenied.ActionInProcess"
             case actionNotSupport = "OperationDenied.ActionNotSupport"
             case atLeastAllRuleAuditPolicyError = "OperationDenied.AtLeastAllRuleAuditPolicyError"
@@ -80,6 +81,11 @@ extension TCCdbError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 云账号权限不足，不支持该操作。
+        public static var accountOperationDenied: OperationDenied {
+            OperationDenied(.accountOperationDenied)
         }
 
         /// 实例正在执行其他任务。
@@ -187,6 +193,7 @@ extension TCCdbError {
             OperationDenied(.functionDenied)
         }
 
+        /// 当前类型实例不支持该操作。
         public static var instTypeNotSupport: OperationDenied {
             OperationDenied(.instTypeNotSupport)
         }
@@ -206,6 +213,7 @@ extension TCCdbError {
             OperationDenied(.instanceTaskRunning)
         }
 
+        /// 实例任务状态异常。
         public static var instanceTaskStatusError: OperationDenied {
             OperationDenied(.instanceTaskStatusError)
         }
@@ -288,6 +296,8 @@ extension TCCdbError {
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {
+            case .accountOperationDenied:
+                code = .operationDenied_AccountOperationDenied
             case .actionInProcess:
                 code = .operationDenied_ActionInProcess
             case .actionNotSupport:

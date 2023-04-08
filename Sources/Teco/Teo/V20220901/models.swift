@@ -34,6 +34,57 @@ extension Teo {
         }
     }
 
+    /// 加速域名
+    public struct AccelerationDomain: TCOutputModel {
+        /// 源站信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originDetail: OriginDetail?
+
+        /// 创建时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdOn: Date?
+
+        /// 加速域名名称。
+        public let domainName: String?
+
+        /// 修改时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var modifiedOn: Date?
+
+        /// 站点 ID。
+        public let zoneId: String?
+
+        /// 加速域名状态，取值有：
+        /// <li>online：已生效；</li>
+        /// <li>process：部署中；</li>
+        /// <li>offline：已停用；</li>
+        /// <li>forbidden：已封禁；</li>
+        /// <li>init：未生效，待激活站点；</li>
+        public let domainStatus: String?
+
+        /// CNAME 地址。
+        public let cname: String?
+
+        /// 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let identificationStatus: String?
+
+        enum CodingKeys: String, CodingKey {
+            case originDetail = "OriginDetail"
+            case createdOn = "CreatedOn"
+            case domainName = "DomainName"
+            case modifiedOn = "ModifiedOn"
+            case zoneId = "ZoneId"
+            case domainStatus = "DomainStatus"
+            case cname = "Cname"
+            case identificationStatus = "IdentificationStatus"
+        }
+    }
+
     /// 精准防护条件
     public struct AclCondition: TCInputModel, TCOutputModel {
         /// 匹配字段，取值有：
@@ -48,7 +99,12 @@ extension Teo {
         /// <li>method：请求方式；</li>
         /// <li>header：请求头部；</li>
         /// <li>app_proto：应用层协议；</li>
-        /// <li>sip_proto：网络层协议。</li>
+        /// <li>sip_proto：网络层协议；</li>
+        /// <li>uabot：UA 特征规则，仅bot自定义规则可用；</li>
+        /// <li>idcid：IDC 规则，仅bot自定义规则可用；</li>
+        /// <li>sipbot：搜索引擎规则，仅bot自定义规则可用；</li>
+        /// <li>portrait：画像分析，仅bot自定义规则可用；</li>
+        /// <li>header_seq：请求头顺序，仅bot自定义规则可用。</li>
         public let matchFrom: String
 
         /// 匹配字符串。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
@@ -235,10 +291,11 @@ extension Teo {
         /// <li> 智能压缩（Compression）；</li>
         /// <li> Hsts；</li>
         /// <li> ClientIpHeader；</li>
-        /// <li> TlsVersion；</li>
+        /// <li> SslTlsSecureConf；</li>
         /// <li> OcspStapling；</li>
         /// <li> HTTP/2 访问（Http2）；</li>
-        /// <li> 回源跟随重定向(UpstreamFollowRedirect)。</li>
+        /// <li> 回源跟随重定向(UpstreamFollowRedirect)；</li>
+        /// <li> 修改源站(Origin)。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let normalAction: NormalAction?
 
@@ -307,6 +364,174 @@ extension Teo {
 
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
+        }
+    }
+
+    /// Bot主动特征识别客户端行为校验。
+    public struct AlgDetectJS: TCInputModel, TCOutputModel {
+        /// 操作名称。
+        public let name: String?
+
+        /// 工作量证明 (proof_Of-Work)校验强度，默认low，取值有：
+        /// <li>low：低；</li>
+        /// <li>middle：中；</li>
+        /// <li>high：高。</li>
+        public let workLevel: String?
+
+        /// 执行方式，js延迟执行的时间。单位为ms，默认500，取值：0～1000。
+        public let executeMode: Int64?
+
+        /// 客户端末启用JS（末完成检测）统计周期。单位为秒，默认10，取值：5～3600。
+        public let invalidStatTime: Int64?
+
+        /// 客户端末启用JS（末完成检测）触发阈值。单位为次，默认300，取值：1～100000000。
+        public let invalidThreshold: Int64?
+
+        /// Bot主动特征识别客户端行为校验结果。
+        public let algDetectResults: [AlgDetectResult]?
+
+        public init(name: String? = nil, workLevel: String? = nil, executeMode: Int64? = nil, invalidStatTime: Int64? = nil, invalidThreshold: Int64? = nil, algDetectResults: [AlgDetectResult]? = nil) {
+            self.name = name
+            self.workLevel = workLevel
+            self.executeMode = executeMode
+            self.invalidStatTime = invalidStatTime
+            self.invalidThreshold = invalidThreshold
+            self.algDetectResults = algDetectResults
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case workLevel = "WorkLevel"
+            case executeMode = "ExecuteMode"
+            case invalidStatTime = "InvalidStatTime"
+            case invalidThreshold = "InvalidThreshold"
+            case algDetectResults = "AlgDetectResults"
+        }
+    }
+
+    /// Bot主动特征识别校验结果。
+    public struct AlgDetectResult: TCInputModel, TCOutputModel {
+        /// 校验结果，取值有：
+        /// <li>invalid：不合法Cookie；</li>
+        /// <li>cookie_empty：末携带Cookie或Cookie己过期；</li>
+        /// <li>js_empty：客户端末启用JS（末完成检测）；</li>
+        /// <li>low：会话速率和周期特征校验低风险；</li>
+        /// <li>middle：会话速率和周期特征校验中风险；</li>
+        /// <li>high：会话速率和周期特征校验高风险；</li>
+        /// <li>timeout：检测超时时长；</li>
+        /// <li>not_browser：不合法浏览器；</li>
+        /// <li>is_bot：Bot客户端。</li>
+        public let result: String?
+
+        /// 处罚动作，取值有：
+        /// <li>drop：拦截；</li>
+        /// <li>monitor：观察；</li>
+        /// <li>silence：静默；</li>
+        /// <li>shortdelay：（短时间）等待后响应；</li>
+        /// <li>longdelay：（长时间）等待后响应。</li>
+        public let action: String?
+
+        public init(result: String? = nil, action: String? = nil) {
+            self.result = result
+            self.action = action
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case result = "Result"
+            case action = "Action"
+        }
+    }
+
+    /// Bot主动特征识别规则。
+    public struct AlgDetectRule: TCInputModel, TCOutputModel {
+        /// 规则id。
+        public let ruleID: Int64?
+
+        /// 规则名。
+        public let ruleName: String?
+
+        /// 规则开关。
+        public let `switch`: String?
+
+        /// 自定义规则。
+        public let algConditions: [AclCondition]?
+
+        /// Cookie校验和会话行为分析。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let algDetectSession: AlgDetectSession?
+
+        /// 客户端行为校验。
+        public let algDetectJS: [AlgDetectJS]?
+
+        /// 更新时间。仅出参使用。
+        public let updateTime: String?
+
+        public init(ruleID: Int64? = nil, ruleName: String? = nil, switch: String? = nil, algConditions: [AclCondition]? = nil, algDetectSession: AlgDetectSession? = nil, algDetectJS: [AlgDetectJS]? = nil, updateTime: String? = nil) {
+            self.ruleID = ruleID
+            self.ruleName = ruleName
+            self.switch = `switch`
+            self.algConditions = algConditions
+            self.algDetectSession = algDetectSession
+            self.algDetectJS = algDetectJS
+            self.updateTime = updateTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleID = "RuleID"
+            case ruleName = "RuleName"
+            case `switch` = "Switch"
+            case algConditions = "AlgConditions"
+            case algDetectSession = "AlgDetectSession"
+            case algDetectJS = "AlgDetectJS"
+            case updateTime = "UpdateTime"
+        }
+    }
+
+    /// Cookie校验与会话跟踪。
+    public struct AlgDetectSession: TCInputModel, TCOutputModel {
+        /// 操作名称。
+        public let name: String?
+
+        /// 校验方式，默认update_detect，取值有：
+        /// <li>detect：仅校验；</li>
+        /// <li>update_detect：更新Cookie并校验。</li>
+        public let detectMode: String?
+
+        /// 会话速率和周期特征校验开关，默认off，取值有：
+        /// <li>off：关闭；</li>
+        /// <li>on：打开。</li>
+        public let sessionAnalyzeSwitch: String?
+
+        /// 校验结果为未携带Cookie或Cookie已过期的统计周期。单位为秒，默认10，取值：5～3600。
+        public let invalidStatTime: Int64?
+
+        /// 校验结果为未携带Cookie或Cookie已过期的触发阈值。单位为次，默认300，取值：1～100000000。
+        public let invalidThreshold: Int64?
+
+        /// Cookie校验校验结果。
+        public let algDetectResults: [AlgDetectResult]?
+
+        /// 会话速率和周期特征校验结果。
+        public let sessionBehaviors: [AlgDetectResult]?
+
+        public init(name: String? = nil, detectMode: String? = nil, sessionAnalyzeSwitch: String? = nil, invalidStatTime: Int64? = nil, invalidThreshold: Int64? = nil, algDetectResults: [AlgDetectResult]? = nil, sessionBehaviors: [AlgDetectResult]? = nil) {
+            self.name = name
+            self.detectMode = detectMode
+            self.sessionAnalyzeSwitch = sessionAnalyzeSwitch
+            self.invalidStatTime = invalidStatTime
+            self.invalidThreshold = invalidThreshold
+            self.algDetectResults = algDetectResults
+            self.sessionBehaviors = sessionBehaviors
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case detectMode = "DetectMode"
+            case sessionAnalyzeSwitch = "SessionAnalyzeSwitch"
+            case invalidStatTime = "InvalidStatTime"
+            case invalidThreshold = "InvalidThreshold"
+            case algDetectResults = "AlgDetectResults"
+            case sessionBehaviors = "SessionBehaviors"
         }
     }
 
@@ -567,11 +792,24 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intelligenceRule: IntelligenceRule?
 
-        public init(switch: String, botManagedRule: BotManagedRule? = nil, botPortraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil) {
+        /// Bot自定义规则。如果为null，默认使用历史配置。
+        public let botUserRules: [BotUserRule]?
+
+        /// Bot主动特征识别规则。
+        public let algDetectRule: [AlgDetectRule]?
+
+        /// Bot托管定制策略，入参可不填，仅出参使用。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customizes: [BotUserRule]?
+
+        public init(switch: String, botManagedRule: BotManagedRule? = nil, botPortraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil, botUserRules: [BotUserRule]? = nil, algDetectRule: [AlgDetectRule]? = nil, customizes: [BotUserRule]? = nil) {
             self.switch = `switch`
             self.botManagedRule = botManagedRule
             self.botPortraitRule = botPortraitRule
             self.intelligenceRule = intelligenceRule
+            self.botUserRules = botUserRules
+            self.algDetectRule = algDetectRule
+            self.customizes = customizes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -579,6 +817,37 @@ extension Teo {
             case botManagedRule = "BotManagedRule"
             case botPortraitRule = "BotPortraitRule"
             case intelligenceRule = "IntelligenceRule"
+            case botUserRules = "BotUserRules"
+            case algDetectRule = "AlgDetectRule"
+            case customizes = "Customizes"
+        }
+    }
+
+    /// Bot扩展处置方式，多处置动作组合。
+    public struct BotExtendAction: TCInputModel, TCOutputModel {
+        /// 处置动作，取值有：
+        /// <li>monitor：观察；</li>
+        /// <li>trans：放行；</li>
+        /// <li>alg：JavaScript挑战；</li>
+        /// <li>captcha：托管挑战；</li>
+        /// <li>random：随机，按照ExtendActions分配处置动作和比例；</li>
+        /// <li>silence：静默；</li>
+        /// <li>shortdelay：短时响应；</li>
+        /// <li>longdelay：长时响应。</li>
+        public let action: String
+
+        /// 处置方式的触发概率，范围0-100。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percent: UInt64?
+
+        public init(action: String, percent: UInt64? = nil) {
+            self.action = action
+            self.percent = percent
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case action = "Action"
+            case percent = "Percent"
         }
     }
 
@@ -677,6 +946,82 @@ extension Teo {
             case capManagedIds = "CapManagedIds"
             case monManagedIds = "MonManagedIds"
             case dropManagedIds = "DropManagedIds"
+        }
+    }
+
+    /// Bot自定义规则
+    public struct BotUserRule: TCInputModel, TCOutputModel {
+        /// 规则名，只能以英文字符，数字，下划线组合，且不能以下划线开头。
+        public let ruleName: String
+
+        /// 处置动作，取值有：
+        /// <li>drop：拦截；</li>
+        /// <li>monitor：观察；</li>
+        /// <li>trans：放行；</li>
+        /// <li>alg：JavaScript挑战；</li>
+        /// <li>captcha：托管挑战；</li>
+        /// <li>silence：静默；</li>
+        /// <li>shortdelay：短时响应；</li>
+        /// <li>longdelay：长时响应。</li>
+        public let action: String
+
+        /// 规则状态，取值有：
+        /// <li>on：生效；</li>
+        /// <li>off：不生效。</li>默认on生效。
+        public let ruleStatus: String
+
+        /// 规则详情。
+        public let aclConditions: [AclCondition]
+
+        /// 规则权重，取值范围0-100。
+        public let rulePriority: Int64
+
+        /// 规则id。仅出参使用。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleID: Int64?
+
+        /// 随机处置的处置方式及占比，非随机处置可不填暂不支持。
+        public let extendActions: [BotExtendAction]?
+
+        /// 过滤词，取值有：
+        /// <li>sip：客户端ip。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let freqFields: [String]?
+
+        /// 更新时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 统计范围，字段为null时，代表source_to_eo。取值有：
+        /// <li>source_to_eo：（响应）源站到EdgeOne。</li>
+        /// <li>client_to_eo：（请求）客户端到EdgeOne；</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let freqScope: [String]?
+
+        public init(ruleName: String, action: String, ruleStatus: String, aclConditions: [AclCondition], rulePriority: Int64, ruleID: Int64? = nil, extendActions: [BotExtendAction]? = nil, freqFields: [String]? = nil, updateTime: String? = nil, freqScope: [String]? = nil) {
+            self.ruleName = ruleName
+            self.action = action
+            self.ruleStatus = ruleStatus
+            self.aclConditions = aclConditions
+            self.rulePriority = rulePriority
+            self.ruleID = ruleID
+            self.extendActions = extendActions
+            self.freqFields = freqFields
+            self.updateTime = updateTime
+            self.freqScope = freqScope
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleName = "RuleName"
+            case action = "Action"
+            case ruleStatus = "RuleStatus"
+            case aclConditions = "AclConditions"
+            case rulePriority = "RulePriority"
+            case ruleID = "RuleID"
+            case extendActions = "ExtendActions"
+            case freqFields = "FreqFields"
+            case updateTime = "UpdateTime"
+            case freqScope = "FreqScope"
         }
     }
 
@@ -1021,6 +1366,80 @@ extension Teo {
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
+        }
+    }
+
+    /// DDoS攻击事件对象
+    public struct DDoSAttackEvent: TCOutputModel {
+        /// 事件ID。
+        public let eventId: String
+
+        /// 攻击类型(对应交互事件名称)。
+        public let attackType: String
+
+        /// 攻击状态。
+        public let attackStatus: Int64
+
+        /// 攻击最大带宽。
+        public let attackMaxBandWidth: Int64
+
+        /// 攻击包速率峰值。
+        public let attackPacketMaxRate: Int64
+
+        /// 攻击开始时间，单位为s。
+        public let attackStartTime: Int64
+
+        /// 攻击结束时间，单位为s。
+        public let attackEndTime: Int64
+
+        /// DDoS策略组ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyId: Int64?
+
+        /// 站点ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneId: String?
+
+        /// 攻击事件所属地区，取值有：
+        /// <li>overseas：全球（除中国大陆地区）数据；</li>
+        /// <li>mainland：中国大陆地区数据。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let area: String?
+
+        /// 封禁解封信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dDoSBlockData: [DDoSBlockData]?
+
+        enum CodingKeys: String, CodingKey {
+            case eventId = "EventId"
+            case attackType = "AttackType"
+            case attackStatus = "AttackStatus"
+            case attackMaxBandWidth = "AttackMaxBandWidth"
+            case attackPacketMaxRate = "AttackPacketMaxRate"
+            case attackStartTime = "AttackStartTime"
+            case attackEndTime = "AttackEndTime"
+            case policyId = "PolicyId"
+            case zoneId = "ZoneId"
+            case area = "Area"
+            case dDoSBlockData = "DDoSBlockData"
+        }
+    }
+
+    /// DDoS封禁解封信息
+    public struct DDoSBlockData: TCOutputModel {
+        /// 开始时间，采用unix时间戳。
+        public let startTime: Int64
+
+        /// 结束时间，采用unix时间戳, 为0表示还处于封禁中。
+        public let endTime: Int64
+
+        /// 封禁受影响区域。
+        public let blockArea: String
+
+        enum CodingKeys: String, CodingKey {
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case blockArea = "BlockArea"
         }
     }
 
@@ -1479,7 +1898,9 @@ extension Teo {
 
         /// 生效的模块，该字段取值有：
         /// <li>waf：托管规则；</li>
-        /// <li>cc：速率限制规则；</li>
+        /// <li>rate：速率限制；</li>
+        /// <li>acl：自定义规则；</li>
+        /// <li>cc：cc攻击防护；</li>
         /// <li>bot：Bot防护。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modules: [String]?
@@ -1746,13 +2167,21 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyType: String?
 
-        public init(http2: String? = nil, ocspStapling: String? = nil, tlsVersion: [String]? = nil, hsts: Hsts? = nil, certInfo: [ServerCertInfo]? = nil, applyType: String? = nil) {
+        /// 密码套件，取值有：
+        /// <li>loose-v2023：提供最高的兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；</li>
+        /// <li>general-v2023：提供较高的兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；</li>
+        /// <li>strict-v2023：提供最高的安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cipherSuite: String?
+
+        public init(http2: String? = nil, ocspStapling: String? = nil, tlsVersion: [String]? = nil, hsts: Hsts? = nil, certInfo: [ServerCertInfo]? = nil, applyType: String? = nil, cipherSuite: String? = nil) {
             self.http2 = http2
             self.ocspStapling = ocspStapling
             self.tlsVersion = tlsVersion
             self.hsts = hsts
             self.certInfo = certInfo
             self.applyType = applyType
+            self.cipherSuite = cipherSuite
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1762,6 +2191,7 @@ extension Teo {
             case hsts = "Hsts"
             case certInfo = "CertInfo"
             case applyType = "ApplyType"
+            case cipherSuite = "CipherSuite"
         }
     }
 
@@ -1784,6 +2214,10 @@ extension Teo {
         /// 站点名称。
         public let zoneName: String
 
+        /// 验证子域名。验证站点时，该值为空。验证子域名是为具体子域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
         /// 验证状态，取值有：
         /// <li> pending：验证中；</li>
         /// <li> finished：验证完成。</li>
@@ -1801,10 +2235,27 @@ extension Teo {
 
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
+            case domain = "Domain"
             case status = "Status"
             case ascription = "Ascription"
             case originalNameServers = "OriginalNameServers"
             case fileAscription = "FileAscription"
+        }
+    }
+
+    /// 图片优化配置。
+    public struct ImageOptimize: TCInputModel, TCOutputModel {
+        /// 开关，取值有：
+        /// <li>on：开启；</li>
+        /// <li>off：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
         }
     }
 
@@ -2192,40 +2643,82 @@ extension Teo {
         }
     }
 
+    /// 加速域名源站信息。
+    public struct OriginDetail: TCOutputModel {
+        /// 源站类型，取值有：
+        /// <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
+        /// <li>COS：COS源。</li>
+        /// <li>ORIGIN_GROUP：源站组类型源站。</li>
+        /// <li>AWS_S3：AWS S3对象存储源站。</li>
+        public let originType: String?
+
+        /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
+        public let origin: String?
+
+        /// 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
+        public let backupOrigin: String?
+
+        /// 主源源站组名称，当OriginType参数指定为ORIGIN_GROUP时该参数生效。
+        public let originGroupName: String?
+
+        /// 备用源站源站组名称，当OriginType参数指定为ORIGIN_GROUP，且用户指定了被用源站时该参数生效。
+        public let backOriginGroupName: String?
+
+        /// 指定是否允许访问私有对象存储源站。当源站类型OriginType=COS或AWS_S3时有效 取值有：
+        /// <li>on：使用私有鉴权；</li>
+        /// <li>off：不使用私有鉴权。</li>
+        /// 不填写，默认值为off。
+        public let privateAccess: String?
+
+        /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privateParameters: [PrivateParameter]?
+
+        enum CodingKeys: String, CodingKey {
+            case originType = "OriginType"
+            case origin = "Origin"
+            case backupOrigin = "BackupOrigin"
+            case originGroupName = "OriginGroupName"
+            case backOriginGroupName = "BackOriginGroupName"
+            case privateAccess = "PrivateAccess"
+            case privateParameters = "PrivateParameters"
+        }
+    }
+
     /// 源站组信息
     public struct OriginGroup: TCOutputModel {
         /// 站点ID。
-        public let zoneId: String
+        public let zoneId: String?
 
         /// 站点名称。
-        public let zoneName: String
+        public let zoneName: String?
 
         /// 源站组ID。
-        public let originGroupId: String
+        public let originGroupId: String?
 
         /// 源站类型，取值有：
         /// <li>self：自有源站；</li>
         /// <li>third_party：第三方源站；</li>
         /// <li>cos：腾讯云COS源站。</li>
-        public let originType: String
+        public let originType: String?
 
         /// 源站组名称。
-        public let originGroupName: String
+        public let originGroupName: String?
 
         /// 源站配置类型，当OriginType=self时，取值有：
         /// <li>area：按区域配置；</li>
         /// <li>weight： 按权重配置。</li>
         /// <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
-        public let configurationType: String
+        public let configurationType: String?
 
         /// 源站记录信息。
-        public let originRecords: [OriginRecord]
+        public let originRecords: [OriginRecord]?
 
         /// 源站组更新时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var updateTime: Date
+        @TCTimestampISO8601Encoding public var updateTime: Date?
 
         /// 当OriginType=self时，表示回源Host。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2241,6 +2734,46 @@ extension Teo {
             case originRecords = "OriginRecords"
             case updateTime = "UpdateTime"
             case hostHeader = "HostHeader"
+        }
+    }
+
+    /// 加速域名源站信息。
+    public struct OriginInfo: TCInputModel {
+        /// 源站类型，取值有：
+        /// <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
+        /// <li>COS：COS源。</li>
+        /// <li>ORIGIN_GROUP：源站组类型源站。</li>
+        /// <li>AWS_S3：AWS S3对象存储源站。</li>
+        public let originType: String?
+
+        /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
+        public let origin: String?
+
+        /// 备用源站组ID，该参数在OriginType参数指定为ORIGIN_GROUP时生效，为空表示不使用备用源站。
+        public let backupOrigin: String?
+
+        /// 指定是否允许访问私有对象存储源站，当源站类型OriginType=COS或AWS_S3时有效，取值有：
+        /// <li>on：使用私有鉴权；</li>
+        /// <li>off：不使用私有鉴权。</li>不填写，默认值为：off。
+        public let privateAccess: String?
+
+        /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
+        public let privateParameters: [PrivateParameter]?
+
+        public init(originType: String, origin: String, backupOrigin: String? = nil, privateAccess: String? = nil, privateParameters: [PrivateParameter]? = nil) {
+            self.originType = originType
+            self.origin = origin
+            self.backupOrigin = backupOrigin
+            self.privateAccess = privateAccess
+            self.privateParameters = privateParameters
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case originType = "OriginType"
+            case origin = "Origin"
+            case backupOrigin = "BackupOrigin"
+            case privateAccess = "PrivateAccess"
+            case privateParameters = "PrivateParameters"
         }
     }
 
@@ -4281,7 +4814,7 @@ extension Teo {
     }
 
     /// 自定义 nameservers
-    public struct VanityNameServers: TCInputModel {
+    public struct VanityNameServers: TCInputModel, TCOutputModel {
         /// 自定义 ns 开关，取值有：
         /// <li> on：开启；</li>
         /// <li> off：关闭。</li>
@@ -4444,17 +4977,23 @@ extension Teo {
         /// 请求（事件）ID。
         public let eventId: String
 
-        /// 攻击源（客户端）Ip。
-        public let attackIp: String
+        /// http 日志内容。
+        public let httpLog: String
 
         /// 受攻击子域名。
         public let domain: String
 
-        /// http 日志内容。
-        public let httpLog: String
+        /// 攻击源（客户端）Ip。
+        public let attackIp: String
 
         /// IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)
         public let sipCountryCode: String
+
+        /// 真实客户端Ip。
+        public let realClientIp: String?
+
+        /// 真实客户端Ip所在国家iso-3166中alpha-2编码。
+        public let realClientIpCountryCode: String?
 
         /// 攻击时间，采用unix秒级时间戳。
         public let attackTime: UInt64
@@ -4462,17 +5001,17 @@ extension Teo {
         /// 请求地址。
         public let requestUri: String
 
-        /// 攻击内容。
+        /// 请求类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attackContent: String?
+        public let reqMethod: String?
 
         /// 规则相关信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleDetailList: [SecRuleRelatedInfo]?
 
-        /// 请求类型。
+        /// 攻击内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reqMethod: String?
+        public let attackContent: String?
 
         /// 日志所属区域。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4480,15 +5019,17 @@ extension Teo {
 
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
-            case attackIp = "AttackIp"
-            case domain = "Domain"
             case httpLog = "HttpLog"
+            case domain = "Domain"
+            case attackIp = "AttackIp"
             case sipCountryCode = "SipCountryCode"
+            case realClientIp = "RealClientIp"
+            case realClientIpCountryCode = "RealClientIpCountryCode"
             case attackTime = "AttackTime"
             case requestUri = "RequestUri"
-            case attackContent = "AttackContent"
-            case ruleDetailList = "RuleDetailList"
             case reqMethod = "ReqMethod"
+            case ruleDetailList = "RuleDetailList"
+            case attackContent = "AttackContent"
             case area = "Area"
         }
     }
@@ -4595,6 +5136,12 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aliasZoneName: String?
 
+        /// 是否伪站点，取值有：
+        /// <li> 0：非伪站点；</li>
+        /// <li> 1：伪站点。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFake: Int64?
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case zoneName = "ZoneName"
@@ -4614,6 +5161,7 @@ extension Teo {
             case vanityNameServersIps = "VanityNameServersIps"
             case activeStatus = "ActiveStatus"
             case aliasZoneName = "AliasZoneName"
+            case isFake = "IsFake"
         }
     }
 
@@ -4699,6 +5247,10 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grpc: Grpc?
 
+        /// 图片优化相关配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageOptimize: ImageOptimize?
+
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
             case area = "Area"
@@ -4720,6 +5272,7 @@ extension Teo {
             case https = "Https"
             case clientIpCountry = "ClientIpCountry"
             case grpc = "Grpc"
+            case imageOptimize = "ImageOptimize"
         }
     }
 }

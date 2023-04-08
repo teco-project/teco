@@ -76,6 +76,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case invalidParameter_BatchRecordCreateActionError = "InvalidParameter.BatchRecordCreateActionError"
         case invalidParameter_BatchRecordModifyActionError = "InvalidParameter.BatchRecordModifyActionError"
         case invalidParameter_BatchRecordModifyActionInvalidValue = "InvalidParameter.BatchRecordModifyActionInvalidValue"
+        case invalidParameter_BatchRecordRemoveActionError = "InvalidParameter.BatchRecordRemoveActionError"
         case invalidParameter_BatchRecordReplaceActionError = "InvalidParameter.BatchRecordReplaceActionError"
         case invalidParameter_BatchTaskCountLimit = "InvalidParameter.BatchTaskCountLimit"
         case invalidParameter_BatchTaskNotExist = "InvalidParameter.BatchTaskNotExist"
@@ -147,6 +148,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case invalidParameter_ParamsMissing = "InvalidParameter.ParamsMissing"
         case invalidParameter_PermissionDenied = "InvalidParameter.PermissionDenied"
         case invalidParameter_QcloudUinInvalid = "InvalidParameter.QcloudUinInvalid"
+        case invalidParameter_QuhuiTxtRecordWait = "InvalidParameter.QuhuiTxtRecordWait"
         case invalidParameter_RealNameUser = "InvalidParameter.RealNameUser"
         case invalidParameter_RecordIdInvalid = "InvalidParameter.RecordIdInvalid"
         case invalidParameter_RecordLineInvalid = "InvalidParameter.RecordLineInvalid"
@@ -325,6 +327,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.failedOperation_DomainIsVip)
     }
 
+    /// 当前域名还未使用 DNSPod 的解析服务，我们无法获取解析量数据。
     public static var failedOperation_DomainNotInService: TCDnspodError {
         TCDnspodError(.failedOperation_DomainNotInService)
     }
@@ -409,6 +412,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.failedOperation_ResourceNotBind)
     }
 
+    /// 请求量统计数据暂时不可用，请稍后再试。
     public static var failedOperation_TemporaryError: TCDnspodError {
         TCDnspodError(.failedOperation_TemporaryError)
     }
@@ -511,6 +515,11 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 记录值无效。
     public static var invalidParameter_BatchRecordModifyActionInvalidValue: TCDnspodError {
         TCDnspodError(.invalidParameter_BatchRecordModifyActionInvalidValue)
+    }
+
+    /// 批量删除记录任务失败，原因：内部错误。
+    public static var invalidParameter_BatchRecordRemoveActionError: TCDnspodError {
+        TCDnspodError(.invalidParameter_BatchRecordRemoveActionError)
     }
 
     /// 批量替换记录任务失败，原因：内部错误。
@@ -868,6 +877,11 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.invalidParameter_QcloudUinInvalid)
     }
 
+    /// TXT 记录未设置或暂未生效，请稍后重试。
+    public static var invalidParameter_QuhuiTxtRecordWait: TCDnspodError {
+        TCDnspodError(.invalidParameter_QuhuiTxtRecordWait)
+    }
+
     /// 已实名用户。
     public static var invalidParameter_RealNameUser: TCDnspodError {
         TCDnspodError(.invalidParameter_RealNameUser)
@@ -988,6 +1002,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.invalidParameter_UserAlreadyLocked)
     }
 
+    /// 对方账户非国内站用户。
     public static var invalidParameter_UserAreaInvalid: TCDnspodError {
         TCDnspodError(.invalidParameter_UserAreaInvalid)
     }
@@ -1157,6 +1172,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.operationDenied_NotOrderOwner)
     }
 
+    /// 您没有权限操作此资源。
     public static var operationDenied_NotResourceOwner: TCDnspodError {
         TCDnspodError(.operationDenied_NotResourceOwner)
     }
@@ -1171,6 +1187,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.operationDenied_PostRequestAcceptOnly)
     }
 
+    /// 该资源不允许续费。
     public static var operationDenied_ResourceNotAllowRenew: TCDnspodError {
         TCDnspodError(.operationDenied_ResourceNotAllowRenew)
     }

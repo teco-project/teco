@@ -912,25 +912,25 @@ extension Cme {
 
     /// 点播转直播输出信息。
     public struct MediaCastDestinationInfo: TCInputModel, TCOutputModel {
-        /// 输出源序号。由系统进行分配。
-        public let index: Int64?
-
-        /// 输出源的名称。
-        public let name: String?
+        /// 输出源 Id。由系统进行分配。
+        public let id: String?
 
         /// 输出直播流地址。支持的直播流类型为 RTMP 和 SRT。
         public let pushUrl: String?
 
-        public init(index: Int64? = nil, name: String? = nil, pushUrl: String? = nil) {
-            self.index = index
-            self.name = name
+        /// 输出源的名称。
+        public let name: String?
+
+        public init(id: String? = nil, pushUrl: String? = nil, name: String? = nil) {
+            self.id = id
             self.pushUrl = pushUrl
+            self.name = name
         }
 
         enum CodingKeys: String, CodingKey {
-            case index = "Index"
-            case name = "Name"
+            case id = "Id"
             case pushUrl = "PushUrl"
+            case name = "Name"
         }
     }
 
@@ -950,6 +950,27 @@ extension Cme {
         }
     }
 
+    /// 点播转直播输出源状态信息。
+    public struct MediaCastDestinationStatus: TCOutputModel {
+        /// 输出源 Id，由系统分配。
+        public let id: String?
+
+        /// 输出源直播地址。
+        public let pushUrl: String
+
+        /// 输出源的状态。取值有：
+        /// <li> Working ：运行中；</li>
+        /// <li> Stopped：停止输出；</li>
+        /// <li> Failed：输出失败。</li>
+        public let status: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case pushUrl = "PushUrl"
+            case status = "Status"
+        }
+    }
+
     /// 点播转直播输出媒体配置。
     public struct MediaCastOutputMediaSetting: TCInputModel, TCOutputModel {
         /// 视频配置。
@@ -961,6 +982,38 @@ extension Cme {
 
         enum CodingKeys: String, CodingKey {
             case videoSetting = "VideoSetting"
+        }
+    }
+
+    /// 点播转直播播放信息。
+    public struct MediaCastPlayInfo: TCOutputModel {
+        /// 点播转直播项目运行状态，取值有：
+        /// <li> Working : 运行中；</li>
+        /// <li> Idle: 空闲状态。</li>
+        public let status: String
+
+        /// 当前播放的输入源 Id。
+        public let currentSourceId: String?
+
+        /// 当前播放的输入源的播放位置，单位：秒。
+        public let currentSourcePosition: Float
+
+        /// 当前播放的输入源时长，单位：秒。
+        public let currentSourceDuration: Float
+
+        /// 输出源状态信息。
+        public let destinationStatusSet: [MediaCastDestinationStatus]
+
+        /// 已经循环播放的次数。
+        public let loopCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case currentSourceId = "CurrentSourceId"
+            case currentSourcePosition = "CurrentSourcePosition"
+            case currentSourceDuration = "CurrentSourceDuration"
+            case destinationStatusSet = "DestinationStatusSet"
+            case loopCount = "LoopCount"
         }
     }
 
@@ -1019,34 +1072,64 @@ extension Cme {
         }
     }
 
+    /// 点播转直播项目输入信息。
+    public struct MediaCastProjectInput: TCInputModel {
+        /// 输入源列表。输入源列表最大个数为100.
+        public let sourceInfos: [MediaCastSourceInfo]?
+
+        /// 输出源列表。输出源列表最大个数为10.
+        public let destinationInfos: [MediaCastDestinationInfo]?
+
+        /// 输出媒体配置。
+        public let outputMediaSetting: MediaCastOutputMediaSetting?
+
+        /// 播放控制参数。
+        public let playSetting: MediaCastPlaySetting?
+
+        public init(sourceInfos: [MediaCastSourceInfo]? = nil, destinationInfos: [MediaCastDestinationInfo]? = nil, outputMediaSetting: MediaCastOutputMediaSetting? = nil, playSetting: MediaCastPlaySetting? = nil) {
+            self.sourceInfos = sourceInfos
+            self.destinationInfos = destinationInfos
+            self.outputMediaSetting = outputMediaSetting
+            self.playSetting = playSetting
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceInfos = "SourceInfos"
+            case destinationInfos = "DestinationInfos"
+            case outputMediaSetting = "OutputMediaSetting"
+            case playSetting = "PlaySetting"
+        }
+    }
+
     /// 点播转直播输入源信息。
-    public struct MediaCastSourceInfo: TCInputModel {
+    public struct MediaCastSourceInfo: TCInputModel, TCOutputModel {
+        /// 输入源 Id，由系统分配。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
         /// 输入源的媒体类型，取值有：
         /// <li>CME：多媒体创作引擎的媒体文件；</li>
         /// <li>VOD：云点播的媒资文件。</li>
-        public let type: String
-
-        /// 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
-        public let materialId: String?
+        public let type: String?
 
         /// 云点播媒体文件 ID。当 Type = VOD 时必填。
         public let fileId: String?
 
-        /// 序号，位于输入源列表中的序号，由系统分配。
-        public let index: Int64?
+        /// 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
+        public let materialId: String?
 
-        public init(type: String, materialId: String? = nil, fileId: String? = nil, index: Int64? = nil) {
+        public init(id: String? = nil, type: String? = nil, fileId: String? = nil, materialId: String? = nil) {
+            self.id = id
             self.type = type
-            self.materialId = materialId
             self.fileId = fileId
-            self.index = index
+            self.materialId = materialId
         }
 
         enum CodingKeys: String, CodingKey {
+            case id = "Id"
             case type = "Type"
-            case materialId = "MaterialId"
             case fileId = "FileId"
-            case index = "Index"
+            case materialId = "MaterialId"
         }
     }
 
@@ -1591,7 +1674,6 @@ extension Cme {
     /// 资源信息，包含资源以及归属信息
     public struct ResourceInfo: TCInputModel {
         /// 媒资和分类资源。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: Resource?
 
         /// 资源归属，个人或团队。
@@ -2163,11 +2245,11 @@ extension Cme {
 
     /// 时间范围
     public struct TimeRange: TCInputModel {
-        /// 开始时间，使用 ISO 日期格式。
-        public let startTime: String
+        /// 开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let startTime: String?
 
-        /// 结束时间，使用 ISO 日期格式。
-        public let endTime: String
+        /// 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let endTime: String?
 
         public init(startTime: String, endTime: String) {
             self.startTime = startTime
@@ -2248,11 +2330,15 @@ extension Cme {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaData: MediaMetaData?
 
+        /// 导出视频的封面图片 URL。
+        public let coverURL: String?
+
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
             case vodFileId = "VodFileId"
             case url = "URL"
             case metaData = "MetaData"
+            case coverURL = "CoverURL"
         }
     }
 

@@ -21,6 +21,7 @@ extension TCEssbasicError {
             case approverType = "InvalidParameter.ApproverType"
             case bizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
             case businessLicense = "InvalidParameter.BusinessLicense"
+            case cancelReason = "InvalidParameter.CancelReason"
             case cardType = "InvalidParameter.CardType"
             case componentValue = "InvalidParameter.ComponentValue"
             case contentType = "InvalidParameter.ContentType"
@@ -32,6 +33,7 @@ extension TCEssbasicError {
             case dupTask = "InvalidParameter.DupTask"
             case emptyParams = "InvalidParameter.EmptyParams"
             case endPoint = "InvalidParameter.EndPoint"
+            case fFowIds = "InvalidParameter.fFowIds"
             case fileType = "InvalidParameter.FileType"
             case flowApproverInfos = "InvalidParameter.FlowApproverInfos"
             case flowApprovers = "InvalidParameter.FlowApprovers"
@@ -45,17 +47,21 @@ extension TCEssbasicError {
             case flowType = "InvalidParameter.FlowType"
             case generateType = "InvalidParameter.GenerateType"
             case image = "InvalidParameter.Image"
+            case invalidId = "InvalidParameter.InvalidId"
             case limitSealName = "InvalidParameter.LimitSealName"
             case menuStatus = "InvalidParameter.MenuStatus"
             case missingRequiredParameterValue = "InvalidParameter.MissingRequiredParameterValue"
+            case mobile = "InvalidParameter.Mobile"
             case name = "InvalidParameter.Name"
             case nonsupportMobile = "InvalidParameter.NonsupportMobile"
             case openId = "InvalidParameter.OpenId"
             case organizationId = "InvalidParameter.OrganizationId"
             case organizationName = "InvalidParameter.OrganizationName"
             case paramError = "InvalidParameter.ParamError"
+            case resourceType = "InvalidParameter.ResourceType"
             case sensitiveFileContent = "InvalidParameter.SensitiveFileContent"
             case signComponentType = "InvalidParameter.SignComponentType"
+            case signComponents = "InvalidParameter.SignComponents"
             case status = "InvalidParameter.Status"
             case unordered = "InvalidParameter.Unordered"
             case unsupportedComponentType = "InvalidParameter.UnsupportedComponentType"
@@ -91,6 +97,7 @@ extension TCEssbasicError {
             InvalidParameter(.application)
         }
 
+        /// 参数错误，不合法的签署人类型，请修改后重试。
         public static var approverType: InvalidParameter {
             InvalidParameter(.approverType)
         }
@@ -102,26 +109,37 @@ extension TCEssbasicError {
             InvalidParameter(.bizApproverAlreadyExists)
         }
 
+        /// 营业执照格式不合法。
         public static var businessLicense: InvalidParameter {
             InvalidParameter(.businessLicense)
         }
 
+        /// 撤销理由填写格式错误。
+        public static var cancelReason: InvalidParameter {
+            InvalidParameter(.cancelReason)
+        }
+
+        /// 证件类型错误。
         public static var cardType: InvalidParameter {
             InvalidParameter(.cardType)
         }
 
+        /// 参数错误,控件内容无效。
         public static var componentValue: InvalidParameter {
             InvalidParameter(.componentValue)
         }
 
+        /// 查询内容参数有误。
         public static var contentType: InvalidParameter {
             InvalidParameter(.contentType)
         }
 
+        /// 参数错误，无效的自定义页卡模板，仅支持{合同名称}{发起方姓名}{发起方企业}{签署方N姓名}{签署方N企业}，请修改后重试。
         public static var customShowMap: InvalidParameter {
             InvalidParameter(.customShowMap)
         }
 
+        /// 参数错误，UserData长度非法，请修改后重试。
         public static var customerData: InvalidParameter {
             InvalidParameter(.customerData)
         }
@@ -133,14 +151,17 @@ extension TCEssbasicError {
             InvalidParameter(.dataNotFound)
         }
 
+        /// 参数错误，不合法的日期，请检查后重试。
         public static var date: InvalidParameter {
             InvalidParameter(.date)
         }
 
+        /// 员工ID不正确。
         public static var departUserId: InvalidParameter {
             InvalidParameter(.departUserId)
         }
 
+        /// 重复提交任务。
         public static var dupTask: InvalidParameter {
             InvalidParameter(.dupTask)
         }
@@ -152,90 +173,128 @@ extension TCEssbasicError {
             InvalidParameter(.emptyParams)
         }
 
+        /// 不合法的EndPoint，请检查修改后重试。
         public static var endPoint: InvalidParameter {
             InvalidParameter(.endPoint)
         }
 
+        public static var fFowIds: InvalidParameter {
+            InvalidParameter(.fFowIds)
+        }
+
+        /// 文件类型不合法。
         public static var fileType: InvalidParameter {
             InvalidParameter(.fileType)
         }
 
+        /// 参数错误，不合法的备选签署人数量，请检查后重试。
         public static var flowApproverInfos: InvalidParameter {
             InvalidParameter(.flowApproverInfos)
         }
 
+        /// 参数错误，参与者数量不能为空且不能超过数量限制，请修改后重试。
         public static var flowApprovers: InvalidParameter {
             InvalidParameter(.flowApprovers)
         }
 
+        /// 参数错误，不合法的签署流程回调链接，请修改后重试。
         public static var flowCallbackUrl: InvalidParameter {
             InvalidParameter(.flowCallbackUrl)
         }
 
+        /// 参数错误，不合法的签署流程截止日期，请修改后重试。
         public static var flowDeadLine: InvalidParameter {
             InvalidParameter(.flowDeadLine)
         }
 
+        /// 参数错误，不合法的签署流程描述，请修改后重试。
         public static var flowDescription: InvalidParameter {
             InvalidParameter(.flowDescription)
         }
 
+        /// 参数错误，目前仅支持单个文件发起，请修改后重试。
         public static var flowFileIds: InvalidParameter {
             InvalidParameter(.flowFileIds)
         }
 
+        /// 参数错误，合同id列表长度非法，请检查后重试。
         public static var flowIds: InvalidParameter {
             InvalidParameter(.flowIds)
         }
 
+        /// 参数错误，FlowInfos非法，请修改后重试。
         public static var flowInfos: InvalidParameter {
             InvalidParameter(.flowInfos)
         }
 
+        /// 参数错误，不合法的签署流程名称，请修改后重试。
         public static var flowName: InvalidParameter {
             InvalidParameter(.flowName)
         }
 
+        /// 参数错误，不合法的FlowType，请修改后重试。
         public static var flowType: InvalidParameter {
             InvalidParameter(.flowType)
         }
 
+        /// 参数错误，不受支持的GenerateType，请检查后重试。
         public static var generateType: InvalidParameter {
             InvalidParameter(.generateType)
         }
 
+        /// 图片不正确。
         public static var image: InvalidParameter {
             InvalidParameter(.image)
         }
 
+        /// Id不存在或者符合规范。
+        public static var invalidId: InvalidParameter {
+            InvalidParameter(.invalidId)
+        }
+
+        /// 印章名称长度超出。
         public static var limitSealName: InvalidParameter {
             InvalidParameter(.limitSealName)
         }
 
+        /// 菜单栏状态非法。
         public static var menuStatus: InvalidParameter {
             InvalidParameter(.menuStatus)
         }
 
+        /// 缺少必填参数的值。
         public static var missingRequiredParameterValue: InvalidParameter {
             InvalidParameter(.missingRequiredParameterValue)
         }
 
+        /// 手机号码不正确。
+        ///
+        /// 请检查手机号码是否规范。
+        public static var mobile: InvalidParameter {
+            InvalidParameter(.mobile)
+        }
+
+        /// 姓名不符合要求。
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
 
+        /// 不支持的手机号。
         public static var nonsupportMobile: InvalidParameter {
             InvalidParameter(.nonsupportMobile)
         }
 
+        /// OpenId不合法。
         public static var openId: InvalidParameter {
             InvalidParameter(.openId)
         }
 
+        /// OrganizationId不合法。
         public static var organizationId: InvalidParameter {
             InvalidParameter(.organizationId)
         }
 
+        /// 企业名称不合法。
         public static var organizationName: InvalidParameter {
             InvalidParameter(.organizationName)
         }
@@ -247,12 +306,23 @@ extension TCEssbasicError {
             InvalidParameter(.paramError)
         }
 
+        /// 资源类型错误。
+        public static var resourceType: InvalidParameter {
+            InvalidParameter(.resourceType)
+        }
+
+        /// 文件内容敏感信息。
         public static var sensitiveFileContent: InvalidParameter {
             InvalidParameter(.sensitiveFileContent)
         }
 
+        /// 参数错误，不合法的签署控件类型，请修改后重试。
         public static var signComponentType: InvalidParameter {
             InvalidParameter(.signComponentType)
+        }
+
+        public static var signComponents: InvalidParameter {
+            InvalidParameter(.signComponents)
         }
 
         /// 状态异常。
@@ -262,10 +332,12 @@ extension TCEssbasicError {
             InvalidParameter(.status)
         }
 
+        /// 参数错误，不合法的签署顺序，请检查后重试。
         public static var unordered: InvalidParameter {
             InvalidParameter(.unordered)
         }
 
+        /// 参数错误，不支持的控件类型，请检查后重试。
         public static var unsupportedComponentType: InvalidParameter {
             InvalidParameter(.unsupportedComponentType)
         }
@@ -286,6 +358,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_BizApproverAlreadyExists
             case .businessLicense:
                 code = .invalidParameter_BusinessLicense
+            case .cancelReason:
+                code = .invalidParameter_CancelReason
             case .cardType:
                 code = .invalidParameter_CardType
             case .componentValue:
@@ -308,6 +382,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_EmptyParams
             case .endPoint:
                 code = .invalidParameter_EndPoint
+            case .fFowIds:
+                code = .invalidParameter_fFowIds
             case .fileType:
                 code = .invalidParameter_FileType
             case .flowApproverInfos:
@@ -334,12 +410,16 @@ extension TCEssbasicError {
                 code = .invalidParameter_GenerateType
             case .image:
                 code = .invalidParameter_Image
+            case .invalidId:
+                code = .invalidParameter_InvalidId
             case .limitSealName:
                 code = .invalidParameter_LimitSealName
             case .menuStatus:
                 code = .invalidParameter_MenuStatus
             case .missingRequiredParameterValue:
                 code = .invalidParameter_MissingRequiredParameterValue
+            case .mobile:
+                code = .invalidParameter_Mobile
             case .name:
                 code = .invalidParameter_Name
             case .nonsupportMobile:
@@ -352,10 +432,14 @@ extension TCEssbasicError {
                 code = .invalidParameter_OrganizationName
             case .paramError:
                 code = .invalidParameter_ParamError
+            case .resourceType:
+                code = .invalidParameter_ResourceType
             case .sensitiveFileContent:
                 code = .invalidParameter_SensitiveFileContent
             case .signComponentType:
                 code = .invalidParameter_SignComponentType
+            case .signComponents:
+                code = .invalidParameter_SignComponents
             case .status:
                 code = .invalidParameter_Status
             case .unordered:

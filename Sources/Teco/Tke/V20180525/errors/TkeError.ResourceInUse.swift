@@ -17,7 +17,9 @@
 extension TCTkeError {
     public struct ResourceInUse: TCTkeErrorType {
         enum Code: String {
+            case existRunningPod = "ResourceInUse.ExistRunningPod"
             case resourceExistAlready = "ResourceInUse.ResourceExistAlready"
+            case subnetAlreadyExist = "ResourceInUse.SubnetAlreadyExist"
             case other = "ResourceInUse"
         }
 
@@ -43,9 +45,21 @@ extension TCTkeError {
             self.context = context
         }
 
+        /// 存在运行中的Pod。
+        public static var existRunningPod: ResourceInUse {
+            ResourceInUse(.existRunningPod)
+        }
+
         /// 资源已存在。
         public static var resourceExistAlready: ResourceInUse {
             ResourceInUse(.resourceExistAlready)
+        }
+
+        /// 所选子网已存在。
+        ///
+        /// 请选择其他子网后重试。
+        public static var subnetAlreadyExist: ResourceInUse {
+            ResourceInUse(.subnetAlreadyExist)
         }
 
         /// 资源被占用。
@@ -56,8 +70,12 @@ extension TCTkeError {
         public func asTkeError() -> TCTkeError {
             let code: TCTkeError.Code
             switch self.error {
+            case .existRunningPod:
+                code = .resourceInUse_ExistRunningPod
             case .resourceExistAlready:
                 code = .resourceInUse_ResourceExistAlready
+            case .subnetAlreadyExist:
+                code = .resourceInUse_SubnetAlreadyExist
             case .other:
                 code = .resourceInUse
             }

@@ -27,8 +27,10 @@ public struct TCMpsError: TCMpsErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_BucketNotifyAlreadyExist = "FailedOperation.BucketNotifyAlreadyExist"
         case failedOperation_CosStatusInavlid = "FailedOperation.CosStatusInavlid"
+        case failedOperation_GetSourceNotify = "FailedOperation.GetSourceNotify"
         case failedOperation_InvalidMpsUser = "FailedOperation.InvalidMpsUser"
         case failedOperation_InvalidUser = "FailedOperation.InvalidUser"
+        case failedOperation_SetSourceNotify = "FailedOperation.SetSourceNotify"
         case internalError = "InternalError"
         case internalError_AccessDBError = "InternalError.AccessDBError"
         case internalError_GenDefinition = "InternalError.GenDefinition"
@@ -184,6 +186,11 @@ public struct TCMpsError: TCMpsErrorType {
         TCMpsError(.failedOperation_CosStatusInavlid)
     }
 
+    /// 操作失败：获取源通知错误。
+    public static var failedOperation_GetSourceNotify: TCMpsError {
+        TCMpsError(.failedOperation_GetSourceNotify)
+    }
+
     /// 操作失败：非法 mps 用户。
     public static var failedOperation_InvalidMpsUser: TCMpsError {
         TCMpsError(.failedOperation_InvalidMpsUser)
@@ -192,6 +199,11 @@ public struct TCMpsError: TCMpsErrorType {
     /// 操作失败：无效用户。
     public static var failedOperation_InvalidUser: TCMpsError {
         TCMpsError(.failedOperation_InvalidUser)
+    }
+
+    /// 操作失败：设置源通知错误。
+    public static var failedOperation_SetSourceNotify: TCMpsError {
+        TCMpsError(.failedOperation_SetSourceNotify)
     }
 
     /// 内部错误。
@@ -609,82 +621,102 @@ public struct TCMpsError: TCMpsErrorType {
         TCMpsError(.invalidParameterValue_YPos)
     }
 
+    /// InvalidParameter.EndTime
     public static var invalidParameter_EndTime: TCMpsError {
         TCMpsError(.invalidParameter_EndTime)
     }
 
+    /// InvalidParameter.ExceededQuantityLimit
     public static var invalidParameter_ExceededQuantityLimit: TCMpsError {
         TCMpsError(.invalidParameter_ExceededQuantityLimit)
     }
 
+    /// InvalidParameter.Id
     public static var invalidParameter_Id: TCMpsError {
         TCMpsError(.invalidParameter_Id)
     }
 
+    /// InvalidParameter.Input
     public static var invalidParameter_Input: TCMpsError {
         TCMpsError(.invalidParameter_Input)
     }
 
+    /// InvalidParameter.InputOutputId
     public static var invalidParameter_InputOutputId: TCMpsError {
         TCMpsError(.invalidParameter_InputOutputId)
     }
 
+    /// InvalidParameter.MaxBandwidth
     public static var invalidParameter_MaxBandwidth: TCMpsError {
         TCMpsError(.invalidParameter_MaxBandwidth)
     }
 
+    /// InvalidParameter.Name
     public static var invalidParameter_Name: TCMpsError {
         TCMpsError(.invalidParameter_Name)
     }
 
+    /// InvalidParameter.NotFound
     public static var invalidParameter_NotFound: TCMpsError {
         TCMpsError(.invalidParameter_NotFound)
     }
 
+    /// InvalidParameter.Output
     public static var invalidParameter_Output: TCMpsError {
         TCMpsError(.invalidParameter_Output)
     }
 
+    /// InvalidParameter.OutputGroups
     public static var invalidParameter_OutputGroups: TCMpsError {
         TCMpsError(.invalidParameter_OutputGroups)
     }
 
+    /// InvalidParameter.OutputId
     public static var invalidParameter_OutputId: TCMpsError {
         TCMpsError(.invalidParameter_OutputId)
     }
 
+    /// InvalidParameter.PageNum
     public static var invalidParameter_PageNum: TCMpsError {
         TCMpsError(.invalidParameter_PageNum)
     }
 
+    /// InvalidParameter.PageSize
     public static var invalidParameter_PageSize: TCMpsError {
         TCMpsError(.invalidParameter_PageSize)
     }
 
+    /// InvalidParameter.Period
     public static var invalidParameter_Period: TCMpsError {
         TCMpsError(.invalidParameter_Period)
     }
 
+    /// InvalidParameter.Pipeline
     public static var invalidParameter_Pipeline: TCMpsError {
         TCMpsError(.invalidParameter_Pipeline)
     }
 
+    /// InvalidParameter.Protocol
     public static var invalidParameter_Protocol: TCMpsError {
         TCMpsError(.invalidParameter_Protocol)
     }
 
+    /// InvalidParameter.SortType
     public static var invalidParameter_SortType: TCMpsError {
         TCMpsError(.invalidParameter_SortType)
     }
 
+    /// InvalidParameter.StartTime
     public static var invalidParameter_StartTime: TCMpsError {
         TCMpsError(.invalidParameter_StartTime)
     }
 
+    /// InvalidParameter.State
     public static var invalidParameter_State: TCMpsError {
         TCMpsError(.invalidParameter_State)
     }
 
+    /// InvalidParameter.Type
     public static var invalidParameter_Type: TCMpsError {
         TCMpsError(.invalidParameter_Type)
     }

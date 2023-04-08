@@ -67,32 +67,36 @@ extension Ms {
     /// 批量提交安全扫描
     ///
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func createScanInstances(_ input: CreateScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanInstancesResponse> {
-        self.client.execute(action: "CreateScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateScanInstances is no longer available.")
     }
 
     /// 批量提交安全扫描
     ///
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func createScanInstances(_ input: CreateScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanInstancesResponse {
-        try await self.client.execute(action: "CreateScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateScanInstances is no longer available.")
     }
 
     /// 批量提交安全扫描
     ///
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanInstancesResponse> {
-        self.createScanInstances(.init(appInfos: appInfos, scanInfo: scanInfo), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateScanInstances is no longer available.")
     }
 
     /// 批量提交安全扫描
     ///
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
+    @available(*, unavailable, message: "由于该产品是线上免费使用产品，无企业版用户，升级迭代成本高及人力安排等原因，安全测评产品不再接入新用户，故下线。")
     @inlinable
     public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanInstancesResponse {
-        try await self.createScanInstances(.init(appInfos: appInfos, scanInfo: scanInfo), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateScanInstances is no longer available.")
     }
 }

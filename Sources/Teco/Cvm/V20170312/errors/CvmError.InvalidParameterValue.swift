@@ -43,6 +43,7 @@ extension TCCvmError {
             case insufficientOffering = "InvalidParameterValue.InsufficientOffering"
             case insufficientPrice = "InvalidParameterValue.InsufficientPrice"
             case invalidAppIdFormat = "InvalidParameterValue.InvalidAppIdFormat"
+            case invalidBootMode = "InvalidParameterValue.InvalidBootMode"
             case invalidBucketPermissionForExport = "InvalidParameterValue.InvalidBucketPermissionForExport"
             case invalidFileNamePrefixList = "InvalidParameterValue.InvalidFileNamePrefixList"
             case invalidGPUFamilyChange = "InvalidParameterValue.InvalidGPUFamilyChange"
@@ -78,7 +79,10 @@ extension TCCvmError {
             case localDiskSizeRange = "InvalidParameterValue.LocalDiskSizeRange"
             case mustDhcpEnabledVpc = "InvalidParameterValue.MustDhcpEnabledVpc"
             case notCdcSubnet = "InvalidParameterValue.NotCdcSubnet"
+            case notEmpty = "InvalidParameterValue.NotEmpty"
             case notSupported = "InvalidParameterValue.NotSupported"
+            case preheatNotSupportedInstanceType = "InvalidParameterValue.PreheatNotSupportedInstanceType"
+            case preheatNotSupportedZone = "InvalidParameterValue.PreheatNotSupportedZone"
             case range = "InvalidParameterValue.Range"
             case snapshotIdMalformed = "InvalidParameterValue.SnapshotIdMalformed"
             case subnetIdMalformed = "InvalidParameterValue.SubnetIdMalformed"
@@ -88,6 +92,7 @@ extension TCCvmError {
             case threadPerCoreValue = "InvalidParameterValue.ThreadPerCoreValue"
             case tooLarge = "InvalidParameterValue.TooLarge"
             case tooLong = "InvalidParameterValue.TooLong"
+            case uuidMalformed = "InvalidParameterValue.UuidMalformed"
             case vpcIdMalformed = "InvalidParameterValue.VpcIdMalformed"
             case vpcIdNotExist = "InvalidParameterValue.VpcIdNotExist"
             case vpcIdZoneIdNotMatch = "InvalidParameterValue.VpcIdZoneIdNotMatch"
@@ -183,6 +188,8 @@ extension TCCvmError {
             InvalidParameterValue(.duplicate)
         }
 
+        /// 重复标签。
+        ///
         /// 入参中包含重复的标签信息，请删除重复的标签信息后重试。
         public static var duplicateTags: InvalidParameterValue {
             InvalidParameterValue(.duplicateTags)
@@ -208,6 +215,7 @@ extension TCCvmError {
             InvalidParameterValue(.incorrectFormat)
         }
 
+        /// 实例ID不合要求，请提供规范的实例ID，类似ins-xxxxxxxx，字母x代表小写字符或数字。
         public static var instanceIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.instanceIdMalformed)
         }
@@ -245,6 +253,11 @@ extension TCCvmError {
         /// 无效的appid。
         public static var invalidAppIdFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidAppIdFormat)
+        }
+
+        /// 不支持指定的启动模式。
+        public static var invalidBootMode: InvalidParameterValue {
+            InvalidParameterValue(.invalidBootMode)
         }
 
         /// 请检查存储桶的写入权限是否已放通。
@@ -424,9 +437,26 @@ extension TCCvmError {
             InvalidParameterValue(.notCdcSubnet)
         }
 
+        /// 输入参数值不能为空。
+        public static var notEmpty: InvalidParameterValue {
+            InvalidParameterValue(.notEmpty)
+        }
+
         /// 不支持的操作。
         public static var notSupported: InvalidParameterValue {
             InvalidParameterValue(.notSupported)
+        }
+
+        /// 该机型不支持预热
+        ///
+        /// 请使用RS2t、RS3t、RS4t机型来创建镜像
+        public static var preheatNotSupportedInstanceType: InvalidParameterValue {
+            InvalidParameterValue(.preheatNotSupportedInstanceType)
+        }
+
+        /// 该可用区目前不支持预热功能
+        public static var preheatNotSupportedZone: InvalidParameterValue {
+            InvalidParameterValue(.preheatNotSupportedZone)
         }
 
         /// 无效参数值。参数值取值范围不合法。
@@ -454,6 +484,8 @@ extension TCCvmError {
             InvalidParameterValue(.tagKeyNotFound)
         }
 
+        /// 标签配额超限。
+        ///
         /// 输入的标签信息绑定的资源将超过标签配额上线，请降低CVM购买数量或在标签控制台提高标签配额。
         public static var tagQuotaLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagQuotaLimitExceeded)
@@ -472,6 +504,11 @@ extension TCCvmError {
         /// 无效参数值。参数值太长。
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
+        }
+
+        /// uuid不合要求。
+        public static var uuidMalformed: InvalidParameterValue {
+            InvalidParameterValue(.uuidMalformed)
         }
 
         /// VPC ID`xxx`不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
@@ -559,6 +596,8 @@ extension TCCvmError {
                 code = .invalidParameterValue_InsufficientPrice
             case .invalidAppIdFormat:
                 code = .invalidParameterValue_InvalidAppIdFormat
+            case .invalidBootMode:
+                code = .invalidParameterValue_InvalidBootMode
             case .invalidBucketPermissionForExport:
                 code = .invalidParameterValue_InvalidBucketPermissionForExport
             case .invalidFileNamePrefixList:
@@ -629,8 +668,14 @@ extension TCCvmError {
                 code = .invalidParameterValue_MustDhcpEnabledVpc
             case .notCdcSubnet:
                 code = .invalidParameterValue_NotCdcSubnet
+            case .notEmpty:
+                code = .invalidParameterValue_NotEmpty
             case .notSupported:
                 code = .invalidParameterValue_NotSupported
+            case .preheatNotSupportedInstanceType:
+                code = .invalidParameterValue_PreheatNotSupportedInstanceType
+            case .preheatNotSupportedZone:
+                code = .invalidParameterValue_PreheatNotSupportedZone
             case .range:
                 code = .invalidParameterValue_Range
             case .snapshotIdMalformed:
@@ -649,6 +694,8 @@ extension TCCvmError {
                 code = .invalidParameterValue_TooLarge
             case .tooLong:
                 code = .invalidParameterValue_TooLong
+            case .uuidMalformed:
+                code = .invalidParameterValue_UuidMalformed
             case .vpcIdMalformed:
                 code = .invalidParameterValue_VpcIdMalformed
             case .vpcIdNotExist:

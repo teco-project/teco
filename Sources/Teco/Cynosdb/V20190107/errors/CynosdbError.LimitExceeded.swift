@@ -17,6 +17,7 @@
 extension TCCynosdbError {
     public struct LimitExceeded: TCCynosdbErrorType {
         enum Code: String {
+            case clusterInstanceLimit = "LimitExceeded.ClusterInstanceLimit"
             case userInstanceLimit = "LimitExceeded.UserInstanceLimit"
             case other = "LimitExceeded"
         }
@@ -43,6 +44,11 @@ extension TCCynosdbError {
             self.context = context
         }
 
+        /// 集群中节点数超过最大限制。
+        public static var clusterInstanceLimit: LimitExceeded {
+            LimitExceeded(.clusterInstanceLimit)
+        }
+
         /// 用户实例个数超出限制。
         public static var userInstanceLimit: LimitExceeded {
             LimitExceeded(.userInstanceLimit)
@@ -56,6 +62,8 @@ extension TCCynosdbError {
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
+            case .clusterInstanceLimit:
+                code = .limitExceeded_ClusterInstanceLimit
             case .userInstanceLimit:
                 code = .limitExceeded_UserInstanceLimit
             case .other:

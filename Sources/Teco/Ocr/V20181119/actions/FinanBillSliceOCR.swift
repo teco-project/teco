@@ -19,13 +19,13 @@ extension Ocr {
     public struct FinanBillSliceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        /// 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
+        /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
 
         /// 图片的 Url 地址。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        /// 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。
+        /// 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
         /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
@@ -58,6 +58,8 @@ extension Ocr {
     /// 金融票据切片识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FinanBillSliceOCRResponse> {
         self.client.execute(action: "FinanBillSliceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,6 +68,8 @@ extension Ocr {
     /// 金融票据切片识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillSliceOCRResponse {
         try await self.client.execute(action: "FinanBillSliceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -74,6 +78,8 @@ extension Ocr {
     /// 金融票据切片识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillSliceOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FinanBillSliceOCRResponse> {
         self.finanBillSliceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -82,6 +88,8 @@ extension Ocr {
     /// 金融票据切片识别
     ///
     /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func finanBillSliceOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillSliceOCRResponse {
         try await self.finanBillSliceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

@@ -38,6 +38,7 @@ public struct TCPtsError: TCPtsErrorType {
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case limitExceeded = "LimitExceeded"
         case resourceNotFound = "ResourceNotFound"
     }
 
@@ -78,6 +79,7 @@ public struct TCPtsError: TCPtsErrorType {
         TCPtsError(.failedOperation)
     }
 
+    /// 获取标签失败。
     public static var failedOperation_AccessTagFail: TCPtsError {
         TCPtsError(.failedOperation_AccessTagFail)
     }
@@ -137,6 +139,11 @@ public struct TCPtsError: TCPtsErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCPtsError {
         TCPtsError(.invalidParameterValue)
+    }
+
+    /// 超过配额限制。
+    public static var limitExceeded: TCPtsError {
+        TCPtsError(.limitExceeded)
     }
 
     /// 资源不存在。

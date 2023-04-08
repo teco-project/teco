@@ -17,10 +17,10 @@
 extension Billing {
     /// DescribeDosageCosDetailByDate请求参数结构体
     public struct DescribeDosageCosDetailByDateRequest: TCRequestModel {
-        /// 查询用量开始时间
+        /// 查询用量开始时间，例如：2020-09-01
         public let startDate: String
 
-        /// 查询用量结束时间（与开始时间同月，不支持跨月查询）
+        /// 查询用量结束时间，例如：2020-09-30（与开始时间同月，不支持跨月查询）
         public let endDate: String
 
         /// COS 存储桶名称，可通过Get Service 接口是用来获取请求者名下的所有存储空间列表（Bucket list）https://cloud.tencent.com/document/product/436/8291

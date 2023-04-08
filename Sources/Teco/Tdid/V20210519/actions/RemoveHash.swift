@@ -40,26 +40,30 @@ extension Tdid {
     }
 
     /// 删除合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
-        self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RemoveHash is no longer available.")
     }
 
     /// 删除合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
-        try await self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RemoveHash is no longer available.")
     }
 
     /// 删除合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
-        self.removeHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("RemoveHash is no longer available.")
     }
 
     /// 删除合约
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
-        try await self.removeHash(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("RemoveHash is no longer available.")
     }
 }

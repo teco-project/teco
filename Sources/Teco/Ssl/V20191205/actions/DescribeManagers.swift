@@ -28,10 +28,10 @@ extension Ssl {
         /// 分页每页数量
         public let limit: Int64?
 
-        /// 管理人姓名
+        /// 管理人姓名（将废弃），请使用SearchKey
         public let managerName: String?
 
-        /// 模糊查询管理人邮箱
+        /// 模糊查询管理人邮箱（将废弃），请使用SearchKey
         public let managerMail: String?
 
         /// 根据管理人状态进行筛选，取值有
@@ -44,7 +44,7 @@ extension Ssl {
         /// 'expired' 已过期
         public let status: String?
 
-        /// 管理人姓名/邮箱/部门精准匹配
+        /// 管理人姓/管理人名/邮箱/部门精准匹配
         public let searchKey: String?
 
         public init(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil) {

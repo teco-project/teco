@@ -68,8 +68,6 @@ extension TCTsfError {
             ResourceNotFound(.applicationNotExist)
         }
 
-        /// 应用不存在或应用不属于当前项目。
-        ///
         /// 无法获取应用或应用不属于当前项目。
         public static var applicationProjectNotMatch: ResourceNotFound {
             ResourceNotFound(.applicationProjectNotMatch)

@@ -141,6 +141,24 @@ extension Dasb {
         }
     }
 
+    /// 资产同步状态
+    public struct AssetSyncStatus: TCOutputModel {
+        /// 上一次同步完成的时间
+        public let lastTime: String
+
+        /// 上一次同步的结果。 0 - 从未进行, 1 - 成功， 2 - 失败
+        public let lastStatus: UInt64
+
+        /// 同步任务是否正在进行中
+        public let inProcess: Bool
+
+        enum CodingKeys: String, CodingKey {
+            case lastTime = "LastTime"
+            case lastStatus = "LastStatus"
+            case inProcess = "InProcess"
+        }
+    }
+
     /// 高危命令模板
     public struct CmdTemplate: TCOutputModel {
         /// 高危命令模板ID
@@ -246,6 +264,87 @@ extension Dasb {
         }
     }
 
+    /// 主机账号
+    public struct DeviceAccount: TCOutputModel {
+        /// 账号ID
+        public let id: UInt64
+
+        /// 主机ID
+        public let deviceId: UInt64
+
+        /// 账号名
+        public let account: String
+
+        /// true-已托管密码，false-未托管密码
+        public let boundPassword: Bool
+
+        /// true-已托管私钥，false-未托管私钥
+        public let boundPrivateKey: Bool
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case deviceId = "DeviceId"
+            case account = "Account"
+            case boundPassword = "BoundPassword"
+            case boundPrivateKey = "BoundPrivateKey"
+        }
+    }
+
+    /// 主机参数，导入外部主机时使用
+    public struct ExternalDevice: TCInputModel {
+        /// 操作系统名称，只能是Linux、Windows或MySQL
+        public let osName: String
+
+        /// IP地址
+        public let ip: String
+
+        /// 管理端口
+        public let port: UInt64
+
+        /// 主机名，可为空
+        public let name: String?
+
+        /// 资产所属的部门ID
+        public let departmentId: String?
+
+        public init(osName: String, ip: String, port: UInt64, name: String? = nil, departmentId: String? = nil) {
+            self.osName = osName
+            self.ip = ip
+            self.port = port
+            self.name = name
+            self.departmentId = departmentId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case osName = "OsName"
+            case ip = "Ip"
+            case port = "Port"
+            case name = "Name"
+            case departmentId = "DepartmentId"
+        }
+    }
+
+    /// 描述键值对过滤器，用于条件过滤查询
+    public struct Filter: TCInputModel {
+        /// 需要过滤的字段。
+        public let name: String
+
+        /// 字段的过滤值。
+        /// 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+        /// 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+        public let values: [String]
+
+        public init(name: String, values: [String]) {
+            self.name = name
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case values = "Values"
+        }
+    }
+
     /// 组信息，用于用户组、主机组
     public struct Group: TCOutputModel {
         /// 组ID
@@ -258,10 +357,15 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let department: Department?
 
+        /// 个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case department = "Department"
+            case count = "Count"
         }
     }
 
@@ -357,6 +461,10 @@ extension Dasb {
         /// 授权点数扩展包个数(50点)
         public let packageNode: UInt64
 
+        /// 日志投递规格信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logDeliveryArgs: String?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case apCode = "ApCode"
@@ -386,6 +494,7 @@ extension Dasb {
             case extendPoints = "ExtendPoints"
             case packageBandwidth = "PackageBandwidth"
             case packageNode = "PackageNode"
+            case logDeliveryArgs = "LogDeliveryArgs"
         }
     }
 

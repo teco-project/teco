@@ -19,6 +19,7 @@ extension TCMariadbError {
         enum Code: String {
             case invalidOperation = "UnsupportedOperation.InvalidOperation"
             case oldProxyVersion = "UnsupportedOperation.OldProxyVersion"
+            case operationNotApplicable = "UnsupportedOperation.OperationNotApplicable"
         }
 
         private let error: Code
@@ -53,6 +54,11 @@ extension TCMariadbError {
             UnsupportedOperation(.oldProxyVersion)
         }
 
+        /// 不适用的操作。
+        public static var operationNotApplicable: UnsupportedOperation {
+            UnsupportedOperation(.operationNotApplicable)
+        }
+
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
@@ -60,6 +66,8 @@ extension TCMariadbError {
                 code = .unsupportedOperation_InvalidOperation
             case .oldProxyVersion:
                 code = .unsupportedOperation_OldProxyVersion
+            case .operationNotApplicable:
+                code = .unsupportedOperation_OperationNotApplicable
             }
             return TCMariadbError(code, context: self.context)
         }

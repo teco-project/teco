@@ -165,6 +165,21 @@ extension Ckafka {
         }
     }
 
+    /// AclRule列表接口返回结果
+    public struct AclRuleResp: TCOutputModel {
+        /// 总数据条数
+        public let totalCount: Int64
+
+        /// AclRule列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aclRuleList: [AclRule]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case aclRuleList = "AclRuleList"
+        }
+    }
+
     /// 数据处理-解析参数
     public struct AnalyseParam: TCInputModel, TCOutputModel {
         /// 解析格式，JSON，DELIMITER分隔符，REGULAR正则提取，SOURCE处理上层所有结果
@@ -591,18 +606,15 @@ extension Ckafka {
     /// Cls类型入参
     public struct ClsParam: TCInputModel {
         /// 生产的信息是否为json格式
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let decodeJson: Bool?
 
         /// cls日志主题id
         public let resource: String
 
         /// cls日志集id
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logSet: String?
 
         /// 当DecodeJson为false时必填
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentKey: String?
 
         /// 指定消息中的某字段内容作为cls日志的时间。
@@ -842,6 +854,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: Int64?
 
+        /// 消息headers
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let headers: String?
+
         enum CodingKeys: String, CodingKey {
             case topic = "Topic"
             case partition = "Partition"
@@ -849,6 +865,7 @@ extension Ckafka {
             case key = "Key"
             case value = "Value"
             case timestamp = "Timestamp"
+            case headers = "Headers"
         }
     }
 
@@ -1263,6 +1280,50 @@ extension Ckafka {
         }
     }
 
+    /// Datahub主题
+    public struct DatahubTopicDTO: TCOutputModel {
+        /// 名称
+        public let name: String
+
+        /// Topic名称
+        public let topicName: String
+
+        /// Topic Id
+        public let topicId: String
+
+        /// 分区数
+        public let partitionNum: UInt64
+
+        /// 过期时间
+        public let retentionMs: UInt64
+
+        /// 备注
+        public let note: String
+
+        /// 状态，1使用中，2删除中
+        public let status: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case topicName = "TopicName"
+            case topicId = "TopicId"
+            case partitionNum = "PartitionNum"
+            case retentionMs = "RetentionMs"
+            case note = "Note"
+            case status = "Status"
+        }
+    }
+
+    /// Datahub Topic 响应
+    public struct DatahubTopicResp: TCOutputModel {
+        /// Topic名称
+        public let topicName: String
+
+        enum CodingKeys: String, CodingKey {
+            case topicName = "TopicName"
+        }
+    }
+
     /// 数据处理——Value处理参数——转换时间格式参数
     public struct DateParam: TCInputModel, TCOutputModel {
         /// 时间格式
@@ -1340,13 +1401,21 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMessage: String?
 
+        /// 该连接源关联的Datahub任务数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let datahubTaskCount: Int64?
+
         /// 连接源的当前所处步骤
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentStep: String?
 
-        /// 该连接源关联的Datahub任务数
+        /// 创建进度百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let datahubTaskCount: Int64?
+        public let taskProgress: Float?
+
+        /// 步骤列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stepList: [String]?
 
         /// Dts配置，Type为DTS时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1388,6 +1457,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dorisConnectParam: DorisConnectParam?
 
+        /// Kafka配置，Type 为 KAFKA 时返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaConnectParam: KafkaConnectParam?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceName = "ResourceName"
@@ -1396,8 +1469,10 @@ extension Ckafka {
             case status = "Status"
             case createTime = "CreateTime"
             case errorMessage = "ErrorMessage"
-            case currentStep = "CurrentStep"
             case datahubTaskCount = "DatahubTaskCount"
+            case currentStep = "CurrentStep"
+            case taskProgress = "TaskProgress"
+            case stepList = "StepList"
             case dtsConnectParam = "DtsConnectParam"
             case mongoDBConnectParam = "MongoDBConnectParam"
             case esConnectParam = "EsConnectParam"
@@ -1408,6 +1483,7 @@ extension Ckafka {
             case sqlServerConnectParam = "SQLServerConnectParam"
             case ctsdbConnectParam = "CtsdbConnectParam"
             case dorisConnectParam = "DorisConnectParam"
+            case kafkaConnectParam = "KafkaConnectParam"
         }
     }
 
@@ -1489,6 +1565,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dorisConnectParam: DorisConnectParam?
 
+        /// Kafka配置，Type 为 KAFKA 时返回
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaConnectParam: KafkaConnectParam?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceName = "ResourceName"
@@ -1509,6 +1589,7 @@ extension Ckafka {
             case sqlServerConnectParam = "SQLServerConnectParam"
             case ctsdbConnectParam = "CtsdbConnectParam"
             case dorisConnectParam = "DorisConnectParam"
+            case kafkaConnectParam = "KafkaConnectParam"
         }
     }
 
@@ -1616,6 +1697,69 @@ extension Ckafka {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case taskList = "TaskList"
+        }
+    }
+
+    /// Datahub Topic详情
+    public struct DescribeDatahubTopicResp: TCOutputModel {
+        /// 名称
+        public let name: String
+
+        /// Topic名称
+        public let topicName: String
+
+        /// Topic Id
+        public let topicId: String
+
+        /// 分区数
+        public let partitionNum: UInt64
+
+        /// 过期时间
+        public let retentionMs: UInt64
+
+        /// 备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let note: String?
+
+        /// 用户名
+        public let userName: String
+
+        /// 密码
+        public let password: String
+
+        /// 状态，1使用中，2删除中
+        public let status: UInt64
+
+        /// 服务路由地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let address: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case topicName = "TopicName"
+            case topicId = "TopicId"
+            case partitionNum = "PartitionNum"
+            case retentionMs = "RetentionMs"
+            case note = "Note"
+            case userName = "UserName"
+            case password = "Password"
+            case status = "Status"
+            case address = "Address"
+        }
+    }
+
+    /// Datahub主题列表
+    public struct DescribeDatahubTopicsResp: TCOutputModel {
+        /// 总数
+        public let totalCount: UInt64
+
+        /// Topic列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicList: [DatahubTopicDTO]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case topicList = "TopicList"
         }
     }
 
@@ -1852,31 +1996,24 @@ extension Ckafka {
     /// Dts修改连接源参数
     public struct DtsModifyConnectParam: TCInputModel {
         /// Dts实例Id【不支持修改】
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: String?
 
         /// Dts的连接port【不支持修改】
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
 
         /// Dts消费分组的Id
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
 
         /// Dts消费分组的账号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
 
         /// Dts消费分组的密码
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
 
         /// 是否更新到关联的Datahub任务，默认为true
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isUpdate: Bool?
 
         /// Dts订阅的topic【不支持修改】
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topic: String?
 
         public init(resource: String, port: Int64? = nil, groupId: String? = nil, userName: String? = nil, password: String? = nil, isUpdate: Bool? = nil, topic: String? = nil) {
@@ -3264,6 +3401,45 @@ extension Ckafka {
         }
     }
 
+    /// Kafka连接源参数
+    public struct KafkaConnectParam: TCInputModel, TCOutputModel {
+        /// Kafka连接源的实例资源, 非自建时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resource: String?
+
+        /// 是否为自建集群
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let selfBuilt: Bool?
+
+        /// 是否更新到关联的Dip任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isUpdate: Bool?
+
+        /// Kafka连接的broker地址, 自建时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let brokerAddress: String?
+
+        /// CKafka连接源的实例资源地域, 跨地域时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        public init(resource: String? = nil, selfBuilt: Bool? = nil, isUpdate: Bool? = nil, brokerAddress: String? = nil, region: String? = nil) {
+            self.resource = resource
+            self.selfBuilt = selfBuilt
+            self.isUpdate = isUpdate
+            self.brokerAddress = brokerAddress
+            self.region = region
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resource = "Resource"
+            case selfBuilt = "SelfBuilt"
+            case isUpdate = "IsUpdate"
+            case brokerAddress = "BrokerAddress"
+            case region = "Region"
+        }
+    }
+
     /// Ckafka配置
     public struct KafkaParam: TCInputModel, TCOutputModel {
         /// 是否为自建集群
@@ -3327,7 +3503,15 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msgMultiple: Int64?
 
-        public init(selfBuilt: Bool, resource: String, topic: String? = nil, offsetType: String? = nil, startTime: UInt64? = nil, resourceName: String? = nil, zoneId: Int64? = nil, topicId: String? = nil, partitionNum: Int64? = nil, enableToleration: Bool? = nil, qpsLimit: UInt64? = nil, tableMappings: [TableMapping]? = nil, useTableMapping: Bool? = nil, useAutoCreateTopic: Bool? = nil, compressionType: String? = nil, msgMultiple: Int64? = nil) {
+        /// 数据同步专用参数, 正常数据处理可为空, 实例级别同步: 仅同步元数据填写"META_SYNC_INSTANCE_TYPE", 同步元数据及全部topic内消息的填写"META_AND_DATA_SYNC_INSTANCE_TYPE"; topic级别同步: 选中的源和目标topic中的消息(需要目标实例也包含该topic)填写"DATA_SYNC_TYPE"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectorSyncType: String?
+
+        /// 数据同步专用参数, 当通过时,希望下游的消息写入分区与上游的一致,则填true,但下游分区小于上游时,会报错; 不需要一致则为false, 默认为false
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keepPartition: Bool?
+
+        public init(selfBuilt: Bool, resource: String, topic: String? = nil, offsetType: String? = nil, startTime: UInt64? = nil, resourceName: String? = nil, zoneId: Int64? = nil, topicId: String? = nil, partitionNum: Int64? = nil, enableToleration: Bool? = nil, qpsLimit: UInt64? = nil, tableMappings: [TableMapping]? = nil, useTableMapping: Bool? = nil, useAutoCreateTopic: Bool? = nil, compressionType: String? = nil, msgMultiple: Int64? = nil, connectorSyncType: String? = nil, keepPartition: Bool? = nil) {
             self.selfBuilt = selfBuilt
             self.resource = resource
             self.topic = topic
@@ -3344,6 +3528,8 @@ extension Ckafka {
             self.useAutoCreateTopic = useAutoCreateTopic
             self.compressionType = compressionType
             self.msgMultiple = msgMultiple
+            self.connectorSyncType = connectorSyncType
+            self.keepPartition = keepPartition
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3363,6 +3549,14 @@ extension Ckafka {
             case useAutoCreateTopic = "UseAutoCreateTopic"
             case compressionType = "CompressionType"
             case msgMultiple = "MsgMultiple"
+            case connectorSyncType = "ConnectorSyncType"
+            case keepPartition = "KeepPartition"
+        }
+    }
+
+    /// 小写字符解析
+    public struct LowercaseParam: TCInputModel, TCOutputModel {
+        public init() {
         }
     }
 
@@ -4728,15 +4922,12 @@ extension Ckafka {
     /// Scf类型入参
     public struct ScfParam: TCInputModel {
         /// SCF云函数函数名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functionName: String?
 
         /// SCF云函数命名空间, 默认为default
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
 
         /// SCF云函数版本及别名, 默认为$DEFAULT
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualifier: String?
 
         /// 每批最大发送消息数, 默认为1000
@@ -4974,6 +5165,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quotaConfig: InstanceQuotaConfigResp?
 
+        /// 副本数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let replicaNum: Int64?
+
         enum CodingKeys: String, CodingKey {
             case topicId = "TopicId"
             case createTime = "CreateTime"
@@ -4986,6 +5181,7 @@ extension Ckafka {
             case enableAclRule = "EnableAclRule"
             case aclRuleList = "AclRuleList"
             case quotaConfig = "QuotaConfig"
+            case replicaNum = "ReplicaNum"
         }
     }
 
@@ -5038,6 +5234,10 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
 
+        /// 标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
             case topicId = "TopicId"
@@ -5053,6 +5253,7 @@ extension Ckafka {
             case config = "Config"
             case retentionTimeConfig = "RetentionTimeConfig"
             case status = "Status"
+            case tags = "Tags"
         }
     }
 
@@ -5493,7 +5694,11 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlDecode: UrlDecodeParam?
 
-        public init(type: String, replace: ReplaceParam? = nil, substr: SubstrParam? = nil, date: DateParam? = nil, regexReplace: RegexReplaceParam? = nil, split: SplitParam? = nil, kv: KVParam? = nil, result: String? = nil, jsonPathReplace: JsonPathReplaceParam? = nil, urlDecode: UrlDecodeParam? = nil) {
+        /// 小写字符解析
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lowercase: LowercaseParam?
+
+        public init(type: String, replace: ReplaceParam? = nil, substr: SubstrParam? = nil, date: DateParam? = nil, regexReplace: RegexReplaceParam? = nil, split: SplitParam? = nil, kv: KVParam? = nil, result: String? = nil, jsonPathReplace: JsonPathReplaceParam? = nil, urlDecode: UrlDecodeParam? = nil, lowercase: LowercaseParam? = nil) {
             self.type = type
             self.replace = replace
             self.substr = substr
@@ -5504,6 +5709,7 @@ extension Ckafka {
             self.result = result
             self.jsonPathReplace = jsonPathReplace
             self.urlDecode = urlDecode
+            self.lowercase = lowercase
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5517,6 +5723,7 @@ extension Ckafka {
             case result = "Result"
             case jsonPathReplace = "JsonPathReplace"
             case urlDecode = "UrlDecode"
+            case lowercase = "Lowercase"
         }
     }
 

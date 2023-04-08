@@ -287,6 +287,8 @@ extension TCTioneError {
             FailedOperation(.querySpecsFailed)
         }
 
+        /// 查询标签服务失败。
+        ///
         /// 请重试
         public static var queryTagFail: FailedOperation {
             FailedOperation(.queryTagFail)

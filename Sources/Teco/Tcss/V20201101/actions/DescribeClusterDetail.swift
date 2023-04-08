@@ -103,6 +103,9 @@ extension Tcss {
         /// Ingress数量
         public let ingressCount: UInt64
 
+        /// 主节点的ip列表
+        public let masterIps: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -131,6 +134,7 @@ extension Tcss {
             case podCount = "PodCount"
             case serviceCount = "ServiceCount"
             case ingressCount = "IngressCount"
+            case masterIps = "MasterIps"
             case requestId = "RequestId"
         }
     }

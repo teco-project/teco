@@ -46,6 +46,7 @@ public struct TCIaiError: TCIaiErrorType {
         case failedOperation_JobCannnotRollback = "FailedOperation.JobCannnotRollback"
         case failedOperation_RequestLimitExceeded = "FailedOperation.RequestLimitExceeded"
         case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
+        case failedOperation_RpcFail = "FailedOperation.RpcFail"
         case failedOperation_SearchFacesExceed = "FailedOperation.SearchFacesExceed"
         case failedOperation_ServerError = "FailedOperation.ServerError"
         case failedOperation_UnKnowError = "FailedOperation.UnKnowError"
@@ -253,6 +254,11 @@ public struct TCIaiError: TCIaiErrorType {
     /// 后端服务超时。
     public static var failedOperation_RequestTimeout: TCIaiError {
         TCIaiError(.failedOperation_RequestTimeout)
+    }
+
+    /// Rpc调用失败。
+    public static var failedOperation_RpcFail: TCIaiError {
+        TCIaiError(.failedOperation_RpcFail)
     }
 
     /// 检索人脸个数超过限制。

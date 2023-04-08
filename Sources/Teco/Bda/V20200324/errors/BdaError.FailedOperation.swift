@@ -148,6 +148,7 @@ extension TCBdaError {
             FailedOperation(.imageFacedetectFailed)
         }
 
+        /// 图片不存在前景。
         public static var imageNotForeground: FailedOperation {
             FailedOperation(.imageNotForeground)
         }

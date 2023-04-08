@@ -53,7 +53,7 @@ public struct Zj: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCZjError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

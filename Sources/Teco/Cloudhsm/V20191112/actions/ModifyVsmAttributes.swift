@@ -38,13 +38,17 @@ extension Cloudhsm {
         /// 子网Id
         public let subnetId: String?
 
-        public init(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil) {
+        /// 告警开关，0表示关闭告警，1表示启用告警
+        public let alarmStatus: Int64?
+
+        public init(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, alarmStatus: Int64? = nil) {
             self.resourceId = resourceId
             self.type = type
             self.resourceName = resourceName
             self.sgIds = sgIds
             self.vpcId = vpcId
             self.subnetId = subnetId
+            self.alarmStatus = alarmStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -54,6 +58,7 @@ extension Cloudhsm {
             case sgIds = "SgIds"
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+            case alarmStatus = "AlarmStatus"
         }
     }
 
@@ -81,13 +86,13 @@ extension Cloudhsm {
 
     /// 修改VSM属性
     @inlinable @discardableResult
-    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVsmAttributesResponse> {
-        self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, alarmStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVsmAttributesResponse> {
+        self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId, alarmStatus: alarmStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VSM属性
     @inlinable @discardableResult
-    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
-        try await self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+    public func modifyVsmAttributes(resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, alarmStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
+        try await self.modifyVsmAttributes(.init(resourceId: resourceId, type: type, resourceName: resourceName, sgIds: sgIds, vpcId: vpcId, subnetId: subnetId, alarmStatus: alarmStatus), region: region, logger: logger, on: eventLoop)
     }
 }

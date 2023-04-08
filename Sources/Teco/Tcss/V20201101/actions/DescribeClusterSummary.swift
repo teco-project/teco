@@ -53,6 +53,9 @@ extension Tcss {
         /// 检查失败集群数
         public let failedClusterCount: UInt64
 
+        /// 未导入的集群数量
+        public let notImportedClusterCount: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -67,6 +70,7 @@ extension Tcss {
             case autoCheckClusterCount = "AutoCheckClusterCount"
             case manualCheckClusterCount = "ManualCheckClusterCount"
             case failedClusterCount = "FailedClusterCount"
+            case notImportedClusterCount = "NotImportedClusterCount"
             case requestId = "RequestId"
         }
     }

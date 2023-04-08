@@ -17,11 +17,16 @@
 extension TCTeoError {
     public struct OperationDenied: TCTeoErrorType {
         enum Code: String {
+            case domainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
             case domainIsBlocked = "OperationDenied.DomainIsBlocked"
             case domainNoICP = "OperationDenied.DomainNoICP"
             case l4ProxyInBannedStatus = "OperationDenied.L4ProxyInBannedStatus"
+            case l4StatusNotInOnline = "OperationDenied.L4StatusNotInOnline"
+            case latestVersionNow = "OperationDenied.LatestVersionNow"
             case multipleCnameZone = "OperationDenied.MultipleCnameZone"
             case nsNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
+            case recordIsForbidden = "OperationDenied.RecordIsForbidden"
+            case resourceLockedTemporary = "OperationDenied.ResourceLockedTemporary"
             case other = "OperationDenied"
         }
 
@@ -47,6 +52,11 @@ extension TCTeoError {
             self.context = context
         }
 
+        /// 有域名在共享cname组内，不可切换接入类型。
+        public static var domainInShareCnameGroup: OperationDenied {
+            OperationDenied(.domainInShareCnameGroup)
+        }
+
         /// 域名被封禁，暂时无法操作。
         public static var domainIsBlocked: OperationDenied {
             OperationDenied(.domainIsBlocked)
@@ -57,16 +67,38 @@ extension TCTeoError {
             OperationDenied(.domainNoICP)
         }
 
+        /// 4层代理资源处于封禁中，禁止操作。
         public static var l4ProxyInBannedStatus: OperationDenied {
             OperationDenied(.l4ProxyInBannedStatus)
         }
 
+        /// 绑定4层实例有处于非运行中的状态，禁止操作。
+        public static var l4StatusNotInOnline: OperationDenied {
+            OperationDenied(.l4StatusNotInOnline)
+        }
+
+        /// 回源白名单已经是最新版本，无需更新。
+        public static var latestVersionNow: OperationDenied {
+            OperationDenied(.latestVersionNow)
+        }
+
+        /// 已存在多个Cname接入站点，不允许切换至NS。
         public static var multipleCnameZone: OperationDenied {
             OperationDenied(.multipleCnameZone)
         }
 
+        /// NS接入模式不支持域名流量调度功能。
         public static var nsNotAllowTrafficStrategy: OperationDenied {
             OperationDenied(.nsNotAllowTrafficStrategy)
+        }
+
+        /// DNS 记录不允许添加。
+        public static var recordIsForbidden: OperationDenied {
+            OperationDenied(.recordIsForbidden)
+        }
+
+        public static var resourceLockedTemporary: OperationDenied {
+            OperationDenied(.resourceLockedTemporary)
         }
 
         /// 操作被拒绝。
@@ -77,16 +109,26 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
+            case .domainInShareCnameGroup:
+                code = .operationDenied_DomainInShareCnameGroup
             case .domainIsBlocked:
                 code = .operationDenied_DomainIsBlocked
             case .domainNoICP:
                 code = .operationDenied_DomainNoICP
             case .l4ProxyInBannedStatus:
                 code = .operationDenied_L4ProxyInBannedStatus
+            case .l4StatusNotInOnline:
+                code = .operationDenied_L4StatusNotInOnline
+            case .latestVersionNow:
+                code = .operationDenied_LatestVersionNow
             case .multipleCnameZone:
                 code = .operationDenied_MultipleCnameZone
             case .nsNotAllowTrafficStrategy:
                 code = .operationDenied_NSNotAllowTrafficStrategy
+            case .recordIsForbidden:
+                code = .operationDenied_RecordIsForbidden
+            case .resourceLockedTemporary:
+                code = .operationDenied_ResourceLockedTemporary
             case .other:
                 code = .operationDenied
             }

@@ -148,6 +148,7 @@ extension TCAaiError {
             InvalidParameterValue(.primaryLanguage)
         }
 
+        /// SampleRate参数错误。
         public static var sampleRate: InvalidParameterValue {
             InvalidParameterValue(.sampleRate)
         }

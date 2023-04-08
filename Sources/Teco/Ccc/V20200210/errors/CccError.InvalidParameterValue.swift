@@ -58,6 +58,8 @@ extension TCCccError {
             InvalidParameterValue(.instanceNotExist)
         }
 
+        /// 号码已经绑定别的账号。
+        ///
         /// 请确认手机号是否有误
         public static var phoneNumIsBoundOtherAccount: InvalidParameterValue {
             InvalidParameterValue(.phoneNumIsBoundOtherAccount)
@@ -70,10 +72,12 @@ extension TCCccError {
             InvalidParameterValue(.recordNotExist)
         }
 
+        /// 技能组错误。
         public static var skillGroupError: InvalidParameterValue {
             InvalidParameterValue(.skillGroupError)
         }
 
+        /// 技能组已存在。
         public static var skillGroupExist: InvalidParameterValue {
             InvalidParameterValue(.skillGroupExist)
         }

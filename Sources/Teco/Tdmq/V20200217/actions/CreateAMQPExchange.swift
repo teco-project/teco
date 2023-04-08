@@ -70,26 +70,30 @@ extension Tdmq {
     }
 
     /// 创建AMQP Exchange
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
-        self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPExchange is no longer available.")
     }
 
     /// 创建AMQP Exchange
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
-        try await self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateAMQPExchange is no longer available.")
     }
 
     /// 创建AMQP Exchange
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
-        self.createAMQPExchange(.init(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPExchange is no longer available.")
     }
 
     /// 创建AMQP Exchange
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
-        try await self.createAMQPExchange(.init(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateAMQPExchange is no longer available.")
     }
 }

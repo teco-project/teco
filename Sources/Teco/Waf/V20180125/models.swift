@@ -213,6 +213,31 @@ extension Waf {
         }
     }
 
+    /// 攻击日志详情
+    public struct AttackLogInfo: TCOutputModel {
+        /// 攻击日志的详情内容
+        public let content: String
+
+        /// CLS返回内容
+        public let fileName: String
+
+        /// CLS返回内容
+        public let source: String
+
+        /// CLS返回内容
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var timeStamp: Date
+
+        enum CodingKeys: String, CodingKey {
+            case content = "Content"
+            case fileName = "FileName"
+            case source = "Source"
+            case timeStamp = "TimeStamp"
+        }
+    }
+
     /// Waf 攻击自动封禁详情
     public struct AutoDenyDetail: TCInputModel, TCOutputModel {
         /// 攻击封禁类型标签
@@ -397,6 +422,52 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case clusters = "Clusters"
+        }
+    }
+
+    /// DescribeCustomRules接口回包中的复杂类型
+    public struct DescribeCustomRulesRspRuleListItem: TCOutputModel {
+        /// 动作类型
+        public let actionType: String
+
+        /// 跳过的策略
+        public let bypass: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 过期时间
+        public let expireTime: String
+
+        /// 策略名称
+        public let name: String
+
+        /// 重定向地址
+        public let redirect: String
+
+        /// 策略ID
+        public let ruleId: String
+
+        /// 优先级
+        public let sortId: String
+
+        /// 状态
+        public let status: String
+
+        /// 策略详情
+        public let strategies: [Strategy]
+
+        enum CodingKeys: String, CodingKey {
+            case actionType = "ActionType"
+            case bypass = "Bypass"
+            case createTime = "CreateTime"
+            case expireTime = "ExpireTime"
+            case name = "Name"
+            case redirect = "Redirect"
+            case ruleId = "RuleId"
+            case sortId = "SortId"
+            case status = "Status"
+            case strategies = "Strategies"
         }
     }
 
@@ -875,6 +946,98 @@ extension Waf {
         }
     }
 
+    /// clb-waf防护域名
+    public struct HostRecord: TCInputModel, TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 域名ID
+        public let domainId: String
+
+        /// 主域名，入参时为空
+        public let mainDomain: String
+
+        /// waf模式，同saas waf保持一致
+        public let mode: UInt64
+
+        /// waf和LD的绑定，0：没有绑定，1：绑定
+        public let status: UInt64
+
+        /// 域名状态，0：正常，1：未检测到流量，2：即将过期，3：过期
+        public let state: UInt64
+
+        /// 使用的规则，同saas waf保持一致
+        public let engine: UInt64
+
+        /// 是否开启代理，0：不开启，1：开启
+        public let isCdn: UInt64
+
+        /// 绑定的LB列表
+        public let loadBalancerSet: [LoadBalancer]
+
+        /// 域名绑定的LB的地域，以,分割多个地域
+        public let region: String
+
+        /// 产品分类，取值为：sparta-waf、clb-waf、cdn-waf
+        public let edition: String
+
+        /// WAF的流量模式，1：清洗模式，0：镜像模式
+        public let flowMode: UInt64
+
+        /// 是否开启访问日志，1：开启，0：关闭
+        public let clsStatus: UInt64
+
+        /// 防护等级，可选值100,200,300
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: UInt64?
+
+        /// 域名需要下发到的cdc集群列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdcClusters: [String]?
+
+        /// 应用型负载均衡类型: clb或者apisix，默认clb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let albType: String?
+
+        public init(domain: String, domainId: String, mainDomain: String, mode: UInt64, status: UInt64, state: UInt64, engine: UInt64, isCdn: UInt64, loadBalancerSet: [LoadBalancer], region: String, edition: String, flowMode: UInt64, clsStatus: UInt64, level: UInt64? = nil, cdcClusters: [String]? = nil, albType: String? = nil) {
+            self.domain = domain
+            self.domainId = domainId
+            self.mainDomain = mainDomain
+            self.mode = mode
+            self.status = status
+            self.state = state
+            self.engine = engine
+            self.isCdn = isCdn
+            self.loadBalancerSet = loadBalancerSet
+            self.region = region
+            self.edition = edition
+            self.flowMode = flowMode
+            self.clsStatus = clsStatus
+            self.level = level
+            self.cdcClusters = cdcClusters
+            self.albType = albType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case domainId = "DomainId"
+            case mainDomain = "MainDomain"
+            case mode = "Mode"
+            case status = "Status"
+            case state = "State"
+            case engine = "Engine"
+            case isCdn = "IsCdn"
+            case loadBalancerSet = "LoadBalancerSet"
+            case region = "Region"
+            case edition = "Edition"
+            case flowMode = "FlowMode"
+            case clsStatus = "ClsStatus"
+            case level = "Level"
+            case cdcClusters = "CdcClusters"
+            case albType = "AlbType"
+        }
+    }
+
     /// 一个实例的详细信息
     public struct InstanceInfo: TCInputModel, TCOutputModel {
         /// id
@@ -1105,6 +1268,72 @@ extension Waf {
         }
     }
 
+    /// 负载均衡的监听器
+    public struct LoadBalancer: TCInputModel, TCOutputModel {
+        /// 负载均衡LD的ID
+        public let loadBalancerId: String
+
+        /// 负载均衡LD的名称
+        public let loadBalancerName: String
+
+        /// 负载均衡监听器的ID
+        public let listenerId: String
+
+        /// 负载均衡监听器的名称
+        public let listenerName: String
+
+        /// 负载均衡实例的IP
+        public let vip: String
+
+        /// 负载均衡实例的端口
+        public let vport: UInt64
+
+        /// 负载均衡LD的地域
+        public let region: String
+
+        /// 监听器协议，http、https
+        public let `protocol`: String
+
+        /// 负载均衡监听器所在的zone
+        public let zone: String
+
+        /// 负载均衡的VPCID，公网为-1，内网按实际填写
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numericalVpcId: Int64?
+
+        /// 负载均衡的网络类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerType: String?
+
+        public init(loadBalancerId: String, loadBalancerName: String, listenerId: String, listenerName: String, vip: String, vport: UInt64, region: String, protocol: String, zone: String, numericalVpcId: Int64? = nil, loadBalancerType: String? = nil) {
+            self.loadBalancerId = loadBalancerId
+            self.loadBalancerName = loadBalancerName
+            self.listenerId = listenerId
+            self.listenerName = listenerName
+            self.vip = vip
+            self.vport = vport
+            self.region = region
+            self.protocol = `protocol`
+            self.zone = zone
+            self.numericalVpcId = numericalVpcId
+            self.loadBalancerType = loadBalancerType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case loadBalancerId = "LoadBalancerId"
+            case loadBalancerName = "LoadBalancerName"
+            case listenerId = "ListenerId"
+            case listenerName = "ListenerName"
+            case vip = "Vip"
+            case vport = "Vport"
+            case region = "Region"
+            case `protocol` = "Protocol"
+            case zone = "Zone"
+            case numericalVpcId = "NumericalVpcId"
+            case loadBalancerType = "LoadBalancerType"
+        }
+    }
+
     /// 负载均衡算法
     public struct LoadBalancerPackageNew: TCOutputModel {
         /// 监听id
@@ -1308,6 +1537,80 @@ extension Waf {
             case compareFunc = "CompareFunc"
             case content = "Content"
             case arg = "Arg"
+        }
+    }
+
+    /// Vip信息
+    public struct VipInfo: TCOutputModel {
+        /// Virtual IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// waf实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case vip = "Vip"
+            case instanceId = "InstanceId"
+        }
+    }
+
+    /// waf模块的规格
+    public struct WafRuleLimit: TCOutputModel {
+        /// 自定义CC的规格
+        public let cc: UInt64
+
+        /// 自定义策略的规格
+        public let customRule: UInt64
+
+        /// 黑白名单的规格
+        public let ipControl: UInt64
+
+        /// 信息防泄漏的规格
+        public let antiLeak: UInt64
+
+        /// 防篡改的规格
+        public let antiTamper: UInt64
+
+        /// 紧急CC的规格
+        public let autoCC: UInt64
+
+        /// 地域封禁的规格
+        public let areaBan: UInt64
+
+        /// 自定义CC中配置session
+        public let ccSession: UInt64
+
+        /// AI的规格
+        public let ai: UInt64
+
+        /// 精准白名单的规格
+        public let customWhite: UInt64
+
+        /// api安全的规格
+        public let apiSecurity: UInt64
+
+        /// 客户端流量标记的规格
+        public let clientMsg: UInt64
+
+        /// 流量标记的规格
+        public let trafficMarking: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case cc = "CC"
+            case customRule = "CustomRule"
+            case ipControl = "IPControl"
+            case antiLeak = "AntiLeak"
+            case antiTamper = "AntiTamper"
+            case autoCC = "AutoCC"
+            case areaBan = "AreaBan"
+            case ccSession = "CCSession"
+            case ai = "AI"
+            case customWhite = "CustomWhite"
+            case apiSecurity = "ApiSecurity"
+            case clientMsg = "ClientMsg"
+            case trafficMarking = "TrafficMarking"
         }
     }
 

@@ -20,6 +20,7 @@ extension TCOrganizationError {
             case authInfoEmpty = "FailedOperation.AuthInfoEmpty"
             case authNotEnterprise = "FailedOperation.AuthNotEnterprise"
             case createAccount = "FailedOperation.CreateAccount"
+            case createBillingPermissionErr = "FailedOperation.CreateBillingPermissionErr"
             case createMemberAuthOverLimit = "FailedOperation.CreateMemberAuthOverLimit"
             case createPolicy = "FailedOperation.CreatePolicy"
             case createRecordAlreadySuccess = "FailedOperation.CreateRecordAlreadySuccess"
@@ -88,12 +89,17 @@ extension TCOrganizationError {
             FailedOperation(.createAccount)
         }
 
+        /// 添加计费权限失败。
+        public static var createBillingPermissionErr: FailedOperation {
+            FailedOperation(.createBillingPermissionErr)
+        }
+
         /// 账号实名认证超过上限。
         public static var createMemberAuthOverLimit: FailedOperation {
             FailedOperation(.createMemberAuthOverLimit)
         }
 
-        /// 创建测试失败。
+        /// 创建策略失败。
         public static var createPolicy: FailedOperation {
             FailedOperation(.createPolicy)
         }
@@ -113,7 +119,7 @@ extension TCOrganizationError {
             FailedOperation(.createRole)
         }
 
-        /// 不能退出自己创业的企业组织。
+        /// 不能退出自己创建的企业组织。
         public static var disableQuitSelfCreatedOrganization: FailedOperation {
             FailedOperation(.disableQuitSelfCreatedOrganization)
         }
@@ -242,6 +248,8 @@ extension TCOrganizationError {
                 code = .failedOperation_AuthNotEnterprise
             case .createAccount:
                 code = .failedOperation_CreateAccount
+            case .createBillingPermissionErr:
+                code = .failedOperation_CreateBillingPermissionErr
             case .createMemberAuthOverLimit:
                 code = .failedOperation_CreateMemberAuthOverLimit
             case .createPolicy:

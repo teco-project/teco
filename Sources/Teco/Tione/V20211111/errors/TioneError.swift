@@ -78,7 +78,10 @@ public struct TCTioneError: TCTioneErrorType {
         case internalError_InsufficientBalance = "InternalError.InsufficientBalance"
         case internalError_NoPermission = "InternalError.NoPermission"
         case internalError_NotAllow = "InternalError.NotAllow"
+        case internalError_QueryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
         case internalError_QueryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
+        case internalError_QueryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+        case internalError_StopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_BadName = "InvalidParameterValue.BadName"
@@ -94,8 +97,11 @@ public struct TCTioneError: TCTioneErrorType {
         case invalidParameterValue_DatasetNumLimitExceeded = "InvalidParameterValue.DatasetNumLimitExceeded"
         case invalidParameterValue_DuplicateName = "InvalidParameterValue.DuplicateName"
         case invalidParameterValue_FrameworkVersionNotSupport = "InvalidParameterValue.FrameworkVersionNotSupport"
+        case invalidParameterValue_ImageNotFound = "InvalidParameterValue.ImageNotFound"
         case invalidParameterValue_InvalidFilter = "InvalidParameterValue.InvalidFilter"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
+        case invalidParameterValue_NotAllow = "InvalidParameterValue.NotAllow"
+        case invalidParameter_ModelFileInvalid = "InvalidParameter.ModelFileInvalid"
         case invalidParameter_TgwInvalidInterface = "InvalidParameter.TgwInvalidInterface"
         case invalidParameter_TgwInvalidRequestBody = "InvalidParameter.TgwInvalidRequestBody"
         case invalidParameter_ValidateError = "InvalidParameter.ValidateError"
@@ -103,8 +109,10 @@ public struct TCTioneError: TCTioneErrorType {
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case operationDenied_BalanceInsufficient = "OperationDenied.BalanceInsufficient"
+        case operationDenied_BillingStatusResourceInsufficient = "OperationDenied.BillingStatusResourceInsufficient"
         case operationDenied_MIYINGBalanceInsufficient = "OperationDenied.MIYINGBalanceInsufficient"
         case operationDenied_NetworkCidrIllegal = "OperationDenied.NetworkCidrIllegal"
+        case operationDenied_ResourceGroupInsufficient = "OperationDenied.ResourceGroupInsufficient"
         case operationDenied_WhitelistQuotaExceed = "OperationDenied.WhitelistQuotaExceed"
         case resourceInUse = "ResourceInUse"
         case resourceInsufficient = "ResourceInsufficient"
@@ -379,6 +387,8 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_QuerySpecsFailed)
     }
 
+    /// 查询标签服务失败。
+    ///
     /// 请重试
     public static var failedOperation_QueryTagFail: TCTioneError {
         TCTioneError(.failedOperation_QueryTagFail)
@@ -437,18 +447,38 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.internalError_InsufficientBalance)
     }
 
+    /// 没有权限。
+    ///
     /// 请检查相关权限是否允许操作。
     public static var internalError_NoPermission: TCTioneError {
         TCTioneError(.internalError_NoPermission)
     }
 
+    /// 操作不允许。
+    ///
     /// 请检查操作是否正确。
     public static var internalError_NotAllow: TCTioneError {
         TCTioneError(.internalError_NotAllow)
     }
 
+    /// 查询标签失败。
+    public static var internalError_QueryBindingTagsFailed: TCTioneError {
+        TCTioneError(.internalError_QueryBindingTagsFailed)
+    }
+
+    /// 获取HDFS存储信息失败。
     public static var internalError_QueryHDFSInfoFailed: TCTioneError {
         TCTioneError(.internalError_QueryHDFSInfoFailed)
+    }
+
+    /// 查询预付费资源组详情失败。
+    public static var internalError_QueryResourceGroupFailed: TCTioneError {
+        TCTioneError(.internalError_QueryResourceGroupFailed)
+    }
+
+    /// 停止任务失败。
+    public static var internalError_StopJobInstanceFailed: TCTioneError {
+        TCTioneError(.internalError_StopJobInstanceFailed)
     }
 
     /// 参数错误。
@@ -528,14 +558,33 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.invalidParameterValue_FrameworkVersionNotSupport)
     }
 
+    /// 训练任务镜像不存在。
+    public static var invalidParameterValue_ImageNotFound: TCTioneError {
+        TCTioneError(.invalidParameterValue_ImageNotFound)
+    }
+
+    /// 无效的过滤器。
+    ///
     /// 检查过滤器参数
     public static var invalidParameterValue_InvalidFilter: TCTioneError {
         TCTioneError(.invalidParameterValue_InvalidFilter)
     }
 
+    /// 参数值数量超过限制。
+    ///
     /// 减少参数值数量
     public static var invalidParameterValue_LimitExceeded: TCTioneError {
         TCTioneError(.invalidParameterValue_LimitExceeded)
+    }
+
+    /// 操作不允许。
+    public static var invalidParameterValue_NotAllow: TCTioneError {
+        TCTioneError(.invalidParameterValue_NotAllow)
+    }
+
+    /// 模型包不符合规范。
+    public static var invalidParameter_ModelFileInvalid: TCTioneError {
+        TCTioneError(.invalidParameter_ModelFileInvalid)
     }
 
     /// 无效的接口。
@@ -579,12 +628,24 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.operationDenied_BalanceInsufficient)
     }
 
+    /// 后付费资源售罄。
+    public static var operationDenied_BillingStatusResourceInsufficient: TCTioneError {
+        TCTioneError(.operationDenied_BillingStatusResourceInsufficient)
+    }
+
+    /// 觅影资源包余额不足，请先充值。
     public static var operationDenied_MIYINGBalanceInsufficient: TCTioneError {
         TCTioneError(.operationDenied_MIYINGBalanceInsufficient)
     }
 
+    /// 网段不合法。
     public static var operationDenied_NetworkCidrIllegal: TCTioneError {
         TCTioneError(.operationDenied_NetworkCidrIllegal)
+    }
+
+    /// 预付费资源组余量不足。
+    public static var operationDenied_ResourceGroupInsufficient: TCTioneError {
+        TCTioneError(.operationDenied_ResourceGroupInsufficient)
     }
 
     /// 白名单免费配额不足。

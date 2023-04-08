@@ -21,6 +21,7 @@ extension TCTcaplusdbError {
             case invalidClusterName = "InvalidParameterValue.InvalidClusterName"
             case invalidTableGroupName = "InvalidParameterValue.InvalidTableGroupName"
             case invalidTimeValue = "InvalidParameterValue.InvalidTimeValue"
+            case invalidZoneName = "InvalidParameterValue.InvalidZoneName"
             case unsupportIdlType = "InvalidParameterValue.UnsupportIdlType"
             case other = "InvalidParameterValue"
         }
@@ -67,6 +68,11 @@ extension TCTcaplusdbError {
             InvalidParameterValue(.invalidTimeValue)
         }
 
+        /// 非法的大区名称。
+        public static var invalidZoneName: InvalidParameterValue {
+            InvalidParameterValue(.invalidZoneName)
+        }
+
         /// 不支持的应用数据描述类型。
         public static var unsupportIdlType: InvalidParameterValue {
             InvalidParameterValue(.unsupportIdlType)
@@ -88,6 +94,8 @@ extension TCTcaplusdbError {
                 code = .invalidParameterValue_InvalidTableGroupName
             case .invalidTimeValue:
                 code = .invalidParameterValue_InvalidTimeValue
+            case .invalidZoneName:
+                code = .invalidParameterValue_InvalidZoneName
             case .unsupportIdlType:
                 code = .invalidParameterValue_UnsupportIdlType
             case .other:

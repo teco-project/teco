@@ -29,14 +29,21 @@ extension Teo {
         /// <li>web-bot：Bot管理日志。</li>
         public let entityType: String
 
-        public init(zoneId: String, entityType: String) {
+        /// 服务区域，取值有：
+        /// <li>mainland：中国大陆境内；</li>
+        /// <li>overseas：全球（不含中国大陆）。</li>若为国内站账号，则默认取值为mainland；若为国际站账号，则默认取值为overseas。
+        public let area: String?
+
+        public init(zoneId: String, entityType: String, area: String? = nil) {
             self.zoneId = zoneId
             self.entityType = entityType
+            self.area = area
         }
 
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case entityType = "EntityType"
+            case area = "Area"
         }
     }
 
@@ -79,15 +86,15 @@ extension Teo {
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(zoneId: String, entityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
-        self.describeAddableEntityList(.init(zoneId: zoneId, entityType: entityType), region: region, logger: logger, on: eventLoop)
+    public func describeAddableEntityList(zoneId: String, entityType: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
+        self.describeAddableEntityList(.init(zoneId: zoneId, entityType: entityType, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(zoneId: String, entityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
-        try await self.describeAddableEntityList(.init(zoneId: zoneId, entityType: entityType), region: region, logger: logger, on: eventLoop)
+    public func describeAddableEntityList(zoneId: String, entityType: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
+        try await self.describeAddableEntityList(.init(zoneId: zoneId, entityType: entityType, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

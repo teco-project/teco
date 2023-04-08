@@ -42,7 +42,7 @@ extension TCTmsError {
             self.context = context
         }
 
-        /// 未获取到接口授权。
+        /// 未开通权限/无有效套餐包/账号已欠费。
         public static var unauthorized: UnauthorizedOperation {
             UnauthorizedOperation(.unauthorized)
         }

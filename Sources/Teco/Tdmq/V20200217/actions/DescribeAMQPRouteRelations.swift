@@ -98,46 +98,53 @@ extension Tdmq {
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPRouteRelationsResponse> {
-        self.client.execute(action: "DescribeAMQPRouteRelations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPRouteRelationsResponse {
-        try await self.client.execute(action: "DescribeAMQPRouteRelations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelations(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String? = nil, filterDestType: String? = nil, filterDestValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPRouteRelationsResponse> {
-        self.describeAMQPRouteRelations(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelations(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String? = nil, filterDestType: String? = nil, filterDestValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPRouteRelationsResponse {
-        try await self.describeAMQPRouteRelations(.init(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelationsPaginated(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [AMQPRouteRelation])> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func describeAMQPRouteRelationsPaginated(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAMQPRouteRelationsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeAMQPRouteRelations, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 
     /// 获取Amqp路由关系列表
     ///
     /// - Returns: `AsyncSequence`s of `AMQPRouteRelation` and `DescribeAMQPRouteRelationsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable
     public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPRouteRelationsRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
+        fatalError("DescribeAMQPRouteRelations is no longer available.")
     }
 }

@@ -81,7 +81,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
         self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,7 +89,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,7 +97,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
         self.describeVpcEndPointServiceWhiteList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -105,7 +105,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
         try await self.describeVpcEndPointServiceWhiteList(.init(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteListPaginated(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [VpcEndPointServiceUser])> {
         self.client.paginate(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, logger: logger, on: eventLoop)
@@ -121,7 +121,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     @inlinable @discardableResult
     public func describeVpcEndPointServiceWhiteListPaginated(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpcEndPointServiceWhiteListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, callback: onResponse, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Vpc {
 
     /// 查询终端节点服务的服务白名单列表
     ///
-    /// 查询终端节点服务的服务白名单列表。
+    /// 本接口（DescribeVpcEndPointServiceWhiteList）用于查询终端节点服务的服务白名单列表。
     ///
     /// - Returns: `AsyncSequence`s of `VpcEndPointServiceUser` and `DescribeVpcEndPointServiceWhiteListResponse` that can be iterated over asynchronously on demand.
     @inlinable

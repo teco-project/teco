@@ -30,15 +30,22 @@ extension Mrs {
         /// 注意：当 IsUsedClassify 为True 时，表示使用收费的报告分类服务，将会产生额外的费用，具体收费标准参见 [购买指南的产品价格](https://cloud.tencent.com/document/product/1314/54264)。
         public let isUsedClassify: Bool
 
-        /// 用户类型，新客户传1，老客户可不传
+        /// 后付费的用户类型，新客户传1，老客户可不传或传 0。2022 年 12 月 15 新增了计费项，在此时间之前已经通过商务指定优惠价格的大客户，请不传这个字段或传 0，如果传 1 会导致以前获得的折扣价格失效。在 2022 年 12 月 15 日之后，通过商务指定优惠价格的大客户请传 1。
         public let userType: Int64?
 
-        public init(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil) {
+        /// 可选。用于指定不同报告使用的结构化引擎版本，不同版本返回的JSON 数据结果不兼容。若不指定版本号，就默认用旧的版本号。
+        /// （1）检验报告 11，默认使用 V2，最高支持 V3。
+        /// （2）病理报告 15，默认使用 V1，最高支持 V2。
+        /// （3）入院记录29、出院记录 28、病理记录 216、病程记录 217、门诊记录 210，默认使用 V1，最高支持 V2。
+        public let reportTypeVersion: [ReportTypeVersion]?
+
+        public init(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, reportTypeVersion: [ReportTypeVersion]? = nil) {
             self.imageInfoList = imageInfoList
             self.handleParam = handleParam
             self.type = type
             self.isUsedClassify = isUsedClassify
             self.userType = userType
+            self.reportTypeVersion = reportTypeVersion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -47,6 +54,7 @@ extension Mrs {
             case type = "Type"
             case isUsedClassify = "IsUsedClassify"
             case userType = "UserType"
+            case reportTypeVersion = "ReportTypeVersion"
         }
     }
 
@@ -90,15 +98,15 @@ extension Mrs {
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
-        self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
+    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, reportTypeVersion: [ReportTypeVersion]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
+        self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType, reportTypeVersion: reportTypeVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片结构化接口
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
-        try await self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
+    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, reportTypeVersion: [ReportTypeVersion]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
+        try await self.imageToObject(.init(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType, reportTypeVersion: reportTypeVersion), region: region, logger: logger, on: eventLoop)
     }
 }

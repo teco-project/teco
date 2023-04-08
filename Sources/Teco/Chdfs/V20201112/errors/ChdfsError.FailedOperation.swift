@@ -18,6 +18,8 @@ extension TCChdfsError {
     public struct FailedOperation: TCChdfsErrorType {
         enum Code: String {
             case accessGroupBound = "FailedOperation.AccessGroupBound"
+            case accountInsufficientBalance = "FailedOperation.AccountInsufficientBalance"
+            case accountUnauthenticated = "FailedOperation.AccountUnauthenticated"
             case fileSystemNotEmpty = "FailedOperation.FileSystemNotEmpty"
             case quotaLessThanCurrentUsed = "FailedOperation.QuotaLessThanCurrentUsed"
             case other = "FailedOperation"
@@ -52,6 +54,16 @@ extension TCChdfsError {
             FailedOperation(.accessGroupBound)
         }
 
+        /// 账户余额不足。
+        public static var accountInsufficientBalance: FailedOperation {
+            FailedOperation(.accountInsufficientBalance)
+        }
+
+        /// 账户未实名认证。
+        public static var accountUnauthenticated: FailedOperation {
+            FailedOperation(.accountUnauthenticated)
+        }
+
         /// 文件系统非空。
         ///
         /// 先清空当前文件系统。
@@ -74,6 +86,10 @@ extension TCChdfsError {
             switch self.error {
             case .accessGroupBound:
                 code = .failedOperation_AccessGroupBound
+            case .accountInsufficientBalance:
+                code = .failedOperation_AccountInsufficientBalance
+            case .accountUnauthenticated:
+                code = .failedOperation_AccountUnauthenticated
             case .fileSystemNotEmpty:
                 code = .failedOperation_FileSystemNotEmpty
             case .quotaLessThanCurrentUsed:

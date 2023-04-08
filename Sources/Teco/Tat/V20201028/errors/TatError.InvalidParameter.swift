@@ -55,6 +55,7 @@ extension TCTatError {
             InvalidParameter(.invalidUsername)
         }
 
+        /// 参数名称重复。
         public static var parameterNameDuplicated: InvalidParameter {
             InvalidParameter(.parameterNameDuplicated)
         }

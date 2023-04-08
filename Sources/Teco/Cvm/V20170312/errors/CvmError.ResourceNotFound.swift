@@ -56,6 +56,7 @@ extension TCCvmError {
             ResourceNotFound(.invalidPlacementSet)
         }
 
+        /// 可用区不支持此机型。
         public static var invalidZoneInstanceType: ResourceNotFound {
             ResourceNotFound(.invalidZoneInstanceType)
         }

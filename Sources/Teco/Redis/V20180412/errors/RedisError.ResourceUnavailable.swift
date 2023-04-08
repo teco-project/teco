@@ -35,6 +35,7 @@ extension TCRedisError {
             case instanceUnLockedError = "ResourceUnavailable.InstanceUnLockedError"
             case noEnoughVipInVPC = "ResourceUnavailable.NoEnoughVipInVPC"
             case noRedisService = "ResourceUnavailable.NoRedisService"
+            case noServiceAvailableForThisZoneId = "ResourceUnavailable.NoServiceAvailableForThisZoneId"
             case noTypeIdRedisService = "ResourceUnavailable.NoTypeIdRedisService"
             case saleOut = "ResourceUnavailable.SaleOut"
             case securityGroupNotSupported = "ResourceUnavailable.SecurityGroupNotSupported"
@@ -137,6 +138,7 @@ extension TCRedisError {
             ResourceUnavailable(.instanceStatusError)
         }
 
+        /// 实例已经被其它流程锁定。
         public static var instanceUnLockedError: ResourceUnavailable {
             ResourceUnavailable(.instanceUnLockedError)
         }
@@ -149,6 +151,11 @@ extension TCRedisError {
         /// 请求的区域暂时不提供redis服务。
         public static var noRedisService: ResourceUnavailable {
             ResourceUnavailable(.noRedisService)
+        }
+
+        /// 请求的 zoneId 不提供 redis服务。
+        public static var noServiceAvailableForThisZoneId: ResourceUnavailable {
+            ResourceUnavailable(.noServiceAvailableForThisZoneId)
         }
 
         /// 请求的区域暂时不提供请求类型的redis服务。
@@ -205,6 +212,8 @@ extension TCRedisError {
                 code = .resourceUnavailable_NoEnoughVipInVPC
             case .noRedisService:
                 code = .resourceUnavailable_NoRedisService
+            case .noServiceAvailableForThisZoneId:
+                code = .resourceUnavailable_NoServiceAvailableForThisZoneId
             case .noTypeIdRedisService:
                 code = .resourceUnavailable_NoTypeIdRedisService
             case .saleOut:

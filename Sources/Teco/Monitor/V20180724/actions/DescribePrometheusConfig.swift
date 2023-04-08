@@ -41,34 +41,54 @@ extension Monitor {
 
     /// DescribePrometheusConfig返回参数结构体
     public struct DescribePrometheusConfigResponse: TCResponseModel {
+        /// 全局配置
+        public let config: String
+
+        /// ServiceMonitor配置
+        public let serviceMonitors: [PrometheusConfigItem]
+
+        /// PodMonitor配置
+        public let podMonitors: [PrometheusConfigItem]
+
+        /// 原生Job
+        public let rawJobs: [PrometheusConfigItem]
+
+        /// Probes
+        public let probes: [PrometheusConfigItem]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case config = "Config"
+            case serviceMonitors = "ServiceMonitors"
+            case podMonitors = "PodMonitors"
+            case rawJobs = "RawJobs"
+            case probes = "Probes"
             case requestId = "RequestId"
         }
     }
 
     /// 拉取Prometheus配置
-    @inlinable @discardableResult
+    @inlinable
     public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusConfigResponse> {
         self.client.execute(action: "DescribePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取Prometheus配置
-    @inlinable @discardableResult
+    @inlinable
     public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusConfigResponse {
         try await self.client.execute(action: "DescribePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取Prometheus配置
-    @inlinable @discardableResult
+    @inlinable
     public func describePrometheusConfig(instanceId: String, clusterId: String, clusterType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusConfigResponse> {
         self.describePrometheusConfig(.init(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取Prometheus配置
-    @inlinable @discardableResult
+    @inlinable
     public func describePrometheusConfig(instanceId: String, clusterId: String, clusterType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusConfigResponse {
         try await self.describePrometheusConfig(.init(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }

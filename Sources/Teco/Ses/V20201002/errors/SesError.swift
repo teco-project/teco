@@ -67,6 +67,7 @@ public struct TCSesError: TCSesErrorType {
         case invalidParameterValue_IllegalSenderName = "InvalidParameterValue.IllegalSenderName"
         case invalidParameterValue_InValidTemplateData = "InvalidParameterValue.InValidTemplateData"
         case invalidParameterValue_InvalidEmailIdentity = "InvalidParameterValue.InvalidEmailIdentity"
+        case invalidParameterValue_InvalidSmtpPassWord = "InvalidParameterValue.InvalidSmtpPassWord"
         case invalidParameterValue_NoSuchSender = "InvalidParameterValue.NoSuchSender"
         case invalidParameterValue_NotExistDomain = "InvalidParameterValue.NotExistDomain"
         case invalidParameterValue_ReceiverDescIllegal = "InvalidParameterValue.ReceiverDescIllegal"
@@ -103,6 +104,7 @@ public struct TCSesError: TCSesErrorType {
         case operationDenied_ReceiverIsOperating = "OperationDenied.ReceiverIsOperating"
         case operationDenied_ReceiverNotExist = "OperationDenied.ReceiverNotExist"
         case operationDenied_ReceiverStatusError = "OperationDenied.ReceiverStatusError"
+        case operationDenied_RepeatPassWord = "OperationDenied.RepeatPassWord"
         case operationDenied_SendAddressStatusError = "OperationDenied.SendAddressStatusError"
         case operationDenied_TemplateStatusError = "OperationDenied.TemplateStatusError"
         case requestLimitExceeded = "RequestLimitExceeded"
@@ -344,11 +346,15 @@ public struct TCSesError: TCSesErrorType {
         TCSesError(.invalidParameterValue_IllegalEmailAddress)
     }
 
+    /// 发信人别名错误。
+    ///
     /// 创建发信人地址时，别名错误。别名不能为一个邮箱地址
     public static var invalidParameterValue_IllegalSenderName: TCSesError {
         TCSesError(.invalidParameterValue_IllegalSenderName)
     }
 
+    /// 收件人地址附带的模板参数不能包含html标签。
+    ///
     /// 存在某一个收件人地址附带的模板参数不能包含html标签。请逐条检查收件人地址附带的模板参数。
     public static var invalidParameterValue_InValidTemplateData: TCSesError {
         TCSesError(.invalidParameterValue_InValidTemplateData)
@@ -357,6 +363,11 @@ public struct TCSesError: TCSesErrorType {
     /// 域名取值错误。
     public static var invalidParameterValue_InvalidEmailIdentity: TCSesError {
         TCSesError(.invalidParameterValue_InvalidEmailIdentity)
+    }
+
+    /// 密码长度为10~20位，且必须至少包含2位不重复的数字、小写字母、大写字母。
+    public static var invalidParameterValue_InvalidSmtpPassWord: TCSesError {
+        TCSesError(.invalidParameterValue_InvalidSmtpPassWord)
     }
 
     /// 您没有这个发件地址，请检查是否存在。
@@ -374,6 +385,8 @@ public struct TCSesError: TCSesErrorType {
         TCSesError(.invalidParameterValue_ReceiverDescIllegal)
     }
 
+    /// 收件人地址错误。
+    ///
     /// 批量发信或单条发信，，收件人地址错误
     public static var invalidParameterValue_ReceiverEmailInvalid: TCSesError {
         TCSesError(.invalidParameterValue_ReceiverEmailInvalid)
@@ -418,18 +431,20 @@ public struct TCSesError: TCSesErrorType {
         TCSesError(.invalidParameterValue_TemplateContentIsWrong)
     }
 
-    /// 变量设置必须为json格式。
-    ///
     /// 模板参数必须为json格式。
     public static var invalidParameterValue_TemplateDataError: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataError)
     }
 
+    /// 模板参数变量名与之前不一致。
+    ///
     /// 模板参数变量与之前不一致。向收件人列表追加收件人地址及模板参数变量时，模板参数变量名与首次上传时不一致造成。请修改模板参数变量名。
     public static var invalidParameterValue_TemplateDataInconsistent: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataInconsistent)
     }
 
+    /// 单条收件人地址附带的模板参数(整个 JSON 结构)， 长度超过限制 800 bytes
+    ///
     /// 收件人地址附带的模板参数长度超过限制，具体指TemplateData字段的长度。在控制台上传时，变量名和变量值为转成成json字符串，再计算长度。请参考API文档，调整TemplateData字段长度，在控制台上传时，减少变量个数或者缩短变量值
     public static var invalidParameterValue_TemplateDataLenLimit: TCSesError {
         TCSesError(.invalidParameterValue_TemplateDataLenLimit)
@@ -474,11 +489,15 @@ public struct TCSesError: TCSesErrorType {
         TCSesError(.limitExceeded_ExceedReceiverLimit)
     }
 
+    /// 该收件人列表包含的收件人地址总量超过限制。
+    ///
     /// 该收件人列表包含的收件人地址总量超过限制。请查询一下该收件人列表已存在的地址总数，加上本次请求的地址数量是否超过地址总量限制。总量限制请参考接口描述。
     public static var limitExceeded_ReceiverDetailCountLimit: TCSesError {
         TCSesError(.limitExceeded_ReceiverDetailCountLimit)
     }
 
+    /// 请求的收件人地址数量超过限制。
+    ///
     /// 请求的收件人地址数量超过限制。参考接口文档，调整请求的收件人地址的数量。
     public static var limitExceeded_ReceiverDetailRequestLimit: TCSesError {
         TCSesError(.limitExceeded_ReceiverDetailRequestLimit)
@@ -542,7 +561,7 @@ public struct TCSesError: TCSesErrorType {
         TCSesError(.operationDenied_ExceedSenderLimit)
     }
 
-    /// 收件人列表正在被操作，请稍后操作。
+    /// 收件人列表正在上传中，请稍后操作。
     ///
     /// 可能是收件人列表正在上传收件人地址，等待一段时间再操作，必要时可以反馈问题
     public static var operationDenied_ReceiverIsOperating: TCSesError {
@@ -561,6 +580,11 @@ public struct TCSesError: TCSesErrorType {
     /// 检查收件人列表中是否存在收件人地址或者正在进行上传，尚未完成全部上传工作
     public static var operationDenied_ReceiverStatusError: TCSesError {
         TCSesError(.operationDenied_ReceiverStatusError)
+    }
+
+    /// 不能与上一次设置密码相同。
+    public static var operationDenied_RepeatPassWord: TCSesError {
+        TCSesError(.operationDenied_RepeatPassWord)
     }
 
     /// 发信地址不存在或者状态不是通过状态。

@@ -65,23 +65,27 @@ extension TCEssError {
             ResourceNotFound(.application)
         }
 
+        /// 机构未完成认证激活，请检查并联系客服处理。
         public static var authActiveOrganization: ResourceNotFound {
             ResourceNotFound(.authActiveOrganization)
         }
 
+        /// 未找到电子文档信息，请检查后重试。
         public static var document: ResourceNotFound {
             ResourceNotFound(.document)
         }
 
+        /// 未获取到用户角色信息，请检查员工角色配置。
         public static var errNotExistRole: ResourceNotFound {
             ResourceNotFound(.errNotExistRole)
         }
 
-        /// 流程不存在。
+        /// 签署流程未找到，请检查参数。
         public static var flow: ResourceNotFound {
             ResourceNotFound(.flow)
         }
 
+        /// 签署流程的签署人不存在，请检查后重试。
         public static var flowApprover: ResourceNotFound {
             ResourceNotFound(.flowApprover)
         }
@@ -106,37 +110,44 @@ extension TCEssError {
             ResourceNotFound(.notExistTemplate)
         }
 
+        /// 机构不存在或者未完成认证，请检查机构信息。
         public static var organization: ResourceNotFound {
             ResourceNotFound(.organization)
         }
 
+        /// 签署二维码信息不存在，请检查后重试。
         public static var qrInfo: ResourceNotFound {
             ResourceNotFound(.qrInfo)
         }
 
-        /// 资源不存在。
+        /// 未获取到文件资源，请检查资源是否完成上传，是否有效，并在修改后重试。
         public static var resource: ResourceNotFound {
             ResourceNotFound(.resource)
         }
 
+        /// 超管信息不存在，请检查企业认证信息。
         public static var superAdmin: ResourceNotFound {
             ResourceNotFound(.superAdmin)
         }
 
-        /// 模板不存在。
+        /// 模板不存在，请检查模板参数，模板配置，并稍后重试。
         public static var template: ResourceNotFound {
             ResourceNotFound(.template)
         }
 
+        /// Url不存在。
+        ///
         /// 确认查询条件是否可以匹配到 Url
         public static var url: ResourceNotFound {
             ResourceNotFound(.url)
         }
 
+        /// 用户或者员工信息不存在，请检查参数后重试。
         public static var user: ResourceNotFound {
             ResourceNotFound(.user)
         }
 
+        /// 用户或者员工未完成实名认证，请检查参数后重试。
         public static var verifyUser: ResourceNotFound {
             ResourceNotFound(.verifyUser)
         }

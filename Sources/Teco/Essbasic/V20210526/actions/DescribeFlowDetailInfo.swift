@@ -17,40 +17,40 @@
 extension Essbasic {
     /// DescribeFlowDetailInfo请求参数结构体
     public struct DescribeFlowDetailInfoRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent
 
         /// 合同(流程)编号数组，最多支持100个。
         /// （备注：该参数和合同组编号必须二选一）
         public let flowIds: [String]?
 
-        /// 操作者的信息
-        public let `operator`: UserInfo?
-
         /// 合同组编号（备注：该参数和合同(流程)编号数组必须二选一）
         public let flowGroupId: String?
 
-        public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil) {
+        /// 暂未开放
+        public let `operator`: UserInfo?
+
+        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.operator = `operator`
             self.flowGroupId = flowGroupId
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case flowIds = "FlowIds"
-            case `operator` = "Operator"
             case flowGroupId = "FlowGroupId"
+            case `operator` = "Operator"
         }
     }
 
     /// DescribeFlowDetailInfo返回参数结构体
     public struct DescribeFlowDetailInfoResponse: TCResponseModel {
-        /// 渠道侧应用号Id
+        /// 第三方平台应用号Id
         public let applicationId: String
 
-        /// 渠道侧企业第三方Id
+        /// 第三方平台子客企业OpenId
         public let proxyOrganizationOpenId: String
 
         /// 合同(签署流程)的具体详细描述信息
@@ -98,15 +98,15 @@ extension Essbasic {
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
-    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
-        self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
+        self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
-    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
-        try await self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
+        try await self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

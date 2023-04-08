@@ -45,6 +45,7 @@ extension TCDtsError {
             self.context = context
         }
 
+        /// 认证失败。
         public static var authFailureError: AuthFailure {
             AuthFailure(.authFailureError)
         }

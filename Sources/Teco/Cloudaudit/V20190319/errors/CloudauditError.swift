@@ -25,7 +25,11 @@ public protocol TCCloudauditErrorType: TCServiceErrorType {
 public struct TCCloudauditError: TCCloudauditErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
+        case failedOperation_CheckClsTopicIsExistFailed = "FailedOperation.CheckClsTopicIsExistFailed"
+        case failedOperation_CheckCosBucketIsExistFailed = "FailedOperation.CheckCosBucketIsExistFailed"
         case failedOperation_CreateBucketFail = "FailedOperation.CreateBucketFail"
+        case failedOperation_GetClsTopicFailed = "FailedOperation.GetClsTopicFailed"
+        case failedOperation_GetCosBucketListFailed = "FailedOperation.GetCosBucketListFailed"
         case internalError = "InternalError"
         case internalError_CmqError = "InternalError.CmqError"
         case internalError_CreateAuditError = "InternalError.CreateAuditError"
@@ -43,6 +47,7 @@ public struct TCCloudauditError: TCCloudauditErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue_AliasAlreadyExists = "InvalidParameterValue.AliasAlreadyExists"
         case invalidParameterValue_AuditNameError = "InvalidParameterValue.AuditNameError"
+        case invalidParameterValue_AuditTrackNameNotSupportModify = "InvalidParameterValue.AuditTrackNameNotSupportModify"
         case invalidParameterValue_CmqRegionError = "InvalidParameterValue.CmqRegionError"
         case invalidParameterValue_CosNameError = "InvalidParameterValue.CosNameError"
         case invalidParameterValue_CosRegionError = "InvalidParameterValue.CosRegionError"
@@ -67,6 +72,7 @@ public struct TCCloudauditError: TCCloudauditErrorType {
         case resourceInUse_AlreadyExistsSameAuditCmqConfig = "ResourceInUse.AlreadyExistsSameAuditCmqConfig"
         case resourceInUse_AlreadyExistsSameAuditCosConfig = "ResourceInUse.AlreadyExistsSameAuditCosConfig"
         case resourceInUse_CosBucketExists = "ResourceInUse.CosBucketExists"
+        case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_AuditNotExist = "ResourceNotFound.AuditNotExist"
         case resourceNotFound_RoleNotExist = "ResourceNotFound.RoleNotExist"
     }
@@ -103,9 +109,29 @@ public struct TCCloudauditError: TCCloudauditErrorType {
         TCCloudauditError(.failedOperation)
     }
 
+    /// 检查cls日志主题是否存在失败。
+    public static var failedOperation_CheckClsTopicIsExistFailed: TCCloudauditError {
+        TCCloudauditError(.failedOperation_CheckClsTopicIsExistFailed)
+    }
+
+    /// 检查cos桶是否存在失败。
+    public static var failedOperation_CheckCosBucketIsExistFailed: TCCloudauditError {
+        TCCloudauditError(.failedOperation_CheckCosBucketIsExistFailed)
+    }
+
     /// 创建COS存储桶失败
     public static var failedOperation_CreateBucketFail: TCCloudauditError {
         TCCloudauditError(.failedOperation_CreateBucketFail)
+    }
+
+    /// 拉取cls日志主题失败。
+    public static var failedOperation_GetClsTopicFailed: TCCloudauditError {
+        TCCloudauditError(.failedOperation_GetClsTopicFailed)
+    }
+
+    /// 拉取cos存储桶列表失败。
+    public static var failedOperation_GetCosBucketListFailed: TCCloudauditError {
+        TCCloudauditError(.failedOperation_GetCosBucketListFailed)
     }
 
     /// 内部错误。
@@ -191,6 +217,11 @@ public struct TCCloudauditError: TCCloudauditErrorType {
     /// 跟踪集名称不符合规则
     public static var invalidParameterValue_AuditNameError: TCCloudauditError {
         TCCloudauditError(.invalidParameterValue_AuditNameError)
+    }
+
+    /// 跟踪集名称不支持修改。
+    public static var invalidParameterValue_AuditTrackNameNotSupportModify: TCCloudauditError {
+        TCCloudauditError(.invalidParameterValue_AuditTrackNameNotSupportModify)
     }
 
     /// 云审计目前不支持输入的cmq地域
@@ -313,11 +344,17 @@ public struct TCCloudauditError: TCCloudauditErrorType {
         TCCloudauditError(.resourceInUse_CosBucketExists)
     }
 
+    /// 资源不存在。
+    public static var resourceNotFound: TCCloudauditError {
+        TCCloudauditError(.resourceNotFound)
+    }
+
     /// 跟踪集不存在
     public static var resourceNotFound_AuditNotExist: TCCloudauditError {
         TCCloudauditError(.resourceNotFound_AuditNotExist)
     }
 
+    /// 角色不存在。
     public static var resourceNotFound_RoleNotExist: TCCloudauditError {
         TCCloudauditError(.resourceNotFound_RoleNotExist)
     }

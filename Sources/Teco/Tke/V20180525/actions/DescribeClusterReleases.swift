@@ -28,6 +28,9 @@ extension Tke {
         /// 页偏移量
         public let offset: Int64?
 
+        /// 集群类型, 目前支持传入 tke, eks, tkeedge, external
+        public let clusterType: String?
+
         /// helm Release 安装的namespace
         public let namespace: String?
 
@@ -37,10 +40,11 @@ extension Tke {
         /// helm Chart 的名字
         public let chartName: String?
 
-        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil) {
+        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
+            self.clusterType = clusterType
             self.namespace = namespace
             self.releaseName = releaseName
             self.chartName = chartName
@@ -50,6 +54,7 @@ extension Tke {
             case clusterId = "ClusterId"
             case limit = "Limit"
             case offset = "Offset"
+            case clusterType = "ClusterType"
             case namespace = "Namespace"
             case releaseName = "ReleaseName"
             case chartName = "ChartName"
@@ -60,7 +65,7 @@ extension Tke {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeClusterReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
+            return DescribeClusterReleasesRequest(clusterId: self.clusterId, limit: self.limit, offset: (self.offset ?? 0) + (response.limit ?? 0), clusterType: self.clusterType, namespace: self.namespace, releaseName: self.releaseName, chartName: self.chartName)
         }
     }
 
@@ -124,16 +129,16 @@ extension Tke {
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
-        self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
+    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
+        self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
-        try await self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
+    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
+        try await self.describeClusterReleases(.init(clusterId: clusterId, limit: limit, offset: offset, clusterType: clusterType, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表

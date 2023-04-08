@@ -88,26 +88,30 @@ extension Tdid {
     }
 
     /// 概览
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDataPanel(_ input: GetDataPanelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
-        self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDataPanel is no longer available.")
     }
 
     /// 概览
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDataPanel(_ input: GetDataPanelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDataPanel is no longer available.")
     }
 
     /// 概览
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
-        self.getDataPanel(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDataPanel is no longer available.")
     }
 
     /// 概览
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.getDataPanel(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDataPanel is no longer available.")
     }
 }

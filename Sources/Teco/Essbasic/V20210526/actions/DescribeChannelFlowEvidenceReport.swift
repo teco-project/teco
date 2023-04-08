@@ -17,13 +17,13 @@
 extension Essbasic {
     /// DescribeChannelFlowEvidenceReport请求参数结构体
     public struct DescribeChannelFlowEvidenceReportRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         public let agent: Agent
 
         /// 出证报告编号
         public let reportId: String
 
-        /// 操作者的信息
+        /// 暂未开放
         public let `operator`: UserInfo?
 
         public init(agent: Agent, reportId: String, operator: UserInfo? = nil) {

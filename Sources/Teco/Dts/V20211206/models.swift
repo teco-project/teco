@@ -469,7 +469,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraAttr: [KeyValuePairOption]?
 
-        public init(region: String, accessType: String, databaseType: String, nodeType: String, info: [DBInfo], supplier: String? = nil, extraAttr: [KeyValuePairOption]? = nil) {
+        /// 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let databaseNetEnv: String?
+
+        public init(region: String, accessType: String, databaseType: String, nodeType: String, info: [DBInfo], supplier: String? = nil, extraAttr: [KeyValuePairOption]? = nil, databaseNetEnv: String? = nil) {
             self.region = region
             self.accessType = accessType
             self.databaseType = databaseType
@@ -477,6 +481,7 @@ extension Dts {
             self.info = info
             self.supplier = supplier
             self.extraAttr = extraAttr
+            self.databaseNetEnv = databaseNetEnv
         }
 
         enum CodingKeys: String, CodingKey {
@@ -487,6 +492,7 @@ extension Dts {
             case info = "Info"
             case supplier = "Supplier"
             case extraAttr = "ExtraAttr"
+            case databaseNetEnv = "DatabaseNetEnv"
         }
     }
 
@@ -758,7 +764,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newDbName: String?
 
-        /// DB选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当Mode为Partial时，此项必填。注意，高级对象的同步不依赖此值。
+        /// DB选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当Mode为Partial时，此项必填。注意，高级对象的同步不依赖此值，如果整库同步此处应该为All。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbMode: String?
 
@@ -770,7 +776,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newSchemaName: String?
 
-        /// 表选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当DBMode为Partial时此项必填
+        /// 表选择模式: All(为当前对象下的所有对象)，Partial(部分对象)，当DBMode为Partial时此项必填，如果整库同步此处应该为All。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableMode: String?
 
@@ -778,7 +784,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [Table]?
 
-        /// 视图选择模式: All 为当前对象下的所有视图对象,Partial 为部分视图对象
+        /// 视图选择模式: All 为当前对象下的所有视图对象,Partial 为部分视图对象，如果整库同步此处应该为All。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewMode: String?
 
@@ -786,7 +792,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let views: [View]?
 
-        /// 选择要同步的模式，Partial为部分，all为整选
+        /// 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functionMode: String?
 
@@ -794,7 +800,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functions: [String]?
 
-        /// 选择要同步的模式，Partial为部分，All为整选
+        /// 选择要同步的模式，Partial为部分，All为整选，如果整库同步此处应该为All。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let procedureMode: String?
 
@@ -802,7 +808,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let procedures: [String]?
 
-        /// 触发器迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        /// 触发器迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggerMode: String?
 
@@ -810,7 +816,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggers: [String]?
 
-        /// 事件迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        /// 事件迁移模式，All(为当前对象下的所有对象)，Partial(部分对象)，如果整库同步此处应该为All。数据同步暂不支持此高级对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventMode: String?
 
@@ -1127,7 +1133,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encryptConn: String?
 
-        public init(region: String? = nil, role: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, account: String? = nil, accountMode: String? = nil, accountRole: String? = nil, roleExternalId: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, encryptConn: String? = nil) {
+        /// 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let databaseNetEnv: String?
+
+        public init(region: String? = nil, role: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, account: String? = nil, accountMode: String? = nil, accountRole: String? = nil, roleExternalId: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, encryptConn: String? = nil, databaseNetEnv: String? = nil) {
             self.region = region
             self.role = role
             self.dbKernel = dbKernel
@@ -1153,6 +1163,7 @@ extension Dts {
             self.tmpSecretKey = tmpSecretKey
             self.tmpToken = tmpToken
             self.encryptConn = encryptConn
+            self.databaseNetEnv = databaseNetEnv
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1181,6 +1192,7 @@ extension Dts {
             case tmpSecretKey = "TmpSecretKey"
             case tmpToken = "TmpToken"
             case encryptConn = "EncryptConn"
+            case databaseNetEnv = "DatabaseNetEnv"
         }
     }
 
@@ -1240,7 +1252,9 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let briefMsg: String?
 
-        /// 任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)
+        /// 任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)、
+        /// pausing(暂停中)、
+        /// manualPaused(已暂停)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -1303,6 +1317,35 @@ extension Dts {
             case tradeInfo = "TradeInfo"
             case tags = "Tags"
             case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
+        }
+    }
+
+    /// 目标端为kakfa时添加的同步选项字段
+    public struct KafkaOption: TCInputModel, TCOutputModel {
+        /// 投递到kafka的数据类型，如Avro,Json
+        public let dataType: String?
+
+        /// 同步topic策略，如Single（集中投递到单topic）,Multi (自定义topic名称)
+        public let topicType: String?
+
+        /// 用于存储ddl的topic
+        public let ddlTopicName: String?
+
+        /// 单topic和自定义topic的描述
+        public let topicRules: [TopicRule]?
+
+        public init(dataType: String? = nil, topicType: String? = nil, ddlTopicName: String? = nil, topicRules: [TopicRule]? = nil) {
+            self.dataType = dataType
+            self.topicType = topicType
+            self.ddlTopicName = ddlTopicName
+            self.topicRules = topicRules
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case dataType = "DataType"
+            case topicType = "TopicType"
+            case ddlTopicName = "DDLTopicName"
+            case topicRules = "TopicRules"
         }
     }
 
@@ -1458,7 +1501,7 @@ extension Dts {
 
     /// 同步的数据库对对象描述
     public struct Objects: TCInputModel, TCOutputModel {
-        /// 迁移对象类型 Partial(部分对象)
+        /// 迁移对象类型 Partial(部分对象)，默认为Partial
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
 
@@ -1470,7 +1513,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
 
-        /// OnlineDDL类型
+        /// OnlineDDL类型，冗余字段不做配置用途
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let onlineDDL: OnlineDDL?
 
@@ -1491,6 +1534,13 @@ extension Dts {
 
     /// OnlineDDL类型
     public struct OnlineDDL: TCOutputModel {
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+        }
     }
 
     /// 数据同步中的选项
@@ -1523,7 +1573,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ddlOptions: [DdlOption]?
 
-        public init(initType: String? = nil, dealOfExistSameTable: String? = nil, conflictHandleType: String? = nil, addAdditionalColumn: Bool? = nil, opTypes: [String]? = nil, conflictHandleOption: ConflictHandleOption? = nil, ddlOptions: [DdlOption]? = nil) {
+        /// kafka同步选项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaOption: KafkaOption?
+
+        public init(initType: String? = nil, dealOfExistSameTable: String? = nil, conflictHandleType: String? = nil, addAdditionalColumn: Bool? = nil, opTypes: [String]? = nil, conflictHandleOption: ConflictHandleOption? = nil, ddlOptions: [DdlOption]? = nil, kafkaOption: KafkaOption? = nil) {
             self.initType = initType
             self.dealOfExistSameTable = dealOfExistSameTable
             self.conflictHandleType = conflictHandleType
@@ -1531,6 +1585,7 @@ extension Dts {
             self.opTypes = opTypes
             self.conflictHandleOption = conflictHandleOption
             self.ddlOptions = ddlOptions
+            self.kafkaOption = kafkaOption
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1541,6 +1596,7 @@ extension Dts {
             case opTypes = "OpTypes"
             case conflictHandleOption = "ConflictHandleOption"
             case ddlOptions = "DdlOptions"
+            case kafkaOption = "KafkaOption"
         }
     }
 
@@ -1724,11 +1780,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stepId: String?
 
-        /// 当前状态，是否完成
+        /// 当前步骤状态,可能返回有 notStarted(未开始)、running(校验中)、failed(校验任务失败)、finished(完成)、skipped(跳过)、paused(暂停)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
-        /// 步骤开始时间
+        /// 步骤开始时间，可能为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
 
@@ -1740,7 +1796,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warnings: [StepTip]?
 
-        /// 当前步骤进度
+        /// 当前步骤进度，范围为[0-100]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
 
@@ -1806,6 +1862,39 @@ extension Dts {
         }
     }
 
+    /// 数据同步配置多节点数据库的节点信息。多节点数据库，如tdsqlmysql使用该结构；单节点数据库，如mysql使用Endpoint。
+    public struct SyncDBEndpointInfos: TCInputModel, TCOutputModel {
+        /// 数据库所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 实例网络接入类型，如：extranet(外网)、ipv6(公网ipv6)、cvm(云主机自建)、dcg(专线接入)、vpncloud(vpn接入的实例)、cdb(云数据库)、ccn(云联网)、intranet(自研上云)、vpc(私有网络)等，注意具体可选值依赖当前链路
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessType: String?
+
+        /// 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let databaseType: String?
+
+        /// 数据库信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let info: [Endpoint]?
+
+        public init(region: String, accessType: String, databaseType: String, info: [Endpoint]) {
+            self.region = region
+            self.accessType = accessType
+            self.databaseType = databaseType
+            self.info = info
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case accessType = "AccessType"
+            case databaseType = "DatabaseType"
+            case info = "Info"
+        }
+    }
+
     /// 同步任务的步骤信息
     public struct SyncDetailInfo: TCOutputModel {
         /// 总步骤数
@@ -1840,6 +1929,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stepInfos: [StepInfo]?
 
+        /// 不能发起一致性校验的原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let causeOfCompareDisable: String?
+
         enum CodingKeys: String, CodingKey {
             case stepAll = "StepAll"
             case stepNow = "StepNow"
@@ -1849,6 +1942,7 @@ extension Dts {
             case secondsBehindMaster = "SecondsBehindMaster"
             case message = "Message"
             case stepInfos = "StepInfos"
+            case causeOfCompareDisable = "CauseOfCompareDisable"
         }
     }
 
@@ -2022,16 +2116,28 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterCondition: String?
 
-        public init(tableName: String? = nil, newTableName: String? = nil, filterCondition: String? = nil) {
+        /// 同步临时表，注意此配置与NewTableName互斥，只能使用其中一种。当配置的同步对象为表级别且TableEditMode为pt时此项有意义，针对pt-osc等工具在同步过程中产生的临时表进行同步，需要提前将可能的临时表配置在这里，否则不会同步任何临时表。示例，如要对t1进行pt-osc操作，此项配置应该为["\_t1\_new","\_t1\_old"]；如要对t1进行gh-ost操作，此项配置应该为["\_t1\_ghc","\_t1\_gho","\_t1\_del"]，pt-osc与gh-ost产生的临时表可同时配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tmpTables: [String]?
+
+        /// 编辑表类型，rename(表映射)，pt(同步附加表)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableEditMode: String?
+
+        public init(tableName: String? = nil, newTableName: String? = nil, filterCondition: String? = nil, tmpTables: [String]? = nil, tableEditMode: String? = nil) {
             self.tableName = tableName
             self.newTableName = newTableName
             self.filterCondition = filterCondition
+            self.tmpTables = tmpTables
+            self.tableEditMode = tableEditMode
         }
 
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
             case newTableName = "NewTableName"
             case filterCondition = "FilterCondition"
+            case tmpTables = "TmpTables"
+            case tableEditMode = "TableEditMode"
         }
     }
 
@@ -2041,11 +2147,11 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
 
-        /// 迁移后的表名，当TableEditMode为rename时此项必填
+        /// 迁移后的表名，当TableEditMode为rename时此项必填，注意此配置与TmpTables互斥，只能使用其中一种
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newTableName: String?
 
-        /// 迁移临时表，针对pt-osc等工具在迁移过程中产生的临时表同步，需要提前将可能的临时表配置在这里，当TableEditMode为pt时此项必填
+        /// 迁移临时表，注意此配置与NewTableName互斥，只能使用其中一种。当配置的同步对象为表级别且TableEditMode为pt时此项有意义，针对pt-osc等工具在迁移过程中产生的临时表进行同步，需要提前将可能的临时表配置在这里，否则不会同步任何临时表。示例，如要对t1进行pt-osc操作，此项配置应该为["\_t1\_new","\_t1\_old"]；如要对t1进行gh-ost操作，此项配置应该为["\_t1\_ghc","\_t1\_gho","\_t1\_del"]，pt-osc与gh-ost产生的临时表可同时配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpTables: [String]?
 
@@ -2105,6 +2211,45 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// 单topic和自定义topic的描述
+    public struct TopicRule: TCInputModel, TCOutputModel {
+        /// topic名
+        public let topicName: String?
+
+        /// topic分区策略，如 自定义topic：Random（随机投递），集中投递到单Topic：AllInPartitionZero（全部投递至partition0）、PartitionByTable(按表名分区)、PartitionByTableAndKey(按表名加主键分区)
+        public let partitionType: String?
+
+        /// 库名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余库)，数组中必须有一项为‘Default’
+        public let dbMatchMode: String?
+
+        /// 库名，仅“自定义topic”时，DbMatchMode=Regular生效
+        public let dbName: String?
+
+        /// 表名匹配规则，仅“自定义topic”生效，如Regular（正则匹配）, Default(不符合匹配规则的剩余表)，数组中必须有一项为‘Default’
+        public let tableMatchMode: String?
+
+        /// 表名，仅“自定义topic”时，TableMatchMode=Regular生效
+        public let tableName: String?
+
+        public init(topicName: String? = nil, partitionType: String? = nil, dbMatchMode: String? = nil, dbName: String? = nil, tableMatchMode: String? = nil, tableName: String? = nil) {
+            self.topicName = topicName
+            self.partitionType = partitionType
+            self.dbMatchMode = dbMatchMode
+            self.dbName = dbName
+            self.tableMatchMode = tableMatchMode
+            self.tableName = tableName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicName = "TopicName"
+            case partitionType = "PartitionType"
+            case dbMatchMode = "DbMatchMode"
+            case dbName = "DbName"
+            case tableMatchMode = "TableMatchMode"
+            case tableName = "TableName"
         }
     }
 

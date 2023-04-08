@@ -238,6 +238,14 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkPlatform: [String]?
 
+        /// 文件访问时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileAccessTime: String?
+
+        /// 文件修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileModifyTime: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -289,6 +297,8 @@ extension Tcss {
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
             case checkPlatform = "CheckPlatform"
+            case fileAccessTime = "FileAccessTime"
+            case fileModifyTime = "FileModifyTime"
             case requestId = "RequestId"
         }
     }

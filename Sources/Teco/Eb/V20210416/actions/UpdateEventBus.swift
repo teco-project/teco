@@ -26,16 +26,31 @@ extension Eb {
         /// 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         public let eventBusName: String?
 
-        public init(eventBusId: String, description: String? = nil, eventBusName: String? = nil) {
+        /// EB日志存储时长
+        public let saveDays: Int64?
+
+        /// EB日志主题ID
+        public let logTopicId: String?
+
+        /// 是否开启存储
+        public let enableStore: Bool?
+
+        public init(eventBusId: String, description: String? = nil, eventBusName: String? = nil, saveDays: Int64? = nil, logTopicId: String? = nil, enableStore: Bool? = nil) {
             self.eventBusId = eventBusId
             self.description = description
             self.eventBusName = eventBusName
+            self.saveDays = saveDays
+            self.logTopicId = logTopicId
+            self.enableStore = enableStore
         }
 
         enum CodingKeys: String, CodingKey {
             case eventBusId = "EventBusId"
             case description = "Description"
             case eventBusName = "EventBusName"
+            case saveDays = "SaveDays"
+            case logTopicId = "LogTopicId"
+            case enableStore = "EnableStore"
         }
     }
 
@@ -63,13 +78,13 @@ extension Eb {
 
     /// 更新事件集
     @inlinable @discardableResult
-    public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEventBusResponse> {
-        self.updateEventBus(.init(eventBusId: eventBusId, description: description, eventBusName: eventBusName), region: region, logger: logger, on: eventLoop)
+    public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, saveDays: Int64? = nil, logTopicId: String? = nil, enableStore: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEventBusResponse> {
+        self.updateEventBus(.init(eventBusId: eventBusId, description: description, eventBusName: eventBusName, saveDays: saveDays, logTopicId: logTopicId, enableStore: enableStore), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新事件集
     @inlinable @discardableResult
-    public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEventBusResponse {
-        try await self.updateEventBus(.init(eventBusId: eventBusId, description: description, eventBusName: eventBusName), region: region, logger: logger, on: eventLoop)
+    public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, saveDays: Int64? = nil, logTopicId: String? = nil, enableStore: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEventBusResponse {
+        try await self.updateEventBus(.init(eventBusId: eventBusId, description: description, eventBusName: eventBusName, saveDays: saveDays, logTopicId: logTopicId, enableStore: enableStore), region: region, logger: logger, on: eventLoop)
     }
 }

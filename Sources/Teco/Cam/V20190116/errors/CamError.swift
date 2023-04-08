@@ -65,6 +65,7 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_MFATokenError = "InvalidParameter.MFATokenError"
         case invalidParameter_NotSupportProduct = "InvalidParameter.NotSupportProduct"
         case invalidParameter_OperateEntitiesOverLimit = "InvalidParameter.OperateEntitiesOverLimit"
+        case invalidParameter_OrganizationRoleOperateError = "InvalidParameter.OrganizationRoleOperateError"
         case invalidParameter_ParamError = "InvalidParameter.ParamError"
         case invalidParameter_PasswordViolatedRules = "InvalidParameter.PasswordViolatedRules"
         case invalidParameter_PolicyDocumentError = "InvalidParameter.PolicyDocumentError"
@@ -90,6 +91,7 @@ public struct TCCamError: TCCamErrorType {
         case invalidParameter_RoleNameInUse = "InvalidParameter.RoleNameInUse"
         case invalidParameter_RoleNotExist = "InvalidParameter.RoleNotExist"
         case invalidParameter_ScopeError = "InvalidParameter.ScopeError"
+        case invalidParameter_SearchKeywordLengthError = "InvalidParameter.SearchKeywordLengthError"
         case invalidParameter_ServiceLinkedPolicyCantInPermissionBoundary = "InvalidParameter.ServiceLinkedPolicyCantInPermissionBoundary"
         case invalidParameter_ServiceLinkedRoleCantUsePermissionBoundary = "InvalidParameter.ServiceLinkedRoleCantUsePermissionBoundary"
         case invalidParameter_ServiceTypeError = "InvalidParameter.ServiceTypeError"
@@ -353,6 +355,11 @@ public struct TCCamError: TCCamErrorType {
         TCCamError(.invalidParameter_OperateEntitiesOverLimit)
     }
 
+    /// 当前角色仅支持企业管理员操作，如需修改，请联系企业管理员。
+    public static var invalidParameter_OrganizationRoleOperateError: TCCamError {
+        TCCamError(.invalidParameter_OrganizationRoleOperateError)
+    }
+
     /// 非法入参。
     public static var invalidParameter_ParamError: TCCamError {
         TCCamError(.invalidParameter_ParamError)
@@ -476,6 +483,11 @@ public struct TCCamError: TCCamErrorType {
     /// Scope字段不合法。
     public static var invalidParameter_ScopeError: TCCamError {
         TCCamError(.invalidParameter_ScopeError)
+    }
+
+    /// 查询关键字长度错误。
+    public static var invalidParameter_SearchKeywordLengthError: TCCamError {
+        TCCamError(.invalidParameter_SearchKeywordLengthError)
     }
 
     /// 权限边界不能用服务相关策略。

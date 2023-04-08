@@ -54,26 +54,30 @@ extension Tdid {
     }
 
     /// DID注册趋势
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
-        self.client.execute(action: "GetDidRegisterTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidRegisterTrend is no longer available.")
     }
 
     /// DID注册趋势
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
-        try await self.client.execute(action: "GetDidRegisterTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidRegisterTrend is no longer available.")
     }
 
     /// DID注册趋势
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
-        self.getDidRegisterTrend(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidRegisterTrend is no longer available.")
     }
 
     /// DID注册趋势
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
-        try await self.getDidRegisterTrend(.init(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidRegisterTrend is no longer available.")
     }
 }

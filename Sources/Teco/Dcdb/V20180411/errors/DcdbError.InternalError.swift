@@ -21,6 +21,7 @@ extension TCDcdbError {
             case checkVipStatusFailed = "InternalError.CheckVipStatusFailed"
             case cosConfiguration = "InternalError.CosConfiguration"
             case cosSignUrl = "InternalError.CosSignUrl"
+            case createFlowError = "InternalError.CreateFlowError"
             case createFlowFailed = "InternalError.CreateFlowFailed"
             case dbOperationFailed = "InternalError.DbOperationFailed"
             case dbRowsAffectedError = "InternalError.DBRowsAffectedError"
@@ -102,6 +103,12 @@ extension TCDcdbError {
             InternalError(.cosSignUrl)
         }
 
+        /// 创建流程失败。
+        public static var createFlowError: InternalError {
+            InternalError(.createFlowError)
+        }
+
+        /// 创建任务流程失败。
         public static var createFlowFailed: InternalError {
             InternalError(.createFlowFailed)
         }
@@ -176,6 +183,7 @@ extension TCDcdbError {
             InternalError(.getUserListFailed)
         }
 
+        /// 获取用户安全组数量失败。
         public static var getUserSGCountFailed: InternalError {
             InternalError(.getUserSGCountFailed)
         }
@@ -296,6 +304,8 @@ extension TCDcdbError {
                 code = .internalError_CosConfiguration
             case .cosSignUrl:
                 code = .internalError_CosSignUrl
+            case .createFlowError:
+                code = .internalError_CreateFlowError
             case .createFlowFailed:
                 code = .internalError_CreateFlowFailed
             case .dbOperationFailed:

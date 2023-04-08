@@ -77,26 +77,30 @@ extension Iai {
     }
 
     /// 人员库升级结果查询
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
     }
 
     /// 人员库升级结果查询
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
     }
 
     /// 人员库升级结果查询
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        self.getUpgradeGroupFaceModelVersionResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
     }
 
     /// 人员库升级结果查询
+    @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.getUpgradeGroupFaceModelVersionResult(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        fatalError("GetUpgradeGroupFaceModelVersionResult is no longer available.")
     }
 }

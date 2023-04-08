@@ -25,6 +25,7 @@ extension TCMariadbError {
             case dbOperationFailed = "InternalError.DbOperationFailed"
             case dbRowsAffectedError = "InternalError.DBRowsAffectedError"
             case fenceError = "InternalError.FenceError"
+            case getCipherTextFailed = "InternalError.GetCipherTextFailed"
             case getDbConfigFailed = "InternalError.GetDbConfigFailed"
             case getDbListFailed = "InternalError.GetDbListFailed"
             case getDbObjectFailed = "InternalError.GetDbObjectFailed"
@@ -124,6 +125,13 @@ extension TCMariadbError {
             InternalError(.fenceError)
         }
 
+        /// 获取数据库加密密钥失败。
+        ///
+        /// None
+        public static var getCipherTextFailed: InternalError {
+            InternalError(.getCipherTextFailed)
+        }
+
         /// 获取数据库实例参数失败。
         public static var getDbConfigFailed: InternalError {
             InternalError(.getDbConfigFailed)
@@ -179,6 +187,7 @@ extension TCMariadbError {
             InternalError(.getUserListFailed)
         }
 
+        /// 获取用户安全组数量失败。
         public static var getUserSGCountFailed: InternalError {
             InternalError(.getUserSGCountFailed)
         }
@@ -317,6 +326,8 @@ extension TCMariadbError {
                 code = .internalError_DBRowsAffectedError
             case .fenceError:
                 code = .internalError_FenceError
+            case .getCipherTextFailed:
+                code = .internalError_GetCipherTextFailed
             case .getDbConfigFailed:
                 code = .internalError_GetDbConfigFailed
             case .getDbListFailed:

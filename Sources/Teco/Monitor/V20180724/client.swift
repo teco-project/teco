@@ -16,7 +16,7 @@
 
 @_exported import TecoCore
 
-/// 云监控 (monitor)
+/// 腾讯云可观测平台 (monitor)
 ///
 /// 对云监控进行操作，包括查询监控数据、创建报警规则等。
 public struct Monitor: TCService {

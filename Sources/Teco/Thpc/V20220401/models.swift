@@ -83,7 +83,7 @@ extension Thpc {
         /// 集群活动ID。
         public let activityId: String
 
-        /// 集群活动类型。
+        /// 集群活动类型。取值范围：<br><li>CreateAndAddNodes：创建实例并添加进集群<br><li>RemoveNodesFromCluster：从集群移除实例<br><li>TerminateNodes：销毁实例<br><li>MountStorageOption：增加挂载选项并进行挂载<br><li>UmountStorageOption：删除集群挂载存储选项并解挂载
         public let activityType: String
 
         /// 集群活动状态。取值范围：<br><li>PENDING：等待运行<br><li>RUNNING：运行中<br><li>SUCCESSFUL：活动成功<br><li>PARTIALLY_SUCCESSFUL：活动部分成功<br><li>FAILED：活动失败
@@ -359,6 +359,27 @@ extension Thpc {
         }
     }
 
+    /// >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+    /// > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
+    /// > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
+    public struct Filter: TCInputModel {
+        /// 需要过滤的字段。
+        public let name: String?
+
+        /// 字段的过滤值。
+        public let values: [String]?
+
+        public init(name: String, values: [String]) {
+            self.name = name
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case values = "Values"
+        }
+    }
+
     /// 描述GooseFS挂载信息
     public struct GooseFSOption: TCInputModel {
         /// 文件系统本地挂载路径。
@@ -605,6 +626,47 @@ extension Thpc {
         }
     }
 
+    /// 节点概览信息。
+    public struct NodeOverview: TCOutputModel {
+        /// 节点实例ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 节点所在可用区信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 节点状态。<br><li>SUBMITTED：已完成提交。<br><li>CREATING：创建中。<br><li>CREATED：完成创建。<br><li>INITING：初始化中。<br><li>INIT_FAILED：初始化失败。<br><li>RUNNING：运行中。<br><li>DELETING：销毁中。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeState: String?
+
+        /// 镜像ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageId: String?
+
+        /// 节点所属队列名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queueName: String?
+
+        /// 节点角色。<br><li>Manager：管控节点。<br><li>Compute：计算节点。<br><li>Login：登录节点。<br><li>ManagerBackup：备用管控节点。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeRole: String?
+
+        /// 节点类型。<br><li>STATIC：静态节点。<br><li>DYNAMIC：弹性节点。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case zone = "Zone"
+            case nodeState = "NodeState"
+            case imageId = "ImageId"
+            case queueName = "QueueName"
+            case nodeRole = "NodeRole"
+            case nodeType = "NodeType"
+        }
+    }
+
     /// 描述了实例的抽象位置
     public struct Placement: TCInputModel {
         /// 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
@@ -708,12 +770,23 @@ extension Thpc {
         }
     }
 
+    /// 队列信息概览。
+    public struct QueueOverview: TCOutputModel {
+        /// 队列名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queueName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case queueName = "QueueName"
+        }
+    }
+
     /// 描述集群文件系统选项
     public struct StorageOption: TCInputModel {
-        /// 集群挂载CFS文件系统选项
+        /// 集群挂载CFS文件系统选项。
         public let cfsOptions: [CFSOption]?
 
-        /// 集群挂在GooseFS文件系统选项
+        /// 集群挂载GooseFS文件系统选项。
         public let gooseFSOptions: [GooseFSOption]?
 
         public init(cfsOptions: [CFSOption]? = nil, gooseFSOptions: [GooseFSOption]? = nil) {

@@ -26,16 +26,21 @@ extension Tke {
         /// CLS日志主题ID
         public let topicId: String?
 
-        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
+        /// topic所在region，默认为集群当前region
+        public let topicRegion: String?
+
+        public init(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
+            self.topicRegion = topicRegion
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case logsetId = "LogsetId"
             case topicId = "TopicId"
+            case topicRegion = "TopicRegion"
         }
     }
 
@@ -63,13 +68,13 @@ extension Tke {
 
     /// 开启集群审计
     @inlinable @discardableResult
-    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterAuditResponse> {
-        self.enableClusterAudit(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterAuditResponse> {
+        self.enableClusterAudit(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId, topicRegion: topicRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启集群审计
     @inlinable @discardableResult
-    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
-        try await self.enableClusterAudit(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+    public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, topicRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
+        try await self.enableClusterAudit(.init(clusterId: clusterId, logsetId: logsetId, topicId: topicId, topicRegion: topicRegion), region: region, logger: logger, on: eventLoop)
     }
 }

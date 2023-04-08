@@ -51,7 +51,7 @@ extension Cwp {
         /// 下载地址,该字段废弃
         public let downloadUrl: String
 
-        /// 任务ID,可通过任务ID去查下载任务
+        /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -18,14 +18,19 @@ extension Cwp {
     /// DeleteAttackLogs请求参数结构体
     public struct DeleteAttackLogsRequest: TCRequestModel {
         /// 日志ID数组，最大100条。
-        public let ids: [UInt64]
+        public let ids: [UInt64]?
 
-        public init(ids: [UInt64]) {
+        /// 是否全部删除
+        public let isAll: Bool?
+
+        public init(ids: [UInt64]? = nil, isAll: Bool? = nil) {
             self.ids = ids
+            self.isAll = isAll
         }
 
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
+            case isAll = "IsAll"
         }
     }
 
@@ -53,13 +58,13 @@ extension Cwp {
 
     /// 删除网络攻击日志
     @inlinable @discardableResult
-    public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
-        self.deleteAttackLogs(.init(ids: ids), region: region, logger: logger, on: eventLoop)
+    public func deleteAttackLogs(ids: [UInt64]? = nil, isAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
+        self.deleteAttackLogs(.init(ids: ids, isAll: isAll), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络攻击日志
     @inlinable @discardableResult
-    public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
-        try await self.deleteAttackLogs(.init(ids: ids), region: region, logger: logger, on: eventLoop)
+    public func deleteAttackLogs(ids: [UInt64]? = nil, isAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
+        try await self.deleteAttackLogs(.init(ids: ids, isAll: isAll), region: region, logger: logger, on: eventLoop)
     }
 }

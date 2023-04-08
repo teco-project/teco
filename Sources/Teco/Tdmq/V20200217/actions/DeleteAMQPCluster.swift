@@ -40,26 +40,30 @@ extension Tdmq {
     }
 
     /// 删除AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPClusterResponse> {
-        self.client.execute(action: "DeleteAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPCluster is no longer available.")
     }
 
     /// 删除AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
-        try await self.client.execute(action: "DeleteAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAMQPCluster is no longer available.")
     }
 
     /// 删除AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPClusterResponse> {
-        self.deleteAMQPCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPCluster is no longer available.")
     }
 
     /// 删除AMQP集群
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
-        try await self.deleteAMQPCluster(.init(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPCluster is no longer available.")
     }
 }

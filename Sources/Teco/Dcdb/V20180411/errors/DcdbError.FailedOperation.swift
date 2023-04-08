@@ -124,6 +124,7 @@ extension TCDcdbError {
             FailedOperation(.disassociateSecurityGroupsFailed)
         }
 
+        /// 拉取安全组详情失败。
         public static var getSecurityGroupDetailFailed: FailedOperation {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
@@ -138,6 +139,7 @@ extension TCDcdbError {
             FailedOperation(.msgQueueOperationFailed)
         }
 
+        /// 隔离实例失败。
         public static var ossIsolateInstanceFailed: FailedOperation {
             FailedOperation(.ossIsolateInstanceFailed)
         }
@@ -162,6 +164,7 @@ extension TCDcdbError {
             FailedOperation(.setRuleLocationFailed)
         }
 
+        /// 安全组规则下发失败。
         public static var setSvcLocationFailed: FailedOperation {
             FailedOperation(.setSvcLocationFailed)
         }

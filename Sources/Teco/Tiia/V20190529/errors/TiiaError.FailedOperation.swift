@@ -25,6 +25,7 @@ extension TCTiiaError {
             case imageDeleteFailed = "FailedOperation.ImageDeleteFailed"
             case imageDownloadError = "FailedOperation.ImageDownloadError"
             case imageEntityCountExceed = "FailedOperation.ImageEntityCountExceed"
+            case imageGroupChargeStatusClose = "FailedOperation.ImageGroupChargeStatusClose"
             case imageGroupEmpty = "FailedOperation.ImageGroupEmpty"
             case imageNotFoundInfo = "FailedOperation.ImageNotFoundInfo"
             case imageNotSupported = "FailedOperation.ImageNotSupported"
@@ -112,6 +113,11 @@ extension TCTiiaError {
             FailedOperation(.imageEntityCountExceed)
         }
 
+        /// 停止服务，控制台开关关闭。
+        public static var imageGroupChargeStatusClose: FailedOperation {
+            FailedOperation(.imageGroupChargeStatusClose)
+        }
+
         /// 图库为空。
         public static var imageGroupEmpty: FailedOperation {
             FailedOperation(.imageGroupEmpty)
@@ -167,6 +173,7 @@ extension TCTiiaError {
             FailedOperation(.invokeChargeError)
         }
 
+        /// 图片中没有人体。
         public static var noBodyInPhoto: FailedOperation {
             FailedOperation(.noBodyInPhoto)
         }
@@ -245,6 +252,8 @@ extension TCTiiaError {
                 code = .failedOperation_ImageDownloadError
             case .imageEntityCountExceed:
                 code = .failedOperation_ImageEntityCountExceed
+            case .imageGroupChargeStatusClose:
+                code = .failedOperation_ImageGroupChargeStatusClose
             case .imageGroupEmpty:
                 code = .failedOperation_ImageGroupEmpty
             case .imageNotFoundInfo:

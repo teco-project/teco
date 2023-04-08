@@ -249,6 +249,8 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_AlterTaskState)
     }
 
+    /// 请检查是否有权限。
+    ///
     /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_AuthError: TCLiveError {
         TCLiveError(.failedOperation_AuthError)
@@ -269,36 +271,42 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_CancelSessionNotExist)
     }
 
+    /// 该证书已颁发，不能删除。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CannotBeDeletedIssued: TCLiveError {
         TCLiveError(.failedOperation_CannotBeDeletedIssued)
     }
 
+    /// 免费证书申请1小时内不允许删除。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CannotBeDeletedWithinHour: TCLiveError {
         TCLiveError(.failedOperation_CannotBeDeletedWithinHour)
     }
 
+    /// 证书已存在。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateExists: TCLiveError {
         TCLiveError(.failedOperation_CertificateExists)
     }
 
-    /// ssl接口返回：证书格式错误。
+    /// 证书不符合标准。
     ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateInvalid: TCLiveError {
         TCLiveError(.failedOperation_CertificateInvalid)
     }
 
-    /// ssl接口返回：私钥与证书不匹配。
+    /// 证书与私钥不对应。
     ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateMismatch: TCLiveError {
         TCLiveError(.failedOperation_CertificateMismatch)
     }
 
-    /// 证书在证书中心不存在。
+    /// 证书不存在。
     ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_CertificateNotFound: TCLiveError {
@@ -315,14 +323,17 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_ConfigCDNFailed)
     }
 
+    /// Cos bucket 不存在。
     public static var failedOperation_CosBucketNotExist: TCLiveError {
         TCLiveError(.failedOperation_CosBucketNotExist)
     }
 
+    /// 无权限访问 Cos bucket。
     public static var failedOperation_CosBucketNotPermission: TCLiveError {
         TCLiveError(.failedOperation_CosBucketNotPermission)
     }
 
+    /// Cos 角色不存在，请前往 控制台 -&gt; 功能配置 -&gt; 直播截图&amp;鉴黄 页面进行授权。
     public static var failedOperation_CosRoleNotExists: TCLiveError {
         TCLiveError(.failedOperation_CosRoleNotExists)
     }
@@ -332,26 +343,36 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_DeleteDomainInLockedTime)
     }
 
+    /// 域名已添加。
+    ///
     /// 当前域名已添加，不可重复添加。
     public static var failedOperation_DomainAdded: TCLiveError {
         TCLiveError(.failedOperation_DomainAdded)
     }
 
+    /// 配置域名规则失败。
+    ///
     /// 自动配置域名规则失败，可能由于您的域名是人工维护，请联系售后同学解决。
     public static var failedOperation_DomainGslbFail: TCLiveError {
         TCLiveError(.failedOperation_DomainGslbFail)
     }
 
+    /// 域名需要实名认证。
+    ///
     /// 国内域名需要您通过实名认证。
     public static var failedOperation_DomainNeedRealName: TCLiveError {
         TCLiveError(.failedOperation_DomainNeedRealName)
     }
 
+    /// 域名归属待验证。
+    ///
     /// 请按提示进行域名归属验证。
     public static var failedOperation_DomainNeedVerifyOwner: TCLiveError {
         TCLiveError(.failedOperation_DomainNeedVerifyOwner)
     }
 
+    /// 免费证书数量超出限制。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_ExceedsFreeLimit: TCLiveError {
         TCLiveError(.failedOperation_ExceedsFreeLimit)
@@ -377,12 +398,14 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_HostOutLimit)
     }
 
+    /// 证书状态不正确。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_InvalidCertificateStatusCode: TCLiveError {
         TCLiveError(.failedOperation_InvalidCertificateStatusCode)
     }
 
-    /// ssl接口返回：Type参数错误。
+    /// 参数有误。
     ///
     /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_InvalidParam: TCLiveError {
@@ -404,18 +427,22 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_JiFeiNoEnoughFund)
     }
 
+    /// 当前 CA 机构访问繁忙，请稍后重试。
+    ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
     public static var failedOperation_NetworkError: TCLiveError {
         TCLiveError(.failedOperation_NetworkError)
     }
 
-    /// ssl接口返回：没有项目权限。
+    /// 您没有该项目的操作权限。
     ///
     /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_NoProjectPermission: TCLiveError {
         TCLiveError(.failedOperation_NoProjectPermission)
     }
 
+    /// 尚未通过实名认证。
+    ///
     /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var failedOperation_NoRealNameAuth: TCLiveError {
         TCLiveError(.failedOperation_NoRealNameAuth)
@@ -426,6 +453,8 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_NotFound)
     }
 
+    /// 父域名已添加。
+    ///
     /// 您已添加该域名父域名，与当前域名冲突。
     public static var failedOperation_ParentDomainAdded: TCLiveError {
         TCLiveError(.failedOperation_ParentDomainAdded)
@@ -456,6 +485,8 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_StreamNotExist)
     }
 
+    /// 子域名已添加。
+    ///
     /// 您已添加该域名子域名，与当前域名冲突。
     public static var failedOperation_SubDomainAdded: TCLiveError {
         TCLiveError(.failedOperation_SubDomainAdded)
@@ -828,6 +859,7 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.invalidParameter_DomainTooLong)
     }
 
+    /// 自适应码率子模板gop值必须存在且相等。
     public static var invalidParameter_GopMustEqualAndExists: TCLiveError {
         TCLiveError(.invalidParameter_GopMustEqualAndExists)
     }
@@ -902,6 +934,7 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.invalidParameter_InvalidVodFileName)
     }
 
+    /// 水印参数有误。
     public static var invalidParameter_InvalidWatermark: TCLiveError {
         TCLiveError(.invalidParameter_InvalidWatermark)
     }
@@ -966,6 +999,8 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.limitExceeded_MaximumTask)
     }
 
+    /// 单位时间内接口请求频率达到限制。
+    ///
     /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
     public static var limitExceeded_RateLimitExceeded: TCLiveError {
         TCLiveError(.limitExceeded_RateLimitExceeded)
@@ -1026,11 +1061,15 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.resourceNotFound_DomainNotExist)
     }
 
+    /// 用户被禁用。
+    ///
     /// 请确认您在使用服务过程中是否有违规内容。
     public static var resourceNotFound_ForbidService: TCLiveError {
         TCLiveError(.resourceNotFound_ForbidService)
     }
 
+    /// 用户服务被冻结。
+    ///
     /// 用户长时间未使用，服务已被冻结，请提工单恢复。
     public static var resourceNotFound_FreezeService: TCLiveError {
         TCLiveError(.resourceNotFound_FreezeService)
@@ -1061,6 +1100,8 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.resourceNotFound_TaskId)
     }
 
+    /// 用户主动停服。
+    ///
     /// 用户主动停服，可重新开通。
     public static var resourceNotFound_UserDisableService: TCLiveError {
         TCLiveError(.resourceNotFound_UserDisableService)

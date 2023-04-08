@@ -32,6 +32,7 @@ extension TCTemError {
             case describeConfigDataError = "InternalError.DescribeConfigDataError"
             case describeConfigDataListError = "InternalError.DescribeConfigDataListError"
             case describeIngressError = "InternalError.DescribeIngressError"
+            case describeIngressListError = "InternalError.DescribeIngressListError"
             case describeLogConfigError = "InternalError.DescribeLogConfigError"
             case describeLogConfigListError = "InternalError.DescribeLogConfigListError"
             case describeRunPodListError = "InternalError.DescribeRunPodListError"
@@ -93,6 +94,7 @@ extension TCTemError {
             InternalError(.createEksClusterError)
         }
 
+        /// 创建 LogConfig 错误。
         public static var createLogConfigError: InternalError {
             InternalError(.createLogConfigError)
         }
@@ -112,6 +114,7 @@ extension TCTemError {
             InternalError(.deleteIngressError)
         }
 
+        /// 删除 LogConfig 错误。
         public static var deleteLogConfigError: InternalError {
             InternalError(.deleteLogConfigError)
         }
@@ -141,10 +144,17 @@ extension TCTemError {
             InternalError(.describeIngressError)
         }
 
+        /// 查询 ingress 列表失败。
+        public static var describeIngressListError: InternalError {
+            InternalError(.describeIngressListError)
+        }
+
+        /// 查询 LogConfig 错误。
         public static var describeLogConfigError: InternalError {
             InternalError(.describeLogConfigError)
         }
 
+        /// 查询 LogConfig 列表错误。
         public static var describeLogConfigListError: InternalError {
             InternalError(.describeLogConfigListError)
         }
@@ -174,6 +184,7 @@ extension TCTemError {
             InternalError(.modifyConfigDataError)
         }
 
+        /// 修改 LogConfig 错误。
         public static var modifyLogConfigError: InternalError {
             InternalError(.modifyLogConfigError)
         }
@@ -188,6 +199,7 @@ extension TCTemError {
             InternalError(.stopApplicationError)
         }
 
+        /// 调用标签接口异常。
         public static var tagInterfaceError: InternalError {
             InternalError(.tagInterfaceError)
         }
@@ -230,6 +242,8 @@ extension TCTemError {
                 code = .internalError_DescribeConfigDataListError
             case .describeIngressError:
                 code = .internalError_DescribeIngressError
+            case .describeIngressListError:
+                code = .internalError_DescribeIngressListError
             case .describeLogConfigError:
                 code = .internalError_DescribeLogConfigError
             case .describeLogConfigListError:

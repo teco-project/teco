@@ -32,6 +32,7 @@ extension TCCynosdbError {
             case internalAccount = "InvalidParameterValue.InternalAccount"
             case invalidDBVersion = "InvalidParameterValue.InvalidDBVersion"
             case invalidParameterValueError = "InvalidParameterValue.InvalidParameterValueError"
+            case invalidPasswordValueError = "InvalidParameterValue.InvalidPasswordValueError"
             case invalidRegionIdError = "InvalidParameterValue.InvalidRegionIdError"
             case invalidSpec = "InvalidParameterValue.InvalidSpec"
             case invalidZoneIdError = "InvalidParameterValue.InvalidZoneIdError"
@@ -143,6 +144,11 @@ extension TCCynosdbError {
             InvalidParameterValue(.invalidParameterValueError)
         }
 
+        /// 密码不合规。
+        public static var invalidPasswordValueError: InvalidParameterValue {
+            InvalidParameterValue(.invalidPasswordValueError)
+        }
+
         /// 无效的地域。
         public static var invalidRegionIdError: InvalidParameterValue {
             InvalidParameterValue(.invalidRegionIdError)
@@ -236,6 +242,8 @@ extension TCCynosdbError {
                 code = .invalidParameterValue_InvalidDBVersion
             case .invalidParameterValueError:
                 code = .invalidParameterValue_InvalidParameterValueError
+            case .invalidPasswordValueError:
+                code = .invalidParameterValue_InvalidPasswordValueError
             case .invalidRegionIdError:
                 code = .invalidParameterValue_InvalidRegionIdError
             case .invalidSpec:

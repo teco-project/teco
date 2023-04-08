@@ -81,6 +81,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         case invalidParameterValue_NeedMoreParams = "InvalidParameterValue.NeedMoreParams"
         case invalidParameterValue_TTL = "InvalidParameterValue.TTL"
         case invalidParameterValue_TopicNotFound = "InvalidParameterValue.TopicNotFound"
+        case invalidParameter_InvalidAdminUrl = "InvalidParameter.InvalidAdminUrl"
         case invalidParameter_Partition = "InvalidParameter.Partition"
         case invalidParameter_TenantNotFound = "InvalidParameter.TenantNotFound"
         case invalidParameter_TokenNotFound = "InvalidParameter.TokenNotFound"
@@ -110,6 +111,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         case resourceNotFound_Cluster = "ResourceNotFound.Cluster"
         case resourceNotFound_Environment = "ResourceNotFound.Environment"
         case resourceNotFound_EnvironmentRole = "ResourceNotFound.EnvironmentRole"
+        case resourceNotFound_Instance = "ResourceNotFound.Instance"
         case resourceNotFound_Namespace = "ResourceNotFound.Namespace"
         case resourceNotFound_Role = "ResourceNotFound.Role"
         case resourceNotFound_Subscription = "ResourceNotFound.Subscription"
@@ -290,6 +292,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         TCTdmqError(.failedOperation_NamespaceInUse)
     }
 
+    /// PulsarAdminClient错误。
     public static var failedOperation_PulsarAdminError: TCTdmqError {
         TCTdmqError(.failedOperation_PulsarAdminError)
     }
@@ -449,6 +452,13 @@ public struct TCTdmqError: TCTdmqErrorType {
         TCTdmqError(.invalidParameterValue_TopicNotFound)
     }
 
+    /// 无效的管理端接口地址。
+    public static var invalidParameter_InvalidAdminUrl: TCTdmqError {
+        TCTdmqError(.invalidParameter_InvalidAdminUrl)
+    }
+
+    /// 错误的分区数。
+    ///
     /// 调整分区数到合理的范围内
     public static var invalidParameter_Partition: TCTdmqError {
         TCTdmqError(.invalidParameter_Partition)
@@ -594,6 +604,13 @@ public struct TCTdmqError: TCTdmqErrorType {
     /// 环境角色不存在。
     public static var resourceNotFound_EnvironmentRole: TCTdmqError {
         TCTdmqError(.resourceNotFound_EnvironmentRole)
+    }
+
+    /// 实例不存在。
+    ///
+    /// 实例可能已被删除，或者查询实例的参数不正确。
+    public static var resourceNotFound_Instance: TCTdmqError {
+        TCTdmqError(.resourceNotFound_Instance)
     }
 
     /// 命名空间不存在。

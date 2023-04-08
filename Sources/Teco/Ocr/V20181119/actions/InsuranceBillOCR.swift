@@ -58,6 +58,8 @@ extension Ocr {
     /// 保险单据识别
     ///
     /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    ///
+    /// 默认接口请求频率限制：1次/秒。
     @inlinable
     public func insuranceBillOCR(_ input: InsuranceBillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InsuranceBillOCRResponse> {
         self.client.execute(action: "InsuranceBillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,6 +68,8 @@ extension Ocr {
     /// 保险单据识别
     ///
     /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    ///
+    /// 默认接口请求频率限制：1次/秒。
     @inlinable
     public func insuranceBillOCR(_ input: InsuranceBillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InsuranceBillOCRResponse {
         try await self.client.execute(action: "InsuranceBillOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -74,6 +78,8 @@ extension Ocr {
     /// 保险单据识别
     ///
     /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    ///
+    /// 默认接口请求频率限制：1次/秒。
     @inlinable
     public func insuranceBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InsuranceBillOCRResponse> {
         self.insuranceBillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -82,6 +88,8 @@ extension Ocr {
     /// 保险单据识别
     ///
     /// 本接口支持病案首页、费用清单、结算单、医疗发票四种保险理赔单据的文本识别和结构化输出。
+    ///
+    /// 默认接口请求频率限制：1次/秒。
     @inlinable
     public func insuranceBillOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InsuranceBillOCRResponse {
         try await self.insuranceBillOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

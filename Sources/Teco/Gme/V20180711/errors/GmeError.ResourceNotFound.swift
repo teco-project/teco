@@ -18,6 +18,7 @@ extension TCGmeError {
     public struct ResourceNotFound: TCGmeErrorType {
         enum Code: String {
             case bizidIsNotFound = "ResourceNotFound.BizidIsNotFound"
+            case roomNotFound = "ResourceNotFound.RoomNotFound"
             case taskNotFound = "ResourceNotFound.TaskNotFound"
             case other = "ResourceNotFound"
         }
@@ -49,7 +50,12 @@ extension TCGmeError {
             ResourceNotFound(.bizidIsNotFound)
         }
 
-        /// 任务ID不正确
+        /// 房间不存在
+        public static var roomNotFound: ResourceNotFound {
+            ResourceNotFound(.roomNotFound)
+        }
+
+        /// 任务ID不存在
         public static var taskNotFound: ResourceNotFound {
             ResourceNotFound(.taskNotFound)
         }
@@ -64,6 +70,8 @@ extension TCGmeError {
             switch self.error {
             case .bizidIsNotFound:
                 code = .resourceNotFound_BizidIsNotFound
+            case .roomNotFound:
+                code = .resourceNotFound_RoomNotFound
             case .taskNotFound:
                 code = .resourceNotFound_TaskNotFound
             case .other:

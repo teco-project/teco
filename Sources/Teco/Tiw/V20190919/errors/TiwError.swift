@@ -26,24 +26,32 @@ public struct TCTiwError: TCTiwErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
+        case failedOperation_AlreadyEnabled = "FailedOperation.AlreadyEnabled"
+        case failedOperation_CosBucketInvalid = "FailedOperation.CosBucketInvalid"
         case failedOperation_FileDownloadFail = "FailedOperation.FileDownloadFail"
         case failedOperation_FileFormatError = "FailedOperation.FileFormatError"
         case failedOperation_FileOpenFail = "FailedOperation.FileOpenFail"
         case failedOperation_FileUploadFail = "FailedOperation.FileUploadFail"
+        case failedOperation_GetCredentialFail = "FailedOperation.GetCredentialFail"
         case failedOperation_Record = "FailedOperation.Record"
         case failedOperation_Transcode = "FailedOperation.Transcode"
         case failedOperation_TranscodeServerError = "FailedOperation.TranscodeServerError"
         case failedOperation_WhiteboardPush = "FailedOperation.WhiteboardPush"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameter_ApplicationAlreadyExists = "InvalidParameter.ApplicationAlreadyExists"
         case invalidParameter_BodyParameterTypeUnmatched = "InvalidParameter.BodyParameterTypeUnmatched"
         case invalidParameter_CallbackAddressFormatError = "InvalidParameter.CallbackAddressFormatError"
+        case invalidParameter_CdnDomainNotFound = "InvalidParameter.CdnDomainNotFound"
         case invalidParameter_FileFormatUnsupported = "InvalidParameter.FileFormatUnsupported"
         case invalidParameter_InvalidExtra = "InvalidParameter.InvalidExtra"
+        case invalidParameter_InvalidTaskType = "InvalidParameter.InvalidTaskType"
         case invalidParameter_RecordParameter = "InvalidParameter.RecordParameter"
         case invalidParameter_SdkAppIdNotFound = "InvalidParameter.SdkAppIdNotFound"
         case invalidParameter_TaskNotFound = "InvalidParameter.TaskNotFound"
+        case invalidParameter_TimeFormat = "InvalidParameter.TimeFormat"
         case invalidParameter_TranscodeParameter = "InvalidParameter.TranscodeParameter"
+        case invalidParameter_UnmarshalJSONBodyFail = "InvalidParameter.UnmarshalJSONBodyFail"
         case invalidParameter_UrlFormatError = "InvalidParameter.UrlFormatError"
         case limitExceeded_TaskConcurrency = "LimitExceeded.TaskConcurrency"
         case limitExceeded_TranscodePagesLimitation = "LimitExceeded.TranscodePagesLimitation"
@@ -97,6 +105,16 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.failedOperation)
     }
 
+    /// 服务已经开通，无需再次重试。
+    public static var failedOperation_AlreadyEnabled: TCTiwError {
+        TCTiwError(.failedOperation_AlreadyEnabled)
+    }
+
+    /// COS桶无效，可能不存在或者未授权。
+    public static var failedOperation_CosBucketInvalid: TCTiwError {
+        TCTiwError(.failedOperation_CosBucketInvalid)
+    }
+
     /// 文档下载失败，请检查请求参数中URL是否正确，或者如果您使用其他的文件存储服务，请检查文件存储服务的上传带宽，文档转码服务仅提供1分钟的下载时间，如果下载不成功本次的转码请求将以失败终止。
     public static var failedOperation_FileDownloadFail: TCTiwError {
         TCTiwError(.failedOperation_FileDownloadFail)
@@ -115,6 +133,11 @@ public struct TCTiwError: TCTiwErrorType {
     /// 转码后上传结果失败，请稍候重试。
     public static var failedOperation_FileUploadFail: TCTiwError {
         TCTiwError(.failedOperation_FileUploadFail)
+    }
+
+    /// 获取临时密钥失败。
+    public static var failedOperation_GetCredentialFail: TCTiwError {
+        TCTiwError(.failedOperation_GetCredentialFail)
     }
 
     /// 录制失败，具体请参考错误描述。
@@ -147,6 +170,11 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.invalidParameter)
     }
 
+    /// 创建白板应用时该应用已存在。
+    public static var invalidParameter_ApplicationAlreadyExists: TCTiwError {
+        TCTiwError(.invalidParameter_ApplicationAlreadyExists)
+    }
+
     /// 参数类型不匹配。
     public static var invalidParameter_BodyParameterTypeUnmatched: TCTiwError {
         TCTiwError(.invalidParameter_BodyParameterTypeUnmatched)
@@ -157,6 +185,11 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.invalidParameter_CallbackAddressFormatError)
     }
 
+    /// 未找到当前CDN域名。
+    public static var invalidParameter_CdnDomainNotFound: TCTiwError {
+        TCTiwError(.invalidParameter_CdnDomainNotFound)
+    }
+
     /// 文档后缀名对应的格式不支持。
     public static var invalidParameter_FileFormatUnsupported: TCTiwError {
         TCTiwError(.invalidParameter_FileFormatUnsupported)
@@ -165,6 +198,11 @@ public struct TCTiwError: TCTiwErrorType {
     /// 额外指定的特殊功能不存在。
     public static var invalidParameter_InvalidExtra: TCTiwError {
         TCTiwError(.invalidParameter_InvalidExtra)
+    }
+
+    /// 设置应用配置任务类型不支持。
+    public static var invalidParameter_InvalidTaskType: TCTiwError {
+        TCTiwError(.invalidParameter_InvalidTaskType)
     }
 
     /// 实时录制参数格式不正确。
@@ -182,9 +220,19 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.invalidParameter_TaskNotFound)
     }
 
+    /// 时间格式不合法解析失败。
+    public static var invalidParameter_TimeFormat: TCTiwError {
+        TCTiwError(.invalidParameter_TimeFormat)
+    }
+
     /// 文档转码参数格式不正确。
     public static var invalidParameter_TranscodeParameter: TCTiwError {
         TCTiwError(.invalidParameter_TranscodeParameter)
+    }
+
+    /// 解析JSON失败，可能参数数据类型不匹配。
+    public static var invalidParameter_UnmarshalJSONBodyFail: TCTiwError {
+        TCTiwError(.invalidParameter_UnmarshalJSONBodyFail)
     }
 
     /// 文档下载Url格式错误，请检查请求参数里的Url。

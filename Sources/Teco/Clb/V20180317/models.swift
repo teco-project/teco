@@ -1040,6 +1040,10 @@ extension Clb {
         /// 负载均衡类型标识，1：负载均衡，0：传统型负载均衡。
         public let forward: UInt64
 
+        /// 负载均衡域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
@@ -1048,6 +1052,7 @@ extension Clb {
             case idleReason = "IdleReason"
             case status = "Status"
             case forward = "Forward"
+            case domain = "Domain"
         }
     }
 
@@ -1391,7 +1396,7 @@ extension Clb {
         /// 负载均衡类型标识，1：负载均衡，0：传统型负载均衡。
         public let forward: UInt64?
 
-        /// 负载均衡实例的域名，仅公网传统型负载均衡实例才提供该字段
+        /// 负载均衡实例的域名，仅公网传统型负载均衡实例才提供该字段。逐步下线中，建议用LoadBalancerDomain替代。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
 
@@ -1587,7 +1592,11 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeFlags: [String]?
 
-        public init(loadBalancerId: String? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, forward: UInt64? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, status: UInt64? = nil, createTime: String? = nil, statusTime: String? = nil, projectId: UInt64? = nil, vpcId: String? = nil, openBgp: UInt64? = nil, snat: Bool? = nil, isolation: UInt64? = nil, log: String? = nil, subnetId: String? = nil, tags: [TagInfo]? = nil, secureGroups: [String]? = nil, targetRegionInfo: TargetRegionInfo? = nil, anycastZone: String? = nil, addressIPVersion: String? = nil, numericalVpcId: UInt64? = nil, vipIsp: String? = nil, masterZone: ZoneInfo? = nil, backupZoneSet: [ZoneInfo]? = nil, isolatedTime: String? = nil, expireTime: String? = nil, chargeType: String? = nil, networkAttributes: InternetAccessible? = nil, prepaidAttributes: LBChargePrepaid? = nil, logSetId: String? = nil, logTopicId: String? = nil, addressIPv6: String? = nil, extraInfo: ExtraInfo? = nil, isDDos: Bool? = nil, configId: String? = nil, loadBalancerPassToTarget: Bool? = nil, exclusiveCluster: ExclusiveCluster? = nil, iPv6Mode: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, slaType: String? = nil, isBlock: Bool? = nil, isBlockTime: String? = nil, localBgp: Bool? = nil, clusterTag: String? = nil, mixIpTarget: Bool? = nil, zones: [String]? = nil, nfvInfo: String? = nil, healthLogSetId: String? = nil, healthLogTopicId: String? = nil, clusterIds: [String]? = nil, attributeFlags: [String]? = nil) {
+        /// 负载均衡实例的域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerDomain: String?
+
+        public init(loadBalancerId: String? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, forward: UInt64? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, status: UInt64? = nil, createTime: String? = nil, statusTime: String? = nil, projectId: UInt64? = nil, vpcId: String? = nil, openBgp: UInt64? = nil, snat: Bool? = nil, isolation: UInt64? = nil, log: String? = nil, subnetId: String? = nil, tags: [TagInfo]? = nil, secureGroups: [String]? = nil, targetRegionInfo: TargetRegionInfo? = nil, anycastZone: String? = nil, addressIPVersion: String? = nil, numericalVpcId: UInt64? = nil, vipIsp: String? = nil, masterZone: ZoneInfo? = nil, backupZoneSet: [ZoneInfo]? = nil, isolatedTime: String? = nil, expireTime: String? = nil, chargeType: String? = nil, networkAttributes: InternetAccessible? = nil, prepaidAttributes: LBChargePrepaid? = nil, logSetId: String? = nil, logTopicId: String? = nil, addressIPv6: String? = nil, extraInfo: ExtraInfo? = nil, isDDos: Bool? = nil, configId: String? = nil, loadBalancerPassToTarget: Bool? = nil, exclusiveCluster: ExclusiveCluster? = nil, iPv6Mode: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, slaType: String? = nil, isBlock: Bool? = nil, isBlockTime: String? = nil, localBgp: Bool? = nil, clusterTag: String? = nil, mixIpTarget: Bool? = nil, zones: [String]? = nil, nfvInfo: String? = nil, healthLogSetId: String? = nil, healthLogTopicId: String? = nil, clusterIds: [String]? = nil, attributeFlags: [String]? = nil, loadBalancerDomain: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.loadBalancerType = loadBalancerType
@@ -1641,6 +1650,7 @@ extension Clb {
             self.healthLogTopicId = healthLogTopicId
             self.clusterIds = clusterIds
             self.attributeFlags = attributeFlags
+            self.loadBalancerDomain = loadBalancerDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1697,6 +1707,7 @@ extension Clb {
             case healthLogTopicId = "HealthLogTopicId"
             case clusterIds = "ClusterIds"
             case attributeFlags = "AttributeFlags"
+            case loadBalancerDomain = "LoadBalancerDomain"
         }
     }
 
@@ -1850,6 +1861,10 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sniSwitch: Int64?
 
+        /// 负载均衡实例的域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerDomain: String?
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
@@ -1888,6 +1903,7 @@ extension Clb {
             case slaveZone = "SlaveZone"
             case zones = "Zones"
             case sniSwitch = "SniSwitch"
+            case loadBalancerDomain = "LoadBalancerDomain"
         }
     }
 
@@ -1928,12 +1944,17 @@ extension Clb {
         /// 最大出带宽，单位：Mbps
         public let outBandwidth: Float
 
+        /// CLB域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case loadBalancerName = "LoadBalancerName"
             case region = "Region"
             case vip = "Vip"
             case outBandwidth = "OutBandwidth"
+            case domain = "Domain"
         }
     }
 
@@ -2356,11 +2377,16 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targets: [Backend]?
 
+        /// 后端云函数的信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let functionTargets: [FunctionTarget]?
+
         enum CodingKeys: String, CodingKey {
             case locationId = "LocationId"
             case domain = "Domain"
             case url = "Url"
             case targets = "Targets"
+            case functionTargets = "FunctionTargets"
         }
     }
 

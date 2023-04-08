@@ -1542,6 +1542,7 @@ extension Cdn {
         /// 加速服务状态
         /// rejected：域名审核未通过，域名备案过期/被注销导致
         /// processing：部署中
+        /// closing：关闭中
         /// online：已启动
         /// offline：已关闭
         public let status: String?
@@ -2362,6 +2363,7 @@ extension Cdn {
         /// 加速服务状态
         /// rejected：域名审核未通过，域名备案过期/被注销导致
         /// processing：部署中
+        /// closing：关闭中
         /// online：已启动
         /// offline：已关闭
         public let status: String
@@ -2629,6 +2631,10 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpsBilling: HttpsBilling?
 
+        /// 其他厂商对象存储回源鉴权
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let othersPrivateAccess: OthersPrivateAccess?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case appId = "AppId"
@@ -2695,6 +2701,7 @@ extension Cdn {
             case hwPrivateAccess = "HwPrivateAccess"
             case qnPrivateAccess = "QnPrivateAccess"
             case httpsBilling = "HttpsBilling"
+            case othersPrivateAccess = "OthersPrivateAccess"
         }
     }
 
@@ -3515,6 +3522,92 @@ extension Cdn {
         }
     }
 
+    /// CDN HTTPS请求包。
+    public struct HttpsPackage: TCOutputModel {
+        /// HTTPS请求包 Id
+        public let id: Int64
+
+        /// HTTPS请求包类型
+        public let type: String
+
+        /// HTTPS请求包大小（单位为：次）
+        public let size: Int64
+
+        /// 已消耗HTTPS请求包（单位为：次）
+        public let sizeUsed: Int64
+
+        /// HTTPS请求包状态
+        /// enabled：已启用
+        /// expired：已过期
+        /// disabled：未启用
+        public let status: String
+
+        /// HTTPS请求包发放时间
+        public let createTime: String
+
+        /// HTTPS请求包生效时间
+        public let enableTime: String
+
+        /// HTTPS请求包过期时间
+        public let expireTime: String
+
+        /// HTTPS请求包来源
+        public let channel: String
+
+        /// HTTPS请求包生命周期月数
+        public let lifeTimeMonth: Int64
+
+        /// HTTPS请求包是否支持退费
+        public let refundAvailable: Bool
+
+        /// HTTPS请求包类型id
+        public let configId: Int64
+
+        /// HTTPS请求包实际生效时间
+        public let trueEnableTime: String
+
+        /// HTTPS请求包实际过期时间
+        public let trueExpireTime: String
+
+        /// HTTPS请求包生效区域
+        /// global：全球
+        public let area: String
+
+        /// HTTPS请求包是否续订
+        public let contractExtension: Bool
+
+        /// HTTPS请求包是否支持续订
+        public let extensionAvailable: Bool
+
+        /// HTTPS请求包当前续订模式
+        /// 0：未续订
+        /// 1：到期续订
+        /// 2：用完续订
+        /// 3：到期或用完续订
+        public let extensionMode: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case type = "Type"
+            case size = "Size"
+            case sizeUsed = "SizeUsed"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case enableTime = "EnableTime"
+            case expireTime = "ExpireTime"
+            case channel = "Channel"
+            case lifeTimeMonth = "LifeTimeMonth"
+            case refundAvailable = "RefundAvailable"
+            case configId = "ConfigId"
+            case trueEnableTime = "TrueEnableTime"
+            case trueExpireTime = "TrueExpireTime"
+            case area = "Area"
+            case contractExtension = "ContractExtension"
+            case extensionAvailable = "ExtensionAvailable"
+            case extensionMode = "ExtensionMode"
+        }
+    }
+
     /// 华为云对象存储回源鉴权
     public struct HwPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关 on/off
@@ -3596,7 +3689,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [IpFilterPathRule]?
 
-        /// IP 黑白名单验证失败时返回的 code（即将下线）
+        /// IP 黑白名单验证失败时返回的 code <br><font color=red>已下线，参数失效，不支持自定义状态码，固定返回514</font>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
 
@@ -3719,10 +3812,14 @@ extension Cdn {
     }
 
     /// Ipv6启用配置，不可更改
-    public struct Ipv6: TCOutputModel {
+    public struct Ipv6: TCInputModel, TCOutputModel {
         /// 域名是否开启ipv6功能，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
@@ -4408,6 +4505,44 @@ extension Cdn {
         public let region: String?
 
         /// Bucketname
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
+            self.switch = `switch`
+            self.accessKey = accessKey
+            self.secretKey = secretKey
+            self.region = region
+            self.bucket = bucket
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case accessKey = "AccessKey"
+            case secretKey = "SecretKey"
+            case region = "Region"
+            case bucket = "Bucket"
+        }
+    }
+
+    /// 其他厂商对象存储回源鉴权
+    public struct OthersPrivateAccess: TCInputModel, TCOutputModel {
+        /// 开关， on/off。
+        public let `switch`: String
+
+        /// 访问ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessKey: String?
+
+        /// 密钥。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let secretKey: String?
+
+        /// 地域。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 存储桶名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucket: String?
 

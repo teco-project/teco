@@ -17,7 +17,20 @@
 extension Lcic {
     /// CreateSupervisor请求参数结构体
     public struct CreateSupervisorRequest: TCRequestModel {
-        public init() {
+        /// 应用ID。
+        public let sdkAppId: UInt64
+
+        /// 用户ID列表。
+        public let users: [String]
+
+        public init(sdkAppId: UInt64, users: [String]) {
+            self.sdkAppId = sdkAppId
+            self.users = users
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SdkAppId"
+            case users = "Users"
         }
     }
 
@@ -45,13 +58,13 @@ extension Lcic {
 
     /// 创建巡课
     @inlinable @discardableResult
-    public func createSupervisor(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
-        self.createSupervisor(.init(), region: region, logger: logger, on: eventLoop)
+    public func createSupervisor(sdkAppId: UInt64, users: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
+        self.createSupervisor(.init(sdkAppId: sdkAppId, users: users), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建巡课
     @inlinable @discardableResult
-    public func createSupervisor(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
-        try await self.createSupervisor(.init(), region: region, logger: logger, on: eventLoop)
+    public func createSupervisor(sdkAppId: UInt64, users: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
+        try await self.createSupervisor(.init(sdkAppId: sdkAppId, users: users), region: region, logger: logger, on: eventLoop)
     }
 }

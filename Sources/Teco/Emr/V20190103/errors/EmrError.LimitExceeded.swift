@@ -18,6 +18,7 @@ extension TCEmrError {
     public struct LimitExceeded: TCEmrErrorType {
         enum Code: String {
             case bootstrapActionsNumLimitExceeded = "LimitExceeded.BootstrapActionsNumLimitExceeded"
+            case securityGroupNumLimitExceeded = "LimitExceeded.SecurityGroupNumLimitExceeded"
         }
 
         private let error: Code
@@ -47,11 +48,18 @@ extension TCEmrError {
             LimitExceeded(.bootstrapActionsNumLimitExceeded)
         }
 
+        /// 安全组数量超过限制。
+        public static var securityGroupNumLimitExceeded: LimitExceeded {
+            LimitExceeded(.securityGroupNumLimitExceeded)
+        }
+
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
             case .bootstrapActionsNumLimitExceeded:
                 code = .limitExceeded_BootstrapActionsNumLimitExceeded
+            case .securityGroupNumLimitExceeded:
+                code = .limitExceeded_SecurityGroupNumLimitExceeded
             }
             return TCEmrError(code, context: self.context)
         }

@@ -34,6 +34,7 @@ extension TCSmsError {
             case sdkAppIdNotExist = "InvalidParameterValue.SdkAppIdNotExist"
             case signAlreadyPassedCheck = "InvalidParameterValue.SignAlreadyPassedCheck"
             case signExistAndUnapproved = "InvalidParameterValue.SignExistAndUnapproved"
+            case signNameLengthTooLong = "InvalidParameterValue.SignNameLengthTooLong"
             case templateParameterFormatError = "InvalidParameterValue.TemplateParameterFormatError"
             case templateParameterLengthLimit = "InvalidParameterValue.TemplateParameterLengthLimit"
             case templateWithDirtyWords = "InvalidParameterValue.TemplateWithDirtyWords"
@@ -81,7 +82,7 @@ extension TCSmsError {
             InvalidParameterValue(.imageInvalid)
         }
 
-        /// 手机号格式错误，请参考 [1016错误详解](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1016.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)。
+        /// 手机号格式错误。
         public static var incorrectPhoneNumber: InvalidParameterValue {
             InvalidParameterValue(.incorrectPhoneNumber)
         }
@@ -148,6 +149,11 @@ extension TCSmsError {
             InvalidParameterValue(.signExistAndUnapproved)
         }
 
+        /// 签名内容长度过长。
+        public static var signNameLengthTooLong: InvalidParameterValue {
+            InvalidParameterValue(.signNameLengthTooLong)
+        }
+
         /// 验证码模板参数格式错误，验证码类模板，模板变量只能传入0 - 6位（包括6位）纯数字。
         public static var templateParameterFormatError: InvalidParameterValue {
             InvalidParameterValue(.templateParameterFormatError)
@@ -200,6 +206,8 @@ extension TCSmsError {
                 code = .invalidParameterValue_SignAlreadyPassedCheck
             case .signExistAndUnapproved:
                 code = .invalidParameterValue_SignExistAndUnapproved
+            case .signNameLengthTooLong:
+                code = .invalidParameterValue_SignNameLengthTooLong
             case .templateParameterFormatError:
                 code = .invalidParameterValue_TemplateParameterFormatError
             case .templateParameterLengthLimit:

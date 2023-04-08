@@ -38,7 +38,13 @@ extension Tcss {
         /// 自选排除或扫描的地址
         public let scanPath: [String]?
 
-        public init(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil) {
+        /// 扫描路径模式：
+        /// SCAN_PATH_ALL：全部路径
+        /// SCAN_PATH_DEFAULT：默认路径
+        /// SCAN_PATH_USER_DEFINE：用户自定义路径
+        public let scanPathMode: String?
+
+        public init(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil) {
             self.scanPathAll = scanPathAll
             self.scanRangeType = scanRangeType
             self.scanRangeAll = scanRangeAll
@@ -46,6 +52,7 @@ extension Tcss {
             self.scanPathType = scanPathType
             self.scanIds = scanIds
             self.scanPath = scanPath
+            self.scanPathMode = scanPathMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +63,7 @@ extension Tcss {
             case scanPathType = "ScanPathType"
             case scanIds = "ScanIds"
             case scanPath = "ScanPath"
+            case scanPathMode = "ScanPathMode"
         }
     }
 
@@ -87,13 +95,13 @@ extension Tcss {
 
     /// 运行时文件查杀一键扫描
     @inlinable
-    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanTaskResponse> {
-        self.createVirusScanTask(.init(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanTaskResponse> {
+        self.createVirusScanTask(.init(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀一键扫描
     @inlinable
-    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
-        try await self.createVirusScanTask(.init(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+    public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, scanPathMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
+        try await self.createVirusScanTask(.init(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath, scanPathMode: scanPathMode), region: region, logger: logger, on: eventLoop)
     }
 }

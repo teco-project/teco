@@ -138,6 +138,7 @@ extension TCMariadbError {
             InvalidParameterValue(.superUserForbidden)
         }
 
+        /// 当前部署方式不允许设置此同步模式。
         public static var syncModeNotAllowed: InvalidParameterValue {
             InvalidParameterValue(.syncModeNotAllowed)
         }

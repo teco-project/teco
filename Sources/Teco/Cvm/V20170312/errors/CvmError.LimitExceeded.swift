@@ -30,6 +30,7 @@ extension TCCvmError {
             case instanceTypeBandwidth = "LimitExceeded.InstanceTypeBandwidth"
             case launchTemplateQuota = "LimitExceeded.LaunchTemplateQuota"
             case launchTemplateVersionQuota = "LimitExceeded.LaunchTemplateVersionQuota"
+            case preheatImageSnapshotOutOfQuota = "LimitExceeded.PreheatImageSnapshotOutOfQuota"
             case prepayQuota = "LimitExceeded.PrepayQuota"
             case singleUSGQuota = "LimitExceeded.SingleUSGQuota"
             case spotQuota = "LimitExceeded.SpotQuota"
@@ -128,6 +129,11 @@ extension TCCvmError {
             LimitExceeded(.launchTemplateVersionQuota)
         }
 
+        /// 您在该可用区的预热额度已达上限，建议取消不再使用的快照预热
+        public static var preheatImageSnapshotOutOfQuota: LimitExceeded {
+            LimitExceeded(.preheatImageSnapshotOutOfQuota)
+        }
+
         /// 预付费实例已购买数量已达到最大配额，请提升配额后重试。
         public static var prepayQuota: LimitExceeded {
             LimitExceeded(.prepayQuota)
@@ -143,6 +149,7 @@ extension TCCvmError {
             LimitExceeded(.spotQuota)
         }
 
+        /// 标签绑定的资源数量已达到配额限制。
         public static var tagResourceQuota: LimitExceeded {
             LimitExceeded(.tagResourceQuota)
         }
@@ -191,6 +198,8 @@ extension TCCvmError {
                 code = .limitExceeded_LaunchTemplateQuota
             case .launchTemplateVersionQuota:
                 code = .limitExceeded_LaunchTemplateVersionQuota
+            case .preheatImageSnapshotOutOfQuota:
+                code = .limitExceeded_PreheatImageSnapshotOutOfQuota
             case .prepayQuota:
                 code = .limitExceeded_PrepayQuota
             case .singleUSGQuota:

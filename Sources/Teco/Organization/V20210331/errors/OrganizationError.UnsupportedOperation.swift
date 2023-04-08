@@ -20,6 +20,8 @@ extension TCOrganizationError {
             case addDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
             case addDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
             case createMemberNotAllowDelete = "UnsupportedOperation.CreateMemberNotAllowDelete"
+            case existedAgent = "UnsupportedOperation.ExistedAgent"
+            case existedClient = "UnsupportedOperation.ExistedClient"
             case inconsistentUserTypes = "UnsupportedOperation.InconsistentUserTypes"
             case managementSystemError = "UnsupportedOperation.ManagementSystemError"
             case memberAccountArrears = "UnsupportedOperation.MemberAccountArrears"
@@ -28,6 +30,7 @@ extension TCOrganizationError {
             case memberExistOperateProcessNotAllowDelete = "UnsupportedOperation.MemberExistOperateProcessNotAllowDelete"
             case memberExistServiceNotAllowDelete = "UnsupportedOperation.MemberExistServiceNotAllowDelete"
             case memberIsAgent = "UnsupportedOperation.MemberIsAgent"
+            case memberNoPayment = "UnsupportedOperation.MemberNoPayment"
             case orderInProgressExisted = "UnsupportedOperation.OrderInProgressExisted"
             case ownerDiscountInheritExisted = "UnsupportedOperation.OwnerDiscountInheritExisted"
             case payerArrearsAndNoCreditAccount = "UnsupportedOperation.PayerArrearsAndNoCreditAccount"
@@ -72,6 +75,16 @@ extension TCOrganizationError {
             UnsupportedOperation(.createMemberNotAllowDelete)
         }
 
+        /// 成员或者代付者存在经销商。
+        public static var existedAgent: UnsupportedOperation {
+            UnsupportedOperation(.existedAgent)
+        }
+
+        /// 成员或者代付者存在经销商子客。
+        public static var existedClient: UnsupportedOperation {
+            UnsupportedOperation(.existedClient)
+        }
+
         /// 用户类型不一致。
         public static var inconsistentUserTypes: UnsupportedOperation {
             UnsupportedOperation(.inconsistentUserTypes)
@@ -97,6 +110,7 @@ extension TCOrganizationError {
             UnsupportedOperation(.memberExistAccountLevelDiscountInherit)
         }
 
+        /// 成员设置了操作审批,不允许删除。
         public static var memberExistOperateProcessNotAllowDelete: UnsupportedOperation {
             UnsupportedOperation(.memberExistOperateProcessNotAllowDelete)
         }
@@ -109,6 +123,11 @@ extension TCOrganizationError {
         /// 成员是代理商或代客。
         public static var memberIsAgent: UnsupportedOperation {
             UnsupportedOperation(.memberIsAgent)
+        }
+
+        /// 成员没有绑卡。
+        public static var memberNoPayment: UnsupportedOperation {
+            UnsupportedOperation(.memberNoPayment)
         }
 
         /// 存在在途订单。
@@ -145,6 +164,10 @@ extension TCOrganizationError {
                 code = .unsupportedOperation_AddDiscountInheritNotAllow
             case .createMemberNotAllowDelete:
                 code = .unsupportedOperation_CreateMemberNotAllowDelete
+            case .existedAgent:
+                code = .unsupportedOperation_ExistedAgent
+            case .existedClient:
+                code = .unsupportedOperation_ExistedClient
             case .inconsistentUserTypes:
                 code = .unsupportedOperation_InconsistentUserTypes
             case .managementSystemError:
@@ -161,6 +184,8 @@ extension TCOrganizationError {
                 code = .unsupportedOperation_MemberExistServiceNotAllowDelete
             case .memberIsAgent:
                 code = .unsupportedOperation_MemberIsAgent
+            case .memberNoPayment:
+                code = .unsupportedOperation_MemberNoPayment
             case .orderInProgressExisted:
                 code = .unsupportedOperation_OrderInProgressExisted
             case .ownerDiscountInheritExisted:

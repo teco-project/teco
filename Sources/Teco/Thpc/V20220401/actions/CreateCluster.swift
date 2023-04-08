@@ -35,7 +35,7 @@ extension Thpc {
         /// 调度器类型。默认取值：SLURM。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
         public let schedulerType: String?
 
-        /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。
+        /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
         public let imageId: String?
 
         /// 私有网络相关信息配置。
@@ -142,6 +142,8 @@ extension Thpc {
     /// 创建集群
     ///
     /// 本接口 (CreateCluster) 用于创建并启动集群。
+    ///
+    /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
     public func createCluster(_ input: CreateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
         self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -150,6 +152,8 @@ extension Thpc {
     /// 创建集群
     ///
     /// 本接口 (CreateCluster) 用于创建并启动集群。
+    ///
+    /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
     public func createCluster(_ input: CreateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -158,6 +162,8 @@ extension Thpc {
     /// 创建集群
     ///
     /// 本接口 (CreateCluster) 用于创建并启动集群。
+    ///
+    /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
     public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
         self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType), region: region, logger: logger, on: eventLoop)
@@ -166,6 +172,8 @@ extension Thpc {
     /// 创建集群
     ///
     /// 本接口 (CreateCluster) 用于创建并启动集群。
+    ///
+    /// * 本接口为异步接口， 当创建集群请求下发成功后会返回一个集群`ID`和一个`RequestId`，此时创建集群操作并未立即完成。在此期间集群的状态将会处于“PENDING”或者“INITING”，集群创建结果可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/1527/72100)  接口查询，如果集群状态(ClusterStatus)变为“RUNNING(运行中)”，则代表集群创建成功，“ INIT_FAILED”代表集群创建失败。
     @inlinable
     public func createCluster(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
         try await self.createCluster(.init(placement: placement, managerNode: managerNode, managerNodeCount: managerNodeCount, computeNode: computeNode, computeNodeCount: computeNodeCount, schedulerType: schedulerType, imageId: imageId, virtualPrivateCloud: virtualPrivateCloud, loginSettings: loginSettings, securityGroupIds: securityGroupIds, clientToken: clientToken, dryRun: dryRun, accountType: accountType, clusterName: clusterName, storageOption: storageOption, loginNode: loginNode, loginNodeCount: loginNodeCount, tags: tags, autoScalingType: autoScalingType), region: region, logger: logger, on: eventLoop)

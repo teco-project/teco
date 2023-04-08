@@ -45,26 +45,30 @@ extension Tdmq {
     }
 
     /// 删除Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPVHostResponse> {
-        self.client.execute(action: "DeleteAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPVHost is no longer available.")
     }
 
     /// 删除Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
-        try await self.client.execute(action: "DeleteAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DeleteAMQPVHost is no longer available.")
     }
 
     /// 删除Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPVHost(clusterId: String, vHostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPVHostResponse> {
-        self.deleteAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPVHost is no longer available.")
     }
 
     /// 删除Vhost
+    @available(*, unavailable, message: "产品下线了，对应的接口也要下线。")
     @inlinable @discardableResult
     public func deleteAMQPVHost(clusterId: String, vHostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
-        try await self.deleteAMQPVHost(.init(clusterId: clusterId, vHostId: vHostId), region: region, logger: logger, on: eventLoop)
+        fatalError("DeleteAMQPVHost is no longer available.")
     }
 }

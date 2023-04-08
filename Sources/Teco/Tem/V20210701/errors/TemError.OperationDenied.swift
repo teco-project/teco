@@ -43,10 +43,13 @@ extension TCTemError {
             self.context = context
         }
 
+        /// 账户余额不足。
         public static var balanceNotEnough: OperationDenied {
             OperationDenied(.balanceNotEnough)
         }
 
+        /// 账号欠费状态下不支持该操作，请冲正后重试。
+        ///
         /// 账户欠费，请充值。
         public static var resourceIsolated: OperationDenied {
             OperationDenied(.resourceIsolated)

@@ -52,11 +52,15 @@ extension TCSesError {
             LimitExceeded(.exceedReceiverLimit)
         }
 
+        /// 该收件人列表包含的收件人地址总量超过限制。
+        ///
         /// 该收件人列表包含的收件人地址总量超过限制。请查询一下该收件人列表已存在的地址总数，加上本次请求的地址数量是否超过地址总量限制。总量限制请参考接口描述。
         public static var receiverDetailCountLimit: LimitExceeded {
             LimitExceeded(.receiverDetailCountLimit)
         }
 
+        /// 请求的收件人地址数量超过限制。
+        ///
         /// 请求的收件人地址数量超过限制。参考接口文档，调整请求的收件人地址的数量。
         public static var receiverDetailRequestLimit: LimitExceeded {
             LimitExceeded(.receiverDetailRequestLimit)

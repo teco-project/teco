@@ -42,6 +42,8 @@ extension TCScfError {
             self.context = context
         }
 
+        /// 账号已被隔离。
+        ///
         /// 查询账号是否因欠费或其他原因被隔离。
         public static var accountIsolate: OperationDenied {
             OperationDenied(.accountIsolate)

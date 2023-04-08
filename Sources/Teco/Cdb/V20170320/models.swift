@@ -111,6 +111,30 @@ extension Cdb {
         }
     }
 
+    /// 审计日志聚合条件
+    public struct AggregationCondition: TCInputModel {
+        /// 聚合字段。目前仅支持host-源IP、user-用户名、dbName-数据库名、sqlType-sql类型。
+        public let aggregationField: String
+
+        /// 偏移量。
+        public let offset: UInt64?
+
+        /// 该聚合字段下要返回聚合桶的数量，最大100。
+        public let limit: UInt64?
+
+        public init(aggregationField: String, offset: UInt64? = nil, limit: UInt64? = nil) {
+            self.aggregationField = aggregationField
+            self.offset = offset
+            self.limit = limit
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case aggregationField = "AggregationField"
+            case offset = "Offset"
+            case limit = "Limit"
+        }
+    }
+
     /// 审计规则过滤条件
     public struct AuditFilter: TCInputModel, TCOutputModel {
         /// 过滤条件参数名称。目前支持：
@@ -139,6 +163,22 @@ extension Cdb {
             case type = "Type"
             case compare = "Compare"
             case value = "Value"
+        }
+    }
+
+    /// 审计日志分析结果
+    public struct AuditLogAggregationResult: TCOutputModel {
+        /// 聚合维度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aggregationField: String?
+
+        /// 聚合桶的结果集
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let buckets: [Bucket]?
+
+        enum CodingKeys: String, CodingKey {
+            case aggregationField = "AggregationField"
+            case buckets = "Buckets"
         }
     }
 
@@ -213,7 +253,25 @@ extension Cdb {
         /// SQL 语句。支持传递多个sql语句。
         public let sqls: [String]?
 
-        public init(host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil) {
+        /// 影响行数，格式为M-N，例如：10-200
+        public let affectRowsSection: String?
+
+        /// 返回行数，格式为M-N，例如：10-200
+        public let sentRowsSection: String?
+
+        /// 执行时间，格式为M-N，例如：10-200
+        public let execTimeSection: String?
+
+        /// 锁等待时间，格式为M-N，例如：10-200
+        public let lockWaitTimeSection: String?
+
+        /// IO等待时间，格式为M-N，例如：10-200
+        public let ioWaitTimeSection: String?
+
+        /// 事务持续时间，格式为M-N，例如：10-200
+        public let transactionLivingTimeSection: String?
+
+        public init(host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil, affectRowsSection: String? = nil, sentRowsSection: String? = nil, execTimeSection: String? = nil, lockWaitTimeSection: String? = nil, ioWaitTimeSection: String? = nil, transactionLivingTimeSection: String? = nil) {
             self.host = host
             self.user = user
             self.dbName = dbName
@@ -225,6 +283,12 @@ extension Cdb {
             self.affectRows = affectRows
             self.sqlTypes = sqlTypes
             self.sqls = sqls
+            self.affectRowsSection = affectRowsSection
+            self.sentRowsSection = sentRowsSection
+            self.execTimeSection = execTimeSection
+            self.lockWaitTimeSection = lockWaitTimeSection
+            self.ioWaitTimeSection = ioWaitTimeSection
+            self.transactionLivingTimeSection = transactionLivingTimeSection
         }
 
         enum CodingKeys: String, CodingKey {
@@ -239,6 +303,12 @@ extension Cdb {
             case affectRows = "AffectRows"
             case sqlTypes = "SqlTypes"
             case sqls = "Sqls"
+            case affectRowsSection = "AffectRowsSection"
+            case sentRowsSection = "SentRowsSection"
+            case execTimeSection = "ExecTimeSection"
+            case lockWaitTimeSection = "LockWaitTimeSection"
+            case ioWaitTimeSection = "IoWaitTimeSection"
+            case transactionLivingTimeSection = "TransactionLivingTimeSection"
         }
     }
 
@@ -627,6 +697,21 @@ extension Cdb {
         }
     }
 
+    /// 聚合桶的信息
+    public struct Bucket: TCOutputModel {
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// key值出现的次数。
+        public let count: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case count = "Count"
+        }
+    }
+
     /// 地域售卖配置
     public struct CdbRegionSellConf: TCOutputModel {
         /// 地域中文名称
@@ -856,6 +941,12 @@ extension Cdb {
         /// 任务状态，包括以下状态：initial,running,wait_complete,success,failed
         public let taskStatus: String
 
+        /// 克隆实例所在地域Id
+        public let newRegionId: Int64
+
+        /// 源实例所在地域Id
+        public let srcRegionId: Int64
+
         enum CodingKeys: String, CodingKey {
             case srcInstanceId = "SrcInstanceId"
             case dstInstanceId = "DstInstanceId"
@@ -865,6 +956,8 @@ extension Cdb {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case taskStatus = "TaskStatus"
+            case newRegionId = "NewRegionId"
+            case srcRegionId = "SrcRegionId"
         }
     }
 
@@ -898,7 +991,7 @@ extension Cdb {
     }
 
     /// 通用时间窗
-    public struct CommonTimeWindow: TCInputModel {
+    public struct CommonTimeWindow: TCInputModel, TCOutputModel {
         /// 周一的时间窗，格式如： 02:00-06:00
         public let monday: String?
 
@@ -1367,7 +1460,7 @@ extension Cdb {
         /// 内存容量，单位为 MB
         public let memory: Int64
 
-        /// 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
+        /// 实例状态，可能的返回值：0-创建中；1-运行中；4-正在进行隔离操作；5-已隔离
         public let status: Int64
 
         /// 私有网络 ID，例如：51102
@@ -1500,6 +1593,9 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxDelayTime: Int64?
 
+        /// 实例磁盘类型，仅云盘版实例才返回该值。可能的值为 CLOUD_SSD：SSD云硬盘， CLOUD_HSSD：增强型SSD云硬盘
+        public let diskType: String
+
         enum CodingKeys: String, CodingKey {
             case wanStatus = "WanStatus"
             case zone = "Zone"
@@ -1546,6 +1642,7 @@ extension Cdb {
             case tagList = "TagList"
             case engineType = "EngineType"
             case maxDelayTime = "MaxDelayTime"
+            case diskType = "DiskType"
         }
     }
 

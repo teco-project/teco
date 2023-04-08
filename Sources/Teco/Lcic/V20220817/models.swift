@@ -15,6 +15,46 @@
 // DO NOT EDIT.
 
 extension Lcic {
+    /// 房间问答问题详情
+    public struct AnswerInfo: TCOutputModel {
+        /// 用户名
+        public let name: String?
+
+        /// 答案（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        public let answer: UInt64?
+
+        /// 答题用时
+        public let costTime: UInt64?
+
+        /// 用户ID
+        public let userId: String?
+
+        /// 答案是否正确（1正确0错误）
+        public let isCorrect: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case answer = "Answer"
+            case costTime = "CostTime"
+            case userId = "UserId"
+            case isCorrect = "IsCorrect"
+        }
+    }
+
+    /// 每个选项答题人数统计
+    public struct AnswerStat: TCOutputModel {
+        /// 选项（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        public let answer: Int64?
+
+        /// 答题人数
+        public let count: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case answer = "Answer"
+            case count = "Count"
+        }
+    }
+
     /// 应用配置信息
     public struct AppConfig: TCOutputModel {
     }
@@ -53,6 +93,17 @@ extension Lcic {
         }
     }
 
+    /// 背景图片配置
+    public struct BackgroundPictureConfig: TCOutputModel {
+        /// 背景图片的url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+        }
+    }
+
     /// 批量注册用户信息
     public struct BatchUserInfo: TCOutputModel {
         /// 低代码互动课堂的SdkAppId。
@@ -76,23 +127,15 @@ extension Lcic {
     /// 用户注册请求信息
     public struct BatchUserRequest: TCInputModel {
         /// 低代码互动课堂的SdkAppId。
-        ///
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sdkAppId: UInt64?
 
         /// 用户名称。
-        ///
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
 
         /// 用户在客户系统的Id，需要在同一应用下唯一。
-        ///
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originId: String?
 
         /// 用户头像。
-        ///
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let avatar: String?
 
         public init(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil) {
@@ -107,6 +150,170 @@ extension Lcic {
             case name = "Name"
             case originId = "OriginId"
             case avatar = "Avatar"
+        }
+    }
+
+    /// 文档信息
+    public struct DocumentInfo: TCOutputModel {
+        /// 文档Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let documentId: String?
+
+        /// 文档原址url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let documentUrl: String?
+
+        /// 文档名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let documentName: String?
+
+        /// 文档所有者UserId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let owner: String?
+
+        /// 应用Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkAppId: UInt64?
+
+        /// 文档权限，0：私有课件 1：公共课件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permission: UInt64?
+
+        /// 转码结果，无需转码为空，转码成功为结果url，转码失败为错误码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transcodeResult: String?
+
+        /// 转码类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transcodeType: UInt64?
+
+        /// 转码进度， 0 - 100 表示（0% - 100%）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transcodeProgress: UInt64?
+
+        /// 转码状态，0为无需转码，1为正在转码，2为转码失败，3为转码成功
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transcodeState: UInt64?
+
+        /// 转码失败后的错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transcodeInfo: String?
+
+        /// 文档类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let documentType: String?
+
+        /// 文档大小，单位：字节
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let documentSize: UInt64?
+
+        /// 更新的UNIX时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case documentId = "DocumentId"
+            case documentUrl = "DocumentUrl"
+            case documentName = "DocumentName"
+            case owner = "Owner"
+            case sdkAppId = "SdkAppId"
+            case permission = "Permission"
+            case transcodeResult = "TranscodeResult"
+            case transcodeType = "TranscodeType"
+            case transcodeProgress = "TranscodeProgress"
+            case transcodeState = "TranscodeState"
+            case transcodeInfo = "TranscodeInfo"
+            case documentType = "DocumentType"
+            case documentSize = "DocumentSize"
+            case updateTime = "UpdateTime"
+        }
+    }
+
+    /// 房间事件对应的信息。
+    public struct EventDataInfo: TCOutputModel {
+        /// 事件发生的房间号。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roomId: UInt64?
+
+        /// 事件发生的用户。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case roomId = "RoomId"
+            case userId = "UserId"
+        }
+    }
+
+    /// 房间事件信息。
+    public struct EventInfo: TCOutputModel {
+        /// 事件发生的秒级unix时间戳。
+        public let timestamp: UInt64?
+
+        /// 事件类型,有以下值:
+        /// RoomStart:房间开始 RoomEnd:房间结束 MemberJoin:成员加入 MemberQuit:成员退出 RecordFinish:录制结束
+        public let eventType: String?
+
+        /// 事件详细内容，包含房间号,成员类型事件包含用户Id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventData: EventDataInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case eventType = "EventType"
+            case eventData = "EventData"
+        }
+    }
+
+    /// 批量创建群组基础信息
+    public struct GroupBaseInfo: TCInputModel {
+        /// 待创建群组名
+        public let groupName: String?
+
+        /// 群组主讲人ID
+        public let teacherId: String?
+
+        public init(groupName: String, teacherId: String? = nil) {
+            self.groupName = groupName
+            self.teacherId = teacherId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case groupName = "GroupName"
+            case teacherId = "TeacherId"
+        }
+    }
+
+    /// 获取群组列表返回的群组信息
+    public struct GroupInfo: TCOutputModel {
+        /// 群组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: String?
+
+        /// 群组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupName: String?
+
+        /// 群组主讲人ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let teacherId: String?
+
+        /// 群组类型
+        /// 0-基础群组
+        /// 1-组合群组，若为1时会返回子群组ID列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupType: UInt64?
+
+        /// 子群组ID列表，如有。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subGroupIds: String?
+
+        enum CodingKeys: String, CodingKey {
+            case groupId = "GroupId"
+            case groupName = "GroupName"
+            case teacherId = "TeacherId"
+            case groupType = "GroupType"
+            case subGroupIds = "SubGroupIds"
         }
     }
 
@@ -145,6 +352,21 @@ extension Lcic {
         /// 奖励次数。
         public let rewords: UInt64
 
+        /// 用户IP。
+        public let ipAddress: String?
+
+        /// 用户位置信息。
+        public let location: String?
+
+        /// 用户设备平台信息。0:unknown  1:windows  2:mac  3:android  4:ios  5:web   6:h5   7:miniprogram （小程序）
+        public let device: Int64?
+
+        /// 每个成员上麦次数。
+        public let perMemberMicCount: Int64?
+
+        /// 每个成员发送消息数量。
+        public let perMemberMessageCount: Int64?
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userName = "UserName"
@@ -157,10 +379,251 @@ extension Lcic {
             case firstJoinTimestamp = "FirstJoinTimestamp"
             case lastQuitTimestamp = "LastQuitTimestamp"
             case rewords = "Rewords"
+            case ipAddress = "IPAddress"
+            case location = "Location"
+            case device = "Device"
+            case perMemberMicCount = "PerMemberMicCount"
+            case perMemberMessageCount = "PerMemberMessageCount"
+        }
+    }
+
+    /// 单条消息体内容
+    public struct MessageItem: TCOutputModel {
+        /// 消息类型。0表示文本消息，1表示图片消息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageType: Int64?
+
+        /// 文本消息内容。message type为0时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let textMessage: String?
+
+        /// 图片消息URL。 message type为1时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageMessage: String?
+
+        enum CodingKeys: String, CodingKey {
+            case messageType = "MessageType"
+            case textMessage = "TextMessage"
+            case imageMessage = "ImageMessage"
+        }
+    }
+
+    /// 历史消息列表
+    public struct MessageList: TCOutputModel {
+        /// 消息时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: Int64?
+
+        /// 消息发送者
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fromAccount: String?
+
+        /// 消息序列号，当前课堂内唯一且单调递增
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let seq: Int64?
+
+        /// 历史消息列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageBody: [MessageItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case fromAccount = "FromAccount"
+            case seq = "Seq"
+            case messageBody = "MessageBody"
+        }
+    }
+
+    /// 房间问答答案详情
+    public struct QuestionInfo: TCOutputModel {
+        /// 问题ID
+        public let questionId: String?
+
+        /// 问题内容
+        public let questionContent: String?
+
+        /// 倒计时答题设置的秒数（0 表示不计时）
+        public let duration: UInt64?
+
+        /// 正确答案（按照位表示是否选择，如0x1表示选择A，0x11表示选择AB）
+        public let correctAnswer: Int64?
+
+        /// 每个选项答题人数统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let answerStats: [AnswerStat]?
+
+        enum CodingKeys: String, CodingKey {
+            case questionId = "QuestionId"
+            case questionContent = "QuestionContent"
+            case duration = "Duration"
+            case correctAnswer = "CorrectAnswer"
+            case answerStats = "AnswerStats"
+        }
+    }
+
+    /// 批量创建房间的房间信息
+    public struct RoomInfo: TCInputModel {
+        /// 房间名称。
+        public let name: String?
+
+        /// 预定的房间开始时间，unix时间戳。
+        public let startTime: UInt64?
+
+        /// 预定的房间结束时间，unix时间戳。
+        public let endTime: UInt64?
+
+        /// 分辨率。可以有如下取值： 1 标清 2 高清 3 全高清
+        public let resolution: UInt64?
+
+        /// 最大连麦人数（不包括老师）。取值范围[0, 16]
+        public let maxMicNumber: UInt64?
+
+        /// 房间子类型，可以有以下取值： videodoc 文档+视频 video 纯视频
+        public let subType: String?
+
+        /// 老师ID。通过[注册用户]接口获取的UserId。
+        public let teacherId: String?
+
+        /// 进入课堂时是否自动连麦。可以有以下取值： 0 不自动连麦（需要手动申请上麦，默认值） 1 自动连麦
+        public let autoMic: UInt64?
+
+        /// 释放音视频权限后是否自动取消连麦。可以有以下取值： 0 自动取消连麦（默认值） 1 保持连麦状态
+        public let turnOffMic: UInt64?
+
+        /// 高音质模式。可以有以下取值： 0 不开启高音质（默认值） 1 开启高音质
+        public let audioQuality: UInt64?
+
+        /// 上课后是否禁止自动录制。可以有以下取值： 0 不禁止录制（自动开启录制，默认值） 1 禁止录制 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
+        public let disableRecord: UInt64?
+
+        /// 助教Id列表。通过[注册用户]接口获取的UserId。
+        public let assistants: [String]?
+
+        /// rtc人数。
+        public let rtcAudienceNumber: UInt64?
+
+        /// 观看类型。
+        public let audienceType: UInt64?
+
+        /// 录制布局。
+        public let recordLayout: UInt64?
+
+        /// 房间绑定的群组ID
+        public let groupId: String?
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil) {
+            self.name = name
+            self.startTime = startTime
+            self.endTime = endTime
+            self.resolution = resolution
+            self.maxMicNumber = maxMicNumber
+            self.subType = subType
+            self.teacherId = teacherId
+            self.autoMic = autoMic
+            self.turnOffMic = turnOffMic
+            self.audioQuality = audioQuality
+            self.disableRecord = disableRecord
+            self.assistants = assistants
+            self.rtcAudienceNumber = rtcAudienceNumber
+            self.audienceType = audienceType
+            self.recordLayout = recordLayout
+            self.groupId = groupId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case resolution = "Resolution"
+            case maxMicNumber = "MaxMicNumber"
+            case subType = "SubType"
+            case teacherId = "TeacherId"
+            case autoMic = "AutoMic"
+            case turnOffMic = "TurnOffMic"
+            case audioQuality = "AudioQuality"
+            case disableRecord = "DisableRecord"
+            case assistants = "Assistants"
+            case rtcAudienceNumber = "RTCAudienceNumber"
+            case audienceType = "AudienceType"
+            case recordLayout = "RecordLayout"
+            case groupId = "GroupId"
         }
     }
 
     /// 场景配置
     public struct SceneItem: TCOutputModel {
+    }
+
+    /// 文字水印配置
+    public struct TextMarkConfig: TCOutputModel {
+        /// 文字水印内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: String?
+
+        /// 文字水印颜色
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let color: String?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case color = "Color"
+        }
+    }
+
+    /// 用户信息结构体
+    public struct UserInfo: TCOutputModel {
+        /// 应用Id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkAppId: UInt64?
+
+        /// 用户Id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userId: String?
+
+        /// 用户昵称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 用户头像Url。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avatar: String?
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SdkAppId"
+            case userId = "UserId"
+            case name = "Name"
+            case avatar = "Avatar"
+        }
+    }
+
+    /// 水印配置
+    public struct WatermarkConfig: TCOutputModel {
+        /// 水印图片的url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let url: String?
+
+        /// 水印宽。为比例值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let width: Float?
+
+        /// 水印高。为比例值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let height: Float?
+
+        /// 水印X偏移, 取值:0-100, 表示区域X方向的百分比。比如50，则表示位于X轴中间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let locationX: Float?
+
+        /// 水印Y偏移, 取值:0-100, 表示区域Y方向的百分比。比如50，则表示位于Y轴中间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let locationY: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+            case width = "Width"
+            case height = "Height"
+            case locationX = "LocationX"
+            case locationY = "LocationY"
+        }
     }
 }

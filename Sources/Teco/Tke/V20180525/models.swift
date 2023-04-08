@@ -194,7 +194,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [TagSpecification]?
 
-        /// 集群状态 (Running 运行中  Creating 创建中 Idling 闲置中  Abnormal 异常  )
+        /// 集群状态 (Trading 集群开通中,Creating 创建中,Running 运行中,Deleting 删除中,Idling 闲置中,Recovering 唤醒中,Scaling 规模调整中,Upgrading 升级中,WaittingForConnect 等待注册,Trading 集群开通中,Isolated 欠费隔离中,Pause 集群升级暂停,NodeUpgrading 节点升级中,RuntimeUpgrading 节点运行时升级中,MasterScaling Master扩缩容中,ClusterLevelUpgrading 调整规格中,ResourceIsolate 隔离中,ResourceIsolated 已隔离,ResourceReverse 冲正中,Abnormal 异常)
         public let clusterStatus: String
 
         /// 集群属性(包括集群不同属性的MAP，属性字段包括NodeNameType (lan-ip模式和hostname 模式，默认无lan-ip模式))
@@ -244,6 +244,10 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtimeVersion: String?
 
+        /// 集群当前etcd数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterEtcdNodeNum: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -268,6 +272,7 @@ extension Tke {
             case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
             case qgpuShareEnable = "QGPUShareEnable"
             case runtimeVersion = "RuntimeVersion"
+            case clusterEtcdNodeNum = "ClusterEtcdNodeNum"
         }
     }
 
@@ -861,6 +866,11 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6ServiceCIDR: String?
 
+        /// 集群Cilium Mode配置
+        /// - clusterIP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ciliumMode: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterCIDR = "ClusterCIDR"
             case ignoreClusterCIDRConflict = "IgnoreClusterCIDRConflict"
@@ -875,6 +885,7 @@ extension Tke {
             case ignoreServiceCIDRConflict = "IgnoreServiceCIDRConflict"
             case isDualStack = "IsDualStack"
             case ipv6ServiceCIDR = "Ipv6ServiceCIDR"
+            case ciliumMode = "CiliumMode"
         }
     }
 
@@ -1469,7 +1480,15 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: String?
 
-        public init(clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil) {
+        /// 是否支持自动提升集群配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoUpgradeClusterLevel: Bool?
+
+        /// 集群付费模式，支持POSTPAID_BY_HOUR或者PREPAID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeType: String?
+
+        public init(clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1483,6 +1502,8 @@ extension Tke {
             self.maxNodePodNum = maxNodePodNum
             self.clusterAdvancedSettings = clusterAdvancedSettings
             self.level = level
+            self.autoUpgradeClusterLevel = autoUpgradeClusterLevel
+            self.chargeType = chargeType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1499,6 +1520,8 @@ extension Tke {
             case maxNodePodNum = "MaxNodePodNum"
             case clusterAdvancedSettings = "ClusterAdvancedSettings"
             case level = "Level"
+            case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
+            case chargeType = "ChargeType"
         }
     }
 
@@ -2448,7 +2471,23 @@ extension Tke {
     }
 
     /// 描述了k8s集群相关配置与信息。
-    public struct InstanceAdvancedSettings: TCOutputModel {
+    public struct InstanceAdvancedSettings: TCInputModel, TCOutputModel {
+        /// 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desiredPodNumber: Int64?
+
+        /// GPU驱动相关参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpuArgs: GPUArgs?
+
+        /// base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preStartUserScript: String?
+
+        /// 节点污点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taints: [Taint]?
+
         /// 数据盘挂载点, 默认不挂载数据盘. 已格式化的 ext3，ext4，xfs 文件系统的数据盘将直接挂载，其他文件系统或未格式化的数据盘将自动格式化为ext4 (tlinux系统格式化成xfs)并挂载，请注意备份数据! 无数据盘或有多块数据盘的云主机此设置不生效。
         /// 注意，注意，多盘场景请使用下方的DataDisks数据结构，设置对应的云盘类型、云盘大小、挂载路径、是否格式化等信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2477,23 +2516,25 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraArgs: InstanceExtraArgs?
 
-        /// 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let desiredPodNumber: Int64?
-
-        /// GPU驱动相关参数
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gpuArgs: GPUArgs?
-
-        /// base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let preStartUserScript: String?
-
-        /// 节点污点
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taints: [Taint]?
+        public init(desiredPodNumber: Int64, gpuArgs: GPUArgs, preStartUserScript: String, taints: [Taint], mountTarget: String? = nil, dockerGraphPath: String? = nil, userScript: String? = nil, unschedulable: Int64? = nil, labels: [Label]? = nil, dataDisks: [DataDisk]? = nil, extraArgs: InstanceExtraArgs? = nil) {
+            self.desiredPodNumber = desiredPodNumber
+            self.gpuArgs = gpuArgs
+            self.preStartUserScript = preStartUserScript
+            self.taints = taints
+            self.mountTarget = mountTarget
+            self.dockerGraphPath = dockerGraphPath
+            self.userScript = userScript
+            self.unschedulable = unschedulable
+            self.labels = labels
+            self.dataDisks = dataDisks
+            self.extraArgs = extraArgs
+        }
 
         enum CodingKeys: String, CodingKey {
+            case desiredPodNumber = "DesiredPodNumber"
+            case gpuArgs = "GPUArgs"
+            case preStartUserScript = "PreStartUserScript"
+            case taints = "Taints"
             case mountTarget = "MountTarget"
             case dockerGraphPath = "DockerGraphPath"
             case userScript = "UserScript"
@@ -2501,10 +2542,6 @@ extension Tke {
             case labels = "Labels"
             case dataDisks = "DataDisks"
             case extraArgs = "ExtraArgs"
-            case desiredPodNumber = "DesiredPodNumber"
-            case gpuArgs = "GPUArgs"
-            case preStartUserScript = "PreStartUserScript"
-            case taints = "Taints"
         }
     }
 
@@ -4680,6 +4717,10 @@ extension Tke {
 
     /// ServiceAccount认证相关配置
     public struct ServiceAccountAuthenticationOptions: TCInputModel, TCOutputModel {
+        /// 使用TKE默认issuer和jwksuri
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let useTKEDefault: Bool?
+
         /// service-account-issuer
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let issuer: String?
@@ -4692,13 +4733,15 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreateDiscoveryAnonymousAuth: Bool?
 
-        public init(issuer: String? = nil, jwksuri: String? = nil, autoCreateDiscoveryAnonymousAuth: Bool? = nil) {
+        public init(useTKEDefault: Bool? = nil, issuer: String? = nil, jwksuri: String? = nil, autoCreateDiscoveryAnonymousAuth: Bool? = nil) {
+            self.useTKEDefault = useTKEDefault
             self.issuer = issuer
             self.jwksuri = jwksuri
             self.autoCreateDiscoveryAnonymousAuth = autoCreateDiscoveryAnonymousAuth
         }
 
         enum CodingKeys: String, CodingKey {
+            case useTKEDefault = "UseTKEDefault"
             case issuer = "Issuer"
             case jwksuri = "JWKSURI"
             case autoCreateDiscoveryAnonymousAuth = "AutoCreateDiscoveryAnonymousAuth"
@@ -4875,6 +4918,22 @@ extension Tke {
         }
     }
 
+    /// 不可用原因
+    public struct UnavailableReason: TCOutputModel {
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case reason = "Reason"
+        }
+    }
+
     /// 可升级节点信息
     public struct UpgradeAbleInstancesItem: TCOutputModel {
         /// 节点Id
@@ -4887,10 +4946,18 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestVersion: String?
 
+        /// RuntimeVersion
+        public let runtimeVersion: String?
+
+        /// RuntimeLatestVersion
+        public let runtimeLatestVersion: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case version = "Version"
             case latestVersion = "LatestVersion"
+            case runtimeVersion = "RuntimeVersion"
+            case runtimeLatestVersion = "RuntimeLatestVersion"
         }
     }
 

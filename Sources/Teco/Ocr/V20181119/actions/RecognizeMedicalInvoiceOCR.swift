@@ -82,6 +82,8 @@ extension Ocr {
     /// 医疗票据识别
     ///
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func recognizeMedicalInvoiceOCR(_ input: RecognizeMedicalInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMedicalInvoiceOCRResponse> {
         self.client.execute(action: "RecognizeMedicalInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -90,6 +92,8 @@ extension Ocr {
     /// 医疗票据识别
     ///
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func recognizeMedicalInvoiceOCR(_ input: RecognizeMedicalInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMedicalInvoiceOCRResponse {
         try await self.client.execute(action: "RecognizeMedicalInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,6 +102,8 @@ extension Ocr {
     /// 医疗票据识别
     ///
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func recognizeMedicalInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnVertex: Bool? = nil, returnCoord: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMedicalInvoiceOCRResponse> {
         self.recognizeMedicalInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -106,6 +112,8 @@ extension Ocr {
     /// 医疗票据识别
     ///
     /// 医疗发票识别目前支持全国统一门诊发票、全国统一住院发票、以及部分地方的门诊和住院发票的识别。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func recognizeMedicalInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnVertex: Bool? = nil, returnCoord: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMedicalInvoiceOCRResponse {
         try await self.recognizeMedicalInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, returnVertex: returnVertex, returnCoord: returnCoord, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

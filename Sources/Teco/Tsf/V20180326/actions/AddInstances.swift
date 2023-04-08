@@ -41,7 +41,10 @@ extension Tsf {
         /// 云主机导入方式，虚拟机集群必填，容器集群不填写此字段，R：重装TSF系统镜像，M：手动安装agent
         public let instanceImportMode: String?
 
-        public init(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil) {
+        /// 安全组id
+        public let securityGroupIds: String?
+
+        public init(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, securityGroupIds: String? = nil) {
             self.clusterId = clusterId
             self.instanceIdList = instanceIdList
             self.osName = osName
@@ -50,6 +53,7 @@ extension Tsf {
             self.keyId = keyId
             self.sgId = sgId
             self.instanceImportMode = instanceImportMode
+            self.securityGroupIds = securityGroupIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Tsf {
             case keyId = "KeyId"
             case sgId = "SgId"
             case instanceImportMode = "InstanceImportMode"
+            case securityGroupIds = "SecurityGroupIds"
         }
     }
 
@@ -99,15 +104,15 @@ extension Tsf {
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
-        self.addInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode), region: region, logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, securityGroupIds: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
+        self.addInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群导入云主机
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.addInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode), region: region, logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, securityGroupIds: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.addInstances(.init(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

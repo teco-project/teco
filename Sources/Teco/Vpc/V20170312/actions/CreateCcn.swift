@@ -23,13 +23,13 @@ extension Vpc {
         /// CCN描述信息，最大长度不能超过100个字节。
         public let ccnDescription: String?
 
-        /// CCN服务质量，'PT'：白金，'AU'：金，'AG'：银，默认为‘AU’。
+        /// CCN服务质量，`PT`：白金，`AU`：金，`AG`：银，默认为`AU`。
         public let qosLevel: String?
 
-        /// 计费模式，PREPAID：表示预付费，即包年包月，POSTPAID：表示后付费，即按量计费。默认：POSTPAID。
+        /// 计费模式，`PREPAID`：表示预付费，即包年包月，`POSTPAID`：表示后付费，即按量计费。默认：`POSTPAID`。
         public let instanceChargeType: String?
 
-        /// 限速类型，OUTER_REGION_LIMIT表示地域出口限速，INTER_REGION_LIMIT为地域间限速，默认为OUTER_REGION_LIMIT。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
+        /// 限速类型，`OUTER_REGION_LIMIT`表示地域出口限速，`INTER_REGION_LIMIT`为地域间限速，默认为`OUTER_REGION_LIMIT`。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
         public let bandwidthLimitType: String?
 
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]

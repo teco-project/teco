@@ -17,7 +17,7 @@
 extension Mna {
     /// GetStatisticData请求参数结构体
     public struct GetStatisticDataRequest: TCRequestModel {
-        /// 设备ID，设备ID="-1"获取所有设备流量统计
+        /// 设备ID
         public let deviceId: String
 
         /// 统计开始时间，单位：s

@@ -49,7 +49,7 @@ public struct Hasim: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCHasimError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

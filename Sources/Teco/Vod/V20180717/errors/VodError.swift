@@ -36,6 +36,7 @@ public struct TCVodError: TCVodErrorType {
         case failedOperation_MediaForbidedBySystem = "FailedOperation.MediaForbidedBySystem"
         case failedOperation_MediaType = "FailedOperation.MediaType"
         case failedOperation_NetWorkError = "FailedOperation.NetWorkError"
+        case failedOperation_NoNeedToReduceMediaBitrate = "FailedOperation.NoNeedToReduceMediaBitrate"
         case failedOperation_NoPrivileges = "FailedOperation.NoPrivileges"
         case failedOperation_ParentIdNoFound = "FailedOperation.ParentIdNoFound"
         case failedOperation_SubclassLimitExceeded = "FailedOperation.SubclassLimitExceeded"
@@ -130,6 +131,7 @@ public struct TCVodError: TCVodErrorType {
         case invalidParameterValue_Isps = "InvalidParameterValue.Isps"
         case invalidParameterValue_KeyFrameDescContentTooLong = "InvalidParameterValue.KeyFrameDescContentTooLong"
         case invalidParameterValue_LabelSet = "InvalidParameterValue.LabelSet"
+        case invalidParameterValue_Labels = "InvalidParameterValue.Labels"
         case invalidParameterValue_Limit = "InvalidParameterValue.Limit"
         case invalidParameterValue_LimitTooLarge = "InvalidParameterValue.LimitTooLarge"
         case invalidParameterValue_MediaManifestContent = "InvalidParameterValue.MediaManifestContent"
@@ -217,6 +219,7 @@ public struct TCVodError: TCVodErrorType {
         case invalidParameterValue_YPos = "InvalidParameterValue.YPos"
         case invalidParameter_ExistedProcedureName = "InvalidParameter.ExistedProcedureName"
         case invalidParameter_ExpireTime = "InvalidParameter.ExpireTime"
+        case invalidParameter_Labels = "InvalidParameter.Labels"
         case invalidParameter_ProcedureNameNotExist = "InvalidParameter.ProcedureNameNotExist"
         case invalidParameter_StorageRegion = "InvalidParameter.StorageRegion"
         case limitExceeded = "LimitExceeded"
@@ -326,6 +329,11 @@ public struct TCVodError: TCVodErrorType {
     /// 网络错误。
     public static var failedOperation_NetWorkError: TCVodError {
         TCVodError(.failedOperation_NetWorkError)
+    }
+
+    /// 无需做降码率处理。
+    public static var failedOperation_NoNeedToReduceMediaBitrate: TCVodError {
+        TCVodError(.failedOperation_NoNeedToReduceMediaBitrate)
     }
 
     /// 没有开通该接口使用权限。
@@ -798,6 +806,11 @@ public struct TCVodError: TCVodErrorType {
         TCVodError(.invalidParameterValue_LabelSet)
     }
 
+    /// 参数错误：标签错误。
+    public static var invalidParameterValue_Labels: TCVodError {
+        TCVodError(.invalidParameterValue_Labels)
+    }
+
     /// 参数错误：Limit。
     public static var invalidParameterValue_Limit: TCVodError {
         TCVodError(.invalidParameterValue_Limit)
@@ -823,7 +836,7 @@ public struct TCVodError: TCVodErrorType {
         TCVodError(.invalidParameterValue_MediaUrl)
     }
 
-    /// Metric 参数错误。
+    /// 参数错误：Metric 无效。
     public static var invalidParameterValue_Metric: TCVodError {
         TCVodError(.invalidParameterValue_Metric)
     }
@@ -1231,6 +1244,11 @@ public struct TCVodError: TCVodErrorType {
     /// 参数值错误：过期时间。
     public static var invalidParameter_ExpireTime: TCVodError {
         TCVodError(.invalidParameter_ExpireTime)
+    }
+
+    /// 参数错误：标签错误。
+    public static var invalidParameter_Labels: TCVodError {
+        TCVodError(.invalidParameter_Labels)
     }
 
     /// 任务流模板名字不存在。

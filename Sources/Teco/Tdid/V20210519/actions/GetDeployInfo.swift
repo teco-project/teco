@@ -92,26 +92,30 @@ extension Tdid {
     }
 
     /// 合约部署详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployInfo(_ input: GetDeployInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
-        self.client.execute(action: "GetDeployInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDeployInfo is no longer available.")
     }
 
     /// 合约部署详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployInfo(_ input: GetDeployInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
-        try await self.client.execute(action: "GetDeployInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDeployInfo is no longer available.")
     }
 
     /// 合约部署详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployInfo(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
-        self.getDeployInfo(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDeployInfo is no longer available.")
     }
 
     /// 合约部署详情
+    @available(*, unavailable, message: "下线已有内测接口，待上线正式版本的接口")
     @inlinable
     public func getDeployInfo(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
-        try await self.getDeployInfo(.init(hash: hash), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDeployInfo is no longer available.")
     }
 }

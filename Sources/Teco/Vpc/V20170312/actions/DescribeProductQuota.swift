@@ -31,10 +31,10 @@ extension Vpc {
 
     /// DescribeProductQuota返回参数结构体
     public struct DescribeProductQuotaResponse: TCResponseModel {
-        /// ProductQuota对象数组
+        /// ProductQuota对象数组。
         public let productQuotaSet: [ProductQuota]
 
-        /// 符合条件的产品类型个数
+        /// 符合条件的产品类型个数。
         public let totalCount: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -49,7 +49,7 @@ extension Vpc {
 
     /// 查询网络产品配额信息
     ///
-    /// 本接口用于查询网络产品的配额信息
+    /// 本接口（DescribeProductQuota）用于查询网络产品的配额信息。
     @inlinable
     public func describeProductQuota(_ input: DescribeProductQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductQuotaResponse> {
         self.client.execute(action: "DescribeProductQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Vpc {
 
     /// 查询网络产品配额信息
     ///
-    /// 本接口用于查询网络产品的配额信息
+    /// 本接口（DescribeProductQuota）用于查询网络产品的配额信息。
     @inlinable
     public func describeProductQuota(_ input: DescribeProductQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
         try await self.client.execute(action: "DescribeProductQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Vpc {
 
     /// 查询网络产品配额信息
     ///
-    /// 本接口用于查询网络产品的配额信息
+    /// 本接口（DescribeProductQuota）用于查询网络产品的配额信息。
     @inlinable
     public func describeProductQuota(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductQuotaResponse> {
         self.describeProductQuota(.init(product: product), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Vpc {
 
     /// 查询网络产品配额信息
     ///
-    /// 本接口用于查询网络产品的配额信息
+    /// 本接口（DescribeProductQuota）用于查询网络产品的配额信息。
     @inlinable
     public func describeProductQuota(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
         try await self.describeProductQuota(.init(product: product), region: region, logger: logger, on: eventLoop)

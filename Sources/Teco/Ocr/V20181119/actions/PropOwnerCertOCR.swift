@@ -79,6 +79,8 @@ extension Ocr {
     ///
     /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PropOwnerCertOCRResponse> {
         self.client.execute(action: "PropOwnerCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -88,6 +90,8 @@ extension Ocr {
     ///
     /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PropOwnerCertOCRResponse {
         try await self.client.execute(action: "PropOwnerCertOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,6 +101,8 @@ extension Ocr {
     ///
     /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func propOwnerCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PropOwnerCertOCRResponse> {
         self.propOwnerCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -106,6 +112,8 @@ extension Ocr {
     ///
     /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
     /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func propOwnerCertOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PropOwnerCertOCRResponse {
         try await self.propOwnerCertOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

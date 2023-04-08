@@ -17,10 +17,10 @@
 extension Vpc {
     /// ModifyVpnGatewayRoutes请求参数结构体
     public struct ModifyVpnGatewayRoutesRequest: TCRequestModel {
-        /// Vpn网关id
+        /// VPN网关实例ID。
         public let vpnGatewayId: String
 
-        /// 路由修改参数
+        /// 路由修改参数。
         public let routes: [VpnGatewayRouteModify]
 
         public init(vpnGatewayId: String, routes: [VpnGatewayRouteModify]) {
@@ -51,7 +51,7 @@ extension Vpc {
 
     /// 修改VPN路由状态
     ///
-    /// 修改VPN路由是否启用
+    /// 本接口（ModifyVpnGatewayRoutes）用于修改VPN路由是否启用。
     @inlinable
     public func modifyVpnGatewayRoutes(_ input: ModifyVpnGatewayRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayRoutesResponse> {
         self.client.execute(action: "ModifyVpnGatewayRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,7 +59,7 @@ extension Vpc {
 
     /// 修改VPN路由状态
     ///
-    /// 修改VPN路由是否启用
+    /// 本接口（ModifyVpnGatewayRoutes）用于修改VPN路由是否启用。
     @inlinable
     public func modifyVpnGatewayRoutes(_ input: ModifyVpnGatewayRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayRoutesResponse {
         try await self.client.execute(action: "ModifyVpnGatewayRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 修改VPN路由状态
     ///
-    /// 修改VPN路由是否启用
+    /// 本接口（ModifyVpnGatewayRoutes）用于修改VPN路由是否启用。
     @inlinable
     public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayRoutesResponse> {
         self.modifyVpnGatewayRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
@@ -75,7 +75,7 @@ extension Vpc {
 
     /// 修改VPN路由状态
     ///
-    /// 修改VPN路由是否启用
+    /// 本接口（ModifyVpnGatewayRoutes）用于修改VPN路由是否启用。
     @inlinable
     public func modifyVpnGatewayRoutes(vpnGatewayId: String, routes: [VpnGatewayRouteModify], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayRoutesResponse {
         try await self.modifyVpnGatewayRoutes(.init(vpnGatewayId: vpnGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)

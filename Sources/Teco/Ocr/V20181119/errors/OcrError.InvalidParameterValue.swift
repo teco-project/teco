@@ -17,6 +17,7 @@
 extension TCOcrError {
     public struct InvalidParameterValue: TCOcrErrorType {
         enum Code: String {
+            case fileUrlIllegalError = "InvalidParameterValue.FileUrlIllegalError"
             case invalidParameterValueLimit = "InvalidParameterValue.InvalidParameterValueLimit"
             case priceOrVerificationParameterValueLimit = "InvalidParameterValue.PriceOrVerificationParameterValueLimit"
             case ticketCodeParameterValueLimit = "InvalidParameterValue.TicketCodeParameterValueLimit"
@@ -44,6 +45,11 @@ extension TCOcrError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 任务创建失败，文件URL非法。
+        public static var fileUrlIllegalError: InvalidParameterValue {
+            InvalidParameterValue(.fileUrlIllegalError)
         }
 
         /// 参数值错误。
@@ -74,6 +80,8 @@ extension TCOcrError {
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
+            case .fileUrlIllegalError:
+                code = .invalidParameterValue_FileUrlIllegalError
             case .invalidParameterValueLimit:
                 code = .invalidParameterValue_InvalidParameterValueLimit
             case .priceOrVerificationParameterValueLimit:

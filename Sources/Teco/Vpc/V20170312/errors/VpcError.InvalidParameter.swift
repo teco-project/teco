@@ -17,6 +17,7 @@
 extension TCVpcError {
     public struct InvalidParameter: TCVpcErrorType {
         enum Code: String {
+            case aclTypeMismatch = "InvalidParameter.AclTypeMismatch"
             case coexist = "InvalidParameter.Coexist"
             case filterInvalidKey = "InvalidParameter.FilterInvalidKey"
             case filterNotDict = "InvalidParameter.FilterNotDict"
@@ -47,6 +48,13 @@ extension TCVpcError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// ACL ID与ACL类型不匹配。
+        ///
+        /// 请求的ACL类型参数，和ACL后台的类型（三元组、五元组）不匹配。请查询ACL实际类型后重试。
+        public static var aclTypeMismatch: InvalidParameter {
+            InvalidParameter(.aclTypeMismatch)
         }
 
         /// 参数不支持同时指定。
@@ -92,6 +100,8 @@ extension TCVpcError {
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {
+            case .aclTypeMismatch:
+                code = .invalidParameter_AclTypeMismatch
             case .coexist:
                 code = .invalidParameter_Coexist
             case .filterInvalidKey:
