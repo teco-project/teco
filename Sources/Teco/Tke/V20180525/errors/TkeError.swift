@@ -218,7 +218,18 @@ public struct TCTkeError: TCTkeErrorType {
 
     /// Error domains affliated to ``TCTkeError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, OperationDenied.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

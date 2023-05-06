@@ -199,7 +199,18 @@ public struct TCPostgresError: TCPostgresErrorType {
 
     /// Error domains affliated to ``TCPostgresError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, OperationDenied.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            OperationDenied.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

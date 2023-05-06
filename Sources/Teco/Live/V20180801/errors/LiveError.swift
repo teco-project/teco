@@ -206,7 +206,15 @@ public struct TCLiveError: TCLiveErrorType {
 
     /// Error domains affliated to ``TCLiveError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

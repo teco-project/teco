@@ -227,7 +227,22 @@ public struct TCEcmError: TCEcmErrorType {
 
     /// Error domains affliated to ``TCEcmError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

@@ -202,7 +202,17 @@ public struct TCApigatewayError: TCApigatewayErrorType {
 
     /// Error domains affliated to ``TCApigatewayError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

@@ -77,7 +77,19 @@ public struct TCNlpError: TCNlpErrorType {
 
     /// Error domains affliated to ``TCNlpError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameterValue.self, LimitExceeded.self, RequestLimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            RequestLimitExceeded.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

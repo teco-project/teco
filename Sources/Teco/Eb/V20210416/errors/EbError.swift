@@ -142,7 +142,19 @@ public struct TCEbError: TCEbErrorType {
 
     /// Error domains affliated to ``TCEbError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

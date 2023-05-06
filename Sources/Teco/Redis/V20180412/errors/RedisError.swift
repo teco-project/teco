@@ -135,7 +135,19 @@ public struct TCRedisError: TCRedisErrorType {
 
     /// Error domains affliated to ``TCRedisError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

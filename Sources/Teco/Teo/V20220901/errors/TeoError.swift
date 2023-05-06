@@ -207,7 +207,18 @@ public struct TCTeoError: TCTeoErrorType {
 
     /// Error domains affliated to ``TCTeoError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceInUse.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

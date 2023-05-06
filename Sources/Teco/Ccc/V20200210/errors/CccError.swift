@@ -67,7 +67,14 @@ public struct TCCccError: TCCccErrorType {
 
     /// Error domains affliated to ``TCCccError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self
+        ]
     }
 
     private let error: Code

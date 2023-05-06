@@ -355,7 +355,49 @@ public struct TCCvmError: TCCvmErrorType {
 
     /// Error domains affliated to ``TCCvmError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidAccount.self, InvalidAccountId.self, InvalidAccountIs.self, InvalidClientToken.self, InvalidFilterValue.self, InvalidHost.self, InvalidHostId.self, InvalidImageId.self, InvalidImageName.self, InvalidImageOsType.self, InvalidImageOsVersion.self, InvalidInstance.self, InvalidInstanceId.self, InvalidInstanceName.self, InvalidInstanceType.self, InvalidKeyPair.self, InvalidKeyPairId.self, InvalidKeyPairName.self, InvalidParameter.self, InvalidParameterValue.self, InvalidProjectId.self, InvalidPublicKey.self, InvalidRegion.self, InvalidSecurityGroupId.self, InvalidSgId.self, InvalidZone.self, LimitExceeded.self, MissingParameter.self, MutexOperation.self, OperationDenied.self, RegionAbilityLimit.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidAccount.self,
+            InvalidAccountId.self,
+            InvalidAccountIs.self,
+            InvalidClientToken.self,
+            InvalidFilterValue.self,
+            InvalidHost.self,
+            InvalidHostId.self,
+            InvalidImageId.self,
+            InvalidImageName.self,
+            InvalidImageOsType.self,
+            InvalidImageOsVersion.self,
+            InvalidInstance.self,
+            InvalidInstanceId.self,
+            InvalidInstanceName.self,
+            InvalidInstanceType.self,
+            InvalidKeyPair.self,
+            InvalidKeyPairId.self,
+            InvalidKeyPairName.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            InvalidProjectId.self,
+            InvalidPublicKey.self,
+            InvalidRegion.self,
+            InvalidSecurityGroupId.self,
+            InvalidSgId.self,
+            InvalidZone.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            MutexOperation.self,
+            OperationDenied.self,
+            RegionAbilityLimit.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

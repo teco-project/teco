@@ -135,7 +135,15 @@ public struct TCIotcloudError: TCIotcloudErrorType {
 
     /// Error domains affliated to ``TCIotcloudError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

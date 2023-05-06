@@ -125,7 +125,14 @@ public struct TCFaceidError: TCFaceidErrorType {
 
     /// Error domains affliated to ``TCFaceidError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

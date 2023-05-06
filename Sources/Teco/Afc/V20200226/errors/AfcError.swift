@@ -71,7 +71,17 @@ public struct TCAfcError: TCAfcErrorType {
 
     /// Error domains affliated to ``TCAfcError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnknownParameter.self]
+        [
+            AuthFailure.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnknownParameter.self
+        ]
     }
 
     private let error: Code

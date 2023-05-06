@@ -108,7 +108,17 @@ public struct TCTcrError: TCTcrErrorType {
 
     /// Error domains affliated to ``TCTcrError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, ResourceInsufficient.self, ResourceNotFound.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

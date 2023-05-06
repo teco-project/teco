@@ -103,7 +103,17 @@ public struct TCBatchError: TCBatchErrorType {
 
     /// Error domains affliated to ``TCBatchError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, InvalidZone.self, LimitExceeded.self, ResourceInUse.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            InvalidZone.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

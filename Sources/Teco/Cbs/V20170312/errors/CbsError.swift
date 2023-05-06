@@ -100,7 +100,26 @@ public struct TCCbsError: TCCbsErrorType {
 
     /// Error domains affliated to ``TCCbsError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidAccount.self, InvalidAutoSnapshotPolicyId.self, InvalidDisk.self, InvalidDiskId.self, InvalidInstance.self, InvalidInstanceId.self, InvalidParameter.self, InvalidParameterValue.self, InvalidSnapshot.self, InvalidSnapshotId.self, LimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            InternalError.self,
+            InvalidAccount.self,
+            InvalidAutoSnapshotPolicyId.self,
+            InvalidDisk.self,
+            InvalidDiskId.self,
+            InvalidInstance.self,
+            InvalidInstanceId.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            InvalidSnapshot.self,
+            InvalidSnapshotId.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

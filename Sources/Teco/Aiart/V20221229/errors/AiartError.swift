@@ -57,7 +57,15 @@ public struct TCAiartError: TCAiartErrorType {
 
     /// Error domains affliated to ``TCAiartError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, OperationDenied.self, ResourceUnavailable.self, ResourcesSoldOut.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            OperationDenied.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self
+        ]
     }
 
     private let error: Code

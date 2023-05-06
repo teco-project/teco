@@ -222,7 +222,16 @@ public struct TCEssError: TCEssErrorType {
 
     /// Error domains affliated to ``TCEssError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, OperationDenied.self, ResourceNotFound.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

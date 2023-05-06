@@ -345,7 +345,35 @@ public struct TCVpcError: TCVpcErrorType {
 
     /// Error domains affliated to ``TCVpcError``.
     public static var domains: [TCErrorType.Type] {
-        [AddressQuotaLimitExceeded.self, FailedOperation.self, InternalError.self, InvalidAccount.self, InvalidAddressId.self, InvalidAddressIdState.self, InvalidAddressIdStatus.self, InvalidInstance.self, InvalidInstanceId.self, InvalidNetworkInterfaceId.self, InvalidParameter.self, InvalidParameterValue.self, InvalidPrivateIpAddress.self, InvalidRouteId.self, InvalidRouteTableId.self, InvalidSecurityGroupID.self, InvalidVpcId.self, InvalidVpnGatewayId.self, LimitExceeded.self, OperationDenied.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnknownParameter.self, UnsupportedOperation.self]
+        [
+            AddressQuotaLimitExceeded.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidAccount.self,
+            InvalidAddressId.self,
+            InvalidAddressIdState.self,
+            InvalidAddressIdStatus.self,
+            InvalidInstance.self,
+            InvalidInstanceId.self,
+            InvalidNetworkInterfaceId.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            InvalidPrivateIpAddress.self,
+            InvalidRouteId.self,
+            InvalidRouteTableId.self,
+            InvalidSecurityGroupID.self,
+            InvalidVpcId.self,
+            InvalidVpnGatewayId.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnknownParameter.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

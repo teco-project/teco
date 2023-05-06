@@ -123,7 +123,17 @@ public struct TCIaiError: TCIaiErrorType {
 
     /// Error domains affliated to ``TCIaiError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

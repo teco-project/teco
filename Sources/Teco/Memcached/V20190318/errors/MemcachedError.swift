@@ -38,7 +38,14 @@ public struct TCMemcachedError: TCMemcachedErrorType {
 
     /// Error domains affliated to ``TCMemcachedError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, MissingParameter.self, ResourceNotFound.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            MissingParameter.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

@@ -51,7 +51,15 @@ public struct TCCdcError: TCCdcErrorType {
 
     /// Error domains affliated to ``TCCdcError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, ResourceInsufficient.self, ResourceNotFound.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

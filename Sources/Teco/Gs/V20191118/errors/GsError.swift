@@ -47,7 +47,14 @@ public struct TCGsError: TCGsErrorType {
 
     /// Error domains affliated to ``TCGsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

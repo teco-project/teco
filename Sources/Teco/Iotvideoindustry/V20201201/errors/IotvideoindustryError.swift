@@ -106,7 +106,15 @@ public struct TCIotvideoindustryError: TCIotvideoindustryErrorType {
 
     /// Error domains affliated to ``TCIotvideoindustryError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

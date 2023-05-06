@@ -73,7 +73,14 @@ public struct TCThpcError: TCThpcErrorType {
 
     /// Error domains affliated to ``TCThpcError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, UnsupportedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

@@ -112,7 +112,14 @@ public struct TCDsError: TCDsErrorType {
 
     /// Error domains affliated to ``TCDsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, MissingParameter.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            MissingParameter.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self
+        ]
     }
 
     private let error: Code

@@ -59,7 +59,15 @@ public struct TCBtoeError: TCBtoeErrorType {
 
     /// Error domains affliated to ``TCBtoeError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self
+        ]
     }
 
     private let error: Code

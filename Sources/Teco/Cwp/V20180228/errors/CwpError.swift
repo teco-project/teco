@@ -68,7 +68,14 @@ public struct TCCwpError: TCCwpErrorType {
 
     /// Error domains affliated to ``TCCwpError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

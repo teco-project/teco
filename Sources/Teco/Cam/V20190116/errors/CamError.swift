@@ -127,7 +127,18 @@ public struct TCCamError: TCCamErrorType {
 
     /// Error domains affliated to ``TCCamError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, RequestLimitExceeded.self, ResourceNotFound.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            RequestLimitExceeded.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

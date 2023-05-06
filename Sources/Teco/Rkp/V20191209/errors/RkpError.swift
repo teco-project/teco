@@ -59,7 +59,17 @@ public struct TCRkpError: TCRkpErrorType {
 
     /// Error domains affliated to ``TCRkpError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnknownParameter.self]
+        [
+            AuthFailure.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnknownParameter.self
+        ]
     }
 
     private let error: Code

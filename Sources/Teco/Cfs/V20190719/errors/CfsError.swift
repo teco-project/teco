@@ -139,7 +139,16 @@ public struct TCCfsError: TCCfsErrorType {
 
     /// Error domains affliated to ``TCCfsError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, ResourceInsufficient.self, ResourceNotFound.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

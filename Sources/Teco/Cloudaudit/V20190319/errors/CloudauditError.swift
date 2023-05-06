@@ -81,7 +81,16 @@ public struct TCCloudauditError: TCCloudauditErrorType {
 
     /// Error domains affliated to ``TCCloudauditError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, ResourceInUse.self, ResourceNotFound.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            ResourceInUse.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

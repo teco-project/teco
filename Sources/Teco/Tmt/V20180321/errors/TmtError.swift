@@ -56,7 +56,15 @@ public struct TCTmtError: TCTmtErrorType {
 
     /// Error domains affliated to ``TCTmtError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, RequestLimitExceeded.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            RequestLimitExceeded.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

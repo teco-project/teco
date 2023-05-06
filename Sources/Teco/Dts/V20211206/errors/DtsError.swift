@@ -92,7 +92,26 @@ public struct TCDtsError: TCDtsErrorType {
 
     /// Error domains affliated to ``TCDtsError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, DryRunOperation.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, RequestLimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self, UnauthorizedOperation.self, UnknownParameter.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            DryRunOperation.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            RequestLimitExceeded.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self,
+            UnauthorizedOperation.self,
+            UnknownParameter.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

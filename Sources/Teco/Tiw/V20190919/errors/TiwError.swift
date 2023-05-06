@@ -72,7 +72,15 @@ public struct TCTiwError: TCTiwErrorType {
 
     /// Error domains affliated to ``TCTiwError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, LimitExceeded.self, ResourceInUse.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

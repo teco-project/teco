@@ -130,7 +130,19 @@ public struct TCTdmqError: TCTdmqErrorType {
 
     /// Error domains affliated to ``TCTdmqError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, OperationDenied.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self
+        ]
     }
 
     private let error: Code

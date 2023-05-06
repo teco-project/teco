@@ -54,7 +54,16 @@ public struct TCSmhError: TCSmhErrorType {
 
     /// Error domains affliated to ``TCSmhError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameterValue.self, LimitExceeded.self, RequestLimitExceeded.self, ResourceInUse.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            RequestLimitExceeded.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
