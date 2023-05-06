@@ -105,7 +105,15 @@ public struct TCCmeError: TCCmeErrorType {
 
     /// Error domains affliated to ``TCCmeError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceNotFound.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

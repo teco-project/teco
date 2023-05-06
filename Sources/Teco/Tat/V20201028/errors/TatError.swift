@@ -93,7 +93,15 @@ public struct TCTatError: TCTatErrorType {
 
     /// Error domains affliated to ``TCTatError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

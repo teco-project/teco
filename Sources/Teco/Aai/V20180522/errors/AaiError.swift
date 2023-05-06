@@ -83,7 +83,14 @@ public struct TCAaiError: TCAaiErrorType {
 
     /// Error domains affliated to ``TCAaiError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

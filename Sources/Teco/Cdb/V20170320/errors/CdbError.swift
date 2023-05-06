@@ -198,7 +198,19 @@ public struct TCCdbError: TCCdbErrorType {
 
     /// Error domains affliated to ``TCCdbError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, CdbError.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, OperationDenied.self, ResourceNotFound.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            CdbError.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

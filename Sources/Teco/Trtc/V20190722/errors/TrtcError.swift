@@ -128,7 +128,16 @@ public struct TCTrtcError: TCTrtcErrorType {
 
     /// Error domains affliated to ``TCTrtcError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, ResourceInsufficient.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            ResourceInsufficient.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

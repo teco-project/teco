@@ -189,7 +189,19 @@ public struct TCAsError: TCAsErrorType {
 
     /// Error domains affliated to ``TCAsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidImageId.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, MissingParameter.self, ResourceInUse.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidImageId.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            MissingParameter.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self
+        ]
     }
 
     private let error: Code

@@ -60,7 +60,15 @@ public struct TCEccError: TCEccErrorType {
 
     /// Error domains affliated to ``TCEccError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

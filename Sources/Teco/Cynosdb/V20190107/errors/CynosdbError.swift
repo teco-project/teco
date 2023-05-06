@@ -111,7 +111,17 @@ public struct TCCynosdbError: TCCynosdbErrorType {
 
     /// Error domains affliated to ``TCCynosdbError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

@@ -89,7 +89,15 @@ public struct TCAsrError: TCAsrErrorType {
 
     /// Error domains affliated to ``TCAsrError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, RequestLimitExceeded.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            RequestLimitExceeded.self
+        ]
     }
 
     private let error: Code

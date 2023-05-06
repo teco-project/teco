@@ -234,7 +234,16 @@ public struct TCDnspodError: TCDnspodErrorType {
 
     /// Error domains affliated to ``TCDnspodError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, RequestLimitExceeded.self, ResourceNotFound.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            RequestLimitExceeded.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

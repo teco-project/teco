@@ -78,7 +78,15 @@ public struct TCOcrError: TCOcrErrorType {
 
     /// Error domains affliated to ``TCOcrError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, ResourcesSoldOut.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            ResourcesSoldOut.self
+        ]
     }
 
     private let error: Code

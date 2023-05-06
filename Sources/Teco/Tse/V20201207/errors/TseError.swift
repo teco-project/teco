@@ -62,7 +62,14 @@ public struct TCTseError: TCTseErrorType {
 
     /// Error domains affliated to ``TCTseError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, InternalError.self, InvalidParameterValue.self, MissingParameter.self, ResourceNotFound.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            InternalError.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            ResourceNotFound.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

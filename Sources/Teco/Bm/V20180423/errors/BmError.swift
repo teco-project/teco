@@ -45,7 +45,14 @@ public struct TCBmError: TCBmErrorType {
 
     /// Error domains affliated to ``TCBmError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInUse.self, ResourceInsufficient.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceInsufficient.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code

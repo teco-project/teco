@@ -127,7 +127,14 @@ public struct TCGaapError: TCGaapErrorType {
 
     /// Error domains affliated to ``TCGaapError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InvalidParameterValue.self, LimitExceeded.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

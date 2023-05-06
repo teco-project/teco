@@ -145,7 +145,17 @@ public struct TCSoeError: TCSoeErrorType {
 
     /// Error domains affliated to ``TCSoeError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self
+        ]
     }
 
     private let error: Code

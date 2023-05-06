@@ -143,7 +143,16 @@ public struct TCTbaasError: TCTbaasErrorType {
 
     /// Error domains affliated to ``TCTbaasError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, MissingParameter.self, OperationDenied.self, ResourceNotFound.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            MissingParameter.self,
+            OperationDenied.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

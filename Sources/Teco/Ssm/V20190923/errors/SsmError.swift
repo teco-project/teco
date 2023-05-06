@@ -63,7 +63,15 @@ public struct TCSsmError: TCSsmErrorType {
 
     /// Error domains affliated to ``TCSsmError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameterValue.self, OperationDenied.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameterValue.self,
+            OperationDenied.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

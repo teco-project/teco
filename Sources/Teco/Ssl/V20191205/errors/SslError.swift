@@ -87,7 +87,14 @@ public struct TCSslError: TCSslErrorType {
 
     /// Error domains affliated to ``TCSslError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, ResourceNotFound.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code

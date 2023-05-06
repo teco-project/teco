@@ -83,7 +83,15 @@ public struct TCIotError: TCIotErrorType {
 
     /// Error domains affliated to ``TCIotError``.
     public static var domains: [TCErrorType.Type] {
-        [InternalError.self, InvalidParameter.self, LimitExceeded.self, ResourceInUse.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
+        [
+            InternalError.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceInUse.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
+        ]
     }
 
     private let error: Code

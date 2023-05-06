@@ -61,7 +61,14 @@ public struct TCWedataError: TCWedataErrorType {
 
     /// Error domains affliated to ``TCWedataError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, InternalError.self, InvalidParameter.self, OperationDenied.self, UnauthorizedOperation.self, UnsupportedOperation.self]
+        [
+            AuthFailure.self,
+            InternalError.self,
+            InvalidParameter.self,
+            OperationDenied.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
