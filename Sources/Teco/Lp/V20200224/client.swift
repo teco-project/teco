@@ -33,6 +33,7 @@ public struct Lp: TCService {
     ///    - language: Preferred language for API response.
     ///    - endpoint: Endpoint provider for API request.
     ///    - timeout: Timeout value for HTTP requests.
+    ///    - byteBufferAllocator: Byte buffer allocator used throughout ``Lp``.
     public init(
         client: TCClient,
         region: TCRegion? = nil,

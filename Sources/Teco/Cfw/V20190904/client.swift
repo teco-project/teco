@@ -35,6 +35,7 @@ public struct Cfw: TCService {
     ///    - language: Preferred language for API response.
     ///    - endpoint: Endpoint provider for API request.
     ///    - timeout: Timeout value for HTTP requests.
+    ///    - byteBufferAllocator: Byte buffer allocator used throughout ``Cfw``.
     public init(
         client: TCClient,
         region: TCRegion? = nil,
