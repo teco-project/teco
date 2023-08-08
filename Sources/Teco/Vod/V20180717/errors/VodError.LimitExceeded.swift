@@ -58,6 +58,8 @@ extension TCVodError {
         }
 
         /// 超过限制值：模板数超限。
+        ///
+        /// None
         public static var tooMuchTemplate: LimitExceeded {
             LimitExceeded(.tooMuchTemplate)
         }

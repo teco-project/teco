@@ -24,6 +24,8 @@ extension TCApigatewayError {
             case apiBindEnvironment = "FailedOperation.ApiBindEnvironment"
             case apiError = "FailedOperation.ApiError"
             case apiInOperation = "FailedOperation.ApiInOperation"
+            case backendDomainError = "FailedOperation.BackendDomainError"
+            case camException = "FailedOperation.CamException"
             case certificateIdBindError = "FailedOperation.CertificateIdBindError"
             case certificateIdEnterpriseWaitSubmit = "FailedOperation.CertificateIdEnterpriseWaitSubmit"
             case certificateIdError = "FailedOperation.CertificateIdError"
@@ -50,7 +52,6 @@ extension TCApigatewayError {
             case ebError = "FailedOperation.EbError"
             case eiamError = "FailedOperation.EIAMError"
             case formatError = "FailedOperation.FormatError"
-            case generateApiDocumentError = "FailedOperation.GenerateApiDocumentError"
             case getRoleError = "FailedOperation.GetRoleError"
             case instanceNotExist = "FailedOperation.InstanceNotExist"
             case isDefaultMapping = "FailedOperation.IsDefaultMapping"
@@ -113,6 +114,14 @@ extension TCApigatewayError {
         /// 当前API正在操作中，请稍后再试。
         public static var apiInOperation: FailedOperation {
             FailedOperation(.apiInOperation)
+        }
+
+        public static var backendDomainError: FailedOperation {
+            FailedOperation(.backendDomainError)
+        }
+
+        public static var camException: FailedOperation {
+            FailedOperation(.camException)
         }
 
         /// 证书绑定错误。
@@ -245,11 +254,6 @@ extension TCApigatewayError {
             FailedOperation(.formatError)
         }
 
-        /// API文档生成失败。
-        public static var generateApiDocumentError: FailedOperation {
-            FailedOperation(.generateApiDocumentError)
-        }
-
         /// 获取角色失败，请确认完成API网关相关服务接口授权。
         public static var getRoleError: FailedOperation {
             FailedOperation(.getRoleError)
@@ -340,6 +344,10 @@ extension TCApigatewayError {
                 code = .failedOperation_ApiError
             case .apiInOperation:
                 code = .failedOperation_ApiInOperation
+            case .backendDomainError:
+                code = .failedOperation_BackendDomainError
+            case .camException:
+                code = .failedOperation_CamException
             case .certificateIdBindError:
                 code = .failedOperation_CertificateIdBindError
             case .certificateIdEnterpriseWaitSubmit:
@@ -392,8 +400,6 @@ extension TCApigatewayError {
                 code = .failedOperation_EIAMError
             case .formatError:
                 code = .failedOperation_FormatError
-            case .generateApiDocumentError:
-                code = .failedOperation_GenerateApiDocumentError
             case .getRoleError:
                 code = .failedOperation_GetRoleError
             case .instanceNotExist:

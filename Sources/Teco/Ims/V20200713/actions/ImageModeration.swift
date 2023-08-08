@@ -117,6 +117,10 @@ extension Ims {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extra: String?
 
+        /// 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recognitionResults: [RecognitionResult]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -133,6 +137,7 @@ extension Ims {
             case dataId = "DataId"
             case bizType = "BizType"
             case extra = "Extra"
+            case recognitionResults = "RecognitionResults"
             case requestId = "RequestId"
         }
     }

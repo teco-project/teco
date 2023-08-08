@@ -24,31 +24,31 @@ import TecoPaginationHelpers
 extension Postgres {
     /// DescribeDBErrlogs请求参数结构体
     public struct DescribeDBErrlogsRequest: TCPaginatedRequest {
-        /// 实例ID，形如postgres-5bq3wfjd
+        /// 实例ID。
         public let dbInstanceId: String
 
-        /// 查询起始时间，形如2018-01-01 00:00:00，起始时间不得小于7天以前
+        /// 查询起始时间，形如2018-01-01 00:00:00。日志保留时间默认为7天，起始时间不能超出保留时间范围。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
-        /// 查询结束时间，形如2018-01-01 00:00:00
+        /// 查询结束时间，形如2018-01-01 00:00:00。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
-        /// 数据库名字
+        /// 数据库名字。
         public let databaseName: String?
 
-        /// 搜索关键字
+        /// 搜索关键字。
         public let searchKeys: [String]?
 
-        /// 分页返回，每页返回的最大数量。取值为1-100
+        /// 每页显示数量，取值范围为1-100。默认值为50。
         public let limit: Int64?
 
-        /// 分页返回，返回第几页的数据，从第0页开始计数
+        /// 数据偏移量，从0开始。默认值为0。
         public let offset: Int64?
 
         public init(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
@@ -82,10 +82,10 @@ extension Postgres {
 
     /// DescribeDBErrlogs返回参数结构体
     public struct DescribeDBErrlogsResponse: TCPaginatedResponse {
-        /// 本次调用返回了多少条数据
+        /// 查询到的日志数量，最大值为10000条。
         public let totalCount: Int64
 
-        /// 错误日志列表
+        /// 错误日志详细信息集合。
         public let details: [ErrLogDetail]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -108,57 +108,57 @@ extension Postgres {
         }
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable
     public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
         self.client.execute(action: "DescribeDBErrlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable
     public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
         try await self.client.execute(action: "DescribeDBErrlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable
     public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
         self.describeDBErrlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable
     public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
         try await self.describeDBErrlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable
     public func describeDBErrlogsPaginated(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ErrLogDetail])> {
         self.client.paginate(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     @inlinable @discardableResult
     public func describeDBErrlogsPaginated(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBErrlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBErrlogs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取错误日志
+    /// 查询错误日志
     ///
-    /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    /// 本接口（DescribeDBErrlogs）用于查询错误日志。
     ///
     /// - Returns: `AsyncSequence`s of `ErrLogDetail` and `DescribeDBErrlogsResponse` that can be iterated over asynchronously on demand.
     @inlinable

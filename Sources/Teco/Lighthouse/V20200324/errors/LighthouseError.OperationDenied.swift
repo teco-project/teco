@@ -28,6 +28,7 @@ extension TCLighthouseError {
             case diskUsageNotSupportOperation = "OperationDenied.DiskUsageNotSupportOperation"
             case instanceCreating = "OperationDenied.InstanceCreating"
             case instanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
+            case operationDeniedCreateSnapshot = "OperationDenied.OperationDeniedCreateSnapshot"
             case operationDeniedCreateSnapshotForStorageBundle = "OperationDenied.OperationDeniedCreateSnapshotForStorageBundle"
         }
 
@@ -100,6 +101,11 @@ extension TCLighthouseError {
             OperationDenied(.instanceOperationInProgress)
         }
 
+        /// 禁止创建快照。
+        public static var operationDeniedCreateSnapshot: OperationDenied {
+            OperationDenied(.operationDeniedCreateSnapshot)
+        }
+
         /// 使用存储型套餐的实例不支持创建快照。
         public static var operationDeniedCreateSnapshotForStorageBundle: OperationDenied {
             OperationDenied(.operationDeniedCreateSnapshotForStorageBundle)
@@ -126,6 +132,8 @@ extension TCLighthouseError {
                 code = .operationDenied_InstanceCreating
             case .instanceOperationInProgress:
                 code = .operationDenied_InstanceOperationInProgress
+            case .operationDeniedCreateSnapshot:
+                code = .operationDenied_OperationDeniedCreateSnapshot
             case .operationDeniedCreateSnapshotForStorageBundle:
                 code = .operationDenied_OperationDeniedCreateSnapshotForStorageBundle
             }

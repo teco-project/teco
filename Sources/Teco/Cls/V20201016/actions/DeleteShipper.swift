@@ -43,25 +43,25 @@ extension Cls {
         }
     }
 
-    /// 删除投递规则
+    /// 删除投递COS任务
     @inlinable @discardableResult
     public func deleteShipper(_ input: DeleteShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
         self.client.execute(action: "DeleteShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除投递规则
+    /// 删除投递COS任务
     @inlinable @discardableResult
     public func deleteShipper(_ input: DeleteShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
         try await self.client.execute(action: "DeleteShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除投递规则
+    /// 删除投递COS任务
     @inlinable @discardableResult
     public func deleteShipper(shipperId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
         self.deleteShipper(.init(shipperId: shipperId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除投递规则
+    /// 删除投递COS任务
     @inlinable @discardableResult
     public func deleteShipper(shipperId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
         try await self.deleteShipper(.init(shipperId: shipperId), region: region, logger: logger, on: eventLoop)

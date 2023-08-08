@@ -27,14 +27,19 @@ extension Cloudstudio {
         /// 模板ID
         public let templateId: Int64
 
-        public init(cloudStudioSessionTeam: String, templateId: Int64) {
+        /// 工作空间名称
+        public let name: String?
+
+        public init(cloudStudioSessionTeam: String, templateId: Int64, name: String? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.templateId = templateId
+            self.name = name
         }
 
         enum CodingKeys: String, CodingKey {
             case cloudStudioSessionTeam = "CloudStudioSessionTeam"
             case templateId = "TemplateId"
+            case name = "Name"
         }
     }
 
@@ -72,15 +77,15 @@ extension Cloudstudio {
     ///
     /// 快速开始, 基于模板创建工作空间
     @inlinable
-    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByTemplateResponse> {
-        self.createWorkspaceByTemplate(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), region: region, logger: logger, on: eventLoop)
+    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByTemplateResponse> {
+        self.createWorkspaceByTemplate(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 基于模板创建工作空间
     ///
     /// 快速开始, 基于模板创建工作空间
     @inlinable
-    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByTemplateResponse {
-        try await self.createWorkspaceByTemplate(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), region: region, logger: logger, on: eventLoop)
+    public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByTemplateResponse {
+        try await self.createWorkspaceByTemplate(.init(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

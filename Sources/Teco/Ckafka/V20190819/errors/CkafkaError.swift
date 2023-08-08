@@ -52,6 +52,7 @@ public struct TCCkafkaError: TCCkafkaErrorType {
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
+        case resourceUnavailable_KafkaStorageError = "ResourceUnavailable.KafkaStorageError"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
@@ -61,7 +62,14 @@ public struct TCCkafkaError: TCCkafkaErrorType {
 
     /// Error domains affliated to ``TCCkafkaError``.
     public static var domains: [TCErrorType.Type] {
-        [InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self, UnsupportedOperation.self]
+        [
+            InvalidParameter.self,
+            InvalidParameterValue.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
@@ -216,6 +224,10 @@ public struct TCCkafkaError: TCCkafkaErrorType {
     /// 资源不可用。
     public static var resourceUnavailable: TCCkafkaError {
         TCCkafkaError(.resourceUnavailable)
+    }
+
+    public static var resourceUnavailable_KafkaStorageError: TCCkafkaError {
+        TCCkafkaError(.resourceUnavailable_KafkaStorageError)
     }
 
     /// 未授权操作。

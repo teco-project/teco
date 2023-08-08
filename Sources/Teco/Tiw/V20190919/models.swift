@@ -272,6 +272,43 @@ extension Tiw {
         }
     }
 
+    /// PPT错误元素
+    public struct PPTErr: TCOutputModel {
+        /// 元素名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 0: 不支持的墨迹类型，1: 不支持自动翻页，2: 存在已损坏音视频，3: 存在不可访问资源，4: 只读文件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: Int64?
+
+        /// 错误详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let detail: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case type = "Type"
+            case detail = "Detail"
+        }
+    }
+
+    /// PPT错误页面列表
+    public struct PPTErrSlide: TCOutputModel {
+        /// 异常元素存在的页面，由页面类型+页码组成，页码类型包括：幻灯片、幻灯片母版、幻灯片布局等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let page: String?
+
+        /// 错误元素列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errs: [PPTErr]?
+
+        enum CodingKeys: String, CodingKey {
+            case page = "Page"
+            case errs = "Errs"
+        }
+    }
+
     /// 录制控制参数， 用于指定全局录制控制及具体流录制控制参数，比如设置需要对哪些流进行录制，是否只录制小画面等
     public struct RecordControl: TCInputModel {
         /// 设置是否开启录制控制参数，只有设置为true的时候，录制控制参数才生效。
@@ -471,9 +508,64 @@ extension Tiw {
         }
     }
 
+    /// 正在运行的任务列表项
+    public struct RunningTaskItem: TCOutputModel {
+        /// 应用SdkAppID
+        public let sdkAppID: Int64?
+
+        /// 任务ID
+        public let taskID: String?
+
+        /// 任务类型
+        /// - TranscodeH5: 动态转码任务，文档转HTML5页面
+        /// - TranscodeJPG: 静态转码任务，文档转图片
+        /// - WhiteboardPush: 白板推流任务
+        /// - OnlineRecord: 实时录制任务
+        public let taskType: String?
+
+        /// 任务创建时间
+        public let createTime: String?
+
+        /// 任务取消时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cancelTime: String?
+
+        /// 任务状态
+        /// - QUEUED: 任务正在排队等待执行中
+        /// - PROCESSING: 任务正在执行中
+        /// - FINISHED: 任务已完成
+        public let status: String?
+
+        /// 任务当前进度
+        public let progress: Int64?
+
+        /// 转码任务中转码文件的原始URL
+        /// 此参数只有任务类型为TranscodeH5、TranscodeJPG类型时才会有有效值。其他任务类型为空字符串。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileURL: String?
+
+        /// 房间号
+        ///
+        /// 当任务类型为TranscodeH5、TranscodeJPG时，房间号为0。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roomID: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppID = "SdkAppID"
+            case taskID = "TaskID"
+            case taskType = "TaskType"
+            case createTime = "CreateTime"
+            case cancelTime = "CancelTime"
+            case status = "Status"
+            case progress = "Progress"
+            case fileURL = "FileURL"
+            case roomID = "RoomID"
+        }
+    }
+
     /// 板书文件存储cos参数
     public struct SnapshotCOS: TCInputModel {
-        /// cos所在腾讯云帐号uin
+        /// cos所在腾讯云账号uin
         public let uin: UInt64
 
         /// cos所在地区

@@ -19,6 +19,19 @@ import TecoCore
 extension TCMsError {
     public struct InvalidParameterValue: TCMsErrorType {
         enum Code: String {
+            case androidAppMd5Error = "InvalidParameterValue.AndroidAppMd5Error"
+            case androidAppPkgNameError = "InvalidParameterValue.AndroidAppPkgNameError"
+            case androidAppPkgNameListError = "InvalidParameterValue.AndroidAppPkgNameListError"
+            case androidAppTypeError = "InvalidParameterValue.AndroidAppTypeError"
+            case androidAppUrlError = "InvalidParameterValue.AndroidAppUrlError"
+            case androidAssetsError = "InvalidParameterValue.AndroidAssetsError"
+            case androidEncryptParamError = "InvalidParameterValue.AndroidEncryptParamError"
+            case androidResError = "InvalidParameterValue.AndroidResError"
+            case androidSoError = "InvalidParameterValue.AndroidSoError"
+            case androidVMPError = "InvalidParameterValue.AndroidVMPError"
+            case appletEncryptParamError = "InvalidParameterValue.AppletEncryptParamError"
+            case checkUrlError = "InvalidParameterValue.CheckUrlError"
+            case encryptParamAppTypeError = "InvalidParameterValue.EncryptParamAppTypeError"
             case invalidCoexistItemIdsFilters = "InvalidParameterValue.InvalidCoexistItemIdsFilters"
             case invalidFilter = "InvalidParameterValue.InvalidFilter"
             case invalidItemIds = "InvalidParameterValue.InvalidItemIds"
@@ -49,6 +62,60 @@ extension TCMsError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var androidAppMd5Error: InvalidParameterValue {
+            InvalidParameterValue(.androidAppMd5Error)
+        }
+
+        public static var androidAppPkgNameError: InvalidParameterValue {
+            InvalidParameterValue(.androidAppPkgNameError)
+        }
+
+        public static var androidAppPkgNameListError: InvalidParameterValue {
+            InvalidParameterValue(.androidAppPkgNameListError)
+        }
+
+        public static var androidAppTypeError: InvalidParameterValue {
+            InvalidParameterValue(.androidAppTypeError)
+        }
+
+        public static var androidAppUrlError: InvalidParameterValue {
+            InvalidParameterValue(.androidAppUrlError)
+        }
+
+        public static var androidAssetsError: InvalidParameterValue {
+            InvalidParameterValue(.androidAssetsError)
+        }
+
+        /// 请检查配置。
+        public static var androidEncryptParamError: InvalidParameterValue {
+            InvalidParameterValue(.androidEncryptParamError)
+        }
+
+        public static var androidResError: InvalidParameterValue {
+            InvalidParameterValue(.androidResError)
+        }
+
+        public static var androidSoError: InvalidParameterValue {
+            InvalidParameterValue(.androidSoError)
+        }
+
+        public static var androidVMPError: InvalidParameterValue {
+            InvalidParameterValue(.androidVMPError)
+        }
+
+        public static var appletEncryptParamError: InvalidParameterValue {
+            InvalidParameterValue(.appletEncryptParamError)
+        }
+
+        /// 请检查资源是否能下载。
+        public static var checkUrlError: InvalidParameterValue {
+            InvalidParameterValue(.checkUrlError)
+        }
+
+        public static var encryptParamAppTypeError: InvalidParameterValue {
+            InvalidParameterValue(.encryptParamAppTypeError)
         }
 
         /// 不能同时指定ItemIds和Filters。
@@ -94,6 +161,32 @@ extension TCMsError {
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
+            case .androidAppMd5Error:
+                code = .invalidParameterValue_AndroidAppMd5Error
+            case .androidAppPkgNameError:
+                code = .invalidParameterValue_AndroidAppPkgNameError
+            case .androidAppPkgNameListError:
+                code = .invalidParameterValue_AndroidAppPkgNameListError
+            case .androidAppTypeError:
+                code = .invalidParameterValue_AndroidAppTypeError
+            case .androidAppUrlError:
+                code = .invalidParameterValue_AndroidAppUrlError
+            case .androidAssetsError:
+                code = .invalidParameterValue_AndroidAssetsError
+            case .androidEncryptParamError:
+                code = .invalidParameterValue_AndroidEncryptParamError
+            case .androidResError:
+                code = .invalidParameterValue_AndroidResError
+            case .androidSoError:
+                code = .invalidParameterValue_AndroidSoError
+            case .androidVMPError:
+                code = .invalidParameterValue_AndroidVMPError
+            case .appletEncryptParamError:
+                code = .invalidParameterValue_AppletEncryptParamError
+            case .checkUrlError:
+                code = .invalidParameterValue_CheckUrlError
+            case .encryptParamAppTypeError:
+                code = .invalidParameterValue_EncryptParamAppTypeError
             case .invalidCoexistItemIdsFilters:
                 code = .invalidParameterValue_InvalidCoexistItemIdsFilters
             case .invalidFilter:

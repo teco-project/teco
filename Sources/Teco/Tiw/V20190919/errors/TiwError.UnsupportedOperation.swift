@@ -47,6 +47,8 @@ extension TCTiwError {
         }
 
         /// 当前未完成的任务不能此状态下执行指定操作，例如对正在录制的任务执行恢复录制等。
+        ///
+        /// None
         public static var invalidTaskStatus: UnsupportedOperation {
             UnsupportedOperation(.invalidTaskStatus)
         }

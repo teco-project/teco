@@ -104,13 +104,13 @@ extension Iotvideo {
         /// 队列区
         public let queueRegion: String
 
-        /// 消息队列的类型。 0：CMQ，1：CKafaka
+        /// 消息队列的类型。 0：CMQ，1：Ckafka
         public let queueType: UInt64
 
-        /// 实例id， 目前只有Ckafaka会用到
+        /// 实例id， 目前只有Ckafka会用到
         public let instanceId: String
 
-        /// 实例名称，目前只有Ckafaka会用到
+        /// 实例名称，目前只有Ckafka会用到
         public let instanceName: String
 
         /// 错误消息

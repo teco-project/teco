@@ -28,6 +28,9 @@ extension Ess {
         /// 返回最大数量，最大为20
         public let limit: Int64
 
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
         /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]
         /// 根据第三方系统openId过滤查询员工时,Key为StaffOpenId,Values为["OpenId","OpenId",...]
         public let filters: [Filter]?
@@ -35,9 +38,10 @@ extension Ess {
         /// 偏移量，默认为0，最大为20000
         public let offset: Int64?
 
-        public init(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
+        public init(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil) {
             self.operator = `operator`
             self.limit = limit
+            self.agent = agent
             self.filters = filters
             self.offset = offset
         }
@@ -45,6 +49,7 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case limit = "Limit"
+            case agent = "Agent"
             case filters = "Filters"
             case offset = "Offset"
         }
@@ -54,7 +59,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeIntegrationEmployeesRequest(operator: self.operator, limit: self.limit, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
+            return DescribeIntegrationEmployeesRequest(operator: self.operator, limit: self.limit, agent: self.agent, filters: self.filters, offset: (self.offset ?? 0) + response.limit)
         }
     }
 
@@ -96,57 +101,57 @@ extension Ess {
         }
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
         self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
         try await self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
-        self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
+        self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
-        try await self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, agent: Agent? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
+        try await self.describeIntegrationEmployees(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Staff])> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     @inlinable @discardableResult
     public func describeIntegrationEmployeesPaginated(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationEmployeesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationEmployees, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询员工信息
+    /// 查询企业员工列表
     ///
-    /// 查询员工信息，每次返回的数据量最大为20
+    /// 查询企业员工列表，每次返回的数据量最大为20
     ///
     /// - Returns: `AsyncSequence`s of `Staff` and `DescribeIntegrationEmployeesResponse` that can be iterated over asynchronously on demand.
     @inlinable

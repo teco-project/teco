@@ -51,7 +51,7 @@ public struct Iottid: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: TCIottidError.self,
+            errorType: nil,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

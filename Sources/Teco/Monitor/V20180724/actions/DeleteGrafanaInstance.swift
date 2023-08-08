@@ -44,24 +44,32 @@ extension Monitor {
     }
 
     /// 删除 Grafana 实例
+    ///
+    /// 本接口（DeleteGrafanaInstance）用于 Grafana 包年包月实例的退费，调用后实例处于停服状态，不可使用，7天后自动销毁。
     @inlinable @discardableResult
     public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
         self.client.execute(action: "DeleteGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 实例
+    ///
+    /// 本接口（DeleteGrafanaInstance）用于 Grafana 包年包月实例的退费，调用后实例处于停服状态，不可使用，7天后自动销毁。
     @inlinable @discardableResult
     public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
         try await self.client.execute(action: "DeleteGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Grafana 实例
+    ///
+    /// 本接口（DeleteGrafanaInstance）用于 Grafana 包年包月实例的退费，调用后实例处于停服状态，不可使用，7天后自动销毁。
     @inlinable @discardableResult
     public func deleteGrafanaInstance(instanceIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
         self.deleteGrafanaInstance(.init(instanceIDs: instanceIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 实例
+    ///
+    /// 本接口（DeleteGrafanaInstance）用于 Grafana 包年包月实例的退费，调用后实例处于停服状态，不可使用，7天后自动销毁。
     @inlinable @discardableResult
     public func deleteGrafanaInstance(instanceIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
         try await self.deleteGrafanaInstance(.init(instanceIDs: instanceIDs), region: region, logger: logger, on: eventLoop)

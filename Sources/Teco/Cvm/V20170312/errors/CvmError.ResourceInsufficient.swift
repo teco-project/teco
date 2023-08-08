@@ -23,6 +23,7 @@ extension TCCvmError {
             case cloudDiskSoldOut = "ResourceInsufficient.CloudDiskSoldOut"
             case cloudDiskUnavailable = "ResourceInsufficient.CloudDiskUnavailable"
             case disasterRecoverGroupCvmQuota = "ResourceInsufficient.DisasterRecoverGroupCvmQuota"
+            case insufficientGroupQuota = "ResourceInsufficient.InsufficientGroupQuota"
             case specifiedInstanceType = "ResourceInsufficient.SpecifiedInstanceType"
             case zoneSoldOutForSpecifiedInstance = "ResourceInsufficient.ZoneSoldOutForSpecifiedInstance"
         }
@@ -69,6 +70,11 @@ extension TCCvmError {
             ResourceInsufficient(.disasterRecoverGroupCvmQuota)
         }
 
+        /// 安全组资源配额不足。
+        public static var insufficientGroupQuota: ResourceInsufficient {
+            ResourceInsufficient(.insufficientGroupQuota)
+        }
+
         /// 指定的实例类型库存不足。
         public static var specifiedInstanceType: ResourceInsufficient {
             ResourceInsufficient(.specifiedInstanceType)
@@ -90,6 +96,8 @@ extension TCCvmError {
                 code = .resourceInsufficient_CloudDiskUnavailable
             case .disasterRecoverGroupCvmQuota:
                 code = .resourceInsufficient_DisasterRecoverGroupCvmQuota
+            case .insufficientGroupQuota:
+                code = .resourceInsufficient_InsufficientGroupQuota
             case .specifiedInstanceType:
                 code = .resourceInsufficient_SpecifiedInstanceType
             case .zoneSoldOutForSpecifiedInstance:

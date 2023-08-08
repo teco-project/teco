@@ -19,6 +19,9 @@ import TecoCore
 extension TCTioneError {
     public struct InternalError: TCTioneErrorType {
         enum Code: String {
+            case bindingTagsFailed = "InternalError.BindingTagsFailed"
+            case createJobInstanceFailed = "InternalError.CreateJobInstanceFailed"
+            case createTcrInstanceTokenFailed = "InternalError.CreateTcrInstanceTokenFailed"
             case freezeBillFailed = "InternalError.FreezeBillFailed"
             case insufficientBalance = "InternalError.InsufficientBalance"
             case noPermission = "InternalError.NoPermission"
@@ -26,7 +29,10 @@ extension TCTioneError {
             case queryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
             case queryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
             case queryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+            case queryResourceSpecFailed = "InternalError.QueryResourceSpecFailed"
+            case querySubnetInfoFailed = "InternalError.QuerySubnetInfoFailed"
             case stopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
+            case unSubmittedStatusNotAllowStop = "InternalError.UnSubmittedStatusNotAllowStop"
             case other = "InternalError"
         }
 
@@ -50,6 +56,18 @@ extension TCTioneError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var bindingTagsFailed: InternalError {
+            InternalError(.bindingTagsFailed)
+        }
+
+        public static var createJobInstanceFailed: InternalError {
+            InternalError(.createJobInstanceFailed)
+        }
+
+        public static var createTcrInstanceTokenFailed: InternalError {
+            InternalError(.createTcrInstanceTokenFailed)
         }
 
         /// 冻结失败。
@@ -95,9 +113,23 @@ extension TCTioneError {
             InternalError(.queryResourceGroupFailed)
         }
 
+        /// 查询资源套餐规格失败
+        public static var queryResourceSpecFailed: InternalError {
+            InternalError(.queryResourceSpecFailed)
+        }
+
+        /// 查询子网信息失败。
+        public static var querySubnetInfoFailed: InternalError {
+            InternalError(.querySubnetInfoFailed)
+        }
+
         /// 停止任务失败。
         public static var stopJobInstanceFailed: InternalError {
             InternalError(.stopJobInstanceFailed)
+        }
+
+        public static var unSubmittedStatusNotAllowStop: InternalError {
+            InternalError(.unSubmittedStatusNotAllowStop)
         }
 
         /// 内部错误。
@@ -108,6 +140,12 @@ extension TCTioneError {
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
+            case .bindingTagsFailed:
+                code = .internalError_BindingTagsFailed
+            case .createJobInstanceFailed:
+                code = .internalError_CreateJobInstanceFailed
+            case .createTcrInstanceTokenFailed:
+                code = .internalError_CreateTcrInstanceTokenFailed
             case .freezeBillFailed:
                 code = .internalError_FreezeBillFailed
             case .insufficientBalance:
@@ -122,8 +160,14 @@ extension TCTioneError {
                 code = .internalError_QueryHDFSInfoFailed
             case .queryResourceGroupFailed:
                 code = .internalError_QueryResourceGroupFailed
+            case .queryResourceSpecFailed:
+                code = .internalError_QueryResourceSpecFailed
+            case .querySubnetInfoFailed:
+                code = .internalError_QuerySubnetInfoFailed
             case .stopJobInstanceFailed:
                 code = .internalError_StopJobInstanceFailed
+            case .unSubmittedStatusNotAllowStop:
+                code = .internalError_UnSubmittedStatusNotAllowStop
             case .other:
                 code = .internalError
             }

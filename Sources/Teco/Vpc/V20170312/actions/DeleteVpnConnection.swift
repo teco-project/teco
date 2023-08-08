@@ -50,7 +50,7 @@ extension Vpc {
 
     /// 删除VPN通道
     ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    /// 本接口（DeleteVpnConnection）用于删除VPN通道。
     @inlinable @discardableResult
     public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
         self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -58,7 +58,7 @@ extension Vpc {
 
     /// 删除VPN通道
     ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    /// 本接口（DeleteVpnConnection）用于删除VPN通道。
     @inlinable @discardableResult
     public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
         try await self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,7 +66,7 @@ extension Vpc {
 
     /// 删除VPN通道
     ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    /// 本接口（DeleteVpnConnection）用于删除VPN通道。
     @inlinable @discardableResult
     public func deleteVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
         self.deleteVpnConnection(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
@@ -74,7 +74,7 @@ extension Vpc {
 
     /// 删除VPN通道
     ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    /// 本接口（DeleteVpnConnection）用于删除VPN通道。
     @inlinable @discardableResult
     public func deleteVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
         try await self.deleteVpnConnection(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)

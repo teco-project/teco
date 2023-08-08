@@ -39,13 +39,17 @@ extension Cbs {
         /// 变更云盘类型时，可传入该参数，表示变更的目标类型，取值范围：<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘。<br>当前不支持批量变更类型，即传入DiskType时，DiskIds仅支持传入一块云盘；<br>变更云盘类型时不支持同时变更其他属性。
         public let diskType: String?
 
-        public init(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil) {
+        /// 开启/关闭云盘性能突发功能
+        public let burstPerformanceOperation: String?
+
+        public init(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, burstPerformanceOperation: String? = nil) {
             self.diskIds = diskIds
             self.diskName = diskName
             self.portable = portable
             self.projectId = projectId
             self.deleteWithInstance = deleteWithInstance
             self.diskType = diskType
+            self.burstPerformanceOperation = burstPerformanceOperation
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Cbs {
             case projectId = "ProjectId"
             case deleteWithInstance = "DeleteWithInstance"
             case diskType = "DiskType"
+            case burstPerformanceOperation = "BurstPerformanceOperation"
         }
     }
 
@@ -94,8 +99,8 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
-    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
-        self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, burstPerformanceOperation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
+        self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType, burstPerformanceOperation: burstPerformanceOperation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘属性
@@ -104,7 +109,7 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
-    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
-        try await self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, burstPerformanceOperation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
+        try await self.modifyDiskAttributes(.init(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType, burstPerformanceOperation: burstPerformanceOperation), region: region, logger: logger, on: eventLoop)
     }
 }

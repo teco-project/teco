@@ -25,7 +25,7 @@ extension Apigateway {
         /// 待查询的使用计划唯一 ID。
         public let usagePlanId: String
 
-        /// 定类型，取值为 API、SERVICE，默认值为 SERVICE。
+        /// 定义类型，取值为 API、SERVICE，默认值为 SERVICE。
         public let bindType: String
 
         /// 返回数量，默认为 20，最大值为 100。

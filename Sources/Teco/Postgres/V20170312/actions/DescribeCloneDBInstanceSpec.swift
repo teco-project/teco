@@ -61,7 +61,7 @@ extension Postgres {
         }
     }
 
-    /// 查询克隆实例购买规格
+    /// 查询克隆实例可购买的规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
@@ -69,7 +69,7 @@ extension Postgres {
         self.client.execute(action: "DescribeCloneDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询克隆实例购买规格
+    /// 查询克隆实例可购买的规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
@@ -77,7 +77,7 @@ extension Postgres {
         try await self.client.execute(action: "DescribeCloneDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询克隆实例购买规格
+    /// 查询克隆实例可购买的规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
@@ -85,7 +85,7 @@ extension Postgres {
         self.describeCloneDBInstanceSpec(.init(dbInstanceId: dbInstanceId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询克隆实例购买规格
+    /// 查询克隆实例可购买的规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable

@@ -43,6 +43,7 @@ public struct TCBillingError: TCBillingErrorType {
         case failedOperation_TagKeyNotExist = "FailedOperation.TagKeyNotExist"
         case internalError = "InternalError"
         case internalError_GatewayError = "InternalError.GatewayError"
+        case internalError_UnknownError = "InternalError.UnknownError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case unauthorizedOperation_CamNoAuth = "UnauthorizedOperation.CamNoAuth"
@@ -163,6 +164,11 @@ public struct TCBillingError: TCBillingErrorType {
     /// 网关错误。
     public static var internalError_GatewayError: TCBillingError {
         TCBillingError(.internalError_GatewayError)
+    }
+
+    /// 未定义异常。
+    public static var internalError_UnknownError: TCBillingError {
+        TCBillingError(.internalError_UnknownError)
     }
 
     /// 参数错误。

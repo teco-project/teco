@@ -21,25 +21,25 @@ import TecoCore
 extension Dlc {
     /// CreateSparkApp请求参数结构体
     public struct CreateSparkAppRequest: TCRequestModel {
-        /// spark应用名
+        /// spark作业名
         public let appName: String
 
-        /// 1代表spark jar应用，2代表spark streaming应用
+        /// spark作业类型，1代表spark jar作业，2代表spark streaming作业
         public let appType: Int64
 
-        /// 执行spark作业的数据引擎
+        /// 执行spark作业的数据引擎名称
         public let dataEngine: String
 
-        /// spark应用的执行入口
+        /// spark作业程序包文件路径
         public let appFile: String
 
-        /// 执行spark作业的角色ID
+        /// 数据访问策略，CAM Role arn
         public let roleArn: Int64
 
-        /// spark作业driver资源规格大小, 可取small,medium,large,xlarge
+        /// 指定的Driver规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         public let appDriverSize: String
 
-        /// spark作业executor资源规格大小, 可取small,medium,large,xlarge
+        /// 指定的Executor规格，当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu）
         public let appExecutorSize: String
 
         /// spark作业executor个数
@@ -48,49 +48,49 @@ extension Dlc {
         /// 该字段已下线，请使用字段Datasource
         public let eni: String?
 
-        /// 是否本地上传，可去cos,lakefs
+        /// spark作业程序包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         public let isLocal: String?
 
-        /// spark jar作业时的主类
+        /// spark作业主类
         public let mainClass: String?
 
         /// spark配置，以换行符分隔
         public let appConf: String?
 
-        /// 是否本地上传，包含cos,lakefs
+        /// spark 作业依赖jar包是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         public let isLocalJars: String?
 
-        /// spark jar作业依赖jars，以逗号分隔
+        /// spark 作业依赖jar包（--jars），以逗号分隔
         public let appJars: String?
 
-        /// 是否本地上传，包含cos,lakefs
+        /// spark作业依赖文件资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         public let isLocalFiles: String?
 
-        /// spark作业依赖资源，以逗号分隔
+        /// spark作业依赖文件资源（--files）（非jar、zip），以逗号分隔
         public let appFiles: String?
 
-        /// spark作业命令行参数
+        /// spark作业程序入参，空格分割
         public let cmdArgs: String?
 
-        /// 只对spark流任务生效
+        /// 最大重试次数，只对spark流任务生效
         public let maxRetries: Int64?
 
-        /// 数据源名
+        /// 数据源名称
         public let dataSource: String?
 
-        /// pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        /// pyspark：依赖上传方式，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         public let isLocalPythonFiles: String?
 
-        /// pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
+        /// pyspark作业依赖python资源（--py-files），支持py/zip/egg等归档格式，多文件以逗号分隔
         public let appPythonFiles: String?
 
-        /// archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
+        /// spark作业依赖archives资源是否本地上传，cos：存放与cos，lakefs：本地上传（控制台使用，该方式不支持直接接口调用）
         public let isLocalArchives: String?
 
-        /// archives：依赖资源
+        /// spark作业依赖archives资源（--archives），支持tar.gz/tgz/tar等归档格式，以逗号分隔
         public let appArchives: String?
 
-        /// Spark Image 版本
+        /// Spark Image 版本号
         public let sparkImage: String?
 
         /// Spark Image 版本名称
@@ -99,7 +99,16 @@ extension Dlc {
         /// 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于AppExecutorNums
         public let appExecutorMaxNumbers: Int64?
 
-        public init(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil) {
+        /// 关联dlc查询脚本id
+        public let sessionId: String?
+
+        /// 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        public let isInherit: UInt64?
+
+        /// 是否使用session脚本的sql运行任务：false：否，true：是
+        public let isSessionStarted: Bool?
+
+        public init(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, sessionId: String? = nil, isInherit: UInt64? = nil, isSessionStarted: Bool? = nil) {
             self.appName = appName
             self.appType = appType
             self.dataEngine = dataEngine
@@ -126,6 +135,9 @@ extension Dlc {
             self.sparkImage = sparkImage
             self.sparkImageVersion = sparkImageVersion
             self.appExecutorMaxNumbers = appExecutorMaxNumbers
+            self.sessionId = sessionId
+            self.isInherit = isInherit
+            self.isSessionStarted = isSessionStarted
         }
 
         enum CodingKeys: String, CodingKey {
@@ -155,6 +167,9 @@ extension Dlc {
             case sparkImage = "SparkImage"
             case sparkImageVersion = "SparkImageVersion"
             case appExecutorMaxNumbers = "AppExecutorMaxNumbers"
+            case sessionId = "SessionId"
+            case isInherit = "IsInherit"
+            case isSessionStarted = "IsSessionStarted"
         }
     }
 
@@ -173,27 +188,27 @@ extension Dlc {
         }
     }
 
-    /// 创建spark应用
+    /// 创建spark作业
     @inlinable
     public func createSparkApp(_ input: CreateSparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppResponse> {
         self.client.execute(action: "CreateSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建spark应用
+    /// 创建spark作业
     @inlinable
     public func createSparkApp(_ input: CreateSparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
         try await self.client.execute(action: "CreateSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建spark应用
+    /// 创建spark作业
     @inlinable
-    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppResponse> {
-        self.createSparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers), region: region, logger: logger, on: eventLoop)
+    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, sessionId: String? = nil, isInherit: UInt64? = nil, isSessionStarted: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppResponse> {
+        self.createSparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers, sessionId: sessionId, isInherit: isInherit, isSessionStarted: isSessionStarted), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建spark应用
+    /// 创建spark作业
     @inlinable
-    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
-        try await self.createSparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers), region: region, logger: logger, on: eventLoop)
+    public func createSparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, sparkImage: String? = nil, sparkImageVersion: String? = nil, appExecutorMaxNumbers: Int64? = nil, sessionId: String? = nil, isInherit: UInt64? = nil, isSessionStarted: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
+        try await self.createSparkApp(.init(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, isLocalArchives: isLocalArchives, appArchives: appArchives, sparkImage: sparkImage, sparkImageVersion: sparkImageVersion, appExecutorMaxNumbers: appExecutorMaxNumbers, sessionId: sessionId, isInherit: isInherit, isSessionStarted: isSessionStarted), region: region, logger: logger, on: eventLoop)
     }
 }

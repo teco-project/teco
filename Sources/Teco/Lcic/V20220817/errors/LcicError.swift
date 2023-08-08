@@ -41,6 +41,7 @@ public struct TCLcicError: TCLcicErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_Content = "InvalidParameter.Content"
+        case invalidParameter_CssOrJs = "InvalidParameter.CssOrJs"
         case invalidParameter_EndTime = "InvalidParameter.EndTime"
         case invalidParameter_GroupMemberOverLimit = "InvalidParameter.GroupMemberOverLimit"
         case invalidParameter_GroupParamInvalid = "InvalidParameter.GroupParamInvalid"
@@ -147,6 +148,8 @@ public struct TCLcicError: TCLcicErrorType {
         TCLcicError(.failedOperation_OriginIdExists)
     }
 
+    /// 请求超时
+    ///
     /// 请重新尝试
     public static var failedOperation_RequestTimedOut: TCLcicError {
         TCLcicError(.failedOperation_RequestTimedOut)
@@ -175,6 +178,11 @@ public struct TCLcicError: TCLcicErrorType {
     /// 内容包含非法信息（如色情，恐暴，政治等）。
     public static var invalidParameter_Content: TCLcicError {
         TCLcicError(.invalidParameter_Content)
+    }
+
+    /// css/js地址无法访问
+    public static var invalidParameter_CssOrJs: TCLcicError {
+        TCLcicError(.invalidParameter_CssOrJs)
     }
 
     /// 结束时间不能早于开始时间。

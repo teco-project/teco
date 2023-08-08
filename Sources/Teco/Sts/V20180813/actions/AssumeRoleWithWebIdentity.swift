@@ -33,7 +33,7 @@ extension Sts {
         /// 会话名称
         public let roleSessionName: String
 
-        /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
+        /// 指定临时访问凭证的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: Int64?
 
         public init(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil) {
@@ -55,13 +55,13 @@ extension Sts {
 
     /// AssumeRoleWithWebIdentity返回参数结构体
     public struct AssumeRoleWithWebIdentityResponse: TCResponseModel {
-        /// 临时密钥过期时间(时间戳)
+        /// 临时访问凭证过期时间(时间戳)
         public let expiredTime: UInt64
 
-        /// 临时密钥过期时间
+        /// 临时访问凭证过期时间
         public let expiration: String
 
-        /// 临时密钥
+        /// 临时访问凭证
         public let credentials: Credentials
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -75,25 +75,41 @@ extension Sts {
         }
     }
 
-    /// 申请OIDC角色临时密钥
+    /// 申请OIDC角色临时访问凭证
+    ///
+    /// 申请OIDC角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
         self.client.execute(action: "AssumeRoleWithWebIdentity", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 申请OIDC角色临时密钥
+    /// 申请OIDC角色临时访问凭证
+    ///
+    /// 申请OIDC角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
         try await self.client.execute(action: "AssumeRoleWithWebIdentity", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 申请OIDC角色临时密钥
+    /// 申请OIDC角色临时访问凭证
+    ///
+    /// 申请OIDC角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
         self.assumeRoleWithWebIdentity(.init(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 申请OIDC角色临时密钥
+    /// 申请OIDC角色临时访问凭证
+    ///
+    /// 申请OIDC角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
         try await self.assumeRoleWithWebIdentity(.init(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)

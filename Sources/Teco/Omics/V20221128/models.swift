@@ -19,6 +19,156 @@ import TecoCore
 import TecoDateHelpers
 
 extension Omics {
+    /// 云服务器配置。
+    public struct CVMOption: TCInputModel {
+        /// 云服务器可用区。
+        public let zone: String?
+
+        /// 云服务器实例规格。
+        public let instanceType: String?
+
+        public init(zone: String, instanceType: String) {
+            self.zone = zone
+            self.instanceType = instanceType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+            case instanceType = "InstanceType"
+        }
+    }
+
+    /// 计算集群配置。
+    public struct ClusterOption: TCInputModel {
+        /// 计算集群可用区。
+        public let zone: String?
+
+        /// 计算集群类型，取值范围：
+        /// - KUBERNETES
+        public let type: String?
+
+        public init(zone: String, type: String) {
+            self.zone = zone
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+            case type = "Type"
+        }
+    }
+
+    /// 数据库配置。
+    public struct DatabaseOption: TCInputModel {
+        /// 数据库可用区。
+        public let zone: String?
+
+        public init(zone: String) {
+            self.zone = zone
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+        }
+    }
+
+    /// 组学平台环境详情。
+    public struct Environment: TCOutputModel {
+        /// 环境ID。
+        public let environmentId: String?
+
+        /// 环境名称。
+        public let name: String?
+
+        /// 环境描述信息。
+        public let description: String?
+
+        /// 环境地域。
+        public let region: String?
+
+        /// 环境类型，取值范围：
+        /// - KUBERNETES：Kubernetes容器集群
+        /// - HPC：HPC高性能计算集群
+        public let type: String?
+
+        /// 环境状态，取值范围：
+        /// - INITIALIZING：创建中
+        /// - INITIALIZATION_ERROR：创建失败
+        /// - RUNNING：运行中
+        /// - ERROR：异常
+        /// - DELETING：正在删除
+        /// - DELETE_ERROR：删除失败
+        public let status: String?
+
+        /// 环境是否可用。环境需要可用才能投递计算任务。
+        public let available: Bool?
+
+        /// 环境信息。
+        public let message: String?
+
+        /// 云资源ID。
+        public let resourceIds: ResourceIds?
+
+        /// 上个工作流UUID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastWorkflowUuid: String?
+
+        /// 创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var creationTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case environmentId = "EnvironmentId"
+            case name = "Name"
+            case description = "Description"
+            case region = "Region"
+            case type = "Type"
+            case status = "Status"
+            case available = "Available"
+            case message = "Message"
+            case resourceIds = "ResourceIds"
+            case lastWorkflowUuid = "LastWorkflowUuid"
+            case creationTime = "CreationTime"
+        }
+    }
+
+    /// 环境配置。
+    public struct EnvironmentConfig: TCInputModel {
+        /// 私有网络配置。
+        public let vpcOption: VPCOption?
+
+        /// 计算集群配置。
+        public let clusterOption: ClusterOption?
+
+        /// 数据库配置。
+        public let databaseOption: DatabaseOption?
+
+        /// 存储配置。
+        public let storageOption: StorageOption?
+
+        /// 云服务器配置。
+        public let cvmOption: CVMOption?
+
+        public init(vpcOption: VPCOption, clusterOption: ClusterOption, databaseOption: DatabaseOption, storageOption: StorageOption, cvmOption: CVMOption) {
+            self.vpcOption = vpcOption
+            self.clusterOption = clusterOption
+            self.databaseOption = databaseOption
+            self.storageOption = storageOption
+            self.cvmOption = cvmOption
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcOption = "VPCOption"
+            case clusterOption = "ClusterOption"
+            case databaseOption = "DatabaseOption"
+            case storageOption = "StorageOption"
+            case cvmOption = "CVMOption"
+        }
+    }
+
     /// 执行时间。
     public struct ExecutionTime: TCOutputModel {
         /// 提交时间。
@@ -69,6 +219,56 @@ extension Omics {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
+        }
+    }
+
+    /// 云资源ID。
+    public struct ResourceIds: TCOutputModel {
+        /// 私有网络ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 安全组ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let securityGroupId: String?
+
+        /// TDSQL-C Mysql版数据库ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tdsqlcId: String?
+
+        /// 文件存储ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cfsId: String?
+
+        /// 文件存储类型：取值范围：
+        /// - SD：通用标准型
+        /// - HP：通用性能型
+        /// - TB：turbo标准型
+        /// - TP：turbo性能型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cfsStorageType: String?
+
+        /// 云服务器ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cvmId: String?
+
+        /// 弹性容器集群ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eksId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VPCId"
+            case subnetId = "SubnetId"
+            case securityGroupId = "SecurityGroupId"
+            case tdsqlcId = "TDSQLCId"
+            case cfsId = "CFSId"
+            case cfsStorageType = "CFSStorageType"
+            case cvmId = "CVMId"
+            case eksId = "EKSId"
         }
     }
 
@@ -368,16 +568,28 @@ extension Omics {
         /// 是否使用错误挂起功能。
         public let useErrorOnHold: Bool
 
-        public init(failureMode: String, useCallCache: Bool, useErrorOnHold: Bool) {
+        /// 输出归档COS路径。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalWorkflowOutputsDir: String?
+
+        /// 是否使用相对目录归档输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let useRelativeOutputPaths: Bool?
+
+        public init(failureMode: String, useCallCache: Bool, useErrorOnHold: Bool, finalWorkflowOutputsDir: String? = nil, useRelativeOutputPaths: Bool? = nil) {
             self.failureMode = failureMode
             self.useCallCache = useCallCache
             self.useErrorOnHold = useErrorOnHold
+            self.finalWorkflowOutputsDir = finalWorkflowOutputsDir
+            self.useRelativeOutputPaths = useRelativeOutputPaths
         }
 
         enum CodingKeys: String, CodingKey {
             case failureMode = "FailureMode"
             case useCallCache = "UseCallCache"
             case useErrorOnHold = "UseErrorOnHold"
+            case finalWorkflowOutputsDir = "FinalWorkflowOutputsDir"
+            case useRelativeOutputPaths = "UseRelativeOutputPaths"
         }
     }
 
@@ -392,6 +604,133 @@ extension Omics {
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case count = "Count"
+        }
+    }
+
+    /// 文件存储配置。
+    public struct StorageOption: TCInputModel {
+        /// 文件存储类型，取值范围：
+        /// - SD：通用标准型
+        /// - HP：通用性能型
+        /// - TB：turbo标准型
+        /// - TP：turbo性能型
+        public let storageType: String?
+
+        /// 文件存储可用区。
+        public let zone: String?
+
+        /// 文件系统容量，turbo系列必填，单位为GiB。
+        /// - turbo标准型起售40TiB，即40960GiB；扩容步长20TiB，即20480 GiB。
+        /// - turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，即10240 GiB。
+        public let capacity: UInt64?
+
+        public init(storageType: String, zone: String, capacity: UInt64? = nil) {
+            self.storageType = storageType
+            self.zone = zone
+            self.capacity = capacity
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case storageType = "StorageType"
+            case zone = "Zone"
+            case capacity = "Capacity"
+        }
+    }
+
+    /// 表格。
+    public struct Table: TCOutputModel {
+        /// 表格ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableId: String?
+
+        /// 关联项目ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let projectId: String?
+
+        /// 表格名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 表格描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 表格列
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let columns: [TableColumn]?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 创建人
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let creator: String?
+
+        enum CodingKeys: String, CodingKey {
+            case tableId = "TableId"
+            case projectId = "ProjectId"
+            case name = "Name"
+            case description = "Description"
+            case columns = "Columns"
+            case createTime = "CreateTime"
+            case creator = "Creator"
+        }
+    }
+
+    /// 表格列。
+    public struct TableColumn: TCOutputModel {
+        /// 列名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let header: String?
+
+        /// 列数据类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case header = "Header"
+            case dataType = "DataType"
+        }
+    }
+
+    /// 表格行。
+    public struct TableRow: TCOutputModel {
+        /// 表格行UUID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tableRowUuid: String?
+
+        /// 表格行内容。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case tableRowUuid = "TableRowUuid"
+            case content = "Content"
+        }
+    }
+
+    /// 私有网络配置。
+    public struct VPCOption: TCInputModel {
+        /// 子网可用区。
+        public let subnetZone: String?
+
+        /// 私有网络CIDR。
+        public let vpccidrBlock: String?
+
+        /// 子网CIDR。
+        public let subnetCIDRBlock: String?
+
+        public init(subnetZone: String, vpccidrBlock: String, subnetCIDRBlock: String) {
+            self.subnetZone = subnetZone
+            self.vpccidrBlock = vpccidrBlock
+            self.subnetCIDRBlock = subnetCIDRBlock
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case subnetZone = "SubnetZone"
+            case vpccidrBlock = "VPCCIDRBlock"
+            case subnetCIDRBlock = "SubnetCIDRBlock"
         }
     }
 }

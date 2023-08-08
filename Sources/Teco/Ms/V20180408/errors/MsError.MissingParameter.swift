@@ -22,6 +22,7 @@ extension TCMsError {
             case missingAppInfo = "MissingParameter.MissingAppInfo"
             case missingItemId = "MissingParameter.MissingItemId"
             case missingItemIds = "MissingParameter.MissingItemIds"
+            case other = "MissingParameter"
         }
 
         private let error: Code
@@ -61,6 +62,11 @@ extension TCMsError {
             MissingParameter(.missingItemIds)
         }
 
+        /// 缺少参数错误。
+        public static var other: MissingParameter {
+            MissingParameter(.other)
+        }
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
@@ -70,6 +76,8 @@ extension TCMsError {
                 code = .missingParameter_MissingItemId
             case .missingItemIds:
                 code = .missingParameter_MissingItemIds
+            case .other:
+                code = .missingParameter
             }
             return TCMsError(code, context: self.context)
         }

@@ -27,7 +27,7 @@ extension Cfs {
         /// 快照策略名称
         public let policyName: String?
 
-        /// 快照定期备份在一星期哪一天
+        /// 快照定期备份，按照星期一到星期日。 1代表星期一，7代表星期日
         public let dayOfWeek: String?
 
         /// 快照定期备份在一天的哪一小时
@@ -36,10 +36,10 @@ extension Cfs {
         /// 快照保留日期
         public let aliveDays: UInt64?
 
-        /// 是否激活定期快照功能
+        /// 是否激活定期快照功能；1代表激活，0代表未激活
         public let isActivated: UInt64?
 
-        /// 定期快照在月的某几天天，该参数与DayOfWeek互斥
+        /// 定期快照在每月的第几天创建快照，该参数与DayOfWeek互斥
         public let dayOfMonth: String?
 
         /// 间隔天数定期执行快照，该参数与DayOfWeek,DayOfMonth 互斥

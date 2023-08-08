@@ -21,6 +21,7 @@ extension TCMsError {
         enum Code: String {
             case itemIdNotFound = "ResourceNotFound.ItemIdNotFound"
             case planIdNotFound = "ResourceNotFound.PlanIdNotFound"
+            case resultIdNotFound = "ResourceNotFound.ResultIdNotFound"
             case other = "ResourceNotFound"
         }
 
@@ -56,6 +57,13 @@ extension TCMsError {
             ResourceNotFound(.planIdNotFound)
         }
 
+        /// ResultId不存在。
+        ///
+        /// 请稍后重试。
+        public static var resultIdNotFound: ResourceNotFound {
+            ResourceNotFound(.resultIdNotFound)
+        }
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
@@ -68,6 +76,8 @@ extension TCMsError {
                 code = .resourceNotFound_ItemIdNotFound
             case .planIdNotFound:
                 code = .resourceNotFound_PlanIdNotFound
+            case .resultIdNotFound:
+                code = .resourceNotFound_ResultIdNotFound
             case .other:
                 code = .resourceNotFound
             }

@@ -48,7 +48,10 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
 
-        public init(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil) {
+        /// 作业标签
+        public let tags: [Tag]?
+
+        public init(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, tags: [Tag]? = nil) {
             self.name = name
             self.jobType = jobType
             self.clusterType = clusterType
@@ -58,6 +61,7 @@ extension Oceanus {
             self.folderId = folderId
             self.flinkVersion = flinkVersion
             self.workSpaceId = workSpaceId
+            self.tags = tags
         }
 
         enum CodingKeys: String, CodingKey {
@@ -70,6 +74,7 @@ extension Oceanus {
             case folderId = "FolderId"
             case flinkVersion = "FlinkVersion"
             case workSpaceId = "WorkSpaceId"
+            case tags = "Tags"
         }
     }
 
@@ -107,15 +112,15 @@ extension Oceanus {
     ///
     /// 新建作业接口，一个 AppId 最多允许创建1000个作业
     @inlinable
-    public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        self.createJob(.init(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+    public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
+        self.createJob(.init(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建作业
     ///
     /// 新建作业接口，一个 AppId 最多允许创建1000个作业
     @inlinable
-    public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.createJob(.init(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+    public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.createJob(.init(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

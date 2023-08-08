@@ -59,6 +59,7 @@ extension As {
     /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    /// * 竞价混合模式中一次扩容可能触发多个伸缩活动，该接口仅返回第一个伸缩活动的 ActivityId
     @inlinable
     public func scaleOutInstances(_ input: ScaleOutInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
         self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,6 +72,7 @@ extension As {
     /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    /// * 竞价混合模式中一次扩容可能触发多个伸缩活动，该接口仅返回第一个伸缩活动的 ActivityId
     @inlinable
     public func scaleOutInstances(_ input: ScaleOutInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
         try await self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,6 +85,7 @@ extension As {
     /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    /// * 竞价混合模式中一次扩容可能触发多个伸缩活动，该接口仅返回第一个伸缩活动的 ActivityId
     @inlinable
     public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
         self.scaleOutInstances(.init(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)
@@ -95,6 +98,7 @@ extension As {
     /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    /// * 竞价混合模式中一次扩容可能触发多个伸缩活动，该接口仅返回第一个伸缩活动的 ActivityId
     @inlinable
     public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
         try await self.scaleOutInstances(.init(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)

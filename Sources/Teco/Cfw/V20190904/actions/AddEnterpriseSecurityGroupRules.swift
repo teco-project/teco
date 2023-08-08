@@ -53,11 +53,16 @@ extension Cfw {
         /// 状态值，0：添加成功，非0：添加失败
         public let status: UInt64
 
+        /// 规则uuid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rules: [SecurityGroupSimplifyRule]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
+            case rules = "Rules"
             case requestId = "RequestId"
         }
     }

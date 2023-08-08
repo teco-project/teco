@@ -25,9 +25,9 @@ extension Vpc {
         public let routeTableId: String
 
         /// 路由策略对象，删除路由策略时，仅需使用Route的RouteId字段。
-        public let routes: [Route]
+        public let routes: [Route]?
 
-        public init(routeTableId: String, routes: [Route]) {
+        public init(routeTableId: String, routes: [Route]? = nil) {
             self.routeTableId = routeTableId
             self.routes = routes
         }
@@ -72,7 +72,7 @@ extension Vpc {
     ///
     /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
     @inlinable
-    public func deleteRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutesResponse> {
+    public func deleteRoutes(routeTableId: String, routes: [Route]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutesResponse> {
         self.deleteRoutes(.init(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
@@ -80,7 +80,7 @@ extension Vpc {
     ///
     /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
     @inlinable
-    public func deleteRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutesResponse {
+    public func deleteRoutes(routeTableId: String, routes: [Route]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutesResponse {
         try await self.deleteRoutes(.init(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

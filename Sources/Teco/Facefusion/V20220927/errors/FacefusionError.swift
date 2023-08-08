@@ -31,6 +31,7 @@ public struct TCFacefusionError: TCFacefusionErrorType {
         case failedOperation_FaceExceedBorder = "FailedOperation.FaceExceedBorder"
         case failedOperation_FaceFusionError = "FailedOperation.FaceFusionError"
         case failedOperation_FaceRectInvalid = "FailedOperation.FaceRectInvalid"
+        case failedOperation_FaceShapeFailed = "FailedOperation.FaceShapeFailed"
         case failedOperation_FaceSizeTooSmall = "FailedOperation.FaceSizeTooSmall"
         case failedOperation_FuseFreqCtrl = "FailedOperation.FuseFreqCtrl"
         case failedOperation_FuseImageError = "FailedOperation.FuseImageError"
@@ -60,6 +61,7 @@ public struct TCFacefusionError: TCFacefusionErrorType {
         case invalidParameterValue_MaterialIdNotFound = "InvalidParameterValue.MaterialIdNotFound"
         case invalidParameterValue_NoFaceInPhoto = "InvalidParameterValue.NoFaceInPhoto"
         case invalidParameterValue_ParameterValueError = "InvalidParameterValue.ParameterValueError"
+        case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable_Delivering = "ResourceUnavailable.Delivering"
         case resourceUnavailable_Freeze = "ResourceUnavailable.Freeze"
         case resourceUnavailable_GetAuthInfoError = "ResourceUnavailable.GetAuthInfoError"
@@ -123,6 +125,11 @@ public struct TCFacefusionError: TCFacefusionErrorType {
     /// 人脸框不合法。
     public static var failedOperation_FaceRectInvalid: TCFacefusionError {
         TCFacefusionError(.failedOperation_FaceRectInvalid)
+    }
+
+    /// 人脸配准失败。
+    public static var failedOperation_FaceShapeFailed: TCFacefusionError {
+        TCFacefusionError(.failedOperation_FaceShapeFailed)
     }
 
     /// 人脸因太小被过滤，建议人脸分辨率不小于34*34。
@@ -270,12 +277,19 @@ public struct TCFacefusionError: TCFacefusionErrorType {
         TCFacefusionError(.invalidParameterValue_ParameterValueError)
     }
 
+    /// 资源不存在。
+    public static var resourceNotFound: TCFacefusionError {
+        TCFacefusionError(.resourceNotFound)
+    }
+
     /// 资源正在发货中。
     public static var resourceUnavailable_Delivering: TCFacefusionError {
         TCFacefusionError(.resourceUnavailable_Delivering)
     }
 
     /// 帐号已被冻结。
+    ///
+    /// None
     public static var resourceUnavailable_Freeze: TCFacefusionError {
         TCFacefusionError(.resourceUnavailable_Freeze)
     }
@@ -286,6 +300,8 @@ public struct TCFacefusionError: TCFacefusionErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourceUnavailable_InArrears: TCFacefusionError {
         TCFacefusionError(.resourceUnavailable_InArrears)
     }
@@ -311,6 +327,8 @@ public struct TCFacefusionError: TCFacefusionErrorType {
     }
 
     /// 帐号已停服。
+    ///
+    /// None
     public static var resourceUnavailable_StopUsing: TCFacefusionError {
         TCFacefusionError(.resourceUnavailable_StopUsing)
     }
@@ -321,6 +339,8 @@ public struct TCFacefusionError: TCFacefusionErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var resourcesSoldOut_ChargeStatusException: TCFacefusionError {
         TCFacefusionError(.resourcesSoldOut_ChargeStatusException)
     }

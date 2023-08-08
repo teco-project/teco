@@ -69,7 +69,7 @@ extension Mariadb {
         /// 自动续费标志，1:自动续费，2:不自动续费
         public let autoRenewFlag: Int64?
 
-        /// 是否支持IPv6
+        /// 是否支持IPv6，0:不支持，1:支持
         public let ipv6Flag: Int64?
 
         /// 标签键值对数组
@@ -151,33 +151,33 @@ extension Mariadb {
         }
     }
 
-    /// 创建实例（包年包月）
+    /// 创建MariaDB包年包月实例
     ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    /// 本接口（CreateDBInstance）用于创建包年包月的MariaDB云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
     public func createDBInstance(_ input: CreateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
         self.client.execute(action: "CreateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建实例（包年包月）
+    /// 创建MariaDB包年包月实例
     ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    /// 本接口（CreateDBInstance）用于创建包年包月的MariaDB云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
     public func createDBInstance(_ input: CreateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
         try await self.client.execute(action: "CreateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建实例（包年包月）
+    /// 创建MariaDB包年包月实例
     ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    /// 本接口（CreateDBInstance）用于创建包年包月的MariaDB云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
     public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
         self.createDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建实例（包年包月）
+    /// 创建MariaDB包年包月实例
     ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    /// 本接口（CreateDBInstance）用于创建包年包月的MariaDB云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
     public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
         try await self.createDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), region: region, logger: logger, on: eventLoop)

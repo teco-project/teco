@@ -24,12 +24,22 @@ extension Cdb {
         /// 实例 ID 列表，单个实例 ID 的格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceIds: [String]
 
-        public init(instanceIds: [String]) {
+        /// 克隆实例与源实例是否在同一可用区，是:"false"，否:"true"
+        public let isRemoteZone: String?
+
+        /// 克隆实例与源实例不在同一地域时需填写克隆实例所在地域，例："ap-guangzhou"
+        public let backupRegion: String?
+
+        public init(instanceIds: [String], isRemoteZone: String? = nil, backupRegion: String? = nil) {
             self.instanceIds = instanceIds
+            self.isRemoteZone = isRemoteZone
+            self.backupRegion = backupRegion
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
+            case isRemoteZone = "IsRemoteZone"
+            case backupRegion = "BackupRegion"
         }
     }
 
@@ -71,15 +81,15 @@ extension Cdb {
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
-        self.describeRollbackRangeTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+    public func describeRollbackRangeTime(instanceIds: [String], isRemoteZone: String? = nil, backupRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
+        self.describeRollbackRangeTime(.init(instanceIds: instanceIds, isRemoteZone: isRemoteZone, backupRegion: backupRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可回档时间
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
-        try await self.describeRollbackRangeTime(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+    public func describeRollbackRangeTime(instanceIds: [String], isRemoteZone: String? = nil, backupRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
+        try await self.describeRollbackRangeTime(.init(instanceIds: instanceIds, isRemoteZone: isRemoteZone, backupRegion: backupRegion), region: region, logger: logger, on: eventLoop)
     }
 }

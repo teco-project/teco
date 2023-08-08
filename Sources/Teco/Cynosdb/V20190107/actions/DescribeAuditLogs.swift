@@ -40,7 +40,7 @@ extension Cynosdb {
         /// "execTime" - 执行时间。
         public let orderBy: String?
 
-        /// 过滤条件。可按设置的过滤条件过滤日志。
+        /// 已废弃。
         public let filter: AuditLogFilter?
 
         /// 分页参数，单次返回的数据条数。默认值为100，最大值为100。
@@ -49,7 +49,10 @@ extension Cynosdb {
         /// 分页偏移量。
         public let offset: Int64?
 
-        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+        /// 审计日志过滤条件。
+        public let logFilter: [InstanceAuditLogFilter]?
+
+        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, logFilter: [InstanceAuditLogFilter]? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -58,6 +61,7 @@ extension Cynosdb {
             self.filter = filter
             self.limit = limit
             self.offset = offset
+            self.logFilter = logFilter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -69,6 +73,7 @@ extension Cynosdb {
             case filter = "Filter"
             case limit = "Limit"
             case offset = "Offset"
+            case logFilter = "LogFilter"
         }
 
         /// Compute the next request based on API response.
@@ -76,7 +81,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAuditLogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, order: self.order, orderBy: self.orderBy, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return DescribeAuditLogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, order: self.order, orderBy: self.orderBy, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), logFilter: self.logFilter)
         }
     }
 
@@ -129,16 +134,16 @@ extension Cynosdb {
     ///
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
-    public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogsResponse> {
-        self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, logFilter: [InstanceAuditLogFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogsResponse> {
+        self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库审计日志
     ///
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
-    public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogsResponse {
-        try await self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeAuditLogs(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil, logFilter: [InstanceAuditLogFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogsResponse {
+        try await self.describeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, limit: limit, offset: offset, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库审计日志

@@ -20,11 +20,13 @@ extension TCWedataError {
     public struct InvalidParameter: TCWedataErrorType {
         enum Code: String {
             case clientIpNotAuthorized = "InvalidParameter.ClientIpNotAuthorized"
+            case dataEngineInstanceNotExists = "InvalidParameter.DataEngineInstanceNotExists"
             case duplicateName = "InvalidParameter.DuplicateName"
             case invalidFilterParameter = "InvalidParameter.InvalidFilterParameter"
             case ruleNotExist = "InvalidParameter.RuleNotExist"
             case ruleTemplateNotExist = "InvalidParameter.RuleTemplateNotExist"
             case serviceIsBusy = "InvalidParameter.ServiceIsBusy"
+            case weDataRoleNotExists = "InvalidParameter.WeDataRoleNotExists"
             case workspaceNotExist = "InvalidParameter.WorkspaceNotExist"
             case other = "InvalidParameter"
         }
@@ -58,6 +60,13 @@ extension TCWedataError {
             InvalidParameter(.clientIpNotAuthorized)
         }
 
+        /// 数据引擎实例不存在。
+        ///
+        /// 修正输入参数，确保数据引擎实例存在。
+        public static var dataEngineInstanceNotExists: InvalidParameter {
+            InvalidParameter(.dataEngineInstanceNotExists)
+        }
+
         /// 名称重复。
         public static var duplicateName: InvalidParameter {
             InvalidParameter(.duplicateName)
@@ -87,6 +96,11 @@ extension TCWedataError {
             InvalidParameter(.serviceIsBusy)
         }
 
+        /// WeData_QCSRole不存在，请进行服务授权。
+        public static var weDataRoleNotExists: InvalidParameter {
+            InvalidParameter(.weDataRoleNotExists)
+        }
+
         /// 工作空间不存在。
         public static var workspaceNotExist: InvalidParameter {
             InvalidParameter(.workspaceNotExist)
@@ -102,6 +116,8 @@ extension TCWedataError {
             switch self.error {
             case .clientIpNotAuthorized:
                 code = .invalidParameter_ClientIpNotAuthorized
+            case .dataEngineInstanceNotExists:
+                code = .invalidParameter_DataEngineInstanceNotExists
             case .duplicateName:
                 code = .invalidParameter_DuplicateName
             case .invalidFilterParameter:
@@ -112,6 +128,8 @@ extension TCWedataError {
                 code = .invalidParameter_RuleTemplateNotExist
             case .serviceIsBusy:
                 code = .invalidParameter_ServiceIsBusy
+            case .weDataRoleNotExists:
+                code = .invalidParameter_WeDataRoleNotExists
             case .workspaceNotExist:
                 code = .invalidParameter_WorkspaceNotExist
             case .other:

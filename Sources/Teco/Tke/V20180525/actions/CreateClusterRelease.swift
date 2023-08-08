@@ -36,7 +36,7 @@ extension Tke {
         /// 自定义参数
         public let values: ReleaseValues?
 
-        /// 制品来源，范围：tke 应用市场/第三方chart
+        /// 制品来源，范围：tke-market 或 other
         public let chartFrom: String?
 
         /// 制品版本
@@ -105,7 +105,7 @@ extension Tke {
 
     /// 集群安装应用
     ///
-    /// 在应用市场中给集群创建应用
+    /// 集群创建应用
     @inlinable
     public func createClusterRelease(_ input: CreateClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterReleaseResponse> {
         self.client.execute(action: "CreateClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Tke {
 
     /// 集群安装应用
     ///
-    /// 在应用市场中给集群创建应用
+    /// 集群创建应用
     @inlinable
     public func createClusterRelease(_ input: CreateClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
         try await self.client.execute(action: "CreateClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -121,7 +121,7 @@ extension Tke {
 
     /// 集群安装应用
     ///
-    /// 在应用市场中给集群创建应用
+    /// 集群创建应用
     @inlinable
     public func createClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterReleaseResponse> {
         self.createClusterRelease(.init(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Tke {
 
     /// 集群安装应用
     ///
-    /// 在应用市场中给集群创建应用
+    /// 集群创建应用
     @inlinable
     public func createClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
         try await self.createClusterRelease(.init(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)

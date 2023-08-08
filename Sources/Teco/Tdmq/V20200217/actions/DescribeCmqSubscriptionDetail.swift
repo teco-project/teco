@@ -23,7 +23,7 @@ extension Tdmq {
     /// DescribeCmqSubscriptionDetail请求参数结构体
     public struct DescribeCmqSubscriptionDetailRequest: TCPaginatedRequest {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
-        public let topicName: String
+        public let topicName: String?
 
         /// 分页时本页获取主题列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
         public let offset: UInt64?
@@ -34,11 +34,20 @@ extension Tdmq {
         /// 根据SubscriptionName进行模糊搜索
         public let subscriptionName: String?
 
-        public init(topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil) {
+        /// 队列名称，订阅绑定的endpoint
+        public let queueName: String?
+
+        /// 查询类型。取值：（1）topic；（2）queue。
+        /// 默认值是topic。如果 queryType 是 topic，则查询主题下的订阅列表；如果 queryType 是 queue，则查询队列绑定的订阅列表。
+        public let queryType: String?
+
+        public init(topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, queueName: String? = nil, queryType: String? = nil) {
             self.topicName = topicName
             self.offset = offset
             self.limit = limit
             self.subscriptionName = subscriptionName
+            self.queueName = queueName
+            self.queryType = queryType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +55,8 @@ extension Tdmq {
             case offset = "Offset"
             case limit = "Limit"
             case subscriptionName = "SubscriptionName"
+            case queueName = "QueueName"
+            case queryType = "QueryType"
         }
 
         /// Compute the next request based on API response.
@@ -53,7 +64,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeCmqSubscriptionDetailRequest(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName)
+            return DescribeCmqSubscriptionDetailRequest(topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, subscriptionName: self.subscriptionName, queueName: self.queueName, queryType: self.queryType)
         }
     }
 
@@ -100,14 +111,14 @@ extension Tdmq {
 
     /// 查询cmq订阅详情
     @inlinable
-    public func describeCmqSubscriptionDetail(topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqSubscriptionDetailResponse> {
-        self.describeCmqSubscriptionDetail(.init(topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
+    public func describeCmqSubscriptionDetail(topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, queueName: String? = nil, queryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqSubscriptionDetailResponse> {
+        self.describeCmqSubscriptionDetail(.init(topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, queueName: queueName, queryType: queryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq订阅详情
     @inlinable
-    public func describeCmqSubscriptionDetail(topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqSubscriptionDetailResponse {
-        try await self.describeCmqSubscriptionDetail(.init(topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
+    public func describeCmqSubscriptionDetail(topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, queueName: String? = nil, queryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqSubscriptionDetailResponse {
+        try await self.describeCmqSubscriptionDetail(.init(topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, queueName: queueName, queryType: queryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq订阅详情

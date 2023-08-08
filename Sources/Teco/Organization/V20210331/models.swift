@@ -89,6 +89,32 @@ extension Organization {
         }
     }
 
+    /// 按月获取组织财务信息
+    public struct OrgFinancialByMonth: TCOutputModel {
+        /// 记录ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// 月份，格式：yyyy-mm，示例：2021-01。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let month: String?
+
+        /// 消耗金额，单元：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCost: Float?
+
+        /// 比上月增长率%。正数增长，负数下降，空值无法统计。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let growthRate: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case month = "Month"
+            case totalCost = "TotalCost"
+            case growthRate = "GrowthRate"
+        }
+    }
+
     /// 组织身份
     public struct OrgIdentity: TCOutputModel {
         /// 身份ID。
@@ -308,6 +334,32 @@ extension Organization {
         }
     }
 
+    /// 组织成员财务信息。
+    public struct OrgMemberFinancial: TCOutputModel {
+        /// 成员Uin。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberUin: Int64?
+
+        /// 成员名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memberName: String?
+
+        /// 消耗金额，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCost: Float?
+
+        /// 占比%。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ratio: String?
+
+        enum CodingKeys: String, CodingKey {
+            case memberUin = "MemberUin"
+            case memberName = "MemberName"
+            case totalCost = "TotalCost"
+            case ratio = "Ratio"
+        }
+    }
+
     /// 组织成员被授权的策略
     public struct OrgMemberPolicy: TCOutputModel {
         /// 策略ID。
@@ -401,6 +453,32 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
+        }
+    }
+
+    /// 组织产品财务信息
+    public struct OrgProductFinancial: TCOutputModel {
+        /// 产品Code。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productName: String?
+
+        /// 产品名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productCode: String?
+
+        /// 产品消耗，单位：元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCost: Float?
+
+        /// 占比%。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ratio: String?
+
+        enum CodingKeys: String, CodingKey {
+            case productName = "ProductName"
+            case productCode = "ProductCode"
+            case totalCost = "TotalCost"
+            case ratio = "Ratio"
         }
     }
 }

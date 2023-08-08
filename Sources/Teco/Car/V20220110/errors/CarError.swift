@@ -28,12 +28,14 @@ public struct TCCarError: TCCarErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
         case failedOperation_LockTimeout = "FailedOperation.LockTimeout"
+        case failedOperation_PathNotFound = "FailedOperation.PathNotFound"
         case failedOperation_ProcessTimeout = "FailedOperation.ProcessTimeout"
         case failedOperation_SlowDown = "FailedOperation.SlowDown"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_JsonParseError = "InvalidParameter.JsonParseError"
+        case limitExceeded_Role = "LimitExceeded.Role"
         case operationDenied = "OperationDenied"
         case resourceNotFound_NoIdle = "ResourceNotFound.NoIdle"
         case resourceNotFound_SessionNotFound = "ResourceNotFound.SessionNotFound"
@@ -44,7 +46,14 @@ public struct TCCarError: TCCarErrorType {
 
     /// Error domains affliated to ``TCCarError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, ResourceNotFound.self, ResourceUnavailable.self, UnsupportedOperation.self]
+        [
+            FailedOperation.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            ResourceNotFound.self,
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
@@ -79,12 +88,16 @@ public struct TCCarError: TCCarErrorType {
         TCCarError(.failedOperation_LockTimeout)
     }
 
+    public static var failedOperation_PathNotFound: TCCarError {
+        TCCarError(.failedOperation_PathNotFound)
+    }
+
     /// 处理超时。
     public static var failedOperation_ProcessTimeout: TCCarError {
         TCCarError(.failedOperation_ProcessTimeout)
     }
 
-    /// 请降低访问频率。
+    /// 该UserId请求正在处理中，请稍后再试。
     public static var failedOperation_SlowDown: TCCarError {
         TCCarError(.failedOperation_SlowDown)
     }
@@ -107,6 +120,10 @@ public struct TCCarError: TCCarErrorType {
     /// Json 解析失败。
     public static var invalidParameter_JsonParseError: TCCarError {
         TCCarError(.invalidParameter_JsonParseError)
+    }
+
+    public static var limitExceeded_Role: TCCarError {
+        TCCarError(.limitExceeded_Role)
     }
 
     /// 操作被拒绝。

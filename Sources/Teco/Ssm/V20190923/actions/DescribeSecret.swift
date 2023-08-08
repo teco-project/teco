@@ -92,6 +92,10 @@ extension Ssm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetUin: UInt64?
 
+        /// 凭据额外配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let additionalConfig: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -112,6 +116,7 @@ extension Ssm {
             case projectID = "ProjectID"
             case associatedInstanceIDs = "AssociatedInstanceIDs"
             case targetUin = "TargetUin"
+            case additionalConfig = "AdditionalConfig"
             case requestId = "RequestId"
         }
     }

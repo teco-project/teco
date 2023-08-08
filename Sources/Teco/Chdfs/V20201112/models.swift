@@ -175,13 +175,24 @@ extension Chdfs {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
-        public init(lifeCycleRuleId: UInt64? = nil, lifeCycleRuleName: String? = nil, path: String? = nil, transitions: [Transition]? = nil, status: UInt64? = nil, createTime: Date? = nil) {
+        /// 生命周期规则当前路径具体存储量
+        public let summary: Summary?
+
+        /// Summary更新时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var lastSummaryTime: Date?
+
+        public init(lifeCycleRuleId: UInt64? = nil, lifeCycleRuleName: String? = nil, path: String? = nil, transitions: [Transition]? = nil, status: UInt64? = nil, createTime: Date? = nil, summary: Summary? = nil, lastSummaryTime: Date? = nil) {
             self.lifeCycleRuleId = lifeCycleRuleId
             self.lifeCycleRuleName = lifeCycleRuleName
             self.path = path
             self.transitions = transitions
             self.status = status
             self._createTime = .init(wrappedValue: createTime)
+            self.summary = summary
+            self._lastSummaryTime = .init(wrappedValue: lastSummaryTime)
         }
 
         enum CodingKeys: String, CodingKey {
@@ -191,6 +202,8 @@ extension Chdfs {
             case transitions = "Transitions"
             case status = "Status"
             case createTime = "CreateTime"
+            case summary = "Summary"
+            case lastSummaryTime = "LastSummaryTime"
         }
     }
 
@@ -266,6 +279,42 @@ extension Chdfs {
             case days = "Days"
             case status = "Status"
             case createTime = "CreateTime"
+        }
+    }
+
+    /// 生命周期规则当前路径具体存储量信息
+    public struct Summary: TCOutputModel {
+        /// 已使用容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let capacityUsed: UInt64?
+
+        /// 已使用COS标准存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let standardCapacityUsed: UInt64?
+
+        /// 已使用COS低频存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let degradeCapacityUsed: UInt64?
+
+        /// 已使用COS归档存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let archiveCapacityUsed: UInt64?
+
+        /// 已使用COS深度归档存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deepArchiveCapacityUsed: UInt64?
+
+        /// 已使用COS智能分层存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intelligentCapacityUsed: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case capacityUsed = "CapacityUsed"
+            case standardCapacityUsed = "StandardCapacityUsed"
+            case degradeCapacityUsed = "DegradeCapacityUsed"
+            case archiveCapacityUsed = "ArchiveCapacityUsed"
+            case deepArchiveCapacityUsed = "DeepArchiveCapacityUsed"
+            case intelligentCapacityUsed = "IntelligentCapacityUsed"
         }
     }
 

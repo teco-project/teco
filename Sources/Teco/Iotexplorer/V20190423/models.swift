@@ -345,9 +345,19 @@ extension Iotexplorer {
         /// 用户角色 1所有者，0：其他分享者
         public let role: Int64
 
+        /// 家庭ID，所有者带该参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let familyId: String?
+
+        /// 家庭名称，所有者带该参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let familyName: String?
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case role = "Role"
+            case familyId = "FamilyId"
+            case familyName = "FamilyName"
         }
     }
 
@@ -1056,6 +1066,10 @@ extension Iotexplorer {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceCount: UInt64?
 
+        /// 是否开通物联使能
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableOpenState: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case projectName = "ProjectName"
@@ -1068,6 +1082,7 @@ extension Iotexplorer {
             case instanceId = "InstanceId"
             case applicationCount = "ApplicationCount"
             case deviceCount = "DeviceCount"
+            case enableOpenState = "EnableOpenState"
         }
     }
 

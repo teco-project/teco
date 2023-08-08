@@ -27,7 +27,7 @@ extension Vpc {
         /// VPN网关名称，最大长度不能超过60个字节。
         public let vpnGatewayName: String
 
-        /// 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps
+        /// 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100, 200, 500, 1000, 3000；单位：Mbps。
         public let internetMaxBandwidthOut: UInt64
 
         /// VPN网关计费模式，PREPAID：表示预付费，即包年包月，POSTPAID_BY_HOUR：表示后付费，即按量计费。默认：POSTPAID_BY_HOUR，如果指定预付费模式，参数InstanceChargePrepaid必填。
@@ -39,16 +39,16 @@ extension Vpc {
         /// 可用区，如：ap-guangzhou-2。
         public let zone: String?
 
-        /// VPN网关类型。值“CCN”云联网类型VPN网关，值SSL为SSL-VPN
+        /// VPN网关类型，默认为IPSEC。值“IPSEC”为VPC型IPSEC VPN网关，值“SSL”为VPC型SSL VPN网关，值“CCN”为云联网型IPSEC VPN网关，值“SSL_CCN”为云联网型SSL VPN网关。
         public let type: String?
 
-        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
+        /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         public let tags: [Tag]?
 
-        /// CDC实例ID
+        /// CDC实例ID。
         public let cdcId: String?
 
-        /// SSL-VPN 最大CLIENT 连接数。可选 [5, 10, 20, 50, 100]。仅SSL-VPN 需要选这个参数。
+        /// SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100, 200, 500, 1000；单位：个。仅 SSL / SSL_CCN 类型需要选这个参数。
         public let maxConnection: UInt64?
 
         public init(vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil) {

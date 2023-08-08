@@ -27,7 +27,7 @@ extension Sqlserver {
         /// 续费多少个月，取值范围为1-48，默认为1
         public let period: UInt64?
 
-        /// 是否自动使用代金券，0-不使用；1-使用；默认不实用
+        /// 是否自动使用代金券，0-不使用；1-使用；默认不使用
         public let autoVoucher: Int64?
 
         /// 代金券ID数组，目前只支持使用1张代金券

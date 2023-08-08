@@ -19,6 +19,7 @@ import TecoCore
 extension TCOceanusError {
     public struct UnsupportedOperation: TCOceanusErrorType {
         enum Code: String {
+            case clsSqlNotEnabled = "UnsupportedOperation.ClsSqlNotEnabled"
             case invalidCheckpointIntervalError = "UnsupportedOperation.InvalidCheckpointIntervalError"
             case noPermissionAccess = "UnsupportedOperation.NoPermissionAccess"
             case unsupportedStartMode = "UnsupportedOperation.UnsupportedStartMode"
@@ -47,6 +48,11 @@ extension TCOceanusError {
             self.context = context
         }
 
+        /// Cls Sql未启用。
+        public static var clsSqlNotEnabled: UnsupportedOperation {
+            UnsupportedOperation(.clsSqlNotEnabled)
+        }
+
         /// Checkpoint 时间间隔，错误。
         public static var invalidCheckpointIntervalError: UnsupportedOperation {
             UnsupportedOperation(.invalidCheckpointIntervalError)
@@ -72,6 +78,8 @@ extension TCOceanusError {
         public func asOceanusError() -> TCOceanusError {
             let code: TCOceanusError.Code
             switch self.error {
+            case .clsSqlNotEnabled:
+                code = .unsupportedOperation_ClsSqlNotEnabled
             case .invalidCheckpointIntervalError:
                 code = .unsupportedOperation_InvalidCheckpointIntervalError
             case .noPermissionAccess:

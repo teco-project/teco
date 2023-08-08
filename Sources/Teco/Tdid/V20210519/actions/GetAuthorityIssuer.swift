@@ -72,26 +72,30 @@ extension Tdid {
     }
 
     /// 获取权威机构信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getAuthorityIssuer(_ input: GetAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthorityIssuerResponse> {
-        self.client.execute(action: "GetAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetAuthorityIssuer is no longer available.")
     }
 
     /// 获取权威机构信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getAuthorityIssuer(_ input: GetAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthorityIssuerResponse {
-        try await self.client.execute(action: "GetAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetAuthorityIssuer is no longer available.")
     }
 
     /// 获取权威机构信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthorityIssuerResponse> {
-        self.getAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetAuthorityIssuer is no longer available.")
     }
 
     /// 获取权威机构信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthorityIssuerResponse {
-        try await self.getAuthorityIssuer(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetAuthorityIssuer is no longer available.")
     }
 }

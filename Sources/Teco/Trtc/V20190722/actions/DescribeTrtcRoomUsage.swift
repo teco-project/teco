@@ -45,10 +45,14 @@ extension Trtc {
 
     /// DescribeTrtcRoomUsage返回参数结构体
     public struct DescribeTrtcRoomUsageResponse: TCResponseModel {
+        /// 房间维度用量数据，csv文件格式，单位：秒。
+        public let data: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case data = "Data"
             case requestId = "RequestId"
         }
     }
@@ -57,9 +61,10 @@ extension Trtc {
     ///
     /// 查询TRTC音视频房间维度用量。
     /// - 单次只能查询一天数据，返回查询时间段内的汇总数据；通过多次查询可以查不同天数据。若查询跨天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用，不可用于账单核对，如需对账请使用账号/应用维度用量API：DescribeTrtcUsage。
     /// - 默认接口请求频率限制：1次/15秒。
-    @inlinable @discardableResult
+    /// - 数据最早可查日期为2023年4月1日0点，最大可查范围近3个月。
+    @inlinable
     public func describeTrtcRoomUsage(_ input: DescribeTrtcRoomUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcRoomUsageResponse> {
         self.client.execute(action: "DescribeTrtcRoomUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,9 +73,10 @@ extension Trtc {
     ///
     /// 查询TRTC音视频房间维度用量。
     /// - 单次只能查询一天数据，返回查询时间段内的汇总数据；通过多次查询可以查不同天数据。若查询跨天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用，不可用于账单核对，如需对账请使用账号/应用维度用量API：DescribeTrtcUsage。
     /// - 默认接口请求频率限制：1次/15秒。
-    @inlinable @discardableResult
+    /// - 数据最早可查日期为2023年4月1日0点，最大可查范围近3个月。
+    @inlinable
     public func describeTrtcRoomUsage(_ input: DescribeTrtcRoomUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcRoomUsageResponse {
         try await self.client.execute(action: "DescribeTrtcRoomUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -79,9 +85,10 @@ extension Trtc {
     ///
     /// 查询TRTC音视频房间维度用量。
     /// - 单次只能查询一天数据，返回查询时间段内的汇总数据；通过多次查询可以查不同天数据。若查询跨天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用，不可用于账单核对，如需对账请使用账号/应用维度用量API：DescribeTrtcUsage。
     /// - 默认接口请求频率限制：1次/15秒。
-    @inlinable @discardableResult
+    /// - 数据最早可查日期为2023年4月1日0点，最大可查范围近3个月。
+    @inlinable
     public func describeTrtcRoomUsage(sdkAppid: UInt64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcRoomUsageResponse> {
         self.describeTrtcRoomUsage(.init(sdkAppid: sdkAppid, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
@@ -90,9 +97,10 @@ extension Trtc {
     ///
     /// 查询TRTC音视频房间维度用量。
     /// - 单次只能查询一天数据，返回查询时间段内的汇总数据；通过多次查询可以查不同天数据。若查询跨天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用，不可用于账单核对，如需对账请使用账号/应用维度用量API：DescribeTrtcUsage。
     /// - 默认接口请求频率限制：1次/15秒。
-    @inlinable @discardableResult
+    /// - 数据最早可查日期为2023年4月1日0点，最大可查范围近3个月。
+    @inlinable
     public func describeTrtcRoomUsage(sdkAppid: UInt64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcRoomUsageResponse {
         try await self.describeTrtcRoomUsage(.init(sdkAppid: sdkAppid, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }

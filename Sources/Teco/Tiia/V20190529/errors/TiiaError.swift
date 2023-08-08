@@ -31,6 +31,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case failedOperation_DownLoadError = "FailedOperation.DownLoadError"
         case failedOperation_DownloadError = "FailedOperation.DownloadError"
         case failedOperation_EmptyImageError = "FailedOperation.EmptyImageError"
+        case failedOperation_GroupCountExceeded = "FailedOperation.GroupCountExceeded"
         case failedOperation_ImageDecodeFailed = "FailedOperation.ImageDecodeFailed"
         case failedOperation_ImageDeleteFailed = "FailedOperation.ImageDeleteFailed"
         case failedOperation_ImageDownloadError = "FailedOperation.ImageDownloadError"
@@ -83,6 +84,7 @@ public struct TCTiiaError: TCTiiaErrorType {
         case invalidParameterValue_UrlIllegal = "InvalidParameterValue.UrlIllegal"
         case invalidParameter_ImageFormatNotSupport = "InvalidParameter.ImageFormatNotSupport"
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
+        case invalidParameter_PictureSolidColorError = "InvalidParameter.PictureSolidColorError"
         case limitExceeded_TooLargeFileError = "LimitExceeded.TooLargeFileError"
         case missingParameter_ErrorParameterEmpty = "MissingParameter.ErrorParameterEmpty"
         case requestLimitExceeded = "RequestLimitExceeded"
@@ -151,6 +153,10 @@ public struct TCTiiaError: TCTiiaErrorType {
     /// 图片内容为空。
     public static var failedOperation_EmptyImageError: TCTiiaError {
         TCTiiaError(.failedOperation_EmptyImageError)
+    }
+
+    public static var failedOperation_GroupCountExceeded: TCTiiaError {
+        TCTiiaError(.failedOperation_GroupCountExceeded)
     }
 
     /// 图片解码失败。
@@ -411,6 +417,10 @@ public struct TCTiiaError: TCTiiaErrorType {
     /// 参数取值错误。
     public static var invalidParameter_InvalidParameter: TCTiiaError {
         TCTiiaError(.invalidParameter_InvalidParameter)
+    }
+
+    public static var invalidParameter_PictureSolidColorError: TCTiiaError {
+        TCTiiaError(.invalidParameter_PictureSolidColorError)
     }
 
     /// 文件太大。

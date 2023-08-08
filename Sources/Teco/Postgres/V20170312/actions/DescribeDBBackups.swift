@@ -103,57 +103,57 @@ extension Postgres {
         }
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable
     public func describeDBBackups(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable
     public func describeDBBackups(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
         try await self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable
     public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
         self.describeDBBackups(.init(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable
     public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
         try await self.describeDBBackups(.init(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable
     public func describeDBBackupsPaginated(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DBBackup])> {
         self.client.paginate(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     @inlinable @discardableResult
     public func describeDBBackupsPaginated(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBBackups, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例备份列表
+    /// 查询实例备份列表（废弃）
     ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。本接口已废弃，推荐使用接口[DescribeBaseBackups](https://cloud.tencent.com/document/api/409/89022)替代。
     ///
     /// - Returns: `AsyncSequence`s of `DBBackup` and `DescribeDBBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable

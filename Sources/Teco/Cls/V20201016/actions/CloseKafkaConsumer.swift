@@ -21,7 +21,7 @@ import TecoCore
 extension Cls {
     /// CloseKafkaConsumer请求参数结构体
     public struct CloseKafkaConsumerRequest: TCRequestModel {
-        /// CLS对应的topic标识
+        /// 日志主题ID
         public let fromTopicId: String
 
         public init(fromTopicId: String) {

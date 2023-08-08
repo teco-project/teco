@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Teo {
     /// DescribeAccelerationDomains请求参数结构体
     public struct DescribeAccelerationDomainsRequest: TCPaginatedRequest {
-        /// 加速域名所属站点ID。不填写该参数默认返回所有站点下的加速域名。
+        /// 加速域名所属站点ID。
         public let zoneId: String
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：

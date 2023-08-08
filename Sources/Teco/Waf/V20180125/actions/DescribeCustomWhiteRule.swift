@@ -24,7 +24,7 @@ extension Waf {
         /// 域名
         public let domain: String
 
-        /// 偏移
+        /// 偏移量
         public let offset: UInt64
 
         /// 容量

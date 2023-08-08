@@ -38,7 +38,7 @@ extension Waf {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
-        /// 查询的游标。第一次请求使用空字符串即可，后续请求使用上一次请求返回的最后一条记录的context的值即可。
+        /// 接口升级，这个字段传空字符串,翻页使用Page字段
         public let context: String
 
         /// Lucene语法
@@ -50,7 +50,10 @@ extension Waf {
         /// 默认为desc，可以取值desc和asc
         public let sort: String?
 
-        public init(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil) {
+        /// 第几页，从0开始
+        public let page: Int64?
+
+        public init(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil, page: Int64? = nil) {
             self.domain = domain
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
@@ -58,6 +61,7 @@ extension Waf {
             self.queryString = queryString
             self.count = count
             self.sort = sort
+            self.page = page
         }
 
         enum CodingKeys: String, CodingKey {
@@ -68,6 +72,7 @@ extension Waf {
             case queryString = "QueryString"
             case count = "Count"
             case sort = "Sort"
+            case page = "Page"
         }
     }
 
@@ -76,7 +81,7 @@ extension Waf {
         /// 当前返回的攻击日志条数
         public let count: UInt64
 
-        /// 翻页游标，如果没有下一页了，这个参数为空""
+        /// 接口升级，此字段无效，默认返回空字符串
         public let context: String
 
         /// 攻击日志数组条目内容
@@ -121,15 +126,15 @@ extension Waf {
     ///
     /// 新版本CLS接口存在参数变化，query改成了query_string支持lucence语法接口搜索查询。
     @inlinable
-    public func searchAttackLog(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAttackLogResponse> {
-        self.searchAttackLog(.init(domain: domain, startTime: startTime, endTime: endTime, context: context, queryString: queryString, count: count, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func searchAttackLog(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil, page: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAttackLogResponse> {
+        self.searchAttackLog(.init(domain: domain, startTime: startTime, endTime: endTime, context: context, queryString: queryString, count: count, sort: sort, page: page), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS新版本攻击日志
     ///
     /// 新版本CLS接口存在参数变化，query改成了query_string支持lucence语法接口搜索查询。
     @inlinable
-    public func searchAttackLog(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAttackLogResponse {
-        try await self.searchAttackLog(.init(domain: domain, startTime: startTime, endTime: endTime, context: context, queryString: queryString, count: count, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func searchAttackLog(domain: String, startTime: Date, endTime: Date, context: String, queryString: String, count: Int64? = nil, sort: String? = nil, page: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAttackLogResponse {
+        try await self.searchAttackLog(.init(domain: domain, startTime: startTime, endTime: endTime, context: context, queryString: queryString, count: count, sort: sort, page: page), region: region, logger: logger, on: eventLoop)
     }
 }

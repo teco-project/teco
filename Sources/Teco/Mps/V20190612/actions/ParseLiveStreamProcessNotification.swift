@@ -56,6 +56,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiRecognitionResultInfo: LiveStreamAiRecognitionResultInfo?
 
+        /// 内容分析结果，当 NotificationType 为 AiAnalysisResult 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiAnalysisResultInfo: LiveStreamAiAnalysisResultInfo?
+
+        /// 媒体质检结果，当 NotificationType 为 AiQualityControlResult 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiQualityControlResultInfo: LiveStreamAiQualityControlResultInfo?
+
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
 
@@ -71,6 +79,8 @@ extension Mps {
             case processEofInfo = "ProcessEofInfo"
             case aiReviewResultInfo = "AiReviewResultInfo"
             case aiRecognitionResultInfo = "AiRecognitionResultInfo"
+            case aiAnalysisResultInfo = "AiAnalysisResultInfo"
+            case aiQualityControlResultInfo = "AiQualityControlResultInfo"
             case sessionId = "SessionId"
             case sessionContext = "SessionContext"
             case requestId = "RequestId"
@@ -80,7 +90,7 @@ extension Mps {
     /// 解析直播流处理结果
     ///
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 中的解析实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
         self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,7 +99,7 @@ extension Mps {
     /// 解析直播流处理结果
     ///
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 中的解析实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
         try await self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,7 +108,7 @@ extension Mps {
     /// 解析直播流处理结果
     ///
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 中的解析实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
         self.parseLiveStreamProcessNotification(.init(content: content), region: region, logger: logger, on: eventLoop)
@@ -107,7 +117,7 @@ extension Mps {
     /// 解析直播流处理结果
     ///
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 中的解析实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
         try await self.parseLiveStreamProcessNotification(.init(content: content), region: region, logger: logger, on: eventLoop)

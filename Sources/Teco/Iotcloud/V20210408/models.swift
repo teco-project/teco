@@ -257,6 +257,10 @@ extension Iotcloud {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firmwareUpdateTime: UInt64?
 
+        /// 创建者 Uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createUserId: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case online = "Online"
@@ -282,6 +286,7 @@ extension Iotcloud {
             case labels = "Labels"
             case clientIP = "ClientIP"
             case firmwareUpdateTime = "FirmwareUpdateTime"
+            case createUserId = "CreateUserId"
         }
     }
 
@@ -448,6 +453,14 @@ extension Iotcloud {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
 
+        /// 固件类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fwType: String?
+
+        /// 创建者 Uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createUserId: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case version = "Version"
             case md5sum = "Md5sum"
@@ -456,6 +469,8 @@ extension Iotcloud {
             case name = "Name"
             case description = "Description"
             case productId = "ProductId"
+            case fwType = "FwType"
+            case createUserId = "CreateUserId"
         }
     }
 
@@ -558,8 +573,16 @@ extension Iotcloud {
         /// 产品创建时间
         public let creationDate: UInt64
 
+        /// 创建者 Uin
+        public let createUserId: UInt64
+
+        /// 账号 Uin
+        public let userId: UInt64
+
         enum CodingKeys: String, CodingKey {
             case creationDate = "CreationDate"
+            case createUserId = "CreateUserId"
+            case userId = "UserId"
         }
     }
 
@@ -599,7 +622,7 @@ extension Iotcloud {
         /// 动态注册类型 0-关闭, 1-预定义设备名 2-动态定义设备名
         public let registerType: UInt64?
 
-        /// 动态注册产品秘钥
+        /// 动态注册产品密钥
         public let productSecret: String?
 
         /// RegisterType为2时，设备动态创建的限制数量
@@ -614,7 +637,13 @@ extension Iotcloud {
         /// 划归的产品，展示为源用户ID，其余为空
         public let originUserId: UInt64?
 
-        public init(productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, appeui: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil) {
+        /// 设备限制
+        public let deviceLimit: UInt64?
+
+        /// 产品禁用状态
+        public let forbiddenStatus: UInt64?
+
+        public init(productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, appeui: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil, deviceLimit: UInt64? = nil, forbiddenStatus: UInt64? = nil) {
             self.productDescription = productDescription
             self.encryptionType = encryptionType
             self.region = region
@@ -631,6 +660,8 @@ extension Iotcloud {
             self.originProductId = originProductId
             self.privateCAName = privateCAName
             self.originUserId = originUserId
+            self.deviceLimit = deviceLimit
+            self.forbiddenStatus = forbiddenStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -650,6 +681,8 @@ extension Iotcloud {
             case originProductId = "OriginProductId"
             case privateCAName = "PrivateCAName"
             case originUserId = "OriginUserId"
+            case deviceLimit = "DeviceLimit"
+            case forbiddenStatus = "ForbiddenStatus"
         }
     }
 

@@ -47,7 +47,7 @@ extension Live {
         /// 相关协议文档：[事件消息通知](/document/product/267/32744)。
         public let snapshotNotifyUrl: String?
 
-        /// 鉴黄回调 URL，
+        /// 鉴黄回调 URL ，
         /// 相关协议文档：[事件消息通知](/document/product/267/32741)。
         public let pornCensorshipNotifyUrl: String?
 
@@ -61,7 +61,10 @@ extension Live {
         /// 推流异常回调 URL。
         public let pushExceptionNotifyUrl: String?
 
-        public init(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil) {
+        /// 音频审核回调 URL。
+        public let audioAuditNotifyUrl: String?
+
+        public init(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil) {
             self.templateName = templateName
             self.description = description
             self.streamBeginNotifyUrl = streamBeginNotifyUrl
@@ -72,6 +75,7 @@ extension Live {
             self.callbackKey = callbackKey
             self.streamMixNotifyUrl = streamMixNotifyUrl
             self.pushExceptionNotifyUrl = pushExceptionNotifyUrl
+            self.audioAuditNotifyUrl = audioAuditNotifyUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -85,6 +89,7 @@ extension Live {
             case callbackKey = "CallbackKey"
             case streamMixNotifyUrl = "StreamMixNotifyUrl"
             case pushExceptionNotifyUrl = "PushExceptionNotifyUrl"
+            case audioAuditNotifyUrl = "AudioAuditNotifyUrl"
         }
     }
 
@@ -128,8 +133,8 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
-        self.createLiveCallbackTemplate(.init(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
+        self.createLiveCallbackTemplate(.init(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl, pushExceptionNotifyUrl: pushExceptionNotifyUrl, audioAuditNotifyUrl: audioAuditNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建回调模板
@@ -138,7 +143,7 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
-        try await self.createLiveCallbackTemplate(.init(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
+        try await self.createLiveCallbackTemplate(.init(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl, pushExceptionNotifyUrl: pushExceptionNotifyUrl, audioAuditNotifyUrl: audioAuditNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

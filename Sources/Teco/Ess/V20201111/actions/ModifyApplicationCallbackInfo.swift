@@ -30,16 +30,21 @@ extension Ess {
         /// 回调信息
         public let callbackInfo: CallbackInfo
 
-        public init(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil) {
             self.operator = `operator`
             self.operateType = operateType
             self.callbackInfo = callbackInfo
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case operateType = "OperateType"
             case callbackInfo = "CallbackInfo"
+            case agent = "Agent"
         }
     }
 
@@ -53,7 +58,7 @@ extension Ess {
         }
     }
 
-    /// 修改应用callbackinfo
+    /// 修改企业回调配置
     ///
     /// 新增/删除应用callbackinfo
     /// callbackinfo包含： 回调地址和签名key
@@ -63,7 +68,7 @@ extension Ess {
         self.client.execute(action: "ModifyApplicationCallbackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改应用callbackinfo
+    /// 修改企业回调配置
     ///
     /// 新增/删除应用callbackinfo
     /// callbackinfo包含： 回调地址和签名key
@@ -73,23 +78,23 @@ extension Ess {
         try await self.client.execute(action: "ModifyApplicationCallbackInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改应用callbackinfo
+    /// 修改企业回调配置
     ///
     /// 新增/删除应用callbackinfo
     /// callbackinfo包含： 回调地址和签名key
     /// 操作：新增/删除
     @inlinable @discardableResult
-    public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationCallbackInfoResponse> {
-        self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationCallbackInfoResponse> {
+        self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改应用callbackinfo
+    /// 修改企业回调配置
     ///
     /// 新增/删除应用callbackinfo
     /// callbackinfo包含： 回调地址和签名key
     /// 操作：新增/删除
     @inlinable @discardableResult
-    public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationCallbackInfoResponse {
-        try await self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationCallbackInfo(operator: UserInfo, operateType: Int64, callbackInfo: CallbackInfo, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationCallbackInfoResponse {
+        try await self.modifyApplicationCallbackInfo(.init(operator: `operator`, operateType: operateType, callbackInfo: callbackInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

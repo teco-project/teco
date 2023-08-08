@@ -24,7 +24,7 @@ extension Postgres {
         /// 数据库实例ID，形如postgres-6fego161
         public let dbInstanceId: String
 
-        /// 新的数据库实例名字
+        /// 实例名称，仅支持长度小于60的中文/英文/数字/"_"/"-"，不指定实例名称则默认显示"未命名"。
         public let instanceName: String
 
         public init(dbInstanceId: String, instanceName: String) {

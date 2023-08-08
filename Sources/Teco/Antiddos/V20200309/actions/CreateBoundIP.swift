@@ -21,7 +21,7 @@ import TecoCore
 extension Antiddos {
     /// CreateBoundIP请求参数结构体
     public struct CreateBoundIPRequest: TCRequestModel {
-        /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
+        /// DDoS防护子产品代号（bgp表示独享包；bgp-multip表示共享包）
         public let business: String
 
         /// 资源实例ID
@@ -36,12 +36,16 @@ extension Antiddos {
         /// 已弃用，不填
         public let copyPolicy: String?
 
-        public init(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil) {
+        /// 如果该资源实例为域名化资产则，该参数必填
+        public let filterRegion: String?
+
+        public init(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, filterRegion: String? = nil) {
             self.business = business
             self.id = id
             self.boundDevList = boundDevList
             self.unBoundDevList = unBoundDevList
             self.copyPolicy = copyPolicy
+            self.filterRegion = filterRegion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Antiddos {
             case boundDevList = "BoundDevList"
             case unBoundDevList = "UnBoundDevList"
             case copyPolicy = "CopyPolicy"
+            case filterRegion = "FilterRegion"
         }
     }
 
@@ -87,15 +92,15 @@ extension Antiddos {
     ///
     /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
     @inlinable
-    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBoundIPResponse> {
-        self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), region: region, logger: logger, on: eventLoop)
+    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, filterRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBoundIPResponse> {
+        self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy, filterRegion: filterRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定IP到高防包实例
     ///
     /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
     @inlinable
-    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
-        try await self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy), region: region, logger: logger, on: eventLoop)
+    public func createBoundIP(business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil, filterRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
+        try await self.createBoundIP(.init(business: business, id: id, boundDevList: boundDevList, unBoundDevList: unBoundDevList, copyPolicy: copyPolicy, filterRegion: filterRegion), region: region, logger: logger, on: eventLoop)
     }
 }

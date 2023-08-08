@@ -51,33 +51,33 @@ extension Mariadb {
         }
     }
 
-    /// 隔离云数据库实例（包年包月）
+    /// 隔离MariaDB包年包月实例
     ///
-    /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
+    /// 本接口(IsolateDBInstance)用于隔离云数据库MariaDB实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(_ input: IsolateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstanceResponse> {
         self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 隔离云数据库实例（包年包月）
+    /// 隔离MariaDB包年包月实例
     ///
-    /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
+    /// 本接口(IsolateDBInstance)用于隔离云数据库MariaDB实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(_ input: IsolateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstanceResponse {
         try await self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 隔离云数据库实例（包年包月）
+    /// 隔离MariaDB包年包月实例
     ///
-    /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
+    /// 本接口(IsolateDBInstance)用于隔离云数据库MariaDB实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstanceResponse> {
         self.isolateDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 隔离云数据库实例（包年包月）
+    /// 隔离MariaDB包年包月实例
     ///
-    /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
+    /// 本接口(IsolateDBInstance)用于隔离云数据库MariaDB实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstanceResponse {
         try await self.isolateDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)

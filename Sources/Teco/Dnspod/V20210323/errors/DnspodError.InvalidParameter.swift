@@ -45,10 +45,12 @@ extension TCDnspodError {
             case domainAliasExists = "InvalidParameter.DomainAliasExists"
             case domainAliasIdInvalid = "InvalidParameter.DomainAliasIdInvalid"
             case domainIdInvalid = "InvalidParameter.DomainIdInvalid"
+            case domainInBlackList = "InvalidParameter.DomainInBlackList"
             case domainInEffectOrInvalidated = "InvalidParameter.DomainInEffectOrInvalidated"
             case domainInvalid = "InvalidParameter.DomainInvalid"
             case domainIsAliaser = "InvalidParameter.DomainIsAliaser"
             case domainIsModifyingDns = "InvalidParameter.DomainIsModifyingDns"
+            case domainIsMyAlias = "InvalidParameter.DomainIsMyAlias"
             case domainIsNotlocked = "InvalidParameter.DomainIsNotlocked"
             case domainNotAllowedLock = "InvalidParameter.DomainNotAllowedLock"
             case domainNotAllowedModifyRecords = "InvalidParameter.DomainNotAllowedModifyRecords"
@@ -73,6 +75,7 @@ extension TCDnspodError {
             case groupNameInvalid = "InvalidParameter.GroupNameInvalid"
             case hasPendingApply = "InvalidParameter.HasPendingApply"
             case illegalNewDeal = "InvalidParameter.IllegalNewDeal"
+            case innerTaskNotExist = "InvalidParameter.InnerTaskNotExist"
             case invalidCoupon = "InvalidParameter.InvalidCoupon"
             case invalidDealName = "InvalidParameter.InvalidDealName"
             case invalidSecretId = "InvalidParameter.InvalidSecretId"
@@ -99,6 +102,7 @@ extension TCDnspodError {
             case paramsMissing = "InvalidParameter.ParamsMissing"
             case permissionDenied = "InvalidParameter.PermissionDenied"
             case qcloudUinInvalid = "InvalidParameter.QcloudUinInvalid"
+            case quhuiTxtNotMatch = "InvalidParameter.QuhuiTxtNotMatch"
             case quhuiTxtRecordWait = "InvalidParameter.QuhuiTxtRecordWait"
             case realNameUser = "InvalidParameter.RealNameUser"
             case recordIdInvalid = "InvalidParameter.RecordIdInvalid"
@@ -282,6 +286,12 @@ extension TCDnspodError {
             InvalidParameter(.domainIdInvalid)
         }
 
+        /// 请前往「ICP/IP地址/域名信息备案管理系统」中进行违法违规域名查询。
+        /// https://beian.miit.gov.cn/
+        public static var domainInBlackList: InvalidParameter {
+            InvalidParameter(.domainInBlackList)
+        }
+
         /// 不允许操作生效中或失效中的域名。
         public static var domainInEffectOrInvalidated: InvalidParameter {
             InvalidParameter(.domainInEffectOrInvalidated)
@@ -300,6 +310,10 @@ extension TCDnspodError {
         /// 该域名已有同类型操作未完成，无法执行该操作。
         public static var domainIsModifyingDns: InvalidParameter {
             InvalidParameter(.domainIsModifyingDns)
+        }
+
+        public static var domainIsMyAlias: InvalidParameter {
+            InvalidParameter(.domainIsMyAlias)
         }
 
         /// 域名没有锁定。
@@ -420,6 +434,11 @@ extension TCDnspodError {
         /// 该订单存在冲突或参数有误，无法完成支付，请重新购买。
         public static var illegalNewDeal: InvalidParameter {
             InvalidParameter(.illegalNewDeal)
+        }
+
+        /// 任务不存在。
+        public static var innerTaskNotExist: InvalidParameter {
+            InvalidParameter(.innerTaskNotExist)
         }
 
         /// 礼券代码无效。
@@ -550,6 +569,11 @@ extension TCDnspodError {
         /// 用户UIN无效。
         public static var qcloudUinInvalid: InvalidParameter {
             InvalidParameter(.qcloudUinInvalid)
+        }
+
+        /// TXT 记录无法匹配，请确认记录值是否准确，并再次验证。
+        public static var quhuiTxtNotMatch: InvalidParameter {
+            InvalidParameter(.quhuiTxtNotMatch)
         }
 
         /// TXT 记录未设置或暂未生效，请稍后重试。
@@ -752,6 +776,8 @@ extension TCDnspodError {
                 code = .invalidParameter_DomainAliasIdInvalid
             case .domainIdInvalid:
                 code = .invalidParameter_DomainIdInvalid
+            case .domainInBlackList:
+                code = .invalidParameter_DomainInBlackList
             case .domainInEffectOrInvalidated:
                 code = .invalidParameter_DomainInEffectOrInvalidated
             case .domainInvalid:
@@ -760,6 +786,8 @@ extension TCDnspodError {
                 code = .invalidParameter_DomainIsAliaser
             case .domainIsModifyingDns:
                 code = .invalidParameter_DomainIsModifyingDns
+            case .domainIsMyAlias:
+                code = .invalidParameter_DomainIsMyAlias
             case .domainIsNotlocked:
                 code = .invalidParameter_DomainIsNotlocked
             case .domainNotAllowedLock:
@@ -808,6 +836,8 @@ extension TCDnspodError {
                 code = .invalidParameter_HasPendingApply
             case .illegalNewDeal:
                 code = .invalidParameter_IllegalNewDeal
+            case .innerTaskNotExist:
+                code = .invalidParameter_InnerTaskNotExist
             case .invalidCoupon:
                 code = .invalidParameter_InvalidCoupon
             case .invalidDealName:
@@ -860,6 +890,8 @@ extension TCDnspodError {
                 code = .invalidParameter_PermissionDenied
             case .qcloudUinInvalid:
                 code = .invalidParameter_QcloudUinInvalid
+            case .quhuiTxtNotMatch:
+                code = .invalidParameter_QuhuiTxtNotMatch
             case .quhuiTxtRecordWait:
                 code = .invalidParameter_QuhuiTxtRecordWait
             case .realNameUser:

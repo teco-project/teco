@@ -39,13 +39,17 @@ extension Tcss {
         /// 是否仅扫描各repository最新版本的镜像
         public let onlyScanLatest: Bool?
 
-        public init(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil) {
+        /// 停止的任务ID
+        public let taskID: UInt64?
+
+        public init(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, taskID: UInt64? = nil) {
             self.all = all
             self.images = images
             self.id = id
             self.filters = filters
             self.excludeImageList = excludeImageList
             self.onlyScanLatest = onlyScanLatest
+            self.taskID = taskID
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +59,7 @@ extension Tcss {
             case filters = "Filters"
             case excludeImageList = "ExcludeImageList"
             case onlyScanLatest = "OnlyScanLatest"
+            case taskID = "TaskID"
         }
     }
 
@@ -82,13 +87,13 @@ extension Tcss {
 
     /// 镜像仓库停止镜像扫描任务
     @inlinable @discardableResult
-    public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopResponse> {
-        self.modifyAssetImageRegistryScanStop(.init(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
+    public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopResponse> {
+        self.modifyAssetImageRegistryScanStop(.init(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库停止镜像扫描任务
     @inlinable @discardableResult
-    public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopResponse {
-        try await self.modifyAssetImageRegistryScanStop(.init(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
+    public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopResponse {
+        try await self.modifyAssetImageRegistryScanStop(.init(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

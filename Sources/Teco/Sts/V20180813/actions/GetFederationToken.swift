@@ -24,7 +24,7 @@ extension Sts {
         /// 您可以自定义调用方英文名称，由字母组成。
         public let name: String
 
-        /// 授予该临时证书权限的CAM策略
+        /// 授予该临时访问凭证权限的CAM策略
         /// 注意：
         /// 1、策略语法参照[ CAM 策略语法](https://cloud.tencent.com/document/product/598/10603)。
         /// 2、策略中不能包含 principal 元素。
@@ -49,13 +49,13 @@ extension Sts {
 
     /// GetFederationToken返回参数结构体
     public struct GetFederationTokenResponse: TCResponseModel {
-        /// 临时证书
+        /// 临时访问凭证
         public let credentials: Credentials
 
-        /// 临时证书有效的时间，返回 Unix 时间戳，精确到秒
+        /// 临时访问凭证有效的时间，返回 Unix 时间戳，精确到秒
         public let expiredTime: UInt64
 
-        /// 证书有效的时间，以 iso8601 格式的 UTC 时间表示
+        /// 临时访问凭证有效的时间，以 iso8601 格式的 UTC 时间表示
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expiration: String?
 
@@ -71,24 +71,64 @@ extension Sts {
     }
 
     /// 获取联合身份临时访问凭证
+    ///
+    /// **使用说明**
+    ///
+    /// 返回一组临时访问凭证，典型的应用场景是代理应用程序集中申请临时访问凭证，下发给企业网络内其他分布式终端应用，比如终端应用上传文件到COS场景，本接口仅支持永久密钥调用。
+    ///
+    /// **最佳实践**
+    ///
+    /// 1. 临时访问凭据在有效期内都可以使用，建议在有效期内重复使用，以避免业务请求速率上升后被限频
+    /// 2. 授予临时访问凭证权限的CAM策略，建议按权限最小化原则
+    /// 3. 调用接口的永久密钥，建议不要使用主账号
     @inlinable
     public func getFederationToken(_ input: GetFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
         self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取联合身份临时访问凭证
+    ///
+    /// **使用说明**
+    ///
+    /// 返回一组临时访问凭证，典型的应用场景是代理应用程序集中申请临时访问凭证，下发给企业网络内其他分布式终端应用，比如终端应用上传文件到COS场景，本接口仅支持永久密钥调用。
+    ///
+    /// **最佳实践**
+    ///
+    /// 1. 临时访问凭据在有效期内都可以使用，建议在有效期内重复使用，以避免业务请求速率上升后被限频
+    /// 2. 授予临时访问凭证权限的CAM策略，建议按权限最小化原则
+    /// 3. 调用接口的永久密钥，建议不要使用主账号
     @inlinable
     public func getFederationToken(_ input: GetFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
         try await self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取联合身份临时访问凭证
+    ///
+    /// **使用说明**
+    ///
+    /// 返回一组临时访问凭证，典型的应用场景是代理应用程序集中申请临时访问凭证，下发给企业网络内其他分布式终端应用，比如终端应用上传文件到COS场景，本接口仅支持永久密钥调用。
+    ///
+    /// **最佳实践**
+    ///
+    /// 1. 临时访问凭据在有效期内都可以使用，建议在有效期内重复使用，以避免业务请求速率上升后被限频
+    /// 2. 授予临时访问凭证权限的CAM策略，建议按权限最小化原则
+    /// 3. 调用接口的永久密钥，建议不要使用主账号
     @inlinable
     public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
         self.getFederationToken(.init(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联合身份临时访问凭证
+    ///
+    /// **使用说明**
+    ///
+    /// 返回一组临时访问凭证，典型的应用场景是代理应用程序集中申请临时访问凭证，下发给企业网络内其他分布式终端应用，比如终端应用上传文件到COS场景，本接口仅支持永久密钥调用。
+    ///
+    /// **最佳实践**
+    ///
+    /// 1. 临时访问凭据在有效期内都可以使用，建议在有效期内重复使用，以避免业务请求速率上升后被限频
+    /// 2. 授予临时访问凭证权限的CAM策略，建议按权限最小化原则
+    /// 3. 调用接口的永久密钥，建议不要使用主账号
     @inlinable
     public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
         try await self.getFederationToken(.init(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)

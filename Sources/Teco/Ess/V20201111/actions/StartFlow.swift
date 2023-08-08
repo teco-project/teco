@@ -67,7 +67,7 @@ extension Ess {
         }
     }
 
-    /// 发起流程
+    /// 模板发起合同-发起签署流程
     ///
     /// 此接口用于发起流程
     /// 适用场景：见创建签署流程接口。
@@ -77,7 +77,7 @@ extension Ess {
         self.client.execute(action: "StartFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 发起流程
+    /// 模板发起合同-发起签署流程
     ///
     /// 此接口用于发起流程
     /// 适用场景：见创建签署流程接口。
@@ -87,7 +87,7 @@ extension Ess {
         try await self.client.execute(action: "StartFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 发起流程
+    /// 模板发起合同-发起签署流程
     ///
     /// 此接口用于发起流程
     /// 适用场景：见创建签署流程接口。
@@ -97,7 +97,7 @@ extension Ess {
         self.startFlow(.init(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent, ccNotifyType: ccNotifyType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 发起流程
+    /// 模板发起合同-发起签署流程
     ///
     /// 此接口用于发起流程
     /// 适用场景：见创建签署流程接口。

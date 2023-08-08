@@ -20,6 +20,7 @@ extension TCCdbError {
     public struct ResourceNotFound: TCCdbErrorType {
         enum Code: String {
             case cdbInstanceNotFoundError = "ResourceNotFound.CdbInstanceNotFoundError"
+            case instanceNotFoundError = "ResourceNotFound.InstanceNotFoundError"
             case instanceNotFundError = "ResourceNotFound.InstanceNotFundError"
             case other = "ResourceNotFound"
         }
@@ -51,6 +52,11 @@ extension TCCdbError {
             ResourceNotFound(.cdbInstanceNotFoundError)
         }
 
+        /// 高可用版实例不存在。
+        public static var instanceNotFoundError: ResourceNotFound {
+            ResourceNotFound(.instanceNotFoundError)
+        }
+
         /// 该实例不存在。
         public static var instanceNotFundError: ResourceNotFound {
             ResourceNotFound(.instanceNotFundError)
@@ -66,6 +72,8 @@ extension TCCdbError {
             switch self.error {
             case .cdbInstanceNotFoundError:
                 code = .resourceNotFound_CdbInstanceNotFoundError
+            case .instanceNotFoundError:
+                code = .resourceNotFound_InstanceNotFoundError
             case .instanceNotFundError:
                 code = .resourceNotFound_InstanceNotFundError
             case .other:

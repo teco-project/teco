@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// CreateConvertTaskApi请求参数结构体
     public struct CreateConvertTaskApiRequest: TCRequestModel {
-        /// 资源类型 取值范围doc,docx,html,xls,xlsx之一
+        /// 资源类型 支持doc,docx,html,xls,xlsx,jpg,jpeg,png,bmp文件类型
         public let resourceType: String
 
         /// 资源名称，长度限制为256字符
@@ -73,24 +73,32 @@ extension Ess {
     }
 
     /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
         self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
     @inlinable
     public func createConvertTaskApi(_ input: CreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.client.execute(action: "CreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
         self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)

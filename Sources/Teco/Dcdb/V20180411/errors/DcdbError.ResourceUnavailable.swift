@@ -21,6 +21,7 @@ extension TCDcdbError {
         enum Code: String {
             case badInstanceStatus = "ResourceUnavailable.BadInstanceStatus"
             case cosApiFailed = "ResourceUnavailable.CosApiFailed"
+            case exclusterStatusAbnormal = "ResourceUnavailable.ExclusterStatusAbnormal"
             case instanceAlreadyDeleted = "ResourceUnavailable.InstanceAlreadyDeleted"
             case instanceHasBeenLocked = "ResourceUnavailable.InstanceHasBeenLocked"
             case instanceStatusAbnormal = "ResourceUnavailable.InstanceStatusAbnormal"
@@ -59,6 +60,11 @@ extension TCDcdbError {
             ResourceUnavailable(.cosApiFailed)
         }
 
+        /// 独享集群状态异常。
+        public static var exclusterStatusAbnormal: ResourceUnavailable {
+            ResourceUnavailable(.exclusterStatusAbnormal)
+        }
+
         /// 数据库实例已被删除。
         public static var instanceAlreadyDeleted: ResourceUnavailable {
             ResourceUnavailable(.instanceAlreadyDeleted)
@@ -86,6 +92,8 @@ extension TCDcdbError {
                 code = .resourceUnavailable_BadInstanceStatus
             case .cosApiFailed:
                 code = .resourceUnavailable_CosApiFailed
+            case .exclusterStatusAbnormal:
+                code = .resourceUnavailable_ExclusterStatusAbnormal
             case .instanceAlreadyDeleted:
                 code = .resourceUnavailable_InstanceAlreadyDeleted
             case .instanceHasBeenLocked:

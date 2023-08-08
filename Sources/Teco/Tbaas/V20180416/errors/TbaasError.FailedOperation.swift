@@ -34,10 +34,6 @@ extension TCTbaasError {
             case caSignCert = "FailedOperation.CaSignCert"
             case caYunApiApplyCert = "FailedOperation.CaYunApiApplyCert"
             case caYunApiCommon = "FailedOperation.CaYunApiCommon"
-            case chainCodeChannel = "FailedOperation.ChainCodeChannel"
-            case chainCodeExist = "FailedOperation.ChainCodeExist"
-            case chainCodeInit = "FailedOperation.ChainCodeInit"
-            case chainCodeInstall = "FailedOperation.ChainCodeInstall"
             case compileDeployedContract = "FailedOperation.CompileDeployedContract"
             case compileDeployingContract = "FailedOperation.CompileDeployingContract"
             case contractEditedByOtherAgency = "FailedOperation.ContractEditedByOtherAgency"
@@ -49,7 +45,6 @@ extension TCTbaasError {
             case fabricBlockQuery = "FailedOperation.FabricBlockQuery"
             case fabricCommit = "FailedOperation.FabricCommit"
             case fabricEventHub = "FailedOperation.FabricEventHub"
-            case fabricManage = "FailedOperation.FabricManage"
             case fabricProposal = "FailedOperation.FabricProposal"
             case fabricRequestParams = "FailedOperation.FabricRequestParams"
             case fabricRequstParams = "FailedOperation.FabricRequstParams"
@@ -61,15 +56,9 @@ extension TCTbaasError {
             case fabricTxQueryNone = "FailedOperation.FabricTxQueryNone"
             case frontRequestFail = "FailedOperation.FrontRequestFail"
             case groupIllegal = "FailedOperation.GroupIllegal"
-            case invalidChaincode = "FailedOperation.InvalidChaincode"
-            case invalidChannel = "FailedOperation.InvalidChannel"
-            case invalidCluster = "FailedOperation.InvalidCluster"
-            case invalidGroup = "FailedOperation.InvalidGroup"
             case invalidGroupPk = "FailedOperation.InvalidGroupPk"
             case invalidKeyUser = "FailedOperation.InvalidKeyUser"
             case invalidOperation = "FailedOperation.InvalidOperation"
-            case invalidPeer = "FailedOperation.InvalidPeer"
-            case invalidResource = "FailedOperation.InvalidResource"
             case manageService = "FailedOperation.ManageService"
             case newContract = "FailedOperation.NewContract"
             case noChainCodeChannel = "FailedOperation.NoChainCodeChannel"
@@ -84,7 +73,6 @@ extension TCTbaasError {
             case statusNoMatch = "FailedOperation.StatusNoMatch"
             case timeOutUrl = "FailedOperation.TimeOutUrl"
             case transactionTimeout = "FailedOperation.TransactionTimeout"
-            case updateDeployedContract = "FailedOperation.UpdateDeployedContract"
             case userAuthType = "FailedOperation.UserAuthType"
             case userInBlackList = "FailedOperation.UserInBlackList"
             case userNoJoinDemoCluster = "FailedOperation.UserNoJoinDemoCluster"
@@ -187,26 +175,6 @@ extension TCTbaasError {
             FailedOperation(.caYunApiCommon)
         }
 
-        /// 合约已在通道实例化。
-        public static var chainCodeChannel: FailedOperation {
-            FailedOperation(.chainCodeChannel)
-        }
-
-        /// 合约已存在。
-        public static var chainCodeExist: FailedOperation {
-            FailedOperation(.chainCodeExist)
-        }
-
-        /// 合约实例化错误。
-        public static var chainCodeInit: FailedOperation {
-            FailedOperation(.chainCodeInit)
-        }
-
-        /// 合约安装错误。
-        public static var chainCodeInstall: FailedOperation {
-            FailedOperation(.chainCodeInstall)
-        }
-
         /// Bcos不能编译已经部署的合约。
         public static var compileDeployedContract: FailedOperation {
             FailedOperation(.compileDeployedContract)
@@ -260,11 +228,6 @@ extension TCTbaasError {
         /// event hub失败。
         public static var fabricEventHub: FailedOperation {
             FailedOperation(.fabricEventHub)
-        }
-
-        /// 区块链网络请求异常。
-        public static var fabricManage: FailedOperation {
-            FailedOperation(.fabricManage)
         }
 
         /// 背书失败。
@@ -322,26 +285,6 @@ extension TCTbaasError {
             FailedOperation(.groupIllegal)
         }
 
-        /// 无效合约。
-        public static var invalidChaincode: FailedOperation {
-            FailedOperation(.invalidChaincode)
-        }
-
-        /// 无效通道。
-        public static var invalidChannel: FailedOperation {
-            FailedOperation(.invalidChannel)
-        }
-
-        /// 无效网络。
-        public static var invalidCluster: FailedOperation {
-            FailedOperation(.invalidCluster)
-        }
-
-        /// 无效组织。
-        public static var invalidGroup: FailedOperation {
-            FailedOperation(.invalidGroup)
-        }
-
         /// Bcos无效的群组编号。
         public static var invalidGroupPk: FailedOperation {
             FailedOperation(.invalidGroupPk)
@@ -355,16 +298,6 @@ extension TCTbaasError {
         /// 无效操作。
         public static var invalidOperation: FailedOperation {
             FailedOperation(.invalidOperation)
-        }
-
-        /// 无效节点。
-        public static var invalidPeer: FailedOperation {
-            FailedOperation(.invalidPeer)
-        }
-
-        /// 无效资源。
-        public static var invalidResource: FailedOperation {
-            FailedOperation(.invalidResource)
         }
 
         /// 交易请求异常。
@@ -439,11 +372,6 @@ extension TCTbaasError {
             FailedOperation(.transactionTimeout)
         }
 
-        /// Bcos更新已部署合约。
-        public static var updateDeployedContract: FailedOperation {
-            FailedOperation(.updateDeployedContract)
-        }
-
         /// 获取用户认证类型出错。
         public static var userAuthType: FailedOperation {
             FailedOperation(.userAuthType)
@@ -492,14 +420,6 @@ extension TCTbaasError {
                 code = .failedOperation_CaYunApiApplyCert
             case .caYunApiCommon:
                 code = .failedOperation_CaYunApiCommon
-            case .chainCodeChannel:
-                code = .failedOperation_ChainCodeChannel
-            case .chainCodeExist:
-                code = .failedOperation_ChainCodeExist
-            case .chainCodeInit:
-                code = .failedOperation_ChainCodeInit
-            case .chainCodeInstall:
-                code = .failedOperation_ChainCodeInstall
             case .compileDeployedContract:
                 code = .failedOperation_CompileDeployedContract
             case .compileDeployingContract:
@@ -522,8 +442,6 @@ extension TCTbaasError {
                 code = .failedOperation_FabricCommit
             case .fabricEventHub:
                 code = .failedOperation_FabricEventHub
-            case .fabricManage:
-                code = .failedOperation_FabricManage
             case .fabricProposal:
                 code = .failedOperation_FabricProposal
             case .fabricRequestParams:
@@ -546,24 +464,12 @@ extension TCTbaasError {
                 code = .failedOperation_FrontRequestFail
             case .groupIllegal:
                 code = .failedOperation_GroupIllegal
-            case .invalidChaincode:
-                code = .failedOperation_InvalidChaincode
-            case .invalidChannel:
-                code = .failedOperation_InvalidChannel
-            case .invalidCluster:
-                code = .failedOperation_InvalidCluster
-            case .invalidGroup:
-                code = .failedOperation_InvalidGroup
             case .invalidGroupPk:
                 code = .failedOperation_InvalidGroupPk
             case .invalidKeyUser:
                 code = .failedOperation_InvalidKeyUser
             case .invalidOperation:
                 code = .failedOperation_InvalidOperation
-            case .invalidPeer:
-                code = .failedOperation_InvalidPeer
-            case .invalidResource:
-                code = .failedOperation_InvalidResource
             case .manageService:
                 code = .failedOperation_ManageService
             case .newContract:
@@ -592,8 +498,6 @@ extension TCTbaasError {
                 code = .failedOperation_TimeOutUrl
             case .transactionTimeout:
                 code = .failedOperation_TransactionTimeout
-            case .updateDeployedContract:
-                code = .failedOperation_UpdateDeployedContract
             case .userAuthType:
                 code = .failedOperation_UserAuthType
             case .userInBlackList:

@@ -20,6 +20,7 @@ extension TCBillingError {
     public struct InternalError: TCBillingErrorType {
         enum Code: String {
             case gatewayError = "InternalError.GatewayError"
+            case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
         }
 
@@ -50,6 +51,11 @@ extension TCBillingError {
             InternalError(.gatewayError)
         }
 
+        /// 未定义异常。
+        public static var unknownError: InternalError {
+            InternalError(.unknownError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -60,6 +66,8 @@ extension TCBillingError {
             switch self.error {
             case .gatewayError:
                 code = .internalError_GatewayError
+            case .unknownError:
+                code = .internalError_UnknownError
             case .other:
                 code = .internalError
             }

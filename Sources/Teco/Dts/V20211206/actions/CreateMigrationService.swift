@@ -21,10 +21,10 @@ import TecoCore
 extension Dts {
     /// CreateMigrationService请求参数结构体
     public struct CreateMigrationServiceRequest: TCRequestModel {
-        /// 源实例数据库类型，mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb
+        /// 源实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql
         public let srcDatabaseType: String
 
-        /// 目标实例数据库类型，mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb
+        /// 目标实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql
         public let dstDatabaseType: String
 
         /// 源实例地域，如：ap-guangzhou

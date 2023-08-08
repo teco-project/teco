@@ -158,6 +158,7 @@ public struct TCMariadbError: TCMariadbErrorType {
         case resourceUnavailable_SGCheckFail = "ResourceUnavailable.SGCheckFail"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
+        case unsupportedOperation_DbVersionNotSupported = "UnsupportedOperation.DbVersionNotSupported"
         case unsupportedOperation_InvalidOperation = "UnsupportedOperation.InvalidOperation"
         case unsupportedOperation_OldProxyVersion = "UnsupportedOperation.OldProxyVersion"
         case unsupportedOperation_OperationNotApplicable = "UnsupportedOperation.OperationNotApplicable"
@@ -861,6 +862,10 @@ public struct TCMariadbError: TCMariadbErrorType {
     /// 没有权限操作该接口或资源。
     public static var unauthorizedOperation_PermissionDenied: TCMariadbError {
         TCMariadbError(.unauthorizedOperation_PermissionDenied)
+    }
+
+    public static var unsupportedOperation_DbVersionNotSupported: TCMariadbError {
+        TCMariadbError(.unsupportedOperation_DbVersionNotSupported)
     }
 
     /// 不支持的无效操作。

@@ -51,25 +51,25 @@ extension Mariadb {
         }
     }
 
-    /// 解隔离后付费实例
+    /// 解隔离MariaDB按量计费实例
     @inlinable
     public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
         self.client.execute(action: "ActivateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 解隔离后付费实例
+    /// 解隔离MariaDB按量计费实例
     @inlinable
     public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
         try await self.client.execute(action: "ActivateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 解隔离后付费实例
+    /// 解隔离MariaDB按量计费实例
     @inlinable
     public func activateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
         self.activateHourDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 解隔离后付费实例
+    /// 解隔离MariaDB按量计费实例
     @inlinable
     public func activateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
         try await self.activateHourDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)

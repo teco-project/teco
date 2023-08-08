@@ -26,9 +26,9 @@ extension TCEsError {
             case errorClusterStateUnhealth = "FailedOperation.ErrorClusterStateUnhealth"
             case noPayment = "FailedOperation.NoPayment"
             case notAuthenticated = "FailedOperation.NotAuthenticated"
-            case unsupportResetNodeTypeAndScaleoutDisk = "FailedOperation.UnsupportResetNodeTypeAndScaleoutDisk"
-            case unsupportResetScaledownAndModifyDisk = "FailedOperation.UnsupportResetScaledownAndModifyDisk"
-            case unsupportReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportReverseRegulationNodeTypeAndDisk"
+            case unsupportedResetNodeTypeAndScaleOutDisk = "FailedOperation.UnsupportedResetNodeTypeAndScaleOutDisk"
+            case unsupportedRestScaleDownAndModifyDisk = "FailedOperation.UnsupportedRestScaleDownAndModifyDisk"
+            case unsupportedReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportedReverseRegulationNodeTypeAndDisk"
             case other = "FailedOperation"
         }
 
@@ -96,20 +96,20 @@ extension TCEsError {
         }
 
         /// 不支持在滚动重启扩容计算资源同时扩容磁盘数量。
-        public static var unsupportResetNodeTypeAndScaleoutDisk: FailedOperation {
-            FailedOperation(.unsupportResetNodeTypeAndScaleoutDisk)
+        public static var unsupportedResetNodeTypeAndScaleOutDisk: FailedOperation {
+            FailedOperation(.unsupportedResetNodeTypeAndScaleOutDisk)
         }
 
         /// 不支持在滚动重启缩容计算资源同时修改磁盘大小
-        public static var unsupportResetScaledownAndModifyDisk: FailedOperation {
-            FailedOperation(.unsupportResetScaledownAndModifyDisk)
+        public static var unsupportedRestScaleDownAndModifyDisk: FailedOperation {
+            FailedOperation(.unsupportedRestScaleDownAndModifyDisk)
         }
 
         /// 不支持反向调节节点配置和磁盘容量。
         ///
         /// 只能同时扩容节点配置和磁盘容量或磁盘数量。
-        public static var unsupportReverseRegulationNodeTypeAndDisk: FailedOperation {
-            FailedOperation(.unsupportReverseRegulationNodeTypeAndDisk)
+        public static var unsupportedReverseRegulationNodeTypeAndDisk: FailedOperation {
+            FailedOperation(.unsupportedReverseRegulationNodeTypeAndDisk)
         }
 
         /// 操作失败。
@@ -134,12 +134,12 @@ extension TCEsError {
                 code = .failedOperation_NoPayment
             case .notAuthenticated:
                 code = .failedOperation_NotAuthenticated
-            case .unsupportResetNodeTypeAndScaleoutDisk:
-                code = .failedOperation_UnsupportResetNodeTypeAndScaleoutDisk
-            case .unsupportResetScaledownAndModifyDisk:
-                code = .failedOperation_UnsupportResetScaledownAndModifyDisk
-            case .unsupportReverseRegulationNodeTypeAndDisk:
-                code = .failedOperation_UnsupportReverseRegulationNodeTypeAndDisk
+            case .unsupportedResetNodeTypeAndScaleOutDisk:
+                code = .failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk
+            case .unsupportedRestScaleDownAndModifyDisk:
+                code = .failedOperation_UnsupportedRestScaleDownAndModifyDisk
+            case .unsupportedReverseRegulationNodeTypeAndDisk:
+                code = .failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk
             case .other:
                 code = .failedOperation
             }

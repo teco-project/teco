@@ -91,6 +91,7 @@ public struct TCAsError: TCAsErrorType {
         case invalidParameterValue_LbProjectInconsistent = "InvalidParameterValue.LbProjectInconsistent"
         case invalidParameterValue_LifecycleHookNameDuplicated = "InvalidParameterValue.LifecycleHookNameDuplicated"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
+        case invalidParameterValue_ListenerTargetTypeNotSupported = "InvalidParameterValue.ListenerTargetTypeNotSupported"
         case invalidParameterValue_MissingBandwidthPackageId = "InvalidParameterValue.MissingBandwidthPackageId"
         case invalidParameterValue_NoResourcePermission = "InvalidParameterValue.NoResourcePermission"
         case invalidParameterValue_NotStringTypeFloat = "InvalidParameterValue.NotStringTypeFloat"
@@ -184,6 +185,7 @@ public struct TCAsError: TCAsErrorType {
         case resourceUnavailable_StoppedInstanceNotAllowAttach = "ResourceUnavailable.StoppedInstanceNotAllowAttach"
         case resourceUnavailable_TDMQCMQTopicHasNoSubscriber = "ResourceUnavailable.TDMQCMQTopicHasNoSubscriber"
         case resourceUnavailable_ZoneUnavailable = "ResourceUnavailable.ZoneUnavailable"
+        case unauthorizedOperation_AutoScalingRoleUnauthorized = "UnauthorizedOperation.AutoScalingRoleUnauthorized"
         case unsupportedOperation = "UnsupportedOperation"
     }
 
@@ -200,7 +202,8 @@ public struct TCAsError: TCAsErrorType {
             ResourceInUse.self,
             ResourceInsufficient.self,
             ResourceNotFound.self,
-            ResourceUnavailable.self
+            ResourceUnavailable.self,
+            UnauthorizedOperation.self
         ]
     }
 
@@ -455,6 +458,8 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.invalidParameterValue_InvalidClbRegion)
     }
 
+    /// 指定的置放群组ID格式不正确。
+    ///
     /// 请提供规范的置放群组ID，类似ps-xxxxxxxx，字母x代表小写字符或者数字。
     public static var invalidParameterValue_InvalidDisasterRecoverGroupId: TCAsError {
         TCAsError(.invalidParameterValue_InvalidDisasterRecoverGroupId)
@@ -555,6 +560,11 @@ public struct TCAsError: TCAsErrorType {
     /// 取值超出限制。
     public static var invalidParameterValue_LimitExceeded: TCAsError {
         TCAsError(.invalidParameterValue_LimitExceeded)
+    }
+
+    /// 不支持目标组类型的监听器。
+    public static var invalidParameterValue_ListenerTargetTypeNotSupported: TCAsError {
+        TCAsError(.invalidParameterValue_ListenerTargetTypeNotSupported)
     }
 
     /// 当前账户在带宽包模式中必须填写带宽包ID参数。
@@ -853,6 +863,8 @@ public struct TCAsError: TCAsErrorType {
         TCAsError(.resourceNotFound_CommandNotFound)
     }
 
+    /// 指定的置放群组ID不存在。
+    ///
     /// 请检查输入的置放群组ID是否正确，是否为当前地域的置放群组。
     public static var resourceNotFound_DisasterRecoverGroupNotFound: TCAsError {
         TCAsError(.resourceNotFound_DisasterRecoverGroupNotFound)
@@ -1032,6 +1044,13 @@ public struct TCAsError: TCAsErrorType {
     /// 指定的可用区不可用。
     public static var resourceUnavailable_ZoneUnavailable: TCAsError {
         TCAsError(.resourceUnavailable_ZoneUnavailable)
+    }
+
+    /// 未授权弹性伸缩预设服务角色AS_QCSRole，请前往弹性伸缩控制台进行授权。
+    ///
+    /// 登陆弹性伸缩控制台，出现授权弹窗后，点击进行授权。
+    public static var unauthorizedOperation_AutoScalingRoleUnauthorized: TCAsError {
+        TCAsError(.unauthorizedOperation_AutoScalingRoleUnauthorized)
     }
 
     /// 操作不支持。

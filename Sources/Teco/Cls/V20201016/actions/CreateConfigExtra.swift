@@ -72,7 +72,14 @@ extension Cls {
         /// 绑定的机器组id列表
         public let groupIds: [String]?
 
-        public init(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil) {
+        /// 高级采集配置。 Json字符串， Key/Value定义为如下：
+        /// - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        /// - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        /// - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        /// 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        public let advancedConfig: String?
+
+        public init(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, advancedConfig: String? = nil) {
             self.name = name
             self.topicId = topicId
             self.type = type
@@ -90,6 +97,7 @@ extension Cls {
             self.userDefineRule = userDefineRule
             self.groupId = groupId
             self.groupIds = groupIds
+            self.advancedConfig = advancedConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -110,6 +118,7 @@ extension Cls {
             case userDefineRule = "UserDefineRule"
             case groupId = "GroupId"
             case groupIds = "GroupIds"
+            case advancedConfig = "AdvancedConfig"
         }
     }
 
@@ -147,15 +156,15 @@ extension Cls {
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
-        self.createConfigExtra(.init(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, advancedConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
+        self.createConfigExtra(.init(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds, advancedConfig: advancedConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建特殊采集配置任务
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
-        try await self.createConfigExtra(.init(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, advancedConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
+        try await self.createConfigExtra(.init(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds, advancedConfig: advancedConfig), region: region, logger: logger, on: eventLoop)
     }
 }

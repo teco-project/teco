@@ -72,6 +72,8 @@ extension Ocr {
     /// 购车发票识别
     ///
     /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CarInvoiceOCRResponse> {
         self.client.execute(action: "CarInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,6 +82,8 @@ extension Ocr {
     /// 购车发票识别
     ///
     /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CarInvoiceOCRResponse {
         try await self.client.execute(action: "CarInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,6 +92,8 @@ extension Ocr {
     /// 购车发票识别
     ///
     /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func carInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CarInvoiceOCRResponse> {
         self.carInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
@@ -96,6 +102,8 @@ extension Ocr {
     /// 购车发票识别
     ///
     /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func carInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CarInvoiceOCRResponse {
         try await self.carInvoiceOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)

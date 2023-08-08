@@ -45,7 +45,10 @@ extension Scf {
         /// 用户自定义参数，仅支持timer触发器
         public let customArgument: String?
 
-        public init(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil) {
+        /// 触发器描述
+        public let description: String?
+
+        public init(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, description: String? = nil) {
             self.functionName = functionName
             self.triggerName = triggerName
             self.type = type
@@ -54,6 +57,7 @@ extension Scf {
             self.qualifier = qualifier
             self.enable = enable
             self.customArgument = customArgument
+            self.description = description
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Scf {
             case qualifier = "Qualifier"
             case enable = "Enable"
             case customArgument = "CustomArgument"
+            case description = "Description"
         }
     }
 
@@ -102,15 +107,15 @@ extension Scf {
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
-        self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
+        self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
-        try await self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
+        try await self.createTrigger(.init(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -97,24 +97,40 @@ extension Ocr {
     }
 
     /// 菲律宾VoteID识别
+    ///
+    /// 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
         self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾VoteID识别
+    ///
+    /// 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
         try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 菲律宾VoteID识别
+    ///
+    /// 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
         self.recognizePhilippinesVoteIDOCR(.init(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾VoteID识别
+    ///
+    /// 本接口支持菲律宾VoteID识别，识别字段包括姓名、姓氏、出生日期、婚姻状况、国籍、地址、地区、菲律宾VoteID的VIN等。
+    ///
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
         try await self.recognizePhilippinesVoteIDOCR(.init(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelUpdateSealStatus请求参数结构体
     public struct ChannelUpdateSealStatusRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 操作的印章状态，DISABLE-停用印章
@@ -30,26 +30,26 @@ extension Essbasic {
         /// 印章ID
         public let sealId: String
 
-        /// 操作者的信息
-        public let `operator`: UserInfo?
-
         /// 更新印章状态原因说明
         public let reason: String?
 
-        public init(agent: Agent, status: String, sealId: String, operator: UserInfo? = nil, reason: String? = nil) {
+        /// 操作者的信息
+        public let `operator`: UserInfo?
+
+        public init(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.status = status
             self.sealId = sealId
-            self.operator = `operator`
             self.reason = reason
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case status = "Status"
             case sealId = "SealId"
-            case `operator` = "Operator"
             case reason = "Reason"
+            case `operator` = "Operator"
         }
     }
 
@@ -83,15 +83,15 @@ extension Essbasic {
     ///
     /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
     @inlinable @discardableResult
-    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, operator: UserInfo? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelUpdateSealStatusResponse> {
-        self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, operator: `operator`, reason: reason), region: region, logger: logger, on: eventLoop)
+    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelUpdateSealStatusResponse> {
+        self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新印章状态
     ///
     /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
     @inlinable @discardableResult
-    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, operator: UserInfo? = nil, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelUpdateSealStatusResponse {
-        try await self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, operator: `operator`, reason: reason), region: region, logger: logger, on: eventLoop)
+    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelUpdateSealStatusResponse {
+        try await self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

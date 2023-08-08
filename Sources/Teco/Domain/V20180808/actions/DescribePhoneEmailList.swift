@@ -31,7 +31,7 @@ extension Domain {
         /// 返回数量，默认为20，取值范围[1,200]
         public let limit: UInt64?
 
-        /// 手机或者邮箱精确搜索
+        /// 手机或者邮箱，用于精确搜索
         public let code: String?
 
         public init(type: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, code: String? = nil) {

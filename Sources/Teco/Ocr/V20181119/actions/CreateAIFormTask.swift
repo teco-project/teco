@@ -30,16 +30,21 @@ extension Ocr {
         /// 备注信息2
         public let secondNotes: String?
 
-        public init(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil) {
+        /// 文件类型
+        public let fileType: UInt64?
+
+        public init(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil, fileType: UInt64? = nil) {
             self.fileList = fileList
             self.firstNotes = firstNotes
             self.secondNotes = secondNotes
+            self.fileType = fileType
         }
 
         enum CodingKeys: String, CodingKey {
             case fileList = "FileList"
             case firstNotes = "FirstNotes"
             case secondNotes = "SecondNotes"
+            case fileType = "FileType"
         }
     }
 
@@ -67,7 +72,7 @@ extension Ocr {
     ///
     /// 本接口可创建智能表单录入任务，支持多个识别图片和PDF的URL上传，返回含有识别内容的操作页面URL。
     ///
-    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func createAIFormTask(_ input: CreateAIFormTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIFormTaskResponse> {
         self.client.execute(action: "CreateAIFormTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -77,7 +82,7 @@ extension Ocr {
     ///
     /// 本接口可创建智能表单录入任务，支持多个识别图片和PDF的URL上传，返回含有识别内容的操作页面URL。
     ///
-    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func createAIFormTask(_ input: CreateAIFormTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIFormTaskResponse {
         try await self.client.execute(action: "CreateAIFormTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -87,19 +92,19 @@ extension Ocr {
     ///
     /// 本接口可创建智能表单录入任务，支持多个识别图片和PDF的URL上传，返回含有识别内容的操作页面URL。
     ///
-    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
-    public func createAIFormTask(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIFormTaskResponse> {
-        self.createAIFormTask(.init(fileList: fileList, firstNotes: firstNotes, secondNotes: secondNotes), region: region, logger: logger, on: eventLoop)
+    public func createAIFormTask(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil, fileType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIFormTaskResponse> {
+        self.createAIFormTask(.init(fileList: fileList, firstNotes: firstNotes, secondNotes: secondNotes, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建智慧表单文件识别任务
     ///
     /// 本接口可创建智能表单录入任务，支持多个识别图片和PDF的URL上传，返回含有识别内容的操作页面URL。
     ///
-    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 智能表单录入产品提供高准确率的表单识别技术和人工核对工具，支持自定义字段，将识别结果自动填入到自定义条目中，并提供人工操作工具，完成整个表单识别过程。适用性强，可对票据、合同、货单等文件的识别，适用于金融、货代、保险、档案等领域。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
-    public func createAIFormTask(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIFormTaskResponse {
-        try await self.createAIFormTask(.init(fileList: fileList, firstNotes: firstNotes, secondNotes: secondNotes), region: region, logger: logger, on: eventLoop)
+    public func createAIFormTask(fileList: [SmartFormFileUrl], firstNotes: String? = nil, secondNotes: String? = nil, fileType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIFormTaskResponse {
+        try await self.createAIFormTask(.init(fileList: fileList, firstNotes: firstNotes, secondNotes: secondNotes, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 }

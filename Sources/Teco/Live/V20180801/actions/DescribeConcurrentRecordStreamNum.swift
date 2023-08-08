@@ -25,11 +25,15 @@ extension Live {
         /// NormalLive：普通直播。
         public let liveType: String
 
-        /// 起始时间，格式：yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         /// 可以查询最近180天的数据。
         public let startTime: String
 
-        /// 结束时间，格式：yyyy-mm-dd HH:MM:SS。
+        /// 结束时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         /// 时间跨度最大支持31天。
         public let endTime: String
 

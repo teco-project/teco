@@ -21,7 +21,7 @@ import TecoCore
 extension Antiddos {
     /// DescribeBgpBizTrend请求参数结构体
     public struct DescribeBgpBizTrendRequest: TCRequestModel {
-        /// 大禹子产品代号（bgp-multip表示高防包）
+        /// DDoS防护子产品代号（bgp-multip表示高防包）
         public let business: String
 
         /// 统计开始时间。 例：“2020-09-22 00:00:00”

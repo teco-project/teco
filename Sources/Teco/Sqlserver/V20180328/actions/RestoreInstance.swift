@@ -33,14 +33,22 @@ extension Sqlserver {
         /// 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。
         public let renameRestore: [RenameRestoreDatabase]?
 
-        /// 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
+        /// 回档类型，0-覆盖方式；1-重命名方式，默认1
+        public let type: UInt64?
+
+        /// 需要覆盖回档的数据库，只有覆盖回档时必填
+        public let dbList: [String]?
+
+        /// 备份任务组ID，在单库备份文件模式下
         public let groupId: String?
 
-        public init(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil) {
+        public init(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, type: UInt64? = nil, dbList: [String]? = nil, groupId: String? = nil) {
             self.instanceId = instanceId
             self.backupId = backupId
             self.targetInstanceId = targetInstanceId
             self.renameRestore = renameRestore
+            self.type = type
+            self.dbList = dbList
             self.groupId = groupId
         }
 
@@ -49,6 +57,8 @@ extension Sqlserver {
             case backupId = "BackupId"
             case targetInstanceId = "TargetInstanceId"
             case renameRestore = "RenameRestore"
+            case type = "Type"
+            case dbList = "DBList"
             case groupId = "GroupId"
         }
     }
@@ -67,35 +77,35 @@ extension Sqlserver {
         }
     }
 
-    /// 根据备份文件恢复实例
+    /// 按照备份集回档数据库
     ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    /// 本接口（RestoreInstance）用于按照备份集回档数据库。
     @inlinable
     public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
         self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 根据备份文件恢复实例
+    /// 按照备份集回档数据库
     ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    /// 本接口（RestoreInstance）用于按照备份集回档数据库。
     @inlinable
     public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
         try await self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 根据备份文件恢复实例
+    /// 按照备份集回档数据库
     ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    /// 本接口（RestoreInstance）用于按照备份集回档数据库。
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, type: UInt64? = nil, dbList: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
+        self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, type: type, dbList: dbList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 根据备份文件恢复实例
+    /// 按照备份集回档数据库
     ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    /// 本接口（RestoreInstance）用于按照备份集回档数据库。
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, type: UInt64? = nil, dbList: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.restoreInstance(.init(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, type: type, dbList: dbList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

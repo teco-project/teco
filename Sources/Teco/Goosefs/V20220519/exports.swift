@@ -16,4 +16,6 @@
 
 #if !BUILDING_DOCC
 @_exported import TecoCore
+
+@_exported import struct Foundation.Date
 #endif

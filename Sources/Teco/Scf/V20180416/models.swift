@@ -426,7 +426,8 @@ extension Scf {
         public let addTime: String
 
         /// 运行时
-        public let runtime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runtime: String?
 
         /// 函数名称
         public let functionName: String
@@ -501,10 +502,7 @@ extension Scf {
         public let requestId: String
 
         /// 函数开始执行时的时间点
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var startTime: Date
+        public let startTime: String
 
         /// 函数执行结果，如果是 0 表示执行成功，其他值表示失败
         public let retCode: Int64
@@ -673,6 +671,64 @@ extension Scf {
         }
     }
 
+    /// k8s label
+    public struct K8SLabel: TCInputModel, TCOutputModel {
+        /// label的名称
+        public let key: String
+
+        /// label的值
+        public let value: String
+
+        public init(key: String, value: String) {
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
+    /// Kubernetes污点容忍，使用时请注意您的Kubernetes版本所支持的字段情况。
+    /// 可参考 https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/
+    public struct K8SToleration: TCInputModel, TCOutputModel {
+        /// 匹配的污点名
+        public let key: String?
+
+        /// 匹配方式，默认值为: Equal
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `operator`: String?
+
+        /// 执行策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let effect: String?
+
+        /// 匹配的污点值，当Operator为Equal时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// 当污点不被容忍时，Pod还能在节点上运行多久
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tolerationSeconds: UInt64?
+
+        public init(key: String? = nil, operator: String? = nil, effect: String? = nil, value: String? = nil, tolerationSeconds: UInt64? = nil) {
+            self.key = key
+            self.operator = `operator`
+            self.effect = effect
+            self.value = value
+            self.tolerationSeconds = tolerationSeconds
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case `operator` = "Operator"
+            case effect = "Effect"
+            case value = "Value"
+            case tolerationSeconds = "TolerationSeconds"
+        }
+    }
+
     /// 层版本信息
     public struct LayerVersionInfo: TCOutputModel {
         /// 版本适用的运行时
@@ -699,6 +755,10 @@ extension Scf {
         /// 层的具体版本当前状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.B1.82.EF.BC.88layer.EF.BC.89.E7.8A.B6.E6.80.81)
         public let status: String?
 
+        /// Stamp
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stamp: String?
+
         enum CodingKeys: String, CodingKey {
             case compatibleRuntimes = "CompatibleRuntimes"
             case addTime = "AddTime"
@@ -707,6 +767,7 @@ extension Scf {
             case layerVersion = "LayerVersion"
             case layerName = "LayerName"
             case status = "Status"
+            case stamp = "Stamp"
         }
     }
 
@@ -871,6 +932,78 @@ extension Scf {
         }
     }
 
+    /// 命名空间资源池配置
+    public struct NamespaceResourceEnv: TCInputModel, TCOutputModel {
+        /// 基于TKE集群的资源池
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tke: NamespaceResourceEnvTKE?
+
+        public init(tke: NamespaceResourceEnvTKE? = nil) {
+            self.tke = tke
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tke = "TKE"
+        }
+    }
+
+    /// 基于TKE的资源池选项
+    public struct NamespaceResourceEnvTKE: TCInputModel, TCOutputModel {
+        /// 集群ID
+        public let clusterID: String
+
+        /// 子网ID
+        public let subnetID: String
+
+        /// 命名空间
+        public let namespace: String
+
+        /// 数据存储地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataPath: String?
+
+        /// node选择器
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeSelector: [K8SLabel]?
+
+        /// 污点容忍
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tolerations: [K8SToleration]?
+
+        /// scf组件将占用的节点端口起始号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: UInt64?
+
+        /// yaml格式的pod patch内容，例如
+        /// metadata:
+        ///   labels:
+        ///     key: value
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podTemplatePatch: String?
+
+        public init(clusterID: String, subnetID: String, namespace: String, dataPath: String? = nil, nodeSelector: [K8SLabel]? = nil, tolerations: [K8SToleration]? = nil, port: UInt64? = nil, podTemplatePatch: String? = nil) {
+            self.clusterID = clusterID
+            self.subnetID = subnetID
+            self.namespace = namespace
+            self.dataPath = dataPath
+            self.nodeSelector = nodeSelector
+            self.tolerations = tolerations
+            self.port = port
+            self.podTemplatePatch = podTemplatePatch
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clusterID = "ClusterID"
+            case subnetID = "SubnetID"
+            case namespace = "Namespace"
+            case dataPath = "DataPath"
+            case nodeSelector = "NodeSelector"
+            case tolerations = "Tolerations"
+            case port = "Port"
+            case podTemplatePatch = "PodTemplatePatch"
+        }
+    }
+
     /// 名称空间已使用信息
     public struct NamespaceUsage: TCOutputModel {
         /// 函数数组
@@ -1013,7 +1146,7 @@ extension Scf {
         /// 此次函数执行的Id
         public let functionRequestId: String
 
-        /// 0为正确，异步调用返回为空
+        /// 请求 Invoke 接口，该参数已弃用。请求 InvokeFunction 接口，该参数值为请求执行[状态码](https://cloud.tencent.com/document/product/583/42611)。
         public let invokeResult: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -1165,16 +1298,19 @@ extension Scf {
         public let availableStatus: String
 
         /// 触发器最小资源ID
-        public let resourceId: String
+        public let resourceId: String?
 
         /// 触发器和云函数绑定状态
-        public let bindStatus: String
+        public let bindStatus: String?
 
         /// 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
-        public let triggerAttribute: String
+        public let triggerAttribute: String?
 
         /// 触发器绑定的别名或版本
         public let qualifier: String
+
+        /// 触发器描述
+        public let description: String?
 
         enum CodingKeys: String, CodingKey {
             case modTime = "ModTime"
@@ -1189,6 +1325,7 @@ extension Scf {
             case bindStatus = "BindStatus"
             case triggerAttribute = "TriggerAttribute"
             case qualifier = "Qualifier"
+            case description = "Description"
         }
     }
 
@@ -1317,13 +1454,17 @@ extension Scf {
         @TCTimestampEncoding public var modTime: Date
 
         /// 触发器最小资源ID
-        public let resourceId: String
+        public let resourceId: String?
 
         /// 触发器和云函数绑定状态
-        public let bindStatus: String
+        public let bindStatus: String?
 
         /// 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
-        public let triggerAttribute: String
+        public let triggerAttribute: String?
+
+        /// 客户自定义触发器描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
 
         enum CodingKeys: String, CodingKey {
             case enable = "Enable"
@@ -1338,6 +1479,7 @@ extension Scf {
             case resourceId = "ResourceId"
             case bindStatus = "BindStatus"
             case triggerAttribute = "TriggerAttribute"
+            case description = "Description"
         }
     }
 

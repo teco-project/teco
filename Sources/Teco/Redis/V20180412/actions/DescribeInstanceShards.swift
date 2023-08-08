@@ -21,10 +21,12 @@ import TecoCore
 extension Redis {
     /// DescribeInstanceShards请求参数结构体
     public struct DescribeInstanceShardsRequest: TCRequestModel {
-        /// 实例ID
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 是否过滤掉从节信息
+        /// 是否过滤掉从节信息。
+        /// - true；过滤从节点。
+        /// - false：不过滤。
         public let filterSlave: Bool?
 
         public init(instanceId: String, filterSlave: Bool? = nil) {
@@ -40,10 +42,10 @@ extension Redis {
 
     /// DescribeInstanceShards返回参数结构体
     public struct DescribeInstanceShardsResponse: TCResponseModel {
-        /// 实例分片列表信息
+        /// 实例分片列表信息，包括：节点信息、节点ID、Key数量、使用容量、容量倾斜率等信息。
         public let instanceShards: [InstanceClusterShard]
 
-        /// 实例分片节点总数
+        /// 实例分片节点数量。
         public let totalCount: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -57,24 +59,32 @@ extension Redis {
     }
 
     /// 获取集群版实例分片信息
+    ///
+    /// 本接口（DescribeInstanceShards）用于获取集群架构实例的分片信息。
     @inlinable
     public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群版实例分片信息
+    ///
+    /// 本接口（DescribeInstanceShards）用于获取集群架构实例的分片信息。
     @inlinable
     public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
         try await self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群版实例分片信息
+    ///
+    /// 本接口（DescribeInstanceShards）用于获取集群架构实例的分片信息。
     @inlinable
     public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
         self.describeInstanceShards(.init(instanceId: instanceId, filterSlave: filterSlave), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群版实例分片信息
+    ///
+    /// 本接口（DescribeInstanceShards）用于获取集群架构实例的分片信息。
     @inlinable
     public func describeInstanceShards(instanceId: String, filterSlave: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
         try await self.describeInstanceShards(.init(instanceId: instanceId, filterSlave: filterSlave), region: region, logger: logger, on: eventLoop)

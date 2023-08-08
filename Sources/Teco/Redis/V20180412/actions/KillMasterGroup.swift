@@ -21,22 +21,19 @@ import TecoCore
 extension Redis {
     /// KillMasterGroup请求参数结构体
     public struct KillMasterGroupRequest: TCRequestModel {
-        /// 实例ID
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 1.长度8-30位,推荐使用12位以上的密码
-        /// 2.不能以"/"开头
-        /// 3.至少包含两项
-        ///     a.小写字母a-z
-        ///     b.大写字母A-Z
-        ///     c.数字0-9
-        ///     d.()`~!@#$%^&*-+=_|{}[]:;<>,.?/
-        public let password: String
+        /// 该参数用于配置指定实例的访问密码。若为免密认证，该参数则无需配置。密码复杂度要求如下所示。
+        /// - 长度8-30位,推荐使用12位以上的密码
+        /// - 不能以"/"开头
+        /// - 至少包含小写字母a-z、大写字母A-Z、数字0-9及其 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
+        public let password: String?
 
-        /// 单AZ实例节点信息
+        /// 分片集群的分片 ID。
         public let shardIds: [Int64]?
 
-        public init(instanceId: String, password: String, shardIds: [Int64]? = nil) {
+        public init(instanceId: String, password: String? = nil, shardIds: [Int64]? = nil) {
             self.instanceId = instanceId
             self.password = password
             self.shardIds = shardIds
@@ -51,7 +48,7 @@ extension Redis {
 
     /// KillMasterGroup返回参数结构体
     public struct KillMasterGroupResponse: TCResponseModel {
-        /// 异步任务ID
+        /// 异步任务ID。
         public let taskId: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -65,7 +62,7 @@ extension Redis {
 
     /// 模拟故障接口
     ///
-    /// 模拟故障
+    /// 本接口（KillMasterGroup）模拟故障。
     @inlinable
     public func killMasterGroup(_ input: KillMasterGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
         self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,7 +70,7 @@ extension Redis {
 
     /// 模拟故障接口
     ///
-    /// 模拟故障
+    /// 本接口（KillMasterGroup）模拟故障。
     @inlinable
     public func killMasterGroup(_ input: KillMasterGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
         try await self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,17 +78,17 @@ extension Redis {
 
     /// 模拟故障接口
     ///
-    /// 模拟故障
+    /// 本接口（KillMasterGroup）模拟故障。
     @inlinable
-    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
+    public func killMasterGroup(instanceId: String, password: String? = nil, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
         self.killMasterGroup(.init(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模拟故障接口
     ///
-    /// 模拟故障
+    /// 本接口（KillMasterGroup）模拟故障。
     @inlinable
-    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
+    public func killMasterGroup(instanceId: String, password: String? = nil, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
         try await self.killMasterGroup(.init(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 }

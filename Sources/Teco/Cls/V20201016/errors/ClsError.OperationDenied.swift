@@ -30,6 +30,7 @@ extension TCClsError {
             case operationNotSupportInSearchLow = "OperationDenied.OperationNotSupportInSearchLow"
             case topicHasDataFormTask = "OperationDenied.TopicHasDataFormTask"
             case topicHasDeliverFunction = "OperationDenied.TopicHasDeliverFunction"
+            case topicHasExternalDatasourceConfig = "OperationDenied.TopicHasExternalDatasourceConfig"
             case topicHasScheduleSqlTask = "OperationDenied.TopicHasScheduleSqlTask"
             case other = "OperationDenied"
         }
@@ -119,6 +120,11 @@ extension TCClsError {
             OperationDenied(.topicHasDeliverFunction)
         }
 
+        /// 先删除topic配置的外部数据源配置，然后才能删除topic
+        public static var topicHasExternalDatasourceConfig: OperationDenied {
+            OperationDenied(.topicHasExternalDatasourceConfig)
+        }
+
         /// topic绑定了scheduleSql任务。
         public static var topicHasScheduleSqlTask: OperationDenied {
             OperationDenied(.topicHasScheduleSqlTask)
@@ -154,6 +160,8 @@ extension TCClsError {
                 code = .operationDenied_TopicHasDataFormTask
             case .topicHasDeliverFunction:
                 code = .operationDenied_TopicHasDeliverFunction
+            case .topicHasExternalDatasourceConfig:
+                code = .operationDenied_TopicHasExternalDatasourceConfig
             case .topicHasScheduleSqlTask:
                 code = .operationDenied_TopicHasScheduleSqlTask
             case .other:

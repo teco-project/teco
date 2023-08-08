@@ -59,6 +59,7 @@ public struct TCThpcError: TCThpcErrorType {
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AutoScalingType = "UnsupportedOperation.AutoScalingType"
+        case unsupportedOperation_ClusterAcceptOtherRequest = "UnsupportedOperation.ClusterAcceptOtherRequest"
         case unsupportedOperation_ClusterStatusNotSupport = "UnsupportedOperation.ClusterStatusNotSupport"
         case unsupportedOperation_InvalidNodeRole = "UnsupportedOperation.InvalidNodeRole"
         case unsupportedOperation_NodeStatusNotSupport = "UnsupportedOperation.NodeStatusNotSupport"
@@ -265,6 +266,10 @@ public struct TCThpcError: TCThpcErrorType {
     /// 弹性伸缩类型不支持此操作。
     public static var unsupportedOperation_AutoScalingType: TCThpcError {
         TCThpcError(.unsupportedOperation_AutoScalingType)
+    }
+
+    public static var unsupportedOperation_ClusterAcceptOtherRequest: TCThpcError {
+        TCThpcError(.unsupportedOperation_ClusterAcceptOtherRequest)
     }
 
     /// 该集群当前状态不支持该操作。

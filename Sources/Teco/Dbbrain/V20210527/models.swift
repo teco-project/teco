@@ -19,6 +19,197 @@ import TecoCore
 import TecoDateHelpers
 
 extension Dbbrain {
+    /// 实例详细信息
+    public struct AuditInstance: TCOutputModel {
+        /// 审计状态，已开通审计为：YES，未开通审计为：ON。
+        public let auditStatus: String?
+
+        /// 审计日志大小，为兼容老版本用。
+        public let billingAmount: Int64?
+
+        /// 计费确认状态，0-未确认；1-已确认。
+        public let billingConfirmed: Int64?
+
+        /// 低频存储时长。
+        public let coldLogExpireDay: Int64?
+
+        /// 低频日志存储量单位MB。
+        public let coldLogSize: Int64?
+
+        /// 高频日志存储天数。
+        public let hotLogExpireDay: Int64?
+
+        /// 高频日志存储量，单位MB。
+        public let hotLogSize: Int64?
+
+        /// 实例Id。
+        public let instanceId: String?
+
+        /// 日志保存总天数，为高频存储时长+低频存储时长。
+        public let logExpireDay: Int64?
+
+        /// 实例创建时间。
+        public let createTime: String?
+
+        /// 实例详细信息。
+        public let instanceInfo: AuditInstanceInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case auditStatus = "AuditStatus"
+            case billingAmount = "BillingAmount"
+            case billingConfirmed = "BillingConfirmed"
+            case coldLogExpireDay = "ColdLogExpireDay"
+            case coldLogSize = "ColdLogSize"
+            case hotLogExpireDay = "HotLogExpireDay"
+            case hotLogSize = "HotLogSize"
+            case instanceId = "InstanceId"
+            case logExpireDay = "LogExpireDay"
+            case createTime = "CreateTime"
+            case instanceInfo = "InstanceInfo"
+        }
+    }
+
+    /// 实例列表查询条件
+    public struct AuditInstanceFilter: TCInputModel {
+        /// 搜索条件名称
+        public let name: String
+
+        /// 要搜索的条件的值
+        public let values: [String]
+
+        public init(name: String, values: [String]) {
+            self.name = name
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case values = "Values"
+        }
+    }
+
+    /// 实例详情
+    public struct AuditInstanceInfo: TCOutputModel {
+        /// appId。
+        public let appId: Int64?
+
+        /// 审计状态，0-未开通审计；1-已开通审计。
+        public let auditStatus: Int64?
+
+        /// 实例Id。
+        public let instanceId: String?
+
+        /// 实例名称。
+        public let instanceName: String?
+
+        /// 项目Id。
+        public let projectId: Int64?
+
+        /// 实例所在地域。
+        public let region: String?
+
+        /// 资源Tags。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceTags: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case appId = "AppId"
+            case auditStatus = "AuditStatus"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case projectId = "ProjectId"
+            case region = "Region"
+            case resourceTags = "ResourceTags"
+        }
+    }
+
+    /// 审计日志文件
+    public struct AuditLogFile: TCOutputModel {
+        /// 审计日志文件生成异步任务ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let asyncRequestId: Int64?
+
+        /// 审计日志文件名称。
+        public let fileName: String?
+
+        /// 审计日志文件创建时间。格式为 : "2019-03-20 17:09:13"。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 文件状态值。可能返回的值为：
+        /// "creating" - 生成中;
+        /// "failed" - 创建失败;
+        /// "success" - 已生成;
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 文件大小，单位为 KB。
+        public let fileSize: Float?
+
+        /// 审计日志下载地址。
+        public let downloadUrl: String?
+
+        /// 错误信息。
+        public let errMsg: String?
+
+        /// 文件生成进度。
+        public let progress: Float?
+
+        /// 文件生成成功时间。
+        public let finishTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case asyncRequestId = "AsyncRequestId"
+            case fileName = "FileName"
+            case createTime = "CreateTime"
+            case status = "Status"
+            case fileSize = "FileSize"
+            case downloadUrl = "DownloadUrl"
+            case errMsg = "ErrMsg"
+            case progress = "Progress"
+            case finishTime = "FinishTime"
+        }
+    }
+
+    /// 过滤条件。可按设置的过滤条件过滤日志。
+    public struct AuditLogFilter: TCInputModel {
+        /// 客户端地址。
+        public let host: [String]?
+
+        /// 数据库名称。
+        public let dbName: [String]?
+
+        /// 用户名。
+        public let user: [String]?
+
+        /// 返回行数。表示筛选返回行数大于该值的审计日志。
+        public let sentRows: Int64?
+
+        /// 影响行数。表示筛选影响行数大于该值的审计日志。
+        public let affectRows: Int64?
+
+        /// 执行时间。单位为：µs。表示筛选执行时间大于该值的审计日志。
+        public let execTime: Int64?
+
+        public init(host: [String]? = nil, dbName: [String]? = nil, user: [String]? = nil, sentRows: Int64? = nil, affectRows: Int64? = nil, execTime: Int64? = nil) {
+            self.host = host
+            self.dbName = dbName
+            self.user = user
+            self.sentRows = sentRows
+            self.affectRows = affectRows
+            self.execTime = execTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case host = "Host"
+            case dbName = "DBName"
+            case user = "User"
+            case sentRows = "SentRows"
+            case affectRows = "AffectRows"
+            case execTime = "ExecTime"
+        }
+    }
+
     /// 联系人contact描述。
     public struct ContactItem: TCOutputModel {
         /// 联系人id。
@@ -392,16 +583,24 @@ extension Dbbrain {
         /// 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         public let auditRunningStatus: String
 
-        /// 内网vip
+        /// 内网vip。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internalVip: String?
 
-        /// 内网port
+        /// 内网port。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internalVport: Int64?
 
-        /// 创建时间
+        /// 创建时间。
         public let createTime: String?
+
+        /// 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -435,6 +634,8 @@ extension Dbbrain {
             case internalVip = "InternalVip"
             case internalVport = "InternalVport"
             case createTime = "CreateTime"
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -654,6 +855,12 @@ extension Dbbrain {
         /// 最大元素长度。
         public let maxElementSize: Int64
 
+        /// 平均元素长度。
+        public let aveElementSize: Int64?
+
+        /// 所属分片序号。
+        public let shardId: String?
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case type = "Type"
@@ -662,6 +869,8 @@ extension Dbbrain {
             case length = "Length"
             case itemCount = "ItemCount"
             case maxElementSize = "MaxElementSize"
+            case aveElementSize = "AveElementSize"
+            case shardId = "ShardId"
         }
     }
 
@@ -973,6 +1182,53 @@ extension Dbbrain {
         }
     }
 
+    /// 慢日志详细信息
+    public struct SlowLogInfoItem: TCOutputModel {
+        /// 慢日志开始时间
+        public let timestamp: String?
+
+        /// sql语句
+        public let sqlText: String?
+
+        /// 数据库
+        public let database: String?
+
+        /// User来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        /// IP来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userHost: String?
+
+        /// 执行时间,单位秒
+        public let queryTime: Int64?
+
+        /// 锁时间,单位秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lockTime: Int64?
+
+        /// 扫描行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rowsExamined: Int64?
+
+        /// 返回行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rowsSent: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case sqlText = "SqlText"
+            case database = "Database"
+            case userName = "UserName"
+            case userHost = "UserHost"
+            case queryTime = "QueryTime"
+            case lockTime = "LockTime"
+            case rowsExamined = "RowsExamined"
+            case rowsSent = "RowsSent"
+        }
+    }
+
     /// 慢日志TopSql
     public struct SlowLogTopSqlItem: TCOutputModel {
         /// sql总锁等待时间，单位秒
@@ -1047,7 +1303,7 @@ extension Dbbrain {
         /// 平均扫描行数
         public let rowsExaminedAvg: Float
 
-        /// SOL模板的MD5值
+        /// SQL模板的MD5值
         public let md5: String
 
         enum CodingKeys: String, CodingKey {
@@ -1076,6 +1332,24 @@ extension Dbbrain {
             case lockTimeAvg = "LockTimeAvg"
             case rowsExaminedAvg = "RowsExaminedAvg"
             case md5 = "Md5"
+        }
+    }
+
+    /// 慢日志来源用户详情。
+    public struct SlowLogUser: TCOutputModel {
+        /// 来源用户名。
+        public let userName: String?
+
+        /// 该来源用户名的慢日志数目占总数目的比例，单位%。
+        public let ratio: Float?
+
+        /// 该来源用户名的慢日志数目。
+        public let count: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case ratio = "Ratio"
+            case count = "Count"
         }
     }
 

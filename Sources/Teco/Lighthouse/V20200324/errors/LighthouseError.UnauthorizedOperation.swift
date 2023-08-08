@@ -19,9 +19,11 @@ import TecoCore
 extension TCLighthouseError {
     public struct UnauthorizedOperation: TCLighthouseErrorType {
         enum Code: String {
+            case invalidToken = "UnauthorizedOperation.InvalidToken"
             case mfaExpired = "UnauthorizedOperation.MFAExpired"
             case mfaNotFound = "UnauthorizedOperation.MFANotFound"
             case noPermission = "UnauthorizedOperation.NoPermission"
+            case other = "UnauthorizedOperation"
         }
 
         private let error: Code
@@ -46,6 +48,11 @@ extension TCLighthouseError {
             self.context = context
         }
 
+        /// 无效 Token。
+        public static var invalidToken: UnauthorizedOperation {
+            UnauthorizedOperation(.invalidToken)
+        }
+
         /// MFA 已过期。
         public static var mfaExpired: UnauthorizedOperation {
             UnauthorizedOperation(.mfaExpired)
@@ -61,15 +68,24 @@ extension TCLighthouseError {
             UnauthorizedOperation(.noPermission)
         }
 
+        /// 未授权操作。
+        public static var other: UnauthorizedOperation {
+            UnauthorizedOperation(.other)
+        }
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
+            case .invalidToken:
+                code = .unauthorizedOperation_InvalidToken
             case .mfaExpired:
                 code = .unauthorizedOperation_MFAExpired
             case .mfaNotFound:
                 code = .unauthorizedOperation_MFANotFound
             case .noPermission:
                 code = .unauthorizedOperation_NoPermission
+            case .other:
+                code = .unauthorizedOperation
             }
             return TCLighthouseError(code, context: self.context)
         }

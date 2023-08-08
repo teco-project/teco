@@ -21,26 +21,31 @@ import TecoCore
 extension Cls {
     /// OpenKafkaConsumer请求参数结构体
     public struct OpenKafkaConsumerRequest: TCRequestModel {
-        /// CLS控制台创建的TopicId
+        /// 日志主题ID
         public let fromTopicId: String
 
         /// 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         public let compression: Int64?
 
-        public init(fromTopicId: String, compression: Int64? = nil) {
+        /// kafka协议消费数据格式
+        public let consumerContent: KafkaConsumerContent?
+
+        public init(fromTopicId: String, compression: Int64? = nil, consumerContent: KafkaConsumerContent? = nil) {
             self.fromTopicId = fromTopicId
             self.compression = compression
+            self.consumerContent = consumerContent
         }
 
         enum CodingKeys: String, CodingKey {
             case fromTopicId = "FromTopicId"
             case compression = "Compression"
+            case consumerContent = "ConsumerContent"
         }
     }
 
     /// OpenKafkaConsumer返回参数结构体
     public struct OpenKafkaConsumerResponse: TCResponseModel {
-        /// 待消费TopicId
+        /// KafkaConsumer 消费时使用的Topic参数
         public let topicID: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -72,15 +77,15 @@ extension Cls {
     ///
     /// 打开Kafka协议消费功能
     @inlinable
-    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenKafkaConsumerResponse> {
-        self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression), region: region, logger: logger, on: eventLoop)
+    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, consumerContent: KafkaConsumerContent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenKafkaConsumerResponse> {
+        self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression, consumerContent: consumerContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 打开Kafka协议消费
     ///
     /// 打开Kafka协议消费功能
     @inlinable
-    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
-        try await self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression), region: region, logger: logger, on: eventLoop)
+    public func openKafkaConsumer(fromTopicId: String, compression: Int64? = nil, consumerContent: KafkaConsumerContent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
+        try await self.openKafkaConsumer(.init(fromTopicId: fromTopicId, compression: compression, consumerContent: consumerContent), region: region, logger: logger, on: eventLoop)
     }
 }

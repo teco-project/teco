@@ -21,7 +21,7 @@ import TecoCore
 extension Redis {
     /// ModfiyInstancePassword请求参数结构体
     public struct ModfiyInstancePasswordRequest: TCRequestModel {
-        /// 实例 ID。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
         /// 实例旧密码。

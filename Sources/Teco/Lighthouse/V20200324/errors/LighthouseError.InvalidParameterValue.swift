@@ -23,12 +23,17 @@ extension TCLighthouseError {
             case blueprintId = "InvalidParameterValue.BlueprintId"
             case blueprintIdMalformed = "InvalidParameterValue.BlueprintIdMalformed"
             case bundleAndBlueprintNotMatch = "InvalidParameterValue.BundleAndBlueprintNotMatch"
+            case bundleNotSupportBlueprintPlatform = "InvalidParameterValue.BundleNotSupportBlueprintPlatform"
             case ccnIdMalformed = "InvalidParameterValue.CcnIdMalformed"
+            case clientTokenTooLong = "InvalidParameterValue.ClientTokenTooLong"
             case diskBackupIdMalformed = "InvalidParameterValue.DiskBackupIdMalformed"
+            case diskBackupNameTooLong = "InvalidParameterValue.DiskBackupNameTooLong"
+            case diskInstanceZoneNotMatch = "InvalidParameterValue.DiskInstanceZoneNotMatch"
             case diskNameTooLong = "InvalidParameterValue.DiskNameTooLong"
             case diskSizeNotMatch = "InvalidParameterValue.DiskSizeNotMatch"
             case duplicateParameterValue = "InvalidParameterValue.DuplicateParameterValue"
             case duplicated = "InvalidParameterValue.Duplicated"
+            case fieldsCompare = "InvalidParameterValue.FieldsCompare"
             case firewallRuleDescriptionTooLong = "InvalidParameterValue.FirewallRuleDescriptionTooLong"
             case instanceIdMalformed = "InvalidParameterValue.InstanceIdMalformed"
             case instanceNameTooLong = "InvalidParameterValue.InstanceNameTooLong"
@@ -38,7 +43,9 @@ extension TCLighthouseError {
             case invalidBlueprintType = "InvalidParameterValue.InvalidBlueprintType"
             case invalidBundle = "InvalidParameterValue.InvalidBundle"
             case invalidConsoleDisplayTypes = "InvalidParameterValue.InvalidConsoleDisplayTypes"
+            case invalidCurInstanceDeadline = "InvalidParameterValue.InvalidCurInstanceDeadline"
             case invalidDiskIdMalformed = "InvalidParameterValue.InvalidDiskIdMalformed"
+            case invalidDiskType = "InvalidParameterValue.InvalidDiskType"
             case invalidInstanceLoginKeyPairPermitLogin = "InvalidParameterValue.InvalidInstanceLoginKeyPairPermitLogin"
             case invalidIpFormat = "InvalidParameterValue.InvalidIpFormat"
             case invalidKeyPairNameEmpty = "InvalidParameterValue.InvalidKeyPairNameEmpty"
@@ -56,12 +63,15 @@ extension TCLighthouseError {
             case negative = "InvalidParameterValue.Negative"
             case notAllowToChangePlatformType = "InvalidParameterValue.NotAllowToChangePlatformType"
             case outOfRange = "InvalidParameterValue.OutOfRange"
+            case platformTypeNotSupportFileSystem = "InvalidParameterValue.PlatformTypeNotSupportFileSystem"
+            case platformTypeNotSupportMountPoint = "InvalidParameterValue.PlatformTypeNotSupportMountPoint"
             case regionNotFound = "InvalidParameterValue.RegionNotFound"
             case regionNotMatch = "InvalidParameterValue.RegionNotMatch"
             case regionNotSupported = "InvalidParameterValue.RegionNotSupported"
             case regionUnavailable = "InvalidParameterValue.RegionUnavailable"
             case snapshotIdMalformed = "InvalidParameterValue.SnapshotIdMalformed"
             case snapshotNameTooLong = "InvalidParameterValue.SnapshotNameTooLong"
+            case tooLarge = "InvalidParameterValue.TooLarge"
             case tooLong = "InvalidParameterValue.TooLong"
             case zoneInvalid = "InvalidParameterValue.ZoneInvalid"
             case other = "InvalidParameterValue"
@@ -111,14 +121,33 @@ extension TCLighthouseError {
             InvalidParameterValue(.bundleAndBlueprintNotMatch)
         }
 
+        public static var bundleNotSupportBlueprintPlatform: InvalidParameterValue {
+            InvalidParameterValue(.bundleNotSupportBlueprintPlatform)
+        }
+
         /// 云联网实例ID格式非法。
         public static var ccnIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.ccnIdMalformed)
         }
 
+        /// 客户令牌长度超出限制。
+        public static var clientTokenTooLong: InvalidParameterValue {
+            InvalidParameterValue(.clientTokenTooLong)
+        }
+
         /// 参数值非法，云硬盘备份点 ID 格式非法。
         public static var diskBackupIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.diskBackupIdMalformed)
+        }
+
+        /// 指定的云盘备份点名称不可大于最大长度。
+        public static var diskBackupNameTooLong: InvalidParameterValue {
+            InvalidParameterValue(.diskBackupNameTooLong)
+        }
+
+        /// 云硬盘的可用区与实例的可用区不匹配。
+        public static var diskInstanceZoneNotMatch: InvalidParameterValue {
+            InvalidParameterValue(.diskInstanceZoneNotMatch)
         }
 
         /// 磁盘名称长度超出限制。
@@ -139,6 +168,11 @@ extension TCLighthouseError {
         /// 参数值非法，不允许包含重复的值。
         public static var duplicated: InvalidParameterValue {
             InvalidParameterValue(.duplicated)
+        }
+
+        /// 列值不正确。
+        public static var fieldsCompare: InvalidParameterValue {
+            InvalidParameterValue(.fieldsCompare)
         }
 
         /// 防火墙规则描述长度超出限制。
@@ -188,9 +222,19 @@ extension TCLighthouseError {
             InvalidParameterValue(.invalidConsoleDisplayTypes)
         }
 
+        /// 当前实例到期时间不能早于云硬盘到期时间。
+        public static var invalidCurInstanceDeadline: InvalidParameterValue {
+            InvalidParameterValue(.invalidCurInstanceDeadline)
+        }
+
         /// 参数值非法，磁盘 ID 格式非法。
         public static var invalidDiskIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.invalidDiskIdMalformed)
+        }
+
+        /// 云硬盘类型非法。
+        public static var invalidDiskType: InvalidParameterValue {
+            InvalidParameterValue(.invalidDiskType)
         }
 
         /// 设置是否使用默认密钥对登录的值不正确。
@@ -278,6 +322,16 @@ extension TCLighthouseError {
             InvalidParameterValue(.outOfRange)
         }
 
+        /// 实例操作系统不支持该文件系统。
+        public static var platformTypeNotSupportFileSystem: InvalidParameterValue {
+            InvalidParameterValue(.platformTypeNotSupportFileSystem)
+        }
+
+        /// 实例操作系统不支持指定挂载点。
+        public static var platformTypeNotSupportMountPoint: InvalidParameterValue {
+            InvalidParameterValue(.platformTypeNotSupportMountPoint)
+        }
+
         /// 地域不存在。
         public static var regionNotFound: InvalidParameterValue {
             InvalidParameterValue(.regionNotFound)
@@ -308,6 +362,11 @@ extension TCLighthouseError {
             InvalidParameterValue(.snapshotNameTooLong)
         }
 
+        /// 参数值非法，大于有效值。
+        public static var tooLarge: InvalidParameterValue {
+            InvalidParameterValue(.tooLarge)
+        }
+
         /// 参数取值过长，超过最大长度。
         public static var tooLong: InvalidParameterValue {
             InvalidParameterValue(.tooLong)
@@ -334,10 +393,18 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_BlueprintIdMalformed
             case .bundleAndBlueprintNotMatch:
                 code = .invalidParameterValue_BundleAndBlueprintNotMatch
+            case .bundleNotSupportBlueprintPlatform:
+                code = .invalidParameterValue_BundleNotSupportBlueprintPlatform
             case .ccnIdMalformed:
                 code = .invalidParameterValue_CcnIdMalformed
+            case .clientTokenTooLong:
+                code = .invalidParameterValue_ClientTokenTooLong
             case .diskBackupIdMalformed:
                 code = .invalidParameterValue_DiskBackupIdMalformed
+            case .diskBackupNameTooLong:
+                code = .invalidParameterValue_DiskBackupNameTooLong
+            case .diskInstanceZoneNotMatch:
+                code = .invalidParameterValue_DiskInstanceZoneNotMatch
             case .diskNameTooLong:
                 code = .invalidParameterValue_DiskNameTooLong
             case .diskSizeNotMatch:
@@ -346,6 +413,8 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_DuplicateParameterValue
             case .duplicated:
                 code = .invalidParameterValue_Duplicated
+            case .fieldsCompare:
+                code = .invalidParameterValue_FieldsCompare
             case .firewallRuleDescriptionTooLong:
                 code = .invalidParameterValue_FirewallRuleDescriptionTooLong
             case .instanceIdMalformed:
@@ -364,8 +433,12 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_InvalidBundle
             case .invalidConsoleDisplayTypes:
                 code = .invalidParameterValue_InvalidConsoleDisplayTypes
+            case .invalidCurInstanceDeadline:
+                code = .invalidParameterValue_InvalidCurInstanceDeadline
             case .invalidDiskIdMalformed:
                 code = .invalidParameterValue_InvalidDiskIdMalformed
+            case .invalidDiskType:
+                code = .invalidParameterValue_InvalidDiskType
             case .invalidInstanceLoginKeyPairPermitLogin:
                 code = .invalidParameterValue_InvalidInstanceLoginKeyPairPermitLogin
             case .invalidIpFormat:
@@ -400,6 +473,10 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_NotAllowToChangePlatformType
             case .outOfRange:
                 code = .invalidParameterValue_OutOfRange
+            case .platformTypeNotSupportFileSystem:
+                code = .invalidParameterValue_PlatformTypeNotSupportFileSystem
+            case .platformTypeNotSupportMountPoint:
+                code = .invalidParameterValue_PlatformTypeNotSupportMountPoint
             case .regionNotFound:
                 code = .invalidParameterValue_RegionNotFound
             case .regionNotMatch:
@@ -412,6 +489,8 @@ extension TCLighthouseError {
                 code = .invalidParameterValue_SnapshotIdMalformed
             case .snapshotNameTooLong:
                 code = .invalidParameterValue_SnapshotNameTooLong
+            case .tooLarge:
+                code = .invalidParameterValue_TooLarge
             case .tooLong:
                 code = .invalidParameterValue_TooLong
             case .zoneInvalid:

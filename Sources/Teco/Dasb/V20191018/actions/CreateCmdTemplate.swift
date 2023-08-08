@@ -27,14 +27,21 @@ extension Dasb {
         /// 命令列表，\n分隔，最大长度32768字节
         public let cmdList: String
 
-        public init(name: String, cmdList: String) {
+        /// 标识cmdlist字段前端是否为base64加密传值.
+        /// 0:表示非base64加密
+        /// 1:表示是base64加密
+        public let encoding: UInt64?
+
+        public init(name: String, cmdList: String, encoding: UInt64? = nil) {
             self.name = name
             self.cmdList = cmdList
+            self.encoding = encoding
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case cmdList = "CmdList"
+            case encoding = "Encoding"
         }
     }
 
@@ -66,13 +73,13 @@ extension Dasb {
 
     /// 新建高危命令模板
     @inlinable
-    public func createCmdTemplate(name: String, cmdList: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmdTemplateResponse> {
-        self.createCmdTemplate(.init(name: name, cmdList: cmdList), region: region, logger: logger, on: eventLoop)
+    public func createCmdTemplate(name: String, cmdList: String, encoding: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmdTemplateResponse> {
+        self.createCmdTemplate(.init(name: name, cmdList: cmdList, encoding: encoding), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建高危命令模板
     @inlinable
-    public func createCmdTemplate(name: String, cmdList: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmdTemplateResponse {
-        try await self.createCmdTemplate(.init(name: name, cmdList: cmdList), region: region, logger: logger, on: eventLoop)
+    public func createCmdTemplate(name: String, cmdList: String, encoding: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmdTemplateResponse {
+        try await self.createCmdTemplate(.init(name: name, cmdList: cmdList, encoding: encoding), region: region, logger: logger, on: eventLoop)
     }
 }

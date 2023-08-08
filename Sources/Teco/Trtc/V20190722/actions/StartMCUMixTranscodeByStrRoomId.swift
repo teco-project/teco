@@ -36,7 +36,7 @@ extension Trtc {
         /// 混流输出布局参数。
         public let layoutParams: LayoutParams
 
-        /// 第三方CDN转推参数。
+        /// 第三方CDN转推参数。如需转推至腾讯云云直播，此参数无需填写，会默认转推
         public let publishCdnParams: PublishCdnParams?
 
         public init(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil) {

@@ -21,10 +21,15 @@ import TecoCore
 extension Live {
     /// DescribeBillBandwidthAndFluxList请求参数结构体
     public struct DescribeBillBandwidthAndFluxListRequest: TCRequestModel {
-        /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         public let startTime: String
 
-        /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。支持最近3年的数据查询
+        /// 结束时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        /// 起始和结束时间跨度不支持超过31天。支持最近3年的数据查询
         public let endTime: String
 
         /// 直播播放域名，若不填，表示总体数据。
@@ -82,13 +87,17 @@ extension Live {
 
     /// DescribeBillBandwidthAndFluxList返回参数结构体
     public struct DescribeBillBandwidthAndFluxListResponse: TCResponseModel {
-        /// 峰值带宽所在时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 峰值带宽所在时间点，接口返回支持两种时间格式(与接口请求传递的时间格式一致)：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         public let peakBandwidthTime: String
 
         /// 峰值带宽，单位是Mbps。
         public let peakBandwidth: Float
 
-        /// 95峰值带宽所在时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 95峰值带宽所在时间点，接口返回支持两种时间格式(与接口请求传递的时间格式一致)：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         public let p95PeakBandwidthTime: String
 
         /// 95峰值带宽，单位是Mbps。

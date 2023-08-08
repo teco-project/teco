@@ -45,7 +45,13 @@ extension Trp {
         /// 批次编码，业务字段不判断唯一性
         public let batchCode: String?
 
-        public init(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil) {
+        /// 有效期
+        public let validDate: String?
+
+        /// 生产日期
+        public let productionDate: String?
+
+        public init(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.status = status
@@ -54,6 +60,8 @@ extension Trp {
             self.productId = productId
             self.remark = remark
             self.batchCode = batchCode
+            self.validDate = validDate
+            self.productionDate = productionDate
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +73,8 @@ extension Trp {
             case productId = "ProductId"
             case remark = "Remark"
             case batchCode = "BatchCode"
+            case validDate = "ValidDate"
+            case productionDate = "ProductionDate"
         }
     }
 
@@ -96,13 +106,13 @@ extension Trp {
 
     /// 修改批次
     @inlinable
-    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCodeBatchResponse> {
-        self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
+    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCodeBatchResponse> {
+        self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode, validDate: validDate, productionDate: productionDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改批次
     @inlinable
-    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
-        try await self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
+    public func modifyCodeBatch(batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
+        try await self.modifyCodeBatch(.init(batchId: batchId, corpId: corpId, status: status, mpTpl: mpTpl, merchantId: merchantId, productId: productId, remark: remark, batchCode: batchCode, validDate: validDate, productionDate: productionDate), region: region, logger: logger, on: eventLoop)
     }
 }

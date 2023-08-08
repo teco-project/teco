@@ -19,17 +19,14 @@ import TecoCore
 extension TCNlpError {
     public struct InvalidParameterValue: TCNlpErrorType {
         enum Code: String {
-            case emptyValueError = "InvalidParameterValue.EmptyValueError"
             case genre = "InvalidParameterValue.Genre"
+            case invalidParameter = "InvalidParameterValue.InvalidParameter"
             case poetryType = "InvalidParameterValue.PoetryType"
             case sensitiveText = "InvalidParameterValue.SensitiveText"
             case targetType = "InvalidParameterValue.TargetType"
             case text = "InvalidParameterValue.Text"
-            case textEncodeError = "InvalidParameterValue.TextEncodeError"
-            case textFormatError = "InvalidParameterValue.TextFormatError"
             case textNumTooMuch = "InvalidParameterValue.TextNumTooMuch"
             case textTooLong = "InvalidParameterValue.TextTooLong"
-            case valueRangeError = "InvalidParameterValue.ValueRangeError"
         }
 
         private let error: Code
@@ -54,14 +51,14 @@ extension TCNlpError {
             self.context = context
         }
 
-        /// 参数空值错误
-        public static var emptyValueError: InvalidParameterValue {
-            InvalidParameterValue(.emptyValueError)
-        }
-
         /// Genre非法，请参考Genre参数说明。
         public static var genre: InvalidParameterValue {
             InvalidParameterValue(.genre)
+        }
+
+        /// 参数不合法。
+        public static var invalidParameter: InvalidParameterValue {
+            InvalidParameterValue(.invalidParameter)
         }
 
         /// PoetryType非法，请参考PoetryType参数说明。
@@ -84,16 +81,6 @@ extension TCNlpError {
             InvalidParameterValue(.text)
         }
 
-        /// 文本编码错误，不符合utf-8
-        public static var textEncodeError: InvalidParameterValue {
-            InvalidParameterValue(.textEncodeError)
-        }
-
-        /// 文本输入格式错误
-        public static var textFormatError: InvalidParameterValue {
-            InvalidParameterValue(.textFormatError)
-        }
-
         /// 输入文本超出数量限制
         public static var textNumTooMuch: InvalidParameterValue {
             InvalidParameterValue(.textNumTooMuch)
@@ -104,18 +91,13 @@ extension TCNlpError {
             InvalidParameterValue(.textTooLong)
         }
 
-        /// 参数取值范围错误
-        public static var valueRangeError: InvalidParameterValue {
-            InvalidParameterValue(.valueRangeError)
-        }
-
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .emptyValueError:
-                code = .invalidParameterValue_EmptyValueError
             case .genre:
                 code = .invalidParameterValue_Genre
+            case .invalidParameter:
+                code = .invalidParameterValue_InvalidParameter
             case .poetryType:
                 code = .invalidParameterValue_PoetryType
             case .sensitiveText:
@@ -124,16 +106,10 @@ extension TCNlpError {
                 code = .invalidParameterValue_TargetType
             case .text:
                 code = .invalidParameterValue_Text
-            case .textEncodeError:
-                code = .invalidParameterValue_TextEncodeError
-            case .textFormatError:
-                code = .invalidParameterValue_TextFormatError
             case .textNumTooMuch:
                 code = .invalidParameterValue_TextNumTooMuch
             case .textTooLong:
                 code = .invalidParameterValue_TextTooLong
-            case .valueRangeError:
-                code = .invalidParameterValue_ValueRangeError
             }
             return TCNlpError(code, context: self.context)
         }

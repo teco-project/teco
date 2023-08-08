@@ -63,26 +63,30 @@ extension Tdid {
     }
 
     /// 创建凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateCredential is no longer available.")
     }
 
     /// 创建凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateCredential is no longer available.")
     }
 
     /// 创建凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        self.createCredential(.init(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateCredential is no longer available.")
     }
 
     /// 创建凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.createCredential(.init(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateCredential is no longer available.")
     }
 }

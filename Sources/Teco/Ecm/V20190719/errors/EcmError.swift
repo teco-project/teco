@@ -174,6 +174,7 @@ public struct TCEcmError: TCEcmErrorType {
         case operationDenied_InstanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
         case resourceInUse = "ResourceInUse"
         case resourceInsufficient = "ResourceInsufficient"
+        case resourceInsufficient_CidrBlock = "ResourceInsufficient.CidrBlock"
         case resourceInsufficient_IPQuotaNotEnough = "ResourceInsufficient.IPQuotaNotEnough"
         case resourceInsufficient_InstanceQuotaNotEnough = "ResourceInsufficient.InstanceQuotaNotEnough"
         case resourceInsufficient_InvaildPrivateImageNum = "ResourceInsufficient.InvaildPrivateImageNum"
@@ -1009,6 +1010,10 @@ public struct TCEcmError: TCEcmErrorType {
     /// 资源不足。
     public static var resourceInsufficient: TCEcmError {
         TCEcmError(.resourceInsufficient)
+    }
+
+    public static var resourceInsufficient_CidrBlock: TCEcmError {
+        TCEcmError(.resourceInsufficient_CidrBlock)
     }
 
     /// IP资源不足。

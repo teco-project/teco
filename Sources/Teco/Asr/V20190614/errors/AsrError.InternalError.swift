@@ -30,6 +30,14 @@ extension TCAsrError {
             case errorRecognize = "InternalError.ErrorRecognize"
             case failAccessDatabase = "InternalError.FailAccessDatabase"
             case failAccessRedis = "InternalError.FailAccessRedis"
+            case failedVoicePrintDecode = "InternalError.FailedVoicePrintDecode"
+            case failedVoicePrintEnroll = "InternalError.FailedVoicePrintEnroll"
+            case failedVoicePrintVerify = "InternalError.FailedVoicePrintVerify"
+            case tagRequestError = "InternalError.TagRequestError"
+            case voicePrintAudioFailed = "InternalError.VoicePrintAudioFailed"
+            case voicePrintDecodeFailed = "InternalError.VoicePrintDecodeFailed"
+            case voicePrintEnrollFailed = "InternalError.VoicePrintEnrollFailed"
+            case voicePrintVerifyFailed = "InternalError.VoicePrintVerifyFailed"
             case other = "InternalError"
         }
 
@@ -110,6 +118,42 @@ extension TCAsrError {
             InternalError(.failAccessRedis)
         }
 
+        public static var failedVoicePrintDecode: InternalError {
+            InternalError(.failedVoicePrintDecode)
+        }
+
+        public static var failedVoicePrintEnroll: InternalError {
+            InternalError(.failedVoicePrintEnroll)
+        }
+
+        public static var failedVoicePrintVerify: InternalError {
+            InternalError(.failedVoicePrintVerify)
+        }
+
+        public static var tagRequestError: InternalError {
+            InternalError(.tagRequestError)
+        }
+
+        /// 声纹音频处理失败
+        public static var voicePrintAudioFailed: InternalError {
+            InternalError(.voicePrintAudioFailed)
+        }
+
+        /// 声纹音频解码失败
+        public static var voicePrintDecodeFailed: InternalError {
+            InternalError(.voicePrintDecodeFailed)
+        }
+
+        /// 声纹注册失败
+        public static var voicePrintEnrollFailed: InternalError {
+            InternalError(.voicePrintEnrollFailed)
+        }
+
+        /// 声纹验证失败
+        public static var voicePrintVerifyFailed: InternalError {
+            InternalError(.voicePrintVerifyFailed)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -140,6 +184,22 @@ extension TCAsrError {
                 code = .internalError_FailAccessDatabase
             case .failAccessRedis:
                 code = .internalError_FailAccessRedis
+            case .failedVoicePrintDecode:
+                code = .internalError_FailedVoicePrintDecode
+            case .failedVoicePrintEnroll:
+                code = .internalError_FailedVoicePrintEnroll
+            case .failedVoicePrintVerify:
+                code = .internalError_FailedVoicePrintVerify
+            case .tagRequestError:
+                code = .internalError_TagRequestError
+            case .voicePrintAudioFailed:
+                code = .internalError_VoicePrintAudioFailed
+            case .voicePrintDecodeFailed:
+                code = .internalError_VoicePrintDecodeFailed
+            case .voicePrintEnrollFailed:
+                code = .internalError_VoicePrintEnrollFailed
+            case .voicePrintVerifyFailed:
+                code = .internalError_VoicePrintVerifyFailed
             case .other:
                 code = .internalError
             }

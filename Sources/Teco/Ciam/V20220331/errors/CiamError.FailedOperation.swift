@@ -21,6 +21,8 @@ extension TCCiamError {
         enum Code: String {
             case accountAlreadyBeLinked = "FailedOperation.AccountAlreadyBeLinked"
             case attributeFormatError = "FailedOperation.AttributeFormatError"
+            case authSourceNameAlreadyExists = "FailedOperation.AuthSourceNameAlreadyExists"
+            case authSourceNotFound = "FailedOperation.AuthSourceNotFound"
             case dataFlowTooManyRequests = "FailedOperation.DataFlowTooManyRequests"
             case emailAlreadyExists = "FailedOperation.EmailAlreadyExists"
             case emailIsNull = "FailedOperation.EmailIsNull"
@@ -38,12 +40,18 @@ extension TCCiamError {
             case queryUsersSortParameterMustInWhitelist = "FailedOperation.QueryUsersSortParameterMustInWhitelist"
             case quotaLimitExceeded = "FailedOperation.QuotaLimitExceeded"
             case secondaryUserNotFound = "FailedOperation.SecondaryUserNotFound"
+            case userGroupNameAlreadyExists = "FailedOperation.UserGroupNameAlreadyExists"
             case userGroupNotFound = "FailedOperation.UserGroupNotFound"
             case userIsFreeze = "FailedOperation.UserIsFreeze"
             case userNameAlreadyExists = "FailedOperation.UserNameAlreadyExists"
             case userNameIsNull = "FailedOperation.UserNameIsNull"
             case userNotFound = "FailedOperation.UserNotFound"
+            case userPropertyCodeAlreadyExists = "FailedOperation.UserPropertyCodeAlreadyExists"
+            case userPropertyNotFound = "FailedOperation.UserPropertyNotFound"
             case userStatusRequired = "FailedOperation.UserStatusRequired"
+            case userStoreAlreadyExists = "FailedOperation.UserStoreAlreadyExists"
+            case userStoreDomainAlreadyExists = "FailedOperation.UserStoreDomainAlreadyExists"
+            case userStoreNotExist = "FailedOperation.UserStoreNotExist"
             case other = "FailedOperation"
         }
 
@@ -77,6 +85,16 @@ extension TCCiamError {
         /// 用户属性格式异常。
         public static var attributeFormatError: FailedOperation {
             FailedOperation(.attributeFormatError)
+        }
+
+        /// 认证源名称已存在。
+        public static var authSourceNameAlreadyExists: FailedOperation {
+            FailedOperation(.authSourceNameAlreadyExists)
+        }
+
+        /// 认证源不存在。
+        public static var authSourceNotFound: FailedOperation {
+            FailedOperation(.authSourceNotFound)
         }
 
         /// 已存在2个有效的任务，请等待其中一部分完成后重试。
@@ -172,6 +190,11 @@ extension TCCiamError {
             FailedOperation(.secondaryUserNotFound)
         }
 
+        /// 用户组名称已存在。
+        public static var userGroupNameAlreadyExists: FailedOperation {
+            FailedOperation(.userGroupNameAlreadyExists)
+        }
+
         /// 用户组不存在。
         public static var userGroupNotFound: FailedOperation {
             FailedOperation(.userGroupNotFound)
@@ -199,9 +222,38 @@ extension TCCiamError {
             FailedOperation(.userNotFound)
         }
 
+        /// 属性标识已存在。
+        public static var userPropertyCodeAlreadyExists: FailedOperation {
+            FailedOperation(.userPropertyCodeAlreadyExists)
+        }
+
+        /// 用户属性不存在。
+        public static var userPropertyNotFound: FailedOperation {
+            FailedOperation(.userPropertyNotFound)
+        }
+
         /// 更新状态必传。
         public static var userStatusRequired: FailedOperation {
             FailedOperation(.userStatusRequired)
+        }
+
+        /// 已存在相同用户目录名。
+        ///
+        /// 更换用户目录名字。
+        public static var userStoreAlreadyExists: FailedOperation {
+            FailedOperation(.userStoreAlreadyExists)
+        }
+
+        /// 已存在相同域名。
+        public static var userStoreDomainAlreadyExists: FailedOperation {
+            FailedOperation(.userStoreDomainAlreadyExists)
+        }
+
+        /// 用户目录不存在。
+        ///
+        /// 检查用户目录ID。
+        public static var userStoreNotExist: FailedOperation {
+            FailedOperation(.userStoreNotExist)
         }
 
         /// 操作失败。
@@ -216,6 +268,10 @@ extension TCCiamError {
                 code = .failedOperation_AccountAlreadyBeLinked
             case .attributeFormatError:
                 code = .failedOperation_AttributeFormatError
+            case .authSourceNameAlreadyExists:
+                code = .failedOperation_AuthSourceNameAlreadyExists
+            case .authSourceNotFound:
+                code = .failedOperation_AuthSourceNotFound
             case .dataFlowTooManyRequests:
                 code = .failedOperation_DataFlowTooManyRequests
             case .emailAlreadyExists:
@@ -250,6 +306,8 @@ extension TCCiamError {
                 code = .failedOperation_QuotaLimitExceeded
             case .secondaryUserNotFound:
                 code = .failedOperation_SecondaryUserNotFound
+            case .userGroupNameAlreadyExists:
+                code = .failedOperation_UserGroupNameAlreadyExists
             case .userGroupNotFound:
                 code = .failedOperation_UserGroupNotFound
             case .userIsFreeze:
@@ -260,8 +318,18 @@ extension TCCiamError {
                 code = .failedOperation_UserNameIsNull
             case .userNotFound:
                 code = .failedOperation_UserNotFound
+            case .userPropertyCodeAlreadyExists:
+                code = .failedOperation_UserPropertyCodeAlreadyExists
+            case .userPropertyNotFound:
+                code = .failedOperation_UserPropertyNotFound
             case .userStatusRequired:
                 code = .failedOperation_UserStatusRequired
+            case .userStoreAlreadyExists:
+                code = .failedOperation_UserStoreAlreadyExists
+            case .userStoreDomainAlreadyExists:
+                code = .failedOperation_UserStoreDomainAlreadyExists
+            case .userStoreNotExist:
+                code = .failedOperation_UserStoreNotExist
             case .other:
                 code = .failedOperation
             }

@@ -59,7 +59,7 @@ extension As {
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         public let internetAccessible: InternetAccessible?
 
-        /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
+        /// 该参数已失效，请勿使用。升级启动配置接口无法修改或覆盖 LoginSettings 参数，升级后 LoginSettings 不会发生变化。
         public let loginSettings: LoginSettings?
 
         /// 实例所属项目ID。不填为默认项目。

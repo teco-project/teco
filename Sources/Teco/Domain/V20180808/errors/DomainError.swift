@@ -38,6 +38,7 @@ public struct TCDomainError: TCDomainErrorType {
         case failedOperation_DuplicatePhoneEmail = "FailedOperation.DuplicatePhoneEmail"
         case failedOperation_GetDomainPriceFailed = "FailedOperation.GetDomainPriceFailed"
         case failedOperation_ModifyDomainOwnerFailed = "FailedOperation.ModifyDomainOwnerFailed"
+        case failedOperation_PermissionDenied = "FailedOperation.PermissionDenied"
         case failedOperation_ProhibitPhoneEmail = "FailedOperation.ProhibitPhoneEmail"
         case failedOperation_RegisterDomain = "FailedOperation.RegisterDomain"
         case failedOperation_RegisterDomainFailed = "FailedOperation.RegisterDomainFailed"
@@ -45,6 +46,7 @@ public struct TCDomainError: TCDomainErrorType {
         case failedOperation_SendVerifyCodeIsLimited = "FailedOperation.SendVerifyCodeIsLimited"
         case failedOperation_SetDomainDnsFailed = "FailedOperation.SetDomainDnsFailed"
         case failedOperation_TemplateMaxNumFailed = "FailedOperation.TemplateMaxNumFailed"
+        case failedOperation_TransferInDomainFailed = "FailedOperation.TransferInDomainFailed"
         case failedOperation_UploadImageFailed = "FailedOperation.UploadImageFailed"
         case failedOperation_VerifyUinIsRealname = "FailedOperation.VerifyUinIsRealname"
         case internalError = "InternalError"
@@ -193,6 +195,10 @@ public struct TCDomainError: TCDomainErrorType {
         TCDomainError(.failedOperation_ModifyDomainOwnerFailed)
     }
 
+    public static var failedOperation_PermissionDenied: TCDomainError {
+        TCDomainError(.failedOperation_PermissionDenied)
+    }
+
     /// 禁止的手机或邮箱。
     ///
     /// 更换手机或邮箱
@@ -228,6 +234,11 @@ public struct TCDomainError: TCDomainErrorType {
     /// 信息模板超过可用数量上限，建议删除已有模板后重试。
     public static var failedOperation_TemplateMaxNumFailed: TCDomainError {
         TCDomainError(.failedOperation_TemplateMaxNumFailed)
+    }
+
+    /// 域名提交转入失败，请稍后重试。
+    public static var failedOperation_TransferInDomainFailed: TCDomainError {
+        TCDomainError(.failedOperation_TransferInDomainFailed)
     }
 
     /// 上传图片操作失败。

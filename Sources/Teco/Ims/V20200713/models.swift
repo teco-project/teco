@@ -239,6 +239,14 @@ extension Ims {
         /// 二级标签名称
         public let subLabel: String
 
+        /// 图库或人脸库id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupId: String?
+
+        /// 图或人脸id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let objectId: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -246,6 +254,8 @@ extension Ims {
             case score = "Score"
             case location = "Location"
             case subLabel = "SubLabel"
+            case groupId = "GroupId"
+            case objectId = "ObjectId"
         }
     }
 
@@ -368,6 +378,43 @@ extension Ims {
             case location = "Location"
             case rate = "Rate"
             case subLabel = "SubLabel"
+        }
+    }
+
+    /// 识别类型标签结果信息
+    public struct RecognitionResult: TCOutputModel {
+        /// 当前可能的取值：Scene（图片场景模型）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let label: String?
+
+        /// Label对应模型下的识别标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [RecognitionTag]?
+
+        enum CodingKeys: String, CodingKey {
+            case label = "Label"
+            case tags = "Tags"
+        }
+    }
+
+    /// 识别类型标签信息
+    public struct RecognitionTag: TCOutputModel {
+        /// 标签名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 置信分：0～100，数值越大表示置信度越高
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let score: Int64?
+
+        /// 标签位置信息，若模型无位置信息，则可能为零值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: Location?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case score = "Score"
+            case location = "Location"
         }
     }
 

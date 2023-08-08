@@ -65,13 +65,13 @@ extension Tmt {
         /// 数据来源，0：url，1：直接传文件编码后数据
         public let sourceType: Int64?
 
-        /// 需要翻译文件url
+        /// 需要翻译文件url，文件需小于100MB。
         public let url: String?
 
         /// 原始文档类型
         public let basicDocumentType: String?
 
-        /// 回调url
+        /// 回调url，文件大于10MB，建议采用回调方式；回调时，所有内容会放入 Body 中。
         public let callbackUrl: String?
 
         /// 文件数据，当SourceType 值为1时必须填写，为0可不写。要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。编码后的数据不可带有回车换行符)。数据要小于5MB。

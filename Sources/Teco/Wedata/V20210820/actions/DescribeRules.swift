@@ -27,14 +27,19 @@ extension Wedata {
         /// 规则组id
         public let ruleGroupId: UInt64?
 
-        public init(projectId: String? = nil, ruleGroupId: UInt64? = nil) {
+        /// 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        public let engineType: String?
+
+        public init(projectId: String? = nil, ruleGroupId: UInt64? = nil, engineType: String? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
+            self.engineType = engineType
         }
 
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case ruleGroupId = "RuleGroupId"
+            case engineType = "EngineType"
         }
     }
 
@@ -67,13 +72,13 @@ extension Wedata {
 
     /// 查询质量规则列表
     @inlinable
-    public func describeRules(projectId: String? = nil, ruleGroupId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesResponse> {
-        self.describeRules(.init(projectId: projectId, ruleGroupId: ruleGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeRules(projectId: String? = nil, ruleGroupId: UInt64? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesResponse> {
+        self.describeRules(.init(projectId: projectId, ruleGroupId: ruleGroupId, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询质量规则列表
     @inlinable
-    public func describeRules(projectId: String? = nil, ruleGroupId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
-        try await self.describeRules(.init(projectId: projectId, ruleGroupId: ruleGroupId), region: region, logger: logger, on: eventLoop)
+    public func describeRules(projectId: String? = nil, ruleGroupId: UInt64? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.describeRules(.init(projectId: projectId, ruleGroupId: ruleGroupId, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 }

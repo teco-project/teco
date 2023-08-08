@@ -36,7 +36,7 @@ extension Ckafka {
         /// 动态消息保留策略配置
         public let dynamicRetentionConfig: DynamicRetentionTime?
 
-        /// 修改升配置rebalance时间
+        /// 升配Rebalance时间
         public let rebalanceTime: Int64?
 
         /// 公网带宽

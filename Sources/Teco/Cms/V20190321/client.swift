@@ -51,7 +51,7 @@ public struct Cms: TCService {
             region: region,
             language: language,
             endpoint: endpoint,
-            errorType: nil,
+            errorType: TCCmsError.self,
             timeout: timeout,
             byteBufferAllocator: byteBufferAllocator
         )

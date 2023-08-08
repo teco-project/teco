@@ -63,6 +63,7 @@ public struct TCMonitorError: TCMonitorErrorType {
         case failedOperation_DimQueryRequestFailed = "FailedOperation.DimQueryRequestFailed"
         case failedOperation_DivisionByZero = "FailedOperation.DivisionByZero"
         case failedOperation_DoHTTPTransferFailed = "FailedOperation.DoHTTPTransferFailed"
+        case failedOperation_DoTRPCTransferFailed = "FailedOperation.DoTRPCTransferFailed"
         case failedOperation_DruidQueryFailed = "FailedOperation.DruidQueryFailed"
         case failedOperation_DruidTableNotFound = "FailedOperation.DruidTableNotFound"
         case failedOperation_DuplicateName = "FailedOperation.DuplicateName"
@@ -351,6 +352,11 @@ public struct TCMonitorError: TCMonitorErrorType {
     /// 后端服务超时
     public static var failedOperation_DoHTTPTransferFailed: TCMonitorError {
         TCMonitorError(.failedOperation_DoHTTPTransferFailed)
+    }
+
+    /// DoTRPCTransferFailed
+    public static var failedOperation_DoTRPCTransferFailed: TCMonitorError {
+        TCMonitorError(.failedOperation_DoTRPCTransferFailed)
     }
 
     /// 查询分析数据失败。

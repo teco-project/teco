@@ -24,6 +24,7 @@ extension TCSoeError {
             case audioLimitExceeded = "InvalidParameterValue.AudioLimitExceeded"
             case audioSizeMustBeEven = "InvalidParameterValue.AudioSizeMustBeEven"
             case baseDecodeFailed = "InvalidParameterValue.BASEDecodeFailed"
+            case functionNotSupport = "InvalidParameterValue.FunctionNotSupport"
             case invalidSeqId = "InvalidParameterValue.InvalidSeqId"
             case invalidWAVHeader = "InvalidParameterValue.InvalidWAVHeader"
             case noDocInList = "InvalidParameterValue.NoDocInList"
@@ -98,6 +99,10 @@ extension TCSoeError {
         /// BASE64解码错误。
         public static var baseDecodeFailed: InvalidParameterValue {
             InvalidParameterValue(.baseDecodeFailed)
+        }
+
+        public static var functionNotSupport: InvalidParameterValue {
+            InvalidParameterValue(.functionNotSupport)
         }
 
         /// 分片序号错误。
@@ -233,6 +238,8 @@ extension TCSoeError {
                 code = .invalidParameterValue_AudioSizeMustBeEven
             case .baseDecodeFailed:
                 code = .invalidParameterValue_BASEDecodeFailed
+            case .functionNotSupport:
+                code = .invalidParameterValue_FunctionNotSupport
             case .invalidSeqId:
                 code = .invalidParameterValue_InvalidSeqId
             case .invalidWAVHeader:

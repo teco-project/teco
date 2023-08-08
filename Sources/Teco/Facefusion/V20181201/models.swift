@@ -126,6 +126,34 @@ extension Facefusion {
         }
     }
 
+    /// 融合参数
+    public struct FuseParam: TCInputModel {
+        /// 图片编码参数
+        public let imageCodecParam: ImageCodecParam?
+
+        public init(imageCodecParam: ImageCodecParam? = nil) {
+            self.imageCodecParam = imageCodecParam
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case imageCodecParam = "ImageCodecParam"
+        }
+    }
+
+    /// 图片编码参数
+    public struct ImageCodecParam: TCInputModel {
+        /// 元数据
+        public let metaData: [MetaData]?
+
+        public init(metaData: [MetaData]? = nil) {
+            self.metaData = metaData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaData = "MetaData"
+        }
+    }
+
     /// 人脸信息
     public struct MaterialFaceList: TCOutputModel {
         /// 人脸序号
@@ -166,6 +194,25 @@ extension Facefusion {
             case url = "Url"
             case inputImageFaceRect = "InputImageFaceRect"
             case templateFaceID = "TemplateFaceID"
+        }
+    }
+
+    /// MetaData数据结构，Key/Value格式
+    public struct MetaData: TCInputModel {
+        /// MetaData的Key
+        public let metaKey: String?
+
+        /// MetaData的Value
+        public let metaValue: String?
+
+        public init(metaKey: String, metaValue: String) {
+            self.metaKey = metaKey
+            self.metaValue = metaValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaKey = "MetaKey"
+            case metaValue = "MetaValue"
         }
     }
 

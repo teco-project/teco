@@ -30,16 +30,26 @@ extension Lighthouse {
         /// 需要制作镜像的实例ID。
         public let instanceId: String?
 
-        public init(blueprintName: String, description: String? = nil, instanceId: String? = nil) {
+        /// 是否执行强制关机以制作镜像。
+        /// 取值范围：
+        /// True：表示关机之后制作镜像
+        /// False：表示开机状态制作镜像
+        /// 默认取值：True
+        /// 开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
+        public let forcePowerOff: Bool?
+
+        public init(blueprintName: String, description: String? = nil, instanceId: String? = nil, forcePowerOff: Bool? = nil) {
             self.blueprintName = blueprintName
             self.description = description
             self.instanceId = instanceId
+            self.forcePowerOff = forcePowerOff
         }
 
         enum CodingKeys: String, CodingKey {
             case blueprintName = "BlueprintName"
             case description = "Description"
             case instanceId = "InstanceId"
+            case forcePowerOff = "ForcePowerOff"
         }
     }
 
@@ -77,15 +87,15 @@ extension Lighthouse {
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
-        self.createBlueprint(.init(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, forcePowerOff: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
+        self.createBlueprint(.init(blueprintName: blueprintName, description: description, instanceId: instanceId, forcePowerOff: forcePowerOff), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
-        try await self.createBlueprint(.init(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, forcePowerOff: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
+        try await self.createBlueprint(.init(blueprintName: blueprintName, description: description, instanceId: instanceId, forcePowerOff: forcePowerOff), region: region, logger: logger, on: eventLoop)
     }
 }

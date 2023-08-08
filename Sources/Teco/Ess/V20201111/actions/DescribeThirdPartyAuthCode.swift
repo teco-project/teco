@@ -24,12 +24,22 @@ extension Ess {
         /// 电子签小程序跳转客户小程序时携带的授权查看码
         public let authCode: String
 
-        public init(authCode: String) {
+        /// 操作人信息
+        public let `operator`: UserInfo?
+
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(authCode: String, operator: UserInfo? = nil, agent: Agent? = nil) {
             self.authCode = authCode
+            self.operator = `operator`
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case authCode = "AuthCode"
+            case `operator` = "Operator"
+            case agent = "Agent"
         }
     }
 
@@ -61,13 +71,13 @@ extension Ess {
 
     /// 通过AuthCode查询用户是否实名
     @inlinable
-    public func describeThirdPartyAuthCode(authCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThirdPartyAuthCodeResponse> {
-        self.describeThirdPartyAuthCode(.init(authCode: authCode), region: region, logger: logger, on: eventLoop)
+    public func describeThirdPartyAuthCode(authCode: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeThirdPartyAuthCodeResponse> {
+        self.describeThirdPartyAuthCode(.init(authCode: authCode, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过AuthCode查询用户是否实名
     @inlinable
-    public func describeThirdPartyAuthCode(authCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
-        try await self.describeThirdPartyAuthCode(.init(authCode: authCode), region: region, logger: logger, on: eventLoop)
+    public func describeThirdPartyAuthCode(authCode: String, operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
+        try await self.describeThirdPartyAuthCode(.init(authCode: authCode, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -17,9 +17,9 @@
 import NIOCore
 import TecoCore
 
-/// 自然语言处理 (nlp)
+/// NLP 服务 (nlp)
 ///
-/// 对自然语言处理进行操作，包括对话机器人、词法分析、篇章分析、向量技术等。
+/// 对自然语言处理进行操作，包括词法分析、相似词召回、词相似度、句子相似度、文本润色、句子纠错、文本补全、句子生成等。
 public struct Nlp: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

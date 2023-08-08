@@ -45,6 +45,7 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_DBOperationActionError = "FailedOperation.DBOperationActionError"
         case failedOperation_DeleteAuditFailError = "FailedOperation.DeleteAuditFailError"
         case failedOperation_DescribeProxyGroupError = "FailedOperation.DescribeProxyGroupError"
+        case failedOperation_FailedOperationError = "FailedOperation.FailedOperationError"
         case failedOperation_GetPrivilegeError = "FailedOperation.GetPrivilegeError"
         case failedOperation_InstanceQueryError = "FailedOperation.InstanceQueryError"
         case failedOperation_JsonMarshalError = "FailedOperation.JsonMarshalError"
@@ -53,18 +54,23 @@ public struct TCCdbError: TCCdbErrorType {
         case failedOperation_OperationInConflictErr = "FailedOperation.OperationInConflictErr"
         case failedOperation_PrivilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
         case failedOperation_ProxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
+        case failedOperation_QueryAuditTaskFailError = "FailedOperation.QueryAuditTaskFailError"
         case failedOperation_QueryLogError = "FailedOperation.QueryLogError"
+        case failedOperation_RepeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
         case failedOperation_ResponseValueError = "FailedOperation.ResponseValueError"
         case failedOperation_StartFlowError = "FailedOperation.StartFlowError"
         case failedOperation_StatusConflict = "FailedOperation.StatusConflict"
         case failedOperation_SubmitAsyncTaskError = "FailedOperation.SubmitAsyncTaskError"
         case failedOperation_TimeoutError = "FailedOperation.TimeoutError"
         case failedOperation_TypeInConflict = "FailedOperation.TypeInConflict"
+        case failedOperation_VpcIpInUseError = "FailedOperation.VpcIpInUseError"
+        case failedOperation_VpcIpNotInSubnetError = "FailedOperation.VpcIpNotInSubnetError"
         case internalError = "InternalError"
         case internalError_AsyncRequestError = "InternalError.AsyncRequestError"
         case internalError_AuditCreateLogFileError = "InternalError.AuditCreateLogFileError"
         case internalError_AuditDeleteLogFileError = "InternalError.AuditDeleteLogFileError"
         case internalError_AuditDeletePolicyError = "InternalError.AuditDeletePolicyError"
+        case internalError_AuditDescribeLogError = "InternalError.AuditDescribeLogError"
         case internalError_AuditError = "InternalError.AuditError"
         case internalError_AuditModifyStatusError = "InternalError.AuditModifyStatusError"
         case internalError_AuditOssLogicError = "InternalError.AuditOssLogicError"
@@ -174,12 +180,20 @@ public struct TCCdbError: TCCdbErrorType {
         case operationDenied_ModifyAuditStatusError = "OperationDenied.ModifyAuditStatusError"
         case operationDenied_NotSupportBasic = "OperationDenied.NotSupportBasic"
         case operationDenied_NotSupportModifyLocalRootHostError = "OperationDenied.NotSupportModifyLocalRootHostError"
+        case operationDenied_OperationDeniedError = "OperationDenied.OperationDeniedError"
         case operationDenied_OtherOderInProcess = "OperationDenied.OtherOderInProcess"
         case operationDenied_OverQuota = "OperationDenied.OverQuota"
+        case operationDenied_ProxyAddressLimitError = "OperationDenied.ProxyAddressLimitError"
+        case operationDenied_ProxyAddressNotFund = "OperationDenied.ProxyAddressNotFund"
+        case operationDenied_ProxyNodeCountLimitError = "OperationDenied.ProxyNodeCountLimitError"
         case operationDenied_ProxyUpgradeTaskStatusError = "OperationDenied.ProxyUpgradeTaskStatusError"
+        case operationDenied_QueryAuditLogsError = "OperationDenied.QueryAuditLogsError"
+        case operationDenied_ResourceNotFoundError = "OperationDenied.ResourceNotFoundError"
+        case operationDenied_ResourceNotFundError = "OperationDenied.ResourceNotFundError"
         case operationDenied_ResultOverLimit = "OperationDenied.ResultOverLimit"
         case operationDenied_SubAccountOperationDenied = "OperationDenied.SubAccountOperationDenied"
         case operationDenied_UnSupportRefundError = "OperationDenied.UnSupportRefundError"
+        case operationDenied_UnsupportCreateAddressError = "OperationDenied.UnsupportCreateAddressError"
         case operationDenied_UnsupportOpenAuditError = "OperationDenied.UnsupportOpenAuditError"
         case operationDenied_UserHasNoStrategy = "OperationDenied.UserHasNoStrategy"
         case operationDenied_WrongPassword = "OperationDenied.WrongPassword"
@@ -189,6 +203,7 @@ public struct TCCdbError: TCCdbErrorType {
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_CdbInstanceNotFoundError = "ResourceNotFound.CdbInstanceNotFoundError"
+        case resourceNotFound_InstanceNotFoundError = "ResourceNotFound.InstanceNotFoundError"
         case resourceNotFound_InstanceNotFundError = "ResourceNotFound.InstanceNotFundError"
         case resourceUnavailable = "ResourceUnavailable"
         case unauthorizedOperation_NotEnoughPrivileges = "UnauthorizedOperation.NotEnoughPrivileges"
@@ -332,6 +347,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_DescribeProxyGroupError)
     }
 
+    /// 不支持当前操作。
+    public static var failedOperation_FailedOperationError: TCCdbError {
+        TCCdbError(.failedOperation_FailedOperationError)
+    }
+
     /// 获取权限错误。
     public static var failedOperation_GetPrivilegeError: TCCdbError {
         TCCdbError(.failedOperation_GetPrivilegeError)
@@ -372,9 +392,19 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_ProxyGroupStatusError)
     }
 
+    /// 查询审计任务失败。
+    public static var failedOperation_QueryAuditTaskFailError: TCCdbError {
+        TCCdbError(.failedOperation_QueryAuditTaskFailError)
+    }
+
     /// 查询日志失败。
     public static var failedOperation_QueryLogError: TCCdbError {
         TCCdbError(.failedOperation_QueryLogError)
+    }
+
+    /// 代理创建中或则已存在，请勿重复创建。
+    public static var failedOperation_RepeatCreateProxyError: TCCdbError {
+        TCCdbError(.failedOperation_RepeatCreateProxyError)
     }
 
     /// 后台请求服务异常，请您联系客服解决。
@@ -409,6 +439,16 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.failedOperation_TypeInConflict)
     }
 
+    /// 该IP已被占用。
+    public static var failedOperation_VpcIpInUseError: TCCdbError {
+        TCCdbError(.failedOperation_VpcIpInUseError)
+    }
+
+    /// 子网中不存在该IP
+    public static var failedOperation_VpcIpNotInSubnetError: TCCdbError {
+        TCCdbError(.failedOperation_VpcIpNotInSubnetError)
+    }
+
     /// 内部错误。
     public static var internalError: TCCdbError {
         TCCdbError(.internalError)
@@ -432,6 +472,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 审计内部服务错误。
     public static var internalError_AuditDeletePolicyError: TCCdbError {
         TCCdbError(.internalError_AuditDeletePolicyError)
+    }
+
+    /// 查询审计日志错误。
+    public static var internalError_AuditDescribeLogError: TCCdbError {
+        TCCdbError(.internalError_AuditDescribeLogError)
     }
 
     /// 审计内部服务错误。
@@ -981,6 +1026,11 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.operationDenied_NotSupportModifyLocalRootHostError)
     }
 
+    /// 操作拒绝。
+    public static var operationDenied_OperationDeniedError: TCCdbError {
+        TCCdbError(.operationDenied_OperationDeniedError)
+    }
+
     /// 当前有其他订单正在处于下单过程中，请稍后重试。
     public static var operationDenied_OtherOderInProcess: TCCdbError {
         TCCdbError(.operationDenied_OtherOderInProcess)
@@ -991,9 +1041,39 @@ public struct TCCdbError: TCCdbErrorType {
         TCCdbError(.operationDenied_OverQuota)
     }
 
+    /// 代理地址超限。
+    public static var operationDenied_ProxyAddressLimitError: TCCdbError {
+        TCCdbError(.operationDenied_ProxyAddressLimitError)
+    }
+
+    /// 代理地址未找到。
+    public static var operationDenied_ProxyAddressNotFund: TCCdbError {
+        TCCdbError(.operationDenied_ProxyAddressNotFund)
+    }
+
+    /// 代理节点超限。
+    public static var operationDenied_ProxyNodeCountLimitError: TCCdbError {
+        TCCdbError(.operationDenied_ProxyNodeCountLimitError)
+    }
+
     /// 数据库代理升级任务中，不允许该操作。
     public static var operationDenied_ProxyUpgradeTaskStatusError: TCCdbError {
         TCCdbError(.operationDenied_ProxyUpgradeTaskStatusError)
+    }
+
+    /// 查询审计日志失败。
+    public static var operationDenied_QueryAuditLogsError: TCCdbError {
+        TCCdbError(.operationDenied_QueryAuditLogsError)
+    }
+
+    /// 资源未找到。
+    public static var operationDenied_ResourceNotFoundError: TCCdbError {
+        TCCdbError(.operationDenied_ResourceNotFoundError)
+    }
+
+    /// 资源未找到。
+    public static var operationDenied_ResourceNotFundError: TCCdbError {
+        TCCdbError(.operationDenied_ResourceNotFundError)
     }
 
     /// 结果集超过限制，请缩小检索范围。
@@ -1009,6 +1089,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 该实例暂不支持退款。
     public static var operationDenied_UnSupportRefundError: TCCdbError {
         TCCdbError(.operationDenied_UnSupportRefundError)
+    }
+
+    /// 不支持创建代理地址。
+    public static var operationDenied_UnsupportCreateAddressError: TCCdbError {
+        TCCdbError(.operationDenied_UnsupportCreateAddressError)
     }
 
     /// 不支持开通审计。
@@ -1054,6 +1139,11 @@ public struct TCCdbError: TCCdbErrorType {
     /// 未找到数据库实例，请确认您的实例状态是否正常。
     public static var resourceNotFound_CdbInstanceNotFoundError: TCCdbError {
         TCCdbError(.resourceNotFound_CdbInstanceNotFoundError)
+    }
+
+    /// 高可用版实例不存在。
+    public static var resourceNotFound_InstanceNotFoundError: TCCdbError {
+        TCCdbError(.resourceNotFound_InstanceNotFoundError)
     }
 
     /// 该实例不存在。

@@ -61,7 +61,7 @@ extension Cynosdb {
         /// 交易模式 0-下单并支付 1-下单
         public let dealMode: Int64?
 
-        /// 参数模版ID
+        /// 参数模板ID
         public let paramTemplateId: Int64?
 
         /// 参数列表，ParamTemplateId 传入时InstanceParams才有效

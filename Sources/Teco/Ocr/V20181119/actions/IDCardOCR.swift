@@ -40,7 +40,7 @@ extension Ocr {
         /// CopyWarn，复印件告警
         /// BorderCheckWarn，边框和框内遮挡告警
         /// ReshootWarn，翻拍告警
-        /// DetectPsWarn，PS检测告警
+        /// DetectPsWarn，疑似存在PS痕迹告警
         /// TempIdWarn，临时身份证告警
         /// InvalidDateWarn，身份证有效日期不合法告警
         /// Quality，图片质量分数（评价图片的模糊程度）
@@ -53,11 +53,15 @@ extension Ocr {
         /// Config = {"CropIdCard":true,"CropPortrait":true}
         public let config: String?
 
-        public init(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil) {
+        /// 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
+        public let enableRecognitionRectify: Bool?
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, enableRecognitionRectify: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.cardSide = cardSide
             self.config = config
+            self.enableRecognitionRectify = enableRecognitionRectify
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Ocr {
             case imageUrl = "ImageUrl"
             case cardSide = "CardSide"
             case config = "Config"
+            case enableRecognitionRectify = "EnableRecognitionRectify"
         }
     }
 
@@ -108,7 +113,7 @@ extension Ocr {
         /// -9103	身份证翻拍告警，
         /// -9105	身份证框内遮挡告警，
         /// -9104	临时身份证告警，
-        /// -9106	身份证 PS 告警，
+        /// -9106	身份证疑似存在PS痕迹告警，
         /// -9107       身份证反光告警。
         public let advancedInfo: String
 
@@ -152,7 +157,9 @@ extension Ocr {
     ///         </tr>
     ///         <tr>
     ///           <td rowspan="9">告警功能</td>
-    ///           <td>身份证有效日期不合法告警</td>
+    ///           <td>身份证有效日期不合法，即有效日期不符合5年、10年、20年、长期期限
+    ///
+    /// </td>
     ///         </tr>
     ///         <tr>
     ///           <td>身份证边框不完整告警</td>
@@ -169,8 +176,8 @@ extension Ocr {
     ///          <tr>
     ///           <td>临时身份证告警</td>
     ///         </tr>
-    ///           <tr>
-    ///           <td>身份证 PS 告警</td>
+    ///          <tr>
+    ///           <td>身份证疑似存在PS痕迹告警</td>
     ///         </tr>
     ///           <tr>
     ///           <td>图片模糊告警（可根据图片质量分数判断）</td>
@@ -207,7 +214,9 @@ extension Ocr {
     ///         </tr>
     ///         <tr>
     ///           <td rowspan="9">告警功能</td>
-    ///           <td>身份证有效日期不合法告警</td>
+    ///           <td>身份证有效日期不合法，即有效日期不符合5年、10年、20年、长期期限
+    ///
+    /// </td>
     ///         </tr>
     ///         <tr>
     ///           <td>身份证边框不完整告警</td>
@@ -224,8 +233,8 @@ extension Ocr {
     ///          <tr>
     ///           <td>临时身份证告警</td>
     ///         </tr>
-    ///           <tr>
-    ///           <td>身份证 PS 告警</td>
+    ///          <tr>
+    ///           <td>身份证疑似存在PS痕迹告警</td>
     ///         </tr>
     ///           <tr>
     ///           <td>图片模糊告警（可根据图片质量分数判断）</td>
@@ -262,7 +271,9 @@ extension Ocr {
     ///         </tr>
     ///         <tr>
     ///           <td rowspan="9">告警功能</td>
-    ///           <td>身份证有效日期不合法告警</td>
+    ///           <td>身份证有效日期不合法，即有效日期不符合5年、10年、20年、长期期限
+    ///
+    /// </td>
     ///         </tr>
     ///         <tr>
     ///           <td>身份证边框不完整告警</td>
@@ -279,8 +290,8 @@ extension Ocr {
     ///          <tr>
     ///           <td>临时身份证告警</td>
     ///         </tr>
-    ///           <tr>
-    ///           <td>身份证 PS 告警</td>
+    ///          <tr>
+    ///           <td>身份证疑似存在PS痕迹告警</td>
     ///         </tr>
     ///           <tr>
     ///           <td>图片模糊告警（可根据图片质量分数判断）</td>
@@ -290,8 +301,8 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IDCardOCRResponse> {
-        self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config), region: region, logger: logger, on: eventLoop)
+    public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, enableRecognitionRectify: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IDCardOCRResponse> {
+        self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config, enableRecognitionRectify: enableRecognitionRectify), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份证识别
@@ -317,7 +328,9 @@ extension Ocr {
     ///         </tr>
     ///         <tr>
     ///           <td rowspan="9">告警功能</td>
-    ///           <td>身份证有效日期不合法告警</td>
+    ///           <td>身份证有效日期不合法，即有效日期不符合5年、10年、20年、长期期限
+    ///
+    /// </td>
     ///         </tr>
     ///         <tr>
     ///           <td>身份证边框不完整告警</td>
@@ -334,8 +347,8 @@ extension Ocr {
     ///          <tr>
     ///           <td>临时身份证告警</td>
     ///         </tr>
-    ///           <tr>
-    ///           <td>身份证 PS 告警</td>
+    ///          <tr>
+    ///           <td>身份证疑似存在PS痕迹告警</td>
     ///         </tr>
     ///           <tr>
     ///           <td>图片模糊告警（可根据图片质量分数判断）</td>
@@ -345,7 +358,7 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {
-        try await self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config), region: region, logger: logger, on: eventLoop)
+    public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, enableRecognitionRectify: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {
+        try await self.idCardOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide, config: config, enableRecognitionRectify: enableRecognitionRectify), region: region, logger: logger, on: eventLoop)
     }
 }

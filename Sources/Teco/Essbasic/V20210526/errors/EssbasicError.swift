@@ -33,6 +33,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case failedOperation_ExistSameSealName = "FailedOperation.ExistSameSealName"
         case failedOperation_FlowNumExceed = "FailedOperation.FlowNumExceed"
         case failedOperation_HasAuthorized = "FailedOperation.HasAuthorized"
+        case failedOperation_NoRoleAuth = "FailedOperation.NoRoleAuth"
         case failedOperation_NotAvailableSignReview = "FailedOperation.NotAvailableSignReview"
         case failedOperation_QrCodeCreatorSignComponents = "FailedOperation.QrCodeCreatorSignComponents"
         case failedOperation_QrCodeSignUsers = "FailedOperation.QrCodeSignUsers"
@@ -59,6 +60,8 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_Application = "InvalidParameter.Application"
         case invalidParameter_ApproverType = "InvalidParameter.ApproverType"
+        case invalidParameter_ApproverVerifyType = "InvalidParameter.ApproverVerifyType"
+        case invalidParameter_AuthorizationType = "InvalidParameter.AuthorizationType"
         case invalidParameter_BizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
         case invalidParameter_BusinessLicense = "InvalidParameter.BusinessLicense"
         case invalidParameter_CancelReason = "InvalidParameter.CancelReason"
@@ -87,21 +90,25 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case invalidParameter_GenerateType = "InvalidParameter.GenerateType"
         case invalidParameter_Image = "InvalidParameter.Image"
         case invalidParameter_InvalidId = "InvalidParameter.InvalidId"
+        case invalidParameter_Limit = "InvalidParameter.Limit"
         case invalidParameter_LimitSealName = "InvalidParameter.LimitSealName"
         case invalidParameter_MenuStatus = "InvalidParameter.MenuStatus"
         case invalidParameter_MissingRequiredParameterValue = "InvalidParameter.MissingRequiredParameterValue"
         case invalidParameter_Mobile = "InvalidParameter.Mobile"
         case invalidParameter_Name = "InvalidParameter.Name"
         case invalidParameter_NonsupportMobile = "InvalidParameter.NonsupportMobile"
+        case invalidParameter_Offset = "InvalidParameter.Offset"
         case invalidParameter_OpenId = "InvalidParameter.OpenId"
         case invalidParameter_OrganizationId = "InvalidParameter.OrganizationId"
         case invalidParameter_OrganizationName = "InvalidParameter.OrganizationName"
         case invalidParameter_ParamError = "InvalidParameter.ParamError"
         case invalidParameter_ResourceType = "InvalidParameter.ResourceType"
+        case invalidParameter_RoleId = "InvalidParameter.RoleId"
         case invalidParameter_SensitiveFileContent = "InvalidParameter.SensitiveFileContent"
         case invalidParameter_SignComponentType = "InvalidParameter.SignComponentType"
         case invalidParameter_SignComponents = "InvalidParameter.SignComponents"
         case invalidParameter_Status = "InvalidParameter.Status"
+        case invalidParameter_UniformSocialCreditCode = "InvalidParameter.UniformSocialCreditCode"
         case invalidParameter_Unordered = "InvalidParameter.Unordered"
         case invalidParameter_UnsupportedComponentType = "InvalidParameter.UnsupportedComponentType"
         case invalidParameter_fFowIds = "InvalidParameter.fFowIds"
@@ -143,15 +150,19 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         case operationDenied_Forbid = "OperationDenied.Forbid"
         case operationDenied_InvalidApproverAge = "OperationDenied.InvalidApproverAge"
         case operationDenied_NoApiAuth = "OperationDenied.NoApiAuth"
+        case operationDenied_NoApproverMobileCheckPermission = "OperationDenied.NoApproverMobileCheckPermission"
         case operationDenied_NoFlowPermission = "OperationDenied.NoFlowPermission"
         case operationDenied_NoIdentityVerify = "OperationDenied.NoIdentityVerify"
+        case operationDenied_NoPermissionUseResource = "OperationDenied.NoPermissionUseResource"
         case operationDenied_NoQuota = "OperationDenied.NoQuota"
         case operationDenied_NotBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
         case operationDenied_OperateType = "OperationDenied.OperateType"
         case operationDenied_OperatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
         case operationDenied_OutQueryLimit = "OperationDenied.OutQueryLimit"
         case operationDenied_OverseaAbilityNotOpen = "OperationDenied.OverseaAbilityNotOpen"
+        case operationDenied_PersonNoOpenServerSign = "OperationDenied.PersonNoOpenServerSign"
         case operationDenied_ProveNoQuota = "OperationDenied.ProveNoQuota"
+        case operationDenied_RequiredComponentNotFill = "OperationDenied.RequiredComponentNotFill"
         case operationDenied_UserNotInOrganization = "OperationDenied.UserNotInOrganization"
         case operationDenied_WhiteListForbid = "OperationDenied.WhiteListForbid"
         case resourceNotFound = "ResourceNotFound"
@@ -253,6 +264,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 已授权。
     public static var failedOperation_HasAuthorized: TCEssbasicError {
         TCEssbasicError(.failedOperation_HasAuthorized)
+    }
+
+    public static var failedOperation_NoRoleAuth: TCEssbasicError {
+        TCEssbasicError(.failedOperation_NoRoleAuth)
     }
 
     /// 当前合同状态无法进行签署审批。
@@ -423,6 +438,16 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_ApproverType)
     }
 
+    public static var invalidParameter_ApproverVerifyType: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_ApproverVerifyType)
+    }
+
+    /// 1:上传授权书
+    /// 2:法人授权
+    public static var invalidParameter_AuthorizationType: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_AuthorizationType)
+    }
+
     /// 重复添加签署人。
     ///
     /// 请参考错误信息，检查合同签署人手机号或身份证号，是否唯一。
@@ -569,6 +594,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_InvalidId)
     }
 
+    public static var invalidParameter_Limit: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_Limit)
+    }
+
     /// 印章名称长度超出。
     public static var invalidParameter_LimitSealName: TCEssbasicError {
         TCEssbasicError(.invalidParameter_LimitSealName)
@@ -601,6 +630,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_NonsupportMobile)
     }
 
+    public static var invalidParameter_Offset: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_Offset)
+    }
+
     /// OpenId不合法。
     public static var invalidParameter_OpenId: TCEssbasicError {
         TCEssbasicError(.invalidParameter_OpenId)
@@ -628,6 +661,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_ResourceType)
     }
 
+    public static var invalidParameter_RoleId: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_RoleId)
+    }
+
     /// 文件内容敏感信息。
     public static var invalidParameter_SensitiveFileContent: TCEssbasicError {
         TCEssbasicError(.invalidParameter_SensitiveFileContent)
@@ -638,6 +675,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_SignComponentType)
     }
 
+    /// 类型不支持。
     public static var invalidParameter_SignComponents: TCEssbasicError {
         TCEssbasicError(.invalidParameter_SignComponents)
     }
@@ -647,6 +685,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var invalidParameter_Status: TCEssbasicError {
         TCEssbasicError(.invalidParameter_Status)
+    }
+
+    public static var invalidParameter_UniformSocialCreditCode: TCEssbasicError {
+        TCEssbasicError(.invalidParameter_UniformSocialCreditCode)
     }
 
     /// 参数错误，不合法的签署顺序，请检查后重试。
@@ -659,6 +701,7 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.invalidParameter_UnsupportedComponentType)
     }
 
+    /// 流程id不存在。
     public static var invalidParameter_fFowIds: TCEssbasicError {
         TCEssbasicError(.invalidParameter_fFowIds)
     }
@@ -859,6 +902,11 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_NoApiAuth)
     }
 
+    /// 企业暂未开通手机号验证身份的服务，请在企业中心开通再使用
+    public static var operationDenied_NoApproverMobileCheckPermission: TCEssbasicError {
+        TCEssbasicError(.operationDenied_NoApproverMobileCheckPermission)
+    }
+
     /// 无权操作合同。
     public static var operationDenied_NoFlowPermission: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoFlowPermission)
@@ -869,6 +917,10 @@ public struct TCEssbasicError: TCEssbasicErrorType {
     /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
     public static var operationDenied_NoIdentityVerify: TCEssbasicError {
         TCEssbasicError(.operationDenied_NoIdentityVerify)
+    }
+
+    public static var operationDenied_NoPermissionUseResource: TCEssbasicError {
+        TCEssbasicError(.operationDenied_NoPermissionUseResource)
     }
 
     /// 流程配额不足。
@@ -907,9 +959,18 @@ public struct TCEssbasicError: TCEssbasicErrorType {
         TCEssbasicError(.operationDenied_OverseaAbilityNotOpen)
     }
 
+    public static var operationDenied_PersonNoOpenServerSign: TCEssbasicError {
+        TCEssbasicError(.operationDenied_PersonNoOpenServerSign)
+    }
+
     /// 出证计费额度不足。
     public static var operationDenied_ProveNoQuota: TCEssbasicError {
         TCEssbasicError(.operationDenied_ProveNoQuota)
+    }
+
+    /// 必填控件未填
+    public static var operationDenied_RequiredComponentNotFill: TCEssbasicError {
+        TCEssbasicError(.operationDenied_RequiredComponentNotFill)
     }
 
     /// 用户不归属于当前企业，无法操作，请检查后重试。

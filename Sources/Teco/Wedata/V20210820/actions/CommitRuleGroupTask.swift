@@ -36,12 +36,16 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
 
-        public init(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil) {
+        /// 该规则运行的执行引擎，不传时会请求该数据源下默认的执行引擎
+        public let engineType: String?
+
+        public init(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, engineType: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.triggerType = triggerType
             self.execRuleConfig = execRuleConfig
             self.execConfig = execConfig
             self.projectId = projectId
+            self.engineType = engineType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Wedata {
             case execRuleConfig = "ExecRuleConfig"
             case execConfig = "ExecConfig"
             case projectId = "ProjectId"
+            case engineType = "EngineType"
         }
     }
 
@@ -82,13 +87,13 @@ extension Wedata {
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
-        self.commitRuleGroupTask(.init(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
+        self.commitRuleGroupTask(.init(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
-        try await self.commitRuleGroupTask(.init(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
+        try await self.commitRuleGroupTask(.init(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 }

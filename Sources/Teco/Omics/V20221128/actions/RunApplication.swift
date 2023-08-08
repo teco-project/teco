@@ -51,7 +51,10 @@ extension Omics {
         /// 批量投递表格行UUID。不填表示表格全部行。
         public let tableRowUuids: [String]?
 
-        public init(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil) {
+        /// 应用版本ID。不填表示使用当前最新版本。
+        public let applicationVersionId: String?
+
+        public init(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil, applicationVersionId: String? = nil) {
             self.applicationId = applicationId
             self.projectId = projectId
             self.name = name
@@ -62,6 +65,7 @@ extension Omics {
             self.description = description
             self.tableId = tableId
             self.tableRowUuids = tableRowUuids
+            self.applicationVersionId = applicationVersionId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Omics {
             case description = "Description"
             case tableId = "TableId"
             case tableRowUuids = "TableRowUuids"
+            case applicationVersionId = "ApplicationVersionId"
         }
     }
 
@@ -112,15 +117,15 @@ extension Omics {
     ///
     /// 运行应用。
     @inlinable
-    public func runApplication(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunApplicationResponse> {
-        self.runApplication(.init(applicationId: applicationId, projectId: projectId, name: name, environmentId: environmentId, inputBase64: inputBase64, cacheClearDelay: cacheClearDelay, option: option, description: description, tableId: tableId, tableRowUuids: tableRowUuids), region: region, logger: logger, on: eventLoop)
+    public func runApplication(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunApplicationResponse> {
+        self.runApplication(.init(applicationId: applicationId, projectId: projectId, name: name, environmentId: environmentId, inputBase64: inputBase64, cacheClearDelay: cacheClearDelay, option: option, description: description, tableId: tableId, tableRowUuids: tableRowUuids, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行应用
     ///
     /// 运行应用。
     @inlinable
-    public func runApplication(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunApplicationResponse {
-        try await self.runApplication(.init(applicationId: applicationId, projectId: projectId, name: name, environmentId: environmentId, inputBase64: inputBase64, cacheClearDelay: cacheClearDelay, option: option, description: description, tableId: tableId, tableRowUuids: tableRowUuids), region: region, logger: logger, on: eventLoop)
+    public func runApplication(applicationId: String, projectId: String, name: String, environmentId: String, inputBase64: String, cacheClearDelay: UInt64, option: RunOption, description: String? = nil, tableId: String? = nil, tableRowUuids: [String]? = nil, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunApplicationResponse {
+        try await self.runApplication(.init(applicationId: applicationId, projectId: projectId, name: name, environmentId: environmentId, inputBase64: inputBase64, cacheClearDelay: cacheClearDelay, option: option, description: description, tableId: tableId, tableRowUuids: tableRowUuids, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }
 }

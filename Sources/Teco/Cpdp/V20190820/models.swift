@@ -4879,6 +4879,30 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sumSettlementAmount: String?
 
+        /// 已缴个税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let paidIncomeTax: String?
+
+        /// 提现中个税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inPayIncomeTax: String?
+
+        /// 已缴增值税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let paidValueAddedTax: String?
+
+        /// 提现中增值税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inPayValueAddedTax: String?
+
+        /// 已缴附加税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let paidAttachTax: String?
+
+        /// 提现中附加税
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inPayAttachTax: String?
+
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
             case incomeType = "IncomeType"
@@ -4889,6 +4913,12 @@ extension Cpdp {
             case paidBalance = "PaidBalance"
             case inPayBalance = "InPayBalance"
             case sumSettlementAmount = "SumSettlementAmount"
+            case paidIncomeTax = "PaidIncomeTax"
+            case inPayIncomeTax = "InPayIncomeTax"
+            case paidValueAddedTax = "PaidValueAddedTax"
+            case inPayValueAddedTax = "InPayValueAddedTax"
+            case paidAttachTax = "PaidAttachTax"
+            case inPayAttachTax = "InPayAttachTax"
         }
     }
 
@@ -5179,6 +5209,10 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failReason: String?
 
+        /// 资金账户字类型: WECHATPAY_ACCOUNT 微信零钱, BANK_ACCOUNT 银行卡
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fundingAccountSubType: String?
+
         enum CodingKeys: String, CodingKey {
             case incomeType = "IncomeType"
             case amountBeforeTax = "AmountBeforeTax"
@@ -5199,6 +5233,7 @@ extension Cpdp {
             case additionalTaxSum = "AdditionalTaxSum"
             case additionalTaxItem = "AdditionalTaxItem"
             case failReason = "FailReason"
+            case fundingAccountSubType = "FundingAccountSubType"
         }
     }
 
@@ -7377,6 +7412,76 @@ extension Cpdp {
         }
     }
 
+    /// 查询用户微工卡核身结果
+    public struct QueryWechatAuthResult: TCOutputModel {
+        /// 商户核身单号
+        public let authNo: String?
+
+        /// 微信用户标识
+        public let openId: String?
+
+        /// 商户号
+        public let mchId: String?
+
+        /// 子商户号
+        public let subMchId: String?
+
+        /// 核身渠道
+        /// FROM_MINI_APP：来自小程序方式核身
+        /// FROM_HARDWARE：来自硬件设备方式核身
+        public let authScene: String?
+
+        /// 核身渠道标识
+        ///
+        /// 用于定位渠道具体来源，如果是扫码打卡渠道标识就是具体的小程序appid，若是硬件设备，则是设备的序列号等
+        public let authSource: String?
+
+        /// 项目名称
+        public let projectName: String?
+
+        /// 所属单位名称
+        public let employerName: String?
+
+        /// 核身时间
+        /// yyyy-MM-DDTHH:mm:ss+TIMEZONE
+        ///
+        /// 示例值：2015-05-20T13:29:35+08:00
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let authTime: String?
+
+        /// 核身类型
+        ///
+        /// SIGN_IN：考勤、签到打卡类型
+        /// INSURANCE：投保类型
+        /// CONTRACT：签约类型
+        public let authType: String?
+
+        /// 核身状态
+        /// AUTHENTICATE_PROCESSING：核身中
+        /// AUTHENTICATE_SUCCESS：核身成功
+        /// AUTHENTICATE_FAILED：核身失败
+        public let authState: String?
+
+        /// 核身失败原因描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let authFailReason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case authNo = "AuthNo"
+            case openId = "OpenId"
+            case mchId = "MchId"
+            case subMchId = "SubMchId"
+            case authScene = "AuthScene"
+            case authSource = "AuthSource"
+            case projectName = "ProjectName"
+            case employerName = "EmployerName"
+            case authTime = "AuthTime"
+            case authType = "AuthType"
+            case authState = "AuthState"
+            case authFailReason = "AuthFailReason"
+        }
+    }
+
     /// 订单退款响应对象
     public struct RefundOrderResult: TCOutputModel {
         /// 付款订单号
@@ -9039,6 +9144,36 @@ extension Cpdp {
             case telephone = "Telephone"
             case outShopId = "OutShopId"
             case cityId = "CityId"
+        }
+    }
+
+    /// 微工卡预核身结果
+    public struct WechatPreAuthResult: TCOutputModel {
+        /// 商户核身单号
+        public let authNo: String?
+
+        /// 微信用户标识
+        public let openId: String?
+
+        /// 商户号
+        public let mchId: String?
+
+        /// 子商户号
+        public let subMchId: String?
+
+        /// 预核身token值
+        public let token: String?
+
+        /// token有效期时间，单位：秒
+        public let expire: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case authNo = "AuthNo"
+            case openId = "OpenId"
+            case mchId = "MchId"
+            case subMchId = "SubMchId"
+            case token = "Token"
+            case expire = "Expire"
         }
     }
 

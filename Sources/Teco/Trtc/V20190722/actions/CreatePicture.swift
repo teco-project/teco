@@ -24,7 +24,7 @@ extension Trtc {
         /// 应用id
         public let sdkAppId: UInt64
 
-        /// 图片内容经base64编码后的string格式
+        /// 图片内容经base64编码后的string格式,最大长度为2M
         public let content: String
 
         /// 图片后缀名

@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// CreateSignUrls请求参数结构体
     public struct CreateSignUrlsRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 签署流程编号数组，最多支持100个。(备注：该参数和合同组编号必须二选一)
@@ -66,7 +66,15 @@ extension Essbasic {
         /// 暂未开放
         public let `operator`: UserInfo?
 
-        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil) {
+        /// 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
+        ///
+        /// 0:合同签署页面更多操作按钮
+        /// 1:合同签署页面更多操作的拒绝签署按钮
+        /// 2:合同签署页面更多操作的转他人处理按钮
+        /// 3:签署成功页的查看详情按钮
+        public let hides: [Int64]?
+
+        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.flowGroupId = flowGroupId
@@ -80,6 +88,7 @@ extension Essbasic {
             self.autoJumpBack = autoJumpBack
             self.jumpUrl = jumpUrl
             self.operator = `operator`
+            self.hides = hides
         }
 
         enum CodingKeys: String, CodingKey {
@@ -96,6 +105,7 @@ extension Essbasic {
             case autoJumpBack = "AutoJumpBack"
             case jumpUrl = "JumpUrl"
             case `operator` = "Operator"
+            case hides = "Hides"
         }
     }
 
@@ -203,8 +213,8 @@ extension Essbasic {
     /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
     /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
     @inlinable
-    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
-        self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
+        self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`, hides: hides), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取跳转小程序查看或签署链接
@@ -233,7 +243,7 @@ extension Essbasic {
     /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
     /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
     @inlinable
-    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlsResponse {
-        try await self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlsResponse {
+        try await self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`, hides: hides), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -27,10 +27,15 @@ public protocol TCSmhErrorType: TCServiceErrorType {
 public struct TCSmhError: TCSmhErrorType {
     enum Code: String {
         case internalError = "InternalError"
+        case internalError_BalanceLess = "InternalError.BalanceLess"
+        case internalError_ModifyResourceStatusFail = "InternalError.ModifyResourceStatusFail"
+        case internalError_PostpaidFail = "InternalError.PostpaidFail"
         case internalError_SendSms = "InternalError.SendSms"
+        case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_BucketNameInvalid = "InvalidParameterValue.BucketNameInvalid"
         case invalidParameterValue_BucketNameNotBelongYou = "InvalidParameterValue.BucketNameNotBelongYou"
         case invalidParameterValue_BucketNotFound = "InvalidParameterValue.BucketNotFound"
+        case invalidParameterValue_BucketNotSupport = "InvalidParameterValue.BucketNotSupport"
         case invalidParameterValue_BucketRegionInvalid = "InvalidParameterValue.BucketRegionInvalid"
         case invalidParameterValue_CosStorageClass = "InvalidParameterValue.CosStorageClass"
         case invalidParameterValue_CosStorageClassIntelligentTiering = "InvalidParameterValue.CosStorageClassIntelligentTiering"
@@ -44,7 +49,6 @@ public struct TCSmhError: TCSmhErrorType {
         case resourceInUse_MultiSpace = "ResourceInUse.MultiSpace"
         case resourceNotFound_Library = "ResourceNotFound.Library"
         case resourceNotFound_OfficialInstance = "ResourceNotFound.OfficialInstance"
-        case unauthorizedOperation_CreateMediaBucket = "UnauthorizedOperation.CreateMediaBucket"
         case unauthorizedOperation_PassRole = "UnauthorizedOperation.PassRole"
         case unauthorizedOperation_ServiceLinkedRole = "UnauthorizedOperation.ServiceLinkedRole"
         case unauthorizedOperation_SmsCode = "UnauthorizedOperation.SmsCode"
@@ -93,9 +97,26 @@ public struct TCSmhError: TCSmhErrorType {
         TCSmhError(.internalError)
     }
 
+    public static var internalError_BalanceLess: TCSmhError {
+        TCSmhError(.internalError_BalanceLess)
+    }
+
+    public static var internalError_ModifyResourceStatusFail: TCSmhError {
+        TCSmhError(.internalError_ModifyResourceStatusFail)
+    }
+
+    public static var internalError_PostpaidFail: TCSmhError {
+        TCSmhError(.internalError_PostpaidFail)
+    }
+
     /// 发送短信验证码时发生错误。
     public static var internalError_SendSms: TCSmhError {
         TCSmhError(.internalError_SendSms)
+    }
+
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCSmhError {
+        TCSmhError(.invalidParameterValue)
     }
 
     /// 存储桶名称无效。
@@ -111,6 +132,11 @@ public struct TCSmhError: TCSmhErrorType {
     /// 存储桶不存在或不在指定地域。
     public static var invalidParameterValue_BucketNotFound: TCSmhError {
         TCSmhError(.invalidParameterValue_BucketNotFound)
+    }
+
+    /// 请忽略此参数，服务会默认提供存储功能。
+    public static var invalidParameterValue_BucketNotSupport: TCSmhError {
+        TCSmhError(.invalidParameterValue_BucketNotSupport)
     }
 
     /// 存储桶所在地域无效。
@@ -178,11 +204,6 @@ public struct TCSmhError: TCSmhErrorType {
     /// 官方云盘实例不存在或不属于当前账号。
     public static var resourceNotFound_OfficialInstance: TCSmhError {
         TCSmhError(.resourceNotFound_OfficialInstance)
-    }
-
-    /// 尚未开通 COS 数据处理（数据万象）服务。
-    public static var unauthorizedOperation_CreateMediaBucket: TCSmhError {
-        TCSmhError(.unauthorizedOperation_CreateMediaBucket)
     }
 
     /// 未授予 cam:PassRole 权限。

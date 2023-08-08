@@ -40,6 +40,8 @@ public struct TCImsError: TCImsErrorType {
         case invalidParameterValue_InvalidFileContentSize = "InvalidParameterValue.InvalidFileContentSize"
         case invalidParameterValue_InvalidImageContent = "InvalidParameterValue.InvalidImageContent"
         case invalidParameterValue_InvalidParameter = "InvalidParameterValue.InvalidParameter"
+        case invalidParameter_ImageAspectRatioTooLarge = "InvalidParameter.ImageAspectRatioTooLarge"
+        case invalidParameter_ImageDataTooSmall = "InvalidParameter.ImageDataTooSmall"
         case invalidParameter_ImageSizeTooSmall = "InvalidParameter.ImageSizeTooSmall"
         case invalidParameter_InvalidImageContent = "InvalidParameter.InvalidImageContent"
         case invalidParameter_InvalidParameter = "InvalidParameter.InvalidParameter"
@@ -134,7 +136,7 @@ public struct TCImsError: TCImsErrorType {
         TCImsError(.invalidParameterValue_InvalidCallbackUrl)
     }
 
-    /// FileContent和FileUrl为空。
+    /// FileContent和FileUrl为空或base64编码错误。
     public static var invalidParameterValue_InvalidContent: TCImsError {
         TCImsError(.invalidParameterValue_InvalidContent)
     }
@@ -157,6 +159,20 @@ public struct TCImsError: TCImsErrorType {
     /// 参数值错误。
     public static var invalidParameterValue_InvalidParameter: TCImsError {
         TCImsError(.invalidParameterValue_InvalidParameter)
+    }
+
+    /// 图片长宽比太大
+    ///
+    /// 图片长宽比太大，更换长度小一点的图片
+    public static var invalidParameter_ImageAspectRatioTooLarge: TCImsError {
+        TCImsError(.invalidParameter_ImageAspectRatioTooLarge)
+    }
+
+    /// 图片体积太小
+    ///
+    /// 图片体积太小，更换更大的图片
+    public static var invalidParameter_ImageDataTooSmall: TCImsError {
+        TCImsError(.invalidParameter_ImageDataTooSmall)
     }
 
     /// 图片分辨率过低。

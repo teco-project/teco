@@ -23,10 +23,10 @@ extension Cwp {
     /// DescribeAssetSystemPackageList请求参数结构体
     public struct DescribeAssetSystemPackageListRequest: TCPaginatedRequest {
         /// 主机Uuid
-        public let uuid: String
+        public let uuid: String?
 
         /// 主机Quuid
-        public let quuid: String
+        public let quuid: String?
 
         /// 过滤条件。
         /// <li>Name - String - 是否必填：否 - 包 名</li>
@@ -51,7 +51,7 @@ extension Cwp {
         /// 排序方式可选：[FistTime|InstallTime:安装时间]
         public let by: String?
 
-        public init(uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
+        public init(uuid: String? = nil, quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.filters = filters
@@ -123,13 +123,13 @@ extension Cwp {
 
     /// 获取资产管理系统安装包列表
     @inlinable
-    public func describeAssetSystemPackageList(uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemPackageListResponse> {
+    public func describeAssetSystemPackageList(uuid: String? = nil, quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemPackageListResponse> {
         self.describeAssetSystemPackageList(.init(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理系统安装包列表
     @inlinable
-    public func describeAssetSystemPackageList(uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
+    public func describeAssetSystemPackageList(uuid: String? = nil, quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
         try await self.describeAssetSystemPackageList(.init(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 

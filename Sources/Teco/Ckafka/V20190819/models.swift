@@ -31,7 +31,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let principal: String?
 
-        /// 默认为*，表示任何host都可以访问，当前ckafka不支持host为*，但是后面开源kafka的产品化会直接支持
+        /// 默认\*,表示任何host都可以访问，当前ckafka不支持host为\*，但是后面开源kafka的产品化会直接支持
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
 
@@ -145,7 +145,7 @@ extension Ckafka {
         /// 权限类型，(Deny，Allow)
         public let permissionType: String
 
-        /// 默认为*，表示任何host都可以访问，当前ckafka不支持host为*和ip网段
+        /// 默认为\*，表示任何host都可以访问，当前ckafka不支持host为\* 和 ip网段
         public let host: String
 
         /// 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入格式需要带【User:】前缀。例如用户A，传入为User:A。
@@ -363,6 +363,27 @@ extension Ckafka {
             case topicName = "TopicName"
             case returnCode = "ReturnCode"
             case message = "Message"
+        }
+    }
+
+    /// 主题占用Broker磁盘大小
+    public struct BrokerTopicData: TCOutputModel {
+        /// 主题名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicName: String?
+
+        /// 主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// 主题占用Broker 容量大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataSize: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case topicName = "TopicName"
+            case topicId = "TopicId"
+            case dataSize = "DataSize"
         }
     }
 
@@ -818,6 +839,20 @@ extension Ckafka {
         }
     }
 
+    /// 消费者组消费速度排行
+    public struct ConsumerGroupSpeed: TCOutputModel {
+        /// 消费者组名称
+        public let consumerGroupName: String
+
+        /// 消费速度 Count/Minute
+        public let speed: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case consumerGroupName = "ConsumerGroupName"
+            case speed = "Speed"
+        }
+    }
+
     /// 消费组主题对象
     public struct ConsumerGroupTopic: TCOutputModel {
         /// 主题ID
@@ -934,6 +969,51 @@ extension Ckafka {
         }
     }
 
+    /// 创建后付费接口返回的 Data 数据结构
+    public struct CreateInstancePostData: TCOutputModel {
+        /// CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowId: Int64?
+
+        /// 订单号列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealNames: [String]?
+
+        /// 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 订单和购买实例对应映射列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealNameInstanceIdMapping: [DealInstanceDTO]?
+
+        enum CodingKeys: String, CodingKey {
+            case flowId = "FlowId"
+            case dealNames = "DealNames"
+            case instanceId = "InstanceId"
+            case dealNameInstanceIdMapping = "DealNameInstanceIdMapping"
+        }
+    }
+
+    /// 后付费实例相关接口返回结构
+    public struct CreateInstancePostResp: TCOutputModel {
+        /// 返回的code，0为正常，非0为错误
+        public let returnCode: String
+
+        /// 接口返回消息，当接口报错时提示错误信息
+        public let returnMessage: String
+
+        /// 返回的Data数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let data: CreateInstancePostData?
+
+        enum CodingKeys: String, CodingKey {
+            case returnCode = "ReturnCode"
+            case returnMessage = "ReturnMessage"
+            case data = "Data"
+        }
+    }
+
     /// 创建预付费接口返回的Data
     public struct CreateInstancePreData: TCOutputModel {
         /// CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
@@ -944,18 +1024,23 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealNames: [String]?
 
-        /// 实例Id
+        /// 实例Id，当购买多个实例时，默认返回购买的第一个实例 id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
+
+        /// 订单和购买实例对应映射列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealNameInstanceIdMapping: [DealInstanceDTO]?
 
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case dealNames = "DealNames"
             case instanceId = "InstanceId"
+            case dealNameInstanceIdMapping = "DealNameInstanceIdMapping"
         }
     }
 
-    /// 创建预付费实例返回结构
+    /// 预付费实例相关接口返回结构
     public struct CreateInstancePreResp: TCOutputModel {
         /// 返回的code，0为正常，非0为错误
         public let returnCode: String
@@ -967,7 +1052,7 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CreateInstancePreData?
 
-        /// 删除是时间
+        /// 删除时间。目前该参数字段已废弃，将会在未来被删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteRouteTimestamp: String?
 
@@ -1320,8 +1405,13 @@ extension Ckafka {
         /// Topic名称
         public let topicName: String
 
+        /// TopicId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
+            case topicId = "TopicId"
         }
     }
 
@@ -1348,6 +1438,22 @@ extension Ckafka {
             case format = "Format"
             case targetType = "TargetType"
             case timeZone = "TimeZone"
+        }
+    }
+
+    /// 预付费/后付费接口中，订单和 CKafka 实例映射数据结构
+    public struct DealInstanceDTO: TCOutputModel {
+        /// 订单流水
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealName: String?
+
+        /// 订单流水对应购买的 CKafka 实例 id 列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceIdList: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case dealName = "DealName"
+            case instanceIdList = "InstanceIdList"
         }
     }
 
@@ -2320,7 +2426,13 @@ extension Ckafka {
         /// 死信队列
         public let dropDlq: FailureParam?
 
-        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil, dropDlq: FailureParam? = nil) {
+        /// 使用数据订阅格式导入 es 时，消息与 es 索引字段映射关系。不填默认为默认字段匹配
+        public let recordMappingList: [EsRecordMapping]?
+
+        /// 消息要映射为 es 索引中 @timestamp 的字段，如果当前配置为空，则使用消息的时间戳进行映射
+        public let dateField: String?
+
+        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil, dropDlq: FailureParam? = nil, recordMappingList: [EsRecordMapping]? = nil, dateField: String? = nil) {
             self.resource = resource
             self.port = port
             self.userName = userName
@@ -2338,6 +2450,8 @@ extension Ckafka {
             self.dropCls = dropCls
             self.databasePrimaryKey = databasePrimaryKey
             self.dropDlq = dropDlq
+            self.recordMappingList = recordMappingList
+            self.dateField = dateField
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2358,6 +2472,27 @@ extension Ckafka {
             case dropCls = "DropCls"
             case databasePrimaryKey = "DatabasePrimaryKey"
             case dropDlq = "DropDlq"
+            case recordMappingList = "RecordMappingList"
+            case dateField = "DateField"
+        }
+    }
+
+    /// 消息字段与 es 索引的映射关系
+    public struct EsRecordMapping: TCInputModel {
+        /// es 索引成员名称
+        public let columnName: String?
+
+        /// 消息字段名称
+        public let jsonKey: String?
+
+        public init(columnName: String? = nil, jsonKey: String? = nil) {
+            self.columnName = columnName
+            self.jsonKey = jsonKey
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case columnName = "ColumnName"
+            case jsonKey = "JsonKey"
         }
     }
 
@@ -3190,7 +3325,7 @@ extension Ckafka {
         /// 实例状态信息
         public let healthyMessage: String
 
-        /// 实例创建时间时间
+        /// 实例创建时间
         public let createTime: Int64
 
         /// 实例过期时间
@@ -3754,7 +3889,7 @@ extension Ckafka {
         /// 可选，如果auto.create.topic.enable设置为true没有设置该值时，默认设置为3
         public let defaultNumPartitions: Int64?
 
-        /// 如歌auto.create.topic.enable设置为true没有指定该值时默认设置为2
+        /// 如果auto.create.topic.enable设置为true没有指定该值时默认设置为2
         public let defaultReplicationFactor: Int64?
 
         public init(autoCreateTopicEnable: Bool? = nil, defaultNumPartitions: Int64? = nil, defaultReplicationFactor: Int64? = nil) {
@@ -4219,8 +4354,13 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?
 
+        /// RouteIdDto
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeDTO: RouteDTO?
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
+            case routeDTO = "RouteDTO"
         }
     }
 
@@ -4667,6 +4807,18 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteTimestamp: String?
 
+        /// 子网信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnet: String?
+
+        /// 虚拟IP列表(1对1 broker节点)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let brokerVipList: [VipEntity]?
+
+        /// vpc信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
         enum CodingKeys: String, CodingKey {
             case accessType = "AccessType"
             case routeId = "RouteId"
@@ -4675,6 +4827,20 @@ extension Ckafka {
             case domain = "Domain"
             case domainPort = "DomainPort"
             case deleteTimestamp = "DeleteTimestamp"
+            case subnet = "Subnet"
+            case brokerVipList = "BrokerVipList"
+            case vpcId = "VpcId"
+        }
+    }
+
+    /// RouteDTO
+    public struct RouteDTO: TCOutputModel {
+        /// RouteId11
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeId: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case routeId = "RouteId"
         }
     }
 
@@ -4920,6 +5086,17 @@ extension Ckafka {
         }
     }
 
+    /// 实例缩容应答
+    public struct ScalingDownResp: TCOutputModel {
+        /// 订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealNames: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case dealNames = "DealNames"
+        }
+    }
+
     /// Scf类型入参
     public struct ScfParam: TCInputModel {
         /// SCF云函数函数名
@@ -5071,6 +5248,24 @@ extension Ckafka {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// 任务状态返回对象
+    public struct TaskStatusResponse: TCOutputModel {
+        /// 任务状态:
+        /// 0 成功
+        /// 1 失败
+        /// 2 进行中
+        public let status: Int64
+
+        /// 输出信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: String?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case output = "Output"
         }
     }
 
@@ -5273,6 +5468,65 @@ extension Ckafka {
         }
     }
 
+    /// topic 流量排行
+    public struct TopicFlowRanking: TCOutputModel {
+        /// 主题Id
+        public let topicId: String
+
+        /// 主题名称
+        public let topicName: String
+
+        /// 分区数
+        public let partitionNum: UInt64
+
+        /// 副本数
+        public let replicaNum: UInt64
+
+        /// Topic 流量
+        public let topicTraffic: String
+
+        /// Topic 消息堆积
+        public let messageHeap: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case topicName = "TopicName"
+            case partitionNum = "PartitionNum"
+            case replicaNum = "ReplicaNum"
+            case topicTraffic = "TopicTraffic"
+            case messageHeap = "MessageHeap"
+        }
+    }
+
+    /// topic 生产消息数据，消费者数据
+    public struct TopicFlowRankingResult: TCOutputModel {
+        /// Topic 流量数组
+        public let topicFlow: [TopicFlowRanking]
+
+        /// 消费者组消费速度排行速度
+        public let consumeSpeed: [ConsumerGroupSpeed]
+
+        /// Topic 消息堆积/占用磁盘排行
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicMessageHeap: [TopicMessageHeapRanking]?
+
+        /// Broker Ip 列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let brokerIp: [String]?
+
+        /// 单个broker 节点 Topic占用的数据大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let brokerTopicData: [BrokerTopicData]?
+
+        enum CodingKeys: String, CodingKey {
+            case topicFlow = "TopicFlow"
+            case consumeSpeed = "ConsumeSpeed"
+            case topicMessageHeap = "TopicMessageHeap"
+            case brokerIp = "BrokerIp"
+            case brokerTopicData = "BrokerTopicData"
+        }
+    }
+
     /// topic副本及详细信息
     public struct TopicInSyncReplicaInfo: TCOutputModel {
         /// 分区名称
@@ -5326,6 +5580,42 @@ extension Ckafka {
         enum CodingKeys: String, CodingKey {
             case topicInSyncReplicaList = "TopicInSyncReplicaList"
             case totalCount = "TotalCount"
+        }
+    }
+
+    /// topic消息堆积、占用磁盘排行
+    public struct TopicMessageHeapRanking: TCOutputModel {
+        /// 主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// 主题名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicName: String?
+
+        /// 分区数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let partitionNum: UInt64?
+
+        /// 副本数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let replicaNum: UInt64?
+
+        /// Topic 流量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicTraffic: String?
+
+        /// topic消息堆积/占用磁盘
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let messageHeap: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case topicName = "TopicName"
+            case partitionNum = "PartitionNum"
+            case replicaNum = "ReplicaNum"
+            case topicTraffic = "TopicTraffic"
+            case messageHeap = "MessageHeap"
         }
     }
 

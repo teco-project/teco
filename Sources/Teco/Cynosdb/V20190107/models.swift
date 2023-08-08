@@ -144,17 +144,41 @@ extension Cynosdb {
         /// 用户名。
         public let user: String
 
-        /// 执行时间。
+        /// 执行时间，微秒。
         public let execTime: Int64
 
-        /// 时间戳。
+        /// 时间。
         public let timestamp: String
 
-        /// 发送行数。
+        /// 返回行数。
         public let sentRows: Int64
 
         /// 执行线程ID。
         public let threadId: Int64
+
+        /// 扫描行数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let checkRows: Int64?
+
+        /// cpu执行时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpuTime: Float?
+
+        /// IO等待时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ioWaitTime: Int64?
+
+        /// 锁等待时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lockWaitTime: Int64?
+
+        /// 事物持续等待时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trxLivingTime: Int64?
+
+        /// 开始时间，与timestamp构成一个精确到纳秒的时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nsTime: Int64?
 
         enum CodingKeys: String, CodingKey {
             case affectRows = "AffectRows"
@@ -171,6 +195,12 @@ extension Cynosdb {
             case timestamp = "Timestamp"
             case sentRows = "SentRows"
             case threadId = "ThreadId"
+            case checkRows = "CheckRows"
+            case cpuTime = "CpuTime"
+            case ioWaitTime = "IoWaitTime"
+            case lockWaitTime = "LockWaitTime"
+            case trxLivingTime = "TrxLivingTime"
+            case nsTime = "NsTime"
         }
     }
 
@@ -400,6 +430,27 @@ extension Cynosdb {
         }
     }
 
+    /// 资源包绑定的实例信息
+    public struct BindInstanceInfo: TCOutputModel {
+        /// 绑定的实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 绑定的实例所在的地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceRegion: String?
+
+        /// 绑定的实例类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceRegion = "InstanceRegion"
+            case instanceType = "InstanceType"
+        }
+    }
+
     /// Binlog描述
     public struct BinlogItem: TCOutputModel {
         /// Binlog文件名称
@@ -455,6 +506,18 @@ extension Cynosdb {
         /// 实例角色
         public let instanceRole: String
 
+        /// 执行开始时间(距离0点的秒数)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maintainStartTime: Int64?
+
+        /// 持续的时间(单位：秒)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maintainDuration: Int64?
+
+        /// 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maintainWeekDays: [String]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -465,6 +528,9 @@ extension Cynosdb {
             case instanceMemory = "InstanceMemory"
             case instanceStorage = "InstanceStorage"
             case instanceRole = "InstanceRole"
+            case maintainStartTime = "MaintainStartTime"
+            case maintainDuration = "MaintainDuration"
+            case maintainWeekDays = "MaintainWeekDays"
         }
     }
 
@@ -685,7 +751,11 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ability: Ability?
 
-        public init(status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String? = nil, subnetId: String? = nil, cynosVersion: String? = nil, storageLimit: Int64? = nil, renewFlag: Int64? = nil, processingTask: String? = nil, tasks: [ObjectTask]? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, serverlessStatus: String? = nil, storage: Int64? = nil, storageId: String? = nil, storagePayMode: Int64? = nil, minStorageSize: Int64? = nil, maxStorageSize: Int64? = nil, netAddrs: [NetAddr]? = nil, physicalZone: String? = nil, masterZone: String? = nil, hasSlaveZone: String? = nil, slaveZones: [String]? = nil, businessType: String? = nil, isFreeze: String? = nil, orderSource: String? = nil, ability: Ability? = nil) {
+        /// 实例绑定资源包信息（此处只返回存储资源包，即packageType=DISK）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourcePackages: [ResourcePackage]?
+
+        public init(status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String? = nil, subnetId: String? = nil, cynosVersion: String? = nil, storageLimit: Int64? = nil, renewFlag: Int64? = nil, processingTask: String? = nil, tasks: [ObjectTask]? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, serverlessStatus: String? = nil, storage: Int64? = nil, storageId: String? = nil, storagePayMode: Int64? = nil, minStorageSize: Int64? = nil, maxStorageSize: Int64? = nil, netAddrs: [NetAddr]? = nil, physicalZone: String? = nil, masterZone: String? = nil, hasSlaveZone: String? = nil, slaveZones: [String]? = nil, businessType: String? = nil, isFreeze: String? = nil, orderSource: String? = nil, ability: Ability? = nil, resourcePackages: [ResourcePackage]? = nil) {
             self.status = status
             self.updateTime = updateTime
             self.zone = zone
@@ -728,6 +798,7 @@ extension Cynosdb {
             self.isFreeze = isFreeze
             self.orderSource = orderSource
             self.ability = ability
+            self.resourcePackages = resourcePackages
         }
 
         enum CodingKeys: String, CodingKey {
@@ -773,6 +844,7 @@ extension Cynosdb {
             case isFreeze = "IsFreeze"
             case orderSource = "OrderSource"
             case ability = "Ability"
+            case resourcePackages = "ResourcePackages"
         }
     }
 
@@ -787,11 +859,45 @@ extension Cynosdb {
         /// 地域
         public let region: String
 
+        /// 可用区
+        public let zone: String
+
+        /// 物理可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let physicalZone: String?
+
         /// 状态
         public let status: String
 
         /// 状态描述
         public let statusDesc: String
+
+        /// 当Db类型为SERVERLESS时，serverless集群状态，可选值:
+        /// resume
+        /// resuming
+        /// pause
+        /// pausing
+        public let serverlessStatus: String
+
+        /// 存储Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storageId: String?
+
+        /// 存储大小，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storage: Int64?
+
+        /// 最大存储规格，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxStorageSize: Int64?
+
+        /// 最小存储规格，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let minStorageSize: Int64?
+
+        /// 存储付费类型，1为包年包月，0为按量计费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storagePayMode: Int64?
 
         /// VPC名称
         public let vpcName: String
@@ -814,23 +920,19 @@ extension Cynosdb {
         /// 数据库类型
         public let dbType: String
 
+        /// 数据库类型，normal，serverless
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbMode: String?
+
         /// 数据库版本
         public let dbVersion: String
 
+        /// 存储空间上限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storageLimit: Int64?
+
         /// 使用容量
         public let usedStorage: Int64
-
-        /// 读写分离Vport
-        public let roAddr: [Addr]
-
-        /// 实例信息
-        public let instanceSet: [ClusterInstanceDetail]
-
-        /// 付费模式
-        public let payMode: Int64
-
-        /// 到期时间
-        public let periodEndTime: String
 
         /// vip地址
         public let vip: String
@@ -838,61 +940,8 @@ extension Cynosdb {
         /// vport端口
         public let vport: Int64
 
-        /// 项目id
-        public let projectID: Int64
-
-        /// 可用区
-        public let zone: String
-
-        /// 实例绑定的tag数组信息
-        public let resourceTags: [Tag]
-
-        /// 当Db类型为SERVERLESS时，serverless集群状态，可选值:
-        /// resume
-        /// resuming
-        /// pause
-        /// pausing
-        public let serverlessStatus: String
-
-        /// binlog开关，可选值：ON, OFF
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logBin: String?
-
-        /// pitr类型，可选值：normal, redo_pitr
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pitrType: String?
-
-        /// 物理可用区
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let physicalZone: String?
-
-        /// 存储Id
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageId: String?
-
-        /// 存储大小，单位为G
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storage: Int64?
-
-        /// 最大存储规格，单位为G
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxStorageSize: Int64?
-
-        /// 最小存储规格，单位为G
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let minStorageSize: Int64?
-
-        /// 存储付费类型，1为包年包月，0为按量计费
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storagePayMode: Int64?
-
-        /// 数据库类型，normal，serverless
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dbMode: String?
-
-        /// 存储空间上限
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageLimit: Int64?
+        /// 读写分离Vport
+        public let roAddr: [Addr]
 
         /// 集群支持的功能
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -926,13 +975,36 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaveZones: [String]?
 
+        /// 实例信息
+        public let instanceSet: [ClusterInstanceDetail]
+
+        /// 付费模式
+        public let payMode: Int64
+
+        /// 到期时间
+        public let periodEndTime: String
+
+        /// 项目id
+        public let projectID: Int64
+
+        /// 实例绑定的tag数组信息
+        public let resourceTags: [Tag]
+
         /// Proxy状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyStatus: String?
 
+        /// binlog开关，可选值：ON, OFF
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logBin: String?
+
         /// 是否跳过交易
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isSkipTrade: String?
+
+        /// pitr类型，可选值：normal, redo_pitr
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pitrType: String?
 
         /// 是否打开密码复杂度
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -942,12 +1014,28 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let networkStatus: String?
 
+        /// 集群绑定的资源包信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourcePackages: [ResourcePackage]?
+
+        /// 自动续费标识，1为自动续费，0为到期不续
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: Int64?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
             case region = "Region"
+            case zone = "Zone"
+            case physicalZone = "PhysicalZone"
             case status = "Status"
             case statusDesc = "StatusDesc"
+            case serverlessStatus = "ServerlessStatus"
+            case storageId = "StorageId"
+            case storage = "Storage"
+            case maxStorageSize = "MaxStorageSize"
+            case minStorageSize = "MinStorageSize"
+            case storagePayMode = "StoragePayMode"
             case vpcName = "VpcName"
             case vpcId = "VpcId"
             case subnetName = "SubnetName"
@@ -955,28 +1043,13 @@ extension Cynosdb {
             case charset = "Charset"
             case createTime = "CreateTime"
             case dbType = "DbType"
+            case dbMode = "DbMode"
             case dbVersion = "DbVersion"
+            case storageLimit = "StorageLimit"
             case usedStorage = "UsedStorage"
-            case roAddr = "RoAddr"
-            case instanceSet = "InstanceSet"
-            case payMode = "PayMode"
-            case periodEndTime = "PeriodEndTime"
             case vip = "Vip"
             case vport = "Vport"
-            case projectID = "ProjectID"
-            case zone = "Zone"
-            case resourceTags = "ResourceTags"
-            case serverlessStatus = "ServerlessStatus"
-            case logBin = "LogBin"
-            case pitrType = "PitrType"
-            case physicalZone = "PhysicalZone"
-            case storageId = "StorageId"
-            case storage = "Storage"
-            case maxStorageSize = "MaxStorageSize"
-            case minStorageSize = "MinStorageSize"
-            case storagePayMode = "StoragePayMode"
-            case dbMode = "DbMode"
-            case storageLimit = "StorageLimit"
+            case roAddr = "RoAddr"
             case ability = "Ability"
             case cynosVersion = "CynosVersion"
             case businessType = "BusinessType"
@@ -985,10 +1058,40 @@ extension Cynosdb {
             case tasks = "Tasks"
             case masterZone = "MasterZone"
             case slaveZones = "SlaveZones"
+            case instanceSet = "InstanceSet"
+            case payMode = "PayMode"
+            case periodEndTime = "PeriodEndTime"
+            case projectID = "ProjectID"
+            case resourceTags = "ResourceTags"
             case proxyStatus = "ProxyStatus"
+            case logBin = "LogBin"
             case isSkipTrade = "IsSkipTrade"
+            case pitrType = "PitrType"
             case isOpenPasswordComplexity = "IsOpenPasswordComplexity"
             case networkStatus = "NetworkStatus"
+            case resourcePackages = "ResourcePackages"
+            case renewFlag = "RenewFlag"
+        }
+    }
+
+    /// 实例错误日志返回类型
+    public struct CynosdbErrorLogItem: TCOutputModel {
+        /// 日志时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: Int64?
+
+        /// 日志等级
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// 日志内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case level = "Level"
+            case content = "Content"
         }
     }
 
@@ -1026,6 +1129,9 @@ extension Cynosdb {
 
         /// 实例状态中文描述
         public let statusDesc: String
+
+        /// 实例形态，是否为serverless实例
+        public let dbMode: String?
 
         /// 数据库类型
         public let dbType: String
@@ -1166,6 +1272,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceNetInfo: [InstanceNetInfo]?
 
+        /// 实例绑定资源包信息（此处只返回计算资源包，即packageType=CCU）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourcePackages: [ResourcePackage]?
+
         enum CodingKeys: String, CodingKey {
             case uin = "Uin"
             case appId = "AppId"
@@ -1178,6 +1288,7 @@ extension Cynosdb {
             case zone = "Zone"
             case status = "Status"
             case statusDesc = "StatusDesc"
+            case dbMode = "DbMode"
             case dbType = "DbType"
             case dbVersion = "DbVersion"
             case cpu = "Cpu"
@@ -1217,6 +1328,7 @@ extension Cynosdb {
             case masterZone = "MasterZone"
             case slaveZones = "SlaveZones"
             case instanceNetInfo = "InstanceNetInfo"
+            case resourcePackages = "ResourcePackages"
         }
     }
 
@@ -1515,6 +1627,74 @@ extension Cynosdb {
         }
     }
 
+    /// 数据库详细信息
+    public struct DbInfo: TCOutputModel {
+        /// 数据库名称
+        public let dbName: String
+
+        /// 字符集类型
+        public let characterSet: String
+
+        /// 数据库状态
+        public let status: String
+
+        /// 排序规则
+        public let collateRule: String
+
+        /// 数据库备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 用户权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userHostPrivileges: [UserHostPrivilege]?
+
+        /// 数据库ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbId: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createTime: Date?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
+
+        /// 用户appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 用户Uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
+
+        /// 集群Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case dbName = "DbName"
+            case characterSet = "CharacterSet"
+            case status = "Status"
+            case collateRule = "CollateRule"
+            case description = "Description"
+            case userHostPrivileges = "UserHostPrivileges"
+            case dbId = "DbId"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case appId = "AppId"
+            case uin = "Uin"
+            case clusterId = "ClusterId"
+        }
+    }
+
     /// 数据库表
     public struct DbTable: TCInputModel {
         /// 数据库名称
@@ -1534,6 +1714,33 @@ extension Cynosdb {
         }
     }
 
+    /// 错误日志导出格式
+    public struct ErrorLogItemExport: TCInputModel, TCOutputModel {
+        /// 时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: String?
+
+        /// 日志等级，可选值note, warning，error
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// 日志内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
+
+        public init(timestamp: String? = nil, level: String? = nil, content: String? = nil) {
+            self.timestamp = timestamp
+            self.level = level
+            self.content = content
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case timestamp = "Timestamp"
+            case level = "Level"
+            case content = "Content"
+        }
+    }
+
     /// 账号，包含accountName和host
     public struct InputAccount: TCInputModel {
         /// 账号
@@ -1550,6 +1757,55 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case accountName = "AccountName"
             case host = "Host"
+        }
+    }
+
+    /// 审计日志搜索条件
+    public struct InstanceAuditLogFilter: TCInputModel {
+        /// 过滤项。支持以下搜索条件:
+        ///
+        /// 等于、不等于、包含、不包含：
+        /// host - 客户端地址；
+        /// user - 用户名；
+        /// dbName - 数据库名称；
+        ///
+        /// 等于、不等于：
+        /// sqlType - SQL类型；
+        /// errCode - 错误码；
+        /// threadId - 线程ID；
+        ///
+        /// 范围搜索（时间类型统一为微妙）：
+        /// execTime - 执行时间；
+        /// lockWaitTime - 执行时间；
+        /// ioWaitTime - IO等待时间；
+        /// trxLivingTime - 事物持续时间；
+        /// cpuTime - cpu时间；
+        /// checkRows - 扫描行数；
+        /// affectRows - 影响行数；
+        /// sentRows - 返回行数。
+        public let type: String
+
+        /// 过滤条件。支持以下选项:
+        /// INC - 包含,
+        /// EXC - 不包含,
+        /// EQS - 等于,
+        /// NEQ - 不等于,
+        /// RA - 范围.
+        public let compare: String
+
+        /// 过滤的值。
+        public let value: [String]
+
+        public init(type: String, compare: String, value: [String]) {
+            self.type = type
+            self.compare = compare
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case compare = "Compare"
+            case value = "Value"
         }
     }
 
@@ -1660,6 +1916,20 @@ extension Cynosdb {
             case wanIP = "WanIP"
             case wanPort = "WanPort"
             case wanStatus = "WanStatus"
+        }
+    }
+
+    /// 实例参数信息
+    public struct InstanceParamItem: TCOutputModel {
+        /// 实例ID
+        public let instanceId: String
+
+        /// 实例参数列表
+        public let paramsItems: [ParamItemDetail]
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case paramsItems = "ParamsItems"
         }
     }
 
@@ -1796,6 +2066,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wanStatus: String?
 
+        /// 实例组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceGroupId: String?
+
         enum CodingKeys: String, CodingKey {
             case vip = "Vip"
             case vport = "Vport"
@@ -1807,6 +2081,7 @@ extension Cynosdb {
             case description = "Description"
             case wanIP = "WanIP"
             case wanStatus = "WanStatus"
+            case instanceGroupId = "InstanceGroupId"
         }
     }
 
@@ -1901,6 +2176,200 @@ extension Cynosdb {
             case vip = "Vip"
             case vport = "Vport"
             case returnTime = "ReturnTime"
+        }
+    }
+
+    /// 资源包
+    public struct Package: TCOutputModel {
+        /// AppID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 资源包唯一ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageId: String?
+
+        /// 资源包名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageName: String?
+
+        /// 资源包类型
+        /// CCU-计算资源包，DISK-存储资源包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageType: String?
+
+        /// 资源包使用地域
+        /// china-中国内地通用，overseas-港澳台及海外通用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageRegion: String?
+
+        /// 资源包状态
+        /// creating-创建中；
+        /// using-使用中；
+        /// expired-已过期；
+        /// normal_finish-使用完；
+        /// apply_refund-申请退费中；
+        /// refund-已退费。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 资源包总量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageTotalSpec: Float?
+
+        /// 资源包已使用量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageUsedSpec: Float?
+
+        /// 资源包已使用量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasQuota: Bool?
+
+        /// 绑定实例信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bindInstanceInfos: [BindInstanceInfo]?
+
+        /// 生效时间：2022-07-01 00:00:00
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 失效时间：2022-08-01 00:00:00
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case appId = "AppId"
+            case packageId = "PackageId"
+            case packageName = "PackageName"
+            case packageType = "PackageType"
+            case packageRegion = "PackageRegion"
+            case status = "Status"
+            case packageTotalSpec = "PackageTotalSpec"
+            case packageUsedSpec = "PackageUsedSpec"
+            case hasQuota = "HasQuota"
+            case bindInstanceInfos = "BindInstanceInfos"
+            case startTime = "StartTime"
+            case expireTime = "ExpireTime"
+        }
+    }
+
+    /// 资源包明细说明
+    public struct PackageDetail: TCOutputModel {
+        /// AppId账户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 资源包唯一ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageId: String?
+
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 成功抵扣容量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let successDeductSpec: Float?
+
+        /// 截止当前，资源包已使用的容量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageTotalUsedSpec: Float?
+
+        /// 抵扣开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 抵扣结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 扩展信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extendInfo: String?
+
+        enum CodingKeys: String, CodingKey {
+            case appId = "AppId"
+            case packageId = "PackageId"
+            case instanceId = "InstanceId"
+            case successDeductSpec = "SuccessDeductSpec"
+            case packageTotalUsedSpec = "PackageTotalUsedSpec"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case extendInfo = "ExtendInfo"
+        }
+    }
+
+    /// 实例参数详细描述
+    public struct ParamDetail: TCOutputModel {
+        /// 参数名称
+        public let paramName: String
+
+        /// 参数类型：integer，enum，float，string，func
+        public let paramType: String
+
+        /// true-支持"func"，false-不支持公式
+        public let supportFunc: Bool
+
+        /// 默认值
+        public let `default`: String
+
+        /// 参数描述
+        public let description: String
+
+        /// 参数当前值
+        public let currentValue: String
+
+        /// 修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。
+        public let needReboot: Int64
+
+        /// 参数容许的最大值
+        public let max: String
+
+        /// 参数容许的最小值
+        public let min: String
+
+        /// 参数的可选枚举值。如果为非枚举值，则为空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enumValue: [String]?
+
+        /// 1：全局参数，0：非全局参数
+        public let isGlobal: Int64
+
+        /// 匹配类型，multiVal
+        public let matchType: String
+
+        /// 匹配目标值，当multiVal时，各个key用，分割
+        public let matchValue: String
+
+        /// true-为公式，false-非公式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFunc: Bool?
+
+        /// 参数设置为公式时，Func返回设置的公式内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `func`: String?
+
+        /// 参数是否可修改
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modifiableInfo: ModifiableInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case paramName = "ParamName"
+            case paramType = "ParamType"
+            case supportFunc = "SupportFunc"
+            case `default` = "Default"
+            case description = "Description"
+            case currentValue = "CurrentValue"
+            case needReboot = "NeedReboot"
+            case max = "Max"
+            case min = "Min"
+            case enumValue = "EnumValue"
+            case isGlobal = "IsGlobal"
+            case matchType = "MatchType"
+            case matchValue = "MatchValue"
+            case isFunc = "IsFunc"
+            case `func` = "Func"
+            case modifiableInfo = "ModifiableInfo"
         }
     }
 
@@ -1999,6 +2468,62 @@ extension Cynosdb {
         }
     }
 
+    /// 实例参数信息
+    public struct ParamItemDetail: TCOutputModel {
+        /// 当前值
+        public let currentValue: String
+
+        /// 默认值
+        public let `default`: String
+
+        /// 参数的可选枚举值。如果为非枚举值，则为空
+        public let enumValue: [String]
+
+        /// 1：全局参数，0：非全局参数
+        public let isGlobal: Int64
+
+        /// 最大值
+        public let max: String
+
+        /// 最小值
+        public let min: String
+
+        /// 修改参数后，是否需要重启数据库以使参数生效。0-不需要重启，1-需要重启。
+        public let needReboot: Int64
+
+        /// 参数名称
+        public let paramName: String
+
+        /// 参数类型：integer，enum，float，string，func
+        public let paramType: String
+
+        /// 参数描述
+        public let description: String
+
+        /// 类型是否为公式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFunc: Bool?
+
+        /// 参数配置公式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `func`: String?
+
+        enum CodingKeys: String, CodingKey {
+            case currentValue = "CurrentValue"
+            case `default` = "Default"
+            case enumValue = "EnumValue"
+            case isGlobal = "IsGlobal"
+            case max = "Max"
+            case min = "Min"
+            case needReboot = "NeedReboot"
+            case paramName = "ParamName"
+            case paramType = "ParamType"
+            case description = "Description"
+            case isFunc = "IsFunc"
+            case `func` = "Func"
+        }
+    }
+
     /// 参数模板信息
     public struct ParamTemplateListInfo: TCOutputModel {
         /// 参数模板ID
@@ -2035,7 +2560,7 @@ extension Cynosdb {
         /// 策略，ACCEPT或者DROP
         public let action: String
 
-        /// 来源Ip或Ip段，例如192.168.0.0/16
+        /// 来源IP或IP段，例如192.168.0.0/16
         public let cidrIp: String
 
         /// 端口
@@ -2065,6 +2590,272 @@ extension Cynosdb {
             case addressModule = "AddressModule"
             case id = "Id"
             case desc = "Desc"
+        }
+    }
+
+    /// 数据库代理连接池信息
+    public struct ProxyConnectionPoolInfo: TCInputModel, TCOutputModel {
+        /// 连接池保持阈值：单位（秒）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionPoolTimeOut: Int64?
+
+        /// 是否开启了连接池
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let openConnectionPool: String?
+
+        /// 连接池类型：SessionConnectionPool（会话级别连接池）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionPoolType: String?
+
+        public init(connectionPoolTimeOut: Int64, openConnectionPool: String? = nil, connectionPoolType: String? = nil) {
+            self.connectionPoolTimeOut = connectionPoolTimeOut
+            self.openConnectionPool = openConnectionPool
+            self.connectionPoolType = connectionPoolType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case connectionPoolTimeOut = "ConnectionPoolTimeOut"
+            case openConnectionPool = "OpenConnectionPool"
+            case connectionPoolType = "ConnectionPoolType"
+        }
+    }
+
+    /// proxy组
+    public struct ProxyGroup: TCOutputModel {
+        /// 数据库代理组ID
+        public let proxyGroupId: String
+
+        /// 数据库代理组节点个数
+        public let proxyNodeCount: Int64
+
+        /// 数据库代理组状态
+        public let status: String
+
+        /// 地域
+        public let region: String
+
+        /// 可用区
+        public let zone: String
+
+        /// 当前代理版本
+        public let currentProxyVersion: String
+
+        /// 集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 用户AppId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 读写节点开通数据库代理
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let openRw: String?
+
+        enum CodingKeys: String, CodingKey {
+            case proxyGroupId = "ProxyGroupId"
+            case proxyNodeCount = "ProxyNodeCount"
+            case status = "Status"
+            case region = "Region"
+            case zone = "Zone"
+            case currentProxyVersion = "CurrentProxyVersion"
+            case clusterId = "ClusterId"
+            case appId = "AppId"
+            case openRw = "OpenRw"
+        }
+    }
+
+    /// 数据库代理组详细信息
+    public struct ProxyGroupInfo: TCOutputModel {
+        /// 数据库代理组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyGroup: ProxyGroup?
+
+        /// 数据库代理组读写分离信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyGroupRwInfo: ProxyGroupRwInfo?
+
+        /// 数据库代理节点信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyNodes: [ProxyNodeInfo]?
+
+        /// 数据库代理连接池信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionPool: ProxyConnectionPoolInfo?
+
+        /// 数据库代理网络信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let netAddrInfos: [NetAddr]?
+
+        /// 数据库代理任务集
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tasks: [ObjectTask]?
+
+        enum CodingKeys: String, CodingKey {
+            case proxyGroup = "ProxyGroup"
+            case proxyGroupRwInfo = "ProxyGroupRwInfo"
+            case proxyNodes = "ProxyNodes"
+            case connectionPool = "ConnectionPool"
+            case netAddrInfos = "NetAddrInfos"
+            case tasks = "Tasks"
+        }
+    }
+
+    /// 数据库代理组读写分离信息
+    public struct ProxyGroupRwInfo: TCInputModel, TCOutputModel {
+        /// 一致性类型 eventual-最终一致性,global-全局一致性,session-会话一致性
+        public let consistencyType: String?
+
+        /// 一致性超时时间
+        public let consistencyTimeOut: Int64?
+
+        /// 权重模式 system-系统分配，custom-自定义
+        public let weightMode: String?
+
+        /// 是否开启故障转移
+        public let failOver: String?
+
+        /// 是否自动添加只读实例，yes-是，no-不自动添加
+        public let autoAddRo: String?
+
+        /// 实例权重数组
+        public let instanceWeights: [ProxyInstanceWeight]?
+
+        /// 是否开通读写节点，yse-是，no-否
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let openRw: String?
+
+        /// 读写属性，可选值：READWRITE,READONLY
+        public let rwType: String?
+
+        /// 事务拆分
+        public let transSplit: Bool?
+
+        /// 连接模式，可选值：balance，nearby
+        public let accessMode: String?
+
+        public init(consistencyType: String? = nil, consistencyTimeOut: Int64? = nil, weightMode: String? = nil, failOver: String? = nil, autoAddRo: String? = nil, instanceWeights: [ProxyInstanceWeight]? = nil, openRw: String? = nil, rwType: String? = nil, transSplit: Bool? = nil, accessMode: String? = nil) {
+            self.consistencyType = consistencyType
+            self.consistencyTimeOut = consistencyTimeOut
+            self.weightMode = weightMode
+            self.failOver = failOver
+            self.autoAddRo = autoAddRo
+            self.instanceWeights = instanceWeights
+            self.openRw = openRw
+            self.rwType = rwType
+            self.transSplit = transSplit
+            self.accessMode = accessMode
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case consistencyType = "ConsistencyType"
+            case consistencyTimeOut = "ConsistencyTimeOut"
+            case weightMode = "WeightMode"
+            case failOver = "FailOver"
+            case autoAddRo = "AutoAddRo"
+            case instanceWeights = "InstanceWeights"
+            case openRw = "OpenRw"
+            case rwType = "RwType"
+            case transSplit = "TransSplit"
+            case accessMode = "AccessMode"
+        }
+    }
+
+    /// 数据库代理，读写分离实例权重
+    public struct ProxyInstanceWeight: TCInputModel, TCOutputModel {
+        /// 实例Id
+        public let instanceId: String
+
+        /// 实例权重
+        public let weight: Int64
+
+        public init(instanceId: String, weight: Int64) {
+            self.instanceId = instanceId
+            self.weight = weight
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case weight = "Weight"
+        }
+    }
+
+    /// 数据库代理组节点
+    public struct ProxyNodeInfo: TCOutputModel {
+        /// 数据库代理节点ID
+        public let proxyNodeId: String
+
+        /// 节点当前连接数, DescribeProxyNodes接口此字段值不返回
+        public let proxyNodeConnections: Int64
+
+        /// 数据库代理节点cpu
+        public let cpu: Int64
+
+        /// 数据库代理节点内存
+        public let mem: Int64
+
+        /// 数据库代理节点状态
+        public let status: String
+
+        /// 数据库代理组ID
+        public let proxyGroupId: String
+
+        /// 集群ID
+        public let clusterId: String
+
+        /// 用户AppID
+        public let appId: Int64
+
+        /// 地域
+        public let region: String
+
+        /// 可用区
+        public let zone: String
+
+        enum CodingKeys: String, CodingKey {
+            case proxyNodeId = "ProxyNodeId"
+            case proxyNodeConnections = "ProxyNodeConnections"
+            case cpu = "Cpu"
+            case mem = "Mem"
+            case status = "Status"
+            case proxyGroupId = "ProxyGroupId"
+            case clusterId = "ClusterId"
+            case appId = "AppId"
+            case region = "Region"
+            case zone = "Zone"
+        }
+    }
+
+    /// 数据库代理规格
+    public struct ProxySpec: TCOutputModel {
+        /// 数据库代理cpu核数
+        public let cpu: Int64
+
+        /// 数据库代理内存
+        public let mem: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case cpu = "Cpu"
+            case mem = "Mem"
+        }
+    }
+
+    /// proxy节点可用区内个数
+    public struct ProxyZone: TCInputModel {
+        /// proxy节点可用区
+        public let proxyNodeZone: String?
+
+        /// proxy节点数量
+        public let proxyNodeCount: Int64?
+
+        public init(proxyNodeZone: String? = nil, proxyNodeCount: Int64? = nil) {
+            self.proxyNodeZone = proxyNodeZone
+            self.proxyNodeCount = proxyNodeCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case proxyNodeZone = "ProxyNodeZone"
+            case proxyNodeCount = "ProxyNodeCount"
         }
     }
 
@@ -2102,8 +2893,54 @@ extension Cynosdb {
         }
     }
 
+    /// 查询参数过滤器
+    public struct QueryParamFilter: TCInputModel {
+        /// 搜索字段，目前支持："InstanceId", "ProjectId", "InstanceName", "Vip"
+        public let names: [String]
+
+        /// 搜索字符串
+        public let values: [String]
+
+        /// 是否精确匹配
+        public let exactMatch: Bool?
+
+        public init(names: [String], values: [String], exactMatch: Bool? = nil) {
+            self.names = names
+            self.values = values
+            self.exactMatch = exactMatch
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case names = "Names"
+            case values = "Values"
+            case exactMatch = "ExactMatch"
+        }
+    }
+
+    /// 资源包信息
+    public struct ResourcePackage: TCInputModel, TCOutputModel {
+        /// 资源包的唯一ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageId: String?
+
+        /// 资源包类型：CCU：计算资源包
+        /// DISK：存储资源包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageType: String?
+
+        public init(packageId: String? = nil, packageType: String? = nil) {
+            self.packageId = packageId
+            self.packageType = packageType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case packageId = "PackageId"
+            case packageType = "PackageType"
+        }
+    }
+
     /// 回滚数据库信息
-    public struct RollbackDatabase: TCInputModel {
+    public struct RollbackDatabase: TCInputModel, TCOutputModel {
         /// 旧数据库名称
         public let oldDatabase: String
 
@@ -2122,7 +2959,7 @@ extension Cynosdb {
     }
 
     /// 回档数据库及表
-    public struct RollbackTable: TCInputModel {
+    public struct RollbackTable: TCInputModel, TCOutputModel {
         /// 数据库名称
         public let database: String
 
@@ -2141,12 +2978,14 @@ extension Cynosdb {
     }
 
     /// 回档表信息
-    public struct RollbackTableInfo: TCInputModel {
+    public struct RollbackTableInfo: TCInputModel, TCOutputModel {
         /// 旧表名称
-        public let oldTable: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldTable: String?
 
         /// 新表名称
-        public let newTable: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let newTable: String?
 
         public init(oldTable: String, newTable: String) {
             self.oldTable = oldTable
@@ -2194,6 +3033,45 @@ extension Cynosdb {
             case type = "Type"
             case compare = "Compare"
             case value = "Value"
+        }
+    }
+
+    /// 资源包明细说明
+    public struct SalePackageSpec: TCOutputModel {
+        /// 资源包使用地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageRegion: String?
+
+        /// 资源包类型
+        /// CCU-计算资源包
+        /// DISK-存储资源包
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageType: String?
+
+        /// 资源包版本
+        /// base-基础版本，common-通用版本，enterprise-企业版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageVersion: String?
+
+        /// 当前版本资源包最小资源数，计算资源单位：个；存储资源：GB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let minPackageSpec: Float?
+
+        /// 当前版本资源包最大资源数，计算资源单位：个；存储资源：GB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxPackageSpec: Float?
+
+        /// 资源包有效期，单位:天
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireDay: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case packageRegion = "PackageRegion"
+            case packageType = "PackageType"
+            case packageVersion = "PackageVersion"
+            case minPackageSpec = "MinPackageSpec"
+            case maxPackageSpec = "MaxPackageSpec"
+            case expireDay = "ExpireDay"
         }
     }
 
@@ -2333,7 +3211,7 @@ extension Cynosdb {
         /// 返回行数
         public let rowsSent: Int64
 
-        /// sql模版
+        /// sql模板
         public let sqlTemplate: String
 
         /// sql语句md5
@@ -2473,6 +3351,32 @@ extension Cynosdb {
             case unitPrice = "UnitPrice"
             case unitPriceDiscount = "UnitPriceDiscount"
             case chargeUnit = "ChargeUnit"
+        }
+    }
+
+    /// 用户主机权限
+    public struct UserHostPrivilege: TCInputModel, TCOutputModel {
+        /// 授权用户
+        public let dbUserName: String
+
+        /// 客户端ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbHost: String?
+
+        /// 用户权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbPrivilege: String?
+
+        public init(dbUserName: String, dbHost: String, dbPrivilege: String) {
+            self.dbUserName = dbUserName
+            self.dbHost = dbHost
+            self.dbPrivilege = dbPrivilege
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case dbUserName = "DbUserName"
+            case dbHost = "DbHost"
+            case dbPrivilege = "DbPrivilege"
         }
     }
 

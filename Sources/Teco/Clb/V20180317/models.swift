@@ -915,7 +915,8 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeOut: Int64?
 
-        /// 健康检查探测间隔时间，默认值：5，可选值：5~300，单位：秒。
+        /// 健康检查探测间隔时间，默认值：5，IPv4 CLB实例的取值范围为：2-300，IPv6 CLB 实例的取值范围为：5-300。单位：秒。
+        /// 说明：部分老旧 IPv4 CLB实例的取值范围为：5-300。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intervalTime: Int64?
 
@@ -936,7 +937,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpCheckPath: String?
 
-        /// 健康检查域名（仅适用于HTTP/HTTPS转发规则、TCP监听器的HTTP健康检查方式，当监听器是TCP类型时，该参数为必填项）。
+        /// 健康检查域名（仅适用于HTTP/HTTPS监听器和TCP监听器的HTTP健康检查方式。针对TCP监听器，当使用HTTP健康检查方式时，该参数为必填项）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpCheckDomain: String?
 
@@ -960,15 +961,15 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recvContext: String?
 
-        /// 自定义探测相关参数。健康检查使用的协议：TCP | HTTP | CUSTOM（仅适用于TCP/UDP监听器，其中UDP监听器只支持CUSTOM；如果使用自定义健康检查功能，则必传）。
+        /// 健康检查使用的协议。取值 TCP | HTTP | HTTPS | GRPC | PING | CUSTOM，UDP监听器支持PING/CUSTOM，TCP监听器支持TCP/HTTP/CUSTOM，TCP_SSL/QUIC监听器支持TCP/HTTP，HTTP规则支持HTTP/GRPC，HTTPS规则支持HTTP/HTTPS/GRPC。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkType: String?
 
-        /// 自定义探测相关参数。健康检查协议CheckType的值取HTTP时，必传此字段，代表后端服务的HTTP版本：HTTP/1.0、HTTP/1.1；（仅适用于TCP监听器）
+        /// HTTP版本。健康检查协议CheckType的值取HTTP时，必传此字段，代表后端服务的HTTP版本：HTTP/1.0、HTTP/1.1；（仅适用于TCP监听器）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpVersion: String?
 
-        /// 自定义探测相关参数。健康检查源IP类型：0（使用LB的VIP作为源IP），1（使用100.64网段IP作为源IP），默认值：0
+        /// 健康检查源IP类型：0（使用LB的VIP作为源IP），1（使用100.64网段IP作为源IP），默认值：0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceIpType: Int64?
 
@@ -1064,7 +1065,11 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
 
-        /// 最大出带宽，单位Mbps，范围支持0到2048，仅对公网属性的LB生效，默认值 10
+        /// 最大出带宽，单位Mbps，仅对公网属性的共享型、性能容量型和独占型 CLB 实例、以及内网属性的性能容量型 CLB 实例生效。
+        /// - 对于公网属性的共享型和独占型 CLB 实例，最大出带宽的范围为1Mbps-2048Mbps。
+        /// - 对于公网属性和内网属性的性能容量型 CLB实例
+        ///   - 默认为普通规格的性能容量型实例，SLA对应超强型1规格，最大出带宽的范围为1Mbps-10240Mbps。
+        ///   - 当您开通了超大型规格的性能容量型时，最大出带宽的范围为1Mbps-61440Mbps。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: Int64?
 
@@ -1262,6 +1267,10 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxCps: Int64?
 
+        /// 空闲连接超时时间，仅支持TCP监听器。默认值:900；共享型实例和独占型实例取值范围：300～900，性能容量型实例取值范围:300～1980。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let idleConnectTimeout: Int64?
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case `protocol` = "Protocol"
@@ -1285,6 +1294,7 @@ extension Clb {
             case targetGroupList = "TargetGroupList"
             case maxConn = "MaxConn"
             case maxCps = "MaxCps"
+            case idleConnectTimeout = "IdleConnectTimeout"
         }
     }
 
@@ -2016,10 +2026,15 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availabilitySet: [ResourceAvailability]?
 
+        /// 运营商类型信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let typeSet: [TypeInfo]?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case isp = "Isp"
             case availabilitySet = "AvailabilitySet"
+            case typeSet = "TypeSet"
         }
     }
 
@@ -2042,7 +2057,7 @@ extension Clb {
         /// 源转发规则ID
         public let sourceLocationId: String
 
-        /// 重定向至的目标转发规则ID
+        /// 重定向目标转发规则的ID
         public let targetLocationId: String
 
         /// 重定向状态码，可取值301,302,307
@@ -2189,7 +2204,7 @@ extension Clb {
         /// 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
         public let scheduler: String?
 
-        /// 负载均衡与后端服务之间的转发协议，目前支持 HTTP/HTTPS/TRPC
+        /// 负载均衡与后端服务之间的转发协议，目前支持 HTTP/HTTPS/GRPC/TRPC，TRPC暂未对外开放，默认HTTP。
         public let forwardType: String?
 
         /// 是否将该域名设为默认域名，注意，一个监听器下只能设置一个默认域名。
@@ -2201,10 +2216,10 @@ extension Clb {
         /// 后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组
         public let targetType: String?
 
-        /// TRPC被调服务器路由，ForwardType为TRPC时必填
+        /// TRPC被调服务器路由，ForwardType为TRPC时必填。目前暂未对外开放。
         public let trpcCallee: String?
 
-        /// TRPC调用服务接口，ForwardType为TRPC时必填
+        /// TRPC调用服务接口，ForwardType为TRPC时必填。目前暂未对外开放
         public let trpcFunc: String?
 
         /// 是否开启QUIC，注意，只有HTTPS域名才能开启QUIC
@@ -2316,11 +2331,11 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wafDomainId: String?
 
-        /// TRPC被调服务器路由，ForwardType为TRPC时有效
+        /// TRPC被调服务器路由，ForwardType为TRPC时有效。目前暂未对外开放。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trpcCallee: String?
 
-        /// TRPC调用服务接口，ForwardType为TRPC时有效
+        /// TRPC调用服务接口，ForwardType为TRPC时有效。目前暂未对外开放。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trpcFunc: String?
 
@@ -2418,9 +2433,8 @@ extension Clb {
         /// lb的字符串ID
         public let loadBalancerId: String
 
-        /// 升级为性能容量型，固定取值为SLA。SLA表示升级为默认规格的性能容量型实例。
-        /// <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
-        /// <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul>
+        /// 升级为性能容量型，固定取值为SLA。SLA表示超强型1规格。
+        /// 当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
         public let slaType: String
 
         public init(loadBalancerId: String, slaType: String) {
@@ -2453,13 +2467,34 @@ extension Clb {
         }
     }
 
+    /// 规格可用性
+    public struct SpecAvailability: TCOutputModel {
+        /// 规格类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specType: String?
+
+        /// 规格可用性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let availability: String?
+
+        enum CodingKeys: String, CodingKey {
+            case specType = "SpecType"
+            case availability = "Availability"
+        }
+    }
+
     /// 负载均衡的标签信息
-    public struct TagInfo: TCOutputModel {
+    public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签的键
         public let tagKey: String
 
         /// 标签的值
         public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
@@ -2513,26 +2548,26 @@ extension Clb {
         /// 负载均衡ID
         public let loadBalancerId: String
 
-        /// 监听器ID
-        public let listenerId: String
-
         /// 目标组ID
         public let targetGroupId: String
+
+        /// 监听器ID
+        public let listenerId: String?
 
         /// 转发规则ID
         public let locationId: String?
 
-        public init(loadBalancerId: String, listenerId: String, targetGroupId: String, locationId: String? = nil) {
+        public init(loadBalancerId: String, targetGroupId: String, listenerId: String? = nil, locationId: String? = nil) {
             self.loadBalancerId = loadBalancerId
-            self.listenerId = listenerId
             self.targetGroupId = targetGroupId
+            self.listenerId = listenerId
             self.locationId = locationId
         }
 
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
-            case listenerId = "ListenerId"
             case targetGroupId = "TargetGroupId"
+            case listenerId = "ListenerId"
             case locationId = "LocationId"
         }
     }
@@ -2644,7 +2679,7 @@ extension Clb {
         public let bindIP: String
 
         /// 目标组实例的端口
-        public let port: UInt64
+        public let port: UInt64?
 
         /// 目标组实例的权重
         public let weight: UInt64?
@@ -2652,7 +2687,7 @@ extension Clb {
         /// 目标组实例的新端口
         public let newPort: UInt64?
 
-        public init(bindIP: String, port: UInt64, weight: UInt64? = nil, newPort: UInt64? = nil) {
+        public init(bindIP: String, port: UInt64? = nil, weight: UInt64? = nil, newPort: UInt64? = nil) {
             self.bindIP = bindIP
             self.port = port
             self.weight = weight
@@ -2684,8 +2719,8 @@ extension Clb {
         /// 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
         public let healthStatusDetail: String
 
-        /// 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。(该参数对象即将下线，不推荐使用，请使用HealthStatusDetail获取健康详情)
-        public let healthStatusDetial: String
+        /// (**该参数对象即将下线，不推荐使用，请使用HealthStatusDetail获取健康详情**) 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
+        public let healthStatusDetial: String?
 
         enum CodingKeys: String, CodingKey {
             case ip = "IP"
@@ -2713,6 +2748,22 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case vpcId = "VpcId"
+        }
+    }
+
+    /// 运营商类型信息
+    public struct TypeInfo: TCOutputModel {
+        /// 运营商类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 规格可用性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specAvailabilitySet: [SpecAvailability]?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case specAvailabilitySet = "SpecAvailabilitySet"
         }
     }
 

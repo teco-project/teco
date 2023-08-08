@@ -189,7 +189,7 @@ extension Faceid {
         /// -9103 身份证翻拍告警，
         /// -9105 身份证框内遮挡告警，
         /// -9104 临时身份证告警，
-        /// -9106 身份证 PS 告警，
+        /// -9106 身份证 PS 告警（疑似存在PS痕迹），
         /// -9107 身份证反光告警。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warnInfos: [Int64]?
@@ -201,7 +201,7 @@ extension Faceid {
         /// -9103 身份证翻拍告警，
         /// -9105 身份证框内遮挡告警，
         /// -9104 临时身份证告警，
-        /// -9106 身份证 PS 告警，
+        /// -9106 身份证 PS 告警（疑似存在PS痕迹），
         /// -9107 身份证反光告警。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backWarnInfos: [Int64]?
@@ -230,6 +230,13 @@ extension Faceid {
         /// 本次验证使用的身份证号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idCard: String?
+
+        /// 用户认证时使用的证件号码类型：
+        /// 0：二代身份证的证件号码
+        /// 1：港澳台居住证的证件号码
+        /// 2：其他（核验使用的证件号码非合法身份号码）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let useIDType: UInt64?
 
         /// 本次验证使用的姓名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -333,10 +340,19 @@ extension Faceid {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nfcBillingCounts: Int64?
 
+        /// 港澳台居住证通行证号码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let passNo: String?
+
+        /// 港澳台居住证签发次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let visaNum: String?
+
         enum CodingKeys: String, CodingKey {
             case errCode = "ErrCode"
             case errMsg = "ErrMsg"
             case idCard = "IdCard"
+            case useIDType = "UseIDType"
             case name = "Name"
             case ocrNation = "OcrNation"
             case ocrAddress = "OcrAddress"
@@ -360,6 +376,8 @@ extension Faceid {
             case livenessMode = "LivenessMode"
             case nfcRequestIds = "NFCRequestIds"
             case nfcBillingCounts = "NFCBillingCounts"
+            case passNo = "PassNo"
+            case visaNum = "VisaNum"
         }
     }
 
@@ -397,20 +415,25 @@ extension Faceid {
     }
 
     /// 敏感数据加密
-    public struct Encryption: TCInputModel {
+    public struct Encryption: TCInputModel, TCOutputModel {
         /// 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
-        public let encryptList: [String]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let encryptList: [String]?
 
         /// 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
-        public let ciphertextBlob: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ciphertextBlob: String?
 
         /// 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
-        public let iv: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let iv: String?
 
         /// 加密使用的算法（支持'AES-256-CBC'、'SM4-GCM'），不传默认为'AES-256-CBC'
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithm: String?
 
         /// SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagList: [String]?
 
         public init(encryptList: [String], ciphertextBlob: String, iv: String, algorithm: String? = nil, tagList: [String]? = nil) {
@@ -430,7 +453,7 @@ extension Faceid {
         }
     }
 
-    /// 获取token时的的配置
+    /// 获取token时的配置
     public struct GetEidTokenConfig: TCInputModel {
         /// 姓名身份证输入方式。
         /// 1：传身份证正反面OCR
@@ -456,13 +479,17 @@ extension Faceid {
         /// 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         public let intentionRecognition: Bool?
 
-        public init(inputType: String? = nil, useIntentionVerify: Bool? = nil, intentionMode: String? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, intentionRecognition: Bool? = nil) {
+        /// 是否支持港澳台居住证识别
+        public let isSupportHMTResidentPermitOCR: Bool?
+
+        public init(inputType: String? = nil, useIntentionVerify: Bool? = nil, intentionMode: String? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, intentionRecognition: Bool? = nil, isSupportHMTResidentPermitOCR: Bool? = nil) {
             self.inputType = inputType
             self.useIntentionVerify = useIntentionVerify
             self.intentionMode = intentionMode
             self.intentionVerifyText = intentionVerifyText
             self.intentionQuestions = intentionQuestions
             self.intentionRecognition = intentionRecognition
+            self.isSupportHMTResidentPermitOCR = isSupportHMTResidentPermitOCR
         }
 
         enum CodingKeys: String, CodingKey {
@@ -472,6 +499,7 @@ extension Faceid {
             case intentionVerifyText = "IntentionVerifyText"
             case intentionQuestions = "IntentionQuestions"
             case intentionRecognition = "IntentionRecognition"
+            case isSupportHMTResidentPermitOCR = "IsSupportHMTResidentPermitOCR"
         }
     }
 
@@ -496,10 +524,32 @@ extension Faceid {
 
     /// 意愿核身问答模式结果
     public struct IntentionQuestionResult: TCOutputModel {
-        /// 意愿核身最终结果：
-        /// 0：认证通过，-1：认证未通过，-2：浏览器内核不兼容，无法进行意愿校验
+        /// 意愿核身错误码：
+        /// 0: "成功"
+        /// -1: "参数错误"
+        /// -2: "系统异常"
+        /// -101: "请保持人脸在框内"
+        /// -102: "检测到多张人脸"
+        /// -103: "人脸检测失败"
+        /// -104: "人脸检测不完整"
+        /// -105: "请勿遮挡眼睛"
+        /// -106: "请勿遮挡嘴巴"
+        /// -107: "请勿遮挡鼻子"
+        /// -201: "人脸比对相似度低"
+        /// -202: "人脸比对失败"
+        /// -301: "意愿核验不通过"
+        /// -800: "前端不兼容错误"
+        /// -801: "用户未授权摄像头和麦克风权限"
+        /// -802: "获取视频流失败"
+        /// -803: "用户主动关闭链接/异常断开链接"
+        /// -998: "系统数据异常"
+        /// -999: "系统未知错误，请联系人工核实"
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let finalResultCode: String?
+        public let finalResultDetailCode: Int64?
+
+        /// 意愿核身错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalResultMessage: String?
 
         /// 视频base64（其中包含全程问题和回答音频，mp4格式）
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -522,13 +572,20 @@ extension Faceid {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audios: [String]?
 
+        /// 意愿核身最终结果：
+        /// 0：认证通过，-1：认证未通过，-2：浏览器内核不兼容，无法进行意愿校验。建议使用“FinalResultDetailCode”参数获取详细的错误码信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalResultCode: String?
+
         enum CodingKeys: String, CodingKey {
-            case finalResultCode = "FinalResultCode"
+            case finalResultDetailCode = "FinalResultDetailCode"
+            case finalResultMessage = "FinalResultMessage"
             case video = "Video"
             case screenShot = "ScreenShot"
             case resultCode = "ResultCode"
             case asrResult = "AsrResult"
             case audios = "Audios"
+            case finalResultCode = "FinalResultCode"
         }
     }
 

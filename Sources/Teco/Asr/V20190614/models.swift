@@ -45,12 +45,14 @@ extension Asr {
     }
 
     /// 热词的词和权重
-    public struct HotWord: TCInputModel {
+    public struct HotWord: TCInputModel, TCOutputModel {
         /// 热词
-        public let word: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let word: String?
 
         /// 权重
-        public let weight: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weight: Int64?
 
         public init(word: String, weight: Int64) {
             self.word = word
@@ -80,7 +82,13 @@ extension Asr {
         /// 服务类型
         public let serviceType: String
 
-        /// 模型状态，-1下线状态，1上线状态, 0训练中, -2 训练失败
+        /// 模型状态：
+        /// -2：模型训练失败；
+        /// -1：已下线；
+        /// 0：训练中；
+        /// 1：已上线；
+        /// 3：上线中；
+        /// 4：下线中；
         public let modelState: Int64
 
         /// 最后更新时间
@@ -290,6 +298,43 @@ extension Asr {
             case updateTime = "UpdateTime"
             case state = "State"
             case tagInfos = "TagInfos"
+        }
+    }
+
+    /// 说话人基础数据，包括说话人id和说话人昵称
+    public struct VoicePrintBaseData: TCOutputModel {
+        /// 说话人id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voicePrintId: String?
+
+        /// 说话人昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let speakerNick: String?
+
+        enum CodingKeys: String, CodingKey {
+            case voicePrintId = "VoicePrintId"
+            case speakerNick = "SpeakerNick"
+        }
+    }
+
+    /// 说话人验证数据
+    public struct VoicePrintVerifyData: TCOutputModel {
+        /// 说话人id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voicePrintId: String?
+
+        /// 匹配度 取值范围(0.0 - 100.0)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let score: String?
+
+        /// 验证结果 0: 未通过 1: 通过
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let decision: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case voicePrintId = "VoicePrintId"
+            case score = "Score"
+            case decision = "Decision"
         }
     }
 }

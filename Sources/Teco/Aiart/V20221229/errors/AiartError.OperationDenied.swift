@@ -45,12 +45,12 @@ extension TCAiartError {
             self.context = context
         }
 
-        /// 图片包含非法信息，审核不通过。
+        /// 图片包含违法违规信息，审核不通过。
         public static var imageIllegalDetected: OperationDenied {
             OperationDenied(.imageIllegalDetected)
         }
 
-        /// 文本包含非法信息，审核不通过。
+        /// 文本包含违法违规信息，审核不通过。
         public static var textIllegalDetected: OperationDenied {
             OperationDenied(.textIllegalDetected)
         }

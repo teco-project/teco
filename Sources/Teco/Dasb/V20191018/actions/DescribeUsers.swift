@@ -41,6 +41,9 @@ extension Dasb {
         /// 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
         public let phone: String?
 
+        /// 邮箱，精确查询
+        public let email: String?
+
         /// 查询具有指定资产ID访问权限的用户
         public let authorizedDeviceIdSet: [UInt64]?
 
@@ -50,13 +53,14 @@ extension Dasb {
         /// 部门ID，用于过滤属于某个部门的用户
         public let departmentId: String?
 
-        public init(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil) {
+        public init(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, email: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil) {
             self.idSet = idSet
             self.name = name
             self.offset = offset
             self.limit = limit
             self.userName = userName
             self.phone = phone
+            self.email = email
             self.authorizedDeviceIdSet = authorizedDeviceIdSet
             self.authTypeSet = authTypeSet
             self.departmentId = departmentId
@@ -69,6 +73,7 @@ extension Dasb {
             case limit = "Limit"
             case userName = "UserName"
             case phone = "Phone"
+            case email = "Email"
             case authorizedDeviceIdSet = "AuthorizedDeviceIdSet"
             case authTypeSet = "AuthTypeSet"
             case departmentId = "DepartmentId"
@@ -79,7 +84,7 @@ extension Dasb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUsersRequest(idSet: self.idSet, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, userName: self.userName, phone: self.phone, authorizedDeviceIdSet: self.authorizedDeviceIdSet, authTypeSet: self.authTypeSet, departmentId: self.departmentId)
+            return DescribeUsersRequest(idSet: self.idSet, name: self.name, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, userName: self.userName, phone: self.phone, email: self.email, authorizedDeviceIdSet: self.authorizedDeviceIdSet, authTypeSet: self.authTypeSet, departmentId: self.departmentId)
         }
     }
 
@@ -125,14 +130,14 @@ extension Dasb {
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        self.describeUsers(.init(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, email: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
+        self.describeUsers(.init(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, email: email, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.describeUsers(.init(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, email: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.describeUsers(.init(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, email: email, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表

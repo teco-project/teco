@@ -21,40 +21,40 @@ import TecoCore
 extension Vpc {
     /// CreateVpnGatewaySslServer请求参数结构体
     public struct CreateVpnGatewaySslServerRequest: TCRequestModel {
-        /// VPN实例ID
+        /// VPN网关实例ID。
         public let vpnGatewayId: String
 
-        /// SSL_VPN_SERVER 实例名
+        /// SSL-VPN-SERVER 实例名称，长度不超过60个字节。
         public let sslVpnServerName: String
 
-        /// 本端地址网段
+        /// 云端地址（CIDR）列表。
         public let localAddress: [String]
 
-        /// 客户端地址网段
+        /// 客户端地址网段。
         public let remoteAddress: String
 
-        /// SSL VPN服务端监听协议。当前仅支持 UDP。默认UDP
+        /// SSL VPN服务端监听协议。当前仅支持 UDP，默认UDP。
         public let sslVpnProtocol: String?
 
-        /// SSL VPN服务端监听协议端口。默认1194。
+        /// SSL VPN服务端监听协议端口，默认1194。
         public let sslVpnPort: Int64?
 
-        /// 认证算法。可选 'SHA1', 'MD5', 'NONE'。默认NONE
+        /// 认证算法。可选 'SHA1', 'MD5', 'NONE'，默认NONE。
         public let integrityAlgorithm: String?
 
-        /// 加密算法。可选 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'NONE'。默认NONE
+        /// 加密算法。可选 'AES-128-CBC','AES-192-CBC', 'AES-256-CBC', 'NONE'，默认NONE。
         public let encryptAlgorithm: String?
 
-        /// 是否支持压缩。当前仅支持不支持压缩。默认False
+        /// 是否支持压缩。当前仅支持不支持压缩，默认False。
         public let compress: Bool?
 
-        /// 是否开启SSO认证
+        /// 是否开启SSO认证。默认为False
         public let ssoEnabled: Bool?
 
-        /// 是否开启策略访问控制
+        /// 是否开启策略访问控制。默认为False
         public let accessPolicyEnabled: Bool?
 
-        /// SAML-DATA
+        /// SAML-DATA，开启SSO时传。
         public let samlData: String?
 
         public init(vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil) {
@@ -90,10 +90,10 @@ extension Vpc {
 
     /// CreateVpnGatewaySslServer返回参数结构体
     public struct CreateVpnGatewaySslServerResponse: TCResponseModel {
-        /// 创建SSL-VPN server 异步任务ID
+        /// 创建SSL-VPN server 异步任务ID。
         public let taskId: Int64
 
-        /// SSL-VPN server 唯一ID
+        /// SSL-VPN-SERVER 唯一ID。
         public let sslVpnServerId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -108,7 +108,7 @@ extension Vpc {
 
     /// 创建SSL-VPN Server端
     ///
-    /// 创建 Server端
+    /// 本接口（CreateVpnGatewaySslServer）用于创建SSL-VPN Server端。
     @inlinable
     public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslServerResponse> {
         self.client.execute(action: "CreateVpnGatewaySslServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -116,7 +116,7 @@ extension Vpc {
 
     /// 创建SSL-VPN Server端
     ///
-    /// 创建 Server端
+    /// 本接口（CreateVpnGatewaySslServer）用于创建SSL-VPN Server端。
     @inlinable
     public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslServerResponse {
         try await self.client.execute(action: "CreateVpnGatewaySslServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -124,7 +124,7 @@ extension Vpc {
 
     /// 创建SSL-VPN Server端
     ///
-    /// 创建 Server端
+    /// 本接口（CreateVpnGatewaySslServer）用于创建SSL-VPN Server端。
     @inlinable
     public func createVpnGatewaySslServer(vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslServerResponse> {
         self.createVpnGatewaySslServer(.init(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData), region: region, logger: logger, on: eventLoop)
@@ -132,7 +132,7 @@ extension Vpc {
 
     /// 创建SSL-VPN Server端
     ///
-    /// 创建 Server端
+    /// 本接口（CreateVpnGatewaySslServer）用于创建SSL-VPN Server端。
     @inlinable
     public func createVpnGatewaySslServer(vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslServerResponse {
         try await self.createVpnGatewaySslServer(.init(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData), region: region, logger: logger, on: eventLoop)

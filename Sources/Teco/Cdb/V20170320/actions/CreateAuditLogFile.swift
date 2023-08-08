@@ -21,13 +21,13 @@ import TecoCore
 extension Cdb {
     /// CreateAuditLogFile请求参数结构体
     public struct CreateAuditLogFileRequest: TCRequestModel {
-        /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
+        /// 实例 ID，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
-        /// 开始时间，格式为："2017-07-12 10:29:20"。
+        /// 开始时间。
         public let startTime: String
 
-        /// 结束时间，格式为："2017-07-12 10:29:20"。
+        /// 结束时间。
         public let endTime: String
 
         /// 排序方式。支持值包括："ASC" - 升序，"DESC" - 降序。
@@ -39,16 +39,20 @@ extension Cdb {
         /// "execTime" - 执行时间。
         public let orderBy: String?
 
-        /// 过滤条件。可按设置的过滤条件过滤日志。
+        /// 已废弃。
         public let filter: AuditLogFilter?
 
-        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil) {
+        /// 过滤条件。可按设置的过滤条件过滤日志。
+        public let logFilter: [InstanceAuditLogFilters]?
+
+        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
             self.order = order
             self.orderBy = orderBy
             self.filter = filter
+            self.logFilter = logFilter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +62,7 @@ extension Cdb {
             case order = "Order"
             case orderBy = "OrderBy"
             case filter = "Filter"
+            case logFilter = "LogFilter"
         }
     }
 
@@ -95,15 +100,15 @@ extension Cdb {
     ///
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
-    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditLogFileResponse> {
-        self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditLogFileResponse> {
+        self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建审计日志文件
     ///
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
-    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
-        try await self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
+        try await self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 }

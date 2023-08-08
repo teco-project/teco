@@ -55,6 +55,8 @@ extension TCOcrError {
         }
 
         /// 参数值错误。
+        ///
+        /// 请查看接口文档检查对应接口入参：https://cloud.tencent.com/document/product/866/33515
         public static var invalidParameterValueLimit: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueLimit)
         }

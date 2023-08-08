@@ -30,16 +30,21 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
 
-        public init(domain: String, snapshotId: String, domainId: UInt64? = nil) {
+        /// 指定需要回滚的记录
+        public let recordList: [SnapshotRecord]?
+
+        public init(domain: String, snapshotId: String, domainId: UInt64? = nil, recordList: [SnapshotRecord]? = nil) {
             self.domain = domain
             self.snapshotId = snapshotId
             self.domainId = domainId
+            self.recordList = recordList
         }
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case snapshotId = "SnapshotId"
             case domainId = "DomainId"
+            case recordList = "RecordList"
         }
     }
 
@@ -71,13 +76,13 @@ extension Dnspod {
 
     /// 回滚快照
     @inlinable
-    public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackSnapshotResponse> {
-        self.rollbackSnapshot(.init(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
+    public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, recordList: [SnapshotRecord]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackSnapshotResponse> {
+        self.rollbackSnapshot(.init(domain: domain, snapshotId: snapshotId, domainId: domainId, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回滚快照
     @inlinable
-    public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackSnapshotResponse {
-        try await self.rollbackSnapshot(.init(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
+    public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, recordList: [SnapshotRecord]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackSnapshotResponse {
+        try await self.rollbackSnapshot(.init(domain: domain, snapshotId: snapshotId, domainId: domainId, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 }

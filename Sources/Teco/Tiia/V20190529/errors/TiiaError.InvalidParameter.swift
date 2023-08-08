@@ -21,6 +21,7 @@ extension TCTiiaError {
         enum Code: String {
             case imageFormatNotSupport = "InvalidParameter.ImageFormatNotSupport"
             case invalidParameter = "InvalidParameter.InvalidParameter"
+            case pictureSolidColorError = "InvalidParameter.PictureSolidColorError"
         }
 
         private let error: Code
@@ -55,6 +56,10 @@ extension TCTiiaError {
             InvalidParameter(.invalidParameter)
         }
 
+        public static var pictureSolidColorError: InvalidParameter {
+            InvalidParameter(.pictureSolidColorError)
+        }
+
         public func asTiiaError() -> TCTiiaError {
             let code: TCTiiaError.Code
             switch self.error {
@@ -62,6 +67,8 @@ extension TCTiiaError {
                 code = .invalidParameter_ImageFormatNotSupport
             case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
+            case .pictureSolidColorError:
+                code = .invalidParameter_PictureSolidColorError
             }
             return TCTiiaError(code, context: self.context)
         }

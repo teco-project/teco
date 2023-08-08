@@ -35,6 +35,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case failedOperation_CouponNotSupported = "FailedOperation.CouponNotSupported"
         case failedOperation_CouponTypeAlreadyUsed = "FailedOperation.CouponTypeAlreadyUsed"
         case failedOperation_DomainExists = "FailedOperation.DomainExists"
+        case failedOperation_DomainInEnterpriseMailAccount = "FailedOperation.DomainInEnterpriseMailAccount"
         case failedOperation_DomainIsKeyDomain = "FailedOperation.DomainIsKeyDomain"
         case failedOperation_DomainIsLocked = "FailedOperation.DomainIsLocked"
         case failedOperation_DomainIsPersonalType = "FailedOperation.DomainIsPersonalType"
@@ -96,10 +97,12 @@ public struct TCDnspodError: TCDnspodErrorType {
         case invalidParameter_DomainAliasExists = "InvalidParameter.DomainAliasExists"
         case invalidParameter_DomainAliasIdInvalid = "InvalidParameter.DomainAliasIdInvalid"
         case invalidParameter_DomainIdInvalid = "InvalidParameter.DomainIdInvalid"
+        case invalidParameter_DomainInBlackList = "InvalidParameter.DomainInBlackList"
         case invalidParameter_DomainInEffectOrInvalidated = "InvalidParameter.DomainInEffectOrInvalidated"
         case invalidParameter_DomainInvalid = "InvalidParameter.DomainInvalid"
         case invalidParameter_DomainIsAliaser = "InvalidParameter.DomainIsAliaser"
         case invalidParameter_DomainIsModifyingDns = "InvalidParameter.DomainIsModifyingDns"
+        case invalidParameter_DomainIsMyAlias = "InvalidParameter.DomainIsMyAlias"
         case invalidParameter_DomainIsNotlocked = "InvalidParameter.DomainIsNotlocked"
         case invalidParameter_DomainNotAllowedLock = "InvalidParameter.DomainNotAllowedLock"
         case invalidParameter_DomainNotAllowedModifyRecords = "InvalidParameter.DomainNotAllowedModifyRecords"
@@ -124,6 +127,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case invalidParameter_GroupNameInvalid = "InvalidParameter.GroupNameInvalid"
         case invalidParameter_HasPendingApply = "InvalidParameter.HasPendingApply"
         case invalidParameter_IllegalNewDeal = "InvalidParameter.IllegalNewDeal"
+        case invalidParameter_InnerTaskNotExist = "InvalidParameter.InnerTaskNotExist"
         case invalidParameter_InvalidCoupon = "InvalidParameter.InvalidCoupon"
         case invalidParameter_InvalidDealName = "InvalidParameter.InvalidDealName"
         case invalidParameter_InvalidSecretId = "InvalidParameter.InvalidSecretId"
@@ -150,6 +154,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case invalidParameter_ParamsMissing = "InvalidParameter.ParamsMissing"
         case invalidParameter_PermissionDenied = "InvalidParameter.PermissionDenied"
         case invalidParameter_QcloudUinInvalid = "InvalidParameter.QcloudUinInvalid"
+        case invalidParameter_QuhuiTxtNotMatch = "InvalidParameter.QuhuiTxtNotMatch"
         case invalidParameter_QuhuiTxtRecordWait = "InvalidParameter.QuhuiTxtRecordWait"
         case invalidParameter_RealNameUser = "InvalidParameter.RealNameUser"
         case invalidParameter_RecordIdInvalid = "InvalidParameter.RecordIdInvalid"
@@ -187,6 +192,7 @@ public struct TCDnspodError: TCDnspodErrorType {
         case limitExceeded_GroupNumberLimit = "LimitExceeded.GroupNumberLimit"
         case limitExceeded_HiddenUrlExceeded = "LimitExceeded.HiddenUrlExceeded"
         case limitExceeded_NsCountLimit = "LimitExceeded.NsCountLimit"
+        case limitExceeded_OffsetExceeded = "LimitExceeded.OffsetExceeded"
         case limitExceeded_RecordTtlLimit = "LimitExceeded.RecordTtlLimit"
         case limitExceeded_SrvCountLimit = "LimitExceeded.SrvCountLimit"
         case limitExceeded_SubdomainLevelLimit = "LimitExceeded.SubdomainLevelLimit"
@@ -311,6 +317,10 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 该域名已在您的列表中，无需重复添加。
     public static var failedOperation_DomainExists: TCDnspodError {
         TCDnspodError(.failedOperation_DomainExists)
+    }
+
+    public static var failedOperation_DomainInEnterpriseMailAccount: TCDnspodError {
+        TCDnspodError(.failedOperation_DomainInEnterpriseMailAccount)
     }
 
     /// 该域名为腾讯云 DNSPod 重点保护资源，为了避免误操作造成的业务影响，域名禁止自行操作删除。如果您确认需要删除域名，请先联系您的客户经理，我们将竭诚为您提供技术支持。
@@ -618,6 +628,12 @@ public struct TCDnspodError: TCDnspodErrorType {
         TCDnspodError(.invalidParameter_DomainIdInvalid)
     }
 
+    /// 请前往「ICP/IP地址/域名信息备案管理系统」中进行违法违规域名查询。
+    /// https://beian.miit.gov.cn/
+    public static var invalidParameter_DomainInBlackList: TCDnspodError {
+        TCDnspodError(.invalidParameter_DomainInBlackList)
+    }
+
     /// 不允许操作生效中或失效中的域名。
     public static var invalidParameter_DomainInEffectOrInvalidated: TCDnspodError {
         TCDnspodError(.invalidParameter_DomainInEffectOrInvalidated)
@@ -636,6 +652,10 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 该域名已有同类型操作未完成，无法执行该操作。
     public static var invalidParameter_DomainIsModifyingDns: TCDnspodError {
         TCDnspodError(.invalidParameter_DomainIsModifyingDns)
+    }
+
+    public static var invalidParameter_DomainIsMyAlias: TCDnspodError {
+        TCDnspodError(.invalidParameter_DomainIsMyAlias)
     }
 
     /// 域名没有锁定。
@@ -756,6 +776,11 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 该订单存在冲突或参数有误，无法完成支付，请重新购买。
     public static var invalidParameter_IllegalNewDeal: TCDnspodError {
         TCDnspodError(.invalidParameter_IllegalNewDeal)
+    }
+
+    /// 任务不存在。
+    public static var invalidParameter_InnerTaskNotExist: TCDnspodError {
+        TCDnspodError(.invalidParameter_InnerTaskNotExist)
     }
 
     /// 礼券代码无效。
@@ -886,6 +911,11 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// 用户UIN无效。
     public static var invalidParameter_QcloudUinInvalid: TCDnspodError {
         TCDnspodError(.invalidParameter_QcloudUinInvalid)
+    }
+
+    /// TXT 记录无法匹配，请确认记录值是否准确，并再次验证。
+    public static var invalidParameter_QuhuiTxtNotMatch: TCDnspodError {
+        TCDnspodError(.invalidParameter_QuhuiTxtNotMatch)
     }
 
     /// TXT 记录未设置或暂未生效，请稍后重试。
@@ -1071,6 +1101,11 @@ public struct TCDnspodError: TCDnspodErrorType {
     /// NS记录数量超出限制。
     public static var limitExceeded_NsCountLimit: TCDnspodError {
         TCDnspodError(.limitExceeded_NsCountLimit)
+    }
+
+    /// 分页起始数量过大。
+    public static var limitExceeded_OffsetExceeded: TCDnspodError {
+        TCDnspodError(.limitExceeded_OffsetExceeded)
     }
 
     /// 记录的TTL值超出了限制。

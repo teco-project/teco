@@ -38,7 +38,7 @@ extension Cme {
         /// <li>Member：普通成员。</li>
         public let role: String?
 
-        /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以个改任意团队成员的信息。如果指定操作者，则操作者必须为团队的管理员或者所有者。
+        /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以修改任意团队成员的信息。如果指定操作者，则操作者必须为团队的管理员或者所有者。
         public let `operator`: String?
 
         public init(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil) {

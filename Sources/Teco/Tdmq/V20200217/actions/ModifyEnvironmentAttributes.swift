@@ -36,12 +36,16 @@ extension Tdmq {
         /// 消息保留策略
         public let retentionPolicy: RetentionPolicy?
 
-        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil) {
+        /// 是否开启自动创建订阅
+        public let autoSubscriptionCreation: Bool?
+
+        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
             self.remark = remark
             self.clusterId = clusterId
             self.retentionPolicy = retentionPolicy
+            self.autoSubscriptionCreation = autoSubscriptionCreation
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tdmq {
             case remark = "Remark"
             case clusterId = "ClusterId"
             case retentionPolicy = "RetentionPolicy"
+            case autoSubscriptionCreation = "AutoSubscriptionCreation"
         }
     }
 
@@ -101,15 +106,15 @@ extension Tdmq {
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
-        self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
+        self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间属性
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        try await self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
+        try await self.modifyEnvironmentAttributes(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 }

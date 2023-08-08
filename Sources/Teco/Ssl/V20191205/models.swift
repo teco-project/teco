@@ -19,6 +19,51 @@ import TecoCore
 import TecoDateHelpers
 
 extension Ssl {
+    /// apiGateway实例详情
+    public struct ApiGatewayInstanceDetail: TCOutputModel {
+        /// 实例ID
+        public let serviceId: String
+
+        /// 实例名称
+        public let serviceName: String
+
+        /// 域名
+        public let domain: String
+
+        /// 证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        /// 使用协议
+        public let `protocol`: String
+
+        enum CodingKeys: String, CodingKey {
+            case serviceId = "ServiceId"
+            case serviceName = "ServiceName"
+            case domain = "Domain"
+            case certId = "CertId"
+            case `protocol` = "Protocol"
+        }
+    }
+
+    /// CDN实例详情
+    public struct CdnInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 已部署证书ID
+        public let certId: String
+
+        /// 域名状态
+        public let status: String
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case certId = "CertId"
+            case status = "Status"
+        }
+    }
+
     /// 云资源配置详情
     public struct CertHostingInfo: TCOutputModel {
         /// 证书ID
@@ -41,6 +86,20 @@ extension Ssl {
             case renewCertId = "RenewCertId"
             case resourceType = "ResourceType"
             case createTime = "CreateTime"
+        }
+    }
+
+    /// CLB证书详情
+    public struct Certificate: TCOutputModel {
+        /// 证书ID
+        public let certId: String
+
+        /// 证书绑定的域名
+        public let dnsNames: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case certId = "CertId"
+            case dnsNames = "DnsNames"
         }
     }
 
@@ -278,6 +337,90 @@ extension Ssl {
         }
     }
 
+    /// clb实例详情
+    public struct ClbInstanceDetail: TCOutputModel {
+        /// CLB实例ID
+        public let loadBalancerId: String
+
+        /// CLB实例名称
+        public let loadBalancerName: String
+
+        /// CLB监听器列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listeners: [ClbListener]?
+
+        enum CodingKeys: String, CodingKey {
+            case loadBalancerId = "LoadBalancerId"
+            case loadBalancerName = "LoadBalancerName"
+            case listeners = "Listeners"
+        }
+    }
+
+    /// CLB实例监听器
+    public struct ClbListener: TCOutputModel {
+        /// 监听器ID
+        public let listenerId: String
+
+        /// 监听器名称
+        public let listenerName: String
+
+        /// 是否开启SNI，1为开启，0为关闭
+        public let sniSwitch: UInt64
+
+        /// 监听器协议类型， HTTPS|TCP_SSL
+        public let `protocol`: String
+
+        /// 监听器绑定的证书数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certificate: Certificate?
+
+        /// 监听器规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rules: [ClbListenerRule]?
+
+        /// 不匹配域名列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noMatchDomains: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case listenerId = "ListenerId"
+            case listenerName = "ListenerName"
+            case sniSwitch = "SniSwitch"
+            case `protocol` = "Protocol"
+            case certificate = "Certificate"
+            case rules = "Rules"
+            case noMatchDomains = "NoMatchDomains"
+        }
+    }
+
+    /// CLB监听器规则
+    public struct ClbListenerRule: TCOutputModel {
+        /// 规则ID
+        public let locationId: String
+
+        /// 规则绑定的域名
+        public let domain: String
+
+        /// 规则是否匹配待绑定证书的域名
+        public let isMatch: Bool
+
+        /// 规则已绑定的证书数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certificate: Certificate?
+
+        /// 不匹配域名列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noMatchDomains: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case locationId = "LocationId"
+            case domain = "Domain"
+            case isMatch = "IsMatch"
+            case certificate = "Certificate"
+            case noMatchDomains = "NoMatchDomains"
+        }
+    }
+
     /// 公司信息
     public struct CompanyInfo: TCOutputModel {
         /// 公司名称
@@ -301,6 +444,14 @@ extension Ssl {
         /// 公司电话
         public let companyPhone: String
 
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let idType: String?
+
+        /// ID号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let idNumber: String?
+
         enum CodingKeys: String, CodingKey {
             case companyName = "CompanyName"
             case companyId = "CompanyId"
@@ -309,6 +460,185 @@ extension Ssl {
             case companyCity = "CompanyCity"
             case companyAddress = "CompanyAddress"
             case companyPhone = "CompanyPhone"
+            case idType = "IdType"
+            case idNumber = "IdNumber"
+        }
+    }
+
+    /// COS实例详情
+    public struct CosInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 已绑定的证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        /// ENABLED: 域名上线状态
+        /// DISABLED:域名下线状态
+        public let status: String
+
+        /// 存储桶名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        /// 存储桶地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case certId = "CertId"
+            case status = "Status"
+            case bucket = "Bucket"
+            case region = "Region"
+        }
+    }
+
+    /// ddos复杂类型
+    public struct DdosInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 实例ID
+        public let instanceId: String
+
+        /// 协议类型
+        public let `protocol`: String
+
+        /// 证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        /// 转发端口
+        public let virtualPort: String
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case instanceId = "InstanceId"
+            case `protocol` = "Protocol"
+            case certId = "CertId"
+            case virtualPort = "VirtualPort"
+        }
+    }
+
+    /// 部署记录详情
+    public struct DeployRecordDetail: TCOutputModel {
+        /// 部署记录详情ID
+        public let id: UInt64
+
+        /// 部署证书ID
+        public let certId: String
+
+        /// 原绑定证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldCertId: String?
+
+        /// 部署实例ID
+        public let instanceId: String
+
+        /// 部署实例名称
+        public let instanceName: String
+
+        /// 部署监听器ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerId: String?
+
+        /// 部署域名列表
+        public let domains: [String]
+
+        /// 部署监听器协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 部署状态
+        public let status: Int64
+
+        /// 部署错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorMsg: String?
+
+        /// 部署记录详情创建时间
+        public let createTime: String
+
+        /// 部署记录详情最后一次更新时间
+        public let updateTime: String
+
+        /// 部署监听器名称
+        public let listenerName: String
+
+        /// 是否开启SNI
+        public let sniSwitch: Int64
+
+        /// COS存储桶名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        /// 命名空间名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let namespace: String?
+
+        /// secret名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let secretName: String?
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case certId = "CertId"
+            case oldCertId = "OldCertId"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case listenerId = "ListenerId"
+            case domains = "Domains"
+            case `protocol` = "Protocol"
+            case status = "Status"
+            case errorMsg = "ErrorMsg"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case listenerName = "ListenerName"
+            case sniSwitch = "SniSwitch"
+            case bucket = "Bucket"
+            case namespace = "Namespace"
+            case secretName = "SecretName"
+            case port = "Port"
+        }
+    }
+
+    /// 部署记录信息
+    public struct DeployRecordInfo: TCOutputModel {
+        /// 部署记录ID
+        public let id: UInt64
+
+        /// 部署证书ID
+        public let certId: String
+
+        /// 部署资源类型
+        public let resourceType: String
+
+        /// 部署地域
+        public let region: String
+
+        /// 部署状态
+        public let status: UInt64
+
+        /// 部署时间
+        public let createTime: String
+
+        /// 最近一次更新时间
+        public let updateTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case certId = "CertId"
+            case resourceType = "ResourceType"
+            case region = "Region"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
         }
     }
 
@@ -409,6 +739,68 @@ extension Ssl {
             case dvAuthPath = "DvAuthPath"
             case dvAuthSubDomain = "DvAuthSubDomain"
             case dvAuthVerifyType = "DvAuthVerifyType"
+        }
+    }
+
+    /// 过滤参数列表
+    public struct Filter: TCInputModel {
+        /// 过滤参数key
+        public let filterKey: String
+
+        /// 过滤参数值
+        public let filterValue: String
+
+        public init(filterKey: String, filterValue: String) {
+            self.filterKey = filterKey
+            self.filterValue = filterValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case filterKey = "FilterKey"
+            case filterValue = "FilterValue"
+        }
+    }
+
+    /// Lighthouse实例
+    public struct LighthouseInstanceDetail: TCOutputModel {
+        /// 实例ID
+        public let instanceId: String
+
+        /// 实例名称
+        public let instanceName: String
+
+        /// IP地址
+        public let ip: [String]
+
+        /// 可选择域名
+        public let domain: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case ip = "IP"
+            case domain = "Domain"
+        }
+    }
+
+    /// live实例详情
+    public struct LiveInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 已绑定的证书ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let certId: String?
+
+        /// -1：域名未关联证书。
+        /// 1： 域名https已开启。
+        /// 0： 域名https已关闭。
+        public let status: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case certId = "CertId"
+            case status = "Status"
         }
     }
 
@@ -662,6 +1054,25 @@ extension Ssl {
         }
     }
 
+    /// 云资源地域列表
+    public struct ResourceTypeRegions: TCInputModel {
+        /// 云资源类型
+        public let resourceType: String?
+
+        /// 地域列表
+        public let regions: [String]?
+
+        public init(resourceType: String? = nil, regions: [String]? = nil) {
+            self.resourceType = resourceType
+            self.regions = regions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resourceType = "ResourceType"
+            case regions = "Regions"
+        }
+    }
+
     /// 返回参数键为 RevokeDomainValidateAuths 的内容。
     public struct RevokeDomainValidateAuths: TCOutputModel {
         /// DV 认证值路径。
@@ -884,6 +1295,272 @@ extension Ssl {
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
+        }
+    }
+
+    /// teo实例详情
+    public struct TeoInstanceDetail: TCOutputModel {
+        /// 域名
+        public let host: String
+
+        /// 证书ID
+        public let certId: String
+
+        /// 区域ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneId: String?
+
+        /// 域名状态
+        public let status: String?
+
+        enum CodingKeys: String, CodingKey {
+            case host = "Host"
+            case certId = "CertId"
+            case zoneId = "ZoneId"
+            case status = "Status"
+        }
+    }
+
+    /// tke ingress实例详情
+    public struct TkeIngressDetail: TCOutputModel {
+        /// ingress名称
+        public let ingressName: String
+
+        /// tls域名列表
+        public let tlsDomains: [String]
+
+        /// ingress域名列表
+        public let domains: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case ingressName = "IngressName"
+            case tlsDomains = "TlsDomains"
+            case domains = "Domains"
+        }
+    }
+
+    /// tke实例详情
+    public struct TkeInstanceDetail: TCOutputModel {
+        /// 集群ID
+        public let clusterId: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 集群命名空间列表
+        public let namespaceList: [TkeNameSpaceDetail]
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case namespaceList = "NamespaceList"
+        }
+    }
+
+    /// tke namespace详情
+    public struct TkeNameSpaceDetail: TCOutputModel {
+        /// namespace名称
+        public let name: String
+
+        /// secret列表
+        public let secretList: [TkeSecretDetail]
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case secretList = "SecretList"
+        }
+    }
+
+    /// tke secret详情
+    public struct TkeSecretDetail: TCOutputModel {
+        /// secret名称
+        public let name: String
+
+        /// 证书ID
+        public let certId: String
+
+        /// ingress列表
+        public let ingressList: [TkeIngressDetail]
+
+        /// 和新证书不匹配的域名列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noMatchDomains: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case certId = "CertId"
+            case ingressList = "IngressList"
+            case noMatchDomains = "NoMatchDomains"
+        }
+    }
+
+    /// 更新记录详情
+    public struct UpdateRecordDetail: TCOutputModel {
+        /// 详情记录id
+        public let id: UInt64
+
+        /// 新证书ID
+        public let certId: String
+
+        /// 旧证书ID
+        public let oldCertId: String
+
+        /// 部署域名列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domains: [String]?
+
+        /// 部署资源类型
+        public let resourceType: String
+
+        /// 部署地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 部署状态
+        public let status: UInt64
+
+        /// 部署错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorMsg: String?
+
+        /// 部署时间
+        public let createTime: String
+
+        /// 最后一次更新时间
+        public let updateTime: String
+
+        /// 部署实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 部署实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 部署监听器ID（CLB专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerId: String?
+
+        /// 部署监听器名称（CLB专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerName: String?
+
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 是否开启SNI（CLB专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sniSwitch: UInt64?
+
+        /// bucket名称（COS专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let port: Int64?
+
+        /// 命名空间（TKE专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let namespace: String?
+
+        /// secret名称（TKE专用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let secretName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case certId = "CertId"
+            case oldCertId = "OldCertId"
+            case domains = "Domains"
+            case resourceType = "ResourceType"
+            case region = "Region"
+            case status = "Status"
+            case errorMsg = "ErrorMsg"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case listenerId = "ListenerId"
+            case listenerName = "ListenerName"
+            case `protocol` = "Protocol"
+            case sniSwitch = "SniSwitch"
+            case bucket = "Bucket"
+            case port = "Port"
+            case namespace = "Namespace"
+            case secretName = "SecretName"
+        }
+    }
+
+    /// 更新记录详情列表
+    public struct UpdateRecordDetails: TCOutputModel {
+        /// 部署资源类型
+        public let resourceType: String
+
+        /// 部署资源详情列表
+        public let list: [UpdateRecordDetail]
+
+        /// 该部署资源总数
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case resourceType = "ResourceType"
+            case list = "List"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 部署记录信息
+    public struct UpdateRecordInfo: TCOutputModel {
+        /// 记录ID
+        public let id: UInt64
+
+        /// 新证书ID
+        public let certId: String
+
+        /// 原证书ID
+        public let oldCertId: String
+
+        /// 部署资源类型列表
+        public let resourceTypes: [String]
+
+        /// 部署地域列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regions: [String]?
+
+        /// 部署状态
+        public let status: UInt64
+
+        /// 部署时间
+        public let createTime: String
+
+        /// 最后一次更新时间
+        public let updateTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case certId = "CertId"
+            case oldCertId = "OldCertId"
+            case resourceTypes = "ResourceTypes"
+            case regions = "Regions"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+        }
+    }
+
+    /// Vod实例
+    public struct VodInstanceDetail: TCOutputModel {
+        /// 域名
+        public let domain: String
+
+        /// 证书ID
+        public let certId: String
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case certId = "CertId"
         }
     }
 }

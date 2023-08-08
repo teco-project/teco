@@ -30,8 +30,8 @@ extension Ess {
         /// 用户上传的模板ID
         public let templateId: String
 
-        /// 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起
-        public let fileNames: [String]
+        /// 文件名列表，单个文件名最大长度200个字符，暂时仅支持单文件发起。设置后流程对应的文件名称当前设置的值。
+        public let fileNames: [String]?
 
         /// 内容控件信息数组
         public let formFields: [FormField]?
@@ -49,7 +49,7 @@ extension Ess {
         /// 客户端Token，保持接口幂等性,最大长度64个字符
         public let clientToken: String?
 
-        public init(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil) {
+        public init(operator: UserInfo, flowId: String, templateId: String, fileNames: [String]? = nil, formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil) {
             self.operator = `operator`
             self.flowId = flowId
             self.templateId = templateId
@@ -93,43 +93,43 @@ extension Ess {
         }
     }
 
-    /// 创建电子文档
+    /// 模板发起合同-创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。x0b
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
         self.client.execute(action: "CreateDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建电子文档
+    /// 模板发起合同-创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。x0b
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
     public func createDocument(_ input: CreateDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
         try await self.client.execute(action: "CreateDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建电子文档
+    /// 模板发起合同-创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。x0b
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
-    public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
+    public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String]? = nil, formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
         self.createDocument(.init(operator: `operator`, flowId: flowId, templateId: templateId, fileNames: fileNames, formFields: formFields, needPreview: needPreview, previewType: previewType, agent: agent, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建电子文档
+    /// 模板发起合同-创建电子文档
     ///
     /// 创建签署流程电子文档
-    /// 适用场景：见创建签署流程接口。x0b
+    /// 适用场景：见创建签署流程接口。
     /// 注：该接口需要给对应的流程指定一个模板id，并且填充该模板中需要补充的信息。是“发起流程”接口的前置接口。
     @inlinable
-    public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
+    public func createDocument(operator: UserInfo, flowId: String, templateId: String, fileNames: [String]? = nil, formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
         try await self.createDocument(.init(operator: `operator`, flowId: flowId, templateId: templateId, fileNames: fileNames, formFields: formFields, needPreview: needPreview, previewType: previewType, agent: agent, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

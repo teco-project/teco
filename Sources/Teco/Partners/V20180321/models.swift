@@ -210,148 +210,6 @@ extension Partners {
     }
 
     /// 描述代理商代付的订单信息
-    public struct AgentDealElem: TCOutputModel {
-        /// 订单自增 ID【请勿依赖该字段作为唯一标识】
-        public let dealId: String
-
-        /// 订单号【订单唯一键】
-        public let dealName: String
-
-        /// 商品类型 ID
-        public let goodsCategoryId: String
-
-        /// 订单所有者
-        public let ownerUin: String
-
-        /// 订单所有者对应 appId
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appId: String?
-
-        /// 商品数量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let goodsNum: String?
-
-        /// 价格详情
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let goodsPrice: DealGoodsPriceElem?
-
-        /// 下单人
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let creater: String?
-
-        /// 下单时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let creatTime: String?
-
-        /// 支付结束时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let payEndTime: String?
-
-        /// 扣费流水号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let billId: String?
-
-        /// 支付人
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let payer: String?
-
-        /// 订单状态，中文描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dealStatus: String?
-
-        /// 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String?
-
-        /// 产品名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let goodsName: String?
-
-        /// 客户备注
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clientRemark: String?
-
-        /// 订单操作类型，purchase（新购），renew（续费），modify（配置变更）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let actionType: String?
-
-        /// 代金券抵扣金额，单位分
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let voucherDecline: String?
-
-        /// 大订单号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bigDealId: String?
-
-        /// 客户类型（new：自拓；old：官网；assign：指派；direct：直销；direct_newopp：直销(新商机)）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clientType: String?
-
-        /// 项目类型（self：自拓；repeat：直销；platform：官网合作）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let projectType: String?
-
-        /// 业务员账号ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let salesUin: String?
-
-        /// 支付方式，0：自付；1：代付
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let payerMode: String?
-
-        /// 活动ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let activityId: String?
-
-        /// 订单过期时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let overdueTime: String?
-
-        /// 产品详情
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let productInfo: [ProductInfoElem]?
-
-        /// 付款方式
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let paymentMethod: String?
-
-        /// 订单更新时间
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updateTime: String?
-
-        enum CodingKeys: String, CodingKey {
-            case dealId = "DealId"
-            case dealName = "DealName"
-            case goodsCategoryId = "GoodsCategoryId"
-            case ownerUin = "OwnerUin"
-            case appId = "AppId"
-            case goodsNum = "GoodsNum"
-            case goodsPrice = "GoodsPrice"
-            case creater = "Creater"
-            case creatTime = "CreatTime"
-            case payEndTime = "PayEndTime"
-            case billId = "BillId"
-            case payer = "Payer"
-            case dealStatus = "DealStatus"
-            case status = "Status"
-            case goodsName = "GoodsName"
-            case clientRemark = "ClientRemark"
-            case actionType = "ActionType"
-            case voucherDecline = "VoucherDecline"
-            case bigDealId = "BigDealId"
-            case clientType = "ClientType"
-            case projectType = "ProjectType"
-            case salesUin = "SalesUin"
-            case payerMode = "PayerMode"
-            case activityId = "ActivityId"
-            case overdueTime = "OverdueTime"
-            case productInfo = "ProductInfo"
-            case paymentMethod = "PaymentMethod"
-            case updateTime = "UpdateTime"
-        }
-    }
-
-    /// 描述代理商代付的订单信息
     public struct AgentDealNewElem: TCOutputModel {
         /// 订单自增 ID【请勿依赖该字段作为唯一标识】
         public let dealId: String
@@ -461,6 +319,14 @@ extension Partners {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
 
+        /// 资源id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceIds: [String]?
+
+        /// 退款单的原订单信息。当前仅 DescribeClientDealsByCache 接口会返回该字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refundMap: [RefundMap]?
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case dealName = "DealName"
@@ -490,6 +356,8 @@ extension Partners {
             case productInfo = "ProductInfo"
             case paymentMethod = "PaymentMethod"
             case updateTime = "UpdateTime"
+            case resourceIds = "ResourceIds"
+            case refundMap = "RefundMap"
         }
     }
 
@@ -515,20 +383,6 @@ extension Partners {
             case salesUin = "SalesUin"
             case salesName = "SalesName"
             case createTime = "CreateTime"
-        }
-    }
-
-    /// 订单价格详情
-    public struct DealGoodsPriceElem: TCOutputModel {
-        /// 实付金额（单位：分）
-        public let realTotalCost: UInt64
-
-        /// 订单实际金额（不含折扣，单位：分）
-        public let originalTotalCost: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case realTotalCost = "RealTotalCost"
-            case originalTotalCost = "OriginalTotalCost"
         }
     }
 
@@ -617,6 +471,22 @@ extension Partners {
             case monthSales = "MonthSales"
             case quarterSales = "QuarterSales"
             case exceptionFlag = "ExceptionFlag"
+        }
+    }
+
+    /// 退款单关联的原始订单信息
+    public struct RefundMap: TCOutputModel {
+        /// 退款单关联的原始子订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealName: String?
+
+        /// 退款金额，单位分
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refundAmount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case dealName = "DealName"
+            case refundAmount = "RefundAmount"
         }
     }
 

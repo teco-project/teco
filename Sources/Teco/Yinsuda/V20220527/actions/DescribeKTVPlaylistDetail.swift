@@ -42,13 +42,24 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
 
-        public init(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
+        /// 播放场景。默认为Chat
+        /// <li>Live：直播</li><li>Chat：语聊</li>
+        public let playScene: String?
+
+        /// 物料过滤，取值有：
+        /// <li>Lyrics：含有歌词；</li>
+        /// <li>Midi：含有音高线。</li>
+        public let materialFilters: [String]?
+
+        public init(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.playlistId = playlistId
             self.scrollToken = scrollToken
             self.limit = limit
             self.rightFilters = rightFilters
+            self.playScene = playScene
+            self.materialFilters = materialFilters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +69,8 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case limit = "Limit"
             case rightFilters = "RightFilters"
+            case playScene = "PlayScene"
+            case materialFilters = "MaterialFilters"
         }
 
         /// Compute the next request based on API response.
@@ -65,7 +78,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVPlaylistDetailRequest(appName: self.appName, userId: self.userId, playlistId: self.playlistId, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters)
+            return DescribeKTVPlaylistDetailRequest(appName: self.appName, userId: self.userId, playlistId: self.playlistId, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters, playScene: self.playScene, materialFilters: self.materialFilters)
         }
     }
 
@@ -112,16 +125,16 @@ extension Yinsuda {
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
-        self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
+        self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, playScene: playScene, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
-        try await self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
+        try await self.describeKTVPlaylistDetail(.init(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, playScene: playScene, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情

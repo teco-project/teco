@@ -61,10 +61,10 @@ extension Tcb {
         public let buildDir: String?
 
         /// 请使用CPUSize
-        public let cpu: Int64
+        public let cpu: Float
 
         /// 请使用MemSize
-        public let mem: Int64
+        public let mem: Float
 
         /// 副本最小值
         public let minNum: Int64
@@ -239,7 +239,7 @@ extension Tcb {
         }
     }
 
-    /// 查询服务版本的详情
+    /// 查询云托管服务版本的详情
     ///
     /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
     @inlinable
@@ -247,7 +247,7 @@ extension Tcb {
         self.client.execute(action: "DescribeCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询服务版本的详情
+    /// 查询云托管服务版本的详情
     ///
     /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
     @inlinable
@@ -255,7 +255,7 @@ extension Tcb {
         try await self.client.execute(action: "DescribeCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询服务版本的详情
+    /// 查询云托管服务版本的详情
     ///
     /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
     @inlinable
@@ -263,7 +263,7 @@ extension Tcb {
         self.describeCloudBaseRunServerVersion(.init(envId: envId, serverName: serverName, versionName: versionName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询服务版本的详情
+    /// 查询云托管服务版本的详情
     ///
     /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
     @inlinable

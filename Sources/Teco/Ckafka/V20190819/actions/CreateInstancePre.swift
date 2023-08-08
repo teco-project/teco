@@ -24,20 +24,19 @@ extension Ckafka {
         /// 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         public let instanceName: String
 
-        /// 可用区，购买多可用区实例时，填写ZoneIds.N字段中的任意一个值
+        /// 可用区。当购买多可用区实例时，当前参数为主可用区。需要保证传入的参数和 SubnetId 所在子网属于同一个可用区
         public let zoneId: Int64
 
         /// 预付费购买时长，例如 "1m",就是一个月
         public let period: String
 
-        /// 实例规格说明 专业版实例[所有规格]填写1.
-        /// 标准版实例 ([入门型(general)]填写1，[标准型(standard)]填写2，[进阶型(advanced)]填写3，[容量型(capacity)]填写4，[高阶型1(specialized-1)]填写5，[高阶性2(specialized-2)]填写6,[高阶型3(specialized-3)]填写7,[高阶型4(specialized-4)]填写8，[独占型(exclusive)]填写9。
+        /// 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
         public let instanceType: Int64
 
-        /// vpcId，不填默认基础网络
+        /// vpcId，必填
         public let vpcId: String?
 
-        /// 子网id，vpc网络需要传该参数，基础网络可以不传
+        /// 子网id，必填
         public let subnetId: String?
 
         /// 可选。实例日志的最长保留时间，单位分钟，默认为10080（7天），最大30天，不填默认0，代表不开启日志保留时间回收策略
@@ -49,34 +48,40 @@ extension Ckafka {
         /// 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         public let renewFlag: Int64?
 
-        /// CKafka版本号[0.10.2、1.1.1、2.4.1], 默认是1.1.1
+        /// CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
         public let kafkaVersion: String?
 
-        /// 实例类型: [标准版实例]填写 standard(默认), [专业版实例]填写 profession
+        /// 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession"
         public let specificationsType: String?
 
-        /// 磁盘大小,专业版不填写默认最小磁盘,填写后根据磁盘带宽分区数弹性计算
+        /// 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功
         public let diskSize: Int64?
 
-        /// 带宽,专业版不填写默认最小带宽,填写后根据磁盘带宽分区数弹性计算
+        /// 带宽，如果跟控制台规格配比不相符，则无法创建成功
         public let bandWidth: Int64?
 
-        /// 分区大小,专业版不填写默认最小分区数,填写后根据磁盘带宽分区数弹性计算
+        /// 分区大小，如果跟控制台规格配比不相符，则无法创建成功
         public let partition: Int64?
 
         /// 标签
         public let tags: [Tag]?
 
-        /// 磁盘类型（ssd填写CLOUD_SSD，sata填写CLOUD_BASIC）
+        /// 专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"
         public let diskType: String?
 
-        /// 跨可用区，zoneIds必填
+        /// 是否创建跨可用区实例，当前参数为 true 时，zoneIds必填
         public let multiZoneFlag: Bool?
 
         /// 可用区列表，购买多可用区实例时为必填项
         public let zoneIds: [Int64]?
 
-        public init(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil) {
+        /// 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。默认值为 0。需要保证传入参数为 3 的整数倍
+        public let publicNetworkMonthly: Int64?
+
+        /// 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
+        public let instanceNum: Int64?
+
+        public init(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, publicNetworkMonthly: Int64? = nil, instanceNum: Int64? = nil) {
             self.instanceName = instanceName
             self.zoneId = zoneId
             self.period = period
@@ -95,6 +100,8 @@ extension Ckafka {
             self.diskType = diskType
             self.multiZoneFlag = multiZoneFlag
             self.zoneIds = zoneIds
+            self.publicNetworkMonthly = publicNetworkMonthly
+            self.instanceNum = instanceNum
         }
 
         enum CodingKeys: String, CodingKey {
@@ -116,6 +123,8 @@ extension Ckafka {
             case diskType = "DiskType"
             case multiZoneFlag = "MultiZoneFlag"
             case zoneIds = "ZoneIds"
+            case publicNetworkMonthly = "PublicNetworkMonthly"
+            case instanceNum = "InstanceNum"
         }
     }
 
@@ -147,13 +156,13 @@ extension Ckafka {
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
-        self.createInstancePre(.init(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
+    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, publicNetworkMonthly: Int64? = nil, instanceNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
+        self.createInstancePre(.init(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds, publicNetworkMonthly: publicNetworkMonthly, instanceNum: instanceNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
-        try await self.createInstancePre(.init(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
+    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, publicNetworkMonthly: Int64? = nil, instanceNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
+        try await self.createInstancePre(.init(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds, publicNetworkMonthly: publicNetworkMonthly, instanceNum: instanceNum), region: region, logger: logger, on: eventLoop)
     }
 }

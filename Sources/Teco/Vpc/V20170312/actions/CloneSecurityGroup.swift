@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// CloneSecurityGroup请求参数结构体
     public struct CloneSecurityGroupRequest: TCRequestModel {
-        /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        /// 安全组实例ID，例如sg-33ocnj9n，可通过<a href="https://cloud.tencent.com/document/product/215/15808">DescribeSecurityGroups</a>获取。
         public let securityGroupId: String
 
         /// 安全组名称，可任意命名，但不得超过60个字符。未提供参数时，克隆后的安全组名称和SecurityGroupId对应的安全组名称相同。
@@ -30,7 +30,7 @@ extension Vpc {
         /// 安全组备注，最多100个字符。未提供参数时，克隆后的安全组备注和SecurityGroupId对应的安全组备注相同。
         public let groupDescription: String?
 
-        /// 项目ID，默认0。可在qcloud控制台项目管理页面查询到。
+        /// 项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">qcloud控制台项目管理页面</a>查询到。
         public let projectId: String?
 
         /// 源Region,跨地域克隆安全组时，需要传入源安全组所属地域信息，例如：克隆广州的安全组到上海，则这里需要传入广州安全的地域信息：ap-guangzhou。

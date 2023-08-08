@@ -25,6 +25,7 @@ extension TCAiartError {
             case imageDownloadError = "FailedOperation.ImageDownloadError"
             case imageResolutionExceed = "FailedOperation.ImageResolutionExceed"
             case imageSizeExceed = "FailedOperation.ImageSizeExceed"
+            case innerError = "FailedOperation.InnerError"
             case requestEntityTooLarge = "FailedOperation.RequestEntityTooLarge"
             case requestTimeout = "FailedOperation.RequestTimeout"
             case rpcFail = "FailedOperation.RpcFail"
@@ -84,6 +85,10 @@ extension TCAiartError {
             FailedOperation(.imageSizeExceed)
         }
 
+        public static var innerError: FailedOperation {
+            FailedOperation(.innerError)
+        }
+
         /// 整个请求体太大（通常主要是图片）。
         public static var requestEntityTooLarge: FailedOperation {
             FailedOperation(.requestEntityTooLarge)
@@ -124,6 +129,8 @@ extension TCAiartError {
                 code = .failedOperation_ImageResolutionExceed
             case .imageSizeExceed:
                 code = .failedOperation_ImageSizeExceed
+            case .innerError:
+                code = .failedOperation_InnerError
             case .requestEntityTooLarge:
                 code = .failedOperation_RequestEntityTooLarge
             case .requestTimeout:

@@ -18,65 +18,76 @@ import TecoCore
 
 extension Cms {
     /// 从图片中检测到的二维码，可能为多个
-    public struct CodeDetail: TCInputModel {
-        /// 二维码在图片中的位置，由边界点的坐标表示
-        public let codePosition: [CodePosition]?
-
+    public struct CodeDetail: TCOutputModel {
         /// 二维码文本的编码格式
-        public let codeCharset: String?
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strCharset: String?
+
+        /// 二维码在图片中的位置，由边界点的坐标表示
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qrCodePosition: [CodePosition]?
 
         /// 二维码的文本内容
-        public let codeText: String?
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strQrCodeText: String?
 
         /// 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uint32QrCodeType: Int64?
+
+        /// 二维码文本的编码格式（已废弃）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codeCharset: String?
+
+        /// 二维码在图片中的位置，由边界点的坐标表示（已废弃）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codePosition: [CodePosition]?
+
+        /// 二维码的文本内容（已废弃）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codeText: String?
+
+        /// 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX（已废弃）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeType: Int64?
 
-        public init(codePosition: [CodePosition]? = nil, codeCharset: String? = nil, codeText: String? = nil, codeType: Int64? = nil) {
-            self.codePosition = codePosition
-            self.codeCharset = codeCharset
-            self.codeText = codeText
-            self.codeType = codeType
-        }
-
         enum CodingKeys: String, CodingKey {
-            case codePosition = "CodePosition"
+            case strCharset = "StrCharset"
+            case qrCodePosition = "QrCodePosition"
+            case strQrCodeText = "StrQrCodeText"
+            case uint32QrCodeType = "Uint32QrCodeType"
             case codeCharset = "CodeCharset"
+            case codePosition = "CodePosition"
             case codeText = "CodeText"
             case codeType = "CodeType"
         }
     }
 
     /// 图片二维码详情
-    public struct CodeDetect: TCInputModel {
-        /// 从图片中检测到的二维码，可能为多个
-        public let moderationDetail: [CodeDetail]?
-
+    public struct CodeDetect: TCOutputModel {
         /// 检测是否成功，0：成功，-1：出错
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let moderationCode: Int64?
 
-        public init(moderationDetail: [CodeDetail]? = nil, moderationCode: Int64? = nil) {
-            self.moderationDetail = moderationDetail
-            self.moderationCode = moderationCode
-        }
+        /// 从图片中检测到的二维码，可能为多个
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let moderationDetail: [CodeDetail]?
 
         enum CodingKeys: String, CodingKey {
-            case moderationDetail = "ModerationDetail"
             case moderationCode = "ModerationCode"
+            case moderationDetail = "ModerationDetail"
         }
     }
 
     /// 二维码在图片中的位置，由边界点的坐标表示
-    public struct CodePosition: TCInputModel {
+    public struct CodePosition: TCOutputModel {
         /// 二维码边界点X轴坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let floatX: Float?
 
         /// 二维码边界点Y轴坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let floatY: Float?
-
-        public init(floatX: Float? = nil, floatY: Float? = nil) {
-            self.floatX = floatX
-            self.floatY = floatY
-        }
 
         enum CodingKeys: String, CodingKey {
             case floatX = "FloatX"
@@ -85,31 +96,35 @@ extension Cms {
     }
 
     /// 坐标
-    public struct Coordinate: TCInputModel {
-        /// 左上角横坐标
-        public let cx: Int64?
-
-        /// 左上角纵坐标
-        public let cy: Int64?
-
-        /// 高度
-        public let height: Int64?
-
+    public struct Coordinate: TCInputModel, TCOutputModel {
         /// 宽度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Int64?
 
-        public init(cx: Int64? = nil, cy: Int64? = nil, height: Int64? = nil, width: Int64? = nil) {
-            self.cx = cx
-            self.cy = cy
-            self.height = height
+        /// 左上角纵坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cy: Int64?
+
+        /// 左上角横坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cx: Int64?
+
+        /// 高度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let height: Int64?
+
+        public init(width: Int64? = nil, cy: Int64? = nil, cx: Int64? = nil, height: Int64? = nil) {
             self.width = width
+            self.cy = cy
+            self.cx = cx
+            self.height = height
         }
 
         enum CodingKeys: String, CodingKey {
-            case cx = "Cx"
-            case cy = "Cy"
-            case height = "Height"
             case width = "Width"
+            case cy = "Cy"
+            case cx = "Cx"
+            case height = "Height"
         }
     }
 
@@ -118,34 +133,56 @@ extension Cms {
         /// 命中的自定义关键词
         public let keywords: [String]?
 
-        /// 自定义库id
-        public let libId: String?
-
         /// 自定义词库名称
         public let libName: String?
+
+        /// 自定义库id
+        public let libId: String?
 
         /// 命中的自定义关键词的类型
         public let type: String?
 
-        public init(keywords: [String]? = nil, libId: String? = nil, libName: String? = nil, type: String? = nil) {
+        public init(keywords: [String]? = nil, libName: String? = nil, libId: String? = nil, type: String? = nil) {
             self.keywords = keywords
-            self.libId = libId
             self.libName = libName
+            self.libId = libId
             self.type = type
         }
 
         enum CodingKeys: String, CodingKey {
             case keywords = "Keywords"
-            case libId = "LibId"
             case libName = "LibName"
+            case libId = "LibId"
             case type = "Type"
+        }
+    }
+
+    /// 词库关键词删除结果详情
+    public struct DeleteSampleDetails: TCOutputModel {
+        /// 关键词ID
+        public let sampleID: String
+
+        /// 关键词内容
+        public let content: String
+
+        /// 是否删除成功
+        public let deleted: Bool
+
+        /// 错误信息
+        public let errorInfo: String
+
+        enum CodingKeys: String, CodingKey {
+            case sampleID = "SampleID"
+            case content = "Content"
+            case deleted = "Deleted"
+            case errorInfo = "ErrorInfo"
         }
     }
 
     /// 文本返回的详细结果
     public struct DetailResult: TCInputModel {
-        /// 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
-        public let evilLabel: String?
+        /// 该标签下命中的关键词
+        public let keywords: [String]?
 
         /// 恶意类型
         /// 100：正常
@@ -157,40 +194,34 @@ extension Cms {
         /// 24001：暴恐
         public let evilType: UInt64?
 
-        /// 该标签下命中的关键词
-        public let keywords: [String]?
-
         /// 该标签模型命中的分值
         public let score: UInt64?
 
-        public init(evilLabel: String? = nil, evilType: UInt64? = nil, keywords: [String]? = nil, score: UInt64? = nil) {
-            self.evilLabel = evilLabel
-            self.evilType = evilType
+        /// 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
+        public let evilLabel: String?
+
+        public init(keywords: [String]? = nil, evilType: UInt64? = nil, score: UInt64? = nil, evilLabel: String? = nil) {
             self.keywords = keywords
+            self.evilType = evilType
             self.score = score
+            self.evilLabel = evilLabel
         }
 
         enum CodingKeys: String, CodingKey {
-            case evilLabel = "EvilLabel"
-            case evilType = "EvilType"
             case keywords = "Keywords"
+            case evilType = "EvilType"
             case score = "Score"
+            case evilLabel = "EvilLabel"
         }
     }
 
     /// 设备信息
     public struct Device: TCInputModel {
-        /// 设备指纹ID
-        public let deviceId: String?
-
-        /// IOS设备，Identifier For Advertising（广告标识符）
-        public let idfa: String?
-
         /// IOS设备，IDFV - Identifier For Vendor（应用开发商标识符）
         public let idfv: String?
 
-        /// 设备序列号
-        public let imei: String?
+        /// 设备指纹Token
+        public let tokenId: String?
 
         /// 用户IP
         public let ip: String?
@@ -198,161 +229,57 @@ extension Cms {
         /// Mac地址
         public let mac: String?
 
-        /// 设备指纹Token
-        public let tokenId: String?
+        /// IOS设备，Identifier For Advertising（广告标识符）
+        public let idfa: String?
 
-        public init(deviceId: String? = nil, idfa: String? = nil, idfv: String? = nil, imei: String? = nil, ip: String? = nil, mac: String? = nil, tokenId: String? = nil) {
-            self.deviceId = deviceId
-            self.idfa = idfa
+        /// 设备指纹ID
+        public let deviceId: String?
+
+        /// 设备序列号
+        public let imei: String?
+
+        public init(idfv: String? = nil, tokenId: String? = nil, ip: String? = nil, mac: String? = nil, idfa: String? = nil, deviceId: String? = nil, imei: String? = nil) {
             self.idfv = idfv
-            self.imei = imei
+            self.tokenId = tokenId
             self.ip = ip
             self.mac = mac
-            self.tokenId = tokenId
+            self.idfa = idfa
+            self.deviceId = deviceId
+            self.imei = imei
         }
 
         enum CodingKeys: String, CodingKey {
-            case deviceId = "DeviceId"
-            case idfa = "IDFA"
             case idfv = "IDFV"
-            case imei = "IMEI"
+            case tokenId = "TokenId"
             case ip = "IP"
             case mac = "Mac"
-            case tokenId = "TokenId"
+            case idfa = "IDFA"
+            case deviceId = "DeviceId"
+            case imei = "IMEI"
         }
     }
 
-    /// 文件类型样本
-    public struct FileSample: TCInputModel {
-        /// 文件md5
-        public let fileMd5: String
-
-        /// 文件名称
-        public let fileName: String
-
-        /// 文件url
-        public let fileUrl: String
-
-        /// 文件压缩后云url
-        public let compressFileUrl: String?
-
-        public init(fileMd5: String, fileName: String, fileUrl: String, compressFileUrl: String? = nil) {
-            self.fileMd5 = fileMd5
-            self.fileName = fileName
-            self.fileUrl = fileUrl
-            self.compressFileUrl = compressFileUrl
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case fileMd5 = "FileMd5"
-            case fileName = "FileName"
-            case fileUrl = "FileUrl"
-            case compressFileUrl = "CompressFileUrl"
-        }
-    }
-
-    /// 文件样本返回信息
-    public struct FileSampleInfo: TCInputModel {
-        /// 处理错误码
-        public let code: Int64
-
-        /// 创建时间戳
-        public let createdAt: UInt64
-
-        /// 恶意类型
-        /// 100：正常
-        /// 20001：政治
-        /// 20002：色情
-        /// 20006：涉毒违法
-        /// 20007：谩骂
-        /// 24001：暴恐
-        public let evilType: UInt64
-
-        /// 文件的md5
-        public let fileMd5: String
-
-        /// 文件名称
-        public let fileName: String
-
-        /// 文件类型
-        public let fileType: String
-
-        /// 唯一标识
-        public let id: String
-
-        /// 样本类型
-        /// 1：黑库
-        /// 2：白库
-        public let label: UInt64
-
-        /// 任务状态
-        /// 1：添加完成
-        /// 2：添加处理中
-        /// 3：下载中
-        /// 4：下载完成
-        /// 5：上传完成
-        /// 6：步骤完成
-        public let status: UInt64
-
-        /// 文件压缩后云url
-        public let compressFileUrl: String?
-
-        /// 文件的url
-        public let fileUrl: String?
-
-        public init(code: Int64, createdAt: UInt64, evilType: UInt64, fileMd5: String, fileName: String, fileType: String, id: String, label: UInt64, status: UInt64, compressFileUrl: String? = nil, fileUrl: String? = nil) {
-            self.code = code
-            self.createdAt = createdAt
-            self.evilType = evilType
-            self.fileMd5 = fileMd5
-            self.fileName = fileName
-            self.fileType = fileType
-            self.id = id
-            self.label = label
-            self.status = status
-            self.compressFileUrl = compressFileUrl
-            self.fileUrl = fileUrl
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case code = "Code"
-            case createdAt = "CreatedAt"
-            case evilType = "EvilType"
-            case fileMd5 = "FileMd5"
-            case fileName = "FileName"
-            case fileType = "FileType"
-            case id = "Id"
-            case label = "Label"
-            case status = "Status"
-            case compressFileUrl = "CompressFileUrl"
-            case fileUrl = "FileUrl"
-        }
-    }
-
-    /// 筛选数据结构
-    public struct Filter: TCInputModel {
-        /// 需要过滤的字段
+    /// 入参过滤条件
+    public struct Filters: TCInputModel {
+        /// 查询字段
         public let name: String
 
-        /// 需要过滤字段的值
-        public let value: String
+        /// 查询值
+        public let values: [String]
 
-        public init(name: String, value: String) {
+        public init(name: String, values: [String]) {
             self.name = name
-            self.value = value
+            self.values = values
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
-            case value = "Value"
+            case values = "Values"
         }
     }
 
     /// 图片识别结果详情
-    public struct ImageData: TCInputModel {
-        /// 是否恶意 0：正常 1：可疑
-        public let evilFlag: Int64
-
+    public struct ImageData: TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 20001：政治
@@ -363,79 +290,74 @@ extension Cms {
         /// 24001：暴恐
         public let evilType: Int64
 
-        /// 图片二维码详情
-        public let codeDetect: CodeDetect?
-
         /// 图片性感详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hotDetect: ImageHotDetect?
 
-        /// 图片违法详情
-        public let illegalDetect: ImageIllegalDetect?
+        /// 是否恶意 0：正常 1：可疑
+        public let evilFlag: Int64
 
-        /// logo详情
-        public let logoDetect: LogoDetail?
-
-        /// 图片OCR详情
-        public let ocrDetect: OCRDetect?
-
-        /// 手机检测详情
-        public let phoneDetect: PhoneDetect?
+        /// 图片二维码详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codeDetect: CodeDetect?
 
         /// 图片涉政详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let polityDetect: ImagePolityDetect?
 
+        /// 图片违法详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let illegalDetect: ImageIllegalDetect?
+
         /// 图片涉黄详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pornDetect: ImagePornDetect?
 
-        /// 图片相似度详情
-        public let similar: Similar?
-
         /// 图片暴恐详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let terrorDetect: ImageTerrorDetect?
 
-        public init(evilFlag: Int64, evilType: Int64, codeDetect: CodeDetect? = nil, hotDetect: ImageHotDetect? = nil, illegalDetect: ImageIllegalDetect? = nil, logoDetect: LogoDetail? = nil, ocrDetect: OCRDetect? = nil, phoneDetect: PhoneDetect? = nil, polityDetect: ImagePolityDetect? = nil, pornDetect: ImagePornDetect? = nil, similar: Similar? = nil, terrorDetect: ImageTerrorDetect? = nil) {
-            self.evilFlag = evilFlag
-            self.evilType = evilType
-            self.codeDetect = codeDetect
-            self.hotDetect = hotDetect
-            self.illegalDetect = illegalDetect
-            self.logoDetect = logoDetect
-            self.ocrDetect = ocrDetect
-            self.phoneDetect = phoneDetect
-            self.polityDetect = polityDetect
-            self.pornDetect = pornDetect
-            self.similar = similar
-            self.terrorDetect = terrorDetect
-        }
+        /// 图片OCR详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ocrDetect: OCRDetect?
+
+        /// logo详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logoDetect: LogoDetail?
+
+        /// 图片相似度详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let similar: Similar?
+
+        /// 手机检测详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneDetect: PhoneDetect?
 
         enum CodingKeys: String, CodingKey {
-            case evilFlag = "EvilFlag"
             case evilType = "EvilType"
-            case codeDetect = "CodeDetect"
             case hotDetect = "HotDetect"
-            case illegalDetect = "IllegalDetect"
-            case logoDetect = "LogoDetect"
-            case ocrDetect = "OCRDetect"
-            case phoneDetect = "PhoneDetect"
+            case evilFlag = "EvilFlag"
+            case codeDetect = "CodeDetect"
             case polityDetect = "PolityDetect"
+            case illegalDetect = "IllegalDetect"
             case pornDetect = "PornDetect"
-            case similar = "Similar"
             case terrorDetect = "TerrorDetect"
+            case ocrDetect = "OCRDetect"
+            case logoDetect = "LogoDetect"
+            case similar = "Similar"
+            case phoneDetect = "PhoneDetect"
         }
     }
 
     /// 图片性感详情
-    public struct ImageHotDetect: TCInputModel {
+    public struct ImageHotDetect: TCOutputModel {
+        /// 关键词明细
+        public let keywords: [String]?
+
         /// 恶意类型
         /// 100：正常
         /// 20103：性感
         public let evilType: Int64
-
-        /// 处置判定 0：正常 1：可疑
-        public let hitFlag: Int64
-
-        /// 关键词明细
-        public let keywords: [String]?
 
         /// 性感标签：性感特征中文描述
         public let labels: [String]?
@@ -443,25 +365,20 @@ extension Cms {
         /// 性感分：分值范围 0-100，分数越高性感倾向越明显
         public let score: Int64?
 
-        public init(evilType: Int64, hitFlag: Int64, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
-            self.evilType = evilType
-            self.hitFlag = hitFlag
-            self.keywords = keywords
-            self.labels = labels
-            self.score = score
-        }
+        /// 处置判定 0：正常 1：可疑
+        public let hitFlag: Int64
 
         enum CodingKeys: String, CodingKey {
-            case evilType = "EvilType"
-            case hitFlag = "HitFlag"
             case keywords = "Keywords"
+            case evilType = "EvilType"
             case labels = "Labels"
             case score = "Score"
+            case hitFlag = "HitFlag"
         }
     }
 
     /// 图片违法详情
-    public struct ImageIllegalDetect: TCInputModel {
+    public struct ImageIllegalDetect: TCInputModel, TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 20006：涉毒违法
@@ -497,7 +414,7 @@ extension Cms {
     }
 
     /// 图片涉政详情
-    public struct ImagePolityDetect: TCInputModel {
+    public struct ImagePolityDetect: TCInputModel, TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 20001：政治
@@ -506,44 +423,46 @@ extension Cms {
         /// 处置判定  0：正常 1：可疑
         public let hitFlag: Int64
 
-        /// 命中的logo标签信息
-        public let polityLogoDetail: [Logo]?
-
         /// 命中的人脸名称
         public let faceNames: [String]?
 
-        /// 关键词明细
-        public let keywords: [String]?
+        /// 命中的logo标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let polityLogoDetail: [Logo]?
 
         /// 命中的政治物品名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let polityItems: [String]?
 
         /// 政治（人脸）分：分值范围 0-100，分数越高可疑程度越高
         public let score: Int64?
 
-        public init(evilType: Int64, hitFlag: Int64, polityLogoDetail: [Logo]? = nil, faceNames: [String]? = nil, keywords: [String]? = nil, polityItems: [String]? = nil, score: Int64? = nil) {
+        /// 关键词明细
+        public let keywords: [String]?
+
+        public init(evilType: Int64, hitFlag: Int64, faceNames: [String]? = nil, polityLogoDetail: [Logo]? = nil, polityItems: [String]? = nil, score: Int64? = nil, keywords: [String]? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
-            self.polityLogoDetail = polityLogoDetail
             self.faceNames = faceNames
-            self.keywords = keywords
+            self.polityLogoDetail = polityLogoDetail
             self.polityItems = polityItems
             self.score = score
+            self.keywords = keywords
         }
 
         enum CodingKeys: String, CodingKey {
             case evilType = "EvilType"
             case hitFlag = "HitFlag"
-            case polityLogoDetail = "PolityLogoDetail"
             case faceNames = "FaceNames"
-            case keywords = "Keywords"
+            case polityLogoDetail = "PolityLogoDetail"
             case polityItems = "PolityItems"
             case score = "Score"
+            case keywords = "Keywords"
         }
     }
 
     /// 图片涉黄详情
-    public struct ImagePornDetect: TCInputModel {
+    public struct ImagePornDetect: TCInputModel, TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 20002：色情
@@ -579,68 +498,135 @@ extension Cms {
     }
 
     /// 图片暴恐详情
-    public struct ImageTerrorDetect: TCInputModel {
+    public struct ImageTerrorDetect: TCInputModel, TCOutputModel {
+        /// 关键词明细
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keywords: [String]?
+
         /// 恶意类型
         /// 100：正常
         /// 24001：暴恐
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let evilType: Int64?
 
-        /// 处置判定 0：正常 1：可疑
-        public let hitFlag: Int64?
-
-        /// 关键词明细
-        public let keywords: [String]?
-
         /// 暴恐标签：返回暴恐特征中文描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [String]?
 
         /// 暴恐分：分值范围0--100，分数越高暴恐倾向越明显
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
 
-        public init(evilType: Int64? = nil, hitFlag: Int64? = nil, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
-            self.evilType = evilType
-            self.hitFlag = hitFlag
+        /// 处置判定 0：正常 1：可疑
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hitFlag: Int64?
+
+        public init(keywords: [String]? = nil, evilType: Int64? = nil, labels: [String]? = nil, score: Int64? = nil, hitFlag: Int64? = nil) {
             self.keywords = keywords
+            self.evilType = evilType
             self.labels = labels
             self.score = score
+            self.hitFlag = hitFlag
         }
 
         enum CodingKeys: String, CodingKey {
-            case evilType = "EvilType"
-            case hitFlag = "HitFlag"
             case keywords = "Keywords"
+            case evilType = "EvilType"
             case labels = "Labels"
             case score = "Score"
+            case hitFlag = "HitFlag"
         }
     }
 
-    /// Logo
-    public struct Logo: TCInputModel {
-        /// logo图标坐标信息
-        public let rrectF: RrectF?
+    /// 无效关键词
+    public struct InvalidSample: TCOutputModel {
+        /// 关键词
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
 
+        /// 无效代码:1-标签不存在;2-词过长;3-词类型不匹配;4-备注超长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let invalidCode: Int64?
+
+        /// 无效描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let invalidMessage: String?
+
+        enum CodingKeys: String, CodingKey {
+            case content = "Content"
+            case invalidCode = "InvalidCode"
+            case invalidMessage = "InvalidMessage"
+        }
+    }
+
+    /// 关键词库信息
+    public struct KeywordsLibInfo: TCOutputModel {
+        /// 关键词库ID
+        public let id: String
+
+        /// 关键词库名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let libName: String?
+
+        /// 关键词库描述信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        /// 关键词库创建时间
+        public let createTime: String
+
+        /// 审核建议(Review/Block)
+        public let suggestion: String
+
+        /// 匹配模式(ExactMatch/FuzzyMatch)
+        public let matchType: String
+
+        /// 关联策略BizType列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bizTypes: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case libName = "LibName"
+            case describe = "Describe"
+            case createTime = "CreateTime"
+            case suggestion = "Suggestion"
+            case matchType = "MatchType"
+            case bizTypes = "BizTypes"
+        }
+    }
+
+    /// Logo审核结果
+    public struct Logo: TCInputModel, TCOutputModel {
         /// logo图标置信度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float?
 
+        /// logo图标坐标信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rrectF: RrectF?
+
         /// logo图标名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
 
-        public init(rrectF: RrectF? = nil, confidence: Float? = nil, name: String? = nil) {
-            self.rrectF = rrectF
+        public init(confidence: Float? = nil, rrectF: RrectF? = nil, name: String? = nil) {
             self.confidence = confidence
+            self.rrectF = rrectF
             self.name = name
         }
 
         enum CodingKeys: String, CodingKey {
-            case rrectF = "RrectF"
             case confidence = "Confidence"
+            case rrectF = "RrectF"
             case name = "Name"
         }
     }
 
-    /// LogoDetail
-    public struct LogoDetail: TCInputModel {
+    /// Logo命中详情
+    public struct LogoDetail: TCInputModel, TCOutputModel {
         /// 命中的Applogo详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appLogoDetail: [Logo]?
 
         public init(appLogoDetail: [Logo]? = nil) {
@@ -652,103 +638,14 @@ extension Cms {
         }
     }
 
-    /// 人审审核数据相关信息
-    public struct ManualReviewContent: TCInputModel {
-        /// 审核批次号
-        public let batchId: String
-
-        /// 审核内容
-        public let content: String
-
-        /// 消息Id
-        public let contentId: String
-
-        /// 审核内容类型 1 图片 2 视频 3 文本 4 音频
-        public let contentType: Int64
-
-        /// 用户信息
-        public let userInfo: User?
-
-        /// 机器审核类型，与腾讯机器审核定义一致
-        /// 100 正常
-        /// 20001 政治
-        /// 20002 色情
-        /// 20006 违法
-        /// 20007 谩骂
-        /// 24001 暴恐
-        /// 20105 广告
-        /// 20103 性感
-        public let autoDetailCode: Int64?
-
-        /// 机器审核结果 0 放过 1 拦截
-        public let autoResult: Int64?
-
-        /// 回调信息标识，回传数据时原样返回
-        public let callBackInfo: String?
-
-        /// 创建时间 格式“2020-01-01 00:00:12”
-        public let createTime: String?
-
-        /// 审核优先级，可选值 [1,2,3,4]，其中 1 最高，4 最低
-        public let priority: Int64?
-
-        /// 标题
-        public let title: String?
-
-        public init(batchId: String, content: String, contentId: String, contentType: Int64, userInfo: User? = nil, autoDetailCode: Int64? = nil, autoResult: Int64? = nil, callBackInfo: String? = nil, createTime: String? = nil, priority: Int64? = nil, title: String? = nil) {
-            self.batchId = batchId
-            self.content = content
-            self.contentId = contentId
-            self.contentType = contentType
-            self.userInfo = userInfo
-            self.autoDetailCode = autoDetailCode
-            self.autoResult = autoResult
-            self.callBackInfo = callBackInfo
-            self.createTime = createTime
-            self.priority = priority
-            self.title = title
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case batchId = "BatchId"
-            case content = "Content"
-            case contentId = "ContentId"
-            case contentType = "ContentType"
-            case userInfo = "UserInfo"
-            case autoDetailCode = "AutoDetailCode"
-            case autoResult = "AutoResult"
-            case callBackInfo = "CallBackInfo"
-            case createTime = "CreateTime"
-            case priority = "Priority"
-            case title = "Title"
-        }
-    }
-
-    /// 人工审核接口返回结果，由ContentId和BatchId组成
-    public struct ManualReviewData: TCInputModel {
-        /// 人审内容批次号
-        public let batchId: String
-
-        /// 人审内容ID
-        public let contentId: String
-
-        public init(batchId: String, contentId: String) {
-            self.batchId = batchId
-            self.contentId = contentId
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case batchId = "BatchId"
-            case contentId = "ContentId"
-        }
-    }
-
     /// OCR识别结果详情
-    public struct OCRDetect: TCInputModel {
+    public struct OCRDetect: TCInputModel, TCOutputModel {
         /// 识别到的详细信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let item: [OCRItem]?
 
         /// 识别到的文本信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textInfo: String?
 
         public init(item: [OCRItem]? = nil, textInfo: String? = nil) {
@@ -763,72 +660,82 @@ extension Cms {
     }
 
     /// OCR详情
-    public struct OCRItem: TCInputModel {
+    public struct OCRItem: TCInputModel, TCOutputModel {
         /// 检测到的文本坐标信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textPosition: Coordinate?
 
-        /// 文本命中具体标签
-        public let evilLabel: String?
-
         /// 文本命中恶意违规类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let evilType: Int64?
 
-        /// 文本命中违规的关键词
-        public let keywords: [String]?
-
-        /// 文本涉嫌违规分值
-        public let rate: Int64?
-
         /// 检测到的文本信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textContent: String?
 
-        public init(textPosition: Coordinate? = nil, evilLabel: String? = nil, evilType: Int64? = nil, keywords: [String]? = nil, rate: Int64? = nil, textContent: String? = nil) {
+        /// 文本涉嫌违规分值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rate: Int64?
+
+        /// 文本命中具体标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let evilLabel: String?
+
+        /// 文本命中违规的关键词
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keywords: [String]?
+
+        public init(textPosition: Coordinate? = nil, evilType: Int64? = nil, textContent: String? = nil, rate: Int64? = nil, evilLabel: String? = nil, keywords: [String]? = nil) {
             self.textPosition = textPosition
-            self.evilLabel = evilLabel
             self.evilType = evilType
-            self.keywords = keywords
-            self.rate = rate
             self.textContent = textContent
+            self.rate = rate
+            self.evilLabel = evilLabel
+            self.keywords = keywords
         }
 
         enum CodingKeys: String, CodingKey {
             case textPosition = "TextPosition"
-            case evilLabel = "EvilLabel"
             case evilType = "EvilType"
-            case keywords = "Keywords"
-            case rate = "Rate"
             case textContent = "TextContent"
+            case rate = "Rate"
+            case evilLabel = "EvilLabel"
+            case keywords = "Keywords"
         }
     }
 
     /// 手机模型识别检测
-    public struct PhoneDetect: TCInputModel {
+    public struct PhoneDetect: TCInputModel, TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 21000：综合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let evilType: Int64?
 
-        /// 处置判定 0：正常 1：可疑
-        public let hitFlag: Int64?
-
         /// 特征中文描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [String]?
 
         /// 分值范围 0-100，分数越高倾向越明显
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Int64?
 
-        public init(evilType: Int64? = nil, hitFlag: Int64? = nil, labels: [String]? = nil, score: Int64? = nil) {
+        /// 处置判定 0：正常 1：可疑
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hitFlag: Int64?
+
+        public init(evilType: Int64? = nil, labels: [String]? = nil, score: Int64? = nil, hitFlag: Int64? = nil) {
             self.evilType = evilType
-            self.hitFlag = hitFlag
             self.labels = labels
             self.score = score
+            self.hitFlag = hitFlag
         }
 
         enum CodingKeys: String, CodingKey {
             case evilType = "EvilType"
-            case hitFlag = "HitFlag"
             case labels = "Labels"
             case score = "Score"
+            case hitFlag = "HitFlag"
         }
     }
 
@@ -837,66 +744,71 @@ extension Cms {
         /// 预留字段，暂时不使用
         public let keywords: [String]?
 
-        /// 风险类别，RiskAccount，RiskIP, RiskIMEI
-        public let label: String?
-
         /// 预留字段，暂时不用
         public let lable: String?
+
+        /// 风险类别，RiskAccount，RiskIP, RiskIMEI
+        public let label: String?
 
         /// 风险等级，1:疑似，2：恶意
         public let level: Int64?
 
-        public init(keywords: [String]? = nil, label: String? = nil, lable: String? = nil, level: Int64? = nil) {
+        public init(keywords: [String]? = nil, lable: String? = nil, label: String? = nil, level: Int64? = nil) {
             self.keywords = keywords
-            self.label = label
             self.lable = lable
+            self.label = label
             self.level = level
         }
 
         enum CodingKeys: String, CodingKey {
             case keywords = "Keywords"
-            case label = "Label"
             case lable = "Lable"
+            case label = "Label"
             case level = "Level"
         }
     }
 
     /// logo位置信息
-    public struct RrectF: TCInputModel {
-        /// logo横坐标
-        public let cx: Float?
-
-        /// logo纵坐标
-        public let cy: Float?
-
-        /// logo图标高度
-        public let height: Float?
-
-        /// logo图标中心旋转度
-        public let rotate: Float?
-
+    public struct RrectF: TCInputModel, TCOutputModel {
         /// logo图标宽度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: Float?
 
-        public init(cx: Float? = nil, cy: Float? = nil, height: Float? = nil, rotate: Float? = nil, width: Float? = nil) {
-            self.cx = cx
-            self.cy = cy
-            self.height = height
-            self.rotate = rotate
+        /// logo纵坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cy: Float?
+
+        /// logo横坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cx: Float?
+
+        /// logo图标中心旋转度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rotate: Float?
+
+        /// logo图标高度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let height: Float?
+
+        public init(width: Float? = nil, cy: Float? = nil, cx: Float? = nil, rotate: Float? = nil, height: Float? = nil) {
             self.width = width
+            self.cy = cy
+            self.cx = cx
+            self.rotate = rotate
+            self.height = height
         }
 
         enum CodingKeys: String, CodingKey {
-            case cx = "Cx"
-            case cy = "Cy"
-            case height = "Height"
-            case rotate = "Rotate"
             case width = "Width"
+            case cy = "Cy"
+            case cx = "Cx"
+            case rotate = "Rotate"
+            case height = "Height"
         }
     }
 
     /// 相似度详情
-    public struct Similar: TCInputModel {
+    public struct Similar: TCInputModel, TCOutputModel {
         /// 恶意类型
         /// 100：正常
         /// 20001：政治
@@ -910,7 +822,8 @@ extension Cms {
         public let hitFlag: Int64
 
         /// 返回的种子url
-        public let seedUrl: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let seedUrl: String?
 
         public init(evilType: Int64, hitFlag: Int64, seedUrl: String) {
             self.evilType = evilType
@@ -927,9 +840,6 @@ extension Cms {
 
     /// 文本识别结果详情
     public struct TextData: TCInputModel {
-        /// 是否恶意 0：正常 1：可疑
-        public let evilFlag: Int64
-
         /// 恶意类型
         /// 100：正常
         /// 20001：政治
@@ -940,17 +850,17 @@ extension Cms {
         /// 24001：暴恐
         public let evilType: Int64
 
-        /// 消息类公共相关参数
-        public let common: TextOutputComm?
+        /// 是否恶意 0：正常 1：可疑
+        public let evilFlag: Int64
 
-        /// 返回的自定义词库结果
-        public let customResult: [CustomResult]?
+        /// 和请求中的DataId一致，原样返回
+        public let dataId: String?
 
-        /// 返回的详细结果
-        public let detailResult: [DetailResult]?
+        /// 输出的其他信息，不同客户内容不同
+        public let extra: String?
 
-        /// 消息类ID信息
-        public let id: TextOutputID?
+        /// 最终使用的BizType
+        public let bizType: UInt64?
 
         /// 消息类输出结果
         public let res: TextOutputRes?
@@ -958,89 +868,92 @@ extension Cms {
         /// 账号风险检测结果
         public let riskDetails: [RiskDetails]?
 
-        /// 最终使用的BizType
-        public let bizType: UInt64?
-
-        /// 和请求中的DataId一致，原样返回
-        public let dataId: String?
-
-        /// 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
-        public let evilLabel: String?
-
-        /// 输出的其他信息，不同客户内容不同
-        public let extra: String?
-
-        /// 命中的关键词
-        public let keywords: [String]?
+        /// 消息类ID信息
+        public let id: TextOutputID?
 
         /// 命中的模型分值
         public let score: UInt64?
 
+        /// 消息类公共相关参数
+        public let common: TextOutputComm?
+
         /// 建议值,Block：打击,Review：待复审,Normal：正常
         public let suggestion: String?
 
-        public init(evilFlag: Int64, evilType: Int64, common: TextOutputComm? = nil, customResult: [CustomResult]? = nil, detailResult: [DetailResult]? = nil, id: TextOutputID? = nil, res: TextOutputRes? = nil, riskDetails: [RiskDetails]? = nil, bizType: UInt64? = nil, dataId: String? = nil, evilLabel: String? = nil, extra: String? = nil, keywords: [String]? = nil, score: UInt64? = nil, suggestion: String? = nil) {
-            self.evilFlag = evilFlag
+        /// 命中的关键词
+        public let keywords: [String]?
+
+        /// 返回的详细结果
+        public let detailResult: [DetailResult]?
+
+        /// 返回的自定义词库结果
+        public let customResult: [CustomResult]?
+
+        /// 恶意标签，Normal：正常，Polity：涉政，Porn：色情，Illegal：违法，Abuse：谩骂，Terror：暴恐，Ad：广告，Custom：自定义关键词
+        public let evilLabel: String?
+
+        public init(evilType: Int64, evilFlag: Int64, dataId: String? = nil, extra: String? = nil, bizType: UInt64? = nil, res: TextOutputRes? = nil, riskDetails: [RiskDetails]? = nil, id: TextOutputID? = nil, score: UInt64? = nil, common: TextOutputComm? = nil, suggestion: String? = nil, keywords: [String]? = nil, detailResult: [DetailResult]? = nil, customResult: [CustomResult]? = nil, evilLabel: String? = nil) {
             self.evilType = evilType
-            self.common = common
-            self.customResult = customResult
-            self.detailResult = detailResult
-            self.id = id
+            self.evilFlag = evilFlag
+            self.dataId = dataId
+            self.extra = extra
+            self.bizType = bizType
             self.res = res
             self.riskDetails = riskDetails
-            self.bizType = bizType
-            self.dataId = dataId
-            self.evilLabel = evilLabel
-            self.extra = extra
-            self.keywords = keywords
+            self.id = id
             self.score = score
+            self.common = common
             self.suggestion = suggestion
+            self.keywords = keywords
+            self.detailResult = detailResult
+            self.customResult = customResult
+            self.evilLabel = evilLabel
         }
 
         enum CodingKeys: String, CodingKey {
-            case evilFlag = "EvilFlag"
             case evilType = "EvilType"
-            case common = "Common"
-            case customResult = "CustomResult"
-            case detailResult = "DetailResult"
-            case id = "ID"
+            case evilFlag = "EvilFlag"
+            case dataId = "DataId"
+            case extra = "Extra"
+            case bizType = "BizType"
             case res = "Res"
             case riskDetails = "RiskDetails"
-            case bizType = "BizType"
-            case dataId = "DataId"
-            case evilLabel = "EvilLabel"
-            case extra = "Extra"
-            case keywords = "Keywords"
+            case id = "ID"
             case score = "Score"
+            case common = "Common"
             case suggestion = "Suggestion"
+            case keywords = "Keywords"
+            case detailResult = "DetailResult"
+            case customResult = "CustomResult"
+            case evilLabel = "EvilLabel"
         }
     }
 
     /// 消息类输出公共参数
     public struct TextOutputComm: TCInputModel {
-        /// 接入业务的唯一ID
-        public let appID: Int64?
-
         /// 接口唯一ID，旁路调用接口返回有该字段，标识唯一接口
         public let buCtrlID: Int64?
 
         /// 消息发送时间
         public let sendTime: Int64?
 
+        /// 接入业务的唯一ID
+        public let appID: Int64?
+
         /// 请求字段里的Common.Uin
         public let uin: Int64?
 
-        public init(appID: Int64? = nil, buCtrlID: Int64? = nil, sendTime: Int64? = nil, uin: Int64? = nil) {
-            self.appID = appID
+        public init(buCtrlID: Int64? = nil, sendTime: Int64? = nil, appID: Int64? = nil, uin: Int64? = nil) {
             self.buCtrlID = buCtrlID
             self.sendTime = sendTime
+            self.appID = appID
             self.uin = uin
         }
 
         enum CodingKeys: String, CodingKey {
-            case appID = "AppID"
             case buCtrlID = "BUCtrlID"
             case sendTime = "SendTime"
+            case appID = "AppID"
             case uin = "Uin"
         }
     }
@@ -1069,6 +982,9 @@ extension Cms {
         /// 操作人,信安处理人企业微信ID
         public let `operator`: String?
 
+        /// 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
+        public let resultType: Int64?
+
         /// 恶意操作码，
         /// 删除（1）， 通过（2）， 先审后发（100012）
         public let resultCode: Int64?
@@ -1076,120 +992,123 @@ extension Cms {
         /// 操作结果备注说明
         public let resultMsg: String?
 
-        /// 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
-        public let resultType: Int64?
-
-        public init(operator: String? = nil, resultCode: Int64? = nil, resultMsg: String? = nil, resultType: Int64? = nil) {
+        public init(operator: String? = nil, resultType: Int64? = nil, resultCode: Int64? = nil, resultMsg: String? = nil) {
             self.operator = `operator`
+            self.resultType = resultType
             self.resultCode = resultCode
             self.resultMsg = resultMsg
-            self.resultType = resultType
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
+            case resultType = "ResultType"
             case resultCode = "ResultCode"
             case resultMsg = "ResultMsg"
-            case resultType = "ResultType"
-        }
-    }
-
-    /// 文字样本信息
-    public struct TextSample: TCInputModel {
-        /// 处理错误码
-        public let code: Int64
-
-        /// 关键词
-        public let content: String
-
-        /// 创建时间戳
-        public let createdAt: UInt64
-
-        /// 恶意类型
-        /// 100：正常
-        /// 20001：政治
-        /// 20002：色情
-        /// 20006：涉毒违法
-        /// 20007：谩骂
-        /// 20105：广告引流
-        /// 24001：暴恐
-        public let evilType: UInt64
-
-        /// 唯一标识
-        public let id: String
-
-        /// 样本类型
-        /// 1：黑库
-        /// 2：白库
-        public let label: UInt64
-
-        /// 任务状态
-        /// 1：已完成
-        /// 2：处理中
-        public let status: UInt64
-
-        public init(code: Int64, content: String, createdAt: UInt64, evilType: UInt64, id: String, label: UInt64, status: UInt64) {
-            self.code = code
-            self.content = content
-            self.createdAt = createdAt
-            self.evilType = evilType
-            self.id = id
-            self.label = label
-            self.status = status
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case code = "Code"
-            case content = "Content"
-            case createdAt = "CreatedAt"
-            case evilType = "EvilType"
-            case id = "Id"
-            case label = "Label"
-            case status = "Status"
         }
     }
 
     /// 用户相关信息
     public struct User: TCInputModel {
-        /// 账号类别，"1-微信uin 2-QQ号 3-微信群uin 4-qq群号 5-微信openid 6-QQopenid 7-其它string"
-        public let accountType: Int64?
-
-        /// 年龄 默认0 未知
-        public let age: Int64?
+        /// 用户等级，默认0 未知 1 低 2 中 3 高
+        public let level: Int64?
 
         /// 性别 默认0 未知 1 男性 2 女性
         public let gender: Int64?
 
-        /// 用户等级，默认0 未知 1 低 2 中 3 高
-        public let level: Int64?
-
-        /// 用户昵称
-        public let nickname: String?
-
-        /// 手机号
-        public let phone: String?
+        /// 年龄 默认0 未知
+        public let age: Int64?
 
         /// 用户账号ID，如填写，会根据账号历史恶意情况，判定消息有害结果，特别是有利于可疑恶意情况下的辅助判断。账号可以填写微信uin、QQ号、微信openid、QQopenid、字符串等。该字段和账号类别确定唯一账号。
         public let userId: String?
 
-        public init(accountType: Int64? = nil, age: Int64? = nil, gender: Int64? = nil, level: Int64? = nil, nickname: String? = nil, phone: String? = nil, userId: String? = nil) {
-            self.accountType = accountType
-            self.age = age
-            self.gender = gender
+        /// 手机号
+        public let phone: String?
+
+        /// 账号类别，"1-微信uin 2-QQ号 3-微信群uin 4-qq群号 5-微信openid 6-QQopenid 7-其它string"
+        public let accountType: Int64?
+
+        /// 用户昵称
+        public let nickname: String?
+
+        public init(level: Int64? = nil, gender: Int64? = nil, age: Int64? = nil, userId: String? = nil, phone: String? = nil, accountType: Int64? = nil, nickname: String? = nil) {
             self.level = level
-            self.nickname = nickname
-            self.phone = phone
+            self.gender = gender
+            self.age = age
             self.userId = userId
+            self.phone = phone
+            self.accountType = accountType
+            self.nickname = nickname
         }
 
         enum CodingKeys: String, CodingKey {
-            case accountType = "AccountType"
-            case age = "Age"
-            case gender = "Gender"
             case level = "Level"
-            case nickname = "Nickname"
-            case phone = "Phone"
+            case gender = "Gender"
+            case age = "Age"
             case userId = "UserId"
+            case phone = "Phone"
+            case accountType = "AccountType"
+            case nickname = "Nickname"
+        }
+    }
+
+    /// 添加关键词。
+    public struct UserKeyword: TCInputModel {
+        /// 关键词内容：最多40个字符，并且符合词类型的规则
+        public let content: String
+
+        /// 关键词类型，取值范围为："Normal","Polity","Porn","Ad","Illegal","Abuse","Terror","Spam"
+        public let label: String
+
+        /// 关键词备注：最多100个字符。
+        public let remark: String?
+
+        /// 词类型：Default,Pinyin,English,CompoundWord,ExclusionWord,AffixWord
+        public let wordType: String?
+
+        public init(content: String, label: String, remark: String? = nil, wordType: String? = nil) {
+            self.content = content
+            self.label = label
+            self.remark = remark
+            self.wordType = wordType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case content = "Content"
+            case label = "Label"
+            case remark = "Remark"
+            case wordType = "WordType"
+        }
+    }
+
+    /// 关键词信息
+    public struct UserKeywordInfo: TCOutputModel {
+        /// 关键词条ID
+        public let id: String
+
+        /// 关键词内容
+        public let content: String
+
+        /// 关键词标签；取值范围为："Normal","Polity","Porn","Sexy","Ad","Illegal","Abuse","Terror","Spam","Moan"
+        public let label: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
+        /// 词类型：Default,Pinyin,English,CompoundWord,ExclusionWord,AffixWord
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wordType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case content = "Content"
+            case label = "Label"
+            case createTime = "CreateTime"
+            case remark = "Remark"
+            case wordType = "WordType"
         }
     }
 }

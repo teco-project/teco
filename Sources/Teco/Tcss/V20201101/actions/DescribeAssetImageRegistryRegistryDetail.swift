@@ -54,7 +54,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryVersion: String?
 
-        /// 网络类型，列表：public（公网）
+        /// 网络类型，列表：public（公网）,private（私网）
         public let netType: String
 
         /// 区域，列表:default（默认）
@@ -68,6 +68,12 @@ extension Tcss {
         /// 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let insecure: UInt64?
+
+        /// 联通性检测结果详情
+        public let connDetectDetail: [RegistryConnDetectResult]
+
+        /// tcr情况下instance_id
+        public let instanceID: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,6 +89,8 @@ extension Tcss {
             case registryRegion = "RegistryRegion"
             case speedLimit = "SpeedLimit"
             case insecure = "Insecure"
+            case connDetectDetail = "ConnDetectDetail"
+            case instanceID = "InstanceID"
             case requestId = "RequestId"
         }
     }

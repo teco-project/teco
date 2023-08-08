@@ -118,7 +118,7 @@ extension Dbbrain {
         }
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
@@ -126,7 +126,7 @@ extension Dbbrain {
         self.client.execute(action: "DescribeSlowLogTopSqls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
@@ -134,7 +134,7 @@ extension Dbbrain {
         try await self.client.execute(action: "DescribeSlowLogTopSqls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
@@ -142,7 +142,7 @@ extension Dbbrain {
         self.describeSlowLogTopSqls(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, sortBy: sortBy, orderBy: orderBy, limit: limit, offset: offset, schemaList: schemaList, product: product), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
@@ -150,7 +150,7 @@ extension Dbbrain {
         try await self.describeSlowLogTopSqls(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, sortBy: sortBy, orderBy: orderBy, limit: limit, offset: offset, schemaList: schemaList, product: product), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
@@ -158,7 +158,7 @@ extension Dbbrain {
         self.client.paginate(input: input, region: region, command: self.describeSlowLogTopSqls, logger: logger, on: eventLoop)
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable @discardableResult
@@ -166,7 +166,7 @@ extension Dbbrain {
         self.client.paginate(input: input, region: region, command: self.describeSlowLogTopSqls, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    /// 获取慢SQL模板列表
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     ///

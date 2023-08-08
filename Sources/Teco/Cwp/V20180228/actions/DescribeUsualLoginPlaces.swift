@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// DescribeUsualLoginPlaces请求参数结构体
     public struct DescribeUsualLoginPlacesRequest: TCRequestModel {
-        /// 云镜客户端UUID
+        /// 主机安全客户端UUID
         public let uuid: String
 
         public init(uuid: String) {

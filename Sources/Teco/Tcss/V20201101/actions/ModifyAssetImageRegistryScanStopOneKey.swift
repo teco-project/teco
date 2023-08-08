@@ -30,16 +30,21 @@ extension Tcss {
         /// 扫描的镜像列表Id
         public let id: [UInt64]?
 
-        public init(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil) {
+        /// 停止的任务ID
+        public let taskID: UInt64?
+
+        public init(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil) {
             self.all = all
             self.images = images
             self.id = id
+            self.taskID = taskID
         }
 
         enum CodingKeys: String, CodingKey {
             case all = "All"
             case images = "Images"
             case id = "Id"
+            case taskID = "TaskID"
         }
     }
 
@@ -67,13 +72,13 @@ extension Tcss {
 
     /// 镜像仓库停止镜像一键扫描任务
     @inlinable @discardableResult
-    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopOneKeyResponse> {
-        self.modifyAssetImageRegistryScanStopOneKey(.init(all: all, images: images, id: id), region: region, logger: logger, on: eventLoop)
+    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopOneKeyResponse> {
+        self.modifyAssetImageRegistryScanStopOneKey(.init(all: all, images: images, id: id, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库停止镜像一键扫描任务
     @inlinable @discardableResult
-    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
-        try await self.modifyAssetImageRegistryScanStopOneKey(.init(all: all, images: images, id: id), region: region, logger: logger, on: eventLoop)
+    public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
+        try await self.modifyAssetImageRegistryScanStopOneKey(.init(all: all, images: images, id: id, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

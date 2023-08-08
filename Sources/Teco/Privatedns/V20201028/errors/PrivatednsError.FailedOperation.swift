@@ -25,9 +25,11 @@ extension TCPrivatednsError {
             case dataError = "FailedOperation.DataError"
             case deleteLastBindVpcRecordFailed = "FailedOperation.DeleteLastBindVpcRecordFailed"
             case deleteRecordFailed = "FailedOperation.DeleteRecordFailed"
+            case deleteVpcEndPointFailed = "FailedOperation.DeleteVpcEndPointFailed"
             case deleteZoneFailed = "FailedOperation.DeleteZoneFailed"
             case modifyRecordFailed = "FailedOperation.ModifyRecordFailed"
             case modifyZoneFailed = "FailedOperation.ModifyZoneFailed"
+            case updateRecordFailed = "FailedOperation.UpdateRecordFailed"
             case other = "FailedOperation"
         }
 
@@ -87,6 +89,13 @@ extension TCPrivatednsError {
             FailedOperation(.deleteRecordFailed)
         }
 
+        /// 删除终端节点失败。
+        ///
+        /// 删除终端节点失败，需要连续小助手处理。
+        public static var deleteVpcEndPointFailed: FailedOperation {
+            FailedOperation(.deleteVpcEndPointFailed)
+        }
+
         /// 解析域删除失败。
         public static var deleteZoneFailed: FailedOperation {
             FailedOperation(.deleteZoneFailed)
@@ -100,6 +109,11 @@ extension TCPrivatednsError {
         /// 私有域修改失败。
         public static var modifyZoneFailed: FailedOperation {
             FailedOperation(.modifyZoneFailed)
+        }
+
+        /// 检查输入是否有误，若检查无误可以联系后台排查。
+        public static var updateRecordFailed: FailedOperation {
+            FailedOperation(.updateRecordFailed)
         }
 
         /// 操作失败。
@@ -122,12 +136,16 @@ extension TCPrivatednsError {
                 code = .failedOperation_DeleteLastBindVpcRecordFailed
             case .deleteRecordFailed:
                 code = .failedOperation_DeleteRecordFailed
+            case .deleteVpcEndPointFailed:
+                code = .failedOperation_DeleteVpcEndPointFailed
             case .deleteZoneFailed:
                 code = .failedOperation_DeleteZoneFailed
             case .modifyRecordFailed:
                 code = .failedOperation_ModifyRecordFailed
             case .modifyZoneFailed:
                 code = .failedOperation_ModifyZoneFailed
+            case .updateRecordFailed:
+                code = .failedOperation_UpdateRecordFailed
             case .other:
                 code = .failedOperation
             }

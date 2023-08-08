@@ -20,6 +20,8 @@ extension TCPrivatednsError {
     public struct InvalidParameter: TCPrivatednsErrorType {
         enum Code: String {
             case accountExist = "InvalidParameter.AccountExist"
+            case endPointBindForwardRule = "InvalidParameter.EndPointBindForwardRule"
+            case endPointNotExists = "InvalidParameter.EndPointNotExists"
             case illegalCidr = "InvalidParameter.IllegalCidr"
             case illegalDomain = "InvalidParameter.IllegalDomain"
             case illegalDomainTld = "InvalidParameter.IllegalDomainTld"
@@ -28,6 +30,7 @@ extension TCPrivatednsError {
             case illegalRecordValue = "InvalidParameter.IllegalRecordValue"
             case illegalVpcInfo = "InvalidParameter.IllegalVpcInfo"
             case invalidMX = "InvalidParameter.InvalidMX"
+            case mxNotSupported = "InvalidParameter.MXNotSupported"
             case recordAAAACountExceed = "InvalidParameter.RecordAAAACountExceed"
             case recordACountExceed = "InvalidParameter.RecordACountExceed"
             case recordCNAMECountExceed = "InvalidParameter.RecordCNAMECountExceed"
@@ -76,6 +79,20 @@ extension TCPrivatednsError {
             InvalidParameter(.accountExist)
         }
 
+        /// 终端节点已经绑定了转发规则。
+        ///
+        /// 终端节点已经绑定了转发规则，可以先删除已经绑定了的转发规则之后再继续操作。
+        public static var endPointBindForwardRule: InvalidParameter {
+            InvalidParameter(.endPointBindForwardRule)
+        }
+
+        /// 终端节点不存在。
+        ///
+        /// 确认终端节点ID是否正确
+        public static var endPointNotExists: InvalidParameter {
+            InvalidParameter(.endPointNotExists)
+        }
+
         /// 非法CIDR。
         public static var illegalCidr: InvalidParameter {
             InvalidParameter(.illegalCidr)
@@ -114,6 +131,11 @@ extension TCPrivatednsError {
         /// MX 必须为5-50之间且为5的倍数。
         public static var invalidMX: InvalidParameter {
             InvalidParameter(.invalidMX)
+        }
+
+        /// MX参数传空
+        public static var mxNotSupported: InvalidParameter {
+            InvalidParameter(.mxNotSupported)
         }
 
         /// AAAA记录负载均衡数量超过50。
@@ -210,6 +232,10 @@ extension TCPrivatednsError {
             switch self.error {
             case .accountExist:
                 code = .invalidParameter_AccountExist
+            case .endPointBindForwardRule:
+                code = .invalidParameter_EndPointBindForwardRule
+            case .endPointNotExists:
+                code = .invalidParameter_EndPointNotExists
             case .illegalCidr:
                 code = .invalidParameter_IllegalCidr
             case .illegalDomain:
@@ -226,6 +252,8 @@ extension TCPrivatednsError {
                 code = .invalidParameter_IllegalVpcInfo
             case .invalidMX:
                 code = .invalidParameter_InvalidMX
+            case .mxNotSupported:
+                code = .invalidParameter_MXNotSupported
             case .recordAAAACountExceed:
                 code = .invalidParameter_RecordAAAACountExceed
             case .recordACountExceed:

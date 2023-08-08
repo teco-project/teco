@@ -124,6 +124,45 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolateTime: String?
 
+        /// 节点ID
+        public let nodeID: String
+
+        /// 节点名称
+        public let nodeName: String
+
+        /// 节点子网ID
+        public let nodeSubNetID: String
+
+        /// 节点子网名称
+        public let nodeSubNetName: String
+
+        /// 节点子网网段
+        public let nodeSubNetCIDR: String
+
+        /// pod名称
+        public let podName: String
+
+        /// pod ip
+        public let podIP: String
+
+        /// pod状态
+        public let podStatus: String
+
+        /// 集群ID
+        public let clusterID: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 节点类型:NORMAL: 普通节点(默认值) SUPER: 超级节点
+        public let nodeType: String
+
+        /// 超级节点唯一id
+        public let nodeUniqueID: String
+
+        /// 外网ip
+        public let publicIP: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -155,6 +194,19 @@ extension Tcss {
             case netSubStatus = "NetSubStatus"
             case isolateSource = "IsolateSource"
             case isolateTime = "IsolateTime"
+            case nodeID = "NodeID"
+            case nodeName = "NodeName"
+            case nodeSubNetID = "NodeSubNetID"
+            case nodeSubNetName = "NodeSubNetName"
+            case nodeSubNetCIDR = "NodeSubNetCIDR"
+            case podName = "PodName"
+            case podIP = "PodIP"
+            case podStatus = "PodStatus"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
+            case publicIP = "PublicIP"
             case requestId = "RequestId"
         }
     }

@@ -20,6 +20,7 @@ extension TCLighthouseError {
     public struct FailedOperation: TCLighthouseErrorType {
         enum Code: String {
             case createBlueprintFailed = "FailedOperation.CreateBlueprintFailed"
+            case createDisksFailed = "FailedOperation.CreateDisksFailed"
             case createInstancesFailed = "FailedOperation.CreateInstancesFailed"
             case createKeyPairFailed = "FailedOperation.CreateKeyPairFailed"
             case deleteKeyPairFailed = "FailedOperation.DeleteKeyPairFailed"
@@ -28,15 +29,22 @@ extension TCLighthouseError {
             case describeInstancesModificationError = "FailedOperation.DescribeInstancesModificationError"
             case describeInstancesReturnableError = "FailedOperation.DescribeInstancesReturnableError"
             case describeInstancesTrafficPackagesFailed = "FailedOperation.DescribeInstancesTrafficPackagesFailed"
+            case describeResourcesReturnableError = "FailedOperation.DescribeResourcesReturnableError"
             case destroyResourcesFailed = "FailedOperation.DestroyResourcesFailed"
+            case dockerContainersListTooLarge = "FailedOperation.DockerContainersListTooLarge"
+            case dockerOperationFailed = "FailedOperation.DockerOperationFailed"
             case firewallRulesOperationFailed = "FailedOperation.FirewallRulesOperationFailed"
             case importKeyPairFailed = "FailedOperation.ImportKeyPairFailed"
             case instanceOperationFailed = "FailedOperation.InstanceOperationFailed"
+            case invalidCommandNotFound = "FailedOperation.InvalidCommandNotFound"
             case isolateResourcesFailed = "FailedOperation.IsolateResourcesFailed"
             case modifyInstancesBundleFailed = "FailedOperation.ModifyInstancesBundleFailed"
-            case renewInstancesFailed = "FailedOperation.RenewInstancesFailed"
+            case modifyResourcesAttributeFailed = "FailedOperation.ModifyResourcesAttributeFailed"
+            case renewResourcesFailed = "FailedOperation.RenewResourcesFailed"
             case requestError = "FailedOperation.RequestError"
             case snapshotOperationFailed = "FailedOperation.SnapshotOperationFailed"
+            case tatInvocationNotFinished = "FailedOperation.TATInvocationNotFinished"
+            case tradeCallBillingGatewayFailed = "FailedOperation.TradeCallBillingGatewayFailed"
             case tradeGetPriceFailed = "FailedOperation.TradeGetPriceFailed"
             case unableToCreateBlueprint = "FailedOperation.UnableToCreateBlueprint"
             case unableToCreateInstances = "FailedOperation.UnableToCreateInstances"
@@ -68,6 +76,11 @@ extension TCLighthouseError {
         /// 创建镜像失败。
         public static var createBlueprintFailed: FailedOperation {
             FailedOperation(.createBlueprintFailed)
+        }
+
+        /// 创建云硬盘失败。
+        public static var createDisksFailed: FailedOperation {
+            FailedOperation(.createDisksFailed)
         }
 
         /// 创建实例失败。
@@ -110,8 +123,24 @@ extension TCLighthouseError {
             FailedOperation(.describeInstancesTrafficPackagesFailed)
         }
 
+        /// 查询资源返回了不符合要求内容。
+        public static var describeResourcesReturnableError: FailedOperation {
+            FailedOperation(.describeResourcesReturnableError)
+        }
+
+        /// 销毁资源失败，请稍后重新操作。
         public static var destroyResourcesFailed: FailedOperation {
             FailedOperation(.destroyResourcesFailed)
+        }
+
+        /// 容器列表过长。
+        public static var dockerContainersListTooLarge: FailedOperation {
+            FailedOperation(.dockerContainersListTooLarge)
+        }
+
+        /// 指定Docker环境操作失败, 请检查Docker环境。
+        public static var dockerOperationFailed: FailedOperation {
+            FailedOperation(.dockerOperationFailed)
         }
 
         /// 对防火墙规则的操作失败。
@@ -129,6 +158,11 @@ extension TCLighthouseError {
             FailedOperation(.instanceOperationFailed)
         }
 
+        /// 命令无法找到。
+        public static var invalidCommandNotFound: FailedOperation {
+            FailedOperation(.invalidCommandNotFound)
+        }
+
         /// 退还资源失败。
         public static var isolateResourcesFailed: FailedOperation {
             FailedOperation(.isolateResourcesFailed)
@@ -139,9 +173,14 @@ extension TCLighthouseError {
             FailedOperation(.modifyInstancesBundleFailed)
         }
 
-        /// 续费实例失败。
-        public static var renewInstancesFailed: FailedOperation {
-            FailedOperation(.renewInstancesFailed)
+        /// 变更资源属性失败，请稍后重新操作。
+        public static var modifyResourcesAttributeFailed: FailedOperation {
+            FailedOperation(.modifyResourcesAttributeFailed)
+        }
+
+        /// 续费资源失败。
+        public static var renewResourcesFailed: FailedOperation {
+            FailedOperation(.renewResourcesFailed)
         }
 
         /// 请求错误。
@@ -152,6 +191,16 @@ extension TCLighthouseError {
         /// 快照操作失败。
         public static var snapshotOperationFailed: FailedOperation {
             FailedOperation(.snapshotOperationFailed)
+        }
+
+        /// TAT命令未完成。
+        public static var tatInvocationNotFinished: FailedOperation {
+            FailedOperation(.tatInvocationNotFinished)
+        }
+
+        /// 调用计费网关服务失败，请稍后重新操作操作。
+        public static var tradeCallBillingGatewayFailed: FailedOperation {
+            FailedOperation(.tradeCallBillingGatewayFailed)
         }
 
         /// 计费询价失败。
@@ -181,6 +230,8 @@ extension TCLighthouseError {
             switch self.error {
             case .createBlueprintFailed:
                 code = .failedOperation_CreateBlueprintFailed
+            case .createDisksFailed:
+                code = .failedOperation_CreateDisksFailed
             case .createInstancesFailed:
                 code = .failedOperation_CreateInstancesFailed
             case .createKeyPairFailed:
@@ -197,24 +248,38 @@ extension TCLighthouseError {
                 code = .failedOperation_DescribeInstancesReturnableError
             case .describeInstancesTrafficPackagesFailed:
                 code = .failedOperation_DescribeInstancesTrafficPackagesFailed
+            case .describeResourcesReturnableError:
+                code = .failedOperation_DescribeResourcesReturnableError
             case .destroyResourcesFailed:
                 code = .failedOperation_DestroyResourcesFailed
+            case .dockerContainersListTooLarge:
+                code = .failedOperation_DockerContainersListTooLarge
+            case .dockerOperationFailed:
+                code = .failedOperation_DockerOperationFailed
             case .firewallRulesOperationFailed:
                 code = .failedOperation_FirewallRulesOperationFailed
             case .importKeyPairFailed:
                 code = .failedOperation_ImportKeyPairFailed
             case .instanceOperationFailed:
                 code = .failedOperation_InstanceOperationFailed
+            case .invalidCommandNotFound:
+                code = .failedOperation_InvalidCommandNotFound
             case .isolateResourcesFailed:
                 code = .failedOperation_IsolateResourcesFailed
             case .modifyInstancesBundleFailed:
                 code = .failedOperation_ModifyInstancesBundleFailed
-            case .renewInstancesFailed:
-                code = .failedOperation_RenewInstancesFailed
+            case .modifyResourcesAttributeFailed:
+                code = .failedOperation_ModifyResourcesAttributeFailed
+            case .renewResourcesFailed:
+                code = .failedOperation_RenewResourcesFailed
             case .requestError:
                 code = .failedOperation_RequestError
             case .snapshotOperationFailed:
                 code = .failedOperation_SnapshotOperationFailed
+            case .tatInvocationNotFinished:
+                code = .failedOperation_TATInvocationNotFinished
+            case .tradeCallBillingGatewayFailed:
+                code = .failedOperation_TradeCallBillingGatewayFailed
             case .tradeGetPriceFailed:
                 code = .failedOperation_TradeGetPriceFailed
             case .unableToCreateBlueprint:

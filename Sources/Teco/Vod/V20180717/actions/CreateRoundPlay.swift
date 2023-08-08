@@ -37,12 +37,19 @@ extension Vod {
         /// 轮播播单描述信息，长度限制：256 个字符。
         public let desc: String?
 
-        public init(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil) {
+        /// 播放模式，可选值：
+        /// <li>Loop：循环播放播单；</li>
+        /// <li>Linear：单次播放，播单播放完停止播放。</li>
+        /// 默认值：Loop。
+        public let playBackMode: String?
+
+        public init(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil, playBackMode: String? = nil) {
             self.startTime = startTime
             self.roundPlaylist = roundPlaylist
             self.subAppId = subAppId
             self.name = name
             self.desc = desc
+            self.playBackMode = playBackMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +58,7 @@ extension Vod {
             case subAppId = "SubAppId"
             case name = "Name"
             case desc = "Desc"
+            case playBackMode = "PlayBackMode"
         }
     }
 
@@ -98,8 +106,8 @@ extension Vod {
     /// 轮播播单的每个文件可以指定源文件，也可以指定某个转码文件。
     /// 指定的文件必须是hls格式，所有的播单文件最好保持相同的码率和分辨率。
     @inlinable
-    public func createRoundPlay(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoundPlayResponse> {
-        self.createRoundPlay(.init(startTime: startTime, roundPlaylist: roundPlaylist, subAppId: subAppId, name: name, desc: desc), region: region, logger: logger, on: eventLoop)
+    public func createRoundPlay(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil, playBackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoundPlayResponse> {
+        self.createRoundPlay(.init(startTime: startTime, roundPlaylist: roundPlaylist, subAppId: subAppId, name: name, desc: desc, playBackMode: playBackMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建轮播播单
@@ -108,7 +116,7 @@ extension Vod {
     /// 轮播播单的每个文件可以指定源文件，也可以指定某个转码文件。
     /// 指定的文件必须是hls格式，所有的播单文件最好保持相同的码率和分辨率。
     @inlinable
-    public func createRoundPlay(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoundPlayResponse {
-        try await self.createRoundPlay(.init(startTime: startTime, roundPlaylist: roundPlaylist, subAppId: subAppId, name: name, desc: desc), region: region, logger: logger, on: eventLoop)
+    public func createRoundPlay(startTime: String, roundPlaylist: [RoundPlayListItemInfo], subAppId: UInt64? = nil, name: String? = nil, desc: String? = nil, playBackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoundPlayResponse {
+        try await self.createRoundPlay(.init(startTime: startTime, roundPlaylist: roundPlaylist, subAppId: subAppId, name: name, desc: desc, playBackMode: playBackMode), region: region, logger: logger, on: eventLoop)
     }
 }

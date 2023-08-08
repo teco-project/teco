@@ -52,33 +52,33 @@ extension Tke {
         }
     }
 
-    /// 创建托管集群外网访问端口
+    /// 创建托管集群外网访问端口（不再维护，准备下线）
     ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    /// 创建托管集群外网访问端口（不再维护，准备下线）请使用新接口：CreateClusterEndpoint
     @inlinable
     public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointVipResponse> {
         self.client.execute(action: "CreateClusterEndpointVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建托管集群外网访问端口
+    /// 创建托管集群外网访问端口（不再维护，准备下线）
     ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    /// 创建托管集群外网访问端口（不再维护，准备下线）请使用新接口：CreateClusterEndpoint
     @inlinable
     public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
         try await self.client.execute(action: "CreateClusterEndpointVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建托管集群外网访问端口
+    /// 创建托管集群外网访问端口（不再维护，准备下线）
     ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    /// 创建托管集群外网访问端口（不再维护，准备下线）请使用新接口：CreateClusterEndpoint
     @inlinable
     public func createClusterEndpointVip(clusterId: String, securityPolicies: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointVipResponse> {
         self.createClusterEndpointVip(.init(clusterId: clusterId, securityPolicies: securityPolicies), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建托管集群外网访问端口
+    /// 创建托管集群外网访问端口（不再维护，准备下线）
     ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    /// 创建托管集群外网访问端口（不再维护，准备下线）请使用新接口：CreateClusterEndpoint
     @inlinable
     public func createClusterEndpointVip(clusterId: String, securityPolicies: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
         try await self.createClusterEndpointVip(.init(clusterId: clusterId, securityPolicies: securityPolicies), region: region, logger: logger, on: eventLoop)

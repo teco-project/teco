@@ -24,8 +24,10 @@ extension TCTioneError {
             case bindingTagsFailed = "FailedOperation.BindingTagsFailed"
             case callClusterFail = "FailedOperation.CallClusterFail"
             case camFailure = "FailedOperation.CAMFailure"
+            case checkBillingWhiteListFailed = "FailedOperation.CheckBillingWhiteListFailed"
             case clsServiceNotActived = "FailedOperation.ClsServiceNotActived"
             case clusterQueryFailed = "FailedOperation.ClusterQueryFailed"
+            case createImageFailed = "FailedOperation.CreateImageFailed"
             case createJobInstanceFailed = "FailedOperation.CreateJobInstanceFailed"
             case dcCosClientErr = "FailedOperation.DCCosClientErr"
             case dcCreateAsyncTaskError = "FailedOperation.DCCreateAsyncTaskError"
@@ -39,12 +41,17 @@ extension TCTioneError {
             case dcQueryDatasetContentErr = "FailedOperation.DCQueryDatasetContentErr"
             case dcUnmarshalDataErr = "FailedOperation.DCUnmarshalDataErr"
             case dcUnsupportedOperation = "FailedOperation.DCUnsupportedOperation"
+            case deleteNotebookStorageFailed = "FailedOperation.DeleteNotebookStorageFailed"
             case duplicateName = "FailedOperation.DuplicateName"
+            case duplicateNameTaskIsCreating = "FailedOperation.DuplicateNameTaskIsCreating"
             case execDatabaseFail = "FailedOperation.ExecDatabaseFail"
             case execTagFail = "FailedOperation.ExecTagFail"
+            case freezeBillFailed = "FailedOperation.FreezeBillFailed"
             case insufficientWhitelistQuota = "FailedOperation.InsufficientWhitelistQuota"
             case invalidUserType = "FailedOperation.InvalidUserType"
             case kmsKeyNotOpen = "FailedOperation.KmsKeyNotOpen"
+            case modifyBillingInstanceBatchFailed = "FailedOperation.ModifyBillingInstanceBatchFailed"
+            case modifyResourceBillingTagsFailed = "FailedOperation.ModifyResourceBillingTagsFailed"
             case moveModelDirFailed = "FailedOperation.MoveModelDirFailed"
             case noFreeBucket = "FailedOperation.NoFreeBucket"
             case noPermission = "FailedOperation.NoPermission"
@@ -54,12 +61,18 @@ extension TCTioneError {
             case queryDatabaseFail = "FailedOperation.QueryDatabaseFail"
             case queryModelsByTagsFailed = "FailedOperation.QueryModelsByTagsFailed"
             case queryPriceFailed = "FailedOperation.QueryPriceFailed"
+            case queryResourceGroupNamesFailed = "FailedOperation.QueryResourceGroupNamesFailed"
+            case queryResourceSpecFailed = "FailedOperation.QueryResourceSpecFailed"
             case querySpecsFailed = "FailedOperation.QuerySpecsFailed"
             case queryTagFail = "FailedOperation.QueryTagFail"
             case recordNotFound = "FailedOperation.RecordNotFound"
             case repoBindByInstance = "FailedOperation.RepoBindByInstance"
+            case stopJobInstanceFailed = "FailedOperation.StopJobInstanceFailed"
             case stsQueryFailed = "FailedOperation.StsQueryFailed"
             case timedout = "FailedOperation.Timedout"
+            case unBindingTagsFailed = "FailedOperation.UnBindingTagsFailed"
+            case unSubmitNotAllowToStop = "FailedOperation.UnSubmitNotAllowToStop"
+            case unfreezeBillFailed = "FailedOperation.UnfreezeBillFailed"
             case unknownInstanceType = "FailedOperation.UnknownInstanceType"
             case unmarshalData = "FailedOperation.UnmarshalData"
             case other = "FailedOperation"
@@ -120,6 +133,11 @@ extension TCTioneError {
             FailedOperation(.camFailure)
         }
 
+        /// 查询计费白名单失败
+        public static var checkBillingWhiteListFailed: FailedOperation {
+            FailedOperation(.checkBillingWhiteListFailed)
+        }
+
         /// 尚未开通CLS日志服务，请开前往开通。
         public static var clsServiceNotActived: FailedOperation {
             FailedOperation(.clsServiceNotActived)
@@ -130,6 +148,10 @@ extension TCTioneError {
         /// 请稍后重试或提工单询问小助手
         public static var clusterQueryFailed: FailedOperation {
             FailedOperation(.clusterQueryFailed)
+        }
+
+        public static var createImageFailed: FailedOperation {
+            FailedOperation(.createImageFailed)
         }
 
         /// 启动实例失败。
@@ -199,9 +221,20 @@ extension TCTioneError {
             FailedOperation(.dcUnsupportedOperation)
         }
 
+        /// 删除Notebook实例存储失败。
+        ///
+        /// 请稍后重试
+        public static var deleteNotebookStorageFailed: FailedOperation {
+            FailedOperation(.deleteNotebookStorageFailed)
+        }
+
         /// 名称重复。
         public static var duplicateName: FailedOperation {
             FailedOperation(.duplicateName)
+        }
+
+        public static var duplicateNameTaskIsCreating: FailedOperation {
+            FailedOperation(.duplicateNameTaskIsCreating)
         }
 
         /// 数据库执行错误。
@@ -214,6 +247,13 @@ extension TCTioneError {
         /// 请重试
         public static var execTagFail: FailedOperation {
             FailedOperation(.execTagFail)
+        }
+
+        /// 余额不足冻结失败。
+        ///
+        /// 请先充值。
+        public static var freezeBillFailed: FailedOperation {
+            FailedOperation(.freezeBillFailed)
         }
 
         /// 白名单免费配额不足。
@@ -229,6 +269,17 @@ extension TCTioneError {
         /// 密钥管理系统服务未开通，请先开通腾讯云密钥管理系统服务。
         public static var kmsKeyNotOpen: FailedOperation {
             FailedOperation(.kmsKeyNotOpen)
+        }
+
+        /// 变更计费配置失败。
+        ///
+        /// 请稍后重试。
+        public static var modifyBillingInstanceBatchFailed: FailedOperation {
+            FailedOperation(.modifyBillingInstanceBatchFailed)
+        }
+
+        public static var modifyResourceBillingTagsFailed: FailedOperation {
+            FailedOperation(.modifyResourceBillingTagsFailed)
         }
 
         /// 移动模型目录失败。
@@ -253,7 +304,7 @@ extension TCTioneError {
             FailedOperation(.notAllow)
         }
 
-        /// 请求正在处理中，请稍候再试。
+        /// 请求正在处理中，请稍后再试。
         public static var processing: FailedOperation {
             FailedOperation(.processing)
         }
@@ -284,6 +335,20 @@ extension TCTioneError {
             FailedOperation(.queryPriceFailed)
         }
 
+        /// 查询资源组名称失败。
+        ///
+        /// 请稍后重试。
+        public static var queryResourceGroupNamesFailed: FailedOperation {
+            FailedOperation(.queryResourceGroupNamesFailed)
+        }
+
+        /// 查询计费项详情失败。
+        ///
+        /// 请稍后重试。
+        public static var queryResourceSpecFailed: FailedOperation {
+            FailedOperation(.queryResourceSpecFailed)
+        }
+
         /// 查询计费项失败。
         public static var querySpecsFailed: FailedOperation {
             FailedOperation(.querySpecsFailed)
@@ -308,6 +373,13 @@ extension TCTioneError {
             FailedOperation(.repoBindByInstance)
         }
 
+        /// 停止实例失败。
+        ///
+        /// 请稍后重试。
+        public static var stopJobInstanceFailed: FailedOperation {
+            FailedOperation(.stopJobInstanceFailed)
+        }
+
         /// 密钥服务访问失败，请重试。
         public static var stsQueryFailed: FailedOperation {
             FailedOperation(.stsQueryFailed)
@@ -316,6 +388,27 @@ extension TCTioneError {
         /// 实例启动失败。
         public static var timedout: FailedOperation {
             FailedOperation(.timedout)
+        }
+
+        /// 解绑标签失败。
+        ///
+        /// 请稍后重试。
+        public static var unBindingTagsFailed: FailedOperation {
+            FailedOperation(.unBindingTagsFailed)
+        }
+
+        /// 当前任务后台提交重试中，不允许操作停止，请稍后再试。
+        ///
+        /// 请稍后再试
+        public static var unSubmitNotAllowToStop: FailedOperation {
+            FailedOperation(.unSubmitNotAllowToStop)
+        }
+
+        /// 解冻失败。
+        ///
+        /// 请稍后重试。
+        public static var unfreezeBillFailed: FailedOperation {
+            FailedOperation(.unfreezeBillFailed)
         }
 
         /// 未知的实例规格。
@@ -348,10 +441,14 @@ extension TCTioneError {
                 code = .failedOperation_CallClusterFail
             case .camFailure:
                 code = .failedOperation_CAMFailure
+            case .checkBillingWhiteListFailed:
+                code = .failedOperation_CheckBillingWhiteListFailed
             case .clsServiceNotActived:
                 code = .failedOperation_ClsServiceNotActived
             case .clusterQueryFailed:
                 code = .failedOperation_ClusterQueryFailed
+            case .createImageFailed:
+                code = .failedOperation_CreateImageFailed
             case .createJobInstanceFailed:
                 code = .failedOperation_CreateJobInstanceFailed
             case .dcCosClientErr:
@@ -378,18 +475,28 @@ extension TCTioneError {
                 code = .failedOperation_DCUnmarshalDataErr
             case .dcUnsupportedOperation:
                 code = .failedOperation_DCUnsupportedOperation
+            case .deleteNotebookStorageFailed:
+                code = .failedOperation_DeleteNotebookStorageFailed
             case .duplicateName:
                 code = .failedOperation_DuplicateName
+            case .duplicateNameTaskIsCreating:
+                code = .failedOperation_DuplicateNameTaskIsCreating
             case .execDatabaseFail:
                 code = .failedOperation_ExecDatabaseFail
             case .execTagFail:
                 code = .failedOperation_ExecTagFail
+            case .freezeBillFailed:
+                code = .failedOperation_FreezeBillFailed
             case .insufficientWhitelistQuota:
                 code = .failedOperation_InsufficientWhitelistQuota
             case .invalidUserType:
                 code = .failedOperation_InvalidUserType
             case .kmsKeyNotOpen:
                 code = .failedOperation_KmsKeyNotOpen
+            case .modifyBillingInstanceBatchFailed:
+                code = .failedOperation_ModifyBillingInstanceBatchFailed
+            case .modifyResourceBillingTagsFailed:
+                code = .failedOperation_ModifyResourceBillingTagsFailed
             case .moveModelDirFailed:
                 code = .failedOperation_MoveModelDirFailed
             case .noFreeBucket:
@@ -408,6 +515,10 @@ extension TCTioneError {
                 code = .failedOperation_QueryModelsByTagsFailed
             case .queryPriceFailed:
                 code = .failedOperation_QueryPriceFailed
+            case .queryResourceGroupNamesFailed:
+                code = .failedOperation_QueryResourceGroupNamesFailed
+            case .queryResourceSpecFailed:
+                code = .failedOperation_QueryResourceSpecFailed
             case .querySpecsFailed:
                 code = .failedOperation_QuerySpecsFailed
             case .queryTagFail:
@@ -416,10 +527,18 @@ extension TCTioneError {
                 code = .failedOperation_RecordNotFound
             case .repoBindByInstance:
                 code = .failedOperation_RepoBindByInstance
+            case .stopJobInstanceFailed:
+                code = .failedOperation_StopJobInstanceFailed
             case .stsQueryFailed:
                 code = .failedOperation_StsQueryFailed
             case .timedout:
                 code = .failedOperation_Timedout
+            case .unBindingTagsFailed:
+                code = .failedOperation_UnBindingTagsFailed
+            case .unSubmitNotAllowToStop:
+                code = .failedOperation_UnSubmitNotAllowToStop
+            case .unfreezeBillFailed:
+                code = .failedOperation_UnfreezeBillFailed
             case .unknownInstanceType:
                 code = .failedOperation_UnknownInstanceType
             case .unmarshalData:

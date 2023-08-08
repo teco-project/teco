@@ -55,7 +55,10 @@ extension Monitor {
         /// 模板根据标签过滤
         public let tags: [Tag]?
 
-        public init(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil) {
+        /// 值班列表
+        public let onCallFormIDs: [String]?
+
+        public init(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, onCallFormIDs: [String]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -67,6 +70,7 @@ extension Monitor {
             self.groupIds = groupIds
             self.noticeIds = noticeIds
             self.tags = tags
+            self.onCallFormIDs = onCallFormIDs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -81,6 +85,7 @@ extension Monitor {
             case groupIds = "GroupIds"
             case noticeIds = "NoticeIds"
             case tags = "Tags"
+            case onCallFormIDs = "OnCallFormIDs"
         }
 
         /// Compute the next request based on API response.
@@ -88,7 +93,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlarmNoticesRequest(module: self.module, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, order: self.order, ownerUid: self.ownerUid, name: self.name, receiverType: self.receiverType, userIds: self.userIds, groupIds: self.groupIds, noticeIds: self.noticeIds, tags: self.tags)
+            return DescribeAlarmNoticesRequest(module: self.module, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, order: self.order, ownerUid: self.ownerUid, name: self.name, receiverType: self.receiverType, userIds: self.userIds, groupIds: self.groupIds, noticeIds: self.noticeIds, tags: self.tags, onCallFormIDs: self.onCallFormIDs)
         }
     }
 
@@ -134,14 +139,14 @@ extension Monitor {
 
     /// 查询通知模板列表
     @inlinable
-    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
-        self.describeAlarmNotices(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, onCallFormIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
+        self.describeAlarmNotices(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags, onCallFormIDs: onCallFormIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通知模板列表
     @inlinable
-    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.describeAlarmNotices(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, onCallFormIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.describeAlarmNotices(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags, onCallFormIDs: onCallFormIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通知模板列表

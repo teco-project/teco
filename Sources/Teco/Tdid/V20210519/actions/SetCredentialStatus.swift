@@ -44,26 +44,30 @@ extension Tdid {
     }
 
     /// 设置凭证链上状态
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        self.client.execute(action: "SetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("SetCredentialStatus is no longer available.")
     }
 
     /// 设置凭证链上状态
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        try await self.client.execute(action: "SetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("SetCredentialStatus is no longer available.")
     }
 
     /// 设置凭证链上状态
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        self.setCredentialStatus(.init(credentialStatus: credentialStatus), region: region, logger: logger, on: eventLoop)
+        fatalError("SetCredentialStatus is no longer available.")
     }
 
     /// 设置凭证链上状态
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable @discardableResult
     public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        try await self.setCredentialStatus(.init(credentialStatus: credentialStatus), region: region, logger: logger, on: eventLoop)
+        fatalError("SetCredentialStatus is no longer available.")
     }
 }

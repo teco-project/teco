@@ -52,33 +52,33 @@ extension Dlc {
         }
     }
 
-    /// 获取Session Statement列表
+    /// 查询Session中执行的任务列表
     ///
-    /// 本接口（DescribeNotebookSessionStatements）用于获取Session Statement列表。
+    /// 本接口（DescribeNotebookSessionStatements）用于查询Session中执行的任务列表
     @inlinable
     public func describeNotebookSessionStatements(_ input: DescribeNotebookSessionStatementsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionStatementsResponse> {
         self.client.execute(action: "DescribeNotebookSessionStatements", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取Session Statement列表
+    /// 查询Session中执行的任务列表
     ///
-    /// 本接口（DescribeNotebookSessionStatements）用于获取Session Statement列表。
+    /// 本接口（DescribeNotebookSessionStatements）用于查询Session中执行的任务列表
     @inlinable
     public func describeNotebookSessionStatements(_ input: DescribeNotebookSessionStatementsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionStatementsResponse {
         try await self.client.execute(action: "DescribeNotebookSessionStatements", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取Session Statement列表
+    /// 查询Session中执行的任务列表
     ///
-    /// 本接口（DescribeNotebookSessionStatements）用于获取Session Statement列表。
+    /// 本接口（DescribeNotebookSessionStatements）用于查询Session中执行的任务列表
     @inlinable
     public func describeNotebookSessionStatements(sessionId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionStatementsResponse> {
         self.describeNotebookSessionStatements(.init(sessionId: sessionId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取Session Statement列表
+    /// 查询Session中执行的任务列表
     ///
-    /// 本接口（DescribeNotebookSessionStatements）用于获取Session Statement列表。
+    /// 本接口（DescribeNotebookSessionStatements）用于查询Session中执行的任务列表
     @inlinable
     public func describeNotebookSessionStatements(sessionId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionStatementsResponse {
         try await self.describeNotebookSessionStatements(.init(sessionId: sessionId, batchId: batchId), region: region, logger: logger, on: eventLoop)

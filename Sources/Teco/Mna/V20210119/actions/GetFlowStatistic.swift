@@ -58,13 +58,13 @@ extension Mna {
         /// 流量详细信息
         public let netDetails: [NetDetails]
 
-        /// 查找时间段流量使用最大值（单位：bit）
+        /// 查找时间段流量使用最大值（单位：byte）
         public let maxValue: Float
 
-        /// 查找时间段流量使用平均值（单位：bit）
+        /// 查找时间段流量使用平均值（单位：byte）
         public let avgValue: Float
 
-        /// 查找时间段流量使用总量（单位：bit）
+        /// 查找时间段流量使用总量（单位：byte）
         public let totalValue: Float
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

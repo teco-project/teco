@@ -32,7 +32,7 @@ extension Sts {
         /// 长度在2到128之间，可包含大小写字符，数字以及特殊字符：=,.@_-。 正则为：[\w+=,.@_-]*
         public let roleSessionName: String
 
-        /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
+        /// 指定临时访问凭证的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: UInt64?
 
         /// 策略描述
@@ -75,13 +75,13 @@ extension Sts {
 
     /// AssumeRole返回参数结构体
     public struct AssumeRoleResponse: TCResponseModel {
-        /// 临时安全证书
+        /// 临时访问凭证
         public let credentials: Credentials
 
-        /// 证书无效的时间，返回 Unix 时间戳，精确到秒
+        /// 临时访问凭证的过期时间，返回 Unix 时间戳，精确到秒
         public let expiredTime: Int64
 
-        /// 证书无效的时间，以 iso8601 格式的 UTC 时间表示
+        /// 临时访问凭证的过期时间，以 iso8601 格式的 UTC 时间表示
         public let expiration: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -95,25 +95,33 @@ extension Sts {
         }
     }
 
-    /// 申请扮演角色
+    /// 申请扮演角色临时访问凭证
+    ///
+    /// 申请扮演角色临时访问凭证。
     @inlinable
     public func assumeRole(_ input: AssumeRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleResponse> {
         self.client.execute(action: "AssumeRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 申请扮演角色
+    /// 申请扮演角色临时访问凭证
+    ///
+    /// 申请扮演角色临时访问凭证。
     @inlinable
     public func assumeRole(_ input: AssumeRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {
         try await self.client.execute(action: "AssumeRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 申请扮演角色
+    /// 申请扮演角色临时访问凭证
+    ///
+    /// 申请扮演角色临时访问凭证。
     @inlinable
     public func assumeRole(roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, policy: String? = nil, externalId: String? = nil, tags: [Tag]? = nil, sourceIdentity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleResponse> {
         self.assumeRole(.init(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 申请扮演角色
+    /// 申请扮演角色临时访问凭证
+    ///
+    /// 申请扮演角色临时访问凭证。
     @inlinable
     public func assumeRole(roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, policy: String? = nil, externalId: String? = nil, tags: [Tag]? = nil, sourceIdentity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {
         try await self.assumeRole(.init(roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds, policy: policy, externalId: externalId, tags: tags, sourceIdentity: sourceIdentity), region: region, logger: logger, on: eventLoop)

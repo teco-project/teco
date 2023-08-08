@@ -863,11 +863,15 @@ extension Es {
         /// 日志内容
         public let message: String
 
+        /// 集群节点ID
+        public let nodeID: String?
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case level = "Level"
             case ip = "Ip"
             case message = "Message"
+            case nodeID = "NodeID"
         }
     }
 
@@ -941,6 +945,9 @@ extension Es {
         /// 可用区
         public let zone: String
 
+        /// ts-0noqayxu-az6-hot-03222010-0
+        public let nodeId: String?
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case diskSize = "DiskSize"
@@ -950,6 +957,7 @@ extension Es {
             case cpuNum = "CpuNum"
             case cpuUsage = "CpuUsage"
             case zone = "Zone"
+            case nodeId = "NodeId"
         }
     }
 

@@ -21,22 +21,22 @@ import TecoCore
 extension Vod {
     /// ModifyRebuildMediaTemplate请求参数结构体
     public struct ModifyRebuildMediaTemplateRequest: TCRequestModel {
-        /// 音画质重生模板号。
+        /// 视频重生模板号。
         public let definition: Int64
 
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: String?
 
-        /// 音画质重生模板名称。
+        /// 视频重生模板名称。
         public let name: String?
 
-        /// 音画质重生模板描述。
+        /// 视频重生模板描述。
         public let comment: String?
 
-        /// 音画质重生视频控制信息。
+        /// 视频重生视频控制信息。
         public let rebuildVideoInfo: RebuildVideoInfo?
 
-        /// 音画质重生音频控制信息。
+        /// 视频重生音频控制信息。
         public let rebuildAudioInfo: RebuildAudioInfo?
 
         /// 输出目标视频控制信息。
@@ -97,33 +97,33 @@ extension Vod {
         }
     }
 
-    /// 修改音画质重生模板
+    /// 修改视频重生模板
     ///
-    /// 修改音画质重生模板。
+    /// 修改视频重生模板。
     @inlinable @discardableResult
     public func modifyRebuildMediaTemplate(_ input: ModifyRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRebuildMediaTemplateResponse> {
         self.client.execute(action: "ModifyRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改音画质重生模板
+    /// 修改视频重生模板
     ///
-    /// 修改音画质重生模板。
+    /// 修改视频重生模板。
     @inlinable @discardableResult
     public func modifyRebuildMediaTemplate(_ input: ModifyRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRebuildMediaTemplateResponse {
         try await self.client.execute(action: "ModifyRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改音画质重生模板
+    /// 修改视频重生模板
     ///
-    /// 修改音画质重生模板。
+    /// 修改视频重生模板。
     @inlinable @discardableResult
     public func modifyRebuildMediaTemplate(definition: Int64, subAppId: String? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRebuildMediaTemplateResponse> {
         self.modifyRebuildMediaTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, rebuildVideoInfo: rebuildVideoInfo, rebuildAudioInfo: rebuildAudioInfo, targetVideoInfo: targetVideoInfo, targetAudioInfo: targetAudioInfo, container: container, removeVideo: removeVideo, removeAudio: removeAudio), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改音画质重生模板
+    /// 修改视频重生模板
     ///
-    /// 修改音画质重生模板。
+    /// 修改视频重生模板。
     @inlinable @discardableResult
     public func modifyRebuildMediaTemplate(definition: Int64, subAppId: String? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRebuildMediaTemplateResponse {
         try await self.modifyRebuildMediaTemplate(.init(definition: definition, subAppId: subAppId, name: name, comment: comment, rebuildVideoInfo: rebuildVideoInfo, rebuildAudioInfo: rebuildAudioInfo, targetVideoInfo: targetVideoInfo, targetAudioInfo: targetAudioInfo, container: container, removeVideo: removeVideo, removeAudio: removeAudio), region: region, logger: logger, on: eventLoop)

@@ -28,6 +28,7 @@ public struct TCBatchError: TCBatchErrorType {
     enum Code: String {
         case allowedOneAttributeInEnvIdAndComputeEnv = "AllowedOneAttributeInEnvIdAndComputeEnv"
         case internalError = "InternalError"
+        case internalError_CallCam = "InternalError.CallCam"
         case internalError_CallCpmAPI = "InternalError.CallCpmAPI"
         case internalError_CallCvm = "InternalError.CallCvm"
         case internalError_CallTagAPI = "InternalError.CallTagAPI"
@@ -146,6 +147,10 @@ public struct TCBatchError: TCBatchErrorType {
     /// 内部错误。
     public static var internalError: TCBatchError {
         TCBatchError(.internalError)
+    }
+
+    public static var internalError_CallCam: TCBatchError {
+        TCBatchError(.internalError_CallCam)
     }
 
     /// 调用Cpm API返回错误。

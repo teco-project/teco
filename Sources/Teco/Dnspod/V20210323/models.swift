@@ -131,6 +131,10 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
 
+        /// 备注信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case subDomain = "SubDomain"
@@ -145,6 +149,7 @@ extension Dnspod {
             case enabled = "Enabled"
             case mx = "MX"
             case weight = "Weight"
+            case remark = "Remark"
         }
     }
 
@@ -324,6 +329,10 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
 
+        /// 记录的权重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weight: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case subDomain = "SubDomain"
             case recordType = "RecordType"
@@ -335,6 +344,7 @@ extension Dnspod {
             case errMsg = "ErrMsg"
             case id = "Id"
             case mx = "MX"
+            case weight = "Weight"
         }
     }
 
@@ -376,6 +386,37 @@ extension Dnspod {
             case error = "Error"
             case status = "Status"
             case operation = "Operation"
+        }
+    }
+
+    /// 批量删除记录详情
+    public struct DeleteRecordBatchDetail: TCOutputModel {
+        /// 域名 ID
+        public let domainId: UInt64?
+
+        /// 域名
+        public let domain: String?
+
+        /// 错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let error: String?
+
+        /// 删除状态
+        public let status: String?
+
+        /// 操作
+        public let operation: String?
+
+        /// 解析记录列表，json 序列化之后的字符串形式
+        public let recordList: String
+
+        enum CodingKeys: String, CodingKey {
+            case domainId = "DomainId"
+            case domain = "Domain"
+            case error = "Error"
+            case status = "Status"
+            case operation = "Operation"
+            case recordList = "RecordList"
         }
     }
 
@@ -446,9 +487,13 @@ extension Dnspod {
         /// 域名别名
         public let domainAlias: String
 
+        /// 别名状态：1-DNS不正确；2-正常；3-封禁。
+        public let status: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case domainAlias = "DomainAlias"
+            case status = "Status"
         }
     }
 
@@ -653,6 +698,38 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerNick: String?
 
+        /// 是否在付费套餐宽限期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isGracePeriod: String?
+
+        /// 是否在付费套餐缓冲期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipBuffered: String?
+
+        /// VIP套餐有效期开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipStartAt: String?
+
+        /// VIP套餐有效期结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipEndAt: String?
+
+        /// VIP套餐自动续费标识。可能的值为：default-默认；no-不自动续费；yes-自动续费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipAutoRenew: String?
+
+        /// VIP套餐资源ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipResourceId: String?
+
+        /// 是否是子域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSubDomain: Bool?
+
+        /// 域名关联的标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagList: [TagItem]?
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case status = "Status"
@@ -677,6 +754,14 @@ extension Dnspod {
             case actualNsList = "ActualNsList"
             case recordCount = "RecordCount"
             case ownerNick = "OwnerNick"
+            case isGracePeriod = "IsGracePeriod"
+            case vipBuffered = "VipBuffered"
+            case vipStartAt = "VipStartAt"
+            case vipEndAt = "VipEndAt"
+            case vipAutoRenew = "VipAutoRenew"
+            case vipResourceId = "VipResourceId"
+            case isSubDomain = "IsSubDomain"
+            case tagList = "TagList"
         }
     }
 
@@ -760,6 +845,10 @@ extension Dnspod {
         /// 域名所属账号
         public let owner: String
 
+        /// 域名关联的标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagList: [TagItem]?
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case name = "Name"
@@ -783,6 +872,7 @@ extension Dnspod {
             case createdOn = "CreatedOn"
             case updatedOn = "UpdatedOn"
             case owner = "Owner"
+            case tagList = "TagList"
         }
     }
 
@@ -1334,7 +1424,15 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: String?
 
-        public init(subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String? = nil, mx: String? = nil) {
+        /// 权重
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let weight: String?
+
+        /// 失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        public init(subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String? = nil, mx: String? = nil, weight: String? = nil, reason: String? = nil) {
             self.subDomain = subDomain
             self.recordType = recordType
             self.recordLine = recordLine
@@ -1342,6 +1440,8 @@ extension Dnspod {
             self.ttl = ttl
             self.recordId = recordId
             self.mx = mx
+            self.weight = weight
+            self.reason = reason
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1352,6 +1452,8 @@ extension Dnspod {
             case ttl = "TTL"
             case recordId = "RecordId"
             case mx = "MX"
+            case weight = "Weight"
+            case reason = "Reason"
         }
     }
 
@@ -1396,6 +1498,45 @@ extension Dnspod {
             case startDate = "StartDate"
             case endDate = "EndDate"
             case subdomain = "Subdomain"
+        }
+    }
+
+    /// 标签项
+    public struct TagItem: TCInputModel, TCOutputModel {
+        /// 标签键
+        public let tagKey: String
+
+        /// 标签值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagValue: String?
+
+        public init(tagKey: String, tagValue: String? = nil) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
+        }
+    }
+
+    /// 标签过滤条件
+    public struct TagItemFilter: TCInputModel {
+        /// 标签键
+        public let tagKey: String
+
+        /// 标签键
+        public let tagValue: [String]?
+
+        public init(tagKey: String, tagValue: [String]? = nil) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
         }
     }
 

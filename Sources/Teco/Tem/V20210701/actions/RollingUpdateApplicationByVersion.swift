@@ -51,7 +51,10 @@ extension Tem {
         /// 发布过程中保障的最小可用实例数
         public let minAvailable: Int64?
 
-        public init(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil) {
+        /// 是否强制发布
+        public let force: Bool?
+
+        public init(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.deployVersion = deployVersion
@@ -62,6 +65,7 @@ extension Tem {
             self.batchInterval = batchInterval
             self.betaBatchNum = betaBatchNum
             self.minAvailable = minAvailable
+            self.force = force
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Tem {
             case batchInterval = "BatchInterval"
             case betaBatchNum = "BetaBatchNum"
             case minAvailable = "MinAvailable"
+            case force = "Force"
         }
     }
 
@@ -106,13 +111,13 @@ extension Tem {
 
     /// 更新应用部署版本
     @inlinable
-    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollingUpdateApplicationByVersionResponse> {
-        self.rollingUpdateApplicationByVersion(.init(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable), region: region, logger: logger, on: eventLoop)
+    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollingUpdateApplicationByVersionResponse> {
+        self.rollingUpdateApplicationByVersion(.init(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新应用部署版本
     @inlinable
-    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
-        try await self.rollingUpdateApplicationByVersion(.init(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable), region: region, logger: logger, on: eventLoop)
+    public func rollingUpdateApplicationByVersion(applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
+        try await self.rollingUpdateApplicationByVersion(.init(applicationId: applicationId, environmentId: environmentId, deployVersion: deployVersion, packageName: packageName, from: from, deployStrategyType: deployStrategyType, totalBatchCount: totalBatchCount, batchInterval: batchInterval, betaBatchNum: betaBatchNum, minAvailable: minAvailable, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

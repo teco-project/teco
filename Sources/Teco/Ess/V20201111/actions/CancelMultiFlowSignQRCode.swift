@@ -21,13 +21,13 @@ import TecoCore
 extension Ess {
     /// CancelMultiFlowSignQRCode请求参数结构体
     public struct CancelMultiFlowSignQRCodeRequest: TCRequestModel {
-        /// 用户信息
+        /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
         /// 二维码id
         public let qrCodeId: String
 
-        /// 应用信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, qrCodeId: String, agent: Agent? = nil) {

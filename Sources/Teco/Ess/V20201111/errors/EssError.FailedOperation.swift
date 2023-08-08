@@ -23,7 +23,10 @@ extension TCEssError {
             case ageNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
             case flowHasDocument = "FailedOperation.FlowHasDocument"
             case flowHasNoDocument = "FailedOperation.FlowHasNoDocument"
+            case licenseNoQuota = "FailedOperation.LicenseNoQuota"
             case noSignReviewPass = "FailedOperation.NoSignReviewPass"
+            case notAvailableSignReview = "FailedOperation.NotAvailableSignReview"
+            case notFoundShadowUser = "FailedOperation.NotFoundShadowUser"
             case organizationExperienceChange = "FailedOperation.OrganizationExperienceChange"
             case organizationNameChanged = "FailedOperation.OrganizationNameChanged"
             case organizationNameNeedChange = "FailedOperation.OrganizationNameNeedChange"
@@ -33,6 +36,8 @@ extension TCEssError {
             case qrCodeTemplateId = "FailedOperation.QrCodeTemplateId"
             case requestLimitExceeded = "FailedOperation.RequestLimitExceeded"
             case templateHasNoResource = "FailedOperation.TemplateHasNoResource"
+            case userAutoSignEnableAlready = "FailedOperation.UserAutoSignEnableAlready"
+            case userAutoSignEnableUrlNotExist = "FailedOperation.UserAutoSignEnableUrlNotExist"
             case userInfoNoMatch = "FailedOperation.UserInfoNoMatch"
             case other = "FailedOperation"
         }
@@ -79,9 +84,22 @@ extension TCEssError {
             FailedOperation(.flowHasNoDocument)
         }
 
+        public static var licenseNoQuota: FailedOperation {
+            FailedOperation(.licenseNoQuota)
+        }
+
         /// 签署审核未通过，请先完成审核。
         public static var noSignReviewPass: FailedOperation {
             FailedOperation(.noSignReviewPass)
+        }
+
+        public static var notAvailableSignReview: FailedOperation {
+            FailedOperation(.notAvailableSignReview)
+        }
+
+        /// 未找到集团子企业相关用户信息，请检查用户相关参数
+        public static var notFoundShadowUser: FailedOperation {
+            FailedOperation(.notFoundShadowUser)
         }
 
         /// 企业经营状态与工商局信息不符。
@@ -135,6 +153,14 @@ extension TCEssError {
             FailedOperation(.templateHasNoResource)
         }
 
+        public static var userAutoSignEnableAlready: FailedOperation {
+            FailedOperation(.userAutoSignEnableAlready)
+        }
+
+        public static var userAutoSignEnableUrlNotExist: FailedOperation {
+            FailedOperation(.userAutoSignEnableUrlNotExist)
+        }
+
         /// 用户信息不匹配，请检查后重试。
         public static var userInfoNoMatch: FailedOperation {
             FailedOperation(.userInfoNoMatch)
@@ -156,8 +182,14 @@ extension TCEssError {
                 code = .failedOperation_FlowHasDocument
             case .flowHasNoDocument:
                 code = .failedOperation_FlowHasNoDocument
+            case .licenseNoQuota:
+                code = .failedOperation_LicenseNoQuota
             case .noSignReviewPass:
                 code = .failedOperation_NoSignReviewPass
+            case .notAvailableSignReview:
+                code = .failedOperation_NotAvailableSignReview
+            case .notFoundShadowUser:
+                code = .failedOperation_NotFoundShadowUser
             case .organizationExperienceChange:
                 code = .failedOperation_OrganizationExperienceChange
             case .organizationNameChanged:
@@ -176,6 +208,10 @@ extension TCEssError {
                 code = .failedOperation_RequestLimitExceeded
             case .templateHasNoResource:
                 code = .failedOperation_TemplateHasNoResource
+            case .userAutoSignEnableAlready:
+                code = .failedOperation_UserAutoSignEnableAlready
+            case .userAutoSignEnableUrlNotExist:
+                code = .failedOperation_UserAutoSignEnableUrlNotExist
             case .userInfoNoMatch:
                 code = .failedOperation_UserInfoNoMatch
             case .other:

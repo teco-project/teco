@@ -2024,6 +2024,60 @@ extension Tsf {
         }
     }
 
+    /// 部署组列表-其它字段
+    public struct ContainerGroupOther: TCOutputModel {
+        /// 实例总数
+        public let instanceNum: Int64
+
+        /// 已启动实例总数
+        public let currentNum: Int64
+
+        /// 负载均衡ip
+        public let lbIp: String
+
+        /// Service ip
+        public let clusterIp: String
+
+        /// 服务状态，请参考后面的的状态定义
+        public let status: String
+
+        /// 服务状态，请参考后面的的状态定义
+        public let message: String
+
+        /// 环境变量
+        public let envs: [Env]
+
+        /// Service NodePort
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodePort: UInt64?
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 健康检查相关字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let healthCheckSettings: HealthCheckSettings?
+
+        /// 服务配置信息是否匹配
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNotEqualServiceConfig: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceNum = "InstanceNum"
+            case currentNum = "CurrentNum"
+            case lbIp = "LbIp"
+            case clusterIp = "ClusterIp"
+            case status = "Status"
+            case message = "Message"
+            case envs = "Envs"
+            case nodePort = "NodePort"
+            case subnetId = "SubnetId"
+            case healthCheckSettings = "HealthCheckSettings"
+            case isNotEqualServiceConfig = "IsNotEqualServiceConfig"
+        }
+    }
+
     /// cos临时帐号信息
     public struct CosCredentials: TCOutputModel {
         /// 会话Token
@@ -6596,6 +6650,22 @@ extension Tsf {
         }
     }
 
+    /// 单元化规则翻页对象
+    public struct TsfPageUnitRuleV2: TCOutputModel {
+        /// 记录总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        /// 记录实体列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: [UnitRule]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case content = "Content"
+        }
+    }
+
     /// 列表中部署组分页信息
     public struct TsfPageVmGroup: TCOutputModel {
         /// 虚拟机部署组总数目
@@ -6745,7 +6815,19 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleTagList: [UnitRuleTag]?
 
-        public init(relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String? = nil, unitRuleId: String? = nil, priority: Int64? = nil, description: String? = nil, unitRuleTagList: [UnitRuleTag]? = nil) {
+        /// 项目id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let itemIndex: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedTime: String?
+
+        public init(relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String? = nil, unitRuleId: String? = nil, priority: Int64? = nil, description: String? = nil, unitRuleTagList: [UnitRuleTag]? = nil, itemIndex: Int64? = nil, createdTime: String? = nil, updatedTime: String? = nil) {
             self.relationship = relationship
             self.destNamespaceId = destNamespaceId
             self.destNamespaceName = destNamespaceName
@@ -6755,6 +6837,9 @@ extension Tsf {
             self.priority = priority
             self.description = description
             self.unitRuleTagList = unitRuleTagList
+            self.itemIndex = itemIndex
+            self.createdTime = createdTime
+            self.updatedTime = updatedTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6767,6 +6852,9 @@ extension Tsf {
             case priority = "Priority"
             case description = "Description"
             case unitRuleTagList = "UnitRuleTagList"
+            case itemIndex = "ItemIndex"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
         }
     }
 
@@ -6986,6 +7074,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gatewayConfig: GatewayConfig?
 
+        /// 批次是否开启健康检查
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableBatchHealthCheck: Bool?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -7025,6 +7117,7 @@ extension Tsf {
             case agentProfileList = "AgentProfileList"
             case warmupSetting = "WarmupSetting"
             case gatewayConfig = "GatewayConfig"
+            case enableBatchHealthCheck = "EnableBatchHealthCheck"
         }
     }
 

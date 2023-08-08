@@ -19,6 +19,7 @@ import TecoCore
 extension TCThpcError {
     public struct InternalError: TCThpcErrorType {
         enum Code: String {
+            case callCAM = "InternalError.CallCAM"
             case callCvm = "InternalError.CallCvm"
             case other = "InternalError"
         }
@@ -45,6 +46,11 @@ extension TCThpcError {
             self.context = context
         }
 
+        /// CAM服务调用失败。
+        public static var callCAM: InternalError {
+            InternalError(.callCAM)
+        }
+
         /// cvm调用失败。
         public static var callCvm: InternalError {
             InternalError(.callCvm)
@@ -58,6 +64,8 @@ extension TCThpcError {
         public func asThpcError() -> TCThpcError {
             let code: TCThpcError.Code
             switch self.error {
+            case .callCAM:
+                code = .internalError_CallCAM
             case .callCvm:
                 code = .internalError_CallCvm
             case .other:

@@ -25,12 +25,20 @@ extension Cwp {
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
 
+        /// 过滤条件。
+        /// <li>HostName - String - 是否必填：否 - 主机名</li>
+        /// <li>Hostip - String - 是否必填：否 - 主机内网IP</li>
+        /// <li>RuleCategory - Int - 是否必填：否 - 策略类型,全部或者单选(0:系统 1:用户)</li>
+        /// <li>RuleName - String - 是否必填：否 - 策略名称</li>
+        /// <li>RuleLevel - Int - 是否必填：否 - 威胁等级,可以多选</li>
+        /// <li>Status - Int - 是否必填：否 - 处理状态,可多选(0:待处理 1:已处理 2:已加白  3:已忽略 4:已删除 5:已拦截)</li>
+        /// <li>DetectBy - Int - 是否必填：否 - 数据来源,可多选(0:bash日志 1:实时监控)</li>
+        /// <li>StartTime - String - 是否必填：否 - 开始时间</li>
+        /// <li>EndTime - String - 是否必填：否 - 结束时间</li>
+        public let filters: [Filter]?
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-
-        /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 关键词(主机内网IP)</li>
-        public let filters: [Filter]?
 
         /// 排序方式：根据请求次数排序：asc-升序/desc-降序
         public let order: String?
@@ -38,18 +46,18 @@ extension Cwp {
         /// 排序字段：CreateTime-发生时间。ModifyTime-处理时间
         public let by: String?
 
-        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
+        public init(limit: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
-            self.offset = offset
             self.filters = filters
+            self.offset = offset
             self.order = order
             self.by = by
         }
 
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
-            case offset = "Offset"
             case filters = "Filters"
+            case offset = "Offset"
             case order = "Order"
             case by = "By"
         }
@@ -59,7 +67,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBashEventsRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)
+            return DescribeBashEventsRequest(limit: self.limit, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order, by: self.by)
         }
     }
 
@@ -105,14 +113,14 @@ extension Cwp {
 
     /// 获取高危命令列表
     @inlinable
-    public func describeBashEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashEventsResponse> {
-        self.describeBashEvents(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+    public func describeBashEvents(limit: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashEventsResponse> {
+        self.describeBashEvents(.init(limit: limit, filters: filters, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令列表
     @inlinable
-    public func describeBashEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
-        try await self.describeBashEvents(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+    public func describeBashEvents(limit: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
+        try await self.describeBashEvents(.init(limit: limit, filters: filters, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令列表

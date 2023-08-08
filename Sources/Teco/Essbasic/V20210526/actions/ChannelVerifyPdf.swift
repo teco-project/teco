@@ -24,7 +24,7 @@ extension Essbasic {
         /// 流程ID
         public let flowId: String
 
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent?
 
         /// 暂未开放
@@ -61,25 +61,33 @@ extension Essbasic {
         }
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
         self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
         self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)

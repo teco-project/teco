@@ -34,6 +34,8 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case failedOperation_ApiBindEnvironment = "FailedOperation.ApiBindEnvironment"
         case failedOperation_ApiError = "FailedOperation.ApiError"
         case failedOperation_ApiInOperation = "FailedOperation.ApiInOperation"
+        case failedOperation_BackendDomainError = "FailedOperation.BackendDomainError"
+        case failedOperation_CamException = "FailedOperation.CamException"
         case failedOperation_CertificateIdBindError = "FailedOperation.CertificateIdBindError"
         case failedOperation_CertificateIdEnterpriseWaitSubmit = "FailedOperation.CertificateIdEnterpriseWaitSubmit"
         case failedOperation_CertificateIdError = "FailedOperation.CertificateIdError"
@@ -60,7 +62,6 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case failedOperation_EIAMError = "FailedOperation.EIAMError"
         case failedOperation_EbError = "FailedOperation.EbError"
         case failedOperation_FormatError = "FailedOperation.FormatError"
-        case failedOperation_GenerateApiDocumentError = "FailedOperation.GenerateApiDocumentError"
         case failedOperation_GetRoleError = "FailedOperation.GetRoleError"
         case failedOperation_InstanceNotExist = "FailedOperation.InstanceNotExist"
         case failedOperation_IsDefaultMapping = "FailedOperation.IsDefaultMapping"
@@ -77,9 +78,11 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case failedOperation_UnknownProtocolTypeError = "FailedOperation.UnknownProtocolTypeError"
         case internalError = "InternalError"
         case internalError_ApigwException = "InternalError.ApigwException"
+        case internalError_CamException = "InternalError.CamException"
         case internalError_CauthException = "InternalError.CauthException"
         case internalError_ClbException = "InternalError.ClbException"
         case internalError_OssException = "InternalError.OssException"
+        case internalError_ReturnableException = "InternalError.ReturnableException"
         case internalError_ScfException = "InternalError.ScfException"
         case internalError_TsfException = "InternalError.TsfException"
         case internalError_VpcException = "InternalError.VpcException"
@@ -99,7 +102,6 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case invalidParameterValue_InvalidEnv = "InvalidParameterValue.InvalidEnv"
         case invalidParameterValue_InvalidEnvStatus = "InvalidParameterValue.InvalidEnvStatus"
         case invalidParameterValue_InvalidFilterNotSupportedName = "InvalidParameterValue.InvalidFilterNotSupportedName"
-        case invalidParameterValue_InvalidGenLanguage = "InvalidParameterValue.InvalidGenLanguage"
         case invalidParameterValue_InvalidIPAddress = "InvalidParameterValue.InvalidIPAddress"
         case invalidParameterValue_InvalidMaxRequestNum = "InvalidParameterValue.InvalidMaxRequestNum"
         case invalidParameterValue_InvalidMethod = "InvalidParameterValue.InvalidMethod"
@@ -171,9 +173,12 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AccountArrears = "UnsupportedOperation.AccountArrears"
         case unsupportedOperation_AlreadyBindUsagePlan = "UnsupportedOperation.AlreadyBindUsagePlan"
+        case unsupportedOperation_ApiListNotEmpty = "UnsupportedOperation.ApiListNotEmpty"
         case unsupportedOperation_AttachPlugin = "UnsupportedOperation.AttachPlugin"
         case unsupportedOperation_BasicServiceNoMoreApi = "UnsupportedOperation.BasicServiceNoMoreApi"
+        case unsupportedOperation_BasicServiceNotAllowAttachPlugin = "UnsupportedOperation.BasicServiceNotAllowAttachPlugin"
         case unsupportedOperation_ClsSearchTime = "UnsupportedOperation.ClsSearchTime"
+        case unsupportedOperation_ExistingOnlineEnvironment = "UnsupportedOperation.ExistingOnlineEnvironment"
         case unsupportedOperation_ForceHttps = "UnsupportedOperation.ForceHttps"
         case unsupportedOperation_InvalidAction = "UnsupportedOperation.InvalidAction"
         case unsupportedOperation_InvalidEndpointType = "UnsupportedOperation.InvalidEndpointType"
@@ -185,10 +190,13 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         case unsupportedOperation_ModifyProtocol = "UnsupportedOperation.ModifyProtocol"
         case unsupportedOperation_NoUsagePlanEnv = "UnsupportedOperation.NoUsagePlanEnv"
         case unsupportedOperation_ReduceNetTypes = "UnsupportedOperation.ReduceNetTypes"
+        case unsupportedOperation_RequestPostError = "UnsupportedOperation.RequestPostError"
         case unsupportedOperation_ResourceAssociated = "UnsupportedOperation.ResourceAssociated"
         case unsupportedOperation_ResourceIsInUse = "UnsupportedOperation.ResourceIsInUse"
         case unsupportedOperation_ResourceUnassociated = "UnsupportedOperation.ResourceUnassociated"
+        case unsupportedOperation_TagsNotEmpty = "UnsupportedOperation.TagsNotEmpty"
         case unsupportedOperation_UinNotInWhiteList = "UnsupportedOperation.UinNotInWhiteList"
+        case unsupportedOperation_UnpackError = "UnsupportedOperation.UnpackError"
         case unsupportedOperation_UnsupportedBindApiKey = "UnsupportedOperation.UnsupportedBindApiKey"
         case unsupportedOperation_UnsupportedBindEnvironment = "UnsupportedOperation.UnsupportedBindEnvironment"
         case unsupportedOperation_UnsupportedDeleteApi = "UnsupportedOperation.UnsupportedDeleteApi"
@@ -275,6 +283,14 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// 当前API正在操作中，请稍后再试。
     public static var failedOperation_ApiInOperation: TCApigatewayError {
         TCApigatewayError(.failedOperation_ApiInOperation)
+    }
+
+    public static var failedOperation_BackendDomainError: TCApigatewayError {
+        TCApigatewayError(.failedOperation_BackendDomainError)
+    }
+
+    public static var failedOperation_CamException: TCApigatewayError {
+        TCApigatewayError(.failedOperation_CamException)
     }
 
     /// 证书绑定错误。
@@ -407,11 +423,6 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.failedOperation_FormatError)
     }
 
-    /// API文档生成失败。
-    public static var failedOperation_GenerateApiDocumentError: TCApigatewayError {
-        TCApigatewayError(.failedOperation_GenerateApiDocumentError)
-    }
-
     /// 获取角色失败，请确认完成API网关相关服务接口授权。
     public static var failedOperation_GetRoleError: TCApigatewayError {
         TCApigatewayError(.failedOperation_GetRoleError)
@@ -494,6 +505,11 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.internalError_ApigwException)
     }
 
+    /// CAM内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
+    public static var internalError_CamException: TCApigatewayError {
+        TCApigatewayError(.internalError_CamException)
+    }
+
     /// CAuth内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
     public static var internalError_CauthException: TCApigatewayError {
         TCApigatewayError(.internalError_CauthException)
@@ -507,6 +523,11 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// oss内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
     public static var internalError_OssException: TCApigatewayError {
         TCApigatewayError(.internalError_OssException)
+    }
+
+    /// 标签回调失败。
+    public static var internalError_ReturnableException: TCApigatewayError {
+        TCApigatewayError(.internalError_ReturnableException)
     }
 
     /// SCF内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
@@ -606,11 +627,6 @@ public struct TCApigatewayError: TCApigatewayErrorType {
     /// 修改参数取值内容为可选范围内的取值。
     public static var invalidParameterValue_InvalidFilterNotSupportedName: TCApigatewayError {
         TCApigatewayError(.invalidParameterValue_InvalidFilterNotSupportedName)
-    }
-
-    /// 参数GenLanguage取值错误。
-    public static var invalidParameterValue_InvalidGenLanguage: TCApigatewayError {
-        TCApigatewayError(.invalidParameterValue_InvalidGenLanguage)
     }
 
     /// 参数后端地址取值错误。
@@ -976,6 +992,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.unsupportedOperation_AlreadyBindUsagePlan)
     }
 
+    public static var unsupportedOperation_ApiListNotEmpty: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_ApiListNotEmpty)
+    }
+
     /// 当前插件不支持绑定。
     public static var unsupportedOperation_AttachPlugin: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_AttachPlugin)
@@ -986,9 +1006,17 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.unsupportedOperation_BasicServiceNoMoreApi)
     }
 
+    public static var unsupportedOperation_BasicServiceNotAllowAttachPlugin: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_BasicServiceNotAllowAttachPlugin)
+    }
+
     /// 日志检索起始时间间隔。
     public static var unsupportedOperation_ClsSearchTime: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_ClsSearchTime)
+    }
+
+    public static var unsupportedOperation_ExistingOnlineEnvironment: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_ExistingOnlineEnvironment)
     }
 
     /// 协议为HTTP时，不支持强制Https。
@@ -1046,6 +1074,10 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.unsupportedOperation_ReduceNetTypes)
     }
 
+    public static var unsupportedOperation_RequestPostError: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_RequestPostError)
+    }
+
     /// 资源已关联，请先解除。
     public static var unsupportedOperation_ResourceAssociated: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_ResourceAssociated)
@@ -1061,9 +1093,17 @@ public struct TCApigatewayError: TCApigatewayErrorType {
         TCApigatewayError(.unsupportedOperation_ResourceUnassociated)
     }
 
+    public static var unsupportedOperation_TagsNotEmpty: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_TagsNotEmpty)
+    }
+
     /// 当前Uin未在手工密钥白名单列表内。
     public static var unsupportedOperation_UinNotInWhiteList: TCApigatewayError {
         TCApigatewayError(.unsupportedOperation_UinNotInWhiteList)
+    }
+
+    public static var unsupportedOperation_UnpackError: TCApigatewayError {
+        TCApigatewayError(.unsupportedOperation_UnpackError)
     }
 
     /// 密钥已绑定使用计划。

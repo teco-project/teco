@@ -40,13 +40,24 @@ extension Vod {
         /// 轮播播单描述信息，长度限制：256 个字符。
         public let desc: String?
 
-        public init(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil) {
+        /// 播放状态，可选值：
+        /// <li>Disabled：结束播放，结束后轮播任务不能再次启动。</li>
+        public let status: String?
+
+        /// 播放模式，可选值：
+        /// <li>Loop：循环播放播单；</li>
+        /// <li>Linear：单次播放，播单播放完停止播放。</li>
+        public let playBackMode: String?
+
+        public init(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, status: String? = nil, playBackMode: String? = nil) {
             self.roundPlayId = roundPlayId
             self.subAppId = subAppId
             self.startTime = startTime
             self.roundPlaylist = roundPlaylist
             self.name = name
             self.desc = desc
+            self.status = status
+            self.playBackMode = playBackMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +67,8 @@ extension Vod {
             case roundPlaylist = "RoundPlaylist"
             case name = "Name"
             case desc = "Desc"
+            case status = "Status"
+            case playBackMode = "PlayBackMode"
         }
     }
 
@@ -92,8 +105,8 @@ extension Vod {
     /// 该接口用于修改轮播播单。
     /// 修改后只有新的播放请求会生效，已经在播放中的用户在七天之内还可以播放修改前的播单。
     @inlinable @discardableResult
-    public func modifyRoundPlay(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoundPlayResponse> {
-        self.modifyRoundPlay(.init(roundPlayId: roundPlayId, subAppId: subAppId, startTime: startTime, roundPlaylist: roundPlaylist, name: name, desc: desc), region: region, logger: logger, on: eventLoop)
+    public func modifyRoundPlay(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, status: String? = nil, playBackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoundPlayResponse> {
+        self.modifyRoundPlay(.init(roundPlayId: roundPlayId, subAppId: subAppId, startTime: startTime, roundPlaylist: roundPlaylist, name: name, desc: desc, status: status, playBackMode: playBackMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改轮播播单
@@ -101,7 +114,7 @@ extension Vod {
     /// 该接口用于修改轮播播单。
     /// 修改后只有新的播放请求会生效，已经在播放中的用户在七天之内还可以播放修改前的播单。
     @inlinable @discardableResult
-    public func modifyRoundPlay(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoundPlayResponse {
-        try await self.modifyRoundPlay(.init(roundPlayId: roundPlayId, subAppId: subAppId, startTime: startTime, roundPlaylist: roundPlaylist, name: name, desc: desc), region: region, logger: logger, on: eventLoop)
+    public func modifyRoundPlay(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, status: String? = nil, playBackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoundPlayResponse {
+        try await self.modifyRoundPlay(.init(roundPlayId: roundPlayId, subAppId: subAppId, startTime: startTime, roundPlaylist: roundPlaylist, name: name, desc: desc, status: status, playBackMode: playBackMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -34,6 +34,7 @@ public struct TCTtsError: TCTtsErrorType {
         case internalError_FailAccessDatabase = "InternalError.FailAccessDatabase"
         case internalError_FailAccessRedis = "InternalError.FailAccessRedis"
         case internalError_InternalError = "InternalError.InternalError"
+        case internalError_NoResource = "InternalError.NoResource"
         case invalidParameterValue_AppId = "InvalidParameterValue.AppId"
         case invalidParameterValue_AppIdNotRegistered = "InvalidParameterValue.AppIdNotRegistered"
         case invalidParameterValue_CallbackUrl = "InvalidParameterValue.CallbackUrl"
@@ -147,6 +148,11 @@ public struct TCTtsError: TCTtsErrorType {
     /// 内部错误。
     public static var internalError_InternalError: TCTtsError {
         TCTtsError(.internalError_InternalError)
+    }
+
+    /// 暂无资源，请稍后重试。
+    public static var internalError_NoResource: TCTtsError {
+        TCTtsError(.internalError_NoResource)
     }
 
     /// AppId非法，请参考AppId参数说明。

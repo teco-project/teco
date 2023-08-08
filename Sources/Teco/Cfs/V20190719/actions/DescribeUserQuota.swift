@@ -33,7 +33,7 @@ extension Cfs {
         /// Offset 分页码
         public let offset: UInt64?
 
-        /// Limit 页面大小
+        /// Limit 页面大小，可填范围为大于0的整数
         public let limit: UInt64?
 
         public init(fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
@@ -88,42 +88,56 @@ extension Cfs {
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaResponse> {
         self.client.execute(action: "DescribeUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
         try await self.client.execute(action: "DescribeUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable
     public func describeUserQuota(fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaResponse> {
         self.describeUserQuota(.init(fileSystemId: fileSystemId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable
     public func describeUserQuota(fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
         try await self.describeUserQuota(.init(fileSystemId: fileSystemId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable
     public func describeUserQuotaPaginated(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [UserQuota])> {
         self.client.paginate(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     @inlinable @discardableResult
     public func describeUserQuotaPaginated(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeUserQuotaResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeUserQuota, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统配额
+    ///
+    /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     ///
     /// - Returns: `AsyncSequence`s of `UserQuota` and `DescribeUserQuotaResponse` that can be iterated over asynchronously on demand.
     @inlinable

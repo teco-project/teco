@@ -40,6 +40,108 @@ extension Ocr {
         }
     }
 
+    /// 机票行程单
+    public struct AirTransport: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 电子客票号码
+        public let number: String?
+
+        /// 校验码
+        public let checkCode: String?
+
+        /// 印刷序号
+        public let serialNumber: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 销售单位代号
+        public let agentCode: String?
+
+        /// 销售单位代号第一行
+        public let agentCodeFirst: String?
+
+        /// 销售单位代号第二行
+        public let agentCodeSecond: String?
+
+        /// 姓名
+        public let userName: String?
+
+        /// 身份证号
+        public let userID: String?
+
+        /// 填开单位
+        public let issuer: String?
+
+        /// 票价
+        public let fare: String?
+
+        /// 合计税额
+        public let tax: String?
+
+        /// 燃油附加费
+        public let fuelSurcharge: String?
+
+        /// 民航发展基金
+        public let airDevelopmentFund: String?
+
+        /// 保险费
+        public let insurance: String?
+
+        /// 合计金额（小写）
+        public let total: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 国内国际标签
+        public let domesticInternationalTag: String?
+
+        /// 客票生效日期
+        public let dateStart: String?
+
+        /// 有效截至日期
+        public let dateEnd: String?
+
+        /// 签注
+        public let endorsement: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 条目
+        public let flightItems: [FlightItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case number = "Number"
+            case checkCode = "CheckCode"
+            case serialNumber = "SerialNumber"
+            case date = "Date"
+            case agentCode = "AgentCode"
+            case agentCodeFirst = "AgentCodeFirst"
+            case agentCodeSecond = "AgentCodeSecond"
+            case userName = "UserName"
+            case userID = "UserID"
+            case issuer = "Issuer"
+            case fare = "Fare"
+            case tax = "Tax"
+            case fuelSurcharge = "FuelSurcharge"
+            case airDevelopmentFund = "AirDevelopmentFund"
+            case insurance = "Insurance"
+            case total = "Total"
+            case kind = "Kind"
+            case domesticInternationalTag = "DomesticInternationalTag"
+            case dateStart = "DateStart"
+            case dateEnd = "DateEnd"
+            case endorsement = "Endorsement"
+            case qrCodeMark = "QRCodeMark"
+            case flightItems = "FlightItems"
+        }
+    }
+
     /// 银行回单识别出的字段
     public struct BankSlipInfo: TCOutputModel {
         /// 识别出的字段名称(关键字)，支持以下字段：
@@ -79,6 +181,96 @@ extension Ocr {
             case regNum = "RegNum"
             case name = "Name"
             case address = "Address"
+        }
+    }
+
+    /// 汽车票
+    public struct BusInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 乘车时间
+        public let timeGetOn: String?
+
+        /// 乘车日期
+        public let dateGetOn: String?
+
+        /// 出发车站
+        public let stationGetOn: String?
+
+        /// 到达车站
+        public let stationGetOff: String?
+
+        /// 票价
+        public let total: String?
+
+        /// 姓名
+        public let userName: String?
+
+        /// 消费类型
+        public let kind: String?
+
+        /// 身份证号
+        public let userID: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 乘车地点
+        public let placeGetOn: String?
+
+        /// 检票口
+        public let gateNumber: String?
+
+        /// 客票类型
+        public let ticketType: String?
+
+        /// 车型
+        public let vehicleType: String?
+
+        /// 座位号
+        public let seatNumber: String?
+
+        /// 车次
+        public let trainNumber: String?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case qrCodeMark = "QRCodeMark"
+            case number = "Number"
+            case code = "Code"
+            case date = "Date"
+            case timeGetOn = "TimeGetOn"
+            case dateGetOn = "DateGetOn"
+            case stationGetOn = "StationGetOn"
+            case stationGetOff = "StationGetOff"
+            case total = "Total"
+            case userName = "UserName"
+            case kind = "Kind"
+            case userID = "UserID"
+            case province = "Province"
+            case city = "City"
+            case placeGetOn = "PlaceGetOn"
+            case gateNumber = "GateNumber"
+            case ticketType = "TicketType"
+            case vehicleType = "VehicleType"
+            case seatNumber = "SeatNumber"
+            case trainNumber = "TrainNumber"
         }
     }
 
@@ -142,7 +334,7 @@ extension Ocr {
         /// 字段在旋转纠正之后的图像中的像素坐标。
         public let rect: Rect
 
-        /// 字段在原图中的中的四点坐标。
+        /// 字段在原图中的四点坐标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let polygon: Polygon?
@@ -204,20 +396,6 @@ extension Ocr {
         }
     }
 
-    /// 企业四要素核验结果
-    public struct Detail: TCOutputModel {
-        /// 企业四要素核验结果状态码
-        public let result: Int64
-
-        /// 企业四要素核验结果描述
-        public let desc: String
-
-        enum CodingKeys: String, CodingKey {
-            case result = "Result"
-            case desc = "Desc"
-        }
-    }
-
     /// 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
     public struct DetectedWordCoordPoint: TCOutputModel {
         /// 单字在原图中的坐标，以四个顶点坐标表示，以左上角为起点，顺时针返回。
@@ -264,7 +442,7 @@ extension Ocr {
     /// 企业证照单个字段的内容
     public struct EnterpriseLicenseInfo: TCOutputModel {
         /// 识别出的字段名称（关键字），不同证件类型可能不同，证件类型包含企业登记证书、许可证书、企业执照、三证合一类证书；
-        /// 支持以下字段：统一社会信用代码、法定代表人、公司名称、公司地址、注册资金、企业关型、经营范围、成立日期、有效期、开办资金、经费来源、举办单位等；
+        /// 支持以下字段：统一社会信用代码、法定代表人、公司名称、公司地址、注册资金、企业类型、经营范围、成立日期、有效期、开办资金、经费来源、举办单位等；
         public let name: String
 
         /// 识别出的字段名称对应的值，也就是字段Name对应的字符串结果。
@@ -327,6 +505,104 @@ extension Ocr {
             case name = "Name"
             case value = "Value"
             case row = "Row"
+        }
+    }
+
+    /// 机票行程卡条目
+    public struct FlightItem: TCOutputModel {
+        /// 出发航站楼
+        public let terminalGetOn: String?
+
+        /// 到达航站楼
+        public let terminalGetOff: String?
+
+        /// 承运人
+        public let carrier: String?
+
+        /// 航班号
+        public let flightNumber: String?
+
+        /// 座位等级
+        public let seat: String?
+
+        /// 乘机日期
+        public let dateGetOn: String?
+
+        /// 乘机时间
+        public let timeGetOn: String?
+
+        /// 出发站
+        public let stationGetOn: String?
+
+        /// 到达站
+        public let stationGetOff: String?
+
+        /// 免费行李
+        public let allow: String?
+
+        /// 客票级别/客票类别
+        public let fareBasis: String?
+
+        enum CodingKeys: String, CodingKey {
+            case terminalGetOn = "TerminalGetOn"
+            case terminalGetOff = "TerminalGetOff"
+            case carrier = "Carrier"
+            case flightNumber = "FlightNumber"
+            case seat = "Seat"
+            case dateGetOn = "DateGetOn"
+            case timeGetOn = "TimeGetOn"
+            case stationGetOn = "StationGetOn"
+            case stationGetOff = "StationGetOff"
+            case allow = "Allow"
+            case fareBasis = "FareBasis"
+        }
+    }
+
+    /// 通用机打发票条目
+    public struct GeneralMachineItem: TCOutputModel {
+        /// 项目名称
+        public let name: String?
+
+        /// 规格型号
+        public let specification: String?
+
+        /// 单位
+        public let unit: String?
+
+        /// 数量
+        public let quantity: String?
+
+        /// 单价
+        public let price: String?
+
+        /// 金额
+        public let total: String?
+
+        /// 税率
+        public let taxRate: String?
+
+        /// 税额
+        public let tax: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case specification = "Specification"
+            case unit = "Unit"
+            case quantity = "Quantity"
+            case price = "Price"
+            case total = "Total"
+            case taxRate = "TaxRate"
+            case tax = "Tax"
+        }
+    }
+
+    /// 组在图中的序号
+    public struct GroupInfo: TCOutputModel {
+        /// 每一行的元素
+        public let groups: [LineInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case groups = "Groups"
         }
     }
 
@@ -410,6 +686,70 @@ extension Ocr {
         }
     }
 
+    /// 混贴票据单张发票识别信息
+    public struct InvoiceItem: TCOutputModel {
+        /// 识别结果。
+        /// OK：表示识别成功；FailedOperation.UnsupportedInvoice：表示不支持识别；
+        /// FailedOperation.UnKnowError：表示识别失败；
+        /// 其它错误码见各个票据接口的定义。
+        public let code: String
+
+        /// 识别出的图片所属的票据类型。
+        /// -1：未知类型
+        /// 0：出租车发票
+        /// 1：定额发票
+        /// 2：火车票
+        /// 3：增值税发票
+        /// 5：机票行程单
+        /// 8：通用机打发票
+        /// 9：汽车票
+        /// 10：轮船票
+        /// 11：增值税发票（卷票）
+        /// 12：购车发票
+        /// 13：过路过桥费发票
+        /// 15：非税发票
+        /// 16：全电发票
+        /// 17：医疗发票
+        public let type: Int64
+
+        /// 该发票在原图片中的四点坐标。
+        public let polygon: Polygon
+
+        /// 识别出的图片在混贴票据图片中的旋转角度。
+        public let angle: Float
+
+        /// 识别到的内容。
+        public let singleInvoiceInfos: SingleInvoiceItem
+
+        /// 发票处于识别图片或PDF文件中的页教，默认从1开始。
+        public let page: Int64
+
+        /// 发票详细类型，详见上方 SubType 返回值说明
+        public let subType: String
+
+        /// 发票类型描述，详见上方 TypeDescription  返回值说明
+        public let typeDescription: String
+
+        /// 切割单图文件，Base64编码后的切图后的图片文件，开启 EnableCutImage 后进行返回
+        public let cutImage: String
+
+        /// 发票详细类型描述，详见上方 SubType 返回值说明
+        public let subTypeDescription: String
+
+        enum CodingKeys: String, CodingKey {
+            case code = "Code"
+            case type = "Type"
+            case polygon = "Polygon"
+            case angle = "Angle"
+            case singleInvoiceInfos = "SingleInvoiceInfos"
+            case page = "Page"
+            case subType = "SubType"
+            case typeDescription = "TypeDescription"
+            case cutImage = "CutImage"
+            case subTypeDescription = "SubTypeDescription"
+        }
+    }
+
     /// 文本行在旋转纠正之后的图像中的像素坐标，表示为（左上角x, 左上角y，宽width，高height）
     public struct ItemCoord: TCOutputModel {
         /// 左上角x
@@ -432,6 +772,37 @@ extension Ocr {
         }
     }
 
+    /// 智能结构化元素组
+    public struct ItemInfo: TCOutputModel {
+        /// key信息组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: Key?
+
+        /// Value信息组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: Value?
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
+    /// key信息组
+    public struct Key: TCOutputModel {
+        /// 自动识别的字段名称
+        public let autoName: String?
+
+        /// 定义的字段名称（传key的名称）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case autoName = "AutoName"
+            case configName = "ConfigName"
+        }
+    }
+
     /// 全部车牌信息
     public struct LicensePlateInfo: TCOutputModel {
         /// 识别出的车牌号码。
@@ -451,6 +822,208 @@ extension Ocr {
             case confidence = "Confidence"
             case rect = "Rect"
             case color = "Color"
+        }
+    }
+
+    /// 按行输出，行序号
+    public struct LineInfo: TCOutputModel {
+        /// 每行的一个元素
+        public let lines: [ItemInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case lines = "Lines"
+        }
+    }
+
+    /// 通用机打发票
+    public struct MachinePrintedInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 时间
+        public let time: String?
+
+        /// 校验码
+        public let checkCode: String?
+
+        /// 密码区
+        public let ciphertext: String?
+
+        /// 种类
+        public let category: String?
+
+        /// 税前金额
+        public let pretaxAmount: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 合计税额
+        public let tax: String?
+
+        /// 行业分类
+        public let industryClass: String?
+
+        /// 销售方名称
+        public let seller: String?
+
+        /// 销售方纳税人识别号
+        public let sellerTaxID: String?
+
+        /// 销售方地址电话
+        public let sellerAddrTel: String?
+
+        /// 销售方银行账号
+        public let sellerBankAccount: String?
+
+        /// 购买方名称
+        public let buyer: String?
+
+        /// 购买方纳税人识别号
+        public let buyerTaxID: String?
+
+        /// 购买方地址电话
+        public let buyerAddrTel: String?
+
+        /// 购买方银行账号
+        public let buyerBankAccount: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64?
+
+        /// 是否为浙江/广东通用机打发票（0：没有，1：有）
+        public let electronicMark: Int64?
+
+        /// 开票人
+        public let issuer: String?
+
+        /// 收款人
+        public let receiptor: String?
+
+        /// 复核人
+        public let reviewer: String?
+
+        /// 备注
+        public let remark: String?
+
+        /// 经办人支付信息
+        public let paymentInfo: String?
+
+        /// 经办人取票用户
+        public let ticketPickupUser: String?
+
+        /// 经办人商户号
+        public let merchantNumber: String?
+
+        /// 经办人订单号
+        public let orderNumber: String?
+
+        /// 条目
+        public let generalMachineItems: [GeneralMachineItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case qrCodeMark = "QRCodeMark"
+            case code = "Code"
+            case number = "Number"
+            case date = "Date"
+            case time = "Time"
+            case checkCode = "CheckCode"
+            case ciphertext = "Ciphertext"
+            case category = "Category"
+            case pretaxAmount = "PretaxAmount"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case tax = "Tax"
+            case industryClass = "IndustryClass"
+            case seller = "Seller"
+            case sellerTaxID = "SellerTaxID"
+            case sellerAddrTel = "SellerAddrTel"
+            case sellerBankAccount = "SellerBankAccount"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case buyerAddrTel = "BuyerAddrTel"
+            case buyerBankAccount = "BuyerBankAccount"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case companySealMark = "CompanySealMark"
+            case electronicMark = "ElectronicMark"
+            case issuer = "Issuer"
+            case receiptor = "Receiptor"
+            case reviewer = "Reviewer"
+            case remark = "Remark"
+            case paymentInfo = "PaymentInfo"
+            case ticketPickupUser = "TicketPickupUser"
+            case merchantNumber = "MerchantNumber"
+            case orderNumber = "OrderNumber"
+            case generalMachineItems = "GeneralMachineItems"
+        }
+    }
+
+    /// 医疗票据信息
+    public struct MedicalInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 校验码
+        public let checkCode: String?
+
+        /// 发票属地
+        public let place: String?
+
+        /// 复核人
+        public let reviewer: String?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case code = "Code"
+            case number = "Number"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case date = "Date"
+            case checkCode = "CheckCode"
+            case place = "Place"
+            case reviewer = "Reviewer"
         }
     }
 
@@ -536,6 +1109,316 @@ extension Ocr {
         }
     }
 
+    /// 机动车销售统一发票
+    public struct MotorVehicleSaleInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 税前金额
+        public let pretaxAmount: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 销售方名称
+        public let seller: String?
+
+        /// 销售方单位代码
+        public let sellerTaxID: String?
+
+        /// 销售方电话
+        public let sellerTel: String?
+
+        /// 销售方地址
+        public let sellerAddress: String?
+
+        /// 销售方开户行
+        public let sellerBank: String?
+
+        /// 销售方银行账号
+        public let sellerBankAccount: String?
+
+        /// 购买方名称
+        public let buyer: String?
+
+        /// 购买方纳税人识别号
+        public let buyerTaxID: String?
+
+        /// 购买方身份证号码/组织机构代码
+        public let buyerID: String?
+
+        /// 主管税务机关
+        public let taxAuthorities: String?
+
+        /// 主管税务机关代码
+        public let taxAuthoritiesCode: String?
+
+        /// 车辆识别代码
+        public let vin: String?
+
+        /// 厂牌型号
+        public let vehicleModel: String?
+
+        /// 发动机号码
+        public let vehicleEngineCode: String?
+
+        /// 合格证号
+        public let certificateNumber: String?
+
+        /// 商检单号
+        public let inspectionNumber: String?
+
+        /// 机器编号
+        public let machineID: String?
+
+        /// 车辆类型
+        public let vehicleType: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 合计税额
+        public let tax: String?
+
+        /// 税率
+        public let taxRate: String?
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64?
+
+        /// 吨位
+        public let tonnage: String?
+
+        /// 备注
+        public let remark: String?
+
+        /// 发票联次
+        public let formType: String?
+
+        /// 发票联名
+        public let formName: String?
+
+        /// 开票人
+        public let issuer: String?
+
+        /// 完税凭证号码
+        public let taxNum: String?
+
+        /// 限乘人数
+        public let maxPeopleNum: String?
+
+        /// 产地
+        public let origin: String?
+
+        /// 机打发票代码
+        public let machineCode: String?
+
+        /// 机打发票号码
+        public let machineNumber: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case code = "Code"
+            case number = "Number"
+            case date = "Date"
+            case pretaxAmount = "PretaxAmount"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case seller = "Seller"
+            case sellerTaxID = "SellerTaxID"
+            case sellerTel = "SellerTel"
+            case sellerAddress = "SellerAddress"
+            case sellerBank = "SellerBank"
+            case sellerBankAccount = "SellerBankAccount"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case buyerID = "BuyerID"
+            case taxAuthorities = "TaxAuthorities"
+            case taxAuthoritiesCode = "TaxAuthoritiesCode"
+            case vin = "VIN"
+            case vehicleModel = "VehicleModel"
+            case vehicleEngineCode = "VehicleEngineCode"
+            case certificateNumber = "CertificateNumber"
+            case inspectionNumber = "InspectionNumber"
+            case machineID = "MachineID"
+            case vehicleType = "VehicleType"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case tax = "Tax"
+            case taxRate = "TaxRate"
+            case companySealMark = "CompanySealMark"
+            case tonnage = "Tonnage"
+            case remark = "Remark"
+            case formType = "FormType"
+            case formName = "FormName"
+            case issuer = "Issuer"
+            case taxNum = "TaxNum"
+            case maxPeopleNum = "MaxPeopleNum"
+            case origin = "Origin"
+            case machineCode = "MachineCode"
+            case machineNumber = "MachineNumber"
+            case qrCodeMark = "QRCodeMark"
+        }
+    }
+
+    /// 非税收入
+    public struct NonTaxIncomeBill: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 校验码
+        public let checkCode: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 交款人名称
+        public let buyer: String?
+
+        /// 交款人纳税人识别号
+        public let buyerTaxID: String?
+
+        /// 收款人名称
+        public let seller: String?
+
+        /// 收款单位名称
+        public let sellerCompany: String?
+
+        /// 备注
+        public let remark: String?
+
+        /// 币种
+        public let currencyCode: String?
+
+        /// 复核人
+        public let reviewer: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 其他信息
+        public let otherInfo: String?
+
+        /// 缴款码
+        public let paymentCode: String?
+
+        /// 执收单位编码
+        public let receiveUnitCode: String?
+
+        /// 执收单位名称
+        public let receiver: String?
+
+        /// 经办人
+        public let `operator`: String?
+
+        /// 付款人账号
+        public let payerAccount: String?
+
+        /// 付款人开户银行
+        public let payerBank: String?
+
+        /// 收款人账号
+        public let receiverAccount: String?
+
+        /// 收款人开户银行
+        public let receiverBank: String?
+
+        /// 条目
+        public let nonTaxItems: [NonTaxItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case number = "Number"
+            case code = "Code"
+            case checkCode = "CheckCode"
+            case date = "Date"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case seller = "Seller"
+            case sellerCompany = "SellerCompany"
+            case remark = "Remark"
+            case currencyCode = "CurrencyCode"
+            case reviewer = "Reviewer"
+            case qrCodeMark = "QRCodeMark"
+            case otherInfo = "OtherInfo"
+            case paymentCode = "PaymentCode"
+            case receiveUnitCode = "ReceiveUnitCode"
+            case receiver = "Receiver"
+            case `operator` = "Operator"
+            case payerAccount = "PayerAccount"
+            case payerBank = "PayerBank"
+            case receiverAccount = "ReceiverAccount"
+            case receiverBank = "ReceiverBank"
+            case nonTaxItems = "NonTaxItems"
+        }
+    }
+
+    /// 非税收入条目
+    public struct NonTaxItem: TCOutputModel {
+        /// 项目编码
+        public let itemID: String?
+
+        /// 项目名称
+        public let name: String?
+
+        /// 单位
+        public let unit: String?
+
+        /// 数量
+        public let quantity: String?
+
+        /// 标准
+        public let standard: String?
+
+        /// 金额
+        public let total: String?
+
+        enum CodingKeys: String, CodingKey {
+            case itemID = "ItemID"
+            case name = "Name"
+            case unit = "Unit"
+            case quantity = "Quantity"
+            case standard = "Standard"
+            case total = "Total"
+        }
+    }
+
     /// 网约车行程单识别结果
     public struct OnlineTaxiItineraryInfo: TCOutputModel {
         /// 识别出的字段名称(关键字)，支持以下字段：
@@ -552,6 +1435,56 @@ extension Ocr {
             case name = "Name"
             case value = "Value"
             case row = "Row"
+        }
+    }
+
+    /// 其他发票
+    public struct OtherInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String
+
+        /// 金额
+        public let total: String
+
+        /// 列表
+        public let otherInvoiceListItems: [OtherInvoiceItem]
+
+        /// 表格
+        public let otherInvoiceTableItems: [OtherInvoiceList]
+
+        /// 发票日期
+        public let date: String
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case total = "Total"
+            case otherInvoiceListItems = "OtherInvoiceListItems"
+            case otherInvoiceTableItems = "OtherInvoiceTableItems"
+            case date = "Date"
+        }
+    }
+
+    /// OtherInvoiceItem
+    public struct OtherInvoiceItem: TCOutputModel {
+        /// 票面key值
+        public let name: String?
+
+        /// 票面value值
+        public let value: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case value = "Value"
+        }
+    }
+
+    /// 其他票Table
+    public struct OtherInvoiceList: TCOutputModel {
+        /// 列表
+        public let otherInvoiceItemList: [OtherInvoiceItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case otherInvoiceItemList = "OtherInvoiceItemList"
         }
     }
 
@@ -601,91 +1534,6 @@ extension Ocr {
             case rightTop = "RightTop"
             case rightBottom = "RightBottom"
             case leftBottom = "LeftBottom"
-        }
-    }
-
-    /// 商品码信息
-    public struct ProductDataRecord: TCOutputModel {
-        /// 产品名称
-        public let productName: String
-
-        /// 产品名称(英文)
-        public let enName: String
-
-        /// 品牌名称
-        public let brandName: String
-
-        /// 规格型号
-        public let type: String
-
-        /// 宽度，单位毫米
-        public let width: String
-
-        /// 高度，单位毫米
-        public let height: String
-
-        /// 深度，单位毫米
-        public let depth: String
-
-        /// 关键字
-        public let keyWord: String
-
-        /// 简短描述
-        public let description: String
-
-        /// 图片链接
-        public let imageLink: [String]
-
-        /// 厂家名称
-        public let manufacturerName: String
-
-        /// 厂家地址
-        public let manufacturerAddress: String
-
-        /// 企业社会信用代码
-        public let firmCode: String
-
-        /// 表示数据查询状态
-        /// checkResult	状态说明
-        /// 1	 经查，该商品条码已在中国物品编码中心注册
-        /// 2	经查，该厂商识别代码已在中国物品编码中心注册，但编码信息未按规定通报。
-        /// 3	经查，该厂商识别代码已于xxxxx注销，请关注产品生产日期。
-        /// 4	经查，该企业以及条码未经条码中心注册，属于违法使用
-        /// -1	经查，该商品条码被冒用
-        /// -2	经查，该厂商识别代码已在中国物品编码中心注册，但该产品已经下市
-        /// S001                未找到该厂商识别代码的注册信息。
-        /// S002		该厂商识别代码已经在GS1注册，但编码信息未通报
-        /// S003		该商品条码已在GS1通报
-        /// S004		该商品条码已注销
-        /// S005		数字不正确。GS1前缀（3位国家/地区代码）用于特殊用途。
-        /// E001		完整性失败：此GTIN的长度无效。
-        /// E002		完整性失败：校验位不正确。
-        /// E003		完整性失败：字符串包含字母数字字符。
-        /// E004		数字不正确。GS1前缀（3位国家/地区代码）不存在。
-        /// E005		数字不正确。GS1前缀（3位国家/地区代码）用于特殊用途。
-        /// E006		数字不正确。尚未分配该GS1公司前缀。
-        /// E008	        经查，该企业厂商识别代码以及条码尚未通报
-        public let checkResult: String
-
-        /// UNSPSC分类码
-        public let categoryCode: String
-
-        enum CodingKeys: String, CodingKey {
-            case productName = "ProductName"
-            case enName = "EnName"
-            case brandName = "BrandName"
-            case type = "Type"
-            case width = "Width"
-            case height = "Height"
-            case depth = "Depth"
-            case keyWord = "KeyWord"
-            case description = "Description"
-            case imageLink = "ImageLink"
-            case manufacturerName = "ManufacturerName"
-            case manufacturerAddress = "ManufacturerAddress"
-            case firmCode = "FirmCode"
-            case checkResult = "CheckResult"
-            case categoryCode = "CategoryCode"
         }
     }
 
@@ -790,6 +1638,52 @@ extension Ocr {
         }
     }
 
+    /// 定额发票
+    public struct QuotaInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case code = "Code"
+            case number = "Number"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case qrCodeMark = "QRCodeMark"
+            case companySealMark = "CompanySealMark"
+        }
+    }
+
     /// 矩形坐标
     public struct Rect: TCOutputModel {
         /// 左上角x
@@ -858,6 +1752,68 @@ extension Ocr {
         }
     }
 
+    /// 轮船票
+    public struct ShippingInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 姓名
+        public let userName: String?
+
+        /// 日期
+        public let date: String?
+
+        /// 时间
+        public let time: String?
+
+        /// 出发车站
+        public let stationGetOn: String?
+
+        /// 到达车站
+        public let stationGetOff: String?
+
+        /// 票价
+        public let total: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 币种
+        public let currencyCode: String?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case qrCodeMark = "QRCodeMark"
+            case code = "Code"
+            case number = "Number"
+            case userName = "UserName"
+            case date = "Date"
+            case time = "Time"
+            case stationGetOn = "StationGetOn"
+            case stationGetOff = "StationGetOff"
+            case total = "Total"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case currencyCode = "CurrencyCode"
+        }
+    }
+
     /// 混贴票据中单张发票的内容
     public struct SingleInvoiceInfo: TCOutputModel {
         /// 识别出的字段名称
@@ -873,6 +1829,137 @@ extension Ocr {
             case name = "Name"
             case value = "Value"
             case row = "Row"
+        }
+    }
+
+    /// 混贴票据中单张发票的内容
+    public struct SingleInvoiceItem: TCOutputModel {
+        /// 增值税专用发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatSpecialInvoice: VatInvoiceInfo?
+
+        /// 增值税普通发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatCommonInvoice: VatInvoiceInfo?
+
+        /// 增值税电子普通发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicCommonInvoice: VatInvoiceInfo?
+
+        /// 增值税电子专用发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicSpecialInvoice: VatInvoiceInfo?
+
+        /// 区块链电子发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicInvoiceBlockchain: VatInvoiceInfo?
+
+        /// 增值税电子普通发票(通行费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicInvoiceToll: VatInvoiceInfo?
+
+        /// 电子发票(专用发票)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicSpecialInvoiceFull: VatElectronicInfo?
+
+        /// 电子发票(普通发票)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatElectronicInvoiceFull: VatElectronicInfo?
+
+        /// 通用机打发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machinePrintedInvoice: MachinePrintedInvoice?
+
+        /// 汽车票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let busInvoice: BusInvoice?
+
+        /// 轮船票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let shippingInvoice: ShippingInvoice?
+
+        /// 过路过桥费发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tollInvoice: TollInvoice?
+
+        /// 其他发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let otherInvoice: OtherInvoice?
+
+        /// 机动车销售统一发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let motorVehicleSaleInvoice: MotorVehicleSaleInvoice?
+
+        /// 二手车销售统一发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usedCarPurchaseInvoice: UsedCarPurchaseInvoice?
+
+        /// 增值税普通发票(卷票)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatInvoiceRoll: VatInvoiceRoll?
+
+        /// 出租车发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taxiTicket: TaxiTicket?
+
+        /// 定额发票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let quotaInvoice: QuotaInvoice?
+
+        /// 机票行程单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let airTransport: AirTransport?
+
+        /// 非税收入通用票据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nonTaxIncomeGeneralBill: NonTaxIncomeBill?
+
+        /// 非税收入一般缴款书(电子)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nonTaxIncomeElectronicBill: NonTaxIncomeBill?
+
+        /// 火车票
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trainTicket: TrainTicket?
+
+        /// 医疗门诊收费票据（电子）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let medicalOutpatientInvoice: MedicalInvoice?
+
+        /// 医疗住院收费票据（电子）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let medicalHospitalizedInvoice: MedicalInvoice?
+
+        /// 增值税销货清单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vatSalesList: VatInvoiceInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case vatSpecialInvoice = "VatSpecialInvoice"
+            case vatCommonInvoice = "VatCommonInvoice"
+            case vatElectronicCommonInvoice = "VatElectronicCommonInvoice"
+            case vatElectronicSpecialInvoice = "VatElectronicSpecialInvoice"
+            case vatElectronicInvoiceBlockchain = "VatElectronicInvoiceBlockchain"
+            case vatElectronicInvoiceToll = "VatElectronicInvoiceToll"
+            case vatElectronicSpecialInvoiceFull = "VatElectronicSpecialInvoiceFull"
+            case vatElectronicInvoiceFull = "VatElectronicInvoiceFull"
+            case machinePrintedInvoice = "MachinePrintedInvoice"
+            case busInvoice = "BusInvoice"
+            case shippingInvoice = "ShippingInvoice"
+            case tollInvoice = "TollInvoice"
+            case otherInvoice = "OtherInvoice"
+            case motorVehicleSaleInvoice = "MotorVehicleSaleInvoice"
+            case usedCarPurchaseInvoice = "UsedCarPurchaseInvoice"
+            case vatInvoiceRoll = "VatInvoiceRoll"
+            case taxiTicket = "TaxiTicket"
+            case quotaInvoice = "QuotaInvoice"
+            case airTransport = "AirTransport"
+            case nonTaxIncomeGeneralBill = "NonTaxIncomeGeneralBill"
+            case nonTaxIncomeElectronicBill = "NonTaxIncomeElectronicBill"
+            case trainTicket = "TrainTicket"
+            case medicalOutpatientInvoice = "MedicalOutpatientInvoice"
+            case medicalHospitalizedInvoice = "MedicalHospitalizedInvoice"
+            case vatSalesList = "VatSalesList"
         }
     }
 
@@ -1067,6 +2154,84 @@ extension Ocr {
 
         enum CodingKeys: String, CodingKey {
             case text = "Text"
+        }
+    }
+
+    /// 出租车发票
+    public struct TaxiTicket: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 上车时间
+        public let timeGetOn: String?
+
+        /// 下车时间
+        public let timeGetOff: String?
+
+        /// 单价
+        public let price: String?
+
+        /// 里程
+        public let mileage: String?
+
+        /// 总金额
+        public let total: String?
+
+        /// 发票所在地
+        public let place: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 车牌号
+        public let licensePlate: String?
+
+        /// 燃油附加费
+        public let fuelFee: String?
+
+        /// 预约叫车服务费
+        public let bookingCallFee: String?
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case qrCodeMark = "QRCodeMark"
+            case code = "Code"
+            case number = "Number"
+            case date = "Date"
+            case timeGetOn = "TimeGetOn"
+            case timeGetOff = "TimeGetOff"
+            case price = "Price"
+            case mileage = "Mileage"
+            case total = "Total"
+            case place = "Place"
+            case province = "Province"
+            case city = "City"
+            case kind = "Kind"
+            case licensePlate = "LicensePlate"
+            case fuelFee = "FuelFee"
+            case bookingCallFee = "BookingCallFee"
+            case companySealMark = "CompanySealMark"
         }
     }
 
@@ -1367,6 +2532,10 @@ extension Ocr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalQuasiMass: String?
 
+        /// 副页编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subPageCode: String?
+
         enum CodingKeys: String, CodingKey {
             case plateNo = "PlateNo"
             case fileNo = "FileNo"
@@ -1378,6 +2547,7 @@ extension Ocr {
             case marks = "Marks"
             case record = "Record"
             case totalQuasiMass = "TotalQuasiMass"
+            case subPageCode = "SubPageCode"
         }
     }
 
@@ -1476,6 +2646,56 @@ extension Ocr {
         }
     }
 
+    /// 过路过桥费发票
+    public struct TollInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 日期
+        public let date: String?
+
+        /// 时间
+        public let time: String?
+
+        /// 入口
+        public let entrance: String?
+
+        /// 出口
+        public let exit: String?
+
+        /// 高速标志（0：没有，1：有）
+        public let highwayMark: Int64?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case code = "Code"
+            case number = "Number"
+            case total = "Total"
+            case kind = "Kind"
+            case date = "Date"
+            case time = "Time"
+            case entrance = "Entrance"
+            case exit = "Exit"
+            case highwayMark = "HighwayMark"
+            case qrCodeMark = "QRCodeMark"
+        }
+    }
+
     /// 过路过桥费字段信息
     public struct TollInvoiceInfo: TCOutputModel {
         /// 识别出的字段名称（关键字）。支持以下字段的识别：
@@ -1492,6 +2712,246 @@ extension Ocr {
             case name = "Name"
             case value = "Value"
             case rect = "Rect"
+        }
+    }
+
+    /// 火车票
+    public struct TrainTicket: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 乘车日期
+        public let dateGetOn: String?
+
+        /// 乘车时间
+        public let timeGetOn: String?
+
+        /// 乘车人姓名
+        public let name: String?
+
+        /// 出发车站
+        public let stationGetOn: String?
+
+        /// 到达车站
+        public let stationGetOff: String?
+
+        /// 座位类型
+        public let seat: String?
+
+        /// 总金额
+        public let total: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 序列号
+        public let serialNumber: String?
+
+        /// 身份证号
+        public let userID: String?
+
+        /// 检票口
+        public let gateNumber: String?
+
+        /// 车次
+        public let trainNumber: String?
+
+        /// 手续费
+        public let handlingFee: String?
+
+        /// 原票价
+        public let originalFare: String?
+
+        /// 大写金额
+        public let totalCn: String?
+
+        /// 座位号
+        public let seatNumber: String?
+
+        /// 取票地址
+        public let pickUpAddress: String?
+
+        /// 是否始发改签
+        public let ticketChange: String?
+
+        /// 加收票价
+        public let additionalFare: String?
+
+        /// 收据号码
+        public let receiptNumber: String?
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64?
+
+        /// 是否仅供报销使用（0：没有，1：有）
+        public let reimburseOnlyMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case number = "Number"
+            case dateGetOn = "DateGetOn"
+            case timeGetOn = "TimeGetOn"
+            case name = "Name"
+            case stationGetOn = "StationGetOn"
+            case stationGetOff = "StationGetOff"
+            case seat = "Seat"
+            case total = "Total"
+            case kind = "Kind"
+            case serialNumber = "SerialNumber"
+            case userID = "UserID"
+            case gateNumber = "GateNumber"
+            case trainNumber = "TrainNumber"
+            case handlingFee = "HandlingFee"
+            case originalFare = "OriginalFare"
+            case totalCn = "TotalCn"
+            case seatNumber = "SeatNumber"
+            case pickUpAddress = "PickUpAddress"
+            case ticketChange = "TicketChange"
+            case additionalFare = "AdditionalFare"
+            case receiptNumber = "ReceiptNumber"
+            case qrCodeMark = "QRCodeMark"
+            case reimburseOnlyMark = "ReimburseOnlyMark"
+        }
+    }
+
+    /// 二手车销售统一发票
+    public struct UsedCarPurchaseInvoice: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 是否存在二维码（0：没有，1：有）
+        public let qrCodeMark: Int64?
+
+        /// 发票代码
+        public let code: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 销货单位名称
+        public let seller: String?
+
+        /// 销售方电话
+        public let sellerTel: String?
+
+        /// 销售方单位代码/个人身份证号
+        public let sellerTaxID: String?
+
+        /// 销售方地址
+        public let sellerAddress: String?
+
+        /// 购买方名称
+        public let buyer: String?
+
+        /// 购买方单位代码/个人身份证号
+        public let buyerID: String?
+
+        /// 购买方地址
+        public let buyerAddress: String?
+
+        /// 购买方电话
+        public let buyerTel: String?
+
+        /// 二手车市场
+        public let companyName: String?
+
+        /// 二手车市场纳税人识别号
+        public let companyTaxID: String?
+
+        /// 二手车市场开户银行和账号
+        public let companyBankAccount: String?
+
+        /// 二手车市场电话
+        public let companyTel: String?
+
+        /// 二手车市场地址
+        public let companyAddress: String?
+
+        /// 转入地车辆管理所名称
+        public let transferAdministrationName: String?
+
+        /// 车牌号
+        public let licensePlate: String?
+
+        /// 登记证号
+        public let registrationNumber: String?
+
+        /// 车辆识别代码
+        public let vin: String?
+
+        /// 厂牌型号
+        public let vehicleModel: String?
+
+        /// 发票消费类型
+        public let kind: String?
+
+        /// 省
+        public let province: String?
+
+        /// 市
+        public let city: String?
+
+        /// 车辆类型
+        public let vehicleType: String?
+
+        /// 备注
+        public let remark: String?
+
+        /// 发票联次
+        public let formType: String?
+
+        /// 发票联名
+        public let formName: String?
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case qrCodeMark = "QRCodeMark"
+            case code = "Code"
+            case number = "Number"
+            case date = "Date"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case seller = "Seller"
+            case sellerTel = "SellerTel"
+            case sellerTaxID = "SellerTaxID"
+            case sellerAddress = "SellerAddress"
+            case buyer = "Buyer"
+            case buyerID = "BuyerID"
+            case buyerAddress = "BuyerAddress"
+            case buyerTel = "BuyerTel"
+            case companyName = "CompanyName"
+            case companyTaxID = "CompanyTaxID"
+            case companyBankAccount = "CompanyBankAccount"
+            case companyTel = "CompanyTel"
+            case companyAddress = "CompanyAddress"
+            case transferAdministrationName = "TransferAdministrationName"
+            case licensePlate = "LicensePlate"
+            case registrationNumber = "RegistrationNumber"
+            case vin = "VIN"
+            case vehicleModel = "VehicleModel"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case vehicleType = "VehicleType"
+            case remark = "Remark"
+            case formType = "FormType"
+            case formName = "FormName"
+            case companySealMark = "CompanySealMark"
         }
     }
 
@@ -1594,6 +3054,165 @@ extension Ocr {
             case marketAddress = "MarketAddress"
             case marketBankAccount = "MarketBankAccount"
             case marketTel = "MarketTel"
+        }
+    }
+
+    /// value信息组
+    public struct Value: TCOutputModel {
+        /// 自动识别的字段内容
+        public let autoContent: String?
+
+        /// 四点坐标
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coord: Polygon?
+
+        enum CodingKeys: String, CodingKey {
+            case autoContent = "AutoContent"
+            case coord = "Coord"
+        }
+    }
+
+    /// 电子发票返回值
+    public struct VatElectronicInfo: TCOutputModel {
+        /// 发票名称
+        public let title: String?
+
+        /// 发票号码
+        public let number: String?
+
+        /// 开票日期
+        public let date: String?
+
+        /// 税前金额
+        public let pretaxAmount: String?
+
+        /// 合计税额
+        public let tax: String?
+
+        /// 价税合计（小写）
+        public let total: String?
+
+        /// 价税合计（大写）
+        public let totalCn: String?
+
+        /// 销售方名称
+        public let seller: String?
+
+        /// 销售方纳税人识别号
+        public let sellerTaxID: String?
+
+        /// 购买方名称
+        public let buyer: String?
+
+        /// 购买方纳税人识别号
+        public let buyerTaxID: String?
+
+        /// 开票人
+        public let issuer: String?
+
+        /// 备注
+        public let remark: String?
+
+        /// 小计金额
+        public let subTotal: String?
+
+        /// 小计税额
+        public let subTax: String?
+
+        /// 电子发票详细条目信息
+        public let vatElectronicItems: [VatElectronicItemInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case number = "Number"
+            case date = "Date"
+            case pretaxAmount = "PretaxAmount"
+            case tax = "Tax"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case seller = "Seller"
+            case sellerTaxID = "SellerTaxID"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case issuer = "Issuer"
+            case remark = "Remark"
+            case subTotal = "SubTotal"
+            case subTax = "SubTax"
+            case vatElectronicItems = "VatElectronicItems"
+        }
+    }
+
+    /// 电子发票详细条目信息
+    public struct VatElectronicItemInfo: TCOutputModel {
+        /// 项目名称
+        public let name: String?
+
+        /// 数量
+        public let quantity: String?
+
+        /// 规格型号
+        public let specification: String?
+
+        /// 单价
+        public let price: String?
+
+        /// 金额
+        public let total: String?
+
+        /// 税率
+        public let taxRate: String?
+
+        /// 税额
+        public let tax: String?
+
+        /// 单位
+        public let unit: String?
+
+        /// 运输工具类型
+        public let vehicleType: String?
+
+        /// 运输工具牌号
+        public let vehicleBrand: String?
+
+        /// 起始地
+        public let departurePlace: String?
+
+        /// 到达地
+        public let arrivalPlace: String?
+
+        /// 运输货物名称，仅货物运输服务发票返回
+        public let transportItemsName: String?
+
+        /// 建筑服务发生地，仅建筑发票返回
+        public let placeOfBuildingService: String?
+
+        /// 建筑项目名称，仅建筑发票返回
+        public let buildingName: String?
+
+        /// 产权证书/不动产权证号，仅不动产经营租赁服务发票返回
+        public let estateNumber: String?
+
+        /// 面积单位，仅不动产经营租赁服务发票返回
+        public let areaUnit: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case quantity = "Quantity"
+            case specification = "Specification"
+            case price = "Price"
+            case total = "Total"
+            case taxRate = "TaxRate"
+            case tax = "Tax"
+            case unit = "Unit"
+            case vehicleType = "VehicleType"
+            case vehicleBrand = "VehicleBrand"
+            case departurePlace = "DeparturePlace"
+            case arrivalPlace = "ArrivalPlace"
+            case transportItemsName = "TransportItemsName"
+            case placeOfBuildingService = "PlaceOfBuildingService"
+            case buildingName = "BuildingName"
+            case estateNumber = "EstateNumber"
+            case areaUnit = "AreaUnit"
         }
     }
 
@@ -1755,6 +3374,196 @@ extension Ocr {
         }
     }
 
+    /// 增值税发票返回值
+    public struct VatInvoiceInfo: TCOutputModel {
+        /// 校验码
+        public let checkCode: String
+
+        /// 发票联次
+        public let formType: String
+
+        /// 车船税
+        public let travelTax: String
+
+        /// 购买方地址电话
+        public let buyerAddrTel: String
+
+        /// 购买方银行账号
+        public let buyerBankAccount: String
+
+        /// 公司印章内容
+        public let companySealContent: String
+
+        /// 税务局章内容
+        public let taxSealContent: String
+
+        /// 服务类型
+        public let serviceName: String
+
+        /// 市
+        public let city: String
+
+        /// 是否存在二维码（0：没有，1：有）
+        public let qrCodeMark: Int64
+
+        /// 是否有代开标记（0：没有，1：有）
+        public let agentMark: Int64
+
+        /// 是否有通行费标记（0：没有，1：有）
+        public let transitMark: Int64
+
+        /// 是否有成品油标记（0：没有，1：有）
+        public let oilMark: Int64
+
+        /// 发票名称
+        public let title: String
+
+        /// 发票消费类型
+        public let kind: String
+
+        /// 发票代码
+        public let code: String
+
+        /// 发票号码
+        public let number: String
+
+        /// 机打发票号码
+        public let numberConfirm: String
+
+        /// 开票日期
+        public let date: String
+
+        /// 价税合计（小写）
+        public let total: String
+
+        /// 价税合计（大写）
+        public let totalCn: String
+
+        /// 税前金额
+        public let pretaxAmount: String
+
+        /// 合计税额
+        public let tax: String
+
+        /// 机器编号
+        public let machineCode: String
+
+        /// 密码区
+        public let ciphertext: String
+
+        /// 备注
+        public let remark: String
+
+        /// 销售方名称
+        public let seller: String
+
+        /// 销售方纳税人识别号
+        public let sellerTaxID: String
+
+        /// 销售方地址电话
+        public let sellerAddrTel: String
+
+        /// 销售方银行账号
+        public let sellerBankAccount: String
+
+        /// 购买方名称
+        public let buyer: String
+
+        /// 购买方纳税人识别号
+        public let buyerTaxID: String
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64
+
+        /// 开票人
+        public let issuer: String
+
+        /// 复核人
+        public let reviewer: String
+
+        /// 省
+        public let province: String
+
+        /// 增值税发票项目信息
+        public let vatInvoiceItemInfos: [VatInvoiceItemInfo]
+
+        /// 机打发票代码
+        public let codeConfirm: String
+
+        /// 收款人
+        public let receiptor: String
+
+        /// 是否有全电纸质票（0：没有，1：有）
+        public let electronicFullMark: Int64
+
+        /// 全电号码
+        public let electronicFullNumber: String
+
+        /// 发票联名
+        public let formName: String
+
+        /// 是否有区块链标记（0：没有，1：有）
+        public let blockChainMark: Int64
+
+        /// 是否有收购标记（0：没有，1：有）
+        public let acquisitionMark: Int64
+
+        /// 小计金额
+        public let subTotal: String
+
+        /// 小计税额
+        public let subTax: String
+
+        enum CodingKeys: String, CodingKey {
+            case checkCode = "CheckCode"
+            case formType = "FormType"
+            case travelTax = "TravelTax"
+            case buyerAddrTel = "BuyerAddrTel"
+            case buyerBankAccount = "BuyerBankAccount"
+            case companySealContent = "CompanySealContent"
+            case taxSealContent = "TaxSealContent"
+            case serviceName = "ServiceName"
+            case city = "City"
+            case qrCodeMark = "QRCodeMark"
+            case agentMark = "AgentMark"
+            case transitMark = "TransitMark"
+            case oilMark = "OilMark"
+            case title = "Title"
+            case kind = "Kind"
+            case code = "Code"
+            case number = "Number"
+            case numberConfirm = "NumberConfirm"
+            case date = "Date"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case pretaxAmount = "PretaxAmount"
+            case tax = "Tax"
+            case machineCode = "MachineCode"
+            case ciphertext = "Ciphertext"
+            case remark = "Remark"
+            case seller = "Seller"
+            case sellerTaxID = "SellerTaxID"
+            case sellerAddrTel = "SellerAddrTel"
+            case sellerBankAccount = "SellerBankAccount"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case companySealMark = "CompanySealMark"
+            case issuer = "Issuer"
+            case reviewer = "Reviewer"
+            case province = "Province"
+            case vatInvoiceItemInfos = "VatInvoiceItemInfos"
+            case codeConfirm = "CodeConfirm"
+            case receiptor = "Receiptor"
+            case electronicFullMark = "ElectronicFullMark"
+            case electronicFullNumber = "ElectronicFullNumber"
+            case formName = "FormName"
+            case blockChainMark = "BlockChainMark"
+            case acquisitionMark = "AcquisitionMark"
+            case subTotal = "SubTotal"
+            case subTax = "SubTax"
+        }
+    }
+
     /// 增值税发票项目明细
     public struct VatInvoiceItem: TCOutputModel {
         /// 行号
@@ -1787,6 +3596,27 @@ extension Ocr {
         /// 税收分类编码
         public let taxClassifyCode: String
 
+        /// 运输工具类型
+        public let vehicleType: String?
+
+        /// 运输工具牌号
+        public let vehicleBrand: String?
+
+        /// 起始地
+        public let departurePlace: String?
+
+        /// 到达地
+        public let arrivalPlace: String?
+
+        /// 运输货物名称
+        public let transportItemsName: String?
+
+        /// 建筑服务发生地
+        public let constructionPlace: String?
+
+        /// 建筑项目名称
+        public let constructionName: String?
+
         enum CodingKeys: String, CodingKey {
             case lineNo = "LineNo"
             case name = "Name"
@@ -1798,6 +3628,165 @@ extension Ocr {
             case taxRate = "TaxRate"
             case taxAmount = "TaxAmount"
             case taxClassifyCode = "TaxClassifyCode"
+            case vehicleType = "VehicleType"
+            case vehicleBrand = "VehicleBrand"
+            case departurePlace = "DeparturePlace"
+            case arrivalPlace = "ArrivalPlace"
+            case transportItemsName = "TransportItemsName"
+            case constructionPlace = "ConstructionPlace"
+            case constructionName = "ConstructionName"
+        }
+    }
+
+    /// 增值税发票项目信息
+    public struct VatInvoiceItemInfo: TCOutputModel {
+        /// 项目名称
+        public let name: String
+
+        /// 规格型号
+        public let specification: String
+
+        /// 单位
+        public let unit: String
+
+        /// 数量
+        public let quantity: String
+
+        /// 单价
+        public let price: String
+
+        /// 金额
+        public let total: String
+
+        /// 税率
+        public let taxRate: String
+
+        /// 税额
+        public let tax: String
+
+        /// 通行日期起
+        public let dateStart: String
+
+        /// 通行日期止
+        public let dateEnd: String
+
+        /// 车牌号
+        public let licensePlate: String
+
+        /// 车辆类型
+        public let vehicleType: String
+
+        /// 序号
+        public let serialNumber: String
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case specification = "Specification"
+            case unit = "Unit"
+            case quantity = "Quantity"
+            case price = "Price"
+            case total = "Total"
+            case taxRate = "TaxRate"
+            case tax = "Tax"
+            case dateStart = "DateStart"
+            case dateEnd = "DateEnd"
+            case licensePlate = "LicensePlate"
+            case vehicleType = "VehicleType"
+            case serialNumber = "SerialNumber"
+        }
+    }
+
+    /// 增值税普通发票(卷票)
+    public struct VatInvoiceRoll: TCOutputModel {
+        /// 发票名称
+        public let title: String
+
+        /// 发票代码
+        public let code: String
+
+        /// 发票号码
+        public let number: String
+
+        /// 机打发票号码
+        public let numberConfirm: String
+
+        /// 开票日期
+        public let date: String
+
+        /// 校验码
+        public let checkCode: String
+
+        /// 销售方名称
+        public let seller: String
+
+        /// 销售方纳税人识别号
+        public let sellerTaxID: String
+
+        /// 购买方名称
+        public let buyer: String
+
+        /// 购买方纳税人识别号
+        public let buyerTaxID: String
+
+        /// 种类
+        public let category: String
+
+        /// 价税合计（小写）
+        public let total: String
+
+        /// 价税合计（大写）
+        public let totalCn: String
+
+        /// 发票消费类型
+        public let kind: String
+
+        /// 省
+        public let province: String
+
+        /// 市
+        public let city: String
+
+        /// 是否有公司印章（0：没有，1：有）
+        public let companySealMark: Int64
+
+        /// 是否存在二维码（1：有，0：无）
+        public let qrCodeMark: Int64
+
+        /// 服务类型
+        public let serviceName: String
+
+        /// 公司印章内容
+        public let companySealContent: String
+
+        /// 税务局章内容
+        public let taxSealContent: String
+
+        /// 条目
+        public let vatRollItems: [VatRollItem]
+
+        enum CodingKeys: String, CodingKey {
+            case title = "Title"
+            case code = "Code"
+            case number = "Number"
+            case numberConfirm = "NumberConfirm"
+            case date = "Date"
+            case checkCode = "CheckCode"
+            case seller = "Seller"
+            case sellerTaxID = "SellerTaxID"
+            case buyer = "Buyer"
+            case buyerTaxID = "BuyerTaxID"
+            case category = "Category"
+            case total = "Total"
+            case totalCn = "TotalCn"
+            case kind = "Kind"
+            case province = "Province"
+            case city = "City"
+            case companySealMark = "CompanySealMark"
+            case qrCodeMark = "QRCodeMark"
+            case serviceName = "ServiceName"
+            case companySealContent = "CompanySealContent"
+            case taxSealContent = "TaxSealContent"
+            case vatRollItems = "VatRollItems"
         }
     }
 
@@ -1839,6 +3828,28 @@ extension Ocr {
             case name = "Name"
             case value = "Value"
             case rect = "Rect"
+        }
+    }
+
+    /// 增值税普通发票（卷票）条目
+    public struct VatRollItem: TCOutputModel {
+        /// 项目名称
+        public let name: String?
+
+        /// 数量
+        public let quantity: String?
+
+        /// 单价
+        public let price: String?
+
+        /// 金额
+        public let total: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case quantity = "Quantity"
+            case price = "Price"
+            case total = "Total"
         }
     }
 
@@ -1966,6 +3977,20 @@ extension Ocr {
 
         enum CodingKeys: String, CodingKey {
             case wordCoordinate = "WordCoordinate"
+        }
+    }
+
+    /// 还原文本信息
+    public struct WordItem: TCOutputModel {
+        /// 文本块内容
+        public let detectedText: String?
+
+        /// 四点坐标
+        public let coord: Polygon?
+
+        enum CodingKeys: String, CodingKey {
+            case detectedText = "DetectedText"
+            case coord = "Coord"
         }
     }
 

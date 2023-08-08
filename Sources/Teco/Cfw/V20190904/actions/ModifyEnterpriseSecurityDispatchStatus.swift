@@ -21,7 +21,11 @@ import TecoCore
 extension Cfw {
     /// ModifyEnterpriseSecurityDispatchStatus请求参数结构体
     public struct ModifyEnterpriseSecurityDispatchStatusRequest: TCRequestModel {
-        /// 状态，0：立即下发，1：停止下发
+        /// 0：打开立即下发开关；
+        ///
+        /// 1：关闭立即下发开关；
+        ///
+        /// 2：关闭立即下发开关情况下，触发开始下发
         public let status: UInt64
 
         public init(status: UInt64) {

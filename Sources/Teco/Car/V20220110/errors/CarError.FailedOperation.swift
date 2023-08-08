@@ -20,6 +20,7 @@ extension TCCarError {
     public struct FailedOperation: TCCarErrorType {
         enum Code: String {
             case lockTimeout = "FailedOperation.LockTimeout"
+            case pathNotFound = "FailedOperation.PathNotFound"
             case processTimeout = "FailedOperation.ProcessTimeout"
             case slowDown = "FailedOperation.SlowDown"
             case other = "FailedOperation"
@@ -52,12 +53,16 @@ extension TCCarError {
             FailedOperation(.lockTimeout)
         }
 
+        public static var pathNotFound: FailedOperation {
+            FailedOperation(.pathNotFound)
+        }
+
         /// 处理超时。
         public static var processTimeout: FailedOperation {
             FailedOperation(.processTimeout)
         }
 
-        /// 请降低访问频率。
+        /// 该UserId请求正在处理中，请稍后再试。
         public static var slowDown: FailedOperation {
             FailedOperation(.slowDown)
         }
@@ -72,6 +77,8 @@ extension TCCarError {
             switch self.error {
             case .lockTimeout:
                 code = .failedOperation_LockTimeout
+            case .pathNotFound:
+                code = .failedOperation_PathNotFound
             case .processTimeout:
                 code = .failedOperation_ProcessTimeout
             case .slowDown:

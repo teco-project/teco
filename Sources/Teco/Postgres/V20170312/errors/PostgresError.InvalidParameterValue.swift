@@ -54,6 +54,7 @@ extension TCPostgresError {
             case parameterCharacterPreLimitError = "InvalidParameterValue.ParameterCharacterPreLimitError"
             case parameterHandleError = "InvalidParameterValue.ParameterHandleError"
             case parameterLengthLimitError = "InvalidParameterValue.ParameterLengthLimitError"
+            case parameterOutOfRange = "InvalidParameterValue.ParameterOutOfRange"
             case parameterOutRangeError = "InvalidParameterValue.ParameterOutRangeError"
             case parameterValueExceedError = "InvalidParameterValue.ParameterValueExceedError"
             case readOnlyGroupNotExist = "InvalidParameterValue.ReadOnlyGroupNotExist"
@@ -260,6 +261,10 @@ extension TCPostgresError {
             InvalidParameterValue(.parameterLengthLimitError)
         }
 
+        public static var parameterOutOfRange: InvalidParameterValue {
+            InvalidParameterValue(.parameterOutOfRange)
+        }
+
         /// 存在无效的参数值。
         public static var parameterOutRangeError: InvalidParameterValue {
             InvalidParameterValue(.parameterOutRangeError)
@@ -368,6 +373,8 @@ extension TCPostgresError {
                 code = .invalidParameterValue_ParameterHandleError
             case .parameterLengthLimitError:
                 code = .invalidParameterValue_ParameterLengthLimitError
+            case .parameterOutOfRange:
+                code = .invalidParameterValue_ParameterOutOfRange
             case .parameterOutRangeError:
                 code = .invalidParameterValue_ParameterOutRangeError
             case .parameterValueExceedError:

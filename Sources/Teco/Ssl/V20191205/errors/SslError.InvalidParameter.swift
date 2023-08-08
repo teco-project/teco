@@ -22,7 +22,14 @@ extension TCSslError {
             case certificateIdNumberLimit = "InvalidParameter.CertificateIdNumberLimit"
             case certificatesNumberExceeded = "InvalidParameter.CertificatesNumberExceeded"
             case containsInvalidCertificateId = "InvalidParameter.ContainsInvalidCertificateId"
+            case domainCountInvalid = "InvalidParameter.DomainCountInvalid"
+            case domainInvalid = "InvalidParameter.DomainInvalid"
             case packageIdsInvalid = "InvalidParameter.PackageIdsInvalid"
+            case periodInvalid = "InvalidParameter.PeriodInvalid"
+            case productPidInvalid = "InvalidParameter.ProductPidInvalid"
+            case renewAlgorithmInvalid = "InvalidParameter.RenewAlgorithmInvalid"
+            case renewCsrInvalid = "InvalidParameter.RenewCsrInvalid"
+            case renewGenCsrMethodInvalid = "InvalidParameter.RenewGenCsrMethodInvalid"
             case withDetailReason = "InvalidParameter.WithDetailReason"
             case other = "InvalidParameter"
         }
@@ -64,9 +71,44 @@ extension TCSslError {
             InvalidParameter(.containsInvalidCertificateId)
         }
 
+        /// 域名数量无效。
+        public static var domainCountInvalid: InvalidParameter {
+            InvalidParameter(.domainCountInvalid)
+        }
+
+        /// 域名无效，请重新输入。
+        public static var domainInvalid: InvalidParameter {
+            InvalidParameter(.domainInvalid)
+        }
+
         /// 权益点ID列表无效。
         public static var packageIdsInvalid: InvalidParameter {
             InvalidParameter(.packageIdsInvalid)
+        }
+
+        /// 证书期限无效。
+        public static var periodInvalid: InvalidParameter {
+            InvalidParameter(.periodInvalid)
+        }
+
+        /// 产品PID无效。
+        public static var productPidInvalid: InvalidParameter {
+            InvalidParameter(.productPidInvalid)
+        }
+
+        /// 算法无效。
+        public static var renewAlgorithmInvalid: InvalidParameter {
+            InvalidParameter(.renewAlgorithmInvalid)
+        }
+
+        /// CSR无效。
+        public static var renewCsrInvalid: InvalidParameter {
+            InvalidParameter(.renewCsrInvalid)
+        }
+
+        /// 生成CSR方式无效。
+        public static var renewGenCsrMethodInvalid: InvalidParameter {
+            InvalidParameter(.renewGenCsrMethodInvalid)
         }
 
         /// 参数有误。
@@ -88,8 +130,22 @@ extension TCSslError {
                 code = .invalidParameter_CertificatesNumberExceeded
             case .containsInvalidCertificateId:
                 code = .invalidParameter_ContainsInvalidCertificateId
+            case .domainCountInvalid:
+                code = .invalidParameter_DomainCountInvalid
+            case .domainInvalid:
+                code = .invalidParameter_DomainInvalid
             case .packageIdsInvalid:
                 code = .invalidParameter_PackageIdsInvalid
+            case .periodInvalid:
+                code = .invalidParameter_PeriodInvalid
+            case .productPidInvalid:
+                code = .invalidParameter_ProductPidInvalid
+            case .renewAlgorithmInvalid:
+                code = .invalidParameter_RenewAlgorithmInvalid
+            case .renewCsrInvalid:
+                code = .invalidParameter_RenewCsrInvalid
+            case .renewGenCsrMethodInvalid:
+                code = .invalidParameter_RenewGenCsrMethodInvalid
             case .withDetailReason:
                 code = .invalidParameter_WithDetailReason
             case .other:

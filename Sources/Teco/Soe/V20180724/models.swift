@@ -170,6 +170,27 @@ extension Soe {
         }
     }
 
+    /// 中文声调检测结果
+    public struct Tone: TCOutputModel {
+        /// 检测结果是否有效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let valid: Bool?
+
+        /// 文本标准声调，数值范围[-1,1,2,3,4]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refTone: Int64?
+
+        /// 实际发音声调，数值范围[-1,1,2,3,4]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hypothesisTone: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case valid = "Valid"
+            case refTone = "RefTone"
+            case hypothesisTone = "HypothesisTone"
+        }
+    }
+
     /// 单词评分细则
     public struct WordRsp: TCOutputModel {
         /// 当前单词语音起始时间点，单位为ms，该字段段落模式下无意义。
@@ -200,6 +221,10 @@ extension Soe {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywordTag: Int64?
 
+        /// 声调检测结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tone: Tone?
+
         enum CodingKeys: String, CodingKey {
             case memBeginTime = "MemBeginTime"
             case memEndTime = "MemEndTime"
@@ -210,6 +235,7 @@ extension Soe {
             case phoneInfos = "PhoneInfos"
             case referenceWord = "ReferenceWord"
             case keywordTag = "KeywordTag"
+            case tone = "Tone"
         }
     }
 }

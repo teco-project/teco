@@ -32,6 +32,7 @@ extension TCTseError {
             case unknownError = "InternalError.UnknownError"
             case updateError = "InternalError.UpdateError"
             case vpcFailure = "InternalError.VPCFailure"
+            case other = "InternalError"
         }
 
         private let error: Code
@@ -121,6 +122,11 @@ extension TCTseError {
             InternalError(.vpcFailure)
         }
 
+        /// 内部错误。
+        public static var other: InternalError {
+            InternalError(.other)
+        }
+
         public func asTseError() -> TCTseError {
             let code: TCTseError.Code
             switch self.error {
@@ -150,6 +156,8 @@ extension TCTseError {
                 code = .internalError_UpdateError
             case .vpcFailure:
                 code = .internalError_VPCFailure
+            case .other:
+                code = .internalError
             }
             return TCTseError(code, context: self.context)
         }

@@ -22,21 +22,21 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeVpnGatewaySslServers请求参数结构体
     public struct DescribeVpnGatewaySslServersRequest: TCPaginatedRequest {
-        /// 偏移量
+        /// 偏移量。
         public let offset: UInt64?
 
-        /// 请求对象个数
+        /// 请求对象个数。
         public let limit: UInt64?
 
         /// SSL-VPN-SERVER实例ID。形如：vpngwSslServer-12345678。每次请求的实例的上限为100。参数不支持同时指定SslVpnServerIds和Filters。
         public let sslVpnServerIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
-        /// <li>vpn-gateway-id - String - （过滤条件）VPN实例ID形如：vpngw-5aluhh9t。</li>
+        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        /// <li>vpn-gateway-id - String - （过滤条件）VPN实例ID，形如：vpngw-5aluhh9t。</li>
         /// <li>vpn-gateway-name - String - （过滤条件）VPN实例名称。</li>
         /// <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
-        /// <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID形如：vpngwSslServer-123456。</li>
+        /// <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID，形如：vpns-xxx。</li>
         public let filters: [FilterObject]?
 
         /// vpn门户使用。 默认Flase
@@ -97,7 +97,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable
     public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
         self.client.execute(action: "DescribeVpnGatewaySslServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -105,7 +105,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable
     public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
         try await self.client.execute(action: "DescribeVpnGatewaySslServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -113,7 +113,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable
     public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
         self.describeVpnGatewaySslServers(.init(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
@@ -121,7 +121,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable
     public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
         try await self.describeVpnGatewaySslServers(.init(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable
     public func describeVpnGatewaySslServersPaginated(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SslVpnSever])> {
         self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)
@@ -137,7 +137,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     @inlinable @discardableResult
     public func describeVpnGatewaySslServersPaginated(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeVpnGatewaySslServersResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeVpnGatewaySslServers, callback: onResponse, logger: logger, on: eventLoop)
@@ -145,7 +145,7 @@ extension Vpc {
 
     /// 查询SSL-VPN SERVER 列表
     ///
-    /// 查询SSL-VPN SERVER 列表信息
+    /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     ///
     /// - Returns: `AsyncSequence`s of `SslVpnSever` and `DescribeVpnGatewaySslServersResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -34,7 +34,7 @@ extension Dlc {
         /// 数据源唯名称，该名称可以通过DescribeDatasourceConnection接口查询到。默认为DataLakeCatalog
         public let datasourceConnectionName: String?
 
-        /// 排序字段，当前版本仅支持按库名排序
+        /// 排序字段，CreateTime：创建时间，Name：数据库名称
         public let sort: String?
 
         /// 排序类型：false：降序（默认）、true：升序

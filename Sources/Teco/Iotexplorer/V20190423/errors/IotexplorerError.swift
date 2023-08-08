@@ -165,11 +165,13 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         case unauthorizedOperation_NoPermissionToStudioFence = "UnauthorizedOperation.NoPermissionToStudioFence"
         case unauthorizedOperation_NoPermissionToStudioInstance = "UnauthorizedOperation.NoPermissionToStudioInstance"
         case unauthorizedOperation_NoPermissionToStudioProduct = "UnauthorizedOperation.NoPermissionToStudioProduct"
+        case unauthorizedOperation_NoVerified = "UnauthorizedOperation.NoVerified"
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
         case unauthorizedOperation_ProductNotSupportPSK = "UnauthorizedOperation.ProductNotSupportPSK"
         case unauthorizedOperation_UserLicenseExceedLimit = "UnauthorizedOperation.UserLicenseExceedLimit"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_BindsExistUnderFence = "UnsupportedOperation.BindsExistUnderFence"
+        case unsupportedOperation_CannotReBindFamily = "UnsupportedOperation.CannotReBindFamily"
         case unsupportedOperation_DeviceDupKeyExist = "UnsupportedOperation.DeviceDupKeyExist"
         case unsupportedOperation_DeviceExceedLimit = "UnsupportedOperation.DeviceExceedLimit"
         case unsupportedOperation_DeviceOtaTaskInProgress = "UnsupportedOperation.DeviceOtaTaskInProgress"
@@ -197,6 +199,7 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         case unsupportedOperation_VPNDupKeyExist = "UnsupportedOperation.VPNDupKeyExist"
         case unsupportedOperation_VideoAccountNotExist = "UnsupportedOperation.VideoAccountNotExist"
         case unsupportedOperation_VideoInsufficientLicenses = "UnsupportedOperation.VideoInsufficientLicenses"
+        case unsupportedOperation_VideoProductNotExist = "UnsupportedOperation.VideoProductNotExist"
     }
 
     /// Error domains affliated to ``TCIotexplorerError``.
@@ -934,6 +937,11 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
         TCIotexplorerError(.unauthorizedOperation_NoPermissionToStudioProduct)
     }
 
+    /// 您的帐号未实名认证，请登录腾讯云进行实名认证
+    public static var unauthorizedOperation_NoVerified: TCIotexplorerError {
+        TCIotexplorerError(.unauthorizedOperation_NoVerified)
+    }
+
     /// 没有权限。
     public static var unauthorizedOperation_PermissionDenied: TCIotexplorerError {
         TCIotexplorerError(.unauthorizedOperation_PermissionDenied)
@@ -957,6 +965,11 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
     /// 围栏下还存在绑定的设备。
     public static var unsupportedOperation_BindsExistUnderFence: TCIotexplorerError {
         TCIotexplorerError(.unsupportedOperation_BindsExistUnderFence)
+    }
+
+    /// 存在重复的绑定关系。
+    public static var unsupportedOperation_CannotReBindFamily: TCIotexplorerError {
+        TCIotexplorerError(.unsupportedOperation_CannotReBindFamily)
     }
 
     /// 创建的设备已经存在。
@@ -1092,6 +1105,11 @@ public struct TCIotexplorerError: TCIotexplorerErrorType {
     /// Video平台license数量不足。
     public static var unsupportedOperation_VideoInsufficientLicenses: TCIotexplorerError {
         TCIotexplorerError(.unsupportedOperation_VideoInsufficientLicenses)
+    }
+
+    /// Video平台产品不存在。
+    public static var unsupportedOperation_VideoProductNotExist: TCIotexplorerError {
+        TCIotexplorerError(.unsupportedOperation_VideoProductNotExist)
     }
 
     public func asIotexplorerError() -> TCIotexplorerError {

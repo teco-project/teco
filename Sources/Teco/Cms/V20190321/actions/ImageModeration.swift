@@ -21,42 +21,42 @@ import TecoCore
 extension Cms {
     /// ImageModeration请求参数结构体
     public struct ImageModerationRequest: TCRequestModel {
-        /// 文件内容 Base64,与FileUrl必须二填一
-        public let fileContent: String?
+        /// 文件地址
+        public let fileUrl: String?
 
         /// 文件MD5值
         public let fileMD5: String?
 
-        /// 文件地址
-        public let fileUrl: String?
+        /// 文件内容 Base64,与FileUrl必须二填一
+        public let fileContent: String?
 
-        public init(fileContent: String? = nil, fileMD5: String? = nil, fileUrl: String? = nil) {
-            self.fileContent = fileContent
-            self.fileMD5 = fileMD5
+        public init(fileUrl: String? = nil, fileMD5: String? = nil, fileContent: String? = nil) {
             self.fileUrl = fileUrl
+            self.fileMD5 = fileMD5
+            self.fileContent = fileContent
         }
 
         enum CodingKeys: String, CodingKey {
-            case fileContent = "FileContent"
-            case fileMD5 = "FileMD5"
             case fileUrl = "FileUrl"
+            case fileMD5 = "FileMD5"
+            case fileContent = "FileContent"
         }
     }
 
     /// ImageModeration返回参数结构体
     public struct ImageModerationResponse: TCResponseModel {
-        /// 识别结果
-        public let data: ImageData
-
         /// 业务返回码
         public let businessCode: Int64
+
+        /// 识别结果
+        public let data: ImageData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case data = "Data"
             case businessCode = "BusinessCode"
+            case data = "Data"
             case requestId = "RequestId"
         }
     }
@@ -81,15 +81,15 @@ extension Cms {
     ///
     /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别涉黄、涉恐、涉政、涉毒等有害内容，同时支持用户配置图片黑名单，打击自定义的违规图片。
     @inlinable
-    public func imageModeration(fileContent: String? = nil, fileMD5: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
-        self.imageModeration(.init(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
+    public func imageModeration(fileUrl: String? = nil, fileMD5: String? = nil, fileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
+        self.imageModeration(.init(fileUrl: fileUrl, fileMD5: fileMD5, fileContent: fileContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片内容检测
     ///
     /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别涉黄、涉恐、涉政、涉毒等有害内容，同时支持用户配置图片黑名单，打击自定义的违规图片。
     @inlinable
-    public func imageModeration(fileContent: String? = nil, fileMD5: String? = nil, fileUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
-        try await self.imageModeration(.init(fileContent: fileContent, fileMD5: fileMD5, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
+    public func imageModeration(fileUrl: String? = nil, fileMD5: String? = nil, fileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
+        try await self.imageModeration(.init(fileUrl: fileUrl, fileMD5: fileMD5, fileContent: fileContent), region: region, logger: logger, on: eventLoop)
     }
 }

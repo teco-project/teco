@@ -24,17 +24,22 @@ extension Vpc {
         /// SSL-VPN-SERVER 实例ID。
         public let sslVpnServerId: String
 
-        /// name
-        public let sslVpnClientName: String
+        /// SSL-VPN-CLIENT实例Name。不可和SslVpnClientNames同时使用。
+        public let sslVpnClientName: String?
 
-        public init(sslVpnServerId: String, sslVpnClientName: String) {
+        /// SSL-VPN-CLIENT实例Name数字。批量创建时使用。不可和SslVpnClientName同时使用。
+        public let sslVpnClientNames: [String]?
+
+        public init(sslVpnServerId: String, sslVpnClientName: String? = nil, sslVpnClientNames: [String]? = nil) {
             self.sslVpnServerId = sslVpnServerId
             self.sslVpnClientName = sslVpnClientName
+            self.sslVpnClientNames = sslVpnClientNames
         }
 
         enum CodingKeys: String, CodingKey {
             case sslVpnServerId = "SslVpnServerId"
             case sslVpnClientName = "SslVpnClientName"
+            case sslVpnClientNames = "SslVpnClientNames"
         }
     }
 
@@ -70,13 +75,13 @@ extension Vpc {
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
-        self.createVpnGatewaySslClient(.init(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
+    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String? = nil, sslVpnClientNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
+        self.createVpnGatewaySslClient(.init(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName, sslVpnClientNames: sslVpnClientNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
-        try await self.createVpnGatewaySslClient(.init(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
+    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String? = nil, sslVpnClientNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
+        try await self.createVpnGatewaySslClient(.init(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName, sslVpnClientNames: sslVpnClientNames), region: region, logger: logger, on: eventLoop)
     }
 }

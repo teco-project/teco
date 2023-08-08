@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateFlowSignUrl请求参数结构体
     public struct ChannelCreateFlowSignUrlRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         public let agent: Agent
 
         /// 流程编号
@@ -36,12 +36,16 @@ extension Essbasic {
         /// 机构信息，暂未开放
         public let organization: OrganizationInfo?
 
-        public init(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
+        /// 签署完之后的H5页面的跳转链接，此链接支持http://和https://，最大长度1000个字符。
+        public let jumpUrl: String?
+
+        public init(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, jumpUrl: String? = nil) {
             self.agent = agent
             self.flowId = flowId
             self.flowApproverInfos = flowApproverInfos
             self.operator = `operator`
             self.organization = organization
+            self.jumpUrl = jumpUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Essbasic {
             case flowApproverInfos = "FlowApproverInfos"
             case `operator` = "Operator"
             case organization = "Organization"
+            case jumpUrl = "JumpUrl"
         }
     }
 
@@ -67,47 +72,51 @@ extension Essbasic {
         }
     }
 
-    /// 创建签署链接
+    /// 获取个人签署H5页面
     ///
-    /// 创建签署链接，请联系客户经理申请使用
-    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    /// 创建个人签署H5签署链接，请联系客户经理申请使用<br/>
+    /// 该接口用于发起合同后，生成C端签署人的签署链接<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）<br/>
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
     @inlinable
     public func channelCreateFlowSignUrl(_ input: ChannelCreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
         self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建签署链接
+    /// 获取个人签署H5页面
     ///
-    /// 创建签署链接，请联系客户经理申请使用
-    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    /// 创建个人签署H5签署链接，请联系客户经理申请使用<br/>
+    /// 该接口用于发起合同后，生成C端签署人的签署链接<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）<br/>
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
     @inlinable
     public func channelCreateFlowSignUrl(_ input: ChannelCreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
         try await self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建签署链接
+    /// 获取个人签署H5页面
     ///
-    /// 创建签署链接，请联系客户经理申请使用
-    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    /// 创建个人签署H5签署链接，请联系客户经理申请使用<br/>
+    /// 该接口用于发起合同后，生成C端签署人的签署链接<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）<br/>
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
     @inlinable
-    public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
-        self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
+        self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization, jumpUrl: jumpUrl), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建签署链接
+    /// 获取个人签署H5页面
     ///
-    /// 创建签署链接，请联系客户经理申请使用
-    /// 该接口用于发起合同后，生成C端签署人的签署链接，点击跳转小程序完成签署
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    /// 创建个人签署H5签署链接，请联系客户经理申请使用<br/>
+    /// 该接口用于发起合同后，生成C端签署人的签署链接<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）<br/>
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
     @inlinable
-    public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
-        try await self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
+        try await self.channelCreateFlowSignUrl(.init(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization, jumpUrl: jumpUrl), region: region, logger: logger, on: eventLoop)
     }
 }

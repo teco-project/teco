@@ -27,19 +27,38 @@ extension Car {
         /// 用户IP，用户客户端的公网IP，用于就近调度
         public let userIp: String
 
-        /// 客户端session信息，从SDK请求中获得
-        public let clientSession: String
+        /// 客户端session信息，从SDK请求中获得。特殊的，当 RunMode 参数为 RunWithoutClient 时，该字段可以为空
+        public let clientSession: String?
 
         /// 云端运行模式。
         /// RunWithoutClient：允许无客户端连接的情况下仍保持云端 App 运行
         /// 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         public let runMode: String?
 
-        public init(userId: String, userIp: String, clientSession: String, runMode: String? = nil) {
+        /// 应用启动参数。
+        /// 如果请求的是多应用共享项目，此参数生效；
+        /// 如果请求的是关闭预启动的单应用独享项目，此参数生效；
+        /// 如果请求的是开启预启动的单应用独享项目，此参数失效。
+        public let applicationParameters: String?
+
+        /// 【多人互动】房主用户ID，在多人互动模式下为必填字段。
+        /// 如果该用户是房主，HostUserId需要和UserId保持一致；
+        /// 如果该用户非房主，HostUserId需要填写房主的HostUserId。
+        public let hostUserId: String?
+
+        /// 【多人互动】角色。
+        /// Player：玩家（可通过键鼠等操作应用）
+        /// Viewer：观察者（只能观看，无法操作）
+        public let role: String?
+
+        public init(userId: String, userIp: String, clientSession: String? = nil, runMode: String? = nil, applicationParameters: String? = nil, hostUserId: String? = nil, role: String? = nil) {
             self.userId = userId
             self.userIp = userIp
             self.clientSession = clientSession
             self.runMode = runMode
+            self.applicationParameters = applicationParameters
+            self.hostUserId = hostUserId
+            self.role = role
         }
 
         enum CodingKeys: String, CodingKey {
@@ -47,6 +66,9 @@ extension Car {
             case userIp = "UserIp"
             case clientSession = "ClientSession"
             case runMode = "RunMode"
+            case applicationParameters = "ApplicationParameters"
+            case hostUserId = "HostUserId"
+            case role = "Role"
         }
     }
 
@@ -78,13 +100,13 @@ extension Car {
 
     /// 创建会话
     @inlinable
-    public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
-        self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), region: region, logger: logger, on: eventLoop)
+    public func createSession(userId: String, userIp: String, clientSession: String? = nil, runMode: String? = nil, applicationParameters: String? = nil, hostUserId: String? = nil, role: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
+        self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode, applicationParameters: applicationParameters, hostUserId: hostUserId, role: role), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
     @inlinable
-    public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), region: region, logger: logger, on: eventLoop)
+    public func createSession(userId: String, userIp: String, clientSession: String? = nil, runMode: String? = nil, applicationParameters: String? = nil, hostUserId: String? = nil, role: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.createSession(.init(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode, applicationParameters: applicationParameters, hostUserId: hostUserId, role: role), region: region, logger: logger, on: eventLoop)
     }
 }

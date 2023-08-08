@@ -19,6 +19,7 @@ import TecoCore
 extension TCDcdbError {
     public struct UnsupportedOperation: TCDcdbErrorType {
         enum Code: String {
+            case dbVersionNotSupported = "UnsupportedOperation.DbVersionNotSupported"
             case invalidOperation = "UnsupportedOperation.InvalidOperation"
             case oldProxyVersion = "UnsupportedOperation.OldProxyVersion"
         }
@@ -45,6 +46,10 @@ extension TCDcdbError {
             self.context = context
         }
 
+        public static var dbVersionNotSupported: UnsupportedOperation {
+            UnsupportedOperation(.dbVersionNotSupported)
+        }
+
         /// 不支持的无效操作。
         public static var invalidOperation: UnsupportedOperation {
             UnsupportedOperation(.invalidOperation)
@@ -58,6 +63,8 @@ extension TCDcdbError {
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {
+            case .dbVersionNotSupported:
+                code = .unsupportedOperation_DbVersionNotSupported
             case .invalidOperation:
                 code = .unsupportedOperation_InvalidOperation
             case .oldProxyVersion:

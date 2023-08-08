@@ -21,7 +21,7 @@ import TecoCore
 extension Domain {
     /// SetDomainAutoRenew请求参数结构体
     public struct SetDomainAutoRenewRequest: TCRequestModel {
-        /// 域名ID。
+        /// 域名ID 例如：domain-123abc
         public let domainId: String
 
         /// AutoRenew 有三个可选值：

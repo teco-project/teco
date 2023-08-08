@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Essbasic {
     /// ChannelDescribeOrganizationSeals请求参数结构体
     public struct ChannelDescribeOrganizationSealsRequest: TCPaginatedRequest {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 返回最大数量，最大为100

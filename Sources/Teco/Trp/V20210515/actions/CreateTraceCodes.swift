@@ -30,16 +30,30 @@ extension Trp {
         /// 码
         public let codes: [CodeItem]?
 
-        public init(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil) {
+        /// 码绑定激活策略，默认  0
+        /// 0: 传什么码就激活什么码
+        /// 1: 层级码 + 层级子码
+        public let codeType: UInt64?
+
+        /// 错误检查类型，默认 0
+        /// 0: 没有新导入码时正常返回
+        /// 1: 没有新导入码时报错，并返回没有导入成功的原因
+        public let checkType: UInt64?
+
+        public init(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, codeType: UInt64? = nil, checkType: UInt64? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.codes = codes
+            self.codeType = codeType
+            self.checkType = checkType
         }
 
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case corpId = "CorpId"
             case codes = "Codes"
+            case codeType = "CodeType"
+            case checkType = "CheckType"
         }
     }
 
@@ -67,7 +81,7 @@ extension Trp {
 
     /// 批量导入二维码
     ///
-    /// 批量导入二维码，只支持平台发的码
+    /// 批量绑定指定批次并激活二维码，只支持平台发的码，且只会激活没有使用过的码
     @inlinable
     public func createTraceCodes(_ input: CreateTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
         self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,7 +89,7 @@ extension Trp {
 
     /// 批量导入二维码
     ///
-    /// 批量导入二维码，只支持平台发的码
+    /// 批量绑定指定批次并激活二维码，只支持平台发的码，且只会激活没有使用过的码
     @inlinable
     public func createTraceCodes(_ input: CreateTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
         try await self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,17 +97,17 @@ extension Trp {
 
     /// 批量导入二维码
     ///
-    /// 批量导入二维码，只支持平台发的码
+    /// 批量绑定指定批次并激活二维码，只支持平台发的码，且只会激活没有使用过的码
     @inlinable
-    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
-        self.createTraceCodes(.init(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, codeType: UInt64? = nil, checkType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
+        self.createTraceCodes(.init(batchId: batchId, corpId: corpId, codes: codes, codeType: codeType, checkType: checkType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量导入二维码
     ///
-    /// 批量导入二维码，只支持平台发的码
+    /// 批量绑定指定批次并激活二维码，只支持平台发的码，且只会激活没有使用过的码
     @inlinable
-    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
-        try await self.createTraceCodes(.init(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, codeType: UInt64? = nil, checkType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
+        try await self.createTraceCodes(.init(batchId: batchId, corpId: corpId, codes: codes, codeType: codeType, checkType: checkType), region: region, logger: logger, on: eventLoop)
     }
 }

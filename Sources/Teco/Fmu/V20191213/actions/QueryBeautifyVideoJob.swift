@@ -42,17 +42,21 @@ extension Fmu {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beautifyVideoOutput: BeautifyVideoOutput?
 
+        /// 当前任务状态码：1：排队中、3: 处理中、5: 处理失败、7:处理完成
+        public let jobStatusCode: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case jobStatus = "JobStatus"
             case beautifyVideoOutput = "BeautifyVideoOutput"
+            case jobStatusCode = "JobStatusCode"
             case requestId = "RequestId"
         }
     }
 
-    /// 查询视频美颜任务
+    /// 查询视频美颜任务(此接口目前已下线)
     ///
     /// 查询视频美颜处理进度
     @inlinable
@@ -60,7 +64,7 @@ extension Fmu {
         self.client.execute(action: "QueryBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询视频美颜任务
+    /// 查询视频美颜任务(此接口目前已下线)
     ///
     /// 查询视频美颜处理进度
     @inlinable
@@ -68,7 +72,7 @@ extension Fmu {
         try await self.client.execute(action: "QueryBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询视频美颜任务
+    /// 查询视频美颜任务(此接口目前已下线)
     ///
     /// 查询视频美颜处理进度
     @inlinable
@@ -76,7 +80,7 @@ extension Fmu {
         self.queryBeautifyVideoJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询视频美颜任务
+    /// 查询视频美颜任务(此接口目前已下线)
     ///
     /// 查询视频美颜处理进度
     @inlinable

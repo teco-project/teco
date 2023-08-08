@@ -19,6 +19,7 @@ import TecoCore
 extension TCScfError {
     public struct FailedOperation: TCScfErrorType {
         enum Code: String {
+            case accountInsufficient = "FailedOperation.AccountInsufficient"
             case apiGateway = "FailedOperation.ApiGateway"
             case apigw = "FailedOperation.Apigw"
             case apmConfigInstanceId = "FailedOperation.ApmConfigInstanceId"
@@ -49,6 +50,7 @@ extension TCScfError {
             case getFunctionAddress = "FailedOperation.GetFunctionAddress"
             case instanceNotFound = "FailedOperation.InstanceNotFound"
             case insufficientBalance = "FailedOperation.InsufficientBalance"
+            case insufficientResources = "FailedOperation.InsufficientResources"
             case invokeFunction = "FailedOperation.InvokeFunction"
             case namespace = "FailedOperation.Namespace"
             case openService = "FailedOperation.OpenService"
@@ -61,6 +63,7 @@ extension TCScfError {
             case publishLayerVersion = "FailedOperation.PublishLayerVersion"
             case publishVersion = "FailedOperation.PublishVersion"
             case qcsRoleNotFound = "FailedOperation.QcsRoleNotFound"
+            case queryError = "FailedOperation.QueryError"
             case reservedExceedTotal = "FailedOperation.ReservedExceedTotal"
             case reservedInProgress = "FailedOperation.ReservedInProgress"
             case serviceClosed = "FailedOperation.ServiceClosed"
@@ -95,6 +98,11 @@ extension TCScfError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 请检查账户余额。
+        public static var accountInsufficient: FailedOperation {
+            FailedOperation(.accountInsufficient)
         }
 
         /// API网关触发器创建失败。
@@ -249,6 +257,11 @@ extension TCScfError {
             FailedOperation(.insufficientBalance)
         }
 
+        /// 请稍后再试。
+        public static var insufficientResources: FailedOperation {
+            FailedOperation(.insufficientResources)
+        }
+
         /// 调用函数失败。
         public static var invokeFunction: FailedOperation {
             FailedOperation(.invokeFunction)
@@ -307,6 +320,11 @@ extension TCScfError {
         /// 角色不存在。
         public static var qcsRoleNotFound: FailedOperation {
             FailedOperation(.qcsRoleNotFound)
+        }
+
+        /// 请确认请求是否存在。
+        public static var queryError: FailedOperation {
+            FailedOperation(.queryError)
         }
 
         /// ReservedExceedTotal 总保留超限。
@@ -372,6 +390,8 @@ extension TCScfError {
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
+            case .accountInsufficient:
+                code = .failedOperation_AccountInsufficient
             case .apiGateway:
                 code = .failedOperation_ApiGateway
             case .apigw:
@@ -432,6 +452,8 @@ extension TCScfError {
                 code = .failedOperation_InstanceNotFound
             case .insufficientBalance:
                 code = .failedOperation_InsufficientBalance
+            case .insufficientResources:
+                code = .failedOperation_InsufficientResources
             case .invokeFunction:
                 code = .failedOperation_InvokeFunction
             case .namespace:
@@ -456,6 +478,8 @@ extension TCScfError {
                 code = .failedOperation_PublishVersion
             case .qcsRoleNotFound:
                 code = .failedOperation_QcsRoleNotFound
+            case .queryError:
+                code = .failedOperation_QueryError
             case .reservedExceedTotal:
                 code = .failedOperation_ReservedExceedTotal
             case .reservedInProgress:

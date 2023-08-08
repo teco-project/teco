@@ -45,7 +45,10 @@ extension Facefusion {
         /// 请注意，不适宜内容识别服务开启后，您需要根据返回结果自行判断是否调整您的业务逻辑。例如提示您的用户图片非法，请更换图片。
         public let celebrityIdentify: Int64?
 
-        public init(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil) {
+        /// 融合参数
+        public let fuseParam: FuseParam?
+
+        public init(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, fuseParam: FuseParam? = nil) {
             self.projectId = projectId
             self.modelId = modelId
             self.rspImgType = rspImgType
@@ -53,6 +56,7 @@ extension Facefusion {
             self.fuseProfileDegree = fuseProfileDegree
             self.fuseFaceDegree = fuseFaceDegree
             self.celebrityIdentify = celebrityIdentify
+            self.fuseParam = fuseParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -63,6 +67,7 @@ extension Facefusion {
             case fuseProfileDegree = "FuseProfileDegree"
             case fuseFaceDegree = "FuseFaceDegree"
             case celebrityIdentify = "CelebrityIdentify"
+            case fuseParam = "FuseParam"
         }
     }
 
@@ -117,8 +122,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
-        self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), region: region, logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
+        self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 选脸融合
@@ -129,7 +134,7 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
-        try await self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), region: region, logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
+        try await self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -52,26 +52,30 @@ extension Tdid {
     }
 
     /// 查看DID文档
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("GetDidDocument is no longer available.")
     }
 
     /// 查看DID文档
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("GetDidDocument is no longer available.")
     }
 
     /// 查看DID文档
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        self.getDidDocument(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidDocument is no longer available.")
     }
 
     /// 查看DID文档
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.getDidDocument(.init(did: did), region: region, logger: logger, on: eventLoop)
+        fatalError("GetDidDocument is no longer available.")
     }
 }

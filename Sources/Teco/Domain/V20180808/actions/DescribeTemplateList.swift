@@ -34,7 +34,7 @@ extension Domain {
         /// 认证状态：未实名审核:NotUpload, 实名审核中:InAudit，已实名审核:Approved，实名审核失败:Reject，更新手机邮箱:NotVerified。
         public let status: String?
 
-        /// 域名所有者筛选
+        /// 关键字，用于域名所有者筛选
         public let keyword: String?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil) {

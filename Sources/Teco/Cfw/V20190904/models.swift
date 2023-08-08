@@ -118,7 +118,15 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityGroupCount: UInt64?
 
-        public init(instanceId: String, instanceName: String, type: UInt64, vpcId: String, vpcName: String, publicIp: String, ip: String, securityGroupCount: UInt64) {
+        /// 关联安全组规则数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let securityGroupRuleCount: UInt64?
+
+        /// 关联数据库代理Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cdbId: String?
+
+        public init(instanceId: String, instanceName: String, type: UInt64, vpcId: String, vpcName: String, publicIp: String, ip: String, securityGroupCount: UInt64, securityGroupRuleCount: UInt64? = nil, cdbId: String? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.type = type
@@ -127,6 +135,8 @@ extension Cfw {
             self.publicIp = publicIp
             self.ip = ip
             self.securityGroupCount = securityGroupCount
+            self.securityGroupRuleCount = securityGroupRuleCount
+            self.cdbId = cdbId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -138,6 +148,8 @@ extension Cfw {
             case publicIp = "PublicIp"
             case ip = "Ip"
             case securityGroupCount = "SecurityGroupCount"
+            case securityGroupRuleCount = "SecurityGroupRuleCount"
+            case cdbId = "CdbId"
         }
     }
 
@@ -224,6 +236,10 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let country: String?
 
+        /// 备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let comment: String?
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case ioc = "Ioc"
@@ -240,6 +256,7 @@ extension Cfw {
             case uniqueId = "UniqueId"
             case matchTimes = "MatchTimes"
             case country = "Country"
+            case comment = "Comment"
         }
     }
 
@@ -287,13 +304,11 @@ extension Cfw {
         /// 检索的键值
         public let name: String
 
-        /// 检索的值
+        /// 检索的值，各检索值间为OR关系
         public let values: [String]
 
-        /// 枚举类型，代表name与values之间的匹配关系
+        /// 枚举类型，代表Name与Values之间的匹配关系
         /// enum FilterOperatorType {
-        ///     //INVALID
-        ///     FILTER_OPERATOR_TYPE_INVALID = 0;
         ///     //等于
         ///     FILTER_OPERATOR_TYPE_EQUAL = 1;
         ///     //大于
@@ -306,18 +321,10 @@ extension Cfw {
         ///     FILTER_OPERATOR_TYPE_LESS_EQ = 5;
         ///     //不等于
         ///     FILTER_OPERATOR_TYPE_NO_EQ = 6;
-        ///     //in，数组中包含
-        ///     FILTER_OPERATOR_TYPE_IN = 7;
         ///     //not in
         ///     FILTER_OPERATOR_TYPE_NOT_IN = 8;
         ///     //模糊匹配
         ///     FILTER_OPERATOR_TYPE_FUZZINESS = 9;
-        ///     //存在
-        ///     FILTER_OPERATOR_TYPE_EXIST = 10;
-        ///     //不存在
-        ///     FILTER_OPERATOR_TYPE_NOT_EXIST = 11;
-        ///     //正则
-        ///     FILTER_OPERATOR_TYPE_REGULAR = 12;
         /// }
         public let operatorType: Int64
 
@@ -746,6 +753,14 @@ extension Cfw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourcePath: [String]?
 
+        /// 扫描结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let server: [String]?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionKey: String?
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case region = "Region"
@@ -761,6 +776,8 @@ extension Cfw {
             case leakNum = "LeakNum"
             case insSource = "InsSource"
             case resourcePath = "ResourcePath"
+            case server = "Server"
+            case regionKey = "RegionKey"
         }
     }
 
@@ -1375,7 +1392,27 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
 
-        public init(orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, protocol: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64? = nil, status: UInt64? = nil, isNew: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, bothWayInfo: [SecurityGroupBothWayInfo]? = nil, direction: UInt64? = nil, protocolPortType: UInt64? = nil) {
+        /// Uuid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uuid: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 资产分组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetGroupNameIn: String?
+
+        /// 资产分组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetGroupNameOut: String?
+
+        /// 模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parameterName: String?
+
+        public init(orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, protocol: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64? = nil, status: UInt64? = nil, isNew: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, bothWayInfo: [SecurityGroupBothWayInfo]? = nil, direction: UInt64? = nil, protocolPortType: UInt64? = nil, uuid: String? = nil, region: String? = nil, assetGroupNameIn: String? = nil, assetGroupNameOut: String? = nil, parameterName: String? = nil) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType
@@ -1399,6 +1436,11 @@ extension Cfw {
             self.bothWayInfo = bothWayInfo
             self.direction = direction
             self.protocolPortType = protocolPortType
+            self.uuid = uuid
+            self.region = region
+            self.assetGroupNameIn = assetGroupNameIn
+            self.assetGroupNameOut = assetGroupNameOut
+            self.parameterName = parameterName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1425,6 +1467,11 @@ extension Cfw {
             case bothWayInfo = "BothWayInfo"
             case direction = "Direction"
             case protocolPortType = "ProtocolPortType"
+            case uuid = "Uuid"
+            case region = "Region"
+            case assetGroupNameIn = "AssetGroupNameIn"
+            case assetGroupNameOut = "AssetGroupNameOut"
+            case parameterName = "ParameterName"
         }
     }
 
@@ -1532,6 +1579,54 @@ extension Cfw {
             case serviceTemplateId = "ServiceTemplateId"
             case id = "Id"
             case enable = "Enable"
+        }
+    }
+
+    /// 安全组规则
+    public struct SecurityGroupSimplifyRule: TCOutputModel {
+        /// 访问源示例：
+        /// net：IP/CIDR(192.168.0.2)
+        /// template：参数模板(ipm-dyodhpby)
+        /// instance：资产实例(ins-123456)
+        /// resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        /// tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        /// region：地域(ap-gaungzhou)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceContent: String?
+
+        /// 访问目的示例：
+        /// net：IP/CIDR(192.168.0.2)
+        /// template：参数模板(ipm-dyodhpby)
+        /// instance：资产实例(ins-123456)
+        /// resourcegroup：资产分组(/全部分组/分组1/子分组1)
+        /// tag：资源标签({"Key":"标签key值","Value":"标签Value值"})
+        /// region：地域(ap-gaungzhou)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let destContent: String?
+
+        /// 协议；TCP/UDP/ICMP/ANY
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 规则对应的唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleUuid: Int64?
+
+        /// 规则序号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sequence: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case sourceContent = "SourceContent"
+            case destContent = "DestContent"
+            case `protocol` = "Protocol"
+            case description = "Description"
+            case ruleUuid = "RuleUuid"
+            case sequence = "Sequence"
         }
     }
 

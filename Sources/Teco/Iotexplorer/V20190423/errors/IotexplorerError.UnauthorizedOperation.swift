@@ -30,6 +30,7 @@ extension TCIotexplorerError {
             case noPermissionToStudioFence = "UnauthorizedOperation.NoPermissionToStudioFence"
             case noPermissionToStudioInstance = "UnauthorizedOperation.NoPermissionToStudioInstance"
             case noPermissionToStudioProduct = "UnauthorizedOperation.NoPermissionToStudioProduct"
+            case noVerified = "UnauthorizedOperation.NoVerified"
             case permissionDenied = "UnauthorizedOperation.PermissionDenied"
             case productNotSupportPSK = "UnauthorizedOperation.ProductNotSupportPSK"
             case userLicenseExceedLimit = "UnauthorizedOperation.UserLicenseExceedLimit"
@@ -113,6 +114,11 @@ extension TCIotexplorerError {
             UnauthorizedOperation(.noPermissionToStudioProduct)
         }
 
+        /// 您的帐号未实名认证，请登录腾讯云进行实名认证
+        public static var noVerified: UnauthorizedOperation {
+            UnauthorizedOperation(.noVerified)
+        }
+
         /// 没有权限。
         public static var permissionDenied: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDenied)
@@ -158,6 +164,8 @@ extension TCIotexplorerError {
                 code = .unauthorizedOperation_NoPermissionToStudioInstance
             case .noPermissionToStudioProduct:
                 code = .unauthorizedOperation_NoPermissionToStudioProduct
+            case .noVerified:
+                code = .unauthorizedOperation_NoVerified
             case .permissionDenied:
                 code = .unauthorizedOperation_PermissionDenied
             case .productNotSupportPSK:

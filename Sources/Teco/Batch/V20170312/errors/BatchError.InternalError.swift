@@ -19,6 +19,7 @@ import TecoCore
 extension TCBatchError {
     public struct InternalError: TCBatchErrorType {
         enum Code: String {
+            case callCam = "InternalError.CallCam"
             case callCpmAPI = "InternalError.CallCpmAPI"
             case callCvm = "InternalError.CallCvm"
             case callTagAPI = "InternalError.CallTagAPI"
@@ -46,6 +47,10 @@ extension TCBatchError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var callCam: InternalError {
+            InternalError(.callCam)
         }
 
         /// 调用Cpm API返回错误。
@@ -76,6 +81,8 @@ extension TCBatchError {
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {
+            case .callCam:
+                code = .internalError_CallCam
             case .callCpmAPI:
                 code = .internalError_CallCpmAPI
             case .callCvm:

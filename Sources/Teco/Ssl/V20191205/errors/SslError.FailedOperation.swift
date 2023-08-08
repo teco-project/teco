@@ -25,11 +25,23 @@ extension TCSslError {
             case cannotBeDeletedIssued = "FailedOperation.CannotBeDeletedIssued"
             case cannotBeDeletedWithinHour = "FailedOperation.CannotBeDeletedWithinHour"
             case cannotGetOrder = "FailedOperation.CannotGetOrder"
+            case certificateDeployDetailRollbackStatusInvalid = "FailedOperation.CertificateDeployDetailRollbackStatusInvalid"
+            case certificateDeployHasPendingRecord = "FailedOperation.CertificateDeployHasPendingRecord"
+            case certificateDeployInstanceEmpty = "FailedOperation.CertificateDeployInstanceEmpty"
+            case certificateDeployNotExist = "FailedOperation.CertificateDeployNotExist"
+            case certificateDeployRetryStatusInvalid = "FailedOperation.CertificateDeployRetryStatusInvalid"
+            case certificateDeployRollbackStatusInvalid = "FailedOperation.CertificateDeployRollbackStatusInvalid"
             case certificateExists = "FailedOperation.CertificateExists"
             case certificateHasRenewed = "FailedOperation.CertificateHasRenewed"
+            case certificateHostDeployCanNotAllow = "FailedOperation.CertificateHostDeployCanNotAllow"
+            case certificateHostResourceInnerInterrupt = "FailedOperation.CertificateHostResourceInnerInterrupt"
+            case certificateHostResourceInstanceHugeLimit = "FailedOperation.CertificateHostResourceInstanceHugeLimit"
+            case certificateHostResourceTypeInvalid = "FailedOperation.CertificateHostResourceTypeInvalid"
             case certificateHostingTypeNumberLimit = "FailedOperation.CertificateHostingTypeNumberLimit"
             case certificateInvalid = "FailedOperation.CertificateInvalid"
             case certificateMismatch = "FailedOperation.CertificateMismatch"
+            case certificateNotAvailable = "FailedOperation.CertificateNotAvailable"
+            case certificateNotDeployInstance = "FailedOperation.CertificateNotDeployInstance"
             case certificateNotFound = "FailedOperation.CertificateNotFound"
             case confirmLetterTooLarge = "FailedOperation.ConfirmLetterTooLarge"
             case confirmLetterTooSmall = "FailedOperation.ConfirmLetterTooSmall"
@@ -58,6 +70,7 @@ extension TCSslError {
             case revokeResourceFailed = "FailedOperation.RevokeResourceFailed"
             case roleNotFoundAuthorization = "FailedOperation.RoleNotFoundAuthorization"
             case systemError = "FailedOperation.SystemError"
+            case tradeError = "FailedOperation.TradeError"
             case other = "FailedOperation"
         }
 
@@ -113,6 +126,46 @@ extension TCSslError {
             FailedOperation(.cannotGetOrder)
         }
 
+        /// 记录状态必须完结才可以执行该操作。
+        ///
+        /// 等待任务完结，再执行回滚操作
+        public static var certificateDeployDetailRollbackStatusInvalid: FailedOperation {
+            FailedOperation(.certificateDeployDetailRollbackStatusInvalid)
+        }
+
+        /// 证书部署有正在进行中的任务，请部署完成后再重试。
+        ///
+        /// 请部署完成后再重试。
+        public static var certificateDeployHasPendingRecord: FailedOperation {
+            FailedOperation(.certificateDeployHasPendingRecord)
+        }
+
+        /// 已选择的云资源无实例，无法更新，请重新核对后重试。
+        public static var certificateDeployInstanceEmpty: FailedOperation {
+            FailedOperation(.certificateDeployInstanceEmpty)
+        }
+
+        /// 证书部署记录不存在。
+        ///
+        /// 请重新选择
+        public static var certificateDeployNotExist: FailedOperation {
+            FailedOperation(.certificateDeployNotExist)
+        }
+
+        /// 记录状态必须失败才可以执行该操作。
+        ///
+        /// 任务状态不为失败不可以重试
+        public static var certificateDeployRetryStatusInvalid: FailedOperation {
+            FailedOperation(.certificateDeployRetryStatusInvalid)
+        }
+
+        /// 必须有部署成功的记录才可以回滚。
+        ///
+        /// 不可以回滚该记录
+        public static var certificateDeployRollbackStatusInvalid: FailedOperation {
+            FailedOperation(.certificateDeployRollbackStatusInvalid)
+        }
+
         /// 证书已存在。
         public static var certificateExists: FailedOperation {
             FailedOperation(.certificateExists)
@@ -121,6 +174,28 @@ extension TCSslError {
         /// 已替换证书，无法进行托管。
         public static var certificateHasRenewed: FailedOperation {
             FailedOperation(.certificateHasRenewed)
+        }
+
+        /// 当前证书不允许使用一键更新的功能。
+        public static var certificateHostDeployCanNotAllow: FailedOperation {
+            FailedOperation(.certificateHostDeployCanNotAllow)
+        }
+
+        /// 当前为内部账号，账号涉及实例资源较多，无法使用部署功能，请联系SSL证书特殊处理。
+        ///
+        /// 请联系SSL证书特殊处理
+        public static var certificateHostResourceInnerInterrupt: FailedOperation {
+            FailedOperation(.certificateHostResourceInnerInterrupt)
+        }
+
+        /// 当前账号下实例数量过多，无法正常加载，请您切换加载方式。切换后点击“刷新列表”等待一段时间后即可全部加载。
+        public static var certificateHostResourceInstanceHugeLimit: FailedOperation {
+            FailedOperation(.certificateHostResourceInstanceHugeLimit)
+        }
+
+        /// 云资源类型无效。
+        public static var certificateHostResourceTypeInvalid: FailedOperation {
+            FailedOperation(.certificateHostResourceTypeInvalid)
         }
 
         /// 证书资源托管数量超过限制。
@@ -136,6 +211,20 @@ extension TCSslError {
         /// 证书与私钥不对应。
         public static var certificateMismatch: FailedOperation {
             FailedOperation(.certificateMismatch)
+        }
+
+        /// 证书不可用，请检查后再试。
+        ///
+        /// 重新选择部署证书
+        public static var certificateNotAvailable: FailedOperation {
+            FailedOperation(.certificateNotAvailable)
+        }
+
+        /// 证书不可以部署到实例列表下。
+        ///
+        /// 重新选择部署实例
+        public static var certificateNotDeployInstance: FailedOperation {
+            FailedOperation(.certificateNotDeployInstance)
         }
 
         /// 证书不存在。
@@ -284,6 +373,11 @@ extension TCSslError {
             FailedOperation(.systemError)
         }
 
+        /// 计费中心错误。
+        public static var tradeError: FailedOperation {
+            FailedOperation(.tradeError)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -304,16 +398,40 @@ extension TCSslError {
                 code = .failedOperation_CannotBeDeletedWithinHour
             case .cannotGetOrder:
                 code = .failedOperation_CannotGetOrder
+            case .certificateDeployDetailRollbackStatusInvalid:
+                code = .failedOperation_CertificateDeployDetailRollbackStatusInvalid
+            case .certificateDeployHasPendingRecord:
+                code = .failedOperation_CertificateDeployHasPendingRecord
+            case .certificateDeployInstanceEmpty:
+                code = .failedOperation_CertificateDeployInstanceEmpty
+            case .certificateDeployNotExist:
+                code = .failedOperation_CertificateDeployNotExist
+            case .certificateDeployRetryStatusInvalid:
+                code = .failedOperation_CertificateDeployRetryStatusInvalid
+            case .certificateDeployRollbackStatusInvalid:
+                code = .failedOperation_CertificateDeployRollbackStatusInvalid
             case .certificateExists:
                 code = .failedOperation_CertificateExists
             case .certificateHasRenewed:
                 code = .failedOperation_CertificateHasRenewed
+            case .certificateHostDeployCanNotAllow:
+                code = .failedOperation_CertificateHostDeployCanNotAllow
+            case .certificateHostResourceInnerInterrupt:
+                code = .failedOperation_CertificateHostResourceInnerInterrupt
+            case .certificateHostResourceInstanceHugeLimit:
+                code = .failedOperation_CertificateHostResourceInstanceHugeLimit
+            case .certificateHostResourceTypeInvalid:
+                code = .failedOperation_CertificateHostResourceTypeInvalid
             case .certificateHostingTypeNumberLimit:
                 code = .failedOperation_CertificateHostingTypeNumberLimit
             case .certificateInvalid:
                 code = .failedOperation_CertificateInvalid
             case .certificateMismatch:
                 code = .failedOperation_CertificateMismatch
+            case .certificateNotAvailable:
+                code = .failedOperation_CertificateNotAvailable
+            case .certificateNotDeployInstance:
+                code = .failedOperation_CertificateNotDeployInstance
             case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
             case .confirmLetterTooLarge:
@@ -370,6 +488,8 @@ extension TCSslError {
                 code = .failedOperation_RoleNotFoundAuthorization
             case .systemError:
                 code = .failedOperation_SystemError
+            case .tradeError:
+                code = .failedOperation_TradeError
             case .other:
                 code = .failedOperation
             }

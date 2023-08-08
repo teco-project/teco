@@ -21,15 +21,20 @@ import TecoCore
 extension Vpc {
     /// DeleteVpnGatewaySslClient请求参数结构体
     public struct DeleteVpnGatewaySslClientRequest: TCRequestModel {
-        /// SSL-VPN-CLIENT 实例ID。
-        public let sslVpnClientId: String
+        /// SSL-VPN-CLIENT 实例ID。不可和SslVpnClientIds同时使用。
+        public let sslVpnClientId: String?
 
-        public init(sslVpnClientId: String) {
+        /// SSL-VPN-CLIENT 实例ID列表。批量删除时使用。不可和SslVpnClientId同时使用。
+        public let sslVpnClientIds: [String]?
+
+        public init(sslVpnClientId: String? = nil, sslVpnClientIds: [String]? = nil) {
             self.sslVpnClientId = sslVpnClientId
+            self.sslVpnClientIds = sslVpnClientIds
         }
 
         enum CodingKeys: String, CodingKey {
             case sslVpnClientId = "SslVpnClientId"
+            case sslVpnClientIds = "SslVpnClientIds"
         }
     }
 
@@ -48,26 +53,34 @@ extension Vpc {
     }
 
     /// 删除SSL-VPN-CLIENT
+    ///
+    /// 本接口（DeleteVpnGatewaySslClient）用于删除SSL-VPN-CLIENT。
     @inlinable
     public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
         self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除SSL-VPN-CLIENT
+    ///
+    /// 本接口（DeleteVpnGatewaySslClient）用于删除SSL-VPN-CLIENT。
     @inlinable
     public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
         try await self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除SSL-VPN-CLIENT
+    ///
+    /// 本接口（DeleteVpnGatewaySslClient）用于删除SSL-VPN-CLIENT。
     @inlinable
-    public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
-        self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
+    public func deleteVpnGatewaySslClient(sslVpnClientId: String? = nil, sslVpnClientIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
+        self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId, sslVpnClientIds: sslVpnClientIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除SSL-VPN-CLIENT
+    ///
+    /// 本接口（DeleteVpnGatewaySslClient）用于删除SSL-VPN-CLIENT。
     @inlinable
-    public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
-        try await self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
+    public func deleteVpnGatewaySslClient(sslVpnClientId: String? = nil, sslVpnClientIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
+        try await self.deleteVpnGatewaySslClient(.init(sslVpnClientId: sslVpnClientId, sslVpnClientIds: sslVpnClientIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -27,7 +27,7 @@ extension Dlc {
         /// 执行的代码
         public let code: String
 
-        /// 类型，当前支持：spark、pyspark、sparkr、sql
+        /// 类型，当前支持：sql
         public let kind: String
 
         /// 是否保存运行结果
@@ -62,33 +62,33 @@ extension Dlc {
         }
     }
 
-    /// 创建Statement批量运行SQL任务
+    /// 创建交互式session并执行SQL任务
     ///
-    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建Statement批量运行SQL任务。
+    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建交互式session并执行SQL任务
     @inlinable
     public func createNotebookSessionStatementSupportBatchSQL(_ input: CreateNotebookSessionStatementSupportBatchSQLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionStatementSupportBatchSQLResponse> {
         self.client.execute(action: "CreateNotebookSessionStatementSupportBatchSQL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建Statement批量运行SQL任务
+    /// 创建交互式session并执行SQL任务
     ///
-    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建Statement批量运行SQL任务。
+    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建交互式session并执行SQL任务
     @inlinable
     public func createNotebookSessionStatementSupportBatchSQL(_ input: CreateNotebookSessionStatementSupportBatchSQLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionStatementSupportBatchSQLResponse {
         try await self.client.execute(action: "CreateNotebookSessionStatementSupportBatchSQL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建Statement批量运行SQL任务
+    /// 创建交互式session并执行SQL任务
     ///
-    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建Statement批量运行SQL任务。
+    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建交互式session并执行SQL任务
     @inlinable
     public func createNotebookSessionStatementSupportBatchSQL(sessionId: String, code: String, kind: String, saveResult: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionStatementSupportBatchSQLResponse> {
         self.createNotebookSessionStatementSupportBatchSQL(.init(sessionId: sessionId, code: code, kind: kind, saveResult: saveResult), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建Statement批量运行SQL任务
+    /// 创建交互式session并执行SQL任务
     ///
-    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建Statement批量运行SQL任务。
+    /// 本接口（CreateNotebookSessionStatementSupportBatchSQL）用于创建交互式session并执行SQL任务
     @inlinable
     public func createNotebookSessionStatementSupportBatchSQL(sessionId: String, code: String, kind: String, saveResult: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionStatementSupportBatchSQLResponse {
         try await self.createNotebookSessionStatementSupportBatchSQL(.init(sessionId: sessionId, code: code, kind: kind, saveResult: saveResult), region: region, logger: logger, on: eventLoop)

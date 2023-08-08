@@ -24,6 +24,7 @@ extension TCTtsError {
             case failAccessDatabase = "InternalError.FailAccessDatabase"
             case failAccessRedis = "InternalError.FailAccessRedis"
             case internalError = "InternalError.InternalError"
+            case noResource = "InternalError.NoResource"
         }
 
         private let error: Code
@@ -73,6 +74,11 @@ extension TCTtsError {
             InternalError(.internalError)
         }
 
+        /// 暂无资源，请稍后重试。
+        public static var noResource: InternalError {
+            InternalError(.noResource)
+        }
+
         public func asTtsError() -> TCTtsError {
             let code: TCTtsError.Code
             switch self.error {
@@ -86,6 +92,8 @@ extension TCTtsError {
                 code = .internalError_FailAccessRedis
             case .internalError:
                 code = .internalError_InternalError
+            case .noResource:
+                code = .internalError_NoResource
             }
             return TCTtsError(code, context: self.context)
         }

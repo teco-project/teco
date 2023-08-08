@@ -20,7 +20,11 @@ extension TCWafError {
     public struct InvalidParameter: TCWafErrorType {
         enum Code: String {
             case invalidCertificate = "InvalidParameter.InvalidCertificate"
+            case logicErr = "InvalidParameter.LogicErr"
             case queryCertBySSLIDFailed = "InvalidParameter.QueryCertBySSLIDFailed"
+            case queryStringSyntaxErr = "InvalidParameter.QueryStringSyntaxErr"
+            case sqlSyntaxErr = "InvalidParameter.SQLSyntaxErr"
+            case typeMismatch = "InvalidParameter.TypeMismatch"
             case other = "InvalidParameter"
         }
 
@@ -51,9 +55,25 @@ extension TCWafError {
             InvalidParameter(.invalidCertificate)
         }
 
+        public static var logicErr: InvalidParameter {
+            InvalidParameter(.logicErr)
+        }
+
         /// 根据ID查询证书失败。
         public static var queryCertBySSLIDFailed: InvalidParameter {
             InvalidParameter(.queryCertBySSLIDFailed)
+        }
+
+        public static var queryStringSyntaxErr: InvalidParameter {
+            InvalidParameter(.queryStringSyntaxErr)
+        }
+
+        public static var sqlSyntaxErr: InvalidParameter {
+            InvalidParameter(.sqlSyntaxErr)
+        }
+
+        public static var typeMismatch: InvalidParameter {
+            InvalidParameter(.typeMismatch)
         }
 
         /// 参数错误。
@@ -66,8 +86,16 @@ extension TCWafError {
             switch self.error {
             case .invalidCertificate:
                 code = .invalidParameter_InvalidCertificate
+            case .logicErr:
+                code = .invalidParameter_LogicErr
             case .queryCertBySSLIDFailed:
                 code = .invalidParameter_QueryCertBySSLIDFailed
+            case .queryStringSyntaxErr:
+                code = .invalidParameter_QueryStringSyntaxErr
+            case .sqlSyntaxErr:
+                code = .invalidParameter_SQLSyntaxErr
+            case .typeMismatch:
+                code = .invalidParameter_TypeMismatch
             case .other:
                 code = .invalidParameter
             }

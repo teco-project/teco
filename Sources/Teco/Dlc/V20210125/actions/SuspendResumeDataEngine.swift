@@ -52,33 +52,33 @@ extension Dlc {
         }
     }
 
-    /// 暂停或恢复数据引擎
+    /// 挂起或启动数据引擎
     ///
-    /// 本接口用于控制暂停或恢复数据引擎
+    /// 本接口用于控制挂起或启动数据引擎
     @inlinable
     public func suspendResumeDataEngine(_ input: SuspendResumeDataEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SuspendResumeDataEngineResponse> {
         self.client.execute(action: "SuspendResumeDataEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 暂停或恢复数据引擎
+    /// 挂起或启动数据引擎
     ///
-    /// 本接口用于控制暂停或恢复数据引擎
+    /// 本接口用于控制挂起或启动数据引擎
     @inlinable
     public func suspendResumeDataEngine(_ input: SuspendResumeDataEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendResumeDataEngineResponse {
         try await self.client.execute(action: "SuspendResumeDataEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 暂停或恢复数据引擎
+    /// 挂起或启动数据引擎
     ///
-    /// 本接口用于控制暂停或恢复数据引擎
+    /// 本接口用于控制挂起或启动数据引擎
     @inlinable
     public func suspendResumeDataEngine(dataEngineName: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SuspendResumeDataEngineResponse> {
         self.suspendResumeDataEngine(.init(dataEngineName: dataEngineName, operate: operate), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 暂停或恢复数据引擎
+    /// 挂起或启动数据引擎
     ///
-    /// 本接口用于控制暂停或恢复数据引擎
+    /// 本接口用于控制挂起或启动数据引擎
     @inlinable
     public func suspendResumeDataEngine(dataEngineName: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendResumeDataEngineResponse {
         try await self.suspendResumeDataEngine(.init(dataEngineName: dataEngineName, operate: operate), region: region, logger: logger, on: eventLoop)

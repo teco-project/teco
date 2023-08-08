@@ -55,8 +55,10 @@ public struct TCTkeError: TCTkeErrorType {
         case failedOperation_DisableVPCCNIFailed = "FailedOperation.DisableVPCCNIFailed"
         case failedOperation_EnableVPCCNIFailed = "FailedOperation.EnableVPCCNIFailed"
         case failedOperation_GetClsConfig = "FailedOperation.GetClsConfig"
+        case failedOperation_GetClsIndex = "FailedOperation.GetClsIndex"
         case failedOperation_GetClsLogSet = "FailedOperation.GetClsLogSet"
         case failedOperation_GetClsMachineGroup = "FailedOperation.GetClsMachineGroup"
+        case failedOperation_GetClsTopic = "FailedOperation.GetClsTopic"
         case failedOperation_KubeClientConf = "FailedOperation.KubeClientConf"
         case failedOperation_KubeClientConnection = "FailedOperation.KubeClientConnection"
         case failedOperation_KubeCommon = "FailedOperation.KubeCommon"
@@ -72,6 +74,7 @@ public struct TCTkeError: TCTkeErrorType {
         case failedOperation_MarketReleaseOperation = "FailedOperation.MarketReleaseOperation"
         case failedOperation_ModifyClsIndex = "FailedOperation.ModifyClsIndex"
         case failedOperation_NetworkScaleError = "FailedOperation.NetworkScaleError"
+        case failedOperation_NodeExistsSecondaryNetworkInterface = "FailedOperation.NodeExistsSecondaryNetworkInterface"
         case failedOperation_OsNotSupport = "FailedOperation.OsNotSupport"
         case failedOperation_Param = "FailedOperation.Param"
         case failedOperation_PolicyServerCommonError = "FailedOperation.PolicyServerCommonError"
@@ -439,6 +442,11 @@ public struct TCTkeError: TCTkeErrorType {
         TCTkeError(.failedOperation_GetClsConfig)
     }
 
+    /// 获取CLS索引配置失败。
+    public static var failedOperation_GetClsIndex: TCTkeError {
+        TCTkeError(.failedOperation_GetClsIndex)
+    }
+
     /// 查询主题集失败。
     ///
     /// 请向腾讯云提工单寻求支持。
@@ -449,6 +457,11 @@ public struct TCTkeError: TCTkeErrorType {
     /// 获取CLS机器组失败。
     public static var failedOperation_GetClsMachineGroup: TCTkeError {
         TCTkeError(.failedOperation_GetClsMachineGroup)
+    }
+
+    /// 获取CLS日志主题失败。
+    public static var failedOperation_GetClsTopic: TCTkeError {
+        TCTkeError(.failedOperation_GetClsTopic)
     }
 
     /// 通过配置文件创建集群Client错误。
@@ -548,6 +561,13 @@ public struct TCTkeError: TCTkeErrorType {
     /// 请提交工单联系我们协助处理
     public static var failedOperation_NetworkScaleError: TCTkeError {
         TCTkeError(.failedOperation_NetworkScaleError)
+    }
+
+    /// 节点存在辅助网卡
+    ///
+    /// 节点取消绑定辅助网卡
+    public static var failedOperation_NodeExistsSecondaryNetworkInterface: TCTkeError {
+        TCTkeError(.failedOperation_NodeExistsSecondaryNetworkInterface)
     }
 
     /// 镜像OS不支持。

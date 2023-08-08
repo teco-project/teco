@@ -22,7 +22,9 @@ extension TCOceanusError {
             case clusterId = "InvalidParameterValue.ClusterId"
             case clusterIds = "InvalidParameterValue.ClusterIds"
             case cuMem = "InvalidParameterValue.CuMem"
+            case invalidLimit = "InvalidParameterValue.InvalidLimit"
             case invalidStartMode = "InvalidParameterValue.InvalidStartMode"
+            case invalidTime = "InvalidParameterValue.InvalidTime"
             case jobIdValueError = "InvalidParameterValue.JobIdValueError"
             case jobName = "InvalidParameterValue.JobName"
             case jobNameExisted = "InvalidParameterValue.JobNameExisted"
@@ -74,9 +76,19 @@ extension TCOceanusError {
             InvalidParameterValue(.cuMem)
         }
 
+        /// 无效限制错误。
+        public static var invalidLimit: InvalidParameterValue {
+            InvalidParameterValue(.invalidLimit)
+        }
+
         /// 无效启动模式。
         public static var invalidStartMode: InvalidParameterValue {
             InvalidParameterValue(.invalidStartMode)
+        }
+
+        /// 无效时间错误。
+        public static var invalidTime: InvalidParameterValue {
+            InvalidParameterValue(.invalidTime)
         }
 
         /// 作业id的参数无效。
@@ -148,8 +160,12 @@ extension TCOceanusError {
                 code = .invalidParameterValue_ClusterIds
             case .cuMem:
                 code = .invalidParameterValue_CuMem
+            case .invalidLimit:
+                code = .invalidParameterValue_InvalidLimit
             case .invalidStartMode:
                 code = .invalidParameterValue_InvalidStartMode
+            case .invalidTime:
+                code = .invalidParameterValue_InvalidTime
             case .jobIdValueError:
                 code = .invalidParameterValue_JobIdValueError
             case .jobName:

@@ -52,25 +52,25 @@ extension Cfw {
         }
     }
 
-    /// 添加nat访问控制规则
+    /// 添加nat访问控制规则(地域必填)
     @inlinable
     public func addNatAcRule(_ input: AddNatAcRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNatAcRuleResponse> {
         self.client.execute(action: "AddNatAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加nat访问控制规则
+    /// 添加nat访问控制规则(地域必填)
     @inlinable
     public func addNatAcRule(_ input: AddNatAcRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNatAcRuleResponse {
         try await self.client.execute(action: "AddNatAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加nat访问控制规则
+    /// 添加nat访问控制规则(地域必填)
     @inlinable
     public func addNatAcRule(rules: [CreateNatRuleItem], from: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNatAcRuleResponse> {
         self.addNatAcRule(.init(rules: rules, from: from), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加nat访问控制规则
+    /// 添加nat访问控制规则(地域必填)
     @inlinable
     public func addNatAcRule(rules: [CreateNatRuleItem], from: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNatAcRuleResponse {
         try await self.addNatAcRule(.init(rules: rules, from: from), region: region, logger: logger, on: eventLoop)

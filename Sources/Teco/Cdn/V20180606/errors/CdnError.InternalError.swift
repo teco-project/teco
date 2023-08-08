@@ -37,6 +37,7 @@ extension TCCdnError {
             case systemDBError = "InternalError.SystemDBError"
             case systemError = "InternalError.SystemError"
             case tagSystemError = "InternalError.TagSystemError"
+            case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
         }
 
@@ -156,6 +157,11 @@ extension TCCdnError {
             InternalError(.tagSystemError)
         }
 
+        /// 内部服务错误，请联系腾讯云工程师进一步排查。
+        public static var unknownError: InternalError {
+            InternalError(.unknownError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -200,6 +206,8 @@ extension TCCdnError {
                 code = .internalError_SystemError
             case .tagSystemError:
                 code = .internalError_TagSystemError
+            case .unknownError:
+                code = .internalError_UnknownError
             case .other:
                 code = .internalError
             }

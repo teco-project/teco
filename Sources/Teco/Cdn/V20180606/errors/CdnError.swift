@@ -49,6 +49,7 @@ public struct TCCdnError: TCCdnErrorType {
         case internalError_SystemDBError = "InternalError.SystemDBError"
         case internalError_SystemError = "InternalError.SystemError"
         case internalError_TagSystemError = "InternalError.TagSystemError"
+        case internalError_UnknownError = "InternalError.UnknownError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_AccessPortOpenedHttps = "InvalidParameter.AccessPortOpenedHttps"
@@ -139,6 +140,7 @@ public struct TCCdnError: TCCdnErrorType {
         case limitExceeded_ScdnLogTaskExceedDayLimit = "LimitExceeded.ScdnLogTaskExceedDayLimit"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
+        case operationDenied_ShareCacheAreaDnsNotMatch = "OperationDenied.ShareCacheAreaDnsNotMatch"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse_CdnConflictHostExists = "ResourceInUse.CdnConflictHostExists"
         case resourceInUse_CdnHostExists = "ResourceInUse.CdnHostExists"
@@ -212,6 +214,7 @@ public struct TCCdnError: TCCdnErrorType {
             InternalError.self,
             InvalidParameter.self,
             LimitExceeded.self,
+            OperationDenied.self,
             ResourceInUse.self,
             ResourceNotFound.self,
             ResourceUnavailable.self,
@@ -359,6 +362,11 @@ public struct TCCdnError: TCCdnErrorType {
     /// 标签内部错误，请重试或联系客服人员解决。
     public static var internalError_TagSystemError: TCCdnError {
         TCCdnError(.internalError_TagSystemError)
+    }
+
+    /// 内部服务错误，请联系腾讯云工程师进一步排查。
+    public static var internalError_UnknownError: TCCdnError {
+        TCCdnError(.internalError_UnknownError)
     }
 
     /// 参数错误。
@@ -809,6 +817,11 @@ public struct TCCdnError: TCCdnErrorType {
     /// 操作被拒绝。
     public static var operationDenied: TCCdnError {
         TCCdnError(.operationDenied)
+    }
+
+    /// 请重新选择或联系腾讯云技术支持
+    public static var operationDenied_ShareCacheAreaDnsNotMatch: TCCdnError {
+        TCCdnError(.operationDenied_ShareCacheAreaDnsNotMatch)
     }
 
     /// 请求的次数超过了频率限制。

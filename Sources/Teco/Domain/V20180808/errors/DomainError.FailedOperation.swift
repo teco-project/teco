@@ -30,6 +30,7 @@ extension TCDomainError {
             case duplicatePhoneEmail = "FailedOperation.DuplicatePhoneEmail"
             case getDomainPriceFailed = "FailedOperation.GetDomainPriceFailed"
             case modifyDomainOwnerFailed = "FailedOperation.ModifyDomainOwnerFailed"
+            case permissionDenied = "FailedOperation.PermissionDenied"
             case prohibitPhoneEmail = "FailedOperation.ProhibitPhoneEmail"
             case registerDomain = "FailedOperation.RegisterDomain"
             case registerDomainFailed = "FailedOperation.RegisterDomainFailed"
@@ -37,6 +38,7 @@ extension TCDomainError {
             case sendVerifyCodeIsLimited = "FailedOperation.SendVerifyCodeIsLimited"
             case setDomainDnsFailed = "FailedOperation.SetDomainDnsFailed"
             case templateMaxNumFailed = "FailedOperation.TemplateMaxNumFailed"
+            case transferInDomainFailed = "FailedOperation.TransferInDomainFailed"
             case uploadImageFailed = "FailedOperation.UploadImageFailed"
             case verifyUinIsRealname = "FailedOperation.VerifyUinIsRealname"
             case other = "FailedOperation"
@@ -119,6 +121,10 @@ extension TCDomainError {
             FailedOperation(.modifyDomainOwnerFailed)
         }
 
+        public static var permissionDenied: FailedOperation {
+            FailedOperation(.permissionDenied)
+        }
+
         /// 禁止的手机或邮箱。
         ///
         /// 更换手机或邮箱
@@ -154,6 +160,11 @@ extension TCDomainError {
         /// 信息模板超过可用数量上限，建议删除已有模板后重试。
         public static var templateMaxNumFailed: FailedOperation {
             FailedOperation(.templateMaxNumFailed)
+        }
+
+        /// 域名提交转入失败，请稍后重试。
+        public static var transferInDomainFailed: FailedOperation {
+            FailedOperation(.transferInDomainFailed)
         }
 
         /// 上传图片操作失败。
@@ -196,6 +207,8 @@ extension TCDomainError {
                 code = .failedOperation_GetDomainPriceFailed
             case .modifyDomainOwnerFailed:
                 code = .failedOperation_ModifyDomainOwnerFailed
+            case .permissionDenied:
+                code = .failedOperation_PermissionDenied
             case .prohibitPhoneEmail:
                 code = .failedOperation_ProhibitPhoneEmail
             case .registerDomain:
@@ -210,6 +223,8 @@ extension TCDomainError {
                 code = .failedOperation_SetDomainDnsFailed
             case .templateMaxNumFailed:
                 code = .failedOperation_TemplateMaxNumFailed
+            case .transferInDomainFailed:
+                code = .failedOperation_TransferInDomainFailed
             case .uploadImageFailed:
                 code = .failedOperation_UploadImageFailed
             case .verifyUinIsRealname:

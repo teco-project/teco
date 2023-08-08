@@ -67,26 +67,30 @@ extension Tdid {
     }
 
     /// 凭证模版新建
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("RegisterCpt is no longer available.")
     }
 
     /// 凭证模版新建
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("RegisterCpt is no longer available.")
     }
 
     /// 凭证模版新建
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        self.registerCpt(.init(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterCpt is no longer available.")
     }
 
     /// 凭证模版新建
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.registerCpt(.init(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
+        fatalError("RegisterCpt is no longer available.")
     }
 }

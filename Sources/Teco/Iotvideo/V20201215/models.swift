@@ -346,6 +346,10 @@ extension Iotvideo {
         /// 设备过期时间
         public let expireTime: UInt64
 
+        /// 设备的sdk日志等级，0：关闭，1：错误，2：告警，3：信息，4：调试
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logLevel: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case online = "Online"
@@ -353,6 +357,7 @@ extension Iotvideo {
             case devicePsk = "DevicePsk"
             case enableState = "EnableState"
             case expireTime = "ExpireTime"
+            case logLevel = "LogLevel"
         }
     }
 

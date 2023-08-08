@@ -36,12 +36,16 @@ extension Vpc {
         /// 域名。
         public let domainName: String?
 
-        public init(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil) {
+        /// 发布cdc 子网到云联网的开关。true: 发布, false: 不发布。
+        public let enableCdcPublish: Bool?
+
+        public init(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, enableCdcPublish: Bool? = nil) {
             self.vpcId = vpcId
             self.vpcName = vpcName
             self.enableMulticast = enableMulticast
             self.dnsServers = dnsServers
             self.domainName = domainName
+            self.enableCdcPublish = enableCdcPublish
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Vpc {
             case enableMulticast = "EnableMulticast"
             case dnsServers = "DnsServers"
             case domainName = "DomainName"
+            case enableCdcPublish = "EnableCdcPublish"
         }
     }
 
@@ -83,15 +88,15 @@ extension Vpc {
     ///
     /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
     @inlinable @discardableResult
-    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
-        self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName), region: region, logger: logger, on: eventLoop)
+    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, enableCdcPublish: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
+        self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, enableCdcPublish: enableCdcPublish), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPC属性
     ///
     /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
     @inlinable @discardableResult
-    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName), region: region, logger: logger, on: eventLoop)
+    public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, enableCdcPublish: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.modifyVpcAttribute(.init(vpcId: vpcId, vpcName: vpcName, enableMulticast: enableMulticast, dnsServers: dnsServers, domainName: domainName, enableCdcPublish: enableCdcPublish), region: region, logger: logger, on: eventLoop)
     }
 }

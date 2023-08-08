@@ -24,12 +24,17 @@ extension Rum {
         /// 超时时间，不填默认是 5 分钟
         public let timeout: Int64?
 
-        public init(timeout: Int64? = nil) {
+        /// bucket类型，不填默认web，2:app
+        public let fileType: Int64?
+
+        public init(timeout: Int64? = nil, fileType: Int64? = nil) {
             self.timeout = timeout
+            self.fileType = fileType
         }
 
         enum CodingKeys: String, CodingKey {
             case timeout = "Timeout"
+            case fileType = "FileType"
         }
     }
 
@@ -83,15 +88,15 @@ extension Rum {
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
-        self.describeReleaseFileSign(.init(timeout: timeout), region: region, logger: logger, on: eventLoop)
+    public func describeReleaseFileSign(timeout: Int64? = nil, fileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
+        self.describeReleaseFileSign(.init(timeout: timeout, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
-        try await self.describeReleaseFileSign(.init(timeout: timeout), region: region, logger: logger, on: eventLoop)
+    public func describeReleaseFileSign(timeout: Int64? = nil, fileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
+        try await self.describeReleaseFileSign(.init(timeout: timeout, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 }

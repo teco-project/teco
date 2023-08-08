@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// CreateIntegrationUserRoles请求参数结构体
     public struct CreateIntegrationUserRolesRequest: TCRequestModel {
-        /// 操作人信息
+        /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
         /// 绑定角色的用户id列表
@@ -62,25 +62,33 @@ extension Ess {
         }
     }
 
-    /// 集成版绑定员工角色
+    /// 绑定员工角色
+    ///
+    /// 绑定员工与对应角色
     @inlinable
     public func createIntegrationUserRoles(_ input: CreateIntegrationUserRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationUserRolesResponse> {
         self.client.execute(action: "CreateIntegrationUserRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 集成版绑定员工角色
+    /// 绑定员工角色
+    ///
+    /// 绑定员工与对应角色
     @inlinable
     public func createIntegrationUserRoles(_ input: CreateIntegrationUserRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationUserRolesResponse {
         try await self.client.execute(action: "CreateIntegrationUserRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 集成版绑定员工角色
+    /// 绑定员工角色
+    ///
+    /// 绑定员工与对应角色
     @inlinable
     public func createIntegrationUserRoles(operator: UserInfo, userIds: [String], roleIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationUserRolesResponse> {
         self.createIntegrationUserRoles(.init(operator: `operator`, userIds: userIds, roleIds: roleIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 集成版绑定员工角色
+    /// 绑定员工角色
+    ///
+    /// 绑定员工与对应角色
     @inlinable
     public func createIntegrationUserRoles(operator: UserInfo, userIds: [String], roleIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationUserRolesResponse {
         try await self.createIntegrationUserRoles(.init(operator: `operator`, userIds: userIds, roleIds: roleIds, agent: agent), region: region, logger: logger, on: eventLoop)

@@ -57,33 +57,33 @@ extension Dlc {
         }
     }
 
-    /// 创建session statement
+    /// 在session中执行代码片段
     ///
-    /// 本接口（CreateNotebookSessionStatement）用于创建session statement
+    /// 本接口（CreateNotebookSessionStatement）用于在session中执行代码片段
     @inlinable
     public func createNotebookSessionStatement(_ input: CreateNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionStatementResponse> {
         self.client.execute(action: "CreateNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建session statement
+    /// 在session中执行代码片段
     ///
-    /// 本接口（CreateNotebookSessionStatement）用于创建session statement
+    /// 本接口（CreateNotebookSessionStatement）用于在session中执行代码片段
     @inlinable
     public func createNotebookSessionStatement(_ input: CreateNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionStatementResponse {
         try await self.client.execute(action: "CreateNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建session statement
+    /// 在session中执行代码片段
     ///
-    /// 本接口（CreateNotebookSessionStatement）用于创建session statement
+    /// 本接口（CreateNotebookSessionStatement）用于在session中执行代码片段
     @inlinable
     public func createNotebookSessionStatement(sessionId: String, code: String, kind: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionStatementResponse> {
         self.createNotebookSessionStatement(.init(sessionId: sessionId, code: code, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建session statement
+    /// 在session中执行代码片段
     ///
-    /// 本接口（CreateNotebookSessionStatement）用于创建session statement
+    /// 本接口（CreateNotebookSessionStatement）用于在session中执行代码片段
     @inlinable
     public func createNotebookSessionStatement(sessionId: String, code: String, kind: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionStatementResponse {
         try await self.createNotebookSessionStatement(.init(sessionId: sessionId, code: code, kind: kind), region: region, logger: logger, on: eventLoop)

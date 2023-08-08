@@ -48,7 +48,13 @@ extension Cynosdb {
         /// 文件类型，可选值：csv, original
         public let fileType: String?
 
-        public init(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil) {
+        /// 排序字段，可选值： QueryTime,LockTime,RowsExamined,RowsSent
+        public let orderBy: String?
+
+        /// 排序类型，可选值：asc,desc
+        public let orderByType: String?
+
+        public init(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -58,6 +64,8 @@ extension Cynosdb {
             self.host = host
             self.database = database
             self.fileType = fileType
+            self.orderBy = orderBy
+            self.orderByType = orderByType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -70,6 +78,8 @@ extension Cynosdb {
             case host = "Host"
             case database = "Database"
             case fileType = "FileType"
+            case orderBy = "OrderBy"
+            case orderByType = "OrderByType"
         }
     }
 
@@ -107,15 +117,15 @@ extension Cynosdb {
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
-    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportInstanceSlowQueriesResponse> {
-        self.exportInstanceSlowQueries(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), region: region, logger: logger, on: eventLoop)
+    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportInstanceSlowQueriesResponse> {
+        self.exportInstanceSlowQueries(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出实例慢日志
     ///
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
-    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
-        try await self.exportInstanceSlowQueries(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), region: region, logger: logger, on: eventLoop)
+    public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
+        try await self.exportInstanceSlowQueries(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// DescribeSecurityGroups请求参数结构体
     public struct DescribeSecurityGroupsRequest: TCRequestModel {
-        /// 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
+        /// 安全组实例ID，例如：sg-33ocnj9n。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
         public let securityGroupIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SecurityGroupIds和Filters。
@@ -38,11 +38,19 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
 
-        public init(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
+        /// 排序字段。支持：`CreatedTime` `UpdateTime`。注意：该字段没有默认值。
+        public let orderField: String?
+
+        /// 排序方法。升序：`ASC`，倒序：`DESC`。默认值：`ASC`
+        public let orderDirection: String?
+
+        public init(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.securityGroupIds = securityGroupIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
+            self.orderField = orderField
+            self.orderDirection = orderDirection
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +58,8 @@ extension Vpc {
             case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
+            case orderField = "OrderField"
+            case orderDirection = "OrderDirection"
         }
     }
 
@@ -92,15 +102,15 @@ extension Vpc {
     ///
     /// 本接口（DescribeSecurityGroups）用于查询安全组。
     @inlinable
-    public func describeSecurityGroups(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupsResponse> {
-        self.describeSecurityGroups(.init(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeSecurityGroups(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupsResponse> {
+        self.describeSecurityGroups(.init(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看安全组
     ///
     /// 本接口（DescribeSecurityGroups）用于查询安全组。
     @inlinable
-    public func describeSecurityGroups(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupsResponse {
-        try await self.describeSecurityGroups(.init(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeSecurityGroups(securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupsResponse {
+        try await self.describeSecurityGroups(.init(securityGroupIds: securityGroupIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -52,33 +52,33 @@ extension Postgres {
         }
     }
 
-    /// 开通外网
+    /// 开通实例公网地址
     ///
-    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    /// 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
     @inlinable
     public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBExtranetAccessResponse> {
         self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 开通外网
+    /// 开通实例公网地址
     ///
-    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    /// 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
     @inlinable
     public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
         try await self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 开通外网
+    /// 开通实例公网地址
     ///
-    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    /// 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
     @inlinable
     public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBExtranetAccessResponse> {
         self.openDBExtranetAccess(.init(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 开通外网
+    /// 开通实例公网地址
     ///
-    /// 本接口（OpenDBExtranetAccess）用于开通外网。
+    /// 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
     @inlinable
     public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
         try await self.openDBExtranetAccess(.init(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)

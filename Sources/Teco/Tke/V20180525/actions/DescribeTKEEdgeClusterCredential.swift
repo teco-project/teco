@@ -60,6 +60,9 @@ extension Tke {
         /// 是否部署GridDaemon以支持headless service
         public let gridDaemon: String
 
+        /// 公网访问kins集群
+        public let unitCluster: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -72,6 +75,7 @@ extension Tke {
             case healthRegion = "HealthRegion"
             case health = "Health"
             case gridDaemon = "GridDaemon"
+            case unitCluster = "UnitCluster"
             case requestId = "RequestId"
         }
     }

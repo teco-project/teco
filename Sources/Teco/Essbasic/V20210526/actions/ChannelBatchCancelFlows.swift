@@ -21,20 +21,21 @@ import TecoCore
 extension Essbasic {
     /// ChannelBatchCancelFlows请求参数结构体
     public struct ChannelBatchCancelFlowsRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 签署流程Id数组，最多100个，超过100不处理
         public let flowIds: [String]
 
-        /// 撤销理由
+        /// 撤销理由,不超过200个字符
         public let cancelMessage: String?
 
         /// 撤销理由自定义格式；选项：
-        /// 0 默认格式
-        /// 1 只保留身份信息：展示为【发起方】
-        /// 2 保留身份信息+企业名称：展示为【发起方xxx公司】
-        /// 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
+        ///
+        /// - 0 默认格式
+        /// - 1 只保留身份信息：展示为【发起方】
+        /// - 2 保留身份信息+企业名称：展示为【发起方xxx公司】
+        /// - 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         public let cancelMessageFormat: Int64?
 
         /// 暂未开放
@@ -74,9 +75,17 @@ extension Essbasic {
     /// 根据签署流程id批量撤销合同
     ///
     /// 指定需要批量撤销的签署流程Id，批量撤销合同
-    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// **满足撤销条件的合同会发起异步撤销流程，不满足撤销条件的合同返回失败原因。**
+    ///
+    /// **合同撤销成功后，会通过合同状态为 CANCEL 的回调消息通知调用方 [具体可参考回调消息](https://qian.tencent.com/developers/scenes/partner/callback_data_types#-%E5%90%88%E5%90%8C%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5---flowstatuschange)**
+    ///
+    /// **注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人**
     @inlinable
     public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
         self.client.execute(action: "ChannelBatchCancelFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -85,9 +94,17 @@ extension Essbasic {
     /// 根据签署流程id批量撤销合同
     ///
     /// 指定需要批量撤销的签署流程Id，批量撤销合同
-    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// **满足撤销条件的合同会发起异步撤销流程，不满足撤销条件的合同返回失败原因。**
+    ///
+    /// **合同撤销成功后，会通过合同状态为 CANCEL 的回调消息通知调用方 [具体可参考回调消息](https://qian.tencent.com/developers/scenes/partner/callback_data_types#-%E5%90%88%E5%90%8C%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5---flowstatuschange)**
+    ///
+    /// **注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人**
     @inlinable
     public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
         try await self.client.execute(action: "ChannelBatchCancelFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,9 +113,17 @@ extension Essbasic {
     /// 根据签署流程id批量撤销合同
     ///
     /// 指定需要批量撤销的签署流程Id，批量撤销合同
-    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// **满足撤销条件的合同会发起异步撤销流程，不满足撤销条件的合同返回失败原因。**
+    ///
+    /// **合同撤销成功后，会通过合同状态为 CANCEL 的回调消息通知调用方 [具体可参考回调消息](https://qian.tencent.com/developers/scenes/partner/callback_data_types#-%E5%90%88%E5%90%8C%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5---flowstatuschange)**
+    ///
+    /// **注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人**
     @inlinable
     public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
         self.channelBatchCancelFlows(.init(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -107,9 +132,17 @@ extension Essbasic {
     /// 根据签署流程id批量撤销合同
     ///
     /// 指定需要批量撤销的签署流程Id，批量撤销合同
-    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；接口失败后返回错误信息
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// **满足撤销条件的合同会发起异步撤销流程，不满足撤销条件的合同返回失败原因。**
+    ///
+    /// **合同撤销成功后，会通过合同状态为 CANCEL 的回调消息通知调用方 [具体可参考回调消息](https://qian.tencent.com/developers/scenes/partner/callback_data_types#-%E5%90%88%E5%90%8C%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5---flowstatuschange)**
+    ///
+    /// **注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人**
     @inlinable
     public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
         try await self.channelBatchCancelFlows(.init(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)

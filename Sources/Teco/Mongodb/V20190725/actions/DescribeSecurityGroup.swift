@@ -49,7 +49,7 @@ extension Mongodb {
 
     /// 查询实例绑定的安全组
     ///
-    /// 本就口（DescribeSecurityGroup）用于查询实例绑定的安全组。
+    /// 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
     @inlinable
     public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
         self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Mongodb {
 
     /// 查询实例绑定的安全组
     ///
-    /// 本就口（DescribeSecurityGroup）用于查询实例绑定的安全组。
+    /// 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
     @inlinable
     public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
         try await self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Mongodb {
 
     /// 查询实例绑定的安全组
     ///
-    /// 本就口（DescribeSecurityGroup）用于查询实例绑定的安全组。
+    /// 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
     @inlinable
     public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
         self.describeSecurityGroup(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Mongodb {
 
     /// 查询实例绑定的安全组
     ///
-    /// 本就口（DescribeSecurityGroup）用于查询实例绑定的安全组。
+    /// 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
     @inlinable
     public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
         try await self.describeSecurityGroup(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

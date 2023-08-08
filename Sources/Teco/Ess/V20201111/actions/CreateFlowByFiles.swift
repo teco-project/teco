@@ -56,6 +56,9 @@ extension Ess {
         /// 值为unix时间戳,精确到秒,不传默认为当前时间一年后
         public let deadline: Int64?
 
+        /// 合同到期提醒时间戳，单位秒。设定该值后，可以提前进行到期通知，方便客户处理合同到期事务，如合同续签等。该值支持的范围是从发起时间起到往后的10年内。仅合同发起方企业的发起人可以编辑修改。
+        public let remindedOn: Int64?
+
         /// 发送类型：
         /// true：无序签
         /// false：有序签
@@ -92,7 +95,10 @@ extension Ess {
         /// 给关注人发送短信通知的类型，0-合同发起时通知 1-签署完成后通知
         public let ccNotifyType: Int64?
 
-        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil) {
+        /// 个人自动签场景。发起自动签署时，需设置对应自动签署场景，目前仅支持场景：处方单-E_PRESCRIPTION_AUTO_SIGN
+        public let autoSignScene: String?
+
+        public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil) {
             self.operator = `operator`
             self.flowName = flowName
             self.approvers = approvers
@@ -103,6 +109,7 @@ extension Ess {
             self.needPreview = needPreview
             self.previewType = previewType
             self.deadline = deadline
+            self.remindedOn = remindedOn
             self.unordered = unordered
             self.customShowMap = customShowMap
             self.needSignReview = needSignReview
@@ -112,6 +119,7 @@ extension Ess {
             self.signBeanTag = signBeanTag
             self.agent = agent
             self.ccNotifyType = ccNotifyType
+            self.autoSignScene = autoSignScene
         }
 
         enum CodingKeys: String, CodingKey {
@@ -125,6 +133,7 @@ extension Ess {
             case needPreview = "NeedPreview"
             case previewType = "PreviewType"
             case deadline = "Deadline"
+            case remindedOn = "RemindedOn"
             case unordered = "Unordered"
             case customShowMap = "CustomShowMap"
             case needSignReview = "NeedSignReview"
@@ -134,6 +143,7 @@ extension Ess {
             case signBeanTag = "SignBeanTag"
             case agent = "Agent"
             case ccNotifyType = "CcNotifyType"
+            case autoSignScene = "AutoSignScene"
         }
     }
 
@@ -162,10 +172,10 @@ extension Ess {
 
     /// 用PDF文件创建签署流程
     ///
-    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。
-    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。
-    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
-    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
+    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。<br/>
+    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。<br/>
+    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。<br/>
+    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。<br/>
     @inlinable
     public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
         self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -173,10 +183,10 @@ extension Ess {
 
     /// 用PDF文件创建签署流程
     ///
-    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。
-    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。
-    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
-    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
+    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。<br/>
+    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。<br/>
+    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。<br/>
+    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。<br/>
     @inlinable
     public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
         try await self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -184,23 +194,23 @@ extension Ess {
 
     /// 用PDF文件创建签署流程
     ///
-    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。
-    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。
-    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
-    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
+    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。<br/>
+    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。<br/>
+    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。<br/>
+    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。<br/>
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建签署流程
     ///
-    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。
-    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。
-    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
-    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
+    /// 此接口（CreateFlowByFiles）用来通过上传后的pdf资源编号来创建待签署的合同流程。<br/>
+    /// 适用场景1：适用非制式的合同文件签署。一般开发者自己有完整的签署文件，可以通过该接口传入完整的PDF文件及流程信息生成待签署的合同流程。<br/>
+    /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。<br/>
+    /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。<br/>
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType), region: region, logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, remindedOn: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, agent: Agent? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.createFlowByFiles(.init(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, remindedOn: remindedOn, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag, agent: agent, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -27,14 +27,19 @@ extension Cam {
         /// 元数据文档，需要base64 encode，仅当Operate为updateSAML时需要此参数
         public let samlMetadataDocument: String?
 
-        public init(operate: String, samlMetadataDocument: String? = nil) {
+        /// 辅助域名
+        public let auxiliaryDomain: String?
+
+        public init(operate: String, samlMetadataDocument: String? = nil, auxiliaryDomain: String? = nil) {
             self.operate = operate
             self.samlMetadataDocument = samlMetadataDocument
+            self.auxiliaryDomain = auxiliaryDomain
         }
 
         enum CodingKeys: String, CodingKey {
             case operate = "Operate"
             case samlMetadataDocument = "SAMLMetadataDocument"
+            case auxiliaryDomain = "AuxiliaryDomain"
         }
     }
 
@@ -62,13 +67,13 @@ extension Cam {
 
     /// 修改用户SAML配置
     @inlinable @discardableResult
-    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
-        self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
+    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, auxiliaryDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
+        self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument, auxiliaryDomain: auxiliaryDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
     @inlinable @discardableResult
-    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
-        try await self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
+    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, auxiliaryDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
+        try await self.updateUserSAMLConfig(.init(operate: operate, samlMetadataDocument: samlMetadataDocument, auxiliaryDomain: auxiliaryDomain), region: region, logger: logger, on: eventLoop)
     }
 }

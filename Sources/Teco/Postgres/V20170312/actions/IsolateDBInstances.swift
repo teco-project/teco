@@ -45,7 +45,7 @@ extension Postgres {
 
     /// 隔离实例
     ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
+    /// 本接口（IsolateDBInstances）用于隔离实例。
     @inlinable @discardableResult
     public func isolateDBInstances(_ input: IsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
         self.client.execute(action: "IsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -53,7 +53,7 @@ extension Postgres {
 
     /// 隔离实例
     ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
+    /// 本接口（IsolateDBInstances）用于隔离实例。
     @inlinable @discardableResult
     public func isolateDBInstances(_ input: IsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
         try await self.client.execute(action: "IsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,7 +61,7 @@ extension Postgres {
 
     /// 隔离实例
     ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
+    /// 本接口（IsolateDBInstances）用于隔离实例。
     @inlinable @discardableResult
     public func isolateDBInstances(dbInstanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
         self.isolateDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet), region: region, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Postgres {
 
     /// 隔离实例
     ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
+    /// 本接口（IsolateDBInstances）用于隔离实例。
     @inlinable @discardableResult
     public func isolateDBInstances(dbInstanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
         try await self.isolateDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet), region: region, logger: logger, on: eventLoop)

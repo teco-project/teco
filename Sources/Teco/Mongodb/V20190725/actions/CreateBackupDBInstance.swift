@@ -21,13 +21,15 @@ import TecoCore
 extension Mongodb {
     /// CreateBackupDBInstance请求参数结构体
     public struct CreateBackupDBInstanceRequest: TCRequestModel {
-        /// 实例id
+        /// 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 0-逻辑备份，1-物理备份
+        /// 设置备份方式。
+        /// - 0：逻辑备份。
+        /// - 1：物理备份。
         public let backupMethod: Int64
 
-        /// 备份备注
+        /// 备份备注信息。
         public let backupRemark: String?
 
         public init(instanceId: String, backupMethod: Int64, backupRemark: String? = nil) {
@@ -45,7 +47,7 @@ extension Mongodb {
 
     /// CreateBackupDBInstance返回参数结构体
     public struct CreateBackupDBInstanceResponse: TCResponseModel {
-        /// 查询备份流程的状态
+        /// 查询备份流程的状态。
         public let asyncRequestId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -58,24 +60,32 @@ extension Mongodb {
     }
 
     /// 备份实例接口
+    ///
+    /// 本接口（CreateBackupDBInstance）用于备份实例。
     @inlinable
     public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
         self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 备份实例接口
+    ///
+    /// 本接口（CreateBackupDBInstance）用于备份实例。
     @inlinable
     public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
         try await self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 备份实例接口
+    ///
+    /// 本接口（CreateBackupDBInstance）用于备份实例。
     @inlinable
     public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
         self.createBackupDBInstance(.init(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 备份实例接口
+    ///
+    /// 本接口（CreateBackupDBInstance）用于备份实例。
     @inlinable
     public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
         try await self.createBackupDBInstance(.init(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)

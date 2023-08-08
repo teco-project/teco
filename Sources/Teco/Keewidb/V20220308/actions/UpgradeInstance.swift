@@ -28,7 +28,7 @@ extension Keewidb {
         /// <ul><li>KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。</li><li>变更实例内存、持久化内存与磁盘、变更实例的分片数量，每次只能变更一项。</li></ul>
         public let memSize: Int64?
 
-        /// CPU 核数。
+        /// CPU 核数，可忽略不传
         public let machineCpu: Int64?
 
         /// 实例内存容量，单位：GB。

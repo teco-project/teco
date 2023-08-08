@@ -51,7 +51,13 @@ extension Ccc {
         /// 自定义变量（仅高级版支持）
         public let variables: [Variable]?
 
-        public init(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil) {
+        /// UUI
+        public let uui: String?
+
+        /// 被叫属性
+        public let calleeAttributes: [CalleeAttribute]?
+
+        public init(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, uui: String? = nil, calleeAttributes: [CalleeAttribute]? = nil) {
             self.sdkAppId = sdkAppId
             self.notBefore = notBefore
             self.callees = callees
@@ -62,6 +68,8 @@ extension Ccc {
             self.notAfter = notAfter
             self.tries = tries
             self.variables = variables
+            self.uui = uui
+            self.calleeAttributes = calleeAttributes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +83,8 @@ extension Ccc {
             case notAfter = "NotAfter"
             case tries = "Tries"
             case variables = "Variables"
+            case uui = "UUI"
+            case calleeAttributes = "CalleeAttributes"
         }
     }
 
@@ -106,13 +116,13 @@ extension Ccc {
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
-        self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
+    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, uui: String? = nil, calleeAttributes: [CalleeAttribute]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
+        self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables, uui: uui, calleeAttributes: calleeAttributes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
-        try await self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
+    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, uui: String? = nil, calleeAttributes: [CalleeAttribute]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
+        try await self.createAutoCalloutTask(.init(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables, uui: uui, calleeAttributes: calleeAttributes), region: region, logger: logger, on: eventLoop)
     }
 }

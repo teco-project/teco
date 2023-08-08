@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// DeleteIntegrationRoleUsers请求参数结构体
     public struct DeleteIntegrationRoleUsersRequest: TCRequestModel {
-        /// 操作人
+        /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
         /// 角色id
@@ -30,7 +30,7 @@ extension Ess {
         /// 用户信息
         public let users: [UserInfo]
 
-        /// 代理信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil) {
@@ -62,33 +62,33 @@ extension Ess {
         }
     }
 
-    /// 集成版解绑用户角色
+    /// 解绑员工角色
     ///
-    /// 解绑用户角色绑定关系
+    /// 解绑员工与对应角色关系
     @inlinable
     public func deleteIntegrationRoleUsers(_ input: DeleteIntegrationRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationRoleUsersResponse> {
         self.client.execute(action: "DeleteIntegrationRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 集成版解绑用户角色
+    /// 解绑员工角色
     ///
-    /// 解绑用户角色绑定关系
+    /// 解绑员工与对应角色关系
     @inlinable
     public func deleteIntegrationRoleUsers(_ input: DeleteIntegrationRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationRoleUsersResponse {
         try await self.client.execute(action: "DeleteIntegrationRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 集成版解绑用户角色
+    /// 解绑员工角色
     ///
-    /// 解绑用户角色绑定关系
+    /// 解绑员工与对应角色关系
     @inlinable
     public func deleteIntegrationRoleUsers(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationRoleUsersResponse> {
         self.deleteIntegrationRoleUsers(.init(operator: `operator`, roleId: roleId, users: users, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 集成版解绑用户角色
+    /// 解绑员工角色
     ///
-    /// 解绑用户角色绑定关系
+    /// 解绑员工与对应角色关系
     @inlinable
     public func deleteIntegrationRoleUsers(operator: UserInfo, roleId: String, users: [UserInfo], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationRoleUsersResponse {
         try await self.deleteIntegrationRoleUsers(.init(operator: `operator`, roleId: roleId, users: users, agent: agent), region: region, logger: logger, on: eventLoop)

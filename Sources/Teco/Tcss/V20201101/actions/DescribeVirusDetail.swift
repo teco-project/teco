@@ -123,10 +123,6 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceType: Int64?
 
-        /// 集群名称
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let podName: String?
-
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [String]?
@@ -154,6 +150,10 @@ extension Tcss {
         /// 事件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventType: String?
+
+        /// 集群名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podName: String?
 
         /// DEAL_NONE:文件待处理
         /// DEAL_IGNORE:已经忽略
@@ -250,6 +250,36 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileModifyTime: String?
 
+        /// 节点子网ID
+        public let nodeSubNetID: String
+
+        /// 节点子网名称
+        public let nodeSubNetName: String
+
+        /// 节点子网网段
+        public let nodeSubNetCIDR: String
+
+        /// 集群id
+        public let clusterID: String
+
+        /// pod ip
+        public let podIP: String
+
+        /// pod状态
+        public let podStatus: String
+
+        /// 节点唯一ID
+        public let nodeUniqueID: String
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String
+
+        /// 节点ID
+        public let nodeID: String
+
+        /// 集群名称
+        public let clusterName: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -276,7 +306,6 @@ extension Tcss {
             case processStartAccount = "ProcessStartAccount"
             case processFileAuthority = "ProcessFileAuthority"
             case sourceType = "SourceType"
-            case podName = "PodName"
             case tags = "Tags"
             case harmDescribe = "HarmDescribe"
             case suggestScheme = "SuggestScheme"
@@ -284,6 +313,7 @@ extension Tcss {
             case fileName = "FileName"
             case fileMd5 = "FileMd5"
             case eventType = "EventType"
+            case podName = "PodName"
             case status = "Status"
             case subStatus = "SubStatus"
             case hostIP = "HostIP"
@@ -303,6 +333,16 @@ extension Tcss {
             case checkPlatform = "CheckPlatform"
             case fileAccessTime = "FileAccessTime"
             case fileModifyTime = "FileModifyTime"
+            case nodeSubNetID = "NodeSubNetID"
+            case nodeSubNetName = "NodeSubNetName"
+            case nodeSubNetCIDR = "NodeSubNetCIDR"
+            case clusterID = "ClusterID"
+            case podIP = "PodIP"
+            case podStatus = "PodStatus"
+            case nodeUniqueID = "NodeUniqueID"
+            case nodeType = "NodeType"
+            case nodeID = "NodeID"
+            case clusterName = "ClusterName"
             case requestId = "RequestId"
         }
     }

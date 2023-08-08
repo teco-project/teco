@@ -19,8 +19,10 @@ import TecoCore
 extension TCEmrError {
     public struct InvalidParameter: TCEmrErrorType {
         enum Code: String {
+            case appIdResourceNotMatch = "InvalidParameter.AppIdResourceNotMatch"
             case displayStrategyNotMatch = "InvalidParameter.DisplayStrategyNotMatch"
             case haLessMasterCount = "InvalidParameter.HALessMasterCount"
+            case impalaQueryException = "InvalidParameter.ImpalaQueryException"
             case incorrectCommonCount = "InvalidParameter.IncorrectCommonCount"
             case incorrectMasterCount = "InvalidParameter.IncorrectMasterCount"
             case invalidAllNodeResourceSpec = "InvalidParameter.InvalidAllNodeResourceSpec"
@@ -54,6 +56,7 @@ extension TCEmrError {
             case invalidMetaDataJdbcUrl = "InvalidParameter.InvalidMetaDataJdbcUrl"
             case invalidMetaType = "InvalidParameter.InvalidMetaType"
             case invalidModifySpec = "InvalidParameter.InvalidModifySpec"
+            case invalidNodeFlag = "InvalidParameter.InvalidNodeFlag"
             case invalidNodeType = "InvalidParameter.InvalidNodeType"
             case invalidPassword = "InvalidParameter.InvalidPassword"
             case invalidPaymode = "InvalidParameter.InvalidPaymode"
@@ -119,6 +122,11 @@ extension TCEmrError {
             self.context = context
         }
 
+        /// 参数错误。
+        public static var appIdResourceNotMatch: InvalidParameter {
+            InvalidParameter(.appIdResourceNotMatch)
+        }
+
         /// 展示策略错误。
         public static var displayStrategyNotMatch: InvalidParameter {
             InvalidParameter(.displayStrategyNotMatch)
@@ -127,6 +135,11 @@ extension TCEmrError {
         /// 参数错误。
         public static var haLessMasterCount: InvalidParameter {
             InvalidParameter(.haLessMasterCount)
+        }
+
+        /// impala查询参数异常。
+        public static var impalaQueryException: InvalidParameter {
+            InvalidParameter(.impalaQueryException)
         }
 
         /// Common节点数量无效。
@@ -292,6 +305,11 @@ extension TCEmrError {
         /// 变配规格无效。
         public static var invalidModifySpec: InvalidParameter {
             InvalidParameter(.invalidModifySpec)
+        }
+
+        /// 不合法的节点类型。
+        public static var invalidNodeFlag: InvalidParameter {
+            InvalidParameter(.invalidNodeFlag)
         }
 
         /// 无效的NodeType。
@@ -502,10 +520,14 @@ extension TCEmrError {
         public func asEmrError() -> TCEmrError {
             let code: TCEmrError.Code
             switch self.error {
+            case .appIdResourceNotMatch:
+                code = .invalidParameter_AppIdResourceNotMatch
             case .displayStrategyNotMatch:
                 code = .invalidParameter_DisplayStrategyNotMatch
             case .haLessMasterCount:
                 code = .invalidParameter_HALessMasterCount
+            case .impalaQueryException:
+                code = .invalidParameter_ImpalaQueryException
             case .incorrectCommonCount:
                 code = .invalidParameter_IncorrectCommonCount
             case .incorrectMasterCount:
@@ -572,6 +594,8 @@ extension TCEmrError {
                 code = .invalidParameter_InvalidMetaType
             case .invalidModifySpec:
                 code = .invalidParameter_InvalidModifySpec
+            case .invalidNodeFlag:
+                code = .invalidParameter_InvalidNodeFlag
             case .invalidNodeType:
                 code = .invalidParameter_InvalidNodeType
             case .invalidPassword:

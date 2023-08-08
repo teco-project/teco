@@ -102,15 +102,18 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_BasicNetworkInstanceFamily = "InvalidParameterValue.BasicNetworkInstanceFamily"
         case invalidParameterValue_BucketNotFound = "InvalidParameterValue.BucketNotFound"
         case invalidParameterValue_CamRoleNameMalformed = "InvalidParameterValue.CamRoleNameMalformed"
+        case invalidParameterValue_CdhOnlyLocalDataDiskResize = "InvalidParameterValue.CdhOnlyLocalDataDiskResize"
         case invalidParameterValue_ChcHostsNotFound = "InvalidParameterValue.ChcHostsNotFound"
         case invalidParameterValue_ChcNetworkEmpty = "InvalidParameterValue.ChcNetworkEmpty"
         case invalidParameterValue_CloudSsdDataDiskSizeTooSmall = "InvalidParameterValue.CloudSsdDataDiskSizeTooSmall"
         case invalidParameterValue_CoreCountValue = "InvalidParameterValue.CoreCountValue"
+        case invalidParameterValue_DedicatedClusterNotSupportedChargeType = "InvalidParameterValue.DedicatedClusterNotSupportedChargeType"
         case invalidParameterValue_DeployVpcAlreadyExists = "InvalidParameterValue.DeployVpcAlreadyExists"
         case invalidParameterValue_DisasterRecoverGroupIdMalformed = "InvalidParameterValue.DisasterRecoverGroupIdMalformed"
         case invalidParameterValue_Duplicate = "InvalidParameterValue.Duplicate"
         case invalidParameterValue_DuplicateTags = "InvalidParameterValue.DuplicateTags"
         case invalidParameterValue_GPUInstanceFamily = "InvalidParameterValue.GPUInstanceFamily"
+        case invalidParameterValue_HpcClusterIdZoneIdNotMatch = "InvalidParameterValue.HpcClusterIdZoneIdNotMatch"
         case invalidParameterValue_IPAddressMalformed = "InvalidParameterValue.IPAddressMalformed"
         case invalidParameterValue_IPv6AddressMalformed = "InvalidParameterValue.IPv6AddressMalformed"
         case invalidParameterValue_IllegalHostName = "InvalidParameterValue.IllegalHostName"
@@ -131,9 +134,11 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_InvalidImageFormat = "InvalidParameterValue.InvalidImageFormat"
         case invalidParameterValue_InvalidImageId = "InvalidParameterValue.InvalidImageId"
         case invalidParameterValue_InvalidImageIdForRetsetInstance = "InvalidParameterValue.InvalidImageIdForRetsetInstance"
+        case invalidParameterValue_InvalidImageIdIsShared = "InvalidParameterValue.InvalidImageIdIsShared"
         case invalidParameterValue_InvalidImageOsName = "InvalidParameterValue.InvalidImageOsName"
         case invalidParameterValue_InvalidImageState = "InvalidParameterValue.InvalidImageState"
         case invalidParameterValue_InvalidInstanceSource = "InvalidParameterValue.InvalidInstanceSource"
+        case invalidParameterValue_InvalidInstanceTypeUnderwrite = "InvalidParameterValue.InvalidInstanceTypeUnderwrite"
         case invalidParameterValue_InvalidIpFormat = "InvalidParameterValue.InvalidIpFormat"
         case invalidParameterValue_InvalidLaunchTemplateDescription = "InvalidParameterValue.InvalidLaunchTemplateDescription"
         case invalidParameterValue_InvalidLaunchTemplateName = "InvalidParameterValue.InvalidLaunchTemplateName"
@@ -178,6 +183,7 @@ public struct TCCvmError: TCCvmErrorType {
         case invalidParameterValue_VpcNotSupportIpv6Address = "InvalidParameterValue.VpcNotSupportIpv6Address"
         case invalidParameterValue_ZoneNotSupported = "InvalidParameterValue.ZoneNotSupported"
         case invalidParameter_AtMostOne = "InvalidParameter.AtMostOne"
+        case invalidParameter_CdcNotSupported = "InvalidParameter.CdcNotSupported"
         case invalidParameter_DataDiskIdContainsRootDisk = "InvalidParameter.DataDiskIdContainsRootDisk"
         case invalidParameter_DataDiskNotBelongSpecifiedInstance = "InvalidParameter.DataDiskNotBelongSpecifiedInstance"
         case invalidParameter_DuplicateSystemSnapshots = "InvalidParameter.DuplicateSystemSnapshots"
@@ -238,17 +244,20 @@ public struct TCCvmError: TCCvmErrorType {
         case missingParameter_DPDKInstanceTypeRequiredVPC = "MissingParameter.DPDKInstanceTypeRequiredVPC"
         case missingParameter_MonitorService = "MissingParameter.MonitorService"
         case mutexOperation_TaskRunning = "MutexOperation.TaskRunning"
+        case operationDenied_AccountNotSupported = "OperationDenied.AccountNotSupported"
         case operationDenied_ChcInstallCloudImageWithoutDeployNetwork = "OperationDenied.ChcInstallCloudImageWithoutDeployNetwork"
         case operationDenied_InnerUserProhibitAction = "OperationDenied.InnerUserProhibitAction"
         case operationDenied_InstanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
         case overQuota = "OverQuota"
         case regionAbilityLimit_UnsupportedToImportImage = "RegionAbilityLimit.UnsupportedToImportImage"
         case resourceInUse = "ResourceInUse"
+        case resourceInUse_DiskRollbacking = "ResourceInUse.DiskRollbacking"
         case resourceInUse_HpcCluster = "ResourceInUse.HpcCluster"
         case resourceInsufficient_AvailabilityZoneSoldOut = "ResourceInsufficient.AvailabilityZoneSoldOut"
         case resourceInsufficient_CloudDiskSoldOut = "ResourceInsufficient.CloudDiskSoldOut"
         case resourceInsufficient_CloudDiskUnavailable = "ResourceInsufficient.CloudDiskUnavailable"
         case resourceInsufficient_DisasterRecoverGroupCvmQuota = "ResourceInsufficient.DisasterRecoverGroupCvmQuota"
+        case resourceInsufficient_InsufficientGroupQuota = "ResourceInsufficient.InsufficientGroupQuota"
         case resourceInsufficient_SpecifiedInstanceType = "ResourceInsufficient.SpecifiedInstanceType"
         case resourceInsufficient_ZoneSoldOutForSpecifiedInstance = "ResourceInsufficient.ZoneSoldOutForSpecifiedInstance"
         case resourceNotFound_HpcCluster = "ResourceNotFound.HpcCluster"
@@ -272,17 +281,20 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_BandwidthPackageIdNotSupported = "UnsupportedOperation.BandwidthPackageIdNotSupported"
         case unsupportedOperation_DiskSnapCreateTimeTooOld = "UnsupportedOperation.DiskSnapCreateTimeTooOld"
+        case unsupportedOperation_EdgeZoneInstance = "UnsupportedOperation.EdgeZoneInstance"
         case unsupportedOperation_EdgeZoneNotSupportCloudDisk = "UnsupportedOperation.EdgeZoneNotSupportCloudDisk"
         case unsupportedOperation_ElasticNetworkInterface = "UnsupportedOperation.ElasticNetworkInterface"
         case unsupportedOperation_EncryptedImagesNotSupported = "UnsupportedOperation.EncryptedImagesNotSupported"
         case unsupportedOperation_HeterogeneousChangeInstanceFamily = "UnsupportedOperation.HeterogeneousChangeInstanceFamily"
         case unsupportedOperation_HibernationForNormalInstance = "UnsupportedOperation.HibernationForNormalInstance"
+        case unsupportedOperation_HibernationOsVersion = "UnsupportedOperation.HibernationOsVersion"
         case unsupportedOperation_IPv6NotSupportVpcMigrate = "UnsupportedOperation.IPv6NotSupportVpcMigrate"
         case unsupportedOperation_ImageTooLargeExportUnsupported = "UnsupportedOperation.ImageTooLargeExportUnsupported"
         case unsupportedOperation_InstanceChargeType = "UnsupportedOperation.InstanceChargeType"
         case unsupportedOperation_InstanceMixedPricingModel = "UnsupportedOperation.InstanceMixedPricingModel"
         case unsupportedOperation_InstanceMixedZoneType = "UnsupportedOperation.InstanceMixedZoneType"
         case unsupportedOperation_InstanceOsWindows = "UnsupportedOperation.InstanceOsWindows"
+        case unsupportedOperation_InstanceReinstallFailed = "UnsupportedOperation.InstanceReinstallFailed"
         case unsupportedOperation_InstanceStateBanning = "UnsupportedOperation.InstanceStateBanning"
         case unsupportedOperation_InstanceStateCorrupted = "UnsupportedOperation.InstanceStateCorrupted"
         case unsupportedOperation_InstanceStateEnterRescueMode = "UnsupportedOperation.InstanceStateEnterRescueMode"
@@ -308,6 +320,7 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation_InvalidDataDisk = "UnsupportedOperation.InvalidDataDisk"
         case unsupportedOperation_InvalidDisk = "UnsupportedOperation.InvalidDisk"
         case unsupportedOperation_InvalidDiskBackupQuota = "UnsupportedOperation.InvalidDiskBackupQuota"
+        case unsupportedOperation_InvalidDiskFastRollback = "UnsupportedOperation.InvalidDiskFastRollback"
         case unsupportedOperation_InvalidImageLicenseTypeForReset = "UnsupportedOperation.InvalidImageLicenseTypeForReset"
         case unsupportedOperation_InvalidInstanceNotSupportedProtectedInstance = "UnsupportedOperation.InvalidInstanceNotSupportedProtectedInstance"
         case unsupportedOperation_InvalidInstanceWithSwapDisk = "UnsupportedOperation.InvalidInstanceWithSwapDisk"
@@ -342,7 +355,10 @@ public struct TCCvmError: TCCvmErrorType {
         case unsupportedOperation_SpotUnsupportedRegion = "UnsupportedOperation.SpotUnsupportedRegion"
         case unsupportedOperation_StoppedModeStopCharging = "UnsupportedOperation.StoppedModeStopCharging"
         case unsupportedOperation_StoppedModeStopChargingSameFamily = "UnsupportedOperation.StoppedModeStopChargingSameFamily"
+        case unsupportedOperation_SystemDiskType = "UnsupportedOperation.SystemDiskType"
+        case unsupportedOperation_UnderwriteDiscountGreaterThanPrepaidDiscount = "UnsupportedOperation.UnderwriteDiscountGreaterThanPrepaidDiscount"
         case unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew = "UnsupportedOperation.UnderwritingInstanceTypeOnlySupportAutoRenew"
+        case unsupportedOperation_UnsupportedARMChangeInstanceFamily = "UnsupportedOperation.UnsupportedARMChangeInstanceFamily"
         case unsupportedOperation_UnsupportedChangeInstanceFamily = "UnsupportedOperation.UnsupportedChangeInstanceFamily"
         case unsupportedOperation_UnsupportedChangeInstanceFamilyToARM = "UnsupportedOperation.UnsupportedChangeInstanceFamilyToARM"
         case unsupportedOperation_UnsupportedChangeInstanceToThisInstanceFamily = "UnsupportedOperation.UnsupportedChangeInstanceToThisInstanceFamily"
@@ -802,6 +818,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_CamRoleNameMalformed)
     }
 
+    /// CDH磁盘扩容只支持LOCAL_BASIC和LOCAL_SSD。
+    public static var invalidParameterValue_CdhOnlyLocalDataDiskResize: TCCvmError {
+        TCCvmError(.invalidParameterValue_CdhOnlyLocalDataDiskResize)
+    }
+
     /// 找不到对应的CHC物理服务器。
     public static var invalidParameterValue_ChcHostsNotFound: TCCvmError {
         TCCvmError(.invalidParameterValue_ChcHostsNotFound)
@@ -820,6 +841,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 核心计数不合法。
     public static var invalidParameterValue_CoreCountValue: TCCvmError {
         TCCvmError(.invalidParameterValue_CoreCountValue)
+    }
+
+    /// CDC不支持指定的计费模式。
+    public static var invalidParameterValue_DedicatedClusterNotSupportedChargeType: TCCvmError {
+        TCCvmError(.invalidParameterValue_DedicatedClusterNotSupportedChargeType)
     }
 
     /// 已经存在部署VPC。
@@ -847,6 +873,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 非GPU实例不允许转为GPU实例。
     public static var invalidParameterValue_GPUInstanceFamily: TCCvmError {
         TCCvmError(.invalidParameterValue_GPUInstanceFamily)
+    }
+
+    /// 您的高性能计算集群已经绑定其他可用区，不能购买当前可用区机器。
+    public static var invalidParameterValue_HpcClusterIdZoneIdNotMatch: TCCvmError {
+        TCCvmError(.invalidParameterValue_HpcClusterIdZoneIdNotMatch)
     }
 
     /// IP格式非法。
@@ -949,6 +980,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_InvalidImageIdForRetsetInstance)
     }
 
+    /// 指定的镜像ID为共享镜像。
+    public static var invalidParameterValue_InvalidImageIdIsShared: TCCvmError {
+        TCCvmError(.invalidParameterValue_InvalidImageIdIsShared)
+    }
+
     /// 当前地域不支持指定镜像所包含的操作系统。
     public static var invalidParameterValue_InvalidImageOsName: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidImageOsName)
@@ -962,6 +998,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 该实例配置来自免费升配活动，暂不支持3个月内进行降配。
     public static var invalidParameterValue_InvalidInstanceSource: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidInstanceSource)
+    }
+
+    /// 指定机型不支持包销付费模式。
+    public static var invalidParameterValue_InvalidInstanceTypeUnderwrite: TCCvmError {
+        TCCvmError(.invalidParameterValue_InvalidInstanceTypeUnderwrite)
     }
 
     /// IP地址不符合规范
@@ -1188,6 +1229,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 最多指定一个参数。
     public static var invalidParameter_AtMostOne: TCCvmError {
         TCCvmError(.invalidParameter_AtMostOne)
+    }
+
+    /// 不支持参数CdcId。
+    public static var invalidParameter_CdcNotSupported: TCCvmError {
+        TCCvmError(.invalidParameter_CdcNotSupported)
     }
 
     /// DataDiskIds不应该传入RootDisk的Id。
@@ -1496,6 +1542,10 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.mutexOperation_TaskRunning)
     }
 
+    public static var operationDenied_AccountNotSupported: TCCvmError {
+        TCCvmError(.operationDenied_AccountNotSupported)
+    }
+
     /// 不允许未配置部署网络的CHC安装云上镜像。
     public static var operationDenied_ChcInstallCloudImageWithoutDeployNetwork: TCCvmError {
         TCCvmError(.operationDenied_ChcInstallCloudImageWithoutDeployNetwork)
@@ -1526,6 +1576,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.resourceInUse)
     }
 
+    /// 磁盘回滚正在执行中，请稍后再试。
+    public static var resourceInUse_DiskRollbacking: TCCvmError {
+        TCCvmError(.resourceInUse_DiskRollbacking)
+    }
+
     /// 高性能计算集群使用中。
     public static var resourceInUse_HpcCluster: TCCvmError {
         TCCvmError(.resourceInUse_HpcCluster)
@@ -1549,6 +1604,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 实例个数超过容灾组的配额
     public static var resourceInsufficient_DisasterRecoverGroupCvmQuota: TCCvmError {
         TCCvmError(.resourceInsufficient_DisasterRecoverGroupCvmQuota)
+    }
+
+    /// 安全组资源配额不足。
+    public static var resourceInsufficient_InsufficientGroupQuota: TCCvmError {
+        TCCvmError(.resourceInsufficient_InsufficientGroupQuota)
     }
 
     /// 指定的实例类型库存不足。
@@ -1673,6 +1733,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_DiskSnapCreateTimeTooOld)
     }
 
+    /// 边缘可用区实例不支持此项操作。
+    public static var unsupportedOperation_EdgeZoneInstance: TCCvmError {
+        TCCvmError(.unsupportedOperation_EdgeZoneInstance)
+    }
+
     /// 所选择的边缘可用区不支持云盘操作。
     public static var unsupportedOperation_EdgeZoneNotSupportCloudDisk: TCCvmError {
         TCCvmError(.unsupportedOperation_EdgeZoneNotSupportCloudDisk)
@@ -1696,6 +1761,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 不支持未开启休眠功能的实例。
     public static var unsupportedOperation_HibernationForNormalInstance: TCCvmError {
         TCCvmError(.unsupportedOperation_HibernationForNormalInstance)
+    }
+
+    /// 当前的镜像不支持休眠。
+    public static var unsupportedOperation_HibernationOsVersion: TCCvmError {
+        TCCvmError(.unsupportedOperation_HibernationOsVersion)
     }
 
     /// IPv6实例不支持VPC迁移
@@ -1728,6 +1798,11 @@ public struct TCCvmError: TCCvmErrorType {
     /// 请求不支持操作系统为`Xserver windows2012cndatacenterx86_64`的实例`ins-xxxxxx` 。
     public static var unsupportedOperation_InstanceOsWindows: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceOsWindows)
+    }
+
+    /// 推荐您再次重装系统，也可以销毁/退还实例或提交工单（https://cloud.tencent.com/online-service?from=connect-us）反馈
+    public static var unsupportedOperation_InstanceReinstallFailed: TCCvmError {
+        TCCvmError(.unsupportedOperation_InstanceReinstallFailed)
     }
 
     /// 该子机处于封禁状态，请联系相关人员处理。
@@ -1855,6 +1930,11 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InvalidDiskBackupQuota)
     }
 
+    /// 不支持极速回滚。
+    public static var unsupportedOperation_InvalidDiskFastRollback: TCCvmError {
+        TCCvmError(.unsupportedOperation_InvalidDiskFastRollback)
+    }
+
     /// 镜像许可类型与实例不符，请选择其他镜像。
     public static var unsupportedOperation_InvalidImageLicenseTypeForReset: TCCvmError {
         TCCvmError(.unsupportedOperation_InvalidImageLicenseTypeForReset)
@@ -1961,7 +2041,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_OriginalInstanceTypeInvalid)
     }
 
-    /// 你的账户不支持镜像预热
+    /// 您的账户不支持镜像预热
     public static var unsupportedOperation_PreheatImage: TCCvmError {
         TCCvmError(.unsupportedOperation_PreheatImage)
     }
@@ -2031,9 +2111,23 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_StoppedModeStopChargingSameFamily)
     }
 
+    /// 请求不支持该类型系统盘。
+    public static var unsupportedOperation_SystemDiskType: TCCvmError {
+        TCCvmError(.unsupportedOperation_SystemDiskType)
+    }
+
+    public static var unsupportedOperation_UnderwriteDiscountGreaterThanPrepaidDiscount: TCCvmError {
+        TCCvmError(.unsupportedOperation_UnderwriteDiscountGreaterThanPrepaidDiscount)
+    }
+
     /// 该机型为包销机型，RenewFlag的值只允许设置为NOTIFY_AND_AUTO_RENEW。
     public static var unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew: TCCvmError {
         TCCvmError(.unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew)
+    }
+
+    /// 当前实例不允许变配到非ARM机型。
+    public static var unsupportedOperation_UnsupportedARMChangeInstanceFamily: TCCvmError {
+        TCCvmError(.unsupportedOperation_UnsupportedARMChangeInstanceFamily)
     }
 
     /// 指定机型不支持跨机型调整配置。

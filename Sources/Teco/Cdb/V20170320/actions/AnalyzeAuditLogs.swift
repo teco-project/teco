@@ -33,15 +33,19 @@ extension Cdb {
         /// 聚合维度的排序条件。
         public let aggregationConditions: [AggregationCondition]
 
-        /// 该过滤条件下的审计日志结果集作为分析日志。
+        /// 已废弃。该过滤条件下的审计日志结果集作为分析日志。
         public let auditLogFilter: AuditLogFilter?
 
-        public init(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil) {
+        /// 该过滤条件下的审计日志结果集作为分析日志。
+        public let logFilter: [InstanceAuditLogFilters]?
+
+        public init(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
             self.aggregationConditions = aggregationConditions
             self.auditLogFilter = auditLogFilter
+            self.logFilter = logFilter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Cdb {
             case endTime = "EndTime"
             case aggregationConditions = "AggregationConditions"
             case auditLogFilter = "AuditLogFilter"
+            case logFilter = "LogFilter"
         }
     }
 
@@ -93,15 +98,15 @@ extension Cdb {
     ///
     /// 在不同过滤条件下的审计日志结果集中，选定特定的数据列进行聚合统计。
     @inlinable
-    public func analyzeAuditLogs(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AnalyzeAuditLogsResponse> {
-        self.analyzeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, aggregationConditions: aggregationConditions, auditLogFilter: auditLogFilter), region: region, logger: logger, on: eventLoop)
+    public func analyzeAuditLogs(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AnalyzeAuditLogsResponse> {
+        self.analyzeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, aggregationConditions: aggregationConditions, auditLogFilter: auditLogFilter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分析审计日志
     ///
     /// 在不同过滤条件下的审计日志结果集中，选定特定的数据列进行聚合统计。
     @inlinable
-    public func analyzeAuditLogs(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeAuditLogsResponse {
-        try await self.analyzeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, aggregationConditions: aggregationConditions, auditLogFilter: auditLogFilter), region: region, logger: logger, on: eventLoop)
+    public func analyzeAuditLogs(instanceId: String, startTime: String, endTime: String, aggregationConditions: [AggregationCondition], auditLogFilter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeAuditLogsResponse {
+        try await self.analyzeAuditLogs(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, aggregationConditions: aggregationConditions, auditLogFilter: auditLogFilter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 }

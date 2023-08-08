@@ -24,12 +24,17 @@ extension Ssl {
         /// 证书 ID。
         public let certificateId: String
 
-        public init(certificateId: String) {
+        /// 域名验证方式
+        public let verifyType: String?
+
+        public init(certificateId: String, verifyType: String? = nil) {
             self.certificateId = certificateId
+            self.verifyType = verifyType
         }
 
         enum CodingKeys: String, CodingKey {
             case certificateId = "CertificateId"
+            case verifyType = "VerifyType"
         }
     }
 
@@ -71,15 +76,15 @@ extension Ssl {
     ///
     /// 提交证书订单。
     @inlinable
-    public func commitCertificateInformation(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitCertificateInformationResponse> {
-        self.commitCertificateInformation(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
+    public func commitCertificateInformation(certificateId: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitCertificateInformationResponse> {
+        self.commitCertificateInformation(.init(certificateId: certificateId, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交证书订单
     ///
     /// 提交证书订单。
     @inlinable
-    public func commitCertificateInformation(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
-        try await self.commitCertificateInformation(.init(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
+    public func commitCertificateInformation(certificateId: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
+        try await self.commitCertificateInformation(.init(certificateId: certificateId, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 }

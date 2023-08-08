@@ -68,7 +68,7 @@ extension Tmt {
         /// 项目ID，可以根据控制台-账号中心-项目管理中的配置填写，如无配置请填写默认项目ID:0
         public let projectId: Int64
 
-        /// 待翻译的文本列表，批量接口可以以数组方式在一次请求中填写多个待翻译文本。文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度总和需要低于2000字符。
+        /// 待翻译的文本列表，批量接口可以以数组方式在一次请求中填写多个待翻译文本。文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度总和需要低于6000字符。
         public let sourceTextList: [String]
 
         public init(source: String, target: String, projectId: Int64, sourceTextList: [String]) {
@@ -88,7 +88,7 @@ extension Tmt {
 
     /// TextTranslateBatch返回参数结构体
     public struct TextTranslateBatchResponse: TCResponseModel {
-        /// 源语言，详见入参Target
+        /// 源语言，详见入参Source
         public let source: String
 
         /// 目标语言，详见入参Target

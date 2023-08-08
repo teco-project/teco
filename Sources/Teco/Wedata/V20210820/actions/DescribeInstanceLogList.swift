@@ -43,11 +43,16 @@ extension Wedata {
         /// 日志列表
         public let data: String
 
+        /// 日志列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceLogList: [InstanceLogList]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case data = "Data"
+            case instanceLogList = "InstanceLogList"
             case requestId = "RequestId"
         }
     }

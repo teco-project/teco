@@ -33,7 +33,7 @@ extension Waf {
         /// 触发IP封禁后的封禁时间，范围为5~360分钟
         public let denyTimeThreshold: Int64
 
-        /// 自动封禁状态
+        /// 自动封禁状态，0表示关闭，1表示打开
         public let defenseStatus: Int64
 
         public init(domain: String, attackThreshold: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, defenseStatus: Int64) {

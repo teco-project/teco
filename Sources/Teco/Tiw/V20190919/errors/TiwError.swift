@@ -35,6 +35,8 @@ public struct TCTiwError: TCTiwErrorType {
         case failedOperation_FileOpenFail = "FailedOperation.FileOpenFail"
         case failedOperation_FileUploadFail = "FailedOperation.FileUploadFail"
         case failedOperation_GetCredentialFail = "FailedOperation.GetCredentialFail"
+        case failedOperation_Preprocess = "FailedOperation.Preprocess"
+        case failedOperation_PreprocessServerError = "FailedOperation.PreprocessServerError"
         case failedOperation_Record = "FailedOperation.Record"
         case failedOperation_Transcode = "FailedOperation.Transcode"
         case failedOperation_TranscodeServerError = "FailedOperation.TranscodeServerError"
@@ -48,6 +50,7 @@ public struct TCTiwError: TCTiwErrorType {
         case invalidParameter_FileFormatUnsupported = "InvalidParameter.FileFormatUnsupported"
         case invalidParameter_InvalidExtra = "InvalidParameter.InvalidExtra"
         case invalidParameter_InvalidTaskType = "InvalidParameter.InvalidTaskType"
+        case invalidParameter_PreprocessParameter = "InvalidParameter.PreprocessParameter"
         case invalidParameter_RecordParameter = "InvalidParameter.RecordParameter"
         case invalidParameter_SdkAppIdNotFound = "InvalidParameter.SdkAppIdNotFound"
         case invalidParameter_TaskNotFound = "InvalidParameter.TaskNotFound"
@@ -140,7 +143,9 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.failedOperation_FileOpenFail)
     }
 
-    /// 转码后上传结果失败，请稍候重试。
+    /// 转码后上传结果失败，请稍后重试。
+    ///
+    /// None
     public static var failedOperation_FileUploadFail: TCTiwError {
         TCTiwError(.failedOperation_FileUploadFail)
     }
@@ -148,6 +153,16 @@ public struct TCTiwError: TCTiwErrorType {
     /// 获取临时密钥失败。
     public static var failedOperation_GetCredentialFail: TCTiwError {
         TCTiwError(.failedOperation_GetCredentialFail)
+    }
+
+    /// 转码预处理失败，具体请参考错误描述或联系客服人员。
+    public static var failedOperation_Preprocess: TCTiwError {
+        TCTiwError(.failedOperation_Preprocess)
+    }
+
+    /// 预处理服务出现内部错误，请稍后重试或联系客户人员。
+    public static var failedOperation_PreprocessServerError: TCTiwError {
+        TCTiwError(.failedOperation_PreprocessServerError)
     }
 
     /// 录制失败，具体请参考错误描述。
@@ -160,7 +175,9 @@ public struct TCTiwError: TCTiwErrorType {
         TCTiwError(.failedOperation_Transcode)
     }
 
-    /// 转码服务出现内部错误，请稍候重试或联系客户人员。
+    /// 转码服务出现内部错误，请稍后重试或联系客户人员。
+    ///
+    /// None
     public static var failedOperation_TranscodeServerError: TCTiwError {
         TCTiwError(.failedOperation_TranscodeServerError)
     }
@@ -213,6 +230,11 @@ public struct TCTiwError: TCTiwErrorType {
     /// 设置应用配置任务类型不支持。
     public static var invalidParameter_InvalidTaskType: TCTiwError {
         TCTiwError(.invalidParameter_InvalidTaskType)
+    }
+
+    /// 转码预处理参数格式不正确。
+    public static var invalidParameter_PreprocessParameter: TCTiwError {
+        TCTiwError(.invalidParameter_PreprocessParameter)
     }
 
     /// 实时录制参数格式不正确。
@@ -306,6 +328,8 @@ public struct TCTiwError: TCTiwErrorType {
     }
 
     /// 当前未完成的任务不能此状态下执行指定操作，例如对正在录制的任务执行恢复录制等。
+    ///
+    /// None
     public static var unsupportedOperation_InvalidTaskStatus: TCTiwError {
         TCTiwError(.unsupportedOperation_InvalidTaskStatus)
     }

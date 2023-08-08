@@ -42,13 +42,19 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
 
-        public init(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
+        /// 物料过滤，取值有：
+        /// <li>Lyrics：含有歌词；</li>
+        /// <li>Midi：含有音高线。</li>
+        public let materialFilters: [String]?
+
+        public init(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, materialFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.tagId = tagId
             self.scrollToken = scrollToken
             self.limit = limit
             self.rightFilters = rightFilters
+            self.materialFilters = materialFilters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +64,7 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case limit = "Limit"
             case rightFilters = "RightFilters"
+            case materialFilters = "MaterialFilters"
         }
 
         /// Compute the next request based on API response.
@@ -65,7 +72,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeKTVMusicsByTagRequest(appName: self.appName, userId: self.userId, tagId: self.tagId, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters)
+            return DescribeKTVMusicsByTagRequest(appName: self.appName, userId: self.userId, tagId: self.tagId, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters, materialFilters: self.materialFilters)
         }
     }
 
@@ -112,16 +119,16 @@ extension Yinsuda {
     ///
     /// 通过标签过滤歌曲列表。
     @inlinable
-    public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicsByTagResponse> {
-        self.describeKTVMusicsByTag(.init(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicsByTagResponse> {
+        self.describeKTVMusicsByTag(.init(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签歌曲
     ///
     /// 通过标签过滤歌曲列表。
     @inlinable
-    public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicsByTagResponse {
-        try await self.describeKTVMusicsByTag(.init(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicsByTagResponse {
+        try await self.describeKTVMusicsByTag(.init(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签歌曲

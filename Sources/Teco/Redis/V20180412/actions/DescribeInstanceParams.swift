@@ -21,7 +21,7 @@ import TecoCore
 extension Redis {
     /// DescribeInstanceParams请求参数结构体
     public struct DescribeInstanceParamsRequest: TCRequestModel {
-        /// 实例Id
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
         public init(instanceId: String) {
@@ -35,19 +35,19 @@ extension Redis {
 
     /// DescribeInstanceParams返回参数结构体
     public struct DescribeInstanceParamsResponse: TCResponseModel {
-        /// 实例参数个数
+        /// 参数列表总数量。
         public let totalCount: Int64
 
-        /// 实例枚举类型参数
+        /// 实例枚举类型参数。
         public let instanceEnumParam: [InstanceEnumParam]
 
-        /// 实例整型参数
+        /// 实例整型参数。
         public let instanceIntegerParam: [InstanceIntegerParam]
 
-        /// 实例字符型参数
+        /// 实例字符型参数。
         public let instanceTextParam: [InstanceTextParam]
 
-        /// 实例多选项型参数
+        /// 实例多选项型参数。
         public let instanceMultiParam: [InstanceMultiParam]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -65,7 +65,7 @@ extension Redis {
 
     /// 查询实例的参数列表
     ///
-    /// 查询实例参数列表
+    /// 本接口（DescribeInstanceParams）用于查询实例参数列表。
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Redis {
 
     /// 查询实例的参数列表
     ///
-    /// 查询实例参数列表
+    /// 本接口（DescribeInstanceParams）用于查询实例参数列表。
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +81,7 @@ extension Redis {
 
     /// 查询实例的参数列表
     ///
-    /// 查询实例参数列表
+    /// 本接口（DescribeInstanceParams）用于查询实例参数列表。
     @inlinable
     public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.describeInstanceParams(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -89,7 +89,7 @@ extension Redis {
 
     /// 查询实例的参数列表
     ///
-    /// 查询实例参数列表
+    /// 本接口（DescribeInstanceParams）用于查询实例参数列表。
     @inlinable
     public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.describeInstanceParams(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

@@ -24,9 +24,6 @@ extension Dbbrain {
         /// 实例ID。
         public let instanceId: String
 
-        /// 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
-        public let sessionToken: String
-
         /// SQL类型，取值包括SELECT, UPDATE, DELETE, INSERT, REPLACE。
         public let sqlType: String
 
@@ -39,26 +36,29 @@ extension Dbbrain {
         /// 限流时长，单位秒，支持-1和小于2147483647的正整数，-1表示永不过期。
         public let duration: Int64
 
+        /// 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
+        public let sessionToken: String?
+
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
 
-        public init(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil) {
+        public init(instanceId: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, sessionToken: String? = nil, product: String? = nil) {
             self.instanceId = instanceId
-            self.sessionToken = sessionToken
             self.sqlType = sqlType
             self.filterKey = filterKey
             self.maxConcurrency = maxConcurrency
             self.duration = duration
+            self.sessionToken = sessionToken
             self.product = product
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
-            case sessionToken = "SessionToken"
             case sqlType = "SqlType"
             case filterKey = "FilterKey"
             case maxConcurrency = "MaxConcurrency"
             case duration = "Duration"
+            case sessionToken = "SessionToken"
             case product = "Product"
         }
     }
@@ -97,15 +97,15 @@ extension Dbbrain {
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
-        self.createSqlFilter(.init(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
+    public func createSqlFilter(instanceId: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, sessionToken: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
+        self.createSqlFilter(.init(instanceId: instanceId, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, sessionToken: sessionToken, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例SQL限流任务
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
-        try await self.createSqlFilter(.init(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
+    public func createSqlFilter(instanceId: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, sessionToken: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
+        try await self.createSqlFilter(.init(instanceId: instanceId, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, sessionToken: sessionToken, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -101,6 +101,63 @@ extension Tcr {
         }
     }
 
+    /// 自定义账户
+    public struct CustomAccount: TCInputModel, TCOutputModel {
+        /// 自定义账户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 是否禁用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disable: Bool?
+
+        /// 过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expiresAt: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createTime: Date?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
+
+        /// 策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [Permission]?
+
+        public init(name: String? = nil, description: String? = nil, disable: Bool? = nil, expiresAt: Int64? = nil, createTime: Date? = nil, updateTime: Date? = nil, permissions: [Permission]? = nil) {
+            self.name = name
+            self.description = description
+            self.disable = disable
+            self.expiresAt = expiresAt
+            self._createTime = .init(wrappedValue: createTime)
+            self._updateTime = .init(wrappedValue: updateTime)
+            self.permissions = permissions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case description = "Description"
+            case disable = "Disable"
+            case expiresAt = "ExpiresAt"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case permissions = "Permissions"
+        }
+    }
+
     /// 自定义域名信息
     public struct CustomizedDomainInfo: TCOutputModel {
         /// 实例ID
@@ -441,6 +498,27 @@ extension Tcr {
             case peerRegistryUin = "PeerRegistryUin"
             case peerRegistryToken = "PeerRegistryToken"
             case enablePeerReplication = "EnablePeerReplication"
+        }
+    }
+
+    /// 策略
+    public struct Permission: TCInputModel, TCOutputModel {
+        /// 资源路径，目前仅支持Namespace
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resource: String?
+
+        /// 动作，目前仅支持：tcr:PushRepository、tcr:PullRepository
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let actions: [String]?
+
+        public init(resource: String, actions: [String]) {
+            self.resource = resource
+            self.actions = actions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resource = "Resource"
+            case actions = "Actions"
         }
     }
 
@@ -1049,6 +1127,63 @@ extension Tcr {
             case description = "Description"
             case cidrBlock = "CidrBlock"
             case policyVersion = "PolicyVersion"
+        }
+    }
+
+    /// 服务级账号
+    public struct ServiceAccount: TCInputModel, TCOutputModel {
+        /// 服务级账号名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 是否禁用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disable: Bool?
+
+        /// 过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expiresAt: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createTime: Date?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var updateTime: Date?
+
+        /// 策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let permissions: [Permission]?
+
+        public init(name: String? = nil, description: String? = nil, disable: Bool? = nil, expiresAt: Int64? = nil, createTime: Date? = nil, updateTime: Date? = nil, permissions: [Permission]? = nil) {
+            self.name = name
+            self.description = description
+            self.disable = disable
+            self.expiresAt = expiresAt
+            self._createTime = .init(wrappedValue: createTime)
+            self._updateTime = .init(wrappedValue: updateTime)
+            self.permissions = permissions
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case description = "Description"
+            case disable = "Disable"
+            case expiresAt = "ExpiresAt"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case permissions = "Permissions"
         }
     }
 

@@ -74,7 +74,10 @@ extension Cfw {
         /// 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         public let serviceTemplateId: String?
 
-        public init(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil) {
+        /// 规则的uuid
+        public let ruleUuid: Int64?
+
+        public init(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, ruleUuid: Int64? = nil) {
             self.pageNo = pageNo
             self.pageSize = pageSize
             self.sourceContent = sourceContent
@@ -85,6 +88,7 @@ extension Cfw {
             self.port = port
             self.protocol = `protocol`
             self.serviceTemplateId = serviceTemplateId
+            self.ruleUuid = ruleUuid
         }
 
         enum CodingKeys: String, CodingKey {
@@ -98,6 +102,7 @@ extension Cfw {
             case port = "Port"
             case `protocol` = "Protocol"
             case serviceTemplateId = "ServiceTemplateId"
+            case ruleUuid = "RuleUuid"
         }
     }
 
@@ -141,13 +146,13 @@ extension Cfw {
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
-        self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
+    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, ruleUuid: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
+        self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId, ruleUuid: ruleUuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
-        try await self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
+    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, ruleUuid: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
+        try await self.describeEnterpriseSecurityGroupRule(.init(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId, ruleUuid: ruleUuid), region: region, logger: logger, on: eventLoop)
     }
 }

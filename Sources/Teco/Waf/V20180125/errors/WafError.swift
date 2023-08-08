@@ -29,13 +29,23 @@ public struct TCWafError: TCWafErrorType {
         case authFailure = "AuthFailure"
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_CLSDBOperationFailed = "FailedOperation.CLSDBOperationFailed"
         case failedOperation_CLSInternalError = "FailedOperation.CLSInternalError"
+        case failedOperation_MysqlDBOperationFailed = "FailedOperation.MysqlDBOperationFailed"
+        case failedOperation_RedisOperationFailed = "FailedOperation.RedisOperationFailed"
         case internalError = "InternalError"
+        case internalError_DBErr = "InternalError.DBErr"
+        case internalError_UnknownErr = "InternalError.UnknownErr"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_InvalidCertificate = "InvalidParameter.InvalidCertificate"
+        case invalidParameter_LogicErr = "InvalidParameter.LogicErr"
         case invalidParameter_QueryCertBySSLIDFailed = "InvalidParameter.QueryCertBySSLIDFailed"
+        case invalidParameter_QueryStringSyntaxErr = "InvalidParameter.QueryStringSyntaxErr"
+        case invalidParameter_SQLSyntaxErr = "InvalidParameter.SQLSyntaxErr"
+        case invalidParameter_TypeMismatch = "InvalidParameter.TypeMismatch"
         case limitExceeded = "LimitExceeded"
+        case limitExceeded_SpecificationErr = "LimitExceeded.SpecificationErr"
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case requestLimitExceeded = "RequestLimitExceeded"
@@ -47,11 +57,12 @@ public struct TCWafError: TCWafErrorType {
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_InvalidRequest = "UnsupportedOperation.InvalidRequest"
     }
 
     /// Error domains affliated to ``TCWafError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self]
+        [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -91,6 +102,11 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.failedOperation)
     }
 
+    /// 调用CLS日志服务API失败
+    public static var failedOperation_CLSDBOperationFailed: TCWafError {
+        TCWafError(.failedOperation_CLSDBOperationFailed)
+    }
+
     /// CLS内部错误。
     ///
     /// 错误表示WAF的API后端访问CLS接口失败,包括接口失败,语法失败,参数校验不通过等。
@@ -98,9 +114,28 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.failedOperation_CLSInternalError)
     }
 
+    /// 操作Mysql数据库失败
+    public static var failedOperation_MysqlDBOperationFailed: TCWafError {
+        TCWafError(.failedOperation_MysqlDBOperationFailed)
+    }
+
+    /// 操作Redis数据库失败
+    public static var failedOperation_RedisOperationFailed: TCWafError {
+        TCWafError(.failedOperation_RedisOperationFailed)
+    }
+
     /// 内部错误。
     public static var internalError: TCWafError {
         TCWafError(.internalError)
+    }
+
+    /// DBErr
+    public static var internalError_DBErr: TCWafError {
+        TCWafError(.internalError_DBErr)
+    }
+
+    public static var internalError_UnknownErr: TCWafError {
+        TCWafError(.internalError_UnknownErr)
     }
 
     /// 参数错误。
@@ -118,14 +153,35 @@ public struct TCWafError: TCWafErrorType {
         TCWafError(.invalidParameter_InvalidCertificate)
     }
 
+    public static var invalidParameter_LogicErr: TCWafError {
+        TCWafError(.invalidParameter_LogicErr)
+    }
+
     /// 根据ID查询证书失败。
     public static var invalidParameter_QueryCertBySSLIDFailed: TCWafError {
         TCWafError(.invalidParameter_QueryCertBySSLIDFailed)
     }
 
+    public static var invalidParameter_QueryStringSyntaxErr: TCWafError {
+        TCWafError(.invalidParameter_QueryStringSyntaxErr)
+    }
+
+    public static var invalidParameter_SQLSyntaxErr: TCWafError {
+        TCWafError(.invalidParameter_SQLSyntaxErr)
+    }
+
+    public static var invalidParameter_TypeMismatch: TCWafError {
+        TCWafError(.invalidParameter_TypeMismatch)
+    }
+
     /// 超过配额限制。
     public static var limitExceeded: TCWafError {
         TCWafError(.limitExceeded)
+    }
+
+    /// SpecificationErr
+    public static var limitExceeded_SpecificationErr: TCWafError {
+        TCWafError(.limitExceeded_SpecificationErr)
     }
 
     /// 缺少参数错误。
@@ -181,6 +237,11 @@ public struct TCWafError: TCWafErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCWafError {
         TCWafError(.unsupportedOperation)
+    }
+
+    /// InvalidRequest
+    public static var unsupportedOperation_InvalidRequest: TCWafError {
+        TCWafError(.unsupportedOperation_InvalidRequest)
     }
 
     public func asWafError() -> TCWafError {

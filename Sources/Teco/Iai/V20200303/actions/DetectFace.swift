@@ -25,9 +25,8 @@ extension Iai {
         /// 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         public let maxFaceNum: UInt64?
 
-        /// 人脸长和宽的最小尺寸，单位为像素。
-        /// 默认为34。建议不低于34。
-        /// 低于MinFaceSize值的人脸不会被检测。
+        /// 人脸长和宽的最小尺寸，单位为像素，低于MinFaceSize值的人脸不会被检测。
+        /// 只支持设置34和20，建议使用34。
         public let minFaceSize: UInt64?
 
         /// 图片 base64 数据，base64 编码后大小不可超过5M。

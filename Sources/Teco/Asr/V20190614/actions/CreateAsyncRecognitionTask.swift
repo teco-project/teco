@@ -22,12 +22,16 @@ extension Asr {
     /// CreateAsyncRecognitionTask请求参数结构体
     public struct CreateAsyncRecognitionTaskRequest: TCRequestModel {
         /// 引擎模型类型。
-        /// • 16k_zh：16k 中文普通话通用；
-        /// • 16k_zh_video：16k 音视频领域；
-        /// • 16k_en：16k 英语；
-        /// • 16k_ca：16k 粤语；
-        /// • 16k_id：16k 印度尼西亚语；
-        /// • 16k_fil：16k 菲律宾语；
+        /// • 16k_zh：中文普通话通用；
+        /// • 16k_en：英语；
+        /// • 16k_yue：粤语；
+        /// • 16k_id：印度尼西亚语；
+        /// • 16k_fil：菲律宾语；
+        /// • 16k_th：泰语；
+        /// • 16k_pt：葡萄牙语；
+        /// • 16k_tr：土耳其语；
+        /// • 16k_ar：阿拉伯语；
+        /// • 16k_es：西班牙语；
         public let engineType: String
 
         /// 语音流地址，支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls, m3u8)

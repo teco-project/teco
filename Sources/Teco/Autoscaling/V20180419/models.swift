@@ -70,7 +70,7 @@ extension As {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
-        /// 伸缩活动相关实例信息集合。
+        /// 该参数已废弃，请勿使用。
         public let activityRelatedInstanceSet: [ActivtyRelatedInstance]
 
         /// 伸缩活动状态简要描述。
@@ -84,6 +84,9 @@ extension As {
 
         /// 执行命令结果。
         public let invocationResultSet: [InvocationResult]
+
+        /// 伸缩活动相关实例信息集合。
+        public let relatedInstanceSet: [RelatedInstance]
 
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
@@ -101,6 +104,7 @@ extension As {
             case lifecycleActionResultSet = "LifecycleActionResultSet"
             case detailedStatusMessageSet = "DetailedStatusMessageSet"
             case invocationResultSet = "InvocationResultSet"
+            case relatedInstanceSet = "RelatedInstanceSet"
         }
     }
 
@@ -133,10 +137,16 @@ extension As {
         /// 建议解决方案。
         public let solution: String
 
+        /// 伸缩建议警告级别。取值范围：<br>
+        /// <li>WARNING：警告级别<br>
+        /// <li>CRITICAL：严重级别<br>
+        public let level: String?
+
         enum CodingKeys: String, CodingKey {
             case problem = "Problem"
             case detail = "Detail"
             case solution = "Solution"
+            case level = "Level"
         }
     }
 
@@ -1226,6 +1236,24 @@ extension As {
             case targetType = "TargetType"
             case queueName = "QueueName"
             case topicName = "TopicName"
+        }
+    }
+
+    /// 与本次伸缩活动相关的实例信息。
+    public struct RelatedInstance: TCOutputModel {
+        /// 实例ID。
+        public let instanceId: String
+
+        /// 实例在伸缩活动中的状态。取值如下：
+        /// INIT：初始化中
+        /// RUNNING：实例操作中
+        /// SUCCESSFUL：活动成功
+        /// FAILED：活动失败
+        public let instanceStatus: String
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceStatus = "InstanceStatus"
         }
     }
 

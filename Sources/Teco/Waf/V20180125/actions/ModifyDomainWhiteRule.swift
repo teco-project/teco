@@ -22,24 +22,24 @@ extension Waf {
     /// ModifyDomainWhiteRule请求参数结构体
     public struct ModifyDomainWhiteRuleRequest: TCRequestModel {
         /// 需要更改的规则的域名
-        public let domain: String
+        public let domain: String?
 
         /// 白名单id
-        public let id: UInt64
+        public let id: UInt64?
 
         /// 规则的id列表
-        public let rules: [UInt64]
+        public let rules: [UInt64]?
 
         /// 规则匹配路径
-        public let url: String
+        public let url: String?
 
         /// 规则匹配方法
-        public let function: String
+        public let function: String?
 
-        /// 规则的开关状态
-        public let status: UInt64
+        /// 规则的开关状态，0表示关闭开关，1表示打开开关
+        public let status: UInt64?
 
-        public init(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64) {
+        public init(domain: String? = nil, id: UInt64? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil) {
             self.domain = domain
             self.id = id
             self.rules = rules
@@ -82,13 +82,13 @@ extension Waf {
 
     /// 更改某一条规则
     @inlinable @discardableResult
-    public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
+    public func modifyDomainWhiteRule(domain: String? = nil, id: UInt64? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
         self.modifyDomainWhiteRule(.init(domain: domain, id: id, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改某一条规则
     @inlinable @discardableResult
-    public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
+    public func modifyDomainWhiteRule(domain: String? = nil, id: UInt64? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
         try await self.modifyDomainWhiteRule(.init(domain: domain, id: id, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

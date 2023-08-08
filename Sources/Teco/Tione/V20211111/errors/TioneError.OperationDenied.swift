@@ -20,10 +20,15 @@ extension TCTioneError {
     public struct OperationDenied: TCTioneErrorType {
         enum Code: String {
             case balanceInsufficient = "OperationDenied.BalanceInsufficient"
+            case billingException = "OperationDenied.BillingException"
             case billingStatusResourceInsufficient = "OperationDenied.BillingStatusResourceInsufficient"
+            case ipIllegal = "OperationDenied.IpIllegal"
             case miyingBalanceInsufficient = "OperationDenied.MIYINGBalanceInsufficient"
             case networkCidrIllegal = "OperationDenied.NetworkCidrIllegal"
+            case notAllow = "OperationDenied.NotAllow"
+            case notSupportSaveImage = "OperationDenied.NotSupportSaveImage"
             case resourceGroupInsufficient = "OperationDenied.ResourceGroupInsufficient"
+            case subnetIllegal = "OperationDenied.SubnetIllegal"
             case whitelistQuotaExceed = "OperationDenied.WhitelistQuotaExceed"
             case other = "OperationDenied"
         }
@@ -57,9 +62,18 @@ extension TCTioneError {
             OperationDenied(.balanceInsufficient)
         }
 
-        /// 后付费资源售罄。
+        public static var billingException: OperationDenied {
+            OperationDenied(.billingException)
+        }
+
+        /// 按量计费资源售罄。
         public static var billingStatusResourceInsufficient: OperationDenied {
             OperationDenied(.billingStatusResourceInsufficient)
+        }
+
+        /// IP不合法。
+        public static var ipIllegal: OperationDenied {
+            OperationDenied(.ipIllegal)
         }
 
         /// 觅影资源包余额不足，请先充值。
@@ -72,9 +86,22 @@ extension TCTioneError {
             OperationDenied(.networkCidrIllegal)
         }
 
+        public static var notAllow: OperationDenied {
+            OperationDenied(.notAllow)
+        }
+
+        public static var notSupportSaveImage: OperationDenied {
+            OperationDenied(.notSupportSaveImage)
+        }
+
         /// 预付费资源组余量不足。
         public static var resourceGroupInsufficient: OperationDenied {
             OperationDenied(.resourceGroupInsufficient)
+        }
+
+        /// 子网不合法。
+        public static var subnetIllegal: OperationDenied {
+            OperationDenied(.subnetIllegal)
         }
 
         /// 白名单免费配额不足。
@@ -92,14 +119,24 @@ extension TCTioneError {
             switch self.error {
             case .balanceInsufficient:
                 code = .operationDenied_BalanceInsufficient
+            case .billingException:
+                code = .operationDenied_BillingException
             case .billingStatusResourceInsufficient:
                 code = .operationDenied_BillingStatusResourceInsufficient
+            case .ipIllegal:
+                code = .operationDenied_IpIllegal
             case .miyingBalanceInsufficient:
                 code = .operationDenied_MIYINGBalanceInsufficient
             case .networkCidrIllegal:
                 code = .operationDenied_NetworkCidrIllegal
+            case .notAllow:
+                code = .operationDenied_NotAllow
+            case .notSupportSaveImage:
+                code = .operationDenied_NotSupportSaveImage
             case .resourceGroupInsufficient:
                 code = .operationDenied_ResourceGroupInsufficient
+            case .subnetIllegal:
+                code = .operationDenied_SubnetIllegal
             case .whitelistQuotaExceed:
                 code = .operationDenied_WhitelistQuotaExceed
             case .other:

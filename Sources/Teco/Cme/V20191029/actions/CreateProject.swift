@@ -38,7 +38,7 @@ extension Cme {
         /// <li>VIDEO_SEGMENTATION：视频拆条。</li>
         /// <li>STREAM_CONNECT：云转推。</li>
         /// <li>RECORD_REPLAY：录制回放。</li>
-        /// <li>MEDIA_CAST：点播转直播。</li>
+        /// <li>MEDIA_CAST：媒体转推。</li>
         public let category: String
 
         /// 项目模式，一个项目可以有多种模式并相互切换。
@@ -74,7 +74,7 @@ extension Cme {
         /// 录制回放项目输入信息，仅当项目类型为 RECORD_REPLAY 时必填。
         public let recordReplayProjectInput: RecordReplayProjectInput?
 
-        /// 点播转直播项目输入信息，仅当项目类型为 MEDIA_CAST 时必填。
+        /// 媒体转推项目输入信息，仅当项目类型为 MEDIA_CAST 时必填。
         public let mediaCastProjectInput: MediaCastProjectInput?
 
         public init(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, mediaCastProjectInput: MediaCastProjectInput? = nil) {
@@ -138,8 +138,8 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    /// <li>点播转直播项目：用于点播文件转直播输出。</li>
+    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -153,8 +153,8 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    /// <li>点播转直播项目：用于点播文件转直播输出。</li>
+    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -168,8 +168,8 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    /// <li>点播转直播项目：用于点播文件转直播输出。</li>
+    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, mediaCastProjectInput: MediaCastProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.createProject(.init(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput, mediaCastProjectInput: mediaCastProjectInput), region: region, logger: logger, on: eventLoop)
@@ -183,8 +183,8 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    /// <li>点播转直播项目：用于点播文件转直播输出。</li>
+    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, mediaCastProjectInput: MediaCastProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.createProject(.init(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput, mediaCastProjectInput: mediaCastProjectInput), region: region, logger: logger, on: eventLoop)

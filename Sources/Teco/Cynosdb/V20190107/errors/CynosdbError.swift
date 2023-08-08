@@ -27,28 +27,40 @@ public protocol TCCynosdbErrorType: TCServiceErrorType {
 public struct TCCynosdbError: TCCynosdbErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case failedOperation = "FailedOperation"
         case failedOperation_BatchGetInstanceError = "FailedOperation.BatchGetInstanceError"
+        case failedOperation_BindSourcePackageError = "FailedOperation.BindSourcePackageError"
         case failedOperation_CamCheckResourceError = "FailedOperation.CamCheckResourceError"
         case failedOperation_CamSigAndAuthError = "FailedOperation.CamSigAndAuthError"
         case failedOperation_CreateOrder = "FailedOperation.CreateOrder"
+        case failedOperation_CreateSourcePackageError = "FailedOperation.CreateSourcePackageError"
         case failedOperation_DatabaseAccessError = "FailedOperation.DatabaseAccessError"
+        case failedOperation_DescribeAccountPrivilegesError = "FailedOperation.DescribeAccountPrivilegesError"
         case failedOperation_FlowCreateError = "FailedOperation.FlowCreateError"
         case failedOperation_FlowNotFoundError = "FailedOperation.FlowNotFoundError"
         case failedOperation_GetBackupStrategyError = "FailedOperation.GetBackupStrategyError"
+        case failedOperation_GetNetServiceInfoError = "FailedOperation.GetNetServiceInfoError"
+        case failedOperation_GetOssInfoError = "FailedOperation.GetOssInfoError"
         case failedOperation_InsufficientBalance = "FailedOperation.InsufficientBalance"
         case failedOperation_OperationFailedError = "FailedOperation.OperationFailedError"
+        case failedOperation_QuerySourcePackageDetailError = "FailedOperation.QuerySourcePackageDetailError"
+        case failedOperation_QuerySourcePackageError = "FailedOperation.QuerySourcePackageError"
         case failedOperation_QuerySpecBySpecCodeError = "FailedOperation.QuerySpecBySpecCodeError"
+        case failedOperation_RefundSourcePackageError = "FailedOperation.RefundSourcePackageError"
         case failedOperation_TradeCreateOrderError = "FailedOperation.TradeCreateOrderError"
+        case failedOperation_UnBindSourcePackageError = "FailedOperation.UnBindSourcePackageError"
         case internalError = "InternalError"
         case internalError_DbOperationFailed = "InternalError.DbOperationFailed"
         case internalError_GetSecurityGroupDetailFailed = "InternalError.GetSecurityGroupDetailFailed"
         case internalError_GetSubnetFailed = "InternalError.GetSubnetFailed"
         case internalError_GetVpcFailed = "InternalError.GetVpcFailed"
+        case internalError_HttpError = "InternalError.HttpError"
         case internalError_InternalHttpServerError = "InternalError.InternalHttpServerError"
         case internalError_ListInstanceFailed = "InternalError.ListInstanceFailed"
         case internalError_OperateWanFail = "InternalError.OperateWanFail"
         case internalError_OperationNotSupport = "InternalError.OperationNotSupport"
         case internalError_QueryDatabaseFailed = "InternalError.QueryDatabaseFailed"
+        case internalError_ServiceError = "InternalError.ServiceError"
         case internalError_SystemError = "InternalError.SystemError"
         case internalError_UnknownError = "InternalError.UnknownError"
         case invalidParameter = "InvalidParameter"
@@ -79,6 +91,7 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case invalidParameterValue_RegionZoneUnavailable = "InvalidParameterValue.RegionZoneUnavailable"
         case invalidParameterValue_StoragePoolNotFound = "InvalidParameterValue.StoragePoolNotFound"
         case invalidParameterValue_SubnetNotFound = "InvalidParameterValue.SubnetNotFound"
+        case invalidParameterValue_ValueNotFound = "InvalidParameterValue.ValueNotFound"
         case invalidParameterValue_VpcNotFound = "InvalidParameterValue.VpcNotFound"
         case invalidParameter_ControllerNotFoundError = "InvalidParameter.ControllerNotFoundError"
         case invalidParameter_ExceptionParam = "InvalidParameter.ExceptionParam"
@@ -98,6 +111,7 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         case operationDenied_ServerlessClusterStatusDenied = "OperationDenied.ServerlessClusterStatusDenied"
         case operationDenied_ServerlessInstanceStatusDenied = "OperationDenied.ServerlessInstanceStatusDenied"
         case operationDenied_TaskConflictError = "OperationDenied.TaskConflictError"
+        case operationDenied_UnSupportSaleSpecError = "OperationDenied.UnSupportSaleSpecError"
         case operationDenied_UserNotAuthenticatedError = "OperationDenied.UserNotAuthenticatedError"
         case operationDenied_VersionNotSupportError = "OperationDenied.VersionNotSupportError"
         case resourceNotFound_ClusterNotFoundError = "ResourceNotFound.ClusterNotFoundError"
@@ -151,9 +165,18 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.authFailure)
     }
 
+    /// 操作失败。
+    public static var failedOperation: TCCynosdbError {
+        TCCynosdbError(.failedOperation)
+    }
+
     /// 批量查询失败。
     public static var failedOperation_BatchGetInstanceError: TCCynosdbError {
         TCCynosdbError(.failedOperation_BatchGetInstanceError)
+    }
+
+    public static var failedOperation_BindSourcePackageError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_BindSourcePackageError)
     }
 
     /// 获取权限失败，请稍后重试。如果持续不成功，请联系客服进行处理。
@@ -171,9 +194,18 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.failedOperation_CreateOrder)
     }
 
+    public static var failedOperation_CreateSourcePackageError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_CreateSourcePackageError)
+    }
+
     /// 数据库访问失败，请稍后重试。如果持续不成功，请联系客服进行处理。
     public static var failedOperation_DatabaseAccessError: TCCynosdbError {
         TCCynosdbError(.failedOperation_DatabaseAccessError)
+    }
+
+    /// 修改账号权限失败。
+    public static var failedOperation_DescribeAccountPrivilegesError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_DescribeAccountPrivilegesError)
     }
 
     /// 创建流程失败，请稍后重试。如果持续不成功，请联系客服进行处理。
@@ -191,6 +223,16 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.failedOperation_GetBackupStrategyError)
     }
 
+    /// 查询接入组网络信息失败。
+    public static var failedOperation_GetNetServiceInfoError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_GetNetServiceInfoError)
+    }
+
+    /// 查询主实例详情失败。
+    public static var failedOperation_GetOssInfoError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_GetOssInfoError)
+    }
+
     /// 账号余额不足。
     public static var failedOperation_InsufficientBalance: TCCynosdbError {
         TCCynosdbError(.failedOperation_InsufficientBalance)
@@ -201,14 +243,30 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.failedOperation_OperationFailedError)
     }
 
+    public static var failedOperation_QuerySourcePackageDetailError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_QuerySourcePackageDetailError)
+    }
+
+    public static var failedOperation_QuerySourcePackageError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_QuerySourcePackageError)
+    }
+
     /// 规格信息查询失败。
     public static var failedOperation_QuerySpecBySpecCodeError: TCCynosdbError {
         TCCynosdbError(.failedOperation_QuerySpecBySpecCodeError)
     }
 
+    public static var failedOperation_RefundSourcePackageError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_RefundSourcePackageError)
+    }
+
     /// 创建并支付订单失败，请稍后重试。如果持续不成功，请联系客服进行处理。
     public static var failedOperation_TradeCreateOrderError: TCCynosdbError {
         TCCynosdbError(.failedOperation_TradeCreateOrderError)
+    }
+
+    public static var failedOperation_UnBindSourcePackageError: TCCynosdbError {
+        TCCynosdbError(.failedOperation_UnBindSourcePackageError)
     }
 
     /// 内部错误。
@@ -236,6 +294,10 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.internalError_GetVpcFailed)
     }
 
+    public static var internalError_HttpError: TCCynosdbError {
+        TCCynosdbError(.internalError_HttpError)
+    }
+
     /// http请求执行异常。
     public static var internalError_InternalHttpServerError: TCCynosdbError {
         TCCynosdbError(.internalError_InternalHttpServerError)
@@ -259,6 +321,13 @@ public struct TCCynosdbError: TCCynosdbErrorType {
     /// 查询数据库失败。
     public static var internalError_QueryDatabaseFailed: TCCynosdbError {
         TCCynosdbError(.internalError_QueryDatabaseFailed)
+    }
+
+    /// 内部服务错误。
+    ///
+    /// 建议重试
+    public static var internalError_ServiceError: TCCynosdbError {
+        TCCynosdbError(.internalError_ServiceError)
     }
 
     /// 系统内部错误。
@@ -411,6 +480,11 @@ public struct TCCynosdbError: TCCynosdbErrorType {
         TCCynosdbError(.invalidParameterValue_SubnetNotFound)
     }
 
+    /// 未找到该数据。
+    public static var invalidParameterValue_ValueNotFound: TCCynosdbError {
+        TCCynosdbError(.invalidParameterValue_ValueNotFound)
+    }
+
     /// 找不到所选VPC网络。
     public static var invalidParameterValue_VpcNotFound: TCCynosdbError {
         TCCynosdbError(.invalidParameterValue_VpcNotFound)
@@ -506,6 +580,10 @@ public struct TCCynosdbError: TCCynosdbErrorType {
     /// 任务冲突检查不通过。
     public static var operationDenied_TaskConflictError: TCCynosdbError {
         TCCynosdbError(.operationDenied_TaskConflictError)
+    }
+
+    public static var operationDenied_UnSupportSaleSpecError: TCCynosdbError {
+        TCCynosdbError(.operationDenied_UnSupportSaleSpecError)
     }
 
     /// 用户未进行实名认证，请先进行实名认证才可购买。

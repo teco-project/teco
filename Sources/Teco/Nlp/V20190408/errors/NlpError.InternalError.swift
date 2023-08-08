@@ -19,9 +19,10 @@ import TecoCore
 extension TCNlpError {
     public struct InternalError: TCNlpErrorType {
         enum Code: String {
-            case resourceRequestError = "InternalError.ResourceRequestError"
             case serviceCallError = "InternalError.ServiceCallError"
             case serviceError = "InternalError.ServiceError"
+            case textClassifyError = "InternalError.TextClassifyError"
+            case textParsingError = "InternalError.TextParsingError"
             case other = "InternalError"
         }
 
@@ -47,11 +48,6 @@ extension TCNlpError {
             self.context = context
         }
 
-        /// 资源请求错误
-        public static var resourceRequestError: InternalError {
-            InternalError(.resourceRequestError)
-        }
-
         /// 内部服务调用错误。
         public static var serviceCallError: InternalError {
             InternalError(.serviceCallError)
@@ -62,7 +58,15 @@ extension TCNlpError {
             InternalError(.serviceError)
         }
 
-        /// 内部错误。
+        public static var textClassifyError: InternalError {
+            InternalError(.textClassifyError)
+        }
+
+        public static var textParsingError: InternalError {
+            InternalError(.textParsingError)
+        }
+
+        /// 内部错误
         public static var other: InternalError {
             InternalError(.other)
         }
@@ -70,12 +74,14 @@ extension TCNlpError {
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .resourceRequestError:
-                code = .internalError_ResourceRequestError
             case .serviceCallError:
                 code = .internalError_ServiceCallError
             case .serviceError:
                 code = .internalError_ServiceError
+            case .textClassifyError:
+                code = .internalError_TextClassifyError
+            case .textParsingError:
+                code = .internalError_TextParsingError
             case .other:
                 code = .internalError
             }

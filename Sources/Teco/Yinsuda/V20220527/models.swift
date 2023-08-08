@@ -228,6 +228,22 @@ extension Yinsuda {
         }
     }
 
+    /// 其它片段时间（可用于抢唱）
+    public struct KTVOtherSegments: TCOutputModel {
+        /// 片段开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let segmentBegin: Int64?
+
+        /// 片段结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let segmentEnd: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case segmentBegin = "SegmentBegin"
+            case segmentEnd = "SegmentEnd"
+        }
+    }
+
     /// 歌单基础信息。
     public struct KTVPlaylistBaseInfo: TCOutputModel {
         /// 歌单Id。

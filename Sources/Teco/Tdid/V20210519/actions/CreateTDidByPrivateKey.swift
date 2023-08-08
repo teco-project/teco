@@ -58,26 +58,30 @@ extension Tdid {
     }
 
     /// 新建DID根据私钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPrivateKey is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateTDidByPrivateKey is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        self.createTDidByPrivateKey(.init(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPrivateKey is no longer available.")
     }
 
     /// 新建DID根据私钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.createTDidByPrivateKey(.init(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPrivateKey is no longer available.")
     }
 }

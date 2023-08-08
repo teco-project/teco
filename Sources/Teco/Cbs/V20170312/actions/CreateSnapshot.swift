@@ -29,7 +29,7 @@ extension Cbs {
         /// 快照名称，不传则新快照名称默认为“未命名”。
         public let snapshotName: String?
 
-        /// 快照的到期时间，到期后该快照将会自动删除,需要传入UTC时间下的ISO-8601标准时间格式,例如:2022-01-08T09:47:55+00:00
+        /// 快照的到期时间，到期后该快照将会自动删除,需要传入UTC时间下的ISO-8601标准时间格式,例如:2022-01-08T09:47:55+00:00,。到期时间最小可设置为一天后的当前时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
@@ -61,7 +61,8 @@ extension Cbs {
     /// CreateSnapshot返回参数结构体
     public struct CreateSnapshotResponse: TCResponseModel {
         /// 新创建的快照ID。
-        public let snapshotId: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let snapshotId: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

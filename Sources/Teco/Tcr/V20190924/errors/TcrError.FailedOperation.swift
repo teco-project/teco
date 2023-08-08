@@ -19,6 +19,7 @@ import TecoCore
 extension TCTcrError {
     public struct FailedOperation: TCTcrErrorType {
         enum Code: String {
+            case dbError = "FailedOperation.DbError"
             case dependenceError = "FailedOperation.DependenceError"
             case emptyCoreBody = "FailedOperation.EmptyCoreBody"
             case errorGetDBDataError = "FailedOperation.ErrorGetDBDataError"
@@ -55,6 +56,11 @@ extension TCTcrError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 数据库错误。
+        public static var dbError: FailedOperation {
+            FailedOperation(.dbError)
         }
 
         /// 依赖服务异常。
@@ -137,6 +143,8 @@ extension TCTcrError {
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {
+            case .dbError:
+                code = .failedOperation_DbError
             case .dependenceError:
                 code = .failedOperation_DependenceError
             case .emptyCoreBody:

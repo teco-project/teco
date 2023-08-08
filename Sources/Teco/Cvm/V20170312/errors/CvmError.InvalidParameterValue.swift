@@ -25,15 +25,18 @@ extension TCCvmError {
             case basicNetworkInstanceFamily = "InvalidParameterValue.BasicNetworkInstanceFamily"
             case bucketNotFound = "InvalidParameterValue.BucketNotFound"
             case camRoleNameMalformed = "InvalidParameterValue.CamRoleNameMalformed"
+            case cdhOnlyLocalDataDiskResize = "InvalidParameterValue.CdhOnlyLocalDataDiskResize"
             case chcHostsNotFound = "InvalidParameterValue.ChcHostsNotFound"
             case chcNetworkEmpty = "InvalidParameterValue.ChcNetworkEmpty"
             case cloudSsdDataDiskSizeTooSmall = "InvalidParameterValue.CloudSsdDataDiskSizeTooSmall"
             case coreCountValue = "InvalidParameterValue.CoreCountValue"
+            case dedicatedClusterNotSupportedChargeType = "InvalidParameterValue.DedicatedClusterNotSupportedChargeType"
             case deployVpcAlreadyExists = "InvalidParameterValue.DeployVpcAlreadyExists"
             case disasterRecoverGroupIdMalformed = "InvalidParameterValue.DisasterRecoverGroupIdMalformed"
             case duplicate = "InvalidParameterValue.Duplicate"
             case duplicateTags = "InvalidParameterValue.DuplicateTags"
             case gpuInstanceFamily = "InvalidParameterValue.GPUInstanceFamily"
+            case hpcClusterIdZoneIdNotMatch = "InvalidParameterValue.HpcClusterIdZoneIdNotMatch"
             case iPv6AddressMalformed = "InvalidParameterValue.IPv6AddressMalformed"
             case illegalHostName = "InvalidParameterValue.IllegalHostName"
             case incorrectFormat = "InvalidParameterValue.IncorrectFormat"
@@ -53,9 +56,11 @@ extension TCCvmError {
             case invalidImageFormat = "InvalidParameterValue.InvalidImageFormat"
             case invalidImageId = "InvalidParameterValue.InvalidImageId"
             case invalidImageIdForRetsetInstance = "InvalidParameterValue.InvalidImageIdForRetsetInstance"
+            case invalidImageIdIsShared = "InvalidParameterValue.InvalidImageIdIsShared"
             case invalidImageOsName = "InvalidParameterValue.InvalidImageOsName"
             case invalidImageState = "InvalidParameterValue.InvalidImageState"
             case invalidInstanceSource = "InvalidParameterValue.InvalidInstanceSource"
+            case invalidInstanceTypeUnderwrite = "InvalidParameterValue.InvalidInstanceTypeUnderwrite"
             case invalidIpFormat = "InvalidParameterValue.InvalidIpFormat"
             case invalidLaunchTemplateDescription = "InvalidParameterValue.InvalidLaunchTemplateDescription"
             case invalidLaunchTemplateName = "InvalidParameterValue.InvalidLaunchTemplateName"
@@ -155,6 +160,11 @@ extension TCCvmError {
             InvalidParameterValue(.camRoleNameMalformed)
         }
 
+        /// CDH磁盘扩容只支持LOCAL_BASIC和LOCAL_SSD。
+        public static var cdhOnlyLocalDataDiskResize: InvalidParameterValue {
+            InvalidParameterValue(.cdhOnlyLocalDataDiskResize)
+        }
+
         /// 找不到对应的CHC物理服务器。
         public static var chcHostsNotFound: InvalidParameterValue {
             InvalidParameterValue(.chcHostsNotFound)
@@ -173,6 +183,11 @@ extension TCCvmError {
         /// 核心计数不合法。
         public static var coreCountValue: InvalidParameterValue {
             InvalidParameterValue(.coreCountValue)
+        }
+
+        /// CDC不支持指定的计费模式。
+        public static var dedicatedClusterNotSupportedChargeType: InvalidParameterValue {
+            InvalidParameterValue(.dedicatedClusterNotSupportedChargeType)
         }
 
         /// 已经存在部署VPC。
@@ -200,6 +215,11 @@ extension TCCvmError {
         /// 非GPU实例不允许转为GPU实例。
         public static var gpuInstanceFamily: InvalidParameterValue {
             InvalidParameterValue(.gpuInstanceFamily)
+        }
+
+        /// 您的高性能计算集群已经绑定其他可用区，不能购买当前可用区机器。
+        public static var hpcClusterIdZoneIdNotMatch: InvalidParameterValue {
+            InvalidParameterValue(.hpcClusterIdZoneIdNotMatch)
         }
 
         /// ipv6地址无效
@@ -297,6 +317,11 @@ extension TCCvmError {
             InvalidParameterValue(.invalidImageIdForRetsetInstance)
         }
 
+        /// 指定的镜像ID为共享镜像。
+        public static var invalidImageIdIsShared: InvalidParameterValue {
+            InvalidParameterValue(.invalidImageIdIsShared)
+        }
+
         /// 当前地域不支持指定镜像所包含的操作系统。
         public static var invalidImageOsName: InvalidParameterValue {
             InvalidParameterValue(.invalidImageOsName)
@@ -310,6 +335,11 @@ extension TCCvmError {
         /// 该实例配置来自免费升配活动，暂不支持3个月内进行降配。
         public static var invalidInstanceSource: InvalidParameterValue {
             InvalidParameterValue(.invalidInstanceSource)
+        }
+
+        /// 指定机型不支持包销付费模式。
+        public static var invalidInstanceTypeUnderwrite: InvalidParameterValue {
+            InvalidParameterValue(.invalidInstanceTypeUnderwrite)
         }
 
         /// IP地址不符合规范
@@ -558,6 +588,8 @@ extension TCCvmError {
                 code = .invalidParameterValue_BucketNotFound
             case .camRoleNameMalformed:
                 code = .invalidParameterValue_CamRoleNameMalformed
+            case .cdhOnlyLocalDataDiskResize:
+                code = .invalidParameterValue_CdhOnlyLocalDataDiskResize
             case .chcHostsNotFound:
                 code = .invalidParameterValue_ChcHostsNotFound
             case .chcNetworkEmpty:
@@ -566,6 +598,8 @@ extension TCCvmError {
                 code = .invalidParameterValue_CloudSsdDataDiskSizeTooSmall
             case .coreCountValue:
                 code = .invalidParameterValue_CoreCountValue
+            case .dedicatedClusterNotSupportedChargeType:
+                code = .invalidParameterValue_DedicatedClusterNotSupportedChargeType
             case .deployVpcAlreadyExists:
                 code = .invalidParameterValue_DeployVpcAlreadyExists
             case .disasterRecoverGroupIdMalformed:
@@ -576,6 +610,8 @@ extension TCCvmError {
                 code = .invalidParameterValue_DuplicateTags
             case .gpuInstanceFamily:
                 code = .invalidParameterValue_GPUInstanceFamily
+            case .hpcClusterIdZoneIdNotMatch:
+                code = .invalidParameterValue_HpcClusterIdZoneIdNotMatch
             case .iPv6AddressMalformed:
                 code = .invalidParameterValue_IPv6AddressMalformed
             case .illegalHostName:
@@ -614,12 +650,16 @@ extension TCCvmError {
                 code = .invalidParameterValue_InvalidImageId
             case .invalidImageIdForRetsetInstance:
                 code = .invalidParameterValue_InvalidImageIdForRetsetInstance
+            case .invalidImageIdIsShared:
+                code = .invalidParameterValue_InvalidImageIdIsShared
             case .invalidImageOsName:
                 code = .invalidParameterValue_InvalidImageOsName
             case .invalidImageState:
                 code = .invalidParameterValue_InvalidImageState
             case .invalidInstanceSource:
                 code = .invalidParameterValue_InvalidInstanceSource
+            case .invalidInstanceTypeUnderwrite:
+                code = .invalidParameterValue_InvalidInstanceTypeUnderwrite
             case .invalidIpFormat:
                 code = .invalidParameterValue_InvalidIpFormat
             case .invalidLaunchTemplateDescription:

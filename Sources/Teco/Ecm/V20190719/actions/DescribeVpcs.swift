@@ -32,6 +32,8 @@ extension Ecm {
         /// region - String - vpc的region。
         /// tag-key - String -是否必填：否- 按照标签键进行过滤。
         /// tag:tag-key - String - 是否必填：否 - 按照标签键值对进行过滤。
+        /// ipv6-cidr-block - String - 是否必填：否 - 按照IPv6 CIDR block进行过滤。
+        /// isp-type - String - 是否必填：否 - 按照运营商（如CMCC, CUCC, CTCC）进行过滤。
         public let filters: [Filter]?
 
         /// 偏移量

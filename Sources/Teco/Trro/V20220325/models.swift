@@ -260,6 +260,54 @@ extension Trro {
         /// 设备ID
         public let deviceId: String
 
+        /// sdk版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ver: String?
+
+        /// 模式(p2p/server)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkMode: String?
+
+        /// 解码耗时，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let decodeCost: [Int64]?
+
+        /// 渲染耗时，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renderConst: [Int64]?
+
+        /// 卡顿k100
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let k100: [Float]?
+
+        /// 卡顿k150
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let k150: [Float]?
+
+        /// nack请求数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nack: [Int64]?
+
+        /// 服务端调控码率,单位：kbps
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bitRateEstimate: [Int64]?
+
+        /// 宽度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let width: Int64?
+
+        /// 高度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let height: Int64?
+
+        /// 编码耗时，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let encodeCost: [Int64]?
+
+        /// 采集耗时，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let captureCost: [Int64]?
+
         enum CodingKeys: String, CodingKey {
             case deviceType = "DeviceType"
             case startTime = "StartTime"
@@ -275,6 +323,18 @@ extension Trro {
             case timeOffset = "TimeOffset"
             case projectId = "ProjectId"
             case deviceId = "DeviceId"
+            case ver = "Ver"
+            case sdkMode = "SdkMode"
+            case decodeCost = "DecodeCost"
+            case renderConst = "RenderConst"
+            case k100 = "K100"
+            case k150 = "K150"
+            case nack = "NACK"
+            case bitRateEstimate = "BitRateEstimate"
+            case width = "Width"
+            case height = "Height"
+            case encodeCost = "EncodeCost"
+            case captureCost = "CaptureCost"
         }
     }
 

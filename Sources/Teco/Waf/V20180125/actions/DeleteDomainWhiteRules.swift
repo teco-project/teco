@@ -22,12 +22,12 @@ extension Waf {
     /// DeleteDomainWhiteRules请求参数结构体
     public struct DeleteDomainWhiteRulesRequest: TCRequestModel {
         /// 需要删除的规则域名
-        public let domain: String
+        public let domain: String?
 
         /// 需要删除的白名单规则
-        public let ids: [UInt64]
+        public let ids: [UInt64]?
 
-        public init(domain: String, ids: [UInt64]) {
+        public init(domain: String? = nil, ids: [UInt64]? = nil) {
             self.domain = domain
             self.ids = ids
         }
@@ -67,13 +67,13 @@ extension Waf {
 
     /// 删除域名规则白名单
     @inlinable
-    public func deleteDomainWhiteRules(domain: String, ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainWhiteRulesResponse> {
+    public func deleteDomainWhiteRules(domain: String? = nil, ids: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainWhiteRulesResponse> {
         self.deleteDomainWhiteRules(.init(domain: domain, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名规则白名单
     @inlinable
-    public func deleteDomainWhiteRules(domain: String, ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
+    public func deleteDomainWhiteRules(domain: String? = nil, ids: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
         try await self.deleteDomainWhiteRules(.init(domain: domain, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

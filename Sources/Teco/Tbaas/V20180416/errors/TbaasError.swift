@@ -43,10 +43,6 @@ public struct TCTbaasError: TCTbaasErrorType {
         case failedOperation_CaSignCert = "FailedOperation.CaSignCert"
         case failedOperation_CaYunApiApplyCert = "FailedOperation.CaYunApiApplyCert"
         case failedOperation_CaYunApiCommon = "FailedOperation.CaYunApiCommon"
-        case failedOperation_ChainCodeChannel = "FailedOperation.ChainCodeChannel"
-        case failedOperation_ChainCodeExist = "FailedOperation.ChainCodeExist"
-        case failedOperation_ChainCodeInit = "FailedOperation.ChainCodeInit"
-        case failedOperation_ChainCodeInstall = "FailedOperation.ChainCodeInstall"
         case failedOperation_CompileDeployedContract = "FailedOperation.CompileDeployedContract"
         case failedOperation_CompileDeployingContract = "FailedOperation.CompileDeployingContract"
         case failedOperation_ContractEditedByOtherAgency = "FailedOperation.ContractEditedByOtherAgency"
@@ -58,7 +54,6 @@ public struct TCTbaasError: TCTbaasErrorType {
         case failedOperation_FabricBlockQuery = "FailedOperation.FabricBlockQuery"
         case failedOperation_FabricCommit = "FailedOperation.FabricCommit"
         case failedOperation_FabricEventHub = "FailedOperation.FabricEventHub"
-        case failedOperation_FabricManage = "FailedOperation.FabricManage"
         case failedOperation_FabricProposal = "FailedOperation.FabricProposal"
         case failedOperation_FabricRequestParams = "FailedOperation.FabricRequestParams"
         case failedOperation_FabricRequstParams = "FailedOperation.FabricRequstParams"
@@ -70,15 +65,9 @@ public struct TCTbaasError: TCTbaasErrorType {
         case failedOperation_FabricTxQueryNone = "FailedOperation.FabricTxQueryNone"
         case failedOperation_FrontRequestFail = "FailedOperation.FrontRequestFail"
         case failedOperation_GroupIllegal = "FailedOperation.GroupIllegal"
-        case failedOperation_InvalidChaincode = "FailedOperation.InvalidChaincode"
-        case failedOperation_InvalidChannel = "FailedOperation.InvalidChannel"
-        case failedOperation_InvalidCluster = "FailedOperation.InvalidCluster"
-        case failedOperation_InvalidGroup = "FailedOperation.InvalidGroup"
         case failedOperation_InvalidGroupPk = "FailedOperation.InvalidGroupPk"
         case failedOperation_InvalidKeyUser = "FailedOperation.InvalidKeyUser"
         case failedOperation_InvalidOperation = "FailedOperation.InvalidOperation"
-        case failedOperation_InvalidPeer = "FailedOperation.InvalidPeer"
-        case failedOperation_InvalidResource = "FailedOperation.InvalidResource"
         case failedOperation_ManageService = "FailedOperation.ManageService"
         case failedOperation_NewContract = "FailedOperation.NewContract"
         case failedOperation_NoChainCodeChannel = "FailedOperation.NoChainCodeChannel"
@@ -93,12 +82,10 @@ public struct TCTbaasError: TCTbaasErrorType {
         case failedOperation_StatusNoMatch = "FailedOperation.StatusNoMatch"
         case failedOperation_TimeOutUrl = "FailedOperation.TimeOutUrl"
         case failedOperation_TransactionTimeout = "FailedOperation.TransactionTimeout"
-        case failedOperation_UpdateDeployedContract = "FailedOperation.UpdateDeployedContract"
         case failedOperation_UserAuthType = "FailedOperation.UserAuthType"
         case failedOperation_UserInBlackList = "FailedOperation.UserInBlackList"
         case failedOperation_UserNoJoinDemoCluster = "FailedOperation.UserNoJoinDemoCluster"
         case internalError_DBError = "InternalError.DBError"
-        case internalError_FailPreform = "InternalError.FailPreform"
         case internalError_FailUrl = "InternalError.FailUrl"
         case internalError_FlaskException = "InternalError.FlaskException"
         case internalError_InvalidContractParam = "InternalError.InvalidContractParam"
@@ -264,26 +251,6 @@ public struct TCTbaasError: TCTbaasErrorType {
         TCTbaasError(.failedOperation_CaYunApiCommon)
     }
 
-    /// 合约已在通道实例化。
-    public static var failedOperation_ChainCodeChannel: TCTbaasError {
-        TCTbaasError(.failedOperation_ChainCodeChannel)
-    }
-
-    /// 合约已存在。
-    public static var failedOperation_ChainCodeExist: TCTbaasError {
-        TCTbaasError(.failedOperation_ChainCodeExist)
-    }
-
-    /// 合约实例化错误。
-    public static var failedOperation_ChainCodeInit: TCTbaasError {
-        TCTbaasError(.failedOperation_ChainCodeInit)
-    }
-
-    /// 合约安装错误。
-    public static var failedOperation_ChainCodeInstall: TCTbaasError {
-        TCTbaasError(.failedOperation_ChainCodeInstall)
-    }
-
     /// Bcos不能编译已经部署的合约。
     public static var failedOperation_CompileDeployedContract: TCTbaasError {
         TCTbaasError(.failedOperation_CompileDeployedContract)
@@ -337,11 +304,6 @@ public struct TCTbaasError: TCTbaasErrorType {
     /// event hub失败。
     public static var failedOperation_FabricEventHub: TCTbaasError {
         TCTbaasError(.failedOperation_FabricEventHub)
-    }
-
-    /// 区块链网络请求异常。
-    public static var failedOperation_FabricManage: TCTbaasError {
-        TCTbaasError(.failedOperation_FabricManage)
     }
 
     /// 背书失败。
@@ -399,26 +361,6 @@ public struct TCTbaasError: TCTbaasErrorType {
         TCTbaasError(.failedOperation_GroupIllegal)
     }
 
-    /// 无效合约。
-    public static var failedOperation_InvalidChaincode: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidChaincode)
-    }
-
-    /// 无效通道。
-    public static var failedOperation_InvalidChannel: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidChannel)
-    }
-
-    /// 无效网络。
-    public static var failedOperation_InvalidCluster: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidCluster)
-    }
-
-    /// 无效组织。
-    public static var failedOperation_InvalidGroup: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidGroup)
-    }
-
     /// Bcos无效的群组编号。
     public static var failedOperation_InvalidGroupPk: TCTbaasError {
         TCTbaasError(.failedOperation_InvalidGroupPk)
@@ -432,16 +374,6 @@ public struct TCTbaasError: TCTbaasErrorType {
     /// 无效操作。
     public static var failedOperation_InvalidOperation: TCTbaasError {
         TCTbaasError(.failedOperation_InvalidOperation)
-    }
-
-    /// 无效节点。
-    public static var failedOperation_InvalidPeer: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidPeer)
-    }
-
-    /// 无效资源。
-    public static var failedOperation_InvalidResource: TCTbaasError {
-        TCTbaasError(.failedOperation_InvalidResource)
     }
 
     /// 交易请求异常。
@@ -516,11 +448,6 @@ public struct TCTbaasError: TCTbaasErrorType {
         TCTbaasError(.failedOperation_TransactionTimeout)
     }
 
-    /// Bcos更新已部署合约。
-    public static var failedOperation_UpdateDeployedContract: TCTbaasError {
-        TCTbaasError(.failedOperation_UpdateDeployedContract)
-    }
-
     /// 获取用户认证类型出错。
     public static var failedOperation_UserAuthType: TCTbaasError {
         TCTbaasError(.failedOperation_UserAuthType)
@@ -539,11 +466,6 @@ public struct TCTbaasError: TCTbaasErrorType {
     /// Bcos数据库操作异常，请重试。
     public static var internalError_DBError: TCTbaasError {
         TCTbaasError(.internalError_DBError)
-    }
-
-    /// 内部错误。
-    public static var internalError_FailPreform: TCTbaasError {
-        TCTbaasError(.internalError_FailPreform)
     }
 
     /// 服务器异常，请重试。
@@ -572,6 +494,8 @@ public struct TCTbaasError: TCTbaasErrorType {
     }
 
     /// Bcos服务器异常，请重试。
+    ///
+    /// None
     public static var internalError_ServerError: TCTbaasError {
         TCTbaasError(.internalError_ServerError)
     }
@@ -612,6 +536,8 @@ public struct TCTbaasError: TCTbaasErrorType {
     }
 
     /// 参数取值不合法。
+    ///
+    /// None
     public static var invalidParameterValue_IllegalValue: TCTbaasError {
         TCTbaasError(.invalidParameterValue_IllegalValue)
     }

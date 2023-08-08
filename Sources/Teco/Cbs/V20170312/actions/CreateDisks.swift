@@ -69,7 +69,10 @@ extension Cbs {
         /// 指定云硬盘备份点配额。
         public let diskBackupQuota: UInt64?
 
-        public init(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil) {
+        /// 创建云盘时是否开启性能突发
+        public let burstPerformance: Bool?
+
+        public init(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil, burstPerformance: Bool? = nil) {
             self.placement = placement
             self.diskChargeType = diskChargeType
             self.diskType = diskType
@@ -86,6 +89,7 @@ extension Cbs {
             self.deleteSnapshot = deleteSnapshot
             self.autoMountConfiguration = autoMountConfiguration
             self.diskBackupQuota = diskBackupQuota
+            self.burstPerformance = burstPerformance
         }
 
         enum CodingKeys: String, CodingKey {
@@ -105,13 +109,15 @@ extension Cbs {
             case deleteSnapshot = "DeleteSnapshot"
             case autoMountConfiguration = "AutoMountConfiguration"
             case diskBackupQuota = "DiskBackupQuota"
+            case burstPerformance = "BurstPerformance"
         }
     }
 
     /// CreateDisks返回参数结构体
     public struct CreateDisksResponse: TCResponseModel {
         /// 创建的云硬盘ID列表。
-        public let diskIdSet: [String]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskIdSet: [String]?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -154,8 +160,8 @@ extension Cbs {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
-        self.createDisks(.init(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, snapshotId: snapshotId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, diskChargePrepaid: diskChargePrepaid, deleteSnapshot: deleteSnapshot, autoMountConfiguration: autoMountConfiguration, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
+    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil, burstPerformance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
+        self.createDisks(.init(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, snapshotId: snapshotId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, diskChargePrepaid: diskChargePrepaid, deleteSnapshot: deleteSnapshot, autoMountConfiguration: autoMountConfiguration, diskBackupQuota: diskBackupQuota, burstPerformance: burstPerformance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云硬盘
@@ -166,7 +172,7 @@ extension Cbs {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
-        try await self.createDisks(.init(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, snapshotId: snapshotId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, diskChargePrepaid: diskChargePrepaid, deleteSnapshot: deleteSnapshot, autoMountConfiguration: autoMountConfiguration, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
+    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil, burstPerformance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
+        try await self.createDisks(.init(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, snapshotId: snapshotId, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, diskChargePrepaid: diskChargePrepaid, deleteSnapshot: deleteSnapshot, autoMountConfiguration: autoMountConfiguration, diskBackupQuota: diskBackupQuota, burstPerformance: burstPerformance), region: region, logger: logger, on: eventLoop)
     }
 }

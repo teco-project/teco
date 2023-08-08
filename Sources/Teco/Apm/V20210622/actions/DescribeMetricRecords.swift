@@ -58,7 +58,10 @@ extension Apm {
         /// 页长
         public let pageSize: Int64?
 
-        public init(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil) {
+        /// Or过滤条件
+        public let orFilters: [Filter]?
+
+        public init(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, orFilters: [Filter]? = nil) {
             self.filters = filters
             self.metrics = metrics
             self.groupBy = groupBy
@@ -71,6 +74,7 @@ extension Apm {
             self.businessName = businessName
             self.pageIndex = pageIndex
             self.pageSize = pageSize
+            self.orFilters = orFilters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -86,6 +90,7 @@ extension Apm {
             case businessName = "BusinessName"
             case pageIndex = "PageIndex"
             case pageSize = "PageSize"
+            case orFilters = "OrFilters"
         }
 
         /// Compute the next request based on API response.
@@ -93,7 +98,7 @@ extension Apm {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeMetricRecordsRequest(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime, businessName: self.businessName, pageIndex: self.pageIndex, pageSize: self.pageSize)
+            return DescribeMetricRecordsRequest(filters: self.filters, metrics: self.metrics, groupBy: self.groupBy, orderBy: self.orderBy, instanceId: self.instanceId, limit: self.limit, startTime: self.startTime, offset: (self.offset ?? 0) + .init(response.getItems().count), endTime: self.endTime, businessName: self.businessName, pageIndex: self.pageIndex, pageSize: self.pageSize, orFilters: self.orFilters)
         }
     }
 
@@ -147,16 +152,16 @@ extension Apm {
     ///
     /// 拉取通用指标列表
     @inlinable
-    public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMetricRecordsResponse> {
-        self.describeMetricRecords(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+    public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, orFilters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMetricRecordsResponse> {
+        self.describeMetricRecords(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize, orFilters: orFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用指标列表接口
     ///
     /// 拉取通用指标列表
     @inlinable
-    public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricRecordsResponse {
-        try await self.describeMetricRecords(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+    public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, orFilters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricRecordsResponse {
+        try await self.describeMetricRecords(.init(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize, orFilters: orFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用指标列表接口

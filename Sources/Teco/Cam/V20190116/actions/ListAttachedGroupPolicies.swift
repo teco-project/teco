@@ -50,7 +50,7 @@ extension Cam {
 
     /// ListAttachedGroupPolicies返回参数结构体
     public struct ListAttachedGroupPoliciesResponse: TCResponseModel {
-        /// 策略总数
+        /// 策略总数。取值范围大于等于0。
         public let totalNum: UInt64
 
         /// 策略列表

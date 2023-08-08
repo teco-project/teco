@@ -20,8 +20,10 @@ extension TCCfsError {
     public struct ResourceNotFound: TCCfsErrorType {
         enum Code: String {
             case fileSystemNotFound = "ResourceNotFound.FileSystemNotFound"
+            case fsNotExist = "ResourceNotFound.FsNotExist"
             case mountTargetNotFound = "ResourceNotFound.MountTargetNotFound"
             case pgroupNotFound = "ResourceNotFound.PgroupNotFound"
+            case resourcePackageNotFound = "ResourceNotFound.ResourcePackageNotFound"
             case ruleNotFound = "ResourceNotFound.RuleNotFound"
             case snapshotNotFound = "ResourceNotFound.SnapshotNotFound"
             case other = "ResourceNotFound"
@@ -54,6 +56,11 @@ extension TCCfsError {
             ResourceNotFound(.fileSystemNotFound)
         }
 
+        /// 文件系统不存在。
+        public static var fsNotExist: ResourceNotFound {
+            ResourceNotFound(.fsNotExist)
+        }
+
         /// 挂载点不存在。
         public static var mountTargetNotFound: ResourceNotFound {
             ResourceNotFound(.mountTargetNotFound)
@@ -62,6 +69,11 @@ extension TCCfsError {
         /// 权限组不存在。
         public static var pgroupNotFound: ResourceNotFound {
             ResourceNotFound(.pgroupNotFound)
+        }
+
+        /// 资源不存在：资源ID 不存在。
+        public static var resourcePackageNotFound: ResourceNotFound {
+            ResourceNotFound(.resourcePackageNotFound)
         }
 
         /// 权限规则不存在。
@@ -86,10 +98,14 @@ extension TCCfsError {
             switch self.error {
             case .fileSystemNotFound:
                 code = .resourceNotFound_FileSystemNotFound
+            case .fsNotExist:
+                code = .resourceNotFound_FsNotExist
             case .mountTargetNotFound:
                 code = .resourceNotFound_MountTargetNotFound
             case .pgroupNotFound:
                 code = .resourceNotFound_PgroupNotFound
+            case .resourcePackageNotFound:
+                code = .resourceNotFound_ResourcePackageNotFound
             case .ruleNotFound:
                 code = .resourceNotFound_RuleNotFound
             case .snapshotNotFound:

@@ -24,7 +24,7 @@ extension Antiddos {
         /// 统计方式，仅支持sum
         public let statistics: String
 
-        /// 大禹子产品代号（bgpip表示高防IP）
+        /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
         /// 统计周期，可取值60，300，1800，3600， 21600，86400，单位秒

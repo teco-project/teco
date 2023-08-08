@@ -20,6 +20,7 @@ extension TCTeoError {
     public struct InternalError: TCTeoErrorType {
         enum Code: String {
             case backendError = "InternalError.BackendError"
+            case configLocked = "InternalError.ConfigLocked"
             case dbError = "InternalError.DBError"
             case domainConfig = "InternalError.DomainConfig"
             case failedToGenerateUrl = "InternalError.FailedToGenerateUrl"
@@ -28,6 +29,7 @@ extension TCTeoError {
             case quotaSystem = "InternalError.QuotaSystem"
             case routeError = "InternalError.RouteError"
             case systemError = "InternalError.SystemError"
+            case unknowError = "InternalError.UnknowError"
             case other = "InternalError"
         }
 
@@ -56,6 +58,11 @@ extension TCTeoError {
         /// 后台处理出错。
         public static var backendError: InternalError {
             InternalError(.backendError)
+        }
+
+        /// 配置已被锁定，请解除配置锁定之后在重试。
+        public static var configLocked: InternalError {
+            InternalError(.configLocked)
         }
 
         /// 数据库错误。
@@ -98,6 +105,11 @@ extension TCTeoError {
             InternalError(.systemError)
         }
 
+        /// 未知错误。
+        public static var unknowError: InternalError {
+            InternalError(.unknowError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -108,6 +120,8 @@ extension TCTeoError {
             switch self.error {
             case .backendError:
                 code = .internalError_BackendError
+            case .configLocked:
+                code = .internalError_ConfigLocked
             case .dbError:
                 code = .internalError_DBError
             case .domainConfig:
@@ -124,6 +138,8 @@ extension TCTeoError {
                 code = .internalError_RouteError
             case .systemError:
                 code = .internalError_SystemError
+            case .unknowError:
+                code = .internalError_UnknowError
             case .other:
                 code = .internalError
             }

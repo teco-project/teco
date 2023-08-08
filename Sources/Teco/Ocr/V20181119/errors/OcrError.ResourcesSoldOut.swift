@@ -45,6 +45,12 @@ extension TCOcrError {
         }
 
         /// 计费状态异常。
+        ///
+        /// 1.确认是否开通了文字识别服务。
+        /// 2.查看资源包是否消耗完毕。
+        /// 3.若已消耗完，请打开后付费开关。
+        /// 4.仍然报此错误，提单。
+        /// 详情查看https://cloud.tencent.com/document/product/866/33509#.E8.B0.83.E7.94.A8.E6.8E.A5.E5.8F.A3.E6.97.B6.E6.98.BE.E7.A4.BA.E8.AE.A1.E8.B4.B9.E7.8A.B6.E6.80.81.E5.BC.82.E5.B8.B8.E5.A6.82.E4.BD.95.E8.A7.A3.E5.86.B3.EF.BC.9F
         public static var chargeStatusException: ResourcesSoldOut {
             ResourcesSoldOut(.chargeStatusException)
         }

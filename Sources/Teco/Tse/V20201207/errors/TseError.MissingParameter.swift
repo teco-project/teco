@@ -20,7 +20,9 @@ extension TCTseError {
     public struct MissingParameter: TCTseErrorType {
         enum Code: String {
             case createError = "MissingParameter.CreateError"
+            case missParameter = "MissingParameter.MissParameter"
             case updateError = "MissingParameter.UpdateError"
+            case other = "MissingParameter"
         }
 
         private let error: Code
@@ -50,9 +52,19 @@ extension TCTseError {
             MissingParameter(.createError)
         }
 
+        /// 缺少参数。
+        public static var missParameter: MissingParameter {
+            MissingParameter(.missParameter)
+        }
+
         /// 缺失参数导致更新失败。
         public static var updateError: MissingParameter {
             MissingParameter(.updateError)
+        }
+
+        /// 缺少参数错误。
+        public static var other: MissingParameter {
+            MissingParameter(.other)
         }
 
         public func asTseError() -> TCTseError {
@@ -60,8 +72,12 @@ extension TCTseError {
             switch self.error {
             case .createError:
                 code = .missingParameter_CreateError
+            case .missParameter:
+                code = .missingParameter_MissParameter
             case .updateError:
                 code = .missingParameter_UpdateError
+            case .other:
+                code = .missingParameter
             }
             return TCTseError(code, context: self.context)
         }

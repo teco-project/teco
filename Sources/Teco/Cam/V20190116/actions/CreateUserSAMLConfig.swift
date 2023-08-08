@@ -24,12 +24,17 @@ extension Cam {
         /// SAML元数据文档，需要base64 encode
         public let samlMetadataDocument: String
 
-        public init(samlMetadataDocument: String) {
+        /// 辅助域名
+        public let auxiliaryDomain: String?
+
+        public init(samlMetadataDocument: String, auxiliaryDomain: String? = nil) {
             self.samlMetadataDocument = samlMetadataDocument
+            self.auxiliaryDomain = auxiliaryDomain
         }
 
         enum CodingKeys: String, CodingKey {
             case samlMetadataDocument = "SAMLMetadataDocument"
+            case auxiliaryDomain = "AuxiliaryDomain"
         }
     }
 
@@ -57,13 +62,13 @@ extension Cam {
 
     /// 创建用户SAML配置
     @inlinable @discardableResult
-    public func createUserSAMLConfig(samlMetadataDocument: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
-        self.createUserSAMLConfig(.init(samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
+    public func createUserSAMLConfig(samlMetadataDocument: String, auxiliaryDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
+        self.createUserSAMLConfig(.init(samlMetadataDocument: samlMetadataDocument, auxiliaryDomain: auxiliaryDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户SAML配置
     @inlinable @discardableResult
-    public func createUserSAMLConfig(samlMetadataDocument: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
-        try await self.createUserSAMLConfig(.init(samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
+    public func createUserSAMLConfig(samlMetadataDocument: String, auxiliaryDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
+        try await self.createUserSAMLConfig(.init(samlMetadataDocument: samlMetadataDocument, auxiliaryDomain: auxiliaryDomain), region: region, logger: logger, on: eventLoop)
     }
 }

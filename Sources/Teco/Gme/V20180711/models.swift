@@ -200,6 +200,20 @@ extension Gme {
         }
     }
 
+    /// 语音转文本配置数据
+    public struct AsrConf: TCInputModel, TCOutputModel {
+        /// 语音转文本服务开关，取值：open/close
+        public let status: String?
+
+        public init(status: String? = nil) {
+            self.status = status
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+        }
+    }
+
     /// 录音转文本用量统计数据
     public struct AudioTextStatisticsItem: TCOutputModel {
         /// 统计值，单位：秒
@@ -231,11 +245,14 @@ extension Gme {
         /// 实时语音服务配置数据
         public let realtimeSpeechConf: RealtimeSpeechConf
 
-        /// 语音消息及转文本服务配置数据
+        /// 语音消息服务配置数据
         public let voiceMessageConf: VoiceMessageConf
 
         /// 语音分析服务配置数据
         public let voiceFilterConf: VoiceFilterConf
+
+        /// 语音转文本服务配置数据
+        public let asrConf: AsrConf?
 
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
@@ -246,6 +263,7 @@ extension Gme {
             case realtimeSpeechConf = "RealtimeSpeechConf"
             case voiceMessageConf = "VoiceMessageConf"
             case voiceFilterConf = "VoiceFilterConf"
+            case asrConf = "AsrConf"
         }
     }
 
@@ -468,7 +486,7 @@ extension Gme {
         /// 实时语音服务开关，取值：open/close
         public let status: String?
 
-        /// 实时语音音质类型，取值：high-高音质
+        /// 实时语音音质类型，取值：high-高音质 ordinary-普通音质
         public let quality: String?
 
         public init(status: String? = nil, quality: String? = nil) {
@@ -493,7 +511,7 @@ extension Gme {
         }
     }
 
-    /// 房间内录制信息信息
+    /// 房间内录制信息。
     /// 注意：此字段可能返回 null，表示取不到有效值。
     public struct RecordInfo: TCOutputModel {
         /// 用户ID（当混流模式时，取值为0）。
@@ -635,6 +653,15 @@ extension Gme {
         }
     }
 
+    /// SceneInfo场景信息
+    /// 'RealTime','实时语音分析',
+    /// 'VoiceMessage','语音消息',
+    /// 'GMECloudApi':'GME云API接口'
+    public struct SceneInfo: TCInputModel, TCOutputModel {
+        public init() {
+        }
+    }
+
     /// 服务开关状态
     public struct ServiceStatus: TCOutputModel {
         /// 实时语音服务开关状态
@@ -657,12 +684,17 @@ extension Gme {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realTimeAsr: StatusInfo?
 
+        /// 文本翻译服务开关状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let textTranslate: StatusInfo?
+
         enum CodingKeys: String, CodingKey {
             case realTimeSpeech = "RealTimeSpeech"
             case voiceMessage = "VoiceMessage"
             case porn = "Porn"
             case live = "Live"
             case realTimeAsr = "RealTimeAsr"
+            case textTranslate = "TextTranslate"
         }
     }
 
@@ -804,12 +836,18 @@ extension Gme {
         /// 语音过滤服务开关，取值：open/close
         public let status: String?
 
-        public init(status: String? = nil) {
+        /// 场景配置信息，如开关状态，回调地址。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sceneInfos: [SceneInfo]?
+
+        public init(status: String? = nil, sceneInfos: [SceneInfo]? = nil) {
             self.status = status
+            self.sceneInfos = sceneInfos
         }
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
+            case sceneInfos = "SceneInfos"
         }
     }
 

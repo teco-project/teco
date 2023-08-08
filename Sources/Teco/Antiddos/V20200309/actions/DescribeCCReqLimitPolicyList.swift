@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Antiddos {
     /// DescribeCCReqLimitPolicyList请求参数结构体
     public struct DescribeCCReqLimitPolicyListRequest: TCPaginatedRequest {
-        /// 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
+        /// DDoS防护子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
         public let business: String
 
         /// 页起始偏移，取值为(页码-1)*一页条数

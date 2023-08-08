@@ -27,8 +27,10 @@ public protocol TCLighthouseErrorType: TCServiceErrorType {
 public struct TCLighthouseError: TCLighthouseErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_InvalidRegion = "AuthFailure.InvalidRegion"
         case failedOperation = "FailedOperation"
         case failedOperation_CreateBlueprintFailed = "FailedOperation.CreateBlueprintFailed"
+        case failedOperation_CreateDisksFailed = "FailedOperation.CreateDisksFailed"
         case failedOperation_CreateInstancesFailed = "FailedOperation.CreateInstancesFailed"
         case failedOperation_CreateKeyPairFailed = "FailedOperation.CreateKeyPairFailed"
         case failedOperation_DeleteKeyPairFailed = "FailedOperation.DeleteKeyPairFailed"
@@ -37,15 +39,22 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case failedOperation_DescribeInstancesModificationError = "FailedOperation.DescribeInstancesModificationError"
         case failedOperation_DescribeInstancesReturnableError = "FailedOperation.DescribeInstancesReturnableError"
         case failedOperation_DescribeInstancesTrafficPackagesFailed = "FailedOperation.DescribeInstancesTrafficPackagesFailed"
+        case failedOperation_DescribeResourcesReturnableError = "FailedOperation.DescribeResourcesReturnableError"
         case failedOperation_DestroyResourcesFailed = "FailedOperation.DestroyResourcesFailed"
+        case failedOperation_DockerContainersListTooLarge = "FailedOperation.DockerContainersListTooLarge"
+        case failedOperation_DockerOperationFailed = "FailedOperation.DockerOperationFailed"
         case failedOperation_FirewallRulesOperationFailed = "FailedOperation.FirewallRulesOperationFailed"
         case failedOperation_ImportKeyPairFailed = "FailedOperation.ImportKeyPairFailed"
         case failedOperation_InstanceOperationFailed = "FailedOperation.InstanceOperationFailed"
+        case failedOperation_InvalidCommandNotFound = "FailedOperation.InvalidCommandNotFound"
         case failedOperation_IsolateResourcesFailed = "FailedOperation.IsolateResourcesFailed"
         case failedOperation_ModifyInstancesBundleFailed = "FailedOperation.ModifyInstancesBundleFailed"
-        case failedOperation_RenewInstancesFailed = "FailedOperation.RenewInstancesFailed"
+        case failedOperation_ModifyResourcesAttributeFailed = "FailedOperation.ModifyResourcesAttributeFailed"
+        case failedOperation_RenewResourcesFailed = "FailedOperation.RenewResourcesFailed"
         case failedOperation_RequestError = "FailedOperation.RequestError"
         case failedOperation_SnapshotOperationFailed = "FailedOperation.SnapshotOperationFailed"
+        case failedOperation_TATInvocationNotFinished = "FailedOperation.TATInvocationNotFinished"
+        case failedOperation_TradeCallBillingGatewayFailed = "FailedOperation.TradeCallBillingGatewayFailed"
         case failedOperation_TradeGetPriceFailed = "FailedOperation.TradeGetPriceFailed"
         case failedOperation_UnableToCreateBlueprint = "FailedOperation.UnableToCreateBlueprint"
         case failedOperation_UnableToCreateInstances = "FailedOperation.UnableToCreateInstances"
@@ -70,12 +79,17 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case invalidParameterValue_BlueprintId = "InvalidParameterValue.BlueprintId"
         case invalidParameterValue_BlueprintIdMalformed = "InvalidParameterValue.BlueprintIdMalformed"
         case invalidParameterValue_BundleAndBlueprintNotMatch = "InvalidParameterValue.BundleAndBlueprintNotMatch"
+        case invalidParameterValue_BundleNotSupportBlueprintPlatform = "InvalidParameterValue.BundleNotSupportBlueprintPlatform"
         case invalidParameterValue_CcnIdMalformed = "InvalidParameterValue.CcnIdMalformed"
+        case invalidParameterValue_ClientTokenTooLong = "InvalidParameterValue.ClientTokenTooLong"
         case invalidParameterValue_DiskBackupIdMalformed = "InvalidParameterValue.DiskBackupIdMalformed"
+        case invalidParameterValue_DiskBackupNameTooLong = "InvalidParameterValue.DiskBackupNameTooLong"
+        case invalidParameterValue_DiskInstanceZoneNotMatch = "InvalidParameterValue.DiskInstanceZoneNotMatch"
         case invalidParameterValue_DiskNameTooLong = "InvalidParameterValue.DiskNameTooLong"
         case invalidParameterValue_DiskSizeNotMatch = "InvalidParameterValue.DiskSizeNotMatch"
         case invalidParameterValue_DuplicateParameterValue = "InvalidParameterValue.DuplicateParameterValue"
         case invalidParameterValue_Duplicated = "InvalidParameterValue.Duplicated"
+        case invalidParameterValue_FieldsCompare = "InvalidParameterValue.FieldsCompare"
         case invalidParameterValue_FirewallRuleDescriptionTooLong = "InvalidParameterValue.FirewallRuleDescriptionTooLong"
         case invalidParameterValue_InstanceIdMalformed = "InvalidParameterValue.InstanceIdMalformed"
         case invalidParameterValue_InstanceNameTooLong = "InvalidParameterValue.InstanceNameTooLong"
@@ -85,7 +99,9 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case invalidParameterValue_InvalidBlueprintType = "InvalidParameterValue.InvalidBlueprintType"
         case invalidParameterValue_InvalidBundle = "InvalidParameterValue.InvalidBundle"
         case invalidParameterValue_InvalidConsoleDisplayTypes = "InvalidParameterValue.InvalidConsoleDisplayTypes"
+        case invalidParameterValue_InvalidCurInstanceDeadline = "InvalidParameterValue.InvalidCurInstanceDeadline"
         case invalidParameterValue_InvalidDiskIdMalformed = "InvalidParameterValue.InvalidDiskIdMalformed"
+        case invalidParameterValue_InvalidDiskType = "InvalidParameterValue.InvalidDiskType"
         case invalidParameterValue_InvalidInstanceLoginKeyPairPermitLogin = "InvalidParameterValue.InvalidInstanceLoginKeyPairPermitLogin"
         case invalidParameterValue_InvalidIpFormat = "InvalidParameterValue.InvalidIpFormat"
         case invalidParameterValue_InvalidKeyPairNameEmpty = "InvalidParameterValue.InvalidKeyPairNameEmpty"
@@ -103,16 +119,20 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case invalidParameterValue_Negative = "InvalidParameterValue.Negative"
         case invalidParameterValue_NotAllowToChangePlatformType = "InvalidParameterValue.NotAllowToChangePlatformType"
         case invalidParameterValue_OutOfRange = "InvalidParameterValue.OutOfRange"
+        case invalidParameterValue_PlatformTypeNotSupportFileSystem = "InvalidParameterValue.PlatformTypeNotSupportFileSystem"
+        case invalidParameterValue_PlatformTypeNotSupportMountPoint = "InvalidParameterValue.PlatformTypeNotSupportMountPoint"
         case invalidParameterValue_RegionNotFound = "InvalidParameterValue.RegionNotFound"
         case invalidParameterValue_RegionNotMatch = "InvalidParameterValue.RegionNotMatch"
         case invalidParameterValue_RegionNotSupported = "InvalidParameterValue.RegionNotSupported"
         case invalidParameterValue_RegionUnavailable = "InvalidParameterValue.RegionUnavailable"
         case invalidParameterValue_SnapshotIdMalformed = "InvalidParameterValue.SnapshotIdMalformed"
         case invalidParameterValue_SnapshotNameTooLong = "InvalidParameterValue.SnapshotNameTooLong"
+        case invalidParameterValue_TooLarge = "InvalidParameterValue.TooLarge"
         case invalidParameterValue_TooLong = "InvalidParameterValue.TooLong"
         case invalidParameterValue_ZoneInvalid = "InvalidParameterValue.ZoneInvalid"
         case invalidParameter_BundleAndBlueprintNotMatch = "InvalidParameter.BundleAndBlueprintNotMatch"
         case invalidParameter_BundleIdNotFound = "InvalidParameter.BundleIdNotFound"
+        case invalidParameter_Conflict = "InvalidParameter.Conflict"
         case invalidParameter_FilterValueLimitExceeded = "InvalidParameter.FilterValueLimitExceeded"
         case invalidParameter_FirewallRulesDuplicated = "InvalidParameter.FirewallRulesDuplicated"
         case invalidParameter_FirewallRulesExist = "InvalidParameter.FirewallRulesExist"
@@ -122,17 +142,21 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case invalidParameter_InvalidFilterInvalidValuesNotList = "InvalidParameter.InvalidFilterInvalidValuesNotList"
         case invalidParameter_InvalidFilterNotDict = "InvalidParameter.InvalidFilterNotDict"
         case invalidParameter_InvalidFilterNotSupportedName = "InvalidParameter.InvalidFilterNotSupportedName"
+        case invalidParameter_MustSpecifyOneAttributeToModify = "InvalidParameter.MustSpecifyOneAttributeToModify"
         case invalidParameter_OnlyAllowModifyOneAttribute = "InvalidParameter.OnlyAllowModifyOneAttribute"
         case invalidParameter_ParameterConflict = "InvalidParameter.ParameterConflict"
         case limitExceeded = "LimitExceeded"
         case limitExceeded_AttachDataDiskQuotaLimitExceeded = "LimitExceeded.AttachDataDiskQuotaLimitExceeded"
+        case limitExceeded_BlueprintQuotaLimitExceeded = "LimitExceeded.BlueprintQuotaLimitExceeded"
         case limitExceeded_DiskBackupQuotaLimitExceeded = "LimitExceeded.DiskBackupQuotaLimitExceeded"
+        case limitExceeded_DiskQuotaLimitExceeded = "LimitExceeded.DiskQuotaLimitExceeded"
         case limitExceeded_FirewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
         case limitExceeded_InstanceQuotaLimitExceeded = "LimitExceeded.InstanceQuotaLimitExceeded"
         case limitExceeded_IsolateResourcesLimitExceeded = "LimitExceeded.IsolateResourcesLimitExceeded"
         case limitExceeded_KeyPairLimitExceeded = "LimitExceeded.KeyPairLimitExceeded"
         case limitExceeded_SnapshotQuotaLimitExceeded = "LimitExceeded.SnapshotQuotaLimitExceeded"
         case missingParameter = "MissingParameter"
+        case missingParameter_MissingParameterPeriodCurInstanceDeadline = "MissingParameter.MissingParameterPeriodCurInstanceDeadline"
         case operationDenied_BundleNotSupportModify = "OperationDenied.BundleNotSupportModify"
         case operationDenied_DiskBackupBusy = "OperationDenied.DiskBackupBusy"
         case operationDenied_DiskBackupOperationInProgress = "OperationDenied.DiskBackupOperationInProgress"
@@ -142,6 +166,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case operationDenied_DiskUsageNotSupportOperation = "OperationDenied.DiskUsageNotSupportOperation"
         case operationDenied_InstanceCreating = "OperationDenied.InstanceCreating"
         case operationDenied_InstanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
+        case operationDenied_OperationDeniedCreateSnapshot = "OperationDenied.OperationDeniedCreateSnapshot"
         case operationDenied_OperationDeniedCreateSnapshotForStorageBundle = "OperationDenied.OperationDeniedCreateSnapshotForStorageBundle"
         case resourceInUse_DiskBackupInUse = "ResourceInUse.DiskBackupInUse"
         case resourceInUse_KeyPairInUse = "ResourceInUse.KeyPairInUse"
@@ -161,16 +186,23 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case resourceNotFound_InstanceIdNotFound = "ResourceNotFound.InstanceIdNotFound"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_KeyIdNotFound = "ResourceNotFound.KeyIdNotFound"
+        case resourceNotFound_KeyPairNotFound = "ResourceNotFound.KeyPairNotFound"
         case resourceNotFound_PrivateBlueprintNotFound = "ResourceNotFound.PrivateBlueprintNotFound"
         case resourceNotFound_RoleNotFound = "ResourceNotFound.RoleNotFound"
         case resourceNotFound_SceneIdNotFound = "ResourceNotFound.SceneIdNotFound"
         case resourceNotFound_SnapshotIdNotFound = "ResourceNotFound.SnapshotIdNotFound"
         case resourceNotFound_SnapshotNotFound = "ResourceNotFound.SnapshotNotFound"
         case resourceUnavailable = "ResourceUnavailable"
+        case resourceUnavailable_BlueprintInvalid = "ResourceUnavailable.BlueprintInvalid"
         case resourceUnavailable_BlueprintUnavailable = "ResourceUnavailable.BlueprintUnavailable"
         case resourceUnavailable_BundleUnavailable = "ResourceUnavailable.BundleUnavailable"
+        case resourceUnavailable_DockerUnavailable = "ResourceUnavailable.DockerUnavailable"
+        case resourceUnavailable_TATAgentUnavailable = "ResourceUnavailable.TATAgentUnavailable"
+        case resourceUnavailable_TATServiceError = "ResourceUnavailable.TATServiceError"
         case resourcesSoldOut_PurchaseSourceHasNoBundleConfigs = "ResourcesSoldOut.PurchaseSourceHasNoBundleConfigs"
         case resourcesSoldOut_ZonesHasNoBundleConfigs = "ResourcesSoldOut.ZonesHasNoBundleConfigs"
+        case unauthorizedOperation = "UnauthorizedOperation"
+        case unauthorizedOperation_InvalidToken = "UnauthorizedOperation.InvalidToken"
         case unauthorizedOperation_MFAExpired = "UnauthorizedOperation.MFAExpired"
         case unauthorizedOperation_MFANotFound = "UnauthorizedOperation.MFANotFound"
         case unauthorizedOperation_NoPermission = "UnauthorizedOperation.NoPermission"
@@ -206,6 +238,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         case unsupportedOperation_ResourceNotReturnable = "UnsupportedOperation.ResourceNotReturnable"
         case unsupportedOperation_SnapshotBusy = "UnsupportedOperation.SnapshotBusy"
         case unsupportedOperation_SystemBusy = "UnsupportedOperation.SystemBusy"
+        case unsupportedOperation_TatAgentNotOnline = "UnsupportedOperation.TatAgentNotOnline"
         case unsupportedOperation_WindowsNotAllowToAssociateKeyPair = "UnsupportedOperation.WindowsNotAllowToAssociateKeyPair"
         case unsupportedOperation_WindowsNotSupportKeyPair = "UnsupportedOperation.WindowsNotSupportKeyPair"
     }
@@ -213,11 +246,13 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// Error domains affliated to ``TCLighthouseError``.
     public static var domains: [TCErrorType.Type] {
         [
+            AuthFailure.self,
             FailedOperation.self,
             InternalError.self,
             InvalidParameter.self,
             InvalidParameterValue.self,
             LimitExceeded.self,
+            MissingParameter.self,
             OperationDenied.self,
             ResourceInUse.self,
             ResourceNotFound.self,
@@ -255,6 +290,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.authFailure)
     }
 
+    /// 该地域尚未开放，请选择其他地域。
+    public static var authFailure_InvalidRegion: TCLighthouseError {
+        TCLighthouseError(.authFailure_InvalidRegion)
+    }
+
     /// 操作失败。
     public static var failedOperation: TCLighthouseError {
         TCLighthouseError(.failedOperation)
@@ -263,6 +303,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 创建镜像失败。
     public static var failedOperation_CreateBlueprintFailed: TCLighthouseError {
         TCLighthouseError(.failedOperation_CreateBlueprintFailed)
+    }
+
+    /// 创建云硬盘失败。
+    public static var failedOperation_CreateDisksFailed: TCLighthouseError {
+        TCLighthouseError(.failedOperation_CreateDisksFailed)
     }
 
     /// 创建实例失败。
@@ -305,8 +350,24 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.failedOperation_DescribeInstancesTrafficPackagesFailed)
     }
 
+    /// 查询资源返回了不符合要求内容。
+    public static var failedOperation_DescribeResourcesReturnableError: TCLighthouseError {
+        TCLighthouseError(.failedOperation_DescribeResourcesReturnableError)
+    }
+
+    /// 销毁资源失败，请稍后重新操作。
     public static var failedOperation_DestroyResourcesFailed: TCLighthouseError {
         TCLighthouseError(.failedOperation_DestroyResourcesFailed)
+    }
+
+    /// 容器列表过长。
+    public static var failedOperation_DockerContainersListTooLarge: TCLighthouseError {
+        TCLighthouseError(.failedOperation_DockerContainersListTooLarge)
+    }
+
+    /// 指定Docker环境操作失败, 请检查Docker环境。
+    public static var failedOperation_DockerOperationFailed: TCLighthouseError {
+        TCLighthouseError(.failedOperation_DockerOperationFailed)
     }
 
     /// 对防火墙规则的操作失败。
@@ -324,6 +385,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.failedOperation_InstanceOperationFailed)
     }
 
+    /// 命令无法找到。
+    public static var failedOperation_InvalidCommandNotFound: TCLighthouseError {
+        TCLighthouseError(.failedOperation_InvalidCommandNotFound)
+    }
+
     /// 退还资源失败。
     public static var failedOperation_IsolateResourcesFailed: TCLighthouseError {
         TCLighthouseError(.failedOperation_IsolateResourcesFailed)
@@ -334,9 +400,14 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.failedOperation_ModifyInstancesBundleFailed)
     }
 
-    /// 续费实例失败。
-    public static var failedOperation_RenewInstancesFailed: TCLighthouseError {
-        TCLighthouseError(.failedOperation_RenewInstancesFailed)
+    /// 变更资源属性失败，请稍后重新操作。
+    public static var failedOperation_ModifyResourcesAttributeFailed: TCLighthouseError {
+        TCLighthouseError(.failedOperation_ModifyResourcesAttributeFailed)
+    }
+
+    /// 续费资源失败。
+    public static var failedOperation_RenewResourcesFailed: TCLighthouseError {
+        TCLighthouseError(.failedOperation_RenewResourcesFailed)
     }
 
     /// 请求错误。
@@ -347,6 +418,16 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 快照操作失败。
     public static var failedOperation_SnapshotOperationFailed: TCLighthouseError {
         TCLighthouseError(.failedOperation_SnapshotOperationFailed)
+    }
+
+    /// TAT命令未完成。
+    public static var failedOperation_TATInvocationNotFinished: TCLighthouseError {
+        TCLighthouseError(.failedOperation_TATInvocationNotFinished)
+    }
+
+    /// 调用计费网关服务失败，请稍后重新操作操作。
+    public static var failedOperation_TradeCallBillingGatewayFailed: TCLighthouseError {
+        TCLighthouseError(.failedOperation_TradeCallBillingGatewayFailed)
     }
 
     /// 计费询价失败。
@@ -477,14 +558,33 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_BundleAndBlueprintNotMatch)
     }
 
+    public static var invalidParameterValue_BundleNotSupportBlueprintPlatform: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_BundleNotSupportBlueprintPlatform)
+    }
+
     /// 云联网实例ID格式非法。
     public static var invalidParameterValue_CcnIdMalformed: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_CcnIdMalformed)
     }
 
+    /// 客户令牌长度超出限制。
+    public static var invalidParameterValue_ClientTokenTooLong: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_ClientTokenTooLong)
+    }
+
     /// 参数值非法，云硬盘备份点 ID 格式非法。
     public static var invalidParameterValue_DiskBackupIdMalformed: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_DiskBackupIdMalformed)
+    }
+
+    /// 指定的云盘备份点名称不可大于最大长度。
+    public static var invalidParameterValue_DiskBackupNameTooLong: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_DiskBackupNameTooLong)
+    }
+
+    /// 云硬盘的可用区与实例的可用区不匹配。
+    public static var invalidParameterValue_DiskInstanceZoneNotMatch: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_DiskInstanceZoneNotMatch)
     }
 
     /// 磁盘名称长度超出限制。
@@ -505,6 +605,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 参数值非法，不允许包含重复的值。
     public static var invalidParameterValue_Duplicated: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_Duplicated)
+    }
+
+    /// 列值不正确。
+    public static var invalidParameterValue_FieldsCompare: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_FieldsCompare)
     }
 
     /// 防火墙规则描述长度超出限制。
@@ -554,9 +659,19 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_InvalidConsoleDisplayTypes)
     }
 
+    /// 当前实例到期时间不能早于云硬盘到期时间。
+    public static var invalidParameterValue_InvalidCurInstanceDeadline: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_InvalidCurInstanceDeadline)
+    }
+
     /// 参数值非法，磁盘 ID 格式非法。
     public static var invalidParameterValue_InvalidDiskIdMalformed: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_InvalidDiskIdMalformed)
+    }
+
+    /// 云硬盘类型非法。
+    public static var invalidParameterValue_InvalidDiskType: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_InvalidDiskType)
     }
 
     /// 设置是否使用默认密钥对登录的值不正确。
@@ -644,6 +759,16 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_OutOfRange)
     }
 
+    /// 实例操作系统不支持该文件系统。
+    public static var invalidParameterValue_PlatformTypeNotSupportFileSystem: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_PlatformTypeNotSupportFileSystem)
+    }
+
+    /// 实例操作系统不支持指定挂载点。
+    public static var invalidParameterValue_PlatformTypeNotSupportMountPoint: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_PlatformTypeNotSupportMountPoint)
+    }
+
     /// 地域不存在。
     public static var invalidParameterValue_RegionNotFound: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_RegionNotFound)
@@ -674,6 +799,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_SnapshotNameTooLong)
     }
 
+    /// 参数值非法，大于有效值。
+    public static var invalidParameterValue_TooLarge: TCLighthouseError {
+        TCLighthouseError(.invalidParameterValue_TooLarge)
+    }
+
     /// 参数取值过长，超过最大长度。
     public static var invalidParameterValue_TooLong: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_TooLong)
@@ -694,6 +824,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 产品未定义的套餐 ID。
     public static var invalidParameter_BundleIdNotFound: TCLighthouseError {
         TCLighthouseError(.invalidParameter_BundleIdNotFound)
+    }
+
+    /// 参数冲突。
+    public static var invalidParameter_Conflict: TCLighthouseError {
+        TCLighthouseError(.invalidParameter_Conflict)
     }
 
     /// 参数非法，Filter 参数中的 Values 取值数量超过允许的最大数量。
@@ -741,6 +876,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameter_InvalidFilterNotSupportedName)
     }
 
+    /// 必须要指定一个要修改的属性。
+    public static var invalidParameter_MustSpecifyOneAttributeToModify: TCLighthouseError {
+        TCLighthouseError(.invalidParameter_MustSpecifyOneAttributeToModify)
+    }
+
     /// 参数非法，每次只能修改一个属性。
     public static var invalidParameter_OnlyAllowModifyOneAttribute: TCLighthouseError {
         TCLighthouseError(.invalidParameter_OnlyAllowModifyOneAttribute)
@@ -756,14 +896,24 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.limitExceeded)
     }
 
-    /// 实例挂载数据盘配额不足，无法挂载磁盘。
+    /// 实例挂载数据盘配额不足，无法挂载云硬盘。
     public static var limitExceeded_AttachDataDiskQuotaLimitExceeded: TCLighthouseError {
         TCLighthouseError(.limitExceeded_AttachDataDiskQuotaLimitExceeded)
+    }
+
+    /// 配额不足，当前自定义镜像配额不允许创建新的自定义镜像。
+    public static var limitExceeded_BlueprintQuotaLimitExceeded: TCLighthouseError {
+        TCLighthouseError(.limitExceeded_BlueprintQuotaLimitExceeded)
     }
 
     /// 超过磁盘备份点配额限制。
     public static var limitExceeded_DiskBackupQuotaLimitExceeded: TCLighthouseError {
         TCLighthouseError(.limitExceeded_DiskBackupQuotaLimitExceeded)
+    }
+
+    /// 当前配额不足，无法创建新的云硬盘。
+    public static var limitExceeded_DiskQuotaLimitExceeded: TCLighthouseError {
+        TCLighthouseError(.limitExceeded_DiskQuotaLimitExceeded)
     }
 
     /// 超过防火墙规则配额。
@@ -794,6 +944,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 缺少参数错误。
     public static var missingParameter: TCLighthouseError {
         TCLighthouseError(.missingParameter)
+    }
+
+    /// 必须传入参数Period或CurInstanceDeadline。
+    public static var missingParameter_MissingParameterPeriodCurInstanceDeadline: TCLighthouseError {
+        TCLighthouseError(.missingParameter_MissingParameterPeriodCurInstanceDeadline)
     }
 
     /// 该实例不支持升级套餐操作。
@@ -841,6 +996,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 禁止对实例进行操作，实例最近一次的操作尚在进行中。
     public static var operationDenied_InstanceOperationInProgress: TCLighthouseError {
         TCLighthouseError(.operationDenied_InstanceOperationInProgress)
+    }
+
+    /// 禁止创建快照。
+    public static var operationDenied_OperationDeniedCreateSnapshot: TCLighthouseError {
+        TCLighthouseError(.operationDenied_OperationDeniedCreateSnapshot)
     }
 
     /// 使用存储型套餐的实例不支持创建快照。
@@ -938,6 +1098,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.resourceNotFound_KeyIdNotFound)
     }
 
+    /// 密钥对不存在。
+    public static var resourceNotFound_KeyPairNotFound: TCLighthouseError {
+        TCLighthouseError(.resourceNotFound_KeyPairNotFound)
+    }
+
     /// 自定义镜像不存在。
     public static var resourceNotFound_PrivateBlueprintNotFound: TCLighthouseError {
         TCLighthouseError(.resourceNotFound_PrivateBlueprintNotFound)
@@ -968,6 +1133,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.resourceUnavailable)
     }
 
+    /// 指定实例镜像不符合要求。
+    public static var resourceUnavailable_BlueprintInvalid: TCLighthouseError {
+        TCLighthouseError(.resourceUnavailable_BlueprintInvalid)
+    }
+
     /// 镜像资源不可用。
     public static var resourceUnavailable_BlueprintUnavailable: TCLighthouseError {
         TCLighthouseError(.resourceUnavailable_BlueprintUnavailable)
@@ -976,6 +1146,21 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 套餐不可用。
     public static var resourceUnavailable_BundleUnavailable: TCLighthouseError {
         TCLighthouseError(.resourceUnavailable_BundleUnavailable)
+    }
+
+    /// Docker资源不可用。
+    public static var resourceUnavailable_DockerUnavailable: TCLighthouseError {
+        TCLighthouseError(.resourceUnavailable_DockerUnavailable)
+    }
+
+    /// TAT agent不可用。
+    public static var resourceUnavailable_TATAgentUnavailable: TCLighthouseError {
+        TCLighthouseError(.resourceUnavailable_TATAgentUnavailable)
+    }
+
+    /// TAT 服务错误。
+    public static var resourceUnavailable_TATServiceError: TCLighthouseError {
+        TCLighthouseError(.resourceUnavailable_TATServiceError)
     }
 
     /// 套餐无可用配置。
@@ -990,6 +1175,16 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 更换套餐。
     public static var resourcesSoldOut_ZonesHasNoBundleConfigs: TCLighthouseError {
         TCLighthouseError(.resourcesSoldOut_ZonesHasNoBundleConfigs)
+    }
+
+    /// 未授权操作。
+    public static var unauthorizedOperation: TCLighthouseError {
+        TCLighthouseError(.unauthorizedOperation)
+    }
+
+    /// 无效 Token。
+    public static var unauthorizedOperation_InvalidToken: TCLighthouseError {
+        TCLighthouseError(.unauthorizedOperation_InvalidToken)
     }
 
     /// MFA 已过期。
@@ -1167,6 +1362,11 @@ public struct TCLighthouseError: TCLighthouseErrorType {
     /// 系统忙。
     public static var unsupportedOperation_SystemBusy: TCLighthouseError {
         TCLighthouseError(.unsupportedOperation_SystemBusy)
+    }
+
+    /// 实例上腾讯云助手 agent 不在线。
+    public static var unsupportedOperation_TatAgentNotOnline: TCLighthouseError {
+        TCLighthouseError(.unsupportedOperation_TatAgentNotOnline)
     }
 
     /// Windows实例不支持绑定密钥对。

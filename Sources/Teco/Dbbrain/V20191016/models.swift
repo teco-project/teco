@@ -288,14 +288,20 @@ extension Dbbrain {
         /// 实例概览开关，Yes/No。
         public let overviewDisplay: String?
 
-        public init(dailyInspection: String? = nil, overviewDisplay: String? = nil) {
+        /// redis大key分析的自定义分割符，仅redis使用
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keyDelimiters: [String]?
+
+        public init(dailyInspection: String? = nil, overviewDisplay: String? = nil, keyDelimiters: [String]? = nil) {
             self.dailyInspection = dailyInspection
             self.overviewDisplay = overviewDisplay
+            self.keyDelimiters = keyDelimiters
         }
 
         enum CodingKeys: String, CodingKey {
             case dailyInspection = "DailyInspection"
             case overviewDisplay = "OverviewDisplay"
+            case keyDelimiters = "KeyDelimiters"
         }
     }
 
@@ -388,6 +394,25 @@ extension Dbbrain {
         /// 实例审计日志运行状态：normal： 运行中； paused： 欠费暂停。
         public let auditRunningStatus: String
 
+        /// 内网vip。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalVip: String?
+
+        /// 内网port。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internalVport: Int64?
+
+        /// 创建时间。
+        public let createTime: String?
+
+        /// 所属集群ID（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 所属集群名称（仅对集群数据库产品该字段非空，如TDSQL-C）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -417,6 +442,11 @@ extension Dbbrain {
             case secAuditStatus = "SecAuditStatus"
             case auditPolicyStatus = "AuditPolicyStatus"
             case auditRunningStatus = "AuditRunningStatus"
+            case internalVip = "InternalVip"
+            case internalVport = "InternalVport"
+            case createTime = "CreateTime"
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -832,6 +862,9 @@ extension Dbbrain {
         /// 平均扫描行数
         public let rowsExaminedAvg: Float
 
+        /// SOL模板的MD5值
+        public let md5: String?
+
         enum CodingKeys: String, CodingKey {
             case lockTime = "LockTime"
             case lockTimeMax = "LockTimeMax"
@@ -857,6 +890,25 @@ extension Dbbrain {
             case rowsSentAvg = "RowsSentAvg"
             case lockTimeAvg = "LockTimeAvg"
             case rowsExaminedAvg = "RowsExaminedAvg"
+            case md5 = "Md5"
+        }
+    }
+
+    /// 慢日志来源用户详情。
+    public struct SlowLogUser: TCOutputModel {
+        /// 来源用户名。
+        public let userName: String?
+
+        /// 该来源用户名的慢日志数目占总数目的比例，单位%。
+        public let ratio: Float?
+
+        /// 该来源用户名的慢日志数目。
+        public let count: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case ratio = "Ratio"
+            case count = "Count"
         }
     }
 

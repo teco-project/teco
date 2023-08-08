@@ -105,7 +105,7 @@ extension Apigateway {
 
     /// 创建后端通道
     ///
-    /// 用于创建创建后端通道
+    /// 用于创建后端通道
     @inlinable
     public func createUpstream(_ input: CreateUpstreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUpstreamResponse> {
         self.client.execute(action: "CreateUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Apigateway {
 
     /// 创建后端通道
     ///
-    /// 用于创建创建后端通道
+    /// 用于创建后端通道
     @inlinable
     public func createUpstream(_ input: CreateUpstreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpstreamResponse {
         try await self.client.execute(action: "CreateUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -121,7 +121,7 @@ extension Apigateway {
 
     /// 创建后端通道
     ///
-    /// 用于创建创建后端通道
+    /// 用于创建后端通道
     @inlinable
     public func createUpstream(scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, upstreamType: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, tags: [Tag]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUpstreamResponse> {
         self.createUpstream(.init(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Apigateway {
 
     /// 创建后端通道
     ///
-    /// 用于创建创建后端通道
+    /// 用于创建后端通道
     @inlinable
     public func createUpstream(scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, upstreamType: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, tags: [Tag]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpstreamResponse {
         try await self.createUpstream(.init(scheme: scheme, algorithm: algorithm, uniqVpcId: uniqVpcId, upstreamName: upstreamName, upstreamDescription: upstreamDescription, upstreamType: upstreamType, retries: retries, upstreamHost: upstreamHost, nodes: nodes, tags: tags, healthChecker: healthChecker, k8sService: k8sService), region: region, logger: logger, on: eventLoop)

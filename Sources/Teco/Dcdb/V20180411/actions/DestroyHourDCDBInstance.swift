@@ -51,33 +51,33 @@ extension Dcdb {
         }
     }
 
-    /// 销毁按量计费实例
+    /// 销毁TDSQL按量计费实例
     ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    /// 本接口（DestroyHourDCDBInstance）用于TDSQL销毁按量计费实例。
     @inlinable
     public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDCDBInstanceResponse> {
         self.client.execute(action: "DestroyHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 销毁按量计费实例
+    /// 销毁TDSQL按量计费实例
     ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    /// 本接口（DestroyHourDCDBInstance）用于TDSQL销毁按量计费实例。
     @inlinable
     public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
         try await self.client.execute(action: "DestroyHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 销毁按量计费实例
+    /// 销毁TDSQL按量计费实例
     ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    /// 本接口（DestroyHourDCDBInstance）用于TDSQL销毁按量计费实例。
     @inlinable
     public func destroyHourDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDCDBInstanceResponse> {
         self.destroyHourDCDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 销毁按量计费实例
+    /// 销毁TDSQL按量计费实例
     ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    /// 本接口（DestroyHourDCDBInstance）用于TDSQL销毁按量计费实例。
     @inlinable
     public func destroyHourDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
         try await self.destroyHourDCDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

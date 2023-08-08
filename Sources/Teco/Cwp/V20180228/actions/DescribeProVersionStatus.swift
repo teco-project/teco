@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// DescribeProVersionStatus请求参数结构体
     public struct DescribeProVersionStatusRequest: TCRequestModel {
-        /// 云镜客户端UUID、填写"all"表示所有主机。
+        /// 主机安全客户端UUID、填写"all"表示所有主机。
         public let uuid: String
 
         public init(uuid: String) {

@@ -25,21 +25,26 @@ extension Tcr {
         public let registryId: String
 
         /// 白名单Id
-        public let policyIndex: Int64
+        public let policyIndex: Int64?
 
         /// 白名单版本
-        public let policyVersion: String
+        public let policyVersion: String?
 
-        public init(registryId: String, policyIndex: Int64, policyVersion: String) {
+        /// 网段或IP(互斥)
+        public let cidrBlock: String?
+
+        public init(registryId: String, policyIndex: Int64? = nil, policyVersion: String? = nil, cidrBlock: String? = nil) {
             self.registryId = registryId
             self.policyIndex = policyIndex
             self.policyVersion = policyVersion
+            self.cidrBlock = cidrBlock
         }
 
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case policyIndex = "PolicyIndex"
             case policyVersion = "PolicyVersion"
+            case cidrBlock = "CidrBlock"
         }
     }
 
@@ -58,26 +63,42 @@ extension Tcr {
     }
 
     /// 删除实例公网访问白名单策略
+    ///
+    /// 删除实例公网访问白名单策略
+    ///
+    /// 注意：当PolicyIndex和CidrBlock同时存在时，CidrBlock优先级更高
     @inlinable
     public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
         self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问白名单策略
+    ///
+    /// 删除实例公网访问白名单策略
+    ///
+    /// 注意：当PolicyIndex和CidrBlock同时存在时，CidrBlock优先级更高
     @inlinable
     public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
         try await self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例公网访问白名单策略
+    ///
+    /// 删除实例公网访问白名单策略
+    ///
+    /// 注意：当PolicyIndex和CidrBlock同时存在时，CidrBlock优先级更高
     @inlinable
-    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
-        self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
+    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64? = nil, policyVersion: String? = nil, cidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
+        self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion, cidrBlock: cidrBlock), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问白名单策略
+    ///
+    /// 删除实例公网访问白名单策略
+    ///
+    /// 注意：当PolicyIndex和CidrBlock同时存在时，CidrBlock优先级更高
     @inlinable
-    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
-        try await self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
+    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64? = nil, policyVersion: String? = nil, cidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
+        try await self.deleteSecurityPolicy(.init(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion, cidrBlock: cidrBlock), region: region, logger: logger, on: eventLoop)
     }
 }

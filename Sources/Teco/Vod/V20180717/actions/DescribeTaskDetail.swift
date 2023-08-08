@@ -53,7 +53,9 @@ extension Vod {
         /// <li>DescribeFileAttributesTask：获取文件属性任务；</li>
         /// <li>RebuildMedia：音画质重生任务；</li>
         /// <li>ReviewAudioVideo：音视频审核任务；</li>
-        /// <li>ExtractTraceWatermark：提取溯源水印任务。</li>
+        /// <li>ExtractTraceWatermark：提取溯源水印任务；</li>
+        /// <li>ExtractCopyRightWatermark：提取版权水印任务；</li>
+        /// <li>QualityInspect：音画质检测任务。</li>
         public let taskType: String
 
         /// 任务状态，取值：
@@ -131,6 +133,10 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extractTraceWatermarkTask: ExtractTraceWatermarkTask?
 
+        /// 提取版权水印任务信息，仅当 TaskType 为 ExtractCopyRightWatermark，该字段有值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extractCopyRightWatermarkTask: ExtractCopyRightWatermarkTask?
+
         /// 音视频审核任务信息，仅当 TaskType 为 ReviewAudioVideo，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reviewAudioVideoTask: ReviewAudioVideoTask?
@@ -142,6 +148,10 @@ extension Vod {
         /// 获取文件属性任务信息，仅当 TaskType 为 DescribeFileAttributes，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describeFileAttributesTask: DescribeFileAttributesTask?
+
+        /// 音画质检测任务信息，仅当 TaskType 为 QualityInspect 时该字段有值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityInspectTask: QualityInspectTask?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -167,9 +177,11 @@ extension Vod {
             case removeWatermarkTask = "RemoveWatermarkTask"
             case rebuildMediaTask = "RebuildMediaTask"
             case extractTraceWatermarkTask = "ExtractTraceWatermarkTask"
+            case extractCopyRightWatermarkTask = "ExtractCopyRightWatermarkTask"
             case reviewAudioVideoTask = "ReviewAudioVideoTask"
             case reduceMediaBitrateTask = "ReduceMediaBitrateTask"
             case describeFileAttributesTask = "DescribeFileAttributesTask"
+            case qualityInspectTask = "QualityInspectTask"
             case requestId = "RequestId"
         }
     }

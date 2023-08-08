@@ -20,6 +20,7 @@ extension TCCvmError {
     public struct InvalidParameter: TCCvmErrorType {
         enum Code: String {
             case atMostOne = "InvalidParameter.AtMostOne"
+            case cdcNotSupported = "InvalidParameter.CdcNotSupported"
             case dataDiskIdContainsRootDisk = "InvalidParameter.DataDiskIdContainsRootDisk"
             case dataDiskNotBelongSpecifiedInstance = "InvalidParameter.DataDiskNotBelongSpecifiedInstance"
             case duplicateSystemSnapshots = "InvalidParameter.DuplicateSystemSnapshots"
@@ -71,6 +72,11 @@ extension TCCvmError {
         /// 最多指定一个参数。
         public static var atMostOne: InvalidParameter {
             InvalidParameter(.atMostOne)
+        }
+
+        /// 不支持参数CdcId。
+        public static var cdcNotSupported: InvalidParameter {
+            InvalidParameter(.cdcNotSupported)
         }
 
         /// DataDiskIds不应该传入RootDisk的Id。
@@ -202,6 +208,8 @@ extension TCCvmError {
             switch self.error {
             case .atMostOne:
                 code = .invalidParameter_AtMostOne
+            case .cdcNotSupported:
+                code = .invalidParameter_CdcNotSupported
             case .dataDiskIdContainsRootDisk:
                 code = .invalidParameter_DataDiskIdContainsRootDisk
             case .dataDiskNotBelongSpecifiedInstance:

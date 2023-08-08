@@ -42,7 +42,10 @@ extension Tcr {
         /// 是否开启Cos桶多AZ特性
         public let enableCosMAZ: Bool?
 
-        public init(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil) {
+        /// 是否开启实例删除保护
+        public let deletionProtection: Bool?
+
+        public init(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil, deletionProtection: Bool? = nil) {
             self.registryName = registryName
             self.registryType = registryType
             self.tagSpecification = tagSpecification
@@ -50,6 +53,7 @@ extension Tcr {
             self.registryChargePrepaid = registryChargePrepaid
             self.syncTag = syncTag
             self.enableCosMAZ = enableCosMAZ
+            self.deletionProtection = deletionProtection
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Tcr {
             case registryChargePrepaid = "RegistryChargePrepaid"
             case syncTag = "SyncTag"
             case enableCosMAZ = "EnableCosMAZ"
+            case deletionProtection = "DeletionProtection"
         }
     }
 
@@ -91,13 +96,13 @@ extension Tcr {
 
     /// 创建实例
     @inlinable
-    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
-        self.createInstance(.init(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag, enableCosMAZ: enableCosMAZ), region: region, logger: logger, on: eventLoop)
+    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
+        self.createInstance(.init(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag, enableCosMAZ: enableCosMAZ, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     @inlinable
-    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.createInstance(.init(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag, enableCosMAZ: enableCosMAZ), region: region, logger: logger, on: eventLoop)
+    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, enableCosMAZ: Bool? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
+        try await self.createInstance(.init(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag, enableCosMAZ: enableCosMAZ, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 }

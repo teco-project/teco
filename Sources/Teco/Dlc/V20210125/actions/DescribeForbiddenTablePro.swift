@@ -35,33 +35,33 @@ extension Dlc {
         }
     }
 
-    /// 获取被禁用的表属性列表（新）
+    /// 查询被禁用的表属性列表（新）
     ///
-    /// 本接口（DescribeForbiddenTablePro）用于获取被禁用的表属性列表
+    /// 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
     @inlinable @discardableResult
     public func describeForbiddenTablePro(_ input: DescribeForbiddenTableProRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForbiddenTableProResponse> {
         self.client.execute(action: "DescribeForbiddenTablePro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取被禁用的表属性列表（新）
+    /// 查询被禁用的表属性列表（新）
     ///
-    /// 本接口（DescribeForbiddenTablePro）用于获取被禁用的表属性列表
+    /// 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
     @inlinable @discardableResult
     public func describeForbiddenTablePro(_ input: DescribeForbiddenTableProRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForbiddenTableProResponse {
         try await self.client.execute(action: "DescribeForbiddenTablePro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取被禁用的表属性列表（新）
+    /// 查询被禁用的表属性列表（新）
     ///
-    /// 本接口（DescribeForbiddenTablePro）用于获取被禁用的表属性列表
+    /// 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
     @inlinable @discardableResult
     public func describeForbiddenTablePro(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForbiddenTableProResponse> {
         self.describeForbiddenTablePro(.init(), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取被禁用的表属性列表（新）
+    /// 查询被禁用的表属性列表（新）
     ///
-    /// 本接口（DescribeForbiddenTablePro）用于获取被禁用的表属性列表
+    /// 本接口（DescribeForbiddenTablePro）用于查询被禁用的表属性列表（新）
     @inlinable @discardableResult
     public func describeForbiddenTablePro(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForbiddenTableProResponse {
         try await self.describeForbiddenTablePro(.init(), region: region, logger: logger, on: eventLoop)

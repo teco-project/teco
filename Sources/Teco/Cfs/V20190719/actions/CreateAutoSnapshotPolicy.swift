@@ -21,19 +21,19 @@ import TecoCore
 extension Cfs {
     /// CreateAutoSnapshotPolicy请求参数结构体
     public struct CreateAutoSnapshotPolicyRequest: TCRequestModel {
-        /// 快照重复时间点
+        /// 快照重复时间点,0-23
         public let hour: String
 
         /// 策略名称
         public let policyName: String?
 
-        /// 快照重复日期，星期一到星期日
+        /// 快照重复日期，星期一到星期日。 1代表星期一、7代表星期天
         public let dayOfWeek: String?
 
-        /// 快照保留时长
+        /// 快照保留时长，单位天
         public let aliveDays: UInt64?
 
-        /// 快照按月重复，每月1-31号，选择一天，每月这一天打快照。
+        /// 快照按月重复，每月1-31号，选择一天，每月将在这一天自动创建快照。
         public let dayOfMonth: String?
 
         /// 间隔天数

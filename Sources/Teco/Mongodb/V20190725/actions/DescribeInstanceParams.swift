@@ -21,7 +21,7 @@ import TecoCore
 extension Mongodb {
     /// DescribeInstanceParams请求参数结构体
     public struct DescribeInstanceParamsRequest: TCRequestModel {
-        /// 实例ID
+        /// 指定待查询参数列表的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
         public init(instanceId: String) {
@@ -35,16 +35,16 @@ extension Mongodb {
 
     /// DescribeInstanceParams返回参数结构体
     public struct DescribeInstanceParamsResponse: TCResponseModel {
-        /// 值为枚举类型参数集合
+        /// 参数值为枚举类型参数集合。
         public let instanceEnumParam: [InstanceEnumParam]
 
-        /// 值为integer类型参数集合
+        /// 参数值为 Integer 类型参数集合。
         public let instanceIntegerParam: [InstanceIntegerParam]
 
-        /// 值为text类型的参数集合
+        /// 参数值为 Text 类型的参数集合。
         public let instanceTextParam: [InstanceTextParam]
 
-        /// 值为混合类型的参数集合
+        /// 参数值为混合类型的参数集合。
         public let instanceMultiParam: [InstanceMultiParam]
 
         /// 当前实例支持修改的参数个数统计 如0
@@ -65,7 +65,7 @@ extension Mongodb {
 
     /// 获取当前实例可修改的参数列表
     ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    /// 本接口（DescribeInstanceParams）用于查询当前实例可修改的参数列表。
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Mongodb {
 
     /// 获取当前实例可修改的参数列表
     ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    /// 本接口（DescribeInstanceParams）用于查询当前实例可修改的参数列表。
     @inlinable
     public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +81,7 @@ extension Mongodb {
 
     /// 获取当前实例可修改的参数列表
     ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    /// 本接口（DescribeInstanceParams）用于查询当前实例可修改的参数列表。
     @inlinable
     public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
         self.describeInstanceParams(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -89,7 +89,7 @@ extension Mongodb {
 
     /// 获取当前实例可修改的参数列表
     ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    /// 本接口（DescribeInstanceParams）用于查询当前实例可修改的参数列表。
     @inlinable
     public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
         try await self.describeInstanceParams(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

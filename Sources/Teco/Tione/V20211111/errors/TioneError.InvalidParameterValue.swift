@@ -19,8 +19,10 @@ import TecoCore
 extension TCTioneError {
     public struct InvalidParameterValue: TCTioneErrorType {
         enum Code: String {
+            case aiMarketPublicAlgoVersionNotExist = "InvalidParameterValue.AIMarketPublicAlgoVersionNotExist"
             case badName = "InvalidParameterValue.BadName"
             case clsConfigRequired = "InvalidParameterValue.ClsConfigRequired"
+            case codeRepoDuplicated = "InvalidParameterValue.CodeRepoDuplicated"
             case codeRepoNotFound = "InvalidParameterValue.CodeRepoNotFound"
             case datasetNumLimitExceeded = "InvalidParameterValue.DatasetNumLimitExceeded"
             case dcAnnotationType = "InvalidParameterValue.DCAnnotationType"
@@ -32,10 +34,20 @@ extension TCTioneError {
             case dcFilterValues = "InvalidParameterValue.DCFilterValues"
             case duplicateName = "InvalidParameterValue.DuplicateName"
             case frameworkVersionNotSupport = "InvalidParameterValue.FrameworkVersionNotSupport"
+            case getCFSMountIPFailed = "InvalidParameterValue.GetCFSMountIPFailed"
             case imageNotFound = "InvalidParameterValue.ImageNotFound"
             case invalidFilter = "InvalidParameterValue.InvalidFilter"
+            case lifecycleNotFound = "InvalidParameterValue.LifecycleNotFound"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
             case notAllow = "InvalidParameterValue.NotAllow"
+            case notAllowedToCreateNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateNotebookWithBareMetalResourceGroup"
+            case pageLimitExceeded = "InvalidParameterValue.PageLimitExceeded"
+            case rdmaConfigIllegal = "InvalidParameterValue.RDMAConfigIllegal"
+            case resourceConfigIllegal = "InvalidParameterValue.ResourceConfigIllegal"
+            case subnetNotFound = "InvalidParameterValue.SubnetNotFound"
+            case topicNotFound = "InvalidParameterValue.TopicNotFound"
+            case unsupportedDataConfig = "InvalidParameterValue.UnsupportedDataConfig"
+            case volumeShrinkNotAllow = "InvalidParameterValue.VolumeShrinkNotAllow"
             case other = "InvalidParameterValue"
         }
 
@@ -61,6 +73,11 @@ extension TCTioneError {
             self.context = context
         }
 
+        /// AI市场公共算法版本Id不存在
+        public static var aiMarketPublicAlgoVersionNotExist: InvalidParameterValue {
+            InvalidParameterValue(.aiMarketPublicAlgoVersionNotExist)
+        }
+
         /// 名称不合法。
         public static var badName: InvalidParameterValue {
             InvalidParameterValue(.badName)
@@ -69,6 +86,13 @@ extension TCTioneError {
         /// 请设置日志集、日志主题ID。
         public static var clsConfigRequired: InvalidParameterValue {
             InvalidParameterValue(.clsConfigRequired)
+        }
+
+        /// 存储库重复配置，请移除重复的存储库配置后重试。
+        ///
+        /// 请移除重复的存储库配置后重试
+        public static var codeRepoDuplicated: InvalidParameterValue {
+            InvalidParameterValue(.codeRepoDuplicated)
         }
 
         /// 存储库不存在。
@@ -128,6 +152,10 @@ extension TCTioneError {
             InvalidParameterValue(.frameworkVersionNotSupport)
         }
 
+        public static var getCFSMountIPFailed: InvalidParameterValue {
+            InvalidParameterValue(.getCFSMountIPFailed)
+        }
+
         /// 训练任务镜像不存在。
         public static var imageNotFound: InvalidParameterValue {
             InvalidParameterValue(.imageNotFound)
@@ -138,6 +166,13 @@ extension TCTioneError {
         /// 检查过滤器参数
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
+        }
+
+        /// 生命周期脚本无效。
+        ///
+        /// 请选择正确的生命周期脚本。
+        public static var lifecycleNotFound: InvalidParameterValue {
+            InvalidParameterValue(.lifecycleNotFound)
         }
 
         /// 参数值数量超过限制。
@@ -152,6 +187,43 @@ extension TCTioneError {
             InvalidParameterValue(.notAllow)
         }
 
+        public static var notAllowedToCreateNotebookWithBareMetalResourceGroup: InvalidParameterValue {
+            InvalidParameterValue(.notAllowedToCreateNotebookWithBareMetalResourceGroup)
+        }
+
+        public static var pageLimitExceeded: InvalidParameterValue {
+            InvalidParameterValue(.pageLimitExceeded)
+        }
+
+        public static var rdmaConfigIllegal: InvalidParameterValue {
+            InvalidParameterValue(.rdmaConfigIllegal)
+        }
+
+        /// 资源配置不合法
+        public static var resourceConfigIllegal: InvalidParameterValue {
+            InvalidParameterValue(.resourceConfigIllegal)
+        }
+
+        /// 子网不存在。
+        public static var subnetNotFound: InvalidParameterValue {
+            InvalidParameterValue(.subnetNotFound)
+        }
+
+        /// 未找到当前日志主题。
+        public static var topicNotFound: InvalidParameterValue {
+            InvalidParameterValue(.topicNotFound)
+        }
+
+        /// 裸金属类型资源组不支持配置输入数据
+        public static var unsupportedDataConfig: InvalidParameterValue {
+            InvalidParameterValue(.unsupportedDataConfig)
+        }
+
+        /// Notebook卷大小只能增加，如需减小容量请重新创建实例。
+        public static var volumeShrinkNotAllow: InvalidParameterValue {
+            InvalidParameterValue(.volumeShrinkNotAllow)
+        }
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
@@ -160,10 +232,14 @@ extension TCTioneError {
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
+            case .aiMarketPublicAlgoVersionNotExist:
+                code = .invalidParameterValue_AIMarketPublicAlgoVersionNotExist
             case .badName:
                 code = .invalidParameterValue_BadName
             case .clsConfigRequired:
                 code = .invalidParameterValue_ClsConfigRequired
+            case .codeRepoDuplicated:
+                code = .invalidParameterValue_CodeRepoDuplicated
             case .codeRepoNotFound:
                 code = .invalidParameterValue_CodeRepoNotFound
             case .datasetNumLimitExceeded:
@@ -186,14 +262,34 @@ extension TCTioneError {
                 code = .invalidParameterValue_DuplicateName
             case .frameworkVersionNotSupport:
                 code = .invalidParameterValue_FrameworkVersionNotSupport
+            case .getCFSMountIPFailed:
+                code = .invalidParameterValue_GetCFSMountIPFailed
             case .imageNotFound:
                 code = .invalidParameterValue_ImageNotFound
             case .invalidFilter:
                 code = .invalidParameterValue_InvalidFilter
+            case .lifecycleNotFound:
+                code = .invalidParameterValue_LifecycleNotFound
             case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
             case .notAllow:
                 code = .invalidParameterValue_NotAllow
+            case .notAllowedToCreateNotebookWithBareMetalResourceGroup:
+                code = .invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup
+            case .pageLimitExceeded:
+                code = .invalidParameterValue_PageLimitExceeded
+            case .rdmaConfigIllegal:
+                code = .invalidParameterValue_RDMAConfigIllegal
+            case .resourceConfigIllegal:
+                code = .invalidParameterValue_ResourceConfigIllegal
+            case .subnetNotFound:
+                code = .invalidParameterValue_SubnetNotFound
+            case .topicNotFound:
+                code = .invalidParameterValue_TopicNotFound
+            case .unsupportedDataConfig:
+                code = .invalidParameterValue_UnsupportedDataConfig
+            case .volumeShrinkNotAllow:
+                code = .invalidParameterValue_VolumeShrinkNotAllow
             case .other:
                 code = .invalidParameterValue
             }

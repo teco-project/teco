@@ -24,12 +24,17 @@ extension Ckafka {
         /// 实例唯一id
         public let instanceId: String
 
-        public init(instanceId: String) {
+        /// 路由id
+        public let routeId: Int64?
+
+        public init(instanceId: String, routeId: Int64? = nil) {
             self.instanceId = instanceId
+            self.routeId = routeId
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
+            case routeId = "RouteId"
         }
     }
 
@@ -61,13 +66,13 @@ extension Ckafka {
 
     /// 查看路由信息
     @inlinable
-    public func describeRoute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteResponse> {
-        self.describeRoute(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func describeRoute(instanceId: String, routeId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRouteResponse> {
+        self.describeRoute(.init(instanceId: instanceId, routeId: routeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看路由信息
     @inlinable
-    public func describeRoute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
-        try await self.describeRoute(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+    public func describeRoute(instanceId: String, routeId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
+        try await self.describeRoute(.init(instanceId: instanceId, routeId: routeId), region: region, logger: logger, on: eventLoop)
     }
 }

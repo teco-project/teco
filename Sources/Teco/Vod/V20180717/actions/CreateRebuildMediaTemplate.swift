@@ -86,7 +86,7 @@ extension Vod {
 
     /// CreateRebuildMediaTemplate返回参数结构体
     public struct CreateRebuildMediaTemplateResponse: TCResponseModel {
-        /// 音画质重生模板 ID。
+        /// 视频重生模板 ID。
         public let definition: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -98,33 +98,33 @@ extension Vod {
         }
     }
 
-    /// 创建音画质重生模板
+    /// 创建视频重生模板
     ///
-    /// 创建音画质重生模板。
+    /// 创建视频重生模板。
     @inlinable
     public func createRebuildMediaTemplate(_ input: CreateRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRebuildMediaTemplateResponse> {
         self.client.execute(action: "CreateRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建音画质重生模板
+    /// 创建视频重生模板
     ///
-    /// 创建音画质重生模板。
+    /// 创建视频重生模板。
     @inlinable
     public func createRebuildMediaTemplate(_ input: CreateRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRebuildMediaTemplateResponse {
         try await self.client.execute(action: "CreateRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建音画质重生模板
+    /// 创建视频重生模板
     ///
-    /// 创建音画质重生模板。
+    /// 创建视频重生模板。
     @inlinable
     public func createRebuildMediaTemplate(container: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, removeVideo: Int64? = nil, removeAudio: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRebuildMediaTemplateResponse> {
         self.createRebuildMediaTemplate(.init(container: container, subAppId: subAppId, name: name, comment: comment, rebuildVideoInfo: rebuildVideoInfo, rebuildAudioInfo: rebuildAudioInfo, targetVideoInfo: targetVideoInfo, targetAudioInfo: targetAudioInfo, removeVideo: removeVideo, removeAudio: removeAudio), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建音画质重生模板
+    /// 创建视频重生模板
     ///
-    /// 创建音画质重生模板。
+    /// 创建视频重生模板。
     @inlinable
     public func createRebuildMediaTemplate(container: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, removeVideo: Int64? = nil, removeAudio: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRebuildMediaTemplateResponse {
         try await self.createRebuildMediaTemplate(.init(container: container, subAppId: subAppId, name: name, comment: comment, rebuildVideoInfo: rebuildVideoInfo, rebuildAudioInfo: rebuildAudioInfo, targetVideoInfo: targetVideoInfo, targetAudioInfo: targetAudioInfo, removeVideo: removeVideo, removeAudio: removeAudio), region: region, logger: logger, on: eventLoop)

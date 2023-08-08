@@ -35,6 +35,7 @@ public struct TCAsrError: TCAsrErrorType {
         case failedOperation_ErrorDownFile = "FailedOperation.ErrorDownFile"
         case failedOperation_ErrorRecognize = "FailedOperation.ErrorRecognize"
         case failedOperation_NoSuchTask = "FailedOperation.NoSuchTask"
+        case failedOperation_NotExistentVoicePrintId = "FailedOperation.NotExistentVoicePrintId"
         case failedOperation_ServiceIsolate = "FailedOperation.ServiceIsolate"
         case failedOperation_UserHasNoFreeAmount = "FailedOperation.UserHasNoFreeAmount"
         case failedOperation_UserNotRegistered = "FailedOperation.UserNotRegistered"
@@ -50,6 +51,14 @@ public struct TCAsrError: TCAsrErrorType {
         case internalError_ErrorRecognize = "InternalError.ErrorRecognize"
         case internalError_FailAccessDatabase = "InternalError.FailAccessDatabase"
         case internalError_FailAccessRedis = "InternalError.FailAccessRedis"
+        case internalError_FailedVoicePrintDecode = "InternalError.FailedVoicePrintDecode"
+        case internalError_FailedVoicePrintEnroll = "InternalError.FailedVoicePrintEnroll"
+        case internalError_FailedVoicePrintVerify = "InternalError.FailedVoicePrintVerify"
+        case internalError_TagRequestError = "InternalError.TagRequestError"
+        case internalError_VoicePrintAudioFailed = "InternalError.VoicePrintAudioFailed"
+        case internalError_VoicePrintDecodeFailed = "InternalError.VoicePrintDecodeFailed"
+        case internalError_VoicePrintEnrollFailed = "InternalError.VoicePrintEnrollFailed"
+        case internalError_VoicePrintVerifyFailed = "InternalError.VoicePrintVerifyFailed"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_ErrorInvalidAppid = "InvalidParameterValue.ErrorInvalidAppid"
@@ -81,6 +90,7 @@ public struct TCAsrError: TCAsrErrorType {
         case limitExceeded_CustomizationFull = "LimitExceeded.CustomizationFull"
         case limitExceeded_OnlineFull = "LimitExceeded.OnlineFull"
         case limitExceeded_VocabFull = "LimitExceeded.VocabFull"
+        case limitExceeded_VoicePrintFull = "LimitExceeded.VoicePrintFull"
         case missingParameter = "MissingParameter"
         case requestLimitExceeded = "RequestLimitExceeded"
         case requestLimitExceeded_UinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
@@ -167,6 +177,11 @@ public struct TCAsrError: TCAsrErrorType {
         TCAsrError(.failedOperation_NoSuchTask)
     }
 
+    /// 不存在的声纹id
+    public static var failedOperation_NotExistentVoicePrintId: TCAsrError {
+        TCAsrError(.failedOperation_NotExistentVoicePrintId)
+    }
+
     /// 账号因为欠费停止服务，请在腾讯云账户充值。
     public static var failedOperation_ServiceIsolate: TCAsrError {
         TCAsrError(.failedOperation_ServiceIsolate)
@@ -240,6 +255,42 @@ public struct TCAsrError: TCAsrErrorType {
     /// 访问Redis失败。
     public static var internalError_FailAccessRedis: TCAsrError {
         TCAsrError(.internalError_FailAccessRedis)
+    }
+
+    public static var internalError_FailedVoicePrintDecode: TCAsrError {
+        TCAsrError(.internalError_FailedVoicePrintDecode)
+    }
+
+    public static var internalError_FailedVoicePrintEnroll: TCAsrError {
+        TCAsrError(.internalError_FailedVoicePrintEnroll)
+    }
+
+    public static var internalError_FailedVoicePrintVerify: TCAsrError {
+        TCAsrError(.internalError_FailedVoicePrintVerify)
+    }
+
+    public static var internalError_TagRequestError: TCAsrError {
+        TCAsrError(.internalError_TagRequestError)
+    }
+
+    /// 声纹音频处理失败
+    public static var internalError_VoicePrintAudioFailed: TCAsrError {
+        TCAsrError(.internalError_VoicePrintAudioFailed)
+    }
+
+    /// 声纹音频解码失败
+    public static var internalError_VoicePrintDecodeFailed: TCAsrError {
+        TCAsrError(.internalError_VoicePrintDecodeFailed)
+    }
+
+    /// 声纹注册失败
+    public static var internalError_VoicePrintEnrollFailed: TCAsrError {
+        TCAsrError(.internalError_VoicePrintEnrollFailed)
+    }
+
+    /// 声纹验证失败
+    public static var internalError_VoicePrintVerifyFailed: TCAsrError {
+        TCAsrError(.internalError_VoicePrintVerifyFailed)
     }
 
     /// 参数错误。
@@ -395,6 +446,10 @@ public struct TCAsrError: TCAsrErrorType {
     /// 热词表数量已到账号限制。
     public static var limitExceeded_VocabFull: TCAsrError {
         TCAsrError(.limitExceeded_VocabFull)
+    }
+
+    public static var limitExceeded_VoicePrintFull: TCAsrError {
+        TCAsrError(.limitExceeded_VoicePrintFull)
     }
 
     /// 缺少参数错误。

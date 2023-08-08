@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// CreateUserAutoSignEnableUrl请求参数结构体
     public struct CreateUserAutoSignEnableUrlRequest: TCRequestModel {
-        /// 操作人信息
+        /// 操作人信息,UserId必填
         public let `operator`: UserInfo
 
         /// 自动签场景:
@@ -31,14 +31,35 @@ extension Ess {
         /// 自动签开通，签署相关配置
         public let autoSignConfig: AutoSignConfig
 
-        /// 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
+        /// 链接类型，
+        /// 空-默认小程序端链接
+        /// H5SIGN-h5端链接
         public let urlType: String?
 
-        public init(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil) {
+        /// 通知类型
+        ///
+        /// 默认不设置为不通知开通方，
+        /// SMS 为短信通知 , 此种方式需要NotifyAddress填写手机号。
+        public let notifyType: String?
+
+        /// 如果通知类型NotifyType选择为SMS，则此处为手机号, 其他通知类型不需要设置此项
+        public let notifyAddress: String?
+
+        /// 链接的过期时间，格式为Unix时间戳，不能早于当前时间，且最大为30天。如果不传，默认有效期为7天。
+        public let expiredTime: Int64?
+
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.sceneKey = sceneKey
             self.autoSignConfig = autoSignConfig
             self.urlType = urlType
+            self.notifyType = notifyType
+            self.notifyAddress = notifyAddress
+            self.expiredTime = expiredTime
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +67,10 @@ extension Ess {
             case sceneKey = "SceneKey"
             case autoSignConfig = "AutoSignConfig"
             case urlType = "UrlType"
+            case notifyType = "NotifyType"
+            case notifyAddress = "NotifyAddress"
+            case expiredTime = "ExpiredTime"
+            case agent = "Agent"
         }
     }
 
@@ -63,7 +88,7 @@ extension Ess {
         /// 跳转路径
         public let path: String
 
-        /// base64格式跳转二维码
+        /// base64格式跳转二维码,可以通过微信扫描后跳转到业务界面
         public let qrCode: String
 
         /// 链接类型，空-默认小程序端链接，H5SIGN-h5端链接
@@ -85,7 +110,7 @@ extension Ess {
 
     /// 获取个人用户自动签开启链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接
+    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable
     public func createUserAutoSignEnableUrl(_ input: CreateUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAutoSignEnableUrlResponse> {
         self.client.execute(action: "CreateUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -93,7 +118,7 @@ extension Ess {
 
     /// 获取个人用户自动签开启链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接
+    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable
     public func createUserAutoSignEnableUrl(_ input: CreateUserAutoSignEnableUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAutoSignEnableUrlResponse {
         try await self.client.execute(action: "CreateUserAutoSignEnableUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -101,17 +126,17 @@ extension Ess {
 
     /// 获取个人用户自动签开启链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接
+    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable
-    public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAutoSignEnableUrlResponse> {
-        self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType), region: region, logger: logger, on: eventLoop)
+    public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAutoSignEnableUrlResponse> {
+        self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType, notifyType: notifyType, notifyAddress: notifyAddress, expiredTime: expiredTime, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取个人用户自动签开启链接
     ///
-    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接
+    /// 企业方可以通过此接口获取个人用户开启自动签的跳转链接（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable
-    public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAutoSignEnableUrlResponse {
-        try await self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType), region: region, logger: logger, on: eventLoop)
+    public func createUserAutoSignEnableUrl(operator: UserInfo, sceneKey: String, autoSignConfig: AutoSignConfig, urlType: String? = nil, notifyType: String? = nil, notifyAddress: String? = nil, expiredTime: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAutoSignEnableUrlResponse {
+        try await self.createUserAutoSignEnableUrl(.init(operator: `operator`, sceneKey: sceneKey, autoSignConfig: autoSignConfig, urlType: urlType, notifyType: notifyType, notifyAddress: notifyAddress, expiredTime: expiredTime, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -78,7 +78,16 @@ extension Oceanus {
         /// Oceanus 平台恢复作业开关 1:开启 -1: 关闭
         public let autoRecover: Int64?
 
-        public init(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil) {
+        /// 类日志级别
+        public let clazzLevels: [ClazzLevel]?
+
+        /// 是否打开专家模式
+        public let expertModeOn: Bool?
+
+        /// 专家模式的配置
+        public let expertModeConfiguration: ExpertModeConfiguration?
+
+        public init(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, clazzLevels: [ClazzLevel]? = nil, expertModeOn: Bool? = nil, expertModeConfiguration: ExpertModeConfiguration? = nil) {
             self.jobId = jobId
             self.entrypointClass = entrypointClass
             self.programArgs = programArgs
@@ -98,6 +107,9 @@ extension Oceanus {
             self.workSpaceId = workSpaceId
             self.logLevel = logLevel
             self.autoRecover = autoRecover
+            self.clazzLevels = clazzLevels
+            self.expertModeOn = expertModeOn
+            self.expertModeConfiguration = expertModeConfiguration
         }
 
         enum CodingKeys: String, CodingKey {
@@ -120,6 +132,9 @@ extension Oceanus {
             case workSpaceId = "WorkSpaceId"
             case logLevel = "LogLevel"
             case autoRecover = "AutoRecover"
+            case clazzLevels = "ClazzLevels"
+            case expertModeOn = "ExpertModeOn"
+            case expertModeConfiguration = "ExpertModeConfiguration"
         }
     }
 
@@ -157,15 +172,15 @@ extension Oceanus {
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
-        self.createJobConfig(.init(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), region: region, logger: logger, on: eventLoop)
+    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, clazzLevels: [ClazzLevel]? = nil, expertModeOn: Bool? = nil, expertModeConfiguration: ExpertModeConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
+        self.createJobConfig(.init(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover, clazzLevels: clazzLevels, expertModeOn: expertModeOn, expertModeConfiguration: expertModeConfiguration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
-        try await self.createJobConfig(.init(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), region: region, logger: logger, on: eventLoop)
+    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, clazzLevels: [ClazzLevel]? = nil, expertModeOn: Bool? = nil, expertModeConfiguration: ExpertModeConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
+        try await self.createJobConfig(.init(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover, clazzLevels: clazzLevels, expertModeOn: expertModeOn, expertModeConfiguration: expertModeConfiguration), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -127,13 +127,13 @@ extension Antiddos {
         /// "isolate"：回收隔离中
         public let status: String
 
-        /// 购买时间
+        /// 到期时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
-        /// 到期时间
+        /// 购买时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
@@ -387,6 +387,14 @@ extension Antiddos {
         /// 赠送的业务带宽
         public let giftServiceBandWidth: Int64?
 
+        /// 修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modifyTime: String?
+
+        /// 是否是基础防护加强版 0: 不是 1: 是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let basicPlusFlag: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case instanceDetail = "InstanceDetail"
             case specificationLimit = "SpecificationLimit"
@@ -407,6 +415,8 @@ extension Antiddos {
             case line = "Line"
             case elasticServiceBandwidth = "ElasticServiceBandwidth"
             case giftServiceBandWidth = "GiftServiceBandWidth"
+            case modifyTime = "ModifyTime"
+            case basicPlusFlag = "BasicPlusFlag"
         }
     }
 
@@ -531,12 +541,17 @@ extension Antiddos {
         /// 运营商，绑定操作为必填项，解绑操作可不填。0：电信；1：联通；2：移动；5：BGP
         public let ispCode: UInt64?
 
-        public init(ip: String, bizType: String? = nil, instanceId: String? = nil, deviceType: String? = nil, ispCode: UInt64? = nil) {
+        /// 域名化资产对应的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        public init(ip: String, bizType: String? = nil, instanceId: String? = nil, deviceType: String? = nil, ispCode: UInt64? = nil, domain: String? = nil) {
             self.ip = ip
             self.bizType = bizType
             self.instanceId = instanceId
             self.deviceType = deviceType
             self.ispCode = ispCode
+            self.domain = domain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -545,6 +560,7 @@ extension Antiddos {
             case instanceId = "InstanceId"
             case deviceType = "DeviceType"
             case ispCode = "IspCode"
+            case domain = "Domain"
         }
     }
 
@@ -1236,11 +1252,16 @@ extension Antiddos {
         /// IP所属的云产品实例ID，例如是弹性网卡的IP，InstanceId为弹性网卡的ID(eni-*); 如果是托管IP没有对应的资源实例ID,InstanceId为""
         public let instanceId: String
 
-        public init(ip: String, bizType: String, deviceType: String, instanceId: String) {
+        /// 域名化资产对应的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        public init(ip: String, bizType: String, deviceType: String, instanceId: String, domain: String? = nil) {
             self.ip = ip
             self.bizType = bizType
             self.deviceType = deviceType
             self.instanceId = instanceId
+            self.domain = domain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1248,6 +1269,7 @@ extension Antiddos {
             case bizType = "BizType"
             case deviceType = "DeviceType"
             case instanceId = "InstanceId"
+            case domain = "Domain"
         }
     }
 
@@ -1371,11 +1393,16 @@ extension Antiddos {
         /// 资源flag，0：高防包资源，1：高防IP资源，2：非高防资源IP
         public let resourceFlag: Int64?
 
-        public init(type: String, eip: String, cname: String? = nil, resourceFlag: Int64? = nil) {
+        /// 域名化资产对应的域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        public init(type: String, eip: String, cname: String? = nil, resourceFlag: Int64? = nil, domain: String? = nil) {
             self.type = type
             self.eip = eip
             self.cname = cname
             self.resourceFlag = resourceFlag
+            self.domain = domain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1383,6 +1410,7 @@ extension Antiddos {
             case eip = "Eip"
             case cname = "Cname"
             case resourceFlag = "ResourceFlag"
+            case domain = "Domain"
         }
     }
 
@@ -1488,7 +1516,7 @@ extension Antiddos {
         /// 回源IP或域名
         public let source: String
 
-        /// 权重值，取值[0,100]
+        /// 权重值，取值[0,100]，暂不支持
         public let weight: UInt64
 
         /// 8000

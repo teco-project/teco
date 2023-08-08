@@ -31,16 +31,26 @@ extension Cdb {
         /// 分页大小，默认值为20，最小值为1，最大值为100。
         public let limit: Int64?
 
-        public init(instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
+        /// binlog最早开始时间，时间格式：2016-03-17 02:10:37
+        public let minStartTime: String?
+
+        /// binlog最晚开始时间，时间格式：2016-03-17 02:10:37
+        public let maxStartTime: String?
+
+        public init(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, minStartTime: String? = nil, maxStartTime: String? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
+            self.minStartTime = minStartTime
+            self.maxStartTime = maxStartTime
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case offset = "Offset"
             case limit = "Limit"
+            case minStartTime = "MinStartTime"
+            case maxStartTime = "MaxStartTime"
         }
 
         /// Compute the next request based on API response.
@@ -48,7 +58,7 @@ extension Cdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBinlogsRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return DescribeBinlogsRequest(instanceId: self.instanceId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, minStartTime: self.minStartTime, maxStartTime: self.maxStartTime)
         }
     }
 
@@ -100,16 +110,16 @@ extension Cdb {
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
-        self.describeBinlogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, minStartTime: String? = nil, maxStartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
+        self.describeBinlogs(.init(instanceId: instanceId, offset: offset, limit: limit, minStartTime: minStartTime, maxStartTime: maxStartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询二进制日志备份文件列表
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
-        try await self.describeBinlogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, minStartTime: String? = nil, maxStartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
+        try await self.describeBinlogs(.init(instanceId: instanceId, offset: offset, limit: limit, minStartTime: minStartTime, maxStartTime: maxStartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询二进制日志备份文件列表

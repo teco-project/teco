@@ -21,6 +21,7 @@ extension TCPostgresError {
         enum Code: String {
             case instanceNameExist = "InvalidParameter.InstanceNameExist"
             case parameterCheckError = "InvalidParameter.ParameterCheckError"
+            case parametersNotSet = "InvalidParameter.ParametersNotSet"
             case tradeAccessDeniedError = "InvalidParameter.TradeAccessDeniedError"
             case vpcNotFoundError = "InvalidParameter.VpcNotFoundError"
             case other = "InvalidParameter"
@@ -58,6 +59,10 @@ extension TCPostgresError {
             InvalidParameter(.parameterCheckError)
         }
 
+        public static var parametersNotSet: InvalidParameter {
+            InvalidParameter(.parametersNotSet)
+        }
+
         /// pid错误。
         public static var tradeAccessDeniedError: InvalidParameter {
             InvalidParameter(.tradeAccessDeniedError)
@@ -80,6 +85,8 @@ extension TCPostgresError {
                 code = .invalidParameter_InstanceNameExist
             case .parameterCheckError:
                 code = .invalidParameter_ParameterCheckError
+            case .parametersNotSet:
+                code = .invalidParameter_ParametersNotSet
             case .tradeAccessDeniedError:
                 code = .invalidParameter_TradeAccessDeniedError
             case .vpcNotFoundError:

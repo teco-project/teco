@@ -94,7 +94,7 @@ extension Essbasic {
         /// 5. 创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义
         public let consoleUrl: String
 
-        /// 子客企业是否已开通腾讯电子签
+        /// 子客企业是否已开通腾讯电子签，true-是，false-否
         public let isActivated: Bool
 
         /// 当前经办人是否已认证（false:未认证 true:已认证）

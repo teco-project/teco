@@ -40,7 +40,7 @@ extension Tcb {
 
     /// FreezeCloudBaseRunServers返回参数结构体
     public struct FreezeCloudBaseRunServersResponse: TCResponseModel {
-        /// 批量状态状态
+        /// 批量状态
         /// 成功：succ
         /// 失败：fail
         /// 部分：partial（部分成功、部分失败）

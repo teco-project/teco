@@ -22,27 +22,33 @@ import TecoPaginationHelpers
 extension Ess {
     /// DescribeFlowTemplates请求参数结构体
     public struct DescribeFlowTemplatesRequest: TCPaginatedRequest {
-        /// 调用方用户信息，userId 必填
+        /// 调用方员工/经办人信息
+        /// UserId 必填，在企业控制台组织架构中可以查到员工的UserId
+        /// 注：请保证员工有相关的角色权限
         public let `operator`: UserInfo
 
-        /// 企业组织相关信息，一般不用填
-        public let organization: OrganizationInfo?
-
-        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        /// 代理相关应用信息
+        /// 如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
-        /// 查询偏移位置，默认0
-        public let offset: UInt64?
+        /// 查询内容类型
+        /// 0-模板列表及详情（默认）
+        /// 1-仅模板列表
+        public let contentType: Int64?
 
-        /// 查询个数，默认20，最大200
-        public let limit: UInt64?
-
-        /// 搜索条件，具体参考Filter结构体。本接口取值：template-id：按照【 **模板唯一标识** 】进行过滤
+        /// 搜索条件，本字段用于指定模板Id进行查询。
+        /// Key：template-id
+        /// Values：需要查询的模板Id列表
         public let filters: [Filter]?
 
-        /// 这个参数跟下面的IsChannel参数配合使用。
-        /// IsChannel=false时，ApplicationId参数不起任何作用。
-        /// IsChannel=true时，ApplicationId为空，查询所有第三方应用集成平台企业模板列表；ApplicationId不为空，查询指定应用下的模板列表
+        /// 查询结果分页返回，此处指定第几页，如果不传默从第一页返回。页码从0开始，即首页为0。
+        public let offset: UInt64?
+
+        /// 指定每页多少条数据，如果不传默认为20，单页最大200。
+        public let limit: UInt64?
+
+        /// 用于查询指定应用号下单模板列表。
+        /// ApplicationId不为空，查询指定应用下的模板列表
         /// ApplicationId为空，查询所有应用下的模板列表
         public let applicationId: String?
 
@@ -51,35 +57,35 @@ extension Ess {
         public let isChannel: Bool?
 
         /// 暂未开放
+        public let organization: OrganizationInfo?
+
+        /// 暂未开放
         public let generateSource: UInt64?
 
-        /// 查询内容：0-模板列表及详情（默认），1-仅模板列表
-        public let contentType: Int64?
-
-        public init(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil) {
+        public init(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil) {
             self.operator = `operator`
-            self.organization = organization
             self.agent = agent
+            self.contentType = contentType
+            self.filters = filters
             self.offset = offset
             self.limit = limit
-            self.filters = filters
             self.applicationId = applicationId
             self.isChannel = isChannel
+            self.organization = organization
             self.generateSource = generateSource
-            self.contentType = contentType
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
-            case organization = "Organization"
             case agent = "Agent"
+            case contentType = "ContentType"
+            case filters = "Filters"
             case offset = "Offset"
             case limit = "Limit"
-            case filters = "Filters"
             case applicationId = "ApplicationId"
             case isChannel = "IsChannel"
+            case organization = "Organization"
             case generateSource = "GenerateSource"
-            case contentType = "ContentType"
         }
 
         /// Compute the next request based on API response.
@@ -87,7 +93,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFlowTemplatesRequest(operator: self.operator, organization: self.organization, agent: self.agent, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters, applicationId: self.applicationId, isChannel: self.isChannel, generateSource: self.generateSource, contentType: self.contentType)
+            return DescribeFlowTemplatesRequest(operator: self.operator, agent: self.agent, contentType: self.contentType, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationId: self.applicationId, isChannel: self.isChannel, organization: self.organization, generateSource: self.generateSource)
         }
     }
 
@@ -96,7 +102,7 @@ extension Ess {
         /// 模板详情列表
         public let templates: [TemplateInfo]
 
-        /// 查询到的总个数
+        /// 查询到的总数
         public let totalCount: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -121,7 +127,19 @@ extension Ess {
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
     public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
         self.client.execute(action: "DescribeFlowTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -129,7 +147,19 @@ extension Ess {
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
     public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
         try await self.client.execute(action: "DescribeFlowTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -137,23 +167,59 @@ extension Ess {
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
-    public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
-        self.describeFlowTemplates(.init(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), region: region, logger: logger, on: eventLoop)
+    public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
+        self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId, isChannel: isChannel, organization: organization, generateSource: generateSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
-    public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
-        try await self.describeFlowTemplates(.init(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), region: region, logger: logger, on: eventLoop)
+    public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
+        try await self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId, isChannel: isChannel, organization: organization, generateSource: generateSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
     public func describeFlowTemplatesPaginated(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TemplateInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeFlowTemplates, logger: logger, on: eventLoop)
@@ -161,7 +227,19 @@ extension Ess {
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     @inlinable @discardableResult
     public func describeFlowTemplatesPaginated(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFlowTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeFlowTemplates, callback: onResponse, logger: logger, on: eventLoop)
@@ -169,7 +247,19 @@ extension Ess {
 
     /// 查询模板
     ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
     ///
     /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeFlowTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable

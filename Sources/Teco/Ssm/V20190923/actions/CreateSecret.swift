@@ -24,8 +24,8 @@ extension Ssm {
         /// 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。
         public let secretName: String
 
-        /// 凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。
-        public let versionId: String
+        /// 凭据版本，查询凭据信息时需要根据SecretName 和 VersionId进行查询，最长64 字节，使用字母、数字或者 - _ . 的组合并且以字母或数字开头。若为空，则使用默认的初始凭据版本号。可选，若为空或该凭据为云产品类凭据，则该版本号默认为 SSM_Current。
+        public let versionId: String?
 
         /// 描述信息，用于详细描述用途等，最大支持2048字节。
         public let description: String?
@@ -33,22 +33,30 @@ extension Ssm {
         /// 指定对凭据进行加密的KMS CMK。如果为空则表示使用Secrets Manager为您默认创建的CMK进行加密。您也可以指定在同region 下自行创建的KMS CMK进行加密。
         public let kmsKeyId: String?
 
+        /// 凭据类型，默认为自定义凭据。
+        public let secretType: UInt64?
+
         /// 二进制凭据信息base64编码后的明文。SecretBinary 和 SecretString 必须且只能设置一个，最大支持4096字节。
         public let secretBinary: String?
 
         /// 文本类型凭据信息明文（不需要进行base64编码）。SecretBinary 和 SecretString 必须且只能设置一个，，最大支持4096字节。
         public let secretString: String?
 
+        /// JSON 格式字符串，用于指定特定凭据类型的额外配置。
+        public let additionalConfig: String?
+
         /// 标签列表
         public let tags: [Tag]?
 
-        public init(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil) {
+        public init(secretName: String, versionId: String? = nil, description: String? = nil, kmsKeyId: String? = nil, secretType: UInt64? = nil, secretBinary: String? = nil, secretString: String? = nil, additionalConfig: String? = nil, tags: [Tag]? = nil) {
             self.secretName = secretName
             self.versionId = versionId
             self.description = description
             self.kmsKeyId = kmsKeyId
+            self.secretType = secretType
             self.secretBinary = secretBinary
             self.secretString = secretString
+            self.additionalConfig = additionalConfig
             self.tags = tags
         }
 
@@ -57,8 +65,10 @@ extension Ssm {
             case versionId = "VersionId"
             case description = "Description"
             case kmsKeyId = "KmsKeyId"
+            case secretType = "SecretType"
             case secretBinary = "SecretBinary"
             case secretString = "SecretString"
+            case additionalConfig = "AdditionalConfig"
             case tags = "Tags"
         }
     }
@@ -111,15 +121,15 @@ extension Ssm {
     ///
     /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
     @inlinable
-    public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
-        self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createSecret(secretName: String, versionId: String? = nil, description: String? = nil, kmsKeyId: String? = nil, secretType: UInt64? = nil, secretBinary: String? = nil, secretString: String? = nil, additionalConfig: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
+        self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretType: secretType, secretBinary: secretBinary, secretString: secretString, additionalConfig: additionalConfig, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建凭据
     ///
     /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
     @inlinable
-    public func createSecret(secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        try await self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretBinary: secretBinary, secretString: secretString, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createSecret(secretName: String, versionId: String? = nil, description: String? = nil, kmsKeyId: String? = nil, secretType: UInt64? = nil, secretBinary: String? = nil, secretString: String? = nil, additionalConfig: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.createSecret(.init(secretName: secretName, versionId: versionId, description: description, kmsKeyId: kmsKeyId, secretType: secretType, secretBinary: secretBinary, secretString: secretString, additionalConfig: additionalConfig, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -26,20 +26,31 @@ extension Teo {
 
         /// 站点接入方式，取值有：
         /// <li> full：NS 接入；</li>
-        /// <li> partial：CNAME 接入。</li>不填写保持原有配置。
+        /// <li> partial：CNAME 接入，如果站点当前是无域名接入，仅支持切换到CNAME接入。</li>不填写保持原有配置。
         public let type: String?
 
-        /// 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。
+        /// 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。当站点是无域名接入方式时不允许传此参数。
         public let vanityNameServers: VanityNameServers?
 
         /// 站点别名。数字、英文、-和_组合，限制20个字符。
         public let aliasZoneName: String?
 
-        public init(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil) {
+        /// 站点接入地域，取值有：
+        /// <li> global：全球；</li>
+        /// <li> mainland：中国大陆；</li>
+        /// <li> overseas：境外区域。</li>当站点是无域名接入方式时，不允许传此参数。
+        public let area: String?
+
+        /// 站点名称。仅当站点由无域名接入方式切换到CNAME接入方式的场景下有效。
+        public let zoneName: String?
+
+        public init(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, area: String? = nil, zoneName: String? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.vanityNameServers = vanityNameServers
             self.aliasZoneName = aliasZoneName
+            self.area = area
+            self.zoneName = zoneName
         }
 
         enum CodingKeys: String, CodingKey {
@@ -47,6 +58,8 @@ extension Teo {
             case type = "Type"
             case vanityNameServers = "VanityNameServers"
             case aliasZoneName = "AliasZoneName"
+            case area = "Area"
+            case zoneName = "ZoneName"
         }
     }
 
@@ -80,15 +93,15 @@ extension Teo {
     ///
     /// 修改站点信息。
     @inlinable @discardableResult
-    public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
-        self.modifyZone(.init(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
+    public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, area: String? = nil, zoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
+        self.modifyZone(.init(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName, area: area, zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改站点
     ///
     /// 修改站点信息。
     @inlinable @discardableResult
-    public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
-        try await self.modifyZone(.init(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
+    public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, area: String? = nil, zoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
+        try await self.modifyZone(.init(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName, area: area, zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 }

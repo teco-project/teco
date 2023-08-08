@@ -22,6 +22,7 @@ extension TCAsrError {
             case customizationFull = "LimitExceeded.CustomizationFull"
             case onlineFull = "LimitExceeded.OnlineFull"
             case vocabFull = "LimitExceeded.VocabFull"
+            case voicePrintFull = "LimitExceeded.VoicePrintFull"
             case other = "LimitExceeded"
         }
 
@@ -62,6 +63,10 @@ extension TCAsrError {
             LimitExceeded(.vocabFull)
         }
 
+        public static var voicePrintFull: LimitExceeded {
+            LimitExceeded(.voicePrintFull)
+        }
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
@@ -76,6 +81,8 @@ extension TCAsrError {
                 code = .limitExceeded_OnlineFull
             case .vocabFull:
                 code = .limitExceeded_VocabFull
+            case .voicePrintFull:
+                code = .limitExceeded_VoicePrintFull
             case .other:
                 code = .limitExceeded
             }

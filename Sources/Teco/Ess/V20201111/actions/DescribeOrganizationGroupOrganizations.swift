@@ -37,7 +37,7 @@ extension Ess {
         /// 成员企业加入集团的当前状态:1-待授权;2-已授权待激活;3-拒绝授权;4-已解除;5-已加入
         public let status: UInt64?
 
-        /// 是否到处当前成员企业数据
+        /// 是否导出当前成员企业数据
         public let export: Bool?
 
         /// 成员企业id
@@ -82,7 +82,7 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let joinedTotal: UInt64?
 
-        /// 已加入的企业数量
+        /// 已加入的企业数量(废弃,请使用ActivatedTotal)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activedTotal: UInt64?
 
@@ -94,6 +94,10 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [GroupOrganization]?
 
+        /// 已加入的企业数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activatedTotal: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -103,6 +107,7 @@ extension Ess {
             case activedTotal = "ActivedTotal"
             case exportUrl = "ExportUrl"
             case list = "List"
+            case activatedTotal = "ActivatedTotal"
             case requestId = "RequestId"
         }
 

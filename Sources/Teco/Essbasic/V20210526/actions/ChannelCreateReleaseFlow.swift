@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateReleaseFlow请求参数结构体
     public struct ChannelCreateReleaseFlowRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 待解除的流程编号（即原流程的编号）
@@ -42,7 +42,10 @@ extension Essbasic {
         /// 暂未开放
         public let `operator`: UserInfo?
 
-        public init(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
+        /// 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
+        public let deadline: Int64?
+
+        public init(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil) {
             self.agent = agent
             self.needRelievedFlowId = needRelievedFlowId
             self.reliveInfo = reliveInfo
@@ -50,6 +53,7 @@ extension Essbasic {
             self.callbackUrl = callbackUrl
             self.organization = organization
             self.operator = `operator`
+            self.deadline = deadline
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Essbasic {
             case callbackUrl = "CallbackUrl"
             case organization = "Organization"
             case `operator` = "Operator"
+            case deadline = "Deadline"
         }
     }
 
@@ -100,8 +105,8 @@ extension Essbasic {
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
-        self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
+        self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`, deadline: deadline), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
@@ -109,7 +114,7 @@ extension Essbasic {
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
-        try await self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
+        try await self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`, deadline: deadline), region: region, logger: logger, on: eventLoop)
     }
 }

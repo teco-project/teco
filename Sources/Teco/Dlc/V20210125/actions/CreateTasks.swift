@@ -66,33 +66,33 @@ extension Dlc {
         }
     }
 
-    /// 批量创建任务
+    /// 批量创建并执行SQL任务
     ///
-    /// 本接口（CreateTasks），用于批量创建任务
+    /// 本接口（CreateTasks），用于批量创建并执行SQL任务
     @inlinable
     public func createTasks(_ input: CreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
         self.client.execute(action: "CreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 批量创建任务
+    /// 批量创建并执行SQL任务
     ///
-    /// 本接口（CreateTasks），用于批量创建任务
+    /// 本接口（CreateTasks），用于批量创建并执行SQL任务
     @inlinable
     public func createTasks(_ input: CreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
         try await self.client.execute(action: "CreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 批量创建任务
+    /// 批量创建并执行SQL任务
     ///
-    /// 本接口（CreateTasks），用于批量创建任务
+    /// 本接口（CreateTasks），用于批量创建并执行SQL任务
     @inlinable
     public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
         self.createTasks(.init(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 批量创建任务
+    /// 批量创建并执行SQL任务
     ///
-    /// 本接口（CreateTasks），用于批量创建任务
+    /// 本接口（CreateTasks），用于批量创建并执行SQL任务
     @inlinable
     public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
         try await self.createTasks(.init(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)

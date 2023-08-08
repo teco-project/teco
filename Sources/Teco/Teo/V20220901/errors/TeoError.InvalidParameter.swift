@@ -20,22 +20,15 @@ extension TCTeoError {
     public struct InvalidParameter: TCTeoErrorType {
         enum Code: String {
             case actionInProgress = "InvalidParameter.ActionInProgress"
+            case aliasDomainNotSupportSMCert = "InvalidParameter.AliasDomainNotSupportSMCert"
             case cacheKeyQueryStringTooManyValue = "InvalidParameter.CacheKeyQueryStringTooManyValue"
-            case certChainError = "InvalidParameter.CertChainError"
-            case certCheckError = "InvalidParameter.CertCheckError"
-            case certCompleteError = "InvalidParameter.CertCompleteError"
-            case certFormatError = "InvalidParameter.CertFormatError"
-            case certIsExpired = "InvalidParameter.CertIsExpired"
-            case certNoCn = "InvalidParameter.CertNoCn"
-            case certNoInfo = "InvalidParameter.CertNoInfo"
             case certNotMatchDomain = "InvalidParameter.CertNotMatchDomain"
-            case certNotMatchKey = "InvalidParameter.CertNotMatchKey"
-            case certNotPem = "InvalidParameter.CertNotPem"
             case certSystemError = "InvalidParameter.CertSystemError"
             case certToExpire = "InvalidParameter.CertToExpire"
             case certTooShortKeySize = "InvalidParameter.CertTooShortKeySize"
-            case certUnsupportedType = "InvalidParameter.CertUnsupportedType"
+            case clientIpCountryConflictsWithIpv6 = "InvalidParameter.ClientIpCountryConflictsWithIpv6"
             case cnameWildHostNotAllowApplyCertificate = "InvalidParameter.CnameWildHostNotAllowApplyCertificate"
+            case conflictHostOrigin = "InvalidParameter.ConflictHostOrigin"
             case domainNotFound = "InvalidParameter.DomainNotFound"
             case domainOnTrafficScheduling = "InvalidParameter.DomainOnTrafficScheduling"
             case errActionUnsupportTarget = "InvalidParameter.ErrActionUnsupportTarget"
@@ -56,6 +49,7 @@ extension TCTeoError {
             case errInvalidConditionValueBadValueContainFileNameExtension = "InvalidParameter.ErrInvalidConditionValueBadValueContainFileNameExtension"
             case errInvalidConditionValueTooLongValue = "InvalidParameter.ErrInvalidConditionValueTooLongValue"
             case errInvalidConditionValueTooManyRegular = "InvalidParameter.ErrInvalidConditionValueTooManyRegular"
+            case errInvalidConditionValueTooManyValues = "InvalidParameter.ErrInvalidConditionValueTooManyValues"
             case errInvalidConditionValueTooManyWildcard = "InvalidParameter.ErrInvalidConditionValueTooManyWildcard"
             case errInvalidConditionValueZeroLength = "InvalidParameter.ErrInvalidConditionValueZeroLength"
             case grpcRequireHttp2 = "InvalidParameter.GrpcRequireHttp2"
@@ -65,6 +59,9 @@ extension TCTeoError {
             case invalidAuthentication = "InvalidParameter.InvalidAuthentication"
             case invalidAuthenticationTypeSecretKey = "InvalidParameter.InvalidAuthenticationTypeSecretKey"
             case invalidAuthenticationTypeSignParam = "InvalidParameter.InvalidAuthenticationTypeSignParam"
+            case invalidAuthenticationTypeTimeFormat = "InvalidParameter.InvalidAuthenticationTypeTimeFormat"
+            case invalidAuthenticationTypeTimeParam = "InvalidParameter.InvalidAuthenticationTypeTimeParam"
+            case invalidAwsPrivateAccess = "InvalidParameter.InvalidAwsPrivateAccess"
             case invalidBackupServerName = "InvalidParameter.InvalidBackupServerName"
             case invalidCacheConfigCache = "InvalidParameter.InvalidCacheConfigCache"
             case invalidCacheConfigFollowOrigin = "InvalidParameter.InvalidCacheConfigFollowOrigin"
@@ -79,16 +76,21 @@ extension TCTeoError {
             case invalidClientIpOrigin = "InvalidParameter.InvalidClientIpOrigin"
             case invalidDynamicRoutine = "InvalidParameter.InvalidDynamicRoutine"
             case invalidDynamicRoutineBilling = "InvalidParameter.InvalidDynamicRoutineBilling"
+            case invalidErrorPage = "InvalidParameter.InvalidErrorPage"
             case invalidErrorPageRedirectUrl = "InvalidParameter.InvalidErrorPageRedirectUrl"
             case invalidHttps = "InvalidParameter.InvalidHttps"
+            case invalidHttpsCertInfo = "InvalidParameter.InvalidHttpsCertInfo"
             case invalidHttpsCipherSuiteAndTlsVersion = "InvalidParameter.InvalidHttpsCipherSuiteAndTlsVersion"
             case invalidHttpsHstsMaxAge = "InvalidParameter.InvalidHttpsHstsMaxAge"
             case invalidHttpsTlsVersion = "InvalidParameter.InvalidHttpsTlsVersion"
             case invalidIpv6Switch = "InvalidParameter.InvalidIpv6Switch"
+            case invalidMaxAgeTime = "InvalidParameter.InvalidMaxAgeTime"
             case invalidOrigin = "InvalidParameter.InvalidOrigin"
+            case invalidOriginIp = "InvalidParameter.InvalidOriginIp"
             case invalidParameter = "InvalidParameter.InvalidParameter"
             case invalidPostMaxSizeBilling = "InvalidParameter.InvalidPostMaxSizeBilling"
             case invalidPostSizeValue = "InvalidParameter.InvalidPostSizeValue"
+            case invalidPrivateAccessParams = "InvalidParameter.InvalidPrivateAccessParams"
             case invalidQuicBilling = "InvalidParameter.InvalidQuicBilling"
             case invalidRangeOriginPull = "InvalidParameter.InvalidRangeOriginPull"
             case invalidRequestHeaderName = "InvalidParameter.InvalidRequestHeaderName"
@@ -97,19 +99,22 @@ extension TCTeoError {
             case invalidResourceIdBilling = "InvalidParameter.InvalidResourceIdBilling"
             case invalidResponseHeaderName = "InvalidParameter.InvalidResponseHeaderName"
             case invalidResponseHeaderValue = "InvalidParameter.InvalidResponseHeaderValue"
-            case invalidRuleEngine = "InvalidParameter.InvalidRuleEngine"
             case invalidRuleEngineAction = "InvalidParameter.InvalidRuleEngineAction"
             case invalidRuleEngineNotFound = "InvalidParameter.InvalidRuleEngineNotFound"
             case invalidRuleEngineTarget = "InvalidParameter.InvalidRuleEngineTarget"
             case invalidRuleEngineTargetsExtension = "InvalidParameter.InvalidRuleEngineTargetsExtension"
             case invalidRuleEngineTargetsUrl = "InvalidParameter.InvalidRuleEngineTargetsUrl"
             case invalidServerName = "InvalidParameter.InvalidServerName"
+            case invalidStandardDebugClientIp = "InvalidParameter.InvalidStandardDebugClientIp"
+            case invalidStandardDebugExpireTimeLimit = "InvalidParameter.InvalidStandardDebugExpireTimeLimit"
             case invalidUpstreamRequestQueryStringValue = "InvalidParameter.InvalidUpstreamRequestQueryStringValue"
             case invalidUrlRedirectHost = "InvalidParameter.InvalidUrlRedirectHost"
             case invalidUrlRedirectUrl = "InvalidParameter.InvalidUrlRedirectUrl"
             case invalidWebSocketTimeout = "InvalidParameter.InvalidWebSocketTimeout"
             case keyRulesInvalidQueryStringValue = "InvalidParameter.KeyRulesInvalidQueryStringValue"
             case lengthExceedsLimit = "InvalidParameter.LengthExceedsLimit"
+            case multiplyLayerNotSupportSmartRouting = "InvalidParameter.MultiplyLayerNotSupportSmartRouting"
+            case notSupportThisPreset = "InvalidParameter.NotSupportThisPreset"
             case originIsInnerIp = "InvalidParameter.OriginIsInnerIp"
             case originOriginGroupIdIsRequired = "InvalidParameter.OriginOriginGroupIdIsRequired"
             case parameterError = "InvalidParameter.ParameterError"
@@ -153,59 +158,18 @@ extension TCTeoError {
             InvalidParameter(.actionInProgress)
         }
 
+        public static var aliasDomainNotSupportSMCert: InvalidParameter {
+            InvalidParameter(.aliasDomainNotSupportSMCert)
+        }
+
         /// 查询字符串规则超过了限制。
         public static var cacheKeyQueryStringTooManyValue: InvalidParameter {
             InvalidParameter(.cacheKeyQueryStringTooManyValue)
         }
 
-        /// HTTPS证书链错误。
-        public static var certChainError: InvalidParameter {
-            InvalidParameter(.certChainError)
-        }
-
-        /// 证书错误。
-        public static var certCheckError: InvalidParameter {
-            InvalidParameter(.certCheckError)
-        }
-
-        /// 证书错误。
-        public static var certCompleteError: InvalidParameter {
-            InvalidParameter(.certCompleteError)
-        }
-
-        /// 证书错误。
-        public static var certFormatError: InvalidParameter {
-            InvalidParameter(.certFormatError)
-        }
-
-        /// HTTPS证书已过期。
-        public static var certIsExpired: InvalidParameter {
-            InvalidParameter(.certIsExpired)
-        }
-
-        /// 证书错误。
-        public static var certNoCn: InvalidParameter {
-            InvalidParameter(.certNoCn)
-        }
-
-        /// 无效的HTTPS证书。
-        public static var certNoInfo: InvalidParameter {
-            InvalidParameter(.certNoInfo)
-        }
-
         /// HTTPS证书和域名不匹配。
         public static var certNotMatchDomain: InvalidParameter {
             InvalidParameter(.certNotMatchDomain)
-        }
-
-        /// HTTPS证书和密钥不匹配。
-        public static var certNotMatchKey: InvalidParameter {
-            InvalidParameter(.certNotMatchKey)
-        }
-
-        /// 证书错误。
-        public static var certNotPem: InvalidParameter {
-            InvalidParameter(.certNotPem)
         }
 
         /// 内部错误。
@@ -223,14 +187,19 @@ extension TCTeoError {
             InvalidParameter(.certTooShortKeySize)
         }
 
-        /// 证书错误。
-        public static var certUnsupportedType: InvalidParameter {
-            InvalidParameter(.certUnsupportedType)
+        /// IPv6 访问与客户端 IP 地理位置功能冲突。
+        public static var clientIpCountryConflictsWithIpv6: InvalidParameter {
+            InvalidParameter(.clientIpCountryConflictsWithIpv6)
         }
 
         /// CNAME模式下无法申请泛域名证书。
         public static var cnameWildHostNotAllowApplyCertificate: InvalidParameter {
             InvalidParameter(.cnameWildHostNotAllowApplyCertificate)
+        }
+
+        /// 源站不能和域名一致。
+        public static var conflictHostOrigin: InvalidParameter {
+            InvalidParameter(.conflictHostOrigin)
         }
 
         /// 域名不存在或不属于该账号。
@@ -333,6 +302,11 @@ extension TCTeoError {
             InvalidParameter(.errInvalidConditionValueTooManyRegular)
         }
 
+        /// 非法条件-非法参数值-参数值数量超出限制。
+        public static var errInvalidConditionValueTooManyValues: InvalidParameter {
+            InvalidParameter(.errInvalidConditionValueTooManyValues)
+        }
+
         /// 非法条件-非法参数值-通配符数量超出限制。
         public static var errInvalidConditionValueTooManyWildcard: InvalidParameter {
             InvalidParameter(.errInvalidConditionValueTooManyWildcard)
@@ -376,6 +350,21 @@ extension TCTeoError {
         /// 无效的token鉴权参数。
         public static var invalidAuthenticationTypeSignParam: InvalidParameter {
             InvalidParameter(.invalidAuthenticationTypeSignParam)
+        }
+
+        /// 无效的token鉴权时间格式。
+        public static var invalidAuthenticationTypeTimeFormat: InvalidParameter {
+            InvalidParameter(.invalidAuthenticationTypeTimeFormat)
+        }
+
+        /// 无效的token鉴权时间参数。
+        public static var invalidAuthenticationTypeTimeParam: InvalidParameter {
+            InvalidParameter(.invalidAuthenticationTypeTimeParam)
+        }
+
+        /// 无效的第三方对象存储。
+        public static var invalidAwsPrivateAccess: InvalidParameter {
+            InvalidParameter(.invalidAwsPrivateAccess)
         }
 
         /// 无效的备源回源Host。
@@ -449,6 +438,11 @@ extension TCTeoError {
         }
 
         /// 无效的自定义错误页面。
+        public static var invalidErrorPage: InvalidParameter {
+            InvalidParameter(.invalidErrorPage)
+        }
+
+        /// 无效的自定义错误页面。
         public static var invalidErrorPageRedirectUrl: InvalidParameter {
             InvalidParameter(.invalidErrorPageRedirectUrl)
         }
@@ -456,6 +450,11 @@ extension TCTeoError {
         /// 无效的HTTPS。
         public static var invalidHttps: InvalidParameter {
             InvalidParameter(.invalidHttps)
+        }
+
+        /// 无效的HTTPS证书。
+        public static var invalidHttpsCertInfo: InvalidParameter {
+            InvalidParameter(.invalidHttpsCertInfo)
         }
 
         /// 加密套件与TLS版本不匹配。
@@ -478,9 +477,19 @@ extension TCTeoError {
             InvalidParameter(.invalidIpv6Switch)
         }
 
+        /// 无效的浏览器缓存。
+        public static var invalidMaxAgeTime: InvalidParameter {
+            InvalidParameter(.invalidMaxAgeTime)
+        }
+
         /// 无效的源站。
         public static var invalidOrigin: InvalidParameter {
             InvalidParameter(.invalidOrigin)
+        }
+
+        /// 请填写正确的回源地址，回源地址不能是内网IP、环回地址、保留地址。
+        public static var invalidOriginIp: InvalidParameter {
+            InvalidParameter(.invalidOriginIp)
         }
 
         /// 参数错误。
@@ -496,6 +505,11 @@ extension TCTeoError {
         /// 无效的最大上传大小。
         public static var invalidPostSizeValue: InvalidParameter {
             InvalidParameter(.invalidPostSizeValue)
+        }
+
+        /// 请填写AccessKeyId、SecretAccessKey作为第三方对象存储私有访问参数。
+        public static var invalidPrivateAccessParams: InvalidParameter {
+            InvalidParameter(.invalidPrivateAccessParams)
         }
 
         /// 套餐包不支持Quic配置。
@@ -540,11 +554,6 @@ extension TCTeoError {
             InvalidParameter(.invalidResponseHeaderValue)
         }
 
-        /// 无效的规则引擎配置。
-        public static var invalidRuleEngine: InvalidParameter {
-            InvalidParameter(.invalidRuleEngine)
-        }
-
         /// 无效的规则引擎操作。
         public static var invalidRuleEngineAction: InvalidParameter {
             InvalidParameter(.invalidRuleEngineAction)
@@ -573,6 +582,14 @@ extension TCTeoError {
         /// 无效的回源Host。
         public static var invalidServerName: InvalidParameter {
             InvalidParameter(.invalidServerName)
+        }
+
+        public static var invalidStandardDebugClientIp: InvalidParameter {
+            InvalidParameter(.invalidStandardDebugClientIp)
+        }
+
+        public static var invalidStandardDebugExpireTimeLimit: InvalidParameter {
+            InvalidParameter(.invalidStandardDebugExpireTimeLimit)
         }
 
         /// 无效的回源请求参数设置-无效查询字符串值。
@@ -605,6 +622,15 @@ extension TCTeoError {
             InvalidParameter(.lengthExceedsLimit)
         }
 
+        /// 不支持智能路由
+        public static var multiplyLayerNotSupportSmartRouting: InvalidParameter {
+            InvalidParameter(.multiplyLayerNotSupportSmartRouting)
+        }
+
+        public static var notSupportThisPreset: InvalidParameter {
+            InvalidParameter(.notSupportThisPreset)
+        }
+
         /// 源站是内网IP。
         public static var originIsInnerIp: InvalidParameter {
             InvalidParameter(.originIsInnerIp)
@@ -615,7 +641,7 @@ extension TCTeoError {
             InvalidParameter(.originOriginGroupIdIsRequired)
         }
 
-        /// 参数错误。
+        /// 参数错误: 无效 "结束时间", 不在允许的查询范围内: [开始时间, 开始+ 7天]
         public static var parameterError: InvalidParameter {
             InvalidParameter(.parameterError)
         }
@@ -680,38 +706,24 @@ extension TCTeoError {
             switch self.error {
             case .actionInProgress:
                 code = .invalidParameter_ActionInProgress
+            case .aliasDomainNotSupportSMCert:
+                code = .invalidParameter_AliasDomainNotSupportSMCert
             case .cacheKeyQueryStringTooManyValue:
                 code = .invalidParameter_CacheKeyQueryStringTooManyValue
-            case .certChainError:
-                code = .invalidParameter_CertChainError
-            case .certCheckError:
-                code = .invalidParameter_CertCheckError
-            case .certCompleteError:
-                code = .invalidParameter_CertCompleteError
-            case .certFormatError:
-                code = .invalidParameter_CertFormatError
-            case .certIsExpired:
-                code = .invalidParameter_CertIsExpired
-            case .certNoCn:
-                code = .invalidParameter_CertNoCn
-            case .certNoInfo:
-                code = .invalidParameter_CertNoInfo
             case .certNotMatchDomain:
                 code = .invalidParameter_CertNotMatchDomain
-            case .certNotMatchKey:
-                code = .invalidParameter_CertNotMatchKey
-            case .certNotPem:
-                code = .invalidParameter_CertNotPem
             case .certSystemError:
                 code = .invalidParameter_CertSystemError
             case .certToExpire:
                 code = .invalidParameter_CertToExpire
             case .certTooShortKeySize:
                 code = .invalidParameter_CertTooShortKeySize
-            case .certUnsupportedType:
-                code = .invalidParameter_CertUnsupportedType
+            case .clientIpCountryConflictsWithIpv6:
+                code = .invalidParameter_ClientIpCountryConflictsWithIpv6
             case .cnameWildHostNotAllowApplyCertificate:
                 code = .invalidParameter_CnameWildHostNotAllowApplyCertificate
+            case .conflictHostOrigin:
+                code = .invalidParameter_ConflictHostOrigin
             case .domainNotFound:
                 code = .invalidParameter_DomainNotFound
             case .domainOnTrafficScheduling:
@@ -752,6 +764,8 @@ extension TCTeoError {
                 code = .invalidParameter_ErrInvalidConditionValueTooLongValue
             case .errInvalidConditionValueTooManyRegular:
                 code = .invalidParameter_ErrInvalidConditionValueTooManyRegular
+            case .errInvalidConditionValueTooManyValues:
+                code = .invalidParameter_ErrInvalidConditionValueTooManyValues
             case .errInvalidConditionValueTooManyWildcard:
                 code = .invalidParameter_ErrInvalidConditionValueTooManyWildcard
             case .errInvalidConditionValueZeroLength:
@@ -770,6 +784,12 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidAuthenticationTypeSecretKey
             case .invalidAuthenticationTypeSignParam:
                 code = .invalidParameter_InvalidAuthenticationTypeSignParam
+            case .invalidAuthenticationTypeTimeFormat:
+                code = .invalidParameter_InvalidAuthenticationTypeTimeFormat
+            case .invalidAuthenticationTypeTimeParam:
+                code = .invalidParameter_InvalidAuthenticationTypeTimeParam
+            case .invalidAwsPrivateAccess:
+                code = .invalidParameter_InvalidAwsPrivateAccess
             case .invalidBackupServerName:
                 code = .invalidParameter_InvalidBackupServerName
             case .invalidCacheConfigCache:
@@ -798,10 +818,14 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidDynamicRoutine
             case .invalidDynamicRoutineBilling:
                 code = .invalidParameter_InvalidDynamicRoutineBilling
+            case .invalidErrorPage:
+                code = .invalidParameter_InvalidErrorPage
             case .invalidErrorPageRedirectUrl:
                 code = .invalidParameter_InvalidErrorPageRedirectUrl
             case .invalidHttps:
                 code = .invalidParameter_InvalidHttps
+            case .invalidHttpsCertInfo:
+                code = .invalidParameter_InvalidHttpsCertInfo
             case .invalidHttpsCipherSuiteAndTlsVersion:
                 code = .invalidParameter_InvalidHttpsCipherSuiteAndTlsVersion
             case .invalidHttpsHstsMaxAge:
@@ -810,14 +834,20 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidHttpsTlsVersion
             case .invalidIpv6Switch:
                 code = .invalidParameter_InvalidIpv6Switch
+            case .invalidMaxAgeTime:
+                code = .invalidParameter_InvalidMaxAgeTime
             case .invalidOrigin:
                 code = .invalidParameter_InvalidOrigin
+            case .invalidOriginIp:
+                code = .invalidParameter_InvalidOriginIp
             case .invalidParameter:
                 code = .invalidParameter_InvalidParameter
             case .invalidPostMaxSizeBilling:
                 code = .invalidParameter_InvalidPostMaxSizeBilling
             case .invalidPostSizeValue:
                 code = .invalidParameter_InvalidPostSizeValue
+            case .invalidPrivateAccessParams:
+                code = .invalidParameter_InvalidPrivateAccessParams
             case .invalidQuicBilling:
                 code = .invalidParameter_InvalidQuicBilling
             case .invalidRangeOriginPull:
@@ -834,8 +864,6 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidResponseHeaderName
             case .invalidResponseHeaderValue:
                 code = .invalidParameter_InvalidResponseHeaderValue
-            case .invalidRuleEngine:
-                code = .invalidParameter_InvalidRuleEngine
             case .invalidRuleEngineAction:
                 code = .invalidParameter_InvalidRuleEngineAction
             case .invalidRuleEngineNotFound:
@@ -848,6 +876,10 @@ extension TCTeoError {
                 code = .invalidParameter_InvalidRuleEngineTargetsUrl
             case .invalidServerName:
                 code = .invalidParameter_InvalidServerName
+            case .invalidStandardDebugClientIp:
+                code = .invalidParameter_InvalidStandardDebugClientIp
+            case .invalidStandardDebugExpireTimeLimit:
+                code = .invalidParameter_InvalidStandardDebugExpireTimeLimit
             case .invalidUpstreamRequestQueryStringValue:
                 code = .invalidParameter_InvalidUpstreamRequestQueryStringValue
             case .invalidUrlRedirectHost:
@@ -860,6 +892,10 @@ extension TCTeoError {
                 code = .invalidParameter_KeyRulesInvalidQueryStringValue
             case .lengthExceedsLimit:
                 code = .invalidParameter_LengthExceedsLimit
+            case .multiplyLayerNotSupportSmartRouting:
+                code = .invalidParameter_MultiplyLayerNotSupportSmartRouting
+            case .notSupportThisPreset:
+                code = .invalidParameter_NotSupportThisPreset
             case .originIsInnerIp:
                 code = .invalidParameter_OriginIsInnerIp
             case .originOriginGroupIdIsRequired:

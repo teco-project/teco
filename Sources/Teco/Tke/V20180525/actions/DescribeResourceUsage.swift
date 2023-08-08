@@ -41,6 +41,9 @@ extension Tke {
         /// Pod使用量
         public let podUsage: UInt64
 
+        /// ReplicaSet使用量
+        public let rsUsage: UInt64
+
         /// ConfigMap使用量
         public let configMapUsage: UInt64
 
@@ -53,6 +56,7 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case crdUsage = "CRDUsage"
             case podUsage = "PodUsage"
+            case rsUsage = "RSUsage"
             case configMapUsage = "ConfigMapUsage"
             case otherUsage = "OtherUsage"
             case requestId = "RequestId"

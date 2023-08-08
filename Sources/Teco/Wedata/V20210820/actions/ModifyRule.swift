@@ -87,7 +87,10 @@ extension Wedata {
         /// 目标字段名称  CITY
         public let targetObjectValue: String?
 
-        public init(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil) {
+        /// 该规则适配的执行引擎
+        public let sourceEngineTypes: [UInt64]?
+
+        public init(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, sourceEngineTypes: [UInt64]? = nil) {
             self.projectId = projectId
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
@@ -110,6 +113,7 @@ extension Wedata {
             self.relConditionExpr = relConditionExpr
             self.fieldConfig = fieldConfig
             self.targetObjectValue = targetObjectValue
+            self.sourceEngineTypes = sourceEngineTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -135,6 +139,7 @@ extension Wedata {
             case relConditionExpr = "RelConditionExpr"
             case fieldConfig = "FieldConfig"
             case targetObjectValue = "TargetObjectValue"
+            case sourceEngineTypes = "SourceEngineTypes"
         }
     }
 
@@ -167,13 +172,13 @@ extension Wedata {
 
     /// 更新质量规则接口
     @inlinable
-    public func modifyRule(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.modifyRule(.init(projectId: projectId, ruleId: ruleId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), region: region, logger: logger, on: eventLoop)
+    public func modifyRule(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, sourceEngineTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.modifyRule(.init(projectId: projectId, ruleId: ruleId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue, sourceEngineTypes: sourceEngineTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新质量规则接口
     @inlinable
-    public func modifyRule(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.modifyRule(.init(projectId: projectId, ruleId: ruleId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), region: region, logger: logger, on: eventLoop)
+    public func modifyRule(projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, sourceEngineTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.modifyRule(.init(projectId: projectId, ruleId: ruleId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue, sourceEngineTypes: sourceEngineTypes), region: region, logger: logger, on: eventLoop)
     }
 }

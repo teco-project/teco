@@ -19,7 +19,9 @@ import TecoCore
 extension TCTeoError {
     public struct InvalidParameterValue: TCTeoErrorType {
         enum Code: String {
+            case conflictRecord = "InvalidParameterValue.ConflictRecord"
             case conflictWithDNSSEC = "InvalidParameterValue.ConflictWithDNSSEC"
+            case conflictWithNSRecord = "InvalidParameterValue.ConflictWithNSRecord"
             case contentSameAsName = "InvalidParameterValue.ContentSameAsName"
             case domainNotMatchZone = "InvalidParameterValue.DomainNotMatchZone"
             case invalidDNSContent = "InvalidParameterValue.InvalidDNSContent"
@@ -51,9 +53,19 @@ extension TCTeoError {
             self.context = context
         }
 
+        /// 与已经添加的记录冲突。
+        public static var conflictRecord: InvalidParameterValue {
+            InvalidParameterValue(.conflictRecord)
+        }
+
         /// DNS 记录与 DNSSEC 功能冲突。
         public static var conflictWithDNSSEC: InvalidParameterValue {
             InvalidParameterValue(.conflictWithDNSSEC)
+        }
+
+        /// DNS 记录与 NS 记录冲突。
+        public static var conflictWithNSRecord: InvalidParameterValue {
+            InvalidParameterValue(.conflictWithNSRecord)
         }
 
         /// 主机记录与记录值不能取值相同。
@@ -96,8 +108,12 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
+            case .conflictRecord:
+                code = .invalidParameterValue_ConflictRecord
             case .conflictWithDNSSEC:
                 code = .invalidParameterValue_ConflictWithDNSSEC
+            case .conflictWithNSRecord:
+                code = .invalidParameterValue_ConflictWithNSRecord
             case .contentSameAsName:
                 code = .invalidParameterValue_ContentSameAsName
             case .domainNotMatchZone:

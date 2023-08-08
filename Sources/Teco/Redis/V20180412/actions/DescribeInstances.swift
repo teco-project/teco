@@ -25,13 +25,13 @@ extension Redis {
         /// 每页输出实例的数量，参数默认值20，最大值为1000。
         public let limit: UInt64?
 
-        /// 分页偏移量，取Limit整数倍。
+        /// 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: UInt64?
 
-        /// 实例 ID，如：crs-6ubhgouj。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String?
 
-        /// 实例排序依据，枚举值如下所示：<ul><li>projectId：项目ID。</li><li>createtime：实例创建时间。</li><li>instancename：实例名称。</li><li>type：实例类型。</li><li>curDeadline：实例到期时间。</li></ul>
+        /// 实例列表排序依据，枚举值如下所示：<ul><li>projectId：依据项目ID排序。</li><li>createtime：依据实例创建时间排序。</li><li>instancename：依据实例名称排序。</li><li>type：依据实例类型排序。</li><li>curDeadline：依据实例到期时间排序。</li></ul>
         public let orderBy: String?
 
         /// 实例排序方式，默认为倒序排序。<ul><li>1：倒序。</li><li>0：顺序。</li></ul>
@@ -70,13 +70,23 @@ extension Redis {
         /// 存储引擎信息。可设置为Redis-2.8、Redis-4.0、Redis-5.0、Redis-6.0 或者 CKV。
         public let engineName: String?
 
-        /// 续费模式。<ul><li>0：默认状态（手动续费）。</li><li>1：自动续费。</li><li>2：明确不自动续费。</ul>
+        /// 续费模式。<ul><li>0：手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
         public let autoRenew: [Int64]?
 
         /// 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
         public let billingMode: String?
 
-        /// 实例类型。<ul><li>1：Redis 老集群版。</li><li>2：Redis 2.8 主从版。</li><li>3：CKV 主从版。</li><li>4：CKV 集群版。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0主从版。</li><li>7：Redis 4.0 集群版。</li><li>8：Redis 5.0 主从版。</li><li>9：Redis 5.0 集群版。</li></ul>
+        /// 实例类型。
+        /// - 2：Redis 2.8内存版（标准架构）。
+        /// - 3：CKV 3.2内存版（标准架构）。
+        /// - 4：CKV 3.2内存版（集群架构）。
+        /// - 5：Redis 2.8内存版（单机）。
+        /// - 6：Redis 4.0内存版（标准架构）。
+        /// - 7：Redis 4.0内存版（集群架构）。
+        /// - 8：Redis 5.0内存版（标准架构）。
+        /// - 9：Redis 5.0内存版（集群架构）。
+        /// - 15：Redis 6.2内存版（标准架构）。
+        /// - 16：Redis 6.2内存版（集群架构）。
         public let type: Int64?
 
         /// 设置搜索关键字数组，可根据实例ID、实例名称、完整IP地址查询实例。
@@ -94,7 +104,7 @@ extension Redis {
         /// 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
         public let tagKeys: [String]?
 
-        /// 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。<ul><li>local：本地盘版。</li><li>cloud：云盘版。</li><li>cdc：独享集群版。</li></ul>
+        /// 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。<ul><li>local：本地盘版。</li><li>cdc：独享集群版。</li></ul>
         public let productVersions: [String]?
 
         /// 批量查询指定的实例 ID，返回结果已 Limit 限制为主。
@@ -201,42 +211,56 @@ extension Redis {
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable
     public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(.init(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable
     public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.describeInstances(.init(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [InstanceSet])> {
         self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     @inlinable @discardableResult
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
+    ///
+    /// 本接口（DescribeInstances）用于查询Redis实例列表。
     ///
     /// - Returns: `AsyncSequence`s of `InstanceSet` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable

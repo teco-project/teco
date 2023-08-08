@@ -24,32 +24,32 @@ extension Smh {
         /// 媒体库名称，最多 50 个字符
         public let name: String
 
-        /// 存储桶全名，新建后不可更改
-        public let bucketName: String
-
-        /// 存储桶所在地域，新建后不可更改
-        public let bucketRegion: String
-
-        /// 媒体库配置项，部分参数新建后不可更改
-        public let libraryExtension: LibraryExtension
-
         /// 备注，最多 250 个字符
         public let remark: String?
 
-        public init(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil) {
+        /// 存储桶全名，新建后不可更改。当前版本不再支持指定存储桶。
+        public let bucketName: String?
+
+        /// 存储桶所在地域，新建后不可更改。当前版本不再支持指定存储桶所在地域。
+        public let bucketRegion: String?
+
+        /// 媒体库配置项，部分参数新建后不可更改
+        public let libraryExtension: LibraryExtension?
+
+        public init(name: String, remark: String? = nil, bucketName: String? = nil, bucketRegion: String? = nil, libraryExtension: LibraryExtension? = nil) {
             self.name = name
+            self.remark = remark
             self.bucketName = bucketName
             self.bucketRegion = bucketRegion
             self.libraryExtension = libraryExtension
-            self.remark = remark
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
+            case remark = "Remark"
             case bucketName = "BucketName"
             case bucketRegion = "BucketRegion"
             case libraryExtension = "LibraryExtension"
-            case remark = "Remark"
         }
     }
 
@@ -87,15 +87,15 @@ extension Smh {
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
-        self.createLibrary(.init(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createLibrary(name: String, remark: String? = nil, bucketName: String? = nil, bucketRegion: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
+        self.createLibrary(.init(name: name, remark: remark, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体库
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.createLibrary(.init(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createLibrary(name: String, remark: String? = nil, bucketName: String? = nil, bucketRegion: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.createLibrary(.init(name: name, remark: remark, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 }

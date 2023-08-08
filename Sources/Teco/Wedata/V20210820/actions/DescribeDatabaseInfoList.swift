@@ -21,49 +21,58 @@ import TecoCore
 extension Wedata {
     /// DescribeDatabaseInfoList请求参数结构体
     public struct DescribeDatabaseInfoListRequest: TCRequestModel {
+        /// 过滤参数
+        public let filters: [Filter]
+
         /// 如果是hive这里写rpc，如果是其他类型不传
         public let connectionType: String
 
-        public init(connectionType: String) {
+        public init(filters: [Filter], connectionType: String) {
+            self.filters = filters
             self.connectionType = connectionType
         }
 
         enum CodingKeys: String, CodingKey {
+            case filters = "Filters"
             case connectionType = "ConnectionType"
         }
     }
 
     /// DescribeDatabaseInfoList返回参数结构体
     public struct DescribeDatabaseInfoListResponse: TCResponseModel {
+        /// 数据库列表
+        public let databaseInfo: [DatabaseInfo]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case databaseInfo = "DatabaseInfo"
             case requestId = "RequestId"
         }
     }
 
     /// 获取数据库信息
-    @inlinable @discardableResult
+    @inlinable
     public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
         self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据库信息
-    @inlinable @discardableResult
+    @inlinable
     public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
         try await self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据库信息
-    @inlinable @discardableResult
-    public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
-        self.describeDatabaseInfoList(.init(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func describeDatabaseInfoList(filters: [Filter], connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
+        self.describeDatabaseInfoList(.init(filters: filters, connectionType: connectionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据库信息
-    @inlinable @discardableResult
-    public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
-        try await self.describeDatabaseInfoList(.init(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
+    @inlinable
+    public func describeDatabaseInfoList(filters: [Filter], connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
+        try await self.describeDatabaseInfoList(.init(filters: filters, connectionType: connectionType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -35,6 +35,30 @@ extension Oceanus {
         }
     }
 
+    /// {
+    /// "Clazz": "c1", // java类全路径
+    /// "Level": "WARN" // 日志级别  TRACE，DEBUG、INFO、WARN、ERROR
+    /// }
+    public struct ClazzLevel: TCInputModel, TCOutputModel {
+        /// java类全路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clazz: String?
+
+        /// 日志级别  TRACE，DEBUG、INFO、WARN、ERROR
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        public init(clazz: String, level: String) {
+            self.clazz = clazz
+            self.level = level
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clazz = "Clazz"
+            case level = "Level"
+        }
+    }
+
     /// 描述用户创建的集群信息
     public struct Cluster: TCOutputModel {
         /// 集群 ID
@@ -160,6 +184,10 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNeedManageNode: Int64?
 
+        /// session集群信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterSessions: [ClusterSession]?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case name = "Name"
@@ -196,7 +224,94 @@ extension Oceanus {
             case runningCu = "RunningCu"
             case payMode = "PayMode"
             case isNeedManageNode = "IsNeedManageNode"
+            case clusterSessions = "ClusterSessions"
         }
+    }
+
+    /// 工作空间集群组信息
+    public struct ClusterGroupSetItem: TCOutputModel {
+        /// clusterGroup 的 SerialId
+        public let clusterId: String
+
+        /// 集群名称
+        public let name: String
+
+        /// 地域
+        public let region: String
+
+        /// 区
+        public let zone: String
+
+        /// 账号 APPID
+        public let appId: Int64
+
+        /// 主账号 UIN
+        public let ownerUin: String
+
+        /// 创建账号 UIN
+        public let creatorUin: String
+
+        /// CU 数量
+        public let cuNum: Int64
+
+        /// CU 内存规格
+        public let cuMem: Int64
+
+        /// 集群状态, 1 未初始化,，3 初始化中，2 运行中
+        public let status: Int64
+
+        /// 状态描述
+        public let statusDesc: String
+
+        /// 集群创建时间
+        public let createTime: String
+
+        /// 最后一次操作集群的时间
+        public let updateTime: String
+
+        /// 描述
+        public let remark: String
+
+        /// 网络
+        public let netEnvironmentType: Int64
+
+        /// 空闲 CU
+        public let freeCuNum: Int64
+
+        /// 细粒度资源下的空闲CU
+        public let freeCu: Float
+
+        /// 运行中CU
+        public let runningCu: Float?
+
+        /// 付费模式
+        public let payMode: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case name = "Name"
+            case region = "Region"
+            case zone = "Zone"
+            case appId = "AppId"
+            case ownerUin = "OwnerUin"
+            case creatorUin = "CreatorUin"
+            case cuNum = "CuNum"
+            case cuMem = "CuMem"
+            case status = "Status"
+            case statusDesc = "StatusDesc"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case remark = "Remark"
+            case netEnvironmentType = "NetEnvironmentType"
+            case freeCuNum = "FreeCuNum"
+            case freeCu = "FreeCu"
+            case runningCu = "RunningCu"
+            case payMode = "PayMode"
+        }
+    }
+
+    /// session集群信息
+    public struct ClusterSession: TCOutputModel {
     }
 
     /// 集群的版本相关信息
@@ -217,12 +332,92 @@ extension Oceanus {
 
     /// 复制作业单条明细
     public struct CopyJobItem: TCInputModel {
-        public init() {
+        /// 需要复制的作业serial id
+        public let sourceId: String
+
+        /// 目标集群的cluster serial id
+        public let targetClusterId: String
+
+        /// 需要复制的作业名称
+        public let sourceName: String?
+
+        /// 新作业的名称
+        public let targetName: String?
+
+        /// 新作业的目录id
+        public let targetFolderId: String?
+
+        /// 源作业类型
+        public let jobType: Int64?
+
+        public init(sourceId: String, targetClusterId: String, sourceName: String? = nil, targetName: String? = nil, targetFolderId: String? = nil, jobType: Int64? = nil) {
+            self.sourceId = sourceId
+            self.targetClusterId = targetClusterId
+            self.sourceName = sourceName
+            self.targetName = targetName
+            self.targetFolderId = targetFolderId
+            self.jobType = jobType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sourceId = "SourceId"
+            case targetClusterId = "TargetClusterId"
+            case sourceName = "SourceName"
+            case targetName = "TargetName"
+            case targetFolderId = "TargetFolderId"
+            case jobType = "JobType"
         }
     }
 
     /// 复制作业单条明细结果
     public struct CopyJobResult: TCOutputModel {
+        /// 原作业id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobId: String?
+
+        /// 原作业名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobName: String?
+
+        /// 新作业名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetJobName: String?
+
+        /// 新作业id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetJobId: String?
+
+        /// 失败时候的信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 0 成功  -1 失败
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: Int64?
+
+        /// 目标集群名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 目标集群id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 作业类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobType: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case jobId = "JobId"
+            case jobName = "JobName"
+            case targetJobName = "TargetJobName"
+            case targetJobId = "TargetJobId"
+            case message = "Message"
+            case result = "Result"
+            case clusterName = "ClusterName"
+            case clusterId = "ClusterId"
+            case jobType = "JobType"
+        }
     }
 
     /// 树状结构资源列表对象
@@ -255,6 +450,33 @@ extension Oceanus {
             case items = "Items"
             case children = "Children"
             case totalCount = "TotalCount"
+        }
+    }
+
+    /// 作业配置 -- 专家模式的详细配置
+    public struct ExpertModeConfiguration: TCInputModel, TCOutputModel {
+        /// Job graph
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobGraph: JobGraph?
+
+        /// Node configuration
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeConfig: [NodeConfig]?
+
+        /// Slot sharing groups
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slotSharingGroups: [SlotSharingGroup]?
+
+        public init(jobGraph: JobGraph? = nil, nodeConfig: [NodeConfig]? = nil, slotSharingGroups: [SlotSharingGroup]? = nil) {
+            self.jobGraph = jobGraph
+            self.nodeConfig = nodeConfig
+            self.slotSharingGroups = slotSharingGroups
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case jobGraph = "JobGraph"
+            case nodeConfig = "NodeConfig"
+            case slotSharingGroups = "SlotSharingGroups"
         }
     }
 
@@ -360,6 +582,18 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logLevel: String?
 
+        /// 类日志级别
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clazzLevels: [ClazzLevel]?
+
+        /// 是否开启专家模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expertModeOn: Bool?
+
+        /// 专家模式的配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expertModeConfiguration: ExpertModeConfiguration?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case entrypointClass = "EntrypointClass"
@@ -382,6 +616,102 @@ extension Oceanus {
             case pythonVersion = "PythonVersion"
             case autoRecover = "AutoRecover"
             case logLevel = "LogLevel"
+            case clazzLevels = "ClazzLevels"
+            case expertModeOn = "ExpertModeOn"
+            case expertModeConfiguration = "ExpertModeConfiguration"
+        }
+    }
+
+    /// 作业运行图
+    public struct JobGraph: TCInputModel, TCOutputModel {
+        /// 运行图的点集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodes: [JobGraphNode]?
+
+        /// 运行图的边集合
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let edges: [JobGraphEdge]?
+
+        public init(nodes: [JobGraphNode]? = nil, edges: [JobGraphEdge]? = nil) {
+            self.nodes = nodes
+            self.edges = edges
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case nodes = "Nodes"
+            case edges = "Edges"
+        }
+    }
+
+    /// Flink Job 运行图的边信息
+    public struct JobGraphEdge: TCInputModel, TCOutputModel {
+        /// 边的起始节点ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let source: Int64?
+
+        /// 边的目标节点ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let target: Int64?
+
+        public init(source: Int64, target: Int64) {
+            self.source = source
+            self.target = target
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case source = "Source"
+            case target = "Target"
+        }
+    }
+
+    /// Flink Job 运行图的点信息
+    public struct JobGraphNode: TCInputModel, TCOutputModel {
+        /// 节点ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// 节点描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 节点名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 节点并行度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parallelism: Int64?
+
+        public init(id: Int64, description: String, name: String, parallelism: Int64) {
+            self.id = id
+            self.description = description
+            self.name = name
+            self.parallelism = parallelism
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case description = "Description"
+            case name = "Name"
+            case parallelism = "Parallelism"
+        }
+    }
+
+    /// 搜索启动日志时返回的作业实例
+    public struct JobInstanceForSubmissionLog: TCOutputModel {
+        /// 实例的Id, 按照启动的时间顺序，从1开始
+        public let runningOrderId: Int64
+
+        /// 作业实例的启动时间
+        public let jobInstanceStartTime: String
+
+        /// 作业实例启动的时间（毫秒）
+        public let startingMillis: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case runningOrderId = "RunningOrderId"
+            case jobInstanceStartTime = "JobInstanceStartTime"
+            case startingMillis = "StartingMillis"
         }
     }
 
@@ -511,6 +841,10 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workSpaceName: String?
 
+        /// 作业标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case region = "Region"
@@ -543,11 +877,81 @@ extension Oceanus {
             case flinkVersion = "FlinkVersion"
             case workSpaceId = "WorkSpaceId"
             case workSpaceName = "WorkSpaceName"
+            case tags = "Tags"
+        }
+    }
+
+    /// 日志查询的每行日志信息
+    public struct LogContent: TCOutputModel {
+        /// 日志内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let log: String?
+
+        /// 毫秒级时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: Int64?
+
+        /// 日志组Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pkgId: String?
+
+        /// 日志Id，在日志组范围里唯一
+        public let pkgLogId: Int64
+
+        /// 日志所属的容器名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let containerName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case log = "Log"
+            case time = "Time"
+            case pkgId = "PkgId"
+            case pkgLogId = "PkgLogId"
+            case containerName = "ContainerName"
+        }
+    }
+
+    /// 专家模式  计算节点的配置信息
+    public struct NodeConfig: TCInputModel, TCOutputModel {
+        /// Node ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// Node parallelism
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parallelism: Int64?
+
+        /// Slot sharing group
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slotSharingGroup: String?
+
+        /// Configuration properties
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configuration: [Property]?
+
+        /// 节点的状态ttl配置, 多个用 ; 分割
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stateTTL: String?
+
+        public init(id: Int64, parallelism: Int64? = nil, slotSharingGroup: String? = nil, configuration: [Property]? = nil, stateTTL: String? = nil) {
+            self.id = id
+            self.parallelism = parallelism
+            self.slotSharingGroup = slotSharingGroup
+            self.configuration = configuration
+            self.stateTTL = stateTTL
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case parallelism = "Parallelism"
+            case slotSharingGroup = "SlotSharingGroup"
+            case configuration = "Configuration"
+            case stateTTL = "StateTTL"
         }
     }
 
     /// 系统配置属性
-    public struct Property: TCInputModel {
+    public struct Property: TCInputModel, TCOutputModel {
         /// 系统配置的Key
         public let key: String
 
@@ -839,6 +1243,63 @@ extension Oceanus {
         }
     }
 
+    /// 角色授权信息
+    public struct RoleAuth: TCOutputModel {
+        /// 用户 AppID
+        public let appId: Int64?
+
+        /// 工作空间 SerialId
+        public let workSpaceSerialId: String?
+
+        /// 主账号 UIN
+        public let ownerUin: String?
+
+        /// 创建者 UIN
+        public let creatorUin: String?
+
+        /// 绑定授权的 UIN
+        public let authSubAccountUin: String?
+
+        /// 对应 role表的id
+        public let permission: Int64?
+
+        /// 创建时间
+        public let createTime: String?
+
+        /// 最后一次操作时间
+        public let updateTime: String?
+
+        /// 2 启用 1 停用
+        public let status: Int64?
+
+        /// id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// 工作空间id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let workSpaceId: Int64?
+
+        /// 权限名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case appId = "AppId"
+            case workSpaceSerialId = "WorkSpaceSerialId"
+            case ownerUin = "OwnerUin"
+            case creatorUin = "CreatorUin"
+            case authSubAccountUin = "AuthSubAccountUin"
+            case permission = "Permission"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case status = "Status"
+            case id = "Id"
+            case workSpaceId = "WorkSpaceId"
+            case roleName = "RoleName"
+        }
+    }
+
     /// 作业启动详情
     public struct RunJobDescription: TCInputModel {
         /// 作业Id
@@ -959,6 +1420,66 @@ extension Oceanus {
         }
     }
 
+    /// SlotSharingGroup 描述
+    public struct SlotSharingGroup: TCInputModel, TCOutputModel {
+        /// SlotSharingGroup的名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// SlotSharingGroup的规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let spec: SlotSharingGroupSpec?
+
+        /// SlotSharingGroup的描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        public init(name: String, spec: SlotSharingGroupSpec, description: String? = nil) {
+            self.name = name
+            self.spec = spec
+            self.description = description
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case spec = "Spec"
+            case description = "Description"
+        }
+    }
+
+    /// SlotSharingGroup的规格描述
+    public struct SlotSharingGroupSpec: TCInputModel, TCOutputModel {
+        /// 适用的cpu
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpu: Float?
+
+        /// 默认为b, 支持单位有 b, kb, mb, gb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let heapMemory: String?
+
+        /// 默认为b, 支持单位有 b, kb, mb, gb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let offHeapMemory: String?
+
+        /// 默认为b, 支持单位有 b, kb, mb, gb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let managedMemory: String?
+
+        public init(cpu: Float, heapMemory: String, offHeapMemory: String? = nil, managedMemory: String? = nil) {
+            self.cpu = cpu
+            self.heapMemory = heapMemory
+            self.offHeapMemory = offHeapMemory
+            self.managedMemory = managedMemory
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cpu = "CPU"
+            case heapMemory = "HeapMemory"
+            case offHeapMemory = "OffHeapMemory"
+            case managedMemory = "ManagedMemory"
+        }
+    }
+
     /// 停止作业的描述信息
     public struct StopJobDescription: TCInputModel {
         /// 作业Id
@@ -1053,6 +1574,10 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let folderId: String?
 
+        /// 分状态统计关联作业数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let refJobStatusCountSet: [RefJobStatusCountItem]?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case name = "Name"
@@ -1060,6 +1585,7 @@ extension Oceanus {
             case remark = "Remark"
             case fileName = "FileName"
             case folderId = "FolderId"
+            case refJobStatusCountSet = "RefJobStatusCountSet"
         }
     }
 
@@ -1099,6 +1625,73 @@ extension Oceanus {
             case status = "Status"
             case projectId = "ProjectId"
             case projectIdStr = "ProjectIdStr"
+        }
+    }
+
+    /// 工作空间详情
+    public struct WorkSpaceSetItem: TCOutputModel {
+        /// 工作空间 SerialId
+        public let serialId: String
+
+        /// 用户 APPID
+        public let appId: Int64
+
+        /// 主账号 UIN
+        public let ownerUin: String
+
+        /// 创建者 UIN
+        public let creatorUin: String
+
+        /// 工作空间名称
+        public let workSpaceName: String
+
+        /// 区域
+        public let region: String
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 更新时间
+        public let updateTime: String
+
+        /// 1 未初始化 2 可用  -1 已删除
+        public let status: Int64
+
+        /// 工作空间描述
+        public let description: String
+
+        /// 工作空间包含集群信息
+        public let clusterGroupSetItem: [ClusterGroupSetItem]
+
+        /// 工作空间角色的信息
+        public let roleAuth: [RoleAuth]
+
+        /// 工作空间成员数量
+        public let roleAuthCount: Int64
+
+        /// 工作空间 SerialId
+        public let workSpaceId: String
+
+        /// 1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobsCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case serialId = "SerialId"
+            case appId = "AppId"
+            case ownerUin = "OwnerUin"
+            case creatorUin = "CreatorUin"
+            case workSpaceName = "WorkSpaceName"
+            case region = "Region"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case status = "Status"
+            case description = "Description"
+            case clusterGroupSetItem = "ClusterGroupSetItem"
+            case roleAuth = "RoleAuth"
+            case roleAuthCount = "RoleAuthCount"
+            case workSpaceId = "WorkSpaceId"
+            case jobsCount = "JobsCount"
         }
     }
 }

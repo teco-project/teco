@@ -27,10 +27,10 @@ extension Lcic {
         /// 低代码互动课堂的SdkAppId
         public let sdkAppId: UInt64
 
-        /// 预定的房间开始时间，unix时间戳。直播开始后不允许修改。
+        /// 预定的房间开始时间，unix时间戳（秒）。直播开始后不允许修改。
         public let startTime: UInt64?
 
-        /// 预定的房间结束时间，unix时间戳。直播开始后不允许修改。
+        /// 预定的房间结束时间，unix时间戳（秒）。直播开始后不允许修改。
         public let endTime: UInt64?
 
         /// 老师ID。直播开始后不允许修改。
@@ -65,7 +65,6 @@ extension Lcic {
         /// 房间子类型，可以有以下取值：
         /// videodoc 文档+视频
         /// video 纯视频
-        /// coteaching 双师
         /// 直播开始后不允许修改。
         public let subType: String?
 
@@ -78,10 +77,27 @@ extension Lcic {
         /// 助教Id列表。直播开始后不允许修改。
         public let assistants: [String]?
 
-        /// 房间绑定的群组ID
+        /// 房间绑定的群组ID。直播开始后不允许修改。
         public let groupId: String?
 
-        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil) {
+        /// 打开学生麦克风/摄像头的授权开关。直播开始后不允许修改。
+        public let enableDirectControl: UInt64?
+
+        /// 开启专注模式。
+        /// 0 收看全部角色音视频(默认)
+        /// 1 只看老师和助教
+        public let interactionMode: UInt64?
+
+        /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        public let videoOrientation: UInt64?
+
+        /// 开启课后评分。 0：不开启(默认)  1：开启
+        public let isGradingRequiredPostClass: UInt64?
+
+        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        public let roomType: UInt64?
+
+        public init(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil) {
             self.roomId = roomId
             self.sdkAppId = sdkAppId
             self.startTime = startTime
@@ -96,6 +112,11 @@ extension Lcic {
             self.disableRecord = disableRecord
             self.assistants = assistants
             self.groupId = groupId
+            self.enableDirectControl = enableDirectControl
+            self.interactionMode = interactionMode
+            self.videoOrientation = videoOrientation
+            self.isGradingRequiredPostClass = isGradingRequiredPostClass
+            self.roomType = roomType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -113,6 +134,11 @@ extension Lcic {
             case disableRecord = "DisableRecord"
             case assistants = "Assistants"
             case groupId = "GroupId"
+            case enableDirectControl = "EnableDirectControl"
+            case interactionMode = "InteractionMode"
+            case videoOrientation = "VideoOrientation"
+            case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
+            case roomType = "RoomType"
         }
     }
 
@@ -140,13 +166,13 @@ extension Lcic {
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
-        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoomResponse> {
+        self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改房间
     @inlinable @discardableResult
-    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func modifyRoom(roomId: UInt64, sdkAppId: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, teacherId: String? = nil, name: String? = nil, resolution: UInt64? = nil, maxMicNumber: UInt64? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, subType: String? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: UInt64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: UInt64? = nil, roomType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
+        try await self.modifyRoom(.init(roomId: roomId, sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, teacherId: teacherId, name: name, resolution: resolution, maxMicNumber: maxMicNumber, autoMic: autoMic, audioQuality: audioQuality, subType: subType, disableRecord: disableRecord, assistants: assistants, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
     }
 }

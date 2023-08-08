@@ -19,6 +19,7 @@ import TecoCore
 extension TCTioneError {
     public struct InvalidParameter: TCTioneErrorType {
         enum Code: String {
+            case filterKeyStatusConflictWithChargeStatus = "InvalidParameter.FilterKeyStatusConflictWithChargeStatus"
             case modelFileInvalid = "InvalidParameter.ModelFileInvalid"
             case tgwInvalidInterface = "InvalidParameter.TgwInvalidInterface"
             case tgwInvalidRequestBody = "InvalidParameter.TgwInvalidRequestBody"
@@ -46,6 +47,13 @@ extension TCTioneError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 接口过滤条件"运行状态"与"计费状态"不能同时存在。
+        ///
+        /// 请移除"运行状态"与"计费状态"其中一个过滤条件。
+        public static var filterKeyStatusConflictWithChargeStatus: InvalidParameter {
+            InvalidParameter(.filterKeyStatusConflictWithChargeStatus)
         }
 
         /// 模型包不符合规范。
@@ -80,6 +88,8 @@ extension TCTioneError {
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {
+            case .filterKeyStatusConflictWithChargeStatus:
+                code = .invalidParameter_FilterKeyStatusConflictWithChargeStatus
             case .modelFileInvalid:
                 code = .invalidParameter_ModelFileInvalid
             case .tgwInvalidInterface:

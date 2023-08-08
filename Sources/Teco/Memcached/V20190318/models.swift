@@ -20,7 +20,7 @@ import TecoDateHelpers
 
 extension Memcached {
     /// 实例详细信息列表
-    public struct InstanceListInfo: TCInputModel {
+    public struct InstanceListInfo: TCInputModel, TCOutputModel {
         /// 实例修改时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -46,6 +46,7 @@ extension Memcached {
         public let cmemId: Int64?
 
         /// 实例关联的标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfo]?
 
         /// 实例ID

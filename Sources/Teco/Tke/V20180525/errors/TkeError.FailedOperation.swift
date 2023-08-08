@@ -47,8 +47,10 @@ extension TCTkeError {
             case disableVPCCNIFailed = "FailedOperation.DisableVPCCNIFailed"
             case enableVPCCNIFailed = "FailedOperation.EnableVPCCNIFailed"
             case getClsConfig = "FailedOperation.GetClsConfig"
+            case getClsIndex = "FailedOperation.GetClsIndex"
             case getClsLogSet = "FailedOperation.GetClsLogSet"
             case getClsMachineGroup = "FailedOperation.GetClsMachineGroup"
+            case getClsTopic = "FailedOperation.GetClsTopic"
             case kubeClientConf = "FailedOperation.KubeClientConf"
             case kubeClientConnection = "FailedOperation.KubeClientConnection"
             case kubeCommon = "FailedOperation.KubeCommon"
@@ -64,6 +66,7 @@ extension TCTkeError {
             case marketReleaseOperation = "FailedOperation.MarketReleaseOperation"
             case modifyClsIndex = "FailedOperation.ModifyClsIndex"
             case networkScaleError = "FailedOperation.NetworkScaleError"
+            case nodeExistsSecondaryNetworkInterface = "FailedOperation.NodeExistsSecondaryNetworkInterface"
             case osNotSupport = "FailedOperation.OsNotSupport"
             case param = "FailedOperation.Param"
             case policyServerCommonError = "FailedOperation.PolicyServerCommonError"
@@ -285,6 +288,11 @@ extension TCTkeError {
             FailedOperation(.getClsConfig)
         }
 
+        /// 获取CLS索引配置失败。
+        public static var getClsIndex: FailedOperation {
+            FailedOperation(.getClsIndex)
+        }
+
         /// 查询主题集失败。
         ///
         /// 请向腾讯云提工单寻求支持。
@@ -295,6 +303,11 @@ extension TCTkeError {
         /// 获取CLS机器组失败。
         public static var getClsMachineGroup: FailedOperation {
             FailedOperation(.getClsMachineGroup)
+        }
+
+        /// 获取CLS日志主题失败。
+        public static var getClsTopic: FailedOperation {
+            FailedOperation(.getClsTopic)
         }
 
         /// 通过配置文件创建集群Client错误。
@@ -394,6 +407,13 @@ extension TCTkeError {
         /// 请提交工单联系我们协助处理
         public static var networkScaleError: FailedOperation {
             FailedOperation(.networkScaleError)
+        }
+
+        /// 节点存在辅助网卡
+        ///
+        /// 节点取消绑定辅助网卡
+        public static var nodeExistsSecondaryNetworkInterface: FailedOperation {
+            FailedOperation(.nodeExistsSecondaryNetworkInterface)
         }
 
         /// 镜像OS不支持。
@@ -564,10 +584,14 @@ extension TCTkeError {
                 code = .failedOperation_EnableVPCCNIFailed
             case .getClsConfig:
                 code = .failedOperation_GetClsConfig
+            case .getClsIndex:
+                code = .failedOperation_GetClsIndex
             case .getClsLogSet:
                 code = .failedOperation_GetClsLogSet
             case .getClsMachineGroup:
                 code = .failedOperation_GetClsMachineGroup
+            case .getClsTopic:
+                code = .failedOperation_GetClsTopic
             case .kubeClientConf:
                 code = .failedOperation_KubeClientConf
             case .kubeClientConnection:
@@ -598,6 +622,8 @@ extension TCTkeError {
                 code = .failedOperation_ModifyClsIndex
             case .networkScaleError:
                 code = .failedOperation_NetworkScaleError
+            case .nodeExistsSecondaryNetworkInterface:
+                code = .failedOperation_NodeExistsSecondaryNetworkInterface
             case .osNotSupport:
                 code = .failedOperation_OsNotSupport
             case .param:

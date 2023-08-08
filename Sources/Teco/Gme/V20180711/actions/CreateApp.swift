@@ -28,24 +28,29 @@ extension Gme {
         public let projectId: UInt64?
 
         /// 需要支持的引擎列表，默认全选。
+        /// 取值：android/ios/unity/cocos/unreal/windows
         public let engineList: [String]?
 
         /// 服务区域列表，默认全选。
+        /// 取值：mainland-大陆地区，hmt-港澳台，sea-东南亚，na-北美，eu-欧洲，jpkr-日韩亚太，sa-南美，oc-澳洲，me-中东
         public let regionList: [String]?
 
         /// 实时语音服务配置数据
         public let realtimeSpeechConf: RealtimeSpeechConf?
 
-        /// 语音消息及转文本服务配置数据
+        /// 语音消息服务配置数据
         public let voiceMessageConf: VoiceMessageConf?
 
         /// 语音分析服务配置数据
         public let voiceFilterConf: VoiceFilterConf?
 
+        /// 语音转文本配置数据
+        public let asrConf: AsrConf?
+
         /// 需要添加的标签列表
         public let tags: [Tag]?
 
-        public init(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil) {
+        public init(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, asrConf: AsrConf? = nil, tags: [Tag]? = nil) {
             self.appName = appName
             self.projectId = projectId
             self.engineList = engineList
@@ -53,6 +58,7 @@ extension Gme {
             self.realtimeSpeechConf = realtimeSpeechConf
             self.voiceMessageConf = voiceMessageConf
             self.voiceFilterConf = voiceFilterConf
+            self.asrConf = asrConf
             self.tags = tags
         }
 
@@ -64,6 +70,7 @@ extension Gme {
             case realtimeSpeechConf = "RealtimeSpeechConf"
             case voiceMessageConf = "VoiceMessageConf"
             case voiceFilterConf = "VoiceFilterConf"
+            case asrConf = "AsrConf"
             case tags = "Tags"
         }
     }
@@ -102,15 +109,15 @@ extension Gme {
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
-        self.createApp(.init(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, asrConf: AsrConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
+        self.createApp(.init(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, asrConf: asrConf, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
-        try await self.createApp(.init(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, asrConf: AsrConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
+        try await self.createApp(.init(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, asrConf: asrConf, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

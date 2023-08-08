@@ -21,6 +21,11 @@ extension TCEmrError {
         enum Code: String {
             case checkIfSupportPodStretch = "FailedOperation.CheckIfSupportPodStretch"
             case duplicateOrderNotAllowed = "FailedOperation.DuplicateOrderNotAllowed"
+            case getCamRoleFailed = "FailedOperation.GetCamRoleFailed"
+            case getCamServerFailed = "FailedOperation.GetCamServerFailed"
+            case getCvmConfigQuotaFailed = "FailedOperation.GetCvmConfigQuotaFailed"
+            case getCvmServerFailed = "FailedOperation.GetCvmServerFailed"
+            case getTradeServerFailed = "FailedOperation.GetTradeServerFailed"
             case notSupportPod = "FailedOperation.NotSupportPod"
             case refundCvmFailed = "FailedOperation.RefundCvmFailed"
             case other = "FailedOperation"
@@ -58,6 +63,31 @@ extension TCEmrError {
             FailedOperation(.duplicateOrderNotAllowed)
         }
 
+        /// 获取cam角色失败。
+        public static var getCamRoleFailed: FailedOperation {
+            FailedOperation(.getCamRoleFailed)
+        }
+
+        /// 调用cam服务失败。
+        public static var getCamServerFailed: FailedOperation {
+            FailedOperation(.getCamServerFailed)
+        }
+
+        /// 获取cvm 规格信息失败。
+        public static var getCvmConfigQuotaFailed: FailedOperation {
+            FailedOperation(.getCvmConfigQuotaFailed)
+        }
+
+        /// 调用cvm服务失败。
+        public static var getCvmServerFailed: FailedOperation {
+            FailedOperation(.getCvmServerFailed)
+        }
+
+        /// 调去询价中心服务失败
+        public static var getTradeServerFailed: FailedOperation {
+            FailedOperation(.getTradeServerFailed)
+        }
+
         /// 操作失败，不支持pod。
         public static var notSupportPod: FailedOperation {
             FailedOperation(.notSupportPod)
@@ -80,6 +110,16 @@ extension TCEmrError {
                 code = .failedOperation_CheckIfSupportPodStretch
             case .duplicateOrderNotAllowed:
                 code = .failedOperation_DuplicateOrderNotAllowed
+            case .getCamRoleFailed:
+                code = .failedOperation_GetCamRoleFailed
+            case .getCamServerFailed:
+                code = .failedOperation_GetCamServerFailed
+            case .getCvmConfigQuotaFailed:
+                code = .failedOperation_GetCvmConfigQuotaFailed
+            case .getCvmServerFailed:
+                code = .failedOperation_GetCvmServerFailed
+            case .getTradeServerFailed:
+                code = .failedOperation_GetTradeServerFailed
             case .notSupportPod:
                 code = .failedOperation_NotSupportPod
             case .refundCvmFailed:

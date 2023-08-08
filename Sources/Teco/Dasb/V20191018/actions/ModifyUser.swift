@@ -30,10 +30,10 @@ extension Dasb {
         public let realName: String
 
         /// 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
-        public let phone: String
+        public let phone: String?
 
         /// 电子邮件
-        public let email: String
+        public let email: String?
 
         /// 用户生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
@@ -61,7 +61,7 @@ extension Dasb {
         /// 用户所属部门的ID，如1.2.3
         public let departmentId: String?
 
-        public init(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
+        public init(id: UInt64, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
             self.id = id
             self.realName = realName
             self.phone = phone
@@ -112,13 +112,13 @@ extension Dasb {
 
     /// 修改用户信息
     @inlinable @discardableResult
-    public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
+    public func modifyUser(id: UInt64, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.modifyUser(.init(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户信息
     @inlinable @discardableResult
-    public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+    public func modifyUser(id: UInt64, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.modifyUser(.init(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

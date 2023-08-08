@@ -54,7 +54,7 @@ extension Cdn {
         /// 错误码重定向配置（功能灰度中，尚未全量）
         public let errorPage: ErrorPage?
 
-        /// 请求头部配置
+        /// 回源请求头部配置
         public let requestHeader: RequestHeader?
 
         /// 响应头部配置
@@ -293,8 +293,8 @@ extension Cdn {
 
     /// 更新加速域名配置
     ///
-    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
-    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable @discardableResult
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
@@ -303,8 +303,8 @@ extension Cdn {
 
     /// 更新加速域名配置
     ///
-    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
-    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable @discardableResult
     public func updateDomainConfig(_ input: UpdateDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {
@@ -313,8 +313,8 @@ extension Cdn {
 
     /// 更新加速域名配置
     ///
-    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
-    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable @discardableResult
     public func updateDomainConfig(domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil, othersPrivateAccess: OthersPrivateAccess? = nil, httpsBilling: HttpsBilling? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDomainConfigResponse> {
@@ -323,8 +323,8 @@ extension Cdn {
 
     /// 更新加速域名配置
     ///
-    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息
-    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。Https配置由于证书的特殊性，更新时不用传递证书和密钥字段。
+    /// UpdateDomainConfig 用于修改内容分发网络加速域名配置信息。
+    /// 注意：如果需要更新复杂类型的配置项，必须传递整个对象的所有属性，未传递的属性将使用默认值，建议通过查询接口获取配置属性后，直接修改后传递给本接口。
     /// 云审计相关：接口的入参可能包含密钥等敏感信息，所以此接口的入参不会上报到云审计。
     @inlinable @discardableResult
     public func updateDomainConfig(domain: String, projectId: Int64? = nil, origin: Origin? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, specificConfig: SpecificConfig? = nil, serviceType: String? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, userAgentFilter: UserAgentFilter? = nil, accessControl: AccessControl? = nil, urlRedirect: UrlRedirect? = nil, accessPort: [Int64]? = nil, advancedAuthentication: AdvancedAuthentication? = nil, originAuthentication: OriginAuthentication? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, originCombine: OriginCombine? = nil, postMaxSize: PostSize? = nil, quic: Quic? = nil, ossPrivateAccess: OssPrivateAccess? = nil, webSocket: WebSocket? = nil, remoteAuthentication: RemoteAuthentication? = nil, shareCname: ShareCname? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil, othersPrivateAccess: OthersPrivateAccess? = nil, httpsBilling: HttpsBilling? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDomainConfigResponse {

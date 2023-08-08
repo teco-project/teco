@@ -19,13 +19,18 @@ import TecoCore
 extension TCCfsError {
     public struct InvalidParameterValue: TCCfsErrorType {
         enum Code: String {
+            case autoPolicyNotFound = "InvalidParameterValue.AutoPolicyNotFound"
             case clientTokenLimitExceeded = "InvalidParameterValue.ClientTokenLimitExceeded"
             case duplicatedPgroupName = "InvalidParameterValue.DuplicatedPgroupName"
             case duplicatedRuleAuthClientIp = "InvalidParameterValue.DuplicatedRuleAuthClientIp"
+            case duplicatedTagKey = "InvalidParameterValue.DuplicatedTagKey"
             case fsNameLimitExceeded = "InvalidParameterValue.FsNameLimitExceeded"
             case fsSizeLimitExceeded = "InvalidParameterValue.FsSizeLimitExceeded"
+            case invalidAliveDays = "InvalidParameterValue.InvalidAliveDays"
             case invalidAuthClientIp = "InvalidParameterValue.InvalidAuthClientIp"
+            case invalidAutoScaleUpParams = "InvalidParameterValue.InvalidAutoScaleUpParams"
             case invalidClientToken = "InvalidParameterValue.InvalidClientToken"
+            case invalidDestinationRegions = "InvalidParameterValue.InvalidDestinationRegions"
             case invalidEncrypted = "InvalidParameterValue.InvalidEncrypted"
             case invalidFileSystemId = "InvalidParameterValue.InvalidFileSystemId"
             case invalidFsName = "InvalidParameterValue.InvalidFsName"
@@ -34,6 +39,7 @@ extension TCCfsError {
             case invalidMountTargetIp = "InvalidParameterValue.InvalidMountTargetIp"
             case invalidNetInterface = "InvalidParameterValue.InvalidNetInterface"
             case invalidParamDayOfMonth = "InvalidParameterValue.InvalidParamDayOfMonth"
+            case invalidParamDayOfWeek = "InvalidParameterValue.InvalidParamDayOfWeek"
             case invalidParamIntervalDays = "InvalidParameterValue.InvalidParamIntervalDays"
             case invalidPgroup = "InvalidParameterValue.InvalidPgroup"
             case invalidPgroupId = "InvalidParameterValue.InvalidPgroupId"
@@ -43,6 +49,10 @@ extension TCCfsError {
             case invalidRegionZoneInfo = "InvalidParameterValue.InvalidRegionZoneInfo"
             case invalidResourceTags = "InvalidParameterValue.InvalidResourceTags"
             case invalidRwPermission = "InvalidParameterValue.InvalidRwPermission"
+            case invalidScaleupTargetCapacity = "InvalidParameterValue.InvalidScaleupTargetCapacity"
+            case invalidSnapPolicyStatus = "InvalidParameterValue.InvalidSnapPolicyStatus"
+            case invalidSnapshotName = "InvalidParameterValue.InvalidSnapshotName"
+            case invalidSnapshotPolicyName = "InvalidParameterValue.InvalidSnapshotPolicyName"
             case invalidSnapshotStatus = "InvalidParameterValue.InvalidSnapshotStatus"
             case invalidStorageResourcePkg = "InvalidParameterValue.InvalidStorageResourcePkg"
             case invalidStorageType = "InvalidParameterValue.InvalidStorageType"
@@ -63,6 +73,7 @@ extension TCCfsError {
             case missingNameOrDescinfo = "InvalidParameterValue.MissingNameOrDescinfo"
             case missingPgroupName = "InvalidParameterValue.MissingPgroupName"
             case missingPolicyParam = "InvalidParameterValue.MissingPolicyParam"
+            case missingSnapNameOrAliveDay = "InvalidParameterValue.MissingSnapNameOrAliveDay"
             case missingStorageResourcePkg = "InvalidParameterValue.MissingStorageResourcePkg"
             case missingSubnetidOrUnsubnetid = "InvalidParameterValue.MissingSubnetidOrUnsubnetid"
             case missingVpcParameter = "InvalidParameterValue.MissingVpcParameter"
@@ -76,6 +87,8 @@ extension TCCfsError {
             case quotaUserIdError = "InvalidParameterValue.QuotaUserIdError"
             case quotaUserTypeError = "InvalidParameterValue.QuotaUserTypeError"
             case ruleNotMatchPgroup = "InvalidParameterValue.RuleNotMatchPgroup"
+            case snapshotNameLimitExceeded = "InvalidParameterValue.SnapshotNameLimitExceeded"
+            case snapshotPolicyNameLimitExceeded = "InvalidParameterValue.SnapshotPolicyNameLimitExceeded"
             case tagKeyFilterLimitExceeded = "InvalidParameterValue.TagKeyFilterLimitExceeded"
             case tagKeyLimitExceeded = "InvalidParameterValue.TagKeyLimitExceeded"
             case tagValueFilterLimitExceeded = "InvalidParameterValue.TagValueFilterLimitExceeded"
@@ -108,6 +121,10 @@ extension TCCfsError {
             self.context = context
         }
 
+        public static var autoPolicyNotFound: InvalidParameterValue {
+            InvalidParameterValue(.autoPolicyNotFound)
+        }
+
         /// 用于保证请求幂等性的字符串长度超过限制（不能超过64字节）。
         public static var clientTokenLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.clientTokenLimitExceeded)
@@ -123,6 +140,10 @@ extension TCCfsError {
             InvalidParameterValue(.duplicatedRuleAuthClientIp)
         }
 
+        public static var duplicatedTagKey: InvalidParameterValue {
+            InvalidParameterValue(.duplicatedTagKey)
+        }
+
         /// 用户自定义名称过长（超过64字节)。
         public static var fsNameLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.fsNameLimitExceeded)
@@ -133,14 +154,30 @@ extension TCCfsError {
             InvalidParameterValue(.fsSizeLimitExceeded)
         }
 
+        public static var invalidAliveDays: InvalidParameterValue {
+            InvalidParameterValue(.invalidAliveDays)
+        }
+
         /// 规则IP错误。
         public static var invalidAuthClientIp: InvalidParameterValue {
             InvalidParameterValue(.invalidAuthClientIp)
         }
 
+        /// 扩容策略参数无效
+        ///
+        /// 检查参数值是否符合要求
+        public static var invalidAutoScaleUpParams: InvalidParameterValue {
+            InvalidParameterValue(.invalidAutoScaleUpParams)
+        }
+
         /// 用于保证请求幂等性的字符串错误。
         public static var invalidClientToken: InvalidParameterValue {
             InvalidParameterValue(.invalidClientToken)
+        }
+
+        /// 查询已支持的快照地域
+        public static var invalidDestinationRegions: InvalidParameterValue {
+            InvalidParameterValue(.invalidDestinationRegions)
         }
 
         /// 加密参数错误。
@@ -178,11 +215,19 @@ extension TCCfsError {
             InvalidParameterValue(.invalidNetInterface)
         }
 
+        /// DayOfMonth 参数错误
+        ///
         /// 该参数是字符串类型
         public static var invalidParamDayOfMonth: InvalidParameterValue {
             InvalidParameterValue(.invalidParamDayOfMonth)
         }
 
+        public static var invalidParamDayOfWeek: InvalidParameterValue {
+            InvalidParameterValue(.invalidParamDayOfWeek)
+        }
+
+        /// IntervalDays 参数值错误
+        ///
         /// 该值范围是1-365
         public static var invalidParamIntervalDays: InvalidParameterValue {
             InvalidParameterValue(.invalidParamIntervalDays)
@@ -226,6 +271,25 @@ extension TCCfsError {
         /// 读写权限设置错误。
         public static var invalidRwPermission: InvalidParameterValue {
             InvalidParameterValue(.invalidRwPermission)
+        }
+
+        /// 扩容目标容量参数错误
+        ///
+        /// 按照参数说明填写正确参数
+        public static var invalidScaleupTargetCapacity: InvalidParameterValue {
+            InvalidParameterValue(.invalidScaleupTargetCapacity)
+        }
+
+        public static var invalidSnapPolicyStatus: InvalidParameterValue {
+            InvalidParameterValue(.invalidSnapPolicyStatus)
+        }
+
+        public static var invalidSnapshotName: InvalidParameterValue {
+            InvalidParameterValue(.invalidSnapshotName)
+        }
+
+        public static var invalidSnapshotPolicyName: InvalidParameterValue {
+            InvalidParameterValue(.invalidSnapshotPolicyName)
         }
 
         /// 无效的快照状态。
@@ -325,10 +389,16 @@ extension TCCfsError {
             InvalidParameterValue(.missingPgroupName)
         }
 
+        /// 缺少快照策略参数
+        ///
         /// 添加IsActivated，PolicyName，DayOfWeek，
         /// Hour，AliveDays，DayOfMonth，IntervalDays 中的一个或者多个参数
         public static var missingPolicyParam: InvalidParameterValue {
             InvalidParameterValue(.missingPolicyParam)
+        }
+
+        public static var missingSnapNameOrAliveDay: InvalidParameterValue {
+            InvalidParameterValue(.missingSnapNameOrAliveDay)
         }
 
         /// 未绑定存储包。
@@ -396,6 +466,15 @@ extension TCCfsError {
             InvalidParameterValue(.ruleNotMatchPgroup)
         }
 
+        public static var snapshotNameLimitExceeded: InvalidParameterValue {
+            InvalidParameterValue(.snapshotNameLimitExceeded)
+        }
+
+        /// 快照策略名称小于64位字符串
+        public static var snapshotPolicyNameLimitExceeded: InvalidParameterValue {
+            InvalidParameterValue(.snapshotPolicyNameLimitExceeded)
+        }
+
         /// 参数值错误: 标签键个数超过上限（6个）。
         public static var tagKeyFilterLimitExceeded: InvalidParameterValue {
             InvalidParameterValue(.tagKeyFilterLimitExceeded)
@@ -439,20 +518,30 @@ extension TCCfsError {
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {
+            case .autoPolicyNotFound:
+                code = .invalidParameterValue_AutoPolicyNotFound
             case .clientTokenLimitExceeded:
                 code = .invalidParameterValue_ClientTokenLimitExceeded
             case .duplicatedPgroupName:
                 code = .invalidParameterValue_DuplicatedPgroupName
             case .duplicatedRuleAuthClientIp:
                 code = .invalidParameterValue_DuplicatedRuleAuthClientIp
+            case .duplicatedTagKey:
+                code = .invalidParameterValue_DuplicatedTagKey
             case .fsNameLimitExceeded:
                 code = .invalidParameterValue_FsNameLimitExceeded
             case .fsSizeLimitExceeded:
                 code = .invalidParameterValue_FsSizeLimitExceeded
+            case .invalidAliveDays:
+                code = .invalidParameterValue_InvalidAliveDays
             case .invalidAuthClientIp:
                 code = .invalidParameterValue_InvalidAuthClientIp
+            case .invalidAutoScaleUpParams:
+                code = .invalidParameterValue_InvalidAutoScaleUpParams
             case .invalidClientToken:
                 code = .invalidParameterValue_InvalidClientToken
+            case .invalidDestinationRegions:
+                code = .invalidParameterValue_InvalidDestinationRegions
             case .invalidEncrypted:
                 code = .invalidParameterValue_InvalidEncrypted
             case .invalidFileSystemId:
@@ -469,6 +558,8 @@ extension TCCfsError {
                 code = .invalidParameterValue_InvalidNetInterface
             case .invalidParamDayOfMonth:
                 code = .invalidParameterValue_InvalidParamDayOfMonth
+            case .invalidParamDayOfWeek:
+                code = .invalidParameterValue_InvalidParamDayOfWeek
             case .invalidParamIntervalDays:
                 code = .invalidParameterValue_InvalidParamIntervalDays
             case .invalidPgroup:
@@ -487,6 +578,14 @@ extension TCCfsError {
                 code = .invalidParameterValue_InvalidResourceTags
             case .invalidRwPermission:
                 code = .invalidParameterValue_InvalidRwPermission
+            case .invalidScaleupTargetCapacity:
+                code = .invalidParameterValue_InvalidScaleupTargetCapacity
+            case .invalidSnapPolicyStatus:
+                code = .invalidParameterValue_InvalidSnapPolicyStatus
+            case .invalidSnapshotName:
+                code = .invalidParameterValue_InvalidSnapshotName
+            case .invalidSnapshotPolicyName:
+                code = .invalidParameterValue_InvalidSnapshotPolicyName
             case .invalidSnapshotStatus:
                 code = .invalidParameterValue_InvalidSnapshotStatus
             case .invalidStorageResourcePkg:
@@ -527,6 +626,8 @@ extension TCCfsError {
                 code = .invalidParameterValue_MissingPgroupName
             case .missingPolicyParam:
                 code = .invalidParameterValue_MissingPolicyParam
+            case .missingSnapNameOrAliveDay:
+                code = .invalidParameterValue_MissingSnapNameOrAliveDay
             case .missingStorageResourcePkg:
                 code = .invalidParameterValue_MissingStorageResourcePkg
             case .missingSubnetidOrUnsubnetid:
@@ -553,6 +654,10 @@ extension TCCfsError {
                 code = .invalidParameterValue_QuotaUserTypeError
             case .ruleNotMatchPgroup:
                 code = .invalidParameterValue_RuleNotMatchPgroup
+            case .snapshotNameLimitExceeded:
+                code = .invalidParameterValue_SnapshotNameLimitExceeded
+            case .snapshotPolicyNameLimitExceeded:
+                code = .invalidParameterValue_SnapshotPolicyNameLimitExceeded
             case .tagKeyFilterLimitExceeded:
                 code = .invalidParameterValue_TagKeyFilterLimitExceeded
             case .tagKeyLimitExceeded:

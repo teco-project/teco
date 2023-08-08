@@ -45,6 +45,8 @@ extension TCOcrError {
         }
 
         /// 文件内容太大。
+        ///
+        /// 图片过大，请查看对应接口文档的ImageBase64和ImageUrl参数限制，一般情况下，图片经Base64编码后大小需不超过 7M：https://cloud.tencent.com/document/product/866/33515
         public static var tooLargeFileError: LimitExceeded {
             LimitExceeded(.tooLargeFileError)
         }

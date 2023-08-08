@@ -27,7 +27,7 @@ extension Sqlserver {
         /// 需要备份库名的列表(多库备份才填写)
         public let dbNames: [String]?
 
-        /// 实例ID，形如mssql-i1z41iwd
+        /// 实例ID（必填），形如mssql-i1z41iwd
         public let instanceId: String?
 
         /// 备份名称，若不填则自动生成“实例ID_备份开始时间戳”

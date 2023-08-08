@@ -71,7 +71,7 @@ extension Faceid {
         }
     }
 
-    /// 身份信息认证
+    /// 身份信息认证（二要素核验）
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
@@ -79,7 +79,7 @@ extension Faceid {
         self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 身份信息认证
+    /// 身份信息认证（二要素核验）
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
@@ -87,7 +87,7 @@ extension Faceid {
         try await self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 身份信息认证
+    /// 身份信息认证（二要素核验）
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
@@ -95,7 +95,7 @@ extension Faceid {
         self.idCardVerification(.init(idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 身份信息认证
+    /// 身份信息认证（二要素核验）
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable

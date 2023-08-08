@@ -35,10 +35,14 @@ extension Postgres {
 
     /// CreateBaseBackup返回参数结构体
     public struct CreateBaseBackupResponse: TCResponseModel {
+        /// 基础备份集ID
+        public let baseBackupId: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case baseBackupId = "BaseBackupId"
             case requestId = "RequestId"
         }
     }
@@ -46,7 +50,7 @@ extension Postgres {
     /// 创建实例基础备份
     ///
     /// 本接口（CreateBaseBackup）用于创建实例的全量备份。
-    @inlinable @discardableResult
+    @inlinable
     public func createBaseBackup(_ input: CreateBaseBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaseBackupResponse> {
         self.client.execute(action: "CreateBaseBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -54,7 +58,7 @@ extension Postgres {
     /// 创建实例基础备份
     ///
     /// 本接口（CreateBaseBackup）用于创建实例的全量备份。
-    @inlinable @discardableResult
+    @inlinable
     public func createBaseBackup(_ input: CreateBaseBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaseBackupResponse {
         try await self.client.execute(action: "CreateBaseBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -62,7 +66,7 @@ extension Postgres {
     /// 创建实例基础备份
     ///
     /// 本接口（CreateBaseBackup）用于创建实例的全量备份。
-    @inlinable @discardableResult
+    @inlinable
     public func createBaseBackup(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaseBackupResponse> {
         self.createBaseBackup(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +74,7 @@ extension Postgres {
     /// 创建实例基础备份
     ///
     /// 本接口（CreateBaseBackup）用于创建实例的全量备份。
-    @inlinable @discardableResult
+    @inlinable
     public func createBaseBackup(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaseBackupResponse {
         try await self.createBaseBackup(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }

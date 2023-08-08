@@ -28,6 +28,11 @@ public struct TCTseError: TCTseErrorType {
     enum Code: String {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_FailedOperation = "FailedOperation.FailedOperation"
+        case failedOperation_InternalError = "FailedOperation.InternalError"
+        case failedOperation_Role = "FailedOperation.Role"
+        case failedOperation_Vpc = "FailedOperation.Vpc"
+        case internalError = "InternalError"
         case internalError_CreateError = "InternalError.CreateError"
         case internalError_GetCredential = "InternalError.GetCredential"
         case internalError_GetRoleError = "InternalError.GetRoleError"
@@ -47,9 +52,15 @@ public struct TCTseError: TCTseErrorType {
         case invalidParameterValue_InvalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
         case invalidParameterValue_OperationFailed = "InvalidParameterValue.OperationFailed"
         case invalidParameterValue_QueryError = "InvalidParameterValue.QueryError"
+        case invalidParameterValue_Region = "InvalidParameterValue.Region"
+        case invalidParameterValue_ResourceAlreadyExist = "InvalidParameterValue.ResourceAlreadyExist"
+        case invalidParameterValue_Specification = "InvalidParameterValue.Specification"
+        case invalidParameterValue_Type = "InvalidParameterValue.Type"
         case invalidParameterValue_UpdateError = "InvalidParameterValue.UpdateError"
         case limitExceeded = "LimitExceeded"
+        case missingParameter = "MissingParameter"
         case missingParameter_CreateError = "MissingParameter.CreateError"
+        case missingParameter_MissParameter = "MissingParameter.MissParameter"
         case missingParameter_UpdateError = "MissingParameter.UpdateError"
         case operationDenied = "OperationDenied"
         case resourceNotFound = "ResourceNotFound"
@@ -58,12 +69,15 @@ public struct TCTseError: TCTseErrorType {
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_CamNoAuth = "UnauthorizedOperation.CamNoAuth"
         case unauthorizedOperation_CamPassRoleNotExist = "UnauthorizedOperation.CamPassRoleNotExist"
+        case unauthorizedOperation_Uin = "UnauthorizedOperation.Uin"
+        case unauthorizedOperation_UnauthorizedOperation = "UnauthorizedOperation.UnauthorizedOperation"
     }
 
     /// Error domains affliated to ``TCTseError``.
     public static var domains: [TCErrorType.Type] {
         [
             AuthFailure.self,
+            FailedOperation.self,
             InternalError.self,
             InvalidParameterValue.self,
             MissingParameter.self,
@@ -102,6 +116,31 @@ public struct TCTseError: TCTseErrorType {
     /// 操作失败。
     public static var failedOperation: TCTseError {
         TCTseError(.failedOperation)
+    }
+
+    /// 操作失败。
+    public static var failedOperation_FailedOperation: TCTseError {
+        TCTseError(.failedOperation_FailedOperation)
+    }
+
+    /// 操作失败，内部错误。
+    public static var failedOperation_InternalError: TCTseError {
+        TCTseError(.failedOperation_InternalError)
+    }
+
+    /// 获取临时密钥失败
+    public static var failedOperation_Role: TCTseError {
+        TCTseError(.failedOperation_Role)
+    }
+
+    /// 调用VPC服务失败
+    public static var failedOperation_Vpc: TCTseError {
+        TCTseError(.failedOperation_Vpc)
+    }
+
+    /// 内部错误。
+    public static var internalError: TCTseError {
+        TCTseError(.internalError)
     }
 
     /// 创建内部错误。
@@ -201,6 +240,26 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.invalidParameterValue_QueryError)
     }
 
+    /// 无效的Region。
+    public static var invalidParameterValue_Region: TCTseError {
+        TCTseError(.invalidParameterValue_Region)
+    }
+
+    /// 资源已经存在。
+    public static var invalidParameterValue_ResourceAlreadyExist: TCTseError {
+        TCTseError(.invalidParameterValue_ResourceAlreadyExist)
+    }
+
+    /// 网关规格参数内容错误
+    public static var invalidParameterValue_Specification: TCTseError {
+        TCTseError(.invalidParameterValue_Specification)
+    }
+
+    /// 网关类型参数内容错误
+    public static var invalidParameterValue_Type: TCTseError {
+        TCTseError(.invalidParameterValue_Type)
+    }
+
     /// 无效请求参数导致更新失败。
     public static var invalidParameterValue_UpdateError: TCTseError {
         TCTseError(.invalidParameterValue_UpdateError)
@@ -211,9 +270,19 @@ public struct TCTseError: TCTseErrorType {
         TCTseError(.limitExceeded)
     }
 
+    /// 缺少参数错误。
+    public static var missingParameter: TCTseError {
+        TCTseError(.missingParameter)
+    }
+
     /// 缺失参数导致创建失败。
     public static var missingParameter_CreateError: TCTseError {
         TCTseError(.missingParameter_CreateError)
+    }
+
+    /// 缺少参数。
+    public static var missingParameter_MissParameter: TCTseError {
+        TCTseError(.missingParameter_MissParameter)
     }
 
     /// 缺失参数导致更新失败。
@@ -254,6 +323,16 @@ public struct TCTseError: TCTseErrorType {
     /// 子账号缺少passRole权限。
     public static var unauthorizedOperation_CamPassRoleNotExist: TCTseError {
         TCTseError(.unauthorizedOperation_CamPassRoleNotExist)
+    }
+
+    /// Uin未授权
+    public static var unauthorizedOperation_Uin: TCTseError {
+        TCTseError(.unauthorizedOperation_Uin)
+    }
+
+    /// 未授权的操作。
+    public static var unauthorizedOperation_UnauthorizedOperation: TCTseError {
+        TCTseError(.unauthorizedOperation_UnauthorizedOperation)
     }
 
     public func asTseError() -> TCTseError {

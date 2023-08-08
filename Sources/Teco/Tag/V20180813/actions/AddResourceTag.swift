@@ -21,13 +21,13 @@ import TecoCore
 extension Tag {
     /// AddResourceTag请求参数结构体
     public struct AddResourceTagRequest: TCRequestModel {
-        /// 标签键
+        /// 需要绑定的标签键，取值规范参考：https://cloud.tencent.com/document/product/651/13354
         public let tagKey: String
 
-        /// 标签值
+        /// 需要绑定的标签值，取值规范参考：https://cloud.tencent.com/document/product/651/13354
         public let tagValue: String
 
-        /// [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
+        /// 待关联的资源，用标准的资源六段式表示。正确的资源六段式请参考：https://cloud.tencent.com/document/product/651/89122
         public let resource: String
 
         public init(tagKey: String, tagValue: String, resource: String) {

@@ -21,14 +21,15 @@ import TecoCore
 extension Essbasic {
     /// DescribeFlowDetailInfo请求参数结构体
     public struct DescribeFlowDetailInfoRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 合同(流程)编号数组，最多支持100个。
-        /// （备注：该参数和合同组编号必须二选一）
+        /// <br/>备注：该参数和合同组编号必须二选一, 如果填写FlowGroupId则忽略此FlowIds的入参
         public let flowIds: [String]?
 
-        /// 合同组编号（备注：该参数和合同(流程)编号数组必须二选一）
+        /// 合同组编号
+        /// <br/>备注：该参数和合同(流程)编号数组必须二选一
         public let flowGroupId: String?
 
         /// 暂未开放

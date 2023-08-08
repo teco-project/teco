@@ -34,14 +34,19 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
 
-        public init(imageBase64: String? = nil, imageUrl: String? = nil) {
+        /// 是否返回黑白复印件告警码，默认为false
+        public let enableCopyWarn: Bool?
+
+        public init(imageBase64: String? = nil, imageUrl: String? = nil, enableCopyWarn: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
+            self.enableCopyWarn = enableCopyWarn
         }
 
         enum CodingKeys: String, CodingKey {
             case imageBase64 = "ImageBase64"
             case imageUrl = "ImageUrl"
+            case enableCopyWarn = "EnableCopyWarn"
         }
     }
 
@@ -78,16 +83,18 @@ extension Ocr {
         public let setDate: String
 
         /// Code 告警码列表和释义：
-        /// -20001 非营业执照
         /// -9102 黑白复印件告警
-        /// 注：告警码可以同时存在多个
         public let recognizeWarnCode: [Int64]
 
         /// 告警码说明：
-        /// OCR_WARNING_TYPE_NOT_MATCH 非营业执照
         /// WARN_COPY_CARD 黑白复印件告警
-        /// 注：告警信息可以同时存在多个
         public let recognizeWarnMsg: [String]
+
+        /// 是否为副本。1为是，-1为不是。
+        public let isDuplication: Int64
+
+        /// 登记日期
+        public let registrationDate: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -105,13 +112,15 @@ extension Ocr {
             case setDate = "SetDate"
             case recognizeWarnCode = "RecognizeWarnCode"
             case recognizeWarnMsg = "RecognizeWarnMsg"
+            case isDuplication = "IsDuplication"
+            case registrationDate = "RegistrationDate"
             case requestId = "RequestId"
         }
     }
 
     /// 营业执照识别
     ///
-    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、主体类型、法定代表人、注册资本、组成形式、成立日期、营业期限和经营范围等字段。
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
@@ -121,7 +130,7 @@ extension Ocr {
 
     /// 营业执照识别
     ///
-    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、主体类型、法定代表人、注册资本、组成形式、成立日期、营业期限和经营范围等字段。
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
@@ -131,21 +140,21 @@ extension Ocr {
 
     /// 营业执照识别
     ///
-    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、主体类型、法定代表人、注册资本、组成形式、成立日期、营业期限和经营范围等字段。
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BizLicenseOCRResponse> {
-        self.bizLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCopyWarn: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BizLicenseOCRResponse> {
+        self.bizLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enableCopyWarn: enableCopyWarn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 营业执照识别
     ///
-    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、经营场所、主体类型、法定代表人、注册资金、组成形式、成立日期、营业期限和经营范围等字段。
+    /// 本接口支持快速精准识别营业执照上的字段，包括统一社会信用代码、公司名称、主体类型、法定代表人、注册资本、组成形式、成立日期、营业期限和经营范围等字段。
     ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BizLicenseOCRResponse {
-        try await self.bizLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+    public func bizLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, enableCopyWarn: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BizLicenseOCRResponse {
+        try await self.bizLicenseOCR(.init(imageBase64: imageBase64, imageUrl: imageUrl, enableCopyWarn: enableCopyWarn), region: region, logger: logger, on: eventLoop)
     }
 }

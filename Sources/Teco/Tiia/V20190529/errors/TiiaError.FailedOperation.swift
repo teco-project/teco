@@ -23,6 +23,7 @@ extension TCTiiaError {
             case downLoadError = "FailedOperation.DownLoadError"
             case downloadError = "FailedOperation.DownloadError"
             case emptyImageError = "FailedOperation.EmptyImageError"
+            case groupCountExceeded = "FailedOperation.GroupCountExceeded"
             case imageDecodeFailed = "FailedOperation.ImageDecodeFailed"
             case imageDeleteFailed = "FailedOperation.ImageDeleteFailed"
             case imageDownloadError = "FailedOperation.ImageDownloadError"
@@ -93,6 +94,10 @@ extension TCTiiaError {
         /// 图片内容为空。
         public static var emptyImageError: FailedOperation {
             FailedOperation(.emptyImageError)
+        }
+
+        public static var groupCountExceeded: FailedOperation {
+            FailedOperation(.groupCountExceeded)
         }
 
         /// 图片解码失败。
@@ -246,6 +251,8 @@ extension TCTiiaError {
                 code = .failedOperation_DownloadError
             case .emptyImageError:
                 code = .failedOperation_EmptyImageError
+            case .groupCountExceeded:
+                code = .failedOperation_GroupCountExceeded
             case .imageDecodeFailed:
                 code = .failedOperation_ImageDecodeFailed
             case .imageDeleteFailed:

@@ -68,6 +68,34 @@ extension Facefusion {
         }
     }
 
+    /// 融合参数
+    public struct FuseParam: TCInputModel {
+        /// 图片编码参数
+        public let imageCodecParam: ImageCodecParam?
+
+        public init(imageCodecParam: ImageCodecParam? = nil) {
+            self.imageCodecParam = imageCodecParam
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case imageCodecParam = "ImageCodecParam"
+        }
+    }
+
+    /// 图片编码参数
+    public struct ImageCodecParam: TCInputModel {
+        /// 元数据
+        public let metaData: [MetaData]?
+
+        public init(metaData: [MetaData]? = nil) {
+            self.metaData = metaData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaData = "MetaData"
+        }
+    }
+
     /// logo参数
     public struct LogoParam: TCInputModel {
         /// 标识图片位于融合结果图中的坐标，将按照坐标对标识图片进行位置和大小的拉伸匹配
@@ -140,6 +168,25 @@ extension Facefusion {
         }
     }
 
+    /// MetaData数据结构，Key/Value格式
+    public struct MetaData: TCInputModel {
+        /// MetaData的Key
+        public let metaKey: String?
+
+        /// MetaData的Value
+        public let metaValue: String?
+
+        public init(metaKey: String, metaValue: String) {
+            self.metaKey = metaKey
+            self.metaValue = metaValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaKey = "MetaKey"
+            case metaValue = "MetaValue"
+        }
+    }
+
     /// 素材信息
     public struct PublicMaterialInfos: TCOutputModel {
         /// 素材Id
@@ -160,6 +207,10 @@ extension Facefusion {
         /// 素材名
         public let materialName: String
 
+        /// 审核原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let auditResult: String?
+
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
             case materialStatus = "MaterialStatus"
@@ -167,6 +218,7 @@ extension Facefusion {
             case updateTime = "UpdateTime"
             case materialFaceList = "MaterialFaceList"
             case materialName = "MaterialName"
+            case auditResult = "AuditResult"
         }
     }
 }

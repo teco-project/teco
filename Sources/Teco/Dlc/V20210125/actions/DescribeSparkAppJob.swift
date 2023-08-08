@@ -21,7 +21,7 @@ import TecoCore
 extension Dlc {
     /// DescribeSparkAppJob请求参数结构体
     public struct DescribeSparkAppJobRequest: TCRequestModel {
-        /// spark作业Id，与JobName同时存在时，JobName无效
+        /// spark作业Id，与JobName同时存在时，JobName无效，JobId与JobName至少存在一个
         public let jobId: String?
 
         /// spark作业名
@@ -57,25 +57,25 @@ extension Dlc {
         }
     }
 
-    /// 查询具体的spark应用
+    /// 查询spark作业信息
     @inlinable
     public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
         self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询具体的spark应用
+    /// 查询spark作业信息
     @inlinable
     public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
         try await self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询具体的spark应用
+    /// 查询spark作业信息
     @inlinable
     public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
         self.describeSparkAppJob(.init(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询具体的spark应用
+    /// 查询spark作业信息
     @inlinable
     public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
         try await self.describeSparkAppJob(.init(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)

@@ -24,27 +24,32 @@ extension Wedata {
         /// 项目名称
         public let projectId: String
 
-        /// 任务ID
-        public let taskId: String
-
         /// 规则名称
         public let alarmRegularName: String
+
+        /// 任务ID
+        public let taskId: String?
 
         /// 主键ID
         public let id: String?
 
-        public init(projectId: String, taskId: String, alarmRegularName: String, id: String? = nil) {
+        /// 任务类型:201.实时,202.离线
+        public let taskType: Int64?
+
+        public init(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil) {
             self.projectId = projectId
-            self.taskId = taskId
             self.alarmRegularName = alarmRegularName
+            self.taskId = taskId
             self.id = id
+            self.taskType = taskType
         }
 
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
-            case taskId = "TaskId"
             case alarmRegularName = "AlarmRegularName"
+            case taskId = "TaskId"
             case id = "Id"
+            case taskType = "TaskType"
         }
     }
 
@@ -76,13 +81,13 @@ extension Wedata {
 
     /// 判断告警规则重名
     @inlinable
-    public func checkAlarmRegularNameExist(projectId: String, taskId: String, alarmRegularName: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAlarmRegularNameExistResponse> {
-        self.checkAlarmRegularNameExist(.init(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id), region: region, logger: logger, on: eventLoop)
+    public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAlarmRegularNameExistResponse> {
+        self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, taskId: taskId, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 判断告警规则重名
     @inlinable
-    public func checkAlarmRegularNameExist(projectId: String, taskId: String, alarmRegularName: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
-        try await self.checkAlarmRegularNameExist(.init(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id), region: region, logger: logger, on: eventLoop)
+    public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
+        try await self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, taskId: taskId, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

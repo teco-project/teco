@@ -64,6 +64,9 @@ extension Ms {
         /// 密钥可访问的文件前缀人。例如：CosPrefix=test/123/666，则该密钥只能操作test/123/666为前缀的文件，例如test/123/666/1.txt
         public let cosPrefix: String
 
+        /// 密钥TOCKEN信息
+        public let cosToken: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -76,6 +79,7 @@ extension Ms {
             case cosKey = "CosKey"
             case cosTocken = "CosTocken"
             case cosPrefix = "CosPrefix"
+            case cosToken = "CosToken"
             case requestId = "RequestId"
         }
     }

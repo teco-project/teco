@@ -29,9 +29,9 @@ extension TCVpcError {
             case addressIpsNotFound = "InvalidParameterValue.AddressIpsNotFound"
             case addressNotApplicable = "InvalidParameterValue.AddressNotApplicable"
             case addressNotCalcIP = "InvalidParameterValue.AddressNotCalcIP"
-            case addressNotEIP = "InvalidParameterValue.AddressNotEIP"
             case addressNotFound = "InvalidParameterValue.AddressNotFound"
             case addressPublished = "InvalidParameterValue.AddressPublished"
+            case addressTypeConflict = "InvalidParameterValue.AddressTypeConflict"
             case bandwidthOutOfRange = "InvalidParameterValue.BandwidthOutOfRange"
             case bandwidthPackageIdMalformed = "InvalidParameterValue.BandwidthPackageIdMalformed"
             case bandwidthPackageInUse = "InvalidParameterValue.BandwidthPackageInUse"
@@ -45,7 +45,9 @@ extension TCVpcError {
             case duplicatePara = "InvalidParameterValue.DuplicatePara"
             case eipBrandWidthOutInvalid = "InvalidParameterValue.EIPBrandWidthOutInvalid"
             case empty = "InvalidParameterValue.Empty"
+            case iPv6RuleIdExisted = "InvalidParameterValue.IPv6RuleIdExisted"
             case iPv6RuleNotChange = "InvalidParameterValue.IPv6RuleNotChange"
+            case illegal = "InvalidParameterValue.Illegal"
             case inconsistentInstanceInternetChargeType = "InvalidParameterValue.InconsistentInstanceInternetChargeType"
             case instanceDoesNotSupportAnycast = "InvalidParameterValue.InstanceDoesNotSupportAnycast"
             case instanceHasNoWanIP = "InvalidParameterValue.InstanceHasNoWanIP"
@@ -63,6 +65,8 @@ extension TCVpcError {
             case invalidInstanceState = "InvalidParameterValue.InvalidInstanceState"
             case invalidIpv6 = "InvalidParameterValue.InvalidIpv6"
             case invalidTag = "InvalidParameterValue.InvalidTag"
+            case ip6RuleNotFound = "InvalidParameterValue.Ip6RuleNotFound"
+            case ip6TranslatorNotFound = "InvalidParameterValue.Ip6TranslatorNotFound"
             case lbAlreadyBindEip = "InvalidParameterValue.LBAlreadyBindEip"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
             case malformed = "InvalidParameterValue.Malformed"
@@ -94,6 +98,7 @@ extension TCVpcError {
             case resourceNotFound = "InvalidParameterValue.ResourceNotFound"
             case resourceNotSupport = "InvalidParameterValue.ResourceNotSupport"
             case sslCcnVpnServerCidrConflict = "InvalidParameterValue.SslCcnVpnServerCidrConflict"
+            case stopChargingInstanceInUse = "InvalidParameterValue.StopChargingInstanceInUse"
             case subnetConflict = "InvalidParameterValue.SubnetConflict"
             case subnetOverlap = "InvalidParameterValue.SubnetOverlap"
             case subnetOverlapAssistCidr = "InvalidParameterValue.SubnetOverlapAssistCidr"
@@ -111,7 +116,10 @@ extension TCVpcError {
             case tagTimestampExceeded = "InvalidParameterValue.TagTimestampExceeded"
             case tagValNotExists = "InvalidParameterValue.TagValNotExists"
             case tooLong = "InvalidParameterValue.TooLong"
+            case trafficPackageId = "InvalidParameterValue.TrafficPackageId"
             case trafficPackageIdMalformed = "InvalidParameterValue.TrafficPackageIdMalformed"
+            case trafficPackageNotFound = "InvalidParameterValue.TrafficPackageNotFound"
+            case trafficPackageNotSupported = "InvalidParameterValue.TrafficPackageNotSupported"
             case unavailableZone = "InvalidParameterValue.UnavailableZone"
             case vpcCidrConflict = "InvalidParameterValue.VpcCidrConflict"
             case vpgTypeNotMatch = "InvalidParameterValue.VpgTypeNotMatch"
@@ -193,11 +201,6 @@ extension TCVpcError {
             InvalidParameterValue(.addressNotCalcIP)
         }
 
-        /// 该地址不是EIP。
-        public static var addressNotEIP: InvalidParameterValue {
-            InvalidParameterValue(.addressNotEIP)
-        }
-
         /// 未找到该地址。
         public static var addressNotFound: InvalidParameterValue {
             InvalidParameterValue(.addressNotFound)
@@ -206,6 +209,11 @@ extension TCVpcError {
         /// 该IPv6地址已经发布。
         public static var addressPublished: InvalidParameterValue {
             InvalidParameterValue(.addressPublished)
+        }
+
+        /// 当前IP地址类型不正确。
+        public static var addressTypeConflict: InvalidParameterValue {
+            InvalidParameterValue(.addressTypeConflict)
         }
 
         /// 带宽超出限制。
@@ -277,9 +285,18 @@ extension TCVpcError {
             InvalidParameterValue(.empty)
         }
 
+        /// IPv6转换实例ID已经存在。
+        public static var iPv6RuleIdExisted: InvalidParameterValue {
+            InvalidParameterValue(.iPv6RuleIdExisted)
+        }
+
         /// IPv6规则没有更改。
         public static var iPv6RuleNotChange: InvalidParameterValue {
             InvalidParameterValue(.iPv6RuleNotChange)
+        }
+
+        public static var illegal: InvalidParameterValue {
+            InvalidParameterValue(.illegal)
         }
 
         /// 该实例的计费方式与其他实例不同。
@@ -365,6 +382,16 @@ extension TCVpcError {
         /// 该Tag不合法。
         public static var invalidTag: InvalidParameterValue {
             InvalidParameterValue(.invalidTag)
+        }
+
+        /// 未查询到该IPv6规则。
+        public static var ip6RuleNotFound: InvalidParameterValue {
+            InvalidParameterValue(.ip6RuleNotFound)
+        }
+
+        /// 未查询到该IPv6翻译器。
+        public static var ip6TranslatorNotFound: InvalidParameterValue {
+            InvalidParameterValue(.ip6TranslatorNotFound)
         }
 
         /// 负载均衡实例已经绑定了EIP。
@@ -530,6 +557,11 @@ extension TCVpcError {
             InvalidParameterValue(.sslCcnVpnServerCidrConflict)
         }
 
+        /// 存在关机的主机还在使用当前资源，无法操作。
+        public static var stopChargingInstanceInUse: InvalidParameterValue {
+            InvalidParameterValue(.stopChargingInstanceInUse)
+        }
+
         /// 子网CIDR冲突。
         public static var subnetConflict: InvalidParameterValue {
             InvalidParameterValue(.subnetConflict)
@@ -615,9 +647,24 @@ extension TCVpcError {
             InvalidParameterValue(.tooLong)
         }
 
+        /// 流量包ID格式错误。
+        public static var trafficPackageId: InvalidParameterValue {
+            InvalidParameterValue(.trafficPackageId)
+        }
+
         /// 该流量包ID不合法。
         public static var trafficPackageIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.trafficPackageIdMalformed)
+        }
+
+        /// 未查询到此流量包。
+        public static var trafficPackageNotFound: InvalidParameterValue {
+            InvalidParameterValue(.trafficPackageNotFound)
+        }
+
+        /// 指定的流量包不支持此操作
+        public static var trafficPackageNotSupported: InvalidParameterValue {
+            InvalidParameterValue(.trafficPackageNotSupported)
         }
 
         /// 该可用区不可用。
@@ -680,12 +727,12 @@ extension TCVpcError {
                 code = .invalidParameterValue_AddressNotApplicable
             case .addressNotCalcIP:
                 code = .invalidParameterValue_AddressNotCalcIP
-            case .addressNotEIP:
-                code = .invalidParameterValue_AddressNotEIP
             case .addressNotFound:
                 code = .invalidParameterValue_AddressNotFound
             case .addressPublished:
                 code = .invalidParameterValue_AddressPublished
+            case .addressTypeConflict:
+                code = .invalidParameterValue_AddressTypeConflict
             case .bandwidthOutOfRange:
                 code = .invalidParameterValue_BandwidthOutOfRange
             case .bandwidthPackageIdMalformed:
@@ -712,8 +759,12 @@ extension TCVpcError {
                 code = .invalidParameterValue_EIPBrandWidthOutInvalid
             case .empty:
                 code = .invalidParameterValue_Empty
+            case .iPv6RuleIdExisted:
+                code = .invalidParameterValue_IPv6RuleIdExisted
             case .iPv6RuleNotChange:
                 code = .invalidParameterValue_IPv6RuleNotChange
+            case .illegal:
+                code = .invalidParameterValue_Illegal
             case .inconsistentInstanceInternetChargeType:
                 code = .invalidParameterValue_InconsistentInstanceInternetChargeType
             case .instanceDoesNotSupportAnycast:
@@ -748,6 +799,10 @@ extension TCVpcError {
                 code = .invalidParameterValue_InvalidIpv6
             case .invalidTag:
                 code = .invalidParameterValue_InvalidTag
+            case .ip6RuleNotFound:
+                code = .invalidParameterValue_Ip6RuleNotFound
+            case .ip6TranslatorNotFound:
+                code = .invalidParameterValue_Ip6TranslatorNotFound
             case .lbAlreadyBindEip:
                 code = .invalidParameterValue_LBAlreadyBindEip
             case .limitExceeded:
@@ -810,6 +865,8 @@ extension TCVpcError {
                 code = .invalidParameterValue_ResourceNotSupport
             case .sslCcnVpnServerCidrConflict:
                 code = .invalidParameterValue_SslCcnVpnServerCidrConflict
+            case .stopChargingInstanceInUse:
+                code = .invalidParameterValue_StopChargingInstanceInUse
             case .subnetConflict:
                 code = .invalidParameterValue_SubnetConflict
             case .subnetOverlap:
@@ -844,8 +901,14 @@ extension TCVpcError {
                 code = .invalidParameterValue_TagValNotExists
             case .tooLong:
                 code = .invalidParameterValue_TooLong
+            case .trafficPackageId:
+                code = .invalidParameterValue_TrafficPackageId
             case .trafficPackageIdMalformed:
                 code = .invalidParameterValue_TrafficPackageIdMalformed
+            case .trafficPackageNotFound:
+                code = .invalidParameterValue_TrafficPackageNotFound
+            case .trafficPackageNotSupported:
+                code = .invalidParameterValue_TrafficPackageNotSupported
             case .unavailableZone:
                 code = .invalidParameterValue_UnavailableZone
             case .vpcCidrConflict:

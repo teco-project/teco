@@ -24,22 +24,32 @@ extension Tcss {
         /// 是否开启:0: 关闭 1:开启
         public let isEnabled: Int64
 
-        /// 漏洞防御主机范围:0：自选 1: 全部主机。IsEnabled为1时必填
+        /// 漏洞防御主机范围:0：自选 1: 全部主机
         public let scope: Int64?
 
-        /// 自选漏洞防御主机,Scope为0时必填
+        /// 自选漏洞防御主机
         public let hostIDs: [String]?
 
-        public init(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil) {
+        /// 漏洞防御超级节点范围:0：自选 1: 全部
+        public let superScope: Int64?
+
+        /// 超级节点Id列表
+        public let nodeIds: [String]?
+
+        public init(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, superScope: Int64? = nil, nodeIds: [String]? = nil) {
             self.isEnabled = isEnabled
             self.scope = scope
             self.hostIDs = hostIDs
+            self.superScope = superScope
+            self.nodeIds = nodeIds
         }
 
         enum CodingKeys: String, CodingKey {
             case isEnabled = "IsEnabled"
             case scope = "Scope"
             case hostIDs = "HostIDs"
+            case superScope = "SuperScope"
+            case nodeIds = "NodeIds"
         }
     }
 
@@ -67,13 +77,13 @@ extension Tcss {
 
     /// 编辑漏洞防御设置
     @inlinable @discardableResult
-    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVulDefenceSettingResponse> {
-        self.modifyVulDefenceSetting(.init(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), region: region, logger: logger, on: eventLoop)
+    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, superScope: Int64? = nil, nodeIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVulDefenceSettingResponse> {
+        self.modifyVulDefenceSetting(.init(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs, superScope: superScope, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑漏洞防御设置
     @inlinable @discardableResult
-    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
-        try await self.modifyVulDefenceSetting(.init(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), region: region, logger: logger, on: eventLoop)
+    public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, superScope: Int64? = nil, nodeIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
+        try await self.modifyVulDefenceSetting(.init(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs, superScope: superScope, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -26,8 +26,15 @@ public protocol TCOrganizationErrorType: TCServiceErrorType {
 
 public struct TCOrganizationError: TCOrganizationErrorType {
     enum Code: String {
+        case failedOperation_AccountAlreadyRegister = "FailedOperation.AccountAlreadyRegister"
         case failedOperation_AuthInfoEmpty = "FailedOperation.AuthInfoEmpty"
+        case failedOperation_AuthInfoNotSame = "FailedOperation.AuthInfoNotSame"
         case failedOperation_AuthNotEnterprise = "FailedOperation.AuthNotEnterprise"
+        case failedOperation_BindEmailLinkExpired = "FailedOperation.BindEmailLinkExpired"
+        case failedOperation_BindEmailLinkInvalid = "FailedOperation.BindEmailLinkInvalid"
+        case failedOperation_ChangePermissionRecordExist = "FailedOperation.ChangePermissionRecordExist"
+        case failedOperation_CheckAccountPhoneBindLimit = "FailedOperation.CheckAccountPhoneBindLimit"
+        case failedOperation_CheckMailAccount = "FailedOperation.CheckMailAccount"
         case failedOperation_CreateAccount = "FailedOperation.CreateAccount"
         case failedOperation_CreateBillingPermissionErr = "FailedOperation.CreateBillingPermissionErr"
         case failedOperation_CreateMemberAuthOverLimit = "FailedOperation.CreateMemberAuthOverLimit"
@@ -36,7 +43,12 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_CreateRecordNotExist = "FailedOperation.CreateRecordNotExist"
         case failedOperation_CreateRole = "FailedOperation.CreateRole"
         case failedOperation_DisableQuitSelfCreatedOrganization = "FailedOperation.DisableQuitSelfCreatedOrganization"
+        case failedOperation_EmailAlreadyUsed = "FailedOperation.EmailAlreadyUsed"
+        case failedOperation_EmailBindRecordInvalid = "FailedOperation.EmailBindRecordInvalid"
         case failedOperation_GetAuthInfo = "FailedOperation.GetAuthInfo"
+        case failedOperation_MemberBindEmailError = "FailedOperation.MemberBindEmailError"
+        case failedOperation_MemberBindPhoneError = "FailedOperation.MemberBindPhoneError"
+        case failedOperation_MemberEmailExist = "FailedOperation.MemberEmailExist"
         case failedOperation_MemberExistDelegatePayerNotAllowDelete = "FailedOperation.MemberExistDelegatePayerNotAllowDelete"
         case failedOperation_MemberIsDelegatePayerNotAllowDelete = "FailedOperation.MemberIsDelegatePayerNotAllowDelete"
         case failedOperation_MemberNameUsed = "FailedOperation.MemberNameUsed"
@@ -61,10 +73,20 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case failedOperation_SubAccountNotExist = "FailedOperation.SubAccountNotExist"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
+        case invalidParameter_AllowQuitIllegal = "InvalidParameter.AllowQuitIllegal"
+        case invalidParameter_CodeError = "InvalidParameter.CodeError"
+        case invalidParameter_CodeExpired = "InvalidParameter.CodeExpired"
+        case invalidParameter_InvalidEmail = "InvalidParameter.InvalidEmail"
+        case invalidParameter_OrganizationMemberNotExist = "InvalidParameter.OrganizationMemberNotExist"
+        case invalidParameter_PasswordIllegal = "InvalidParameter.PasswordIllegal"
         case limitExceeded_CreateMemberOverLimit = "LimitExceeded.CreateMemberOverLimit"
+        case limitExceeded_EmailBindOverLimit = "LimitExceeded.EmailBindOverLimit"
         case limitExceeded_NodeDepthExceedLimit = "LimitExceeded.NodeDepthExceedLimit"
         case limitExceeded_NodeExceedLimit = "LimitExceeded.NodeExceedLimit"
         case limitExceeded_OrganizationMemberOverLimit = "LimitExceeded.OrganizationMemberOverLimit"
+        case limitExceeded_PhoneNumBound = "LimitExceeded.PhoneNumBound"
+        case limitExceeded_UpdateEmailBindOverLimit = "LimitExceeded.UpdateEmailBindOverLimit"
+        case resourceNotFound_EmailBindRecordNotExist = "ResourceNotFound.EmailBindRecordNotExist"
         case resourceNotFound_MemberIdentityNotExist = "ResourceNotFound.MemberIdentityNotExist"
         case resourceNotFound_MemberNotExist = "ResourceNotFound.MemberNotExist"
         case resourceNotFound_MemberPolicyNotExist = "ResourceNotFound.MemberPolicyNotExist"
@@ -72,10 +94,12 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case resourceNotFound_OrganizationNodeNotExist = "ResourceNotFound.OrganizationNodeNotExist"
         case resourceNotFound_OrganizationNotExist = "ResourceNotFound.OrganizationNotExist"
         case resourceNotFound_OrganizationServiceNotExist = "ResourceNotFound.OrganizationServiceNotExist"
+        case resourceNotFound_UserNotExist = "ResourceNotFound.UserNotExist"
         case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_AddDelegatePayerNotAllow = "UnsupportedOperation.AddDelegatePayerNotAllow"
         case unsupportedOperation_AddDiscountInheritNotAllow = "UnsupportedOperation.AddDiscountInheritNotAllow"
         case unsupportedOperation_CreateMemberNotAllowDelete = "UnsupportedOperation.CreateMemberNotAllowDelete"
+        case unsupportedOperation_DeleteDelegatePayerNotAllow = "UnsupportedOperation.DeleteDelegatePayerNotAllow"
         case unsupportedOperation_ExistedAgent = "UnsupportedOperation.ExistedAgent"
         case unsupportedOperation_ExistedClient = "UnsupportedOperation.ExistedClient"
         case unsupportedOperation_InconsistentUserTypes = "UnsupportedOperation.InconsistentUserTypes"
@@ -87,6 +111,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         case unsupportedOperation_MemberExistServiceNotAllowDelete = "UnsupportedOperation.MemberExistServiceNotAllowDelete"
         case unsupportedOperation_MemberIsAgent = "UnsupportedOperation.MemberIsAgent"
         case unsupportedOperation_MemberNoPayment = "UnsupportedOperation.MemberNoPayment"
+        case unsupportedOperation_MemberNotAllowQuit = "UnsupportedOperation.MemberNotAllowQuit"
         case unsupportedOperation_OrderInProgressExisted = "UnsupportedOperation.OrderInProgressExisted"
         case unsupportedOperation_OwnerDiscountInheritExisted = "UnsupportedOperation.OwnerDiscountInheritExisted"
         case unsupportedOperation_PayerArrearsAndNoCreditAccount = "UnsupportedOperation.PayerArrearsAndNoCreditAccount"
@@ -95,7 +120,7 @@ public struct TCOrganizationError: TCOrganizationErrorType {
 
     /// Error domains affliated to ``TCOrganizationError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, LimitExceeded.self, ResourceNotFound.self, UnsupportedOperation.self]
+        [FailedOperation.self, InvalidParameter.self, LimitExceeded.self, ResourceNotFound.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -120,14 +145,49 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         self.context = context
     }
 
+    /// 该帐号已被注册。
+    public static var failedOperation_AccountAlreadyRegister: TCOrganizationError {
+        TCOrganizationError(.failedOperation_AccountAlreadyRegister)
+    }
+
     /// 用户未实名。
     public static var failedOperation_AuthInfoEmpty: TCOrganizationError {
         TCOrganizationError(.failedOperation_AuthInfoEmpty)
     }
 
+    /// 企业实名不一样。
+    public static var failedOperation_AuthInfoNotSame: TCOrganizationError {
+        TCOrganizationError(.failedOperation_AuthInfoNotSame)
+    }
+
     /// 用户非企业实名。
     public static var failedOperation_AuthNotEnterprise: TCOrganizationError {
         TCOrganizationError(.failedOperation_AuthNotEnterprise)
+    }
+
+    /// 绑定邮箱链接过期。
+    public static var failedOperation_BindEmailLinkExpired: TCOrganizationError {
+        TCOrganizationError(.failedOperation_BindEmailLinkExpired)
+    }
+
+    /// 绑定邮箱链接无效。
+    public static var failedOperation_BindEmailLinkInvalid: TCOrganizationError {
+        TCOrganizationError(.failedOperation_BindEmailLinkInvalid)
+    }
+
+    /// 成员权限变更记录存在。
+    public static var failedOperation_ChangePermissionRecordExist: TCOrganizationError {
+        TCOrganizationError(.failedOperation_ChangePermissionRecordExist)
+    }
+
+    /// 检查手机绑定上限失败。
+    public static var failedOperation_CheckAccountPhoneBindLimit: TCOrganizationError {
+        TCOrganizationError(.failedOperation_CheckAccountPhoneBindLimit)
+    }
+
+    /// 检查邮箱绑定状态失败。
+    public static var failedOperation_CheckMailAccount: TCOrganizationError {
+        TCOrganizationError(.failedOperation_CheckMailAccount)
     }
 
     /// 创建成员异常。
@@ -170,9 +230,34 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.failedOperation_DisableQuitSelfCreatedOrganization)
     }
 
+    /// 邮箱已经被使用。
+    public static var failedOperation_EmailAlreadyUsed: TCOrganizationError {
+        TCOrganizationError(.failedOperation_EmailAlreadyUsed)
+    }
+
+    /// 邮箱绑定已经失效。
+    public static var failedOperation_EmailBindRecordInvalid: TCOrganizationError {
+        TCOrganizationError(.failedOperation_EmailBindRecordInvalid)
+    }
+
     /// 查询实名信息出错。
     public static var failedOperation_GetAuthInfo: TCOrganizationError {
         TCOrganizationError(.failedOperation_GetAuthInfo)
+    }
+
+    /// 邮箱绑定失败。
+    public static var failedOperation_MemberBindEmailError: TCOrganizationError {
+        TCOrganizationError(.failedOperation_MemberBindEmailError)
+    }
+
+    /// 安全手机绑定失败。
+    public static var failedOperation_MemberBindPhoneError: TCOrganizationError {
+        TCOrganizationError(.failedOperation_MemberBindPhoneError)
+    }
+
+    /// 成员存在邮箱。
+    public static var failedOperation_MemberEmailExist: TCOrganizationError {
+        TCOrganizationError(.failedOperation_MemberEmailExist)
     }
 
     /// 成员存在代付者,不允许删除。
@@ -295,9 +380,44 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.invalidParameter)
     }
 
+    /// 成员代付费模式，不允许主动退出组织。
+    public static var invalidParameter_AllowQuitIllegal: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_AllowQuitIllegal)
+    }
+
+    /// 手机验证码错误。
+    public static var invalidParameter_CodeError: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_CodeError)
+    }
+
+    /// 手机验证码已过期。
+    public static var invalidParameter_CodeExpired: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_CodeExpired)
+    }
+
+    /// 无效的邮箱。
+    public static var invalidParameter_InvalidEmail: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_InvalidEmail)
+    }
+
+    /// 组织成员不存在。
+    public static var invalidParameter_OrganizationMemberNotExist: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_OrganizationMemberNotExist)
+    }
+
+    /// 密码不合法。
+    public static var invalidParameter_PasswordIllegal: TCOrganizationError {
+        TCOrganizationError(.invalidParameter_PasswordIllegal)
+    }
+
     /// 创建成员超过上限。
     public static var limitExceeded_CreateMemberOverLimit: TCOrganizationError {
         TCOrganizationError(.limitExceeded_CreateMemberOverLimit)
+    }
+
+    /// 配置邮箱超过当日上限。
+    public static var limitExceeded_EmailBindOverLimit: TCOrganizationError {
+        TCOrganizationError(.limitExceeded_EmailBindOverLimit)
     }
 
     /// 企业组织单元层级太多。
@@ -313,6 +433,21 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 成员超过上限。
     public static var limitExceeded_OrganizationMemberOverLimit: TCOrganizationError {
         TCOrganizationError(.limitExceeded_OrganizationMemberOverLimit)
+    }
+
+    /// 手机超过绑定上限。
+    public static var limitExceeded_PhoneNumBound: TCOrganizationError {
+        TCOrganizationError(.limitExceeded_PhoneNumBound)
+    }
+
+    /// 修改成员绑定信息超过限制。
+    public static var limitExceeded_UpdateEmailBindOverLimit: TCOrganizationError {
+        TCOrganizationError(.limitExceeded_UpdateEmailBindOverLimit)
+    }
+
+    /// 邮箱绑定记录不存在。
+    public static var resourceNotFound_EmailBindRecordNotExist: TCOrganizationError {
+        TCOrganizationError(.resourceNotFound_EmailBindRecordNotExist)
     }
 
     /// 成员可授权身份不存在。
@@ -350,6 +485,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
         TCOrganizationError(.resourceNotFound_OrganizationServiceNotExist)
     }
 
+    /// 用户不存在。
+    public static var resourceNotFound_UserNotExist: TCOrganizationError {
+        TCOrganizationError(.resourceNotFound_UserNotExist)
+    }
+
     /// 操作不支持。
     public static var unsupportedOperation: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation)
@@ -368,6 +508,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 创建的成员不允许删除。
     public static var unsupportedOperation_CreateMemberNotAllowDelete: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_CreateMemberNotAllowDelete)
+    }
+
+    /// 不允许删除代付关系。
+    public static var unsupportedOperation_DeleteDelegatePayerNotAllow: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_DeleteDelegatePayerNotAllow)
     }
 
     /// 成员或者代付者存在经销商。
@@ -423,6 +568,11 @@ public struct TCOrganizationError: TCOrganizationErrorType {
     /// 成员没有绑卡。
     public static var unsupportedOperation_MemberNoPayment: TCOrganizationError {
         TCOrganizationError(.unsupportedOperation_MemberNoPayment)
+    }
+
+    /// 成员不支持主动退出。
+    public static var unsupportedOperation_MemberNotAllowQuit: TCOrganizationError {
+        TCOrganizationError(.unsupportedOperation_MemberNotAllowQuit)
     }
 
     /// 存在在途订单。

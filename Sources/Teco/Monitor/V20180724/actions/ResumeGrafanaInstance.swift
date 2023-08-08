@@ -44,24 +44,32 @@ extension Monitor {
     }
 
     /// 恢复 Grafana 实例
+    ///
+    /// 本接口（ResumeGrafanaInstance）用于 Grafana 包年包月实例的停服续费，调用后按原版本续费一个月。仍在运行中的实例无法使用该接口进行续费。
     @inlinable @discardableResult
     public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeGrafanaInstanceResponse> {
         self.client.execute(action: "ResumeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复 Grafana 实例
+    ///
+    /// 本接口（ResumeGrafanaInstance）用于 Grafana 包年包月实例的停服续费，调用后按原版本续费一个月。仍在运行中的实例无法使用该接口进行续费。
     @inlinable @discardableResult
     public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
         try await self.client.execute(action: "ResumeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复 Grafana 实例
+    ///
+    /// 本接口（ResumeGrafanaInstance）用于 Grafana 包年包月实例的停服续费，调用后按原版本续费一个月。仍在运行中的实例无法使用该接口进行续费。
     @inlinable @discardableResult
     public func resumeGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeGrafanaInstanceResponse> {
         self.resumeGrafanaInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复 Grafana 实例
+    ///
+    /// 本接口（ResumeGrafanaInstance）用于 Grafana 包年包月实例的停服续费，调用后按原版本续费一个月。仍在运行中的实例无法使用该接口进行续费。
     @inlinable @discardableResult
     public func resumeGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
         try await self.resumeGrafanaInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

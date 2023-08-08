@@ -48,33 +48,33 @@ extension Dlc {
         }
     }
 
-    /// 取消session statement
+    /// 取消session中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatement）用于取消session statement
+    /// 本接口（CancelNotebookSessionStatement）用于取消session中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatement(_ input: CancelNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelNotebookSessionStatementResponse> {
         self.client.execute(action: "CancelNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 取消session statement
+    /// 取消session中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatement）用于取消session statement
+    /// 本接口（CancelNotebookSessionStatement）用于取消session中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatement(_ input: CancelNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelNotebookSessionStatementResponse {
         try await self.client.execute(action: "CancelNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 取消session statement
+    /// 取消session中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatement）用于取消session statement
+    /// 本接口（CancelNotebookSessionStatement）用于取消session中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatement(sessionId: String, statementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelNotebookSessionStatementResponse> {
         self.cancelNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 取消session statement
+    /// 取消session中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatement）用于取消session statement
+    /// 本接口（CancelNotebookSessionStatement）用于取消session中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatement(sessionId: String, statementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelNotebookSessionStatementResponse {
         try await self.cancelNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId), region: region, logger: logger, on: eventLoop)

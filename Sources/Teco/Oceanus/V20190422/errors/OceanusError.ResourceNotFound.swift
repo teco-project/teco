@@ -24,6 +24,7 @@ extension TCOceanusError {
             case job = "ResourceNotFound.Job"
             case jobConfig = "ResourceNotFound.JobConfig"
             case jobId = "ResourceNotFound.JobId"
+            case logTopic = "ResourceNotFound.LogTopic"
             case resource = "ResourceNotFound.Resource"
             case resourceConfig = "ResourceNotFound.ResourceConfig"
             case resourceNotExist = "ResourceNotFound.ResourceNotExist"
@@ -77,6 +78,11 @@ extension TCOceanusError {
             ResourceNotFound(.jobId)
         }
 
+        /// 找不到日志。
+        public static var logTopic: ResourceNotFound {
+            ResourceNotFound(.logTopic)
+        }
+
         /// 程序包不存在。
         public static var resource: ResourceNotFound {
             ResourceNotFound(.resource)
@@ -110,6 +116,8 @@ extension TCOceanusError {
                 code = .resourceNotFound_JobConfig
             case .jobId:
                 code = .resourceNotFound_JobId
+            case .logTopic:
+                code = .resourceNotFound_LogTopic
             case .resource:
                 code = .resourceNotFound_Resource
             case .resourceConfig:

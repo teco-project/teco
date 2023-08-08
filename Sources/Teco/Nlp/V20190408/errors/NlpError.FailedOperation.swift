@@ -20,16 +20,16 @@ extension TCNlpError {
     public struct FailedOperation: TCNlpErrorType {
         enum Code: String {
             case balanceInsufficient = "FailedOperation.BalanceInsufficient"
-            case illegalTextError = "FailedOperation.IllegalTextError"
+            case innerError = "FailedOperation.InnerError"
             case noCouplets = "FailedOperation.NoCouplets"
             case noPoetry = "FailedOperation.NoPoetry"
+            case noResults = "FailedOperation.NoResults"
             case notFoundData = "FailedOperation.NotFoundData"
             case requestTimeout = "FailedOperation.RequestTimeout"
+            case resourceBusy = "FailedOperation.ResourceBusy"
             case rpcFail = "FailedOperation.RpcFail"
-            case textEmbeddingFailed = "FailedOperation.TextEmbeddingFailed"
             case unKnowError = "FailedOperation.UnKnowError"
             case unknown = "FailedOperation.Unknown"
-            case wordNotFound = "FailedOperation.WordNotFound"
             case other = "FailedOperation"
         }
 
@@ -60,9 +60,9 @@ extension TCNlpError {
             FailedOperation(.balanceInsufficient)
         }
 
-        /// 非法文本输入导致返回异常
-        public static var illegalTextError: FailedOperation {
-            FailedOperation(.illegalTextError)
+        /// 服务内部错误，请重试。
+        public static var innerError: FailedOperation {
+            FailedOperation(.innerError)
         }
 
         /// 暂无春联生成，请更换关键词重试。
@@ -75,6 +75,11 @@ extension TCNlpError {
             FailedOperation(.noPoetry)
         }
 
+        /// 暂无结果，请更换文本重试。
+        public static var noResults: FailedOperation {
+            FailedOperation(.noResults)
+        }
+
         /// 未查询到结果。
         public static var notFoundData: FailedOperation {
             FailedOperation(.notFoundData)
@@ -85,14 +90,14 @@ extension TCNlpError {
             FailedOperation(.requestTimeout)
         }
 
+        /// 服务器繁忙，请稍后再试。
+        public static var resourceBusy: FailedOperation {
+            FailedOperation(.resourceBusy)
+        }
+
         /// RPC请求失败，一般为算法微服务故障。
         public static var rpcFail: FailedOperation {
             FailedOperation(.rpcFail)
-        }
-
-        /// 文本向量化失败
-        public static var textEmbeddingFailed: FailedOperation {
-            FailedOperation(.textEmbeddingFailed)
         }
 
         /// 内部错误。
@@ -105,11 +110,6 @@ extension TCNlpError {
             FailedOperation(.unknown)
         }
 
-        /// 查找不到词语
-        public static var wordNotFound: FailedOperation {
-            FailedOperation(.wordNotFound)
-        }
-
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -120,26 +120,26 @@ extension TCNlpError {
             switch self.error {
             case .balanceInsufficient:
                 code = .failedOperation_BalanceInsufficient
-            case .illegalTextError:
-                code = .failedOperation_IllegalTextError
+            case .innerError:
+                code = .failedOperation_InnerError
             case .noCouplets:
                 code = .failedOperation_NoCouplets
             case .noPoetry:
                 code = .failedOperation_NoPoetry
+            case .noResults:
+                code = .failedOperation_NoResults
             case .notFoundData:
                 code = .failedOperation_NotFoundData
             case .requestTimeout:
                 code = .failedOperation_RequestTimeout
+            case .resourceBusy:
+                code = .failedOperation_ResourceBusy
             case .rpcFail:
                 code = .failedOperation_RpcFail
-            case .textEmbeddingFailed:
-                code = .failedOperation_TextEmbeddingFailed
             case .unKnowError:
                 code = .failedOperation_UnKnowError
             case .unknown:
                 code = .failedOperation_Unknown
-            case .wordNotFound:
-                code = .failedOperation_WordNotFound
             case .other:
                 code = .failedOperation
             }

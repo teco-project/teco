@@ -48,7 +48,7 @@ extension Dlc {
         /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
         public let endTime: String?
 
-        /// 支持计算资源名字筛选
+        /// 数据引擎名称，用于筛选
         public let dataEngineName: String?
 
         public init(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil) {

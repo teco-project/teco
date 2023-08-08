@@ -146,7 +146,7 @@ extension Sqlserver {
     }
 
     /// 数据库账号权限信息。创建数据库时设置
-    public struct AccountPrivilege: TCInputModel {
+    public struct AccountPrivilege: TCInputModel, TCOutputModel {
         /// 数据库用户名
         public let userName: String
 
@@ -177,7 +177,7 @@ extension Sqlserver {
         /// 账号权限变更信息
         public let dbPrivileges: [DBPrivilegeModifyInfo]
 
-        /// 是否为管理员账户,当值为true 等价于基础版AccountType=L0，高可用AccountType=L1，当值为false时，表示删除管理员权限，默认false
+        /// 表示是否为管理员账户，当值为true，表示是 管理员。若实例 是 单节点，则管理员所在的 账号类型为超级权限账号 ，即AccountType=L0；若实例 是 双节点，则管理员所在的 账号类型为高级权限账号，即AccountType=L1；当值为false，表示 不是管理员，则账号类型为普通账号，即AccountType=L3
         public let isAdmin: Bool?
 
         /// 账号类型，IsAdmin字段的扩展字段。 L0-超级权限(基础版独有),L1-高级权限,L2-特殊权限,L3-普通权限，默认L3
@@ -489,6 +489,9 @@ extension Sqlserver {
         /// 内部状态。ONLINE表示运行中
         public let internalStatus: String
 
+        /// 是否已开启TDE加密，enable-已加密，disable-未加密
+        public let encryption: String?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case charset = "Charset"
@@ -497,6 +500,7 @@ extension Sqlserver {
             case status = "Status"
             case accounts = "Accounts"
             case internalStatus = "InternalStatus"
+            case encryption = "Encryption"
         }
     }
 
@@ -681,6 +685,14 @@ extension Sqlserver {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaveZones: SlaveZones?
 
+        /// 架构标识，SINGLE-单节点 DOUBLE-双节点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let architecture: String?
+
+        /// 类型标识，EXCLUSIVE-独享型，SHARED-共享型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let style: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case name = "Name"
@@ -734,11 +746,13 @@ extension Sqlserver {
             case timeZone = "TimeZone"
             case isDrZone = "IsDrZone"
             case slaveZones = "SlaveZones"
+            case architecture = "Architecture"
+            case style = "Style"
         }
     }
 
     /// 账号的数据库权限信息
-    public struct DBPrivilege: TCInputModel {
+    public struct DBPrivilege: TCInputModel, TCOutputModel {
         /// 数据库名
         public let dbName: String
 
@@ -805,6 +819,25 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case newName = "NewName"
             case oldName = "OldName"
+        }
+    }
+
+    /// 开启、关闭TDE数据库加密
+    public struct DBTDEEncrypt: TCInputModel {
+        /// 数据库名称
+        public let dbName: String?
+
+        /// enable-开启加密，disable-关闭加密
+        public let encryption: String?
+
+        public init(dbName: String? = nil, encryption: String? = nil) {
+            self.dbName = dbName
+            self.encryption = encryption
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case dbName = "DBName"
+            case encryption = "Encryption"
         }
     }
 
@@ -982,6 +1015,81 @@ extension Sqlserver {
             case instanceIdSet = "InstanceIdSet"
             case ownerUin = "OwnerUin"
             case instanceChargeType = "InstanceChargeType"
+        }
+    }
+
+    /// 订单号对应的资源ID列表
+    public struct DealInstance: TCOutputModel {
+        /// 实例ID
+        public let instanceId: [String]
+
+        /// 订单号
+        public let dealName: String
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case dealName = "DealName"
+        }
+    }
+
+    /// 设置实例扩展事件阈值
+    public struct EventConfig: TCInputModel {
+        /// 事件类型，slow-设置慢SQL阈值，blocked-设置阻塞、死锁阈值
+        public let eventType: String?
+
+        /// 阈值，单位毫秒。0表示关闭，大于0表示开启
+        public let threshold: Int64?
+
+        public init(eventType: String, threshold: Int64) {
+            self.eventType = eventType
+            self.threshold = threshold
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case eventType = "EventType"
+            case threshold = "Threshold"
+        }
+    }
+
+    /// 实例扩展事件详情
+    public struct Events: TCOutputModel {
+        /// ID
+        public let id: Int64?
+
+        /// 扩展事件文件名称
+        public let fileName: String?
+
+        /// 扩展事件文件大小
+        public let size: Int64?
+
+        /// 事件类型，slow-慢SQL事件，blocked-阻塞事件，deadlock-死锁事件
+        public let eventType: String?
+
+        /// 事件记录状态，1-成功，2-失败
+        public let status: Int64?
+
+        /// 扩展文件生成开始时间
+        public let startTime: String?
+
+        /// 扩展文件生成开始时间
+        public let endTime: String?
+
+        /// 内网下载地址
+        public let internalAddr: String?
+
+        /// 外网下载地址
+        public let externalAddr: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case fileName = "FileName"
+            case size = "Size"
+            case eventType = "EventType"
+            case status = "Status"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case internalAddr = "InternalAddr"
+            case externalAddr = "ExternalAddr"
         }
     }
 
@@ -2010,6 +2118,25 @@ extension Sqlserver {
             case msg = "Msg"
             case status = "Status"
             case name = "Name"
+        }
+    }
+
+    /// TDE透明数据加密配置
+    public struct TDEConfigAttribute: TCOutputModel {
+        /// 是否已开通TDE加密，enable-已开通，disable-未开通
+        public let encryption: String?
+
+        /// 证书归属。self-表示使用该账号自身的证书，others-表示引用其他账号的证书，none-表示没有证书
+        public let certificateAttribution: String?
+
+        /// 开通TDE加密时引用的其他主账号ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let quoteUin: String?
+
+        enum CodingKeys: String, CodingKey {
+            case encryption = "Encryption"
+            case certificateAttribution = "CertificateAttribution"
+            case quoteUin = "QuoteUin"
         }
     }
 

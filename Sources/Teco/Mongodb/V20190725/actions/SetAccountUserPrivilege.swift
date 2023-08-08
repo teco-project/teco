@@ -21,13 +21,13 @@ import TecoCore
 extension Mongodb {
     /// SetAccountUserPrivilege请求参数结构体
     public struct SetAccountUserPrivilegeRequest: TCRequestModel {
-        /// 实例ID。
+        /// 指定待设置账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 账号名称。
+        /// 设置账号名称。
         public let userName: String
 
-        /// 权限信息。
+        /// 设置权限信息。
         public let authRole: [Auth]
 
         public init(instanceId: String, userName: String, authRole: [Auth]) {
@@ -45,7 +45,7 @@ extension Mongodb {
 
     /// SetAccountUserPrivilege返回参数结构体
     public struct SetAccountUserPrivilegeResponse: TCResponseModel {
-        /// 设置任务ID,用于查询是否设置完成
+        /// 任务ID。
         public let flowId: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -59,7 +59,7 @@ extension Mongodb {
 
     /// 设置账户权限
     ///
-    /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
+    /// 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAccountUserPrivilegeResponse> {
         self.client.execute(action: "SetAccountUserPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -67,7 +67,7 @@ extension Mongodb {
 
     /// 设置账户权限
     ///
-    /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
+    /// 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
         try await self.client.execute(action: "SetAccountUserPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,7 +75,7 @@ extension Mongodb {
 
     /// 设置账户权限
     ///
-    /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
+    /// 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAccountUserPrivilegeResponse> {
         self.setAccountUserPrivilege(.init(instanceId: instanceId, userName: userName, authRole: authRole), region: region, logger: logger, on: eventLoop)
@@ -83,7 +83,7 @@ extension Mongodb {
 
     /// 设置账户权限
     ///
-    /// 本接口(SetAccountUserPrivilege)用于设置mongodb实例的账号权限。
+    /// 本接口（SetAccountUserPrivilege）用于设置实例的账号权限。
     @inlinable
     public func setAccountUserPrivilege(instanceId: String, userName: String, authRole: [Auth], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
         try await self.setAccountUserPrivilege(.init(instanceId: instanceId, userName: userName, authRole: authRole), region: region, logger: logger, on: eventLoop)

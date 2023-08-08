@@ -216,6 +216,18 @@ extension Apm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
 
+        /// CLS日志集 | ES集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logSet: String?
+
+        /// Metric数据保存时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metricDuration: Int64?
+
+        /// 用户自定义展示标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customShowTags: [String]?
+
         enum CodingKeys: String, CodingKey {
             case amountOfUsedStorage = "AmountOfUsedStorage"
             case name = "Name"
@@ -241,6 +253,9 @@ extension Apm {
             case logTopicID = "LogTopicID"
             case clientCount = "ClientCount"
             case totalCount = "TotalCount"
+            case logSet = "LogSet"
+            case metricDuration = "MetricDuration"
+            case customShowTags = "CustomShowTags"
         }
     }
 

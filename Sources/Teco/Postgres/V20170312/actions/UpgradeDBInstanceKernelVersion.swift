@@ -21,16 +21,17 @@ import TecoCore
 extension Postgres {
     /// UpgradeDBInstanceKernelVersion请求参数结构体
     public struct UpgradeDBInstanceKernelVersionRequest: TCRequestModel {
-        /// 实例ID
+        /// 实例ID。
         public let dbInstanceId: String
 
-        /// 升级的目标内核版本号。可以通过接口DescribeDBVersions的返回字段AvailableUpgradeTarget获取。
+        /// 升级的目标内核版本号。可以通过接口[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)的返回字段AvailableUpgradeTarget获取。
         public let targetDBKernelVersion: String
 
-        /// 指定实例升级内核版本号完成后的切换时间。可选值，
-        /// 0：立即切换（默认值）。
-        /// 1：指定时间切换。
-        /// 2：维护时间窗口内切换。
+        /// 指定实例升级内核版本号完成后的切换时间。可选值:
+        /// <li>0：立即切换
+        /// <li>1：指定时间切换
+        /// <li>2：维护时间窗口内切换
+        /// 默认值：0
         public let switchTag: UInt64?
 
         /// 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
@@ -39,9 +40,10 @@ extension Postgres {
         /// 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。SwitchStartTime和SwitchEndTime时间窗口不能小于30分钟。
         public let switchEndTime: String?
 
-        /// 是否对本次升级实例内核版本号操作执行预检查。可选值，
-        /// true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
-        /// false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        /// 是否对本次升级实例内核版本号操作执行预检查。
+        /// <li>true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
+        /// <li>false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        /// 默认值：false
         public let dryRun: Bool?
 
         public init(dbInstanceId: String, targetDBKernelVersion: String, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, dryRun: Bool? = nil) {

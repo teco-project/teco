@@ -20,6 +20,7 @@ extension TCScfError {
     public struct OperationDenied: TCScfErrorType {
         enum Code: String {
             case accountIsolate = "OperationDenied.AccountIsolate"
+            case accountNotExists = "OperationDenied.AccountNotExists"
         }
 
         private let error: Code
@@ -51,11 +52,18 @@ extension TCScfError {
             OperationDenied(.accountIsolate)
         }
 
+        /// 请检查账号是否合法。
+        public static var accountNotExists: OperationDenied {
+            OperationDenied(.accountNotExists)
+        }
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
             case .accountIsolate:
                 code = .operationDenied_AccountIsolate
+            case .accountNotExists:
+                code = .operationDenied_AccountNotExists
             }
             return TCScfError(code, context: self.context)
         }

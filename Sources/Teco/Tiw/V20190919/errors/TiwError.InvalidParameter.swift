@@ -26,6 +26,7 @@ extension TCTiwError {
             case fileFormatUnsupported = "InvalidParameter.FileFormatUnsupported"
             case invalidExtra = "InvalidParameter.InvalidExtra"
             case invalidTaskType = "InvalidParameter.InvalidTaskType"
+            case preprocessParameter = "InvalidParameter.PreprocessParameter"
             case recordParameter = "InvalidParameter.RecordParameter"
             case sdkAppIdNotFound = "InvalidParameter.SdkAppIdNotFound"
             case taskNotFound = "InvalidParameter.TaskNotFound"
@@ -93,6 +94,11 @@ extension TCTiwError {
             InvalidParameter(.invalidTaskType)
         }
 
+        /// 转码预处理参数格式不正确。
+        public static var preprocessParameter: InvalidParameter {
+            InvalidParameter(.preprocessParameter)
+        }
+
         /// 实时录制参数格式不正确。
         public static var recordParameter: InvalidParameter {
             InvalidParameter(.recordParameter)
@@ -150,6 +156,8 @@ extension TCTiwError {
                 code = .invalidParameter_InvalidExtra
             case .invalidTaskType:
                 code = .invalidParameter_InvalidTaskType
+            case .preprocessParameter:
+                code = .invalidParameter_PreprocessParameter
             case .recordParameter:
                 code = .invalidParameter_RecordParameter
             case .sdkAppIdNotFound:

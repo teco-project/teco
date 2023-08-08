@@ -33,16 +33,23 @@ extension Tcss {
         /// 待解绑主机quuid列表
         public let unBindList: [String]?
 
-        public init(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil) {
+        /// 节点类型:
+        /// NORMAL: 普通节点(默认值)
+        /// SUPER: 超级节点
+        public let nodeType: String?
+
+        public init(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, nodeType: String? = nil) {
             self.logType = logType
             self.bindList = bindList
             self.unBindList = unBindList
+            self.nodeType = nodeType
         }
 
         enum CodingKeys: String, CodingKey {
             case logType = "LogType"
             case bindList = "BindList"
             case unBindList = "UnBindList"
+            case nodeType = "NodeType"
         }
     }
 
@@ -70,13 +77,13 @@ extension Tcss {
 
     /// 修改安全日志接入对象
     @inlinable @discardableResult
-    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
-        self.modifySecLogJoinObjects(.init(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, nodeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
+        self.modifySecLogJoinObjects(.init(logType: logType, bindList: bindList, unBindList: unBindList, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入对象
     @inlinable @discardableResult
-    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
-        try await self.modifySecLogJoinObjects(.init(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, nodeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
+        try await self.modifySecLogJoinObjects(.init(logType: logType, bindList: bindList, unBindList: unBindList, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 }

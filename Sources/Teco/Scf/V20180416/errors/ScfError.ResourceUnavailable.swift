@@ -21,6 +21,7 @@ extension TCScfError {
         enum Code: String {
             case insufficientBalance = "ResourceUnavailable.InsufficientBalance"
             case namespace = "ResourceUnavailable.Namespace"
+            case serviceSuspended = "ResourceUnavailable.ServiceSuspended"
         }
 
         private let error: Code
@@ -55,6 +56,11 @@ extension TCScfError {
             ResourceUnavailable(.namespace)
         }
 
+        /// 请先解冻。
+        public static var serviceSuspended: ResourceUnavailable {
+            ResourceUnavailable(.serviceSuspended)
+        }
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {
@@ -62,6 +68,8 @@ extension TCScfError {
                 code = .resourceUnavailable_InsufficientBalance
             case .namespace:
                 code = .resourceUnavailable_Namespace
+            case .serviceSuspended:
+                code = .resourceUnavailable_ServiceSuspended
             }
             return TCScfError(code, context: self.context)
         }

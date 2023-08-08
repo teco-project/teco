@@ -21,7 +21,6 @@ extension TCOcrError {
         enum Code: String {
             case configFormatError = "InvalidParameter.ConfigFormatError"
             case engineImageDecodeFailed = "InvalidParameter.EngineImageDecodeFailed"
-            case invalidGTINError = "InvalidParameter.InvalidGTINError"
         }
 
         private let error: Code
@@ -56,11 +55,6 @@ extension TCOcrError {
             InvalidParameter(.engineImageDecodeFailed)
         }
 
-        /// 无效的GTIN。
-        public static var invalidGTINError: InvalidParameter {
-            InvalidParameter(.invalidGTINError)
-        }
-
         public func asOcrError() -> TCOcrError {
             let code: TCOcrError.Code
             switch self.error {
@@ -68,8 +62,6 @@ extension TCOcrError {
                 code = .invalidParameter_ConfigFormatError
             case .engineImageDecodeFailed:
                 code = .invalidParameter_EngineImageDecodeFailed
-            case .invalidGTINError:
-                code = .invalidParameter_InvalidGTINError
             }
             return TCOcrError(code, context: self.context)
         }

@@ -66,26 +66,30 @@ extension Tdid {
     }
 
     /// 检查区块链信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        self.client.execute(action: "CheckChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CheckChain is no longer available.")
     }
 
     /// 检查区块链信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        try await self.client.execute(action: "CheckChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CheckChain is no longer available.")
     }
 
     /// 检查区块链信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        self.checkChain(.init(groupId: groupId, clusterId: clusterId, agencyName: agencyName), region: region, logger: logger, on: eventLoop)
+        fatalError("CheckChain is no longer available.")
     }
 
     /// 检查区块链信息
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        try await self.checkChain(.init(groupId: groupId, clusterId: clusterId, agencyName: agencyName), region: region, logger: logger, on: eventLoop)
+        fatalError("CheckChain is no longer available.")
     }
 }

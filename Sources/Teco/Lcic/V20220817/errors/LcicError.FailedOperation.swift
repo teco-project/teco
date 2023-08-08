@@ -86,6 +86,8 @@ extension TCLcicError {
             FailedOperation(.originIdExists)
         }
 
+        /// 请求超时
+        ///
         /// 请重新尝试
         public static var requestTimedOut: FailedOperation {
             FailedOperation(.requestTimedOut)

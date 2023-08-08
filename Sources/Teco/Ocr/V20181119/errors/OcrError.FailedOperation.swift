@@ -29,6 +29,7 @@ extension TCOcrError {
             case emptyImageError = "FailedOperation.EmptyImageError"
             case engineRecognizeTimeout = "FailedOperation.EngineRecognizeTimeout"
             case idCardInfoIllegal = "FailedOperation.IdCardInfoIllegal"
+            case idCardTooSmall = "FailedOperation.IdCardTooSmall"
             case illegalBankCardError = "FailedOperation.IllegalBankCardError"
             case imageBlur = "FailedOperation.ImageBlur"
             case imageDecodeFailed = "FailedOperation.ImageDecodeFailed"
@@ -75,15 +76,26 @@ extension TCOcrError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var arrearsError: FailedOperation {
             FailedOperation(.arrearsError)
         }
 
+        /// 身份证CardSide类型错误
+        ///
+        /// CardSide参数支持以下值
+        /// -  FRONT：身份证有照片的一面（人像面）
+        /// -  BACK：身份证有国徽的一面（国徽面）
         public static var cardSideError: FailedOperation {
             FailedOperation(.cardSideError)
         }
 
         /// 今日次数达到限制。
+        ///
+        /// - OCR Demo出现此错误：超出Demo当日体验次数，请明日再试。
+        /// - 增值税发票核验接口：
+        /// 每张发票每天最多查验五次，请明日再试。
         public static var countLimitError: FailedOperation {
             FailedOperation(.countLimitError)
         }
@@ -104,6 +116,10 @@ extension TCOcrError {
         }
 
         /// 文件下载失败。
+        ///
+        /// 1.检查图片参数正确性(ImageUrl)，返回图片必须不为空且下载时间小于3秒。
+        /// 2.如果为https链接，请检查目标站点ssl证书是否正确。
+        /// 3.自查无误后，提工单。
         public static var downLoadError: FailedOperation {
             FailedOperation(.downLoadError)
         }
@@ -114,26 +130,44 @@ extension TCOcrError {
         }
 
         /// 引擎识别超时。
+        ///
+        /// 图片文字较多、长图、异常图片、系统负载波动可能会导致此问题，请先检查图片是否有上述问题，或稍后重试，若仍出现，请提单。
         public static var engineRecognizeTimeout: FailedOperation {
             FailedOperation(.engineRecognizeTimeout)
         }
 
         /// 身份证信息不合法（身份证号、姓名字段校验非法等）。
+        ///
+        /// 身份证信息不合法或缺失(身份证号、姓名、签发机关、有效期) ，如身份证号为空或不全、有效期不合法，即有效日期不符合5年、10年、20年、长期期限。
         public static var idCardInfoIllegal: FailedOperation {
             FailedOperation(.idCardInfoIllegal)
         }
 
+        /// 1.请检查图片分辨率是否在500*800以上。
+        /// 2.请检查卡片部分是否占据图片2/3以上，如否，可以自行裁剪，或修改入参Config，开启自动裁剪功能。
+        public static var idCardTooSmall: FailedOperation {
+            FailedOperation(.idCardTooSmall)
+        }
+
         /// 银行卡信息非法。
+        ///
+        /// 请检查银行卡的卡名、银行信息、卡类型等正确性，图片不清晰也可能导致校验错误，若无误则提单解决。
         public static var illegalBankCardError: FailedOperation {
             FailedOperation(.illegalBankCardError)
         }
 
         /// 图片模糊。
+        ///
+        /// 图片分辨率过低，请查看对应接口文档对图片分辨率的要求，比如身份证识别、驾驶证识别建议500*800以上:https://cloud.tencent.com/document/product/866/33515
         public static var imageBlur: FailedOperation {
             FailedOperation(.imageBlur)
         }
 
         /// 图片解码失败。
+        ///
+        /// 1.请借助转换工具验证图片/视频参数(ImageBase64)正确性，能否成功转换为目标图片/视频。
+        /// 2.请尝试去掉相关前缀data:image/jpg;base64,和换行符
+        /// ，再进行调用。
         public static var imageDecodeFailed: FailedOperation {
             FailedOperation(.imageDecodeFailed)
         }
@@ -159,6 +193,8 @@ extension TCOcrError {
         }
 
         /// 图片尺寸过大，请参考输出参数中关于图片大小限制的说明。
+        ///
+        /// None
         public static var imageSizeTooLarge: FailedOperation {
             FailedOperation(.imageSizeTooLarge)
         }
@@ -169,6 +205,8 @@ extension TCOcrError {
         }
 
         /// 输入的Language不支持。
+        ///
+        /// 图片中的语言暂不支持，请通过对应接口文档查看所支持语言：https://cloud.tencent.com/document/product/866/33515
         public static var languageNotSupport: FailedOperation {
             FailedOperation(.languageNotSupport)
         }
@@ -206,6 +244,8 @@ extension TCOcrError {
         }
 
         /// OCR识别失败。
+        ///
+        /// 导致此错误的原因比较多，更多是由于图片本身的原因导致不能识别，建议检测下图片。
         public static var ocrFailed: FailedOperation {
             FailedOperation(.ocrFailed)
         }
@@ -216,6 +256,8 @@ extension TCOcrError {
         }
 
         /// 未知错误。
+        ///
+        /// 导致此错误的原因比较多，比如参数异常、网络波动、识别超时、第三方库源不可能用等等。建议先检查参数再重试，如果仍然出现则提单。
         public static var unKnowError: FailedOperation {
             FailedOperation(.unKnowError)
         }
@@ -226,6 +268,9 @@ extension TCOcrError {
         }
 
         /// 剩余识别次数不足，请检查资源包状态。
+        ///
+        /// 1.进入控制台查看资源包状态：https://console.cloud.tencent.com/ocr/packagemanage
+        /// 2.有资源但仍报错，提单解决。
         public static var userQuotaError: FailedOperation {
             FailedOperation(.userQuotaError)
         }
@@ -253,6 +298,8 @@ extension TCOcrError {
                 code = .failedOperation_EngineRecognizeTimeout
             case .idCardInfoIllegal:
                 code = .failedOperation_IdCardInfoIllegal
+            case .idCardTooSmall:
+                code = .failedOperation_IdCardTooSmall
             case .illegalBankCardError:
                 code = .failedOperation_IllegalBankCardError
             case .imageBlur:

@@ -32,7 +32,8 @@ extension Cls {
         /// 使用*或空字符串可查询所有日志
         public let query: String
 
-        /// 要检索分析的日志主题ID
+        /// - 要检索分析的日志主题ID，仅能指定一个日志主题。
+        /// - 如需同时检索多个日志主题，请使用Topics参数。
         public let topicId: String?
 
         /// 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
@@ -68,10 +69,15 @@ extension Cls {
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
-        /// 详细说明参见https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules
+        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
         public let syntaxRule: UInt64?
 
-        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil) {
+        /// - 要检索分析的日志主题列表，最大支持20个日志主题。
+        /// - 检索单个日志主题时请使用TopicId。
+        /// - 不能同时使用TopicId和Topics。
+        public let topics: [MultiTopicSearchInformation]?
+
+        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, topics: [MultiTopicSearchInformation]? = nil) {
             self.from = from
             self.to = to
             self.query = query
@@ -82,6 +88,7 @@ extension Cls {
             self.useNewAnalysis = useNewAnalysis
             self.samplingRate = samplingRate
             self.syntaxRule = syntaxRule
+            self.topics = topics
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +102,7 @@ extension Cls {
             case useNewAnalysis = "UseNewAnalysis"
             case samplingRate = "SamplingRate"
             case syntaxRule = "SyntaxRule"
+            case topics = "Topics"
         }
     }
 
@@ -134,6 +142,10 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columns: [Column]?
 
+        /// 本次统计分析使用的采样率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let samplingRate: Float?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -146,6 +158,7 @@ extension Cls {
             case analysisResults = "AnalysisResults"
             case analysisRecords = "AnalysisRecords"
             case columns = "Columns"
+            case samplingRate = "SamplingRate"
             case requestId = "RequestId"
         }
     }
@@ -170,15 +183,15 @@ extension Cls {
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
-        self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, topics: [MultiTopicSearchInformation]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
+        self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule, topics: topics), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
-        try await self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, syntaxRule: UInt64? = nil, topics: [MultiTopicSearchInformation]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
+        try await self.searchLog(.init(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate, syntaxRule: syntaxRule, topics: topics), region: region, logger: logger, on: eventLoop)
     }
 }

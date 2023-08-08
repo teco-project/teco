@@ -36,12 +36,16 @@ extension Tdmq {
         /// 消息保留策略
         public let retentionPolicy: RetentionPolicy?
 
-        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil) {
+        /// 是否开启自动创建订阅
+        public let autoSubscriptionCreation: Bool?
+
+        public init(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
             self.remark = remark
             self.clusterId = clusterId
             self.retentionPolicy = retentionPolicy
+            self.autoSubscriptionCreation = autoSubscriptionCreation
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tdmq {
             case remark = "Remark"
             case clusterId = "ClusterId"
             case retentionPolicy = "RetentionPolicy"
+            case autoSubscriptionCreation = "AutoSubscriptionCreation"
         }
     }
 
@@ -100,15 +105,15 @@ extension Tdmq {
     ///
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
-    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
-        self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
+        self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
     ///
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
-    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+    public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, autoSubscriptionCreation: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.createEnvironment(.init(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy, autoSubscriptionCreation: autoSubscriptionCreation), region: region, logger: logger, on: eventLoop)
     }
 }

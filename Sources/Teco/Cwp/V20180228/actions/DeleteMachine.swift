@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// DeleteMachine请求参数结构体
     public struct DeleteMachineRequest: TCRequestModel {
-        /// 云镜客户端Uuid。
+        /// 主机安全客户端Uuid。
         public let uuid: String
 
         public init(uuid: String) {
@@ -43,33 +43,33 @@ extension Cwp {
         }
     }
 
-    /// 卸载云镜客户端
+    /// 卸载主机安全客户端
     ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    /// 本接口（DeleteMachine）用于卸载主机安全客户端。
     @inlinable @discardableResult
     public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
         self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 卸载云镜客户端
+    /// 卸载主机安全客户端
     ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    /// 本接口（DeleteMachine）用于卸载主机安全客户端。
     @inlinable @discardableResult
     public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
         try await self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 卸载云镜客户端
+    /// 卸载主机安全客户端
     ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    /// 本接口（DeleteMachine）用于卸载主机安全客户端。
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
         self.deleteMachine(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 卸载云镜客户端
+    /// 卸载主机安全客户端
     ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    /// 本接口（DeleteMachine）用于卸载主机安全客户端。
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
         try await self.deleteMachine(.init(uuid: uuid), region: region, logger: logger, on: eventLoop)

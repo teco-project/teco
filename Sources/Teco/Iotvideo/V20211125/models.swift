@@ -410,6 +410,10 @@ extension Iotvideo {
         /// 设备过期时间
         public let expireTime: UInt64
 
+        /// 设备的sdk日志等级，0：关闭，1：错误，2：告警，3：信息，4：调试
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logLevel: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case deviceName = "DeviceName"
             case online = "Online"
@@ -417,6 +421,7 @@ extension Iotvideo {
             case devicePsk = "DevicePsk"
             case enableState = "EnableState"
             case expireTime = "ExpireTime"
+            case logLevel = "LogLevel"
         }
     }
 
@@ -664,6 +669,39 @@ extension Iotvideo {
             case taskId = "TaskId"
             case createTime = "CreateTime"
             case state = "State"
+        }
+    }
+
+    /// 结构体（PackageInfo）记录了设备拥有的有效套餐信息，包括云存开启状态、云存类型、云存回看时长、云存套餐过期时间
+    public struct PackageInfo: TCOutputModel {
+        /// 云存开启状态，0为未开启，2为正在生效，1为已过期
+        /// 注：这里只返回状态为0的数据
+        public let status: UInt64
+
+        /// 云存类型，1为全时云存，2为事件云存
+        public let csType: UInt64
+
+        /// 云存回看时长
+        public let csShiftDuration: UInt64
+
+        /// 云存套餐过期时间
+        public let csExpiredTime: Int64
+
+        /// 云存套餐创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdAt: Int64?
+
+        /// 云存套餐更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedAt: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case csType = "CSType"
+            case csShiftDuration = "CSShiftDuration"
+            case csExpiredTime = "CSExpiredTime"
+            case createdAt = "CreatedAt"
+            case updatedAt = "UpdatedAt"
         }
     }
 

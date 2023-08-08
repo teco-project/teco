@@ -61,11 +61,13 @@ public struct TCPostgresError: TCPostgresErrorType {
         case failedOperation_MasterInstanceQueryError = "FailedOperation.MasterInstanceQueryError"
         case failedOperation_ModifyROGroupError = "FailedOperation.ModifyROGroupError"
         case failedOperation_NetworkNumLimitError = "FailedOperation.NetworkNumLimitError"
+        case failedOperation_NoAvailableStandby = "FailedOperation.NoAvailableStandby"
         case failedOperation_OperateFrequencyLimitedError = "FailedOperation.OperateFrequencyLimitedError"
         case failedOperation_OssAccessError = "FailedOperation.OssAccessError"
         case failedOperation_OssOperationFailed = "FailedOperation.OssOperationFailed"
         case failedOperation_PayOrderFailed = "FailedOperation.PayOrderFailed"
         case failedOperation_PostPaidUnblockError = "FailedOperation.PostPaidUnblockError"
+        case failedOperation_PreCheckError = "FailedOperation.PreCheckError"
         case failedOperation_PresignedURLGetError = "FailedOperation.PresignedURLGetError"
         case failedOperation_QueryDealFailed = "FailedOperation.QueryDealFailed"
         case failedOperation_QueryInstanceBatchError = "FailedOperation.QueryInstanceBatchError"
@@ -150,6 +152,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         case invalidParameterValue_ParameterCharacterPreLimitError = "InvalidParameterValue.ParameterCharacterPreLimitError"
         case invalidParameterValue_ParameterHandleError = "InvalidParameterValue.ParameterHandleError"
         case invalidParameterValue_ParameterLengthLimitError = "InvalidParameterValue.ParameterLengthLimitError"
+        case invalidParameterValue_ParameterOutOfRange = "InvalidParameterValue.ParameterOutOfRange"
         case invalidParameterValue_ParameterOutRangeError = "InvalidParameterValue.ParameterOutRangeError"
         case invalidParameterValue_ParameterValueExceedError = "InvalidParameterValue.ParameterValueExceedError"
         case invalidParameterValue_ReadOnlyGroupNotExist = "InvalidParameterValue.ReadOnlyGroupNotExist"
@@ -158,6 +161,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         case invalidParameterValue_StructParseFailed = "InvalidParameterValue.StructParseFailed"
         case invalidParameter_InstanceNameExist = "InvalidParameter.InstanceNameExist"
         case invalidParameter_ParameterCheckError = "InvalidParameter.ParameterCheckError"
+        case invalidParameter_ParametersNotSet = "InvalidParameter.ParametersNotSet"
         case invalidParameter_TradeAccessDeniedError = "InvalidParameter.TradeAccessDeniedError"
         case invalidParameter_VpcNotFoundError = "InvalidParameter.VpcNotFoundError"
         case invalidPid = "InvalidPid"
@@ -171,6 +175,7 @@ public struct TCPostgresError: TCPostgresErrorType {
         case operationDenied_InstanceStatusDeniedError = "OperationDenied.InstanceStatusDeniedError"
         case operationDenied_InstanceStatusLimitError = "OperationDenied.InstanceStatusLimitError"
         case operationDenied_InstanceStatusLimitOpError = "OperationDenied.InstanceStatusLimitOpError"
+        case operationDenied_InstanceTypeDenied = "OperationDenied.InstanceTypeDenied"
         case operationDenied_NotSupportZoneError = "OperationDenied.NotSupportZoneError"
         case operationDenied_PayModeError = "OperationDenied.PayModeError"
         case operationDenied_PostPaidPayModeError = "OperationDenied.PostPaidPayModeError"
@@ -412,6 +417,10 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.failedOperation_NetworkNumLimitError)
     }
 
+    public static var failedOperation_NoAvailableStandby: TCPostgresError {
+        TCPostgresError(.failedOperation_NoAvailableStandby)
+    }
+
     /// 操作超过频率限制，请稍后重试。如果持续不成功，请联系客服进行处理。
     public static var failedOperation_OperateFrequencyLimitedError: TCPostgresError {
         TCPostgresError(.failedOperation_OperateFrequencyLimitedError)
@@ -435,6 +444,11 @@ public struct TCPostgresError: TCPostgresErrorType {
     /// 按量计费实例账户解冻结失败，请稍后重试。如果持续不成功，请联系客服进行处理。
     public static var failedOperation_PostPaidUnblockError: TCPostgresError {
         TCPostgresError(.failedOperation_PostPaidUnblockError)
+    }
+
+    /// 接口会同时返回Message来解释报错原因。
+    public static var failedOperation_PreCheckError: TCPostgresError {
+        TCPostgresError(.failedOperation_PreCheckError)
     }
 
     /// 获取预签名授权URL错误。
@@ -857,6 +871,10 @@ public struct TCPostgresError: TCPostgresErrorType {
         TCPostgresError(.invalidParameterValue_ParameterLengthLimitError)
     }
 
+    public static var invalidParameterValue_ParameterOutOfRange: TCPostgresError {
+        TCPostgresError(.invalidParameterValue_ParameterOutOfRange)
+    }
+
     /// 存在无效的参数值。
     public static var invalidParameterValue_ParameterOutRangeError: TCPostgresError {
         TCPostgresError(.invalidParameterValue_ParameterOutRangeError)
@@ -895,6 +913,10 @@ public struct TCPostgresError: TCPostgresErrorType {
     /// 参数检查失败。
     public static var invalidParameter_ParameterCheckError: TCPostgresError {
         TCPostgresError(.invalidParameter_ParameterCheckError)
+    }
+
+    public static var invalidParameter_ParametersNotSet: TCPostgresError {
+        TCPostgresError(.invalidParameter_ParametersNotSet)
     }
 
     /// pid错误。
@@ -960,6 +982,10 @@ public struct TCPostgresError: TCPostgresErrorType {
     /// 实例状态限制当前操作。
     public static var operationDenied_InstanceStatusLimitOpError: TCPostgresError {
         TCPostgresError(.operationDenied_InstanceStatusLimitOpError)
+    }
+
+    public static var operationDenied_InstanceTypeDenied: TCPostgresError {
+        TCPostgresError(.operationDenied_InstanceTypeDenied)
     }
 
     /// Serverless不支持当前可用区。

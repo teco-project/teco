@@ -63,7 +63,8 @@ extension Sts {
     /// 获取当前调用者的身份信息
     ///
     /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    ///
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时访问凭证身份获取。
     @inlinable
     public func getCallerIdentity(_ input: GetCallerIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
         self.client.execute(action: "GetCallerIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,7 +73,8 @@ extension Sts {
     /// 获取当前调用者的身份信息
     ///
     /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    ///
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时访问凭证身份获取。
     @inlinable
     public func getCallerIdentity(_ input: GetCallerIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
         try await self.client.execute(action: "GetCallerIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +83,8 @@ extension Sts {
     /// 获取当前调用者的身份信息
     ///
     /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    ///
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时访问凭证身份获取。
     @inlinable
     public func getCallerIdentity(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
         self.getCallerIdentity(.init(), region: region, logger: logger, on: eventLoop)
@@ -90,7 +93,8 @@ extension Sts {
     /// 获取当前调用者的身份信息
     ///
     /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    ///
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时访问凭证身份获取。
     @inlinable
     public func getCallerIdentity(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
         try await self.getCallerIdentity(.init(), region: region, logger: logger, on: eventLoop)

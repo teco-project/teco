@@ -63,33 +63,33 @@ extension Postgres {
         }
     }
 
-    /// 修改参数模板信息
+    /// 修改参数模板
     ///
-    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述等配置，也可用于管理参数模板中的参数列表。
     @inlinable @discardableResult
     public func modifyParameterTemplate(_ input: ModifyParameterTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParameterTemplateResponse> {
         self.client.execute(action: "ModifyParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改参数模板信息
+    /// 修改参数模板
     ///
-    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述等配置，也可用于管理参数模板中的参数列表。
     @inlinable @discardableResult
     public func modifyParameterTemplate(_ input: ModifyParameterTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParameterTemplateResponse {
         try await self.client.execute(action: "ModifyParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改参数模板信息
+    /// 修改参数模板
     ///
-    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述等配置，也可用于管理参数模板中的参数列表。
     @inlinable @discardableResult
     public func modifyParameterTemplate(templateId: String, templateName: String? = nil, templateDescription: String? = nil, modifyParamEntrySet: [ParamEntry]? = nil, deleteParamSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParameterTemplateResponse> {
         self.modifyParameterTemplate(.init(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改参数模板信息
+    /// 修改参数模板
     ///
-    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述，修改，添加和删除参数模板参数。
+    /// 本接口（ModifyParameterTemplate）主要用于修改参数模板名称，描述等配置，也可用于管理参数模板中的参数列表。
     @inlinable @discardableResult
     public func modifyParameterTemplate(templateId: String, templateName: String? = nil, templateDescription: String? = nil, modifyParamEntrySet: [ParamEntry]? = nil, deleteParamSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParameterTemplateResponse {
         try await self.modifyParameterTemplate(.init(templateId: templateId, templateName: templateName, templateDescription: templateDescription, modifyParamEntrySet: modifyParamEntrySet, deleteParamSet: deleteParamSet), region: region, logger: logger, on: eventLoop)

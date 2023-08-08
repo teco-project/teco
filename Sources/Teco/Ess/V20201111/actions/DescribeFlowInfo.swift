@@ -21,25 +21,33 @@ import TecoCore
 extension Ess {
     /// DescribeFlowInfo请求参数结构体
     public struct DescribeFlowInfoRequest: TCRequestModel {
-        /// 需要查询的流程ID列表，限制最大100个
-        public let flowIds: [String]
-
-        /// 调用方用户信息
+        /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo?
+
+        /// 需要查询的流程ID列表，限制最大100个
+        ///
+        /// 如果查询合同组的信息,不要传此参数
+        public let flowIds: [String]?
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
-        public init(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil) {
-            self.flowIds = flowIds
+        /// 合同组ID, 如果传此参数会忽略FlowIds入参
+        ///  所以如传此参数不要传FlowIds参数
+        public let flowGroupId: String?
+
+        public init(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil) {
             self.operator = `operator`
+            self.flowIds = flowIds
             self.agent = agent
+            self.flowGroupId = flowGroupId
         }
 
         enum CodingKeys: String, CodingKey {
-            case flowIds = "FlowIds"
             case `operator` = "Operator"
+            case flowIds = "FlowIds"
             case agent = "Agent"
+            case flowGroupId = "FlowGroupId"
         }
     }
 
@@ -48,11 +56,19 @@ extension Ess {
         /// 签署流程信息
         public let flowDetailInfos: [FlowDetailInfo]
 
+        /// 合同组ID
+        public let flowGroupId: String
+
+        /// 合同组名称
+        public let flowGroupName: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case flowDetailInfos = "FlowDetailInfos"
+            case flowGroupId = "FlowGroupId"
+            case flowGroupName = "FlowGroupName"
             case requestId = "RequestId"
         }
     }
@@ -80,8 +96,8 @@ extension Ess {
     /// 查询合同详情
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
-    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
-        self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func describeFlowInfo(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
+        self.describeFlowInfo(.init(operator: `operator`, flowIds: flowIds, agent: agent, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询合同详情
@@ -89,7 +105,7 @@ extension Ess {
     /// 查询合同详情
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
-    public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
-        try await self.describeFlowInfo(.init(flowIds: flowIds, operator: `operator`, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func describeFlowInfo(operator: UserInfo? = nil, flowIds: [String]? = nil, agent: Agent? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
+        try await self.describeFlowInfo(.init(operator: `operator`, flowIds: flowIds, agent: agent, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

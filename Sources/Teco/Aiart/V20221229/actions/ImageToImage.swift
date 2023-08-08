@@ -34,19 +34,18 @@ extension Aiart {
         public let inputUrl: String?
 
         /// 文本描述。
-        /// 用于在输入图的基础上引导生成图效果，建议详细描述画面主体、细节、场景等，文本描述越丰富，生成效果越精美。推荐使用中文。最多支持512个 utf-8 字符。
-        /// 注意：如果不输入任何文本描述，可能导致较差的效果，建议根据期望的效果输入相应的文本描述。
+        /// 用于在输入图的基础上引导生成图效果，增加生成结果中出现描述内容的可能。
+        /// 推荐使用中文。最多支持256个 utf-8 字符。
         public let prompt: String?
 
         /// 反向文本描述。
         /// 用于一定程度上从反面引导模型生成的走向，减少生成结果中出现描述内容的可能，但不能完全杜绝。
-        /// 推荐使用中文。最多可传512个 utf-8 字符。
+        /// 推荐使用中文。最多可传256个 utf-8 字符。
         public let negativePrompt: String?
 
         /// 绘画风格。
         /// 请在  [智能图生图风格列表](https://cloud.tencent.com/document/product/1668/86250) 中选择期望的风格，传入风格编号。
         /// 推荐使用且只使用一种风格。不传默认使用201（日系动漫风格）。
-        /// 如果想要探索风格列表之外的风格，也可以尝试在 Prompt 中输入其他的风格描述。
         public let styles: [String]?
 
         /// 生成图结果的配置，包括输出图片分辨率和尺寸等。
@@ -64,10 +63,13 @@ extension Aiart {
         public let logoParam: LogoParam?
 
         /// 生成自由度。
-        /// Strength 值越小，生成图和原图越接近。取值范围0~1，不传默认为0.65。
+        /// Strength 值越小，生成图和原图越接近。取值范围0~1，不传默认为0.75。
         public let strength: Float?
 
-        public init(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil) {
+        /// 返回图像方式（base64 或 url) ，二选一，默认为 base64。url 有效期为1小时。
+        public let rspImgType: String?
+
+        public init(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil, rspImgType: String? = nil) {
             self.inputImage = inputImage
             self.inputUrl = inputUrl
             self.prompt = prompt
@@ -77,6 +79,7 @@ extension Aiart {
             self.logoAdd = logoAdd
             self.logoParam = logoParam
             self.strength = strength
+            self.rspImgType = rspImgType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -89,12 +92,15 @@ extension Aiart {
             case logoAdd = "LogoAdd"
             case logoParam = "LogoParam"
             case strength = "Strength"
+            case rspImgType = "RspImgType"
         }
     }
 
     /// ImageToImage返回参数结构体
     public struct ImageToImageResponse: TCResponseModel {
-        /// 返回的生成图 Base64 编码。
+        /// 根据入参 RspImgType 填入不同，返回不同的内容。
+        /// 如果传入 base64 则返回生成图 Base64 编码。
+        /// 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。
         public let resultImage: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -141,8 +147,8 @@ extension Aiart {
     ///
     /// 请求频率限制为1次/秒。
     @inlinable
-    public func imageToImage(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToImageResponse> {
-        self.imageToImage(.init(inputImage: inputImage, inputUrl: inputUrl, prompt: prompt, negativePrompt: negativePrompt, styles: styles, resultConfig: resultConfig, logoAdd: logoAdd, logoParam: logoParam, strength: strength), region: region, logger: logger, on: eventLoop)
+    public func imageToImage(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToImageResponse> {
+        self.imageToImage(.init(inputImage: inputImage, inputUrl: inputUrl, prompt: prompt, negativePrompt: negativePrompt, styles: styles, resultConfig: resultConfig, logoAdd: logoAdd, logoParam: logoParam, strength: strength, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能图生图
@@ -154,7 +160,7 @@ extension Aiart {
     ///
     /// 请求频率限制为1次/秒。
     @inlinable
-    public func imageToImage(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToImageResponse {
-        try await self.imageToImage(.init(inputImage: inputImage, inputUrl: inputUrl, prompt: prompt, negativePrompt: negativePrompt, styles: styles, resultConfig: resultConfig, logoAdd: logoAdd, logoParam: logoParam, strength: strength), region: region, logger: logger, on: eventLoop)
+    public func imageToImage(inputImage: String? = nil, inputUrl: String? = nil, prompt: String? = nil, negativePrompt: String? = nil, styles: [String]? = nil, resultConfig: ResultConfig? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, strength: Float? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToImageResponse {
+        try await self.imageToImage(.init(inputImage: inputImage, inputUrl: inputUrl, prompt: prompt, negativePrompt: negativePrompt, styles: styles, resultConfig: resultConfig, logoAdd: logoAdd, logoParam: logoParam, strength: strength, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

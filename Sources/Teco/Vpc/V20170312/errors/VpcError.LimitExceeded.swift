@@ -20,11 +20,15 @@ extension TCVpcError {
     public struct LimitExceeded: TCVpcErrorType {
         enum Code: String {
             case accountReturnQuota = "LimitExceeded.AccountReturnQuota"
+            case actionLimited = "LimitExceeded.ActionLimited"
             case address = "LimitExceeded.Address"
             case addressQuotaLimitExceeded = "LimitExceeded.AddressQuotaLimitExceeded"
+            case attachedSnapshotPolicyExceeded = "LimitExceeded.AttachedSnapshotPolicyExceeded"
             case bandwidthPackageQuota = "LimitExceeded.BandwidthPackageQuota"
+            case bandwidthPackageResourceQuota = "LimitExceeded.BandwidthPackageResourceQuota"
             case changeAddressQuota = "LimitExceeded.ChangeAddressQuota"
             case cidrBlock = "LimitExceeded.CidrBlock"
+            case currentInstanceAttachedCcnInstances = "LimitExceeded.CurrentInstanceAttachedCcnInstances"
             case dailyAllocateAddressQuotaLimitExceeded = "LimitExceeded.DailyAllocateAddressQuotaLimitExceeded"
             case dailyChangeAddressQuota = "LimitExceeded.DailyChangeAddressQuota"
             case instanceAddressQuota = "LimitExceeded.InstanceAddressQuota"
@@ -73,6 +77,11 @@ extension TCVpcError {
             LimitExceeded(.accountReturnQuota)
         }
 
+        /// 接口请求次数超过限频。
+        public static var actionLimited: LimitExceeded {
+            LimitExceeded(.actionLimited)
+        }
+
         /// 分配IP地址数量达到上限。
         public static var address: LimitExceeded {
             LimitExceeded(.address)
@@ -83,9 +92,19 @@ extension TCVpcError {
             LimitExceeded(.addressQuotaLimitExceeded)
         }
 
+        /// 实例关联快照策略数量达到上限。
+        public static var attachedSnapshotPolicyExceeded: LimitExceeded {
+            LimitExceeded(.attachedSnapshotPolicyExceeded)
+        }
+
         /// 带宽包配额超过限制。
         public static var bandwidthPackageQuota: LimitExceeded {
             LimitExceeded(.bandwidthPackageQuota)
+        }
+
+        /// 当前带宽包加入资源上限。
+        public static var bandwidthPackageResourceQuota: LimitExceeded {
+            LimitExceeded(.bandwidthPackageResourceQuota)
         }
 
         /// 超过更换IP配额。
@@ -96,6 +115,11 @@ extension TCVpcError {
         /// VPC分配网段数量达到上限。
         public static var cidrBlock: LimitExceeded {
             LimitExceeded(.cidrBlock)
+        }
+
+        /// 当前实例关联的云联网数量达到上限。
+        public static var currentInstanceAttachedCcnInstances: LimitExceeded {
+            LimitExceeded(.currentInstanceAttachedCcnInstances)
         }
 
         /// 租户每天申请的弹性IP超过上限。
@@ -198,16 +222,24 @@ extension TCVpcError {
             switch self.error {
             case .accountReturnQuota:
                 code = .limitExceeded_AccountReturnQuota
+            case .actionLimited:
+                code = .limitExceeded_ActionLimited
             case .address:
                 code = .limitExceeded_Address
             case .addressQuotaLimitExceeded:
                 code = .limitExceeded_AddressQuotaLimitExceeded
+            case .attachedSnapshotPolicyExceeded:
+                code = .limitExceeded_AttachedSnapshotPolicyExceeded
             case .bandwidthPackageQuota:
                 code = .limitExceeded_BandwidthPackageQuota
+            case .bandwidthPackageResourceQuota:
+                code = .limitExceeded_BandwidthPackageResourceQuota
             case .changeAddressQuota:
                 code = .limitExceeded_ChangeAddressQuota
             case .cidrBlock:
                 code = .limitExceeded_CidrBlock
+            case .currentInstanceAttachedCcnInstances:
+                code = .limitExceeded_CurrentInstanceAttachedCcnInstances
             case .dailyAllocateAddressQuotaLimitExceeded:
                 code = .limitExceeded_DailyAllocateAddressQuotaLimitExceeded
             case .dailyChangeAddressQuota:

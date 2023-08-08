@@ -33,7 +33,7 @@ extension Vpc {
         /// 云联网所属账号。
         public let ccnUin: String
 
-        /// 时间粒度。
+        /// 时间粒度。单位为:秒，如60为60s的时间粒度
         public let period: Int64
 
         /// 开始时间。

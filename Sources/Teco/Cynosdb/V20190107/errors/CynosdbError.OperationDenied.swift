@@ -29,6 +29,7 @@ extension TCCynosdbError {
             case serverlessClusterStatusDenied = "OperationDenied.ServerlessClusterStatusDenied"
             case serverlessInstanceStatusDenied = "OperationDenied.ServerlessInstanceStatusDenied"
             case taskConflictError = "OperationDenied.TaskConflictError"
+            case unSupportSaleSpecError = "OperationDenied.UnSupportSaleSpecError"
             case userNotAuthenticatedError = "OperationDenied.UserNotAuthenticatedError"
             case versionNotSupportError = "OperationDenied.VersionNotSupportError"
         }
@@ -105,6 +106,10 @@ extension TCCynosdbError {
             OperationDenied(.taskConflictError)
         }
 
+        public static var unSupportSaleSpecError: OperationDenied {
+            OperationDenied(.unSupportSaleSpecError)
+        }
+
         /// 用户未进行实名认证，请先进行实名认证才可购买。
         public static var userNotAuthenticatedError: OperationDenied {
             OperationDenied(.userNotAuthenticatedError)
@@ -138,6 +143,8 @@ extension TCCynosdbError {
                 code = .operationDenied_ServerlessInstanceStatusDenied
             case .taskConflictError:
                 code = .operationDenied_TaskConflictError
+            case .unSupportSaleSpecError:
+                code = .operationDenied_UnSupportSaleSpecError
             case .userNotAuthenticatedError:
                 code = .operationDenied_UserNotAuthenticatedError
             case .versionNotSupportError:

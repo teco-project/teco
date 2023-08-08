@@ -27,16 +27,16 @@ extension Tdmq {
         /// 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         public let namespaceId: String
 
-        /// 未消费消息的保留时间，以毫秒为单位，60秒-15天
-        public let ttl: UInt64
+        /// 已废弃
+        public let ttl: UInt64?
 
-        /// 消息持久化后保留的时间，以毫秒为单位
-        public let retentionTime: UInt64
+        /// 已废弃
+        public let retentionTime: UInt64?
 
         /// 说明，最大128个字符
         public let remark: String?
 
-        public init(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil) {
+        public init(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.ttl = ttl
@@ -77,13 +77,13 @@ extension Tdmq {
 
     /// 创建RocketMQ命名空间
     @inlinable @discardableResult
-    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQNamespaceResponse> {
+    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQNamespaceResponse> {
         self.createRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ命名空间
     @inlinable @discardableResult
-    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQNamespaceResponse {
+    public func createRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQNamespaceResponse {
         try await self.createRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

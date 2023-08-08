@@ -21,11 +21,16 @@ import TecoCore
 extension Live {
     /// DescribeStreamPlayInfoList请求参数结构体
     public struct DescribeStreamPlayInfoListRequest: TCRequestModel {
-        /// 开始时间，北京时间，格式为yyyy-mm-dd HH:MM:SS
+        /// 起始时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
+        /// 开始时间和结束时间的格式需要保持一致。
         public let startTime: String
 
-        /// 结束时间，北京时间，格式为yyyy-mm-dd HH:MM:SS，
-        /// 结束时间 和 开始时间跨度不支持超过24小时，支持距当前时间一个月内的数据查询。
+        /// 结束时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
+        /// 开始时间和结束时间的格式需要保持一致。结束时间和开始时间跨度不支持超过24小时，支持距当前时间一个月内的数据查询。
         public let endTime: String
 
         /// 播放域名，
@@ -38,7 +43,6 @@ extension Live {
 
         /// 推流路径，与播放地址中的AppName保持一致，会精确匹配，在同时传递了StreamName时生效。
         /// 若不填，则为查询总体播放数据。
-        /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
         public let appName: String?
 
         /// 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
@@ -80,7 +84,6 @@ extension Live {
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
-    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
         self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -89,7 +92,6 @@ extension Live {
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
-    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
         try await self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,7 +100,6 @@ extension Live {
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
-    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
         self.describeStreamPlayInfoList(.init(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
@@ -107,7 +108,6 @@ extension Live {
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据，数据延迟4分钟左右。
-    /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
         try await self.describeStreamPlayInfoList(.init(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), region: region, logger: logger, on: eventLoop)

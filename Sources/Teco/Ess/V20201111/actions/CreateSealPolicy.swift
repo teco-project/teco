@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// CreateSealPolicy请求参数结构体
     public struct CreateSealPolicyRequest: TCRequestModel {
-        /// 授权发起人在平台信息，具体参考UserInfo结构体
+        /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
         /// 用户在电子文件签署平台标识信息，具体参考UserInfo结构体。可跟下面的UserIds可叠加起作用
@@ -33,23 +33,23 @@ extension Ess {
         /// 授权有效期。时间戳秒级
         public let expired: Int64
 
-        /// 印章授权内容
-        public let policy: String?
-
-        /// 应用相关
-        public let agent: Agent?
-
         /// 需要授权的用户UserId集合。跟上面的SealId参数配合使用。选填，跟上面的Users同时起作用
         public let userIds: [String]?
 
-        public init(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, policy: String? = nil, agent: Agent? = nil, userIds: [String]? = nil) {
+        /// 印章授权内容
+        public let policy: String?
+
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.users = users
             self.sealId = sealId
             self.expired = expired
+            self.userIds = userIds
             self.policy = policy
             self.agent = agent
-            self.userIds = userIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -57,9 +57,9 @@ extension Ess {
             case users = "Users"
             case sealId = "SealId"
             case expired = "Expired"
+            case userIds = "UserIds"
             case policy = "Policy"
             case agent = "Agent"
-            case userIds = "UserIds"
         }
     }
 
@@ -77,7 +77,7 @@ extension Ess {
         }
     }
 
-    /// 印章授权
+    /// 创建印章授权
     ///
     /// 对企业员工进行印章授权
     @inlinable
@@ -85,7 +85,7 @@ extension Ess {
         self.client.execute(action: "CreateSealPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 印章授权
+    /// 创建印章授权
     ///
     /// 对企业员工进行印章授权
     @inlinable
@@ -93,19 +93,19 @@ extension Ess {
         try await self.client.execute(action: "CreateSealPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 印章授权
+    /// 创建印章授权
     ///
     /// 对企业员工进行印章授权
     @inlinable
-    public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, policy: String? = nil, agent: Agent? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealPolicyResponse> {
-        self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, policy: policy, agent: agent, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealPolicyResponse> {
+        self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, userIds: userIds, policy: policy, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 印章授权
+    /// 创建印章授权
     ///
     /// 对企业员工进行印章授权
     @inlinable
-    public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, policy: String? = nil, agent: Agent? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealPolicyResponse {
-        try await self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, policy: policy, agent: agent, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    public func createSealPolicy(operator: UserInfo, users: [UserInfo], sealId: String, expired: Int64, userIds: [String]? = nil, policy: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealPolicyResponse {
+        try await self.createSealPolicy(.init(operator: `operator`, users: users, sealId: sealId, expired: expired, userIds: userIds, policy: policy, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

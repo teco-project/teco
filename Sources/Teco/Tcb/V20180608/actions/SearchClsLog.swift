@@ -84,7 +84,7 @@ extension Tcb {
 
     /// 搜索CLS日志
     ///
-    /// 搜索CLS日志，TCB角色秘钥访问
+    /// 搜索CLS日志，TCB角色密钥访问
     @inlinable
     public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
         self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -92,7 +92,7 @@ extension Tcb {
 
     /// 搜索CLS日志
     ///
-    /// 搜索CLS日志，TCB角色秘钥访问
+    /// 搜索CLS日志，TCB角色密钥访问
     @inlinable
     public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
         try await self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -100,7 +100,7 @@ extension Tcb {
 
     /// 搜索CLS日志
     ///
-    /// 搜索CLS日志，TCB角色秘钥访问
+    /// 搜索CLS日志，TCB角色密钥访问
     @inlinable
     public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
         self.searchClsLog(.init(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)
@@ -108,7 +108,7 @@ extension Tcb {
 
     /// 搜索CLS日志
     ///
-    /// 搜索CLS日志，TCB角色秘钥访问
+    /// 搜索CLS日志，TCB角色密钥访问
     @inlinable
     public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
         try await self.searchClsLog(.init(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)

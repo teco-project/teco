@@ -22,10 +22,10 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeNatGateways请求参数结构体
     public struct DescribeNatGatewaysRequest: TCPaginatedRequest {
-        /// NAT网关统一 ID，形如：`nat-123xx454`。
+        /// NAT网关统一 ID，形如：`nat-123xx454`。每次请求的实例上限为100。参数不支持同时指定NatGatewayIds和Filters。
         public let natGatewayIds: [String]?
 
-        /// 过滤条件，参数不支持同时指定NatGatewayIds和Filters。
+        /// 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。
         /// <li>nat-gateway-id - String - （过滤条件）协议端口模板实例ID，形如：`nat-123xx454`。</li>
         /// <li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li>
         /// <li>nat-gateway-name - String - （过滤条件）协议端口模板实例ID，形如：`test_nat`。</li>

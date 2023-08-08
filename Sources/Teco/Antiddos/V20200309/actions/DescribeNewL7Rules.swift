@@ -21,7 +21,7 @@ import TecoCore
 extension Antiddos {
     /// DescribeNewL7Rules请求参数结构体
     public struct DescribeNewL7RulesRequest: TCRequestModel {
-        /// 大禹子产品代号（bgpip表示高防IP）
+        /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
         /// 状态搜索，选填，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
@@ -33,7 +33,7 @@ extension Antiddos {
         /// IP搜索，选填，当需要搜索IP请填写
         public let ip: String?
 
-        /// 一页条数，填0表示不分页
+        /// 一页条数，默认值100，最大值100，超过100最大返回100条
         public let limit: UInt64?
 
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -45,7 +45,10 @@ extension Antiddos {
         /// 高防IP实例的Cname
         public let cname: String?
 
-        public init(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil) {
+        /// 默认为false，当为true时，将不对各个规则做策略检查，直接导出所有规则
+        public let export: Bool?
+
+        public init(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, export: Bool? = nil) {
             self.business = business
             self.statusList = statusList
             self.domain = domain
@@ -54,6 +57,7 @@ extension Antiddos {
             self.offset = offset
             self.protocolList = protocolList
             self.cname = cname
+            self.export = export
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Antiddos {
             case offset = "Offset"
             case protocolList = "ProtocolList"
             case cname = "Cname"
+            case export = "Export"
         }
     }
 
@@ -104,13 +109,13 @@ extension Antiddos {
 
     /// 高防IP获取7层规则
     @inlinable
-    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesResponse> {
-        self.describeNewL7Rules(.init(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname), region: region, logger: logger, on: eventLoop)
+    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, export: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesResponse> {
+        self.describeNewL7Rules(.init(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname, export: export), region: region, logger: logger, on: eventLoop)
     }
 
     /// 高防IP获取7层规则
     @inlinable
-    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
-        try await self.describeNewL7Rules(.init(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname), region: region, logger: logger, on: eventLoop)
+    public func describeNewL7Rules(business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil, export: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
+        try await self.describeNewL7Rules(.init(business: business, statusList: statusList, domain: domain, ip: ip, limit: limit, offset: offset, protocolList: protocolList, cname: cname, export: export), region: region, logger: logger, on: eventLoop)
     }
 }

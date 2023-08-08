@@ -41,12 +41,21 @@ extension Yinsuda {
         /// <li>372</li>
         public let vipDays: Int64
 
-        public init(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64) {
+        /// 充值分类。取值有：room_card-包月房卡; 其他-保留。
+        public let giveType: String?
+
+        /// 播放场景。默认为Live
+        /// <li>Live：直播</li><li>Chat：语聊</li>
+        public let playScene: String?
+
+        public init(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, giveType: String? = nil, playScene: String? = nil) {
             self.appName = appName
             self.userId = userId
             self.tradeSerialNo = tradeSerialNo
             self.roomId = roomId
             self.vipDays = vipDays
+            self.giveType = giveType
+            self.playScene = playScene
         }
 
         enum CodingKeys: String, CodingKey {
@@ -55,6 +64,8 @@ extension Yinsuda {
             case tradeSerialNo = "TradeSerialNo"
             case roomId = "RoomId"
             case vipDays = "VipDays"
+            case giveType = "GiveType"
+            case playScene = "PlayScene"
         }
     }
 
@@ -92,15 +103,15 @@ extension Yinsuda {
     ///
     /// 充值直播会员，使该用户可以在直播场景使用
     @inlinable
-    public func rechargeLiveVip(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeLiveVipResponse> {
-        self.rechargeLiveVip(.init(appName: appName, userId: userId, tradeSerialNo: tradeSerialNo, roomId: roomId, vipDays: vipDays), region: region, logger: logger, on: eventLoop)
+    public func rechargeLiveVip(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, giveType: String? = nil, playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeLiveVipResponse> {
+        self.rechargeLiveVip(.init(appName: appName, userId: userId, tradeSerialNo: tradeSerialNo, roomId: roomId, vipDays: vipDays, giveType: giveType, playScene: playScene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 充值直播会员
     ///
     /// 充值直播会员，使该用户可以在直播场景使用
     @inlinable
-    public func rechargeLiveVip(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeLiveVipResponse {
-        try await self.rechargeLiveVip(.init(appName: appName, userId: userId, tradeSerialNo: tradeSerialNo, roomId: roomId, vipDays: vipDays), region: region, logger: logger, on: eventLoop)
+    public func rechargeLiveVip(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, giveType: String? = nil, playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeLiveVipResponse {
+        try await self.rechargeLiveVip(.init(appName: appName, userId: userId, tradeSerialNo: tradeSerialNo, roomId: roomId, vipDays: vipDays, giveType: giveType, playScene: playScene), region: region, logger: logger, on: eventLoop)
     }
 }

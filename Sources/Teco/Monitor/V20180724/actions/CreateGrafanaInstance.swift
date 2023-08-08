@@ -73,24 +73,32 @@ extension Monitor {
     }
 
     /// 创建 Grafana 实例
+    ///
+    /// 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
     @inlinable
     public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
         self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
+    ///
+    /// 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
     @inlinable
     public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
         try await self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 Grafana 实例
+    ///
+    /// 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
     @inlinable
     public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], enableInternet: Bool, grafanaInitPassword: String? = nil, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
         self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, enableInternet: enableInternet, grafanaInitPassword: grafanaInitPassword, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
+    ///
+    /// 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
     @inlinable
     public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], enableInternet: Bool, grafanaInitPassword: String? = nil, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
         try await self.createGrafanaInstance(.init(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, enableInternet: enableInternet, grafanaInitPassword: grafanaInitPassword, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)

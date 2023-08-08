@@ -28,6 +28,7 @@ public struct TCTcrError: TCTcrErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
+        case failedOperation_DbError = "FailedOperation.DbError"
         case failedOperation_DependenceError = "FailedOperation.DependenceError"
         case failedOperation_EmptyCoreBody = "FailedOperation.EmptyCoreBody"
         case failedOperation_ErrorGetDBDataError = "FailedOperation.ErrorGetDBDataError"
@@ -151,6 +152,11 @@ public struct TCTcrError: TCTcrErrorType {
     /// 操作失败。
     public static var failedOperation: TCTcrError {
         TCTcrError(.failedOperation)
+    }
+
+    /// 数据库错误。
+    public static var failedOperation_DbError: TCTcrError {
+        TCTcrError(.failedOperation_DbError)
     }
 
     /// 依赖服务异常。

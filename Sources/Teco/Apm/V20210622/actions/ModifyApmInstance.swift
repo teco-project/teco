@@ -69,7 +69,10 @@ extension Apm {
         /// CLS | ES
         public let logSource: String?
 
-        public init(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil) {
+        /// 用户自定义展示标签列表
+        public let customShowTags: [String]?
+
+        public init(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil, customShowTags: [String]? = nil) {
             self.instanceId = instanceId
             self.name = name
             self.tags = tags
@@ -86,6 +89,7 @@ extension Apm {
             self.logTopicID = logTopicID
             self.logSet = logSet
             self.logSource = logSource
+            self.customShowTags = customShowTags
         }
 
         enum CodingKeys: String, CodingKey {
@@ -105,6 +109,7 @@ extension Apm {
             case logTopicID = "LogTopicID"
             case logSet = "LogSet"
             case logSource = "LogSource"
+            case customShowTags = "CustomShowTags"
         }
     }
 
@@ -138,15 +143,15 @@ extension Apm {
     ///
     /// 修改Apm实例接口
     @inlinable @discardableResult
-    public func modifyApmInstance(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApmInstanceResponse> {
-        self.modifyApmInstance(.init(instanceId: instanceId, name: name, tags: tags, description: description, traceDuration: traceDuration, openBilling: openBilling, spanDailyCounters: spanDailyCounters, errRateThreshold: errRateThreshold, sampleRate: sampleRate, errorSample: errorSample, slowRequestSavedThreshold: slowRequestSavedThreshold, isRelatedLog: isRelatedLog, logRegion: logRegion, logTopicID: logTopicID, logSet: logSet, logSource: logSource), region: region, logger: logger, on: eventLoop)
+    public func modifyApmInstance(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil, customShowTags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApmInstanceResponse> {
+        self.modifyApmInstance(.init(instanceId: instanceId, name: name, tags: tags, description: description, traceDuration: traceDuration, openBilling: openBilling, spanDailyCounters: spanDailyCounters, errRateThreshold: errRateThreshold, sampleRate: sampleRate, errorSample: errorSample, slowRequestSavedThreshold: slowRequestSavedThreshold, isRelatedLog: isRelatedLog, logRegion: logRegion, logTopicID: logTopicID, logSet: logSet, logSource: logSource, customShowTags: customShowTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Apm实例
     ///
     /// 修改Apm实例接口
     @inlinable @discardableResult
-    public func modifyApmInstance(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApmInstanceResponse {
-        try await self.modifyApmInstance(.init(instanceId: instanceId, name: name, tags: tags, description: description, traceDuration: traceDuration, openBilling: openBilling, spanDailyCounters: spanDailyCounters, errRateThreshold: errRateThreshold, sampleRate: sampleRate, errorSample: errorSample, slowRequestSavedThreshold: slowRequestSavedThreshold, isRelatedLog: isRelatedLog, logRegion: logRegion, logTopicID: logTopicID, logSet: logSet, logSource: logSource), region: region, logger: logger, on: eventLoop)
+    public func modifyApmInstance(instanceId: String, name: String, tags: [ApmTag]? = nil, description: String? = nil, traceDuration: Int64? = nil, openBilling: Bool? = nil, spanDailyCounters: UInt64? = nil, errRateThreshold: Int64? = nil, sampleRate: Int64? = nil, errorSample: Int64? = nil, slowRequestSavedThreshold: Int64? = nil, isRelatedLog: Int64? = nil, logRegion: String? = nil, logTopicID: String? = nil, logSet: String? = nil, logSource: String? = nil, customShowTags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApmInstanceResponse {
+        try await self.modifyApmInstance(.init(instanceId: instanceId, name: name, tags: tags, description: description, traceDuration: traceDuration, openBilling: openBilling, spanDailyCounters: spanDailyCounters, errRateThreshold: errRateThreshold, sampleRate: sampleRate, errorSample: errorSample, slowRequestSavedThreshold: slowRequestSavedThreshold, isRelatedLog: isRelatedLog, logRegion: logRegion, logTopicID: logTopicID, logSet: logSet, logSource: logSource, customShowTags: customShowTags), region: region, logger: logger, on: eventLoop)
     }
 }

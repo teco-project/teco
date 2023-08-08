@@ -19,6 +19,27 @@ import TecoCore
 import TecoDateHelpers
 
 extension Ciam {
+    /// 用户组删除时关联的应用信息
+    public struct AppAssociatedUserGroupIds: TCOutputModel {
+        /// 用户组id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userGroupId: String?
+
+        /// 应用id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let applicationId: String?
+
+        /// 应用名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let applicationName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case userGroupId = "UserGroupId"
+            case applicationId = "ApplicationId"
+            case applicationName = "ApplicationName"
+        }
+    }
+
     /// 失败详情
     public struct ErrorDetails: TCOutputModel {
         /// 用户信息
@@ -760,6 +781,118 @@ extension Ciam {
             case indexedAttribute3 = "IndexedAttribute3"
             case indexedAttribute4 = "IndexedAttribute4"
             case indexedAttribute5 = "IndexedAttribute5"
+        }
+    }
+
+    /// 用户组
+    public struct UserGroup: TCOutputModel {
+        /// 用户组ID
+        public let userGroupId: String
+
+        /// 用户组名称
+        public let displayName: String
+
+        /// 用户组描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 用户目录ID
+        public let userStoreId: String
+
+        /// 租户ID
+        public let tenantId: String
+
+        /// 创建时间
+        public let createdDate: Int64
+
+        /// 最近更新时间
+        public let lastModifyDate: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case userGroupId = "UserGroupId"
+            case displayName = "DisplayName"
+            case description = "Description"
+            case userStoreId = "UserStoreId"
+            case tenantId = "TenantId"
+            case createdDate = "CreatedDate"
+            case lastModifyDate = "LastModifyDate"
+        }
+    }
+
+    /// 删除用户组信息时返回的详情
+    public struct UserGroupDeleteResp: TCOutputModel {
+        /// 错误详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let errorMessage: String?
+
+        /// 用户组关联的应用信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appAssociatedUserGroupIds: [AppAssociatedUserGroupIds]?
+
+        enum CodingKeys: String, CodingKey {
+            case errorMessage = "ErrorMessage"
+            case appAssociatedUserGroupIds = "AppAssociatedUserGroupIds"
+        }
+    }
+
+    /// 用户池
+    public struct UserStore: TCOutputModel {
+        /// 租户ID
+        public let tenantId: String
+
+        /// 用户池logo
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userStoreLogo: String?
+
+        /// 用户池描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userStoreDesc: String?
+
+        /// 用户池名称
+        public let userStoreName: String
+
+        /// 用户数量
+        public let userNum: Int64
+
+        /// 用户池ID
+        public let userStoreId: String
+
+        /// 应用数量
+        public let appNum: Int64
+
+        /// 上次切换的用户池
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastStatus: Bool?
+
+        /// 默认用户池
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultStatus: Bool?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createDate: Int64?
+
+        /// 上次切换时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastStatusTime: Int64?
+
+        /// 用户目录域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userStoreProtocolHost: String?
+
+        enum CodingKeys: String, CodingKey {
+            case tenantId = "TenantId"
+            case userStoreLogo = "UserStoreLogo"
+            case userStoreDesc = "UserStoreDesc"
+            case userStoreName = "UserStoreName"
+            case userNum = "UserNum"
+            case userStoreId = "UserStoreId"
+            case appNum = "AppNum"
+            case lastStatus = "LastStatus"
+            case defaultStatus = "DefaultStatus"
+            case createDate = "CreateDate"
+            case lastStatusTime = "LastStatusTime"
+            case userStoreProtocolHost = "UserStoreProtocolHost"
         }
     }
 }

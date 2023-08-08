@@ -33,11 +33,15 @@ extension Postgres {
         /// 链接的有效时间，默认为12小时。
         public let urlExpireTime: UInt64?
 
-        public init(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil) {
+        /// 备份下载限制
+        public let backupDownloadRestriction: BackupDownloadRestriction?
+
+        public init(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil, backupDownloadRestriction: BackupDownloadRestriction? = nil) {
             self.dbInstanceId = dbInstanceId
             self.backupType = backupType
             self.backupId = backupId
             self.urlExpireTime = urlExpireTime
+            self.backupDownloadRestriction = backupDownloadRestriction
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Postgres {
             case backupType = "BackupType"
             case backupId = "BackupId"
             case urlExpireTime = "URLExpireTime"
+            case backupDownloadRestriction = "BackupDownloadRestriction"
         }
     }
 
@@ -62,35 +67,35 @@ extension Postgres {
         }
     }
 
-    /// 获取备份下载链接
+    /// 查询备份集的下载地址
     ///
-    /// 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+    /// 本接口 (DescribeBackupDownloadURL) 用于查询指定备份集的下载地址，可包括全量备份集、增量日志备份集。
     @inlinable
     public func describeBackupDownloadURL(_ input: DescribeBackupDownloadURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadURLResponse> {
         self.client.execute(action: "DescribeBackupDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取备份下载链接
+    /// 查询备份集的下载地址
     ///
-    /// 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+    /// 本接口 (DescribeBackupDownloadURL) 用于查询指定备份集的下载地址，可包括全量备份集、增量日志备份集。
     @inlinable
     public func describeBackupDownloadURL(_ input: DescribeBackupDownloadURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadURLResponse {
         try await self.client.execute(action: "DescribeBackupDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取备份下载链接
+    /// 查询备份集的下载地址
     ///
-    /// 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+    /// 本接口 (DescribeBackupDownloadURL) 用于查询指定备份集的下载地址，可包括全量备份集、增量日志备份集。
     @inlinable
-    public func describeBackupDownloadURL(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadURLResponse> {
-        self.describeBackupDownloadURL(.init(dbInstanceId: dbInstanceId, backupType: backupType, backupId: backupId, urlExpireTime: urlExpireTime), region: region, logger: logger, on: eventLoop)
+    public func describeBackupDownloadURL(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil, backupDownloadRestriction: BackupDownloadRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupDownloadURLResponse> {
+        self.describeBackupDownloadURL(.init(dbInstanceId: dbInstanceId, backupType: backupType, backupId: backupId, urlExpireTime: urlExpireTime, backupDownloadRestriction: backupDownloadRestriction), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取备份下载链接
+    /// 查询备份集的下载地址
     ///
-    /// 本接口 (DescribeBackupDownloadURL) 用于获取备份下载链接。
+    /// 本接口 (DescribeBackupDownloadURL) 用于查询指定备份集的下载地址，可包括全量备份集、增量日志备份集。
     @inlinable
-    public func describeBackupDownloadURL(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadURLResponse {
-        try await self.describeBackupDownloadURL(.init(dbInstanceId: dbInstanceId, backupType: backupType, backupId: backupId, urlExpireTime: urlExpireTime), region: region, logger: logger, on: eventLoop)
+    public func describeBackupDownloadURL(dbInstanceId: String, backupType: String, backupId: String, urlExpireTime: UInt64? = nil, backupDownloadRestriction: BackupDownloadRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadURLResponse {
+        try await self.describeBackupDownloadURL(.init(dbInstanceId: dbInstanceId, backupType: backupType, backupId: backupId, urlExpireTime: urlExpireTime, backupDownloadRestriction: backupDownloadRestriction), region: region, logger: logger, on: eventLoop)
     }
 }

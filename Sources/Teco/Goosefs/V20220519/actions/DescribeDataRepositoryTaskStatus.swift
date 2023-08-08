@@ -46,12 +46,20 @@ extension Goosefs {
         /// 任务状态 0(初始化中), 1(运行中), 2(已完成), 3(任务失败)
         public let status: Int64
 
+        /// 已完成的文件数量
+        public let finishedFileNumber: UInt64
+
+        /// 已完成的数据量
+        public let finishedCapacity: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case status = "Status"
+            case finishedFileNumber = "FinishedFileNumber"
+            case finishedCapacity = "FinishedCapacity"
             case requestId = "RequestId"
         }
     }

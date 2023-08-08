@@ -22,7 +22,7 @@ extension Cdb {
     /// DescribeDefaultParams请求参数结构体
     public struct DescribeDefaultParamsRequest: TCRequestModel {
         /// 引擎版本，目前支持 ["5.1", "5.5", "5.6", "5.7", "8.0"]
-        public let engineVersion: String
+        public let engineVersion: String?
 
         /// 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         public let templateType: String?
@@ -30,7 +30,7 @@ extension Cdb {
         /// 参数模板引擎，默认值：InnoDB
         public let engineType: String?
 
-        public init(engineVersion: String, templateType: String? = nil, engineType: String? = nil) {
+        public init(engineVersion: String? = nil, templateType: String? = nil, engineType: String? = nil) {
             self.engineVersion = engineVersion
             self.templateType = templateType
             self.engineType = engineType
@@ -81,7 +81,7 @@ extension Cdb {
     ///
     /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
     @inlinable
-    public func describeDefaultParams(engineVersion: String, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultParamsResponse> {
+    public func describeDefaultParams(engineVersion: String? = nil, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultParamsResponse> {
         self.describeDefaultParams(.init(engineVersion: engineVersion, templateType: templateType, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 
@@ -89,7 +89,7 @@ extension Cdb {
     ///
     /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
     @inlinable
-    public func describeDefaultParams(engineVersion: String, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
+    public func describeDefaultParams(engineVersion: String? = nil, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
         try await self.describeDefaultParams(.init(engineVersion: engineVersion, templateType: templateType, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 }

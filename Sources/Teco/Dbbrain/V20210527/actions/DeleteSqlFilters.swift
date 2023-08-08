@@ -24,22 +24,27 @@ extension Dbbrain {
         /// 实例ID。
         public let instanceId: String
 
-        /// 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
-        public let sessionToken: String
-
         /// 限流任务ID列表。
         public let filterIds: [Int64]
 
-        public init(instanceId: String, sessionToken: String, filterIds: [Int64]) {
+        /// 通过VerifyUserAccount获取有效期为5分钟的会话token，使用后会自动延长token有效期至五分钟后。
+        public let sessionToken: String?
+
+        /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        public let product: String?
+
+        public init(instanceId: String, filterIds: [Int64], sessionToken: String? = nil, product: String? = nil) {
             self.instanceId = instanceId
-            self.sessionToken = sessionToken
             self.filterIds = filterIds
+            self.sessionToken = sessionToken
+            self.product = product
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
-            case sessionToken = "SessionToken"
             case filterIds = "FilterIds"
+            case sessionToken = "SessionToken"
+            case product = "Product"
         }
     }
 
@@ -73,15 +78,15 @@ extension Dbbrain {
     ///
     /// 删除实例SQL限流任务。
     @inlinable @discardableResult
-    public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSqlFiltersResponse> {
-        self.deleteSqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
+    public func deleteSqlFilters(instanceId: String, filterIds: [Int64], sessionToken: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSqlFiltersResponse> {
+        self.deleteSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, sessionToken: sessionToken, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例SQL限流任务
     ///
     /// 删除实例SQL限流任务。
     @inlinable @discardableResult
-    public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
-        try await self.deleteSqlFilters(.init(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
+    public func deleteSqlFilters(instanceId: String, filterIds: [Int64], sessionToken: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
+        try await self.deleteSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, sessionToken: sessionToken, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

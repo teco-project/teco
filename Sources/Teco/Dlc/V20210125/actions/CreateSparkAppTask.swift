@@ -24,7 +24,7 @@ extension Dlc {
         /// spark作业名
         public let jobName: String
 
-        /// spark作业的命令行参数，以空格分隔；一般用于周期性调用使用
+        /// spark作业程序入参，以空格分隔；一般用于周期性调用使用
         public let cmdArgs: String?
 
         public init(jobName: String, cmdArgs: String? = nil) {
@@ -56,25 +56,25 @@ extension Dlc {
         }
     }
 
-    /// 创建spark任务
+    /// 启动Spark作业
     @inlinable
     public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppTaskResponse> {
         self.client.execute(action: "CreateSparkAppTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建spark任务
+    /// 启动Spark作业
     @inlinable
     public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
         try await self.client.execute(action: "CreateSparkAppTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建spark任务
+    /// 启动Spark作业
     @inlinable
     public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppTaskResponse> {
         self.createSparkAppTask(.init(jobName: jobName, cmdArgs: cmdArgs), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建spark任务
+    /// 启动Spark作业
     @inlinable
     public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
         try await self.createSparkAppTask(.init(jobName: jobName, cmdArgs: cmdArgs), region: region, logger: logger, on: eventLoop)

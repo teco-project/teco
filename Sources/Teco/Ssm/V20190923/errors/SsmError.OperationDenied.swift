@@ -22,6 +22,7 @@ extension TCSsmError {
             case accessKeyOverLimit = "OperationDenied.AccessKeyOverLimit"
             case autoRotatedResource = "OperationDenied.AutoRotatedResource"
             case roleNotExist = "OperationDenied.RoleNotExist"
+            case uinNotMatch = "OperationDenied.UinNotMatch"
             case other = "OperationDenied"
         }
 
@@ -64,6 +65,11 @@ extension TCSsmError {
             OperationDenied(.roleNotExist)
         }
 
+        /// 被操作密钥与账号不匹配。
+        public static var uinNotMatch: OperationDenied {
+            OperationDenied(.uinNotMatch)
+        }
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
@@ -78,6 +84,8 @@ extension TCSsmError {
                 code = .operationDenied_AutoRotatedResource
             case .roleNotExist:
                 code = .operationDenied_RoleNotExist
+            case .uinNotMatch:
+                code = .operationDenied_UinNotMatch
             case .other:
                 code = .operationDenied
             }

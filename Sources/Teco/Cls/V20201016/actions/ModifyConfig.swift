@@ -45,7 +45,14 @@ extension Cls {
         /// 用户自定义解析字符串，Json格式序列化的字符串
         public let userDefineRule: String?
 
-        public init(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil) {
+        /// 高级采集配置。 Json字符串， Key/Value定义为如下：
+        /// - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        /// - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        /// - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        /// 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        public let advancedConfig: String?
+
+        public init(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, advancedConfig: String? = nil) {
             self.configId = configId
             self.name = name
             self.path = path
@@ -54,6 +61,7 @@ extension Cls {
             self.excludePaths = excludePaths
             self.output = output
             self.userDefineRule = userDefineRule
+            self.advancedConfig = advancedConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +73,7 @@ extension Cls {
             case excludePaths = "ExcludePaths"
             case output = "Output"
             case userDefineRule = "UserDefineRule"
+            case advancedConfig = "AdvancedConfig"
         }
     }
 
@@ -92,13 +101,13 @@ extension Cls {
 
     /// 修改采集规则配置
     @inlinable @discardableResult
-    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
-        self.modifyConfig(.init(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
+    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, advancedConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
+        self.modifyConfig(.init(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule, advancedConfig: advancedConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改采集规则配置
     @inlinable @discardableResult
-    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
-        try await self.modifyConfig(.init(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
+    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, advancedConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
+        try await self.modifyConfig(.init(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule, advancedConfig: advancedConfig), region: region, logger: logger, on: eventLoop)
     }
 }

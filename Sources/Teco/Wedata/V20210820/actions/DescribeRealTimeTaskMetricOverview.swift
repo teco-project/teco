@@ -21,20 +21,30 @@ import TecoCore
 extension Wedata {
     /// DescribeRealTimeTaskMetricOverview请求参数结构体
     public struct DescribeRealTimeTaskMetricOverviewRequest: TCRequestModel {
-        /// 无
+        /// 要查看的实时任务的任务Id
         public let taskId: String
 
         /// 无
         public let projectId: String
 
-        public init(taskId: String, projectId: String) {
+        /// 开始时间
+        public let startTime: UInt64?
+
+        /// 结束时间
+        public let endTime: UInt64?
+
+        public init(taskId: String, projectId: String, startTime: UInt64? = nil, endTime: UInt64? = nil) {
             self.taskId = taskId
             self.projectId = projectId
+            self.startTime = startTime
+            self.endTime = endTime
         }
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
         }
     }
 
@@ -98,13 +108,13 @@ extension Wedata {
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
-        self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, startTime: UInt64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
+        self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
-        try await self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, startTime: UInt64? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
+        try await self.describeRealTimeTaskMetricOverview(.init(taskId: taskId, projectId: projectId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

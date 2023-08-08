@@ -24,7 +24,7 @@ extension Cfw {
         /// 1封禁列表 2 放通列表
         public let ruleType: Int64
 
-        /// IP、Domain二选一，不能同时为空
+        /// IP、Domain二选一（注：封禁列表，只能填写IP），不能同时为空
         public let ioc: [IocListData]
 
         /// 可选值：delete（删除）、edit（编辑）、add（添加）  其他值无效

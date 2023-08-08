@@ -32,7 +32,7 @@ extension Vpc {
         /// <li>ccn-id - String -（过滤条件）CCN实例ID。</li>
         /// <li>instance-type - String -（过滤条件）关联实例类型。</li>
         /// <li>instance-region - String -（过滤条件）关联实例所属地域。</li>
-        /// <li>instance-id - String -（过滤条件）关联实例实例ID。</li>
+        /// <li>instance-id - String -（过滤条件）关联实例ID。</li>
         public let filters: [Filter]?
 
         /// 云联网实例ID

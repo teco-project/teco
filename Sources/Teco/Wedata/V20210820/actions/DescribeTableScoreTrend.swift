@@ -33,11 +33,15 @@ extension Wedata {
         /// 表id
         public let tableId: String
 
-        public init(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String) {
+        /// 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        public let scoreType: String?
+
+        public init(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, scoreType: String? = nil) {
             self.projectId = projectId
             self.statisticsStartDate = statisticsStartDate
             self.statisticsEndDate = statisticsEndDate
             self.tableId = tableId
+            self.scoreType = scoreType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Wedata {
             case statisticsStartDate = "StatisticsStartDate"
             case statisticsEndDate = "StatisticsEndDate"
             case tableId = "TableId"
+            case scoreType = "ScoreType"
         }
     }
 
@@ -77,13 +82,13 @@ extension Wedata {
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
-        self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, scoreType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
+        self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId, scoreType: scoreType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
-        try await self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, scoreType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
+        try await self.describeTableScoreTrend(.init(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId, scoreType: scoreType), region: region, logger: logger, on: eventLoop)
     }
 }

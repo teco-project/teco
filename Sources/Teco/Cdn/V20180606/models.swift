@@ -21,7 +21,9 @@ import TecoDateHelpers
 extension Cdn {
     /// 请求头部及请求url访问控制
     public struct AccessControl: TCInputModel, TCOutputModel {
-        /// on | off 是否启用请求头部及请求url访问控制
+        /// 启用请求头部及请求url访问控制开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 请求头部及请求url访问规则
@@ -186,7 +188,10 @@ extension Cdn {
 
     /// 时间戳防盗链高级版配置，白名单功能
     public struct AdvancedAuthentication: TCInputModel, TCOutputModel {
-        /// 防盗链配置开关，on或off，开启时必须且只能配置一种模式，其余模式为null。
+        /// 防盗链配置开关，取值有：
+        /// on：开启
+        /// off：关闭
+        /// 开启时必须且只配置一种模式，其余模式需要设置为 null
         public let `switch`: String
 
         /// 时间戳防盗链高级版模式A配置。
@@ -512,7 +517,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequencyLimit: UInt64?
 
-        /// IP 惩罚开关，可选on|off
+        /// IP 惩罚配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentSwitch: String?
 
@@ -532,7 +539,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configure: [ScdnSevenLayerRules]?
 
-        /// 是否开启改规则 on 开启，off关闭
+        /// 自定义cc规则配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -723,7 +732,6 @@ extension Cdn {
         /// 安圭拉：AI
         /// 梵蒂冈：VA
         /// 斯洛伐克：SK
-        /// 俄罗斯：RU
         /// 英国：GB
         /// 捷克共和国：CZ
         /// 乌克兰：UA
@@ -902,11 +910,18 @@ extension Cdn {
 
     /// 时间戳防盗链配置
     public struct Authentication: TCInputModel, TCOutputModel {
-        /// 防盗链配置开关
+        /// 防盗链配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 开启时必须且只配置一种模式，其余模式需要设置为 null
         public let `switch`: String
+
+        /// 鉴权算法，取值有：
+        /// md5：按MD5算法取hash值
+        /// sha256：按SHA-256算法取hash值
+        /// 默认为 md5
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let authAlgorithm: String?
 
         /// 时间戳防盗链模式 A 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -924,8 +939,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeD: AuthenticationTypeD?
 
-        public init(switch: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
+        public init(switch: String, authAlgorithm: String? = nil, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
             self.switch = `switch`
+            self.authAlgorithm = authAlgorithm
             self.typeA = typeA
             self.typeB = typeB
             self.typeC = typeC
@@ -934,6 +950,7 @@ extension Cdn {
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
+            case authAlgorithm = "AuthAlgorithm"
             case typeA = "TypeA"
             case typeB = "TypeB"
             case typeC = "TypeC"
@@ -1151,7 +1168,9 @@ extension Cdn {
 
     /// 图片优化-AvifAdapter配置
     public struct AvifAdapter: TCInputModel, TCOutputModel {
-        /// 开关，"on/off"
+        /// 图片优化AvifAdapter配置项开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -1166,7 +1185,9 @@ extension Cdn {
 
     /// s3源站回源鉴权。
     public struct AwsPrivateAccess: TCInputModel, TCOutputModel {
-        /// 开关，on/off。
+        /// s3源站回源鉴权配置项开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 访问ID。
@@ -1204,7 +1225,7 @@ extension Cdn {
 
     /// 带宽封顶配置，默认为关闭状态
     public struct BandwidthAlert: TCInputModel, TCOutputModel {
-        /// 用量封顶配置开关
+        /// 用量封顶配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -1225,7 +1246,7 @@ extension Cdn {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var lastTriggerTime: Date?
 
-        /// 用量封顶提醒开关
+        /// 用量封顶提醒配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1279,7 +1300,9 @@ extension Cdn {
 
     /// Bot cookie策略
     public struct BotCookie: TCInputModel, TCOutputModel {
-        /// on|off
+        /// Bot cookie策略配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 规则类型，当前只有all
@@ -1323,7 +1346,9 @@ extension Cdn {
 
     /// Bot js策略
     public struct BotJavaScript: TCInputModel, TCOutputModel {
-        /// on|off
+        /// Bot js策略配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 规则类型，当前只有file
@@ -1652,8 +1677,9 @@ extension Cdn {
 
     /// 启发式自定义时间缓存配置
     public struct CacheConfig: TCInputModel {
-        /// on 代表开启自定义启发式缓存时间
-        /// off 代表关闭自定义启发式缓存时间
+        /// 启发式自定义时间缓存配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let heuristicCacheTimeSwitch: String
 
         /// 单位 秒.
@@ -1672,7 +1698,7 @@ extension Cdn {
 
     /// 路径缓存缓存配置
     public struct CacheConfigCache: TCInputModel, TCOutputModel {
-        /// 缓存配置开关
+        /// 路径缓存配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1723,7 +1749,7 @@ extension Cdn {
 
     /// 路径缓存遵循源站配置
     public struct CacheConfigFollowOrigin: TCInputModel, TCOutputModel {
-        /// 遵循源站配置开关
+        /// 路径缓存遵循源站配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -1745,7 +1771,7 @@ extension Cdn {
 
     /// 路径缓存不缓存配置
     public struct CacheConfigNoCache: TCInputModel, TCOutputModel {
-        /// 不缓存配置开关
+        /// 路径缓存不缓存配置配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1845,7 +1871,9 @@ extension Cdn {
 
     /// 组成CacheKey的一部分
     public struct CacheTagKey: TCInputModel, TCOutputModel {
-        /// 是否使用CacheTag作为CacheKey的一部分
+        /// 使用CacheTag作为CacheKey的一部分配置开关，取值有
+        /// on：开启，使用CacheTag作为CacheKey的一部分
+        /// off：关闭，不使用CacheTag作为CacheKey的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2164,7 +2192,7 @@ extension Cdn {
 
     /// 智能压缩配置，默认对 js、html、css、xml、json、shtml、htm 后缀且大小为 256 ~ 2097152 字节的文件进行 GZIP 压缩
     public struct Compression: TCInputModel, TCOutputModel {
-        /// 智能压缩配置开关
+        /// 智能压缩配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -2252,7 +2280,9 @@ extension Cdn {
 
     /// 组成CacheKey的一部分
     public struct CookieKey: TCInputModel, TCOutputModel {
-        /// on | off 是否使用Cookie作为Cache的一部分
+        /// 使用Cookie作为Cache的一部分配置开关，取值有：
+        /// on：开启，使用Cookie作为Cache的一部分
+        /// off：关闭，不使用Cookie作为Cache的一部分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2959,7 +2989,7 @@ extension Cdn {
         /// - status：域名状态，online，offline或processing。
         /// - serviceType：业务类型，web，download，media，hybrid或dynamic。
         /// - projectId：项目ID。
-        /// - domainType：主源站类型，cname表示自有源，cos表示cos接入，third_party表示第三方对象存储。
+        /// - domainType：主源站类型，cname表示自有源，cos表示cos接入，third_party表示第三方对象存储，igtm表示IGTM多活源。
         /// - fullUrlCache：全路径缓存，on或off。
         /// - https：是否配置https，on，off或processing。
         /// - originPullProtocol：回源协议类型，支持http，follow或https。
@@ -3011,18 +3041,23 @@ extension Cdn {
         /// 日志包文件名
         public let logName: String
 
+        /// 文件大小，单位: Byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileSize: Int64?
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case logPath = "LogPath"
             case area = "Area"
             case logName = "LogName"
+            case fileSize = "FileSize"
         }
     }
 
     /// 单链接下行限速配置，默认为关闭状态
     public struct DownstreamCapping: TCInputModel, TCOutputModel {
-        /// 下行速度配置开关
+        /// 下行速度配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -3108,7 +3143,7 @@ extension Cdn {
 
     /// 状态码重定向配置，默认为关闭状态
     public struct ErrorPage: TCInputModel, TCOutputModel {
-        /// 状态码重定向配置开关
+        /// 状态码重定向配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3188,7 +3223,7 @@ extension Cdn {
 
     /// 回源 301/302 状态码自动跟随配置，默认为关闭状态
     public struct FollowRedirect: TCInputModel, TCOutputModel {
-        /// 回源跟随开关
+        /// 回源跟随配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -3210,7 +3245,7 @@ extension Cdn {
 
     /// 访问协议强制跳转配置，默认为关闭状态
     public struct ForceRedirect: TCInputModel, TCOutputModel {
-        /// 访问强制跳转配置开关
+        /// 访问强制跳转配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3248,7 +3283,9 @@ extension Cdn {
 
     /// 图片优化-GuetzliAdapter配置
     public struct GuetzliAdapter: TCInputModel, TCOutputModel {
-        /// 开关，"on/off"
+        /// 图片优化-GuetzliAdapter配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -3282,7 +3319,9 @@ extension Cdn {
 
     /// 组成CacheKey
     public struct HeaderKey: TCInputModel, TCOutputModel {
-        /// 是否组成Cachekey
+        /// 组成Cachekey配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -3303,8 +3342,9 @@ extension Cdn {
 
     /// 启发式缓存配置
     public struct HeuristicCache: TCInputModel {
-        /// on 代表开启启发式缓存
-        /// off 代表关闭启发式缓存
+        /// 启发式缓存配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 自定义启发式缓存时间配置
@@ -3323,7 +3363,9 @@ extension Cdn {
 
     /// HSTS 配置。
     public struct Hsts: TCInputModel, TCOutputModel {
-        /// 是否开启，on或off。
+        /// HSTS 配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// MaxAge数值。
@@ -3425,7 +3467,7 @@ extension Cdn {
 
     /// 域名 https 加速配置，默认为关闭状态
     public struct Https: TCInputModel, TCOutputModel {
-        /// https 配置开关
+        /// https 配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3511,7 +3553,9 @@ extension Cdn {
 
     /// HTTPS服务，若关闭，下发配置拦截https请求，开启时会产生计费
     public struct HttpsBilling: TCInputModel, TCOutputModel {
-        /// HTTPS服务，缺省时默认开启【会产生计费】
+        /// HTTPS服务配置开关，取值有：
+        /// on：开启，缺省时默认开启，会产生计费
+        /// off：关闭，拦截https请求
         public let `switch`: String
 
         public init(switch: String) {
@@ -3587,6 +3631,10 @@ extension Cdn {
         /// 3：到期或用完续订
         public let extensionMode: UInt64
 
+        /// HTTPS请求包是否自动续订
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoExtension: Bool?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case type = "Type"
@@ -3606,12 +3654,15 @@ extension Cdn {
             case contractExtension = "ContractExtension"
             case extensionAvailable = "ExtensionAvailable"
             case extensionMode = "ExtensionMode"
+            case autoExtension = "AutoExtension"
         }
     }
 
     /// 华为云对象存储回源鉴权
     public struct HwPrivateAccess: TCInputModel, TCOutputModel {
-        /// 开关 on/off
+        /// 华为云对象存储回源鉴权配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 访问 ID
@@ -3669,7 +3720,7 @@ extension Cdn {
 
     /// IP 黑白名单配置，默认为关闭状态
     public struct IpFilter: TCInputModel, TCOutputModel {
-        /// IP 黑白名单配置开关
+        /// IP 黑白名单配置开关，取值有
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -3758,7 +3809,7 @@ extension Cdn {
 
     /// 单节点单 IP 访问限频配置，默认为关闭状态
     public struct IpFreqLimit: TCInputModel, TCOutputModel {
-        /// IP 限频配置开关
+        /// IP 限频配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -3812,9 +3863,11 @@ extension Cdn {
         }
     }
 
-    /// Ipv6启用配置，不可更改
+    /// Ipv6源站启用配置，不可更改
     public struct Ipv6: TCInputModel, TCOutputModel {
-        /// 域名是否开启ipv6功能，on或off。
+        /// 域名开启源站ipv6配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -3829,7 +3882,9 @@ extension Cdn {
 
     /// Ipv6访问配置
     public struct Ipv6Access: TCInputModel, TCOutputModel {
-        /// 域名是否开启ipv6访问功能，on或off。
+        /// 域名开启ipv6访问配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -3949,7 +4004,7 @@ extension Cdn {
         }
     }
 
-    /// 域名国内地区特殊配置。分地区特殊配置。UpdateDomainConfig接口只支持修改部分分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
+    /// 域名国内地区特殊配置。分地区特殊配置。UpdateDomainConfig接口只支持修改部分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
     /// + Authentication
     /// + BandwidthAlert
     /// + ErrorPage
@@ -4148,7 +4203,7 @@ extension Cdn {
 
     /// 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
     public struct MaxAge: TCInputModel, TCOutputModel {
-        /// 浏览器缓存配置开关
+        /// 浏览器缓存配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4239,7 +4294,9 @@ extension Cdn {
 
     /// 离线缓存是否开启
     public struct OfflineCache: TCInputModel, TCOutputModel {
-        /// on | off, 离线缓存是否开启
+        /// 离线缓存配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         public init(switch: String) {
@@ -4253,23 +4310,26 @@ extension Cdn {
 
     /// 源站配置复杂类型，支持以下配置：
     /// + 源站指定为单个域名
-    /// + 源站指定为多个 IP，可配置端口（1~65535），可配置权重（1~100），格式为 IP:端口:权重
+    /// + 源站指定为多个 IP，可配置端口（1\~65535），可配置权重（1\~100），格式为 IP:端口:权重
     /// + 回源域名配置
     /// + 对象存储（COS）作为源站
     /// + 热备源站指定为单个域名
-    /// + 热备源站指定为多个 IP，可配置端口（1~65535），暂不支持权重配置
+    /// + 热备源站指定为多个 IP，可配置端口（1\~65535），暂不支持权重配置
     /// + 热备源站回源域名配置
     public struct Origin: TCInputModel, TCOutputModel {
         /// 主源站列表
-        /// 修改源站时，需要同时填充对应的 OriginType
+        /// <font color=red>修改源站时，需要同时填充对应的 OriginType</font>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origins: [String]?
 
         /// 主源站类型
+        /// <font color=red>当源站列表 Origins 不为空时必填</font>
         /// 入参支持以下几种类型：
         /// domain：域名类型
         /// domainv6：域名解析V6类型
         /// cos：对象存储源站
+        /// third_party: 第三方存储源站
+        /// igtm: IGTM多活源
         /// ip：IP 列表作为源站
         /// ipv6：源站列表为一个单独的 IPv6 地址
         /// ip_ipv6：源站列表为多个 IPv4 地址和IPv6 地址
@@ -4291,8 +4351,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originType: String?
 
-        /// 当源站类型为cos或者第三方存储加速时,ServerName字段必填
-        /// 回主源站时 Host 头部，不填充则默认为加速域名
+        /// 回主源站时 Host 头部
+        /// <font color=red>当源站类型为cos或者第三方存储加速时,ServerName字段必填</font>
+        /// 不填充则默认为加速域名
         /// 若接入的是泛域名，则回源 Host 默认为访问时的子域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverName: String?
@@ -4310,14 +4371,15 @@ extension Cdn {
         public let originPullProtocol: String?
 
         /// 备源站列表
-        /// 修改备源站时，需要同时填充对应的 BackupOriginType
+        /// <font color=red>修改备源站时，需要同时填充对应的 BackupOriginType</font>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupOrigins: [String]?
 
-        /// 备源站类型，支持以下类型：
+        /// 备源站类型
+        /// <font color=red>备源站列表BackupOrigins 不为空时必填</font>
+        /// 支持以下类型：
         /// domain：域名类型
         /// ip：IP 列表作为源站
-        /// 修改 BackupOrigins 时需要同时填充对应的 BackupOriginType
         /// 以下备源源站类型尚未全量支持，需要申请试用：
         /// ipv6_domain: 源站列表为多个 IPv6 地址以及域名
         /// ip_ipv6：源站列表为多个 IPv4 地址和IPv6 地址
@@ -4342,15 +4404,26 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathBasedOrigin: [PathBasedOriginRule]?
 
+        /// HTTPS回源SNI配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sni: OriginSni?
+
         /// HTTPS回源高级配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advanceHttps: AdvanceHttps?
 
         /// 对象存储回源厂商
+        /// <font color=red>当源站类型为第三方存储源站(third_party)时必填</font>
+        /// 可选值包括以下:
+        /// aws_s3: AWS S3
+        /// ali_oss: 阿里云 OSS
+        /// hw_obs: 华为 OBS
+        /// qiniu_kodo: 七牛云 kodo
+        /// others: 其它厂商对象存储,仅支持兼容以AWS签名算法的对象存储，如腾讯云金融专区COS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originCompany: String?
 
-        public init(origins: [String]? = nil, originType: String? = nil, serverName: String? = nil, cosPrivateAccess: String? = nil, originPullProtocol: String? = nil, backupOrigins: [String]? = nil, backupOriginType: String? = nil, backupServerName: String? = nil, basePath: String? = nil, pathRules: [PathRule]? = nil, pathBasedOrigin: [PathBasedOriginRule]? = nil, advanceHttps: AdvanceHttps? = nil, originCompany: String? = nil) {
+        public init(origins: [String]? = nil, originType: String? = nil, serverName: String? = nil, cosPrivateAccess: String? = nil, originPullProtocol: String? = nil, backupOrigins: [String]? = nil, backupOriginType: String? = nil, backupServerName: String? = nil, basePath: String? = nil, pathRules: [PathRule]? = nil, pathBasedOrigin: [PathBasedOriginRule]? = nil, sni: OriginSni? = nil, advanceHttps: AdvanceHttps? = nil, originCompany: String? = nil) {
             self.origins = origins
             self.originType = originType
             self.serverName = serverName
@@ -4362,6 +4435,7 @@ extension Cdn {
             self.basePath = basePath
             self.pathRules = pathRules
             self.pathBasedOrigin = pathBasedOrigin
+            self.sni = sni
             self.advanceHttps = advanceHttps
             self.originCompany = originCompany
         }
@@ -4378,6 +4452,7 @@ extension Cdn {
             case basePath = "BasePath"
             case pathRules = "PathRules"
             case pathBasedOrigin = "PathBasedOrigin"
+            case sni = "Sni"
             case advanceHttps = "AdvanceHttps"
             case originCompany = "OriginCompany"
         }
@@ -4385,7 +4460,10 @@ extension Cdn {
 
     /// 回源鉴权高级配置
     public struct OriginAuthentication: TCInputModel, TCOutputModel {
-        /// 鉴权开关，on或off
+        /// 回源鉴权高级配置开关，取值有：
+        /// on：开启
+        /// off：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -4421,7 +4499,9 @@ extension Cdn {
 
     /// 合并回源配置项
     public struct OriginCombine: TCInputModel, TCOutputModel {
-        /// on|off 是否开启合并回源
+        /// 合并回源配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         public init(switch: String) {
@@ -4445,7 +4525,7 @@ extension Cdn {
 
     /// 跨国回源优化配置，默认为关闭状态 (已下线)
     public struct OriginPullOptimization: TCInputModel, TCOutputModel {
-        /// 跨国回源优化配置开关
+        /// 跨国回源优化配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -4488,9 +4568,33 @@ extension Cdn {
         }
     }
 
+    /// HTTPS回源SNI
+    public struct OriginSni: TCInputModel, TCOutputModel {
+        /// 是否开启HTTPS回源SNI。
+        /// 开启：on，
+        /// 关闭：off
+        public let `switch`: String
+
+        /// 回源域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serverName: String?
+
+        public init(switch: String, serverName: String) {
+            self.switch = `switch`
+            self.serverName = serverName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case serverName = "ServerName"
+        }
+    }
+
     /// oss回源鉴权
     public struct OssPrivateAccess: TCInputModel, TCOutputModel {
-        /// 开关， on/off。
+        /// oss回源鉴权配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 访问ID。
@@ -4528,7 +4632,9 @@ extension Cdn {
 
     /// 其他厂商对象存储回源鉴权
     public struct OthersPrivateAccess: TCInputModel, TCOutputModel {
-        /// 开关， on/off。
+        /// 其他厂商对象存储回源鉴权配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 访问ID。
@@ -4564,7 +4670,7 @@ extension Cdn {
         }
     }
 
-    /// 域名海外地区特殊配置。UpdateDomainConfig接口只支持修改部分分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
+    /// 域名海外地区特殊配置。UpdateDomainConfig接口只支持修改部分地区配置，为了兼容旧版本配置，本类型会列出旧版本所有可能存在差异的配置列表，支持修改的配置列表如下：
     /// + Authentication
     /// + BandwidthAlert
     /// + ErrorPage
@@ -4845,9 +4951,9 @@ extension Cdn {
 
     /// POST请求上传文件流式传输最大限制
     public struct PostSize: TCInputModel, TCOutputModel {
-        /// 是调整POST请求限制，平台默认为32MB。
-        /// 关闭：off，
-        /// 开启：on。
+        /// POST请求上传文件流式传输最大限制配置开关，取值有：
+        /// on：开启，平台默认为32MB
+        /// off：关闭
         public let `switch`: String
 
         /// 最大限制，取值在1MB和200MB之间。
@@ -4954,7 +5060,9 @@ extension Cdn {
 
     /// 七牛元对象存储回源鉴权配置
     public struct QnPrivateAccess: TCInputModel, TCOutputModel {
-        /// 开关 on/off
+        /// 七牛元对象存储回源鉴权配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 访问 ID
@@ -4979,7 +5087,9 @@ extension Cdn {
 
     /// 组成CacheKey的一部分
     public struct QueryStringKey: TCInputModel, TCOutputModel {
-        /// on | off CacheKey是否由QueryString组成
+        /// CacheKey是否由QueryString组成配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -4987,7 +5097,11 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reorder: String?
 
-        /// includeAll | excludeAll | includeCustom | excludeCustom 使用/排除部分url参数
+        /// 使用/排除部分url参数，取值有：
+        /// includeAll：包含所有
+        /// excludeAll：排除所有
+        /// includeCustom：自定义包含
+        /// excludeCustom：自定义排除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -5012,7 +5126,9 @@ extension Cdn {
 
     /// Quic配置项
     public struct Quic: TCInputModel, TCOutputModel {
-        /// 是否启动Quic配置
+        /// Quic功能配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         public init(switch: String) {
@@ -5048,7 +5164,7 @@ extension Cdn {
 
     /// 分片回源配置，默认为开启状态
     public struct RangeOriginPull: TCInputModel, TCOutputModel {
-        /// 分片回源配置开关
+        /// 分片回源配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5070,7 +5186,9 @@ extension Cdn {
 
     /// 分路径分片回源配置
     public struct RangeOriginPullRule: TCInputModel, TCOutputModel {
-        /// 分片回源配置开关
+        /// 分片回源配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 规则类型：
@@ -5102,7 +5220,9 @@ extension Cdn {
 
     /// 自定义回源302 follow请求host配置
     public struct RedirectConfig: TCInputModel, TCOutputModel {
-        /// 配置开关
+        /// 自定义回源302 follow请求host配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 主源站follow302请求时带的自定义的host头部
@@ -5126,7 +5246,7 @@ extension Cdn {
 
     /// Referer 黑白名单配置，默认为关闭状态
     public struct Referer: TCInputModel, TCOutputModel {
-        /// referer 黑白名单配置开关
+        /// referer 黑白名单配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5167,7 +5287,7 @@ extension Cdn {
         /// blacklist：黑名单
         public let refererType: String
 
-        /// referer 内容列表列表
+        /// referer 内容列表
         public let referers: [String]
 
         /// 是否允许空 referer
@@ -5210,9 +5330,9 @@ extension Cdn {
     /// RemoteAuthenticationRules和Server 互斥，只需要配置其中一个。
     /// 若只配置Server ，RemoteAuthenticationRules中详细规则参数将采用默认参数；默认参数值见各个配置项中说明；
     public struct RemoteAuthentication: TCInputModel, TCOutputModel {
-        /// 远程鉴权开关；
-        /// on : 开启;
-        /// off: 关闭；
+        /// 远程鉴权配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -5327,7 +5447,7 @@ extension Cdn {
 
     /// 自定义请求头配置，默认为关闭状态
     public struct RequestHeader: TCInputModel, TCOutputModel {
-        /// 自定义请求头配置开关
+        /// 自定义请求头配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5403,7 +5523,7 @@ extension Cdn {
 
     /// 自定义响应头配置，默认为关闭状态
     public struct ResponseHeader: TCInputModel, TCOutputModel {
-        /// 自定义响应头开关
+        /// 自定义响应头配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5425,7 +5545,7 @@ extension Cdn {
 
     /// 源站头部缓存配置，默认为开启状态，缓存所有头部信息
     public struct ResponseHeaderCache: TCInputModel, TCOutputModel {
-        /// 源站头部缓存开关
+        /// 源站头部缓存配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5441,7 +5561,10 @@ extension Cdn {
 
     /// 是否回源站校验
     public struct Revalidate: TCInputModel, TCOutputModel {
-        /// on | off 是否总是回源校验
+        /// 总是回源校验配置开关，取值有：
+        /// on：开启
+        /// off：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -5528,7 +5651,7 @@ extension Cdn {
 
     /// 规则引擎配置
     public struct RuleEngine: TCInputModel, TCOutputModel {
-        /// 规则引擎配置开关
+        /// 规则引擎配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -5550,7 +5673,10 @@ extension Cdn {
 
     /// 路径保留参数配置
     public struct RuleQueryString: TCInputModel, TCOutputModel {
-        /// on | off CacheKey是否由QueryString组成
+        /// 路径保留参数配置开关，取值有：
+        /// on：开启，CacheKey由QueryString组成
+        /// off：关闭，CacheKey不由QueryString组成
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -5577,7 +5703,9 @@ extension Cdn {
 
     /// SCDN访问控制
     public struct ScdnAclConfig: TCInputModel, TCOutputModel {
-        /// 是否开启，on | off
+        /// SCDN访问控制配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 新版本请使用AdvancedScriptData
@@ -5668,7 +5796,9 @@ extension Cdn {
 
     /// bot配置类型
     public struct ScdnBotConfig: TCInputModel, TCOutputModel {
-        /// on|off
+        /// Scdn bot配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// Bot cookie策略
@@ -5716,7 +5846,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequencyLimit: UInt64?
 
-        /// IP 惩罚开关，可选on|off
+        /// IP 惩罚配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishmentSwitch: String?
 
@@ -5759,7 +5891,9 @@ extension Cdn {
 
     /// cc的配置类型
     public struct ScdnConfig: TCInputModel, TCOutputModel {
-        /// on | off
+        /// scdn cc配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 自定义 cc 防护规则
@@ -5791,7 +5925,9 @@ extension Cdn {
 
     /// ddos配置类型
     public struct ScdnDdosConfig: TCInputModel, TCOutputModel {
-        /// on|off
+        /// Scdn ddos配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         public init(switch: String) {
@@ -6202,7 +6338,9 @@ extension Cdn {
 
     /// waf配置类型
     public struct ScdnWafConfig: TCInputModel, TCOutputModel {
-        /// on|off
+        /// Scdn waf配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// intercept|observe，默认intercept
@@ -6213,7 +6351,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPage: ScdnErrorPage?
 
-        /// webshell拦截开关，on|off，默认off
+        /// webshell拦截配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webShellSwitch: String?
 
@@ -6225,7 +6365,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
 
-        /// waf子规则开关
+        /// waf子规则配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subRuleSwitch: [WafSubRuleStatus]?
 
@@ -6271,7 +6413,9 @@ extension Cdn {
 
     /// 作为CacheKey的一部分
     public struct SchemeKey: TCInputModel, TCOutputModel {
-        /// on | off 是否使用scheme作为cache key的一部分
+        /// scheme作为cache key配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -6286,7 +6430,9 @@ extension Cdn {
 
     /// scdn相关的配置
     public struct SecurityConfig: TCOutputModel {
-        /// on|off
+        /// scdn 安全配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         enum CodingKeys: String, CodingKey {
@@ -6296,7 +6442,7 @@ extension Cdn {
 
     /// SEO 搜索引擎优化配置，默认为关闭状态
     public struct Seo: TCInputModel, TCOutputModel {
-        /// SEO 配置开关
+        /// SEO 搜索引擎优化配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6382,10 +6528,11 @@ extension Cdn {
     }
 
     /// ShareCname配置
+    /// ShareCname 为内测功能,如需使用,请联系腾讯云工程师开白.
     public struct ShareCname: TCInputModel, TCOutputModel {
-        /// ShareCname 配置开关, 开关为off时，域名使用默认CNAME，若需要使用共享CNAME，将开关置为on.
-        ///
-        /// * ShareCname 为内测功能,如需使用,请联系腾讯云工程师开白.
+        /// ShareCname 配置开关, 取值有：
+        /// on：开启，使用共享CNAME
+        /// off：关闭，使用默认CNAME
         public let `switch`: String
 
         /// 设置共享CNAME.
@@ -6564,7 +6711,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertPercentage: UInt64?
 
-        /// 提醒开关 on/off
+        /// 累计用量封顶告警配置，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertSwitch: String?
 
@@ -6576,7 +6725,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cycle: UInt64?
 
-        /// 是否开启该选项，on/off
+        /// 累计用量封顶配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -6607,7 +6758,7 @@ extension Cdn {
 
     /// 状态码缓存过期配置，默认情况下会对 404 状态码缓存 10 秒
     public struct StatusCodeCache: TCInputModel, TCOutputModel {
-        /// 状态码缓存过期配置开关
+        /// 状态码缓存过期配置开关，取值有：
         /// on：开启
         /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6807,7 +6958,9 @@ extension Cdn {
 
     /// 图片优化-TpgAdapter配置
     public struct TpgAdapter: TCInputModel, TCOutputModel {
-        /// 开关，"on/off"
+        /// 图片优化-TpgAdapter配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -6960,7 +7113,7 @@ extension Cdn {
 
     /// 访问URL重写配置
     public struct UrlRedirect: TCInputModel, TCOutputModel {
-        /// 访问URL重写配置开关
+        /// 访问URL重写配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -7018,7 +7171,9 @@ extension Cdn {
 
     /// UserAgent黑白名单配置
     public struct UserAgentFilter: TCInputModel, TCOutputModel {
-        /// 开关，on或off
+        /// UserAgent黑白名单配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -7076,7 +7231,7 @@ extension Cdn {
 
     /// 视频拖拽配置，默认为关闭状态
     public struct VideoSeek: TCInputModel, TCOutputModel {
-        /// 视频拖拽开关
+        /// 视频拖拽配置开关，取值有：
         /// on：开启
         /// off：关闭
         public let `switch`: String
@@ -7105,7 +7260,7 @@ extension Cdn {
         /// forbid：已封禁
         /// release：已解封
         /// delay ： 延迟处理
-        /// reject ：申诉驳回，状态仍为封禁态
+        /// reject ：申诉驳回，状态仍为封禁状态
         /// complain：申诉进行中
         public let urlStatus: String
 
@@ -7133,7 +7288,9 @@ extension Cdn {
 
     /// Waf子规则开关状态
     public struct WafSubRuleStatus: TCInputModel, TCOutputModel {
-        /// 子规则状态，on|off
+        /// Waf子规则开关状态配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         public let `switch`: String
 
         /// 规则id列表
@@ -7151,10 +7308,11 @@ extension Cdn {
     }
 
     /// WebSocket配置
+    /// WebSocket 为ECDN产品功能，如需使用请通过ECDN域名配置.
     public struct WebSocket: TCInputModel, TCOutputModel {
-        /// WebSocket 超时配置开关, 开关为off时，平台仍支持WebSocket连接，此时超时时间默认为15秒，若需要调整超时时间，将开关置为on.
-        ///
-        /// * WebSocket 为ECDN产品功能，如需使用请通过ECDN域名配置.
+        /// WebSocket 超时配置开关，取值有：
+        /// on：开启，可以调整超时时间
+        /// off：关闭，平台仍支持WebSocket连接，此时超时时间默认为15秒
         public let `switch`: String
 
         /// 设置超时时间，单位为秒，最大超时时间300秒。
@@ -7174,7 +7332,9 @@ extension Cdn {
 
     /// 图片优化-WebpAdapter配置
     public struct WebpAdapter: TCInputModel, TCOutputModel {
-        /// 开关，"on/off"
+        /// 图片优化-WebpAdapter配置开关，取值有：
+        /// on：开启
+        /// off：关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 

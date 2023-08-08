@@ -26,7 +26,7 @@ extension Apigateway {
         public let serviceId: String
 
         /// 环境名称。
-        public let environmentName: String
+        public let environmentName: String?
 
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
@@ -34,7 +34,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
 
-        public init(serviceId: String, environmentName: String, limit: Int64? = nil, offset: Int64? = nil) {
+        public init(serviceId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.serviceId = serviceId
             self.environmentName = environmentName
             self.limit = limit
@@ -105,7 +105,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceEnvironmentReleaseHistory）用于查询服务环境的发布历史。
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     @inlinable
-    public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceEnvironmentReleaseHistoryResponse> {
+    public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceEnvironmentReleaseHistoryResponse> {
         self.describeServiceEnvironmentReleaseHistory(.init(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
@@ -114,7 +114,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceEnvironmentReleaseHistory）用于查询服务环境的发布历史。
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     @inlinable
-    public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentReleaseHistoryResponse {
+    public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentReleaseHistoryResponse {
         try await self.describeServiceEnvironmentReleaseHistory(.init(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 

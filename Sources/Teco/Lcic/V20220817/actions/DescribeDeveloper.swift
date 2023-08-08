@@ -27,7 +27,7 @@ extension Lcic {
 
     /// DescribeDeveloper返回参数结构体
     public struct DescribeDeveloperResponse: TCResponseModel {
-        /// 服务商ID
+        /// 开发商ID
         public let developerId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -39,25 +39,25 @@ extension Lcic {
         }
     }
 
-    /// 服务商信息获取
+    /// 开发商信息获取
     @inlinable
     public func describeDeveloper(_ input: DescribeDeveloperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeveloperResponse> {
         self.client.execute(action: "DescribeDeveloper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 服务商信息获取
+    /// 开发商信息获取
     @inlinable
     public func describeDeveloper(_ input: DescribeDeveloperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeveloperResponse {
         try await self.client.execute(action: "DescribeDeveloper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 服务商信息获取
+    /// 开发商信息获取
     @inlinable
     public func describeDeveloper(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeveloperResponse> {
         self.describeDeveloper(.init(), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 服务商信息获取
+    /// 开发商信息获取
     @inlinable
     public func describeDeveloper(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeveloperResponse {
         try await self.describeDeveloper(.init(), region: region, logger: logger, on: eventLoop)

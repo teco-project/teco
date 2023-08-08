@@ -42,7 +42,10 @@ extension Dlc {
         /// 预览日志的通用过滤条件
         public let filters: [Filter]?
 
-        public init(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil) {
+        /// SparkSQL任务唯一ID
+        public let batchId: String?
+
+        public init(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, batchId: String? = nil) {
             self.taskId = taskId
             self.startTime = startTime
             self.endTime = endTime
@@ -50,6 +53,7 @@ extension Dlc {
             self.context = context
             self.asc = asc
             self.filters = filters
+            self.batchId = batchId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Dlc {
             case context = "Context"
             case asc = "Asc"
             case filters = "Filters"
+            case batchId = "BatchId"
         }
     }
 
@@ -77,6 +82,10 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [JobLogResult]?
 
+        /// 日志url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logUrl: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -84,39 +93,40 @@ extension Dlc {
             case context = "Context"
             case listOver = "ListOver"
             case results = "Results"
+            case logUrl = "LogUrl"
             case requestId = "RequestId"
         }
     }
 
-    /// 日志列表
+    /// 查询日志详情
     ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    /// 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
     @inlinable
     public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
         self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 日志列表
+    /// 查询日志详情
     ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    /// 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
     @inlinable
     public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
         try await self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 日志列表
+    /// 查询日志详情
     ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    /// 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
     @inlinable
-    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
-        self.listTaskJobLogDetail(.init(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
+        self.listTaskJobLogDetail(.init(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 日志列表
+    /// 查询日志详情
     ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    /// 本接口（ListTaskJobLogDetail）用于获取spark 作业任务日志详情
     @inlinable
-    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
-        try await self.listTaskJobLogDetail(.init(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
+        try await self.listTaskJobLogDetail(.init(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

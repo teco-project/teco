@@ -22,6 +22,7 @@ extension TCVpcError {
             case addressEniInfoNotFound = "FailedOperation.AddressEniInfoNotFound"
             case balanceInsufficient = "FailedOperation.BalanceInsufficient"
             case invalidRegion = "FailedOperation.InvalidRegion"
+            case ipTypeNotPermit = "FailedOperation.IpTypeNotPermit"
             case masterEniNotFound = "FailedOperation.MasterEniNotFound"
             case netDetectTimeOut = "FailedOperation.NetDetectTimeOut"
             case taskFailed = "FailedOperation.TaskFailed"
@@ -64,6 +65,11 @@ extension TCVpcError {
             FailedOperation(.invalidRegion)
         }
 
+        /// 不支持的IP类型。
+        public static var ipTypeNotPermit: FailedOperation {
+            FailedOperation(.ipTypeNotPermit)
+        }
+
         /// 未找到实例的主网卡。
         public static var masterEniNotFound: FailedOperation {
             FailedOperation(.masterEniNotFound)
@@ -88,6 +94,8 @@ extension TCVpcError {
                 code = .failedOperation_BalanceInsufficient
             case .invalidRegion:
                 code = .failedOperation_InvalidRegion
+            case .ipTypeNotPermit:
+                code = .failedOperation_IpTypeNotPermit
             case .masterEniNotFound:
                 code = .failedOperation_MasterEniNotFound
             case .netDetectTimeOut:

@@ -60,9 +60,10 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateVerifyRecord is no longer available.")
     }
 
     /// 生成解析记录
@@ -70,9 +71,10 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        try await self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateVerifyRecord is no longer available.")
     }
 
     /// 生成解析记录
@@ -80,9 +82,10 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateVerifyRecord is no longer available.")
     }
 
     /// 生成解析记录
@@ -90,8 +93,9 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        try await self.createVerifyRecord(.init(domain: domain), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateVerifyRecord is no longer available.")
     }
 }

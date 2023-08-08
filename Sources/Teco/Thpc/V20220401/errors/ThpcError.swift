@@ -30,6 +30,7 @@ public struct TCThpcError: TCThpcErrorType {
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
         case internalError = "InternalError"
+        case internalError_CallCAM = "InternalError.CallCAM"
         case internalError_CallCvm = "InternalError.CallCvm"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
@@ -123,6 +124,11 @@ public struct TCThpcError: TCThpcErrorType {
     /// 内部错误。
     public static var internalError: TCThpcError {
         TCThpcError(.internalError)
+    }
+
+    /// CAM服务调用失败。
+    public static var internalError_CallCAM: TCThpcError {
+        TCThpcError(.internalError_CallCAM)
     }
 
     /// cvm调用失败。

@@ -53,26 +53,30 @@ extension Tdid {
     }
 
     /// 创建选择性批露凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateSelectiveCredential is no longer available.")
     }
 
     /// 创建选择性批露凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        try await self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateSelectiveCredential is no longer available.")
     }
 
     /// 创建选择性批露凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        self.createSelectiveCredential(.init(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateSelectiveCredential is no longer available.")
     }
 
     /// 创建选择性批露凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        try await self.createSelectiveCredential(.init(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateSelectiveCredential is no longer available.")
     }
 }

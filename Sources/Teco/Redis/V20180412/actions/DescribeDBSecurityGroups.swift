@@ -24,7 +24,7 @@ extension Redis {
         /// 数据库引擎名称，本接口取值：redis。
         public let product: String
 
-        /// 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
         public init(product: String, instanceId: String) {
@@ -43,10 +43,10 @@ extension Redis {
         /// 安全组规则。
         public let groups: [SecurityGroup]
 
-        /// 安全组生效内网地址。
+        /// 实例内网IPv4地址。
         public let vip: String
 
-        /// 安全组生效内网端口。
+        /// 内网端口。
         public let vPort: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -62,7 +62,7 @@ extension Redis {
 
     /// 查询实例安全组详情
     ///
-    /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例的安全组详情。
     @inlinable
     public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
         self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,7 +70,7 @@ extension Redis {
 
     /// 查询实例安全组详情
     ///
-    /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例的安全组详情。
     @inlinable
     public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,7 +78,7 @@ extension Redis {
 
     /// 查询实例安全组详情
     ///
-    /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例的安全组详情。
     @inlinable
     public func describeDBSecurityGroups(product: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
         self.describeDBSecurityGroups(.init(product: product, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -86,7 +86,7 @@ extension Redis {
 
     /// 查询实例安全组详情
     ///
-    /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例的安全组详情。
     @inlinable
     public func describeDBSecurityGroups(product: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
         try await self.describeDBSecurityGroups(.init(product: product, instanceId: instanceId), region: region, logger: logger, on: eventLoop)

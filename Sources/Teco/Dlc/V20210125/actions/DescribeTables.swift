@@ -39,13 +39,13 @@ extension Dlc {
         /// 指定查询的数据源名称，默认为DataLakeCatalog
         public let datasourceConnectionName: String?
 
-        /// 起始时间：用于对更新时间的筛选
+        /// 起始时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
         public let startTime: String?
 
-        /// 终止时间：用于对更新时间的筛选
+        /// 终止时间：用于对更新时间的筛选，格式为yyyy-mm-dd HH:MM:SS
         public let endTime: String?
 
-        /// 排序字段，支持：CreateTime、UpdateTime、StorageSize、RecordCount、Name（不传则默认按name升序）
+        /// 排序字段，支持：CreateTime（创建时间）、UpdateTime（更新时间）、StorageSize（存储空间）、RecordCount（行数）、Name（表名称）（不传则默认按name升序）
         public let sort: String?
 
         /// 排序字段，false：降序（默认）；true：升序

@@ -27,6 +27,7 @@ public protocol TCClsErrorType: TCServiceErrorType {
 public struct TCClsError: TCClsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_BindedAlarm = "FailedOperation.BindedAlarm"
         case failedOperation_GetlogReachLimit = "FailedOperation.GetlogReachLimit"
@@ -45,6 +46,7 @@ public struct TCClsError: TCClsErrorType {
         case failedOperation_SyntaxError = "FailedOperation.SyntaxError"
         case failedOperation_TagQpsLimit = "FailedOperation.TagQpsLimit"
         case failedOperation_TopicClosed = "FailedOperation.TopicClosed"
+        case failedOperation_TopicCreating = "FailedOperation.TopicCreating"
         case failedOperation_TopicIsolated = "FailedOperation.TopicIsolated"
         case failedOperation_WriteQpsLimit = "FailedOperation.WriteQpsLimit"
         case failedOperation_WriteTrafficLimit = "FailedOperation.WriteTrafficLimit"
@@ -55,10 +57,13 @@ public struct TCClsError: TCClsErrorType {
         case invalidParameter_AlarmNoticeConflict = "InvalidParameter.AlarmNoticeConflict"
         case invalidParameter_ConfigConflict = "InvalidParameter.ConfigConflict"
         case invalidParameter_Content = "InvalidParameter.Content"
+        case invalidParameter_DataFromTaskConflict = "InvalidParameter.DataFromTaskConflict"
+        case invalidParameter_DataFromTaskNotExist = "InvalidParameter.DataFromTaskNotExist"
         case invalidParameter_DbDuplication = "InvalidParameter.DbDuplication"
         case invalidParameter_ExportConflict = "InvalidParameter.ExportConflict"
         case invalidParameter_InValidIndexRuleForSearchLow = "InvalidParameter.InValidIndexRuleForSearchLow"
         case invalidParameter_IndexConflict = "InvalidParameter.IndexConflict"
+        case invalidParameter_InvalidEtlContent = "InvalidParameter.InvalidEtlContent"
         case invalidParameter_LogsetConflict = "InvalidParameter.LogsetConflict"
         case invalidParameter_MachineGroupConflict = "InvalidParameter.MachineGroupConflict"
         case invalidParameter_ShipperConflict = "InvalidParameter.ShipperConflict"
@@ -92,6 +97,7 @@ public struct TCClsError: TCClsErrorType {
         case operationDenied_OperationNotSupportInSearchLow = "OperationDenied.OperationNotSupportInSearchLow"
         case operationDenied_TopicHasDataFormTask = "OperationDenied.TopicHasDataFormTask"
         case operationDenied_TopicHasDeliverFunction = "OperationDenied.TopicHasDeliverFunction"
+        case operationDenied_TopicHasExternalDatasourceConfig = "OperationDenied.TopicHasExternalDatasourceConfig"
         case operationDenied_TopicHasScheduleSqlTask = "OperationDenied.TopicHasScheduleSqlTask"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_AgentVersionNotExist = "ResourceNotFound.AgentVersionNotExist"
@@ -111,7 +117,14 @@ public struct TCClsError: TCClsErrorType {
 
     /// Error domains affliated to ``TCClsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameter.self, LimitExceeded.self, OperationDenied.self, ResourceNotFound.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameter.self,
+            LimitExceeded.self,
+            OperationDenied.self,
+            ResourceNotFound.self
+        ]
     }
 
     private let error: Code
@@ -139,6 +152,11 @@ public struct TCClsError: TCClsErrorType {
     /// CAM签名/鉴权错误。
     public static var authFailure: TCClsError {
         TCClsError(.authFailure)
+    }
+
+    /// 请求未授权。
+    public static var authFailure_UnauthorizedOperation: TCClsError {
+        TCClsError(.authFailure_UnauthorizedOperation)
     }
 
     /// 操作失败。
@@ -241,6 +259,11 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.failedOperation_TopicClosed)
     }
 
+    /// topic创建中
+    public static var failedOperation_TopicCreating: TCClsError {
+        TCClsError(.failedOperation_TopicCreating)
+    }
+
     /// 日志主题已隔离。
     ///
     /// 请检查日志主题状态。若无法解决，请联系智能客服或提交工单。
@@ -293,6 +316,16 @@ public struct TCClsError: TCClsErrorType {
         TCClsError(.invalidParameter_Content)
     }
 
+    /// 数据加工任务冲突。
+    public static var invalidParameter_DataFromTaskConflict: TCClsError {
+        TCClsError(.invalidParameter_DataFromTaskConflict)
+    }
+
+    /// 数据加工任务不存在。
+    public static var invalidParameter_DataFromTaskNotExist: TCClsError {
+        TCClsError(.invalidParameter_DataFromTaskNotExist)
+    }
+
     /// 数据库唯一键冲突。
     ///
     /// 数据已经存在，检查参数是否填写有误。
@@ -313,6 +346,11 @@ public struct TCClsError: TCClsErrorType {
     /// 指定日志主题已经存在索引规则。
     public static var invalidParameter_IndexConflict: TCClsError {
         TCClsError(.invalidParameter_IndexConflict)
+    }
+
+    /// 无效的数据加工语句。
+    public static var invalidParameter_InvalidEtlContent: TCClsError {
+        TCClsError(.invalidParameter_InvalidEtlContent)
     }
 
     /// 相同的日志集已存在。
@@ -490,6 +528,11 @@ public struct TCClsError: TCClsErrorType {
     /// 需要删除函数投递之后， 才能删除topic
     public static var operationDenied_TopicHasDeliverFunction: TCClsError {
         TCClsError(.operationDenied_TopicHasDeliverFunction)
+    }
+
+    /// 先删除topic配置的外部数据源配置，然后才能删除topic
+    public static var operationDenied_TopicHasExternalDatasourceConfig: TCClsError {
+        TCClsError(.operationDenied_TopicHasExternalDatasourceConfig)
     }
 
     /// topic绑定了scheduleSql任务。

@@ -34,10 +34,10 @@ extension Dlc {
         /// 排序字段：true：升序、false：降序（默认）
         public let asc: Bool?
 
-        /// 分页字段
+        /// 分页参数，默认10
         public let limit: UInt64?
 
-        /// 分页字段
+        /// 分页参数，默认0
         public let offset: UInt64?
 
         public init(dataEngineName: String, state: [String]? = nil, sortFields: [String]? = nil, asc: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
@@ -107,57 +107,57 @@ extension Dlc {
         }
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable
     public func describeNotebookSessions(_ input: DescribeNotebookSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionsResponse> {
         self.client.execute(action: "DescribeNotebookSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable
     public func describeNotebookSessions(_ input: DescribeNotebookSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionsResponse {
         try await self.client.execute(action: "DescribeNotebookSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable
     public func describeNotebookSessions(dataEngineName: String, state: [String]? = nil, sortFields: [String]? = nil, asc: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionsResponse> {
         self.describeNotebookSessions(.init(dataEngineName: dataEngineName, state: state, sortFields: sortFields, asc: asc, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable
     public func describeNotebookSessions(dataEngineName: String, state: [String]? = nil, sortFields: [String]? = nil, asc: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionsResponse {
         try await self.describeNotebookSessions(.init(dataEngineName: dataEngineName, state: state, sortFields: sortFields, asc: asc, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable
     public func describeNotebookSessionsPaginated(_ input: DescribeNotebookSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [NotebookSessions])> {
         self.client.paginate(input: input, region: region, command: self.describeNotebookSessions, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     @inlinable @discardableResult
     public func describeNotebookSessionsPaginated(_ input: DescribeNotebookSessionsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNotebookSessionsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNotebookSessions, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session列表
+    /// 查询交互式 session列表
     ///
-    /// 本接口（DescribeNotebookSessions）用于获取notebook livy session列表
+    /// 本接口（DescribeNotebookSessions）用于查询交互式 session列表
     ///
     /// - Returns: `AsyncSequence`s of `NotebookSessions` and `DescribeNotebookSessionsResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -21,7 +21,7 @@ import TecoCore
 extension Emr {
     /// InquirePriceRenewEmr请求参数结构体
     public struct InquirePriceRenewEmrRequest: TCRequestModel {
-        /// 实例续费的时长。需要结合TimeUnit一起使用。1表示续费1一个月
+        /// 实例续费的时长。需要结合TimeUnit一起使用。1表示续费一个月
         public let timeSpan: UInt64
 
         /// 待续费集群ID列表。
@@ -38,7 +38,7 @@ extension Emr {
         public let timeUnit: String?
 
         /// 货币种类。取值范围：
-        /// <li>CNY：表示人民币。</li>
+        /// <li>CNY：表示人民币。</li>
         public let currency: String?
 
         public init(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil) {
@@ -71,7 +71,7 @@ extension Emr {
         public let discountCost: Float?
 
         /// 实例续费的时间单位。取值范围：
-        /// <li>m：表示月份。</li>
+        /// <li>m：表示月份。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
 

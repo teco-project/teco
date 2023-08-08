@@ -19,6 +19,8 @@ import TecoCore
 extension TCImsError {
     public struct InvalidParameter: TCImsErrorType {
         enum Code: String {
+            case imageAspectRatioTooLarge = "InvalidParameter.ImageAspectRatioTooLarge"
+            case imageDataTooSmall = "InvalidParameter.ImageDataTooSmall"
             case imageSizeTooSmall = "InvalidParameter.ImageSizeTooSmall"
             case invalidImageContent = "InvalidParameter.InvalidImageContent"
             case invalidParameter = "InvalidParameter.InvalidParameter"
@@ -47,6 +49,20 @@ extension TCImsError {
             self.context = context
         }
 
+        /// 图片长宽比太大
+        ///
+        /// 图片长宽比太大，更换长度小一点的图片
+        public static var imageAspectRatioTooLarge: InvalidParameter {
+            InvalidParameter(.imageAspectRatioTooLarge)
+        }
+
+        /// 图片体积太小
+        ///
+        /// 图片体积太小，更换更大的图片
+        public static var imageDataTooSmall: InvalidParameter {
+            InvalidParameter(.imageDataTooSmall)
+        }
+
         /// 图片分辨率过低。
         public static var imageSizeTooSmall: InvalidParameter {
             InvalidParameter(.imageSizeTooSmall)
@@ -70,6 +86,10 @@ extension TCImsError {
         public func asImsError() -> TCImsError {
             let code: TCImsError.Code
             switch self.error {
+            case .imageAspectRatioTooLarge:
+                code = .invalidParameter_ImageAspectRatioTooLarge
+            case .imageDataTooSmall:
+                code = .invalidParameter_ImageDataTooSmall
             case .imageSizeTooSmall:
                 code = .invalidParameter_ImageSizeTooSmall
             case .invalidImageContent:

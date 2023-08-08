@@ -42,6 +42,7 @@ public struct TCSsmError: TCSsmErrorType {
         case operationDenied_AccessKeyOverLimit = "OperationDenied.AccessKeyOverLimit"
         case operationDenied_AutoRotatedResource = "OperationDenied.AutoRotatedResource"
         case operationDenied_RoleNotExist = "OperationDenied.RoleNotExist"
+        case operationDenied_UinNotMatch = "OperationDenied.UinNotMatch"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
         case resourceInUse_SecretExists = "ResourceInUse.SecretExists"
@@ -176,6 +177,11 @@ public struct TCSsmError: TCSsmErrorType {
     /// 检查调用方账号中是否已定义该接口所需的角色。
     public static var operationDenied_RoleNotExist: TCSsmError {
         TCSsmError(.operationDenied_RoleNotExist)
+    }
+
+    /// 被操作密钥与账号不匹配。
+    public static var operationDenied_UinNotMatch: TCSsmError {
+        TCSsmError(.operationDenied_UinNotMatch)
     }
 
     /// 请求的次数超过了频率限制。

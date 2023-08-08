@@ -182,6 +182,30 @@ extension Ccc {
         }
     }
 
+    /// 被叫属性
+    public struct CalleeAttribute: TCInputModel {
+        /// 被叫号码
+        public let callee: String
+
+        /// 随路数据
+        public let uui: String?
+
+        /// 参数
+        public let variables: [Variable]?
+
+        public init(callee: String, uui: String? = nil, variables: [Variable]? = nil) {
+            self.callee = callee
+            self.uui = uui
+            self.variables = variables
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case callee = "Callee"
+            case uui = "UUI"
+            case variables = "Variables"
+        }
+    }
+
     /// 运营商白名单号码申请单
     public struct CarrierPrivilegeNumberApplicant: TCOutputModel {
         /// 实例Id
@@ -221,7 +245,7 @@ extension Ccc {
         }
     }
 
-    /// 批量添加客服时，返回出错客服的像个信息
+    /// 批量添加客服时，返回出错客服的信息
     public struct ErrStaffItem: TCOutputModel {
         /// 坐席邮箱地址
         public let staffEmail: String
@@ -593,7 +617,7 @@ extension Ccc {
         /// 购买时间戳
         public let buyTime: Int64
 
-        /// 截至时间戳
+        /// 截止时间戳
         public let endTime: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -620,7 +644,7 @@ extension Ccc {
         /// 购买时间戳
         public let buyTime: Int64
 
-        /// 截至时间戳
+        /// 截止时间戳
         public let endTime: Int64
 
         /// 号码状态，1正常|2欠费停用|4管理员停用|5违规停用
@@ -653,12 +677,17 @@ extension Ccc {
         /// 号码购买列表
         public let phoneNumBuyList: [PhoneNumBuyInfo]
 
+        /// 办公电话购买数（还在有效期内）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sipBuyNum: Int64?
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case name = "Name"
             case staffBuyNum = "StaffBuyNum"
             case staffBuyList = "StaffBuyList"
             case phoneNumBuyList = "PhoneNumBuyList"
+            case sipBuyNum = "SipBuyNum"
         }
     }
 
@@ -742,6 +771,10 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferFrom: String?
 
+        /// 转接来源参与者类型，取值与 Type 一致
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferFromType: String?
+
         /// 转接去向坐席信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transferTo: String?
@@ -787,6 +820,7 @@ extension Ccc {
             case recordId = "RecordId"
             case type = "Type"
             case transferFrom = "TransferFrom"
+            case transferFromType = "TransferFromType"
             case transferTo = "TransferTo"
             case transferToType = "TransferToType"
             case skillGroupId = "SkillGroupId"
@@ -872,13 +906,18 @@ extension Ccc {
         /// 购买时间戳
         public let buyTime: Int64
 
-        /// 截至时间戳
+        /// 截止时间戳
         public let endTime: Int64
+
+        /// 购买办公电话数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sipNum: Int64?
 
         enum CodingKeys: String, CodingKey {
             case num = "Num"
             case buyTime = "BuyTime"
             case endTime = "EndTime"
+            case sipNum = "SipNum"
         }
     }
 
@@ -1011,25 +1050,25 @@ extension Ccc {
     /// 电话话单信息
     public struct TelCdrInfo: TCOutputModel {
         /// 主叫号码
-        public let caller: String?
+        public let caller: String
 
         /// 被叫号码
-        public let callee: String?
+        public let callee: String
 
         /// 呼叫发起时间戳，Unix 时间戳
-        public let time: Int64?
+        public let time: Int64
 
         /// 呼入呼出方向 0 呼入 1 呼出
-        public let direction: Int64?
+        public let direction: Int64
 
         /// 通话时长
-        public let duration: Int64?
+        public let duration: Int64
 
         /// 录音信息
-        public let recordURL: String?
+        public let recordURL: String
 
         /// 坐席信息
-        public let seatUser: SeatUserInfo?
+        public let seatUser: SeatUserInfo
 
         /// EndStatus与EndStatusString一一对应，具体枚举如下：
         ///
@@ -1072,13 +1111,13 @@ extension Ccc {
         /// 电话呼出         	209	           callerCancel	主叫取消
         ///
         /// 电话呼出	        210	           notInService	不在服务区
-        public let endStatus: Int64?
+        public let endStatus: Int64
 
         /// 技能组名称
-        public let skillGroup: String?
+        public let skillGroup: String
 
         /// 主叫归属地
-        public let callerLocation: String?
+        public let callerLocation: String
 
         /// IVR 阶段耗时
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1214,6 +1253,10 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let voicemailRecordURL: [String]?
 
+        /// 通话中语音留言ASR文本信息地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voicemailAsrURL: [String]?
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case callee = "Callee"
@@ -1248,6 +1291,7 @@ extension Ccc {
             case remark = "Remark"
             case queuedSkillGroupName = "QueuedSkillGroupName"
             case voicemailRecordURL = "VoicemailRecordURL"
+            case voicemailAsrURL = "VoicemailAsrURL"
         }
     }
 

@@ -46,7 +46,13 @@ extension Live {
         /// 水印高度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         public let height: Int64?
 
-        public init(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil) {
+        /// 背景水印宽度。默认宽度1920。
+        public let backgroundWidth: Int64?
+
+        /// 背景水印高度。默认高度1080。
+        public let backgroundHeight: Int64?
+
+        public init(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil) {
             self.watermarkId = watermarkId
             self.pictureUrl = pictureUrl
             self.xPosition = xPosition
@@ -54,6 +60,8 @@ extension Live {
             self.watermarkName = watermarkName
             self.width = width
             self.height = height
+            self.backgroundWidth = backgroundWidth
+            self.backgroundHeight = backgroundHeight
         }
 
         enum CodingKeys: String, CodingKey {
@@ -64,6 +72,8 @@ extension Live {
             case watermarkName = "WatermarkName"
             case width = "Width"
             case height = "Height"
+            case backgroundWidth = "BackgroundWidth"
+            case backgroundHeight = "BackgroundHeight"
         }
     }
 
@@ -97,15 +107,15 @@ extension Live {
     ///
     /// 更新水印。
     @inlinable @discardableResult
-    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
-        self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
+    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
+        self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height, backgroundWidth: backgroundWidth, backgroundHeight: backgroundHeight), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新水印
     ///
     /// 更新水印。
     @inlinable @discardableResult
-    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
-        try await self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
+    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
+        try await self.updateLiveWatermark(.init(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height, backgroundWidth: backgroundWidth, backgroundHeight: backgroundHeight), region: region, logger: logger, on: eventLoop)
     }
 }

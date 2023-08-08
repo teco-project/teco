@@ -44,6 +44,8 @@ extension TCAiartError {
             self.context = context
         }
 
+        /// 无权执行该操作，请检查您的CAM策略，确保您拥有对应的CAM权限。
+        ///
         /// 检查当前子账号是否拥有AI绘画的CAM策略
         public static var unauthorizedOperation: AuthFailure {
             AuthFailure(.unauthorizedOperation)

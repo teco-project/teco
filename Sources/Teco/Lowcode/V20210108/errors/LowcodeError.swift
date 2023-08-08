@@ -26,6 +26,7 @@ public protocol TCLowcodeErrorType: TCServiceErrorType {
 
 public struct TCLowcodeError: TCLowcodeErrorType {
     enum Code: String {
+        case authFailure = "AuthFailure"
         case failedOperation = "FailedOperation"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
@@ -53,6 +54,11 @@ public struct TCLowcodeError: TCLowcodeErrorType {
     internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
+    }
+
+    /// CAM签名/鉴权错误。
+    public static var authFailure: TCLowcodeError {
+        TCLowcodeError(.authFailure)
     }
 
     /// 操作失败。

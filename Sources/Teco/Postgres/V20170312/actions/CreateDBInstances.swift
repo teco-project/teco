@@ -21,7 +21,7 @@ import TecoCore
 extension Postgres {
     /// CreateDBInstances请求参数结构体
     public struct CreateDBInstancesRequest: TCRequestModel {
-        /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
+        /// 售卖规格ID。该参数可以通过调用DescribeClasses的返回值中的SpecCode字段来获取。
         public let specCode: String
 
         /// 实例容量大小，单位：GB。
@@ -42,7 +42,7 @@ extension Postgres {
         /// PostgreSQL版本。当输入该参数时，会基于此版本创建对应的最新内核版本号实例。该参数和DBMajorVersion、DBKernelVersion至少需要传递一个。
         public let dbVersion: String?
 
-        /// 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。
+        /// 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。默认值：PREPAID。
         public let instanceChargeType: String?
 
         /// 是否自动使用代金券。1（是），0（否），默认不使用。
@@ -150,33 +150,33 @@ extension Postgres {
         }
     }
 
-    /// 创建实例(旧)
+    /// 创建实例（废弃）
     ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    /// 本接口（CreateDBInstances）用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func createDBInstances(_ input: CreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstancesResponse> {
         self.client.execute(action: "CreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建实例(旧)
+    /// 创建实例（废弃）
     ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    /// 本接口（CreateDBInstances）用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func createDBInstances(_ input: CreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
         try await self.client.execute(action: "CreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建实例(旧)
+    /// 创建实例（废弃）
     ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    /// 本接口（CreateDBInstances）用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func createDBInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstancesResponse> {
         self.createDBInstances(.init(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建实例(旧)
+    /// 创建实例（废弃）
     ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    /// 本接口（CreateDBInstances）用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func createDBInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
         try await self.createDBInstances(.init(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion), region: region, logger: logger, on: eventLoop)

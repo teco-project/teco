@@ -23,6 +23,7 @@ extension TCFacefusionError {
             case faceExceedBorder = "FailedOperation.FaceExceedBorder"
             case faceFusionError = "FailedOperation.FaceFusionError"
             case faceRectInvalid = "FailedOperation.FaceRectInvalid"
+            case faceShapeFailed = "FailedOperation.FaceShapeFailed"
             case faceSizeTooSmall = "FailedOperation.FaceSizeTooSmall"
             case fuseFreqCtrl = "FailedOperation.FuseFreqCtrl"
             case fuseImageError = "FailedOperation.FuseImageError"
@@ -89,6 +90,11 @@ extension TCFacefusionError {
         /// 人脸框不合法。
         public static var faceRectInvalid: FailedOperation {
             FailedOperation(.faceRectInvalid)
+        }
+
+        /// 人脸配准失败。
+        public static var faceShapeFailed: FailedOperation {
+            FailedOperation(.faceShapeFailed)
         }
 
         /// 人脸因太小被过滤，建议人脸分辨率不小于34*34。
@@ -222,6 +228,8 @@ extension TCFacefusionError {
                 code = .failedOperation_FaceFusionError
             case .faceRectInvalid:
                 code = .failedOperation_FaceRectInvalid
+            case .faceShapeFailed:
+                code = .failedOperation_FaceShapeFailed
             case .faceSizeTooSmall:
                 code = .failedOperation_FaceSizeTooSmall
             case .fuseFreqCtrl:

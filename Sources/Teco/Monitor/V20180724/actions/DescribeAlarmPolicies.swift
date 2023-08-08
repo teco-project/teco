@@ -69,7 +69,7 @@ extension Monitor {
         /// [项目管理](https://console.cloud.tencent.com/project)
         public let projectIds: [Int64]?
 
-        /// 通知模版的id列表，可查询通知模版列表获取。
+        /// 通知模板的id列表，可查询通知模板列表获取。
         /// 可使用 [查询通知模板列表](https://cloud.tencent.com/document/product/248/51280) 接口查询。
         public let noticeIds: [String]?
 
@@ -94,16 +94,22 @@ extension Monitor {
         /// 根据一键告警策略筛选 不传展示全部策略 ONECLICK=展示一键告警策略 NOT_ONECLICK=展示非一键告警策略
         public let oneClickPolicyType: [String]?
 
-        /// 根据全部对象过滤，1代表需要过滤掉全部对象，0则无需过滤
+        /// 返回结果过滤掉绑定全部对象的策略，1代表需要过滤，0则无需过滤
         public let notBindAll: Int64?
 
-        /// 根据实例对象过滤，1代表需要过滤掉有实例对象，0则无需过滤
+        /// 返回结果过滤掉关联实例为实例分组的策略，1代表需要过滤，0则无需过滤
         public let notInstanceGroup: Int64?
 
         /// 策略根据标签过滤
         public let tags: [Tag]?
 
-        public init(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil) {
+        /// prom实例id，自定义指标策略时会用到
+        public let promInsId: String?
+
+        /// 根据排班表搜索
+        public let receiverOnCallFormIDs: [String]?
+
+        public init(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, promInsId: String? = nil, receiverOnCallFormIDs: [String]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -128,6 +134,8 @@ extension Monitor {
             self.notBindAll = notBindAll
             self.notInstanceGroup = notInstanceGroup
             self.tags = tags
+            self.promInsId = promInsId
+            self.receiverOnCallFormIDs = receiverOnCallFormIDs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -155,6 +163,8 @@ extension Monitor {
             case notBindAll = "NotBindAll"
             case notInstanceGroup = "NotInstanceGroup"
             case tags = "Tags"
+            case promInsId = "PromInsId"
+            case receiverOnCallFormIDs = "ReceiverOnCallFormIDs"
         }
 
         /// Compute the next request based on API response.
@@ -162,7 +172,7 @@ extension Monitor {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAlarmPoliciesRequest(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, policyName: self.policyName, monitorTypes: self.monitorTypes, namespaces: self.namespaces, dimensions: self.dimensions, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyType: self.policyType, field: self.field, order: self.order, projectIds: self.projectIds, noticeIds: self.noticeIds, ruleTypes: self.ruleTypes, enable: self.enable, notBindingNoticeRule: self.notBindingNoticeRule, instanceGroupId: self.instanceGroupId, needCorrespondence: self.needCorrespondence, triggerTasks: self.triggerTasks, oneClickPolicyType: self.oneClickPolicyType, notBindAll: self.notBindAll, notInstanceGroup: self.notInstanceGroup, tags: self.tags)
+            return DescribeAlarmPoliciesRequest(module: self.module, pageNumber: (self.pageNumber ?? 0) + 1, pageSize: self.pageSize, policyName: self.policyName, monitorTypes: self.monitorTypes, namespaces: self.namespaces, dimensions: self.dimensions, receiverUids: self.receiverUids, receiverGroups: self.receiverGroups, policyType: self.policyType, field: self.field, order: self.order, projectIds: self.projectIds, noticeIds: self.noticeIds, ruleTypes: self.ruleTypes, enable: self.enable, notBindingNoticeRule: self.notBindingNoticeRule, instanceGroupId: self.instanceGroupId, needCorrespondence: self.needCorrespondence, triggerTasks: self.triggerTasks, oneClickPolicyType: self.oneClickPolicyType, notBindAll: self.notBindAll, notInstanceGroup: self.notInstanceGroup, tags: self.tags, promInsId: self.promInsId, receiverOnCallFormIDs: self.receiverOnCallFormIDs)
         }
     }
 
@@ -214,16 +224,16 @@ extension Monitor {
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
-        self.describeAlarmPolicies(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, promInsId: String? = nil, receiverOnCallFormIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
+        self.describeAlarmPolicies(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags, promInsId: promInsId, receiverOnCallFormIDs: receiverOnCallFormIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警策略列表（支持按实例等条件筛选）
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
-        try await self.describeAlarmPolicies(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, promInsId: String? = nil, receiverOnCallFormIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
+        try await self.describeAlarmPolicies(.init(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags, promInsId: promInsId, receiverOnCallFormIDs: receiverOnCallFormIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警策略列表（支持按实例等条件筛选）

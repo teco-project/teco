@@ -20,6 +20,9 @@ extension TCWafError {
     public struct FailedOperation: TCWafErrorType {
         enum Code: String {
             case clsInternalError = "FailedOperation.CLSInternalError"
+            case clsdbOperationFailed = "FailedOperation.CLSDBOperationFailed"
+            case mysqlDBOperationFailed = "FailedOperation.MysqlDBOperationFailed"
+            case redisOperationFailed = "FailedOperation.RedisOperationFailed"
             case other = "FailedOperation"
         }
 
@@ -52,6 +55,21 @@ extension TCWafError {
             FailedOperation(.clsInternalError)
         }
 
+        /// 调用CLS日志服务API失败
+        public static var clsdbOperationFailed: FailedOperation {
+            FailedOperation(.clsdbOperationFailed)
+        }
+
+        /// 操作Mysql数据库失败
+        public static var mysqlDBOperationFailed: FailedOperation {
+            FailedOperation(.mysqlDBOperationFailed)
+        }
+
+        /// 操作Redis数据库失败
+        public static var redisOperationFailed: FailedOperation {
+            FailedOperation(.redisOperationFailed)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -62,6 +80,12 @@ extension TCWafError {
             switch self.error {
             case .clsInternalError:
                 code = .failedOperation_CLSInternalError
+            case .clsdbOperationFailed:
+                code = .failedOperation_CLSDBOperationFailed
+            case .mysqlDBOperationFailed:
+                code = .failedOperation_MysqlDBOperationFailed
+            case .redisOperationFailed:
+                code = .failedOperation_RedisOperationFailed
             case .other:
                 code = .failedOperation
             }

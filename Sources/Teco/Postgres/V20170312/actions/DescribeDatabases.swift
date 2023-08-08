@@ -47,33 +47,33 @@ extension Postgres {
         }
     }
 
-    /// 拉取数据库列表
+    /// 查询实例的数据库列表
     ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
+    /// 接口（DescribeDatabases）用来查询实例的数据库列表。
     @inlinable
     public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
         self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 拉取数据库列表
+    /// 查询实例的数据库列表
     ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
+    /// 接口（DescribeDatabases）用来查询实例的数据库列表。
     @inlinable
     public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
         try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 拉取数据库列表
+    /// 查询实例的数据库列表
     ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
+    /// 接口（DescribeDatabases）用来查询实例的数据库列表。
     @inlinable
     public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
         self.describeDatabases(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 拉取数据库列表
+    /// 查询实例的数据库列表
     ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
+    /// 接口（DescribeDatabases）用来查询实例的数据库列表。
     @inlinable
     public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
         try await self.describeDatabases(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)

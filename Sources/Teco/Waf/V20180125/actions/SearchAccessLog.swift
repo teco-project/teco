@@ -21,7 +21,7 @@ import TecoCore
 extension Waf {
     /// SearchAccessLog请求参数结构体
     public struct SearchAccessLogRequest: TCRequestModel {
-        /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
+        /// 客户要查询的日志主题ID，每个客户都有对应的一个主题，新版本此字段填空字符串
         public let topicId: String
 
         /// 要查询的日志的起始时间，Unix时间戳，单位ms
@@ -36,13 +36,16 @@ extension Waf {
         /// 单次查询返回的日志条数，最大值为100
         public let limit: Int64?
 
-        /// 加载更多日志时使用，透传上次返回的Context值，获取后续的日志内容
+        /// 新版本此字段失效，填空字符串，翻页使用Page
         public let context: String?
 
         /// 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         public let sort: String?
 
-        public init(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil) {
+        /// 第几页，从0开始。新版本接口字段
+        public let page: Int64?
+
+        public init(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, page: Int64? = nil) {
             self.topicId = topicId
             self.from = from
             self.to = to
@@ -50,6 +53,7 @@ extension Waf {
             self.limit = limit
             self.context = context
             self.sort = sort
+            self.page = page
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,12 +64,13 @@ extension Waf {
             case limit = "Limit"
             case context = "Context"
             case sort = "Sort"
+            case page = "Page"
         }
     }
 
     /// SearchAccessLog返回参数结构体
     public struct SearchAccessLogResponse: TCResponseModel {
-        /// 加载后续内容的Context
+        /// 新接口此字段失效，默认返回空字符串
         public let context: String
 
         /// 日志查询结果是否全部返回，其中，“true”表示结果返回，“false”表示结果为返回
@@ -123,15 +128,15 @@ extension Waf {
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
-        self.searchAccessLog(.init(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, page: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
+        self.searchAccessLog(.init(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort, page: page), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索访问日志
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
-        try await self.searchAccessLog(.init(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, page: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
+        try await self.searchAccessLog(.init(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort, page: page), region: region, logger: logger, on: eventLoop)
     }
 }

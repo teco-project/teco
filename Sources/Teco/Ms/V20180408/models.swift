@@ -17,33 +17,329 @@
 import TecoCore
 
 extension Ms {
-    /// 广告信息
-    public struct AdInfo: TCOutputModel {
-        /// 插播广告列表
-        public let spots: [PluginInfo]
+    /// 渠道合作Android加固App信息
+    public struct AndroidAppInfo: TCInputModel, TCOutputModel {
+        /// app文件的md5算法值，需要正确传递，在线加固必输。
+        /// 例如linux环境下执行算法命令md5sum ：
+        /// #md5sum test.apk
+        /// d40cc11e4bddd643ecdf29cde729a12b
+        public let appMd5: String?
 
-        /// 精品推荐广告列表
-        public let boutiqueRecommands: [PluginInfo]
+        /// app的大小，非必输。
+        public let appSize: Int64?
 
-        /// 悬浮窗广告列表
-        public let floatWindowses: [PluginInfo]
+        /// app下载链接，在线加固必输。
+        public let appUrl: String?
 
-        /// banner广告列表
-        public let banners: [PluginInfo]
+        /// app名称，非必输
+        public let appName: String?
 
-        /// 积分墙广告列表
-        public let integralWalls: [PluginInfo]
+        /// app的包名，本次操作的包名。
+        /// 当Android是按年收费、免费试用加固时，在线加固和输出工具要求该字段必输，且与AndroidPlan.AppPkgName值相等。
+        public let appPkgName: String?
 
-        /// 通知栏广告列表
-        public let notifyBars: [PluginInfo]
+        /// app的文件名，非必输。
+        public let appFileName: String?
+
+        /// app版本号，非必输。
+        public let appVersion: String?
+
+        /// Android app的文件类型，本次加固操作的应用类型 。
+        /// Android在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        public let appType: String?
+
+        public init(appMd5: String? = nil, appSize: Int64? = nil, appUrl: String? = nil, appName: String? = nil, appPkgName: String? = nil, appFileName: String? = nil, appVersion: String? = nil, appType: String? = nil) {
+            self.appMd5 = appMd5
+            self.appSize = appSize
+            self.appUrl = appUrl
+            self.appName = appName
+            self.appPkgName = appPkgName
+            self.appFileName = appFileName
+            self.appVersion = appVersion
+            self.appType = appType
+        }
 
         enum CodingKeys: String, CodingKey {
-            case spots = "Spots"
-            case boutiqueRecommands = "BoutiqueRecommands"
-            case floatWindowses = "FloatWindowses"
-            case banners = "Banners"
-            case integralWalls = "IntegralWalls"
-            case notifyBars = "NotifyBars"
+            case appMd5 = "AppMd5"
+            case appSize = "AppSize"
+            case appUrl = "AppUrl"
+            case appName = "AppName"
+            case appPkgName = "AppPkgName"
+            case appFileName = "AppFileName"
+            case appVersion = "AppVersion"
+            case appType = "AppType"
+        }
+    }
+
+    /// 渠道合作Android加固策略信息
+    public struct AndroidPlan: TCInputModel, TCOutputModel {
+        /// 非必输字段，PlanId 是指本次加固使用的配置策略Id，可通过载入上次配置接口获取。其值非0时，代表引用对应的策略。
+        public let planId: Int64?
+
+        /// 本次操作的包名。
+        /// 当收费模式是android按年收费和android免费试用的在线加固和输出工具加固时，要求该字段必输，且与AndroidAppInfo.AppPkgName值相等。
+        public let appPkgName: String?
+
+        /// android app的文件类型，本次加固操作的应用类型 。
+        /// android在线加固和输出工具加固必输，其值需等于“apk”或“aab”，且与AndroidAppInfo.AppType值相等。
+        public let appType: String?
+
+        /// android加固必输字段。
+        /// 加固策略，json格式字符串。
+        /// 字段说明（0-关闭，1-开启）：
+        ///         "enable"=1 #DEX整体加固;
+        ///         "antiprotect"=1 #反调试;
+        ///         "antirepack"=1 #防重打包、防篡改;
+        ///         "dexsig"=1       #签名校验;
+        ///         "antimonitor"=1 #防模拟器运行保护;
+        ///         "ptrace"=1 #防动态注入、动态调试;
+        ///         "so"."enable" = 1 #文件加密;
+        ///         "vmp"."enable" = 1 #VMP虚拟化保护;
+        ///         "respro"."assets"."enable" = 1 #assets资源文件加密
+        ///        "respro"."res"."enable" = 1 #res资源文件加密
+        ///
+        /// so文件加密：
+        /// 支持5种架构:
+        /// apk 格式: /lib/armeabi/libxxx.so,/lib/arm64-v8a/libxxx.so,/lib/armeabi-v7a/libxxx.so,/lib/x86/libxxx.so,/lib/x86_64/libxxx.so
+        /// aab格式: /base/lib/armeabi/libxxx.so,/base/lib/arm64-v8a/libxxx.so,/base/lib/armeabi-v7a/libxxx.so,/base/lib/x86/libxxx.so,/base/lib/x86_64/libxxx.so
+        /// 请列举 SO 库在 apk 文件解压后的完整有效路径，如:/lib/armeabi/libxxx.so；
+        /// 需要加固的 SO 库需确认为自研的 SO 库，不要加固第三方 SO 库，否则会增加 crash 风险
+        ///
+        /// res资源文件加密注意事项：
+        /// 请指定需要加密的文件全路径，如：res/layout/1.xml;
+        /// res资源文件加密不能加密APP图标
+        /// res目录文件，不能加密以下后缀规则的文件".wav", ".mp2", ".mp3", ".ogg", ".aac", ".mpg",".mpeg", ".mid", ".midi", ".smf", ".jet", ".rtttl", ".imy", ".xmf", ".mp4", ".m4a", ".m4v", ".3gp",".3gpp", ".3g2", ".3gpp2", ".amr", ".awb", ".wma", ".wmv"
+        ///
+        /// assets资源文件加密注意事项:
+        /// 请指定需要加密的文件全路径，如：assets/main.js；可以完整路径，也可以相对路径。
+        /// 如果有通配符需要完整路径 ":all"或者"*"代表所有文件
+        /// assets资源文件加密不能加密APP图标
+        /// assets目录文件，不能加密以下后缀规则的文件".wav", ".mp2", ".mp3", ".ogg", ".aac", ".mpg",".mpeg", ".mid", ".midi", ".smf", ".jet", ".rtttl", ".imy", ".xmf", ".mp4", ".m4a", ".m4v", ".3gp",".3gpp", ".3g2", ".3gpp2", ".amr", ".awb", ".wma", ".wmv"
+        ///
+        ///
+        /// apk[dex+so+vmp+res+assets]加固参数示例：
+        /// ‘{
+        ///     "dex": {
+        ///         "enable": 1,
+        ///         "antiprotect": 1,
+        ///         "antirepack": 1,
+        ///         "dexsig": 1,
+        ///         "antimonitor": 1,
+        ///         "ptrace": 1
+        ///     },
+        ///     "so": {
+        ///         "enable": 1,
+        ///         "ver": "1.3.3",
+        ///         "file": [
+        ///             "/lib/armeabi/libtest.so"
+        ///         ]
+        ///     },
+        ///     "vmp": {
+        ///         "enable": 1,
+        ///         "ndkpath": "/xxx/android-ndk-r10e",
+        ///         "profile": "/xxx/vmpprofile.txt",
+        ///         "mapping": "/xxx/mapping.txt"
+        ///     },
+        ///     "respro": {
+        ///         "assets": {
+        ///             "enable": 1,
+        ///             "file": [
+        ///                 "assets/1.js",
+        ///                 "assets/2.jpg"
+        ///             ]
+        ///         },
+        ///         "res": {
+        ///             "enable": 1,
+        ///             "file": [
+        ///                 "res/layout/1.xml",
+        ///                 "res/layout/2.xml"
+        ///             ]
+        ///         }
+        ///     }
+        /// }’
+        ///
+        /// aab加固方案一
+        /// [dex+res+assets]加固json字符串：
+        /// ‘{
+        ///     "dex": {
+        ///         "enable": 1,
+        ///         "antiprotect": 1,
+        ///         "antimonitor": 1
+        ///     },
+        ///     "respro": {
+        ///         "assets": {
+        ///             "enable": 1,
+        ///             "file": [
+        ///                 "assets/1.js",
+        ///                 "assets/2.jpg"
+        ///             ]
+        ///         },
+        ///         "res": {
+        ///             "enable": 1,
+        ///             "file": [
+        ///                 "res/layout/1.xml",
+        ///                 "res/layout/2.xml"
+        ///             ]
+        ///         }
+        ///     }
+        /// }’
+        ///
+        /// aab加固方案二
+        /// 单独vmp加固：
+        /// ‘{
+        ///     "vmp": {
+        ///         "enable": 1,
+        ///         "ndkpath": "/xxx/android-ndk-r10e",
+        ///         "profile": "/xxx/vmpprofile.txt",
+        ///         "mapping": "/xxx/mapping.txt",
+        ///         "antiprotect": 1,
+        ///         "antimonitor": 1
+        ///     }
+        /// }’
+        public let encryptParam: String?
+
+        public init(planId: Int64? = nil, appPkgName: String? = nil, appType: String? = nil, encryptParam: String? = nil) {
+            self.planId = planId
+            self.appPkgName = appPkgName
+            self.appType = appType
+            self.encryptParam = encryptParam
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case appPkgName = "AppPkgName"
+            case appType = "AppType"
+            case encryptParam = "EncryptParam"
+        }
+    }
+
+    /// Android加固结果
+    public struct AndroidResult: TCOutputModel {
+        /// 结果Id,用于查询加固结果
+        public let resultId: String
+
+        /// 与当前任务关联的订单id
+        public let orderId: String
+
+        /// 与当前任务关联的资源Id
+        public let resourceId: String
+
+        /// 本次任务发起者
+        public let opUin: Int64
+
+        /// 应用类型：android-apk; android-aab;
+        public let appType: String
+
+        /// 应用包名
+        public let appPkgName: String
+
+        /// 后台资源绑定的包名
+        public let bindAppPkgName: String
+
+        /// 加固结果
+        public let encryptState: Int64
+
+        /// 加固结果描述
+        public let encryptStateDesc: String
+
+        /// 加固失败错误码
+        public let encryptErrCode: Int64
+
+        /// 加固失败原因
+        public let encryptErrDesc: String
+
+        /// 加固失败解决方案
+        public let encryptErrRef: String
+
+        /// 任务创建时间
+        public let creatTime: String
+
+        /// 任务开始处理时间
+        public let startTime: String
+
+        /// 任务处理结束时间
+        public let endTime: String
+
+        /// 加固耗时（秒单位）
+        public let costTime: Int64
+
+        /// 在线加固-android应用原包下载链接
+        public let appUrl: String
+
+        /// 在线加固-android应用文件MD5算法值
+        public let appMd5: String
+
+        /// 在线加固-android应用应用名称
+        public let appName: String
+
+        /// 在线加固-android应用版本；
+        public let appVersion: String
+
+        /// 在线加固-android应用大小
+        public let appSize: Int64
+
+        /// 在线加固-android加固-腾讯云应用加固工具版本
+        public let onlineToolVersion: String
+
+        /// 在线加固-android加固，加固成功后文件md5算法值
+        public let encryptAppMd5: String
+
+        /// 在线加固-android加固，加固成功后应用大小
+        public let encryptAppSize: Int64
+
+        /// 在线加固-android加固，加固包下载链接。
+        public let encryptPkgUrl: String
+
+        /// 输出工具-android加固-腾讯云输出工具版本
+        public let outputToolVersion: String
+
+        /// 输出工具-android加固-工具大小
+        public let outputToolSize: Int64
+
+        /// 输出工具-android加固-工具输出时间
+        public let toolOutputTime: String
+
+        /// 输出工具-android加固-工具到期时间
+        public let toolExpireTime: String
+
+        /// 输出工具-android加固-输出工具下载链接
+        public let outputToolUrl: String
+
+        /// 本次android加固策略信息
+        public let androidPlan: AndroidPlan
+
+        enum CodingKeys: String, CodingKey {
+            case resultId = "ResultId"
+            case orderId = "OrderId"
+            case resourceId = "ResourceId"
+            case opUin = "OpUin"
+            case appType = "AppType"
+            case appPkgName = "AppPkgName"
+            case bindAppPkgName = "BindAppPkgName"
+            case encryptState = "EncryptState"
+            case encryptStateDesc = "EncryptStateDesc"
+            case encryptErrCode = "EncryptErrCode"
+            case encryptErrDesc = "EncryptErrDesc"
+            case encryptErrRef = "EncryptErrRef"
+            case creatTime = "CreatTime"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case costTime = "CostTime"
+            case appUrl = "AppUrl"
+            case appMd5 = "AppMd5"
+            case appName = "AppName"
+            case appVersion = "AppVersion"
+            case appSize = "AppSize"
+            case onlineToolVersion = "OnlineToolVersion"
+            case encryptAppMd5 = "EncryptAppMd5"
+            case encryptAppSize = "EncryptAppSize"
+            case encryptPkgUrl = "EncryptPkgUrl"
+            case outputToolVersion = "OutputToolVersion"
+            case outputToolSize = "OutputToolSize"
+            case toolOutputTime = "ToolOutputTime"
+            case toolExpireTime = "ToolExpireTime"
+            case outputToolUrl = "OutputToolUrl"
+            case androidPlan = "AndroidPlan"
         }
     }
 
@@ -130,64 +426,6 @@ extension Ms {
         }
     }
 
-    /// 扫描后app的信息，包含基本信息和扫描状态信息
-    public struct AppScanSet: TCOutputModel {
-        /// 任务唯一标识
-        public let itemId: String
-
-        /// app的名称
-        public let appName: String
-
-        /// app的包名
-        public let appPkgName: String
-
-        /// app的版本号
-        public let appVersion: String
-
-        /// app的md5
-        public let appMd5: String
-
-        /// app的大小
-        public let appSize: UInt64
-
-        /// 扫描结果返回码
-        public let scanCode: UInt64
-
-        /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
-        public let taskStatus: UInt64
-
-        /// 提交扫描时间
-        public let taskTime: UInt64
-
-        /// app的图标url
-        public let appIconUrl: String
-
-        /// 标识唯一该app，主要用于删除
-        public let appSid: String
-
-        /// 安全类型:1-安全软件，2-风险软件，3病毒软件
-        public let safeType: UInt64
-
-        /// 漏洞个数
-        public let vulCount: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case itemId = "ItemId"
-            case appName = "AppName"
-            case appPkgName = "AppPkgName"
-            case appVersion = "AppVersion"
-            case appMd5 = "AppMd5"
-            case appSize = "AppSize"
-            case scanCode = "ScanCode"
-            case taskStatus = "TaskStatus"
-            case taskTime = "TaskTime"
-            case appIconUrl = "AppIconUrl"
-            case appSid = "AppSid"
-            case safeType = "SafeType"
-            case vulCount = "VulCount"
-        }
-    }
-
     /// 加固后app的信息，包含基本信息和加固信息
     public struct AppSetInfo: TCOutputModel {
         /// 任务唯一标识
@@ -254,6 +492,118 @@ extension Ms {
         }
     }
 
+    /// 小程序加固信息
+    public struct AppletInfo: TCInputModel, TCOutputModel {
+        /// 客户JS包
+        public let appletJsUrl: String?
+
+        /// 小程序加固等级配置
+        /// 1 - 开启代码混淆、代码压缩、代码反调试保护。 2 - 开启字符串编码和代码变换，代码膨胀，随机插入冗余代码，开启代码控制流平坦化，保证业务逻辑正常前提下，扁平化代码逻辑分支，破坏代码简单的线性结构。 3 - 开启代码加密，对字符串、函数、变量、属性、类、数组等结构进行加密保护，更多得代码控制流平坦化，扁平化逻辑分支。
+        public let appletLevel: Int64?
+
+        /// 本次加固输出产物名称，如”test.zip“,非空必须是 ”.zip“结尾
+        public let name: String?
+
+        public init(appletJsUrl: String? = nil, appletLevel: Int64? = nil, name: String? = nil) {
+            self.appletJsUrl = appletJsUrl
+            self.appletLevel = appletLevel
+            self.name = name
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case appletJsUrl = "AppletJsUrl"
+            case appletLevel = "AppletLevel"
+            case name = "Name"
+        }
+    }
+
+    /// 小程序加固配置
+    public struct AppletPlan: TCInputModel, TCOutputModel {
+        /// 策略Id
+        public let planId: Int64?
+
+        /// 1 - 开启代码混淆、代码压缩、代码反调试保护。
+        /// 2 - 开启字符串编码和代码变换，代码膨胀，随机插入冗余代码，开启代码控制流平坦化，保证业务逻辑正常前提下，扁平化代码逻辑分支，破坏代码简单的线性结构。
+        /// 3 - 开启代码加密，对字符串、函数、变量、属性、类、数组等结构进行加密保护，更多得代码控制流平坦化，扁平化逻辑分支。
+        public let appletLevel: Int64?
+
+        public init(planId: Int64? = nil, appletLevel: Int64? = nil) {
+            self.planId = planId
+            self.appletLevel = appletLevel
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+            case appletLevel = "AppletLevel"
+        }
+    }
+
+    /// 渠道合作加固小程序加固结果
+    public struct AppletResult: TCOutputModel {
+        /// 加固任务结果id
+        public let resultId: String?
+
+        /// 资源id
+        public let resourceId: String?
+
+        /// 订单id
+        public let orderId: String?
+
+        /// 操作账号
+        public let opUin: Int64?
+
+        /// 加固结果
+        public let encryptState: Int64?
+
+        /// 加固结果描述
+        public let encryptStateDesc: String?
+
+        /// 失败错误码
+        public let encryptErrCode: Int64?
+
+        /// 失败原因
+        public let encryptErrDesc: String?
+
+        /// 解决方案
+        public let encryptErrRef: String?
+
+        /// 任务创建时间
+        public let creatTime: String?
+
+        /// 任务开始处理时间
+        public let startTime: String?
+
+        /// 任务处理结束时间
+        public let endTime: String?
+
+        /// 加固耗时（秒单位）
+        public let costTime: Int64?
+
+        /// 在线加固成功下载包
+        public let encryptPkgUrl: String?
+
+        /// 本次加固配置
+        public let appletInfo: AppletInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case resultId = "ResultId"
+            case resourceId = "ResourceId"
+            case orderId = "OrderId"
+            case opUin = "OpUin"
+            case encryptState = "EncryptState"
+            case encryptStateDesc = "EncryptStateDesc"
+            case encryptErrCode = "EncryptErrCode"
+            case encryptErrDesc = "EncryptErrDesc"
+            case encryptErrRef = "EncryptErrRef"
+            case creatTime = "CreatTime"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case costTime = "CostTime"
+            case encryptPkgUrl = "EncryptPkgUrl"
+            case appletInfo = "AppletInfo"
+        }
+    }
+
     /// 用户绑定app的基本信息
     public struct BindInfo: TCOutputModel {
         /// app的icon的url
@@ -269,6 +619,64 @@ extension Ms {
             case appIconUrl = "AppIconUrl"
             case appName = "AppName"
             case appPkgName = "AppPkgName"
+        }
+    }
+
+    /// 渠道合作加固结果信息
+    public struct EncryptResults: TCOutputModel {
+        /// 平台类型枚举值  1-android加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        public let platformType: Int64
+
+        /// 平台类型描述  1-android加固   2-ios源码混淆  3-sdk加固  4-applet小程序加固
+        public let platformDesc: String
+
+        /// 订单采购类型枚举值， 1-免费试用 2-按年收费 3-按次收费
+        public let orderType: Int64
+
+        /// 订单采购类型 描述：1-免费试用 2-按年收费 3-按次收费
+        public let orderTypeDesc: String
+
+        /// 枚举值：1-在线加固 或 2-输出工具加固
+        public let encryptOpType: Int64
+
+        /// 描述：1-在线加固 或 2-输出工具加固
+        public let encryptOpTypeDesc: String
+
+        /// 与当前任务关联的资源Id
+        public let resourceId: String
+
+        /// 与当前任务关联的订单Id
+        public let orderId: String
+
+        /// 对应PlatformType平台类型值   1-android加固结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let androidResult: AndroidResult?
+
+        /// 对应PlatformType平台类型值   2-ios源码混淆加固结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let iosResult: IOSResult?
+
+        /// 对应PlatformType平台类型值   3-sdk加固结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkResult: SDKResult?
+
+        /// 对应PlatformType平台类型值   4-applet小程序加固结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appletResult: AppletResult?
+
+        enum CodingKeys: String, CodingKey {
+            case platformType = "PlatformType"
+            case platformDesc = "PlatformDesc"
+            case orderType = "OrderType"
+            case orderTypeDesc = "OrderTypeDesc"
+            case encryptOpType = "EncryptOpType"
+            case encryptOpTypeDesc = "EncryptOpTypeDesc"
+            case resourceId = "ResourceId"
+            case orderId = "OrderId"
+            case androidResult = "AndroidResult"
+            case iosResult = "IOSResult"
+            case sdkResult = "SDKResult"
+            case appletResult = "AppletResult"
         }
     }
 
@@ -291,6 +699,30 @@ extension Ms {
         }
     }
 
+    /// 渠道合作IOS源码混淆配置
+    public struct IOSPlan: TCInputModel, TCOutputModel {
+        /// 策略id
+        public let planId: Int64?
+
+        public init(planId: Int64? = nil) {
+            self.planId = planId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case planId = "PlanId"
+        }
+    }
+
+    /// 渠道合作ios源码混淆加固结果
+    public struct IOSResult: TCOutputModel {
+        /// 加固任务结果Id
+        public let resultId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case resultId = "ResultId"
+        }
+    }
+
     /// APK检测服务：非广告插件结果列表(SDK、风险插件等)
     public struct OptPluginListItem: TCOutputModel {
         /// 非广告类型
@@ -306,6 +738,93 @@ extension Ms {
             case pluginType = "PluginType"
             case pluginName = "PluginName"
             case pluginDesc = "PluginDesc"
+        }
+    }
+
+    /// 渠道合作加固订单资源信息
+    public struct Orders: TCOutputModel {
+        /// 订单号
+        public let orderId: String
+
+        /// 平台类型整型值
+        public let platformType: Int64
+
+        /// 平台类型描述：  1.android加固   2.ios源码混淆  3.sdk加固  4.applet小程序加固
+        public let platformTypeDesc: String
+
+        /// 订单采购类型整型值
+        public let orderType: Int64
+
+        /// 订单采购类型描述： 1-免费试用 2-按年收费 3-按次收费
+        public let orderTypeDesc: String
+
+        /// android包年收费加固的包名
+        public let appPkgName: String
+
+        /// 资源号
+        public let resourceId: String
+
+        /// 资源状态整型值
+        public let resourceStatus: Int64
+
+        /// 资源状态描述
+        /// 0-未生效、1-生效中、2-已失效。
+        public let resourceStatusDesc: String
+
+        /// 订单类型为免费试用时的免费加固次数。
+        public let testTimes: Int64
+
+        /// 资源生效时间
+        public let validTime: String
+
+        /// 资源过期时间
+        public let expireTime: String
+
+        /// 资源创建时间
+        public let createTime: String
+
+        /// 订单审批人
+        public let approver: String
+
+        /// 订单审批状态整型值
+        public let approvalStatus: Int64
+
+        /// 订单审批状态整型值描述：0-未审批、1-审批通过、2-驳回。
+        public let approvalStatusDesc: String
+
+        /// 订单审批时间
+        public let approvalTime: String
+
+        /// 按次收费加固资源，其关联的总任务数
+        public let timesTaskTotalCount: Int64
+
+        /// 按次收费加固资源，其关联的任务成功数
+        public let timesTaskSuccessCount: Int64
+
+        /// 按次收费加固资源，其关联的任务失败数
+        public let timesTaskFailCount: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case orderId = "OrderId"
+            case platformType = "PlatformType"
+            case platformTypeDesc = "PlatformTypeDesc"
+            case orderType = "OrderType"
+            case orderTypeDesc = "OrderTypeDesc"
+            case appPkgName = "AppPkgName"
+            case resourceId = "ResourceId"
+            case resourceStatus = "ResourceStatus"
+            case resourceStatusDesc = "ResourceStatusDesc"
+            case testTimes = "TestTimes"
+            case validTime = "ValidTime"
+            case expireTime = "ExpireTime"
+            case createTime = "CreateTime"
+            case approver = "Approver"
+            case approvalStatus = "ApprovalStatus"
+            case approvalStatusDesc = "ApprovalStatusDesc"
+            case approvalTime = "ApprovalTime"
+            case timesTaskTotalCount = "TimesTaskTotalCount"
+            case timesTaskSuccessCount = "TimesTaskSuccessCount"
+            case timesTaskFailCount = "TimesTaskFailCount"
         }
     }
 
@@ -398,24 +917,6 @@ extension Ms {
             case antiAssets = "AntiAssets"
             case antiScreenshot = "AntiScreenshot"
             case antiSSL = "AntiSSL"
-        }
-    }
-
-    /// 插件信息
-    public struct PluginInfo: TCOutputModel {
-        /// 插件类型，分别为 1-通知栏广告，2-积分墙广告，3-banner广告，4- 悬浮窗图标广告，5-精品推荐列表广告, 6-插播广告
-        public let pluginType: UInt64
-
-        /// 插件名称
-        public let pluginName: String
-
-        /// 插件描述
-        public let pluginDesc: String
-
-        enum CodingKeys: String, CodingKey {
-            case pluginType = "PluginType"
-            case pluginName = "PluginName"
-            case pluginDesc = "PluginDesc"
         }
     }
 
@@ -589,120 +1090,27 @@ extension Ms {
         }
     }
 
-    /// 需要扫描的应用的服务信息
-    public struct ScanInfo: TCInputModel {
-        /// 任务处理完成后的反向通知回调地址,批量提交app每扫描完成一个会通知一次,通知为POST请求，post信息{ItemId:
-        public let callbackUrl: String
+    /// 渠道合作sdk加固策略配置
+    public struct SDKPlan: TCInputModel, TCOutputModel {
+        /// 策略id
+        public let planId: Int64?
 
-        /// VULSCAN-漏洞扫描信息，VIRUSSCAN-返回病毒扫描信息， ADSCAN-广告扫描信息，PLUGINSCAN-插件扫描信息，PERMISSION-系统权限信息，SENSITIVE-敏感词信息，可以自由组合
-        public let scanTypes: [String]
-
-        public init(callbackUrl: String, scanTypes: [String]) {
-            self.callbackUrl = callbackUrl
-            self.scanTypes = scanTypes
+        public init(planId: Int64? = nil) {
+            self.planId = planId
         }
 
         enum CodingKeys: String, CodingKey {
-            case callbackUrl = "CallbackUrl"
-            case scanTypes = "ScanTypes"
+            case planId = "PlanId"
         }
     }
 
-    /// 安全扫描系统权限信息
-    public struct ScanPermissionInfo: TCOutputModel {
-        /// 系统权限
-        public let permission: String
+    /// 渠道合作加固sdk加固结果
+    public struct SDKResult: TCOutputModel {
+        /// 加固任务结果Id
+        public let resultId: String?
 
         enum CodingKeys: String, CodingKey {
-            case permission = "Permission"
-        }
-    }
-
-    /// 安全扫描系统权限信息
-    public struct ScanPermissionList: TCOutputModel {
-        /// 系统权限信息
-        public let permissionList: [ScanPermissionInfo]
-
-        enum CodingKeys: String, CodingKey {
-            case permissionList = "PermissionList"
-        }
-    }
-
-    /// 安全扫描敏感词
-    public struct ScanSensitiveInfo: TCOutputModel {
-        /// 敏感词
-        public let wordList: [String]
-
-        /// 敏感词对应的文件信息
-        public let filePath: String
-
-        /// 文件sha1值
-        public let fileSha: String
-
-        enum CodingKeys: String, CodingKey {
-            case wordList = "WordList"
-            case filePath = "FilePath"
-            case fileSha = "FileSha"
-        }
-    }
-
-    /// 安全扫描敏感词列表
-    public struct ScanSensitiveList: TCOutputModel {
-        /// 敏感词列表
-        public let sensitiveList: [ScanSensitiveInfo]
-
-        enum CodingKeys: String, CodingKey {
-            case sensitiveList = "SensitiveList"
-        }
-    }
-
-    /// app扫描结果集
-    public struct ScanSetInfo: TCOutputModel {
-        /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
-        public let taskStatus: UInt64
-
-        /// app信息
-        public let appDetailInfo: AppDetailInfo
-
-        /// 病毒信息
-        public let virusInfo: VirusInfo
-
-        /// 漏洞信息
-        public let vulInfo: VulInfo
-
-        /// 广告插件信息
-        public let adInfo: AdInfo
-
-        /// 提交扫描的时间
-        public let taskTime: UInt64
-
-        /// 状态码，成功返回0，失败返回错误码
-        public let statusCode: UInt64
-
-        /// 状态描述
-        public let statusDesc: String
-
-        /// 状态操作指引
-        public let statusRef: String
-
-        /// 系统权限信息
-        public let permissionInfo: ScanPermissionList
-
-        /// 敏感词列表
-        public let sensitiveInfo: ScanSensitiveList
-
-        enum CodingKeys: String, CodingKey {
-            case taskStatus = "TaskStatus"
-            case appDetailInfo = "AppDetailInfo"
-            case virusInfo = "VirusInfo"
-            case vulInfo = "VulInfo"
-            case adInfo = "AdInfo"
-            case taskTime = "TaskTime"
-            case statusCode = "StatusCode"
-            case statusDesc = "StatusDesc"
-            case statusRef = "StatusRef"
-            case permissionInfo = "PermissionInfo"
-            case sensitiveInfo = "SensitiveInfo"
+            case resultId = "ResultId"
         }
     }
 
@@ -790,76 +1198,6 @@ extension Ms {
 
         enum CodingKeys: String, CodingKey {
             case soFileNames = "SoFileNames"
-        }
-    }
-
-    /// 病毒信息
-    public struct VirusInfo: TCOutputModel {
-        /// 软件安全类型，分别为0-未知、 1-安全软件、2-风险软件、3-病毒软件
-        public let safeType: Int64
-
-        /// 病毒名称， utf8编码，非病毒时值为空
-        public let virusName: String
-
-        /// 病毒描述，utf8编码，非病毒时值为空
-        public let virusDesc: String
-
-        enum CodingKeys: String, CodingKey {
-            case safeType = "SafeType"
-            case virusName = "VirusName"
-            case virusDesc = "VirusDesc"
-        }
-    }
-
-    /// 漏洞信息
-    public struct VulInfo: TCOutputModel {
-        /// 漏洞列表
-        public let vulList: [VulList]
-
-        /// 漏洞文件评分
-        public let vulFileScore: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case vulList = "VulList"
-            case vulFileScore = "VulFileScore"
-        }
-    }
-
-    /// 漏洞信息
-    public struct VulList: TCOutputModel {
-        /// 漏洞id
-        public let vulId: String
-
-        /// 漏洞名称
-        public let vulName: String
-
-        /// 漏洞代码
-        public let vulCode: String
-
-        /// 漏洞描述
-        public let vulDesc: String
-
-        /// 漏洞解决方案
-        public let vulSolution: String
-
-        /// 漏洞来源类别，0默认自身，1第三方插件
-        public let vulSrcType: Int64
-
-        /// 漏洞位置
-        public let vulFilepath: String
-
-        /// 风险级别：1 低风险 ；2中等风险；3 高风险
-        public let riskLevel: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case vulId = "VulId"
-            case vulName = "VulName"
-            case vulCode = "VulCode"
-            case vulDesc = "VulDesc"
-            case vulSolution = "VulSolution"
-            case vulSrcType = "VulSrcType"
-            case vulFilepath = "VulFilepath"
-            case riskLevel = "RiskLevel"
         }
     }
 }

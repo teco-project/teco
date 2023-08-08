@@ -32,6 +32,7 @@ extension Postgres {
         /// db-instance-id：按照实例ID过滤，类型为string。
         /// db-instance-name：按照实例名过滤，类型为string。
         /// db-instance-ip：按照实例私有网络IP地址过滤，类型为string。
+        /// base-backup-id：按照备份集ID过滤，类型为string。
         public let filters: [Filter]?
 
         /// 每页显示数量，取值范围为1-100，默认为返回10条。
@@ -105,7 +106,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable
     public func describeBaseBackups(_ input: DescribeBaseBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseBackupsResponse> {
         self.client.execute(action: "DescribeBaseBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -113,7 +114,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable
     public func describeBaseBackups(_ input: DescribeBaseBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseBackupsResponse {
         try await self.client.execute(action: "DescribeBaseBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -121,7 +122,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable
     public func describeBaseBackups(minFinishTime: String? = nil, maxFinishTime: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseBackupsResponse> {
         self.describeBaseBackups(.init(minFinishTime: minFinishTime, maxFinishTime: maxFinishTime, filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
@@ -129,7 +130,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable
     public func describeBaseBackups(minFinishTime: String? = nil, maxFinishTime: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseBackupsResponse {
         try await self.describeBaseBackups(.init(minFinishTime: minFinishTime, maxFinishTime: maxFinishTime, filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
@@ -137,7 +138,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable
     public func describeBaseBackupsPaginated(_ input: DescribeBaseBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [BaseBackup])> {
         self.client.paginate(input: input, region: region, command: self.describeBaseBackups, logger: logger, on: eventLoop)
@@ -145,7 +146,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     @inlinable @discardableResult
     public func describeBaseBackupsPaginated(_ input: DescribeBaseBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBaseBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBaseBackups, callback: onResponse, logger: logger, on: eventLoop)
@@ -153,7 +154,7 @@ extension Postgres {
 
     /// 查询基础备份列表
     ///
-    /// 本接口 (DescribeBaseBackups) 用于查询基础备份列表。
+    /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     ///
     /// - Returns: `AsyncSequence`s of `BaseBackup` and `DescribeBaseBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable

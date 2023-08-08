@@ -90,57 +90,57 @@ extension Postgres {
         }
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable
     public func describeAccounts(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable
     public func describeAccounts(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable
     public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
         self.describeAccounts(.init(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable
     public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
         try await self.describeAccounts(.init(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable
     public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [AccountInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     @inlinable @discardableResult
     public func describeAccountsPaginated(_ input: DescribeAccountsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeAccountsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeAccounts, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例用户列表
+    /// 查询实例的数据库账号列表
     ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     ///
     /// - Returns: `AsyncSequence`s of `AccountInfo` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
     @inlinable

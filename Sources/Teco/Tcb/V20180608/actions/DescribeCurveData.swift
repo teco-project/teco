@@ -98,7 +98,7 @@ extension Tcb {
         public let time: [Int64]
 
         /// 有效的监控数据, 每个有效监控数据的上报时间可以从时间数组中的对应位置上获取到.
-        public let newValues: Float
+        public let newValues: [Float]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -115,7 +115,7 @@ extension Tcb {
         }
     }
 
-    /// 查询环境的监控曲线数据
+    /// 查询环境监控曲线
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
@@ -123,7 +123,7 @@ extension Tcb {
         self.client.execute(action: "DescribeCurveData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询环境的监控曲线数据
+    /// 查询环境监控曲线
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
@@ -131,7 +131,7 @@ extension Tcb {
         try await self.client.execute(action: "DescribeCurveData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询环境的监控曲线数据
+    /// 查询环境监控曲线
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
@@ -139,7 +139,7 @@ extension Tcb {
         self.describeCurveData(.init(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询环境的监控曲线数据
+    /// 查询环境监控曲线
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable

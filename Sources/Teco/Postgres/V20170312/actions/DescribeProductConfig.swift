@@ -55,33 +55,33 @@ extension Postgres {
         }
     }
 
-    /// 查询售卖规格配置
+    /// 查询售卖规格配置（废弃）
     ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    /// 本接口（DescribeProductConfig）用于查询售卖规格配置。本接口已废弃，推荐使用新接口[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)。
     @inlinable
     public func describeProductConfig(_ input: DescribeProductConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
         self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询售卖规格配置
+    /// 查询售卖规格配置（废弃）
     ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    /// 本接口（DescribeProductConfig）用于查询售卖规格配置。本接口已废弃，推荐使用新接口[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)。
     @inlinable
     public func describeProductConfig(_ input: DescribeProductConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
         try await self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询售卖规格配置
+    /// 查询售卖规格配置（废弃）
     ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    /// 本接口（DescribeProductConfig）用于查询售卖规格配置。本接口已废弃，推荐使用新接口[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)。
     @inlinable
     public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
         self.describeProductConfig(.init(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询售卖规格配置
+    /// 查询售卖规格配置（废弃）
     ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    /// 本接口（DescribeProductConfig）用于查询售卖规格配置。本接口已废弃，推荐使用新接口[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)。
     @inlinable
     public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
         try await self.describeProductConfig(.init(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)

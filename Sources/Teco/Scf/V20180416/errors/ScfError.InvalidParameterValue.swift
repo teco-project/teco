@@ -88,6 +88,7 @@ extension TCScfError {
             case layers = "InvalidParameterValue.Layers"
             case limit = "InvalidParameterValue.Limit"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
+            case logFormat = "InvalidParameterValue.LogFormat"
             case maxConcurrency = "InvalidParameterValue.MaxConcurrency"
             case memory = "InvalidParameterValue.Memory"
             case memorySize = "InvalidParameterValue.MemorySize"
@@ -131,6 +132,7 @@ extension TCScfError {
             case triggerName = "InvalidParameterValue.TriggerName"
             case triggerProvisionedConcurrencyNum = "InvalidParameterValue.TriggerProvisionedConcurrencyNum"
             case type = "InvalidParameterValue.Type"
+            case vpc = "InvalidParameterValue.Vpc"
             case vpcNotSetWhenOpenCfs = "InvalidParameterValue.VpcNotSetWhenOpenCfs"
             case webSocketsParams = "InvalidParameterValue.WebSocketsParams"
             case zipFile = "InvalidParameterValue.ZipFile"
@@ -517,6 +519,11 @@ extension TCScfError {
             InvalidParameterValue(.limitExceeded)
         }
 
+        /// 请检查日志格式。
+        public static var logFormat: InvalidParameterValue {
+            InvalidParameterValue(.logFormat)
+        }
+
         /// MaxConcurrency 参数传入错误。
         public static var maxConcurrency: InvalidParameterValue {
             InvalidParameterValue(.maxConcurrency)
@@ -734,6 +741,11 @@ extension TCScfError {
             InvalidParameterValue(.type)
         }
 
+        /// 请检查VPC是否正确。
+        public static var vpc: InvalidParameterValue {
+            InvalidParameterValue(.vpc)
+        }
+
         /// 开启cfs配置的同时必须开启vpc。
         public static var vpcNotSetWhenOpenCfs: InvalidParameterValue {
             InvalidParameterValue(.vpcNotSetWhenOpenCfs)
@@ -902,6 +914,8 @@ extension TCScfError {
                 code = .invalidParameterValue_Limit
             case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
+            case .logFormat:
+                code = .invalidParameterValue_LogFormat
             case .maxConcurrency:
                 code = .invalidParameterValue_MaxConcurrency
             case .memory:
@@ -988,6 +1002,8 @@ extension TCScfError {
                 code = .invalidParameterValue_TriggerProvisionedConcurrencyNum
             case .type:
                 code = .invalidParameterValue_Type
+            case .vpc:
+                code = .invalidParameterValue_Vpc
             case .vpcNotSetWhenOpenCfs:
                 code = .invalidParameterValue_VpcNotSetWhenOpenCfs
             case .webSocketsParams:

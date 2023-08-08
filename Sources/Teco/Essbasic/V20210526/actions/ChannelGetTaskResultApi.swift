@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelGetTaskResultApi请求参数结构体
     public struct ChannelGetTaskResultApiRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
         public let agent: Agent
 
         /// 任务Id，通过ChannelCreateConvertTaskApi接口获得
@@ -75,6 +75,7 @@ extension Essbasic {
         public let resourceId: String
 
         /// 预览文件Url，有效期30分钟
+        /// 当前字段返回为空，发起的时候，将ResourceId 放入发起即可
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
 
@@ -92,24 +93,36 @@ extension Essbasic {
     }
 
     /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（ChannelCreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
     @inlinable
     public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelGetTaskResultApiResponse> {
         self.client.execute(action: "ChannelGetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（ChannelCreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
     @inlinable
     public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
         try await self.client.execute(action: "ChannelGetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（ChannelCreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
     @inlinable
     public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelGetTaskResultApiResponse> {
         self.channelGetTaskResultApi(.init(agent: agent, taskId: taskId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（ChannelCreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
     @inlinable
     public func channelGetTaskResultApi(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
         try await self.channelGetTaskResultApi(.init(agent: agent, taskId: taskId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)

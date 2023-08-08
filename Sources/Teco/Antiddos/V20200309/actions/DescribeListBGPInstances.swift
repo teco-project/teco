@@ -73,7 +73,13 @@ extension Antiddos {
         /// 默认false；接口传true，返回数据中不包含高级信息，高级信息包含：InstanceList[0].Usage。
         public let excludeAdvancedInfo: Bool?
 
-        public init(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil) {
+        /// 资产IP数组
+        public let filterAssetIpList: [String]?
+
+        /// 是否包含基础防护增强版 0: 不包含 1: 包含
+        public let filterBasicPlusFlag: UInt64?
+
+        public init(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil, filterAssetIpList: [String]? = nil, filterBasicPlusFlag: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterIp = filterIp
@@ -91,6 +97,8 @@ extension Antiddos {
             self.filterTrialFlag = filterTrialFlag
             self.filterConvoy = filterConvoy
             self.excludeAdvancedInfo = excludeAdvancedInfo
+            self.filterAssetIpList = filterAssetIpList
+            self.filterBasicPlusFlag = filterBasicPlusFlag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -111,6 +119,8 @@ extension Antiddos {
             case filterTrialFlag = "FilterTrialFlag"
             case filterConvoy = "FilterConvoy"
             case excludeAdvancedInfo = "ExcludeAdvancedInfo"
+            case filterAssetIpList = "FilterAssetIpList"
+            case filterBasicPlusFlag = "FilterBasicPlusFlag"
         }
 
         /// Compute the next request based on API response.
@@ -118,7 +128,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListBGPInstancesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterRegion: self.filterRegion, filterName: self.filterName, filterLine: self.filterLine, filterStatus: self.filterStatus, filterBoundStatus: self.filterBoundStatus, filterInstanceIdList: self.filterInstanceIdList, filterEnterpriseFlag: self.filterEnterpriseFlag, filterLightFlag: self.filterLightFlag, filterChannelFlag: self.filterChannelFlag, filterTag: self.filterTag, filterTrialFlag: self.filterTrialFlag, filterConvoy: self.filterConvoy, excludeAdvancedInfo: self.excludeAdvancedInfo)
+            return DescribeListBGPInstancesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterIp: self.filterIp, filterInstanceId: self.filterInstanceId, filterRegion: self.filterRegion, filterName: self.filterName, filterLine: self.filterLine, filterStatus: self.filterStatus, filterBoundStatus: self.filterBoundStatus, filterInstanceIdList: self.filterInstanceIdList, filterEnterpriseFlag: self.filterEnterpriseFlag, filterLightFlag: self.filterLightFlag, filterChannelFlag: self.filterChannelFlag, filterTag: self.filterTag, filterTrialFlag: self.filterTrialFlag, filterConvoy: self.filterConvoy, excludeAdvancedInfo: self.excludeAdvancedInfo, filterAssetIpList: self.filterAssetIpList, filterBasicPlusFlag: self.filterBasicPlusFlag)
         }
     }
 
@@ -164,14 +174,14 @@ extension Antiddos {
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
-        self.describeListBGPInstances(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag, filterTrialFlag: filterTrialFlag, filterConvoy: filterConvoy, excludeAdvancedInfo: excludeAdvancedInfo), region: region, logger: logger, on: eventLoop)
+    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil, filterAssetIpList: [String]? = nil, filterBasicPlusFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
+        self.describeListBGPInstances(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag, filterTrialFlag: filterTrialFlag, filterConvoy: filterConvoy, excludeAdvancedInfo: excludeAdvancedInfo, filterAssetIpList: filterAssetIpList, filterBasicPlusFlag: filterBasicPlusFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
-        try await self.describeListBGPInstances(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag, filterTrialFlag: filterTrialFlag, filterConvoy: filterConvoy, excludeAdvancedInfo: excludeAdvancedInfo), region: region, logger: logger, on: eventLoop)
+    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, filterTrialFlag: UInt64? = nil, filterConvoy: UInt64? = nil, excludeAdvancedInfo: Bool? = nil, filterAssetIpList: [String]? = nil, filterBasicPlusFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
+        try await self.describeListBGPInstances(.init(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag, filterTrialFlag: filterTrialFlag, filterConvoy: filterConvoy, excludeAdvancedInfo: excludeAdvancedInfo, filterAssetIpList: filterAssetIpList, filterBasicPlusFlag: filterBasicPlusFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包资产实例列表

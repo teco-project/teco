@@ -27,11 +27,26 @@ public protocol TCMsErrorType: TCServiceErrorType {
 public struct TCMsError: TCMsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_InvalidAuthorization = "AuthFailure.InvalidAuthorization"
+        case failedOperation = "FailedOperation"
         case internalError = "InternalError"
         case internalError_ApkServerError = "InternalError.ApkServerError"
         case internalError_ServerError = "InternalError.ServerError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_AndroidAppMd5Error = "InvalidParameterValue.AndroidAppMd5Error"
+        case invalidParameterValue_AndroidAppPkgNameError = "InvalidParameterValue.AndroidAppPkgNameError"
+        case invalidParameterValue_AndroidAppPkgNameListError = "InvalidParameterValue.AndroidAppPkgNameListError"
+        case invalidParameterValue_AndroidAppTypeError = "InvalidParameterValue.AndroidAppTypeError"
+        case invalidParameterValue_AndroidAppUrlError = "InvalidParameterValue.AndroidAppUrlError"
+        case invalidParameterValue_AndroidAssetsError = "InvalidParameterValue.AndroidAssetsError"
+        case invalidParameterValue_AndroidEncryptParamError = "InvalidParameterValue.AndroidEncryptParamError"
+        case invalidParameterValue_AndroidResError = "InvalidParameterValue.AndroidResError"
+        case invalidParameterValue_AndroidSoError = "InvalidParameterValue.AndroidSoError"
+        case invalidParameterValue_AndroidVMPError = "InvalidParameterValue.AndroidVMPError"
+        case invalidParameterValue_AppletEncryptParamError = "InvalidParameterValue.AppletEncryptParamError"
+        case invalidParameterValue_CheckUrlError = "InvalidParameterValue.CheckUrlError"
+        case invalidParameterValue_EncryptParamAppTypeError = "InvalidParameterValue.EncryptParamAppTypeError"
         case invalidParameterValue_InvalidCoexistItemIdsFilters = "InvalidParameterValue.InvalidCoexistItemIdsFilters"
         case invalidParameterValue_InvalidFilter = "InvalidParameterValue.InvalidFilter"
         case invalidParameterValue_InvalidItemIds = "InvalidParameterValue.InvalidItemIds"
@@ -43,16 +58,20 @@ public struct TCMsError: TCMsErrorType {
         case invalidParameter_ParameterError = "InvalidParameter.ParameterError"
         case invalidParameter_PlanIdNotFound = "InvalidParameter.PlanIdNotFound"
         case limitExceeded = "LimitExceeded"
+        case limitExceeded_EncryptTaskLimitExceeded = "LimitExceeded.EncryptTaskLimitExceeded"
+        case missingParameter = "MissingParameter"
         case missingParameter_MissingAppInfo = "MissingParameter.MissingAppInfo"
         case missingParameter_MissingItemId = "MissingParameter.MissingItemId"
         case missingParameter_MissingItemIds = "MissingParameter.MissingItemIds"
         case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_ItemIdNotFound = "ResourceNotFound.ItemIdNotFound"
         case resourceNotFound_PlanIdNotFound = "ResourceNotFound.PlanIdNotFound"
+        case resourceNotFound_ResultIdNotFound = "ResourceNotFound.ResultIdNotFound"
         case resourceUnavailable = "ResourceUnavailable"
         case resourceUnavailable_NotBind = "ResourceUnavailable.NotBind"
         case resourceUnavailable_NotFound = "ResourceUnavailable.NotFound"
         case unauthorizedOperation = "UnauthorizedOperation"
+        case unauthorizedOperation_AuthFailed = "UnauthorizedOperation.AuthFailed"
         case unauthorizedOperation_NotWhiteUser = "UnauthorizedOperation.NotWhiteUser"
         case unsupportedOperation = "UnsupportedOperation"
     }
@@ -60,9 +79,11 @@ public struct TCMsError: TCMsErrorType {
     /// Error domains affliated to ``TCMsError``.
     public static var domains: [TCErrorType.Type] {
         [
+            AuthFailure.self,
             InternalError.self,
             InvalidParameter.self,
             InvalidParameterValue.self,
+            LimitExceeded.self,
             MissingParameter.self,
             ResourceNotFound.self,
             ResourceUnavailable.self,
@@ -97,6 +118,16 @@ public struct TCMsError: TCMsErrorType {
         TCMsError(.authFailure)
     }
 
+    /// CAM签名/鉴权错误。
+    public static var authFailure_InvalidAuthorization: TCMsError {
+        TCMsError(.authFailure_InvalidAuthorization)
+    }
+
+    /// 操作失败。
+    public static var failedOperation: TCMsError {
+        TCMsError(.failedOperation)
+    }
+
     /// 内部错误。
     public static var internalError: TCMsError {
         TCMsError(.internalError)
@@ -122,6 +153,60 @@ public struct TCMsError: TCMsErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCMsError {
         TCMsError(.invalidParameterValue)
+    }
+
+    public static var invalidParameterValue_AndroidAppMd5Error: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAppMd5Error)
+    }
+
+    public static var invalidParameterValue_AndroidAppPkgNameError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAppPkgNameError)
+    }
+
+    public static var invalidParameterValue_AndroidAppPkgNameListError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAppPkgNameListError)
+    }
+
+    public static var invalidParameterValue_AndroidAppTypeError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAppTypeError)
+    }
+
+    public static var invalidParameterValue_AndroidAppUrlError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAppUrlError)
+    }
+
+    public static var invalidParameterValue_AndroidAssetsError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidAssetsError)
+    }
+
+    /// 请检查配置。
+    public static var invalidParameterValue_AndroidEncryptParamError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidEncryptParamError)
+    }
+
+    public static var invalidParameterValue_AndroidResError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidResError)
+    }
+
+    public static var invalidParameterValue_AndroidSoError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidSoError)
+    }
+
+    public static var invalidParameterValue_AndroidVMPError: TCMsError {
+        TCMsError(.invalidParameterValue_AndroidVMPError)
+    }
+
+    public static var invalidParameterValue_AppletEncryptParamError: TCMsError {
+        TCMsError(.invalidParameterValue_AppletEncryptParamError)
+    }
+
+    /// 请检查资源是否能下载。
+    public static var invalidParameterValue_CheckUrlError: TCMsError {
+        TCMsError(.invalidParameterValue_CheckUrlError)
+    }
+
+    public static var invalidParameterValue_EncryptParamAppTypeError: TCMsError {
+        TCMsError(.invalidParameterValue_EncryptParamAppTypeError)
     }
 
     /// 不能同时指定ItemIds和Filters。
@@ -179,6 +264,15 @@ public struct TCMsError: TCMsErrorType {
         TCMsError(.limitExceeded)
     }
 
+    public static var limitExceeded_EncryptTaskLimitExceeded: TCMsError {
+        TCMsError(.limitExceeded_EncryptTaskLimitExceeded)
+    }
+
+    /// 缺少参数错误。
+    public static var missingParameter: TCMsError {
+        TCMsError(.missingParameter)
+    }
+
     /// AppInfo结构体参数缺失。
     public static var missingParameter_MissingAppInfo: TCMsError {
         TCMsError(.missingParameter_MissingAppInfo)
@@ -209,6 +303,13 @@ public struct TCMsError: TCMsErrorType {
         TCMsError(.resourceNotFound_PlanIdNotFound)
     }
 
+    /// ResultId不存在。
+    ///
+    /// 请稍后重试。
+    public static var resourceNotFound_ResultIdNotFound: TCMsError {
+        TCMsError(.resourceNotFound_ResultIdNotFound)
+    }
+
     /// 资源不可用。
     public static var resourceUnavailable: TCMsError {
         TCMsError(.resourceUnavailable)
@@ -227,6 +328,11 @@ public struct TCMsError: TCMsErrorType {
     /// 未授权操作。
     public static var unauthorizedOperation: TCMsError {
         TCMsError(.unauthorizedOperation)
+    }
+
+    /// 鉴权失败。
+    public static var unauthorizedOperation_AuthFailed: TCMsError {
+        TCMsError(.unauthorizedOperation_AuthFailed)
     }
 
     /// 不是白名单用户。

@@ -865,9 +865,9 @@ extension Monitor {
         }
     }
 
-    /// 告警条件模版
+    /// 告警条件模板
     public struct ConditionsTemp: TCOutputModel {
-        /// 模版名称
+        /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateName: String?
 
@@ -2694,6 +2694,14 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: Int64?
 
+        /// 匹配运算符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operators: [Operator]?
+
+        /// 指标触发
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let periods: [Int64]?
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case metricName = "MetricName"
@@ -2706,6 +2714,8 @@ extension Monitor {
             case isAdvanced = "IsAdvanced"
             case isOpen = "IsOpen"
             case productId = "ProductId"
+            case operators = "Operators"
+            case periods = "Periods"
         }
     }
 
@@ -2752,25 +2762,6 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case dimensions = "Dimensions"
             case values = "Values"
-        }
-    }
-
-    /// 指标名称和值的封装
-    public struct MetricDatum: TCInputModel {
-        /// 指标名称
-        public let metricName: String
-
-        /// 指标的值
-        public let value: UInt64
-
-        public init(metricName: String, value: UInt64) {
-            self.metricName = metricName
-            self.value = value
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case metricName = "MetricName"
-            case value = "Value"
         }
     }
 
@@ -3191,7 +3182,7 @@ extension Monitor {
         }
     }
 
-    /// 云监控支持的产品简要信息
+    /// 云产品监控支持的产品简要信息
     public struct ProductSimple: TCOutputModel {
         /// 命名空间
         public let namespace: String
@@ -3454,7 +3445,7 @@ extension Monitor {
         }
     }
 
-    /// 与云监控融合托管prometheus实例，关联集群基础信息
+    /// 与腾讯云可观测平台融合托管 Prometheus 实例，关联集群基础信息
     public struct PrometheusClusterAgentBasic: TCInputModel {
         /// 集群ID
         public let region: String
@@ -3544,16 +3535,22 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
 
-        public init(name: String, config: String, templateId: String? = nil) {
+        /// 目标数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targets: Targets?
+
+        public init(name: String, config: String, templateId: String? = nil, targets: Targets? = nil) {
             self.name = name
             self.config = config
             self.templateId = templateId
+            self.targets = targets
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case config = "Config"
             case templateId = "TemplateId"
+            case targets = "Targets"
         }
     }
 
@@ -4007,12 +4004,27 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
 
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 规则数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case updateTime = "UpdateTime"
             case templateId = "TemplateId"
             case content = "Content"
             case clusterId = "ClusterId"
+            case status = "Status"
+            case id = "Id"
+            case count = "Count"
         }
     }
 
@@ -4533,7 +4545,7 @@ extension Monitor {
     }
 
     /// 标签
-    public struct Tag: TCInputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签key
         public let key: String
 
@@ -4589,6 +4601,39 @@ extension Monitor {
             case regionId = "RegionId"
             case bindingStatus = "BindingStatus"
             case tagStatus = "TagStatus"
+        }
+    }
+
+    /// 抓取目标数
+    public struct Targets: TCInputModel, TCOutputModel {
+        /// 总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: UInt64?
+
+        /// 在线数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let up: UInt64?
+
+        /// 不在线数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let down: UInt64?
+
+        /// 未知状态数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unknown: UInt64?
+
+        public init(total: UInt64? = nil, up: UInt64? = nil, down: UInt64? = nil, unknown: UInt64? = nil) {
+            self.total = total
+            self.up = up
+            self.down = down
+            self.unknown = unknown
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case total = "Total"
+            case up = "Up"
+            case down = "Down"
+            case unknown = "Unknown"
         }
     }
 
@@ -4702,7 +4747,7 @@ extension Monitor {
         }
     }
 
-    /// 云监控告警通知模板 - 回调通知详情
+    /// 告警通知模板 - 回调通知详情
     public struct URLNotice: TCInputModel, TCOutputModel {
         /// 回调 url（限长256字符）
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4747,7 +4792,7 @@ extension Monitor {
         }
     }
 
-    /// 云监控告警通知模板 - 用户通知详情
+    /// 告警通知模板 - 用户通知详情
     public struct UserNotice: TCInputModel, TCOutputModel {
         /// 接收者类型 USER=用户 GROUP=用户组
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4801,7 +4846,11 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
 
-        public init(receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]? = nil, groupIds: [Int64]? = nil, phoneOrder: [Int64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, needPhoneArriveNotice: Int64? = nil, phoneCallType: String? = nil, weekday: [Int64]? = nil) {
+        /// 值班表id列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let onCallFormIDs: [String]?
+
+        public init(receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]? = nil, groupIds: [Int64]? = nil, phoneOrder: [Int64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, needPhoneArriveNotice: Int64? = nil, phoneCallType: String? = nil, weekday: [Int64]? = nil, onCallFormIDs: [String]? = nil) {
             self.receiverType = receiverType
             self.startTime = startTime
             self.endTime = endTime
@@ -4815,6 +4864,7 @@ extension Monitor {
             self.needPhoneArriveNotice = needPhoneArriveNotice
             self.phoneCallType = phoneCallType
             self.weekday = weekday
+            self.onCallFormIDs = onCallFormIDs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4831,6 +4881,7 @@ extension Monitor {
             case needPhoneArriveNotice = "NeedPhoneArriveNotice"
             case phoneCallType = "PhoneCallType"
             case weekday = "Weekday"
+            case onCallFormIDs = "OnCallFormIDs"
         }
     }
 }

@@ -27,7 +27,7 @@ extension Ess {
         /// 待移除员工的信息，userId和openId二选一，必填一个
         public let employees: [Staff]
 
-        /// 代理信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
         public let agent: Agent?
 
         public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
@@ -57,24 +57,32 @@ extension Ess {
         }
     }
 
+    /// 移除企业员工
+    ///
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 移除企业员工
+    ///
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
         try await self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
+    /// 移除企业员工
+    ///
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
         self.deleteIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 移除企业员工
+    ///
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {

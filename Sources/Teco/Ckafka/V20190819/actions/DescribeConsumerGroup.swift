@@ -30,7 +30,7 @@ extension Ckafka {
         /// 可选，用户需要查询的group中的对应的topic名称，如果指定了该参数，而group又未指定则忽略该参数。
         public let topicName: String?
 
-        /// 本次返回个数限制
+        /// 本次返回个数限制，最大支持50
         public let limit: Int64?
 
         /// 偏移位置

@@ -45,11 +45,12 @@ public struct TCDbbrainError: TCDbbrainErrorType {
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_HasDuplicatedTask = "UnsupportedOperation.HasDuplicatedTask"
     }
 
     /// Error domains affliated to ``TCDbbrainError``.
     public static var domains: [TCErrorType.Type] {
-        [OperationDenied.self]
+        [OperationDenied.self, UnsupportedOperation.self]
     }
 
     private let error: Code
@@ -169,6 +170,11 @@ public struct TCDbbrainError: TCDbbrainErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCDbbrainError {
         TCDbbrainError(.unsupportedOperation)
+    }
+
+    /// 该时间范围内的审计日志已下载
+    public static var unsupportedOperation_HasDuplicatedTask: TCDbbrainError {
+        TCDbbrainError(.unsupportedOperation_HasDuplicatedTask)
     }
 
     public func asDbbrainError() -> TCDbbrainError {

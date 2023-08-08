@@ -24,7 +24,7 @@ extension Antiddos {
         /// 规则列表
         public let rules: [L7RuleEntry]
 
-        /// 大禹子产品代号（bgpip表示高防IP）
+        /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
         /// 资源ID列表

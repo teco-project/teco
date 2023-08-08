@@ -34,7 +34,7 @@ extension Cfg {
         /// 标签键
         public let taskTag: [String]?
 
-        /// 状态
+        /// 任务状态(1001 -- 未开始 1002 -- 进行中 1003 -- 暂停中 1004 -- 任务结束)
         public let taskStatus: Int64?
 
         /// 开始时间，固定格式%Y-%m-%d %H:%M:%S
@@ -46,7 +46,10 @@ extension Cfg {
         /// 标签对
         public let tags: [TagWithDescribe]?
 
-        public init(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil) {
+        /// 筛选条件
+        public let filters: [ActionFilter]?
+
+        public init(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, filters: [ActionFilter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.taskTitle = taskTitle
@@ -55,6 +58,7 @@ extension Cfg {
             self.taskStartTime = taskStartTime
             self.taskEndTime = taskEndTime
             self.tags = tags
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -66,6 +70,7 @@ extension Cfg {
             case taskStartTime = "TaskStartTime"
             case taskEndTime = "TaskEndTime"
             case tags = "Tags"
+            case filters = "Filters"
         }
 
         /// Compute the next request based on API response.
@@ -73,7 +78,7 @@ extension Cfg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), taskTitle: self.taskTitle, taskTag: self.taskTag, taskStatus: self.taskStatus, taskStartTime: self.taskStartTime, taskEndTime: self.taskEndTime, tags: self.tags)
+            return DescribeTaskListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), taskTitle: self.taskTitle, taskTag: self.taskTag, taskStatus: self.taskStatus, taskStartTime: self.taskStartTime, taskEndTime: self.taskEndTime, tags: self.tags, filters: self.filters)
         }
     }
 
@@ -119,14 +124,14 @@ extension Cfg {
 
     /// 查询任务列表
     @inlinable
-    public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskListResponse> {
-        self.describeTaskList(.init(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, filters: [ActionFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskListResponse> {
+        self.describeTaskList(.init(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     @inlinable
-    public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
-        try await self.describeTaskList(.init(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, filters: [ActionFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
+        try await self.describeTaskList(.init(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表

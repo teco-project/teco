@@ -70,7 +70,7 @@ extension Dcdb {
         /// 实例名称， 可以通过该字段自主的设置实例的名字
         public let instanceName: String?
 
-        /// 是否支持IPv6
+        /// 是否支持IPv6，0:不支持，1:支持
         public let ipv6Flag: Int64?
 
         /// 标签键值对数组
@@ -85,7 +85,7 @@ extension Dcdb {
         /// DCN源实例ID
         public let dcnInstanceId: String?
 
-        /// 自动续费标记，0表示默认状态(用户未设置，即初始状态即手动续费，用户开通了预付费不停服特权也会进行自动续费)， 1表示自动续费，2表示明确不自动续费(用户设置)，若业务无续费概念或无需自动续费，需要设置为0
+        /// 自动续费标记，0:默认状态(用户未设置，即初始状态即手动续费，用户开通了预付费不停服特权也会进行自动续费)， 1:自动续费，2:明确不自动续费(用户设置)。若业务无续费概念或无需自动续费，需要设置为0
         public let autoRenewFlag: Int64?
 
         /// 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
@@ -162,33 +162,33 @@ extension Dcdb {
         }
     }
 
-    /// 创建DCDB分布式实例
+    /// 创建TDSQL包年包月实例
     ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的TDSQL实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
     @inlinable
     public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDCDBInstanceResponse> {
         self.client.execute(action: "CreateDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建DCDB分布式实例
+    /// 创建TDSQL包年包月实例
     ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的TDSQL实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
     @inlinable
     public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
         try await self.client.execute(action: "CreateDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建DCDB分布式实例
+    /// 创建TDSQL包年包月实例
     ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的TDSQL实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
     @inlinable
     public func createDCDBInstance(zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, autoRenewFlag: Int64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDCDBInstanceResponse> {
         self.createDCDBInstance(.init(zones: zones, period: period, shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, autoVoucher: autoVoucher, voucherIds: voucherIds, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, autoRenewFlag: autoRenewFlag, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建DCDB分布式实例
+    /// 创建TDSQL包年包月实例
     ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的TDSQL实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
     @inlinable
     public func createDCDBInstance(zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, autoRenewFlag: Int64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
         try await self.createDCDBInstance(.init(zones: zones, period: period, shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, autoVoucher: autoVoucher, voucherIds: voucherIds, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, autoRenewFlag: autoRenewFlag, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)

@@ -24,7 +24,7 @@ extension Vpc {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
 
-        /// 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
+        /// 对端网关ID。例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/product/215/17516)接口查询对端网关。
         public let customerGatewayId: String
 
         /// 通道名称，可任意命名，但不得超过60个字符。
@@ -49,13 +49,13 @@ extension Vpc {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
 
-        /// 是否支持隧道内健康检查
+        /// 是否支持隧道内健康检查，默认为False。
         public let enableHealthCheck: Bool?
 
-        /// 健康检查本端地址
+        /// 健康检查本端地址，默认值为随机在169.254.128.0/17分配一个IP。
         public let healthCheckLocalIp: String?
 
-        /// 健康检查对端地址
+        /// 健康检查对端地址，默认值为随机在169.254.128.0/17分配一个IP。
         public let healthCheckRemoteIp: String?
 
         /// 通道类型, 例如:["STATIC", "StaticRoute", "Policy"]

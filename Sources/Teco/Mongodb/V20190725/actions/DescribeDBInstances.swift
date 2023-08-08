@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Mongodb {
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCPaginatedRequest {
-        /// 实例ID列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        /// 实例 ID 列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceIds: [String]?
 
         /// 实例类型。取值范围如下：<ul><li>0：所有实例。</li><li>1：正式实例。</li><li>2：临时实例。</li><li>3：只读实例。</li><li>-1：正式实例、只读、灾备实例。</li></ul>

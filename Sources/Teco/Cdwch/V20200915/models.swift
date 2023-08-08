@@ -47,28 +47,43 @@ extension Cdwch {
     }
 
     /// 备份表信息
-    public struct BackupTableContent: TCInputModel {
+    public struct BackupTableContent: TCInputModel, TCOutputModel {
         /// 数据库
-        public let database: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let database: String?
 
         /// 表
-        public let table: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let table: String?
 
         /// 表总字节数
-        public let totalBytes: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalBytes: Int64?
 
         /// 虚拟cluster
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vCluster: String?
 
         /// 表ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ips: String?
 
-        public init(database: String, table: String, totalBytes: Int64, vCluster: String? = nil, ips: String? = nil) {
+        /// zk路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zooPath: String?
+
+        /// cvm的ip地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rip: String?
+
+        public init(database: String, table: String, totalBytes: Int64, vCluster: String? = nil, ips: String? = nil, zooPath: String? = nil, rip: String? = nil) {
             self.database = database
             self.table = table
             self.totalBytes = totalBytes
             self.vCluster = vCluster
             self.ips = ips
+            self.zooPath = zooPath
+            self.rip = rip
         }
 
         enum CodingKeys: String, CodingKey {
@@ -77,6 +92,8 @@ extension Cdwch {
             case totalBytes = "TotalBytes"
             case vCluster = "VCluster"
             case ips = "Ips"
+            case zooPath = "ZooPath"
+            case rip = "Rip"
         }
     }
 
@@ -491,6 +508,22 @@ extension Cdwch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upgradeVersions: String?
 
+        /// ex-index
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let esIndexId: String?
+
+        /// username
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let esIndexUsername: String?
+
+        /// password
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let esIndexPassword: String?
+
+        /// true
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasEsIndex: Bool?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -534,6 +567,10 @@ extension Cdwch {
             case canAttachCos = "CanAttachCos"
             case components = "Components"
             case upgradeVersions = "UpgradeVersions"
+            case esIndexId = "EsIndexId"
+            case esIndexUsername = "EsIndexUsername"
+            case esIndexPassword = "EsIndexPassword"
+            case hasEsIndex = "HasEsIndex"
         }
     }
 
@@ -571,6 +608,10 @@ extension Cdwch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestId: String?
 
+        /// 流程的二级名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processSubName: String?
+
         enum CodingKeys: String, CodingKey {
             case instanceState = "InstanceState"
             case flowCreateTime = "FlowCreateTime"
@@ -580,6 +621,7 @@ extension Cdwch {
             case flowMsg = "FlowMsg"
             case processName = "ProcessName"
             case requestId = "RequestId"
+            case processSubName = "ProcessSubName"
         }
     }
 
@@ -762,12 +804,41 @@ extension Cdwch {
         /// 策略id
         public let scheduleId: Int64
 
+        /// 下次备份时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nextBackupTime: String?
+
         enum CodingKeys: String, CodingKey {
             case cosBucketName = "CosBucketName"
             case retainDays = "RetainDays"
             case weekDays = "WeekDays"
             case executeHour = "ExecuteHour"
             case scheduleId = "ScheduleId"
+            case nextBackupTime = "NextBackupTime"
+        }
+    }
+
+    /// 列表页搜索的标记列表
+    public struct SearchTags: TCInputModel {
+        /// 标签的键
+        public let tagKey: String?
+
+        /// 标签的值
+        public let tagValue: String?
+
+        /// 1表示只输入标签的键，没有输入值；0表示输入键时且输入值
+        public let allValue: Int64?
+
+        public init(tagKey: String? = nil, tagValue: String? = nil, allValue: Int64? = nil) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+            self.allValue = allValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
+            case allValue = "AllValue"
         }
     }
 

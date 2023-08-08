@@ -28,12 +28,12 @@ extension Wedata {
         public let projectId: String
 
         /// 任务ID
-        public let taskId: String
+        public let taskId: String?
 
         /// 任务类型(201表示实时任务，202表示离线任务)
-        public let taskType: Int64
+        public let taskType: Int64?
 
-        public init(id: String, projectId: String, taskId: String, taskType: Int64) {
+        public init(id: String, projectId: String, taskId: String? = nil, taskType: Int64? = nil) {
             self.id = id
             self.projectId = projectId
             self.taskId = taskId
@@ -77,13 +77,13 @@ extension Wedata {
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
         self.deleteTaskAlarmRegular(.init(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
         try await self.deleteTaskAlarmRegular(.init(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

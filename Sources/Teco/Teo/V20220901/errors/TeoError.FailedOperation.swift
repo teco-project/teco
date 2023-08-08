@@ -20,7 +20,9 @@ extension TCTeoError {
     public struct FailedOperation: TCTeoErrorType {
         enum Code: String {
             case certificateNotFound = "FailedOperation.CertificateNotFound"
+            case insufficientAccountBalance = "FailedOperation.InsufficientAccountBalance"
             case invalidZoneStatus = "FailedOperation.InvalidZoneStatus"
+            case modifyFailed = "FailedOperation.ModifyFailed"
             case other = "FailedOperation"
         }
 
@@ -51,9 +53,19 @@ extension TCTeoError {
             FailedOperation(.certificateNotFound)
         }
 
+        /// 账户余额不足
+        public static var insufficientAccountBalance: FailedOperation {
+            FailedOperation(.insufficientAccountBalance)
+        }
+
         /// 站点状态不正确。
         public static var invalidZoneStatus: FailedOperation {
             FailedOperation(.invalidZoneStatus)
+        }
+
+        /// 操作失败。
+        public static var modifyFailed: FailedOperation {
+            FailedOperation(.modifyFailed)
         }
 
         /// 操作失败。
@@ -66,8 +78,12 @@ extension TCTeoError {
             switch self.error {
             case .certificateNotFound:
                 code = .failedOperation_CertificateNotFound
+            case .insufficientAccountBalance:
+                code = .failedOperation_InsufficientAccountBalance
             case .invalidZoneStatus:
                 code = .failedOperation_InvalidZoneStatus
+            case .modifyFailed:
+                code = .failedOperation_ModifyFailed
             case .other:
                 code = .failedOperation
             }

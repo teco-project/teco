@@ -52,7 +52,10 @@ extension Live {
         /// 推流异常回调 URL。
         public let pushExceptionNotifyUrl: String?
 
-        public init(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil) {
+        /// 音频审核回调 URL。
+        public let audioAuditNotifyUrl: String?
+
+        public init(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -63,6 +66,7 @@ extension Live {
             self.pornCensorshipNotifyUrl = pornCensorshipNotifyUrl
             self.callbackKey = callbackKey
             self.pushExceptionNotifyUrl = pushExceptionNotifyUrl
+            self.audioAuditNotifyUrl = audioAuditNotifyUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -76,6 +80,7 @@ extension Live {
             case pornCensorshipNotifyUrl = "PornCensorshipNotifyUrl"
             case callbackKey = "CallbackKey"
             case pushExceptionNotifyUrl = "PushExceptionNotifyUrl"
+            case audioAuditNotifyUrl = "AudioAuditNotifyUrl"
         }
     }
 
@@ -109,15 +114,15 @@ extension Live {
     ///
     /// 修改回调模板。
     @inlinable @discardableResult
-    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
-        self.modifyLiveCallbackTemplate(.init(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
+        self.modifyLiveCallbackTemplate(.init(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl, audioAuditNotifyUrl: audioAuditNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改回调模板
     ///
     /// 修改回调模板。
     @inlinable @discardableResult
-    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
-        try await self.modifyLiveCallbackTemplate(.init(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+    public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, audioAuditNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
+        try await self.modifyLiveCallbackTemplate(.init(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl, audioAuditNotifyUrl: audioAuditNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

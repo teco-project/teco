@@ -27,14 +27,19 @@ extension Dlc {
         /// Session Statement唯一标识
         public let statementId: String
 
-        public init(sessionId: String, statementId: String) {
+        /// 任务唯一标识
+        public let taskId: String?
+
+        public init(sessionId: String, statementId: String, taskId: String? = nil) {
             self.sessionId = sessionId
             self.statementId = statementId
+            self.taskId = taskId
         }
 
         enum CodingKeys: String, CodingKey {
             case sessionId = "SessionId"
             case statementId = "StatementId"
+            case taskId = "TaskId"
         }
     }
 
@@ -52,35 +57,35 @@ extension Dlc {
         }
     }
 
-    /// 获取session statement信息
+    /// 查询session 中执行任务的详情
     ///
-    /// 本接口（DescribeNotebookSessionStatement）用于获取session statement信息
+    /// 本接口（DescribeNotebookSessionStatement）用于查询session 中执行任务的详情
     @inlinable
     public func describeNotebookSessionStatement(_ input: DescribeNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionStatementResponse> {
         self.client.execute(action: "DescribeNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取session statement信息
+    /// 查询session 中执行任务的详情
     ///
-    /// 本接口（DescribeNotebookSessionStatement）用于获取session statement信息
+    /// 本接口（DescribeNotebookSessionStatement）用于查询session 中执行任务的详情
     @inlinable
     public func describeNotebookSessionStatement(_ input: DescribeNotebookSessionStatementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionStatementResponse {
         try await self.client.execute(action: "DescribeNotebookSessionStatement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取session statement信息
+    /// 查询session 中执行任务的详情
     ///
-    /// 本接口（DescribeNotebookSessionStatement）用于获取session statement信息
+    /// 本接口（DescribeNotebookSessionStatement）用于查询session 中执行任务的详情
     @inlinable
-    public func describeNotebookSessionStatement(sessionId: String, statementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionStatementResponse> {
-        self.describeNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId), region: region, logger: logger, on: eventLoop)
+    public func describeNotebookSessionStatement(sessionId: String, statementId: String, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionStatementResponse> {
+        self.describeNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取session statement信息
+    /// 查询session 中执行任务的详情
     ///
-    /// 本接口（DescribeNotebookSessionStatement）用于获取session statement信息
+    /// 本接口（DescribeNotebookSessionStatement）用于查询session 中执行任务的详情
     @inlinable
-    public func describeNotebookSessionStatement(sessionId: String, statementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionStatementResponse {
-        try await self.describeNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId), region: region, logger: logger, on: eventLoop)
+    public func describeNotebookSessionStatement(sessionId: String, statementId: String, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionStatementResponse {
+        try await self.describeNotebookSessionStatement(.init(sessionId: sessionId, statementId: statementId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

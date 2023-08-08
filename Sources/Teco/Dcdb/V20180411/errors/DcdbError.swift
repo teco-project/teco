@@ -39,7 +39,10 @@ public struct TCDcdbError: TCDcdbErrorType {
         case failedOperation_DeleteUserFailed = "FailedOperation.DeleteUserFailed"
         case failedOperation_DisassociateSecurityGroupsFailed = "FailedOperation.DisassociateSecurityGroupsFailed"
         case failedOperation_GetSecurityGroupDetailFailed = "FailedOperation.GetSecurityGroupDetailFailed"
+        case failedOperation_InstanceCanNotReturn = "FailedOperation.InstanceCanNotReturn"
+        case failedOperation_InstanceReturnFailed = "FailedOperation.InstanceReturnFailed"
         case failedOperation_ModifyRightFailed = "FailedOperation.ModifyRightFailed"
+        case failedOperation_ModifyUserConfigFailed = "FailedOperation.ModifyUserConfigFailed"
         case failedOperation_MsgQueueOperationFailed = "FailedOperation.MsgQueueOperationFailed"
         case failedOperation_OssIsolateInstanceFailed = "FailedOperation.OssIsolateInstanceFailed"
         case failedOperation_OssOperationFailed = "FailedOperation.OssOperationFailed"
@@ -49,6 +52,7 @@ public struct TCDcdbError: TCDcdbErrorType {
         case failedOperation_SetRuleLocationFailed = "FailedOperation.SetRuleLocationFailed"
         case failedOperation_SetSvcLocationFailed = "FailedOperation.SetSvcLocationFailed"
         case failedOperation_TagDryRunError = "FailedOperation.TagDryRunError"
+        case failedOperation_TagQuotaExceedLimit = "FailedOperation.TagQuotaExceedLimit"
         case failedOperation_UpdateInstanceInfoFailed = "FailedOperation.UpdateInstanceInfoFailed"
         case failedOperation_UserNotAuthed = "FailedOperation.UserNotAuthed"
         case failedOperation_VipNotChange = "FailedOperation.VipNotChange"
@@ -132,17 +136,21 @@ public struct TCDcdbError: TCDcdbErrorType {
         case invalidParameter_VportUsed = "InvalidParameter.VportUsed"
         case invalidParameter_ZoneIdIllegal = "InvalidParameter.ZoneIdIllegal"
         case limitExceeded_TooFrequentlyCalled = "LimitExceeded.TooFrequentlyCalled"
+        case resourceInUse_TempInstanceExist = "ResourceInUse.TempInstanceExist"
+        case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound_AccountDoesNotExist = "ResourceNotFound.AccountDoesNotExist"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_NoInstanceFound = "ResourceNotFound.NoInstanceFound"
         case resourceNotFound_ProductConfigNotExistedError = "ResourceNotFound.ProductConfigNotExistedError"
         case resourceUnavailable_BadInstanceStatus = "ResourceUnavailable.BadInstanceStatus"
         case resourceUnavailable_CosApiFailed = "ResourceUnavailable.CosApiFailed"
+        case resourceUnavailable_ExclusterStatusAbnormal = "ResourceUnavailable.ExclusterStatusAbnormal"
         case resourceUnavailable_InstanceAlreadyDeleted = "ResourceUnavailable.InstanceAlreadyDeleted"
         case resourceUnavailable_InstanceHasBeenLocked = "ResourceUnavailable.InstanceHasBeenLocked"
         case resourceUnavailable_InstanceStatusAbnormal = "ResourceUnavailable.InstanceStatusAbnormal"
         case resourceUnavailable_SGCheckFail = "ResourceUnavailable.SGCheckFail"
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
+        case unsupportedOperation_DbVersionNotSupported = "UnsupportedOperation.DbVersionNotSupported"
         case unsupportedOperation_InvalidOperation = "UnsupportedOperation.InvalidOperation"
         case unsupportedOperation_OldProxyVersion = "UnsupportedOperation.OldProxyVersion"
     }
@@ -155,6 +163,7 @@ public struct TCDcdbError: TCDcdbErrorType {
             InvalidParameter.self,
             InvalidParameterValue.self,
             LimitExceeded.self,
+            ResourceInUse.self,
             ResourceNotFound.self,
             ResourceUnavailable.self,
             UnauthorizedOperation.self,
@@ -249,9 +258,24 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.failedOperation_GetSecurityGroupDetailFailed)
     }
 
+    /// 实例不可退费。
+    public static var failedOperation_InstanceCanNotReturn: TCDcdbError {
+        TCDcdbError(.failedOperation_InstanceCanNotReturn)
+    }
+
+    /// 实例退费失败。
+    public static var failedOperation_InstanceReturnFailed: TCDcdbError {
+        TCDcdbError(.failedOperation_InstanceReturnFailed)
+    }
+
     /// 修改账号权限失败。
     public static var failedOperation_ModifyRightFailed: TCDcdbError {
         TCDcdbError(.failedOperation_ModifyRightFailed)
+    }
+
+    /// 修改账号配置失败。
+    public static var failedOperation_ModifyUserConfigFailed: TCDcdbError {
+        TCDcdbError(.failedOperation_ModifyUserConfigFailed)
     }
 
     /// 消息队列操作失败。
@@ -297,6 +321,11 @@ public struct TCDcdbError: TCDcdbErrorType {
     /// 标签键值校验或鉴权失败。
     public static var failedOperation_TagDryRunError: TCDcdbError {
         TCDcdbError(.failedOperation_TagDryRunError)
+    }
+
+    /// 标签配额不足。
+    public static var failedOperation_TagQuotaExceedLimit: TCDcdbError {
+        TCDcdbError(.failedOperation_TagQuotaExceedLimit)
     }
 
     /// 实例安全组信息更新失败。
@@ -714,6 +743,16 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.limitExceeded_TooFrequentlyCalled)
     }
 
+    /// 临时实例已经存在了。
+    public static var resourceInUse_TempInstanceExist: TCDcdbError {
+        TCDcdbError(.resourceInUse_TempInstanceExist)
+    }
+
+    /// 资源不足。
+    public static var resourceInsufficient: TCDcdbError {
+        TCDcdbError(.resourceInsufficient)
+    }
+
     /// 指定的账号不存在。
     public static var resourceNotFound_AccountDoesNotExist: TCDcdbError {
         TCDcdbError(.resourceNotFound_AccountDoesNotExist)
@@ -744,6 +783,11 @@ public struct TCDcdbError: TCDcdbErrorType {
         TCDcdbError(.resourceUnavailable_CosApiFailed)
     }
 
+    /// 独享集群状态异常。
+    public static var resourceUnavailable_ExclusterStatusAbnormal: TCDcdbError {
+        TCDcdbError(.resourceUnavailable_ExclusterStatusAbnormal)
+    }
+
     /// 数据库实例已被删除。
     public static var resourceUnavailable_InstanceAlreadyDeleted: TCDcdbError {
         TCDcdbError(.resourceUnavailable_InstanceAlreadyDeleted)
@@ -767,6 +811,10 @@ public struct TCDcdbError: TCDcdbErrorType {
     /// 没有权限操作该接口或资源。
     public static var unauthorizedOperation_PermissionDenied: TCDcdbError {
         TCDcdbError(.unauthorizedOperation_PermissionDenied)
+    }
+
+    public static var unsupportedOperation_DbVersionNotSupported: TCDcdbError {
+        TCDcdbError(.unsupportedOperation_DbVersionNotSupported)
     }
 
     /// 不支持的无效操作。

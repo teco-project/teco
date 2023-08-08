@@ -52,7 +52,10 @@ extension Facefusion {
         /// 默认在融合结果图右下角添加“本图片为AI合成图片”字样，您可根据自身需要替换为其他的Logo图片。
         public let logoParam: LogoParam?
 
-        public init(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil) {
+        /// 融合参数。
+        public let fuseParam: FuseParam?
+
+        public init(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, fuseParam: FuseParam? = nil) {
             self.projectId = projectId
             self.modelId = modelId
             self.rspImgType = rspImgType
@@ -61,6 +64,7 @@ extension Facefusion {
             self.fuseFaceDegree = fuseFaceDegree
             self.logoAdd = logoAdd
             self.logoParam = logoParam
+            self.fuseParam = fuseParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -72,6 +76,7 @@ extension Facefusion {
             case fuseFaceDegree = "FuseFaceDegree"
             case logoAdd = "LogoAdd"
             case logoParam = "LogoParam"
+            case fuseParam = "FuseParam"
         }
     }
 
@@ -121,8 +126,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
-        self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam), region: region, logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
+        self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片人脸融合
@@ -133,7 +138,7 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
-        try await self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam), region: region, logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
+        try await self.fuseFace(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, logoAdd: logoAdd, logoParam: logoParam, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 }

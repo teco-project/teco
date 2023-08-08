@@ -79,57 +79,57 @@ extension Dlc {
         }
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable
     public func describeNotebookSessionLog(_ input: DescribeNotebookSessionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionLogResponse> {
         self.client.execute(action: "DescribeNotebookSessionLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable
     public func describeNotebookSessionLog(_ input: DescribeNotebookSessionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionLogResponse {
         try await self.client.execute(action: "DescribeNotebookSessionLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable
     public func describeNotebookSessionLog(sessionId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionLogResponse> {
         self.describeNotebookSessionLog(.init(sessionId: sessionId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable
     public func describeNotebookSessionLog(sessionId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionLogResponse {
         try await self.describeNotebookSessionLog(.init(sessionId: sessionId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable
     public func describeNotebookSessionLogPaginated(_ input: DescribeNotebookSessionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [String])> {
         self.client.paginate(input: input, region: region, command: self.describeNotebookSessionLog, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     @inlinable @discardableResult
     public func describeNotebookSessionLogPaginated(_ input: DescribeNotebookSessionLogRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeNotebookSessionLogResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeNotebookSessionLog, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session日志
+    /// 查询交互式 session日志
     ///
-    /// 本接口（DescribeNotebookSessionLog）用于获取notebook livy session日志
+    /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     ///
     /// - Returns: `AsyncSequence`s of `String` and `DescribeNotebookSessionLogResponse` that can be iterated over asynchronously on demand.
     @inlinable

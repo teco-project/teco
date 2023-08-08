@@ -21,28 +21,42 @@ import TecoCore
 extension Trp {
     /// DescribeScanLogs请求参数结构体
     public struct DescribeScanLogsRequest: TCRequestModel {
-        /// 码
-        public let code: String
-
         /// 企业ID
         public let corpId: UInt64?
 
-        public init(code: String, corpId: UInt64? = nil) {
-            self.code = code
+        /// 分页数量
+        public let pageSize: UInt64?
+
+        /// 当前分页
+        public let pageNumber: UInt64?
+
+        /// 安心码
+        public let code: String?
+
+        /// 小程序用户ID
+        public let openid: String?
+
+        public init(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, code: String? = nil, openid: String? = nil) {
             self.corpId = corpId
+            self.pageSize = pageSize
+            self.pageNumber = pageNumber
+            self.code = code
+            self.openid = openid
         }
 
         enum CodingKeys: String, CodingKey {
-            case code = "Code"
             case corpId = "CorpId"
+            case pageSize = "PageSize"
+            case pageNumber = "PageNumber"
+            case code = "Code"
+            case openid = "Openid"
         }
     }
 
     /// DescribeScanLogs返回参数结构体
     public struct DescribeScanLogsResponse: TCResponseModel {
         /// 【弃用】
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let products: [ScanLog]?
+        public let products: [ScanLog]
 
         /// 条数
         public let totalCount: Int64
@@ -75,13 +89,13 @@ extension Trp {
 
     /// 查询扫码日志明细
     @inlinable
-    public func describeScanLogs(code: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanLogsResponse> {
-        self.describeScanLogs(.init(code: code, corpId: corpId), region: region, logger: logger, on: eventLoop)
+    public func describeScanLogs(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, code: String? = nil, openid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanLogsResponse> {
+        self.describeScanLogs(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, code: code, openid: openid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫码日志明细
     @inlinable
-    public func describeScanLogs(code: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanLogsResponse {
-        try await self.describeScanLogs(.init(code: code, corpId: corpId), region: region, logger: logger, on: eventLoop)
+    public func describeScanLogs(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, code: String? = nil, openid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanLogsResponse {
+        try await self.describeScanLogs(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, code: code, openid: openid), region: region, logger: logger, on: eventLoop)
     }
 }

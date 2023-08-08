@@ -244,6 +244,14 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parallelNodes: String?
 
+        /// scf拒绝时返回信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rejectedCloudFunctionMsg: String?
+
+        /// 上一个节点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prevNode: String?
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case nodeName = "NodeName"
@@ -266,6 +274,8 @@ extension Bpaas {
             case cKafkaRegion = "CKafkaRegion"
             case externalUrl = "ExternalUrl"
             case parallelNodes = "ParallelNodes"
+            case rejectedCloudFunctionMsg = "RejectedCloudFunctionMsg"
+            case prevNode = "PrevNode"
         }
     }
 }

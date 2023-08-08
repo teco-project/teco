@@ -33,6 +33,7 @@ public struct TCEcdnError: TCEcdnErrorType {
         case internalError_DataSystemError = "InternalError.DataSystemError"
         case internalError_EcdnConfigError = "InternalError.EcdnConfigError"
         case internalError_EcdnDbError = "InternalError.EcdnDbError"
+        case internalError_EcdnQuerySystemError = "InternalError.EcdnQuerySystemError"
         case internalError_EcdnSystemError = "InternalError.EcdnSystemError"
         case internalError_Error = "InternalError.Error"
         case internalError_ProxyServer = "InternalError.ProxyServer"
@@ -165,6 +166,11 @@ public struct TCEcdnError: TCEcdnErrorType {
     /// 内部数据错误，请联系腾讯云工程师进一步排查。
     public static var internalError_EcdnDbError: TCEcdnError {
         TCEcdnError(.internalError_EcdnDbError)
+    }
+
+    /// 系统内部错误，请联系客户人员解决或稍后重试。
+    public static var internalError_EcdnQuerySystemError: TCEcdnError {
+        TCEcdnError(.internalError_EcdnQuerySystemError)
     }
 
     /// 系统错误，请联系腾讯云工程师进一步排查。

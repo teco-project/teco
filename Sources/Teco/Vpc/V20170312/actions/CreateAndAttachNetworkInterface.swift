@@ -39,6 +39,9 @@ extension Vpc {
         /// 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         public let secondaryPrivateIpAddressCount: UInt64?
 
+        /// IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        public let qosLevel: String?
+
         /// 指定绑定的安全组，例如：['sg-1dd51d']。
         public let securityGroupIds: [String]?
 
@@ -51,13 +54,14 @@ extension Vpc {
         /// 绑定类型：0 标准型 1 扩展型。
         public let attachType: UInt64?
 
-        public init(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil) {
+        public init(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
             self.instanceId = instanceId
             self.privateIpAddresses = privateIpAddresses
             self.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount
+            self.qosLevel = qosLevel
             self.securityGroupIds = securityGroupIds
             self.networkInterfaceDescription = networkInterfaceDescription
             self.tags = tags
@@ -71,6 +75,7 @@ extension Vpc {
             case instanceId = "InstanceId"
             case privateIpAddresses = "PrivateIpAddresses"
             case secondaryPrivateIpAddressCount = "SecondaryPrivateIpAddressCount"
+            case qosLevel = "QosLevel"
             case securityGroupIds = "SecurityGroupIds"
             case networkInterfaceDescription = "NetworkInterfaceDescription"
             case tags = "Tags"
@@ -133,8 +138,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
-        self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
+        self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡并绑定云服务器
@@ -148,7 +153,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
-        try await self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
+    public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
+        try await self.createAndAttachNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, instanceId: instanceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, networkInterfaceDescription: networkInterfaceDescription, tags: tags, attachType: attachType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -21,17 +21,20 @@ extension TCCvmError {
         enum Code: String {
             case bandwidthPackageIdNotSupported = "UnsupportedOperation.BandwidthPackageIdNotSupported"
             case diskSnapCreateTimeTooOld = "UnsupportedOperation.DiskSnapCreateTimeTooOld"
+            case edgeZoneInstance = "UnsupportedOperation.EdgeZoneInstance"
             case edgeZoneNotSupportCloudDisk = "UnsupportedOperation.EdgeZoneNotSupportCloudDisk"
             case elasticNetworkInterface = "UnsupportedOperation.ElasticNetworkInterface"
             case encryptedImagesNotSupported = "UnsupportedOperation.EncryptedImagesNotSupported"
             case heterogeneousChangeInstanceFamily = "UnsupportedOperation.HeterogeneousChangeInstanceFamily"
             case hibernationForNormalInstance = "UnsupportedOperation.HibernationForNormalInstance"
+            case hibernationOsVersion = "UnsupportedOperation.HibernationOsVersion"
             case iPv6NotSupportVpcMigrate = "UnsupportedOperation.IPv6NotSupportVpcMigrate"
             case imageTooLargeExportUnsupported = "UnsupportedOperation.ImageTooLargeExportUnsupported"
             case instanceChargeType = "UnsupportedOperation.InstanceChargeType"
             case instanceMixedPricingModel = "UnsupportedOperation.InstanceMixedPricingModel"
             case instanceMixedZoneType = "UnsupportedOperation.InstanceMixedZoneType"
             case instanceOsWindows = "UnsupportedOperation.InstanceOsWindows"
+            case instanceReinstallFailed = "UnsupportedOperation.InstanceReinstallFailed"
             case instanceStateBanning = "UnsupportedOperation.InstanceStateBanning"
             case instanceStateCorrupted = "UnsupportedOperation.InstanceStateCorrupted"
             case instanceStateEnterRescueMode = "UnsupportedOperation.InstanceStateEnterRescueMode"
@@ -57,6 +60,7 @@ extension TCCvmError {
             case invalidDataDisk = "UnsupportedOperation.InvalidDataDisk"
             case invalidDisk = "UnsupportedOperation.InvalidDisk"
             case invalidDiskBackupQuota = "UnsupportedOperation.InvalidDiskBackupQuota"
+            case invalidDiskFastRollback = "UnsupportedOperation.InvalidDiskFastRollback"
             case invalidImageLicenseTypeForReset = "UnsupportedOperation.InvalidImageLicenseTypeForReset"
             case invalidInstanceNotSupportedProtectedInstance = "UnsupportedOperation.InvalidInstanceNotSupportedProtectedInstance"
             case invalidInstanceWithSwapDisk = "UnsupportedOperation.InvalidInstanceWithSwapDisk"
@@ -91,7 +95,10 @@ extension TCCvmError {
             case spotUnsupportedRegion = "UnsupportedOperation.SpotUnsupportedRegion"
             case stoppedModeStopCharging = "UnsupportedOperation.StoppedModeStopCharging"
             case stoppedModeStopChargingSameFamily = "UnsupportedOperation.StoppedModeStopChargingSameFamily"
+            case systemDiskType = "UnsupportedOperation.SystemDiskType"
+            case underwriteDiscountGreaterThanPrepaidDiscount = "UnsupportedOperation.UnderwriteDiscountGreaterThanPrepaidDiscount"
             case underwritingInstanceTypeOnlySupportAutoRenew = "UnsupportedOperation.UnderwritingInstanceTypeOnlySupportAutoRenew"
+            case unsupportedARMChangeInstanceFamily = "UnsupportedOperation.UnsupportedARMChangeInstanceFamily"
             case unsupportedChangeInstanceFamily = "UnsupportedOperation.UnsupportedChangeInstanceFamily"
             case unsupportedChangeInstanceFamilyToARM = "UnsupportedOperation.UnsupportedChangeInstanceFamilyToARM"
             case unsupportedChangeInstanceToThisInstanceFamily = "UnsupportedOperation.UnsupportedChangeInstanceToThisInstanceFamily"
@@ -133,6 +140,11 @@ extension TCCvmError {
             UnsupportedOperation(.diskSnapCreateTimeTooOld)
         }
 
+        /// 边缘可用区实例不支持此项操作。
+        public static var edgeZoneInstance: UnsupportedOperation {
+            UnsupportedOperation(.edgeZoneInstance)
+        }
+
         /// 所选择的边缘可用区不支持云盘操作。
         public static var edgeZoneNotSupportCloudDisk: UnsupportedOperation {
             UnsupportedOperation(.edgeZoneNotSupportCloudDisk)
@@ -156,6 +168,11 @@ extension TCCvmError {
         /// 不支持未开启休眠功能的实例。
         public static var hibernationForNormalInstance: UnsupportedOperation {
             UnsupportedOperation(.hibernationForNormalInstance)
+        }
+
+        /// 当前的镜像不支持休眠。
+        public static var hibernationOsVersion: UnsupportedOperation {
+            UnsupportedOperation(.hibernationOsVersion)
         }
 
         /// IPv6实例不支持VPC迁移
@@ -188,6 +205,11 @@ extension TCCvmError {
         /// 请求不支持操作系统为`Xserver windows2012cndatacenterx86_64`的实例`ins-xxxxxx` 。
         public static var instanceOsWindows: UnsupportedOperation {
             UnsupportedOperation(.instanceOsWindows)
+        }
+
+        /// 推荐您再次重装系统，也可以销毁/退还实例或提交工单（https://cloud.tencent.com/online-service?from=connect-us）反馈
+        public static var instanceReinstallFailed: UnsupportedOperation {
+            UnsupportedOperation(.instanceReinstallFailed)
         }
 
         /// 该子机处于封禁状态，请联系相关人员处理。
@@ -315,6 +337,11 @@ extension TCCvmError {
             UnsupportedOperation(.invalidDiskBackupQuota)
         }
 
+        /// 不支持极速回滚。
+        public static var invalidDiskFastRollback: UnsupportedOperation {
+            UnsupportedOperation(.invalidDiskFastRollback)
+        }
+
         /// 镜像许可类型与实例不符，请选择其他镜像。
         public static var invalidImageLicenseTypeForReset: UnsupportedOperation {
             UnsupportedOperation(.invalidImageLicenseTypeForReset)
@@ -421,7 +448,7 @@ extension TCCvmError {
             UnsupportedOperation(.originalInstanceTypeInvalid)
         }
 
-        /// 你的账户不支持镜像预热
+        /// 您的账户不支持镜像预热
         public static var preheatImage: UnsupportedOperation {
             UnsupportedOperation(.preheatImage)
         }
@@ -491,9 +518,23 @@ extension TCCvmError {
             UnsupportedOperation(.stoppedModeStopChargingSameFamily)
         }
 
+        /// 请求不支持该类型系统盘。
+        public static var systemDiskType: UnsupportedOperation {
+            UnsupportedOperation(.systemDiskType)
+        }
+
+        public static var underwriteDiscountGreaterThanPrepaidDiscount: UnsupportedOperation {
+            UnsupportedOperation(.underwriteDiscountGreaterThanPrepaidDiscount)
+        }
+
         /// 该机型为包销机型，RenewFlag的值只允许设置为NOTIFY_AND_AUTO_RENEW。
         public static var underwritingInstanceTypeOnlySupportAutoRenew: UnsupportedOperation {
             UnsupportedOperation(.underwritingInstanceTypeOnlySupportAutoRenew)
+        }
+
+        /// 当前实例不允许变配到非ARM机型。
+        public static var unsupportedARMChangeInstanceFamily: UnsupportedOperation {
+            UnsupportedOperation(.unsupportedARMChangeInstanceFamily)
         }
 
         /// 指定机型不支持跨机型调整配置。
@@ -540,6 +581,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_BandwidthPackageIdNotSupported
             case .diskSnapCreateTimeTooOld:
                 code = .unsupportedOperation_DiskSnapCreateTimeTooOld
+            case .edgeZoneInstance:
+                code = .unsupportedOperation_EdgeZoneInstance
             case .edgeZoneNotSupportCloudDisk:
                 code = .unsupportedOperation_EdgeZoneNotSupportCloudDisk
             case .elasticNetworkInterface:
@@ -550,6 +593,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_HeterogeneousChangeInstanceFamily
             case .hibernationForNormalInstance:
                 code = .unsupportedOperation_HibernationForNormalInstance
+            case .hibernationOsVersion:
+                code = .unsupportedOperation_HibernationOsVersion
             case .iPv6NotSupportVpcMigrate:
                 code = .unsupportedOperation_IPv6NotSupportVpcMigrate
             case .imageTooLargeExportUnsupported:
@@ -562,6 +607,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_InstanceMixedZoneType
             case .instanceOsWindows:
                 code = .unsupportedOperation_InstanceOsWindows
+            case .instanceReinstallFailed:
+                code = .unsupportedOperation_InstanceReinstallFailed
             case .instanceStateBanning:
                 code = .unsupportedOperation_InstanceStateBanning
             case .instanceStateCorrupted:
@@ -612,6 +659,8 @@ extension TCCvmError {
                 code = .unsupportedOperation_InvalidDisk
             case .invalidDiskBackupQuota:
                 code = .unsupportedOperation_InvalidDiskBackupQuota
+            case .invalidDiskFastRollback:
+                code = .unsupportedOperation_InvalidDiskFastRollback
             case .invalidImageLicenseTypeForReset:
                 code = .unsupportedOperation_InvalidImageLicenseTypeForReset
             case .invalidInstanceNotSupportedProtectedInstance:
@@ -680,8 +729,14 @@ extension TCCvmError {
                 code = .unsupportedOperation_StoppedModeStopCharging
             case .stoppedModeStopChargingSameFamily:
                 code = .unsupportedOperation_StoppedModeStopChargingSameFamily
+            case .systemDiskType:
+                code = .unsupportedOperation_SystemDiskType
+            case .underwriteDiscountGreaterThanPrepaidDiscount:
+                code = .unsupportedOperation_UnderwriteDiscountGreaterThanPrepaidDiscount
             case .underwritingInstanceTypeOnlySupportAutoRenew:
                 code = .unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew
+            case .unsupportedARMChangeInstanceFamily:
+                code = .unsupportedOperation_UnsupportedARMChangeInstanceFamily
             case .unsupportedChangeInstanceFamily:
                 code = .unsupportedOperation_UnsupportedChangeInstanceFamily
             case .unsupportedChangeInstanceFamilyToARM:

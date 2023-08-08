@@ -64,12 +64,20 @@ extension Dbbrain {
         /// 各来源地址的慢日志占比详情列表。
         public let items: [SlowLogHost]
 
+        /// 各来源用户名的慢日志占比详情列表。
+        public let userNameItems: [SlowLogUser]
+
+        /// 来源用户数目。
+        public let userTotalCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case items = "Items"
+            case userNameItems = "UserNameItems"
+            case userTotalCount = "UserTotalCount"
             case requestId = "RequestId"
         }
     }

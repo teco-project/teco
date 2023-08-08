@@ -21,19 +21,19 @@ import TecoCore
 extension Tag {
     /// AttachResourcesTag请求参数结构体
     public struct AttachResourcesTagRequest: TCRequestModel {
-        /// 资源所属业务名称（资源六段式中的第三段）
+        /// 业务的英文简称，即资源六段式第三段。资源六段式的描述方式参考：https://cloud.tencent.com/document/product/651/89122
         public let serviceType: String
 
         /// 资源ID数组，资源个数最多为50
         public let resourceIds: [String]
 
-        /// 标签键
+        /// 需要绑定的标签键，取值规范参考：https://cloud.tencent.com/document/product/651/13354
         public let tagKey: String
 
-        /// 标签值
+        /// 需要绑定的标签值，取值规范参考：https://cloud.tencent.com/document/product/651/13354
         public let tagValue: String
 
-        /// 资源所在地域，不区分地域的资源不需要传入该字段，区分地域的资源必填
+        /// 资源所在地域，区分地域的资源必填，不区分地域的资源不需要传入该字段。注意该地域必须为资源ID参数ResourceIds对应的地域
         public let resourceRegion: String?
 
         /// 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填

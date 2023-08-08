@@ -39,7 +39,7 @@ extension Faceid {
         /// CopyWarn，复印件告警
         /// BorderCheckWarn，边框和框内遮挡告警
         /// ReshootWarn，翻拍告警
-        /// DetectPsWarn，PS检测告警
+        /// DetectPsWarn，PS检测告警（疑似存在PS痕迹）
         /// TempIdWarn，临时身份证告警
         /// Quality，图片质量告警（评价图片模糊程度）
         ///
@@ -107,7 +107,7 @@ extension Faceid {
         /// -9103 身份证翻拍告警，
         /// -9105 身份证框内遮挡告警，
         /// -9104 临时身份证告警，
-        /// -9106 身份证 PS 告警。
+        /// -9106 身份证 PS 告警（疑似存在PS痕迹）。
         /// -8001 图片模糊告警
         /// 多个会 |  隔开如 "-9101|-9106|-9104"
         public let warnings: String

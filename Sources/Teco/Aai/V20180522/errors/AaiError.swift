@@ -45,6 +45,7 @@ public struct TCAaiError: TCAaiErrorType {
         case internalError_TextConvertFailed = "InternalError.TextConvertFailed"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_AppIdNotRegistered = "InvalidParameterValue.AppIdNotRegistered"
+        case invalidParameterValue_Codec = "InvalidParameterValue.Codec"
         case invalidParameterValue_ErrorInvalidAppid = "InvalidParameterValue.ErrorInvalidAppid"
         case invalidParameterValue_ErrorInvalidClientip = "InvalidParameterValue.ErrorInvalidClientip"
         case invalidParameterValue_ErrorInvalidEngservice = "InvalidParameterValue.ErrorInvalidEngservice"
@@ -208,6 +209,11 @@ public struct TCAaiError: TCAaiErrorType {
     /// appid未注册。
     public static var invalidParameterValue_AppIdNotRegistered: TCAaiError {
         TCAaiError(.invalidParameterValue_AppIdNotRegistered)
+    }
+
+    /// 编解码错误。
+    public static var invalidParameterValue_Codec: TCAaiError {
+        TCAaiError(.invalidParameterValue_Codec)
     }
 
     /// AppId无效。

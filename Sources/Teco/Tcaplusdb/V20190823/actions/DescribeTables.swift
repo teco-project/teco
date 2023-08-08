@@ -28,7 +28,7 @@ extension Tcaplusdb {
         /// 待查询表格所属表格组ID列表
         public let tableGroupIds: [String]?
 
-        /// 待查询表格信息列表
+        /// 待查询表格信息列表，用户不用关注，过滤请使用filter
         public let selectedTables: [SelectedTableInfoNew]?
 
         /// 过滤条件，本接口支持：TableName，TableInstanceId
