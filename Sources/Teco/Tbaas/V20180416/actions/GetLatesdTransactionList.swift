@@ -115,43 +115,43 @@ extension Tbaas {
         }
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable
     public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
         self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable
     public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
         try await self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable
     public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
         self.getLatesdTransactionList(.init(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable
     public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
         try await self.getLatesdTransactionList(.init(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable
     public func getLatesdTransactionListPaginated(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TransactionItem])> {
         self.client.paginate(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     @inlinable @discardableResult
     public func getLatesdTransactionListPaginated(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, onResponse: @escaping (GetLatesdTransactionListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.getLatesdTransactionList, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取最新交易列表
+    /// 获取最新交易列表（已废弃）
     ///
     /// - Returns: `AsyncSequence`s of `TransactionItem` and `GetLatesdTransactionListResponse` that can be iterated over asynchronously on demand.
     @inlinable

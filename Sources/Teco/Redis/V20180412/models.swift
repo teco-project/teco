@@ -19,27 +19,35 @@ import TecoCore
 extension Redis {
     /// 子账号信息
     public struct Account: TCOutputModel {
-        /// 实例ID
+        /// 实例 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
 
-        /// 账号名称（如果是主账号，名称为root）
+        /// 账号名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountName: String?
 
-        /// 账号描述信息
+        /// 账号描述信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
-        /// 读写策略：r-只读，w-只写，rw-读写
+        /// 读写权限策略。
+        /// - r：只读。
+        /// - w：只写。
+        /// - rw：读写。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privilege: String?
 
-        /// 路由策略：master-主节点，replication-从节点
+        /// 只读路由策略。
+        /// - master：主节点。
+        /// - replication：从节点。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readonlyPolicy: [String]?
 
-        /// 子账号状态：1-账号变更中，2-账号有效，-4-账号已删除
+        /// 子账号状态.
+        /// - 1：账号变更中。
+        /// - 2：账号有效。
+        /// - 4：账号已删除。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
 
@@ -55,16 +63,16 @@ extension Redis {
 
     /// 备份文件下载信息
     public struct BackupDownloadInfo: TCOutputModel {
-        /// 备份文件名称
+        /// 备份文件名称。
         public let fileName: String
 
-        /// 备份文件大小，单位B，如果为0，表示无效
-        public let fileSize: UInt64
+        /// 备份文件大小，单位B，如果为0，表示无效。
+        public let fileSize: Int64
 
-        /// 备份文件外网下载地址（6小时）
+        /// 备份文件外网下载地址。下载地址的有效时长为6小时，过期后请重新获取。
         public let downloadUrl: String
 
-        /// 备份文件内网下载地址（6小时）
+        /// 备份文件内网下载地址。下载地址的有效时长为6小时，过期后请重新获取。
         public let innerDownloadUrl: String
 
         enum CodingKeys: String, CodingKey {
@@ -75,12 +83,12 @@ extension Redis {
         }
     }
 
-    /// 自定义的备份文件下载地址的 VPC 信息。
+    /// 已配置的备份文件下载地址对应的 VPC 信息。
     public struct BackupLimitVpcItem: TCInputModel, TCOutputModel {
-        /// 自定义下载备份文件的VPC 所属地域。
+        /// 备份文件的下载地址对应VPC 所属的地域。
         public let region: String
 
-        /// 自定义下载备份文件的 VPC 列表。
+        /// 备份文件下载地址的 VPC 列表。
         public let vpcList: [String]
 
         public init(region: String, vpcList: [String]) {
@@ -158,16 +166,16 @@ extension Redis {
 
     /// 延时分布详情
     public struct DelayDistribution: TCOutputModel {
-        /// 分布阶梯，延时和Ladder值的对应关系：
-        /// [0ms,1ms]: 1；
-        /// [1ms,5ms]: 5；
-        /// [5ms,10ms]: 10；
-        /// [10ms,50ms]: 50；
-        /// [50ms,200ms]: 200；
-        /// [200ms,∞]: -1。
+        /// 指延时分布阶梯，其与延时区间的对应关系如下所示。
+        /// - 1：[0ms,1ms]。
+        /// - 5： [1ms,5ms]。
+        /// - 10： [5ms,10ms]。
+        /// - 50： [10ms,50ms]。
+        /// - 200：[50ms,200ms]。
+        /// - -1： [200ms,∞]。
         public let ladder: Int64
 
-        /// 延时处于当前分布阶梯的命令数量，个。
+        /// 延时处于当前分布阶梯的命令数量，单位：个。
         public let size: Int64
 
         /// 修改时间。
@@ -228,7 +236,7 @@ extension Redis {
 
     /// 复制组信息
     public struct Groups: TCOutputModel {
-        /// 用户AppID
+        /// 用户 APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         public let appId: Int64
 
         /// 地域ID 。
@@ -248,11 +256,10 @@ extension Redis {
         /// - 21：印度
         /// - 22：美东（弗吉尼亚）
         /// - 23：泰国
-        /// - 24：俄罗斯
         /// - 25：日本
         public let regionId: Int64
 
-        /// 复制组 ID。
+        /// 复制组 ID。格式如：crs-rpl-deind****。
         public let groupId: String
 
         /// 复制组名称。
@@ -348,43 +355,50 @@ extension Redis {
 
     /// 实例节点类型
     public struct InstanceClusterNode: TCOutputModel {
-        /// 节点名称
+        /// 节点名称。
         public let name: String
 
-        /// 实例运行时节点Id
+        /// 实例运行时节点 ID。
         public let runId: String
 
-        /// 集群角色：0-master；1-slave
+        /// 集群角色。
+        /// - 0：master。
+        /// - 1：slave。
         public let role: Int64
 
-        /// 节点状态：0-readwrite, 1-read, 2-backup
+        /// 节点状态。
+        /// - 0：readwrite,。
+        /// - 1：read。
+        /// - 2：backup。
         public let status: Int64
 
-        /// 服务状态：0-down；1-on
+        /// 服务状态。
+        /// 0-down。
+        /// 1-on
         public let connected: Int64
 
-        /// 节点创建时间
+        /// 节点创建时间。
         public let createTime: String
 
-        /// 节点下线时间
+        /// 节点下线时间。
         public let downTime: String
 
-        /// 节点slot分布
+        /// 节点 Slot 分布区间。
         public let slots: String
 
-        /// 节点key分布
+        /// 节点 Key分布。
         public let keys: Int64
 
-        /// 节点qps
+        /// 节点 QPS。分片节点每秒执行次数。单位：次/秒。
         public let qps: Int64
 
-        /// 节点qps倾斜度
+        /// 节点 QPS 倾斜度。
         public let qpsSlope: Float
 
-        /// 节点存储
+        /// 节点存储。
         public let storage: Int64
 
-        /// 节点存储倾斜度
+        /// 节点存储倾斜度。
         public let storageSlope: Float
 
         enum CodingKeys: String, CodingKey {
@@ -406,31 +420,35 @@ extension Redis {
 
     /// 实例分片列表信息
     public struct InstanceClusterShard: TCOutputModel {
-        /// 分片节点名称
+        /// 分片节点名称。
         public let shardName: String
 
-        /// 分片节点Id
+        /// 分片节点序号。
         public let shardId: String
 
-        /// 角色
+        /// 分片节点的角色。
+        /// - 0：主节点。
+        /// - 1：副本节点。
         public let role: Int64
 
-        /// Key数量
+        /// Key数量。
         public let keys: Int64
 
-        /// slot信息
+        /// Slot信息。
         public let slots: String
 
-        /// 使用容量
+        /// 已使用容量。
         public let storage: Int64
 
-        /// 容量倾斜率
+        /// 容量倾斜率。
         public let storageSlope: Float
 
-        /// 实例运行时节点Id
+        /// 实例运行时节点 ID。
         public let runid: String
 
-        /// 服务状态：0-down；1-on
+        /// 服务状态。
+        /// - 0：down。
+        /// - 1：on。
         public let connected: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -448,28 +466,32 @@ extension Redis {
 
     /// 实例枚举类型参数描述
     public struct InstanceEnumParam: TCOutputModel {
-        /// 参数名
+        /// 参数名称。
         public let paramName: String
 
-        /// 参数类型：enum
+        /// 参数类型，例如：Enum。
         public let valueType: String
 
-        /// 修改后是否需要重启：true，false
+        /// 参数值修改后是否需要重启。
+        /// - true：需要。
+        /// - false：不需要。
         public let needRestart: String
 
-        /// 参数默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 当前运行参数值
+        /// 参数当前运行值。
         public let currentValue: String
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: String
 
-        /// 参数可取值
+        /// 参数可取的值。
         public let enumValue: [String]
 
-        /// 参数状态, 1: 修改中， 2：修改完成
+        /// 参数修改状态。
+        /// - 1: 修改中。
+        /// - 2：修改完成。
         public let status: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -533,28 +555,32 @@ extension Redis {
 
     /// 实例多选项类型参数描述
     public struct InstanceMultiParam: TCOutputModel {
-        /// 参数名
+        /// 参数名称。
         public let paramName: String
 
-        /// 参数类型：multi
+        /// 参数类型。例如：multi。
         public let valueType: String
 
-        /// 修改后是否需要重启：true，false
+        /// 参数修改后是否需要重启。
+        /// - true：需要。
+        /// - false：不需要。
         public let needRestart: String
 
-        /// 参数默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 当前运行参数值
+        /// 当前运行参数值。
         public let currentValue: String
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: String
 
-        /// 参数说明
+        /// 参数说明。
         public let enumValue: [String]
 
-        /// 参数状态, 1: 修改中， 2：修改完成
+        /// 参数修改的状态。
+        /// - 1：修改中。
+        /// - 2：修改完成。
         public let status: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -571,10 +597,10 @@ extension Redis {
 
     /// 实例节点
     public struct InstanceNode: TCOutputModel {
-        /// Id
+        /// 实例 ID。
         public let id: Int64
 
-        /// 节点详细信息
+        /// 节点详细信息。
         public let instanceClusterNode: [InstanceClusterNode]
 
         enum CodingKeys: String, CodingKey {
@@ -604,19 +630,22 @@ extension Redis {
 
     /// 实例参数修改历史
     public struct InstanceParamHistory: TCOutputModel {
-        /// 参数名称
+        /// 参数名称。
         public let paramName: String
 
-        /// 修改前值
+        /// 参数修改之前的值。
         public let preValue: String
 
-        /// 修改后值
+        /// 参数修改之后的值。
         public let newValue: String
 
-        /// 状态：1-参数配置修改中；2-参数配置修改成功；3-参数配置修改失败
+        /// 参数配置状态。
+        /// - 1：参数配置修改中。
+        /// - 2：参数配置修改成功。
+        /// - 3：参数配置修改失败。
         public let status: Int64
 
-        /// 修改时间
+        /// 修改时间。
         public let modifyTime: String
 
         enum CodingKeys: String, CodingKey {
@@ -630,16 +659,16 @@ extension Redis {
 
     /// 代理慢查询详情
     public struct InstanceProxySlowlogDetail: TCOutputModel {
-        /// 慢查询耗时（单位：毫秒）。
+        /// 慢查询耗时时长。单位：毫秒。
         public let duration: Int64
 
         /// 客户端地址。
         public let client: String
 
-        /// 命令。
+        /// 慢查询的命令。
         public let command: String
 
-        /// 详细命令行信息。
+        /// 慢查询详细命令行信息。
         public let commandLine: String
 
         /// 执行时间。
@@ -656,10 +685,10 @@ extension Redis {
 
     /// 实例安全组信息
     public struct InstanceSecurityGroupDetail: TCOutputModel {
-        /// 实例Id
+        /// 实例 ID。
         public let instanceId: String
 
-        /// 安全组信息
+        /// 安全组信息，包括：安全组 ID、安全组名称、安全组出入站规则。
         public let securityGroupDetails: [SecurityGroupDetail]
 
         enum CodingKeys: String, CodingKey {
@@ -676,7 +705,7 @@ extension Redis {
         /// 实例 ID。
         public let instanceId: String
 
-        /// 用户的 AppID。
+        /// 用户APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         public let appid: Int64
 
         /// 项目 ID。
@@ -703,22 +732,32 @@ extension Redis {
         /// 实例端口号。
         public let port: Int64
 
-        /// 实例创建时间。
+        /// 实例创建时间。格式如：2020-01-15 10:20:00。
         public let createtime: String
 
-        /// 实例容量大小，单位：MB。
+        /// 实例内存容量大小。单位：MB，1MB=1024KB。
         public let size: Float
 
-        /// 该字段已废弃。可使用云监控 API 接口 [GetMonitorData](https://cloud.tencent.com/document/product/248/31014) 获取实例已使用的内容容量。
+        /// 该字段已废弃。请使用腾讯云可观测平台API 接口 [GetMonitorData](https://cloud.tencent.com/document/product/248/31014) 获取实例已使用的内存容量。
         public let sizeUsed: Float
 
-        /// 实例类型：<ul><li>1：Redis2.8内存版（集群架构）。</li><li>2：Redis2.8内存版（标准架构）。</li><li>3：CKV 3.2内存版(标准架构)。</li><li>4：CKV 3.2内存版(集群架构)。</li><li>5：Redis2.8内存版（单机）。</li></li><li>6：Redis4.0内存版（标准架构）。</li></li><li>7：Redis4.0内存版（集群架构）。</li></li><li>8：Redis5.0内存版（标准架构）。</li></li><li>9：Redis5.0内存版（集群架构）。</li></ul>
+        /// 实例类型。
+        /// - 2：Redis 2.8内存版（标准架构）。
+        /// - 3：CKV 3.2内存版（标准架构）。
+        /// - 4：CKV 3.2内存版（集群架构）。
+        /// - 5：Redis 2.8内存版（单机）。
+        /// - 6：Redis 4.0内存版（标准架构）。
+        /// - 7：Redis 4.0内存版（集群架构）。
+        /// - 8：Redis 5.0内存版（标准架构）。
+        /// - 9：Redis 5.0内存版（集群架构）。
+        /// - 15：Redis 6.2内存版（标准架构）。
+        /// - 16：Redis 6.2内存版（集群架构）。
         public let type: Int64
 
         /// 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
         public let autoRenewFlag: Int64
 
-        /// 实例到期时间。
+        /// 包年包月计费实例到期的时间。
         public let deadlineTime: String
 
         /// 引擎：社区版Redis、腾讯云CKV。
@@ -739,7 +778,7 @@ extension Redis {
         /// 实例运行状态描述：如”实例运行中“。
         public let instanceTitle: String
 
-        /// 计划下线时间。
+        /// 已隔离实例默认下线时间。按量计费实例隔离后默认两小时后下线，包年包月默认7天后下线。格式如：2020-02-15 10:20:00。
         public let offlineTime: String
 
         /// 流程中的实例，返回子状态。
@@ -763,7 +802,7 @@ extension Redis {
         /// 计费 ID。
         public let priceId: Int64
 
-        /// 隔离时间。
+        /// 实例隔离开始的时间。
         public let closeTime: String
 
         /// 从节点读取权重。
@@ -813,7 +852,7 @@ extension Redis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
-        /// 监控版本。<ul><li>1m：1分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
+        /// 监控版本。<ul><li>1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见[云数据库 Redis 1分钟粒度下线公告](https://cloud.tencent.com/document/product/239/80653)。</li><li>5s：5秒粒度监控。</li></ul>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorVersion: String?
 
@@ -837,7 +876,7 @@ extension Redis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let wanAddress: String?
 
-        /// 北极星服务地址。
+        /// 北极星服务地址，内部使用。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let polarisServer: String?
 
@@ -947,12 +986,17 @@ extension Redis {
     }
 
     /// 实例标签信息
-    public struct InstanceTagInfo: TCOutputModel {
-        /// 标签键
+    public struct InstanceTagInfo: TCInputModel, TCOutputModel {
+        /// 标签键。
         public let tagKey: String
 
-        /// 标签值
+        /// 标签值。
         public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
@@ -962,28 +1006,32 @@ extension Redis {
 
     /// 实例字符型参数描述
     public struct InstanceTextParam: TCOutputModel {
-        /// 参数名
+        /// 参数名称。
         public let paramName: String
 
-        /// 参数类型：text
+        /// 参数类型。例如：text。
         public let valueType: String
 
-        /// 修改后是否需要重启：true，false
+        /// 参数修改后是否需要重启。
+        /// - true：需要。
+        /// - false：不需要。
         public let needRestart: String
 
-        /// 参数默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 当前运行参数值
+        /// 参数当前运行值。
         public let currentValue: String
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: String
 
-        /// 参数可取值
+        /// 参数可取值。
         public let textValue: [String]
 
-        /// 参数状态, 1: 修改中， 2：修改完成
+        /// 参数修改状态。
+        /// - 1: 修改中。
+        /// - 2：修改完成。
         public let status: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -1000,7 +1048,7 @@ extension Redis {
 
     /// 复制组实例
     public struct Instances: TCOutputModel {
-        /// 用户AppID。
+        /// 用户APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         public let appId: Int64
 
         /// 实例 ID。
@@ -1024,7 +1072,7 @@ extension Redis {
         /// 分片内存大小。
         public let redisShardSize: Int64
 
-        /// 实例的磁盘大小
+        /// 实例的磁盘大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
@@ -1053,7 +1101,17 @@ extension Redis {
         /// 仓库ID。
         public let grocerySysId: Int64
 
-        /// 实例类型。<ul><li>1：Redis 2.8 内存版（集群架构）。</li><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li></ul>
+        /// 实例类型。
+        /// - 2：Redis 2.8内存版（标准架构）。
+        /// - 3：CKV 3.2内存版（标准架构）。
+        /// - 4：CKV 3.2内存版（集群架构）。
+        /// - 5：Redis 2.8内存版（单机）。
+        /// - 6：Redis 4.0内存版（标准架构）。
+        /// - 7：Redis 4.0内存版（集群架构）。
+        /// - 8：Redis 5.0内存版（标准架构）。
+        /// - 9：Redis 5.0内存版（集群架构）。
+        /// - 15：Redis 6.2内存版（标准架构）。
+        /// - 16：Redis 6.2内存版（集群架构）。
         public let productType: Int64
 
         /// 实例加入复制组的时间。
@@ -1126,16 +1184,26 @@ extension Redis {
 
     /// 参数模板信息
     public struct ParamTemplateInfo: TCOutputModel {
-        /// 参数模板ID
+        /// 参数模板 ID。
         public let templateId: String
 
-        /// 参数模板名称
+        /// 参数模板名称。
         public let name: String
 
-        /// 参数模板描述
+        /// 参数模板描述。
         public let description: String
 
-        /// 产品类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        /// 实例类型。
+        /// - 2：Redis 2.8内存版（标准架构）。
+        /// - 3：CKV 3.2内存版（标准架构）。
+        /// - 4：CKV 3.2内存版（集群架构）。
+        /// - 5：Redis 2.8内存版（单机）。
+        /// - 6：Redis 4.0内存版（标准架构）。
+        /// - 7：Redis 4.0内存版（集群架构）。
+        /// - 8：Redis 5.0内存版（标准架构）。
+        /// - 9：Redis 5.0内存版（集群架构）。
+        /// - 15：Redis 6.2内存版（标准架构）。
+        /// - 16：Redis 6.2内存版（集群架构）。
         public let productType: UInt64
 
         enum CodingKeys: String, CodingKey {
@@ -1148,33 +1216,35 @@ extension Redis {
 
     /// Redis参数模板参数详情
     public struct ParameterDetail: TCOutputModel {
-        /// 参数名称
+        /// 参数名称。
         public let name: String
 
-        /// 参数类型
+        /// 参数类型。
         public let paramType: String
 
-        /// 参数默认值
+        /// 参数默认值。
         public let `default`: String
 
-        /// 参数描述
+        /// 参数描述。
         public let description: String
 
-        /// 参数当前值
+        /// 参数当前值。
         public let currentValue: String
 
-        /// 修改参数后，是否需要重启数据库以使参数生效。可能的值包括：0-不需要重启；1-需要重启
+        /// 修改参数后，是否需要重启数据库以使参数生效。
+        /// - 0：不需要重启。
+        /// - 1：需要重启。
         public let needReboot: Int64
 
-        /// 参数允许的最大值
+        /// 参数允许的最大值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let max: String?
 
-        /// 参数允许的最小值
+        /// 参数允许的最小值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let min: String?
 
-        /// 参数的可选枚举值。如果为非枚举参数，则为空
+        /// 参数可选枚举值。如果为非枚举参数，则为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enumValue: [String]?
 
@@ -1193,43 +1263,59 @@ extension Redis {
 
     /// 产品信息
     public struct ProductConf: TCOutputModel {
-        /// 产品类型，2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版(单机版)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)，10 – Redis4.0混合存储版Tendis
+        /// 产品类型。
+        /// - 2：Redis 2.8内存版（标准架构）。
+        /// - 3：CKV 3.2内存版（标准架构）。
+        /// - 4：CKV 3.2内存版（集群架构）。
+        /// - 5：Redis 2.8内存版（单机）。
+        /// - 6：Redis 4.0内存版（标准架构）。
+        /// - 7：Redis 4.0内存版（集群架构）。
+        /// - 8：Redis 5.0内存版（标准架构）。
+        /// - 9：Redis 5.0内存版（集群架构）。
+        /// - 15：Redis 6.2内存版（标准架构）。
+        /// - 16：Redis 6.2内存版（集群架构）。
         public let type: Int64
 
-        /// 产品名称，Redis主从版，CKV主从版，CKV集群版，Redis单机版，Redis集群版，混合存储版Tendis
+        /// 产品名称。包括：Redis 主从版、CKV 主从版、CKV 集群版、Redis 单机版、Redis 集群版。
         public let typeName: String
 
-        /// 购买时的最小数量
+        /// 购买时的最小数量。
         public let minBuyNum: Int64
 
-        /// 购买时的最大数量
+        /// 购买时的最大数量。
         public let maxBuyNum: Int64
 
-        /// 产品是否售罄
+        /// 产品是否售罄。
+        /// - true：售罄。
+        /// - false：未售罄。
         public let saleout: Bool
 
-        /// 产品引擎，腾讯云CKV或者社区版Redis
+        /// 产品引擎。包括：腾讯云 CKV与社区版 Redis。
         public let engine: String
 
-        /// 兼容版本，Redis-2.8，Redis-3.2，Redis-4.0
+        /// 兼容版本。包括：Redis-2.8、Redis-3.2、Redis-4.0、Redis-5.0、Redis-6.2。
         public let version: String
 
-        /// 规格总大小，单位G
+        /// 规格总大小，单位GB。
         public let totalSize: [String]
 
-        /// 每个分片大小，单位G
+        /// 每个分片大小，单位GB。
         public let shardSize: [String]
 
-        /// 副本数量
+        /// 副本数量。
         public let replicaNum: [String]
 
-        /// 分片数量
+        /// 分片数量。
         public let shardNum: [String]
 
-        /// 支持的计费模式，1-包年包月，0-按量计费
+        /// 支持的计费模式。
+        /// - 1：包年包月。
+        /// - 0：按量计费。
         public let payMode: String
 
-        /// 是否支持副本只读
+        /// 是否支持副本只读。
+        /// - true：支持副本只读。
+        /// - false：不支持。
         public let enableRepicaReadOnly: Bool
 
         enum CodingKeys: String, CodingKey {
@@ -1270,17 +1356,15 @@ extension Redis {
         /// 备份开始时间。
         public let startTime: String
 
-        /// 备份ID。
+        /// 备份任务ID。
         public let backupId: String
 
         /// 备份类型。
-        ///
-        /// - 1：用户发起的手动备份。
-        /// - 0：凌晨系统发起的备份。
+        /// - 1：凌晨系统发起的自动备份。
+        /// - 0：用户发起的手动备份。
         public let backupType: String
 
         /// 备份状态。
-        ///
         /// - 1：备份被其它流程锁定。
         /// - 2：备份正常，没有被任何流程锁定。
         /// - -1：备份已过期。
@@ -1292,7 +1376,6 @@ extension Redis {
         public let remark: String
 
         /// 备份是否被锁定。
-        ///
         /// - 0：未被锁定。
         /// - 1：已被锁定。
         public let locked: Int64
@@ -1348,46 +1431,55 @@ extension Redis {
 
     /// 单个实例信息
     public struct RedisCommonInstanceList: TCOutputModel {
-        /// 实例名称
+        /// 实例名称。
         public let instanceName: String
 
-        /// 实例id
+        /// 实例 ID。
         public let instanceId: String
 
-        /// 用户id
+        /// 用户APPID。APPID是与账号ID有唯一对应关系的应用 ID，部分腾讯云产品会使用此 APPID。
         public let appId: Int64
 
-        /// 实例所属项目id
+        /// 实例所属项目 ID。
         public let projectId: Int64
 
-        /// 实例接入区域
+        /// 实例接入区域。
         public let region: String
 
-        /// 实例接入zone
+        /// 实例接入可用区。
         public let zone: String
 
-        /// 实例网络id
+        /// 实例私有网络 ID。
         public let vpcId: String
 
-        /// 子网id
+        /// 私有网络所属子网 ID。
         public let subnetId: String
 
-        /// 实例状态信息，1-流程中 ,2-运行中, -2-实例已隔离 ,-3-实例待回收, -4-实例已删除
+        /// 实例状态信息。
+        /// - 1-流程中。
+        /// - 2-运行中。
+        /// - -2-实例已隔离。
+        /// - -3-实例待回收。
+        /// - -4-实例已删除。
         public let status: String
 
-        /// 实例网络ip
+        /// 实例私有网络 IP 地址。
         public let vips: [String]
 
-        /// 实例网络端口
+        /// 实例网络端口。
         public let vport: Int64
 
-        /// 实例创建时间
+        /// 实例创建时间。
         public let createtime: String
 
-        /// 计费类型，0-按量计费，1-包年包月
+        /// 计费类型。
+        /// - 0：按量计费。
+        /// - 1：包年包月。
         public let payMode: Int64
 
-        /// 网络类型，0-基础网络，1-VPC网络
+        /// 网络类型。
+        /// - 0：基础网络。
+        /// - 1：VPC 网络。
         public let netType: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -1410,19 +1502,19 @@ extension Redis {
 
     /// Redis节点的运行信息
     public struct RedisNode: TCOutputModel {
-        /// 节点key的个数
+        /// Redis 节点上 Key 的个数。
         public let keys: Int64
 
-        /// 节点slot分布
+        /// Redis 节点 Slot 分布范围。例如：0-5460。
         public let slot: String
 
-        /// 节点的序列ID
+        /// 节点的序列 ID。
         public let nodeId: String
 
-        /// 节点的状态
+        /// 节点的状态。
         public let status: String
 
-        /// 节点角色
+        /// 节点角色。
         public let role: String
 
         enum CodingKeys: String, CodingKey {
@@ -1439,7 +1531,7 @@ extension Redis {
         /// 节点类型。<ul><li>0：为主节点。</li><li>1：为副本节点。</li></ul>
         public let nodeType: Int64
 
-        /// 主节点或者副本节点的 ID。<ul><li>该参数用于创建 Redis 实例接口[CreateInstances](https://cloud.tencent.com/document/product/239/20026) 并不需要设置，而用于变更实例配置的接口 [UpgradeInstance](https://cloud.tencent.com/document/product/239/20013) 则需要设置。</li><li>该参数可使用接口 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 获取Integer类型的节点 ID。</li></ul>
+        /// 主节点或者副本节点的 ID。<ul><li>该参数用于创建 Redis 实例接口[CreateInstances](https://cloud.tencent.com/document/product/239/20026) 并不需要设置，而用于变更实例配置的接口 [UpgradeInstance](https://cloud.tencent.com/document/product/239/20013) 删除副本时才需要设置。</li><li>该参数可使用接口 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 获取Integer类型的节点 ID。</li></ul>
         public let nodeId: Int64?
 
         /// 主节点或者副本节点的可用区 ID。
@@ -1465,16 +1557,16 @@ extension Redis {
 
     /// Redis节点信息
     public struct RedisNodes: TCOutputModel {
-        /// 节点ID
+        /// 节点 ID。
         public let nodeId: String
 
-        /// 节点角色
+        /// 节点角色。
         public let nodeRole: String
 
-        /// 分片ID
+        /// 分片 ID。
         public let clusterId: Int64
 
-        /// 可用区ID
+        /// 可用区 ID。
         public let zoneId: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -1511,12 +1603,12 @@ extension Redis {
         }
     }
 
-    /// 实例节点信息
+    /// 实例节点组信息
     public struct ReplicaGroup: TCOutputModel {
-        /// 节点组ID
+        /// 节点组 ID。
         public let groupId: Int64
 
-        /// 节点组的名称，主节点为空
+        /// 节点组的名称，主节点为空。
         public let groupName: String
 
         /// 节点的可用区ID，比如ap-guangzhou-1
@@ -1539,10 +1631,10 @@ extension Redis {
 
     /// API购买实例绑定标签
     public struct ResourceTag: TCInputModel {
-        /// 标签key
+        /// 标签Key。
         public let tagKey: String
 
-        /// 标签value
+        /// 标签 Key 对应的 Value。
         public let tagValue: String
 
         public init(tagKey: String, tagValue: String) {
@@ -1592,25 +1684,25 @@ extension Redis {
 
     /// 安全组详情
     public struct SecurityGroupDetail: TCOutputModel {
-        /// 项目Id
+        /// 项目ID。
         public let projectId: Int64
 
-        /// 创建时间
+        /// 创建安全组的时间。
         public let createTime: String
 
-        /// 安全组Id
+        /// 安全组 ID。
         public let securityGroupId: String
 
-        /// 安全组名称
+        /// 安全组名称。
         public let securityGroupName: String
 
-        /// 安全组标记
+        /// 安全组标记。
         public let securityGroupRemark: String
 
-        /// 安全组入站规则
+        /// 安全组入站规则，即控制访问数据库的来源。
         public let inboundRule: [SecurityGroupsInboundAndOutbound]
 
-        /// 安全组出站规则
+        /// 安全组出站规则。
         public let outboundRule: [SecurityGroupsInboundAndOutbound]
 
         enum CodingKeys: String, CodingKey {
@@ -1626,16 +1718,16 @@ extension Redis {
 
     /// 安全组出入规则
     public struct SecurityGroupsInboundAndOutbound: TCOutputModel {
-        /// 执行动作
+        /// 标识出入数据库的IP与端口是否被允许。
         public let action: String
 
-        /// IP地址
+        /// 出入数据库的IP地址
         public let ip: String
 
-        /// 端口号
+        /// 端口号。
         public let port: String
 
-        /// 协议类型
+        /// 协议类型。
         public let proto: String
 
         enum CodingKeys: String, CodingKey {
@@ -1662,10 +1754,10 @@ extension Redis {
 
     /// 访问来源信息
     public struct SourceInfo: TCOutputModel {
-        /// 来源IP
+        /// 来源 IP 地址。
         public let ip: String
 
-        /// 连接数
+        /// 客户端连接数量。
         public let conn: Int64
 
         /// 命令
@@ -1680,39 +1772,63 @@ extension Redis {
 
     /// 任务信息详情
     public struct TaskInfoDetail: TCOutputModel {
-        /// 任务Id
+        /// 任务 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: Int64?
 
-        /// 开始时间
+        /// 任务开始时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
 
-        /// 任务类型
+        /// 任务类型。
+        /// - FLOW_CREATE：创建实例。
+        /// - FLOW_MODIFYCONNECTIONCONFIG：调整带宽连接数。
+        /// - FLOW_MODIFYINSTANCEPASSWORDFREE：免密变更流程。
+        /// - FLOW_CLEARNETWORK：VPC退还中。
+        /// - FLOW_SETPWD：设置访问密码。
+        /// - FLOW_EXPORSHR：扩缩容流程。
+        /// - FLOW_UpgradeArch：实例架构升级流程。
+        /// - FLOW_MODIFYINSTANCEPARAMS：修改实例参数。
+        /// - FLOW_MODIFYINSTACEREADONLY：只读变更流程。
+        /// - FLOW_CLOSE：关闭实例。
+        /// - FLOW_DELETE：删除实例。
+        /// - FLOW_OPEN_WAN：开启外网。
+        /// - FLOW_CLEAN：清空实例。
+        /// - FLOW_MODIFYINSTANCEACCOUNT：修改实例账号。
+        /// - FLOW_ENABLEINSTANCE_REPLICATE：开启副本只读。
+        /// - FLOW_DISABLEINSTANCE_REPLICATE: 关闭副本只读。
+        /// - FLOW_SWITCHINSTANCEVIP：交换实例 VIP。
+        /// - FLOW_CHANGE_REPLICA_TO_MSTER：副本节点升主节点。
+        /// - FLOW_BACKUPINSTANCE：备份实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskType: String?
 
-        /// 实例名称
+        /// 实例名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
 
-        /// 实例Id
+        /// 实例 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
 
-        /// 项目Id
+        /// 项目 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: Int64?
 
-        /// 任务进度
+        /// 任务进度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Float?
 
-        /// 结束时间
+        /// 任务执行结束时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
 
-        /// 任务状态
+        /// 任务执行状态。
+        ///
+        /// 0：任务初始化。
+        /// 1：执行中。
+        /// 2：完成。
+        /// 4：失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Int64?
 

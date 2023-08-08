@@ -100,11 +100,11 @@ extension Live {
         public let shortEdgeAsHeight: Int64?
 
         /// DRM 加密类型，可选值：fairplay、normalaes、widevine。
-        /// 不传递或着为空字符串，清空之前的DRM配置。
+        /// 不传递或者为空字符串，清空之前的DRM配置。
         public let drmType: String?
 
         /// DRM 加密项，可选值：AUDIO、SD、HD、UHD1、UHD2，后四个为一组，同组中的内容只能选一个。
-        /// 不传递或着为空字符串，清空之前的DRM配置。
+        /// 不传递或者为空字符串，清空之前的DRM配置。
         public let drmTracks: String?
 
         public init(templateId: Int64, vcodec: String? = nil, acodec: String? = nil, audioBitrate: Int64? = nil, description: String? = nil, videoBitrate: Int64? = nil, width: Int64? = nil, needVideo: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil) {

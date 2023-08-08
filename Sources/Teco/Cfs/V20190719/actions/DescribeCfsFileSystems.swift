@@ -17,10 +17,11 @@
 import Logging
 import NIOCore
 import TecoCore
+import TecoPaginationHelpers
 
 extension Cfs {
     /// DescribeCfsFileSystems请求参数结构体
-    public struct DescribeCfsFileSystemsRequest: TCRequestModel {
+    public struct DescribeCfsFileSystemsRequest: TCPaginatedRequest {
         /// 文件系统 ID
         public let fileSystemId: String?
 
@@ -30,21 +31,39 @@ extension Cfs {
         /// 子网 ID
         public let subnetId: String?
 
-        public init(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil) {
+        /// Offset 分页码
+        public let offset: UInt64?
+
+        /// Limit 页面大小
+        public let limit: UInt64?
+
+        public init(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.fileSystemId = fileSystemId
             self.vpcId = vpcId
             self.subnetId = subnetId
+            self.offset = offset
+            self.limit = limit
         }
 
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+            case offset = "Offset"
+            case limit = "Limit"
+        }
+
+        /// Compute the next request based on API response.
+        public func makeNextRequest(with response: DescribeCfsFileSystemsResponse) -> DescribeCfsFileSystemsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeCfsFileSystemsRequest(fileSystemId: self.fileSystemId, vpcId: self.vpcId, subnetId: self.subnetId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
         }
     }
 
     /// DescribeCfsFileSystems返回参数结构体
-    public struct DescribeCfsFileSystemsResponse: TCResponseModel {
+    public struct DescribeCfsFileSystemsResponse: TCPaginatedResponse {
         /// 文件系统信息
         public let fileSystems: [FileSystemInfo]
 
@@ -58,6 +77,16 @@ extension Cfs {
             case fileSystems = "FileSystems"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [FileSystemInfo] {
+            self.fileSystems
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 
@@ -81,15 +110,41 @@ extension Cfs {
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
-        self.describeCfsFileSystems(.init(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
+        self.describeCfsFileSystems(.init(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
-        try await self.describeCfsFileSystems(.init(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
+        try await self.describeCfsFileSystems(.init(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable
+    public func describeCfsFileSystemsPaginated(_ input: DescribeCfsFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [FileSystemInfo])> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsFileSystems, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable @discardableResult
+    public func describeCfsFileSystemsPaginated(_ input: DescribeCfsFileSystemsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeCfsFileSystemsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
+        self.client.paginate(input: input, region: region, command: self.describeCfsFileSystems, callback: onResponse, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    ///
+    /// - Returns: `AsyncSequence`s of `FileSystemInfo` and `DescribeCfsFileSystemsResponse` that can be iterated over asynchronously on demand.
+    @inlinable
+    public func describeCfsFileSystemsPaginator(_ input: DescribeCfsFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsFileSystemsRequest> {
+        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsFileSystems, logger: logger, on: eventLoop)
     }
 }

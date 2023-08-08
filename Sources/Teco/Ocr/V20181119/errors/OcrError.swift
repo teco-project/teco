@@ -36,6 +36,7 @@ public struct TCOcrError: TCOcrErrorType {
         case failedOperation_EmptyImageError = "FailedOperation.EmptyImageError"
         case failedOperation_EngineRecognizeTimeout = "FailedOperation.EngineRecognizeTimeout"
         case failedOperation_IdCardInfoIllegal = "FailedOperation.IdCardInfoIllegal"
+        case failedOperation_IdCardTooSmall = "FailedOperation.IdCardTooSmall"
         case failedOperation_IllegalBankCardError = "FailedOperation.IllegalBankCardError"
         case failedOperation_ImageBlur = "FailedOperation.ImageBlur"
         case failedOperation_ImageDecodeFailed = "FailedOperation.ImageDecodeFailed"
@@ -66,7 +67,6 @@ public struct TCOcrError: TCOcrErrorType {
         case invalidParameterValue_TicketSnParameterValueLimit = "InvalidParameterValue.TicketSnParameterValueLimit"
         case invalidParameter_ConfigFormatError = "InvalidParameter.ConfigFormatError"
         case invalidParameter_EngineImageDecodeFailed = "InvalidParameter.EngineImageDecodeFailed"
-        case invalidParameter_InvalidGTINError = "InvalidParameter.InvalidGTINError"
         case limitExceeded_TooLargeFileError = "LimitExceeded.TooLargeFileError"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceNotFound_NoAreaCode = "ResourceNotFound.NoAreaCode"
@@ -112,15 +112,26 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 帐号已欠费。
+    ///
+    /// None
     public static var failedOperation_ArrearsError: TCOcrError {
         TCOcrError(.failedOperation_ArrearsError)
     }
 
+    /// 身份证CardSide类型错误
+    ///
+    /// CardSide参数支持以下值
+    /// -  FRONT：身份证有照片的一面（人像面）
+    /// -  BACK：身份证有国徽的一面（国徽面）
     public static var failedOperation_CardSideError: TCOcrError {
         TCOcrError(.failedOperation_CardSideError)
     }
 
     /// 今日次数达到限制。
+    ///
+    /// - OCR Demo出现此错误：超出Demo当日体验次数，请明日再试。
+    /// - 增值税发票核验接口：
+    /// 每张发票每天最多查验五次，请明日再试。
     public static var failedOperation_CountLimitError: TCOcrError {
         TCOcrError(.failedOperation_CountLimitError)
     }
@@ -141,6 +152,10 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 文件下载失败。
+    ///
+    /// 1.检查图片参数正确性(ImageUrl)，返回图片必须不为空且下载时间小于3秒。
+    /// 2.如果为https链接，请检查目标站点ssl证书是否正确。
+    /// 3.自查无误后，提工单。
     public static var failedOperation_DownLoadError: TCOcrError {
         TCOcrError(.failedOperation_DownLoadError)
     }
@@ -151,26 +166,44 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 引擎识别超时。
+    ///
+    /// 图片文字较多、长图、异常图片、系统负载波动可能会导致此问题，请先检查图片是否有上述问题，或稍后重试，若仍出现，请提单。
     public static var failedOperation_EngineRecognizeTimeout: TCOcrError {
         TCOcrError(.failedOperation_EngineRecognizeTimeout)
     }
 
     /// 身份证信息不合法（身份证号、姓名字段校验非法等）。
+    ///
+    /// 身份证信息不合法或缺失(身份证号、姓名、签发机关、有效期) ，如身份证号为空或不全、有效期不合法，即有效日期不符合5年、10年、20年、长期期限。
     public static var failedOperation_IdCardInfoIllegal: TCOcrError {
         TCOcrError(.failedOperation_IdCardInfoIllegal)
     }
 
+    /// 1.请检查图片分辨率是否在500*800以上。
+    /// 2.请检查卡片部分是否占据图片2/3以上，如否，可以自行裁剪，或修改入参Config，开启自动裁剪功能。
+    public static var failedOperation_IdCardTooSmall: TCOcrError {
+        TCOcrError(.failedOperation_IdCardTooSmall)
+    }
+
     /// 银行卡信息非法。
+    ///
+    /// 请检查银行卡的卡名、银行信息、卡类型等正确性，图片不清晰也可能导致校验错误，若无误则提单解决。
     public static var failedOperation_IllegalBankCardError: TCOcrError {
         TCOcrError(.failedOperation_IllegalBankCardError)
     }
 
     /// 图片模糊。
+    ///
+    /// 图片分辨率过低，请查看对应接口文档对图片分辨率的要求，比如身份证识别、驾驶证识别建议500*800以上:https://cloud.tencent.com/document/product/866/33515
     public static var failedOperation_ImageBlur: TCOcrError {
         TCOcrError(.failedOperation_ImageBlur)
     }
 
     /// 图片解码失败。
+    ///
+    /// 1.请借助转换工具验证图片/视频参数(ImageBase64)正确性，能否成功转换为目标图片/视频。
+    /// 2.请尝试去掉相关前缀data:image/jpg;base64,和换行符
+    /// ，再进行调用。
     public static var failedOperation_ImageDecodeFailed: TCOcrError {
         TCOcrError(.failedOperation_ImageDecodeFailed)
     }
@@ -196,6 +229,8 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 图片尺寸过大，请参考输出参数中关于图片大小限制的说明。
+    ///
+    /// None
     public static var failedOperation_ImageSizeTooLarge: TCOcrError {
         TCOcrError(.failedOperation_ImageSizeTooLarge)
     }
@@ -206,6 +241,8 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 输入的Language不支持。
+    ///
+    /// 图片中的语言暂不支持，请通过对应接口文档查看所支持语言：https://cloud.tencent.com/document/product/866/33515
     public static var failedOperation_LanguageNotSupport: TCOcrError {
         TCOcrError(.failedOperation_LanguageNotSupport)
     }
@@ -243,6 +280,8 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// OCR识别失败。
+    ///
+    /// 导致此错误的原因比较多，更多是由于图片本身的原因导致不能识别，建议检测下图片。
     public static var failedOperation_OcrFailed: TCOcrError {
         TCOcrError(.failedOperation_OcrFailed)
     }
@@ -253,6 +292,8 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 未知错误。
+    ///
+    /// 导致此错误的原因比较多，比如参数异常、网络波动、识别超时、第三方库源不可能用等等。建议先检查参数再重试，如果仍然出现则提单。
     public static var failedOperation_UnKnowError: TCOcrError {
         TCOcrError(.failedOperation_UnKnowError)
     }
@@ -263,6 +304,9 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 剩余识别次数不足，请检查资源包状态。
+    ///
+    /// 1.进入控制台查看资源包状态：https://console.cloud.tencent.com/ocr/packagemanage
+    /// 2.有资源但仍报错，提单解决。
     public static var failedOperation_UserQuotaError: TCOcrError {
         TCOcrError(.failedOperation_UserQuotaError)
     }
@@ -278,6 +322,8 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 参数值错误。
+    ///
+    /// 请查看接口文档检查对应接口入参：https://cloud.tencent.com/document/product/866/33515
     public static var invalidParameterValue_InvalidParameterValueLimit: TCOcrError {
         TCOcrError(.invalidParameterValue_InvalidParameterValueLimit)
     }
@@ -312,12 +358,9 @@ public struct TCOcrError: TCOcrErrorType {
         TCOcrError(.invalidParameter_EngineImageDecodeFailed)
     }
 
-    /// 无效的GTIN。
-    public static var invalidParameter_InvalidGTINError: TCOcrError {
-        TCOcrError(.invalidParameter_InvalidGTINError)
-    }
-
     /// 文件内容太大。
+    ///
+    /// 图片过大，请查看对应接口文档的ImageBase64和ImageUrl参数限制，一般情况下，图片经Base64编码后大小需不超过 7M：https://cloud.tencent.com/document/product/866/33515
     public static var limitExceeded_TooLargeFileError: TCOcrError {
         TCOcrError(.limitExceeded_TooLargeFileError)
     }
@@ -343,11 +386,19 @@ public struct TCOcrError: TCOcrErrorType {
     }
 
     /// 税务局网络异常，请稍后访问。
+    ///
+    /// 增值税发票核验依赖于税务局接口，可能出现网络波动，请稍后重试。
     public static var resourceUnavailable_TaxNetworkError: TCOcrError {
         TCOcrError(.resourceUnavailable_TaxNetworkError)
     }
 
     /// 计费状态异常。
+    ///
+    /// 1.确认是否开通了文字识别服务。
+    /// 2.查看资源包是否消耗完毕。
+    /// 3.若已消耗完，请打开后付费开关。
+    /// 4.仍然报此错误，提单。
+    /// 详情查看https://cloud.tencent.com/document/product/866/33509#.E8.B0.83.E7.94.A8.E6.8E.A5.E5.8F.A3.E6.97.B6.E6.98.BE.E7.A4.BA.E8.AE.A1.E8.B4.B9.E7.8A.B6.E6.80.81.E5.BC.82.E5.B8.B8.E5.A6.82.E4.BD.95.E8.A7.A3.E5.86.B3.EF.BC.9F
     public static var resourcesSoldOut_ChargeStatusException: TCOcrError {
         TCOcrError(.resourcesSoldOut_ChargeStatusException)
     }

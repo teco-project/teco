@@ -23,6 +23,8 @@ extension TCLiveError {
             case cancelSessionNotExist = "InvalidParameter.CancelSessionNotExist"
             case cloudCrtIdError = "InvalidParameter.CloudCrtIdError"
             case cloudDomainIsStop = "InvalidParameter.CloudDomainIsStop"
+            case confInUsed = "InvalidParameter.ConfInUsed"
+            case confNotFound = "InvalidParameter.ConfNotFound"
             case cosCustomFileNameError = "InvalidParameter.COSCustomFileNameError"
             case crtDateInUsing = "InvalidParameter.CrtDateInUsing"
             case crtDateNotFound = "InvalidParameter.CrtDateNotFound"
@@ -44,6 +46,8 @@ extension TCLiveError {
             case invalidCallbackUrl = "InvalidParameter.InvalidCallbackUrl"
             case invalidCropParam = "InvalidParameter.InvalidCropParam"
             case invalidLayerParam = "InvalidParameter.InvalidLayerParam"
+            case invalidMixInputParam = "InvalidParameter.InvalidMixInputParam"
+            case invalidOutputParam = "InvalidParameter.InvalidOutputParam"
             case invalidOutputStreamID = "InvalidParameter.InvalidOutputStreamID"
             case invalidOutputType = "InvalidParameter.InvalidOutputType"
             case invalidPictureID = "InvalidParameter.InvalidPictureID"
@@ -55,7 +59,10 @@ extension TCLiveError {
             case invalidWatermark = "InvalidParameter.InvalidWatermark"
             case mpHostDelete = "InvalidParameter.MpHostDelete"
             case mpPluginNoUse = "InvalidParameter.MpPluginNoUse"
+            case notAllowUseLVB = "InvalidParameter.NotAllowUseLVB"
             case otherError = "InvalidParameter.OtherError"
+            case processorAlreadyExist = "InvalidParameter.ProcessorAlreadyExist"
+            case ruleNotFound = "InvalidParameter.RuleNotFound"
             case sessionOutputStreamChanged = "InvalidParameter.SessionOutputStreamChanged"
             case taskNotExist = "InvalidParameter.TaskNotExist"
             case taskNumMoreThanLimit = "InvalidParameter.TaskNumMoreThanLimit"
@@ -105,6 +112,14 @@ extension TCLiveError {
         /// 赠送的腾讯云域名已过期。
         public static var cloudDomainIsStop: InvalidParameter {
             InvalidParameter(.cloudDomainIsStop)
+        }
+
+        public static var confInUsed: InvalidParameter {
+            InvalidParameter(.confInUsed)
+        }
+
+        public static var confNotFound: InvalidParameter {
+            InvalidParameter(.confNotFound)
         }
 
         /// Cos自定义文件名错误。
@@ -214,6 +229,16 @@ extension TCLiveError {
             InvalidParameter(.invalidLayerParam)
         }
 
+        /// 混流输入参数无效。
+        public static var invalidMixInputParam: InvalidParameter {
+            InvalidParameter(.invalidMixInputParam)
+        }
+
+        /// 输出流参数无效。
+        public static var invalidOutputParam: InvalidParameter {
+            InvalidParameter(.invalidOutputParam)
+        }
+
         /// 输出流 ID 被占用。
         public static var invalidOutputStreamID: InvalidParameter {
             InvalidParameter(.invalidOutputStreamID)
@@ -269,9 +294,24 @@ extension TCLiveError {
             InvalidParameter(.mpPluginNoUse)
         }
 
+        /// 该APPID未开通LVB服务。
+        ///
+        /// 请至控制台-云直播页面开通直播。
+        public static var notAllowUseLVB: InvalidParameter {
+            InvalidParameter(.notAllowUseLVB)
+        }
+
         /// 其他错误。
         public static var otherError: InvalidParameter {
             InvalidParameter(.otherError)
+        }
+
+        public static var processorAlreadyExist: InvalidParameter {
+            InvalidParameter(.processorAlreadyExist)
+        }
+
+        public static var ruleNotFound: InvalidParameter {
+            InvalidParameter(.ruleNotFound)
         }
 
         /// 同一会话输出流发生变化。
@@ -320,6 +360,10 @@ extension TCLiveError {
                 code = .invalidParameter_CloudCrtIdError
             case .cloudDomainIsStop:
                 code = .invalidParameter_CloudDomainIsStop
+            case .confInUsed:
+                code = .invalidParameter_ConfInUsed
+            case .confNotFound:
+                code = .invalidParameter_ConfNotFound
             case .cosCustomFileNameError:
                 code = .invalidParameter_COSCustomFileNameError
             case .crtDateInUsing:
@@ -362,6 +406,10 @@ extension TCLiveError {
                 code = .invalidParameter_InvalidCropParam
             case .invalidLayerParam:
                 code = .invalidParameter_InvalidLayerParam
+            case .invalidMixInputParam:
+                code = .invalidParameter_InvalidMixInputParam
+            case .invalidOutputParam:
+                code = .invalidParameter_InvalidOutputParam
             case .invalidOutputStreamID:
                 code = .invalidParameter_InvalidOutputStreamID
             case .invalidOutputType:
@@ -384,8 +432,14 @@ extension TCLiveError {
                 code = .invalidParameter_MpHostDelete
             case .mpPluginNoUse:
                 code = .invalidParameter_MpPluginNoUse
+            case .notAllowUseLVB:
+                code = .invalidParameter_NotAllowUseLVB
             case .otherError:
                 code = .invalidParameter_OtherError
+            case .processorAlreadyExist:
+                code = .invalidParameter_ProcessorAlreadyExist
+            case .ruleNotFound:
+                code = .invalidParameter_RuleNotFound
             case .sessionOutputStreamChanged:
                 code = .invalidParameter_SessionOutputStreamChanged
             case .taskNotExist:

@@ -21,7 +21,7 @@ import TecoCore
 extension Vod {
     /// DeleteRebuildMediaTemplate请求参数结构体
     public struct DeleteRebuildMediaTemplateRequest: TCRequestModel {
-        /// 音画质重生模板号。
+        /// 视频重生模板号。
         public let definition: Int64
 
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -48,33 +48,33 @@ extension Vod {
         }
     }
 
-    /// 删除音画质重生模板
+    /// 删除视频重生模板
     ///
-    /// 删除音画质重生模板。
+    /// 删除视频重生模板。
     @inlinable @discardableResult
     public func deleteRebuildMediaTemplate(_ input: DeleteRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRebuildMediaTemplateResponse> {
         self.client.execute(action: "DeleteRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除音画质重生模板
+    /// 删除视频重生模板
     ///
-    /// 删除音画质重生模板。
+    /// 删除视频重生模板。
     @inlinable @discardableResult
     public func deleteRebuildMediaTemplate(_ input: DeleteRebuildMediaTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRebuildMediaTemplateResponse {
         try await self.client.execute(action: "DeleteRebuildMediaTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除音画质重生模板
+    /// 删除视频重生模板
     ///
-    /// 删除音画质重生模板。
+    /// 删除视频重生模板。
     @inlinable @discardableResult
     public func deleteRebuildMediaTemplate(definition: Int64, subAppId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRebuildMediaTemplateResponse> {
         self.deleteRebuildMediaTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除音画质重生模板
+    /// 删除视频重生模板
     ///
-    /// 删除音画质重生模板。
+    /// 删除视频重生模板。
     @inlinable @discardableResult
     public func deleteRebuildMediaTemplate(definition: Int64, subAppId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRebuildMediaTemplateResponse {
         try await self.deleteRebuildMediaTemplate(.init(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)

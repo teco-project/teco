@@ -28,7 +28,8 @@ extension Tcss {
         /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 过滤参数,"Filters":[{"Name":"Status","Values":["2"]}]
+        /// 过滤参数
+        /// InnerNetAlarmShow- int - 是否必填：1 - 内网告警展示 0 - 不展示
         public let filters: [RunTimeFilters]?
 
         /// 升序降序,asc desc

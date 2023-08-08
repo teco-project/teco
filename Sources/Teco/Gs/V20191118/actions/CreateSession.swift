@@ -24,7 +24,7 @@ extension Gs {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
         public let userId: String
 
-        /// 游戏ID
+        /// 【已废弃】只在TrylockWorker时生效
         public let gameId: String
 
         /// 【已废弃】只在TrylockWorker时生效
@@ -45,7 +45,7 @@ extension Gs {
         /// 【已废弃】
         public let setNo: UInt64?
 
-        /// 单位Mbps，固定码率建议值，有一定浮动范围，后端不动态调整(MaxBitrate和MinBitrate将无效)
+        /// 【已废弃】
         public let bitrate: UInt64?
 
         /// 单位Mbps，动态调整最大码率建议值，会按实际情况调整

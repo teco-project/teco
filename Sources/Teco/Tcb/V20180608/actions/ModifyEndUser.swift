@@ -27,7 +27,7 @@ extension Tcb {
         /// C端用户端的唯一ID
         public let uuId: String
 
-        /// 帐号的状态
+        /// 账号的状态
         /// <li>ENABLE</li>
         /// <li>DISABLE</li>
         public let status: String?

@@ -33,9 +33,11 @@ extension TCLiveError {
             case certificateNotFound = "FailedOperation.CertificateNotFound"
             case confInUsed = "FailedOperation.ConfInUsed"
             case configCDNFailed = "FailedOperation.ConfigCDNFailed"
+            case conflictAction = "FailedOperation.ConflictAction"
             case cosBucketNotExist = "FailedOperation.CosBucketNotExist"
             case cosBucketNotPermission = "FailedOperation.CosBucketNotPermission"
             case cosRoleNotExists = "FailedOperation.CosRoleNotExists"
+            case databaseNotAccessible = "FailedOperation.DatabaseNotAccessible"
             case deleteDomainInLockedTime = "FailedOperation.DeleteDomainInLockedTime"
             case domainAdded = "FailedOperation.DomainAdded"
             case domainGslbFail = "FailedOperation.DomainGslbFail"
@@ -46,11 +48,15 @@ extension TCLiveError {
             case getStreamResolutionError = "FailedOperation.GetStreamResolutionError"
             case hasNotLivingStream = "FailedOperation.HasNotLivingStream"
             case hostOutLimit = "FailedOperation.HostOutLimit"
+            case inputStreamMixTypeNotAccessible = "FailedOperation.InputStreamMixTypeNotAccessible"
             case invalidCertificateStatusCode = "FailedOperation.InvalidCertificateStatusCode"
             case invalidParam = "FailedOperation.InvalidParam"
             case invokeCdnApiFail = "FailedOperation.InvokeCdnApiFail"
             case invokeVideoApiFail = "FailedOperation.InvokeVideoApiFail"
             case jiFeiNoEnoughFund = "FailedOperation.JiFeiNoEnoughFund"
+            case monitorIsActive = "FailedOperation.MonitorIsActive"
+            case monitorLimitExceeded = "FailedOperation.MonitorLimitExceeded"
+            case monitorNotExist = "FailedOperation.MonitorNotExist"
             case networkError = "FailedOperation.NetworkError"
             case noProjectPermission = "FailedOperation.NoProjectPermission"
             case noRealNameAuth = "FailedOperation.NoRealNameAuth"
@@ -58,8 +64,12 @@ extension TCLiveError {
             case parentDomainAdded = "FailedOperation.ParentDomainAdded"
             case processMixError = "FailedOperation.ProcessMixError"
             case queryUploadInfoFailed = "FailedOperation.QueryUploadInfoFailed"
+            case relateServerNotAccessible = "FailedOperation.RelateServerNotAccessible"
+            case relatedRunningMonitorLimitExceeded = "FailedOperation.RelatedRunningMonitorLimitExceeded"
             case ruleAlreadyExist = "FailedOperation.RuleAlreadyExist"
             case sdkNoPackage = "FailedOperation.SdkNoPackage"
+            case startTaskFailed = "FailedOperation.StartTaskFailed"
+            case stopTaskFailed = "FailedOperation.StopTaskFailed"
             case streamNotExist = "FailedOperation.StreamNotExist"
             case subDomainAdded = "FailedOperation.SubDomainAdded"
             case tagUnbindError = "FailedOperation.TagUnbindError"
@@ -172,6 +182,13 @@ extension TCLiveError {
             FailedOperation(.configCDNFailed)
         }
 
+        /// 任务接口执行冲突。
+        ///
+        /// 该错误出现在用户同时对同一个监播任务进行多个写操作（包括创建、修改、删除）时出现，请从业务逻辑层面避免同时写操作。
+        public static var conflictAction: FailedOperation {
+            FailedOperation(.conflictAction)
+        }
+
         /// Cos bucket 不存在。
         public static var cosBucketNotExist: FailedOperation {
             FailedOperation(.cosBucketNotExist)
@@ -185,6 +202,13 @@ extension TCLiveError {
         /// Cos 角色不存在，请前往 控制台 -&gt; 功能配置 -&gt; 直播截图&amp;鉴黄 页面进行授权。
         public static var cosRoleNotExists: FailedOperation {
             FailedOperation(.cosRoleNotExists)
+        }
+
+        /// 数据库访问异常。
+        ///
+        /// 该错误出现在监播任务访问数据库异常时，若出现，请工单联系。
+        public static var databaseNotAccessible: FailedOperation {
+            FailedOperation(.databaseNotAccessible)
         }
 
         /// 2天内有产生流量，域名处于锁定期间，2天内无流量产生才允许删除域名。
@@ -247,6 +271,13 @@ extension TCLiveError {
             FailedOperation(.hostOutLimit)
         }
 
+        /// 禁止监播c流。
+        ///
+        /// 监播流中存在mixtype为combined的混流输出流（c流），用户需要修改配置，将监播输入流中的c流删除。
+        public static var inputStreamMixTypeNotAccessible: FailedOperation {
+            FailedOperation(.inputStreamMixTypeNotAccessible)
+        }
+
         /// 证书状态不正确。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
@@ -274,6 +305,27 @@ extension TCLiveError {
         /// 计费平台返回余额不足。
         public static var jiFeiNoEnoughFund: FailedOperation {
             FailedOperation(.jiFeiNoEnoughFund)
+        }
+
+        /// 监播任务处于启动状态。
+        ///
+        /// 该错误码出现在删除监播任务时。若出现此错误码，请先停止监播任务，再删除。
+        public static var monitorIsActive: FailedOperation {
+            FailedOperation(.monitorIsActive)
+        }
+
+        /// 监播任务超出限制。
+        ///
+        /// 该错误码出现在监播任务个数超出最大限制。若确有需要提高监播个数，请工单联系我们。
+        public static var monitorLimitExceeded: FailedOperation {
+            FailedOperation(.monitorLimitExceeded)
+        }
+
+        /// 监播任务不存在。
+        ///
+        /// 该错误码出现时，说明请求中的MonitorId不存在，请检查确认MonitorId是否正确。
+        public static var monitorNotExist: FailedOperation {
+            FailedOperation(.monitorNotExist)
         }
 
         /// 当前 CA 机构访问繁忙，请稍后重试。
@@ -319,6 +371,20 @@ extension TCLiveError {
             FailedOperation(.queryUploadInfoFailed)
         }
 
+        /// 关联服务无法访问。
+        ///
+        /// 出现该错误码代表访问内部关联服务时出现一些异常，一般重试可解决。若重试也无法解决，请工单联系我们。
+        public static var relateServerNotAccessible: FailedOperation {
+            FailedOperation(.relateServerNotAccessible)
+        }
+
+        /// 输入关联的运行中的监播任务超出限制。
+        ///
+        /// 该错误码出现在一条流出现在多个监播任务中时。如果确有需要同时在多个任务中监播一条流，请工单联系我们。
+        public static var relatedRunningMonitorLimitExceeded: FailedOperation {
+            FailedOperation(.relatedRunningMonitorLimitExceeded)
+        }
+
         /// 规则已经存在。
         public static var ruleAlreadyExist: FailedOperation {
             FailedOperation(.ruleAlreadyExist)
@@ -327,6 +393,20 @@ extension TCLiveError {
         /// 用户没有有效的流量套餐包。
         public static var sdkNoPackage: FailedOperation {
             FailedOperation(.sdkNoPackage)
+        }
+
+        /// 启动监播任务失败。
+        ///
+        /// 该错误码出现时，说明启动监播任务失败，请结合错误码ErrMsg判定启动失败的具体原因。如果您需要帮助，请工单联系我们。
+        public static var startTaskFailed: FailedOperation {
+            FailedOperation(.startTaskFailed)
+        }
+
+        /// 停止监播任务失败。
+        ///
+        /// 该错误码出现在停止监播任务失败时，请结合错误信息ErrMsg判断失败原因。若需要帮助，请工单联系我们。
+        public static var stopTaskFailed: FailedOperation {
+            FailedOperation(.stopTaskFailed)
         }
 
         /// 流不存在。
@@ -382,12 +462,16 @@ extension TCLiveError {
                 code = .failedOperation_ConfInUsed
             case .configCDNFailed:
                 code = .failedOperation_ConfigCDNFailed
+            case .conflictAction:
+                code = .failedOperation_ConflictAction
             case .cosBucketNotExist:
                 code = .failedOperation_CosBucketNotExist
             case .cosBucketNotPermission:
                 code = .failedOperation_CosBucketNotPermission
             case .cosRoleNotExists:
                 code = .failedOperation_CosRoleNotExists
+            case .databaseNotAccessible:
+                code = .failedOperation_DatabaseNotAccessible
             case .deleteDomainInLockedTime:
                 code = .failedOperation_DeleteDomainInLockedTime
             case .domainAdded:
@@ -408,6 +492,8 @@ extension TCLiveError {
                 code = .failedOperation_HasNotLivingStream
             case .hostOutLimit:
                 code = .failedOperation_HostOutLimit
+            case .inputStreamMixTypeNotAccessible:
+                code = .failedOperation_InputStreamMixTypeNotAccessible
             case .invalidCertificateStatusCode:
                 code = .failedOperation_InvalidCertificateStatusCode
             case .invalidParam:
@@ -418,6 +504,12 @@ extension TCLiveError {
                 code = .failedOperation_InvokeVideoApiFail
             case .jiFeiNoEnoughFund:
                 code = .failedOperation_JiFeiNoEnoughFund
+            case .monitorIsActive:
+                code = .failedOperation_MonitorIsActive
+            case .monitorLimitExceeded:
+                code = .failedOperation_MonitorLimitExceeded
+            case .monitorNotExist:
+                code = .failedOperation_MonitorNotExist
             case .networkError:
                 code = .failedOperation_NetworkError
             case .noProjectPermission:
@@ -432,10 +524,18 @@ extension TCLiveError {
                 code = .failedOperation_ProcessMixError
             case .queryUploadInfoFailed:
                 code = .failedOperation_QueryUploadInfoFailed
+            case .relateServerNotAccessible:
+                code = .failedOperation_RelateServerNotAccessible
+            case .relatedRunningMonitorLimitExceeded:
+                code = .failedOperation_RelatedRunningMonitorLimitExceeded
             case .ruleAlreadyExist:
                 code = .failedOperation_RuleAlreadyExist
             case .sdkNoPackage:
                 code = .failedOperation_SdkNoPackage
+            case .startTaskFailed:
+                code = .failedOperation_StartTaskFailed
+            case .stopTaskFailed:
+                code = .failedOperation_StopTaskFailed
             case .streamNotExist:
                 code = .failedOperation_StreamNotExist
             case .subDomainAdded:

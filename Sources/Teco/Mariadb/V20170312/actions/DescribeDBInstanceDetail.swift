@@ -227,6 +227,12 @@ extension Mariadb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rsAccessStrategy: Int64?
 
+        /// 尚未回收的网络资源
+        public let reservedNetResources: [ReservedNetResource]
+
+        /// 是否支持物理复制
+        public let isPhysicalReplicationSupported: Bool
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -286,6 +292,8 @@ extension Mariadb {
             case replicaStatus = "ReplicaStatus"
             case exclusterType = "ExclusterType"
             case rsAccessStrategy = "RsAccessStrategy"
+            case reservedNetResources = "ReservedNetResources"
+            case isPhysicalReplicationSupported = "IsPhysicalReplicationSupported"
             case requestId = "RequestId"
         }
     }

@@ -21,7 +21,7 @@ import TecoCore
 extension Ess {
     /// DisableUserAutoSign请求参数结构体
     public struct DisableUserAutoSignRequest: TCRequestModel {
-        /// 操作人信息
+        /// 操作人信息,UserId必填
         public let `operator`: UserInfo
 
         /// 自动签场景:
@@ -31,16 +31,21 @@ extension Ess {
         /// 关闭自动签的个人的三要素
         public let userInfo: UserThreeFactor
 
-        public init(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil) {
             self.operator = `operator`
             self.sceneKey = sceneKey
             self.userInfo = userInfo
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case sceneKey = "SceneKey"
             case userInfo = "UserInfo"
+            case agent = "Agent"
         }
     }
 
@@ -56,7 +61,7 @@ extension Ess {
 
     /// 关闭个人自动签功能
     ///
-    /// 企业方可以通过此接口关闭个人的自动签功能
+    /// 企业方可以通过此接口关闭个人的自动签功能（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable @discardableResult
     public func disableUserAutoSign(_ input: DisableUserAutoSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserAutoSignResponse> {
         self.client.execute(action: "DisableUserAutoSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -64,7 +69,7 @@ extension Ess {
 
     /// 关闭个人自动签功能
     ///
-    /// 企业方可以通过此接口关闭个人的自动签功能
+    /// 企业方可以通过此接口关闭个人的自动签功能（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable @discardableResult
     public func disableUserAutoSign(_ input: DisableUserAutoSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserAutoSignResponse {
         try await self.client.execute(action: "DisableUserAutoSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -72,17 +77,17 @@ extension Ess {
 
     /// 关闭个人自动签功能
     ///
-    /// 企业方可以通过此接口关闭个人的自动签功能
+    /// 企业方可以通过此接口关闭个人的自动签功能（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable @discardableResult
-    public func disableUserAutoSign(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserAutoSignResponse> {
-        self.disableUserAutoSign(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo), region: region, logger: logger, on: eventLoop)
+    public func disableUserAutoSign(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUserAutoSignResponse> {
+        self.disableUserAutoSign(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭个人自动签功能
     ///
-    /// 企业方可以通过此接口关闭个人的自动签功能
+    /// 企业方可以通过此接口关闭个人的自动签功能（处方单场景专用，使用此接口请与客户经理确认）
     @inlinable @discardableResult
-    public func disableUserAutoSign(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserAutoSignResponse {
-        try await self.disableUserAutoSign(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo), region: region, logger: logger, on: eventLoop)
+    public func disableUserAutoSign(operator: UserInfo, sceneKey: String, userInfo: UserThreeFactor, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUserAutoSignResponse {
+        try await self.disableUserAutoSign(.init(operator: `operator`, sceneKey: sceneKey, userInfo: userInfo, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

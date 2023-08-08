@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Essbasic {
     /// ChannelDescribeRoles请求参数结构体
     public struct ChannelDescribeRolesRequest: TCPaginatedRequest {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 查询起始偏移，最大2000
@@ -31,28 +31,28 @@ extension Essbasic {
         /// 查询数量，最大200
         public let limit: String
 
-        /// 操作人信息
-        public let `operator`: UserInfo
-
         /// 查询的关键字段:
-        /// Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
+        /// Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
         /// Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
         public let filters: [Filter]?
 
-        public init(agent: Agent, offset: UInt64, limit: String, operator: UserInfo, filters: [Filter]? = nil) {
+        /// 操作人信息
+        public let `operator`: UserInfo?
+
+        public init(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.offset = offset
             self.limit = limit
-            self.operator = `operator`
             self.filters = filters
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case offset = "Offset"
             case limit = "Limit"
-            case `operator` = "Operator"
             case filters = "Filters"
+            case `operator` = "Operator"
         }
 
         /// Compute the next request based on API response.
@@ -60,7 +60,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ChannelDescribeRolesRequest(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, operator: self.operator, filters: self.filters)
+            return ChannelDescribeRolesRequest(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, filters: self.filters, operator: self.operator)
         }
     }
 
@@ -101,43 +101,57 @@ extension Essbasic {
         }
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
     public func channelDescribeRoles(_ input: ChannelDescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeRolesResponse> {
         self.client.execute(action: "ChannelDescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
     public func channelDescribeRoles(_ input: ChannelDescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeRolesResponse {
         try await self.client.execute(action: "ChannelDescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
-    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, operator: UserInfo, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeRolesResponse> {
-        self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, operator: `operator`, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeRolesResponse> {
+        self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
-    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, operator: UserInfo, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeRolesResponse {
-        try await self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, operator: `operator`, filters: filters), region: region, logger: logger, on: eventLoop)
+    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeRolesResponse {
+        try await self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
     public func channelDescribeRolesPaginated(_ input: ChannelDescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [ChannelRole])> {
         self.client.paginate(input: input, region: region, command: self.channelDescribeRoles, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable @discardableResult
     public func channelDescribeRolesPaginated(_ input: ChannelDescribeRolesRequest, region: TCRegion? = nil, onResponse: @escaping (ChannelDescribeRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.channelDescribeRoles, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询用户角色
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
     ///
     /// - Returns: `AsyncSequence`s of `ChannelRole` and `ChannelDescribeRolesResponse` that can be iterated over asynchronously on demand.
     @inlinable

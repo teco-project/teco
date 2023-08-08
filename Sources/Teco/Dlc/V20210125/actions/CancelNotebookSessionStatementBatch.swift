@@ -48,33 +48,33 @@ extension Dlc {
         }
     }
 
-    /// 按批取消Session statement.
+    /// 批量取消Session 中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatementBatch）用于按批取消Session statement。
+    /// 本接口（CancelNotebookSessionStatementBatch）用于批量取消Session 中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatementBatch(_ input: CancelNotebookSessionStatementBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelNotebookSessionStatementBatchResponse> {
         self.client.execute(action: "CancelNotebookSessionStatementBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 按批取消Session statement.
+    /// 批量取消Session 中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatementBatch）用于按批取消Session statement。
+    /// 本接口（CancelNotebookSessionStatementBatch）用于批量取消Session 中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatementBatch(_ input: CancelNotebookSessionStatementBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelNotebookSessionStatementBatchResponse {
         try await self.client.execute(action: "CancelNotebookSessionStatementBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 按批取消Session statement.
+    /// 批量取消Session 中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatementBatch）用于按批取消Session statement。
+    /// 本接口（CancelNotebookSessionStatementBatch）用于批量取消Session 中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatementBatch(sessionId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelNotebookSessionStatementBatchResponse> {
         self.cancelNotebookSessionStatementBatch(.init(sessionId: sessionId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 按批取消Session statement.
+    /// 批量取消Session 中执行的任务
     ///
-    /// 本接口（CancelNotebookSessionStatementBatch）用于按批取消Session statement。
+    /// 本接口（CancelNotebookSessionStatementBatch）用于批量取消Session 中执行的任务
     @inlinable @discardableResult
     public func cancelNotebookSessionStatementBatch(sessionId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelNotebookSessionStatementBatchResponse {
         try await self.cancelNotebookSessionStatementBatch(.init(sessionId: sessionId, batchId: batchId), region: region, logger: logger, on: eventLoop)

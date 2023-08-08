@@ -27,14 +27,19 @@ extension Ess {
         /// 签署流程编号
         public let flowId: String
 
-        public init(operator: UserInfo, flowId: String) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, flowId: String, agent: Agent? = nil) {
             self.operator = `operator`
             self.flowId = flowId
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case flowId = "FlowId"
+            case agent = "Agent"
         }
     }
 
@@ -87,8 +92,8 @@ extension Ess {
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeFlowEvidenceReport进行查询。
     @inlinable
-    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowEvidenceReportResponse> {
-        self.createFlowEvidenceReport(.init(operator: `operator`, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowEvidenceReportResponse> {
+        self.createFlowEvidenceReport(.init(operator: `operator`, flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
@@ -96,7 +101,7 @@ extension Ess {
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeFlowEvidenceReport进行查询。
     @inlinable
-    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
-        try await self.createFlowEvidenceReport(.init(operator: `operator`, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    public func createFlowEvidenceReport(operator: UserInfo, flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
+        try await self.createFlowEvidenceReport(.init(operator: `operator`, flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

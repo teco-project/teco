@@ -76,10 +76,15 @@ extension Cls {
 
     /// CreateCosRecharge返回参数结构体
     public struct CreateCosRechargeResponse: TCResponseModel {
+        /// cos_recharge记录id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case id = "Id"
             case requestId = "RequestId"
         }
     }
@@ -87,7 +92,7 @@ extension Cls {
     /// 创建cos导入任务
     ///
     /// 本接口用于创建cos导入任务
-    @inlinable @discardableResult
+    @inlinable
     public func createCosRecharge(_ input: CreateCosRechargeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosRechargeResponse> {
         self.client.execute(action: "CreateCosRecharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -95,7 +100,7 @@ extension Cls {
     /// 创建cos导入任务
     ///
     /// 本接口用于创建cos导入任务
-    @inlinable @discardableResult
+    @inlinable
     public func createCosRecharge(_ input: CreateCosRechargeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosRechargeResponse {
         try await self.client.execute(action: "CreateCosRecharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -103,7 +108,7 @@ extension Cls {
     /// 创建cos导入任务
     ///
     /// 本接口用于创建cos导入任务
-    @inlinable @discardableResult
+    @inlinable
     public func createCosRecharge(topicId: String, logsetId: String, name: String, bucket: String, bucketRegion: String, prefix: String, logType: String, compress: String? = nil, extractRuleInfo: ExtractRuleInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosRechargeResponse> {
         self.createCosRecharge(.init(topicId: topicId, logsetId: logsetId, name: name, bucket: bucket, bucketRegion: bucketRegion, prefix: prefix, logType: logType, compress: compress, extractRuleInfo: extractRuleInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -111,7 +116,7 @@ extension Cls {
     /// 创建cos导入任务
     ///
     /// 本接口用于创建cos导入任务
-    @inlinable @discardableResult
+    @inlinable
     public func createCosRecharge(topicId: String, logsetId: String, name: String, bucket: String, bucketRegion: String, prefix: String, logType: String, compress: String? = nil, extractRuleInfo: ExtractRuleInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosRechargeResponse {
         try await self.createCosRecharge(.init(topicId: topicId, logsetId: logsetId, name: name, bucket: bucket, bucketRegion: bucketRegion, prefix: prefix, logType: logType, compress: compress, extractRuleInfo: extractRuleInfo), region: region, logger: logger, on: eventLoop)
     }

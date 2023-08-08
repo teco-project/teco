@@ -43,11 +43,24 @@ extension Wedata {
         /// 任务删除成功与否标识
         public let data: Bool
 
+        /// 任务删除成功与否标识
+        /// 0表示删除成功
+        /// 1 表示失败，失败原因见 DeleteErrInfo
+        /// 100 表示running or suspend task can't be deleted失败，失败原因也会写到DeleteErrInfo里面
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteFlag: Int64?
+
+        /// 删除失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteErrInfo: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case data = "Data"
+            case deleteFlag = "DeleteFlag"
+            case deleteErrInfo = "DeleteErrInfo"
             case requestId = "RequestId"
         }
     }

@@ -193,6 +193,77 @@ extension Tcb {
         }
     }
 
+    /// 封禁配置
+    public struct BanConfig: TCInputModel {
+        /// ip白名单，支持ipv4、ipv6，支持CIDR
+        public let ipWhiteList: [String]?
+
+        /// ip黑名单，支持ipv4、ipv6，支持CIDR
+        public let ipBlackList: [String]?
+
+        /// 地域白名单（国家英文名）
+        public let countryWhiteList: [String]?
+
+        /// 地域黑名单（国家英文名）
+        public let countryBlackList: [String]?
+
+        public init(ipWhiteList: [String]? = nil, ipBlackList: [String]? = nil, countryWhiteList: [String]? = nil, countryBlackList: [String]? = nil) {
+            self.ipWhiteList = ipWhiteList
+            self.ipBlackList = ipBlackList
+            self.countryWhiteList = countryWhiteList
+            self.countryBlackList = countryBlackList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ipWhiteList = "IpWhiteList"
+            case ipBlackList = "IpBlackList"
+            case countryWhiteList = "CountryWhiteList"
+            case countryBlackList = "CountryBlackList"
+        }
+    }
+
+    /// 代码包信息
+    public struct CbrPackageInfo: TCOutputModel {
+        /// 代码包名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageName: String?
+
+        /// 代码包版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageVersion: String?
+
+        enum CodingKeys: String, CodingKey {
+            case packageName = "PackageName"
+            case packageVersion = "PackageVersion"
+        }
+    }
+
+    /// 仓库信息
+    public struct CbrRepoInfo: TCOutputModel {
+        /// 仓库名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repo: String?
+
+        /// 仓库平台
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repoType: String?
+
+        /// 仓库语言
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let repoLanguage: String?
+
+        /// 分支名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let branch: String?
+
+        enum CodingKeys: String, CodingKey {
+            case repo = "Repo"
+            case repoType = "RepoType"
+            case repoLanguage = "RepoLanguage"
+            case branch = "Branch"
+        }
+    }
+
     /// cloudrun安全特性能力
     public struct CloudBaseCapabilities: TCInputModel, TCOutputModel {
         /// 启用安全能力项列表
@@ -1316,6 +1387,45 @@ extension Tcb {
         }
     }
 
+    /// 安全网关自定义日志配置
+    public struct CustomLogConfig: TCInputModel {
+        /// 是否需要请求体
+        public let needReqBodyLog: Bool?
+
+        /// 是否需要请求头
+        public let needReqHeaderLog: Bool?
+
+        /// 是否需要回包体
+        public let needRspBodyLog: Bool?
+
+        /// 是否需要回包头部信息
+        public let needRspHeaderLog: Bool?
+
+        /// cls set信息
+        public let logSetId: String?
+
+        /// cls topicId
+        public let logTopicId: String?
+
+        public init(needReqBodyLog: Bool? = nil, needReqHeaderLog: Bool? = nil, needRspBodyLog: Bool? = nil, needRspHeaderLog: Bool? = nil, logSetId: String? = nil, logTopicId: String? = nil) {
+            self.needReqBodyLog = needReqBodyLog
+            self.needReqHeaderLog = needReqHeaderLog
+            self.needRspBodyLog = needRspBodyLog
+            self.needRspHeaderLog = needRspHeaderLog
+            self.logSetId = logSetId
+            self.logTopicId = logTopicId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case needReqBodyLog = "NeedReqBodyLog"
+            case needReqHeaderLog = "NeedReqHeaderLog"
+            case needRspBodyLog = "NeedRspBodyLog"
+            case needRspHeaderLog = "NeedRspHeaderLog"
+            case logSetId = "LogSetId"
+            case logTopicId = "LogTopicId"
+        }
+    }
+
     /// 数据库资源信息
     public struct DatabasesInfo: TCOutputModel {
         /// 数据库唯一标识
@@ -1584,6 +1694,14 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageType: String?
 
+        /// 架构类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let architectureType: String?
+
+        /// 回收标志，默认为空
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recycle: String?
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case source = "Source"
@@ -1608,6 +1726,8 @@ extension Tcb {
             case envType = "EnvType"
             case isDauPackage = "IsDauPackage"
             case packageType = "PackageType"
+            case architectureType = "ArchitectureType"
+            case recycle = "Recycle"
         }
     }
 
@@ -1695,6 +1815,27 @@ extension Tcb {
         }
     }
 
+    /// 安全网关版本路由信息限额配置
+    public struct FrequencyLimitConfig: TCInputModel, TCOutputModel {
+        /// 限额对象 "ConnectionsLimit" 或 "QPSLimit"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let limitObject: String?
+
+        /// 限额配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let limitConfig: String?
+
+        public init(limitObject: String? = nil, limitConfig: String? = nil) {
+            self.limitObject = limitObject
+            self.limitConfig = limitConfig
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case limitObject = "LimitObject"
+            case limitConfig = "LimitConfig"
+        }
+    }
+
     /// 函数的信息
     public struct FunctionInfo: TCOutputModel {
         /// 命名空间
@@ -1707,6 +1848,170 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case region = "Region"
+        }
+    }
+
+    /// 网关信息
+    public struct GatewayItem: TCOutputModel {
+        /// 用户uin
+        public let uin: String
+
+        /// 用户appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: UInt64?
+
+        /// 环境id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let envId: String?
+
+        /// Gateway唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// Gateway名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayName: String?
+
+        /// Gateway类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayType: String?
+
+        /// Gateway描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayDesc: String?
+
+        /// 套餐版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageVersion: String?
+
+        /// 套餐唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let packageId: UInt64?
+
+        /// vpc唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetIds: [String]?
+
+        /// 网关状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// l5地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let l5Addr: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 隔离时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isolateTime: String?
+
+        /// 到期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireTime: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 变更时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 允许未登录访问
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allowUncertified: Int64?
+
+        /// 网关版本限额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionNumLimit: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case uin = "Uin"
+            case appId = "AppId"
+            case envId = "EnvId"
+            case gatewayId = "GatewayId"
+            case gatewayName = "GatewayName"
+            case gatewayType = "GatewayType"
+            case gatewayDesc = "GatewayDesc"
+            case packageVersion = "PackageVersion"
+            case packageId = "PackageId"
+            case vpcId = "VpcId"
+            case subnetIds = "SubnetIds"
+            case status = "Status"
+            case l5Addr = "L5Addr"
+            case region = "Region"
+            case isolateTime = "IsolateTime"
+            case expireTime = "ExpireTime"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case allowUncertified = "AllowUncertified"
+            case versionNumLimit = "VersionNumLimit"
+        }
+    }
+
+    /// 网关版本详情
+    public struct GatewayVersionItem: TCInputModel, TCOutputModel {
+        /// 版本名
+        public let versionName: String
+
+        /// 版本流量权重
+        public let weight: UInt64
+
+        /// 创建状态
+        public let status: String?
+
+        /// 创建时间
+        public let createdTime: String?
+
+        /// 更新时间
+        public let updatedTime: String?
+
+        /// 构建ID
+        public let buildId: UInt64?
+
+        /// 备注
+        public let remark: String?
+
+        /// 优先级
+        public let priority: UInt64?
+
+        /// 是否默认版本
+        public let isDefault: Bool?
+
+        /// 网关版本自定义配置
+        public let customConfig: WxGatewayCustomConfig?
+
+        public init(versionName: String, weight: UInt64, status: String? = nil, createdTime: String? = nil, updatedTime: String? = nil, buildId: UInt64? = nil, remark: String? = nil, priority: UInt64? = nil, isDefault: Bool? = nil, customConfig: WxGatewayCustomConfig? = nil) {
+            self.versionName = versionName
+            self.weight = weight
+            self.status = status
+            self.createdTime = createdTime
+            self.updatedTime = updatedTime
+            self.buildId = buildId
+            self.remark = remark
+            self.priority = priority
+            self.isDefault = isDefault
+            self.customConfig = customConfig
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case versionName = "VersionName"
+            case weight = "Weight"
+            case status = "Status"
+            case createdTime = "CreatedTime"
+            case updatedTime = "UpdatedTime"
+            case buildId = "BuildId"
+            case remark = "Remark"
+            case priority = "Priority"
+            case isDefault = "IsDefault"
+            case customConfig = "CustomConfig"
         }
     }
 
@@ -2338,6 +2643,115 @@ extension Tcb {
             case clusterId = "ClusterId"
             case vpcId = "VpcId"
             case versionClbSubnetId = "VersionClbSubnetId"
+        }
+    }
+
+    /// 安全网关自定义配置
+    public struct WxGatewayCustomConfig: TCInputModel {
+        /// 是否开启x-real-ip
+        public let isOpenXRealIp: Bool?
+
+        /// 封禁配置
+        public let banConfig: BanConfig?
+
+        /// 获取源ip方式，PPV1(Proxy Protocol V1)、PPV2(Proxy Protocol V2)、TOA(tcp option address)
+        public let sourceIpType: String?
+
+        /// 日志信息
+        public let logConfig: CustomLogConfig?
+
+        /// 是否开启http1.0
+        public let isAcceptHttpOne: Bool?
+
+        public init(isOpenXRealIp: Bool? = nil, banConfig: BanConfig? = nil, sourceIpType: String? = nil, logConfig: CustomLogConfig? = nil, isAcceptHttpOne: Bool? = nil) {
+            self.isOpenXRealIp = isOpenXRealIp
+            self.banConfig = banConfig
+            self.sourceIpType = sourceIpType
+            self.logConfig = logConfig
+            self.isAcceptHttpOne = isAcceptHttpOne
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case isOpenXRealIp = "IsOpenXRealIp"
+            case banConfig = "BanConfig"
+            case sourceIpType = "SourceIpType"
+            case logConfig = "LogConfig"
+            case isAcceptHttpOne = "IsAcceptHttpOne"
+        }
+    }
+
+    /// 安全网关路由
+    public struct WxGatewayRountItem: TCOutputModel {
+        /// 安全网关路由名称
+        public let gatewayRouteName: String
+
+        /// 安全网关路由协议
+        public let gatewayRouteProtocol: String
+
+        /// 安全网关路由地址
+        public let gatewayRouteAddr: String
+
+        /// 安全网关路由描述
+        public let gatewayRouteDesc: String
+
+        /// 安全网关后端集群id，如果是外网服务，该id与GatewayRountName相同
+        public let gatewayRouteClusterId: String
+
+        /// 安全网关创建时间
+        public let gatewayRouteCreateTime: String
+
+        /// 安全网关路由限制
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let frequencyLimitConfig: [FrequencyLimitConfig]?
+
+        /// ip代表绑定后端ip。cbr代表云托管服务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRouteServerType: String?
+
+        /// 服务名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRouteServerName: String?
+
+        /// ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRewriteHost: String?
+
+        /// 网关版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayVersion: String?
+
+        /// 请求路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRoutePath: String?
+
+        /// 请求模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRouteMethod: String?
+
+        /// 4层端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRoutePort: Int64?
+
+        /// 路由环境ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayRouteEnvId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayRouteName = "GatewayRouteName"
+            case gatewayRouteProtocol = "GatewayRouteProtocol"
+            case gatewayRouteAddr = "GatewayRouteAddr"
+            case gatewayRouteDesc = "GatewayRouteDesc"
+            case gatewayRouteClusterId = "GatewayRouteClusterId"
+            case gatewayRouteCreateTime = "GatewayRouteCreateTime"
+            case frequencyLimitConfig = "FrequencyLimitConfig"
+            case gatewayRouteServerType = "GatewayRouteServerType"
+            case gatewayRouteServerName = "GatewayRouteServerName"
+            case gatewayRewriteHost = "GatewayRewriteHost"
+            case gatewayVersion = "GatewayVersion"
+            case gatewayRoutePath = "GatewayRoutePath"
+            case gatewayRouteMethod = "GatewayRouteMethod"
+            case gatewayRoutePort = "GatewayRoutePort"
+            case gatewayRouteEnvId = "GatewayRouteEnvId"
         }
     }
 }

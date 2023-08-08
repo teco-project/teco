@@ -82,6 +82,7 @@ extension TCTsfError {
             case tkeClusterCreateFailed = "FailedOperation.TkeClusterCreateFailed"
             case tkeClusterDeleteFailed = "FailedOperation.TkeClusterDeleteFailed"
             case tkeClusterQueryFailed = "FailedOperation.TkeClusterQueryFailed"
+            case tokenQueryFailed = "FailedOperation.TokenQueryFailed"
             case tsfApmAgentTaskQueryError = "FailedOperation.TsfApmAgentTaskQueryError"
             case tsfApmAgentTaskWriteError = "FailedOperation.TsfApmAgentTaskWriteError"
             case tsfApmApmAgentNoConnection = "FailedOperation.TsfApmApmAgentNoConnection"
@@ -445,6 +446,11 @@ extension TCTsfError {
             FailedOperation(.tkeClusterQueryFailed)
         }
 
+        /// TOKEN查询失败。
+        public static var tokenQueryFailed: FailedOperation {
+            FailedOperation(.tokenQueryFailed)
+        }
+
         /// TSF应用性能管理任务数据库查询失败。
         public static var tsfApmAgentTaskQueryError: FailedOperation {
             FailedOperation(.tsfApmAgentTaskQueryError)
@@ -694,6 +700,8 @@ extension TCTsfError {
                 code = .failedOperation_TkeClusterDeleteFailed
             case .tkeClusterQueryFailed:
                 code = .failedOperation_TkeClusterQueryFailed
+            case .tokenQueryFailed:
+                code = .failedOperation_TokenQueryFailed
             case .tsfApmAgentTaskQueryError:
                 code = .failedOperation_TsfApmAgentTaskQueryError
             case .tsfApmAgentTaskWriteError:

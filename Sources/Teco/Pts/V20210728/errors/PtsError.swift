@@ -27,6 +27,7 @@ public protocol TCPtsErrorType: TCServiceErrorType {
 public struct TCPtsError: TCPtsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_AccessTagFail = "FailedOperation.AccessTagFail"
         case failedOperation_DbQueryFailed = "FailedOperation.DbQueryFailed"
@@ -42,11 +43,12 @@ public struct TCPtsError: TCPtsErrorType {
         case invalidParameterValue = "InvalidParameterValue"
         case limitExceeded = "LimitExceeded"
         case resourceNotFound = "ResourceNotFound"
+        case unauthorizedOperation = "UnauthorizedOperation"
     }
 
     /// Error domains affliated to ``TCPtsError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self]
+        [AuthFailure.self, FailedOperation.self]
     }
 
     private let error: Code
@@ -74,6 +76,10 @@ public struct TCPtsError: TCPtsErrorType {
     /// CAM签名/鉴权错误。
     public static var authFailure: TCPtsError {
         TCPtsError(.authFailure)
+    }
+
+    public static var authFailure_UnauthorizedOperation: TCPtsError {
+        TCPtsError(.authFailure_UnauthorizedOperation)
     }
 
     /// 操作失败。
@@ -151,6 +157,11 @@ public struct TCPtsError: TCPtsErrorType {
     /// 资源不存在。
     public static var resourceNotFound: TCPtsError {
         TCPtsError(.resourceNotFound)
+    }
+
+    /// 未授权操作。
+    public static var unauthorizedOperation: TCPtsError {
+        TCPtsError(.unauthorizedOperation)
     }
 
     public func asPtsError() -> TCPtsError {

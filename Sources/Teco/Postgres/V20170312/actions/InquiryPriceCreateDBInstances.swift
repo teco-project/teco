@@ -24,7 +24,7 @@ extension Postgres {
         /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
         public let zone: String
 
-        /// 规格ID。该参数可以通过调用DescribeProductConfig接口的返回值中的SpecCode字段来获取。
+        /// 规格ID。该参数可以通过调用DescribeClasses接口的返回值中的SpecCode字段来获取。
         public let specCode: String
 
         /// 存储容量大小，单位：GB。
@@ -99,33 +99,33 @@ extension Postgres {
         }
     }
 
-    /// 查询售卖价格
+    /// 查询实例创建售卖价格
     ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
         self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询售卖价格
+    /// 查询实例创建售卖价格
     ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
         try await self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询售卖价格
+    /// 查询实例创建售卖价格
     ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64? = nil, instanceChargeType: String? = nil, instanceType: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
         self.inquiryPriceCreateDBInstances(.init(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询售卖价格
+    /// 查询实例创建售卖价格
     ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买实例的价格信息。
     @inlinable
     public func inquiryPriceCreateDBInstances(zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64? = nil, instanceChargeType: String? = nil, instanceType: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
         try await self.inquiryPriceCreateDBInstances(.init(zone: zone, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, pid: pid, instanceChargeType: instanceChargeType, instanceType: instanceType, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)

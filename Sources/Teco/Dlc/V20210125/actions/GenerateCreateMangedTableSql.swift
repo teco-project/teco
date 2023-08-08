@@ -33,11 +33,15 @@ extension Dlc {
         /// 表属性信息
         public let properties: [Property]?
 
-        public init(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil) {
+        /// V2 upsert表 upsert键
+        public let upsertKeys: [String]?
+
+        public init(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil, upsertKeys: [String]? = nil) {
             self.tableBaseInfo = tableBaseInfo
             self.columns = columns
             self.partitions = partitions
             self.properties = properties
+            self.upsertKeys = upsertKeys
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Dlc {
             case columns = "Columns"
             case partitions = "Partitions"
             case properties = "Properties"
+            case upsertKeys = "UpsertKeys"
         }
     }
 
@@ -76,13 +81,13 @@ extension Dlc {
 
     /// 生成创建托管表语句
     @inlinable
-    public func generateCreateMangedTableSql(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateCreateMangedTableSqlResponse> {
-        self.generateCreateMangedTableSql(.init(tableBaseInfo: tableBaseInfo, columns: columns, partitions: partitions, properties: properties), region: region, logger: logger, on: eventLoop)
+    public func generateCreateMangedTableSql(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil, upsertKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateCreateMangedTableSqlResponse> {
+        self.generateCreateMangedTableSql(.init(tableBaseInfo: tableBaseInfo, columns: columns, partitions: partitions, properties: properties, upsertKeys: upsertKeys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成创建托管表语句
     @inlinable
-    public func generateCreateMangedTableSql(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateCreateMangedTableSqlResponse {
-        try await self.generateCreateMangedTableSql(.init(tableBaseInfo: tableBaseInfo, columns: columns, partitions: partitions, properties: properties), region: region, logger: logger, on: eventLoop)
+    public func generateCreateMangedTableSql(tableBaseInfo: TableBaseInfo, columns: [TColumn], partitions: [TPartition]? = nil, properties: [Property]? = nil, upsertKeys: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateCreateMangedTableSqlResponse {
+        try await self.generateCreateMangedTableSql(.init(tableBaseInfo: tableBaseInfo, columns: columns, partitions: partitions, properties: properties, upsertKeys: upsertKeys), region: region, logger: logger, on: eventLoop)
     }
 }

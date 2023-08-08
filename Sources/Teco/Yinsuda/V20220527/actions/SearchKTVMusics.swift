@@ -42,13 +42,24 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
 
-        public init(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
+        /// 播放场景。默认为Chat
+        /// <li>Live：直播</li><li>Chat：语聊</li>
+        public let playScene: String?
+
+        /// 物料过滤，取值有：
+        /// <li>Lyrics：含有歌词；</li>
+        /// <li>Midi：含有音高线。</li>
+        public let materialFilters: [String]?
+
+        public init(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.keyWord = keyWord
             self.scrollToken = scrollToken
             self.limit = limit
             self.rightFilters = rightFilters
+            self.playScene = playScene
+            self.materialFilters = materialFilters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +69,8 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case limit = "Limit"
             case rightFilters = "RightFilters"
+            case playScene = "PlayScene"
+            case materialFilters = "MaterialFilters"
         }
 
         /// Compute the next request based on API response.
@@ -65,7 +78,7 @@ extension Yinsuda {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return SearchKTVMusicsRequest(appName: self.appName, userId: self.userId, keyWord: self.keyWord, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters)
+            return SearchKTVMusicsRequest(appName: self.appName, userId: self.userId, keyWord: self.keyWord, scrollToken: response.scrollToken, limit: self.limit, rightFilters: self.rightFilters, playScene: self.playScene, materialFilters: self.materialFilters)
         }
     }
 
@@ -112,16 +125,16 @@ extension Yinsuda {
     ///
     /// 根据关键词搜索歌曲，返回相关歌曲列表。
     @inlinable
-    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchKTVMusicsResponse> {
-        self.searchKTVMusics(.init(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchKTVMusicsResponse> {
+        self.searchKTVMusics(.init(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, playScene: playScene, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索歌曲
     ///
     /// 根据关键词搜索歌曲，返回相关歌曲列表。
     @inlinable
-    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
-        try await self.searchKTVMusics(.init(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+    public func searchKTVMusics(appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
+        try await self.searchKTVMusics(.init(appName: appName, userId: userId, keyWord: keyWord, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters, playScene: playScene, materialFilters: materialFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索歌曲

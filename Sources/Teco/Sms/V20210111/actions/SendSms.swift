@@ -33,7 +33,7 @@ extension Sms {
         public let templateId: String
 
         /// 短信签名内容，使用 UTF-8 编码，必须填写已审核通过的签名，例如：腾讯云，签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-sign) 的签名管理查看。
-        /// <dx-alert infotype="notice" title="注意">发送国内短信该参数必填。</dx-alert>
+        /// <dx-alert infotype="notice" title="注意">发送国内短信该参数必填，且需填写签名内容而非签名ID。</dx-alert>
         public let signName: String?
 
         /// 模板参数，若无模板参数，则设置为空。
@@ -43,7 +43,7 @@ extension Sms {
         /// 短信码号扩展号，默认未开通，如需开通请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public let extendCode: String?
 
-        /// 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。
+        /// 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。注意长度需小于512字节。
         public let sessionContext: String?
 
         /// 国内短信无需填写该项；国际/港澳台短信已申请独立 SenderId 需要填写该字段，默认使用公共 SenderId，无需填写该字段。

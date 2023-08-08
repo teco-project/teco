@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Vpc {
     /// DescribeVpcEndPointService请求参数结构体
     public struct DescribeVpcEndPointServiceRequest: TCPaginatedRequest {
-        /// 过滤条件。
+        /// 过滤条件。不支持同时传入参数 EndPointServiceIds and Filters。
         /// <li> service-id - String - （过滤条件）终端节点服务唯一ID。</li>
         /// <li>service-name - String - （过滤条件）终端节点实例名称。</li>
         /// <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
@@ -35,14 +35,18 @@ extension Vpc {
         /// 单页返回数量，默认为20，最大值为100。
         public let limit: UInt64?
 
-        /// 终端节点服务ID。
+        /// 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         public let endPointServiceIds: [String]?
 
-        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil) {
+        /// <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
+        public let isListAuthorizedEndPointService: Bool?
+
+        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, isListAuthorizedEndPointService: Bool? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
             self.endPointServiceIds = endPointServiceIds
+            self.isListAuthorizedEndPointService = isListAuthorizedEndPointService
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Vpc {
             case offset = "Offset"
             case limit = "Limit"
             case endPointServiceIds = "EndPointServiceIds"
+            case isListAuthorizedEndPointService = "IsListAuthorizedEndPointService"
         }
 
         /// Compute the next request based on API response.
@@ -57,7 +62,7 @@ extension Vpc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeVpcEndPointServiceRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, endPointServiceIds: self.endPointServiceIds)
+            return DescribeVpcEndPointServiceRequest(filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, endPointServiceIds: self.endPointServiceIds, isListAuthorizedEndPointService: self.isListAuthorizedEndPointService)
         }
     }
 
@@ -109,16 +114,16 @@ extension Vpc {
     ///
     /// 查询终端节点服务列表。
     @inlinable
-    public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceResponse> {
-        self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds), region: region, logger: logger, on: eventLoop)
+    public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, isListAuthorizedEndPointService: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceResponse> {
+        self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds, isListAuthorizedEndPointService: isListAuthorizedEndPointService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务列表
     ///
     /// 查询终端节点服务列表。
     @inlinable
-    public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceResponse {
-        try await self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds), region: region, logger: logger, on: eventLoop)
+    public func describeVpcEndPointService(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, isListAuthorizedEndPointService: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceResponse {
+        try await self.describeVpcEndPointService(.init(filters: filters, offset: offset, limit: limit, endPointServiceIds: endPointServiceIds, isListAuthorizedEndPointService: isListAuthorizedEndPointService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务列表

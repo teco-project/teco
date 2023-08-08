@@ -36,7 +36,7 @@ extension Tke {
         /// 自定义参数，覆盖chart 中values.yaml 中的参数
         public let values: ReleaseValues?
 
-        /// 制品来源，范围：tke-market/tcr/other
+        /// 制品来源，范围：tke-market 或 other
         public let chartFrom: String?
 
         /// 制品版本( 从第三安装时，不传这个参数）

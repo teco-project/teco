@@ -27,6 +27,7 @@ extension TCCfsError {
             case subnetIpAllOccupied = "ResourceInsufficient.SubnetIpAllOccupied"
             case tagLimitExceeded = "ResourceInsufficient.TagLimitExceeded"
             case tagQuotasExceeded = "ResourceInsufficient.TagQuotasExceeded"
+            case turboSpecialCapacityFileSystemCountLimit = "ResourceInsufficient.TurboSpecialCapacityFileSystemCountLimit"
         }
 
         private let error: Code
@@ -71,6 +72,7 @@ extension TCCfsError {
             ResourceInsufficient(.ruleLimitExceeded)
         }
 
+        /// 文件系统过大，不支持快照
         public static var snapshotSizeLimitExceeded: ResourceInsufficient {
             ResourceInsufficient(.snapshotSizeLimitExceeded)
         }
@@ -88,6 +90,13 @@ extension TCCfsError {
         /// 标签限额不足。
         public static var tagQuotasExceeded: ResourceInsufficient {
             ResourceInsufficient(.tagQuotasExceeded)
+        }
+
+        /// Turbo类型特殊容量文件系统数量限制
+        ///
+        /// 扩容或者删除已有的特殊容量文件系统
+        public static var turboSpecialCapacityFileSystemCountLimit: ResourceInsufficient {
+            ResourceInsufficient(.turboSpecialCapacityFileSystemCountLimit)
         }
 
         public func asCfsError() -> TCCfsError {
@@ -109,6 +118,8 @@ extension TCCfsError {
                 code = .resourceInsufficient_TagLimitExceeded
             case .tagQuotasExceeded:
                 code = .resourceInsufficient_TagQuotasExceeded
+            case .turboSpecialCapacityFileSystemCountLimit:
+                code = .resourceInsufficient_TurboSpecialCapacityFileSystemCountLimit
             }
             return TCCfsError(code, context: self.context)
         }

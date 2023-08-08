@@ -49,6 +49,7 @@ public struct TCFtError: TCFtErrorType {
         case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
         case failedOperation_RpcFail = "FailedOperation.RpcFail"
         case failedOperation_TaskNotExist = "FailedOperation.TaskNotExist"
+        case failedOperation_Unknown = "FailedOperation.Unknown"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
@@ -58,6 +59,7 @@ public struct TCFtError: TCFtErrorType {
         case invalidParameterValue_FaceRectInvalidThrid = "InvalidParameterValue.FaceRectInvalidThrid"
         case invalidParameterValue_ImageEmpty = "InvalidParameterValue.ImageEmpty"
         case invalidParameterValue_ImageSizeExceed = "InvalidParameterValue.ImageSizeExceed"
+        case invalidParameterValue_LutImageSizeInvalid = "InvalidParameterValue.LutImageSizeInvalid"
         case invalidParameterValue_NoFaceInPhoto = "InvalidParameterValue.NoFaceInPhoto"
         case invalidParameterValue_ParameterValueError = "InvalidParameterValue.ParameterValueError"
         case invalidParameterValue_UrlIllegal = "InvalidParameterValue.UrlIllegal"
@@ -217,6 +219,11 @@ public struct TCFtError: TCFtErrorType {
         TCFtError(.failedOperation_TaskNotExist)
     }
 
+    /// 未知错误。
+    public static var failedOperation_Unknown: TCFtError {
+        TCFtError(.failedOperation_Unknown)
+    }
+
     /// 内部错误。
     public static var internalError: TCFtError {
         TCFtError(.internalError)
@@ -260,6 +267,11 @@ public struct TCFtError: TCFtErrorType {
     /// 图片数据太大。
     public static var invalidParameterValue_ImageSizeExceed: TCFtError {
         TCFtError(.invalidParameterValue_ImageSizeExceed)
+    }
+
+    /// 图片尺寸不对。
+    public static var invalidParameterValue_LutImageSizeInvalid: TCFtError {
+        TCFtError(.invalidParameterValue_LutImageSizeInvalid)
     }
 
     /// 图片中没有人脸。

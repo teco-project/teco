@@ -19,7 +19,6 @@ import TecoCore
 extension TCNlpError {
     public struct ResourceUnavailable: TCNlpErrorType {
         enum Code: String {
-            case fileUnavailable = "ResourceUnavailable.FileUnavailable"
             case freeze = "ResourceUnavailable.Freeze"
             case inArrears = "ResourceUnavailable.InArrears"
             case isOpening = "ResourceUnavailable.IsOpening"
@@ -50,11 +49,6 @@ extension TCNlpError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
-        }
-
-        /// 文件资源不可用
-        public static var fileUnavailable: ResourceUnavailable {
-            ResourceUnavailable(.fileUnavailable)
         }
 
         /// 帐号已被冻结。
@@ -100,8 +94,6 @@ extension TCNlpError {
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {
-            case .fileUnavailable:
-                code = .resourceUnavailable_FileUnavailable
             case .freeze:
                 code = .resourceUnavailable_Freeze
             case .inArrears:

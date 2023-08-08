@@ -27,7 +27,7 @@ extension Cfs {
         /// 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
         public let name: String?
 
-        /// 权限组描述信息，1-255个字符
+        /// 权限组描述信息，1-255个字符。 Name和Descinfo不能同时为空
         public let descInfo: String?
 
         public init(pGroupId: String, name: String? = nil, descInfo: String? = nil) {

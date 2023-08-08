@@ -19,6 +19,7 @@ import TecoCore
 extension TCEssError {
     public struct InvalidParameterValue: TCEssErrorType {
         enum Code: String {
+            case invalidMobile = "InvalidParameterValue.InvalidMobile"
             case mask = "InvalidParameterValue.Mask"
             case other = "InvalidParameterValue"
         }
@@ -45,6 +46,10 @@ extension TCEssError {
             self.context = context
         }
 
+        public static var invalidMobile: InvalidParameterValue {
+            InvalidParameterValue(.invalidMobile)
+        }
+
         /// 需要屏蔽的告警。
         public static var mask: InvalidParameterValue {
             InvalidParameterValue(.mask)
@@ -58,6 +63,8 @@ extension TCEssError {
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {
+            case .invalidMobile:
+                code = .invalidParameterValue_InvalidMobile
             case .mask:
                 code = .invalidParameterValue_Mask
             case .other:

@@ -42,12 +42,16 @@ extension Cwp {
         /// 排序字段 PublishDate  LastScanTime HostCount
         public let by: String?
 
-        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil) {
+        /// 是否热点漏洞
+        public let hotspotAttack: Bool?
+
+        public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, hotspotAttack: Bool? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
             self.order = order
             self.by = by
+            self.hotspotAttack = hotspotAttack
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Cwp {
             case filters = "Filters"
             case order = "Order"
             case by = "By"
+            case hotspotAttack = "HotspotAttack"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +68,7 @@ extension Cwp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeEmergencyVulListRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by)
+            return DescribeEmergencyVulListRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters, order: self.order, by: self.by, hotspotAttack: self.hotspotAttack)
         }
     }
 
@@ -122,16 +127,16 @@ extension Cwp {
     ///
     /// 获取应急漏洞列表
     @inlinable
-    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyVulListResponse> {
-        self.describeEmergencyVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, hotspotAttack: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyVulListResponse> {
+        self.describeEmergencyVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by, hotspotAttack: hotspotAttack), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表
     @inlinable
-    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
-        try await self.describeEmergencyVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+    public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil, hotspotAttack: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
+        try await self.describeEmergencyVulList(.init(limit: limit, offset: offset, filters: filters, order: order, by: by, hotspotAttack: hotspotAttack), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应急漏洞列表

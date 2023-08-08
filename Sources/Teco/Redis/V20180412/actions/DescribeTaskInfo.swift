@@ -21,7 +21,7 @@ import TecoCore
 extension Redis {
     /// DescribeTaskInfo请求参数结构体
     public struct DescribeTaskInfoRequest: TCRequestModel {
-        /// 任务ID
+        /// 任务 ID。
         public let taskId: UInt64
 
         public init(taskId: UInt64) {
@@ -35,19 +35,24 @@ extension Redis {
 
     /// DescribeTaskInfo返回参数结构体
     public struct DescribeTaskInfoResponse: TCResponseModel {
-        /// 任务状态preparing:待执行，running：执行中，succeed：成功，failed：失败，error 执行出错
+        /// 任务状态。
+        /// - preparing：待执行。
+        /// - running：执行中。
+        /// - succeed：成功。
+        /// - failed：失败。
+        /// - error：执行出错。
         public let status: String
 
-        /// 任务开始时间
+        /// 任务开始时间。
         public let startTime: String
 
-        /// 任务类型
+        /// 任务类型。常见的类型包含：新建类型、配置变更、关闭实例、清空实例、重置密码、版本升级、备份实例、改变网络类型、实例可用区迁移、手动提主等。
         public let taskType: String
 
-        /// 实例的ID
+        /// 实例的 ID。
         public let instanceId: String
 
-        /// 任务信息，错误时显示错误信息。执行中与成功则为空
+        /// 任务执行返回的信息，执行错误时显示错误信息。执行中或执行成功则为空。
         public let taskMessage: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -65,7 +70,7 @@ extension Redis {
 
     /// Redis查询任务结果
     ///
-    /// 用于查询任务结果
+    /// 本接口（DescribeTaskInfo）用于获取指定任务的执行情况。
     @inlinable
     public func describeTaskInfo(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
         self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,7 +78,7 @@ extension Redis {
 
     /// Redis查询任务结果
     ///
-    /// 用于查询任务结果
+    /// 本接口（DescribeTaskInfo）用于获取指定任务的执行情况。
     @inlinable
     public func describeTaskInfo(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
         try await self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +86,7 @@ extension Redis {
 
     /// Redis查询任务结果
     ///
-    /// 用于查询任务结果
+    /// 本接口（DescribeTaskInfo）用于获取指定任务的执行情况。
     @inlinable
     public func describeTaskInfo(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
         self.describeTaskInfo(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
@@ -89,7 +94,7 @@ extension Redis {
 
     /// Redis查询任务结果
     ///
-    /// 用于查询任务结果
+    /// 本接口（DescribeTaskInfo）用于获取指定任务的执行情况。
     @inlinable
     public func describeTaskInfo(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
         try await self.describeTaskInfo(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)

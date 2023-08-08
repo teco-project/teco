@@ -55,6 +55,10 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rawJobs: [PrometheusConfigItem]?
 
+        /// Probes列表以及对应targets信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let probes: [PrometheusConfigItem]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -63,6 +67,7 @@ extension Monitor {
             case serviceMonitors = "ServiceMonitors"
             case podMonitors = "PodMonitors"
             case rawJobs = "RawJobs"
+            case probes = "Probes"
             case requestId = "RequestId"
         }
     }

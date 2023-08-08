@@ -34,10 +34,10 @@ extension Dlc {
         /// 执行实例id
         public let taskId: String?
 
-        /// 更新时间起始点
+        /// 更新时间起始点，支持格式：yyyy-MM-dd HH:mm:ss
         public let startTime: String?
 
-        /// 更新时间截止点
+        /// 更新时间截止点，支持格式：yyyy-MM-dd HH:mm:ss
         public let endTime: String?
 
         /// 按照该参数过滤,支持task-state
@@ -107,42 +107,56 @@ extension Dlc {
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable
     public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
         self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable
     public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
         try await self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable
     public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
         self.describeSparkAppTasks(.init(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable
     public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
         try await self.describeSparkAppTasks(.init(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable
     public func describeSparkAppTasksPaginated(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [TaskResponseInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     @inlinable @discardableResult
     public func describeSparkAppTasksPaginated(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSparkAppTasksResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSparkAppTasks, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
+    ///
+    /// 查询Spark作业的运行任务列表
     ///
     /// - Returns: `AsyncSequence`s of `TaskResponseInfo` and `DescribeSparkAppTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable

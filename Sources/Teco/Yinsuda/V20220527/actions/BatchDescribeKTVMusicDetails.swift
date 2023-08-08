@@ -34,11 +34,19 @@ extension Yinsuda {
         /// <li>Live：直播</li><li>Chat：语聊</li>
         public let playScene: String?
 
-        public init(appName: String, userId: String, musicIds: [String], playScene: String? = nil) {
+        /// 玩家用户标识
+        public let guestUserId: String?
+
+        /// 房间Id
+        public let roomId: String?
+
+        public init(appName: String, userId: String, musicIds: [String], playScene: String? = nil, guestUserId: String? = nil, roomId: String? = nil) {
             self.appName = appName
             self.userId = userId
             self.musicIds = musicIds
             self.playScene = playScene
+            self.guestUserId = guestUserId
+            self.roomId = roomId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +54,8 @@ extension Yinsuda {
             case userId = "UserId"
             case musicIds = "MusicIds"
             case playScene = "PlayScene"
+            case guestUserId = "GuestUserId"
+            case roomId = "RoomId"
         }
     }
 
@@ -87,15 +97,15 @@ extension Yinsuda {
     ///
     /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
     @inlinable
-    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
-        self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene), region: region, logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, guestUserId: String? = nil, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
+        self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene, guestUserId: guestUserId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取歌曲详情
     ///
     /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
     @inlinable
-    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene), region: region, logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(appName: String, userId: String, musicIds: [String], playScene: String? = nil, guestUserId: String? = nil, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.batchDescribeKTVMusicDetails(.init(appName: appName, userId: userId, musicIds: musicIds, playScene: playScene, guestUserId: guestUserId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

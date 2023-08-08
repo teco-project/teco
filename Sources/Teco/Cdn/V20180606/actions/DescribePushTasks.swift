@@ -49,7 +49,7 @@ extension Cdn {
         /// 分页查询限制数目，默认为 20
         public let limit: Int64?
 
-        /// 指定地区查询预热纪录
+        /// 指定地区查询预热记录
         /// mainland：境内
         /// overseas：境外
         /// global：全球

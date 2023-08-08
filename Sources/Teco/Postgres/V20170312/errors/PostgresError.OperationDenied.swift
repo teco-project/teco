@@ -26,6 +26,7 @@ extension TCPostgresError {
             case instanceStatusDeniedError = "OperationDenied.InstanceStatusDeniedError"
             case instanceStatusLimitError = "OperationDenied.InstanceStatusLimitError"
             case instanceStatusLimitOpError = "OperationDenied.InstanceStatusLimitOpError"
+            case instanceTypeDenied = "OperationDenied.InstanceTypeDenied"
             case notSupportZoneError = "OperationDenied.NotSupportZoneError"
             case payModeError = "OperationDenied.PayModeError"
             case postPaidPayModeError = "OperationDenied.PostPaidPayModeError"
@@ -95,6 +96,10 @@ extension TCPostgresError {
             OperationDenied(.instanceStatusLimitOpError)
         }
 
+        public static var instanceTypeDenied: OperationDenied {
+            OperationDenied(.instanceTypeDenied)
+        }
+
         /// Serverless不支持当前可用区。
         public static var notSupportZoneError: OperationDenied {
             OperationDenied(.notSupportZoneError)
@@ -162,6 +167,8 @@ extension TCPostgresError {
                 code = .operationDenied_InstanceStatusLimitError
             case .instanceStatusLimitOpError:
                 code = .operationDenied_InstanceStatusLimitOpError
+            case .instanceTypeDenied:
+                code = .operationDenied_InstanceTypeDenied
             case .notSupportZoneError:
                 code = .operationDenied_NotSupportZoneError
             case .payModeError:

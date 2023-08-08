@@ -21,7 +21,7 @@ import TecoCore
 extension Antiddos {
     /// DescribeNewL7RulesErrHealth请求参数结构体
     public struct DescribeNewL7RulesErrHealthRequest: TCRequestModel {
-        /// 大禹子产品代号(bgpip表示高防IP)
+        /// DDoS防护子产品代号(bgpip表示高防IP)
         public let business: String
 
         /// 规则Id列表

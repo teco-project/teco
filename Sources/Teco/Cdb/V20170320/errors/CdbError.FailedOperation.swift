@@ -29,6 +29,7 @@ extension TCCdbError {
             case dbOperationActionError = "FailedOperation.DBOperationActionError"
             case deleteAuditFailError = "FailedOperation.DeleteAuditFailError"
             case describeProxyGroupError = "FailedOperation.DescribeProxyGroupError"
+            case failedOperationError = "FailedOperation.FailedOperationError"
             case getPrivilegeError = "FailedOperation.GetPrivilegeError"
             case instanceQueryError = "FailedOperation.InstanceQueryError"
             case jsonMarshalError = "FailedOperation.JsonMarshalError"
@@ -37,13 +38,17 @@ extension TCCdbError {
             case operationInConflictErr = "FailedOperation.OperationInConflictErr"
             case privilegeDataIllegal = "FailedOperation.PrivilegeDataIllegal"
             case proxyGroupStatusError = "FailedOperation.ProxyGroupStatusError"
+            case queryAuditTaskFailError = "FailedOperation.QueryAuditTaskFailError"
             case queryLogError = "FailedOperation.QueryLogError"
+            case repeatCreateProxyError = "FailedOperation.RepeatCreateProxyError"
             case responseValueError = "FailedOperation.ResponseValueError"
             case startFlowError = "FailedOperation.StartFlowError"
             case statusConflict = "FailedOperation.StatusConflict"
             case submitAsyncTaskError = "FailedOperation.SubmitAsyncTaskError"
             case timeoutError = "FailedOperation.TimeoutError"
             case typeInConflict = "FailedOperation.TypeInConflict"
+            case vpcIpInUseError = "FailedOperation.VpcIpInUseError"
+            case vpcIpNotInSubnetError = "FailedOperation.VpcIpNotInSubnetError"
             case other = "FailedOperation"
         }
 
@@ -121,6 +126,11 @@ extension TCCdbError {
             FailedOperation(.describeProxyGroupError)
         }
 
+        /// 不支持当前操作。
+        public static var failedOperationError: FailedOperation {
+            FailedOperation(.failedOperationError)
+        }
+
         /// 获取权限错误。
         public static var getPrivilegeError: FailedOperation {
             FailedOperation(.getPrivilegeError)
@@ -161,9 +171,19 @@ extension TCCdbError {
             FailedOperation(.proxyGroupStatusError)
         }
 
+        /// 查询审计任务失败。
+        public static var queryAuditTaskFailError: FailedOperation {
+            FailedOperation(.queryAuditTaskFailError)
+        }
+
         /// 查询日志失败。
         public static var queryLogError: FailedOperation {
             FailedOperation(.queryLogError)
+        }
+
+        /// 代理创建中或则已存在，请勿重复创建。
+        public static var repeatCreateProxyError: FailedOperation {
+            FailedOperation(.repeatCreateProxyError)
         }
 
         /// 后台请求服务异常，请您联系客服解决。
@@ -198,6 +218,16 @@ extension TCCdbError {
             FailedOperation(.typeInConflict)
         }
 
+        /// 该IP已被占用。
+        public static var vpcIpInUseError: FailedOperation {
+            FailedOperation(.vpcIpInUseError)
+        }
+
+        /// 子网中不存在该IP
+        public static var vpcIpNotInSubnetError: FailedOperation {
+            FailedOperation(.vpcIpNotInSubnetError)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -226,6 +256,8 @@ extension TCCdbError {
                 code = .failedOperation_DeleteAuditFailError
             case .describeProxyGroupError:
                 code = .failedOperation_DescribeProxyGroupError
+            case .failedOperationError:
+                code = .failedOperation_FailedOperationError
             case .getPrivilegeError:
                 code = .failedOperation_GetPrivilegeError
             case .instanceQueryError:
@@ -242,8 +274,12 @@ extension TCCdbError {
                 code = .failedOperation_PrivilegeDataIllegal
             case .proxyGroupStatusError:
                 code = .failedOperation_ProxyGroupStatusError
+            case .queryAuditTaskFailError:
+                code = .failedOperation_QueryAuditTaskFailError
             case .queryLogError:
                 code = .failedOperation_QueryLogError
+            case .repeatCreateProxyError:
+                code = .failedOperation_RepeatCreateProxyError
             case .responseValueError:
                 code = .failedOperation_ResponseValueError
             case .startFlowError:
@@ -256,6 +292,10 @@ extension TCCdbError {
                 code = .failedOperation_TimeoutError
             case .typeInConflict:
                 code = .failedOperation_TypeInConflict
+            case .vpcIpInUseError:
+                code = .failedOperation_VpcIpInUseError
+            case .vpcIpNotInSubnetError:
+                code = .failedOperation_VpcIpNotInSubnetError
             case .other:
                 code = .failedOperation
             }

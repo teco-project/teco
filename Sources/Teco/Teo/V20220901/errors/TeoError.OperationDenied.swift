@@ -19,12 +19,20 @@ import TecoCore
 extension TCTeoError {
     public struct OperationDenied: TCTeoErrorType {
         enum Code: String {
+            case accelerateMainlandDisable = "OperationDenied.AccelerateMainlandDisable"
+            case accelerateMainlandIpv6Conflict = "OperationDenied.AccelerateMainlandIpv6Conflict"
+            case disableZoneNotCompleted = "OperationDenied.DisableZoneNotCompleted"
             case domainInShareCnameGroup = "OperationDenied.DomainInShareCnameGroup"
             case domainIsBlocked = "OperationDenied.DomainIsBlocked"
             case domainNoICP = "OperationDenied.DomainNoICP"
+            case errZoneIsAlreadyPaused = "OperationDenied.ErrZoneIsAlreadyPaused"
+            case invalidAdvancedDefenseSecurityType = "OperationDenied.InvalidAdvancedDefenseSecurityType"
+            case invalidAdvancedDefenseZoneArea = "OperationDenied.InvalidAdvancedDefenseZoneArea"
             case l4ProxyInBannedStatus = "OperationDenied.L4ProxyInBannedStatus"
+            case l4ProxyInProgressStatus = "OperationDenied.L4ProxyInProgressStatus"
+            case l4ProxyInStoppingStatus = "OperationDenied.L4ProxyInStoppingStatus"
             case l4StatusNotInOnline = "OperationDenied.L4StatusNotInOnline"
-            case latestVersionNow = "OperationDenied.LatestVersionNow"
+            case l7HostInProcessStatus = "OperationDenied.L7HostInProcessStatus"
             case multipleCnameZone = "OperationDenied.MultipleCnameZone"
             case nsNotAllowTrafficStrategy = "OperationDenied.NSNotAllowTrafficStrategy"
             case recordIsForbidden = "OperationDenied.RecordIsForbidden"
@@ -54,6 +62,20 @@ extension TCTeoError {
             self.context = context
         }
 
+        /// 请联系商务开启「中国大陆网络优化(国际加速)」功能。
+        public static var accelerateMainlandDisable: OperationDenied {
+            OperationDenied(.accelerateMainlandDisable)
+        }
+
+        /// 中国大陆加速与IPv6冲突，不能同时配置。
+        public static var accelerateMainlandIpv6Conflict: OperationDenied {
+            OperationDenied(.accelerateMainlandIpv6Conflict)
+        }
+
+        public static var disableZoneNotCompleted: OperationDenied {
+            OperationDenied(.disableZoneNotCompleted)
+        }
+
         /// 有域名在共享cname组内，不可切换接入类型。
         public static var domainInShareCnameGroup: OperationDenied {
             OperationDenied(.domainInShareCnameGroup)
@@ -69,9 +91,32 @@ extension TCTeoError {
             OperationDenied(.domainNoICP)
         }
 
+        /// 站点处于停用状态，请开启后重试。
+        public static var errZoneIsAlreadyPaused: OperationDenied {
+            OperationDenied(.errZoneIsAlreadyPaused)
+        }
+
+        /// 开启高防时必须保证安全是开启状态。
+        public static var invalidAdvancedDefenseSecurityType: OperationDenied {
+            OperationDenied(.invalidAdvancedDefenseSecurityType)
+        }
+
+        /// 开启高防必须保证站点加速区域是国内。
+        public static var invalidAdvancedDefenseZoneArea: OperationDenied {
+            OperationDenied(.invalidAdvancedDefenseZoneArea)
+        }
+
         /// 4层代理资源处于封禁中，禁止操作。
         public static var l4ProxyInBannedStatus: OperationDenied {
             OperationDenied(.l4ProxyInBannedStatus)
+        }
+
+        public static var l4ProxyInProgressStatus: OperationDenied {
+            OperationDenied(.l4ProxyInProgressStatus)
+        }
+
+        public static var l4ProxyInStoppingStatus: OperationDenied {
+            OperationDenied(.l4ProxyInStoppingStatus)
         }
 
         /// 绑定4层实例有处于非运行中的状态，禁止操作。
@@ -79,9 +124,8 @@ extension TCTeoError {
             OperationDenied(.l4StatusNotInOnline)
         }
 
-        /// 回源白名单已经是最新版本，无需更新。
-        public static var latestVersionNow: OperationDenied {
-            OperationDenied(.latestVersionNow)
+        public static var l7HostInProcessStatus: OperationDenied {
+            OperationDenied(.l7HostInProcessStatus)
         }
 
         /// 已存在多个Cname接入站点，不允许切换至NS。
@@ -99,6 +143,7 @@ extension TCTeoError {
             OperationDenied(.recordIsForbidden)
         }
 
+        /// 当前有互相排斥的请求操作并行发起，请稍后重试。
         public static var resourceLockedTemporary: OperationDenied {
             OperationDenied(.resourceLockedTemporary)
         }
@@ -111,18 +156,34 @@ extension TCTeoError {
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
+            case .accelerateMainlandDisable:
+                code = .operationDenied_AccelerateMainlandDisable
+            case .accelerateMainlandIpv6Conflict:
+                code = .operationDenied_AccelerateMainlandIpv6Conflict
+            case .disableZoneNotCompleted:
+                code = .operationDenied_DisableZoneNotCompleted
             case .domainInShareCnameGroup:
                 code = .operationDenied_DomainInShareCnameGroup
             case .domainIsBlocked:
                 code = .operationDenied_DomainIsBlocked
             case .domainNoICP:
                 code = .operationDenied_DomainNoICP
+            case .errZoneIsAlreadyPaused:
+                code = .operationDenied_ErrZoneIsAlreadyPaused
+            case .invalidAdvancedDefenseSecurityType:
+                code = .operationDenied_InvalidAdvancedDefenseSecurityType
+            case .invalidAdvancedDefenseZoneArea:
+                code = .operationDenied_InvalidAdvancedDefenseZoneArea
             case .l4ProxyInBannedStatus:
                 code = .operationDenied_L4ProxyInBannedStatus
+            case .l4ProxyInProgressStatus:
+                code = .operationDenied_L4ProxyInProgressStatus
+            case .l4ProxyInStoppingStatus:
+                code = .operationDenied_L4ProxyInStoppingStatus
             case .l4StatusNotInOnline:
                 code = .operationDenied_L4StatusNotInOnline
-            case .latestVersionNow:
-                code = .operationDenied_LatestVersionNow
+            case .l7HostInProcessStatus:
+                code = .operationDenied_L7HostInProcessStatus
             case .multipleCnameZone:
                 code = .operationDenied_MultipleCnameZone
             case .nsNotAllowTrafficStrategy:

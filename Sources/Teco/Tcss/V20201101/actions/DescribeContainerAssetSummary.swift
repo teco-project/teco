@@ -60,6 +60,9 @@ extension Tcss {
         /// 主机未安装agent数量
         public let hostUnInstallCnt: UInt64
 
+        /// 超级节点个数
+        public let hostSuperNodeCnt: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -75,6 +78,7 @@ extension Tcss {
             case imageRegistryCnt = "ImageRegistryCnt"
             case imageTotalCnt = "ImageTotalCnt"
             case hostUnInstallCnt = "HostUnInstallCnt"
+            case hostSuperNodeCnt = "HostSuperNodeCnt"
             case requestId = "RequestId"
         }
     }

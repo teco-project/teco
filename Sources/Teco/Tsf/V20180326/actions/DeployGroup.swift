@@ -78,7 +78,10 @@ extension Tsf {
         /// 预热参数配置
         public let warmupSetting: WarmupSetting?
 
-        public init(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil) {
+        /// 开启分批健康检查
+        public let enableBatchHealthCheck: Bool?
+
+        public init(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, enableBatchHealthCheck: Bool? = nil) {
             self.groupId = groupId
             self.pkgId = pkgId
             self.startupParameters = startupParameters
@@ -98,6 +101,7 @@ extension Tsf {
             self.jdkVersion = jdkVersion
             self.agentProfileList = agentProfileList
             self.warmupSetting = warmupSetting
+            self.enableBatchHealthCheck = enableBatchHealthCheck
         }
 
         enum CodingKeys: String, CodingKey {
@@ -120,6 +124,7 @@ extension Tsf {
             case jdkVersion = "JdkVersion"
             case agentProfileList = "AgentProfileList"
             case warmupSetting = "WarmupSetting"
+            case enableBatchHealthCheck = "EnableBatchHealthCheck"
         }
     }
 
@@ -152,13 +157,13 @@ extension Tsf {
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
-        self.deployGroup(.init(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), region: region, logger: logger, on: eventLoop)
+    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, enableBatchHealthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
+        self.deployGroup(.init(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting, enableBatchHealthCheck: enableBatchHealthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
-        try await self.deployGroup(.init(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), region: region, logger: logger, on: eventLoop)
+    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, enableBatchHealthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
+        try await self.deployGroup(.init(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting, enableBatchHealthCheck: enableBatchHealthCheck), region: region, logger: logger, on: eventLoop)
     }
 }

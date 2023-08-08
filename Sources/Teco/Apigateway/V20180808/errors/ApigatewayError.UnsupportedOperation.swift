@@ -21,9 +21,12 @@ extension TCApigatewayError {
         enum Code: String {
             case accountArrears = "UnsupportedOperation.AccountArrears"
             case alreadyBindUsagePlan = "UnsupportedOperation.AlreadyBindUsagePlan"
+            case apiListNotEmpty = "UnsupportedOperation.ApiListNotEmpty"
             case attachPlugin = "UnsupportedOperation.AttachPlugin"
             case basicServiceNoMoreApi = "UnsupportedOperation.BasicServiceNoMoreApi"
+            case basicServiceNotAllowAttachPlugin = "UnsupportedOperation.BasicServiceNotAllowAttachPlugin"
             case clsSearchTime = "UnsupportedOperation.ClsSearchTime"
+            case existingOnlineEnvironment = "UnsupportedOperation.ExistingOnlineEnvironment"
             case forceHttps = "UnsupportedOperation.ForceHttps"
             case invalidAction = "UnsupportedOperation.InvalidAction"
             case invalidEndpointType = "UnsupportedOperation.InvalidEndpointType"
@@ -35,10 +38,13 @@ extension TCApigatewayError {
             case modifyProtocol = "UnsupportedOperation.ModifyProtocol"
             case noUsagePlanEnv = "UnsupportedOperation.NoUsagePlanEnv"
             case reduceNetTypes = "UnsupportedOperation.ReduceNetTypes"
+            case requestPostError = "UnsupportedOperation.RequestPostError"
             case resourceAssociated = "UnsupportedOperation.ResourceAssociated"
             case resourceIsInUse = "UnsupportedOperation.ResourceIsInUse"
             case resourceUnassociated = "UnsupportedOperation.ResourceUnassociated"
+            case tagsNotEmpty = "UnsupportedOperation.TagsNotEmpty"
             case uinNotInWhiteList = "UnsupportedOperation.UinNotInWhiteList"
+            case unpackError = "UnsupportedOperation.UnpackError"
             case unsupportedBindApiKey = "UnsupportedOperation.UnsupportedBindApiKey"
             case unsupportedBindEnvironment = "UnsupportedOperation.UnsupportedBindEnvironment"
             case unsupportedDeleteApi = "UnsupportedOperation.UnsupportedDeleteApi"
@@ -85,6 +91,10 @@ extension TCApigatewayError {
             UnsupportedOperation(.alreadyBindUsagePlan)
         }
 
+        public static var apiListNotEmpty: UnsupportedOperation {
+            UnsupportedOperation(.apiListNotEmpty)
+        }
+
         /// 当前插件不支持绑定。
         public static var attachPlugin: UnsupportedOperation {
             UnsupportedOperation(.attachPlugin)
@@ -95,9 +105,17 @@ extension TCApigatewayError {
             UnsupportedOperation(.basicServiceNoMoreApi)
         }
 
+        public static var basicServiceNotAllowAttachPlugin: UnsupportedOperation {
+            UnsupportedOperation(.basicServiceNotAllowAttachPlugin)
+        }
+
         /// 日志检索起始时间间隔。
         public static var clsSearchTime: UnsupportedOperation {
             UnsupportedOperation(.clsSearchTime)
+        }
+
+        public static var existingOnlineEnvironment: UnsupportedOperation {
+            UnsupportedOperation(.existingOnlineEnvironment)
         }
 
         /// 协议为HTTP时，不支持强制Https。
@@ -155,6 +173,10 @@ extension TCApigatewayError {
             UnsupportedOperation(.reduceNetTypes)
         }
 
+        public static var requestPostError: UnsupportedOperation {
+            UnsupportedOperation(.requestPostError)
+        }
+
         /// 资源已关联，请先解除。
         public static var resourceAssociated: UnsupportedOperation {
             UnsupportedOperation(.resourceAssociated)
@@ -170,9 +192,17 @@ extension TCApigatewayError {
             UnsupportedOperation(.resourceUnassociated)
         }
 
+        public static var tagsNotEmpty: UnsupportedOperation {
+            UnsupportedOperation(.tagsNotEmpty)
+        }
+
         /// 当前Uin未在手工密钥白名单列表内。
         public static var uinNotInWhiteList: UnsupportedOperation {
             UnsupportedOperation(.uinNotInWhiteList)
+        }
+
+        public static var unpackError: UnsupportedOperation {
+            UnsupportedOperation(.unpackError)
         }
 
         /// 密钥已绑定使用计划。
@@ -232,12 +262,18 @@ extension TCApigatewayError {
                 code = .unsupportedOperation_AccountArrears
             case .alreadyBindUsagePlan:
                 code = .unsupportedOperation_AlreadyBindUsagePlan
+            case .apiListNotEmpty:
+                code = .unsupportedOperation_ApiListNotEmpty
             case .attachPlugin:
                 code = .unsupportedOperation_AttachPlugin
             case .basicServiceNoMoreApi:
                 code = .unsupportedOperation_BasicServiceNoMoreApi
+            case .basicServiceNotAllowAttachPlugin:
+                code = .unsupportedOperation_BasicServiceNotAllowAttachPlugin
             case .clsSearchTime:
                 code = .unsupportedOperation_ClsSearchTime
+            case .existingOnlineEnvironment:
+                code = .unsupportedOperation_ExistingOnlineEnvironment
             case .forceHttps:
                 code = .unsupportedOperation_ForceHttps
             case .invalidAction:
@@ -260,14 +296,20 @@ extension TCApigatewayError {
                 code = .unsupportedOperation_NoUsagePlanEnv
             case .reduceNetTypes:
                 code = .unsupportedOperation_ReduceNetTypes
+            case .requestPostError:
+                code = .unsupportedOperation_RequestPostError
             case .resourceAssociated:
                 code = .unsupportedOperation_ResourceAssociated
             case .resourceIsInUse:
                 code = .unsupportedOperation_ResourceIsInUse
             case .resourceUnassociated:
                 code = .unsupportedOperation_ResourceUnassociated
+            case .tagsNotEmpty:
+                code = .unsupportedOperation_TagsNotEmpty
             case .uinNotInWhiteList:
                 code = .unsupportedOperation_UinNotInWhiteList
+            case .unpackError:
+                code = .unsupportedOperation_UnpackError
             case .unsupportedBindApiKey:
                 code = .unsupportedOperation_UnsupportedBindApiKey
             case .unsupportedBindEnvironment:

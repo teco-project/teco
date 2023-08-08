@@ -60,33 +60,33 @@ extension Ess {
         }
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
     ///
-    /// 验证合同文件
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func verifyPdf(_ input: VerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
         self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
     ///
-    /// 验证合同文件
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func verifyPdf(_ input: VerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
         try await self.client.execute(action: "VerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
     ///
-    /// 验证合同文件
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPdfResponse> {
         self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 合同文件验签
+    /// 流程文件验签
     ///
-    /// 验证合同文件
+    /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
     public func verifyPdf(flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
         try await self.verifyPdf(.init(flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)

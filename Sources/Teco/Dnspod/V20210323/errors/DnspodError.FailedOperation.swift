@@ -25,6 +25,7 @@ extension TCDnspodError {
             case couponNotSupported = "FailedOperation.CouponNotSupported"
             case couponTypeAlreadyUsed = "FailedOperation.CouponTypeAlreadyUsed"
             case domainExists = "FailedOperation.DomainExists"
+            case domainInEnterpriseMailAccount = "FailedOperation.DomainInEnterpriseMailAccount"
             case domainIsKeyDomain = "FailedOperation.DomainIsKeyDomain"
             case domainIsLocked = "FailedOperation.DomainIsLocked"
             case domainIsPersonalType = "FailedOperation.DomainIsPersonalType"
@@ -105,6 +106,10 @@ extension TCDnspodError {
         /// 该域名已在您的列表中，无需重复添加。
         public static var domainExists: FailedOperation {
             FailedOperation(.domainExists)
+        }
+
+        public static var domainInEnterpriseMailAccount: FailedOperation {
+            FailedOperation(.domainInEnterpriseMailAccount)
         }
 
         /// 该域名为腾讯云 DNSPod 重点保护资源，为了避免误操作造成的业务影响，域名禁止自行操作删除。如果您确认需要删除域名，请先联系您的客户经理，我们将竭诚为您提供技术支持。
@@ -262,6 +267,8 @@ extension TCDnspodError {
                 code = .failedOperation_CouponTypeAlreadyUsed
             case .domainExists:
                 code = .failedOperation_DomainExists
+            case .domainInEnterpriseMailAccount:
+                code = .failedOperation_DomainInEnterpriseMailAccount
             case .domainIsKeyDomain:
                 code = .failedOperation_DomainIsKeyDomain
             case .domainIsLocked:

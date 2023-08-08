@@ -19,8 +19,15 @@ import TecoCore
 extension TCOrganizationError {
     public struct FailedOperation: TCOrganizationErrorType {
         enum Code: String {
+            case accountAlreadyRegister = "FailedOperation.AccountAlreadyRegister"
             case authInfoEmpty = "FailedOperation.AuthInfoEmpty"
+            case authInfoNotSame = "FailedOperation.AuthInfoNotSame"
             case authNotEnterprise = "FailedOperation.AuthNotEnterprise"
+            case bindEmailLinkExpired = "FailedOperation.BindEmailLinkExpired"
+            case bindEmailLinkInvalid = "FailedOperation.BindEmailLinkInvalid"
+            case changePermissionRecordExist = "FailedOperation.ChangePermissionRecordExist"
+            case checkAccountPhoneBindLimit = "FailedOperation.CheckAccountPhoneBindLimit"
+            case checkMailAccount = "FailedOperation.CheckMailAccount"
             case createAccount = "FailedOperation.CreateAccount"
             case createBillingPermissionErr = "FailedOperation.CreateBillingPermissionErr"
             case createMemberAuthOverLimit = "FailedOperation.CreateMemberAuthOverLimit"
@@ -29,7 +36,12 @@ extension TCOrganizationError {
             case createRecordNotExist = "FailedOperation.CreateRecordNotExist"
             case createRole = "FailedOperation.CreateRole"
             case disableQuitSelfCreatedOrganization = "FailedOperation.DisableQuitSelfCreatedOrganization"
+            case emailAlreadyUsed = "FailedOperation.EmailAlreadyUsed"
+            case emailBindRecordInvalid = "FailedOperation.EmailBindRecordInvalid"
             case getAuthInfo = "FailedOperation.GetAuthInfo"
+            case memberBindEmailError = "FailedOperation.MemberBindEmailError"
+            case memberBindPhoneError = "FailedOperation.MemberBindPhoneError"
+            case memberEmailExist = "FailedOperation.MemberEmailExist"
             case memberExistDelegatePayerNotAllowDelete = "FailedOperation.MemberExistDelegatePayerNotAllowDelete"
             case memberIsDelegatePayerNotAllowDelete = "FailedOperation.MemberIsDelegatePayerNotAllowDelete"
             case memberNameUsed = "FailedOperation.MemberNameUsed"
@@ -76,14 +88,49 @@ extension TCOrganizationError {
             self.context = context
         }
 
+        /// 该帐号已被注册。
+        public static var accountAlreadyRegister: FailedOperation {
+            FailedOperation(.accountAlreadyRegister)
+        }
+
         /// 用户未实名。
         public static var authInfoEmpty: FailedOperation {
             FailedOperation(.authInfoEmpty)
         }
 
+        /// 企业实名不一样。
+        public static var authInfoNotSame: FailedOperation {
+            FailedOperation(.authInfoNotSame)
+        }
+
         /// 用户非企业实名。
         public static var authNotEnterprise: FailedOperation {
             FailedOperation(.authNotEnterprise)
+        }
+
+        /// 绑定邮箱链接过期。
+        public static var bindEmailLinkExpired: FailedOperation {
+            FailedOperation(.bindEmailLinkExpired)
+        }
+
+        /// 绑定邮箱链接无效。
+        public static var bindEmailLinkInvalid: FailedOperation {
+            FailedOperation(.bindEmailLinkInvalid)
+        }
+
+        /// 成员权限变更记录存在。
+        public static var changePermissionRecordExist: FailedOperation {
+            FailedOperation(.changePermissionRecordExist)
+        }
+
+        /// 检查手机绑定上限失败。
+        public static var checkAccountPhoneBindLimit: FailedOperation {
+            FailedOperation(.checkAccountPhoneBindLimit)
+        }
+
+        /// 检查邮箱绑定状态失败。
+        public static var checkMailAccount: FailedOperation {
+            FailedOperation(.checkMailAccount)
         }
 
         /// 创建成员异常。
@@ -126,9 +173,34 @@ extension TCOrganizationError {
             FailedOperation(.disableQuitSelfCreatedOrganization)
         }
 
+        /// 邮箱已经被使用。
+        public static var emailAlreadyUsed: FailedOperation {
+            FailedOperation(.emailAlreadyUsed)
+        }
+
+        /// 邮箱绑定已经失效。
+        public static var emailBindRecordInvalid: FailedOperation {
+            FailedOperation(.emailBindRecordInvalid)
+        }
+
         /// 查询实名信息出错。
         public static var getAuthInfo: FailedOperation {
             FailedOperation(.getAuthInfo)
+        }
+
+        /// 邮箱绑定失败。
+        public static var memberBindEmailError: FailedOperation {
+            FailedOperation(.memberBindEmailError)
+        }
+
+        /// 安全手机绑定失败。
+        public static var memberBindPhoneError: FailedOperation {
+            FailedOperation(.memberBindPhoneError)
+        }
+
+        /// 成员存在邮箱。
+        public static var memberEmailExist: FailedOperation {
+            FailedOperation(.memberEmailExist)
         }
 
         /// 成员存在代付者,不允许删除。
@@ -244,10 +316,24 @@ extension TCOrganizationError {
         public func asOrganizationError() -> TCOrganizationError {
             let code: TCOrganizationError.Code
             switch self.error {
+            case .accountAlreadyRegister:
+                code = .failedOperation_AccountAlreadyRegister
             case .authInfoEmpty:
                 code = .failedOperation_AuthInfoEmpty
+            case .authInfoNotSame:
+                code = .failedOperation_AuthInfoNotSame
             case .authNotEnterprise:
                 code = .failedOperation_AuthNotEnterprise
+            case .bindEmailLinkExpired:
+                code = .failedOperation_BindEmailLinkExpired
+            case .bindEmailLinkInvalid:
+                code = .failedOperation_BindEmailLinkInvalid
+            case .changePermissionRecordExist:
+                code = .failedOperation_ChangePermissionRecordExist
+            case .checkAccountPhoneBindLimit:
+                code = .failedOperation_CheckAccountPhoneBindLimit
+            case .checkMailAccount:
+                code = .failedOperation_CheckMailAccount
             case .createAccount:
                 code = .failedOperation_CreateAccount
             case .createBillingPermissionErr:
@@ -264,8 +350,18 @@ extension TCOrganizationError {
                 code = .failedOperation_CreateRole
             case .disableQuitSelfCreatedOrganization:
                 code = .failedOperation_DisableQuitSelfCreatedOrganization
+            case .emailAlreadyUsed:
+                code = .failedOperation_EmailAlreadyUsed
+            case .emailBindRecordInvalid:
+                code = .failedOperation_EmailBindRecordInvalid
             case .getAuthInfo:
                 code = .failedOperation_GetAuthInfo
+            case .memberBindEmailError:
+                code = .failedOperation_MemberBindEmailError
+            case .memberBindPhoneError:
+                code = .failedOperation_MemberBindPhoneError
+            case .memberEmailExist:
+                code = .failedOperation_MemberEmailExist
             case .memberExistDelegatePayerNotAllowDelete:
                 code = .failedOperation_MemberExistDelegatePayerNotAllowDelete
             case .memberIsDelegatePayerNotAllowDelete:

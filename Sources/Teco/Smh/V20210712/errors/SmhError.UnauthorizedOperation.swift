@@ -19,7 +19,6 @@ import TecoCore
 extension TCSmhError {
     public struct UnauthorizedOperation: TCSmhErrorType {
         enum Code: String {
-            case createMediaBucket = "UnauthorizedOperation.CreateMediaBucket"
             case passRole = "UnauthorizedOperation.PassRole"
             case serviceLinkedRole = "UnauthorizedOperation.ServiceLinkedRole"
             case smsCode = "UnauthorizedOperation.SmsCode"
@@ -48,11 +47,6 @@ extension TCSmhError {
             self.context = context
         }
 
-        /// 尚未开通 COS 数据处理（数据万象）服务。
-        public static var createMediaBucket: UnauthorizedOperation {
-            UnauthorizedOperation(.createMediaBucket)
-        }
-
         /// 未授予 cam:PassRole 权限。
         public static var passRole: UnauthorizedOperation {
             UnauthorizedOperation(.passRole)
@@ -76,8 +70,6 @@ extension TCSmhError {
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
-            case .createMediaBucket:
-                code = .unauthorizedOperation_CreateMediaBucket
             case .passRole:
                 code = .unauthorizedOperation_PassRole
             case .serviceLinkedRole:

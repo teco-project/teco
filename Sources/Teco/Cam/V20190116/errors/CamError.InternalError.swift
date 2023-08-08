@@ -20,6 +20,7 @@ extension TCCamError {
     public struct InternalError: TCCamErrorType {
         enum Code: String {
             case systemError = "InternalError.SystemError"
+            case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
         }
 
@@ -50,6 +51,11 @@ extension TCCamError {
             InternalError(.systemError)
         }
 
+        /// 增加一次调用重试。
+        public static var unknownError: InternalError {
+            InternalError(.unknownError)
+        }
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
@@ -60,6 +66,8 @@ extension TCCamError {
             switch self.error {
             case .systemError:
                 code = .internalError_SystemError
+            case .unknownError:
+                code = .internalError_UnknownError
             case .other:
                 code = .internalError
             }

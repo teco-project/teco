@@ -25,16 +25,31 @@ extension Emr {
         public let instanceId: String
 
         /// 集群用户名列表
-        public let userNameList: [String]
+        public let userNameList: [String]?
 
-        public init(instanceId: String, userNameList: [String]) {
+        /// tke/eks集群id，容器集群传
+        public let tkeClusterId: String?
+
+        /// 默认空，容器版传"native"
+        public let displayStrategy: String?
+
+        /// 用户组
+        public let userGroupList: [UserAndGroup]?
+
+        public init(instanceId: String, userNameList: [String]? = nil, tkeClusterId: String? = nil, displayStrategy: String? = nil, userGroupList: [UserAndGroup]? = nil) {
             self.instanceId = instanceId
             self.userNameList = userNameList
+            self.tkeClusterId = tkeClusterId
+            self.displayStrategy = displayStrategy
+            self.userGroupList = userGroupList
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case userNameList = "UserNameList"
+            case tkeClusterId = "TkeClusterId"
+            case displayStrategy = "DisplayStrategy"
+            case userGroupList = "UserGroupList"
         }
     }
 
@@ -68,15 +83,15 @@ extension Emr {
     ///
     /// 删除用户列表（用户管理）
     @inlinable @discardableResult
-    public func deleteUserManagerUserList(instanceId: String, userNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserManagerUserListResponse> {
-        self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList), region: region, logger: logger, on: eventLoop)
+    public func deleteUserManagerUserList(instanceId: String, userNameList: [String]? = nil, tkeClusterId: String? = nil, displayStrategy: String? = nil, userGroupList: [UserAndGroup]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserManagerUserListResponse> {
+        self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList, tkeClusterId: tkeClusterId, displayStrategy: displayStrategy, userGroupList: userGroupList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户列表
     ///
     /// 删除用户列表（用户管理）
     @inlinable @discardableResult
-    public func deleteUserManagerUserList(instanceId: String, userNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
-        try await self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList), region: region, logger: logger, on: eventLoop)
+    public func deleteUserManagerUserList(instanceId: String, userNameList: [String]? = nil, tkeClusterId: String? = nil, displayStrategy: String? = nil, userGroupList: [UserAndGroup]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
+        try await self.deleteUserManagerUserList(.init(instanceId: instanceId, userNameList: userNameList, tkeClusterId: tkeClusterId, displayStrategy: displayStrategy, userGroupList: userGroupList), region: region, logger: logger, on: eventLoop)
     }
 }

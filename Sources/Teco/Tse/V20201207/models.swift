@@ -90,6 +90,151 @@ extension Tse {
         }
     }
 
+    /// 灰度规则列表
+    public struct CloudAPIGatewayCanaryRuleList: TCOutputModel {
+        /// 灰度规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let canaryRuleList: [CloudNativeAPIGatewayCanaryRule]?
+
+        /// 总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case canaryRuleList = "CanaryRuleList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// 含百分比流量配置的服务
+    public struct CloudNativeAPIGatewayBalancedService: TCInputModel, TCOutputModel {
+        /// 服务 ID，作为入参时，必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceID: String?
+
+        /// 服务名称，作为入参时，无意义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceName: String?
+
+        /// Upstream 名称，作为入参时，无意义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamName: String?
+
+        /// 百分比，10 即 10%，范围0-100
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let percent: Float?
+
+        public init(serviceID: String? = nil, serviceName: String? = nil, upstreamName: String? = nil, percent: Float? = nil) {
+            self.serviceID = serviceID
+            self.serviceName = serviceName
+            self.upstreamName = upstreamName
+            self.percent = percent
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceID = "ServiceID"
+            case serviceName = "ServiceName"
+            case upstreamName = "UpstreamName"
+            case percent = "Percent"
+        }
+    }
+
+    /// 灰度规则
+    public struct CloudNativeAPIGatewayCanaryRule: TCInputModel, TCOutputModel {
+        /// 优先级，值范围为 0 到 100；值越大，优先级越高；不同规则间优先级不可重复
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let priority: Int64?
+
+        /// 是否启用规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enabled: Bool?
+
+        /// 参数匹配条件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let conditionList: [CloudNativeAPIGatewayCanaryRuleCondition]?
+
+        /// 服务的流量百分比配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let balancedServiceList: [CloudNativeAPIGatewayBalancedService]?
+
+        /// 归属服务 ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceId: String?
+
+        /// 归属服务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceName: String?
+
+        public init(priority: Int64, enabled: Bool, conditionList: [CloudNativeAPIGatewayCanaryRuleCondition]? = nil, balancedServiceList: [CloudNativeAPIGatewayBalancedService]? = nil, serviceId: String? = nil, serviceName: String? = nil) {
+            self.priority = priority
+            self.enabled = enabled
+            self.conditionList = conditionList
+            self.balancedServiceList = balancedServiceList
+            self.serviceId = serviceId
+            self.serviceName = serviceName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case priority = "Priority"
+            case enabled = "Enabled"
+            case conditionList = "ConditionList"
+            case balancedServiceList = "BalancedServiceList"
+            case serviceId = "ServiceId"
+            case serviceName = "ServiceName"
+        }
+    }
+
+    /// 灰度规则中的条件配置
+    public struct CloudNativeAPIGatewayCanaryRuleCondition: TCInputModel, TCOutputModel {
+        /// 条件类型，支持 path, method, query, header, cookie, body 和 system。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 参数名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// 操作符，支持 "le", "eq", "lt", "ne", "ge", "gt", "regex", "exists", "in", "not in",  "prefix" ,"exact", "regex" 等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `operator`: String?
+
+        /// 目标参数值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        /// 分隔符，当 Operator 为 in 或者 not in 时生效。支持值为英文逗号，英文分号，空格，换行符。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let delimiter: String?
+
+        /// 全局配置 Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let globalConfigId: String?
+
+        /// 全局配置名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let globalConfigName: String?
+
+        public init(type: String, key: String? = nil, operator: String? = nil, value: String? = nil, delimiter: String? = nil, globalConfigId: String? = nil, globalConfigName: String? = nil) {
+            self.type = type
+            self.key = key
+            self.operator = `operator`
+            self.value = value
+            self.delimiter = delimiter
+            self.globalConfigId = globalConfigId
+            self.globalConfigName = globalConfigName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case key = "Key"
+            case `operator` = "Operator"
+            case value = "Value"
+            case delimiter = "Delimiter"
+            case globalConfigId = "GlobalConfigId"
+            case globalConfigName = "GlobalConfigName"
+        }
+    }
+
     /// 云原生API网关节点信息。
     public struct CloudNativeAPIGatewayNode: TCOutputModel {
         /// 云原生网关节点 id
@@ -129,6 +274,95 @@ extension Tse {
         }
     }
 
+    /// 云原生网关Tse 限流插件配置
+    public struct CloudNativeAPIGatewayRateLimitDetail: TCInputModel, TCOutputModel {
+        /// 插件启用状态
+        public let enabled: Bool
+
+        /// qps阈值
+        public let qpsThresholds: [QpsThreshold]
+
+        /// 限流依据
+        /// ip service consumer credential path header
+        public let limitBy: String
+
+        /// 响应策略
+        /// url请求转发
+        /// text 响应配置
+        /// default 直接返回
+        public let responseType: String
+
+        /// 是否隐藏限流客户端响应头
+        public let hideClientHeaders: Bool
+
+        /// 是否开启请求排队
+        public let isDelay: Bool
+
+        /// 需要进行流量控制的请求路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// 需要进行流量控制的请求头Key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let header: String?
+
+        /// 外部redis配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalRedis: ExternalRedis?
+
+        /// 计数器策略
+        /// local 单机
+        /// redis  默认redis
+        /// external_redis 外部redis
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policy: String?
+
+        /// 响应配置，响应策略为text
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rateLimitResponse: RateLimitResponse?
+
+        /// 请求转发地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rateLimitResponseUrl: String?
+
+        /// 排队时间
+        public let lineUpTime: Int64?
+
+        public init(enabled: Bool, qpsThresholds: [QpsThreshold], limitBy: String, responseType: String, hideClientHeaders: Bool, isDelay: Bool, path: String? = nil, header: String? = nil, externalRedis: ExternalRedis? = nil, policy: String? = nil, rateLimitResponse: RateLimitResponse? = nil, rateLimitResponseUrl: String? = nil, lineUpTime: Int64? = nil) {
+            self.enabled = enabled
+            self.qpsThresholds = qpsThresholds
+            self.limitBy = limitBy
+            self.responseType = responseType
+            self.hideClientHeaders = hideClientHeaders
+            self.isDelay = isDelay
+            self.path = path
+            self.header = header
+            self.externalRedis = externalRedis
+            self.policy = policy
+            self.rateLimitResponse = rateLimitResponse
+            self.rateLimitResponseUrl = rateLimitResponseUrl
+            self.lineUpTime = lineUpTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
+            case qpsThresholds = "QpsThresholds"
+            case limitBy = "LimitBy"
+            case responseType = "ResponseType"
+            case hideClientHeaders = "HideClientHeaders"
+            case isDelay = "IsDelay"
+            case path = "Path"
+            case header = "Header"
+            case externalRedis = "ExternalRedis"
+            case policy = "Policy"
+            case rateLimitResponse = "RateLimitResponse"
+            case rateLimitResponseUrl = "RateLimitResponseUrl"
+            case lineUpTime = "LineUpTime"
+        }
+    }
+
     /// 获取网关节点信息
     public struct DescribeCloudNativeAPIGatewayNodesResult: TCOutputModel {
         /// 获取云原生API网关节点列表响应结果。
@@ -140,6 +374,22 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case nodeList = "NodeList"
+        }
+    }
+
+    /// 获取云原生API网关实例协议端口列表响应结果
+    public struct DescribeGatewayInstancePortResult: TCOutputModel {
+        /// 云原生API网关ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayId: String?
+
+        /// 网关实例协议端口列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gatewayInstancePortList: [GatewayInstanceSchemeAndPorts]?
+
+        enum CodingKeys: String, CodingKey {
+            case gatewayId = "GatewayId"
+            case gatewayInstancePortList = "GatewayInstancePortList"
         }
     }
 
@@ -299,7 +549,11 @@ extension Tse {
         /// 客户端带宽
         public let clientBandWidth: UInt64?
 
-        public init(envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String? = nil, adminServiceIp: String? = nil, configServiceIp: String? = nil, enableConfigInternet: Bool? = nil, configInternetServiceIp: String? = nil, specId: String? = nil, envReplica: Int64? = nil, runningCount: Int64? = nil, aliasEnvName: String? = nil, envDesc: String? = nil, clientBandWidth: UInt64? = nil) {
+        /// 客户端内网开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableConfigIntranet: Bool?
+
+        public init(envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String? = nil, adminServiceIp: String? = nil, configServiceIp: String? = nil, enableConfigInternet: Bool? = nil, configInternetServiceIp: String? = nil, specId: String? = nil, envReplica: Int64? = nil, runningCount: Int64? = nil, aliasEnvName: String? = nil, envDesc: String? = nil, clientBandWidth: UInt64? = nil, enableConfigIntranet: Bool? = nil) {
             self.envName = envName
             self.vpcInfos = vpcInfos
             self.storageCapacity = storageCapacity
@@ -314,6 +568,7 @@ extension Tse {
             self.aliasEnvName = aliasEnvName
             self.envDesc = envDesc
             self.clientBandWidth = clientBandWidth
+            self.enableConfigIntranet = enableConfigIntranet
         }
 
         enum CodingKeys: String, CodingKey {
@@ -331,6 +586,40 @@ extension Tse {
             case aliasEnvName = "AliasEnvName"
             case envDesc = "EnvDesc"
             case clientBandWidth = "ClientBandWidth"
+            case enableConfigIntranet = "EnableConfigIntranet"
+        }
+    }
+
+    /// 云原生网关限流插件外部redis配置
+    public struct ExternalRedis: TCInputModel, TCOutputModel {
+        /// redis ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let redisHost: String?
+
+        /// redis密码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let redisPassword: String?
+
+        /// redis端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let redisPort: Int64?
+
+        /// 超时时间  ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let redisTimeout: Int64?
+
+        public init(redisHost: String, redisPassword: String, redisPort: Int64, redisTimeout: Int64) {
+            self.redisHost = redisHost
+            self.redisPassword = redisPassword
+            self.redisPort = redisPort
+            self.redisTimeout = redisTimeout
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case redisHost = "RedisHost"
+            case redisPassword = "RedisPassword"
+            case redisPort = "RedisPort"
+            case redisTimeout = "RedisTimeout"
         }
     }
 
@@ -350,6 +639,22 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
+        }
+    }
+
+    /// 网关实例协议端口列表
+    public struct GatewayInstanceSchemeAndPorts: TCOutputModel {
+        /// 端口协议，可选HTTP、HTTPS、TCP和UDP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scheme: String?
+
+        /// 端口列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let portList: [UInt64]?
+
+        enum CodingKeys: String, CodingKey {
+            case scheme = "Scheme"
+            case portList = "PortList"
         }
     }
 
@@ -373,12 +678,462 @@ extension Tse {
     }
 
     /// 键值对
+    public struct KVMapping: TCInputModel, TCOutputModel {
+        /// key
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let key: String?
+
+        /// value
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        public init(key: String? = nil, value: String? = nil) {
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
+    /// 键值对
     public struct KVPair: TCOutputModel {
         /// 键
         public let key: String
 
         /// 值
         public let value: String
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
+    /// 云原生网关路由信息
+    public struct KongRoutePreview: TCInputModel, TCOutputModel {
+        /// 服务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 服务名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let methods: [String]?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let paths: [String]?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hosts: [String]?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let protocols: [String]?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preserveHost: Bool?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpsRedirectStatusCode: Int64?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stripPath: Bool?
+
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// 是否开启了强制HTTPS
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let forceHttps: Bool?
+
+        /// 服务名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceName: String?
+
+        /// 服务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceID: String?
+
+        /// 目的端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let destinationPorts: [UInt64]?
+
+        /// 路由的Headers
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let headers: KVMapping?
+
+        public init(id: String, name: String? = nil, methods: [String]? = nil, paths: [String]? = nil, hosts: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, createdTime: String? = nil, forceHttps: Bool? = nil, serviceName: String? = nil, serviceID: String? = nil, destinationPorts: [UInt64]? = nil, headers: KVMapping? = nil) {
+            self.id = id
+            self.name = name
+            self.methods = methods
+            self.paths = paths
+            self.hosts = hosts
+            self.protocols = protocols
+            self.preserveHost = preserveHost
+            self.httpsRedirectStatusCode = httpsRedirectStatusCode
+            self.stripPath = stripPath
+            self.createdTime = createdTime
+            self.forceHttps = forceHttps
+            self.serviceName = serviceName
+            self.serviceID = serviceID
+            self.destinationPorts = destinationPorts
+            self.headers = headers
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case name = "Name"
+            case methods = "Methods"
+            case paths = "Paths"
+            case hosts = "Hosts"
+            case protocols = "Protocols"
+            case preserveHost = "PreserveHost"
+            case httpsRedirectStatusCode = "HttpsRedirectStatusCode"
+            case stripPath = "StripPath"
+            case createdTime = "CreatedTime"
+            case forceHttps = "ForceHttps"
+            case serviceName = "ServiceName"
+            case serviceID = "ServiceID"
+            case destinationPorts = "DestinationPorts"
+            case headers = "Headers"
+        }
+    }
+
+    /// 云原生网关服务详细信息
+    public struct KongServiceDetail: TCInputModel, TCOutputModel {
+        /// 服务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 服务名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 后端协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 后端路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// 后端延时，单位ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeout: Int64?
+
+        /// 重试次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let retries: Int64?
+
+        /// 标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [String]?
+
+        /// 后端配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamInfo: KongUpstreamInfo?
+
+        /// 后端类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamType: String?
+
+        /// 是否可编辑
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let editable: Bool?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        public init(id: String, name: String? = nil, protocol: String? = nil, path: String? = nil, timeout: Int64? = nil, retries: Int64? = nil, tags: [String]? = nil, upstreamInfo: KongUpstreamInfo? = nil, upstreamType: String? = nil, editable: Bool? = nil, createdTime: String? = nil) {
+            self.id = id
+            self.name = name
+            self.protocol = `protocol`
+            self.path = path
+            self.timeout = timeout
+            self.retries = retries
+            self.tags = tags
+            self.upstreamInfo = upstreamInfo
+            self.upstreamType = upstreamType
+            self.editable = editable
+            self.createdTime = createdTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case name = "Name"
+            case `protocol` = "Protocol"
+            case path = "Path"
+            case timeout = "Timeout"
+            case retries = "Retries"
+            case tags = "Tags"
+            case upstreamInfo = "UpstreamInfo"
+            case upstreamType = "UpstreamType"
+            case editable = "Editable"
+            case createdTime = "CreatedTime"
+        }
+    }
+
+    /// 云原生网关服务预览信息
+    public struct KongServicePreview: TCInputModel, TCOutputModel {
+        /// 服务ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 服务名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [String]?
+
+        /// 后端配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamInfo: KongUpstreamInfo?
+
+        /// 后端类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamType: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        /// 是否可编辑
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let editable: Bool?
+
+        public init(id: String, name: String? = nil, tags: [String]? = nil, upstreamInfo: KongUpstreamInfo? = nil, upstreamType: String? = nil, createdTime: String? = nil, editable: Bool? = nil) {
+            self.id = id
+            self.name = name
+            self.tags = tags
+            self.upstreamInfo = upstreamInfo
+            self.upstreamType = upstreamType
+            self.createdTime = createdTime
+            self.editable = editable
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case name = "Name"
+            case tags = "Tags"
+            case upstreamInfo = "UpstreamInfo"
+            case upstreamType = "UpstreamType"
+            case createdTime = "CreatedTime"
+            case editable = "Editable"
+        }
+    }
+
+    /// kong服务路由列表
+    public struct KongServiceRouteList: TCInputModel, TCOutputModel {
+        /// 无
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeList: [KongRoutePreview]?
+
+        /// 总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        public init(routeList: [KongRoutePreview]? = nil, totalCount: Int64? = nil) {
+            self.routeList = routeList
+            self.totalCount = totalCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case routeList = "RouteList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// kong实例的服务列表
+    public struct KongServices: TCInputModel, TCOutputModel {
+        /// kong实例的服务列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceList: [KongServicePreview]?
+
+        /// 列表总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        public init(serviceList: [KongServicePreview]? = nil, totalCount: Int64? = nil) {
+            self.serviceList = serviceList
+            self.totalCount = totalCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceList = "ServiceList"
+            case totalCount = "TotalCount"
+        }
+    }
+
+    /// Kong Upstream中的Target
+    public struct KongTarget: TCInputModel {
+        /// Host
+        public let host: String?
+
+        /// 端口
+        public let port: Int64?
+
+        /// 权重
+        public let weight: Int64?
+
+        /// 健康状态
+        public let health: String?
+
+        /// 创建时间
+        public let createdTime: String?
+
+        /// Target的来源
+        public let source: String?
+
+        public init(host: String, port: Int64, weight: Int64, health: String? = nil, createdTime: String? = nil, source: String? = nil) {
+            self.host = host
+            self.port = port
+            self.weight = weight
+            self.health = health
+            self.createdTime = createdTime
+            self.source = source
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case host = "Host"
+            case port = "Port"
+            case weight = "Weight"
+            case health = "Health"
+            case createdTime = "CreatedTime"
+            case source = "Source"
+        }
+    }
+
+    /// 服务的后端配置
+    public struct KongUpstreamInfo: TCInputModel {
+        /// IP或域名
+        public let host: String?
+
+        /// 端口
+        public let port: Int64?
+
+        /// 服务来源ID
+        public let sourceID: String?
+
+        /// 命名空间
+        public let namespace: String?
+
+        /// 服务（注册中心或Kubernetes中的服务）名字
+        public let serviceName: String?
+
+        /// 服务后端类型是IPList时提供
+        public let targets: [KongTarget]?
+
+        /// 服务来源类型
+        public let sourceType: String?
+
+        /// SCF函数类型
+        public let scfType: String?
+
+        /// SCF函数命名空间
+        public let scfNamespace: String?
+
+        /// SCF函数名
+        public let scfLambdaName: String?
+
+        /// SCF函数版本
+        public let scfLambdaQualifier: String?
+
+        /// 冷启动时间，单位秒
+        public let slowStart: Int64?
+
+        /// 负载均衡算法，默认为 round-robin，还支持 least-connections，consisten_hashing
+        public let algorithm: String?
+
+        /// CVM弹性伸缩组ID
+        public let autoScalingGroupID: String?
+
+        /// CVM弹性伸缩组端口
+        public let autoScalingCvmPort: UInt64?
+
+        /// CVM弹性伸缩组使用的CVM TAT命令状态
+        public let autoScalingTatCmdStatus: String?
+
+        /// CVM弹性伸缩组生命周期挂钩状态
+        public let autoScalingHookStatus: String?
+
+        /// 服务来源的名字
+        public let sourceName: String?
+
+        /// 精确的服务来源类型，新建服务来源时候传入的类型
+        public let realSourceType: String?
+
+        public init(host: String? = nil, port: Int64? = nil, sourceID: String? = nil, namespace: String? = nil, serviceName: String? = nil, targets: [KongTarget]? = nil, sourceType: String? = nil, scfType: String? = nil, scfNamespace: String? = nil, scfLambdaName: String? = nil, scfLambdaQualifier: String? = nil, slowStart: Int64? = nil, algorithm: String? = nil, autoScalingGroupID: String? = nil, autoScalingCvmPort: UInt64? = nil, autoScalingTatCmdStatus: String? = nil, autoScalingHookStatus: String? = nil, sourceName: String? = nil, realSourceType: String? = nil) {
+            self.host = host
+            self.port = port
+            self.sourceID = sourceID
+            self.namespace = namespace
+            self.serviceName = serviceName
+            self.targets = targets
+            self.sourceType = sourceType
+            self.scfType = scfType
+            self.scfNamespace = scfNamespace
+            self.scfLambdaName = scfLambdaName
+            self.scfLambdaQualifier = scfLambdaQualifier
+            self.slowStart = slowStart
+            self.algorithm = algorithm
+            self.autoScalingGroupID = autoScalingGroupID
+            self.autoScalingCvmPort = autoScalingCvmPort
+            self.autoScalingTatCmdStatus = autoScalingTatCmdStatus
+            self.autoScalingHookStatus = autoScalingHookStatus
+            self.sourceName = sourceName
+            self.realSourceType = realSourceType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case host = "Host"
+            case port = "Port"
+            case sourceID = "SourceID"
+            case namespace = "Namespace"
+            case serviceName = "ServiceName"
+            case targets = "Targets"
+            case sourceType = "SourceType"
+            case scfType = "ScfType"
+            case scfNamespace = "ScfNamespace"
+            case scfLambdaName = "ScfLambdaName"
+            case scfLambdaQualifier = "ScfLambdaQualifier"
+            case slowStart = "SlowStart"
+            case algorithm = "Algorithm"
+            case autoScalingGroupID = "AutoScalingGroupID"
+            case autoScalingCvmPort = "AutoScalingCvmPort"
+            case autoScalingTatCmdStatus = "AutoScalingTatCmdStatus"
+            case autoScalingHookStatus = "AutoScalingHookStatus"
+            case sourceName = "SourceName"
+            case realSourceType = "RealSourceType"
+        }
+    }
+
+    /// 列表过滤条件，模糊匹配
+    public struct ListFilter: TCInputModel {
+        /// 过滤字段
+        public let key: String?
+
+        /// 过滤值
+        public let value: String?
+
+        public init(key: String? = nil, value: String? = nil) {
+            self.key = key
+            self.value = value
+        }
 
         enum CodingKeys: String, CodingKey {
             case key = "Key"
@@ -443,6 +1198,52 @@ extension Tse {
 
         enum CodingKeys: String, CodingKey {
             case intranetAddress = "IntranetAddress"
+        }
+    }
+
+    /// 云原生网关限流插件Qps阈值
+    public struct QpsThreshold: TCInputModel, TCOutputModel {
+        /// qps阈值控制维度,包含:second、minute、hour、day、month、year
+        public let unit: String
+
+        /// 阈值
+        public let max: Int64
+
+        public init(unit: String, max: Int64) {
+            self.unit = unit
+            self.max = max
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case unit = "Unit"
+            case max = "Max"
+        }
+    }
+
+    /// 云原生网关限流插件自定义响应
+    public struct RateLimitResponse: TCInputModel, TCOutputModel {
+        /// 自定义响应体
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let body: String?
+
+        /// headrs
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let headers: [KVMapping]?
+
+        /// http状态码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpStatus: Int64?
+
+        public init(body: String? = nil, headers: [KVMapping]? = nil, httpStatus: Int64? = nil) {
+            self.body = body
+            self.headers = headers
+            self.httpStatus = httpStatus
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case body = "Body"
+            case headers = "Headers"
+            case httpStatus = "HttpStatus"
         }
     }
 

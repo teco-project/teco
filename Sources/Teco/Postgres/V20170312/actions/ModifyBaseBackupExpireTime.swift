@@ -55,7 +55,7 @@ extension Postgres {
 
     /// 修改基础备份过期时间
     ///
-    /// 本接口（DeleteBaseBackup）用于修改实例指定全量备份的过期时间。
+    /// 本接口（ModifyBaseBackupExpireTime）用于修改实例指定全量备份的过期时间。
     @inlinable @discardableResult
     public func modifyBaseBackupExpireTime(_ input: ModifyBaseBackupExpireTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBaseBackupExpireTimeResponse> {
         self.client.execute(action: "ModifyBaseBackupExpireTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +63,7 @@ extension Postgres {
 
     /// 修改基础备份过期时间
     ///
-    /// 本接口（DeleteBaseBackup）用于修改实例指定全量备份的过期时间。
+    /// 本接口（ModifyBaseBackupExpireTime）用于修改实例指定全量备份的过期时间。
     @inlinable @discardableResult
     public func modifyBaseBackupExpireTime(_ input: ModifyBaseBackupExpireTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaseBackupExpireTimeResponse {
         try await self.client.execute(action: "ModifyBaseBackupExpireTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Postgres {
 
     /// 修改基础备份过期时间
     ///
-    /// 本接口（DeleteBaseBackup）用于修改实例指定全量备份的过期时间。
+    /// 本接口（ModifyBaseBackupExpireTime）用于修改实例指定全量备份的过期时间。
     @inlinable @discardableResult
     public func modifyBaseBackupExpireTime(dbInstanceId: String, baseBackupId: String, newExpireTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBaseBackupExpireTimeResponse> {
         self.modifyBaseBackupExpireTime(.init(dbInstanceId: dbInstanceId, baseBackupId: baseBackupId, newExpireTime: newExpireTime), region: region, logger: logger, on: eventLoop)
@@ -79,7 +79,7 @@ extension Postgres {
 
     /// 修改基础备份过期时间
     ///
-    /// 本接口（DeleteBaseBackup）用于修改实例指定全量备份的过期时间。
+    /// 本接口（ModifyBaseBackupExpireTime）用于修改实例指定全量备份的过期时间。
     @inlinable @discardableResult
     public func modifyBaseBackupExpireTime(dbInstanceId: String, baseBackupId: String, newExpireTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaseBackupExpireTimeResponse {
         try await self.modifyBaseBackupExpireTime(.init(dbInstanceId: dbInstanceId, baseBackupId: baseBackupId, newExpireTime: newExpireTime), region: region, logger: logger, on: eventLoop)

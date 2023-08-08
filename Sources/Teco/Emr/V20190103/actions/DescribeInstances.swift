@@ -38,7 +38,7 @@ extension Emr {
 
         /// 建议必填-1，表示拉取所有项目下的集群。
         /// 不填默认值为0，表示拉取默认项目下的集群。
-        /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/378/4400) 的返回值中的 projectId 字段来获取。
+        /// 实例所属项目ID。该参数可以通过调用 [DescribeProjects](https://cloud.tencent.com/document/product/651/78725) 的返回值中的 projectId 字段来获取。
         public let projectId: Int64?
 
         /// 排序字段。取值范围：
@@ -49,7 +49,7 @@ extension Emr {
 
         /// 按照OrderField升序或者降序进行排序。取值范围：
         /// <li>0：表示降序。</li>
-        /// <li>1：表示升序。</li>默认值为0。
+        /// <li>1：表示升序。</li>默认值为0。
         public let asc: Int64?
 
         public init(displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil) {

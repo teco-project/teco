@@ -44,6 +44,10 @@ extension Cam {
         /// 异地登录保护设置
         public let offsiteFlag: OffsiteFlag
 
+        /// 是否提示信任设备1 ：提示 0: 不提示
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let promptTrust: Int64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -51,6 +55,7 @@ extension Cam {
             case loginFlag = "LoginFlag"
             case actionFlag = "ActionFlag"
             case offsiteFlag = "OffsiteFlag"
+            case promptTrust = "PromptTrust"
             case requestId = "RequestId"
         }
     }

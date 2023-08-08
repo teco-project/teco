@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Ess {
     /// DescribeIntegrationRoles请求参数结构体
     public struct DescribeIntegrationRolesRequest: TCPaginatedRequest {
-        /// 操作人信息
+        /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
         /// 返回最大数量，最大为200
@@ -32,7 +32,7 @@ extension Ess {
         public let agent: Agent?
 
         /// 查询的关键字段:
-        /// Key:"RoleType",Vales:["1"]查询系统角色，Values:["2]查询自定义角色
+        /// Key:"RoleType",Values:["1"]查询系统角色，Values:["2"]查询自定义角色
         /// Key:"RoleStatus",Values:["1"]查询启用角色，Values:["2"]查询禁用角色
         /// Key:"IsGroupRole"，Values:["0"],查询非集团角色，Values:["1"]表示查询集团角色
         public let filters: [Filter]?
@@ -101,43 +101,43 @@ extension Ess {
         }
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable
     public func describeIntegrationRoles(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationRolesResponse> {
         self.client.execute(action: "DescribeIntegrationRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable
     public func describeIntegrationRoles(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationRolesResponse {
         try await self.client.execute(action: "DescribeIntegrationRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable
     public func describeIntegrationRoles(operator: UserInfo, limit: UInt64, agent: Agent? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationRolesResponse> {
         self.describeIntegrationRoles(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable
     public func describeIntegrationRoles(operator: UserInfo, limit: UInt64, agent: Agent? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationRolesResponse {
         try await self.describeIntegrationRoles(.init(operator: `operator`, limit: limit, agent: agent, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable
     public func describeIntegrationRolesPaginated(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [IntegrateRole])> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationRoles, logger: logger, on: eventLoop)
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     @inlinable @discardableResult
     public func describeIntegrationRolesPaginated(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeIntegrationRolesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationRoles, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询集成版角色
+    /// 查询企业角色列表
     ///
     /// - Returns: `AsyncSequence`s of `IntegrateRole` and `DescribeIntegrationRolesResponse` that can be iterated over asynchronously on demand.
     @inlinable

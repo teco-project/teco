@@ -31,16 +31,21 @@ extension Antiddos {
         /// 调度域名搜索
         public let filterDomain: String?
 
-        public init(offset: UInt64, limit: UInt64, filterDomain: String? = nil) {
+        /// 运行状态 0 代表未运行  1 正在运行  2 运行异常
+        public let status: String?
+
+        public init(offset: UInt64, limit: UInt64, filterDomain: String? = nil, status: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterDomain = filterDomain
+            self.status = status
         }
 
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
             case filterDomain = "FilterDomain"
+            case status = "Status"
         }
 
         /// Compute the next request based on API response.
@@ -48,7 +53,7 @@ extension Antiddos {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeListSchedulingDomainRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterDomain: self.filterDomain)
+            return DescribeListSchedulingDomainRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, filterDomain: self.filterDomain, status: self.status)
         }
     }
 
@@ -94,14 +99,14 @@ extension Antiddos {
 
     /// 获取智能调度域名列表
     @inlinable
-    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListSchedulingDomainResponse> {
-        self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain), region: region, logger: logger, on: eventLoop)
+    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListSchedulingDomainResponse> {
+        self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取智能调度域名列表
     @inlinable
-    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
-        try await self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain), region: region, logger: logger, on: eventLoop)
+    public func describeListSchedulingDomain(offset: UInt64, limit: UInt64, filterDomain: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
+        try await self.describeListSchedulingDomain(.init(offset: offset, limit: limit, filterDomain: filterDomain, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取智能调度域名列表

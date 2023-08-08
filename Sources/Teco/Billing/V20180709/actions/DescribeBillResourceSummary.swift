@@ -22,13 +22,13 @@ import TecoPaginationHelpers
 extension Billing {
     /// DescribeBillResourceSummary请求参数结构体
     public struct DescribeBillResourceSummaryRequest: TCPaginatedRequest {
-        /// 偏移量
+        /// 分页偏移量，Offset=0表示第一页，如果Limit=100，则Offset=100表示第二页，Offset=200表示第三页，依次类推
         public let offset: UInt64
 
         /// 数量，最大值为1000
         public let limit: UInt64
 
-        /// 月份，格式为yyyy-mm。不能早于开通账单2.0的月份，最多可拉取24个月内的数据。
+        /// 月份，格式为yyyy-mm。不能早于开通账单2.0的月份
         public let month: String
 
         /// 周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往[账单概览](https://console.cloud.tencent.com/expense/bill/overview)页面顶部查看确认您的账单统计周期类型。
@@ -38,19 +38,19 @@ extension Billing {
         /// 1-表示需要， 0-表示不需要
         public let needRecordNum: Int64?
 
-        /// 查询交易类型，如下：
+        /// 查询交易类型（请使用交易类型名称入参），入参示例枚举如下：
         /// 包年包月新购
         /// 包年包月续费
         /// 包年包月配置变更
         /// 包年包月退款
         /// 按量计费扣费
-        /// 按量计费小时结
-        /// 按量计费日结
-        /// 按量计费月结
         /// 线下项目扣费
         /// 线下产品扣费
         /// 调账扣费
         /// 调账补偿
+        /// 按量计费小时结
+        /// 按量计费日结
+        /// 按量计费月结
         /// 竞价实例小时结
         /// 线下项目调账补偿
         /// 线下产品调账补偿
@@ -65,6 +65,8 @@ extension Billing {
         /// 预留实例退款
         /// 按量计费冲正
         /// 包年包月转按量
+        /// 保底扣款
+        /// 节省计划小时费用
         public let actionType: String?
 
         /// 查询指定资源信息
@@ -77,7 +79,10 @@ extension Billing {
         /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         public let businessCode: String?
 
-        public init(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil) {
+        /// 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN
+        public let payerUin: String?
+
+        public init(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.month = month
@@ -87,6 +92,7 @@ extension Billing {
             self.resourceId = resourceId
             self.payMode = payMode
             self.businessCode = businessCode
+            self.payerUin = payerUin
         }
 
         enum CodingKeys: String, CodingKey {
@@ -99,6 +105,7 @@ extension Billing {
             case resourceId = "ResourceId"
             case payMode = "PayMode"
             case businessCode = "BusinessCode"
+            case payerUin = "PayerUin"
         }
 
         /// Compute the next request based on API response.
@@ -106,7 +113,7 @@ extension Billing {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeBillResourceSummaryRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, month: self.month, periodType: self.periodType, needRecordNum: self.needRecordNum, actionType: self.actionType, resourceId: self.resourceId, payMode: self.payMode, businessCode: self.businessCode)
+            return DescribeBillResourceSummaryRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, month: self.month, periodType: self.periodType, needRecordNum: self.needRecordNum, actionType: self.actionType, resourceId: self.resourceId, payMode: self.payMode, businessCode: self.businessCode, payerUin: self.payerUin)
         }
     }
 
@@ -115,7 +122,7 @@ extension Billing {
         /// 资源汇总列表
         public let resourceSummarySet: [BillResourceSummary]
 
-        /// 资源汇总列表总数
+        /// 资源汇总列表总数，入参NeedRecordNum为0时不返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
 
@@ -153,14 +160,14 @@ extension Billing {
 
     /// 查询账单资源汇总数据
     @inlinable
-    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillResourceSummaryResponse> {
-        self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillResourceSummaryResponse> {
+        self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单资源汇总数据
     @inlinable
-    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
-        try await self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
+    public func describeBillResourceSummary(offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
+        try await self.describeBillResourceSummary(.init(offset: offset, limit: limit, month: month, periodType: periodType, needRecordNum: needRecordNum, actionType: actionType, resourceId: resourceId, payMode: payMode, businessCode: businessCode, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单资源汇总数据

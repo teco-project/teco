@@ -23,7 +23,6 @@ extension TCTeoError {
             case domainAlreadyExists = "ResourceUnavailable.DomainAlreadyExists"
             case domainNotFound = "ResourceUnavailable.DomainNotFound"
             case hostNotFound = "ResourceUnavailable.HostNotFound"
-            case proxyZoneNotFound = "ResourceUnavailable.ProxyZoneNotFound"
             case zoneNotFound = "ResourceUnavailable.ZoneNotFound"
             case other = "ResourceUnavailable"
         }
@@ -70,11 +69,6 @@ extension TCTeoError {
             ResourceUnavailable(.hostNotFound)
         }
 
-        /// 未拉取到已开启代理的zone信息。
-        public static var proxyZoneNotFound: ResourceUnavailable {
-            ResourceUnavailable(.proxyZoneNotFound)
-        }
-
         /// 站点不存在或不属于该账号。
         public static var zoneNotFound: ResourceUnavailable {
             ResourceUnavailable(.zoneNotFound)
@@ -96,8 +90,6 @@ extension TCTeoError {
                 code = .resourceUnavailable_DomainNotFound
             case .hostNotFound:
                 code = .resourceUnavailable_HostNotFound
-            case .proxyZoneNotFound:
-                code = .resourceUnavailable_ProxyZoneNotFound
             case .zoneNotFound:
                 code = .resourceUnavailable_ZoneNotFound
             case .other:

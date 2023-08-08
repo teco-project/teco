@@ -26,6 +26,8 @@ extension TCTiwError {
             case fileOpenFail = "FailedOperation.FileOpenFail"
             case fileUploadFail = "FailedOperation.FileUploadFail"
             case getCredentialFail = "FailedOperation.GetCredentialFail"
+            case preprocess = "FailedOperation.Preprocess"
+            case preprocessServerError = "FailedOperation.PreprocessServerError"
             case record = "FailedOperation.Record"
             case transcode = "FailedOperation.Transcode"
             case transcodeServerError = "FailedOperation.TranscodeServerError"
@@ -80,7 +82,9 @@ extension TCTiwError {
             FailedOperation(.fileOpenFail)
         }
 
-        /// 转码后上传结果失败，请稍候重试。
+        /// 转码后上传结果失败，请稍后重试。
+        ///
+        /// None
         public static var fileUploadFail: FailedOperation {
             FailedOperation(.fileUploadFail)
         }
@@ -88,6 +92,16 @@ extension TCTiwError {
         /// 获取临时密钥失败。
         public static var getCredentialFail: FailedOperation {
             FailedOperation(.getCredentialFail)
+        }
+
+        /// 转码预处理失败，具体请参考错误描述或联系客服人员。
+        public static var preprocess: FailedOperation {
+            FailedOperation(.preprocess)
+        }
+
+        /// 预处理服务出现内部错误，请稍后重试或联系客户人员。
+        public static var preprocessServerError: FailedOperation {
+            FailedOperation(.preprocessServerError)
         }
 
         /// 录制失败，具体请参考错误描述。
@@ -100,7 +114,9 @@ extension TCTiwError {
             FailedOperation(.transcode)
         }
 
-        /// 转码服务出现内部错误，请稍候重试或联系客户人员。
+        /// 转码服务出现内部错误，请稍后重试或联系客户人员。
+        ///
+        /// None
         public static var transcodeServerError: FailedOperation {
             FailedOperation(.transcodeServerError)
         }
@@ -132,6 +148,10 @@ extension TCTiwError {
                 code = .failedOperation_FileUploadFail
             case .getCredentialFail:
                 code = .failedOperation_GetCredentialFail
+            case .preprocess:
+                code = .failedOperation_Preprocess
+            case .preprocessServerError:
+                code = .failedOperation_PreprocessServerError
             case .record:
                 code = .failedOperation_Record
             case .transcode:

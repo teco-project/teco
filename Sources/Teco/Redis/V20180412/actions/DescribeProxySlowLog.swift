@@ -22,22 +22,22 @@ import TecoPaginationHelpers
 extension Redis {
     /// DescribeProxySlowLog请求参数结构体
     public struct DescribeProxySlowLogRequest: TCPaginatedRequest {
-        /// 实例Id
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 开始时间
+        /// 慢查询的开始时间。
         public let beginTime: String
 
-        /// 结束时间
+        /// 慢查询的结束时间。
         public let endTime: String
 
-        /// 慢查询阈值（单位：毫秒）
+        /// 慢查询阈值，单位：毫秒。
         public let minQueryTime: Int64?
 
-        /// 页面大小
+        /// 分页大小。默认为 20，取值范围[20,1000]。
         public let limit: Int64?
 
-        /// 偏移量，取Limit整数倍
+        /// 偏移量，取Limit整数倍。
         public let offset: Int64?
 
         public init(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
@@ -69,10 +69,10 @@ extension Redis {
 
     /// DescribeProxySlowLog返回参数结构体
     public struct DescribeProxySlowLogResponse: TCPaginatedResponse {
-        /// 慢查询总数
+        /// 慢查询总数。
         public let totalCount: Int64
 
-        /// 慢查询详情
+        /// 慢查询详情。
         public let instanceProxySlowLogDetail: [InstanceProxySlowlogDetail]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -30,16 +30,21 @@ extension Tcss {
         /// 需要获取进度的镜像列表Id
         public let id: [UInt64]?
 
-        public init(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil) {
+        /// 获取进度的任务ID
+        public let taskID: UInt64?
+
+        public init(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil) {
             self.images = images
             self.all = all
             self.id = id
+            self.taskID = taskID
         }
 
         enum CodingKeys: String, CodingKey {
             case images = "Images"
             case all = "All"
             case id = "Id"
+            case taskID = "TaskID"
         }
     }
 
@@ -101,13 +106,13 @@ extension Tcss {
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
-        self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
+        self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
-        try await self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, taskID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
+        try await self.describeAssetImageRegistryScanStatusOneKey(.init(images: images, all: all, id: id, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

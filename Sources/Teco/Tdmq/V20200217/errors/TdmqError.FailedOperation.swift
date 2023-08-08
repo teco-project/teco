@@ -19,8 +19,8 @@ import TecoCore
 extension TCTdmqError {
     public struct FailedOperation: TCTdmqErrorType {
         enum Code: String {
+            case callTrade = "FailedOperation.CallTrade"
             case cmqBackendError = "FailedOperation.CmqBackendError"
-            case createBindVpc = "FailedOperation.CreateBindVpc"
             case createCluster = "FailedOperation.CreateCluster"
             case createEnvironment = "FailedOperation.CreateEnvironment"
             case createEnvironmentRole = "FailedOperation.CreateEnvironmentRole"
@@ -41,6 +41,7 @@ extension TCTdmqError {
             case describeSubscription = "FailedOperation.DescribeSubscription"
             case getEnvironmentAttributesFailed = "FailedOperation.GetEnvironmentAttributesFailed"
             case getTopicPartitionsFailed = "FailedOperation.GetTopicPartitionsFailed"
+            case instanceNotReady = "FailedOperation.InstanceNotReady"
             case maxMessageSizeError = "FailedOperation.MaxMessageSizeError"
             case messageIDError = "FailedOperation.MessageIDError"
             case namespaceInUse = "FailedOperation.NamespaceInUse"
@@ -86,16 +87,18 @@ extension TCTdmqError {
             self.context = context
         }
 
+        /// 调用交易服务发生异常。
+        ///
+        /// 检查账户余额是否充足。
+        public static var callTrade: FailedOperation {
+            FailedOperation(.callTrade)
+        }
+
         /// CMQ 后台服务错误。
         ///
         /// CMQ 后台服务错误，请再试一次。
         public static var cmqBackendError: FailedOperation {
             FailedOperation(.cmqBackendError)
-        }
-
-        /// 创建vpc绑定关系失败。
-        public static var createBindVpc: FailedOperation {
-            FailedOperation(.createBindVpc)
         }
 
         /// 创建集群失败。
@@ -196,6 +199,13 @@ extension TCTdmqError {
         /// 获取主题分区数失败。
         public static var getTopicPartitionsFailed: FailedOperation {
             FailedOperation(.getTopicPartitionsFailed)
+        }
+
+        /// 实例尚未就绪，请稍后再试。
+        ///
+        /// 实例处于不可操作的状态，比如已经在执行其他操作，等待实例操作结束再试。
+        public static var instanceNotReady: FailedOperation {
+            FailedOperation(.instanceNotReady)
         }
 
         /// 最大消息超过1MB。
@@ -318,10 +328,10 @@ extension TCTdmqError {
         public func asTdmqError() -> TCTdmqError {
             let code: TCTdmqError.Code
             switch self.error {
+            case .callTrade:
+                code = .failedOperation_CallTrade
             case .cmqBackendError:
                 code = .failedOperation_CmqBackendError
-            case .createBindVpc:
-                code = .failedOperation_CreateBindVpc
             case .createCluster:
                 code = .failedOperation_CreateCluster
             case .createEnvironment:
@@ -362,6 +372,8 @@ extension TCTdmqError {
                 code = .failedOperation_GetEnvironmentAttributesFailed
             case .getTopicPartitionsFailed:
                 code = .failedOperation_GetTopicPartitionsFailed
+            case .instanceNotReady:
+                code = .failedOperation_InstanceNotReady
             case .maxMessageSizeError:
                 code = .failedOperation_MaxMessageSizeError
             case .messageIDError:

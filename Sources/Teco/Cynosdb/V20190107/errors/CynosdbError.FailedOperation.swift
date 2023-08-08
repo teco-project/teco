@@ -20,17 +20,27 @@ extension TCCynosdbError {
     public struct FailedOperation: TCCynosdbErrorType {
         enum Code: String {
             case batchGetInstanceError = "FailedOperation.BatchGetInstanceError"
+            case bindSourcePackageError = "FailedOperation.BindSourcePackageError"
             case camCheckResourceError = "FailedOperation.CamCheckResourceError"
             case camSigAndAuthError = "FailedOperation.CamSigAndAuthError"
             case createOrder = "FailedOperation.CreateOrder"
+            case createSourcePackageError = "FailedOperation.CreateSourcePackageError"
             case databaseAccessError = "FailedOperation.DatabaseAccessError"
+            case describeAccountPrivilegesError = "FailedOperation.DescribeAccountPrivilegesError"
             case flowCreateError = "FailedOperation.FlowCreateError"
             case flowNotFoundError = "FailedOperation.FlowNotFoundError"
             case getBackupStrategyError = "FailedOperation.GetBackupStrategyError"
+            case getNetServiceInfoError = "FailedOperation.GetNetServiceInfoError"
+            case getOssInfoError = "FailedOperation.GetOssInfoError"
             case insufficientBalance = "FailedOperation.InsufficientBalance"
             case operationFailedError = "FailedOperation.OperationFailedError"
+            case querySourcePackageDetailError = "FailedOperation.QuerySourcePackageDetailError"
+            case querySourcePackageError = "FailedOperation.QuerySourcePackageError"
             case querySpecBySpecCodeError = "FailedOperation.QuerySpecBySpecCodeError"
+            case refundSourcePackageError = "FailedOperation.RefundSourcePackageError"
             case tradeCreateOrderError = "FailedOperation.TradeCreateOrderError"
+            case unBindSourcePackageError = "FailedOperation.UnBindSourcePackageError"
+            case other = "FailedOperation"
         }
 
         private let error: Code
@@ -60,6 +70,10 @@ extension TCCynosdbError {
             FailedOperation(.batchGetInstanceError)
         }
 
+        public static var bindSourcePackageError: FailedOperation {
+            FailedOperation(.bindSourcePackageError)
+        }
+
         /// 获取权限失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var camCheckResourceError: FailedOperation {
             FailedOperation(.camCheckResourceError)
@@ -75,9 +89,18 @@ extension TCCynosdbError {
             FailedOperation(.createOrder)
         }
 
+        public static var createSourcePackageError: FailedOperation {
+            FailedOperation(.createSourcePackageError)
+        }
+
         /// 数据库访问失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var databaseAccessError: FailedOperation {
             FailedOperation(.databaseAccessError)
+        }
+
+        /// 修改账号权限失败。
+        public static var describeAccountPrivilegesError: FailedOperation {
+            FailedOperation(.describeAccountPrivilegesError)
         }
 
         /// 创建流程失败，请稍后重试。如果持续不成功，请联系客服进行处理。
@@ -95,6 +118,16 @@ extension TCCynosdbError {
             FailedOperation(.getBackupStrategyError)
         }
 
+        /// 查询接入组网络信息失败。
+        public static var getNetServiceInfoError: FailedOperation {
+            FailedOperation(.getNetServiceInfoError)
+        }
+
+        /// 查询主实例详情失败。
+        public static var getOssInfoError: FailedOperation {
+            FailedOperation(.getOssInfoError)
+        }
+
         /// 账号余额不足。
         public static var insufficientBalance: FailedOperation {
             FailedOperation(.insufficientBalance)
@@ -105,9 +138,21 @@ extension TCCynosdbError {
             FailedOperation(.operationFailedError)
         }
 
+        public static var querySourcePackageDetailError: FailedOperation {
+            FailedOperation(.querySourcePackageDetailError)
+        }
+
+        public static var querySourcePackageError: FailedOperation {
+            FailedOperation(.querySourcePackageError)
+        }
+
         /// 规格信息查询失败。
         public static var querySpecBySpecCodeError: FailedOperation {
             FailedOperation(.querySpecBySpecCodeError)
+        }
+
+        public static var refundSourcePackageError: FailedOperation {
+            FailedOperation(.refundSourcePackageError)
         }
 
         /// 创建并支付订单失败，请稍后重试。如果持续不成功，请联系客服进行处理。
@@ -115,33 +160,62 @@ extension TCCynosdbError {
             FailedOperation(.tradeCreateOrderError)
         }
 
+        public static var unBindSourcePackageError: FailedOperation {
+            FailedOperation(.unBindSourcePackageError)
+        }
+
+        /// 操作失败。
+        public static var other: FailedOperation {
+            FailedOperation(.other)
+        }
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {
             case .batchGetInstanceError:
                 code = .failedOperation_BatchGetInstanceError
+            case .bindSourcePackageError:
+                code = .failedOperation_BindSourcePackageError
             case .camCheckResourceError:
                 code = .failedOperation_CamCheckResourceError
             case .camSigAndAuthError:
                 code = .failedOperation_CamSigAndAuthError
             case .createOrder:
                 code = .failedOperation_CreateOrder
+            case .createSourcePackageError:
+                code = .failedOperation_CreateSourcePackageError
             case .databaseAccessError:
                 code = .failedOperation_DatabaseAccessError
+            case .describeAccountPrivilegesError:
+                code = .failedOperation_DescribeAccountPrivilegesError
             case .flowCreateError:
                 code = .failedOperation_FlowCreateError
             case .flowNotFoundError:
                 code = .failedOperation_FlowNotFoundError
             case .getBackupStrategyError:
                 code = .failedOperation_GetBackupStrategyError
+            case .getNetServiceInfoError:
+                code = .failedOperation_GetNetServiceInfoError
+            case .getOssInfoError:
+                code = .failedOperation_GetOssInfoError
             case .insufficientBalance:
                 code = .failedOperation_InsufficientBalance
             case .operationFailedError:
                 code = .failedOperation_OperationFailedError
+            case .querySourcePackageDetailError:
+                code = .failedOperation_QuerySourcePackageDetailError
+            case .querySourcePackageError:
+                code = .failedOperation_QuerySourcePackageError
             case .querySpecBySpecCodeError:
                 code = .failedOperation_QuerySpecBySpecCodeError
+            case .refundSourcePackageError:
+                code = .failedOperation_RefundSourcePackageError
             case .tradeCreateOrderError:
                 code = .failedOperation_TradeCreateOrderError
+            case .unBindSourcePackageError:
+                code = .failedOperation_UnBindSourcePackageError
+            case .other:
+                code = .failedOperation
             }
             return TCCynosdbError(code, context: self.context)
         }

@@ -109,6 +109,25 @@ extension Dcdb {
         }
     }
 
+    /// 配置信息。包含配置项Config，配置值Value
+    public struct ConfigValue: TCInputModel {
+        /// 配置项的名称，支持填写max_user_connections
+        public let config: String?
+
+        /// 配置值
+        public let value: String?
+
+        public init(config: String, value: String) {
+            self.config = config
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case config = "Config"
+            case value = "Value"
+        }
+    }
+
     /// 约束类型值的范围
     public struct ConstraintRange: TCOutputModel {
         /// 约束类型为section时的最小值
@@ -156,6 +175,9 @@ extension Dcdb {
         /// 针对只读账号，设置策略是否固定备机，0：不固定备机，即备机不满足条件与客户端不断开连接，Proxy选择其他可用备机，1：备机不满足条件断开连接，确保一个连接固定备机。
         public let slaveConst: Int64
 
+        /// 用户最大连接数，0代表无限制
+        public let maxUserConnections: Int64?
+
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case host = "Host"
@@ -165,6 +187,7 @@ extension Dcdb {
             case readOnly = "ReadOnly"
             case delayThresh = "DelayThresh"
             case slaveConst = "SlaveConst"
+            case maxUserConnections = "MaxUserConnections"
         }
     }
 
@@ -981,6 +1004,32 @@ extension Dcdb {
         }
     }
 
+    /// 保留的网络资源信息
+    public struct ReservedNetResource: TCOutputModel {
+        /// 私有网络
+        public let vpcId: String?
+
+        /// 子网
+        public let subnetId: String?
+
+        /// VpcId,SubnetId下保留的内网ip
+        public let vip: String?
+
+        /// Vip下的端口
+        public let vports: [Int64]?
+
+        /// Vip的回收时间
+        public let recycleTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case vip = "Vip"
+            case vports = "Vports"
+            case recycleTime = "RecycleTime"
+        }
+    }
+
     /// 标签对象，包含tagKey & tagValue
     public struct ResourceTag: TCInputModel, TCOutputModel {
         /// 标签键key
@@ -1432,6 +1481,93 @@ extension Dcdb {
             case database = "Database"
             case table = "Table"
             case privileges = "Privileges"
+        }
+    }
+
+    /// 临时实例
+    public struct TmpInstance: TCOutputModel {
+        /// 应用ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var createTime: Date?
+
+        /// 实例备注
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceRemark: String?
+
+        /// 0:非临时实例 ,1:无效临时实例, 2:回档成功的有效临时实例
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tempType: Int64?
+
+        /// 实例状态,0:待初始化,1:流程处理中,2:有效状态,-1:已隔离，-2：已下线
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 实例 ID，形如：tdsql-ow728lmc。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 实例虚IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 实例虚端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vport: Int64?
+
+        /// 有效期结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var periodEndTime: Date?
+
+        /// 源实例 ID，形如：tdsql-ow728lmc。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcInstanceId: String?
+
+        /// 实例状态描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statusDesc: String?
+
+        /// 实例所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 实例所在可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 实例虚IPv6
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vipv6: String?
+
+        /// 实例IPv6标志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipv6Flag: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case appId = "AppId"
+            case createTime = "CreateTime"
+            case instanceRemark = "InstanceRemark"
+            case tempType = "TempType"
+            case status = "Status"
+            case instanceId = "InstanceId"
+            case vip = "Vip"
+            case vport = "Vport"
+            case periodEndTime = "PeriodEndTime"
+            case srcInstanceId = "SrcInstanceId"
+            case statusDesc = "StatusDesc"
+            case region = "Region"
+            case zone = "Zone"
+            case vipv6 = "Vipv6"
+            case ipv6Flag = "Ipv6Flag"
         }
     }
 

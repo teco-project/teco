@@ -35,11 +35,19 @@ extension Ess {
         /// 解除协议的签署人数量不能多于原流程的签署人数量
         public let releasedApprovers: [ReleasedApprover]?
 
-        public init(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil) {
+        /// 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
+        public let deadline: Int64?
+
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.needRelievedFlowId = needRelievedFlowId
             self.reliveInfo = reliveInfo
             self.releasedApprovers = releasedApprovers
+            self.deadline = deadline
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -47,6 +55,8 @@ extension Ess {
             case needRelievedFlowId = "NeedRelievedFlowId"
             case reliveInfo = "ReliveInfo"
             case releasedApprovers = "ReleasedApprovers"
+            case deadline = "Deadline"
+            case agent = "Agent"
         }
     }
 
@@ -84,15 +94,15 @@ extension Ess {
     ///
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
     @inlinable
-    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFlowResponse> {
-        self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers), region: region, logger: logger, on: eventLoop)
+    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReleaseFlowResponse> {
+        self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, deadline: deadline, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
     ///
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同(签署流程)，进行解除操作。
     @inlinable
-    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFlowResponse {
-        try await self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers), region: region, logger: logger, on: eventLoop)
+    public func createReleaseFlow(operator: UserInfo, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, deadline: Int64? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFlowResponse {
+        try await self.createReleaseFlow(.init(operator: `operator`, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, deadline: deadline, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

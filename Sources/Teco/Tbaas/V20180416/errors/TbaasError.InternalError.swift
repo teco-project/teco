@@ -20,7 +20,6 @@ extension TCTbaasError {
     public struct InternalError: TCTbaasErrorType {
         enum Code: String {
             case dbError = "InternalError.DBError"
-            case failPreform = "InternalError.FailPreform"
             case failUrl = "InternalError.FailUrl"
             case flaskException = "InternalError.FlaskException"
             case invalidContractParam = "InternalError.InvalidContractParam"
@@ -61,11 +60,6 @@ extension TCTbaasError {
             InternalError(.dbError)
         }
 
-        /// 内部错误。
-        public static var failPreform: InternalError {
-            InternalError(.failPreform)
-        }
-
         /// 服务器异常，请重试。
         public static var failUrl: InternalError {
             InternalError(.failUrl)
@@ -92,6 +86,8 @@ extension TCTbaasError {
         }
 
         /// Bcos服务器异常，请重试。
+        ///
+        /// None
         public static var serverError: InternalError {
             InternalError(.serverError)
         }
@@ -126,8 +122,6 @@ extension TCTbaasError {
             switch self.error {
             case .dbError:
                 code = .internalError_DBError
-            case .failPreform:
-                code = .internalError_FailPreform
             case .failUrl:
                 code = .internalError_FailUrl
             case .flaskException:

@@ -42,25 +42,41 @@ extension Ess {
         /// 签署流程编号 (PathType=1时必传)
         public let flowId: String?
 
+        /// 合同组ID
+        public let flowGroupId: String?
+
         /// 跳转页面 1: 小程序合同详情 2: 小程序合同列表页 0: 不传, 默认主页
         public let pathType: UInt64?
 
-        /// 是否自动回跳 true：是， false：否。该参数只针对"APP" 类型的签署链接有效
+        /// 是否自动回跳
+        /// true：是，
+        /// false：否。
+        /// 该参数只针对"APP" 类型的签署链接有效
         public let autoJumpBack: Bool?
 
         /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
-        public init(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil) {
+        /// 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
+        ///
+        /// 0:合同签署页面更多操作按钮
+        /// 1:合同签署页面更多操作的拒绝签署按钮
+        /// 2:合同签署页面更多操作的转他人处理按钮
+        /// 3:签署成功页的查看详情按钮
+        public let hides: [Int64]?
+
+        public init(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, flowGroupId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, hides: [Int64]? = nil) {
             self.operator = `operator`
             self.organizationName = organizationName
             self.name = name
             self.mobile = mobile
             self.endPoint = endPoint
             self.flowId = flowId
+            self.flowGroupId = flowGroupId
             self.pathType = pathType
             self.autoJumpBack = autoJumpBack
             self.agent = agent
+            self.hides = hides
         }
 
         enum CodingKeys: String, CodingKey {
@@ -70,15 +86,17 @@ extension Ess {
             case mobile = "Mobile"
             case endPoint = "EndPoint"
             case flowId = "FlowId"
+            case flowGroupId = "FlowGroupId"
             case pathType = "PathType"
             case autoJumpBack = "AutoJumpBack"
             case agent = "Agent"
+            case hides = "Hides"
         }
     }
 
     /// CreateSchemeUrl返回参数结构体
     public struct CreateSchemeUrlResponse: TCResponseModel {
-        /// 小程序链接地址
+        /// 小程序链接地址，有效期5分钟
         public let schemeUrl: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -90,9 +108,9 @@ extension Ess {
         }
     }
 
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
     /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
     ///
@@ -108,9 +126,9 @@ extension Ess {
         self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
     /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
     ///
@@ -126,9 +144,9 @@ extension Ess {
         try await self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
     /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
     ///
@@ -140,13 +158,13 @@ extension Ess {
     ///
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
-        self.createSchemeUrl(.init(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, flowGroupId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
+        self.createSchemeUrl(.init(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, flowGroupId: flowGroupId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent, hides: hides), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
-    /// 获取小程序跳转链接
+    /// 获取小程序签署链接
     ///
     /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
     ///
@@ -158,7 +176,7 @@ extension Ess {
     ///
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
-        try await self.createSchemeUrl(.init(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, flowGroupId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
+        try await self.createSchemeUrl(.init(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, flowGroupId: flowGroupId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent, hides: hides), region: region, logger: logger, on: eventLoop)
     }
 }

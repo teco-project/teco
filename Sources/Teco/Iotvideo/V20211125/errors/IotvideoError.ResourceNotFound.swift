@@ -23,6 +23,7 @@ extension TCIotvideoError {
             case deviceHasNoFirmware = "ResourceNotFound.DeviceHasNoFirmware"
             case firmwareNotExist = "ResourceNotFound.FirmwareNotExist"
             case firmwareTaskNotExist = "ResourceNotFound.FirmwareTaskNotExist"
+            case other = "ResourceNotFound"
         }
 
         private let error: Code
@@ -67,6 +68,11 @@ extension TCIotvideoError {
             ResourceNotFound(.firmwareTaskNotExist)
         }
 
+        /// 资源不存在。
+        public static var other: ResourceNotFound {
+            ResourceNotFound(.other)
+        }
+
         public func asIotvideoError() -> TCIotvideoError {
             let code: TCIotvideoError.Code
             switch self.error {
@@ -78,6 +84,8 @@ extension TCIotvideoError {
                 code = .resourceNotFound_FirmwareNotExist
             case .firmwareTaskNotExist:
                 code = .resourceNotFound_FirmwareTaskNotExist
+            case .other:
+                code = .resourceNotFound
             }
             return TCIotvideoError(code, context: self.context)
         }

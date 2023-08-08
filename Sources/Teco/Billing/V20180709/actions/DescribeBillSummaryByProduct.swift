@@ -55,7 +55,7 @@ extension Billing {
 
     /// DescribeBillSummaryByProduct返回参数结构体
     public struct DescribeBillSummaryByProductResponse: TCResponseModel {
-        /// 数据是否准备好，0未准备好，1准备好
+        /// 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         public let ready: UInt64
 
         /// 总花费详情

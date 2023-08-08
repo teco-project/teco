@@ -45,6 +45,8 @@ extension TCOcrError {
         }
 
         /// 税务局网络异常，请稍后访问。
+        ///
+        /// 增值税发票核验依赖于税务局接口，可能出现网络波动，请稍后重试。
         public static var taxNetworkError: ResourceUnavailable {
             ResourceUnavailable(.taxNetworkError)
         }

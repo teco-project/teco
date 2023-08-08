@@ -21,13 +21,13 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateFlowGroupByFiles请求参数结构体
     public struct ChannelCreateFlowGroupByFilesRequest: TCRequestModel {
-        /// 每个子合同的发起所需的信息，数量限制2-100
+        /// 每个子合同的发起所需的信息，数量限制2-50
         public let flowFileInfos: [FlowFileInfo]
 
         /// 合同组名称，长度不超过200个字符
         public let flowGroupName: String
 
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent?
 
         /// 签署人校验方式

@@ -36,7 +36,7 @@ extension Cls {
         /// 投递的时间间隔，单位 秒，默认300，范围 300-900
         public let interval: UInt64?
 
-        /// 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        /// 投递的文件的最大值，单位 MB，默认256，范围 5-256
         public let maxSize: UInt64?
 
         /// 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
@@ -54,7 +54,13 @@ extension Cls {
         /// 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         public let filenameMode: UInt64?
 
-        public init(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil) {
+        /// 投递数据范围的开始时间点，不能超出日志主题的生命周期起点。如果用户不填写，默认为用户新建投递任务的时间。
+        public let startTime: Int64?
+
+        /// 投递数据范围的结束时间点，不能填写未来时间。如果用户不填写，默认为持续投递，即无限。
+        public let endTime: Int64?
+
+        public init(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.topicId = topicId
             self.bucket = bucket
             self.prefix = prefix
@@ -66,6 +72,8 @@ extension Cls {
             self.compress = compress
             self.content = content
             self.filenameMode = filenameMode
+            self.startTime = startTime
+            self.endTime = endTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -80,6 +88,8 @@ extension Cls {
             case compress = "Compress"
             case content = "Content"
             case filenameMode = "FilenameMode"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
         }
     }
 
@@ -117,15 +127,15 @@ extension Cls {
     ///
     /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
-    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShipperResponse> {
-        self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
+    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShipperResponse> {
+        self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建投递到COS的任务
     ///
     /// 新建投递到COS的任务，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
     @inlinable
-    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
-        try await self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
+    public func createShipper(topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
+        try await self.createShipper(.init(topicId: topicId, bucket: bucket, prefix: prefix, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

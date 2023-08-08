@@ -499,7 +499,9 @@ public struct TCRedisError: TCRedisErrorType {
         TCRedisError(.limitExceeded_PeriodLessThanMinLimit)
     }
 
-    /// 请的 redis 数量超过最大/最小购买数限制。
+    /// 请求的 redis 数量超过最大/最小购买数限制。
+    ///
+    /// None
     public static var limitExceeded_ReachTheAmountLimit: TCRedisError {
         TCRedisError(.limitExceeded_ReachTheAmountLimit)
     }

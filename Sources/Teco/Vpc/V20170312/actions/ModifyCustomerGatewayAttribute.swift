@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// ModifyCustomerGatewayAttribute请求参数结构体
     public struct ModifyCustomerGatewayAttributeRequest: TCRequestModel {
-        /// 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
+        /// 对端网关ID，例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/api/215/17516)接口查询对端网关。
         public let customerGatewayId: String
 
         /// 对端网关名称，可任意命名，但不得超过60个字符。

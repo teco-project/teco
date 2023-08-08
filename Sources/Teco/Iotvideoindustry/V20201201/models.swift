@@ -854,6 +854,10 @@ extension Iotvideoindustry {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let devices: [DeviceItem]?
 
+        /// 录像存储天数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordStorageTime: Int64?
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
             case name = "Name"
@@ -861,6 +865,7 @@ extension Iotvideoindustry {
             case timeTemplateName = "TimeTemplateName"
             case eventId = "EventId"
             case devices = "Devices"
+            case recordStorageTime = "RecordStorageTime"
         }
     }
 

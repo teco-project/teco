@@ -42,7 +42,7 @@ extension Scf {
         /// 函数的环境变量
         public let environment: Environment?
 
-        /// 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， Php5， Php7，Go1，Java8 和 CustomRuntime，默认Python2.7
+        /// 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， Php5.2， Php7.4，Go1，Java8 和 CustomRuntime，默认Python2.7
         public let runtime: String?
 
         /// 函数的私有网络配置
@@ -93,6 +93,12 @@ extension Scf {
         /// 是否开启事件追踪，TRUE 为开启，FALSE为关闭
         public let traceEnable: String?
 
+        /// 是否自动创建cls索引，TRUE 为开启，FALSE为关闭
+        public let autoDeployClsTopicIndex: String?
+
+        /// 是否自动创建cls主题，TRUE 为开启，FALSE为关闭
+        public let autoCreateClsTopic: String?
+
         /// HTTP函数支持的访问协议。当前支持WebSockets协议，值为WS
         public let protocolType: String?
 
@@ -102,7 +108,7 @@ extension Scf {
         /// 单实例多并发配置。只支持Web函数。
         public let instanceConcurrencyConfig: InstanceConcurrencyConfig?
 
-        public init(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil) {
+        public init(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, autoDeployClsTopicIndex: String? = nil, autoCreateClsTopic: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil) {
             self.functionName = functionName
             self.code = code
             self.handler = handler
@@ -127,6 +133,8 @@ extension Scf {
             self.tags = tags
             self.asyncRunEnable = asyncRunEnable
             self.traceEnable = traceEnable
+            self.autoDeployClsTopicIndex = autoDeployClsTopicIndex
+            self.autoCreateClsTopic = autoCreateClsTopic
             self.protocolType = protocolType
             self.protocolParams = protocolParams
             self.instanceConcurrencyConfig = instanceConcurrencyConfig
@@ -157,6 +165,8 @@ extension Scf {
             case tags = "Tags"
             case asyncRunEnable = "AsyncRunEnable"
             case traceEnable = "TraceEnable"
+            case autoDeployClsTopicIndex = "AutoDeployClsTopicIndex"
+            case autoCreateClsTopic = "AutoCreateClsTopic"
             case protocolType = "ProtocolType"
             case protocolParams = "ProtocolParams"
             case instanceConcurrencyConfig = "InstanceConcurrencyConfig"
@@ -193,15 +203,15 @@ extension Scf {
     ///
     /// 该接口根据传入参数创建新的函数。
     @inlinable @discardableResult
-    public func createFunction(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFunctionResponse> {
-        self.createFunction(.init(functionName: functionName, code: code, handler: handler, description: description, memorySize: memorySize, timeout: timeout, environment: environment, runtime: runtime, vpcConfig: vpcConfig, namespace: namespace, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, type: type, codeSource: codeSource, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, tags: tags, asyncRunEnable: asyncRunEnable, traceEnable: traceEnable, protocolType: protocolType, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
+    public func createFunction(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, autoDeployClsTopicIndex: String? = nil, autoCreateClsTopic: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFunctionResponse> {
+        self.createFunction(.init(functionName: functionName, code: code, handler: handler, description: description, memorySize: memorySize, timeout: timeout, environment: environment, runtime: runtime, vpcConfig: vpcConfig, namespace: namespace, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, type: type, codeSource: codeSource, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, tags: tags, asyncRunEnable: asyncRunEnable, traceEnable: traceEnable, autoDeployClsTopicIndex: autoDeployClsTopicIndex, autoCreateClsTopic: autoCreateClsTopic, protocolType: protocolType, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建函数
     ///
     /// 该接口根据传入参数创建新的函数。
     @inlinable @discardableResult
-    public func createFunction(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFunctionResponse {
-        try await self.createFunction(.init(functionName: functionName, code: code, handler: handler, description: description, memorySize: memorySize, timeout: timeout, environment: environment, runtime: runtime, vpcConfig: vpcConfig, namespace: namespace, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, type: type, codeSource: codeSource, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, tags: tags, asyncRunEnable: asyncRunEnable, traceEnable: traceEnable, protocolType: protocolType, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
+    public func createFunction(functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, autoDeployClsTopicIndex: String? = nil, autoCreateClsTopic: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFunctionResponse {
+        try await self.createFunction(.init(functionName: functionName, code: code, handler: handler, description: description, memorySize: memorySize, timeout: timeout, environment: environment, runtime: runtime, vpcConfig: vpcConfig, namespace: namespace, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, type: type, codeSource: codeSource, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, tags: tags, asyncRunEnable: asyncRunEnable, traceEnable: traceEnable, autoDeployClsTopicIndex: autoDeployClsTopicIndex, autoCreateClsTopic: autoCreateClsTopic, protocolType: protocolType, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
     }
 }

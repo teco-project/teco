@@ -22,13 +22,13 @@ import TecoPaginationHelpers
 extension Redis {
     /// DescribeInstanceAccount请求参数结构体
     public struct DescribeInstanceAccountRequest: TCPaginatedRequest {
-        /// 实例ID
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 分页大小
+        /// 分页大小。
         public let limit: Int64
 
-        /// 分页偏移量
+        /// 分页偏移量。取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: Int64
 
         public init(instanceId: String, limit: Int64, offset: Int64) {
@@ -54,11 +54,11 @@ extension Redis {
 
     /// DescribeInstanceAccount返回参数结构体
     public struct DescribeInstanceAccountResponse: TCPaginatedResponse {
-        /// 账号详细信息
+        /// 账号详细信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accounts: [Account]?
 
-        /// 账号个数
+        /// 账号个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
 
@@ -83,42 +83,56 @@ extension Redis {
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable
     public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
         self.client.execute(action: "DescribeInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable
     public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
         try await self.client.execute(action: "DescribeInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable
     public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
         self.describeInstanceAccount(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable
     public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
         try await self.describeInstanceAccount(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable
     public func describeInstanceAccountPaginated(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Account])> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     @inlinable @discardableResult
     public func describeInstanceAccountPaginated(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstanceAccountResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstanceAccount, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
+    ///
+    /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     ///
     /// - Returns: `AsyncSequence`s of `Account` and `DescribeInstanceAccountResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -46,10 +46,10 @@ extension Clb {
         /// 负载均衡实例与后端服务之间的转发协议，默认HTTP，可取值：HTTP、HTTPS、TRPC。
         public let forwardType: String?
 
-        /// TRPC被调服务器路由，ForwardType为TRPC时必填。
+        /// TRPC被调服务器路由，ForwardType为TRPC时必填。目前暂未对外开放。
         public let trpcCallee: String?
 
-        /// TRPC调用服务接口，ForwardType为TRPC时必填。
+        /// TRPC调用服务接口，ForwardType为TRPC时必填。目前暂未对外开放。
         public let trpcFunc: String?
 
         public init(loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil) {

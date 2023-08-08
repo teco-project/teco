@@ -37,13 +37,25 @@ extension Ecm {
         /// CTCC：中国电信
         /// CUCC：中国联通
         /// CMCC：中国移动
+        public let ispType: String?
+
+        /// 是否跳过校验一个网卡只能分配一个IPv6 CIDR。该字段通常为true（用于兼容存量子机只有一个地址的情形）。
+        public let skipCheckIPv6Address: Bool?
+
+        /// 是否跳过自动开通公网带宽。通常为true(根据运营系统的用户配置来决定是否自动开通，以支持当前子机购买时的行为）。
+        public let skipAllocateBandwidth: Bool?
+
+        /// 该字段没有使用（已过期）。
         public let ipv6ISP: String?
 
-        public init(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil) {
+        public init(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ispType: String? = nil, skipCheckIPv6Address: Bool? = nil, skipAllocateBandwidth: Bool? = nil, ipv6ISP: String? = nil) {
             self.ecmRegion = ecmRegion
             self.networkInterfaceId = networkInterfaceId
             self.ipv6Addresses = ipv6Addresses
             self.ipv6AddressCount = ipv6AddressCount
+            self.ispType = ispType
+            self.skipCheckIPv6Address = skipCheckIPv6Address
+            self.skipAllocateBandwidth = skipAllocateBandwidth
             self.ipv6ISP = ipv6ISP
         }
 
@@ -52,6 +64,9 @@ extension Ecm {
             case networkInterfaceId = "NetworkInterfaceId"
             case ipv6Addresses = "Ipv6Addresses"
             case ipv6AddressCount = "Ipv6AddressCount"
+            case ispType = "ISPType"
+            case skipCheckIPv6Address = "SkipCheckIPv6Address"
+            case skipAllocateBandwidth = "SkipAllocateBandwidth"
             case ipv6ISP = "Ipv6ISP"
         }
     }
@@ -90,15 +105,15 @@ extension Ecm {
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
-        self.assignIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ispType: String? = nil, skipCheckIPv6Address: Bool? = nil, skipAllocateBandwidth: Bool? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
+        self.assignIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ispType: ispType, skipCheckIPv6Address: skipCheckIPv6Address, skipAllocateBandwidth: skipAllocateBandwidth, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        try await self.assignIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ispType: String? = nil, skipCheckIPv6Address: Bool? = nil, skipAllocateBandwidth: Bool? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
+        try await self.assignIpv6Addresses(.init(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ispType: ispType, skipCheckIPv6Address: skipCheckIPv6Address, skipAllocateBandwidth: skipAllocateBandwidth, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -22,31 +22,31 @@ extension Cam {
     /// UpdateUserOIDCConfig请求参数结构体
     public struct UpdateUserOIDCConfigRequest: TCRequestModel {
         /// 身份提供商URL。OpenID Connect身份提供商标识。
-        /// 对应企业IdP提供的Openid-configuration中"issuer"字段的值。
+        /// 对应企业IdP提供的Openid-configuration中"issuer"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
         public let identityUrl: String
 
-        /// 签名公钥，需要base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的帐号安全，建议您定期轮换签名公钥。
+        /// RSA签名公钥，JWKS格式，需要进行base64_encode。验证OpenID Connect身份提供商ID Token签名的公钥。为了您的账号安全，建议您定期轮换签名公钥。
         public let identityKey: String
 
-        /// 客户端ID，在OpenID Connect身份提供商注册的客户端ID。
+        /// 客户端ID，在OpenID Connect身份提供商注册的客户端ID，允许英文字母、数字、特殊字符.-_:/，不能以特殊字符.-_:/开头，单个客户端ID最大64个字符。
         public let clientId: String
 
-        /// 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值。
+        /// 授权请求Endpoint，OpenID Connect身份提供商授权地址。对应企业IdP提供的Openid-configuration中"authorization_endpoint"字段的值，该URL必须以https开头，符合标准URL格式，不允许带有query参数（以?标识）、fragment片段（以#标识）和登录信息（以@标识）。
         public let authorizationEndpoint: String
 
-        /// 授权请求Response type，固定值id_token。
+        /// 授权请求Response type，有code，id_token，固定值id_token。
         public let responseType: String
 
-        /// 授权请求Response mode。授权请求返回模式，form_post和fragment两种可选模式，推荐选择form_post模式。
+        /// 授权请求Response mode。授权请求返回模式，有form_post和fragment两种可选模式，推荐选择form_post模式。
         public let responseMode: String
 
-        /// 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段
+        /// 映射字段名称。IdP的id_token中哪一个字段映射到子用户的用户名，通常是sub或者name字段,仅支持英文字母、数宇、汉字、符号@、＆_[]-的组合，1-255个中文或英文字符
         public let mappingFiled: String
 
-        /// 授权请求Scope。openid; email;profile。授权请求信息范围。默认必选openid。
+        /// 授权请求Scope。有openid; email;profile三种。代表授权请求信息范围openid表示请求访问用户的身份信息，email表示请求访问用户的电子邮件地址，profile表示请求访问用户的基本信息。默认必选openid。
         public let scope: [String]?
 
-        /// 描述
+        /// 描述，长度为1~255个英文或中文字符，默认值为空。
         public let description: String?
 
         public init(identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil) {

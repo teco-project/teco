@@ -39,16 +39,20 @@ extension Cynosdb {
         /// "execTime" - 执行时间。
         public let orderBy: String?
 
-        /// 过滤条件。可按设置的过滤条件过滤日志。
+        /// 已废弃。
         public let filter: AuditLogFilter?
 
-        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil) {
+        /// 审计日志过滤条件
+        public let logFilter: [InstanceAuditLogFilter]?
+
+        public init(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilter]? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
             self.order = order
             self.orderBy = orderBy
             self.filter = filter
+            self.logFilter = logFilter
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +62,7 @@ extension Cynosdb {
             case order = "Order"
             case orderBy = "OrderBy"
             case filter = "Filter"
+            case logFilter = "LogFilter"
         }
     }
 
@@ -95,15 +100,15 @@ extension Cynosdb {
     ///
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
-    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditLogFileResponse> {
-        self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditLogFileResponse> {
+        self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建审计日志文件
     ///
     /// 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
     @inlinable
-    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
-        try await self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter), region: region, logger: logger, on: eventLoop)
+    public func createAuditLogFile(instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, logFilter: [InstanceAuditLogFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditLogFileResponse {
+        try await self.createAuditLogFile(.init(instanceId: instanceId, startTime: startTime, endTime: endTime, order: order, orderBy: orderBy, filter: filter, logFilter: logFilter), region: region, logger: logger, on: eventLoop)
     }
 }

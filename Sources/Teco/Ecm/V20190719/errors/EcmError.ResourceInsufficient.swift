@@ -19,6 +19,7 @@ import TecoCore
 extension TCEcmError {
     public struct ResourceInsufficient: TCEcmErrorType {
         enum Code: String {
+            case cidrBlock = "ResourceInsufficient.CidrBlock"
             case instanceQuotaNotEnough = "ResourceInsufficient.InstanceQuotaNotEnough"
             case invaildPrivateImageNum = "ResourceInsufficient.InvaildPrivateImageNum"
             case ipQuotaNotEnough = "ResourceInsufficient.IPQuotaNotEnough"
@@ -46,6 +47,10 @@ extension TCEcmError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        public static var cidrBlock: ResourceInsufficient {
+            ResourceInsufficient(.cidrBlock)
         }
 
         /// 实例资源不足。
@@ -78,6 +83,8 @@ extension TCEcmError {
         public func asEcmError() -> TCEcmError {
             let code: TCEcmError.Code
             switch self.error {
+            case .cidrBlock:
+                code = .resourceInsufficient_CidrBlock
             case .instanceQuotaNotEnough:
                 code = .resourceInsufficient_InstanceQuotaNotEnough
             case .invaildPrivateImageNum:

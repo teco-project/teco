@@ -51,25 +51,33 @@ extension Postgres {
         }
     }
 
-    /// 获取参数修改事件详情
+    /// 查询参数修改事件
+    ///
+    /// 本接口（DescribeParamsEvent）用于查询参数修改事件。
     @inlinable
     public func describeParamsEvent(_ input: DescribeParamsEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamsEventResponse> {
         self.client.execute(action: "DescribeParamsEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取参数修改事件详情
+    /// 查询参数修改事件
+    ///
+    /// 本接口（DescribeParamsEvent）用于查询参数修改事件。
     @inlinable
     public func describeParamsEvent(_ input: DescribeParamsEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
         try await self.client.execute(action: "DescribeParamsEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取参数修改事件详情
+    /// 查询参数修改事件
+    ///
+    /// 本接口（DescribeParamsEvent）用于查询参数修改事件。
     @inlinable
     public func describeParamsEvent(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamsEventResponse> {
         self.describeParamsEvent(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取参数修改事件详情
+    /// 查询参数修改事件
+    ///
+    /// 本接口（DescribeParamsEvent）用于查询参数修改事件。
     @inlinable
     public func describeParamsEvent(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
         try await self.describeParamsEvent(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)

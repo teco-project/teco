@@ -40,13 +40,25 @@ extension Cfg {
         /// 标签对
         public let tags: [TagWithDescribe]?
 
-        public init(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil) {
+        /// 经验来源 0-自建 1-专家推荐
+        public let templateSource: Int64?
+
+        /// 经验ID
+        public let templateIdList: [Int64]?
+
+        /// 过滤参数
+        public let filters: [ActionFilter]?
+
+        public init(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, templateSource: Int64? = nil, templateIdList: [Int64]? = nil, filters: [ActionFilter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.title = title
             self.tag = tag
             self.isUsed = isUsed
             self.tags = tags
+            self.templateSource = templateSource
+            self.templateIdList = templateIdList
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +68,9 @@ extension Cfg {
             case tag = "Tag"
             case isUsed = "IsUsed"
             case tags = "Tags"
+            case templateSource = "TemplateSource"
+            case templateIdList = "TemplateIdList"
+            case filters = "Filters"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +78,7 @@ extension Cfg {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTemplateListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), title: self.title, tag: self.tag, isUsed: self.isUsed, tags: self.tags)
+            return DescribeTemplateListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), title: self.title, tag: self.tag, isUsed: self.isUsed, tags: self.tags, templateSource: self.templateSource, templateIdList: self.templateIdList, filters: self.filters)
         }
     }
 
@@ -109,14 +124,14 @@ extension Cfg {
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
-        self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, templateSource: Int64? = nil, templateIdList: [Int64]? = nil, filters: [ActionFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
+        self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags, templateSource: templateSource, templateIdList: templateIdList, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
-        try await self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, templateSource: Int64? = nil, templateIdList: [Int64]? = nil, filters: [ActionFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
+        try await self.describeTemplateList(.init(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags, templateSource: templateSource, templateIdList: templateIdList, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表

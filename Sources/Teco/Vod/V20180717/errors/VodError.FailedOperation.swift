@@ -23,6 +23,7 @@ extension TCVodError {
             case classNameDuplicate = "FailedOperation.ClassNameDuplicate"
             case classNoFound = "FailedOperation.ClassNoFound"
             case coverType = "FailedOperation.CoverType"
+            case dbError = "FailedOperation.DBError"
             case domainDeploying = "FailedOperation.DomainDeploying"
             case invalidAccount = "FailedOperation.InvalidAccount"
             case invalidVodUser = "FailedOperation.InvalidVodUser"
@@ -79,6 +80,11 @@ extension TCVodError {
         /// 操作失败：不支持的封面类型。
         public static var coverType: FailedOperation {
             FailedOperation(.coverType)
+        }
+
+        /// 操作失败：数据库操作失败。
+        public static var dbError: FailedOperation {
+            FailedOperation(.dbError)
         }
 
         /// 域名部署中，不能变更配置。
@@ -162,6 +168,8 @@ extension TCVodError {
                 code = .failedOperation_ClassNoFound
             case .coverType:
                 code = .failedOperation_CoverType
+            case .dbError:
+                code = .failedOperation_DBError
             case .domainDeploying:
                 code = .failedOperation_DomainDeploying
             case .invalidAccount:

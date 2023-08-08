@@ -17,9 +17,9 @@
 import NIOCore
 import TecoCore
 
-/// 移动网络加速 (mna)
+/// 多网聚合加速 (mna)
 ///
-/// 对移动业务加速进行操作，包括启动加速、停止加速、上报接口状态等
+/// 对多网聚合加速进行操作，包括启动加速、停止加速、上报接口状态等
 public struct Mna: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

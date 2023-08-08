@@ -52,7 +52,7 @@ extension Redis {
         }
     }
 
-    /// 查询实例大Key类型分布
+    /// 查询实例大Key类型分布（已废弃）
     ///
     /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
@@ -60,7 +60,7 @@ extension Redis {
         self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例大Key类型分布
+    /// 查询实例大Key类型分布（已废弃）
     ///
     /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
@@ -68,7 +68,7 @@ extension Redis {
         try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例大Key类型分布
+    /// 查询实例大Key类型分布（已废弃）
     ///
     /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable
@@ -76,7 +76,7 @@ extension Redis {
         self.describeInstanceMonitorBigKeyTypeDist(.init(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例大Key类型分布
+    /// 查询实例大Key类型分布（已废弃）
     ///
     /// 腾讯云数据库 Redis 已经于2022年10月31日下线查询实例大 Key 接口。具体公告，请参见 [查询实例大 Key 接口下线公告](https://cloud.tencent.com/document/product/239/81005)。
     @inlinable

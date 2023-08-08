@@ -58,7 +58,7 @@ extension Vpc {
 
     /// 创建路由策略
     ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// 本接口（CreateRoutes）用于创建路由策略。
     /// * 向指定路由表批量新增路由策略。
     @inlinable
     public func createRoutes(_ input: CreateRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
@@ -67,7 +67,7 @@ extension Vpc {
 
     /// 创建路由策略
     ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// 本接口（CreateRoutes）用于创建路由策略。
     /// * 向指定路由表批量新增路由策略。
     @inlinable
     public func createRoutes(_ input: CreateRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
@@ -76,7 +76,7 @@ extension Vpc {
 
     /// 创建路由策略
     ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// 本接口（CreateRoutes）用于创建路由策略。
     /// * 向指定路由表批量新增路由策略。
     @inlinable
     public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
@@ -85,7 +85,7 @@ extension Vpc {
 
     /// 创建路由策略
     ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// 本接口（CreateRoutes）用于创建路由策略。
     /// * 向指定路由表批量新增路由策略。
     @inlinable
     public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {

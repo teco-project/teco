@@ -48,9 +48,6 @@ extension Keewidb {
         /// 副本数。当前仅支持设置1个副本节点，即每一个分片仅包含1个主节点与1个副本节点，数据主从实时热备。
         public let replicasNum: Int64
 
-        /// 计算cpu核心数。
-        public let machineCpu: Int64
-
         /// 实例内存容量，单位：GB。
         /// KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let machineMemory: Int64
@@ -92,10 +89,16 @@ extension Keewidb {
         /// 每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let diskSize: Int64?
 
+        /// 计算 CPU 核数，可忽略不传。CPU 核数与内存为固定搭配，具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        public let machineCpu: Int64?
+
         /// 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
         public let projectId: Int64?
 
-        public init(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineCpu: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, projectId: Int64? = nil) {
+        /// 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li>
+        public let compression: String?
+
+        public init(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, machineCpu: Int64? = nil, projectId: Int64? = nil, compression: String? = nil) {
             self.typeId = typeId
             self.uniqVpcId = uniqVpcId
             self.uniqSubnetId = uniqSubnetId
@@ -104,7 +107,6 @@ extension Keewidb {
             self.period = period
             self.shardNum = shardNum
             self.replicasNum = replicasNum
-            self.machineCpu = machineCpu
             self.machineMemory = machineMemory
             self.zoneId = zoneId
             self.zoneName = zoneName
@@ -117,7 +119,9 @@ extension Keewidb {
             self.resourceTags = resourceTags
             self.memSize = memSize
             self.diskSize = diskSize
+            self.machineCpu = machineCpu
             self.projectId = projectId
+            self.compression = compression
         }
 
         enum CodingKeys: String, CodingKey {
@@ -129,7 +133,6 @@ extension Keewidb {
             case period = "Period"
             case shardNum = "ShardNum"
             case replicasNum = "ReplicasNum"
-            case machineCpu = "MachineCpu"
             case machineMemory = "MachineMemory"
             case zoneId = "ZoneId"
             case zoneName = "ZoneName"
@@ -142,7 +145,9 @@ extension Keewidb {
             case resourceTags = "ResourceTags"
             case memSize = "MemSize"
             case diskSize = "DiskSize"
+            case machineCpu = "MachineCpu"
             case projectId = "ProjectId"
+            case compression = "Compression"
         }
     }
 
@@ -178,13 +183,13 @@ extension Keewidb {
 
     /// 创建数据库实例
     @inlinable
-    public func createInstances(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineCpu: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, projectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.createInstances(.init(typeId: typeId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, billingMode: billingMode, goodsNum: goodsNum, period: period, shardNum: shardNum, replicasNum: replicasNum, machineCpu: machineCpu, machineMemory: machineMemory, zoneId: zoneId, zoneName: zoneName, instanceName: instanceName, noAuth: noAuth, password: password, vPort: vPort, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, resourceTags: resourceTags, memSize: memSize, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func createInstances(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, machineCpu: Int64? = nil, projectId: Int64? = nil, compression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.createInstances(.init(typeId: typeId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, billingMode: billingMode, goodsNum: goodsNum, period: period, shardNum: shardNum, replicasNum: replicasNum, machineMemory: machineMemory, zoneId: zoneId, zoneName: zoneName, instanceName: instanceName, noAuth: noAuth, password: password, vPort: vPort, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, resourceTags: resourceTags, memSize: memSize, diskSize: diskSize, machineCpu: machineCpu, projectId: projectId, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据库实例
     @inlinable
-    public func createInstances(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineCpu: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, projectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.createInstances(.init(typeId: typeId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, billingMode: billingMode, goodsNum: goodsNum, period: period, shardNum: shardNum, replicasNum: replicasNum, machineCpu: machineCpu, machineMemory: machineMemory, zoneId: zoneId, zoneName: zoneName, instanceName: instanceName, noAuth: noAuth, password: password, vPort: vPort, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, resourceTags: resourceTags, memSize: memSize, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func createInstances(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, machineCpu: Int64? = nil, projectId: Int64? = nil, compression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(.init(typeId: typeId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, billingMode: billingMode, goodsNum: goodsNum, period: period, shardNum: shardNum, replicasNum: replicasNum, machineMemory: machineMemory, zoneId: zoneId, zoneName: zoneName, instanceName: instanceName, noAuth: noAuth, password: password, vPort: vPort, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, resourceTags: resourceTags, memSize: memSize, diskSize: diskSize, machineCpu: machineCpu, projectId: projectId, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 }

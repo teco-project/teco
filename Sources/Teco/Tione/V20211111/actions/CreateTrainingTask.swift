@@ -24,7 +24,8 @@ extension Tione {
         /// 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let name: String
 
-        /// 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
+        /// 计费模式，eg：PREPAID 包年包月（资源组）;
+        /// POSTPAID_BY_HOUR 按量计费
         public let chargeType: String
 
         /// 资源配置，需填写对应算力规格ID和节点数量，算力规格ID查询接口为DescribeBillingSpecsPrice，eg：[{"Role":"WORKER", "InstanceType": "TI.S.MEDIUM.POST", "InstanceNum": 1}]

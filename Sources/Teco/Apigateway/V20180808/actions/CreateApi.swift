@@ -63,7 +63,7 @@ extension Apigateway {
         /// API 的后端 Mock 返回信息。如果 ServiceType 是 Mock，则此参数必传。
         public let serviceMockReturnMessage: String?
 
-        /// API绑定微服务服务列表。
+        /// API绑定微服务列表。
         public let microServices: [MicroServiceReq]?
 
         /// 微服务的负载均衡配置。
@@ -297,7 +297,7 @@ extension Apigateway {
     public struct CreateApiResponse: TCResponseModel {
         /// api信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateApiRsp?
+        public let result: CreateApiResultInfo?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

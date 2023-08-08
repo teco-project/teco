@@ -25,13 +25,7 @@ extension Dlc {
         /// 偏移量，默认为0。
         public let offset: Int64?
 
-        /// 滤类型，传参Name应为以下其中一个,
-        /// data-engine-name - String
-        /// engine-type - String
-        /// state - String
-        /// mode - String
-        /// create-time - String
-        /// message - String
+        /// 过滤类型，支持如下的过滤类型，传参Name应为以下其中一个, data-engine-name - String（数据引擎名称）：engine-type - String（引擎类型：spark：spark 引擎，presto：presto引擎），state - String (数据引擎状态 -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中) ， mode - String（计费模式 0共享模式 1按量计费 2包年包月） ， create-time - String（创建时间，10位时间戳） message - String （描述信息），cluster-type - String (集群资源类型 spark_private/presto_private/presto_cu/spark_cu)，engine-id - String（数据引擎ID），key-word - String（数据引擎名称或集群资源类型或描述信息模糊搜索），engine-exec-type - String（引擎执行任务类型，SQL/BATCH）
         public let filters: [Filter]?
 
         /// 排序字段，支持如下字段类型，create-time
@@ -52,7 +46,7 @@ extension Dlc {
         /// 参数应该为引擎权限类型，有效类型："USE", "MODIFY", "OPERATE", "MONITOR", "DELETE"
         public let accessTypes: [String]?
 
-        /// 引擎执行任务类型，有效值：SQL/BATCH
+        /// 引擎执行任务类型，有效值：SQL/BATCH，默认为SQL
         public let engineExecType: String?
 
         /// 引擎类型，有效值：spark/presto
@@ -128,57 +122,57 @@ extension Dlc {
         }
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable
     public func describeDataEngines(_ input: DescribeDataEnginesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataEnginesResponse> {
         self.client.execute(action: "DescribeDataEngines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable
     public func describeDataEngines(_ input: DescribeDataEnginesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEnginesResponse {
         try await self.client.execute(action: "DescribeDataEngines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable
     public func describeDataEngines(offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, limit: Int64? = nil, datasourceConnectionName: String? = nil, excludePublicEngine: Bool? = nil, accessTypes: [String]? = nil, engineExecType: String? = nil, engineType: String? = nil, datasourceConnectionNameSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataEnginesResponse> {
         self.describeDataEngines(.init(offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, limit: limit, datasourceConnectionName: datasourceConnectionName, excludePublicEngine: excludePublicEngine, accessTypes: accessTypes, engineExecType: engineExecType, engineType: engineType, datasourceConnectionNameSet: datasourceConnectionNameSet), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable
     public func describeDataEngines(offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, limit: Int64? = nil, datasourceConnectionName: String? = nil, excludePublicEngine: Bool? = nil, accessTypes: [String]? = nil, engineExecType: String? = nil, engineType: String? = nil, datasourceConnectionNameSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEnginesResponse {
         try await self.describeDataEngines(.init(offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, limit: limit, datasourceConnectionName: datasourceConnectionName, excludePublicEngine: excludePublicEngine, accessTypes: accessTypes, engineExecType: engineExecType, engineType: engineType, datasourceConnectionNameSet: datasourceConnectionNameSet), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable
     public func describeDataEnginesPaginated(_ input: DescribeDataEnginesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DataEngineInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeDataEngines, logger: logger, on: eventLoop)
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     @inlinable @discardableResult
     public func describeDataEnginesPaginated(_ input: DescribeDataEnginesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDataEnginesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDataEngines, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取DataEngines列表
+    /// 查询DataEngines列表
     ///
-    /// 本接口（DescribeDataEngines）用于获取DataEngines信息列表
+    /// 本接口（DescribeDataEngines）用于查询DataEngines信息列表
     ///
     /// - Returns: `AsyncSequence`s of `DataEngineInfo` and `DescribeDataEnginesResponse` that can be iterated over asynchronously on demand.
     @inlinable

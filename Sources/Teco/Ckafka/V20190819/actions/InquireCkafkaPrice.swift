@@ -21,7 +21,7 @@ import TecoCore
 extension Ckafka {
     /// InquireCkafkaPrice请求参数结构体
     public struct InquireCkafkaPriceRequest: TCRequestModel {
-        /// 国内站标准版填写standards2, 专业版填写profession
+        /// 国内站标准版填写standards2, 国际站标准版填写standard，专业版填写profession
         public let instanceType: String
 
         /// 购买/续费付费类型(购买时不填的话, 默认获取购买包年包月一个月的费用)
@@ -30,10 +30,10 @@ extension Ckafka {
         /// 购买/续费时购买的实例数量(不填时, 默认为1个)
         public let instanceNum: Int64?
 
-        /// 实例内网带宽大小, 单位MB/s (购买时必填)
+        /// 实例内网带宽大小, 单位MB/s (购买时必填，专业版询价时带宽信息必填)
         public let bandwidth: Int64?
 
-        /// 实例的硬盘购买类型以及大小 (购买时必填)
+        /// 实例的硬盘购买类型以及大小 (购买时必填，专业版询价时磁盘信息必填)
         public let inquiryDiskParam: InquiryDiskParam?
 
         /// 实例消息保留时间大小, 单位小时 (购买时必填)
@@ -42,7 +42,7 @@ extension Ckafka {
         /// 购买实例topic数, 单位个 (购买时必填)
         public let topic: Int64?
 
-        /// 购买实例分区数, 单位个 (购买时必填)
+        /// 购买实例分区数, 单位个 (购买时必填，专业版询价时带宽信息必填)
         public let partition: Int64?
 
         /// 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId

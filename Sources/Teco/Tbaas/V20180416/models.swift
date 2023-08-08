@@ -17,78 +17,6 @@
 import TecoCore
 
 extension Tbaas {
-    /// Bcos区块对象
-    public struct BcosBlockObj: TCOutputModel {
-        /// 区块哈希
-        public let blockHash: String
-
-        /// 区块高度
-        public let blockNumber: Int64
-
-        /// 区块时间戳
-        public let blockTimestamp: String
-
-        /// 打包节点ID
-        public let sealer: String
-
-        /// 打包节点索引
-        public let sealerIndex: Int64
-
-        /// 记录保存时间
-        public let createTime: String
-
-        /// 交易数量
-        public let transCount: Int64
-
-        /// 记录修改时间
-        public let modifyTime: String
-
-        enum CodingKeys: String, CodingKey {
-            case blockHash = "BlockHash"
-            case blockNumber = "BlockNumber"
-            case blockTimestamp = "BlockTimestamp"
-            case sealer = "Sealer"
-            case sealerIndex = "SealerIndex"
-            case createTime = "CreateTime"
-            case transCount = "TransCount"
-            case modifyTime = "ModifyTime"
-        }
-    }
-
-    /// Bcos交易信息对象
-    public struct BcosTransInfo: TCOutputModel {
-        /// 所属区块高度
-        public let blockNumber: Int64
-
-        /// 区块时间戳
-        public let blockTimestamp: String
-
-        /// 交易哈希
-        public let transHash: String
-
-        /// 交易发起者
-        public let transFrom: String
-
-        /// 交易接收者
-        public let transTo: String
-
-        /// 落库时间
-        public let createTime: String
-
-        /// 修改时间
-        public let modifyTime: String
-
-        enum CodingKeys: String, CodingKey {
-            case blockNumber = "BlockNumber"
-            case blockTimestamp = "BlockTimestamp"
-            case transHash = "TransHash"
-            case transFrom = "TransFrom"
-            case transTo = "TransTo"
-            case createTime = "CreateTime"
-            case modifyTime = "ModifyTime"
-        }
-    }
-
     /// 区块对象
     public struct Block: TCOutputModel {
         /// 区块编号
@@ -195,38 +123,6 @@ extension Tbaas {
         }
     }
 
-    /// 通道详情信息
-    public struct ChannelDetailForUser: TCOutputModel {
-        /// 通道名称
-        public let channelName: String
-
-        /// 当前组织加入通道的节点列表
-        public let peerList: [PeerDetailForUser]
-
-        enum CodingKeys: String, CodingKey {
-            case channelName = "ChannelName"
-            case peerList = "PeerList"
-        }
-    }
-
-    /// 网络详情信息
-    public struct ClusterDetailForUser: TCOutputModel {
-        /// 网络ID
-        public let clusterId: String
-
-        /// 组织列表
-        public let groupList: [GroupDetailForUser]
-
-        /// 网络名称
-        public let clusterName: String
-
-        enum CodingKeys: String, CodingKey {
-            case clusterId = "ClusterId"
-            case groupList = "GroupList"
-            case clusterName = "ClusterName"
-        }
-    }
-
     /// 背书组织及其节点列表
     public struct EndorserGroup: TCOutputModel {
         /// 背书组织名称
@@ -238,44 +134,6 @@ extension Tbaas {
         enum CodingKeys: String, CodingKey {
             case endorserGroupName = "EndorserGroupName"
             case endorserPeerList = "EndorserPeerList"
-        }
-    }
-
-    /// 组织详情信息
-    public struct GroupDetailForUser: TCOutputModel {
-        /// 组织名称
-        public let groupName: String
-
-        /// 组织MSP Identity
-        public let groupMSPId: String
-
-        enum CodingKeys: String, CodingKey {
-            case groupName = "GroupName"
-            case groupMSPId = "GroupMSPId"
-        }
-    }
-
-    /// 日志详情信息
-    public struct LogDetailForUser: TCOutputModel {
-        /// 日志行号
-        public let lineNumber: UInt64
-
-        /// 日志详情
-        public let logMessage: String
-
-        enum CodingKeys: String, CodingKey {
-            case lineNumber = "LineNumber"
-            case logMessage = "LogMessage"
-        }
-    }
-
-    /// 节点详情信息
-    public struct PeerDetailForUser: TCOutputModel {
-        /// 节点名称
-        public let peerName: String
-
-        enum CodingKeys: String, CodingKey {
-            case peerName = "PeerName"
         }
     }
 

@@ -50,7 +50,7 @@ extension Apigateway {
 
     /// 搜索应用
     ///
-    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
     @inlinable
     public func describeApiApp(_ input: DescribeApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppResponse> {
         self.client.execute(action: "DescribeApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -58,7 +58,7 @@ extension Apigateway {
 
     /// 搜索应用
     ///
-    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
     @inlinable
     public func describeApiApp(_ input: DescribeApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppResponse {
         try await self.client.execute(action: "DescribeApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,7 +66,7 @@ extension Apigateway {
 
     /// 搜索应用
     ///
-    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
     @inlinable
     public func describeApiApp(apiAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppResponse> {
         self.describeApiApp(.init(apiAppId: apiAppId), region: region, logger: logger, on: eventLoop)
@@ -74,7 +74,7 @@ extension Apigateway {
 
     /// 搜索应用
     ///
-    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
+    /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。此接口已下线，如需使用功能请使用DescribeApiAppsStatus接口。
     @inlinable
     public func describeApiApp(apiAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppResponse {
         try await self.describeApiApp(.init(apiAppId: apiAppId), region: region, logger: logger, on: eventLoop)

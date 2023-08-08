@@ -31,10 +31,10 @@ extension Tag {
         /// 资源地域
         public let resourceRegion: String
 
-        /// 资源唯一标识
+        /// 资源唯一标识ID的列表，列表容量不超过20
         public let resourceIds: [String]
 
-        /// 资源标签键
+        /// 资源标签键列表，列表容量不超过20
         public let tagKeys: [String]
 
         /// 每页大小，默认为 400

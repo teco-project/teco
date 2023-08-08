@@ -40,7 +40,7 @@ extension Sms {
         /// 短信码号扩展号，默认未开通，如需开通请联系 [sms helper](https://cloud.tencent.com/document/product/382/3773)。
         public let extendCode: String?
 
-        /// 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。
+        /// 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。注意长度需小于512字节。
         public let sessionContext: String?
 
         /// 国内短信无senderid，无需填写该项；若需开通国际/港澳台短信senderid，请联系smshelper。

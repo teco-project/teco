@@ -21,7 +21,7 @@ import TecoCore
 extension Redis {
     /// DescribeInstanceZoneInfo请求参数结构体
     public struct DescribeInstanceZoneInfoRequest: TCRequestModel {
-        /// 实例Id，如：crs-6ubhgouj
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String?
 
         public init(instanceId: String? = nil) {
@@ -35,10 +35,10 @@ extension Redis {
 
     /// DescribeInstanceZoneInfo返回参数结构体
     public struct DescribeInstanceZoneInfoResponse: TCResponseModel {
-        /// 实例节点组的个数
+        /// 实例节点组的个数。
         public let totalCount: Int64
 
-        /// 实例节点组列表
+        /// 实例节点组列表。
         public let replicaGroups: [ReplicaGroup]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -52,24 +52,32 @@ extension Redis {
     }
 
     /// 查询Redis节点详细信息
+    ///
+    /// 本接口（DescribeInstanceZoneInfo）用于查询 Redis 节点详细信息。
     @inlinable
     public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
         self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis节点详细信息
+    ///
+    /// 本接口（DescribeInstanceZoneInfo）用于查询 Redis 节点详细信息。
     @inlinable
     public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
         try await self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Redis节点详细信息
+    ///
+    /// 本接口（DescribeInstanceZoneInfo）用于查询 Redis 节点详细信息。
     @inlinable
     public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
         self.describeInstanceZoneInfo(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis节点详细信息
+    ///
+    /// 本接口（DescribeInstanceZoneInfo）用于查询 Redis 节点详细信息。
     @inlinable
     public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
         try await self.describeInstanceZoneInfo(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

@@ -21,11 +21,11 @@ import TecoCore
 extension Tke {
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
-        /// 集群容器网络配置信息
-        public let clusterCIDRSettings: ClusterCIDRSettings
-
         /// 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
         public let clusterType: String
+
+        /// 集群容器网络配置信息
+        public let clusterCIDRSettings: ClusterCIDRSettings
 
         /// CVM创建透传参数，json化字符串格式，详见[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口。总机型(包括地域)数量不超过10个，相同机型(地域)购买多台机器可以通过设置参数中RunInstances中InstanceCount来实现。
         public let runInstancesForNode: [RunInstancesForNode]?
@@ -48,9 +48,9 @@ extension Tke {
         /// 需要安装的扩展组件信息
         public let extensionAddons: [ExtensionAddon]?
 
-        public init(clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil) {
-            self.clusterCIDRSettings = clusterCIDRSettings
+        public init(clusterType: String, clusterCIDRSettings: ClusterCIDRSettings, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil) {
             self.clusterType = clusterType
+            self.clusterCIDRSettings = clusterCIDRSettings
             self.runInstancesForNode = runInstancesForNode
             self.clusterBasicSettings = clusterBasicSettings
             self.clusterAdvancedSettings = clusterAdvancedSettings
@@ -61,8 +61,8 @@ extension Tke {
         }
 
         enum CodingKeys: String, CodingKey {
-            case clusterCIDRSettings = "ClusterCIDRSettings"
             case clusterType = "ClusterType"
+            case clusterCIDRSettings = "ClusterCIDRSettings"
             case runInstancesForNode = "RunInstancesForNode"
             case clusterBasicSettings = "ClusterBasicSettings"
             case clusterAdvancedSettings = "ClusterAdvancedSettings"
@@ -101,13 +101,13 @@ extension Tke {
 
     /// 创建集群
     @inlinable
-    public func createCluster(clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
-        self.createCluster(.init(clusterCIDRSettings: clusterCIDRSettings, clusterType: clusterType, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), region: region, logger: logger, on: eventLoop)
+    public func createCluster(clusterType: String, clusterCIDRSettings: ClusterCIDRSettings, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
+        self.createCluster(.init(clusterType: clusterType, clusterCIDRSettings: clusterCIDRSettings, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群
     @inlinable
-    public func createCluster(clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.createCluster(.init(clusterCIDRSettings: clusterCIDRSettings, clusterType: clusterType, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), region: region, logger: logger, on: eventLoop)
+    public func createCluster(clusterType: String, clusterCIDRSettings: ClusterCIDRSettings, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(.init(clusterType: clusterType, clusterCIDRSettings: clusterCIDRSettings, runInstancesForNode: runInstancesForNode, clusterBasicSettings: clusterBasicSettings, clusterAdvancedSettings: clusterAdvancedSettings, instanceAdvancedSettings: instanceAdvancedSettings, existedInstancesForNode: existedInstancesForNode, instanceDataDiskMountSettings: instanceDataDiskMountSettings, extensionAddons: extensionAddons), region: region, logger: logger, on: eventLoop)
     }
 }

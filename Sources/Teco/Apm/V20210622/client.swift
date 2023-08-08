@@ -17,7 +17,7 @@
 import NIOCore
 import TecoCore
 
-/// 应用性能观测 (apm)
+/// 应用性能监控 (apm)
 ///
 /// 应用性能监控 API 文档
 /// 主要包括

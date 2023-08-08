@@ -23,11 +23,13 @@ extension TCCynosdbError {
             case getSecurityGroupDetailFailed = "InternalError.GetSecurityGroupDetailFailed"
             case getSubnetFailed = "InternalError.GetSubnetFailed"
             case getVpcFailed = "InternalError.GetVpcFailed"
+            case httpError = "InternalError.HttpError"
             case internalHttpServerError = "InternalError.InternalHttpServerError"
             case listInstanceFailed = "InternalError.ListInstanceFailed"
             case operateWanFail = "InternalError.OperateWanFail"
             case operationNotSupport = "InternalError.OperationNotSupport"
             case queryDatabaseFailed = "InternalError.QueryDatabaseFailed"
+            case serviceError = "InternalError.ServiceError"
             case systemError = "InternalError.SystemError"
             case unknownError = "InternalError.UnknownError"
             case other = "InternalError"
@@ -75,6 +77,10 @@ extension TCCynosdbError {
             InternalError(.getVpcFailed)
         }
 
+        public static var httpError: InternalError {
+            InternalError(.httpError)
+        }
+
         /// http请求执行异常。
         public static var internalHttpServerError: InternalError {
             InternalError(.internalHttpServerError)
@@ -98,6 +104,13 @@ extension TCCynosdbError {
         /// 查询数据库失败。
         public static var queryDatabaseFailed: InternalError {
             InternalError(.queryDatabaseFailed)
+        }
+
+        /// 内部服务错误。
+        ///
+        /// 建议重试
+        public static var serviceError: InternalError {
+            InternalError(.serviceError)
         }
 
         /// 系统内部错误。
@@ -126,6 +139,8 @@ extension TCCynosdbError {
                 code = .internalError_GetSubnetFailed
             case .getVpcFailed:
                 code = .internalError_GetVpcFailed
+            case .httpError:
+                code = .internalError_HttpError
             case .internalHttpServerError:
                 code = .internalError_InternalHttpServerError
             case .listInstanceFailed:
@@ -136,6 +151,8 @@ extension TCCynosdbError {
                 code = .internalError_OperationNotSupport
             case .queryDatabaseFailed:
                 code = .internalError_QueryDatabaseFailed
+            case .serviceError:
+                code = .internalError_ServiceError
             case .systemError:
                 code = .internalError_SystemError
             case .unknownError:

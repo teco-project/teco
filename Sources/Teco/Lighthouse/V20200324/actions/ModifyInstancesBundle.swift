@@ -21,7 +21,7 @@ import TecoCore
 extension Lighthouse {
     /// ModifyInstancesBundle请求参数结构体
     public struct ModifyInstancesBundleRequest: TCRequestModel {
-        /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为30。
+        /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为15。
         public let instanceIds: [String]
 
         /// 待变更的套餐Id。可通过[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口返回值中的BundleId获取。

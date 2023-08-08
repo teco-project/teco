@@ -69,7 +69,7 @@ extension TCImsError {
             InvalidParameterValue(.invalidCallbackUrl)
         }
 
-        /// FileContent和FileUrl为空。
+        /// FileContent和FileUrl为空或base64编码错误。
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
         }

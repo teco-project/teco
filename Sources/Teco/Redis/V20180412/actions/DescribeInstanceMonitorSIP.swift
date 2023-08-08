@@ -48,24 +48,32 @@ extension Redis {
     }
 
     /// 查询实例访问来源信息
+    ///
+    /// 该接口已下线，请使用数据库智能管家 DBbrain 接口 [DescribeProxyProcessStatistics] (https://cloud.tencent.com/document/product/1130/84544) 获取实例访问来源。
     @inlinable
     public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
         self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问来源信息
+    ///
+    /// 该接口已下线，请使用数据库智能管家 DBbrain 接口 [DescribeProxyProcessStatistics] (https://cloud.tencent.com/document/product/1130/84544) 获取实例访问来源。
     @inlinable
     public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
         try await self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例访问来源信息
+    ///
+    /// 该接口已下线，请使用数据库智能管家 DBbrain 接口 [DescribeProxyProcessStatistics] (https://cloud.tencent.com/document/product/1130/84544) 获取实例访问来源。
     @inlinable
     public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
         self.describeInstanceMonitorSIP(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问来源信息
+    ///
+    /// 该接口已下线，请使用数据库智能管家 DBbrain 接口 [DescribeProxyProcessStatistics] (https://cloud.tencent.com/document/product/1130/84544) 获取实例访问来源。
     @inlinable
     public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
         try await self.describeInstanceMonitorSIP(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

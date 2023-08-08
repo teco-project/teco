@@ -40,13 +40,21 @@ extension Tdmq {
         /// 查询偏移量
         public let offset: Int64?
 
-        public init(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil) {
+        /// 过滤的 bundle
+        public let bundle: String?
+
+        /// bundle 所属的 broker ip 地址，支持模糊查询
+        public let ownerBroker: String?
+
+        public init(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, bundle: String? = nil, ownerBroker: String? = nil) {
             self.clusterName = clusterName
             self.tenantId = tenantId
             self.namespaceName = namespaceName
             self.needMetrics = needMetrics
             self.limit = limit
             self.offset = offset
+            self.bundle = bundle
+            self.ownerBroker = ownerBroker
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +64,8 @@ extension Tdmq {
             case needMetrics = "NeedMetrics"
             case limit = "Limit"
             case offset = "Offset"
+            case bundle = "Bundle"
+            case ownerBroker = "OwnerBroker"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +73,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeNamespaceBundlesOptRequest(clusterName: self.clusterName, tenantId: self.tenantId, namespaceName: self.namespaceName, needMetrics: self.needMetrics, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return DescribeNamespaceBundlesOptRequest(clusterName: self.clusterName, tenantId: self.tenantId, namespaceName: self.namespaceName, needMetrics: self.needMetrics, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), bundle: self.bundle, ownerBroker: self.ownerBroker)
         }
     }
 
@@ -109,14 +119,14 @@ extension Tdmq {
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
-        self.describeNamespaceBundlesOpt(.init(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, bundle: String? = nil, ownerBroker: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
+        self.describeNamespaceBundlesOpt(.init(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset, bundle: bundle, ownerBroker: ownerBroker), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
-        try await self.describeNamespaceBundlesOpt(.init(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, bundle: String? = nil, ownerBroker: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
+        try await self.describeNamespaceBundlesOpt(.init(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset, bundle: bundle, ownerBroker: ownerBroker), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营端获取命名空间bundle列表

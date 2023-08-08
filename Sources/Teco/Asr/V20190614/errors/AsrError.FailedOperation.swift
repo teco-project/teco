@@ -23,6 +23,7 @@ extension TCAsrError {
             case errorDownFile = "FailedOperation.ErrorDownFile"
             case errorRecognize = "FailedOperation.ErrorRecognize"
             case noSuchTask = "FailedOperation.NoSuchTask"
+            case notExistentVoicePrintId = "FailedOperation.NotExistentVoicePrintId"
             case serviceIsolate = "FailedOperation.ServiceIsolate"
             case userHasNoFreeAmount = "FailedOperation.UserHasNoFreeAmount"
             case userNotRegistered = "FailedOperation.UserNotRegistered"
@@ -71,6 +72,11 @@ extension TCAsrError {
             FailedOperation(.noSuchTask)
         }
 
+        /// 不存在的声纹id
+        public static var notExistentVoicePrintId: FailedOperation {
+            FailedOperation(.notExistentVoicePrintId)
+        }
+
         /// 账号因为欠费停止服务，请在腾讯云账户充值。
         public static var serviceIsolate: FailedOperation {
             FailedOperation(.serviceIsolate)
@@ -102,6 +108,8 @@ extension TCAsrError {
                 code = .failedOperation_ErrorRecognize
             case .noSuchTask:
                 code = .failedOperation_NoSuchTask
+            case .notExistentVoicePrintId:
+                code = .failedOperation_NotExistentVoicePrintId
             case .serviceIsolate:
                 code = .failedOperation_ServiceIsolate
             case .userHasNoFreeAmount:

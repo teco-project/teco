@@ -21,25 +21,27 @@ import TecoCore
 extension Ess {
     /// UpdateIntegrationEmployees请求参数结构体
     public struct UpdateIntegrationEmployeesRequest: TCRequestModel {
-        /// 操作人信息
+        /// 当前用户信息，OpenId与UserId二选一必填一个，OpenId是第三方客户ID，userId是用户实名后的电子签生成的ID,当传入客户系统openId，传入的openId需与电子签员工userId绑定，且参数Channel必填，Channel值为YUFU；
         public let `operator`: UserInfo
 
-        /// 代理信息
-        public let agent: Agent
-
-        /// 员工信息
+        /// 员工信息，不超过100个。
+        /// 根据UserId或OpenId更新员工，必填一个，优先UserId。
+        /// 可更新Mobile、DisplayName、Email和Department.DepartmentId字段，其他字段暂不支持
         public let employees: [Staff]
 
-        public init(operator: UserInfo, agent: Agent, employees: [Staff]) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId需填充子企业Id
+        public let agent: Agent?
+
+        public init(operator: UserInfo, employees: [Staff], agent: Agent? = nil) {
             self.operator = `operator`
-            self.agent = agent
             self.employees = employees
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
-            case agent = "Agent"
             case employees = "Employees"
+            case agent = "Agent"
         }
     }
 
@@ -61,35 +63,39 @@ extension Ess {
         }
     }
 
-    /// 更新集成版员工信息
+    /// 更新企业员工信息
     ///
-    /// 更新集成版员工信息(姓名，手机号，邮件)，用户实名后无法更改姓名与手机号
+    /// 更新员工信息(姓名，手机号，邮件、部门)，用户实名后无法更改姓名与手机号。
+    /// 可进行批量操作，Employees中的userID与openID二选一必填
     @inlinable
     public func updateIntegrationEmployees(_ input: UpdateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIntegrationEmployeesResponse> {
         self.client.execute(action: "UpdateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 更新集成版员工信息
+    /// 更新企业员工信息
     ///
-    /// 更新集成版员工信息(姓名，手机号，邮件)，用户实名后无法更改姓名与手机号
+    /// 更新员工信息(姓名，手机号，邮件、部门)，用户实名后无法更改姓名与手机号。
+    /// 可进行批量操作，Employees中的userID与openID二选一必填
     @inlinable
     public func updateIntegrationEmployees(_ input: UpdateIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIntegrationEmployeesResponse {
         try await self.client.execute(action: "UpdateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 更新集成版员工信息
+    /// 更新企业员工信息
     ///
-    /// 更新集成版员工信息(姓名，手机号，邮件)，用户实名后无法更改姓名与手机号
+    /// 更新员工信息(姓名，手机号，邮件、部门)，用户实名后无法更改姓名与手机号。
+    /// 可进行批量操作，Employees中的userID与openID二选一必填
     @inlinable
-    public func updateIntegrationEmployees(operator: UserInfo, agent: Agent, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIntegrationEmployeesResponse> {
-        self.updateIntegrationEmployees(.init(operator: `operator`, agent: agent, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func updateIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIntegrationEmployeesResponse> {
+        self.updateIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 更新集成版员工信息
+    /// 更新企业员工信息
     ///
-    /// 更新集成版员工信息(姓名，手机号，邮件)，用户实名后无法更改姓名与手机号
+    /// 更新员工信息(姓名，手机号，邮件、部门)，用户实名后无法更改姓名与手机号。
+    /// 可进行批量操作，Employees中的userID与openID二选一必填
     @inlinable
-    public func updateIntegrationEmployees(operator: UserInfo, agent: Agent, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIntegrationEmployeesResponse {
-        try await self.updateIntegrationEmployees(.init(operator: `operator`, agent: agent, employees: employees), region: region, logger: logger, on: eventLoop)
+    public func updateIntegrationEmployees(operator: UserInfo, employees: [Staff], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIntegrationEmployeesResponse {
+        try await self.updateIntegrationEmployees(.init(operator: `operator`, employees: employees, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

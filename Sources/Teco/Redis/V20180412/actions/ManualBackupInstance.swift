@@ -21,13 +21,16 @@ import TecoCore
 extension Redis {
     /// ManualBackupInstance请求参数结构体
     public struct ManualBackupInstanceRequest: TCRequestModel {
-        /// 待操作的实例ID，可通过 DescribeInstance接口返回值中的 InstanceId 获取。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 备份的备注信息
+        /// 手动备份任务的备注信息。
         public let remark: String?
 
-        /// 保存天数。0代表指定默认保留时间
+        /// 备份数据的保存天数。
+        /// - 单位：天；默认值为7天；取值范围：[0.1825]。如果超过 7天，请[提交工单](https://console.cloud.tencent.com/workorder/category)申请。
+        /// - 如果不配置该参数，默认与自动备份的保留时间一致。
+        /// - 如果未设置自动备份，默认为7天。
         public let storageDays: Int64?
 
         public init(instanceId: String, remark: String? = nil, storageDays: Int64? = nil) {
@@ -58,24 +61,32 @@ extension Redis {
     }
 
     /// 手动备份Redis实例
+    ///
+    /// 本接口（ManualBackupInstance）用于手动备份Redis实例。
     @inlinable
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualBackupInstanceResponse> {
         self.client.execute(action: "ManualBackupInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手动备份Redis实例
+    ///
+    /// 本接口（ManualBackupInstance）用于手动备份Redis实例。
     @inlinable
     public func manualBackupInstance(_ input: ManualBackupInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
         try await self.client.execute(action: "ManualBackupInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手动备份Redis实例
+    ///
+    /// 本接口（ManualBackupInstance）用于手动备份Redis实例。
     @inlinable
     public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualBackupInstanceResponse> {
         self.manualBackupInstance(.init(instanceId: instanceId, remark: remark, storageDays: storageDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手动备份Redis实例
+    ///
+    /// 本接口（ManualBackupInstance）用于手动备份Redis实例。
     @inlinable
     public func manualBackupInstance(instanceId: String, remark: String? = nil, storageDays: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
         try await self.manualBackupInstance(.init(instanceId: instanceId, remark: remark, storageDays: storageDays), region: region, logger: logger, on: eventLoop)

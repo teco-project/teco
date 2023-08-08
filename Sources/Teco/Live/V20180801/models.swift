@@ -22,7 +22,9 @@ extension Live {
     /// 带宽信息
     public struct BandwidthInfo: TCOutputModel {
         /// 返回格式：
-        /// yyyy-mm-dd HH:MM:SS
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         /// 根据粒度会有不同程度的缩减。
         public let time: String
 
@@ -83,7 +85,10 @@ extension Live {
 
     /// 带宽和流量信息。
     public struct BillDataInfo: TCOutputModel {
-        /// 时间点，格式: yyyy-mm-dd HH:MM:SS。
+        /// 时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 带宽，单位是 Mbps。
@@ -92,7 +97,11 @@ extension Live {
         /// 流量，单位是 MB。
         public let flux: Float
 
-        /// 峰值时间点，格式: yyyy-mm-dd HH:MM:SS，原始数据为5分钟粒度，如果查询小时和天粒度数据，则返回对应粒度内的带宽峰值时间点。
+        /// 峰值时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        /// 原始数据为5分钟粒度，如果查询小时和天粒度数据，则返回对应粒度内的带宽峰值时间点。
         public let peakTime: String
 
         enum CodingKeys: String, CodingKey {
@@ -167,6 +176,10 @@ extension Live {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pushExceptionNotifyUrl: String?
 
+        /// 音频审核回调 URL。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let audioAuditNotifyUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateName = "TemplateName"
@@ -179,6 +192,7 @@ extension Live {
             case pornCensorshipNotifyUrl = "PornCensorshipNotifyUrl"
             case callbackKey = "CallbackKey"
             case pushExceptionNotifyUrl = "PushExceptionNotifyUrl"
+            case audioAuditNotifyUrl = "AudioAuditNotifyUrl"
         }
     }
 
@@ -218,7 +232,10 @@ extension Live {
 
     /// 下行播放统计指标
     public struct CdnPlayStatData: TCOutputModel {
-        /// 时间点，格式: yyyy-mm-dd HH:MM:SS。
+        /// 时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 带宽，单位: Mbps。
@@ -383,16 +400,21 @@ extension Live {
         /// 输入流裁剪参数。
         public let cropParams: CommonMixCropParams?
 
-        public init(inputStreamName: String, layoutParams: CommonMixLayoutParams, cropParams: CommonMixCropParams? = nil) {
+        /// 抠图参数。
+        public let portraitSegmentParams: MixPortraitSegmentParams?
+
+        public init(inputStreamName: String, layoutParams: CommonMixLayoutParams, cropParams: CommonMixCropParams? = nil, portraitSegmentParams: MixPortraitSegmentParams? = nil) {
             self.inputStreamName = inputStreamName
             self.layoutParams = layoutParams
             self.cropParams = cropParams
+            self.portraitSegmentParams = portraitSegmentParams
         }
 
         enum CodingKeys: String, CodingKey {
             case inputStreamName = "InputStreamName"
             case layoutParams = "LayoutParams"
             case cropParams = "CropParams"
+            case portraitSegmentParams = "PortraitSegmentParams"
         }
     }
 
@@ -560,7 +582,10 @@ extension Live {
 
     /// 流播放信息
     public struct DayStreamPlayInfo: TCOutputModel {
-        /// 数据时间点，格式：yyyy-mm-dd HH:MM:SS。
+        /// 数据时间点，接口返回支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）yyyy-MM-dd HH:mm:ss：使用此格式时，默认代表北京时间。
+        /// 接口返回的时间格式和查询请求传入的时间格式一致。
         public let time: String
 
         /// 带宽（单位Mbps）。
@@ -622,6 +647,27 @@ extension Live {
             case createTime = "CreateTime"
             case expireTime = "ExpireTime"
             case status = "Status"
+        }
+    }
+
+    /// 媒体诊断结果，包含断流信息、低帧率信息等
+    public struct DiagnoseResult: TCOutputModel {
+        /// 断流信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let streamBrokenResults: [String]?
+
+        /// 低帧率信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lowFrameRateResults: [String]?
+
+        /// 流格式诊断信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let streamFormatResults: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case streamBrokenResults = "StreamBrokenResults"
+            case lowFrameRateResults = "LowFrameRateResults"
+            case streamFormatResults = "StreamFormatResults"
         }
     }
 
@@ -1051,6 +1097,17 @@ extension Live {
         /// 5: 已退款
         public let status: Int64?
 
+        /// 是否自动续购。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let willRenew: Int64?
+
+        /// 续购状态。
+        /// 1 ：续购成功。
+        /// 0 ：尚未续购。
+        /// <0  : 续购失败。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewalResult: Int64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case total = "Total"
@@ -1060,6 +1117,239 @@ extension Live {
             case expireTime = "ExpireTime"
             case type = "Type"
             case status = "Status"
+            case willRenew = "WillRenew"
+            case renewalResult = "RenewalResult"
+        }
+    }
+
+    /// 直播监播任务信息。
+    public struct LiveStreamMonitorInfo: TCInputModel, TCOutputModel {
+        /// 监播任务ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let monitorId: String?
+
+        /// 监播任务名称。128字节以内。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let monitorName: String?
+
+        /// 监播任务输出信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputInfo: LiveStreamMonitorOutputInfo?
+
+        /// 待监播的输入流信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inputList: [LiveStreamMonitorInputInfo]?
+
+        /// 监播任务状态。
+        /// 0： 代表空闲
+        /// 1： 代表监播中。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 上一次的启动时间，unix时间戳。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: UInt64?
+
+        /// 上一次的停止时间，unix时间戳。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stopTime: UInt64?
+
+        /// 监播任务创建时间，unix时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: UInt64?
+
+        /// 监播任务更新时间，unix时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: UInt64?
+
+        /// 监播事件通知策略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notifyPolicy: LiveStreamMonitorNotifyPolicy?
+
+        /// 输出音频的输入Index列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let audibleInputIndexList: [UInt64]?
+
+        /// 开启智能语音识别的输入Index列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiAsrInputIndexList: [UInt64]?
+
+        /// 是否开启断流检测
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let checkStreamBroken: UInt64?
+
+        /// 是否开启低帧率检测
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let checkStreamLowFrameRate: UInt64?
+
+        /// 智能语音识别语种：
+        /// 0 关闭 1 中文 2 英文 3日文 4 韩文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let asrLanguage: UInt64?
+
+        /// 智能文字识别语种：
+        /// 0 关闭 1 中、英文
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ocrLanguage: UInt64?
+
+        /// 开启智能文字识别的输入Index列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiOcrInputIndexList: [UInt64]?
+
+        /// 是否存储监播事件到监播报告，以及是否允许查询监播报告
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allowMonitorReport: UInt64?
+
+        /// 是否开启格式诊断
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiFormatDiagnose: UInt64?
+
+        public init(monitorId: String, monitorName: String? = nil, outputInfo: LiveStreamMonitorOutputInfo? = nil, inputList: [LiveStreamMonitorInputInfo]? = nil, status: UInt64? = nil, startTime: UInt64? = nil, stopTime: UInt64? = nil, createTime: UInt64? = nil, updateTime: UInt64? = nil, notifyPolicy: LiveStreamMonitorNotifyPolicy? = nil, audibleInputIndexList: [UInt64]? = nil, aiAsrInputIndexList: [UInt64]? = nil, checkStreamBroken: UInt64? = nil, checkStreamLowFrameRate: UInt64? = nil, asrLanguage: UInt64? = nil, ocrLanguage: UInt64? = nil, aiOcrInputIndexList: [UInt64]? = nil, allowMonitorReport: UInt64? = nil, aiFormatDiagnose: UInt64? = nil) {
+            self.monitorId = monitorId
+            self.monitorName = monitorName
+            self.outputInfo = outputInfo
+            self.inputList = inputList
+            self.status = status
+            self.startTime = startTime
+            self.stopTime = stopTime
+            self.createTime = createTime
+            self.updateTime = updateTime
+            self.notifyPolicy = notifyPolicy
+            self.audibleInputIndexList = audibleInputIndexList
+            self.aiAsrInputIndexList = aiAsrInputIndexList
+            self.checkStreamBroken = checkStreamBroken
+            self.checkStreamLowFrameRate = checkStreamLowFrameRate
+            self.asrLanguage = asrLanguage
+            self.ocrLanguage = ocrLanguage
+            self.aiOcrInputIndexList = aiOcrInputIndexList
+            self.allowMonitorReport = allowMonitorReport
+            self.aiFormatDiagnose = aiFormatDiagnose
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case monitorId = "MonitorId"
+            case monitorName = "MonitorName"
+            case outputInfo = "OutputInfo"
+            case inputList = "InputList"
+            case status = "Status"
+            case startTime = "StartTime"
+            case stopTime = "StopTime"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case notifyPolicy = "NotifyPolicy"
+            case audibleInputIndexList = "AudibleInputIndexList"
+            case aiAsrInputIndexList = "AiAsrInputIndexList"
+            case checkStreamBroken = "CheckStreamBroken"
+            case checkStreamLowFrameRate = "CheckStreamLowFrameRate"
+            case asrLanguage = "AsrLanguage"
+            case ocrLanguage = "OcrLanguage"
+            case aiOcrInputIndexList = "AiOcrInputIndexList"
+            case allowMonitorReport = "AllowMonitorReport"
+            case aiFormatDiagnose = "AiFormatDiagnose"
+        }
+    }
+
+    /// 直播监播功能输入流信息
+    public struct LiveStreamMonitorInputInfo: TCInputModel, TCOutputModel {
+        /// 待监播的输入流名称。256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inputStreamName: String?
+
+        /// 待监播的输入流推流域名。128字节以内，只允许填处于启用状态的推流域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inputDomain: String?
+
+        /// 待监播的输入流推流路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inputApp: String?
+
+        /// 待监播的输入流推流url。一般场景下，无需该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inputUrl: String?
+
+        /// 描述。256字节以内。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        public init(inputStreamName: String, inputDomain: String? = nil, inputApp: String? = nil, inputUrl: String? = nil, description: String? = nil) {
+            self.inputStreamName = inputStreamName
+            self.inputDomain = inputDomain
+            self.inputApp = inputApp
+            self.inputUrl = inputUrl
+            self.description = description
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case inputStreamName = "InputStreamName"
+            case inputDomain = "InputDomain"
+            case inputApp = "InputApp"
+            case inputUrl = "InputUrl"
+            case description = "Description"
+        }
+    }
+
+    /// 直播流监播通知策略
+    public struct LiveStreamMonitorNotifyPolicy: TCInputModel, TCOutputModel {
+        /// 通知策略类型：范围[0,1]
+        /// 0:代表不使用任何通知策略
+        /// 1:代表使用全局回调策略，所有事件通知到CallbackUrl。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notifyPolicyType: UInt64?
+
+        /// 回调URL：长度[0,512]
+        /// 只支持http和https类型的url。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let callbackUrl: String?
+
+        public init(notifyPolicyType: UInt64? = nil, callbackUrl: String? = nil) {
+            self.notifyPolicyType = notifyPolicyType
+            self.callbackUrl = callbackUrl
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case notifyPolicyType = "NotifyPolicyType"
+            case callbackUrl = "CallbackUrl"
+        }
+    }
+
+    /// 直播流监播输出流信息
+    public struct LiveStreamMonitorOutputInfo: TCInputModel, TCOutputModel {
+        /// 监播任务输出流宽度像素。范围[1,1920]。建议至少大于100像素。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStreamWidth: UInt64?
+
+        /// 监播任务输出流长度像素。范围[1,1080]，建议至少大于100像素。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStreamHeight: UInt64?
+
+        /// 监播任务输出流名称。
+        /// 不填时，系统会自动生成。
+        /// 256字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputStreamName: String?
+
+        /// 监播任务播放域名。128字节以内，只允许填处于启用状态的播放域名。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputDomain: String?
+
+        /// 监播任务播放路径。32字节以内，只允许包含字母、数字、‘-’，‘_’，'.'字符。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outputApp: String?
+
+        public init(outputStreamWidth: UInt64, outputStreamHeight: UInt64, outputStreamName: String? = nil, outputDomain: String? = nil, outputApp: String? = nil) {
+            self.outputStreamWidth = outputStreamWidth
+            self.outputStreamHeight = outputStreamHeight
+            self.outputStreamName = outputStreamName
+            self.outputDomain = outputDomain
+            self.outputApp = outputApp
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case outputStreamWidth = "OutputStreamWidth"
+            case outputStreamHeight = "OutputStreamHeight"
+            case outputStreamName = "OutputStreamName"
+            case outputDomain = "OutputDomain"
+            case outputApp = "OutputApp"
         }
     }
 
@@ -1083,6 +1373,44 @@ extension Live {
             case logUrl = "LogUrl"
             case logTime = "LogTime"
             case fileSize = "FileSize"
+        }
+    }
+
+    /// 媒体处理结果，包含智能语音识别、智能文字识别结果
+    public struct MPSResult: TCOutputModel {
+        /// 智能语音识别结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiAsrResults: [String]?
+
+        /// 智能文字识别结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aiOcrResults: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case aiAsrResults = "AiAsrResults"
+            case aiOcrResults = "AiOcrResults"
+        }
+    }
+
+    /// 混流抠图参数
+    public struct MixPortraitSegmentParams: TCInputModel {
+        /// 抠图背景颜色，
+        /// 常用的颜色有：
+        /// 红色：0xcc0033。
+        /// 黄色：0xcc9900。
+        /// 绿色：0xcccc33。
+        /// 蓝色：0x99CCFF。
+        /// 黑色：0x000000。
+        /// 白色：0xFFFFFF。
+        /// 灰色：0x999999。
+        public let color: String?
+
+        public init(color: String? = nil) {
+            self.color = color
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case color = "Color"
         }
     }
 
@@ -1117,6 +1445,64 @@ extension Live {
             case bandwidth = "Bandwidth"
             case online = "Online"
             case request = "Request"
+        }
+    }
+
+    /// 直播垫片模板。
+    public struct PadTemplate: TCInputModel, TCOutputModel {
+        /// 模板id。
+        public let templateId: UInt64
+
+        /// 模板名称。
+        public let templateName: String
+
+        /// 垫片内容。
+        public let url: String
+
+        /// 模板创建时间。
+        public let createTime: String
+
+        /// 模板修改时间。
+        public let updateTime: String
+
+        /// 模板描述。
+        public let description: String?
+
+        /// 断流等待时间。
+        /// 取值范围：0-30000。
+        /// 单位：ms。
+        public let waitDuration: UInt64?
+
+        /// 最大垫片时长。
+        /// 取值范围：0 - 正无穷。
+        /// 单位：ms。
+        public let maxDuration: UInt64?
+
+        /// 垫片内容类型： 1：图片，2：视频。 默认值：1。
+        public let type: UInt64?
+
+        public init(templateId: UInt64, templateName: String, url: String, createTime: String, updateTime: String, description: String? = nil, waitDuration: UInt64? = nil, maxDuration: UInt64? = nil, type: UInt64? = nil) {
+            self.templateId = templateId
+            self.templateName = templateName
+            self.url = url
+            self.createTime = createTime
+            self.updateTime = updateTime
+            self.description = description
+            self.waitDuration = waitDuration
+            self.maxDuration = maxDuration
+            self.type = type
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case url = "Url"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case description = "Description"
+            case waitDuration = "WaitDuration"
+            case maxDuration = "MaxDuration"
+            case type = "Type"
         }
     }
 
@@ -1522,6 +1908,10 @@ extension Live {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vodLocalMode: Int64?
 
+        /// 录制模板 ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordTemplateId: String?
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case sourceType = "SourceType"
@@ -1550,6 +1940,7 @@ extension Live {
             case backupSourceUrl = "BackupSourceUrl"
             case watermarkList = "WatermarkList"
             case vodLocalMode = "VodLocalMode"
+            case recordTemplateId = "RecordTemplateId"
         }
     }
 
@@ -2207,11 +2598,56 @@ extension Live {
         /// 推流域名。
         public let domainName: String
 
+        /// 流是否推送到延播。
+        /// 0 - 无延播，
+        /// 1 - 有延播。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushToDelay: Int64?
+
         enum CodingKeys: String, CodingKey {
             case streamName = "StreamName"
             case publishTimeList = "PublishTimeList"
             case appName = "AppName"
             case domainName = "DomainName"
+            case pushToDelay = "PushToDelay"
+        }
+    }
+
+    /// 直播拉流任务状态信息。
+    public struct TaskStatusInfo: TCOutputModel {
+        /// 当前使用的源 URL。
+        public let fileUrl: String
+
+        /// 点播源任务的轮播次数。
+        public let loopedTimes: Int64
+
+        /// 点播源的播放偏移，单位：秒。
+        public let offsetTime: Int64
+
+        /// 最新心跳上报时间。UTC时间，例如：
+        /// 2022-02-11T10:00:00Z。
+        /// 注意：UTC时间与北京时间相差八小时。
+        public let reportTime: String
+
+        /// 实际运行状态：
+        /// active - 活跃，
+        /// inactive - 不活跃。
+        public let runStatus: String
+
+        /// 点播源的文件时长，单位：秒。
+        public let fileDuration: Int64
+
+        /// 下一进度点播文件 URL。
+        public let nextFileUrl: String
+
+        enum CodingKeys: String, CodingKey {
+            case fileUrl = "FileUrl"
+            case loopedTimes = "LoopedTimes"
+            case offsetTime = "OffsetTime"
+            case reportTime = "ReportTime"
+            case runStatus = "RunStatus"
+            case fileDuration = "FileDuration"
+            case nextFileUrl = "NextFileUrl"
         }
     }
 
@@ -2576,8 +3012,10 @@ extension Live {
 
     /// 转码总量数据
     public struct TranscodeTotalInfo: TCOutputModel {
-        /// 时间点，北京时间，
-        /// 示例：2019-03-01 00:00:00。
+        /// 时间点，
+        /// 使用UTC格式时间，
+        /// 例如：2019-01-08T10:00:00Z。
+        /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let time: String
 
         /// 转码时长，单位：分钟。
@@ -2633,6 +3071,12 @@ extension Live {
         /// 水印高。
         public let height: Int64?
 
+        /// 背景水印宽。
+        public let backgroundWidth: Int64?
+
+        /// 背景水印高。
+        public let backgroundHeight: Int64?
+
         enum CodingKeys: String, CodingKey {
             case watermarkId = "WatermarkId"
             case pictureUrl = "PictureUrl"
@@ -2643,6 +3087,61 @@ extension Live {
             case createTime = "CreateTime"
             case width = "Width"
             case height = "Height"
+            case backgroundWidth = "BackgroundWidth"
+            case backgroundHeight = "BackgroundHeight"
+        }
+    }
+
+    /// P2P流信息。
+    public struct XP2PDetailInfo: TCOutputModel {
+        /// CDN流量。
+        public let cdnBytes: Int64
+
+        /// P2P流量。
+        public let p2pBytes: Int64
+
+        /// 卡播人数。
+        public let stuckPeople: Int64
+
+        /// 卡播次数。
+        public let stuckTimes: Int64
+
+        /// 在线人数。
+        public let onlinePeople: Int64
+
+        /// 起播请求次数
+        public let request: Int64
+
+        /// 起播成功次数
+        public let requestSuccess: Int64
+
+        /// 时间，一分钟粒度，utc格式：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I。。
+        public let time: String
+
+        /// 类型，分live和vod两种。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 流ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let streamName: String?
+
+        /// AppId。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case cdnBytes = "CdnBytes"
+            case p2pBytes = "P2pBytes"
+            case stuckPeople = "StuckPeople"
+            case stuckTimes = "StuckTimes"
+            case onlinePeople = "OnlinePeople"
+            case request = "Request"
+            case requestSuccess = "RequestSuccess"
+            case time = "Time"
+            case type = "Type"
+            case streamName = "StreamName"
+            case appId = "AppId"
         }
     }
 }

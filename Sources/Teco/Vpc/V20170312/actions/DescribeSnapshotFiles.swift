@@ -25,7 +25,7 @@ extension Vpc {
         /// 业务类型，目前支持安全组：securitygroup。
         public let businessType: String
 
-        /// 实例Id。
+        /// 业务实例Id，和BusinessType对应。
         public let instanceId: String
 
         /// 开始日期，格式%Y-%m-%d %H:%M:%S。
@@ -37,7 +37,7 @@ extension Vpc {
         /// 偏移量，默认为0。
         public let offset: UInt64?
 
-        /// 返回数量，默认为20，最大为200。
+        /// 返回数量，默认为20，最大为100。
         public let limit: UInt64?
 
         public init(businessType: String, instanceId: String, startDate: String, endDate: String, offset: UInt64? = nil, limit: UInt64? = nil) {

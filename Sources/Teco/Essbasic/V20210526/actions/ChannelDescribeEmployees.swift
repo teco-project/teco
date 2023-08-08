@@ -25,7 +25,7 @@ extension Essbasic {
         /// 返回最大数量，最大为20
         public let limit: Int64
 
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent?
 
         /// 查询过滤实名用户，Key为Status，Values为["IsVerified"]

@@ -32,7 +32,7 @@ extension Tcb {
         /// <li>qcloud</li>
         public let source: String?
 
-        /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
+        /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，表示不享受免费额度。
         public let freeQuota: String?
 
         /// 环境创建来源，取值：

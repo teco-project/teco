@@ -21,6 +21,7 @@ extension TCSqlserverError {
         enum Code: String {
             case notSupportRepeat = "UnsupportedOperation.NotSupportRepeat"
             case uploadTypeError = "UnsupportedOperation.UploadTypeError"
+            case other = "UnsupportedOperation"
         }
 
         private let error: Code
@@ -55,6 +56,11 @@ extension TCSqlserverError {
             UnsupportedOperation(.uploadTypeError)
         }
 
+        /// 操作不支持。
+        public static var other: UnsupportedOperation {
+            UnsupportedOperation(.other)
+        }
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {
@@ -62,6 +68,8 @@ extension TCSqlserverError {
                 code = .unsupportedOperation_NotSupportRepeat
             case .uploadTypeError:
                 code = .unsupportedOperation_UploadTypeError
+            case .other:
+                code = .unsupportedOperation
             }
             return TCSqlserverError(code, context: self.context)
         }

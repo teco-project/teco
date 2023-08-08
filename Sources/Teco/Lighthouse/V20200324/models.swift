@@ -37,6 +37,30 @@ extension Lighthouse {
         }
     }
 
+    /// 自动挂载并初始化该数据盘。
+    public struct AutoMountConfiguration: TCInputModel {
+        /// 待挂载的实例ID。指定的实例必须与指定的数据盘处于同一可用区，实例状态必须处于“运行中”状态，且实例必须支持[自动化助手](https://cloud.tencent.com/document/product/1340/50752)。
+        public let instanceId: String?
+
+        /// 实例内的挂载点。仅Linux操作系统的实例可传入该参数, 不传则默认挂载在“/data/disk”路径下。
+        public let mountPoint: String?
+
+        /// 文件系统类型。取值: “ext4”、“xfs”。仅Linux操作系统的实例可传入该参数, 不传则默认为“ext4”。
+        public let fileSystemType: String?
+
+        public init(instanceId: String, mountPoint: String? = nil, fileSystemType: String? = nil) {
+            self.instanceId = instanceId
+            self.mountPoint = mountPoint
+            self.fileSystemType = fileSystemType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case mountPoint = "MountPoint"
+            case fileSystemType = "FileSystemType"
+        }
+    }
+
     /// 描述了镜像信息。
     public struct Blueprint: TCOutputModel {
         /// 镜像 ID  ，是 Blueprint 的唯一标识。
@@ -182,13 +206,13 @@ extension Lighthouse {
 
         /// 系统盘类型。
         /// 取值范围：
-        /// <li> LOCAL_BASIC：本地硬盘</li><li> LOCAL_SSD：本地 SSD 硬盘</li><li> CLOUD_BASIC：普通云硬盘</li><li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
+        /// <li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
         public let systemDiskType: String
 
-        /// 系统盘大小。
+        /// 系统盘大小。单位GB。
         public let systemDiskSize: Int64
 
-        /// 每月网络流量，单位 Gb。
+        /// 每月网络流量，单位 GB。
         public let monthlyTraffic: Int64
 
         /// 是否支持 Linux/Unix 平台。
@@ -214,8 +238,19 @@ extension Lighthouse {
 
         /// 套餐类型。
         /// 取值范围：
-        /// <li> GENERAL_BUNDLE：通用型</li><li> STORAGE_BUNDLE：存储型 </li>
+        /// <li>STARTER_BUNDLE：入门型</li>
+        /// <li>GENERAL_BUNDLE：通用型</li>
+        /// <li>ENTERPRISE_BUNDLE：企业型</li>
+        /// <li>STORAGE_BUNDLE：存储型</li>
+        /// <li>EXCLUSIVE_BUNDLE：专属型</li>
+        /// <li>HK_EXCLUSIVE_BUNDLE：香港专属型 </li>
+        /// <li>CAREFREE_BUNDLE：无忧型</li>
+        /// <li>BEFAST_BUNDLE：蜂驰型 </li>
         public let bundleType: String
+
+        /// 套餐类型描述信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bundleTypeDescription: String?
 
         /// 套餐展示标签.
         /// 取值范围:
@@ -238,6 +273,7 @@ extension Lighthouse {
             case internetChargeType = "InternetChargeType"
             case bundleSalesState = "BundleSalesState"
             case bundleType = "BundleType"
+            case bundleTypeDescription = "BundleTypeDescription"
             case bundleDisplayLabel = "BundleDisplayLabel"
         }
     }
@@ -599,7 +635,13 @@ extension Lighthouse {
         /// 新购周期。
         public let period: Int64
 
-        /// 续费标识。
+        /// 自动续费标识。取值范围：
+        ///
+        /// NOTIFY_AND_AUTO_RENEW：通知过期且自动续费。
+        /// NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费。
+        /// DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知。
+        ///
+        /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云盘到期后将按月自动续费。
         public let renewFlag: String?
 
         /// 新购单位. 默认值: "m"。
@@ -710,6 +752,96 @@ extension Lighthouse {
         }
     }
 
+    /// Docker活动信息
+    public struct DockerActivity: TCOutputModel {
+        /// 活动ID。
+        public let activityId: String
+
+        /// 活动名称。
+        public let activityName: String
+
+        /// 活动状态。取值范围：
+        /// <li>INIT：表示初始化，活动尚未执行</li>
+        /// <li>OPERATING：表示活动执行中</li>
+        /// <li>SUCCESS：表示活动执行成功</li>
+        /// <li>FAILED：表示活动执行失败</li>
+        public let activityState: String
+
+        /// 活动执行的命令输出，以base64编码。
+        public let activityCommandOutput: String
+
+        /// 容器ID列表。
+        public let containerIds: [String]
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        /// 结束时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var endTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case activityId = "ActivityId"
+            case activityName = "ActivityName"
+            case activityState = "ActivityState"
+            case activityCommandOutput = "ActivityCommandOutput"
+            case containerIds = "ContainerIds"
+            case createdTime = "CreatedTime"
+            case endTime = "EndTime"
+        }
+    }
+
+    /// Docker容器信息
+    public struct DockerContainer: TCOutputModel {
+        /// 容器ID
+        public let containerId: String
+
+        /// 容器名称
+        public let containerName: String
+
+        /// 容器镜像地址
+        public let containerImage: String
+
+        /// 容器Command
+        public let command: String
+
+        /// 容器状态描述
+        public let status: String
+
+        /// 容器状态，和docker的容器状态保持一致，当前取值有：created, restarting, running, removing, paused, exited, or dead
+        public let state: String
+
+        /// 容器端口主机端口映射列表
+        public let publishPortSet: [DockerContainerPublishPort]
+
+        /// 容器挂载本地卷列表
+        public let volumeSet: [DockerContainerVolume]
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        enum CodingKeys: String, CodingKey {
+            case containerId = "ContainerId"
+            case containerName = "ContainerName"
+            case containerImage = "ContainerImage"
+            case command = "Command"
+            case status = "Status"
+            case state = "State"
+            case publishPortSet = "PublishPortSet"
+            case volumeSet = "VolumeSet"
+            case createdTime = "CreatedTime"
+        }
+    }
+
     /// Docker容器创建时的配置
     public struct DockerContainerConfiguration: TCInputModel, TCOutputModel {
         /// 容器镜像地址
@@ -730,13 +862,17 @@ extension Lighthouse {
         /// 运行的命令
         public let command: String?
 
-        public init(containerImage: String, containerName: String? = nil, envs: [ContainerEnv]? = nil, publishPorts: [DockerContainerPublishPort]? = nil, volumes: [DockerContainerVolume]? = nil, command: String? = nil) {
+        /// 容器重启策略
+        public let restartPolicy: String?
+
+        public init(containerImage: String, containerName: String? = nil, envs: [ContainerEnv]? = nil, publishPorts: [DockerContainerPublishPort]? = nil, volumes: [DockerContainerVolume]? = nil, command: String? = nil, restartPolicy: String? = nil) {
             self.containerImage = containerImage
             self.containerName = containerName
             self.envs = envs
             self.publishPorts = publishPorts
             self.volumes = volumes
             self.command = command
+            self.restartPolicy = restartPolicy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -746,6 +882,7 @@ extension Lighthouse {
             case publishPorts = "PublishPorts"
             case volumes = "Volumes"
             case command = "Command"
+            case restartPolicy = "RestartPolicy"
         }
     }
 
@@ -829,7 +966,7 @@ extension Lighthouse {
     }
 
     /// 描述防火墙规则信息。
-    public struct FirewallRule: TCInputModel {
+    public struct FirewallRule: TCInputModel, TCOutputModel {
         /// 协议，取值：TCP，UDP，ICMP，ALL。
         public let `protocol`: String
 
@@ -1229,24 +1366,26 @@ extension Lighthouse {
     public struct LoginConfiguration: TCInputModel {
         /// <li>"YES"代表选择自动生成密码，这时不指定Password字段。</li>
         /// <li>"NO"代表选择自定义密码，这时要指定Password字段。</li>
-        public let autoGeneratePassword: String
+        public let autoGeneratePassword: String?
 
         /// 实例登录密码。具体按照操作系统的复杂度要求。
-        /// WINDOWS 实例密码必须 12-30 位，不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
-        /// <li>小写字母：[a-z]</li>
-        /// <li>大写字母：[A-Z]</li>
-        /// <li>数字： 0-9</li>
-        /// <li>特殊字符：()`~!@#$%^&*-+=_|{}[]:;' <>,.?/</li>
+        /// `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能包含空格, 不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字：0-9<br><li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
+        /// `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字： 0-9<br><li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
         public let password: String?
 
-        public init(autoGeneratePassword: String, password: String? = nil) {
+        /// 密钥ID列表，最多同时指定5个密钥。关联密钥后，就可以通过对应的私钥来访问实例。密钥与密码不能同时指定，同时WINDOWS操作系统不支持指定密钥。密钥ID列表可以通过[DescribeKeyPairs](https://cloud.tencent.com/document/product/1207/55540)接口获取。
+        public let keyIds: [String]?
+
+        public init(autoGeneratePassword: String? = nil, password: String? = nil, keyIds: [String]? = nil) {
             self.autoGeneratePassword = autoGeneratePassword
             self.password = password
+            self.keyIds = keyIds
         }
 
         enum CodingKeys: String, CodingKey {
             case autoGeneratePassword = "AutoGeneratePassword"
             case password = "Password"
+            case keyIds = "KeyIds"
         }
     }
 
@@ -1289,13 +1428,13 @@ extension Lighthouse {
     /// 折扣详情信息。
     public struct PolicyDetail: TCOutputModel {
         /// 用户折扣。
-        public let userDiscount: Int64?
+        public let userDiscount: Float?
 
         /// 公共折扣。
-        public let commonDiscount: Int64?
+        public let commonDiscount: Float?
 
         /// 最终折扣。
-        public let finalDiscount: Int64?
+        public let finalDiscount: Float?
 
         /// 活动折扣。取值为null，表示无有效值，即没有折扣。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1349,16 +1488,20 @@ extension Lighthouse {
 
     /// 续费云硬盘包年包月相关参数设置
     public struct RenewDiskChargePrepaid: TCInputModel {
-        /// 新购周期。
+        /// 续费周期。
         public let period: Int64?
 
-        /// 续费标识。
+        /// 续费标识。取值范围：
+        ///
+        /// NOTIFY_AND_AUTO_RENEW：通知过期且自动续费。 NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费。 DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知。
+        ///
+        /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，云硬盘到期后将按月自动续费。
         public let renewFlag: String?
 
-        /// 周期单位. 默认值: "m"。
+        /// 周期单位。取值范围：“m”(月)。默认值: "m"。
         public let timeUnit: String?
 
-        /// 当前实例到期时间。
+        /// 当前实例到期时间。如“2018-01-01 00:00:00”。指定该参数即可对齐云硬盘所挂载的实例到期时间。该参数与Period必须指定其一，且不支持同时指定。
         public let curInstanceDeadline: String?
 
         public init(period: Int64? = nil, renewFlag: String? = nil, timeUnit: String? = nil, curInstanceDeadline: String? = nil) {

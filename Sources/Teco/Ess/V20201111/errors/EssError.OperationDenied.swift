@@ -39,6 +39,8 @@ extension TCEssError {
             case forbid = "OperationDenied.Forbid"
             case invalidApproverAge = "OperationDenied.InvalidApproverAge"
             case manyResourceId = "OperationDenied.ManyResourceId"
+            case noApiAuth = "OperationDenied.NoApiAuth"
+            case noApproverMobileCheckPermission = "OperationDenied.NoApproverMobileCheckPermission"
             case noFlowPermission = "OperationDenied.NoFlowPermission"
             case noIdentityVerify = "OperationDenied.NoIdentityVerify"
             case noLogin = "OperationDenied.NoLogin"
@@ -58,6 +60,7 @@ extension TCEssError {
             case personHasNoSignature = "OperationDenied.PersonHasNoSignature"
             case personNoOpenServerSign = "OperationDenied.PersonNoOpenServerSign"
             case personServerSignForbid = "OperationDenied.PersonServerSignForbid"
+            case proveNoQuota = "OperationDenied.ProveNoQuota"
             case qrHasExpire = "OperationDenied.QrHasExpire"
             case qrInvalid = "OperationDenied.QrInvalid"
             case requiredComponentNotFill = "OperationDenied.RequiredComponentNotFill"
@@ -191,6 +194,15 @@ extension TCEssError {
             OperationDenied(.manyResourceId)
         }
 
+        /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
+        public static var noApiAuth: OperationDenied {
+            OperationDenied(.noApiAuth)
+        }
+
+        public static var noApproverMobileCheckPermission: OperationDenied {
+            OperationDenied(.noApproverMobileCheckPermission)
+        }
+
         /// 无权限操作签署流程，请联系客服了解权限，并在修改后重试。
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
@@ -290,6 +302,10 @@ extension TCEssError {
             OperationDenied(.personServerSignForbid)
         }
 
+        public static var proveNoQuota: OperationDenied {
+            OperationDenied(.proveNoQuota)
+        }
+
         /// 签署二维码已过期，请检查后重试。
         public static var qrHasExpire: OperationDenied {
             OperationDenied(.qrHasExpire)
@@ -315,6 +331,7 @@ extension TCEssError {
             OperationDenied(.serverSignNoSupportSignature)
         }
 
+        /// 子企业暂未加入。
         public static var subOrgNotJoin: OperationDenied {
             OperationDenied(.subOrgNotJoin)
         }
@@ -377,6 +394,10 @@ extension TCEssError {
                 code = .operationDenied_InvalidApproverAge
             case .manyResourceId:
                 code = .operationDenied_ManyResourceId
+            case .noApiAuth:
+                code = .operationDenied_NoApiAuth
+            case .noApproverMobileCheckPermission:
+                code = .operationDenied_NoApproverMobileCheckPermission
             case .noFlowPermission:
                 code = .operationDenied_NoFlowPermission
             case .noIdentityVerify:
@@ -415,6 +436,8 @@ extension TCEssError {
                 code = .operationDenied_PersonNoOpenServerSign
             case .personServerSignForbid:
                 code = .operationDenied_PersonServerSignForbid
+            case .proveNoQuota:
+                code = .operationDenied_ProveNoQuota
             case .qrHasExpire:
                 code = .operationDenied_QrHasExpire
             case .qrInvalid:

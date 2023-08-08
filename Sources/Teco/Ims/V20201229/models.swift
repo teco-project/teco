@@ -233,6 +233,10 @@ extension Ims {
         /// 该参数用于返回命中的实体二级标签。
         public let subLabel: String
 
+        /// 该参数用于返回命中的人脸id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let objectId: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -240,6 +244,7 @@ extension Ims {
             case score = "Score"
             case location = "Location"
             case subLabel = "SubLabel"
+            case objectId = "ObjectId"
         }
     }
 

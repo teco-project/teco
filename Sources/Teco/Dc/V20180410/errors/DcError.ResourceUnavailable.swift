@@ -46,6 +46,8 @@ extension TCDcError {
         }
 
         /// 对不起您的帐号已欠费，欠费状态下无法开通产品，请您先行充值。
+        ///
+        /// None
         public static var insufficientBalance: ResourceUnavailable {
             ResourceUnavailable(.insufficientBalance)
         }

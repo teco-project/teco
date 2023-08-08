@@ -25,7 +25,7 @@ extension Sqlserver {
         /// 实例ID，形如mssql-njj2mtpl
         public let instanceId: String
 
-        /// 聚合ID, 可通过接口DescribeBackups获取
+        /// 单库备份的聚合ID, 可通过接口DescribeBackups获取（不支持查询打包备份记录）
         public let groupId: String
 
         /// 分页返回，每页返回的数目，取值为1-100，默认值为20
@@ -95,57 +95,57 @@ extension Sqlserver {
         }
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable
     public func describeBackupFiles(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
         self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable
     public func describeBackupFiles(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
         try await self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable
     public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
         self.describeBackupFiles(.init(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable
     public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
         try await self.describeBackupFiles(.init(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable
     public func describeBackupFilesPaginated(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BackupFile])> {
         self.client.paginate(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     @inlinable @discardableResult
     public func describeBackupFilesPaginated(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBackupFilesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeBackupFiles, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询备份文件列表
+    /// 查询单库备份文件明细
     ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    /// 本接口(DescribeBackupFiles)用于查询单库备份明细
     ///
     /// - Returns: `AsyncSequence`s of `BackupFile` and `DescribeBackupFilesResponse` that can be iterated over asynchronously on demand.
     @inlinable

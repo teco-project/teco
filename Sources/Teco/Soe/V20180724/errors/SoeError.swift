@@ -97,6 +97,7 @@ public struct TCSoeError: TCSoeErrorType {
         case invalidParameterValue_AudioLimitExceeded = "InvalidParameterValue.AudioLimitExceeded"
         case invalidParameterValue_AudioSizeMustBeEven = "InvalidParameterValue.AudioSizeMustBeEven"
         case invalidParameterValue_BASEDecodeFailed = "InvalidParameterValue.BASEDecodeFailed"
+        case invalidParameterValue_FunctionNotSupport = "InvalidParameterValue.FunctionNotSupport"
         case invalidParameterValue_InvalidSeqId = "InvalidParameterValue.InvalidSeqId"
         case invalidParameterValue_InvalidWAVHeader = "InvalidParameterValue.InvalidWAVHeader"
         case invalidParameterValue_NoDocInList = "InvalidParameterValue.NoDocInList"
@@ -585,6 +586,10 @@ public struct TCSoeError: TCSoeErrorType {
     /// BASE64解码错误。
     public static var invalidParameterValue_BASEDecodeFailed: TCSoeError {
         TCSoeError(.invalidParameterValue_BASEDecodeFailed)
+    }
+
+    public static var invalidParameterValue_FunctionNotSupport: TCSoeError {
+        TCSoeError(.invalidParameterValue_FunctionNotSupport)
     }
 
     /// 分片序号错误。

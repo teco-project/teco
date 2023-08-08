@@ -27,6 +27,7 @@ extension TCDnspodError {
             case groupNumberLimit = "LimitExceeded.GroupNumberLimit"
             case hiddenUrlExceeded = "LimitExceeded.HiddenUrlExceeded"
             case nsCountLimit = "LimitExceeded.NsCountLimit"
+            case offsetExceeded = "LimitExceeded.OffsetExceeded"
             case recordTtlLimit = "LimitExceeded.RecordTtlLimit"
             case srvCountLimit = "LimitExceeded.SrvCountLimit"
             case subdomainLevelLimit = "LimitExceeded.SubdomainLevelLimit"
@@ -98,6 +99,11 @@ extension TCDnspodError {
             LimitExceeded(.nsCountLimit)
         }
 
+        /// 分页起始数量过大。
+        public static var offsetExceeded: LimitExceeded {
+            LimitExceeded(.offsetExceeded)
+        }
+
         /// 记录的TTL值超出了限制。
         public static var recordTtlLimit: LimitExceeded {
             LimitExceeded(.recordTtlLimit)
@@ -152,6 +158,8 @@ extension TCDnspodError {
                 code = .limitExceeded_HiddenUrlExceeded
             case .nsCountLimit:
                 code = .limitExceeded_NsCountLimit
+            case .offsetExceeded:
+                code = .limitExceeded_OffsetExceeded
             case .recordTtlLimit:
                 code = .limitExceeded_RecordTtlLimit
             case .srvCountLimit:

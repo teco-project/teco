@@ -90,6 +90,8 @@ extension TCAsError {
             ResourceNotFound(.commandNotFound)
         }
 
+        /// 指定的置放群组ID不存在。
+        ///
         /// 请检查输入的置放群组ID是否正确，是否为当前地域的置放群组。
         public static var disasterRecoverGroupNotFound: ResourceNotFound {
             ResourceNotFound(.disasterRecoverGroupNotFound)

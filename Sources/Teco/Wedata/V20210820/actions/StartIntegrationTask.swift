@@ -27,14 +27,24 @@ extension Wedata {
         /// 项目id
         public let projectId: String
 
-        public init(taskId: String, projectId: String) {
+        /// 事件类型(START, STOP, SUSPEND, RESUME, COMMIT, TIMESTAMP)
+        public let event: String?
+
+        /// 额外参数
+        public let extConfig: [RecordField]?
+
+        public init(taskId: String, projectId: String, event: String? = nil, extConfig: [RecordField]? = nil) {
             self.taskId = taskId
             self.projectId = projectId
+            self.event = event
+            self.extConfig = extConfig
         }
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case projectId = "ProjectId"
+            case event = "Event"
+            case extConfig = "ExtConfig"
         }
     }
 
@@ -66,13 +76,13 @@ extension Wedata {
 
     /// 启动集成任务
     @inlinable
-    public func startIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIntegrationTaskResponse> {
-        self.startIntegrationTask(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func startIntegrationTask(taskId: String, projectId: String, event: String? = nil, extConfig: [RecordField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIntegrationTaskResponse> {
+        self.startIntegrationTask(.init(taskId: taskId, projectId: projectId, event: event, extConfig: extConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动集成任务
     @inlinable
-    public func startIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIntegrationTaskResponse {
-        try await self.startIntegrationTask(.init(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func startIntegrationTask(taskId: String, projectId: String, event: String? = nil, extConfig: [RecordField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIntegrationTaskResponse {
+        try await self.startIntegrationTask(.init(taskId: taskId, projectId: projectId, event: event, extConfig: extConfig), region: region, logger: logger, on: eventLoop)
     }
 }

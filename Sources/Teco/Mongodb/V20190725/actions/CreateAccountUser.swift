@@ -21,7 +21,7 @@ import TecoCore
 extension Mongodb {
     /// CreateAccountUser请求参数结构体
     public struct CreateAccountUserRequest: TCRequestModel {
-        /// 实例 ID。
+        /// 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
         /// 新账号名称。其格式要求如下：<ul><li>字符范围[1,32]。</li><li>可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“_”与短划线“-”。</li></ul>
@@ -74,7 +74,7 @@ extension Mongodb {
 
     /// 创建账号
     ///
-    /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
+    /// 本接口（CreateAccountUser）用于自定义实例访问账号。
     @inlinable
     public func createAccountUser(_ input: CreateAccountUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountUserResponse> {
         self.client.execute(action: "CreateAccountUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -82,7 +82,7 @@ extension Mongodb {
 
     /// 创建账号
     ///
-    /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
+    /// 本接口（CreateAccountUser）用于自定义实例访问账号。
     @inlinable
     public func createAccountUser(_ input: CreateAccountUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountUserResponse {
         try await self.client.execute(action: "CreateAccountUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -90,7 +90,7 @@ extension Mongodb {
 
     /// 创建账号
     ///
-    /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
+    /// 本接口（CreateAccountUser）用于自定义实例访问账号。
     @inlinable
     public func createAccountUser(instanceId: String, userName: String, password: String, mongoUserPassword: String, userDesc: String? = nil, authRole: [Auth]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountUserResponse> {
         self.createAccountUser(.init(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole), region: region, logger: logger, on: eventLoop)
@@ -98,7 +98,7 @@ extension Mongodb {
 
     /// 创建账号
     ///
-    /// 本接口(CreateAccountUser)用于创建mongodb实例账号。
+    /// 本接口（CreateAccountUser）用于自定义实例访问账号。
     @inlinable
     public func createAccountUser(instanceId: String, userName: String, password: String, mongoUserPassword: String, userDesc: String? = nil, authRole: [Auth]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountUserResponse {
         try await self.createAccountUser(.init(instanceId: instanceId, userName: userName, password: password, mongoUserPassword: mongoUserPassword, userDesc: userDesc, authRole: authRole), region: region, logger: logger, on: eventLoop)

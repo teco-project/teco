@@ -87,6 +87,18 @@ extension Tiw {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: String?
 
+        /// 文档转码任务创建时间，单位s
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: UInt64?
+
+        /// 文档转码任务分配时间，单位s
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assignTime: UInt64?
+
+        /// 文档转码任务完成时间，单位s
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishedTime: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -103,6 +115,9 @@ extension Tiw {
             case compressFileUrl = "CompressFileUrl"
             case resourceListUrl = "ResourceListUrl"
             case ext = "Ext"
+            case createTime = "CreateTime"
+            case assignTime = "AssignTime"
+            case finishedTime = "FinishedTime"
             case requestId = "RequestId"
         }
     }

@@ -26,6 +26,7 @@ extension TCLiveError {
             case crtDomainNotFound = "ResourceNotFound.CrtDomainNotFound"
             case domainNoRecord = "ResourceNotFound.DomainNoRecord"
             case domainNotExist = "ResourceNotFound.DomainNotExist"
+            case emptyData = "ResourceNotFound.EmptyData"
             case forbidService = "ResourceNotFound.ForbidService"
             case freezeService = "ResourceNotFound.FreezeService"
             case invalidUser = "ResourceNotFound.InvalidUser"
@@ -95,6 +96,11 @@ extension TCLiveError {
         /// 域名不存在或不匹配。
         public static var domainNotExist: ResourceNotFound {
             ResourceNotFound(.domainNotExist)
+        }
+
+        /// 资源为空，没有找到对应域名。
+        public static var emptyData: ResourceNotFound {
+            ResourceNotFound(.emptyData)
         }
 
         /// 用户被禁用。
@@ -180,6 +186,8 @@ extension TCLiveError {
                 code = .resourceNotFound_DomainNoRecord
             case .domainNotExist:
                 code = .resourceNotFound_DomainNotExist
+            case .emptyData:
+                code = .resourceNotFound_EmptyData
             case .forbidService:
                 code = .resourceNotFound_ForbidService
             case .freezeService:

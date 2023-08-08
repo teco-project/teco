@@ -20,6 +20,7 @@ extension TCCfsError {
     public struct UnsupportedOperation: TCCfsErrorType {
         enum Code: String {
             case basicNetInterfaceNotSupported = "UnsupportedOperation.BasicNetInterfaceNotSupported"
+            case missingKmsAccessPermission = "UnsupportedOperation.MissingKmsAccessPermission"
             case outOfService = "UnsupportedOperation.OutOfService"
             case unauthorizedCfsQcsRole = "UnsupportedOperation.UnauthorizedCfsQcsRole"
             case unverifiedUser = "UnsupportedOperation.UnverifiedUser"
@@ -53,6 +54,11 @@ extension TCCfsError {
             UnsupportedOperation(.basicNetInterfaceNotSupported)
         }
 
+        /// appid不在kms白名单(kms目前是白名单开启状态)。
+        public static var missingKmsAccessPermission: UnsupportedOperation {
+            UnsupportedOperation(.missingKmsAccessPermission)
+        }
+
         /// 用户已欠费, 请充值后重试。
         public static var outOfService: UnsupportedOperation {
             UnsupportedOperation(.outOfService)
@@ -78,6 +84,8 @@ extension TCCfsError {
             switch self.error {
             case .basicNetInterfaceNotSupported:
                 code = .unsupportedOperation_BasicNetInterfaceNotSupported
+            case .missingKmsAccessPermission:
+                code = .unsupportedOperation_MissingKmsAccessPermission
             case .outOfService:
                 code = .unsupportedOperation_OutOfService
             case .unauthorizedCfsQcsRole:

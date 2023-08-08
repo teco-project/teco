@@ -42,7 +42,7 @@ extension Cdb {
         /// 主实例数据库引擎版本，支持值包括：5.5、5.6 和 5.7。
         public let engineVersion: String?
 
-        /// 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级中过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
+        /// 切换访问新实例的方式，默认为 0。支持值包括：0 - 立刻切换，1 - 时间窗切换；当该值为 1 时，升级过程中，切换访问新实例的流程将会在时间窗内进行，或者用户主动调用接口 [切换访问新实例](https://cloud.tencent.com/document/product/236/15864) 触发该流程。
         public let waitSwitch: Int64?
 
         /// 备库 2 的可用区信息，默认为空，升级主实例时可指定该参数，升级只读实例或者灾备实例时指定该参数无意义。
@@ -54,10 +54,10 @@ extension Cdb {
         /// 实例隔离类型。支持值包括： "UNIVERSAL" - 通用型实例， "EXCLUSIVE" - 独享型实例， "BASIC" - 基础版实例。
         public let deviceType: String?
 
-        /// 升级后的实例cpu核数， 如果不传将根据 Memory 指定的内存值自动填充对应的cpu值。
+        /// 升级后的实例cpu核数，如果不传将根据 Memory 指定的内存值自动填充最小允许规格的cpu值。
         public let cpu: Int64?
 
-        /// 是否极速变配。0-普通升级，1-极速变配,，2 极速优先。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
+        /// 是否极速变配。0-普通升级，1-极速变配，2 极速优先。选择极速变配会根据资源状况校验是否可以进行极速变配，满足条件则进行极速变配，不满足条件会返回报错信息。
         public let fastUpgrade: Int64?
 
         /// 延迟阈值。取值范围1~10，默认值为10。
@@ -69,7 +69,10 @@ extension Cdb {
         /// 主节点可用区，该值仅在跨区迁移时生效。仅支持同地域下的可用区进行迁移。
         public let zoneId: String?
 
-        public init(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil) {
+        /// 针对跨集群搬迁场景，选择同可用区RO的处理逻辑。together-同可用区RO跟随主实例迁移至目标可用区（默认选项），severally-同可用区RO保持原部署模式、不迁移至目标可用区。
+        public let roTransType: String?
+
+        public init(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, roTransType: String? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -86,6 +89,7 @@ extension Cdb {
             self.maxDelayTime = maxDelayTime
             self.crossCluster = crossCluster
             self.zoneId = zoneId
+            self.roTransType = roTransType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -105,6 +109,7 @@ extension Cdb {
             case maxDelayTime = "MaxDelayTime"
             case crossCluster = "CrossCluster"
             case zoneId = "ZoneId"
+            case roTransType = "RoTransType"
         }
     }
 
@@ -146,15 +151,15 @@ extension Cdb {
     ///
     /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+    public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, roTransType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
+        self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId, roTransType: roTransType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云数据库实例的配置
     ///
     /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+    public func upgradeDBInstance(instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil, roTransType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.upgradeDBInstance(.init(instanceId: instanceId, memory: memory, volume: volume, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, engineVersion: engineVersion, waitSwitch: waitSwitch, backupZone: backupZone, instanceRole: instanceRole, deviceType: deviceType, cpu: cpu, fastUpgrade: fastUpgrade, maxDelayTime: maxDelayTime, crossCluster: crossCluster, zoneId: zoneId, roTransType: roTransType), region: region, logger: logger, on: eventLoop)
     }
 }

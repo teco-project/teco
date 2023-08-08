@@ -24,16 +24,16 @@ extension Cfs {
         /// 可用区名称，例如ap-beijing-1，请参考 [概览](https://cloud.tencent.com/document/product/582/13225) 文档中的地域与可用区列表
         public let zone: String
 
-        /// 网络类型，可选值为 VPC，BASIC，CCN；其中 VPC 为私有网络，BASIC 为基础网络, CCN 为云联网，Turbo系列当前必须选择云联网。目前基础网络已逐渐淘汰，不推荐使用。
+        /// 网络类型，可选值为 VPC，CCN；其中 VPC 为私有网络， CCN 为云联网。通用标准型/性能型请选择VPC，Turbo标准型/性能型请选择CCN。
         public let netInterface: String
 
-        /// 权限组 ID，通用标准型和性能型必填，turbo系列请填写pgroupbasic
+        /// 权限组 ID
         public let pGroupId: String
 
         /// 文件系统协议类型， 值为 NFS、CIFS、TURBO ; 若留空则默认为 NFS协议，turbo系列必须选择turbo，不支持NFS、CIFS
         public let `protocol`: String?
 
-        /// 文件系统存储类型，默认值为 SD ；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
+        /// 文件系统存储类型，默认值为 SD ；其中 SD 为通用标准型存储， HP为通用性能型存储， TB为Turbo标准型， TP 为Turbo性能型。
         public let storageType: String?
 
         /// 私有网络（VPC） ID，若网络类型选择的是VPC，该字段为必填。
@@ -63,7 +63,16 @@ extension Cfs {
         /// 文件系统容量，turbo系列必填，单位为GiB。 turbo标准型单位GB，起售40TiB，即40960 GiB；扩容步长20TiB，即20480 GiB。turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，10240 GiB。
         public let capacity: UInt64?
 
-        public init(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil) {
+        /// 文件系统快照ID
+        public let snapshotId: String?
+
+        /// 定期快照策略ID
+        public let autoSnapshotPolicyId: String?
+
+        /// 是否开启默认扩容，仅Turbo类型文件存储支持
+        public let enableAutoScaleUp: Bool?
+
+        public init(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, snapshotId: String? = nil, autoSnapshotPolicyId: String? = nil, enableAutoScaleUp: Bool? = nil) {
             self.zone = zone
             self.netInterface = netInterface
             self.pGroupId = pGroupId
@@ -78,6 +87,9 @@ extension Cfs {
             self.ccnId = ccnId
             self.cidrBlock = cidrBlock
             self.capacity = capacity
+            self.snapshotId = snapshotId
+            self.autoSnapshotPolicyId = autoSnapshotPolicyId
+            self.enableAutoScaleUp = enableAutoScaleUp
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +107,9 @@ extension Cfs {
             case ccnId = "CcnId"
             case cidrBlock = "CidrBlock"
             case capacity = "Capacity"
+            case snapshotId = "SnapshotId"
+            case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
+            case enableAutoScaleUp = "EnableAutoScaleUp"
         }
     }
 
@@ -160,15 +175,15 @@ extension Cfs {
     ///
     /// 用于添加新文件系统
     @inlinable
-    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsFileSystemResponse> {
-        self.createCfsFileSystem(.init(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), region: region, logger: logger, on: eventLoop)
+    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, snapshotId: String? = nil, autoSnapshotPolicyId: String? = nil, enableAutoScaleUp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsFileSystemResponse> {
+        self.createCfsFileSystem(.init(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity, snapshotId: snapshotId, autoSnapshotPolicyId: autoSnapshotPolicyId, enableAutoScaleUp: enableAutoScaleUp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统
     ///
     /// 用于添加新文件系统
     @inlinable
-    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
-        try await self.createCfsFileSystem(.init(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), region: region, logger: logger, on: eventLoop)
+    public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, snapshotId: String? = nil, autoSnapshotPolicyId: String? = nil, enableAutoScaleUp: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
+        try await self.createCfsFileSystem(.init(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity, snapshotId: snapshotId, autoSnapshotPolicyId: autoSnapshotPolicyId, enableAutoScaleUp: enableAutoScaleUp), region: region, logger: logger, on: eventLoop)
     }
 }

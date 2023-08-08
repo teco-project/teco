@@ -20,6 +20,7 @@ extension TCIotexplorerError {
     public struct UnsupportedOperation: TCIotexplorerErrorType {
         enum Code: String {
             case bindsExistUnderFence = "UnsupportedOperation.BindsExistUnderFence"
+            case cannotReBindFamily = "UnsupportedOperation.CannotReBindFamily"
             case deviceDupKeyExist = "UnsupportedOperation.DeviceDupKeyExist"
             case deviceExceedLimit = "UnsupportedOperation.DeviceExceedLimit"
             case deviceOtaTaskInProgress = "UnsupportedOperation.DeviceOtaTaskInProgress"
@@ -46,6 +47,7 @@ extension TCIotexplorerError {
             case unpaidOrder = "UnsupportedOperation.UnpaidOrder"
             case videoAccountNotExist = "UnsupportedOperation.VideoAccountNotExist"
             case videoInsufficientLicenses = "UnsupportedOperation.VideoInsufficientLicenses"
+            case videoProductNotExist = "UnsupportedOperation.VideoProductNotExist"
             case vpnDupKeyExist = "UnsupportedOperation.VPNDupKeyExist"
             case other = "UnsupportedOperation"
         }
@@ -75,6 +77,11 @@ extension TCIotexplorerError {
         /// 围栏下还存在绑定的设备。
         public static var bindsExistUnderFence: UnsupportedOperation {
             UnsupportedOperation(.bindsExistUnderFence)
+        }
+
+        /// 存在重复的绑定关系。
+        public static var cannotReBindFamily: UnsupportedOperation {
+            UnsupportedOperation(.cannotReBindFamily)
         }
 
         /// 创建的设备已经存在。
@@ -207,6 +214,11 @@ extension TCIotexplorerError {
             UnsupportedOperation(.videoInsufficientLicenses)
         }
 
+        /// Video平台产品不存在。
+        public static var videoProductNotExist: UnsupportedOperation {
+            UnsupportedOperation(.videoProductNotExist)
+        }
+
         /// 存在重复VPN。
         public static var vpnDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.vpnDupKeyExist)
@@ -222,6 +234,8 @@ extension TCIotexplorerError {
             switch self.error {
             case .bindsExistUnderFence:
                 code = .unsupportedOperation_BindsExistUnderFence
+            case .cannotReBindFamily:
+                code = .unsupportedOperation_CannotReBindFamily
             case .deviceDupKeyExist:
                 code = .unsupportedOperation_DeviceDupKeyExist
             case .deviceExceedLimit:
@@ -274,6 +288,8 @@ extension TCIotexplorerError {
                 code = .unsupportedOperation_VideoAccountNotExist
             case .videoInsufficientLicenses:
                 code = .unsupportedOperation_VideoInsufficientLicenses
+            case .videoProductNotExist:
+                code = .unsupportedOperation_VideoProductNotExist
             case .vpnDupKeyExist:
                 code = .unsupportedOperation_VPNDupKeyExist
             case .other:

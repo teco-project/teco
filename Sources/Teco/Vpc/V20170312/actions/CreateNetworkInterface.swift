@@ -36,6 +36,9 @@ extension Vpc {
         /// 新申请的内网IP地址个数，内网IP地址个数总和不能超过配额数。
         public let secondaryPrivateIpAddressCount: UInt64?
 
+        /// IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        public let qosLevel: String?
+
         /// 指定绑定的安全组，例如：['sg-1dd51d']。
         public let securityGroupIds: [String]?
 
@@ -48,12 +51,13 @@ extension Vpc {
         /// 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         public let trunkingFlag: String?
 
-        public init(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil) {
+        public init(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
             self.networkInterfaceDescription = networkInterfaceDescription
             self.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount
+            self.qosLevel = qosLevel
             self.securityGroupIds = securityGroupIds
             self.privateIpAddresses = privateIpAddresses
             self.tags = tags
@@ -66,6 +70,7 @@ extension Vpc {
             case subnetId = "SubnetId"
             case networkInterfaceDescription = "NetworkInterfaceDescription"
             case secondaryPrivateIpAddressCount = "SecondaryPrivateIpAddressCount"
+            case qosLevel = "QosLevel"
             case securityGroupIds = "SecurityGroupIds"
             case privateIpAddresses = "PrivateIpAddresses"
             case tags = "Tags"
@@ -128,8 +133,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
-        self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
+        self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡
@@ -143,7 +148,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
+        try await self.createNetworkInterface(.init(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
     }
 }

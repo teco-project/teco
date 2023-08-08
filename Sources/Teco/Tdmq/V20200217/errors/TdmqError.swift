@@ -28,8 +28,8 @@ public struct TCTdmqError: TCTdmqErrorType {
     enum Code: String {
         case authFailure_UnauthorizedOperation = "AuthFailure.UnauthorizedOperation"
         case failedOperation = "FailedOperation"
+        case failedOperation_CallTrade = "FailedOperation.CallTrade"
         case failedOperation_CmqBackendError = "FailedOperation.CmqBackendError"
-        case failedOperation_CreateBindVpc = "FailedOperation.CreateBindVpc"
         case failedOperation_CreateCluster = "FailedOperation.CreateCluster"
         case failedOperation_CreateEnvironment = "FailedOperation.CreateEnvironment"
         case failedOperation_CreateEnvironmentRole = "FailedOperation.CreateEnvironmentRole"
@@ -50,6 +50,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         case failedOperation_DescribeSubscription = "FailedOperation.DescribeSubscription"
         case failedOperation_GetEnvironmentAttributesFailed = "FailedOperation.GetEnvironmentAttributesFailed"
         case failedOperation_GetTopicPartitionsFailed = "FailedOperation.GetTopicPartitionsFailed"
+        case failedOperation_InstanceNotReady = "FailedOperation.InstanceNotReady"
         case failedOperation_MaxMessageSizeError = "FailedOperation.MaxMessageSizeError"
         case failedOperation_MessageIDError = "FailedOperation.MessageIDError"
         case failedOperation_NamespaceInUse = "FailedOperation.NamespaceInUse"
@@ -126,6 +127,7 @@ public struct TCTdmqError: TCTdmqErrorType {
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_InstanceDowngrade = "UnsupportedOperation.InstanceDowngrade"
     }
 
     /// Error domains affliated to ``TCTdmqError``.
@@ -141,7 +143,8 @@ public struct TCTdmqError: TCTdmqErrorType {
             OperationDenied.self,
             ResourceInUse.self,
             ResourceNotFound.self,
-            ResourceUnavailable.self
+            ResourceUnavailable.self,
+            UnsupportedOperation.self
         ]
     }
 
@@ -177,16 +180,18 @@ public struct TCTdmqError: TCTdmqErrorType {
         TCTdmqError(.failedOperation)
     }
 
+    /// 调用交易服务发生异常。
+    ///
+    /// 检查账户余额是否充足。
+    public static var failedOperation_CallTrade: TCTdmqError {
+        TCTdmqError(.failedOperation_CallTrade)
+    }
+
     /// CMQ 后台服务错误。
     ///
     /// CMQ 后台服务错误，请再试一次。
     public static var failedOperation_CmqBackendError: TCTdmqError {
         TCTdmqError(.failedOperation_CmqBackendError)
-    }
-
-    /// 创建vpc绑定关系失败。
-    public static var failedOperation_CreateBindVpc: TCTdmqError {
-        TCTdmqError(.failedOperation_CreateBindVpc)
     }
 
     /// 创建集群失败。
@@ -287,6 +292,13 @@ public struct TCTdmqError: TCTdmqErrorType {
     /// 获取主题分区数失败。
     public static var failedOperation_GetTopicPartitionsFailed: TCTdmqError {
         TCTdmqError(.failedOperation_GetTopicPartitionsFailed)
+    }
+
+    /// 实例尚未就绪，请稍后再试。
+    ///
+    /// 实例处于不可操作的状态，比如已经在执行其他操作，等待实例操作结束再试。
+    public static var failedOperation_InstanceNotReady: TCTdmqError {
+        TCTdmqError(.failedOperation_InstanceNotReady)
     }
 
     /// 最大消息超过1MB。
@@ -693,6 +705,13 @@ public struct TCTdmqError: TCTdmqErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCTdmqError {
         TCTdmqError(.unsupportedOperation)
+    }
+
+    /// 该实例不支持降配操作。
+    ///
+    /// 该操作暂不支持，请工单联系。
+    public static var unsupportedOperation_InstanceDowngrade: TCTdmqError {
+        TCTdmqError(.unsupportedOperation_InstanceDowngrade)
     }
 
     public func asTdmqError() -> TCTdmqError {

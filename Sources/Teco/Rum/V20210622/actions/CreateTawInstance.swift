@@ -54,7 +54,10 @@ extension Rum {
         /// 预付费资源包数量(仅预付费需要)
         public let resourcePackageNum: UInt64?
 
-        public init(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil) {
+        /// 实例类型 1:原web相关类型 2:app端类型
+        public let instanceType: Int64?
+
+        public init(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil, instanceType: Int64? = nil) {
             self.areaId = areaId
             self.chargeType = chargeType
             self.dataRetentionDays = dataRetentionDays
@@ -66,6 +69,7 @@ extension Rum {
             self.buyingChannel = buyingChannel
             self.resourcePackageType = resourcePackageType
             self.resourcePackageNum = resourcePackageNum
+            self.instanceType = instanceType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -80,6 +84,7 @@ extension Rum {
             case buyingChannel = "BuyingChannel"
             case resourcePackageType = "ResourcePackageType"
             case resourcePackageNum = "ResourcePackageNum"
+            case instanceType = "InstanceType"
         }
     }
 
@@ -116,13 +121,13 @@ extension Rum {
 
     /// 创建 RUM 业务系统
     @inlinable
-    public func createTawInstance(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTawInstanceResponse> {
-        self.createTawInstance(.init(areaId: areaId, chargeType: chargeType, dataRetentionDays: dataRetentionDays, instanceName: instanceName, tags: tags, instanceDesc: instanceDesc, countNum: countNum, periodRetain: periodRetain, buyingChannel: buyingChannel, resourcePackageType: resourcePackageType, resourcePackageNum: resourcePackageNum), region: region, logger: logger, on: eventLoop)
+    public func createTawInstance(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil, instanceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTawInstanceResponse> {
+        self.createTawInstance(.init(areaId: areaId, chargeType: chargeType, dataRetentionDays: dataRetentionDays, instanceName: instanceName, tags: tags, instanceDesc: instanceDesc, countNum: countNum, periodRetain: periodRetain, buyingChannel: buyingChannel, resourcePackageType: resourcePackageType, resourcePackageNum: resourcePackageNum, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 RUM 业务系统
     @inlinable
-    public func createTawInstance(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTawInstanceResponse {
-        try await self.createTawInstance(.init(areaId: areaId, chargeType: chargeType, dataRetentionDays: dataRetentionDays, instanceName: instanceName, tags: tags, instanceDesc: instanceDesc, countNum: countNum, periodRetain: periodRetain, buyingChannel: buyingChannel, resourcePackageType: resourcePackageType, resourcePackageNum: resourcePackageNum), region: region, logger: logger, on: eventLoop)
+    public func createTawInstance(areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil, instanceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTawInstanceResponse {
+        try await self.createTawInstance(.init(areaId: areaId, chargeType: chargeType, dataRetentionDays: dataRetentionDays, instanceName: instanceName, tags: tags, instanceDesc: instanceDesc, countNum: countNum, periodRetain: periodRetain, buyingChannel: buyingChannel, resourcePackageType: resourcePackageType, resourcePackageNum: resourcePackageNum, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 }

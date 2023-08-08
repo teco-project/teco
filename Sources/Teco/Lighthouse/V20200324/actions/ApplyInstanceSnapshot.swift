@@ -52,7 +52,7 @@ extension Lighthouse {
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
     /// <li>仅支持回滚到原系统盘。</li>
-    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
+    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(_ input: ApplyInstanceSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInstanceSnapshotResponse> {
@@ -63,7 +63,7 @@ extension Lighthouse {
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
     /// <li>仅支持回滚到原系统盘。</li>
-    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
+    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(_ input: ApplyInstanceSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInstanceSnapshotResponse {
@@ -74,7 +74,7 @@ extension Lighthouse {
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
     /// <li>仅支持回滚到原系统盘。</li>
-    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
+    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(instanceId: String, snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyInstanceSnapshotResponse> {
@@ -85,7 +85,7 @@ extension Lighthouse {
     ///
     /// 本接口（ApplyInstanceSnapshot）用于回滚指定实例的系统盘快照。
     /// <li>仅支持回滚到原系统盘。</li>
-    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
+    /// <li>用于回滚的快照必须处于 NORMAL 状态。快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。</li>
     /// <li>回滚快照时，实例的状态必须为 STOPPED 或 RUNNING，可通过 DescribeInstances 接口查询实例状态。处于 RUNNING 状态的实例会强制关机，然后回滚快照。</li>
     @inlinable @discardableResult
     public func applyInstanceSnapshot(instanceId: String, snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInstanceSnapshotResponse {

@@ -46,7 +46,7 @@ extension Apigateway {
     /// DescribeExclusiveInstances返回参数结构体
     public struct DescribeExclusiveInstancesResponse: TCResponseModel {
         /// 独享实例列表查询结果
-        public let result: InstanceInfo
+        public let result: DescribeExclusiveInstancesResult
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

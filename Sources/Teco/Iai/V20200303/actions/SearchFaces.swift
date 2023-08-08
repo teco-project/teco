@@ -40,14 +40,14 @@ extension Iai {
 
         /// 最多识别的人脸数目。默认值为1（仅检测图片中面积最大的那张人脸），最大值为10。
         /// MaxFaceNum用于，当输入的待识别图片包含多张人脸时，设定要搜索的人脸的数量。
-        /// 例：输入的Image或Url中的图片包含多张人脸，设MaxFaceNum=5，则会识别图片中面积最大的5张人脸。
+        /// 例如：输入的Image或Url中的图片包含多张人脸，设MaxFaceNum=5，则会识别图片中面积最大的5张人脸。
         public let maxFaceNum: UInt64?
 
         /// 人脸长和宽的最小尺寸，单位为像素。默认为34。低于34的人脸图片无法被识别。建议设置为80。
         public let minFaceSize: UInt64?
 
         /// 单张被识别的人脸返回的最相似人员数量。默认值为5，最大值为100。
-        /// 例，设MaxFaceNum为1，MaxPersonNum为8，则返回Top8相似的人员信息。
+        /// 例如，设MaxFaceNum为1，MaxPersonNum为8，则返回Top8相似的人员信息。
         /// 值越大，需要处理的时间越长。建议不要超过10。
         public let maxPersonNum: UInt64?
 

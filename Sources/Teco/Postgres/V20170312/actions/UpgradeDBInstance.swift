@@ -93,7 +93,7 @@ extension Postgres {
 
     /// 升级实例配置（废弃）
     ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。本接口已废弃，推荐使用接口[ModifyDBInstanceSpec](https://cloud.tencent.com/document/api/409/63689)替代。
     @inlinable
     public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
         self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -101,7 +101,7 @@ extension Postgres {
 
     /// 升级实例配置（废弃）
     ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。本接口已废弃，推荐使用接口[ModifyDBInstanceSpec](https://cloud.tencent.com/document/api/409/63689)替代。
     @inlinable
     public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
         try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -109,7 +109,7 @@ extension Postgres {
 
     /// 升级实例配置（废弃）
     ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。本接口已废弃，推荐使用接口[ModifyDBInstanceSpec](https://cloud.tencent.com/document/api/409/63689)替代。
     @inlinable
     public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
         self.upgradeDBInstance(.init(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
@@ -117,7 +117,7 @@ extension Postgres {
 
     /// 升级实例配置（废弃）
     ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。本接口已废弃，推荐使用接口[ModifyDBInstanceSpec](https://cloud.tencent.com/document/api/409/63689)替代。
     @inlinable
     public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
         try await self.upgradeDBInstance(.init(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)

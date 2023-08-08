@@ -24,16 +24,16 @@ extension Ccc {
         /// 应用ID
         public let sdkAppId: UInt64
 
-        /// 坐席账户
+        /// 座席账户
         public let email: String
 
-        /// 坐席名称
+        /// 座席名称
         public let name: String?
 
-        /// 坐席手机号（带0086前缀,示例：008618011111111）
+        /// 座席手机号（带0086前缀,示例：008618011111111）
         public let phone: String?
 
-        /// 坐席昵称
+        /// 座席昵称
         public let nick: String?
 
         /// 绑定技能组ID列表

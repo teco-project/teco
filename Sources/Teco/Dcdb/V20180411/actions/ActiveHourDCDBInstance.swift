@@ -51,25 +51,25 @@ extension Dcdb {
         }
     }
 
-    /// 解隔离DCDB后付费实例
+    /// 解隔离TDSQL按量计费实例
     @inlinable
     public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
         self.client.execute(action: "ActiveHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 解隔离DCDB后付费实例
+    /// 解隔离TDSQL按量计费实例
     @inlinable
     public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
         try await self.client.execute(action: "ActiveHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 解隔离DCDB后付费实例
+    /// 解隔离TDSQL按量计费实例
     @inlinable
     public func activeHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
         self.activeHourDCDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 解隔离DCDB后付费实例
+    /// 解隔离TDSQL按量计费实例
     @inlinable
     public func activeHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
         try await self.activeHourDCDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)

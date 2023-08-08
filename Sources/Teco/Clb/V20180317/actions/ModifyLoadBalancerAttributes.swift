@@ -42,7 +42,10 @@ extension Clb {
         /// 是否开启删除保护
         public let deleteProtect: Bool?
 
-        public init(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil) {
+        /// 将负载均衡二级域名由mycloud.com改为tencentclb.com，子域名也会变换。修改后mycloud.com域名将失效。
+        public let modifyClassicDomain: Bool?
+
+        public init(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, modifyClassicDomain: Bool? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.targetRegionInfo = targetRegionInfo
@@ -50,6 +53,7 @@ extension Clb {
             self.loadBalancerPassToTarget = loadBalancerPassToTarget
             self.snatPro = snatPro
             self.deleteProtect = deleteProtect
+            self.modifyClassicDomain = modifyClassicDomain
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Clb {
             case loadBalancerPassToTarget = "LoadBalancerPassToTarget"
             case snatPro = "SnatPro"
             case deleteProtect = "DeleteProtect"
+            case modifyClassicDomain = "ModifyClassicDomain"
         }
     }
 
@@ -101,8 +106,8 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
-        self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), region: region, logger: logger, on: eventLoop)
+    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, modifyClassicDomain: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
+        self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect, modifyClassicDomain: modifyClassicDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡实例的属性
@@ -110,7 +115,7 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
-        try await self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), region: region, logger: logger, on: eventLoop)
+    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, modifyClassicDomain: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
+        try await self.modifyLoadBalancerAttributes(.init(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect, modifyClassicDomain: modifyClassicDomain), region: region, logger: logger, on: eventLoop)
     }
 }

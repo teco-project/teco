@@ -30,16 +30,21 @@ extension Tdmq {
         /// 说明信息，不超过128个字符
         public let remark: String?
 
-        public init(clusterId: String, clusterName: String? = nil, remark: String? = nil) {
+        /// 是否开启HTTP公网访问
+        public let publicAccessEnabled: Bool?
+
+        public init(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.remark = remark
+            self.publicAccessEnabled = publicAccessEnabled
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
             case remark = "Remark"
+            case publicAccessEnabled = "PublicAccessEnabled"
         }
     }
 
@@ -67,13 +72,13 @@ extension Tdmq {
 
     /// 更新RocketMQ集群信息
     @inlinable @discardableResult
-    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQClusterResponse> {
-        self.modifyRocketMQCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQClusterResponse> {
+        self.modifyRocketMQCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ集群信息
     @inlinable @discardableResult
-    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
-        try await self.modifyRocketMQCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
+        try await self.modifyRocketMQCluster(.init(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 }

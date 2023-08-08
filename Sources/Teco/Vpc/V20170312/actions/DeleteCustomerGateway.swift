@@ -21,7 +21,7 @@ import TecoCore
 extension Vpc {
     /// DeleteCustomerGateway请求参数结构体
     public struct DeleteCustomerGatewayRequest: TCRequestModel {
-        /// 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
+        /// 对端网关ID，例如：cgw-2wqq41m9，可通过[DescribeCustomerGateways](https://cloud.tencent.com/document/api/215/17516)接口查询对端网关。
         public let customerGatewayId: String
 
         public init(customerGatewayId: String) {

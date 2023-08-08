@@ -28,9 +28,11 @@ public struct TCTmtError: TCTmtErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
         case failedOperation_InsertErr = "FailedOperation.InsertErr"
+        case failedOperation_LanguageRecognitionErr = "FailedOperation.LanguageRecognitionErr"
         case failedOperation_NoFreeAmount = "FailedOperation.NoFreeAmount"
         case failedOperation_RequestAiLabErr = "FailedOperation.RequestAiLabErr"
         case failedOperation_ServiceIsolate = "FailedOperation.ServiceIsolate"
+        case failedOperation_StopUsing = "FailedOperation.StopUsing"
         case failedOperation_UserNotRegistered = "FailedOperation.UserNotRegistered"
         case internalError = "InternalError"
         case internalError_BackendTimeout = "InternalError.BackendTimeout"
@@ -38,6 +40,7 @@ public struct TCTmtError: TCTmtErrorType {
         case internalError_ErrorUnknown = "InternalError.ErrorUnknown"
         case internalError_RequestFailed = "InternalError.RequestFailed"
         case invalidParameter = "InvalidParameter"
+        case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_DuplicatedSessionIdAndSeq = "InvalidParameter.DuplicatedSessionIdAndSeq"
         case invalidParameter_MissingParameter = "InvalidParameter.MissingParameter"
         case invalidParameter_SeqIntervalTooLarge = "InvalidParameter.SeqIntervalTooLarge"
@@ -99,6 +102,11 @@ public struct TCTmtError: TCTmtErrorType {
         TCTmtError(.failedOperation_InsertErr)
     }
 
+    /// 暂时无法识别该语种。
+    public static var failedOperation_LanguageRecognitionErr: TCTmtError {
+        TCTmtError(.failedOperation_LanguageRecognitionErr)
+    }
+
     /// 本月免费额度已用完，如需继续使用您可以在机器翻译控制台升级为付费使用。
     public static var failedOperation_NoFreeAmount: TCTmtError {
         TCTmtError(.failedOperation_NoFreeAmount)
@@ -112,6 +120,10 @@ public struct TCTmtError: TCTmtErrorType {
     /// 账号因为欠费停止服务，请在腾讯云账户充值。
     public static var failedOperation_ServiceIsolate: TCTmtError {
         TCTmtError(.failedOperation_ServiceIsolate)
+    }
+
+    public static var failedOperation_StopUsing: TCTmtError {
+        TCTmtError(.failedOperation_StopUsing)
     }
 
     /// 服务未开通，请在腾讯云官网机器翻译控制台开通服务。
@@ -147,6 +159,11 @@ public struct TCTmtError: TCTmtErrorType {
     /// 参数错误。
     public static var invalidParameter: TCTmtError {
         TCTmtError(.invalidParameter)
+    }
+
+    /// 参数取值错误。
+    public static var invalidParameterValue: TCTmtError {
+        TCTmtError(.invalidParameterValue)
     }
 
     /// 重复的SessionUuid和Seq组合。
@@ -200,6 +217,8 @@ public struct TCTmtError: TCTmtErrorType {
     }
 
     /// 单次请求text超过长度限制，请保证单次请求⻓度低于2000。
+    ///
+    /// None
     public static var unsupportedOperation_TextTooLong: TCTmtError {
         TCTmtError(.unsupportedOperation_TextTooLong)
     }

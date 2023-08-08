@@ -39,7 +39,7 @@ extension Cls {
         /// 投递的时间间隔，单位 秒，默认300，范围 300-900
         public let interval: UInt64?
 
-        /// 投递的文件的最大值，单位 MB，默认256，范围 100-256
+        /// 投递的文件的最大值，单位 MB，默认256，范围 5-256
         public let maxSize: UInt64?
 
         /// 投递日志的过滤规则，匹配的日志进行投递，各rule之间是and关系，最多5个，数组为空则表示不过滤而全部投递
@@ -98,7 +98,7 @@ extension Cls {
         }
     }
 
-    /// 修改投递规则
+    /// 修改投递COS任务
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
     @inlinable @discardableResult
@@ -106,7 +106,7 @@ extension Cls {
         self.client.execute(action: "ModifyShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改投递规则
+    /// 修改投递COS任务
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
     @inlinable @discardableResult
@@ -114,7 +114,7 @@ extension Cls {
         try await self.client.execute(action: "ModifyShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改投递规则
+    /// 修改投递COS任务
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
     @inlinable @discardableResult
@@ -122,7 +122,7 @@ extension Cls {
         self.modifyShipper(.init(shipperId: shipperId, bucket: bucket, prefix: prefix, status: status, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改投递规则
+    /// 修改投递COS任务
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
     @inlinable @discardableResult

@@ -52,6 +52,10 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: [UInt64]?
 
+        /// 是否扫描最新版本镜像
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let latest: Bool?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -63,6 +67,7 @@ extension Tcss {
             case all = "All"
             case images = "Images"
             case id = "Id"
+            case latest = "Latest"
             case requestId = "RequestId"
         }
     }

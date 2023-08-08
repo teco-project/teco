@@ -164,11 +164,11 @@ extension Tione {
         /// 计费模式
         public let chargeType: String
 
-        /// 预付费专用资源组id
+        /// 包年包月资源组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroupId: String?
 
-        /// 预付费专用资源组名称
+        /// 包年包月资源组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroupName: String?
 
@@ -253,13 +253,17 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureReason: String?
 
-        /// 计费金额信息，eg：2.00元/小时 (for后付费)
+        /// 计费金额信息，eg：2.00元/小时 (for 按量计费)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billingInfo: String?
 
         /// 运行中的Pod的名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podList: [String]?
+
+        /// 模型推理代码信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modelInferenceCodeInfo: CosPathInfo?
 
         enum CodingKeys: String, CodingKey {
             case batchTaskId = "BatchTaskId"
@@ -294,6 +298,7 @@ extension Tione {
             case failureReason = "FailureReason"
             case billingInfo = "BillingInfo"
             case podList = "PodList"
+            case modelInferenceCodeInfo = "ModelInferenceCodeInfo"
         }
     }
 
@@ -347,7 +352,7 @@ extension Tione {
         /// 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
         public let chargeStatus: String
 
-        /// 预付费专用资源组
+        /// 包年包月资源组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroupId: String?
 
@@ -383,14 +388,14 @@ extension Tione {
         /// 输出
         public let outputs: [DataConfig]
 
-        /// 预付费专用资源组名称
+        /// 包年包月资源组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroupName: String?
 
         /// 失败原因
         public let failureReason: String
 
-        /// 计费金额信息，eg：2.00元/小时 (for后付费)
+        /// 计费金额信息，eg：2.00元/小时 (for 按量计费)
         public let billingInfo: String
 
         enum CodingKeys: String, CodingKey {
@@ -424,7 +429,40 @@ extension Tione {
         /// 存储的路径
         public let path: String
 
-        public init(id: String, path: String) {
+        /// cfs的挂载类型，可选值为：STORAGE、SOURCE 分别表示存储拓展模式和数据源模式，默认为 STORAGE
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mountType: String?
+
+        /// 协议 1: NFS, 2: TURBO
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        public init(id: String, path: String, mountType: String? = nil, protocol: String? = nil) {
+            self.id = id
+            self.path = path
+            self.mountType = mountType
+            self.protocol = `protocol`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case path = "Path"
+            case mountType = "MountType"
+            case `protocol` = "Protocol"
+        }
+    }
+
+    /// 配置CFSTurbo参数
+    public struct CFSTurbo: TCInputModel, TCOutputModel {
+        /// CFSTurbo实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// CFSTurbo路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        public init(id: String? = nil, path: String? = nil) {
             self.id = id
             self.path = path
         }
@@ -680,13 +718,23 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hdfsSource: HDFSConfig?
 
-        public init(mappingPath: String? = nil, dataSourceType: String? = nil, dataSetSource: DataSetConfig? = nil, cosSource: CosPathInfo? = nil, cfsSource: CFSConfig? = nil, hdfsSource: HDFSConfig? = nil) {
+        /// 配置GooseFS的数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gooseFSSource: GooseFS?
+
+        /// 配置TurboFS的数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cfsTurboSource: CFSTurbo?
+
+        public init(mappingPath: String? = nil, dataSourceType: String? = nil, dataSetSource: DataSetConfig? = nil, cosSource: CosPathInfo? = nil, cfsSource: CFSConfig? = nil, hdfsSource: HDFSConfig? = nil, gooseFSSource: GooseFS? = nil, cfsTurboSource: CFSTurbo? = nil) {
             self.mappingPath = mappingPath
             self.dataSourceType = dataSourceType
             self.dataSetSource = dataSetSource
             self.cosSource = cosSource
             self.cfsSource = cfsSource
             self.hdfsSource = hdfsSource
+            self.gooseFSSource = gooseFSSource
+            self.cfsTurboSource = cfsTurboSource
         }
 
         enum CodingKeys: String, CodingKey {
@@ -696,6 +744,8 @@ extension Tione {
             case cosSource = "COSSource"
             case cfsSource = "CFSSource"
             case hdfsSource = "HDFSSource"
+            case gooseFSSource = "GooseFSSource"
+            case cfsTurboSource = "CFSTurboSource"
         }
     }
 
@@ -1230,8 +1280,23 @@ extension Tione {
         }
     }
 
+    /// 配置GooseFS参数
+    public struct GooseFS: TCInputModel, TCOutputModel {
+        /// goosefs实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        public init(id: String? = nil) {
+            self.id = id
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+        }
+    }
+
     /// gpu 详情
-    public struct GpuDetail: TCOutputModel {
+    public struct GpuDetail: TCInputModel, TCOutputModel {
         /// GPU 显卡类型；枚举值: V100 A100 T4
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
@@ -1239,6 +1304,11 @@ extension Tione {
         /// GPU 显卡数；单位为1/100卡，比如100代表1卡
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: UInt64?
+
+        public init(name: String? = nil, value: UInt64? = nil) {
+            self.name = name
+            self.value = value
+        }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -1346,7 +1416,15 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minBlockSizeTf: String?
 
-        public init(maxNNZ: String? = nil, slotNum: String? = nil, cpuCachePercentage: String? = nil, gpuCachePercentage: String? = nil, enableDistributed: String? = nil, minBlockSizePt: String? = nil, minBlockSizeTf: String? = nil) {
+        /// Stable Diffusion 模型优化参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pipelineArgs: String?
+
+        /// Stable Diffusion 模型优化参数，控制Lora模型的影响效果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loraScale: String?
+
+        public init(maxNNZ: String? = nil, slotNum: String? = nil, cpuCachePercentage: String? = nil, gpuCachePercentage: String? = nil, enableDistributed: String? = nil, minBlockSizePt: String? = nil, minBlockSizeTf: String? = nil, pipelineArgs: String? = nil, loraScale: String? = nil) {
             self.maxNNZ = maxNNZ
             self.slotNum = slotNum
             self.cpuCachePercentage = cpuCachePercentage
@@ -1354,6 +1432,8 @@ extension Tione {
             self.enableDistributed = enableDistributed
             self.minBlockSizePt = minBlockSizePt
             self.minBlockSizeTf = minBlockSizeTf
+            self.pipelineArgs = pipelineArgs
+            self.loraScale = loraScale
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1364,6 +1444,8 @@ extension Tione {
             case enableDistributed = "EnableDistributed"
             case minBlockSizePt = "MinBlockSizePt"
             case minBlockSizeTf = "MinBlockSizeTf"
+            case pipelineArgs = "PipelineArgs"
+            case loraScale = "LoraScale"
         }
     }
 
@@ -1829,7 +1911,11 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelType: String?
 
-        public init(modelVersionId: String, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelSource: String? = nil, cosPathInfo: CosPathInfo? = nil, algorithmFramework: String? = nil, modelType: String? = nil) {
+        /// 模型格式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modelFormat: String?
+
+        public init(modelVersionId: String, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelSource: String? = nil, cosPathInfo: CosPathInfo? = nil, algorithmFramework: String? = nil, modelType: String? = nil, modelFormat: String? = nil) {
             self.modelVersionId = modelVersionId
             self.modelId = modelId
             self.modelName = modelName
@@ -1838,6 +1924,7 @@ extension Tione {
             self.cosPathInfo = cosPathInfo
             self.algorithmFramework = algorithmFramework
             self.modelType = modelType
+            self.modelFormat = modelFormat
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1849,6 +1936,7 @@ extension Tione {
             case cosPathInfo = "CosPathInfo"
             case algorithmFramework = "AlgorithmFramework"
             case modelType = "ModelType"
+            case modelFormat = "ModelFormat"
         }
     }
 
@@ -1872,6 +1960,357 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case modelInputType = "ModelInputType"
             case modelInputDimension = "ModelInputDimension"
+        }
+    }
+
+    /// 类型NotebookDetail
+    public struct NotebookDetail: TCOutputModel {
+        /// notebook  ID
+        public let id: String
+
+        /// notebook 名称
+        public let name: String
+
+        /// 生命周期脚本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lifecycleScriptId: String?
+
+        /// Pod-Name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podName: String?
+
+        /// Update-Time
+        public let updateTime: String
+
+        /// 是否访问公网
+        public let directInternetAccess: Bool
+
+        /// 预付费专用资源组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceGroupId: String?
+
+        /// 标签配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 是否自动停止
+        public let autoStopping: Bool
+
+        /// 其他GIT存储库，最多3个，单个
+        /// 长度不超过512字符
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let additionalCodeRepoIds: [String]?
+
+        /// 自动停止时间，单位小时
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let automaticStopTime: Int64?
+
+        /// 资源配置
+        public let resourceConf: ResourceConf
+
+        /// 默认GIT存储库，长度不超过512字符
+        public let defaultCodeRepoId: String
+
+        /// 训练输出
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 是否上报日志
+        public let logEnable: Bool
+
+        /// 日志配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logConfig: LogConfig?
+
+        /// VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 任务状态
+        public let status: String
+
+        /// 运行时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runtimeInSeconds: UInt64?
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 训练开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 计费状态，eg：BILLING计费中，ARREARS_STOP欠费停止，NOT_BILLING不在计费中
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeStatus: String?
+
+        /// 是否ROOT权限
+        public let rootAccess: Bool
+
+        /// 计贺金额信息，eg:2.00元/小时
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let billingInfos: [String]?
+
+        /// 存储卷大小 （单位时GB，最小10GB，必须是10G的倍数）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSizeInGB: UInt64?
+
+        /// 失败原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failureReason: String?
+
+        /// 计算资源付费模式 (- PREPAID：预付费，即包年包月 - POSTPAID_BY_HOUR：按小时后付费)
+        public let chargeType: String
+
+        /// 后付费资源规格说明
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceTypeAlias: String?
+
+        /// 预付费资源组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceGroupName: String?
+
+        /// 存储的类型。取值包含：
+        ///     FREE:        预付费的免费存储
+        ///     CLOUD_PREMIUM： 高性能云硬盘
+        ///     CLOUD_SSD： SSD云硬盘
+        ///     CFS:     CFS存储，包含NFS和turbo
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSourceType: String?
+
+        /// CFS存储的配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSourceCFS: CFSConfig?
+
+        /// 数据配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataConfigs: [DataConfig]?
+
+        /// notebook 信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 数据源来源，eg：WeData_HDFS
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataSource: String?
+
+        /// 镜像信息
+        public let imageInfo: ImageInfo?
+
+        /// 镜像类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case name = "Name"
+            case lifecycleScriptId = "LifecycleScriptId"
+            case podName = "PodName"
+            case updateTime = "UpdateTime"
+            case directInternetAccess = "DirectInternetAccess"
+            case resourceGroupId = "ResourceGroupId"
+            case tags = "Tags"
+            case autoStopping = "AutoStopping"
+            case additionalCodeRepoIds = "AdditionalCodeRepoIds"
+            case automaticStopTime = "AutomaticStopTime"
+            case resourceConf = "ResourceConf"
+            case defaultCodeRepoId = "DefaultCodeRepoId"
+            case endTime = "EndTime"
+            case logEnable = "LogEnable"
+            case logConfig = "LogConfig"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case status = "Status"
+            case runtimeInSeconds = "RuntimeInSeconds"
+            case createTime = "CreateTime"
+            case startTime = "StartTime"
+            case chargeStatus = "ChargeStatus"
+            case rootAccess = "RootAccess"
+            case billingInfos = "BillingInfos"
+            case volumeSizeInGB = "VolumeSizeInGB"
+            case failureReason = "FailureReason"
+            case chargeType = "ChargeType"
+            case instanceTypeAlias = "InstanceTypeAlias"
+            case resourceGroupName = "ResourceGroupName"
+            case volumeSourceType = "VolumeSourceType"
+            case volumeSourceCFS = "VolumeSourceCFS"
+            case dataConfigs = "DataConfigs"
+            case message = "Message"
+            case dataSource = "DataSource"
+            case imageInfo = "ImageInfo"
+            case imageType = "ImageType"
+        }
+    }
+
+    /// 镜像保存记录
+    public struct NotebookImageRecord: TCOutputModel {
+        /// 保存记录ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordId: String?
+
+        /// 镜像地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageUrl: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 状态信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// kernel数组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kernels: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case recordId = "RecordId"
+            case imageUrl = "ImageUrl"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case message = "Message"
+            case instanceId = "InstanceId"
+            case kernels = "Kernels"
+        }
+    }
+
+    /// Notebook列表元素
+    public struct NotebookSetItem: TCOutputModel {
+        /// notebook ID
+        public let id: String
+
+        /// notebook 名称
+        public let name: String
+
+        /// 计费模式
+        public let chargeType: String
+
+        /// 资源配置
+        public let resourceConf: ResourceConf
+
+        /// 预付费资源组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceGroupId: String?
+
+        /// 存储卷大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSizeInGB: UInt64?
+
+        /// 计费金额信息，eg：2.00元/小时 (for后付费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let billingInfos: [String]?
+
+        /// 标签配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 启动时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 更新时间
+        public let updateTime: String
+
+        /// 运行时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runtimeInSeconds: UInt64?
+
+        /// 计费状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeStatus: String?
+
+        /// 状态
+        public let status: String
+
+        /// 错误原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failureReason: String?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// Pod名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podName: String?
+
+        /// 后付费资源规格名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceTypeAlias: String?
+
+        /// 预付费资源组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceGroupName: String?
+
+        /// 是否自动终止
+        public let autoStopping: Bool
+
+        /// 自动停止时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let automaticStopTime: UInt64?
+
+        /// 存储的类型。取值包含：
+        ///     FREE:        预付费的免费存储
+        ///     CLOUD_PREMIUM： 高性能云硬盘
+        ///     CLOUD_SSD： SSD云硬盘
+        ///     CFS:     CFS存储，包含NFS和turbo
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSourceType: String?
+
+        /// CFS存储的配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let volumeSourceCFS: CFSConfig?
+
+        /// notebook 信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// notebook用户类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userTypes: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case name = "Name"
+            case chargeType = "ChargeType"
+            case resourceConf = "ResourceConf"
+            case resourceGroupId = "ResourceGroupId"
+            case volumeSizeInGB = "VolumeSizeInGB"
+            case billingInfos = "BillingInfos"
+            case tags = "Tags"
+            case createTime = "CreateTime"
+            case startTime = "StartTime"
+            case updateTime = "UpdateTime"
+            case runtimeInSeconds = "RuntimeInSeconds"
+            case chargeStatus = "ChargeStatus"
+            case status = "Status"
+            case failureReason = "FailureReason"
+            case endTime = "EndTime"
+            case podName = "PodName"
+            case instanceTypeAlias = "InstanceTypeAlias"
+            case resourceGroupName = "ResourceGroupName"
+            case autoStopping = "AutoStopping"
+            case automaticStopTime = "AutomaticStopTime"
+            case volumeSourceType = "VolumeSourceType"
+            case volumeSourceCFS = "VolumeSourceCFS"
+            case message = "Message"
+            case userTypes = "UserTypes"
         }
     }
 
@@ -1997,6 +2436,22 @@ extension Tione {
         }
     }
 
+    /// 任务建模Pod信息
+    public struct PodInfo: TCOutputModel {
+        /// pod名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// pod的IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case ip = "IP"
+        }
+    }
+
     /// 点信息描述
     public struct PointInfo: TCOutputModel {
         /// X坐标值
@@ -2010,6 +2465,76 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case x = "X"
             case y = "Y"
+        }
+    }
+
+    /// RDMA配置
+    public struct RDMAConfig: TCInputModel, TCOutputModel {
+        /// 是否开启RDMA
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enable: Bool?
+
+        public init(enable: Bool? = nil) {
+            self.enable = enable
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enable = "Enable"
+        }
+    }
+
+    /// Notebook资源参数
+    public struct ResourceConf: TCInputModel, TCOutputModel {
+        /// cpu 处理器资源, 单位为1/1000核 (for预付费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpu: UInt64?
+
+        /// memory 内存资源, 单位为1M (for预付费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memory: UInt64?
+
+        /// gpu Gpu卡资源，单位为1单位的GpuType，例如GpuType=T4时，1 Gpu = 1/100 T4卡，GpuType=vcuda时，1 Gpu = 1/100 vcuda-core (for预付费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpu: UInt64?
+
+        /// GpuType 卡类型 vcuda, T4,P4,V100等 (for预付费)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gpuType: String?
+
+        /// 计算规格 (for后付费)，可选值如下：
+        /// TI.S.LARGE.POST: 4C8G
+        /// TI.S.2XLARGE16.POST:  8C16G
+        /// TI.S.2XLARGE32.POST:  8C32G
+        /// TI.S.4XLARGE32.POST:  16C32G
+        /// TI.S.4XLARGE64.POST:  16C64G
+        /// TI.S.6XLARGE48.POST:  24C48G
+        /// TI.S.6XLARGE96.POST:  24C96G
+        /// TI.S.8XLARGE64.POST:  32C64G
+        /// TI.S.8XLARGE128.POST : 32C128G
+        /// TI.GN10.2XLARGE40.POST: 8C40G V100*1
+        /// TI.GN10.5XLARGE80.POST:  18C80G V100*2
+        /// TI.GN10.10XLARGE160.POST :  32C160G V100*4
+        /// TI.GN10.20XLARGE320.POST :  72C320G V100*8
+        /// TI.GN7.8XLARGE128.POST: 32C128G T4*1
+        /// TI.GN7.10XLARGE160.POST: 40C160G T4*2
+        /// TI.GN7.20XLARGE320.POST: 80C320G T4*4
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        public init(cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, gpuType: String? = nil, instanceType: String? = nil) {
+            self.cpu = cpu
+            self.memory = memory
+            self.gpu = gpu
+            self.gpuType = gpuType
+            self.instanceType = instanceType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case gpu = "Gpu"
+            case gpuType = "GpuType"
+            case instanceType = "InstanceType"
         }
     }
 
@@ -2073,7 +2598,11 @@ extension Tione {
         /// 80C32
         public let instanceTypeAlias: String?
 
-        public init(role: String, cpu: UInt64? = nil, memory: UInt64? = nil, gpuType: String? = nil, gpu: UInt64? = nil, instanceType: String? = nil, instanceNum: UInt64? = nil, instanceTypeAlias: String? = nil) {
+        /// RDMA配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rdmaConfig: RDMAConfig?
+
+        public init(role: String, cpu: UInt64? = nil, memory: UInt64? = nil, gpuType: String? = nil, gpu: UInt64? = nil, instanceType: String? = nil, instanceNum: UInt64? = nil, instanceTypeAlias: String? = nil, rdmaConfig: RDMAConfig? = nil) {
             self.role = role
             self.cpu = cpu
             self.memory = memory
@@ -2082,6 +2611,7 @@ extension Tione {
             self.instanceType = instanceType
             self.instanceNum = instanceNum
             self.instanceTypeAlias = instanceTypeAlias
+            self.rdmaConfig = rdmaConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2093,6 +2623,7 @@ extension Tione {
             case instanceType = "InstanceType"
             case instanceNum = "InstanceNum"
             case instanceTypeAlias = "InstanceTypeAlias"
+            case rdmaConfig = "RDMAConfig"
         }
     }
 
@@ -2162,11 +2693,9 @@ extension Tione {
         /// 创建或更新时无需填写，仅展示需要关注
         /// 后付费非整卡实例对应的实际的Gpu卡资源, 表示gpu资源对应实际的gpu卡个数.
         /// RealGpu=100表示实际使用了一张gpu卡, 对应实际的实例机型, 有可能代表带有1/4卡的实例4个, 或者带有1/2卡的实例2个, 或者带有1卡的实力1个.
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realGpu: UInt64?
 
         /// 创建或更新时无需填写，仅展示需要关注。详细的GPU使用信息。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realGpuDetailSet: [GpuDetail]?
 
         public init(cpu: UInt64, memory: UInt64, gpu: UInt64? = nil, gpuType: String? = nil, realGpu: UInt64? = nil, realGpuDetailSet: [GpuDetail]? = nil) {
@@ -2215,7 +2744,7 @@ extension Tione {
     }
 
     /// 定时的事务和行为
-    public struct ScheduledAction: TCInputModel {
+    public struct ScheduledAction: TCInputModel, TCOutputModel {
         /// 是否要定时停止服务，true or false。true 则 ScheduleStopTime 必填， false 则 ScheduleStopTime 不生效
         public let scheduleStop: Bool?
 
@@ -2293,6 +2822,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceDescription: String?
 
+        /// 服务的详细信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceInfo: ServiceInfo?
+
         /// 集群id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
@@ -2309,9 +2842,21 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeType: String?
 
-        /// 后付费资源组id
+        /// 包年包月服务的资源组id，按量计费的服务为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroupId: String?
+
+        /// 包年包月服务对应的资源组名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceGroupName: String?
+
+        /// 服务的标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 服务所在的 ingress 的 name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ingressName: String?
 
         /// 创建者
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2337,31 +2882,21 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
 
-        /// 版本号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let version: String?
-
-        /// 服务组下服务的最高版本号
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let latestVersion: String?
-
-        /// 服务的详细信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceInfo: ServiceInfo?
-
         /// 服务的业务状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessStatus: String?
 
-        /// 服务的创建来源
-        /// AUTO_ML: 来自自动学习的一键发布
-        /// DEFAULT: 其他来源
+        /// 已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createSource: String?
+        public let serviceLimit: ServiceLimit?
 
-        /// 费用信息
+        /// 已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let billingInfo: String?
+        public let scheduledAction: ScheduledAction?
+
+        /// 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createFailedReason: String?
 
         /// 服务状态
         /// CREATING 创建中
@@ -2375,64 +2910,58 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
+        /// 费用信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let billingInfo: String?
+
         /// 模型权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
 
-        /// 服务所在的 ingress 的 name
+        /// 服务的创建来源
+        /// AUTO_ML: 来自自动学习的一键发布
+        /// DEFAULT: 其他来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ingressName: String?
+        public let createSource: String?
 
-        /// 服务限速限流相关配置
+        /// 版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceLimit: ServiceLimit?
+        public let version: String?
 
-        /// 定时停止的配置
+        /// 服务组下服务的最高版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheduledAction: ScheduledAction?
-
-        /// 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createFailedReason: String?
-
-        /// 预付费服务对应的资源组名字
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceGroupName: String?
-
-        /// 服务的标签
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tags: [Tag]?
+        public let latestVersion: String?
 
         enum CodingKeys: String, CodingKey {
             case serviceGroupId = "ServiceGroupId"
             case serviceId = "ServiceId"
             case serviceGroupName = "ServiceGroupName"
             case serviceDescription = "ServiceDescription"
+            case serviceInfo = "ServiceInfo"
             case clusterId = "ClusterId"
             case region = "Region"
             case namespace = "Namespace"
             case chargeType = "ChargeType"
             case resourceGroupId = "ResourceGroupId"
+            case resourceGroupName = "ResourceGroupName"
+            case tags = "Tags"
+            case ingressName = "IngressName"
             case createdBy = "CreatedBy"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
             case uin = "Uin"
             case subUin = "SubUin"
             case appId = "AppId"
-            case version = "Version"
-            case latestVersion = "LatestVersion"
-            case serviceInfo = "ServiceInfo"
             case businessStatus = "BusinessStatus"
-            case createSource = "CreateSource"
-            case billingInfo = "BillingInfo"
-            case status = "Status"
-            case weight = "Weight"
-            case ingressName = "IngressName"
             case serviceLimit = "ServiceLimit"
             case scheduledAction = "ScheduledAction"
             case createFailedReason = "CreateFailedReason"
-            case resourceGroupName = "ResourceGroupName"
-            case tags = "Tags"
+            case status = "Status"
+            case billingInfo = "BillingInfo"
+            case weight = "Weight"
+            case createSource = "CreateSource"
+            case version = "Version"
+            case latestVersion = "LatestVersion"
         }
     }
 
@@ -2686,6 +3215,23 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelHotUpdateEnable: Bool?
 
+        /// 实例数量调节方式,默认为手动
+        /// 支持：自动 - "AUTO", 手动 - "MANUAL"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleMode: String?
+
+        /// 定时伸缩任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cronScaleJobs: [CronScaleJob]?
+
+        /// 定时伸缩策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleStrategy: String?
+
+        /// 定时停止的配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scheduledAction: String?
+
         /// Pod列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pods: Pod?
@@ -2694,7 +3240,15 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podInfos: [Pod]?
 
-        public init(replicas: Int64, imageInfo: ImageInfo, env: [EnvVar], resources: ResourceInfo, instanceType: String, modelInfo: ModelInfo, logEnable: Bool, logConfig: LogConfig, authorizationEnable: Bool, horizontalPodAutoscaler: HorizontalPodAutoscaler, status: WorkloadStatus, weight: UInt64, podList: [String], resourceTotal: ResourceInfo, oldReplicas: Int64, hybridBillingPrepaidReplicas: Int64, oldHybridBillingPrepaidReplicas: Int64, modelHotUpdateEnable: Bool, pods: Pod? = nil, podInfos: [Pod]? = nil) {
+        /// 服务限速限流相关配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceLimit: ServiceLimit?
+
+        /// 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modelTurboEnable: Bool?
+
+        public init(replicas: Int64, imageInfo: ImageInfo, env: [EnvVar], resources: ResourceInfo, instanceType: String, modelInfo: ModelInfo, logEnable: Bool, logConfig: LogConfig, authorizationEnable: Bool, horizontalPodAutoscaler: HorizontalPodAutoscaler, status: WorkloadStatus, weight: UInt64, podList: [String], resourceTotal: ResourceInfo, oldReplicas: Int64, hybridBillingPrepaidReplicas: Int64, oldHybridBillingPrepaidReplicas: Int64, modelHotUpdateEnable: Bool, scaleMode: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, scheduledAction: String? = nil, pods: Pod? = nil, podInfos: [Pod]? = nil, serviceLimit: ServiceLimit? = nil, modelTurboEnable: Bool? = nil) {
             self.replicas = replicas
             self.imageInfo = imageInfo
             self.env = env
@@ -2713,8 +3267,14 @@ extension Tione {
             self.hybridBillingPrepaidReplicas = hybridBillingPrepaidReplicas
             self.oldHybridBillingPrepaidReplicas = oldHybridBillingPrepaidReplicas
             self.modelHotUpdateEnable = modelHotUpdateEnable
+            self.scaleMode = scaleMode
+            self.cronScaleJobs = cronScaleJobs
+            self.scaleStrategy = scaleStrategy
+            self.scheduledAction = scheduledAction
             self.pods = pods
             self.podInfos = podInfos
+            self.serviceLimit = serviceLimit
+            self.modelTurboEnable = modelTurboEnable
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2736,13 +3296,19 @@ extension Tione {
             case hybridBillingPrepaidReplicas = "HybridBillingPrepaidReplicas"
             case oldHybridBillingPrepaidReplicas = "OldHybridBillingPrepaidReplicas"
             case modelHotUpdateEnable = "ModelHotUpdateEnable"
+            case scaleMode = "ScaleMode"
+            case cronScaleJobs = "CronScaleJobs"
+            case scaleStrategy = "ScaleStrategy"
+            case scheduledAction = "ScheduledAction"
             case pods = "Pods"
             case podInfos = "PodInfos"
+            case serviceLimit = "ServiceLimit"
+            case modelTurboEnable = "ModelTurboEnable"
         }
     }
 
     /// 服务的限流限速等配置
-    public struct ServiceLimit: TCInputModel {
+    public struct ServiceLimit: TCInputModel, TCOutputModel {
         /// 是否开启实例层面限流限速，true or false。true 则 InstanceRpsLimit 必填， false 则 InstanceRpsLimit 不生效
         public let enableInstanceRpsLimit: Bool?
 
@@ -2828,7 +3394,7 @@ extension Tione {
     }
 
     /// 启动命令信息
-    public struct StartCmdInfo: TCInputModel {
+    public struct StartCmdInfo: TCInputModel, TCOutputModel {
         /// 启动命令
         public let startCmd: String?
 
@@ -3445,7 +4011,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
 
-        /// 计费金额信息，eg：2.00元/小时 (for后付费)
+        /// 计费金额信息，eg：2.00元/小时 (按量计费)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let billingInfo: String?
 
@@ -3572,7 +4138,7 @@ extension Tione {
         /// 更新时间
         public let updateTime: String
 
-        /// 计费金额信息，eg：2.00元/小时 (for后付费)
+        /// 计费金额信息，eg：2.00元/小时 (按量计费)
         public let billingInfo: String
 
         /// 预付费专用资源组名称
@@ -3691,7 +4257,11 @@ extension Tione {
         /// 工作负载历史的状况信息
         public let conditions: [StatefulSetCondition]?
 
-        public init(replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, statefulSetCondition: [StatefulSetCondition]? = nil, conditions: [StatefulSetCondition]? = nil) {
+        /// 状态异常时，展示原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        public init(replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, statefulSetCondition: [StatefulSetCondition]? = nil, conditions: [StatefulSetCondition]? = nil, reason: String? = nil) {
             self.replicas = replicas
             self.updatedReplicas = updatedReplicas
             self.readyReplicas = readyReplicas
@@ -3700,6 +4270,7 @@ extension Tione {
             self.status = status
             self.statefulSetCondition = statefulSetCondition
             self.conditions = conditions
+            self.reason = reason
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3711,6 +4282,7 @@ extension Tione {
             case status = "Status"
             case statefulSetCondition = "StatefulSetCondition"
             case conditions = "Conditions"
+            case reason = "Reason"
         }
     }
 }

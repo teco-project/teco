@@ -210,6 +210,12 @@ extension Dcdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rsAccessStrategy: Int64?
 
+        /// 尚未回收的网络资源
+        public let reservedNetResources: [ReservedNetResource]
+
+        /// 是否支持物理复制
+        public let isPhysicalReplicationSupported: Bool
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -264,37 +270,39 @@ extension Dcdb {
             case encryptStatus = "EncryptStatus"
             case exclusterType = "ExclusterType"
             case rsAccessStrategy = "RsAccessStrategy"
+            case reservedNetResources = "ReservedNetResources"
+            case isPhysicalReplicationSupported = "IsPhysicalReplicationSupported"
             case requestId = "RequestId"
         }
     }
 
-    /// 获取DCDB实例详情
+    /// 获取实例详情
     ///
-    /// 本接口（DescribeDCDBInstanceDetail）用于获取DCDB实例详情
+    /// 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
     @inlinable
     public func describeDCDBInstanceDetail(_ input: DescribeDCDBInstanceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstanceDetailResponse> {
         self.client.execute(action: "DescribeDCDBInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取DCDB实例详情
+    /// 获取实例详情
     ///
-    /// 本接口（DescribeDCDBInstanceDetail）用于获取DCDB实例详情
+    /// 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
     @inlinable
     public func describeDCDBInstanceDetail(_ input: DescribeDCDBInstanceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstanceDetailResponse {
         try await self.client.execute(action: "DescribeDCDBInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取DCDB实例详情
+    /// 获取实例详情
     ///
-    /// 本接口（DescribeDCDBInstanceDetail）用于获取DCDB实例详情
+    /// 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
     @inlinable
     public func describeDCDBInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstanceDetailResponse> {
         self.describeDCDBInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取DCDB实例详情
+    /// 获取实例详情
     ///
-    /// 本接口（DescribeDCDBInstanceDetail）用于获取DCDB实例详情
+    /// 本接口（DescribeDCDBInstanceDetail）用于获取TDSQL实例详情
     @inlinable
     public func describeDCDBInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstanceDetailResponse {
         try await self.describeDCDBInstanceDetail(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

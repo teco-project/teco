@@ -90,7 +90,7 @@ extension Fmu {
 
     /// 人脸美颜
     ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    /// 用户上传一张人脸图片（最多能处理一张图片中最大的五张人脸信息），精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(_ input: BeautifyPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
         self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -98,7 +98,7 @@ extension Fmu {
 
     /// 人脸美颜
     ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    /// 用户上传一张人脸图片（最多能处理一张图片中最大的五张人脸信息），精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(_ input: BeautifyPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
         try await self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -106,7 +106,7 @@ extension Fmu {
 
     /// 人脸美颜
     ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    /// 用户上传一张人脸图片（最多能处理一张图片中最大的五张人脸信息），精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
         self.beautifyPic(.init(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
@@ -114,7 +114,7 @@ extension Fmu {
 
     /// 人脸美颜
     ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    /// 用户上传一张人脸图片（最多能处理一张图片中最大的五张人脸信息），精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
         try await self.beautifyPic(.init(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)

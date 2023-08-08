@@ -25,6 +25,10 @@ extension TCTseError {
             case invalidParameterValue = "InvalidParameterValue.InvalidParameterValue"
             case operationFailed = "InvalidParameterValue.OperationFailed"
             case queryError = "InvalidParameterValue.QueryError"
+            case region = "InvalidParameterValue.Region"
+            case resourceAlreadyExist = "InvalidParameterValue.ResourceAlreadyExist"
+            case specification = "InvalidParameterValue.Specification"
+            case type = "InvalidParameterValue.Type"
             case updateError = "InvalidParameterValue.UpdateError"
         }
 
@@ -82,6 +86,26 @@ extension TCTseError {
             InvalidParameterValue(.queryError)
         }
 
+        /// 无效的Region。
+        public static var region: InvalidParameterValue {
+            InvalidParameterValue(.region)
+        }
+
+        /// 资源已经存在。
+        public static var resourceAlreadyExist: InvalidParameterValue {
+            InvalidParameterValue(.resourceAlreadyExist)
+        }
+
+        /// 网关规格参数内容错误
+        public static var specification: InvalidParameterValue {
+            InvalidParameterValue(.specification)
+        }
+
+        /// 网关类型参数内容错误
+        public static var type: InvalidParameterValue {
+            InvalidParameterValue(.type)
+        }
+
         /// 无效请求参数导致更新失败。
         public static var updateError: InvalidParameterValue {
             InvalidParameterValue(.updateError)
@@ -102,6 +126,14 @@ extension TCTseError {
                 code = .invalidParameterValue_OperationFailed
             case .queryError:
                 code = .invalidParameterValue_QueryError
+            case .region:
+                code = .invalidParameterValue_Region
+            case .resourceAlreadyExist:
+                code = .invalidParameterValue_ResourceAlreadyExist
+            case .specification:
+                code = .invalidParameterValue_Specification
+            case .type:
+                code = .invalidParameterValue_Type
             case .updateError:
                 code = .invalidParameterValue_UpdateError
             }

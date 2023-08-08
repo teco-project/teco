@@ -24,7 +24,7 @@ extension Tione {
         /// 枚举值：TRAIN、NOTEBOOK、INFERENCE
         public let taskType: String
 
-        /// 付费模式：POSTPAID_BY_HOUR后付费、PREPAID预付费
+        /// 付费模式：POSTPAID_BY_HOUR按量计费、PREPAID包年包月
         public let chargeType: String
 
         /// 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘

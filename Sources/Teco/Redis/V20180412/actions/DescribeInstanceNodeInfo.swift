@@ -21,13 +21,13 @@ import TecoCore
 extension Redis {
     /// DescribeInstanceNodeInfo请求参数结构体
     public struct DescribeInstanceNodeInfoRequest: TCRequestModel {
-        /// 实例ID
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 列表大小
+        /// 列表大小。每页输出的节点信息大小。默认为 20，最多输出1000条。该字段已不再使用，请忽略。
         public let limit: Int64?
 
-        /// 偏移量
+        /// 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。该字段已不再使用，请忽略。
         public let offset: Int64?
 
         public init(instanceId: String, limit: Int64? = nil, offset: Int64? = nil) {
@@ -45,24 +45,24 @@ extension Redis {
 
     /// DescribeInstanceNodeInfo返回参数结构体
     public struct DescribeInstanceNodeInfoResponse: TCResponseModel {
-        /// proxy节点数量
+        /// Proxy节点数量。
         public let proxyCount: Int64
 
-        /// proxy节点信息
+        /// Proxy节点信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxy: [ProxyNodes]?
 
-        /// redis节点数量
+        /// Redis节点数量。
         public let redisCount: Int64
 
-        /// redis节点信息
+        /// Redis节点信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redis: [RedisNodes]?
 
-        /// tendis节点数量
+        /// 该参数不再使用，请忽略。
         public let tendisCount: Int64
 
-        /// tendis节点信息
+        /// 该参数不再使用，请忽略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tendis: [TendisNodes]?
 
@@ -81,24 +81,32 @@ extension Redis {
     }
 
     /// 查询实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于查询实例节点信息。
     @inlinable
     public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceNodeInfoResponse> {
         self.client.execute(action: "DescribeInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于查询实例节点信息。
     @inlinable
     public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
         try await self.client.execute(action: "DescribeInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于查询实例节点信息。
     @inlinable
     public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceNodeInfoResponse> {
         self.describeInstanceNodeInfo(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例节点信息
+    ///
+    /// 本接口（DescribeInstanceNodeInfo）用于查询实例节点信息。
     @inlinable
     public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
         try await self.describeInstanceNodeInfo(.init(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)

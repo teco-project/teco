@@ -37,13 +37,13 @@ extension Cfs {
         /// 快照定期备份在一天的哪一小时
         public let hour: String
 
-        /// 是否激活定期快照功能
+        /// 是否激活定期快照功能,1代表已激活，0代表未激活
         public let isActivated: UInt64
 
         /// 下一次触发快照时间
         public let nextActiveTime: String
 
-        /// 快照策略状态
+        /// 快照策略状态，1代表快照策略状态正常。这里只有一种状态
         public let status: String
 
         /// 帐号ID
@@ -66,6 +66,9 @@ extension Cfs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intervalDays: UInt64?
 
+        /// 跨地域复制的快照保留时间，单位天
+        public let crossRegionsAliveDays: UInt64
+
         enum CodingKeys: String, CodingKey {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case policyName = "PolicyName"
@@ -82,6 +85,7 @@ extension Cfs {
             case fileSystems = "FileSystems"
             case dayOfMonth = "DayOfMonth"
             case intervalDays = "IntervalDays"
+            case crossRegionsAliveDays = "CrossRegionsAliveDays"
         }
     }
 
@@ -130,7 +134,7 @@ extension Cfs {
         /// 协议与售卖详情
         public let protocols: [AvailableProtoStatus]
 
-        /// 存储类型。返回值中 SD 为标准型存储、HP 为性能型存储
+        /// 存储类型。返回值中 SD 为通用标准型存储， HP为通用性能型存储， TB为Turbo标准型， TP 为Turbo性能型。
         public let type: String
 
         /// 是否支持预付费。返回值中 true 为支持、false 为不支持
@@ -169,6 +173,21 @@ extension Cfs {
         }
     }
 
+    /// 对象存储桶
+    public struct BucketInfo: TCOutputModel {
+        /// 桶名称
+        public let name: String
+
+        /// 桶所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case region = "Region"
+        }
+    }
+
     /// 绑定快照策略的文件系统信息
     public struct FileSystemByPolicy: TCOutputModel {
         /// 文件系统名称
@@ -177,13 +196,13 @@ extension Cfs {
         /// 文件系统ID
         public let fileSystemId: String
 
-        /// 文件系统大小
+        /// 文件系统大小，单位Byte
         public let sizeByte: UInt64
 
-        /// 存储类型
+        /// 存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型
         public let storageType: String
 
-        /// 快照总大小
+        /// 快照总大小，单位GiB
         public let totalSnapshotSize: UInt64
 
         /// 文件系统创建时间
@@ -253,10 +272,10 @@ extension Cfs {
         /// - upgrading:升级中
         public let lifeCycleState: String
 
-        /// 文件系统已使用容量
+        /// 文件系统已使用容量,单位Byte
         public let sizeByte: UInt64
 
-        /// 文件系统最大空间限制
+        /// 文件系统最大空间限制,GiB
         public let sizeLimit: UInt64
 
         /// 区域 ID
@@ -265,10 +284,10 @@ extension Cfs {
         /// 区域名称
         public let zone: String
 
-        /// 文件系统协议类型
+        /// 文件系统协议类型, 支持 NFS,CIFS,TURBO
         public let `protocol`: String
 
-        /// 文件系统存储类型
+        /// 存储类型，HP：通用性能型；SD：通用标准型；TP:turbo性能型；TB：turbo标准型；THP：吞吐型
         public let storageType: String
 
         /// 文件系统绑定的预付费存储包
@@ -283,7 +302,7 @@ extension Cfs {
         /// 用户自定义名称
         public let fsName: String
 
-        /// 文件系统是否加密
+        /// 文件系统是否加密,true：代表加密，false：非加密
         public let encrypted: Bool
 
         /// 加密所使用的密钥，可以为密钥的 ID 或者 ARN
@@ -292,7 +311,7 @@ extension Cfs {
         /// 应用ID
         public let appId: Int64
 
-        /// 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定
+        /// 文件系统吞吐上限，吞吐上限是根据文件系统当前已使用存储量、绑定的存储资源包以及吞吐资源包一同确定. 单位MiB/s
         public let bandwidthLimit: Float
 
         /// 文件系统总容量
@@ -302,6 +321,8 @@ extension Cfs {
         public let tags: [TagInfo]
 
         /// 文件系统生命周期管理状态
+        /// NotAvailable：不可用
+        /// Available:可用
         public let tieringState: String
 
         /// 分层存储详情
@@ -350,6 +371,128 @@ extension Cfs {
         enum CodingKeys: String, CodingKey {
             case values = "Values"
             case name = "Name"
+        }
+    }
+
+    /// CFS数据迁移任务信息
+    public struct MigrationTaskInfo: TCOutputModel {
+        /// 迁移任务名称
+        public let taskName: String
+
+        /// 迁移任务id
+        public let taskId: String
+
+        /// 迁移方式标志位，默认为0。0: 桶迁移；1: 清单迁移
+        public let migrationType: UInt64
+
+        /// 迁移模式，默认为0。0: 全量迁移
+        public let migrationMode: UInt64
+
+        /// 数据源桶名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketName: String?
+
+        /// 数据源桶地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketRegion: String?
+
+        /// 数据源桶地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketAddress: String?
+
+        /// 清单地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listAddress: String?
+
+        /// 文件系统实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fsName: String?
+
+        /// 文件系统实例Id
+        public let fileSystemId: String
+
+        /// 文件系统路径
+        public let fsPath: String
+
+        /// 同名文件迁移时覆盖策略，默认为0。0: 最后修改时间优先；1: 全覆盖；2: 不覆盖
+        public let coverType: UInt64
+
+        /// 创建时间
+        public let createTime: Int64
+
+        /// 完成/终止时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: Int64?
+
+        /// 迁移状态。0: 已完成；1: 进行中；2: 已终止
+        public let status: UInt64
+
+        /// 文件数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileTotalCount: UInt64?
+
+        /// 已迁移文件数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileMigratedCount: UInt64?
+
+        /// 迁移失败文件数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileFailedCount: UInt64?
+
+        /// 文件容量，单位Byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileTotalSize: Int64?
+
+        /// 已迁移文件容量，单位Byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileMigratedSize: Int64?
+
+        /// 迁移失败文件容量，单位Byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileFailedSize: Int64?
+
+        /// 全部清单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileTotalList: String?
+
+        /// 已完成文件清单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileCompletedList: String?
+
+        /// 失败文件清单
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileFailedList: String?
+
+        /// 源桶路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucketPath: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskName = "TaskName"
+            case taskId = "TaskId"
+            case migrationType = "MigrationType"
+            case migrationMode = "MigrationMode"
+            case bucketName = "BucketName"
+            case bucketRegion = "BucketRegion"
+            case bucketAddress = "BucketAddress"
+            case listAddress = "ListAddress"
+            case fsName = "FsName"
+            case fileSystemId = "FileSystemId"
+            case fsPath = "FsPath"
+            case coverType = "CoverType"
+            case createTime = "CreateTime"
+            case endTime = "EndTime"
+            case status = "Status"
+            case fileTotalCount = "FileTotalCount"
+            case fileMigratedCount = "FileMigratedCount"
+            case fileFailedCount = "FileFailedCount"
+            case fileTotalSize = "FileTotalSize"
+            case fileMigratedSize = "FileMigratedSize"
+            case fileFailedSize = "FileFailedSize"
+            case fileTotalList = "FileTotalList"
+            case fileCompletedList = "FileCompletedList"
+            case fileFailedList = "FileFailedList"
+            case bucketPath = "BucketPath"
         }
     }
 
@@ -484,7 +627,7 @@ extension Cfs {
         /// 快照ID
         public let snapshotId: String
 
-        /// 快照状态
+        /// 快照状态，createing-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败
         public let status: String
 
         /// 地域名称
@@ -499,7 +642,7 @@ extension Cfs {
         /// 保留时长天
         public let aliveDay: UInt64
 
-        /// 快照进度
+        /// 快照进度百分比，1表示1%
         public let percent: UInt64
 
         /// 帐号ID
@@ -513,6 +656,14 @@ extension Cfs {
 
         /// 快照标签
         public let tags: [TagInfo]
+
+        /// 快照类型, general为通用系列快照，turbo为Turbo系列快照
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let snapshotType: String?
+
+        /// 实际快照时间，反应快照对应文件系统某个时刻的数据。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let snapshotTime: String?
 
         enum CodingKeys: String, CodingKey {
             case creationTime = "CreationTime"
@@ -528,24 +679,34 @@ extension Cfs {
             case deleteTime = "DeleteTime"
             case fsName = "FsName"
             case tags = "Tags"
+            case snapshotType = "SnapshotType"
+            case snapshotTime = "SnapshotTime"
         }
     }
 
     /// 快照操作日志
     public struct SnapshotOperateLog: TCOutputModel {
         /// 操作类型
+        /// CreateCfsSnapshot：创建快照
+        /// DeleteCfsSnapshot：删除快照
+        /// CreateCfsFileSystem：创建文件系统
+        /// UpdateCfsSnapshotAttribute：更新快照
         public let action: String
 
         /// 操作时间
         public let actionTime: String
 
         /// 操作名称
+        /// CreateCfsSnapshot
+        /// DeleteCfsSnapshot
+        /// CreateCfsFileSystem
+        /// UpdateCfsSnapshotAttribute
         public let actionName: String
 
-        /// 操作者
+        /// 操作者uin
         public let `operator`: String
 
-        /// 结果
+        /// 1-任务进行中；2-任务成功；3-任务失败
         public let result: UInt64
 
         enum CodingKeys: String, CodingKey {
@@ -596,7 +757,16 @@ extension Cfs {
 
     /// 分层存储详细信息
     public struct TieringDetailInfo: TCInputModel, TCOutputModel {
-        public init() {
+        /// 低频存储容量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tieringSizeInBytes: Int64?
+
+        public init(tieringSizeInBytes: Int64? = nil) {
+            self.tieringSizeInBytes = tieringSizeInBytes
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tieringSizeInBytes = "TieringSizeInBytes"
         }
     }
 

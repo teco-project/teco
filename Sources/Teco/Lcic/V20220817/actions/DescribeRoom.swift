@@ -38,10 +38,10 @@ extension Lcic {
         /// 房间名称。
         public let name: String
 
-        /// 预定的房间开始时间，unix时间戳。
+        /// 预定的房间开始时间，unix时间戳（秒）。
         public let startTime: UInt64
 
-        /// 预定的房间结束时间，unix时间戳。
+        /// 预定的房间结束时间，unix时间戳（秒）。
         public let endTime: UInt64
 
         /// 老师的UserId。
@@ -49,6 +49,9 @@ extension Lcic {
 
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
+
+        /// 观看类型。互动观看 （默认）
+        public let audienceType: UInt64
 
         /// 分辨率。可以有如下取值：
         /// 1 标清
@@ -96,6 +99,23 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
 
+        /// 打开学生麦克风/摄像头的授权开关
+        public let enableDirectControl: UInt64
+
+        /// 开启专注模式。
+        /// 0 收看全部角色音视频(默认)
+        /// 1 只看老师和助教
+        public let interactionMode: Int64
+
+        /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        public let videoOrientation: UInt64
+
+        /// 开启课后评分。 0：不开启(默认)  1：开启
+        public let isGradingRequiredPostClass: Int64
+
+        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        public let roomType: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -105,6 +125,7 @@ extension Lcic {
             case endTime = "EndTime"
             case teacherId = "TeacherId"
             case sdkAppId = "SdkAppId"
+            case audienceType = "AudienceType"
             case resolution = "Resolution"
             case maxMicNumber = "MaxMicNumber"
             case autoMic = "AutoMic"
@@ -115,6 +136,11 @@ extension Lcic {
             case recordUrl = "RecordUrl"
             case status = "Status"
             case groupId = "GroupId"
+            case enableDirectControl = "EnableDirectControl"
+            case interactionMode = "InteractionMode"
+            case videoOrientation = "VideoOrientation"
+            case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
+            case roomType = "RoomType"
             case requestId = "RequestId"
         }
     }

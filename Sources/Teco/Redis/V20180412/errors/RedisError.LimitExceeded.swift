@@ -88,7 +88,9 @@ extension TCRedisError {
             LimitExceeded(.periodLessThanMinLimit)
         }
 
-        /// 请的 redis 数量超过最大/最小购买数限制。
+        /// 请求的 redis 数量超过最大/最小购买数限制。
+        ///
+        /// None
         public static var reachTheAmountLimit: LimitExceeded {
             LimitExceeded(.reachTheAmountLimit)
         }

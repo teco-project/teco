@@ -21,14 +21,14 @@ import TecoCore
 extension Teo {
     /// ModifyApplicationProxy请求参数结构体
     public struct ModifyApplicationProxyRequest: TCRequestModel {
-        /// 站点ID。
+        /// 站点 ID。
         public let zoneId: String
 
-        /// 代理ID。
+        /// 代理 ID。
         public let proxyId: String
 
-        /// 当ProxyType=hostname时，表示域名或子域名；
-        /// 当ProxyType=instance时，表示代理名称。
+        /// 当 ProxyType=hostname 时，表示域名或子域名；
+        /// 当 ProxyType=instance 时，表示代理名称。
         public let proxyName: String
 
         /// 会话保持时间，取值范围：30-3600，单位：秒。
@@ -40,16 +40,20 @@ extension Teo {
         /// <li>instance：表示实例模式。</li>不填写保持原有配置。
         public let proxyType: String?
 
-        /// Ipv6访问配置，不填写保持原有配置。
+        /// Ipv6 访问配置，不填写保持原有配置。
         public let ipv6: Ipv6?
 
-        public init(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil) {
+        /// 中国大陆加速优化配置。 不填写表示保持原有配置。
+        public let accelerateMainland: AccelerateMainland?
+
+        public init(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, accelerateMainland: AccelerateMainland? = nil) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.proxyName = proxyName
             self.sessionPersistTime = sessionPersistTime
             self.proxyType = proxyType
             self.ipv6 = ipv6
+            self.accelerateMainland = accelerateMainland
         }
 
         enum CodingKeys: String, CodingKey {
@@ -59,6 +63,7 @@ extension Teo {
             case sessionPersistTime = "SessionPersistTime"
             case proxyType = "ProxyType"
             case ipv6 = "Ipv6"
+            case accelerateMainland = "AccelerateMainland"
         }
     }
 
@@ -86,13 +91,13 @@ extension Teo {
 
     /// 修改应用代理
     @inlinable @discardableResult
-    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyResponse> {
-        self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, accelerateMainland: AccelerateMainland? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyResponse> {
+        self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6, accelerateMainland: accelerateMainland), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理
     @inlinable @discardableResult
-    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
-        try await self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
+    public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, accelerateMainland: AccelerateMainland? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
+        try await self.modifyApplicationProxy(.init(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6, accelerateMainland: accelerateMainland), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -54,7 +54,7 @@ extension Ocr {
 
     /// 查询智慧表单任务状态
     ///
-    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func getTaskState(_ input: GetTaskStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskStateResponse> {
         self.client.execute(action: "GetTaskState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -62,7 +62,7 @@ extension Ocr {
 
     /// 查询智慧表单任务状态
     ///
-    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func getTaskState(_ input: GetTaskStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskStateResponse {
         try await self.client.execute(action: "GetTaskState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,7 +70,7 @@ extension Ocr {
 
     /// 查询智慧表单任务状态
     ///
-    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func getTaskState(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskStateResponse> {
         self.getTaskState(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
@@ -78,7 +78,7 @@ extension Ocr {
 
     /// 查询智慧表单任务状态
     ///
-    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超连接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
+    /// 支持查询智能表单录入任务的状态。本产品免费公测中，您可以点击demo（超链接：https://ocr.smartform.cloud.tencent.com/）试用，如需购买请与商务团队联系。
     @inlinable
     public func getTaskState(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskStateResponse {
         try await self.getTaskState(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)

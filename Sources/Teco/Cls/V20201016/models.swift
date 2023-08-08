@@ -165,13 +165,19 @@ extension Cls {
         /// 日志集ID。
         public let logsetId: String
 
-        public init(topicId: String, query: String, number: Int64, startTimeOffset: Int64, endTimeOffset: Int64, logsetId: String) {
+        /// 检索语法规则，默认值为0。
+        /// 0：Lucene语法，1：CQL语法。
+        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        public let syntaxRule: UInt64?
+
+        public init(topicId: String, query: String, number: Int64, startTimeOffset: Int64, endTimeOffset: Int64, logsetId: String, syntaxRule: UInt64? = nil) {
             self.topicId = topicId
             self.query = query
             self.number = number
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
             self.logsetId = logsetId
+            self.syntaxRule = syntaxRule
         }
 
         enum CodingKeys: String, CodingKey {
@@ -181,6 +187,7 @@ extension Cls {
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
             case logsetId = "LogsetId"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -219,6 +226,113 @@ extension Cls {
             case number = "Number"
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
+        }
+    }
+
+    /// 告警通知渠道组详情
+    public struct AlertHistoryNotice: TCOutputModel {
+        /// 通知渠道组名称
+        public let name: String
+
+        /// 通知渠道组ID
+        public let alarmNoticeId: String
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case alarmNoticeId = "AlarmNoticeId"
+        }
+    }
+
+    /// 告警历史详情
+    public struct AlertHistoryRecord: TCInputModel, TCOutputModel {
+        /// 告警历史ID
+        public let recordId: String
+
+        /// 告警策略ID
+        public let alarmId: String
+
+        /// 告警策略名称
+        public let alarmName: String
+
+        /// 监控对象ID
+        public let topicId: String
+
+        /// 监控对象名称
+        public let topicName: String
+
+        /// 监控对象所属地域
+        public let region: String
+
+        /// 触发条件
+        public let trigger: String
+
+        /// 持续周期，持续满足触发条件TriggerCount个周期后，再进行告警
+        public let triggerCount: Int64
+
+        /// 告警通知发送频率，单位为分钟
+        public let alarmPeriod: Int64
+
+        /// 通知渠道组
+        public let notices: [AlertHistoryNotice]
+
+        /// 告警持续时间，单位为分钟
+        public let duration: Int64
+
+        /// 告警状态，0代表未恢复，1代表已恢复，2代表已失效
+        public let status: Int64
+
+        /// 告警发生时间，毫秒级Unix时间戳
+        public let createTime: UInt64
+
+        /// 告警分组触发时对应的分组信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupTriggerCondition: [GroupTriggerConditionInfo]?
+
+        /// 告警级别，0代表警告(Warn)，1代表提醒(Info)，2代表紧急 (Critical)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alarmLevel: UInt64?
+
+        /// 监控对象类型。
+        /// 0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let monitorObjectType: UInt64?
+
+        public init(recordId: String, alarmId: String, alarmName: String, topicId: String, topicName: String, region: String, trigger: String, triggerCount: Int64, alarmPeriod: Int64, notices: [AlertHistoryNotice], duration: Int64, status: Int64, createTime: UInt64, groupTriggerCondition: [GroupTriggerConditionInfo]? = nil, alarmLevel: UInt64? = nil, monitorObjectType: UInt64? = nil) {
+            self.recordId = recordId
+            self.alarmId = alarmId
+            self.alarmName = alarmName
+            self.topicId = topicId
+            self.topicName = topicName
+            self.region = region
+            self.trigger = trigger
+            self.triggerCount = triggerCount
+            self.alarmPeriod = alarmPeriod
+            self.notices = notices
+            self.duration = duration
+            self.status = status
+            self.createTime = createTime
+            self.groupTriggerCondition = groupTriggerCondition
+            self.alarmLevel = alarmLevel
+            self.monitorObjectType = monitorObjectType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case recordId = "RecordId"
+            case alarmId = "AlarmId"
+            case alarmName = "AlarmName"
+            case topicId = "TopicId"
+            case topicName = "TopicName"
+            case region = "Region"
+            case trigger = "Trigger"
+            case triggerCount = "TriggerCount"
+            case alarmPeriod = "AlarmPeriod"
+            case notices = "Notices"
+            case duration = "Duration"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case groupTriggerCondition = "GroupTriggerCondition"
+            case alarmLevel = "AlarmLevel"
+            case monitorObjectType = "MonitorObjectType"
         }
     }
 
@@ -413,6 +527,14 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicName: String?
 
+        /// 高级采集配置。 Json字符串， Key/Value定义为如下：
+        /// - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        /// - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        /// - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        /// 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let advancedConfig: String?
+
         enum CodingKeys: String, CodingKey {
             case configExtraId = "ConfigExtraId"
             case name = "Name"
@@ -433,6 +555,7 @@ extension Cls {
             case logsetId = "LogsetId"
             case logsetName = "LogsetName"
             case topicName = "TopicName"
+            case advancedConfig = "AdvancedConfig"
         }
     }
 
@@ -485,6 +608,14 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userDefineRule: String?
 
+        /// 高级采集配置。 Json字符串， Key/Value定义为如下：
+        /// - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
+        /// - ClsAgentMaxDepth(最大目录深度)，取值范围: 大于等于0的整数
+        /// - ClsAgentParseFailMerge(合并解析失败日志)，取值范围: true或false
+        /// 样例：{"ClsAgentFileTimeout":0,"ClsAgentMaxDepth":10,"ClsAgentParseFailMerge":true}
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let advancedConfig: String?
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case name = "Name"
@@ -497,6 +628,7 @@ extension Cls {
             case updateTime = "UpdateTime"
             case createTime = "CreateTime"
             case userDefineRule = "UserDefineRule"
+            case advancedConfig = "AdvancedConfig"
         }
     }
 
@@ -816,6 +948,177 @@ extension Cls {
         }
     }
 
+    /// 仪表盘信息
+    public struct DashboardInfo: TCOutputModel {
+        /// 仪表盘id
+        public let dashboardId: String
+
+        /// 仪表盘名字
+        public let dashboardName: String
+
+        /// 仪表盘数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let data: String?
+
+        /// 创建仪表盘的时间
+        public let createTime: String
+
+        /// AssumerUin非空则表示创建该日志主题的服务方Uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assumerUin: UInt64?
+
+        /// RoleName非空则表示创建该日志主题的服务方使用的角色
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleName: String?
+
+        /// AssumerName非空则表示创建该日志主题的服务方名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assumerName: String?
+
+        /// 日志主题绑定的标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 仪表盘所在地域： 为了兼容老的地域。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dashboardRegion: String?
+
+        /// 修改仪表盘的时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 仪表盘对应的topic相关信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dashboardTopicInfos: [DashboardTopicInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case dashboardId = "DashboardId"
+            case dashboardName = "DashboardName"
+            case data = "Data"
+            case createTime = "CreateTime"
+            case assumerUin = "AssumerUin"
+            case roleName = "RoleName"
+            case assumerName = "AssumerName"
+            case tags = "Tags"
+            case dashboardRegion = "DashboardRegion"
+            case updateTime = "UpdateTime"
+            case dashboardTopicInfos = "DashboardTopicInfos"
+        }
+    }
+
+    /// 仪表盘关联的topic信息
+    public struct DashboardTopicInfo: TCInputModel, TCOutputModel {
+        /// 主题id
+        public let topicId: String
+
+        /// topic所在的地域
+        public let region: String
+
+        public init(topicId: String, region: String) {
+            self.topicId = topicId
+            self.region = region
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case region = "Region"
+        }
+    }
+
+    /// 数据加工的资源信息
+    public struct DataTransformResouceInfo: TCInputModel, TCOutputModel {
+        /// 目标主题id
+        public let topicId: String
+
+        /// 别名
+        public let alias: String
+
+        public init(topicId: String, alias: String) {
+            self.topicId = topicId
+            self.alias = alias
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case alias = "Alias"
+        }
+    }
+
+    /// 数据加工任务基本详情
+    public struct DataTransformTaskInfo: TCOutputModel {
+        /// 数据加工任务名称
+        public let name: String
+
+        /// 数据加工任务id
+        public let taskId: String
+
+        /// 任务启用状态，默认为1，正常开启,  2关闭
+        public let enableFlag: Int64
+
+        /// 加工任务类型，1： DSL， 2：SQL
+        public let type: Int64
+
+        /// 源日志主题
+        public let srcTopicId: String
+
+        /// 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
+        public let status: Int64
+
+        /// 加工任务创建时间
+        public let createTime: String
+
+        /// 最近修改时间
+        public let updateTime: String
+
+        /// 最后启用时间，如果需要重建集群，修改该时间
+        public let lastEnableTime: String
+
+        /// 日志主题名称
+        public let srcTopicName: String
+
+        /// 日志集id
+        public let logsetId: String
+
+        /// 加工任务目的topic_id以及别名
+        public let dstResources: [DataTransformResouceInfo]
+
+        /// 加工逻辑函数
+        public let etlContent: String
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case taskId = "TaskId"
+            case enableFlag = "EnableFlag"
+            case type = "Type"
+            case srcTopicId = "SrcTopicId"
+            case status = "Status"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case lastEnableTime = "LastEnableTime"
+            case srcTopicName = "SrcTopicName"
+            case logsetId = "LogsetId"
+            case dstResources = "DstResources"
+            case etlContent = "EtlContent"
+        }
+    }
+
+    /// 动态更新索引配置
+    ///
+    /// 注意：该功能尚处于内测阶段，如需使用请联系技术支持
+    public struct DynamicIndex: TCInputModel, TCOutputModel {
+        /// 动态索引配置开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Bool?
+
+        public init(status: Bool? = nil) {
+            self.status = status
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+        }
+    }
+
     /// 黑名单path信息
     public struct ExcludePathInfo: TCInputModel, TCOutputModel {
         /// 类型，选填File或Path
@@ -915,7 +1218,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginRegex: String?
 
-        /// 取的每个字段的key名字，为空的key代表丢弃这个字段，只有log_type为delimiter_log时有效，json_log的日志使用json本身的key
+        /// 取的每个字段的key名字，为空的key代表丢弃这个字段，只有log_type为delimiter_log时有效，json_log的日志使用json本身的key。限制100个。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [String]?
 
@@ -960,7 +1263,17 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parseProtocol: String?
 
-        public init(timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, protocol: String? = nil, address: String? = nil, parseProtocol: String? = nil) {
+        /// 元数据类型，0: 不使用元数据信息，1:使用机器组元数据，2:使用用户自定义元数据，3:使用采集配置路径，
+        public let metadataType: Int64?
+
+        /// 采集配置路径正则表达式，MetadataType为3时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pathRegex: String?
+
+        /// 用户自定义元数据信息，MetadataType为2时必填
+        public let metaTags: [MetaTagInfo]?
+
+        public init(timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, protocol: String? = nil, address: String? = nil, parseProtocol: String? = nil, metadataType: Int64? = nil, pathRegex: String? = nil, metaTags: [MetaTagInfo]? = nil) {
             self.timeKey = timeKey
             self.timeFormat = timeFormat
             self.delimiter = delimiter
@@ -976,6 +1289,9 @@ extension Cls {
             self.protocol = `protocol`
             self.address = address
             self.parseProtocol = parseProtocol
+            self.metadataType = metadataType
+            self.pathRegex = pathRegex
+            self.metaTags = metaTags
         }
 
         enum CodingKeys: String, CodingKey {
@@ -994,6 +1310,9 @@ extension Cls {
             case `protocol` = "Protocol"
             case address = "Address"
             case parseProtocol = "ParseProtocol"
+            case metadataType = "MetadataType"
+            case pathRegex = "PathRegex"
+            case metaTags = "MetaTags"
         }
     }
 
@@ -1067,6 +1386,20 @@ extension Cls {
         }
     }
 
+    /// 分组触发条件
+    public struct GroupTriggerConditionInfo: TCOutputModel {
+        /// 分组触发字段名称
+        public let key: String
+
+        /// 分组触发字段值
+        public let value: String
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
     /// 直方图详细信息
     public struct HistogramInfo: TCOutputModel {
         /// 统计周期内的日志条数
@@ -1115,14 +1448,175 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaFields: [String]?
 
-        public init(enableTag: Bool, metaFields: [String]) {
+        /// 投递Json格式，0：字符串方式投递；1:以结构化方式投递
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jsonType: Int64?
+
+        public init(enableTag: Bool, metaFields: [String], jsonType: Int64? = nil) {
             self.enableTag = enableTag
             self.metaFields = metaFields
+            self.jsonType = jsonType
         }
 
         enum CodingKeys: String, CodingKey {
             case enableTag = "EnableTag"
             case metaFields = "MetaFields"
+            case jsonType = "JsonType"
+        }
+    }
+
+    /// kafka协议消费内容
+    public struct KafkaConsumerContent: TCInputModel, TCOutputModel {
+        /// 消费格式 0:全文；1:json
+        public let format: Int64
+
+        /// 是否投递 TAG 信息
+        /// Format为0时，此字段不需要赋值
+        public let enableTag: Bool
+
+        /// 元数据信息列表, 可选值为：\_\_SOURCE\_\_、\_\_FILENAME\_\_
+        /// 、\_\_TIMESTAMP\_\_、\_\_HOSTNAME\_\_、\_\_PKGID\_\_
+        /// Format为0时，此字段不需要赋值
+        public let metaFields: [String]
+
+        /// tag数据处理方式：
+        /// 1:不平铺（默认值）
+        /// 2:平铺
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagTransaction: Int64?
+
+        /// 消费数据Json格式：
+        /// 1：不转义（默认格式）
+        /// 2：转义
+        public let jsonType: Int64?
+
+        public init(format: Int64, enableTag: Bool, metaFields: [String], tagTransaction: Int64? = nil, jsonType: Int64? = nil) {
+            self.format = format
+            self.enableTag = enableTag
+            self.metaFields = metaFields
+            self.tagTransaction = tagTransaction
+            self.jsonType = jsonType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case format = "Format"
+            case enableTag = "EnableTag"
+            case metaFields = "MetaFields"
+            case tagTransaction = "TagTransaction"
+            case jsonType = "JsonType"
+        }
+    }
+
+    /// Kafka访问协议
+    public struct KafkaProtocolInfo: TCInputModel, TCOutputModel {
+        /// 协议类型，支持的协议类型包括 plaintext、sasl_plaintext 或 sasl_ssl。建议使用 sasl_ssl，此协议会进行连接加密同时需要用户认证
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 加密类型，支持 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mechanism: String?
+
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        /// 用户密码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let password: String?
+
+        public init(protocol: String? = nil, mechanism: String? = nil, userName: String? = nil, password: String? = nil) {
+            self.protocol = `protocol`
+            self.mechanism = mechanism
+            self.userName = userName
+            self.password = password
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `protocol` = "Protocol"
+            case mechanism = "Mechanism"
+            case userName = "UserName"
+            case password = "Password"
+        }
+    }
+
+    /// Kafka导入配置信息
+    public struct KafkaRechargeInfo: TCOutputModel {
+        /// 主键ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 日志主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topicId: String?
+
+        /// Kafka导入任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 导入Kafka类型，0: 腾讯云CKafka，1: 用户自建Kafka
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaType: UInt64?
+
+        /// 腾讯云CKafka实例ID，KafkaType为0时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaInstance: String?
+
+        /// 服务地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serverAddr: String?
+
+        /// ServerAddr是否为加密连接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isEncryptionAddr: Bool?
+
+        /// 加密访问协议，IsEncryptionAddr参数为true时必填
+        public let `protocol`: KafkaProtocolInfo
+
+        /// 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userKafkaTopics: String?
+
+        /// 用户Kafka消费组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let consumerGroupName: String?
+
+        /// 状态   status 1: 运行中, 2: 暂停 ...
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 导入数据位置，-2:最早（默认），-1：最晚
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let offset: Int64?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 日志导入规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logRechargeRule: LogRechargeRuleInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case topicId = "TopicId"
+            case name = "Name"
+            case kafkaType = "KafkaType"
+            case kafkaInstance = "KafkaInstance"
+            case serverAddr = "ServerAddr"
+            case isEncryptionAddr = "IsEncryptionAddr"
+            case `protocol` = "Protocol"
+            case userKafkaTopics = "UserKafkaTopics"
+            case consumerGroupName = "ConsumerGroupName"
+            case status = "Status"
+            case offset = "Offset"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case logRechargeRule = "LogRechargeRule"
         }
     }
 
@@ -1293,6 +1787,95 @@ extension Cls {
         }
     }
 
+    /// 日志导入规则
+    public struct LogRechargeRuleInfo: TCInputModel, TCOutputModel {
+        /// 导入类型，支持json_log：json格式日志，minimalist_log: 单行全文，fullregex_log: 单行完全正则
+        public let rechargeType: String
+
+        /// 解析编码格式，0: UTF-8（默认值），1: GBK
+        public let encodingFormat: UInt64
+
+        /// 使用默认时间，true：开启（默认值）， flase：关闭
+        public let defaultTimeSwitch: Bool
+
+        /// 整条日志匹配规则，只有RechargeType为fullregex_log时有效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logRegex: String?
+
+        /// 解析失败日志是否上传，true表示上传，false表示不上传
+        public let unMatchLogSwitch: Bool?
+
+        /// 解析失败日志的键名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unMatchLogKey: String?
+
+        /// 解析失败日志时间来源，0: 系统当前时间，1: Kafka消息时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unMatchLogTimeSrc: UInt64?
+
+        /// 默认时间来源，0: 系统当前时间，1: Kafka消息时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultTimeSrc: UInt64?
+
+        /// 时间字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeKey: String?
+
+        /// 时间提取正则表达式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeRegex: String?
+
+        /// 时间字段格式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeFormat: String?
+
+        /// 时间字段时区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeZone: String?
+
+        /// 元数据信息，Kafka导入支持kafka_topic,kafka_partition,kafka_offset,kafka_timestamp
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metadata: [String]?
+
+        /// 日志Key列表，RechargeType为full_regex_log时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let keys: [String]?
+
+        public init(rechargeType: String, encodingFormat: UInt64, defaultTimeSwitch: Bool, logRegex: String? = nil, unMatchLogSwitch: Bool? = nil, unMatchLogKey: String? = nil, unMatchLogTimeSrc: UInt64? = nil, defaultTimeSrc: UInt64? = nil, timeKey: String? = nil, timeRegex: String? = nil, timeFormat: String? = nil, timeZone: String? = nil, metadata: [String]? = nil, keys: [String]? = nil) {
+            self.rechargeType = rechargeType
+            self.encodingFormat = encodingFormat
+            self.defaultTimeSwitch = defaultTimeSwitch
+            self.logRegex = logRegex
+            self.unMatchLogSwitch = unMatchLogSwitch
+            self.unMatchLogKey = unMatchLogKey
+            self.unMatchLogTimeSrc = unMatchLogTimeSrc
+            self.defaultTimeSrc = defaultTimeSrc
+            self.timeKey = timeKey
+            self.timeRegex = timeRegex
+            self.timeFormat = timeFormat
+            self.timeZone = timeZone
+            self.metadata = metadata
+            self.keys = keys
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case rechargeType = "RechargeType"
+            case encodingFormat = "EncodingFormat"
+            case defaultTimeSwitch = "DefaultTimeSwitch"
+            case logRegex = "LogRegex"
+            case unMatchLogSwitch = "UnMatchLogSwitch"
+            case unMatchLogKey = "UnMatchLogKey"
+            case unMatchLogTimeSrc = "UnMatchLogTimeSrc"
+            case defaultTimeSrc = "DefaultTimeSrc"
+            case timeKey = "TimeKey"
+            case timeRegex = "TimeRegex"
+            case timeFormat = "TimeFormat"
+            case timeZone = "TimeZone"
+            case metadata = "Metadata"
+            case keys = "Keys"
+        }
+    }
+
     /// 日志集相关信息
     public struct LogsetInfo: TCOutputModel {
         /// 日志集ID
@@ -1363,6 +1946,9 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceLogging: Bool?
 
+        /// 机器组元数据信息列表
+        public let metaTags: [MetaTagInfo]?
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -1373,6 +1959,7 @@ extension Cls {
             case updateStartTime = "UpdateStartTime"
             case updateEndTime = "UpdateEndTime"
             case serviceLogging = "ServiceLogging"
+            case metaTags = "MetaTags"
         }
     }
 
@@ -1382,9 +1969,9 @@ extension Cls {
         public let type: String
 
         /// 机器描述列表
-        public let values: [String]
+        public let values: [String]?
 
-        public init(type: String, values: [String]) {
+        public init(type: String, values: [String]? = nil) {
             self.type = type
             self.values = values
         }
@@ -1433,6 +2020,25 @@ extension Cls {
         }
     }
 
+    /// 元数据信息
+    public struct MetaTagInfo: TCInputModel, TCOutputModel {
+        /// 元数据key
+        public let key: String?
+
+        /// 元数据value
+        public let value: String?
+
+        public init(key: String? = nil, value: String? = nil) {
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
     /// 告警策略中监控任务的执行时间点
     public struct MonitorTime: TCInputModel, TCOutputModel {
         /// 可选值：
@@ -1451,6 +2057,25 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case time = "Time"
+        }
+    }
+
+    /// 多日志主题检索相关信息
+    public struct MultiTopicSearchInformation: TCInputModel {
+        /// 要检索分析的日志主题ID
+        public let topicId: String?
+
+        /// 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
+        public let context: String?
+
+        public init(topicId: String? = nil, context: String? = nil) {
+            self.topicId = topicId
+            self.context = context
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case context = "Context"
         }
     }
 
@@ -1570,6 +2195,46 @@ extension Cls {
         }
     }
 
+    /// 预览数据详情
+    public struct PreviewLogStatistic: TCInputModel, TCOutputModel {
+        /// 日志内容
+        public let logContent: String
+
+        /// 行号
+        public let lineNum: Int64
+
+        /// 目标日志主题
+        public let dstTopicId: String?
+
+        /// 失败错误码， 空字符串""表示正常
+        public let failReason: String?
+
+        /// 日志时间戳
+        public let time: String?
+
+        /// 目标topic-name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstTopicName: String?
+
+        public init(logContent: String, lineNum: Int64, dstTopicId: String? = nil, failReason: String? = nil, time: String? = nil, dstTopicName: String? = nil) {
+            self.logContent = logContent
+            self.lineNum = lineNum
+            self.dstTopicId = dstTopicId
+            self.failReason = failReason
+            self.time = time
+            self.dstTopicName = dstTopicName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case logContent = "LogContent"
+            case lineNum = "LineNum"
+            case dstTopicId = "DstTopicId"
+            case failReason = "FailReason"
+            case time = "Time"
+            case dstTopicName = "DstTopicName"
+        }
+    }
+
     /// 索引规则，FullText、KeyValue、Tag参数必须输入一个有效参数
     public struct RuleInfo: TCInputModel, TCOutputModel {
         /// 全文索引配置, 如果为空时代表未开启全文索引
@@ -1584,16 +2249,24 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: RuleTagInfo?
 
-        public init(fullText: FullTextInfo? = nil, keyValue: RuleKeyValueInfo? = nil, tag: RuleTagInfo? = nil) {
+        /// 动态索引配置，如果为空时代表未开启动态段索引
+        ///
+        /// 注意：该功能尚处于内测阶段，如需使用请联系技术支持
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dynamicIndex: DynamicIndex?
+
+        public init(fullText: FullTextInfo? = nil, keyValue: RuleKeyValueInfo? = nil, tag: RuleTagInfo? = nil, dynamicIndex: DynamicIndex? = nil) {
             self.fullText = fullText
             self.keyValue = keyValue
             self.tag = tag
+            self.dynamicIndex = dynamicIndex
         }
 
         enum CodingKeys: String, CodingKey {
             case fullText = "FullText"
             case keyValue = "KeyValue"
             case tag = "Tag"
+            case dynamicIndex = "DynamicIndex"
         }
     }
 
@@ -1632,6 +2305,116 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case caseSensitive = "CaseSensitive"
             case keyValues = "KeyValues"
+        }
+    }
+
+    /// ScheduledSql的资源信息
+    public struct ScheduledSqlResouceInfo: TCInputModel, TCOutputModel {
+        /// 目标主题id
+        public let topicId: String
+
+        /// 主题的地域信息
+        public let region: String?
+
+        /// 主题类型：0为日志主题，1为指标主题
+        public let bizType: Int64?
+
+        /// 指标名称
+        public let metricName: String?
+
+        public init(topicId: String, region: String? = nil, bizType: Int64? = nil, metricName: String? = nil) {
+            self.topicId = topicId
+            self.region = region
+            self.bizType = bizType
+            self.metricName = metricName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case region = "Region"
+            case bizType = "BizType"
+            case metricName = "MetricName"
+        }
+    }
+
+    /// ScheduledSql任务详情
+    public struct ScheduledSqlTaskInfo: TCOutputModel {
+        /// ScheduledSql任务id
+        public let taskId: String
+
+        /// ScheduledSql任务名称
+        public let name: String
+
+        /// 源日志主题id
+        public let srcTopicId: String
+
+        /// 源日志主题名称
+        public let srcTopicName: String
+
+        /// 定时SQL分析目标主题
+        public let dstResource: ScheduledSqlResouceInfo
+
+        /// 任务创建时间
+        public let createTime: String
+
+        /// 任务更新时间
+        public let updateTime: String
+
+        /// 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
+        ///
+        /// 5: 访问权限问题 6:内部故障 7:其他故障
+        public let status: Int64
+
+        /// 任务启用状态，1开启,  2关闭
+        public let enableFlag: Int64
+
+        /// 查询语句
+        public let scheduledSqlContent: String
+
+        /// 调度开始时间
+        public let processStartTime: String
+
+        /// 调度类型，1:持续运行 2:指定时间范围
+        public let processType: Int64
+
+        /// 调度结束时间，当process_type=2时为必传字段
+        public let processEndTime: String
+
+        /// 调度周期(分钟)
+        public let processPeriod: Int64
+
+        /// 查询的时间窗口. @m-15m, @m，意为近15分钟
+        public let processTimeWindow: String
+
+        /// 执行延迟(秒)
+        public let processDelay: Int64
+
+        /// 源topicId的地域信息
+        public let srcTopicRegion: String
+
+        /// 语法规则，0：Lucene语法，1：CQL语法
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let syntaxRule: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case name = "Name"
+            case srcTopicId = "SrcTopicId"
+            case srcTopicName = "SrcTopicName"
+            case dstResource = "DstResource"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case status = "Status"
+            case enableFlag = "EnableFlag"
+            case scheduledSqlContent = "ScheduledSqlContent"
+            case processStartTime = "ProcessStartTime"
+            case processType = "ProcessType"
+            case processEndTime = "ProcessEndTime"
+            case processPeriod = "ProcessPeriod"
+            case processTimeWindow = "ProcessTimeWindow"
+            case processDelay = "ProcessDelay"
+            case srcTopicRegion = "SrcTopicRegion"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -1683,6 +2466,31 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filenameMode: UInt64?
 
+        /// 投递数据范围的开始时间点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: Int64?
+
+        /// 投递数据范围的结束时间点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: Int64?
+
+        /// 历史数据投递的进度（仅当用户选择的数据内中历史数据时才有效）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let progress: Float?
+
+        /// 历史数据全部投递完成剩余的时间（仅当用户选择的数据中有历史数据时才有效）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remainTime: Int64?
+
+        /// 历史任务状态：
+        /// 0：实时任务
+        /// 1：任务准备中
+        /// 2：任务运行中
+        /// 3：任务运行异常
+        /// 4：任务运行结束
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let historyStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case shipperId = "ShipperId"
             case topicId = "TopicId"
@@ -1698,6 +2506,11 @@ extension Cls {
             case content = "Content"
             case createTime = "CreateTime"
             case filenameMode = "FilenameMode"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case progress = "Progress"
+            case remainTime = "RemainTime"
+            case historyStatus = "HistoryStatus"
         }
     }
 
@@ -1761,6 +2574,26 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
+        }
+    }
+
+    /// 仪表盘 topic与地域信息
+    public struct TopicIdAndRegion: TCInputModel {
+        /// 日志主题id
+        public let topicId: String
+
+        /// 日志主题id 所在的地域id
+        /// 地域ID - 访问链接查看详情：https://iwiki.woa.com/pages/viewpage.action?pageId=780556968#id-地域码表-一.region大区（标准地域）
+        public let regionId: UInt64
+
+        public init(topicId: String, regionId: UInt64) {
+            self.topicId = topicId
+            self.regionId = regionId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case regionId = "RegionId"
         }
     }
 

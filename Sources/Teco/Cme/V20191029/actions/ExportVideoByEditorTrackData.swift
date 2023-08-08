@@ -52,7 +52,7 @@ extension Cme {
         /// 导出的云点播媒资信息。当导出目标为 VOD 时必填。
         public let vodExportInfo: VODExportInfo?
 
-        /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，轨道数据中使的媒资该操作者需要拥有使用权限。
+        /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，轨道数据中使用的媒资该操作者需要拥有使用权限。
         public let `operator`: String?
 
         public init(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil) {

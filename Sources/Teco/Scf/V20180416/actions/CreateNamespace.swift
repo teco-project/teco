@@ -27,14 +27,19 @@ extension Scf {
         /// 命名空间描述
         public let description: String?
 
-        public init(namespace: String, description: String? = nil) {
+        /// 资源池配置
+        public let resourceEnv: NamespaceResourceEnv?
+
+        public init(namespace: String, description: String? = nil, resourceEnv: NamespaceResourceEnv? = nil) {
             self.namespace = namespace
             self.description = description
+            self.resourceEnv = resourceEnv
         }
 
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case description = "Description"
+            case resourceEnv = "ResourceEnv"
         }
     }
 
@@ -68,15 +73,15 @@ extension Scf {
     ///
     /// 该接口根据传入的参数创建命名空间。
     @inlinable @discardableResult
-    public func createNamespace(namespace: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
-        self.createNamespace(.init(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
+    public func createNamespace(namespace: String, description: String? = nil, resourceEnv: NamespaceResourceEnv? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
+        self.createNamespace(.init(namespace: namespace, description: description, resourceEnv: resourceEnv), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
     ///
     /// 该接口根据传入的参数创建命名空间。
     @inlinable @discardableResult
-    public func createNamespace(namespace: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        try await self.createNamespace(.init(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
+    public func createNamespace(namespace: String, description: String? = nil, resourceEnv: NamespaceResourceEnv? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.createNamespace(.init(namespace: namespace, description: description, resourceEnv: resourceEnv), region: region, logger: logger, on: eventLoop)
     }
 }

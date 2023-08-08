@@ -31,7 +31,10 @@ extension TCDcdbError {
             case deleteUserFailed = "FailedOperation.DeleteUserFailed"
             case disassociateSecurityGroupsFailed = "FailedOperation.DisassociateSecurityGroupsFailed"
             case getSecurityGroupDetailFailed = "FailedOperation.GetSecurityGroupDetailFailed"
+            case instanceCanNotReturn = "FailedOperation.InstanceCanNotReturn"
+            case instanceReturnFailed = "FailedOperation.InstanceReturnFailed"
             case modifyRightFailed = "FailedOperation.ModifyRightFailed"
+            case modifyUserConfigFailed = "FailedOperation.ModifyUserConfigFailed"
             case msgQueueOperationFailed = "FailedOperation.MsgQueueOperationFailed"
             case ossIsolateInstanceFailed = "FailedOperation.OssIsolateInstanceFailed"
             case ossOperationFailed = "FailedOperation.OssOperationFailed"
@@ -41,6 +44,7 @@ extension TCDcdbError {
             case setSvcLocationFailed = "FailedOperation.SetSvcLocationFailed"
             case sgChangeVip = "FailedOperation.SGChangeVip"
             case tagDryRunError = "FailedOperation.TagDryRunError"
+            case tagQuotaExceedLimit = "FailedOperation.TagQuotaExceedLimit"
             case updateInstanceInfoFailed = "FailedOperation.UpdateInstanceInfoFailed"
             case userNotAuthed = "FailedOperation.UserNotAuthed"
             case vipNotChange = "FailedOperation.VipNotChange"
@@ -131,9 +135,24 @@ extension TCDcdbError {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
 
+        /// 实例不可退费。
+        public static var instanceCanNotReturn: FailedOperation {
+            FailedOperation(.instanceCanNotReturn)
+        }
+
+        /// 实例退费失败。
+        public static var instanceReturnFailed: FailedOperation {
+            FailedOperation(.instanceReturnFailed)
+        }
+
         /// 修改账号权限失败。
         public static var modifyRightFailed: FailedOperation {
             FailedOperation(.modifyRightFailed)
+        }
+
+        /// 修改账号配置失败。
+        public static var modifyUserConfigFailed: FailedOperation {
+            FailedOperation(.modifyUserConfigFailed)
         }
 
         /// 消息队列操作失败。
@@ -179,6 +198,11 @@ extension TCDcdbError {
         /// 标签键值校验或鉴权失败。
         public static var tagDryRunError: FailedOperation {
             FailedOperation(.tagDryRunError)
+        }
+
+        /// 标签配额不足。
+        public static var tagQuotaExceedLimit: FailedOperation {
+            FailedOperation(.tagQuotaExceedLimit)
         }
 
         /// 实例安全组信息更新失败。
@@ -238,8 +262,14 @@ extension TCDcdbError {
                 code = .failedOperation_DisassociateSecurityGroupsFailed
             case .getSecurityGroupDetailFailed:
                 code = .failedOperation_GetSecurityGroupDetailFailed
+            case .instanceCanNotReturn:
+                code = .failedOperation_InstanceCanNotReturn
+            case .instanceReturnFailed:
+                code = .failedOperation_InstanceReturnFailed
             case .modifyRightFailed:
                 code = .failedOperation_ModifyRightFailed
+            case .modifyUserConfigFailed:
+                code = .failedOperation_ModifyUserConfigFailed
             case .msgQueueOperationFailed:
                 code = .failedOperation_MsgQueueOperationFailed
             case .ossIsolateInstanceFailed:
@@ -258,6 +288,8 @@ extension TCDcdbError {
                 code = .failedOperation_SGChangeVip
             case .tagDryRunError:
                 code = .failedOperation_TagDryRunError
+            case .tagQuotaExceedLimit:
+                code = .failedOperation_TagQuotaExceedLimit
             case .updateInstanceInfoFailed:
                 code = .failedOperation_UpdateInstanceInfoFailed
             case .userNotAuthed:

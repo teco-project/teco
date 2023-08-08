@@ -23,9 +23,6 @@ import TecoDateHelpers
 extension Antiddos {
     /// DescribeOverviewDDoSTrend请求参数结构体
     public struct DescribeOverviewDDoSTrendRequest: TCRequestModel {
-        /// 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
-        public let business: String
-
         /// 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
         public let period: Int64
 
@@ -44,28 +41,31 @@ extension Antiddos {
         /// 指标，取值[bps(攻击流量带宽，pps(攻击包速率))]
         public let metricName: String
 
+        /// DDoS防护子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
+        public let business: String?
+
         /// 资源实例的IP列表
         public let ipList: [String]?
 
         /// 资源实例ID
         public let id: String?
 
-        public init(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil) {
-            self.business = business
+        public init(period: Int64, startTime: Date, endTime: Date, metricName: String, business: String? = nil, ipList: [String]? = nil, id: String? = nil) {
             self.period = period
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
             self.metricName = metricName
+            self.business = business
             self.ipList = ipList
             self.id = id
         }
 
         enum CodingKeys: String, CodingKey {
-            case business = "Business"
             case period = "Period"
             case startTime = "StartTime"
             case endTime = "EndTime"
             case metricName = "MetricName"
+            case business = "Business"
             case ipList = "IpList"
             case id = "Id"
         }
@@ -103,13 +103,13 @@ extension Antiddos {
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
-        self.describeOverviewDDoSTrend(.init(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
+    public func describeOverviewDDoSTrend(period: Int64, startTime: Date, endTime: Date, metricName: String, business: String? = nil, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
+        self.describeOverviewDDoSTrend(.init(period: period, startTime: startTime, endTime: endTime, metricName: metricName, business: business, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
-        try await self.describeOverviewDDoSTrend(.init(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
+    public func describeOverviewDDoSTrend(period: Int64, startTime: Date, endTime: Date, metricName: String, business: String? = nil, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
+        try await self.describeOverviewDDoSTrend(.init(period: period, startTime: startTime, endTime: endTime, metricName: metricName, business: business, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

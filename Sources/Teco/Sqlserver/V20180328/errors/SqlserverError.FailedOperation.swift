@@ -26,6 +26,7 @@ extension TCSqlserverError {
             case gcsError = "FailedOperation.GcsError"
             case getVpcFailed = "FailedOperation.GetVpcFailed"
             case migrationLockError = "FailedOperation.MigrationLockError"
+            case notSupport = "FailedOperation.NotSupport"
             case queryOrderFailed = "FailedOperation.QueryOrderFailed"
             case queryPriceFailed = "FailedOperation.QueryPriceFailed"
             case securityGroupOperationError = "FailedOperation.SecurityGroupOperationError"
@@ -89,6 +90,11 @@ extension TCSqlserverError {
             FailedOperation(.migrationLockError)
         }
 
+        /// 不支持此类操作。
+        public static var notSupport: FailedOperation {
+            FailedOperation(.notSupport)
+        }
+
         /// 查询订单失败。
         public static var queryOrderFailed: FailedOperation {
             FailedOperation(.queryOrderFailed)
@@ -126,6 +132,8 @@ extension TCSqlserverError {
                 code = .failedOperation_GetVpcFailed
             case .migrationLockError:
                 code = .failedOperation_MigrationLockError
+            case .notSupport:
+                code = .failedOperation_NotSupport
             case .queryOrderFailed:
                 code = .failedOperation_QueryOrderFailed
             case .queryPriceFailed:

@@ -43,33 +43,33 @@ extension Dlc {
         }
     }
 
-    /// 删除notebook livy session
+    /// 删除交互式session（notebook）
     ///
-    /// 本接口（DeleteNotebookSession）用于删除notebook livy session
+    /// 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
     @inlinable @discardableResult
     public func deleteNotebookSession(_ input: DeleteNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookSessionResponse> {
         self.client.execute(action: "DeleteNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除notebook livy session
+    /// 删除交互式session（notebook）
     ///
-    /// 本接口（DeleteNotebookSession）用于删除notebook livy session
+    /// 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
     @inlinable @discardableResult
     public func deleteNotebookSession(_ input: DeleteNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookSessionResponse {
         try await self.client.execute(action: "DeleteNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除notebook livy session
+    /// 删除交互式session（notebook）
     ///
-    /// 本接口（DeleteNotebookSession）用于删除notebook livy session
+    /// 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
     @inlinable @discardableResult
     public func deleteNotebookSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookSessionResponse> {
         self.deleteNotebookSession(.init(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除notebook livy session
+    /// 删除交互式session（notebook）
     ///
-    /// 本接口（DeleteNotebookSession）用于删除notebook livy session
+    /// 本接口（DeleteNotebookSession）用于删除交互式session（notebook）
     @inlinable @discardableResult
     public func deleteNotebookSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookSessionResponse {
         try await self.deleteNotebookSession(.init(sessionId: sessionId), region: region, logger: logger, on: eventLoop)

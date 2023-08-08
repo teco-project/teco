@@ -55,6 +55,8 @@ extension TCTmtError {
         }
 
         /// 单次请求text超过长度限制，请保证单次请求⻓度低于2000。
+        ///
+        /// None
         public static var textTooLong: UnsupportedOperation {
             UnsupportedOperation(.textTooLong)
         }

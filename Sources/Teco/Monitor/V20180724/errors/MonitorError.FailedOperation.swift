@@ -51,6 +51,7 @@ extension TCMonitorError {
             case dimQueryRequestFailed = "FailedOperation.DimQueryRequestFailed"
             case divisionByZero = "FailedOperation.DivisionByZero"
             case doHTTPTransferFailed = "FailedOperation.DoHTTPTransferFailed"
+            case doTRPCTransferFailed = "FailedOperation.DoTRPCTransferFailed"
             case druidQueryFailed = "FailedOperation.DruidQueryFailed"
             case druidTableNotFound = "FailedOperation.DruidTableNotFound"
             case duplicateName = "FailedOperation.DuplicateName"
@@ -259,6 +260,11 @@ extension TCMonitorError {
             FailedOperation(.doHTTPTransferFailed)
         }
 
+        /// DoTRPCTransferFailed
+        public static var doTRPCTransferFailed: FailedOperation {
+            FailedOperation(.doTRPCTransferFailed)
+        }
+
         /// 查询分析数据失败。
         public static var druidQueryFailed: FailedOperation {
             FailedOperation(.druidQueryFailed)
@@ -436,6 +442,8 @@ extension TCMonitorError {
                 code = .failedOperation_DivisionByZero
             case .doHTTPTransferFailed:
                 code = .failedOperation_DoHTTPTransferFailed
+            case .doTRPCTransferFailed:
+                code = .failedOperation_DoTRPCTransferFailed
             case .druidQueryFailed:
                 code = .failedOperation_DruidQueryFailed
             case .druidTableNotFound:

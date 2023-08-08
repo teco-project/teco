@@ -39,6 +39,14 @@ extension Lcic {
         /// MemberJoin:成员加入
         /// MemberQuit:成员退出
         /// RecordFinish:录制结束
+        /// CameraOn: 摄像头打开
+        /// CameraOff: 摄像头关闭
+        /// MicOn: 麦克风打开
+        /// MicOff: 麦克风关闭
+        /// ScreenOn: 屏幕共享打开
+        /// ScreenOff: 屏幕共享关闭
+        /// VisibleOn: 页面可见
+        /// VisibleOff: 页面不可见
         public let keyword: String?
 
         public init(roomId: UInt64, sdkAppId: UInt64, page: UInt64, limit: UInt64, keyword: String? = nil) {

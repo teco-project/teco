@@ -19,6 +19,7 @@ import TecoCore
 extension TCMariadbError {
     public struct UnsupportedOperation: TCMariadbErrorType {
         enum Code: String {
+            case dbVersionNotSupported = "UnsupportedOperation.DbVersionNotSupported"
             case invalidOperation = "UnsupportedOperation.InvalidOperation"
             case oldProxyVersion = "UnsupportedOperation.OldProxyVersion"
             case operationNotApplicable = "UnsupportedOperation.OperationNotApplicable"
@@ -46,6 +47,10 @@ extension TCMariadbError {
             self.context = context
         }
 
+        public static var dbVersionNotSupported: UnsupportedOperation {
+            UnsupportedOperation(.dbVersionNotSupported)
+        }
+
         /// 不支持的无效操作。
         public static var invalidOperation: UnsupportedOperation {
             UnsupportedOperation(.invalidOperation)
@@ -64,6 +69,8 @@ extension TCMariadbError {
         public func asMariadbError() -> TCMariadbError {
             let code: TCMariadbError.Code
             switch self.error {
+            case .dbVersionNotSupported:
+                code = .unsupportedOperation_DbVersionNotSupported
             case .invalidOperation:
                 code = .unsupportedOperation_InvalidOperation
             case .oldProxyVersion:

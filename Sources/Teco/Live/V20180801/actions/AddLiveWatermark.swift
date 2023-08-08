@@ -42,13 +42,21 @@ extension Live {
         /// 水印高度，占直播原始画面高度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         public let height: Int64?
 
-        public init(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil) {
+        /// 背景水印宽度。默认宽度1920。
+        public let backgroundWidth: Int64?
+
+        /// 背景水印高度。默认高度1080。
+        public let backgroundHeight: Int64?
+
+        public init(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil) {
             self.pictureUrl = pictureUrl
             self.watermarkName = watermarkName
             self.xPosition = xPosition
             self.yPosition = yPosition
             self.width = width
             self.height = height
+            self.backgroundWidth = backgroundWidth
+            self.backgroundHeight = backgroundHeight
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +66,8 @@ extension Live {
             case yPosition = "YPosition"
             case width = "Width"
             case height = "Height"
+            case backgroundWidth = "BackgroundWidth"
+            case backgroundHeight = "BackgroundHeight"
         }
     }
 
@@ -77,8 +87,7 @@ extension Live {
 
     /// 添加水印
     ///
-    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
-    /// 水印数量上限 100，超过后需要先删除，再添加。
+    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
     public func addLiveWatermark(_ input: AddLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
         self.client.execute(action: "AddLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,8 +95,7 @@ extension Live {
 
     /// 添加水印
     ///
-    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
-    /// 水印数量上限 100，超过后需要先删除，再添加。
+    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
     public func addLiveWatermark(_ input: AddLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
         try await self.client.execute(action: "AddLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -95,19 +103,17 @@ extension Live {
 
     /// 添加水印
     ///
-    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
-    /// 水印数量上限 100，超过后需要先删除，再添加。
+    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
-        self.addLiveWatermark(.init(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), region: region, logger: logger, on: eventLoop)
+    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
+        self.addLiveWatermark(.init(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height, backgroundWidth: backgroundWidth, backgroundHeight: backgroundHeight), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加水印
     ///
-    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
-    /// 水印数量上限 100，超过后需要先删除，再添加。
+    /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
-        try await self.addLiveWatermark(.init(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), region: region, logger: logger, on: eventLoop)
+    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, backgroundWidth: Int64? = nil, backgroundHeight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
+        try await self.addLiveWatermark(.init(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height, backgroundWidth: backgroundWidth, backgroundHeight: backgroundHeight), region: region, logger: logger, on: eventLoop)
     }
 }

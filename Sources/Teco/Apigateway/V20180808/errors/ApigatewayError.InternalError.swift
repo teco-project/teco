@@ -20,9 +20,11 @@ extension TCApigatewayError {
     public struct InternalError: TCApigatewayErrorType {
         enum Code: String {
             case apigwException = "InternalError.ApigwException"
+            case camException = "InternalError.CamException"
             case cauthException = "InternalError.CauthException"
             case clbException = "InternalError.ClbException"
             case ossException = "InternalError.OssException"
+            case returnableException = "InternalError.ReturnableException"
             case scfException = "InternalError.ScfException"
             case tsfException = "InternalError.TsfException"
             case vpcException = "InternalError.VpcException"
@@ -56,6 +58,11 @@ extension TCApigatewayError {
             InternalError(.apigwException)
         }
 
+        /// CAM内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
+        public static var camException: InternalError {
+            InternalError(.camException)
+        }
+
         /// CAuth内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
         public static var cauthException: InternalError {
             InternalError(.cauthException)
@@ -69,6 +76,11 @@ extension TCApigatewayError {
         /// oss内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
         public static var ossException: InternalError {
             InternalError(.ossException)
+        }
+
+        /// 标签回调失败。
+        public static var returnableException: InternalError {
+            InternalError(.returnableException)
         }
 
         /// SCF内部请求错误，请稍后重试。若无法解决，请联系智能客服或提交工单。
@@ -96,12 +108,16 @@ extension TCApigatewayError {
             switch self.error {
             case .apigwException:
                 code = .internalError_ApigwException
+            case .camException:
+                code = .internalError_CamException
             case .cauthException:
                 code = .internalError_CauthException
             case .clbException:
                 code = .internalError_ClbException
             case .ossException:
                 code = .internalError_OssException
+            case .returnableException:
+                code = .internalError_ReturnableException
             case .scfException:
                 code = .internalError_ScfException
             case .tsfException:

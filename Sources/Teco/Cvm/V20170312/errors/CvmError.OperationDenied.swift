@@ -19,6 +19,7 @@ import TecoCore
 extension TCCvmError {
     public struct OperationDenied: TCCvmErrorType {
         enum Code: String {
+            case accountNotSupported = "OperationDenied.AccountNotSupported"
             case chcInstallCloudImageWithoutDeployNetwork = "OperationDenied.ChcInstallCloudImageWithoutDeployNetwork"
             case innerUserProhibitAction = "OperationDenied.InnerUserProhibitAction"
             case instanceOperationInProgress = "OperationDenied.InstanceOperationInProgress"
@@ -46,6 +47,10 @@ extension TCCvmError {
             self.context = context
         }
 
+        public static var accountNotSupported: OperationDenied {
+            OperationDenied(.accountNotSupported)
+        }
+
         /// 不允许未配置部署网络的CHC安装云上镜像。
         public static var chcInstallCloudImageWithoutDeployNetwork: OperationDenied {
             OperationDenied(.chcInstallCloudImageWithoutDeployNetwork)
@@ -64,6 +69,8 @@ extension TCCvmError {
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
+            case .accountNotSupported:
+                code = .operationDenied_AccountNotSupported
             case .chcInstallCloudImageWithoutDeployNetwork:
                 code = .operationDenied_ChcInstallCloudImageWithoutDeployNetwork
             case .innerUserProhibitAction:

@@ -30,7 +30,7 @@ extension Ess {
         /// 撤销原因，最长200个字符；
         public let cancelMessage: String
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil) {
@@ -58,7 +58,7 @@ extension Ess {
         }
     }
 
-    /// 撤销签署流程
+    /// 撤销单个签署流程
     ///
     /// 用于撤销签署流程
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
@@ -68,7 +68,7 @@ extension Ess {
         self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销签署流程
+    /// 撤销单个签署流程
     ///
     /// 用于撤销签署流程
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
@@ -78,7 +78,7 @@ extension Ess {
         try await self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销签署流程
+    /// 撤销单个签署流程
     ///
     /// 用于撤销签署流程
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
@@ -88,7 +88,7 @@ extension Ess {
         self.cancelFlow(.init(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销签署流程
+    /// 撤销单个签署流程
     ///
     /// 用于撤销签署流程
     /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。

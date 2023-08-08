@@ -38,26 +38,26 @@ extension Clb {
         /// 在私有网络内购买内网负载均衡实例的情况下，必须指定子网 ID，内网负载均衡实例的 VIP 将从这个子网中产生。创建内网负载均衡实例时，此参数必填。
         public let subnetId: String?
 
-        /// 负载均衡实例所属的项目 ID，可以通过 [DescribeProject](https://cloud.tencent.com/document/product/378/4400) 接口获取。不填此参数则视为默认项目。
+        /// 负载均衡实例所属的项目 ID，可以通过 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 接口获取。不填此参数则视为默认项目。
         public let projectId: Int64?
 
-        /// 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPV6、IPv6FullChain，默认值 IPV4。说明：取值为IPV6表示为IPV6 NAT64版本；取值为IPv6FullChain，表示为IPv6版本。
+        /// 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPV6、IPv6FullChain，不区分大小写，默认值 IPV4。说明：取值为IPV6表示为IPV6 NAT64版本；取值为IPv6FullChain，表示为IPv6版本。
         public let addressIPVersion: String?
 
         /// 创建负载均衡的个数，默认值 1。
         public let number: UInt64?
 
         /// 仅适用于公网负载均衡。设置跨可用区容灾时的主可用区ID，例如 100001 或 ap-guangzhou-1
-        /// 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区，平台将为您自动选择最佳备可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主可用区的列表。
+        /// 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区。目前仅广州、上海、南京、北京、中国香港、首尔地域的 IPv4 版本的 CLB 支持主备可用区。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213) 接口查询一个地域的主可用区的列表。
         public let masterZoneId: String?
 
         /// 仅适用于公网负载均衡。可用区ID，指定可用区以创建负载均衡实例。如：ap-guangzhou-1。
         public let zoneId: String?
 
-        /// 仅适用于公网负载均衡。负载均衡的网络计费模式。
+        /// 仅对内网属性的性能容量型实例和公网属性的所有实例生效。
         public let internetAccessible: InternetAccessible?
 
-        /// 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
+        /// 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 [DescribeResources](https://cloud.tencent.com/document/api/214/70213)  接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
         public let vipIsp: String?
 
         /// 购买负载均衡的同时，给负载均衡打上标签，最大支持20个标签键值对。
@@ -74,9 +74,8 @@ extension Clb {
         public let exclusiveCluster: ExclusiveCluster?
 
         /// 创建性能容量型实例。
-        /// <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示创建按量计费模式下的默认规格的性能容量型实例。
-        /// <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
-        /// <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
+        /// <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示超强型1规格。
+        /// <ul><li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
         public let slaType: String?
 
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
@@ -101,7 +100,10 @@ extension Clb {
         /// Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
         public let loadBalancerPassToTarget: Bool?
 
-        public init(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil) {
+        /// 创建域名化负载均衡。
+        public let dynamicVip: Bool?
+
+        public init(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, dynamicVip: Bool? = nil) {
             self.loadBalancerType = loadBalancerType
             self.forward = forward
             self.loadBalancerName = loadBalancerName
@@ -126,6 +128,7 @@ extension Clb {
             self.slaveZoneId = slaveZoneId
             self.eipAddressId = eipAddressId
             self.loadBalancerPassToTarget = loadBalancerPassToTarget
+            self.dynamicVip = dynamicVip
         }
 
         enum CodingKeys: String, CodingKey {
@@ -153,6 +156,7 @@ extension Clb {
             case slaveZoneId = "SlaveZoneId"
             case eipAddressId = "EipAddressId"
             case loadBalancerPassToTarget = "LoadBalancerPassToTarget"
+            case dynamicVip = "DynamicVip"
         }
     }
 
@@ -203,8 +207,8 @@ extension Clb {
     /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
     /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
     @inlinable
-    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
-        self.createLoadBalancer(.init(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
+    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, dynamicVip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
+        self.createLoadBalancer(.init(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget, dynamicVip: dynamicVip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买负载均衡实例
@@ -213,7 +217,7 @@ extension Clb {
     /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
     /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
     @inlinable
-    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.createLoadBalancer(.init(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
+    public func createLoadBalancer(loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil, dynamicVip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.createLoadBalancer(.init(loadBalancerType: loadBalancerType, forward: forward, loadBalancerName: loadBalancerName, vpcId: vpcId, subnetId: subnetId, projectId: projectId, addressIPVersion: addressIPVersion, number: number, masterZoneId: masterZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, tags: tags, vip: vip, bandwidthPackageId: bandwidthPackageId, exclusiveCluster: exclusiveCluster, slaType: slaType, clientToken: clientToken, snatPro: snatPro, snatIps: snatIps, clusterTag: clusterTag, slaveZoneId: slaveZoneId, eipAddressId: eipAddressId, loadBalancerPassToTarget: loadBalancerPassToTarget, dynamicVip: dynamicVip), region: region, logger: logger, on: eventLoop)
     }
 }

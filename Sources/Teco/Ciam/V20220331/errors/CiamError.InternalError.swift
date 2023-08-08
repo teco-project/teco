@@ -19,7 +19,10 @@ import TecoCore
 extension TCCiamError {
     public struct InternalError: TCCiamErrorType {
         enum Code: String {
+            case judgeUserExistException = "InternalError.JudgeUserExistException"
             case unknownError = "InternalError.UnknownError"
+            case userStoreCreateSecretFail = "InternalError.UserStoreCreateSecretFail"
+            case userStoreDeleteUserFail = "InternalError.UserStoreDeleteUserFail"
             case other = "InternalError"
         }
 
@@ -45,9 +48,28 @@ extension TCCiamError {
             self.context = context
         }
 
+        /// 判断存在用户内部请求错误，请稍后重试。
+        public static var judgeUserExistException: InternalError {
+            InternalError(.judgeUserExistException)
+        }
+
         /// 未知错误。
         public static var unknownError: InternalError {
             InternalError(.unknownError)
+        }
+
+        /// 创建用户目录时创建秘钥失败。
+        ///
+        /// 内部错误
+        public static var userStoreCreateSecretFail: InternalError {
+            InternalError(.userStoreCreateSecretFail)
+        }
+
+        /// 删除用户目录时删除用户失败。
+        ///
+        /// 内部错误
+        public static var userStoreDeleteUserFail: InternalError {
+            InternalError(.userStoreDeleteUserFail)
         }
 
         /// 内部错误。
@@ -58,8 +80,14 @@ extension TCCiamError {
         public func asCiamError() -> TCCiamError {
             let code: TCCiamError.Code
             switch self.error {
+            case .judgeUserExistException:
+                code = .internalError_JudgeUserExistException
             case .unknownError:
                 code = .internalError_UnknownError
+            case .userStoreCreateSecretFail:
+                code = .internalError_UserStoreCreateSecretFail
+            case .userStoreDeleteUserFail:
+                code = .internalError_UserStoreDeleteUserFail
             case .other:
                 code = .internalError
             }

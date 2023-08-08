@@ -25,8 +25,10 @@ extension TCScfError {
             case cos = "UnsupportedOperation.Cos"
             case eipFixed = "UnsupportedOperation.EipFixed"
             case notSupportRegion = "UnsupportedOperation.NotSupportRegion"
+            case publishVersion = "UnsupportedOperation.PublishVersion"
             case region = "UnsupportedOperation.Region"
             case trigger = "UnsupportedOperation.Trigger"
+            case updateFunctionCode = "UnsupportedOperation.UpdateFunctionCode"
             case updateFunctionEventInvokeConfig = "UnsupportedOperation.UpdateFunctionEventInvokeConfig"
             case vpcConfig = "UnsupportedOperation.VpcConfig"
             case other = "UnsupportedOperation"
@@ -86,6 +88,11 @@ extension TCScfError {
             UnsupportedOperation(.notSupportRegion)
         }
 
+        /// 请检查资源状态。
+        public static var publishVersion: UnsupportedOperation {
+            UnsupportedOperation(.publishVersion)
+        }
+
         /// 不支持此地域。
         public static var region: UnsupportedOperation {
             UnsupportedOperation(.region)
@@ -94,6 +101,11 @@ extension TCScfError {
         /// Trigger操作不支持。
         public static var trigger: UnsupportedOperation {
             UnsupportedOperation(.trigger)
+        }
+
+        /// 请检查参数。
+        public static var updateFunctionCode: UnsupportedOperation {
+            UnsupportedOperation(.updateFunctionCode)
         }
 
         /// 指定的配置暂不支持，请修正后再试。
@@ -126,10 +138,14 @@ extension TCScfError {
                 code = .unsupportedOperation_EipFixed
             case .notSupportRegion:
                 code = .unsupportedOperation_NotSupportRegion
+            case .publishVersion:
+                code = .unsupportedOperation_PublishVersion
             case .region:
                 code = .unsupportedOperation_Region
             case .trigger:
                 code = .unsupportedOperation_Trigger
+            case .updateFunctionCode:
+                code = .unsupportedOperation_UpdateFunctionCode
             case .updateFunctionEventInvokeConfig:
                 code = .unsupportedOperation_UpdateFunctionEventInvokeConfig
             case .vpcConfig:

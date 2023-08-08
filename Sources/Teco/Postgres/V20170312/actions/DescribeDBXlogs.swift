@@ -98,57 +98,57 @@ extension Postgres {
         }
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable
     public func describeDBXlogs(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
         self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable
     public func describeDBXlogs(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
         try await self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable
     public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
         self.describeDBXlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable
     public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
         try await self.describeDBXlogs(.init(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable
     public func describeDBXlogsPaginated(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Xlog])> {
         self.client.paginate(input: input, region: region, command: self.describeDBXlogs, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     @inlinable @discardableResult
     public func describeDBXlogsPaginated(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDBXlogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDBXlogs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例Xlog列表
+    /// 获取实例Xlog列表（废弃）
     ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。本接口已废弃，推荐使用接口[DescribeLogBackups](https://cloud.tencent.com/document/api/409/89021)替代。
     ///
     /// - Returns: `AsyncSequence`s of `Xlog` and `DescribeDBXlogsResponse` that can be iterated over asynchronously on demand.
     @inlinable

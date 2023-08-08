@@ -28,6 +28,7 @@ public struct TCBdaError: TCBdaErrorType {
     enum Code: String {
         case failedOperation_AudioDecodeFailed = "FailedOperation.AudioDecodeFailed"
         case failedOperation_AudioEncodeFailed = "FailedOperation.AudioEncodeFailed"
+        case failedOperation_BalanceInsufficient = "FailedOperation.BalanceInsufficient"
         case failedOperation_BodyFeatureFail = "FailedOperation.BodyFeatureFail"
         case failedOperation_BodyJointsFail = "FailedOperation.BodyJointsFail"
         case failedOperation_BodyQualityNotQualified = "FailedOperation.BodyQualityNotQualified"
@@ -142,6 +143,11 @@ public struct TCBdaError: TCBdaErrorType {
     /// 音频编码失败。
     public static var failedOperation_AudioEncodeFailed: TCBdaError {
         TCBdaError(.failedOperation_AudioEncodeFailed)
+    }
+
+    /// 余额不足，开通失败，请充值后再开通。
+    public static var failedOperation_BalanceInsufficient: TCBdaError {
+        TCBdaError(.failedOperation_BalanceInsufficient)
     }
 
     /// 人体特征检测失败。

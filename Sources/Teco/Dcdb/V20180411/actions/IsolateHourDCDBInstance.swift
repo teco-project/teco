@@ -21,7 +21,7 @@ import TecoCore
 extension Dcdb {
     /// IsolateHourDCDBInstance请求参数结构体
     public struct IsolateHourDCDBInstanceRequest: TCRequestModel {
-        /// 实例uuid列表
+        /// 待升级的实例ID列表。形如：["dcdbt-ow728lmc"]，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceIds: [String]
 
         public init(instanceIds: [String]) {
@@ -51,25 +51,25 @@ extension Dcdb {
         }
     }
 
-    /// 隔离DCDB后付费实例
+    /// 隔离TDSQL按量计费实例
     @inlinable
     public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
         self.client.execute(action: "IsolateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 隔离DCDB后付费实例
+    /// 隔离TDSQL按量计费实例
     @inlinable
     public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
         try await self.client.execute(action: "IsolateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 隔离DCDB后付费实例
+    /// 隔离TDSQL按量计费实例
     @inlinable
     public func isolateHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
         self.isolateHourDCDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 隔离DCDB后付费实例
+    /// 隔离TDSQL按量计费实例
     @inlinable
     public func isolateHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
         try await self.isolateHourDCDBInstance(.init(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)

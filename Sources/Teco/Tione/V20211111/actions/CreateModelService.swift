@@ -21,9 +21,6 @@ import TecoCore
 extension Tione {
     /// CreateModelService请求参数结构体
     public struct CreateModelServiceRequest: TCRequestModel {
-        /// 镜像信息，配置服务运行所需的镜像地址等信息
-        public let imageInfo: ImageInfo
-
         /// 新增版本时需要填写
         public let serviceGroupId: String?
 
@@ -33,7 +30,7 @@ extension Tione {
         /// 模型服务的描述
         public let serviceDescription: String?
 
-        /// 付费模式,有 PREPAID 、 POSTPAID_BY_HOUR 和 HYBRID_PAID 三种
+        /// 付费模式,有 PREPAID （包年包月）和 POSTPAID_BY_HOUR（按量付费）
         public let chargeType: String?
 
         /// 预付费模式下所属的资源组id，同服务组下唯一
@@ -42,10 +39,13 @@ extension Tione {
         /// 模型信息，需要挂载模型时填写
         public let modelInfo: ModelInfo?
 
+        /// 镜像信息，配置服务运行所需的镜像地址等信息
+        public let imageInfo: ImageInfo?
+
         /// 环境变量，可选参数，用于配置容器中的环境变量
         public let env: [EnvVar]?
 
-        /// 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
+        /// 资源描述，指定包年包月模式下的cpu,mem,gpu等信息，后付费无需填写
         public let resources: ResourceInfo?
 
         /// 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
@@ -125,14 +125,20 @@ extension Tione {
         /// 回调地址，用于回调创建服务状态信息，回调格式&内容详情见：[TI-ONE 接口回调说明](https://cloud.tencent.com/document/product/851/84292)
         public let callbackUrl: String?
 
-        public init(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil) {
-            self.imageInfo = imageInfo
+        /// 是否开启模型的加速, 仅对StableDiffusion(动态加速)格式的模型有效。
+        public let modelTurboEnable: Bool?
+
+        /// 服务分类
+        public let serviceCategory: String?
+
+        public init(serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil, modelTurboEnable: Bool? = nil, serviceCategory: String? = nil) {
             self.serviceGroupId = serviceGroupId
             self.serviceGroupName = serviceGroupName
             self.serviceDescription = serviceDescription
             self.chargeType = chargeType
             self.resourceGroupId = resourceGroupId
             self.modelInfo = modelInfo
+            self.imageInfo = imageInfo
             self.env = env
             self.resources = resources
             self.instanceType = instanceType
@@ -153,16 +159,18 @@ extension Tione {
             self.volumeMount = volumeMount
             self.serviceLimit = serviceLimit
             self.callbackUrl = callbackUrl
+            self.modelTurboEnable = modelTurboEnable
+            self.serviceCategory = serviceCategory
         }
 
         enum CodingKeys: String, CodingKey {
-            case imageInfo = "ImageInfo"
             case serviceGroupId = "ServiceGroupId"
             case serviceGroupName = "ServiceGroupName"
             case serviceDescription = "ServiceDescription"
             case chargeType = "ChargeType"
             case resourceGroupId = "ResourceGroupId"
             case modelInfo = "ModelInfo"
+            case imageInfo = "ImageInfo"
             case env = "Env"
             case resources = "Resources"
             case instanceType = "InstanceType"
@@ -183,6 +191,8 @@ extension Tione {
             case volumeMount = "VolumeMount"
             case serviceLimit = "ServiceLimit"
             case callbackUrl = "CallbackUrl"
+            case modelTurboEnable = "ModelTurboEnable"
+            case serviceCategory = "ServiceCategory"
         }
     }
 
@@ -221,15 +231,15 @@ extension Tione {
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
-        self.createModelService(.init(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
+    public func createModelService(serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil, modelTurboEnable: Bool? = nil, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
+        self.createModelService(.init(serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, imageInfo: imageInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit, callbackUrl: callbackUrl, modelTurboEnable: modelTurboEnable, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
-        try await self.createModelService(.init(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
+    public func createModelService(serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, callbackUrl: String? = nil, modelTurboEnable: Bool? = nil, serviceCategory: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
+        try await self.createModelService(.init(serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, imageInfo: imageInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit, callbackUrl: callbackUrl, modelTurboEnable: modelTurboEnable, serviceCategory: serviceCategory), region: region, logger: logger, on: eventLoop)
     }
 }

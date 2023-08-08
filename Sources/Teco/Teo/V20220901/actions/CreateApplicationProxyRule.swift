@@ -59,12 +59,15 @@ extension Teo {
         /// <li>false：关闭。</li>默认值：false。
         public let sessionPersist: Bool?
 
+        /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
+        public let sessionPersistTime: UInt64?
+
         /// 源站端口，支持格式：
         /// <li>单端口：80；</li>
         /// <li>端口段：81-90，81至90端口。</li>
         public let originPort: String?
 
-        public init(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil) {
+        public init(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.proto = proto
@@ -73,6 +76,7 @@ extension Teo {
             self.originValue = originValue
             self.forwardClientIp = forwardClientIp
             self.sessionPersist = sessionPersist
+            self.sessionPersistTime = sessionPersistTime
             self.originPort = originPort
         }
 
@@ -85,6 +89,7 @@ extension Teo {
             case originValue = "OriginValue"
             case forwardClientIp = "ForwardClientIp"
             case sessionPersist = "SessionPersist"
+            case sessionPersistTime = "SessionPersistTime"
             case originPort = "OriginPort"
         }
     }
@@ -117,13 +122,13 @@ extension Teo {
 
     /// 创建应用代理规则
     @inlinable
-    public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRuleResponse> {
-        self.createApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
+    public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRuleResponse> {
+        self.createApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用代理规则
     @inlinable
-    public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRuleResponse {
-        try await self.createApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
+    public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRuleResponse {
+        try await self.createApplicationProxyRule(.init(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, sessionPersistTime: sessionPersistTime, originPort: originPort), region: region, logger: logger, on: eventLoop)
     }
 }

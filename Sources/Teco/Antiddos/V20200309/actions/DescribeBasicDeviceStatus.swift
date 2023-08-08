@@ -22,14 +22,24 @@ extension Antiddos {
     /// DescribeBasicDeviceStatus请求参数结构体
     public struct DescribeBasicDeviceStatusRequest: TCRequestModel {
         /// IP 资源列表
-        public let ipList: [String]
+        public let ipList: [String]?
 
-        public init(ipList: [String]) {
+        /// 域名化资源传id
+        public let idList: [String]?
+
+        /// 地域名称
+        public let filterRegion: UInt64?
+
+        public init(ipList: [String]? = nil, idList: [String]? = nil, filterRegion: UInt64? = nil) {
             self.ipList = ipList
+            self.idList = idList
+            self.filterRegion = filterRegion
         }
 
         enum CodingKeys: String, CodingKey {
             case ipList = "IpList"
+            case idList = "IdList"
+            case filterRegion = "FilterRegion"
         }
     }
 
@@ -41,11 +51,16 @@ extension Antiddos {
         /// 3 - 攻击状态
         public let data: [KeyValue]
 
+        /// 域名化资产的名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clbData: [KeyValue]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case data = "Data"
+            case clbData = "CLBData"
             case requestId = "RequestId"
         }
     }
@@ -64,13 +79,13 @@ extension Antiddos {
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
-        self.describeBasicDeviceStatus(.init(ipList: ipList), region: region, logger: logger, on: eventLoop)
+    public func describeBasicDeviceStatus(ipList: [String]? = nil, idList: [String]? = nil, filterRegion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
+        self.describeBasicDeviceStatus(.init(ipList: ipList, idList: idList, filterRegion: filterRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
-        try await self.describeBasicDeviceStatus(.init(ipList: ipList), region: region, logger: logger, on: eventLoop)
+    public func describeBasicDeviceStatus(ipList: [String]? = nil, idList: [String]? = nil, filterRegion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
+        try await self.describeBasicDeviceStatus(.init(ipList: ipList, idList: idList, filterRegion: filterRegion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -68,33 +68,33 @@ extension Postgres {
         }
     }
 
-    /// 添加实例网络
+    /// 创建实例网络
     ///
-    /// 可对实例进行网络的添加操作。
+    /// 本接口（CreateDBInstanceNetworkAccess）用于创建实例网络。
     @inlinable
     public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
         self.client.execute(action: "CreateDBInstanceNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加实例网络
+    /// 创建实例网络
     ///
-    /// 可对实例进行网络的添加操作。
+    /// 本接口（CreateDBInstanceNetworkAccess）用于创建实例网络。
     @inlinable
     public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
         try await self.client.execute(action: "CreateDBInstanceNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加实例网络
+    /// 创建实例网络
     ///
-    /// 可对实例进行网络的添加操作。
+    /// 本接口（CreateDBInstanceNetworkAccess）用于创建实例网络。
     @inlinable
     public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
         self.createDBInstanceNetworkAccess(.init(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加实例网络
+    /// 创建实例网络
     ///
-    /// 可对实例进行网络的添加操作。
+    /// 本接口（CreateDBInstanceNetworkAccess）用于创建实例网络。
     @inlinable
     public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
         try await self.createDBInstanceNetworkAccess(.init(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)

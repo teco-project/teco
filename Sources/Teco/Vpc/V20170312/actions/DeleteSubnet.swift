@@ -45,7 +45,7 @@ extension Vpc {
 
     /// 删除子网
     ///
-    /// 本接口（DeleteSubnet）用于用于删除子网（Subnet）。
+    /// 本接口（DeleteSubnet）用于删除子网（Subnet）。
     /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、NoSQL、弹性网卡等资源。
     @inlinable @discardableResult
     public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
@@ -54,7 +54,7 @@ extension Vpc {
 
     /// 删除子网
     ///
-    /// 本接口（DeleteSubnet）用于用于删除子网（Subnet）。
+    /// 本接口（DeleteSubnet）用于删除子网（Subnet）。
     /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、NoSQL、弹性网卡等资源。
     @inlinable @discardableResult
     public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
@@ -63,7 +63,7 @@ extension Vpc {
 
     /// 删除子网
     ///
-    /// 本接口（DeleteSubnet）用于用于删除子网（Subnet）。
+    /// 本接口（DeleteSubnet）用于删除子网（Subnet）。
     /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、NoSQL、弹性网卡等资源。
     @inlinable @discardableResult
     public func deleteSubnet(subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
@@ -72,7 +72,7 @@ extension Vpc {
 
     /// 删除子网
     ///
-    /// 本接口（DeleteSubnet）用于用于删除子网（Subnet）。
+    /// 本接口（DeleteSubnet）用于删除子网（Subnet）。
     /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、NoSQL、弹性网卡等资源。
     @inlinable @discardableResult
     public func deleteSubnet(subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {

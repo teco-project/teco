@@ -510,10 +510,19 @@ extension Ecm {
         /// 磁盘大小（GB）
         public let diskSize: Int64
 
+        /// 是否随实例删除。
+        public let deleteWithInstance: Bool
+
+        /// 快照ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let snapshotId: String?
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskId = "DiskId"
             case diskSize = "DiskSize"
+            case deleteWithInstance = "DeleteWithInstance"
+            case snapshotId = "SnapshotId"
         }
     }
 
@@ -735,6 +744,41 @@ extension Ecm {
             case providerNodeNum = "ProviderNodeNum"
             case provederInstanceNum = "ProvederInstanceNum"
             case zoneInstanceInfoSet = "ZoneInstanceInfoSet"
+        }
+    }
+
+    /// 多运营商IPv6 Cidr Block
+    public struct ISPIPv6CidrBlock: TCOutputModel {
+        /// IPv6 CIdr Block。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let iPv6CidrBlock: String?
+
+        /// 网络运营商类型 取值范围:'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ispType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case iPv6CidrBlock = "IPv6CidrBlock"
+            case ispType = "ISPType"
+        }
+    }
+
+    /// 申请ipv6 cidr block的信息
+    public struct ISPTypeItem: TCInputModel {
+        /// IPv6 Cidr所属运营商类型，支持的类型有 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。作为入参数时为必选。
+        public let ispType: String?
+
+        /// 申请IPv6 Cidr Block的个数。作为入参数时为必选。
+        public let count: UInt64?
+
+        public init(ispType: String? = nil, count: UInt64? = nil) {
+            self.ispType = ispType
+            self.count = count
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ispType = "ISPType"
+            case count = "Count"
         }
     }
 
@@ -1307,6 +1351,27 @@ extension Ecm {
         }
     }
 
+    /// IPv6子网段对象。
+    public struct Ipv6SubnetCidrBlock: TCInputModel, TCOutputModel {
+        /// 子网实例`ID`。形如：`subnet-pxir56ns`。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// `IPv6`子网段。形如：`3402:4e00:20:1001::/64`
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipv6CidrBlock: String?
+
+        public init(subnetId: String? = nil, ipv6CidrBlock: String? = nil) {
+            self.subnetId = subnetId
+            self.ipv6CidrBlock = ipv6CidrBlock
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case subnetId = "SubnetId"
+            case ipv6CidrBlock = "Ipv6CidrBlock"
+        }
+    }
+
     /// 描述密钥对信息
     public struct KeyPair: TCOutputModel {
         /// 密钥对的ID，是密钥对的唯一标识。
@@ -1651,6 +1716,9 @@ extension Ecm {
         /// 数据盘信息。
         public let dataDisks: [DataDisk]
 
+        /// 是否禁止外网ip
+        public let disableWanIp: Int64?
+
         enum CodingKeys: String, CodingKey {
             case moduleId = "ModuleId"
             case moduleName = "ModuleName"
@@ -1668,6 +1736,7 @@ extension Ecm {
             case userData = "UserData"
             case systemDisk = "SystemDisk"
             case dataDisks = "DataDisks"
+            case disableWanIp = "DisableWanIp"
         }
     }
 
@@ -1973,6 +2042,9 @@ extension Ecm {
         /// 运营商数量。
         public let ispNum: Int64
 
+        /// 节点是否支持LB
+        public let lbSupported: Bool?
+
         enum CodingKeys: String, CodingKey {
             case zoneInfo = "ZoneInfo"
             case country = "Country"
@@ -1982,6 +2054,7 @@ extension Ecm {
             case regionInfo = "RegionInfo"
             case ispSet = "ISPSet"
             case ispNum = "ISPNum"
+            case lbSupported = "LBSupported"
         }
     }
 
@@ -2412,7 +2485,10 @@ extension Ecm {
         /// 路由策略ID。IPv4路由策略ID是有意义的值，IPv6路由策略是无意义的值0。后续建议完全使用字符串唯一ID `RouteItemId`操作路由策略
         public let routeId: UInt64?
 
-        public init(destinationCidrBlock: String? = nil, gatewayType: String? = nil, gatewayId: String? = nil, routeItemId: String? = nil, routeDescription: String? = nil, enabled: Bool? = nil, routeType: String? = nil, routeId: UInt64? = nil) {
+        /// 路由表实例ID，例如：rtb-azd4dt1c。
+        public let routeTableId: String?
+
+        public init(destinationCidrBlock: String? = nil, gatewayType: String? = nil, gatewayId: String? = nil, routeItemId: String? = nil, routeDescription: String? = nil, enabled: Bool? = nil, routeType: String? = nil, routeId: UInt64? = nil, routeTableId: String? = nil) {
             self.destinationCidrBlock = destinationCidrBlock
             self.gatewayType = gatewayType
             self.gatewayId = gatewayId
@@ -2421,6 +2497,7 @@ extension Ecm {
             self.enabled = enabled
             self.routeType = routeType
             self.routeId = routeId
+            self.routeTableId = routeTableId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2432,6 +2509,7 @@ extension Ecm {
             case enabled = "Enabled"
             case routeType = "RouteType"
             case routeId = "RouteId"
+            case routeTableId = "RouteTableId"
         }
     }
 
@@ -3012,6 +3090,10 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
 
+        /// 运营商类型。'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ispType: String?
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
@@ -3032,6 +3114,7 @@ extension Ecm {
             case vpcCidrBlock = "VpcCidrBlock"
             case vpcIpv6CidrBlock = "VpcIpv6CidrBlock"
             case region = "Region"
+            case ispType = "ISPType"
         }
     }
 
@@ -3292,7 +3375,7 @@ extension Ecm {
         }
     }
 
-    /// 私有网络(VPC)对象。
+    /// 私有网络(VPC) 对象。
     public struct VpcInfo: TCOutputModel {
         /// VPC名称。
         public let vpcName: String
@@ -3351,6 +3434,14 @@ extension Ecm {
         /// 包含实例数量
         public let instanceCount: UInt64
 
+        /// ipv6运营商
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipv6ISP: String?
+
+        /// 多运营商IPv6 Cidr Block。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipv6CidrBlockSet: [ISPIPv6CidrBlock]?
+
         enum CodingKeys: String, CodingKey {
             case vpcName = "VpcName"
             case vpcId = "VpcId"
@@ -3370,6 +3461,8 @@ extension Ecm {
             case regionName = "RegionName"
             case subnetCount = "SubnetCount"
             case instanceCount = "InstanceCount"
+            case ipv6ISP = "Ipv6ISP"
+            case ipv6CidrBlockSet = "Ipv6CidrBlockSet"
         }
     }
 
@@ -3396,7 +3489,7 @@ extension Ecm {
         /// 创建实例的可用区。
         public let zone: String
 
-        /// 在当前可用区欲创建的实例数目。
+        /// 在当前可用区创建的实例数目。
         public let instanceCount: Int64
 
         /// 运营商如下：

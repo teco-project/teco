@@ -21,7 +21,7 @@ import TecoCore
 extension Mongodb {
     /// DescribeAccountUsers请求参数结构体
     public struct DescribeAccountUsersRequest: TCRequestModel {
-        /// 实例ID。
+        /// 指定待获取账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
         public init(instanceId: String) {
@@ -49,7 +49,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
+    /// 本接口（DescribeAccountUsers）用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
         self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
+    /// 本接口（DescribeAccountUsers）用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
         try await self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
+    /// 本接口（DescribeAccountUsers）用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
         self.describeAccountUsers(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
+    /// 本接口（DescribeAccountUsers）用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
         try await self.describeAccountUsers(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

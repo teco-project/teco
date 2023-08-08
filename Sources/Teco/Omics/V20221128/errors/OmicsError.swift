@@ -27,11 +27,51 @@ public protocol TCOmicsErrorType: TCServiceErrorType {
 public struct TCOmicsError: TCOmicsErrorType {
     enum Code: String {
         case authFailure = "AuthFailure"
+        case failedOperation = "FailedOperation"
+        case failedOperation_RetryLimitExceeded = "FailedOperation.RetryLimitExceeded"
+        case failedOperation_StatusNotSupported = "FailedOperation.StatusNotSupported"
+        case failedOperation_VersionNotReleased = "FailedOperation.VersionNotReleased"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_DuplicateHeader = "InvalidParameterValue.DuplicateHeader"
+        case invalidParameterValue_DuplicateName = "InvalidParameterValue.DuplicateName"
+        case invalidParameterValue_EntrypointNotSet = "InvalidParameterValue.EntrypointNotSet"
+        case invalidParameterValue_EnvironmentNotAvailable = "InvalidParameterValue.EnvironmentNotAvailable"
+        case invalidParameterValue_InvalidBase64Encode = "InvalidParameterValue.InvalidBase64Encode"
+        case invalidParameterValue_InvalidCosKey = "InvalidParameterValue.InvalidCosKey"
+        case invalidParameterValue_InvalidCsvFormat = "InvalidParameterValue.InvalidCsvFormat"
+        case invalidParameterValue_InvalidDescription = "InvalidParameterValue.InvalidDescription"
+        case invalidParameterValue_InvalidHeader = "InvalidParameterValue.InvalidHeader"
+        case invalidParameterValue_InvalidInputJsonFormat = "InvalidParameterValue.InvalidInputJsonFormat"
+        case invalidParameterValue_InvalidInputPlaceholder = "InvalidParameterValue.InvalidInputPlaceholder"
+        case invalidParameterValue_InvalidName = "InvalidParameterValue.InvalidName"
+        case invalidParameterValue_InvalidRunOption = "InvalidParameterValue.InvalidRunOption"
+        case invalidParameterValue_InvalidTableRow = "InvalidParameterValue.InvalidTableRow"
+        case invalidParameterValue_LengthLimitExceeded = "InvalidParameterValue.LengthLimitExceeded"
+        case invalidParameterValue_UnsupportedDataType = "InvalidParameterValue.UnsupportedDataType"
+        case limitExceeded = "LimitExceeded"
         case operationDenied = "OperationDenied"
+        case resourceInUse = "ResourceInUse"
+        case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
+        case resourceNotFound_ApplicationNotExist = "ResourceNotFound.ApplicationNotExist"
+        case resourceNotFound_ApplicationVersionNotExist = "ResourceNotFound.ApplicationVersionNotExist"
+        case resourceNotFound_CosBucketNotExist = "ResourceNotFound.CosBucketNotExist"
+        case resourceNotFound_CosObjectNotExist = "ResourceNotFound.CosObjectNotExist"
+        case resourceNotFound_EnvironmentNotExist = "ResourceNotFound.EnvironmentNotExist"
+        case resourceNotFound_ProjectNotExist = "ResourceNotFound.ProjectNotExist"
+        case resourceNotFound_RunGroupNotExist = "ResourceNotFound.RunGroupNotExist"
+        case resourceNotFound_RunNotExist = "ResourceNotFound.RunNotExist"
+        case resourceNotFound_TableNotExist = "ResourceNotFound.TableNotExist"
+        case resourceNotFound_TableRowNotExist = "ResourceNotFound.TableRowNotExist"
+        case resourceUnavailable = "ResourceUnavailable"
+        case unsupportedOperation = "UnsupportedOperation"
+    }
+
+    /// Error domains affliated to ``TCOmicsError``.
+    public static var domains: [TCErrorType.Type] {
+        [FailedOperation.self, InvalidParameterValue.self, ResourceNotFound.self]
     }
 
     private let error: Code
@@ -61,6 +101,23 @@ public struct TCOmicsError: TCOmicsErrorType {
         TCOmicsError(.authFailure)
     }
 
+    /// 操作失败。
+    public static var failedOperation: TCOmicsError {
+        TCOmicsError(.failedOperation)
+    }
+
+    public static var failedOperation_RetryLimitExceeded: TCOmicsError {
+        TCOmicsError(.failedOperation_RetryLimitExceeded)
+    }
+
+    public static var failedOperation_StatusNotSupported: TCOmicsError {
+        TCOmicsError(.failedOperation_StatusNotSupported)
+    }
+
+    public static var failedOperation_VersionNotReleased: TCOmicsError {
+        TCOmicsError(.failedOperation_VersionNotReleased)
+    }
+
     /// 内部错误。
     public static var internalError: TCOmicsError {
         TCOmicsError(.internalError)
@@ -76,14 +133,143 @@ public struct TCOmicsError: TCOmicsErrorType {
         TCOmicsError(.invalidParameterValue)
     }
 
+    public static var invalidParameterValue_DuplicateHeader: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_DuplicateHeader)
+    }
+
+    public static var invalidParameterValue_DuplicateName: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_DuplicateName)
+    }
+
+    public static var invalidParameterValue_EntrypointNotSet: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_EntrypointNotSet)
+    }
+
+    public static var invalidParameterValue_EnvironmentNotAvailable: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_EnvironmentNotAvailable)
+    }
+
+    public static var invalidParameterValue_InvalidBase64Encode: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidBase64Encode)
+    }
+
+    public static var invalidParameterValue_InvalidCosKey: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidCosKey)
+    }
+
+    public static var invalidParameterValue_InvalidCsvFormat: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidCsvFormat)
+    }
+
+    public static var invalidParameterValue_InvalidDescription: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidDescription)
+    }
+
+    public static var invalidParameterValue_InvalidHeader: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidHeader)
+    }
+
+    public static var invalidParameterValue_InvalidInputJsonFormat: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidInputJsonFormat)
+    }
+
+    public static var invalidParameterValue_InvalidInputPlaceholder: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidInputPlaceholder)
+    }
+
+    public static var invalidParameterValue_InvalidName: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidName)
+    }
+
+    public static var invalidParameterValue_InvalidRunOption: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidRunOption)
+    }
+
+    public static var invalidParameterValue_InvalidTableRow: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_InvalidTableRow)
+    }
+
+    public static var invalidParameterValue_LengthLimitExceeded: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_LengthLimitExceeded)
+    }
+
+    public static var invalidParameterValue_UnsupportedDataType: TCOmicsError {
+        TCOmicsError(.invalidParameterValue_UnsupportedDataType)
+    }
+
+    /// 超过配额限制。
+    public static var limitExceeded: TCOmicsError {
+        TCOmicsError(.limitExceeded)
+    }
+
     /// 操作被拒绝。
     public static var operationDenied: TCOmicsError {
         TCOmicsError(.operationDenied)
     }
 
+    /// 资源被占用。
+    public static var resourceInUse: TCOmicsError {
+        TCOmicsError(.resourceInUse)
+    }
+
+    /// 资源不足。
+    public static var resourceInsufficient: TCOmicsError {
+        TCOmicsError(.resourceInsufficient)
+    }
+
     /// 资源不存在。
     public static var resourceNotFound: TCOmicsError {
         TCOmicsError(.resourceNotFound)
+    }
+
+    public static var resourceNotFound_ApplicationNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_ApplicationNotExist)
+    }
+
+    public static var resourceNotFound_ApplicationVersionNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_ApplicationVersionNotExist)
+    }
+
+    public static var resourceNotFound_CosBucketNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_CosBucketNotExist)
+    }
+
+    public static var resourceNotFound_CosObjectNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_CosObjectNotExist)
+    }
+
+    public static var resourceNotFound_EnvironmentNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_EnvironmentNotExist)
+    }
+
+    public static var resourceNotFound_ProjectNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_ProjectNotExist)
+    }
+
+    public static var resourceNotFound_RunGroupNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_RunGroupNotExist)
+    }
+
+    public static var resourceNotFound_RunNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_RunNotExist)
+    }
+
+    public static var resourceNotFound_TableNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_TableNotExist)
+    }
+
+    public static var resourceNotFound_TableRowNotExist: TCOmicsError {
+        TCOmicsError(.resourceNotFound_TableRowNotExist)
+    }
+
+    /// 资源不可用。
+    public static var resourceUnavailable: TCOmicsError {
+        TCOmicsError(.resourceUnavailable)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCOmicsError {
+        TCOmicsError(.unsupportedOperation)
     }
 
     public func asOmicsError() -> TCOmicsError {

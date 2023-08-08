@@ -63,7 +63,10 @@ extension Tke {
         /// 边缘组件镜像仓库前缀
         public let registryPrefix: String?
 
-        public init(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil) {
+        /// 集群绑定的云标签
+        public let tagSpecification: TagSpecification?
+
+        public init(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, tagSpecification: TagSpecification? = nil) {
             self.k8sVersion = k8sVersion
             self.vpcId = vpcId
             self.clusterName = clusterName
@@ -78,6 +81,7 @@ extension Tke {
             self.chargeType = chargeType
             self.edgeVersion = edgeVersion
             self.registryPrefix = registryPrefix
+            self.tagSpecification = tagSpecification
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +99,7 @@ extension Tke {
             case chargeType = "ChargeType"
             case edgeVersion = "EdgeVersion"
             case registryPrefix = "RegistryPrefix"
+            case tagSpecification = "TagSpecification"
         }
     }
 
@@ -126,13 +131,13 @@ extension Tke {
 
     /// 创建边缘计算集群
     @inlinable
-    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTKEEdgeClusterResponse> {
-        self.createTKEEdgeCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix), region: region, logger: logger, on: eventLoop)
+    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTKEEdgeClusterResponse> {
+        self.createTKEEdgeCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘计算集群
     @inlinable
-    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
-        try await self.createTKEEdgeCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix), region: region, logger: logger, on: eventLoop)
+    public func createTKEEdgeCluster(k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
+        try await self.createTKEEdgeCluster(.init(k8sVersion: k8sVersion, vpcId: vpcId, clusterName: clusterName, podCIDR: podCIDR, serviceCIDR: serviceCIDR, clusterDesc: clusterDesc, clusterAdvancedSettings: clusterAdvancedSettings, maxNodePodNum: maxNodePodNum, publicLB: publicLB, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, chargeType: chargeType, edgeVersion: edgeVersion, registryPrefix: registryPrefix, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

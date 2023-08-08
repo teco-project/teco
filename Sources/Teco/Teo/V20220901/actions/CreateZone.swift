@@ -22,11 +22,12 @@ extension Teo {
     /// CreateZone请求参数结构体
     public struct CreateZoneRequest: TCRequestModel {
         /// 站点名称。
-        public let zoneName: String
+        public let zoneName: String?
 
         /// 接入方式，取值有：
         /// <li> full：NS接入；</li>
-        /// <li> partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点。</li>不填写使用默认值full。
+        /// <li> partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点；<li>noDomainAccess：无域名接入，取此值时仅Tags字段有效。</li>
+        /// </li>不填写使用默认值full。
         public let type: String?
 
         /// 是否跳过站点现有的DNS记录扫描。默认值：false。
@@ -43,7 +44,7 @@ extension Teo {
         /// 站点别名。数字、英文、-和_组合，限制20个字符。
         public let aliasZoneName: String?
 
-        public init(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil) {
+        public init(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil) {
             self.zoneName = zoneName
             self.type = type
             self.jumpStart = jumpStart
@@ -96,7 +97,7 @@ extension Teo {
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
+    public func createZone(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
         self.createZone(.init(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }
 
@@ -104,7 +105,7 @@ extension Teo {
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+    public func createZone(zoneName: String? = nil, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
         try await self.createZone(.init(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }
 }

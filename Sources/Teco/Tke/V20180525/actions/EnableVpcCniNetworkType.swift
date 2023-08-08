@@ -36,12 +36,16 @@ extension Tke {
         /// 在固定IP模式下，Pod销毁后退还IP的时间，传参必须大于300；不传默认IP永不销毁。
         public let expiredSeconds: UInt64?
 
-        public init(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil) {
+        /// 是否同步添加 vpc 网段到 ip-masq-agent-config 的 NonMasqueradeCIDRs 字段，默认 false 会同步添加
+        public let skipAddingNonMasqueradeCIDRs: Bool?
+
+        public init(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, skipAddingNonMasqueradeCIDRs: Bool? = nil) {
             self.clusterId = clusterId
             self.vpcCniType = vpcCniType
             self.enableStaticIp = enableStaticIp
             self.subnets = subnets
             self.expiredSeconds = expiredSeconds
+            self.skipAddingNonMasqueradeCIDRs = skipAddingNonMasqueradeCIDRs
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tke {
             case enableStaticIp = "EnableStaticIp"
             case subnets = "Subnets"
             case expiredSeconds = "ExpiredSeconds"
+            case skipAddingNonMasqueradeCIDRs = "SkipAddingNonMasqueradeCIDRs"
         }
     }
 
@@ -83,15 +88,15 @@ extension Tke {
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable @discardableResult
-    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
-        self.enableVpcCniNetworkType(.init(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), region: region, logger: logger, on: eventLoop)
+    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, skipAddingNonMasqueradeCIDRs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
+        self.enableVpcCniNetworkType(.init(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds, skipAddingNonMasqueradeCIDRs: skipAddingNonMasqueradeCIDRs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable @discardableResult
-    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
-        try await self.enableVpcCniNetworkType(.init(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), region: region, logger: logger, on: eventLoop)
+    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, skipAddingNonMasqueradeCIDRs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
+        try await self.enableVpcCniNetworkType(.init(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds, skipAddingNonMasqueradeCIDRs: skipAddingNonMasqueradeCIDRs), region: region, logger: logger, on: eventLoop)
     }
 }

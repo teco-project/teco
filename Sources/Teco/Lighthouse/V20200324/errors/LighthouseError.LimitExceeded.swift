@@ -20,7 +20,9 @@ extension TCLighthouseError {
     public struct LimitExceeded: TCLighthouseErrorType {
         enum Code: String {
             case attachDataDiskQuotaLimitExceeded = "LimitExceeded.AttachDataDiskQuotaLimitExceeded"
+            case blueprintQuotaLimitExceeded = "LimitExceeded.BlueprintQuotaLimitExceeded"
             case diskBackupQuotaLimitExceeded = "LimitExceeded.DiskBackupQuotaLimitExceeded"
+            case diskQuotaLimitExceeded = "LimitExceeded.DiskQuotaLimitExceeded"
             case firewallRulesLimitExceeded = "LimitExceeded.FirewallRulesLimitExceeded"
             case instanceQuotaLimitExceeded = "LimitExceeded.InstanceQuotaLimitExceeded"
             case isolateResourcesLimitExceeded = "LimitExceeded.IsolateResourcesLimitExceeded"
@@ -51,14 +53,24 @@ extension TCLighthouseError {
             self.context = context
         }
 
-        /// 实例挂载数据盘配额不足，无法挂载磁盘。
+        /// 实例挂载数据盘配额不足，无法挂载云硬盘。
         public static var attachDataDiskQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.attachDataDiskQuotaLimitExceeded)
+        }
+
+        /// 配额不足，当前自定义镜像配额不允许创建新的自定义镜像。
+        public static var blueprintQuotaLimitExceeded: LimitExceeded {
+            LimitExceeded(.blueprintQuotaLimitExceeded)
         }
 
         /// 超过磁盘备份点配额限制。
         public static var diskBackupQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.diskBackupQuotaLimitExceeded)
+        }
+
+        /// 当前配额不足，无法创建新的云硬盘。
+        public static var diskQuotaLimitExceeded: LimitExceeded {
+            LimitExceeded(.diskQuotaLimitExceeded)
         }
 
         /// 超过防火墙规则配额。
@@ -96,8 +108,12 @@ extension TCLighthouseError {
             switch self.error {
             case .attachDataDiskQuotaLimitExceeded:
                 code = .limitExceeded_AttachDataDiskQuotaLimitExceeded
+            case .blueprintQuotaLimitExceeded:
+                code = .limitExceeded_BlueprintQuotaLimitExceeded
             case .diskBackupQuotaLimitExceeded:
                 code = .limitExceeded_DiskBackupQuotaLimitExceeded
+            case .diskQuotaLimitExceeded:
+                code = .limitExceeded_DiskQuotaLimitExceeded
             case .firewallRulesLimitExceeded:
                 code = .limitExceeded_FirewallRulesLimitExceeded
             case .instanceQuotaLimitExceeded:

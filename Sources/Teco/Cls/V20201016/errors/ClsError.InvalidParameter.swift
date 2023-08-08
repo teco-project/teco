@@ -23,10 +23,13 @@ extension TCClsError {
             case alarmNoticeConflict = "InvalidParameter.AlarmNoticeConflict"
             case configConflict = "InvalidParameter.ConfigConflict"
             case content = "InvalidParameter.Content"
+            case dataFromTaskConflict = "InvalidParameter.DataFromTaskConflict"
+            case dataFromTaskNotExist = "InvalidParameter.DataFromTaskNotExist"
             case dbDuplication = "InvalidParameter.DbDuplication"
             case exportConflict = "InvalidParameter.ExportConflict"
             case inValidIndexRuleForSearchLow = "InvalidParameter.InValidIndexRuleForSearchLow"
             case indexConflict = "InvalidParameter.IndexConflict"
+            case invalidEtlContent = "InvalidParameter.InvalidEtlContent"
             case logsetConflict = "InvalidParameter.LogsetConflict"
             case machineGroupConflict = "InvalidParameter.MachineGroupConflict"
             case shipperConflict = "InvalidParameter.ShipperConflict"
@@ -76,6 +79,16 @@ extension TCClsError {
             InvalidParameter(.content)
         }
 
+        /// 数据加工任务冲突。
+        public static var dataFromTaskConflict: InvalidParameter {
+            InvalidParameter(.dataFromTaskConflict)
+        }
+
+        /// 数据加工任务不存在。
+        public static var dataFromTaskNotExist: InvalidParameter {
+            InvalidParameter(.dataFromTaskNotExist)
+        }
+
         /// 数据库唯一键冲突。
         ///
         /// 数据已经存在，检查参数是否填写有误。
@@ -96,6 +109,11 @@ extension TCClsError {
         /// 指定日志主题已经存在索引规则。
         public static var indexConflict: InvalidParameter {
             InvalidParameter(.indexConflict)
+        }
+
+        /// 无效的数据加工语句。
+        public static var invalidEtlContent: InvalidParameter {
+            InvalidParameter(.invalidEtlContent)
         }
 
         /// 相同的日志集已存在。
@@ -134,6 +152,10 @@ extension TCClsError {
                 code = .invalidParameter_ConfigConflict
             case .content:
                 code = .invalidParameter_Content
+            case .dataFromTaskConflict:
+                code = .invalidParameter_DataFromTaskConflict
+            case .dataFromTaskNotExist:
+                code = .invalidParameter_DataFromTaskNotExist
             case .dbDuplication:
                 code = .invalidParameter_DbDuplication
             case .exportConflict:
@@ -142,6 +164,8 @@ extension TCClsError {
                 code = .invalidParameter_InValidIndexRuleForSearchLow
             case .indexConflict:
                 code = .invalidParameter_IndexConflict
+            case .invalidEtlContent:
+                code = .invalidParameter_InvalidEtlContent
             case .logsetConflict:
                 code = .invalidParameter_LogsetConflict
             case .machineGroupConflict:

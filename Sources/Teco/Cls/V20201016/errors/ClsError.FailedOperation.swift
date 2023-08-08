@@ -36,6 +36,7 @@ extension TCClsError {
             case syntaxError = "FailedOperation.SyntaxError"
             case tagQpsLimit = "FailedOperation.TagQpsLimit"
             case topicClosed = "FailedOperation.TopicClosed"
+            case topicCreating = "FailedOperation.TopicCreating"
             case topicIsolated = "FailedOperation.TopicIsolated"
             case writeQpsLimit = "FailedOperation.WriteQpsLimit"
             case writeTrafficLimit = "FailedOperation.WriteTrafficLimit"
@@ -159,6 +160,11 @@ extension TCClsError {
             FailedOperation(.topicClosed)
         }
 
+        /// topic创建中
+        public static var topicCreating: FailedOperation {
+            FailedOperation(.topicCreating)
+        }
+
         /// 日志主题已隔离。
         ///
         /// 请检查日志主题状态。若无法解决，请联系智能客服或提交工单。
@@ -218,6 +224,8 @@ extension TCClsError {
                 code = .failedOperation_TagQpsLimit
             case .topicClosed:
                 code = .failedOperation_TopicClosed
+            case .topicCreating:
+                code = .failedOperation_TopicCreating
             case .topicIsolated:
                 code = .failedOperation_TopicIsolated
             case .writeQpsLimit:

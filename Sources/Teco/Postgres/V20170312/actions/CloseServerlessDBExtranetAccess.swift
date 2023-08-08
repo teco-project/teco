@@ -48,25 +48,33 @@ extension Postgres {
         }
     }
 
-    /// 关闭serverlessDB实例外网
+    /// 关闭serverlessDB实例公网地址
+    ///
+    /// 本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
     @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(_ input: CloseServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseServerlessDBExtranetAccessResponse> {
         self.client.execute(action: "CloseServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 关闭serverlessDB实例外网
+    /// 关闭serverlessDB实例公网地址
+    ///
+    /// 本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
     @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(_ input: CloseServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
         try await self.client.execute(action: "CloseServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 关闭serverlessDB实例外网
+    /// 关闭serverlessDB实例公网地址
+    ///
+    /// 本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
     @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseServerlessDBExtranetAccessResponse> {
         self.closeServerlessDBExtranetAccess(.init(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 关闭serverlessDB实例外网
+    /// 关闭serverlessDB实例公网地址
+    ///
+    /// 本接口（CloseServerlessDBExtranetAccess）用于关闭serverlessDB实例公网地址
     @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
         try await self.closeServerlessDBExtranetAccess(.init(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)

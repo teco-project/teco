@@ -22,21 +22,21 @@ extension Waf {
     /// AddDomainWhiteRule请求参数结构体
     public struct AddDomainWhiteRuleRequest: TCRequestModel {
         /// 需要添加的域名
-        public let domain: String
+        public let domain: String?
 
         /// 需要添加的规则
-        public let rules: [UInt64]
+        public let rules: [UInt64]?
 
         /// 需要添加的规则url
-        public let url: String
+        public let url: String?
 
         /// 规则的方法
-        public let function: String
+        public let function: String?
 
-        /// 规则的开关
-        public let status: UInt64
+        /// 规则的开关，0表示规则关闭，1表示规则打开
+        public let status: UInt64?
 
-        public init(domain: String, rules: [UInt64], url: String, function: String, status: UInt64) {
+        public init(domain: String? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil) {
             self.domain = domain
             self.rules = rules
             self.url = url
@@ -81,13 +81,13 @@ extension Waf {
 
     /// 增加域名规则白名单
     @inlinable
-    public func addDomainWhiteRule(domain: String, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDomainWhiteRuleResponse> {
+    public func addDomainWhiteRule(domain: String? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDomainWhiteRuleResponse> {
         self.addDomainWhiteRule(.init(domain: domain, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加域名规则白名单
     @inlinable
-    public func addDomainWhiteRule(domain: String, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDomainWhiteRuleResponse {
+    public func addDomainWhiteRule(domain: String? = nil, rules: [UInt64]? = nil, url: String? = nil, function: String? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDomainWhiteRuleResponse {
         try await self.addDomainWhiteRule(.init(domain: domain, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

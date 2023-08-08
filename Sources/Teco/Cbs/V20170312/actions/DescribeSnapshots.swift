@@ -30,34 +30,34 @@ extension Cbs {
         /// (SHARED_SNAPSHOT：表示共享过来的快照 | PRIVATE_SNAPSHOT：表示自己私有快照。)
         public let filters: [Filter]?
 
-        /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
-        public let offset: UInt64?
-
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         public let limit: UInt64?
-
-        /// 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
-        public let order: String?
 
         /// 快照列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据快照的创建时间排序<br>默认按创建时间排序。
         public let orderField: String?
 
-        public init(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
+        /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
+        public let offset: UInt64?
+
+        /// 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        public let order: String?
+
+        public init(snapshotIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, order: String? = nil) {
             self.snapshotIds = snapshotIds
             self.filters = filters
-            self.offset = offset
             self.limit = limit
-            self.order = order
             self.orderField = orderField
+            self.offset = offset
+            self.order = order
         }
 
         enum CodingKeys: String, CodingKey {
             case snapshotIds = "SnapshotIds"
             case filters = "Filters"
-            case offset = "Offset"
             case limit = "Limit"
-            case order = "Order"
             case orderField = "OrderField"
+            case offset = "Offset"
+            case order = "Order"
         }
 
         /// Compute the next request based on API response.
@@ -65,7 +65,7 @@ extension Cbs {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSnapshotsRequest(snapshotIds: self.snapshotIds, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderField: self.orderField)
+            return DescribeSnapshotsRequest(snapshotIds: self.snapshotIds, filters: self.filters, limit: self.limit, orderField: self.orderField, offset: (self.offset ?? 0) + .init(response.getItems().count), order: self.order)
         }
     }
 
@@ -126,8 +126,8 @@ extension Cbs {
     /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
     @inlinable
-    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
-        self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
+        self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, limit: limit, orderField: orderField, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
@@ -137,8 +137,8 @@ extension Cbs {
     /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
     @inlinable
-    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshots(snapshotIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.describeSnapshots(.init(snapshotIds: snapshotIds, filters: filters, limit: limit, orderField: orderField, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表

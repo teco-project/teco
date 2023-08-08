@@ -31,6 +31,8 @@ public struct TCCiamError: TCCiamErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_AccountAlreadyBeLinked = "FailedOperation.AccountAlreadyBeLinked"
         case failedOperation_AttributeFormatError = "FailedOperation.AttributeFormatError"
+        case failedOperation_AuthSourceNameAlreadyExists = "FailedOperation.AuthSourceNameAlreadyExists"
+        case failedOperation_AuthSourceNotFound = "FailedOperation.AuthSourceNotFound"
         case failedOperation_DataFlowTooManyRequests = "FailedOperation.DataFlowTooManyRequests"
         case failedOperation_EmailAlreadyExists = "FailedOperation.EmailAlreadyExists"
         case failedOperation_EmailIsNull = "FailedOperation.EmailIsNull"
@@ -48,14 +50,23 @@ public struct TCCiamError: TCCiamErrorType {
         case failedOperation_QueryUsersSortParameterMustInWhitelist = "FailedOperation.QueryUsersSortParameterMustInWhitelist"
         case failedOperation_QuotaLimitExceeded = "FailedOperation.QuotaLimitExceeded"
         case failedOperation_SecondaryUserNotFound = "FailedOperation.SecondaryUserNotFound"
+        case failedOperation_UserGroupNameAlreadyExists = "FailedOperation.UserGroupNameAlreadyExists"
         case failedOperation_UserGroupNotFound = "FailedOperation.UserGroupNotFound"
         case failedOperation_UserIsFreeze = "FailedOperation.UserIsFreeze"
         case failedOperation_UserNameAlreadyExists = "FailedOperation.UserNameAlreadyExists"
         case failedOperation_UserNameIsNull = "FailedOperation.UserNameIsNull"
         case failedOperation_UserNotFound = "FailedOperation.UserNotFound"
+        case failedOperation_UserPropertyCodeAlreadyExists = "FailedOperation.UserPropertyCodeAlreadyExists"
+        case failedOperation_UserPropertyNotFound = "FailedOperation.UserPropertyNotFound"
         case failedOperation_UserStatusRequired = "FailedOperation.UserStatusRequired"
+        case failedOperation_UserStoreAlreadyExists = "FailedOperation.UserStoreAlreadyExists"
+        case failedOperation_UserStoreDomainAlreadyExists = "FailedOperation.UserStoreDomainAlreadyExists"
+        case failedOperation_UserStoreNotExist = "FailedOperation.UserStoreNotExist"
         case internalError = "InternalError"
+        case internalError_JudgeUserExistException = "InternalError.JudgeUserExistException"
         case internalError_UnknownError = "InternalError.UnknownError"
+        case internalError_UserStoreCreateSecretFail = "InternalError.UserStoreCreateSecretFail"
+        case internalError_UserStoreDeleteUserFail = "InternalError.UserStoreDeleteUserFail"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_ParameterIllegal = "InvalidParameter.ParameterIllegal"
@@ -74,11 +85,28 @@ public struct TCCiamError: TCCiamErrorType {
         case unauthorizedOperation_TenantNotActivated = "UnauthorizedOperation.TenantNotActivated"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_EnabledAuthSourceCanNotBeDeleted = "UnsupportedOperation.EnabledAuthSourceCanNotBeDeleted"
+        case unsupportedOperation_EnabledAuthSourceCanNotBeUpdated = "UnsupportedOperation.EnabledAuthSourceCanNotBeUpdated"
+        case unsupportedOperation_InternalUserProperty = "UnsupportedOperation.InternalUserProperty"
+        case unsupportedOperation_LinkedAppUserPropertyCanNotBeDeleted = "UnsupportedOperation.LinkedAppUserPropertyCanNotBeDeleted"
+        case unsupportedOperation_LinkedAuthSourceCanNotBeClosed = "UnsupportedOperation.LinkedAuthSourceCanNotBeClosed"
+        case unsupportedOperation_LinkedAuthSourceCanNotBeDeleted = "UnsupportedOperation.LinkedAuthSourceCanNotBeDeleted"
+        case unsupportedOperation_LinkedAuthSourceUserPropertyCanNotBeDeleted = "UnsupportedOperation.LinkedAuthSourceUserPropertyCanNotBeDeleted"
+        case unsupportedOperation_LinkedUserPropertyCanNotBeDeleted = "UnsupportedOperation.LinkedUserPropertyCanNotBeDeleted"
+        case unsupportedOperation_PlatformDomainSuffixCanNotBeUsed = "UnsupportedOperation.PlatformDomainSuffixCanNotBeUsed"
+        case unsupportedOperation_WhenUserExistUserPropertyCanNotBeDeleted = "UnsupportedOperation.WhenUserExistUserPropertyCanNotBeDeleted"
     }
 
     /// Error domains affliated to ``TCCiamError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InternalError.self, InvalidParameter.self, RequestLimitExceeded.self, UnauthorizedOperation.self]
+        [
+            FailedOperation.self,
+            InternalError.self,
+            InvalidParameter.self,
+            RequestLimitExceeded.self,
+            UnauthorizedOperation.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
@@ -126,6 +154,16 @@ public struct TCCiamError: TCCiamErrorType {
     /// 用户属性格式异常。
     public static var failedOperation_AttributeFormatError: TCCiamError {
         TCCiamError(.failedOperation_AttributeFormatError)
+    }
+
+    /// 认证源名称已存在。
+    public static var failedOperation_AuthSourceNameAlreadyExists: TCCiamError {
+        TCCiamError(.failedOperation_AuthSourceNameAlreadyExists)
+    }
+
+    /// 认证源不存在。
+    public static var failedOperation_AuthSourceNotFound: TCCiamError {
+        TCCiamError(.failedOperation_AuthSourceNotFound)
     }
 
     /// 已存在2个有效的任务，请等待其中一部分完成后重试。
@@ -221,6 +259,11 @@ public struct TCCiamError: TCCiamErrorType {
         TCCiamError(.failedOperation_SecondaryUserNotFound)
     }
 
+    /// 用户组名称已存在。
+    public static var failedOperation_UserGroupNameAlreadyExists: TCCiamError {
+        TCCiamError(.failedOperation_UserGroupNameAlreadyExists)
+    }
+
     /// 用户组不存在。
     public static var failedOperation_UserGroupNotFound: TCCiamError {
         TCCiamError(.failedOperation_UserGroupNotFound)
@@ -248,9 +291,38 @@ public struct TCCiamError: TCCiamErrorType {
         TCCiamError(.failedOperation_UserNotFound)
     }
 
+    /// 属性标识已存在。
+    public static var failedOperation_UserPropertyCodeAlreadyExists: TCCiamError {
+        TCCiamError(.failedOperation_UserPropertyCodeAlreadyExists)
+    }
+
+    /// 用户属性不存在。
+    public static var failedOperation_UserPropertyNotFound: TCCiamError {
+        TCCiamError(.failedOperation_UserPropertyNotFound)
+    }
+
     /// 更新状态必传。
     public static var failedOperation_UserStatusRequired: TCCiamError {
         TCCiamError(.failedOperation_UserStatusRequired)
+    }
+
+    /// 已存在相同用户目录名。
+    ///
+    /// 更换用户目录名字。
+    public static var failedOperation_UserStoreAlreadyExists: TCCiamError {
+        TCCiamError(.failedOperation_UserStoreAlreadyExists)
+    }
+
+    /// 已存在相同域名。
+    public static var failedOperation_UserStoreDomainAlreadyExists: TCCiamError {
+        TCCiamError(.failedOperation_UserStoreDomainAlreadyExists)
+    }
+
+    /// 用户目录不存在。
+    ///
+    /// 检查用户目录ID。
+    public static var failedOperation_UserStoreNotExist: TCCiamError {
+        TCCiamError(.failedOperation_UserStoreNotExist)
     }
 
     /// 内部错误。
@@ -258,9 +330,28 @@ public struct TCCiamError: TCCiamErrorType {
         TCCiamError(.internalError)
     }
 
+    /// 判断存在用户内部请求错误，请稍后重试。
+    public static var internalError_JudgeUserExistException: TCCiamError {
+        TCCiamError(.internalError_JudgeUserExistException)
+    }
+
     /// 未知错误。
     public static var internalError_UnknownError: TCCiamError {
         TCCiamError(.internalError_UnknownError)
+    }
+
+    /// 创建用户目录时创建秘钥失败。
+    ///
+    /// 内部错误
+    public static var internalError_UserStoreCreateSecretFail: TCCiamError {
+        TCCiamError(.internalError_UserStoreCreateSecretFail)
+    }
+
+    /// 删除用户目录时删除用户失败。
+    ///
+    /// 内部错误
+    public static var internalError_UserStoreDeleteUserFail: TCCiamError {
+        TCCiamError(.internalError_UserStoreDeleteUserFail)
     }
 
     /// 参数错误。
@@ -351,6 +442,56 @@ public struct TCCiamError: TCCiamErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCCiamError {
         TCCiamError(.unsupportedOperation)
+    }
+
+    /// 认证源已启用，不允许删除。
+    public static var unsupportedOperation_EnabledAuthSourceCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_EnabledAuthSourceCanNotBeDeleted)
+    }
+
+    /// 认证源已启用，不允许更新。
+    public static var unsupportedOperation_EnabledAuthSourceCanNotBeUpdated: TCCiamError {
+        TCCiamError(.unsupportedOperation_EnabledAuthSourceCanNotBeUpdated)
+    }
+
+    /// 内置属性不支持该操作。
+    public static var unsupportedOperation_InternalUserProperty: TCCiamError {
+        TCCiamError(.unsupportedOperation_InternalUserProperty)
+    }
+
+    /// 属性被应用关联，不允许删除。
+    public static var unsupportedOperation_LinkedAppUserPropertyCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_LinkedAppUserPropertyCanNotBeDeleted)
+    }
+
+    /// 认证源被应用关联，不允许关闭。
+    public static var unsupportedOperation_LinkedAuthSourceCanNotBeClosed: TCCiamError {
+        TCCiamError(.unsupportedOperation_LinkedAuthSourceCanNotBeClosed)
+    }
+
+    /// 认证源被应用关联，不允许删除。
+    public static var unsupportedOperation_LinkedAuthSourceCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_LinkedAuthSourceCanNotBeDeleted)
+    }
+
+    /// 属性被认证源关联，不允许删除。
+    public static var unsupportedOperation_LinkedAuthSourceUserPropertyCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_LinkedAuthSourceUserPropertyCanNotBeDeleted)
+    }
+
+    /// 属性被其它模块关联，不允许删除。
+    public static var unsupportedOperation_LinkedUserPropertyCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_LinkedUserPropertyCanNotBeDeleted)
+    }
+
+    /// 不允许使用平台域名后缀作为自有域名后缀。
+    public static var unsupportedOperation_PlatformDomainSuffixCanNotBeUsed: TCCiamError {
+        TCCiamError(.unsupportedOperation_PlatformDomainSuffixCanNotBeUsed)
+    }
+
+    /// 用户池下已存在用户，用户属性不允许被删除。
+    public static var unsupportedOperation_WhenUserExistUserPropertyCanNotBeDeleted: TCCiamError {
+        TCCiamError(.unsupportedOperation_WhenUserExistUserPropertyCanNotBeDeleted)
     }
 
     public func asCiamError() -> TCCiamError {

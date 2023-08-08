@@ -51,33 +51,33 @@ extension Dcdb {
         }
     }
 
-    /// 销毁已隔离的包年包月实例
+    /// 销毁已隔离的TDSQL包年包月实例
     ///
-    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的TDSQL包年包月实例。
     @inlinable
     public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
         self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 销毁已隔离的包年包月实例
+    /// 销毁已隔离的TDSQL包年包月实例
     ///
-    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的TDSQL包年包月实例。
     @inlinable
     public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
         try await self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 销毁已隔离的包年包月实例
+    /// 销毁已隔离的TDSQL包年包月实例
     ///
-    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的TDSQL包年包月实例。
     @inlinable
     public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
         self.destroyDCDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 销毁已隔离的包年包月实例
+    /// 销毁已隔离的TDSQL包年包月实例
     ///
-    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
+    /// 本接口(DestroyDCDBInstance)用于销毁已隔离的TDSQL包年包月实例。
     @inlinable
     public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
         try await self.destroyDCDBInstance(.init(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

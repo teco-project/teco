@@ -17,11 +17,10 @@
 import Logging
 import NIOCore
 import TecoCore
-import TecoPaginationHelpers
 
 extension Cfw {
     /// DescribeBlockIgnoreList请求参数结构体
-    public struct DescribeBlockIgnoreListRequest: TCPaginatedRequest {
+    public struct DescribeBlockIgnoreListRequest: TCRequestModel {
         /// 单页数量
         public let limit: Int64
 
@@ -34,10 +33,10 @@ extension Cfw {
         /// 规则类型：1封禁，2放通
         public let ruleType: UInt64
 
-        /// 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
+        /// 排序类型：desc降序，asc正序
         public let order: String
 
-        /// 排序类型：desc降序，asc正序
+        /// 排序列：EndTime结束时间，StartTime开始时间，MatchTimes命中次数
         public let by: String
 
         /// 搜索参数，json格式字符串，空则传"{}"，域名：domain，危险等级：level，放通原因：ignore_reason，安全事件来源：rule_source，地理位置：address，模糊搜索：common
@@ -62,18 +61,10 @@ extension Cfw {
             case by = "By"
             case searchValue = "SearchValue"
         }
-
-        /// Compute the next request based on API response.
-        public func makeNextRequest(with response: DescribeBlockIgnoreListResponse) -> DescribeBlockIgnoreListRequest? {
-            guard !response.getItems().isEmpty else {
-                return nil
-            }
-            return DescribeBlockIgnoreListRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), direction: self.direction, ruleType: self.ruleType, order: self.order, by: self.by, searchValue: self.searchValue)
-        }
     }
 
     /// DescribeBlockIgnoreList返回参数结构体
-    public struct DescribeBlockIgnoreListResponse: TCPaginatedResponse {
+    public struct DescribeBlockIgnoreListResponse: TCResponseModel {
         /// 列表数据
         public let data: [BlockIgnoreRule]
 
@@ -86,6 +77,9 @@ extension Cfw {
         /// 状态信息，success：查询成功，fail：查询失败
         public let returnMsg: String
 
+        /// 安全事件来源下拉框
+        public let sourceList: [String]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -94,17 +88,8 @@ extension Cfw {
             case total = "Total"
             case returnCode = "ReturnCode"
             case returnMsg = "ReturnMsg"
+            case sourceList = "SourceList"
             case requestId = "RequestId"
-        }
-
-        /// Extract the returned item list from the paginated response.
-        public func getItems() -> [BlockIgnoreRule] {
-            self.data
-        }
-
-        /// Extract the total count from the paginated response.
-        public func getTotalCount() -> Int64? {
-            self.total
         }
     }
 
@@ -130,25 +115,5 @@ extension Cfw {
     @inlinable
     public func describeBlockIgnoreList(limit: Int64, offset: Int64, direction: String, ruleType: UInt64, order: String, by: String, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockIgnoreListResponse {
         try await self.describeBlockIgnoreList(.init(limit: limit, offset: offset, direction: direction, ruleType: ruleType, order: order, by: by, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
-    }
-
-    /// 查询入侵防御放通封禁列表
-    @inlinable
-    public func describeBlockIgnoreListPaginated(_ input: DescribeBlockIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [BlockIgnoreRule])> {
-        self.client.paginate(input: input, region: region, command: self.describeBlockIgnoreList, logger: logger, on: eventLoop)
-    }
-
-    /// 查询入侵防御放通封禁列表
-    @inlinable @discardableResult
-    public func describeBlockIgnoreListPaginated(_ input: DescribeBlockIgnoreListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeBlockIgnoreListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeBlockIgnoreList, callback: onResponse, logger: logger, on: eventLoop)
-    }
-
-    /// 查询入侵防御放通封禁列表
-    ///
-    /// - Returns: `AsyncSequence`s of `BlockIgnoreRule` and `DescribeBlockIgnoreListResponse` that can be iterated over asynchronously on demand.
-    @inlinable
-    public func describeBlockIgnoreListPaginator(_ input: DescribeBlockIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBlockIgnoreListRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBlockIgnoreList, logger: logger, on: eventLoop)
     }
 }

@@ -50,34 +50,38 @@ extension Tcss {
 
     /// CreateAssetImageRegistryScanTaskOneKey返回参数结构体
     public struct CreateAssetImageRegistryScanTaskOneKeyResponse: TCResponseModel {
+        /// 扫描任务id
+        public let taskID: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case taskID = "TaskID"
             case requestId = "RequestId"
         }
     }
 
     /// 镜像仓库创建镜像一键扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
         self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库创建镜像一键扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTaskOneKey(_ input: CreateAssetImageRegistryScanTaskOneKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
         try await self.client.execute(action: "CreateAssetImageRegistryScanTaskOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库创建镜像一键扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskOneKeyResponse> {
         self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库创建镜像一键扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTaskOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskOneKeyResponse {
         try await self.createAssetImageRegistryScanTaskOneKey(.init(all: all, images: images, scanType: scanType, id: id), region: region, logger: logger, on: eventLoop)
     }

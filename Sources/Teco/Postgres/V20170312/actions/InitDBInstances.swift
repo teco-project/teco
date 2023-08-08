@@ -62,33 +62,33 @@ extension Postgres {
         }
     }
 
-    /// 初始化实例
+    /// 初始化实例（废弃）
     ///
-    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    /// 本接口（InitDBInstances）用于初始化云数据库PostgreSQL实例。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
         self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 初始化实例
+    /// 初始化实例（废弃）
     ///
-    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    /// 本接口（InitDBInstances）用于初始化云数据库PostgreSQL实例。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
         try await self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 初始化实例
+    /// 初始化实例（废弃）
     ///
-    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    /// 本接口（InitDBInstances）用于初始化云数据库PostgreSQL实例。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
         self.initDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 初始化实例
+    /// 初始化实例（废弃）
     ///
-    /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
+    /// 本接口（InitDBInstances）用于初始化云数据库PostgreSQL实例。本接口已废弃，推荐使用接口[CreateInstances](https://cloud.tencent.com/document/api/409/56107)替代。
     @inlinable
     public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
         try await self.initDBInstances(.init(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)

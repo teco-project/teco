@@ -21,37 +21,42 @@ import TecoCore
 extension Vpc {
     /// DownloadVpnGatewaySslClientCert请求参数结构体
     public struct DownloadVpnGatewaySslClientCertRequest: TCRequestModel {
-        /// SSL-VPN-CLIENT 实例ID。
-        public let sslVpnClientId: String
+        /// SSL-VPN-CLIENT 实例ID。不可以和SslVpnClientIds同时使用。
+        public let sslVpnClientId: String?
 
-        /// SAML-TOKEN
+        /// SAML Token（SAML令牌）。
         public let samlToken: String?
 
-        /// VPN门户网站使用。默认Flase
+        /// VPN门户网站使用。默认False
         public let isVpnPortal: Bool?
 
-        public init(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil) {
+        /// SSL-VPN-CLIENT 实例ID列表。批量下载时使用。不可以和SslVpnClientId同时使用。
+        public let sslVpnClientIds: [String]?
+
+        public init(sslVpnClientId: String? = nil, samlToken: String? = nil, isVpnPortal: Bool? = nil, sslVpnClientIds: [String]? = nil) {
             self.sslVpnClientId = sslVpnClientId
             self.samlToken = samlToken
             self.isVpnPortal = isVpnPortal
+            self.sslVpnClientIds = sslVpnClientIds
         }
 
         enum CodingKeys: String, CodingKey {
             case sslVpnClientId = "SslVpnClientId"
             case samlToken = "SamlToken"
             case isVpnPortal = "IsVpnPortal"
+            case sslVpnClientIds = "SslVpnClientIds"
         }
     }
 
     /// DownloadVpnGatewaySslClientCert返回参数结构体
     public struct DownloadVpnGatewaySslClientCertResponse: TCResponseModel {
-        /// 无
+        /// SSL-VPN 客户端配置。
         public let sslClientConfigsSet: String
 
-        /// SSL-VPN client配置
+        /// SSL-VPN 客户端配置。
         public let sslClientConfig: [SslClientConfig]
 
-        /// 是否鉴权成功 只有传入SamlToken 才生效
+        /// 是否鉴权成功 只有传入SamlToken 才生效，1为成功，0为失败。
         public let authenticated: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -66,26 +71,34 @@ extension Vpc {
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
+    ///
+    /// 本接口（DownloadVpnGatewaySslClientCert）用于下载SSL-VPN-CLIENT 客户端证书。
     @inlinable
     public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
         self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
+    ///
+    /// 本接口（DownloadVpnGatewaySslClientCert）用于下载SSL-VPN-CLIENT 客户端证书。
     @inlinable
     public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
         try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
+    ///
+    /// 本接口（DownloadVpnGatewaySslClientCert）用于下载SSL-VPN-CLIENT 客户端证书。
     @inlinable
-    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
-        self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
+    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String? = nil, samlToken: String? = nil, isVpnPortal: Bool? = nil, sslVpnClientIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
+        self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal, sslVpnClientIds: sslVpnClientIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
+    ///
+    /// 本接口（DownloadVpnGatewaySslClientCert）用于下载SSL-VPN-CLIENT 客户端证书。
     @inlinable
-    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
-        try await self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
+    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String? = nil, samlToken: String? = nil, isVpnPortal: Bool? = nil, sslVpnClientIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
+        try await self.downloadVpnGatewaySslClientCert(.init(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal, sslVpnClientIds: sslVpnClientIds), region: region, logger: logger, on: eventLoop)
     }
 }

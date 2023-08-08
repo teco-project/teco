@@ -65,34 +65,38 @@ extension Tcss {
 
     /// CreateAssetImageRegistryScanTask返回参数结构体
     public struct CreateAssetImageRegistryScanTaskResponse: TCResponseModel {
+        /// 返回的任务ID
+        public let taskID: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case taskID = "TaskID"
             case requestId = "RequestId"
         }
     }
 
     /// 镜像仓库创建镜像扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTask(_ input: CreateAssetImageRegistryScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskResponse> {
         self.client.execute(action: "CreateAssetImageRegistryScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库创建镜像扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTask(_ input: CreateAssetImageRegistryScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskResponse {
         try await self.client.execute(action: "CreateAssetImageRegistryScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库创建镜像扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTask(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageRegistryScanTaskResponse> {
         self.createAssetImageRegistryScanTask(.init(all: all, images: images, scanType: scanType, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库创建镜像扫描任务
-    @inlinable @discardableResult
+    @inlinable
     public func createAssetImageRegistryScanTask(all: Bool? = nil, images: [ImageInfo]? = nil, scanType: [String]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageRegistryScanTaskResponse {
         try await self.createAssetImageRegistryScanTask(.init(all: all, images: images, scanType: scanType, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
     }

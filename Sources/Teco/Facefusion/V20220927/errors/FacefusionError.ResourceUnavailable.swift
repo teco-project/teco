@@ -59,6 +59,8 @@ extension TCFacefusionError {
         }
 
         /// 帐号已被冻结。
+        ///
+        /// None
         public static var freeze: ResourceUnavailable {
             ResourceUnavailable(.freeze)
         }
@@ -69,6 +71,8 @@ extension TCFacefusionError {
         }
 
         /// 帐号已欠费。
+        ///
+        /// None
         public static var inArrears: ResourceUnavailable {
             ResourceUnavailable(.inArrears)
         }
@@ -94,6 +98,8 @@ extension TCFacefusionError {
         }
 
         /// 帐号已停服。
+        ///
+        /// None
         public static var stopUsing: ResourceUnavailable {
             ResourceUnavailable(.stopUsing)
         }

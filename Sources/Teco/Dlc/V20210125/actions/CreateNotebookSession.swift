@@ -51,7 +51,10 @@ extension Dlc {
         /// 指定的Executor数量，默认为1
         public let executorNumbers: UInt64?
 
-        /// Session相关配置，当前支持：dlc.eni、dlc.role.arn、dlc.sql.set.config以及用户指定的配置，注：roleArn必填；
+        /// Session相关配置，当前支持：
+        /// 1. dlc.eni: 用户配置的eni网关信息，可以通过该字段设置；
+        /// 2. dlc.role.arn: 用户配置的roleArn鉴权策略配置信息，可以通过该字段设置；
+        /// 3. dlc.sql.set.config: 用户配置的集群配置信息，可以通过该字段设置；
         public let arguments: [KVPair]?
 
         /// 代理用户，默认为root
@@ -63,7 +66,10 @@ extension Dlc {
         /// 指定的Executor数量（最大值），默认为1，当开启动态分配有效，若未开启，则该值等于ExecutorNumbers
         public let executorMaxNumbers: UInt64?
 
-        public init(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil) {
+        /// 指定spark版本名称，当前任务使用该spark镜像运行
+        public let sparkImage: String?
+
+        public init(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil, sparkImage: String? = nil) {
             self.name = name
             self.kind = kind
             self.dataEngineName = dataEngineName
@@ -78,6 +84,7 @@ extension Dlc {
             self.proxyUser = proxyUser
             self.timeoutInSecond = timeoutInSecond
             self.executorMaxNumbers = executorMaxNumbers
+            self.sparkImage = sparkImage
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +102,7 @@ extension Dlc {
             case proxyUser = "ProxyUser"
             case timeoutInSecond = "TimeoutInSecond"
             case executorMaxNumbers = "ExecutorMaxNumbers"
+            case sparkImage = "SparkImage"
         }
     }
 
@@ -121,35 +129,35 @@ extension Dlc {
         }
     }
 
-    /// 创建notebook livy session
+    /// 创建交互式session（notebook）
     ///
-    /// 本接口（CreateNotebookSession）用于创建notebook livy session
+    /// 本接口（CreateNotebookSession）用于创建交互式session（notebook）
     @inlinable
     public func createNotebookSession(_ input: CreateNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionResponse> {
         self.client.execute(action: "CreateNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建notebook livy session
+    /// 创建交互式session（notebook）
     ///
-    /// 本接口（CreateNotebookSession）用于创建notebook livy session
+    /// 本接口（CreateNotebookSession）用于创建交互式session（notebook）
     @inlinable
     public func createNotebookSession(_ input: CreateNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionResponse {
         try await self.client.execute(action: "CreateNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建notebook livy session
+    /// 创建交互式session（notebook）
     ///
-    /// 本接口（CreateNotebookSession）用于创建notebook livy session
+    /// 本接口（CreateNotebookSession）用于创建交互式session（notebook）
     @inlinable
-    public func createNotebookSession(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionResponse> {
-        self.createNotebookSession(.init(name: name, kind: kind, dataEngineName: dataEngineName, programDependentFiles: programDependentFiles, programDependentJars: programDependentJars, programDependentPython: programDependentPython, programArchives: programArchives, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, arguments: arguments, proxyUser: proxyUser, timeoutInSecond: timeoutInSecond, executorMaxNumbers: executorMaxNumbers), region: region, logger: logger, on: eventLoop)
+    public func createNotebookSession(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil, sparkImage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookSessionResponse> {
+        self.createNotebookSession(.init(name: name, kind: kind, dataEngineName: dataEngineName, programDependentFiles: programDependentFiles, programDependentJars: programDependentJars, programDependentPython: programDependentPython, programArchives: programArchives, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, arguments: arguments, proxyUser: proxyUser, timeoutInSecond: timeoutInSecond, executorMaxNumbers: executorMaxNumbers, sparkImage: sparkImage), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建notebook livy session
+    /// 创建交互式session（notebook）
     ///
-    /// 本接口（CreateNotebookSession）用于创建notebook livy session
+    /// 本接口（CreateNotebookSession）用于创建交互式session（notebook）
     @inlinable
-    public func createNotebookSession(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionResponse {
-        try await self.createNotebookSession(.init(name: name, kind: kind, dataEngineName: dataEngineName, programDependentFiles: programDependentFiles, programDependentJars: programDependentJars, programDependentPython: programDependentPython, programArchives: programArchives, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, arguments: arguments, proxyUser: proxyUser, timeoutInSecond: timeoutInSecond, executorMaxNumbers: executorMaxNumbers), region: region, logger: logger, on: eventLoop)
+    public func createNotebookSession(name: String, kind: String, dataEngineName: String, programDependentFiles: [String]? = nil, programDependentJars: [String]? = nil, programDependentPython: [String]? = nil, programArchives: [String]? = nil, driverSize: String? = nil, executorSize: String? = nil, executorNumbers: UInt64? = nil, arguments: [KVPair]? = nil, proxyUser: String? = nil, timeoutInSecond: Int64? = nil, executorMaxNumbers: UInt64? = nil, sparkImage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookSessionResponse {
+        try await self.createNotebookSession(.init(name: name, kind: kind, dataEngineName: dataEngineName, programDependentFiles: programDependentFiles, programDependentJars: programDependentJars, programDependentPython: programDependentPython, programArchives: programArchives, driverSize: driverSize, executorSize: executorSize, executorNumbers: executorNumbers, arguments: arguments, proxyUser: proxyUser, timeoutInSecond: timeoutInSecond, executorMaxNumbers: executorMaxNumbers, sparkImage: sparkImage), region: region, logger: logger, on: eventLoop)
     }
 }

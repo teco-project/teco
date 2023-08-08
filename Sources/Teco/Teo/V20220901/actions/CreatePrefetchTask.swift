@@ -26,6 +26,7 @@ extension Teo {
 
         /// 要预热的资源列表，每个元素格式类似如下:
         /// http://www.example.com/example.txt。
+        /// 注意：提交任务数受计费套餐配额限制，请查看 [EO计费套餐](https://cloud.tencent.com/document/product/1552/77380)。
         public let targets: [String]?
 
         /// 是否对url进行encode，若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。

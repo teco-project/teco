@@ -60,15 +60,13 @@ extension Mongodb {
         /// - SHARD：分片集群。
         public let clusterType: String
 
-        /// 私有网络ID，如果不设置该参数，则默认选择基础网络。
+        /// 私有网络ID。如果不设置该参数，则默认选择基础网络。
         public let vpcId: String?
 
         /// 私有网络下的子网 ID，如果配置参数 VpcId，则 SubnetId必须配置。
         public let subnetId: String?
 
-        /// 实例密码。
-        /// - 不设置该参数，则默认密码格式为：实例ID+@+主账户uin。例如：实例 ID 为cmgo-higv73ed，UIN 为100000001，则默认密码为：cmgo-higv73ed@100000001。
-        /// - 自定义密码长度为8-32个字符，至少包含字母、数字和字符（!@#%^*()_）中的两种。
+        /// 实例密码。自定义密码长度为8-32个字符，至少包含字母、数字和字符（!@#%^*()_）中的两种。
         public let password: String?
 
         /// 项目ID。若不设置该参数，则为默认项目。
@@ -104,19 +102,13 @@ extension Mongodb {
         /// - 不能选择基础网络。
         public let availabilityZoneList: [String]?
 
-        /// Mongos CPU 核数。
-        /// - 购买MongoDB 3.6 WiredTiger存储引擎版本以上的分片集群时，可选择性配置该参数。
-        /// - 若不配置该参数，则根据Mongod节点规格默认适配 Mongos 规格，默认规格免费。
+        /// Mongos CPU 核数。购买分片集群时，必须填写。
         public let mongosCpu: UInt64?
 
-        /// Mongos 内存大小。
-        /// - 购买MongoDB 3.6 WiredTiger存储引擎版本以上的分片集群时，可选择性配置该参数。
-        /// - 若不配置该参数，则根据Mongod节点规格默认适配 Mongos 规格，默认规格免费。
+        /// Mongos 内存大小。购买分片集群时，必须填写。
         public let mongosMemory: UInt64?
 
-        /// Mongos 数量。
-        /// - 购买MongoDB 3.6 WiredTiger存储引擎版本以上的分片集群时，可选择性配置该参数。
-        /// - 若不配置该参数，则根据Mongod节点规格默认适配 Mongos 规格，默认规格免费。
+        /// Mongos 数量。购买分片集群时，必须填写。
         public let mongosNodeNum: UInt64?
 
         /// 只读节点数量，最大不超过7个。

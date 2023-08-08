@@ -33,7 +33,7 @@ extension Clb {
         /// 要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数。
         public let listenerNames: [String]?
 
-        /// 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
+        /// 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
         public let healthCheck: HealthCheck?
 
         /// 证书相关信息，此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。此参数和MultiCertInfo不能同时传入。
@@ -43,7 +43,7 @@ extension Clb {
         public let sessionExpireTime: Int64?
 
         /// 监听器转发的方式。可选值：WRR、LEAST_CONN
-        /// 分别表示按权重轮询、最小连接数， 默认为 WRR。此参数仅适用于TCP/UDP/TCP_SSL监听器。
+        /// 分别表示按权重轮询、最小连接数， 默认为 WRR。此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
         public let scheduler: String?
 
         /// 是否开启SNI特性，此参数仅适用于HTTPS监听器。
@@ -73,7 +73,10 @@ extension Clb {
         /// 监听器最大新增连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
         public let maxCps: Int64?
 
-        public init(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil) {
+        /// 空闲连接超时时间，此参数仅适用于TCP监听器，单位：秒。默认值：900，取值范围：共享型实例和独占型实例支持：300～900，性能容量型实例支持：300~2000。如需设置超过2000s，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category),最大可设置到3600s。
+        public let idleConnectTimeout: Int64?
+
+        public init(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, idleConnectTimeout: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.ports = ports
             self.protocol = `protocol`
@@ -91,6 +94,7 @@ extension Clb {
             self.multiCertInfo = multiCertInfo
             self.maxConn = maxConn
             self.maxCps = maxCps
+            self.idleConnectTimeout = idleConnectTimeout
         }
 
         enum CodingKeys: String, CodingKey {
@@ -111,6 +115,7 @@ extension Clb {
             case multiCertInfo = "MultiCertInfo"
             case maxConn = "MaxConn"
             case maxCps = "MaxCps"
+            case idleConnectTimeout = "IdleConnectTimeout"
         }
     }
 
@@ -151,8 +156,8 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.createListener(.init(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps), region: region, logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, idleConnectTimeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
+        self.createListener(.init(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps, idleConnectTimeout: idleConnectTimeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
@@ -160,7 +165,7 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.createListener(.init(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps), region: region, logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, idleConnectTimeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.createListener(.init(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps, idleConnectTimeout: idleConnectTimeout), region: region, logger: logger, on: eventLoop)
     }
 }

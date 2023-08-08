@@ -24,10 +24,10 @@ extension Lcic {
         /// 房间名称。
         public let name: String
 
-        /// 预定的房间开始时间，unix时间戳。
+        /// 预定的房间开始时间，unix时间戳（秒）。
         public let startTime: UInt64
 
-        /// 预定的房间结束时间，unix时间戳。
+        /// 预定的房间结束时间，unix时间戳（秒）。
         public let endTime: UInt64
 
         /// 低代码互动课堂的SdkAppId。
@@ -55,9 +55,14 @@ extension Lcic {
         /// 1 自动连麦
         public let autoMic: UInt64?
 
-        /// 高音质模式。可以有以下取值：
-        /// 0 不开启高音质（默认值）
-        /// 1 开启高音质
+        /// 释放音视频权限后是否自动取消连麦。可以有以下取值：
+        /// 0 自动取消连麦（默认值）
+        /// 1 保持连麦状态
+        public let turnOffMic: UInt64?
+
+        /// 声音音质。可以有以下取值：
+        /// 0：流畅模式（默认值），占用更小的带宽、拥有更好的降噪效果，适用于1对1、小班教学、多人音视频会议等场景。
+        /// 1：高音质模式，适合需要高保真传输音乐的场景，但降噪效果会被削弱，适用于音乐教学场景。
         public let audioQuality: UInt64?
 
         /// 上课后是否禁止自动录制。可以有以下取值：
@@ -69,13 +74,38 @@ extension Lcic {
         /// 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
         public let assistants: [String]?
 
+        /// rtc人数。
+        public let rtcAudienceNumber: UInt64?
+
+        /// 观看类型。互动观看 （默认）
+        public let audienceType: UInt64?
+
         /// 录制布局。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
         public let recordLayout: UInt64?
 
         /// 房间绑定的群组ID,非空时限制组成员进入
         public let groupId: String?
 
-        public init(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil) {
+        /// 是否允许老师/助教直接控制学生的摄像头/麦克风。可以有以下取值：
+        /// 0 不允许直接控制（需同意，默认值）
+        /// 1 允许直接控制（无需同意）
+        public let enableDirectControl: UInt64?
+
+        /// 开启专注模式。
+        /// 0 收看全部角色音视频(默认)
+        /// 1 只看老师和助教
+        public let interactionMode: Int64?
+
+        /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        public let videoOrientation: UInt64?
+
+        /// 开启课后评分。 0：不开启(默认)  1：开启
+        public let isGradingRequiredPostClass: Int64?
+
+        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        public let roomType: Int64?
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -85,11 +115,19 @@ extension Lcic {
             self.subType = subType
             self.teacherId = teacherId
             self.autoMic = autoMic
+            self.turnOffMic = turnOffMic
             self.audioQuality = audioQuality
             self.disableRecord = disableRecord
             self.assistants = assistants
+            self.rtcAudienceNumber = rtcAudienceNumber
+            self.audienceType = audienceType
             self.recordLayout = recordLayout
             self.groupId = groupId
+            self.enableDirectControl = enableDirectControl
+            self.interactionMode = interactionMode
+            self.videoOrientation = videoOrientation
+            self.isGradingRequiredPostClass = isGradingRequiredPostClass
+            self.roomType = roomType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -102,11 +140,19 @@ extension Lcic {
             case subType = "SubType"
             case teacherId = "TeacherId"
             case autoMic = "AutoMic"
+            case turnOffMic = "TurnOffMic"
             case audioQuality = "AudioQuality"
             case disableRecord = "DisableRecord"
             case assistants = "Assistants"
+            case rtcAudienceNumber = "RTCAudienceNumber"
+            case audienceType = "AudienceType"
             case recordLayout = "RecordLayout"
             case groupId = "GroupId"
+            case enableDirectControl = "EnableDirectControl"
+            case interactionMode = "InteractionMode"
+            case videoOrientation = "VideoOrientation"
+            case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
+            case roomType = "RoomType"
         }
     }
 
@@ -138,13 +184,13 @@ extension Lcic {
 
     /// 创建房间
     @inlinable
-    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
-        self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
+        self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, turnOffMic: turnOffMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, rtcAudienceNumber: rtcAudienceNumber, audienceType: audienceType, recordLayout: recordLayout, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建房间
     @inlinable
-    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
-        try await self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout, groupId: groupId), region: region, logger: logger, on: eventLoop)
+    public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: UInt64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
+        try await self.createRoom(.init(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, turnOffMic: turnOffMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, rtcAudienceNumber: rtcAudienceNumber, audienceType: audienceType, recordLayout: recordLayout, groupId: groupId, enableDirectControl: enableDirectControl, interactionMode: interactionMode, videoOrientation: videoOrientation, isGradingRequiredPostClass: isGradingRequiredPostClass, roomType: roomType), region: region, logger: logger, on: eventLoop)
     }
 }

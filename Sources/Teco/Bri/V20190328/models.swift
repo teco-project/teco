@@ -44,7 +44,6 @@ extension Bri {
         public let scene: String?
 
         /// 电话号码 (业务名为bri_num时必填)
-        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneNumber: String?
 
         /// Apk文件大小  (业务名为bri_apk时必填，除非已填FileMd5)
@@ -62,7 +61,10 @@ extension Bri {
         /// 微信号的可疑标签
         public let wechatTag: String?
 
-        public init(service: String, qq: String? = nil, qqTag: String? = nil, url: String? = nil, certMd5: String? = nil, packageName: String? = nil, fileMd5: String? = nil, scene: String? = nil, phoneNumber: String? = nil, fileSize: Int64? = nil, ip: String? = nil, imei: String? = nil, wechat: String? = nil, wechatTag: String? = nil) {
+        /// 子客户ID
+        public let subAppid: String?
+
+        public init(service: String, qq: String? = nil, qqTag: String? = nil, url: String? = nil, certMd5: String? = nil, packageName: String? = nil, fileMd5: String? = nil, scene: String? = nil, phoneNumber: String? = nil, fileSize: Int64? = nil, ip: String? = nil, imei: String? = nil, wechat: String? = nil, wechatTag: String? = nil, subAppid: String? = nil) {
             self.service = service
             self.qq = qq
             self.qqTag = qqTag
@@ -77,6 +79,7 @@ extension Bri {
             self.imei = imei
             self.wechat = wechat
             self.wechatTag = wechatTag
+            self.subAppid = subAppid
         }
 
         enum CodingKeys: String, CodingKey {
@@ -94,6 +97,7 @@ extension Bri {
             case imei = "Imei"
             case wechat = "Wechat"
             case wechatTag = "WechatTag"
+            case subAppid = "SubAppid"
         }
     }
 

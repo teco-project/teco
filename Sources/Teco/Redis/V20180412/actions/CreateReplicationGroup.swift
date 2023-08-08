@@ -24,7 +24,7 @@ extension Redis {
         /// 指定复制组中的主实例ID。
         public let instanceId: String
 
-        /// 复制组名称。
+        /// 复制组名称。名称只支持长度为2-64个字符的中文、英文、数字、下划线_、分隔符-。
         public let groupName: String?
 
         /// 备注信息。
@@ -59,7 +59,7 @@ extension Redis {
 
     /// 创建复制组接口
     ///
-    /// 创建复制组
+    /// 该接口（CreateReplicationGroup）用于创建复制组。
     @inlinable
     public func createReplicationGroup(_ input: CreateReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationGroupResponse> {
         self.client.execute(action: "CreateReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -67,7 +67,7 @@ extension Redis {
 
     /// 创建复制组接口
     ///
-    /// 创建复制组
+    /// 该接口（CreateReplicationGroup）用于创建复制组。
     @inlinable
     public func createReplicationGroup(_ input: CreateReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
         try await self.client.execute(action: "CreateReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,7 +75,7 @@ extension Redis {
 
     /// 创建复制组接口
     ///
-    /// 创建复制组
+    /// 该接口（CreateReplicationGroup）用于创建复制组。
     @inlinable
     public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationGroupResponse> {
         self.createReplicationGroup(.init(instanceId: instanceId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
@@ -83,7 +83,7 @@ extension Redis {
 
     /// 创建复制组接口
     ///
-    /// 创建复制组
+    /// 该接口（CreateReplicationGroup）用于创建复制组。
     @inlinable
     public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
         try await self.createReplicationGroup(.init(instanceId: instanceId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)

@@ -22,6 +22,7 @@ extension TCSmhError {
             case bucketNameInvalid = "InvalidParameterValue.BucketNameInvalid"
             case bucketNameNotBelongYou = "InvalidParameterValue.BucketNameNotBelongYou"
             case bucketNotFound = "InvalidParameterValue.BucketNotFound"
+            case bucketNotSupport = "InvalidParameterValue.BucketNotSupport"
             case bucketRegionInvalid = "InvalidParameterValue.BucketRegionInvalid"
             case cosStorageClass = "InvalidParameterValue.CosStorageClass"
             case cosStorageClassIntelligentTiering = "InvalidParameterValue.CosStorageClassIntelligentTiering"
@@ -30,6 +31,7 @@ extension TCSmhError {
             case notModified = "InvalidParameterValue.NotModified"
             case notSuperAdmin = "InvalidParameterValue.NotSuperAdmin"
             case phoneNumber = "InvalidParameterValue.PhoneNumber"
+            case other = "InvalidParameterValue"
         }
 
         private let error: Code
@@ -67,6 +69,11 @@ extension TCSmhError {
         /// 存储桶不存在或不在指定地域。
         public static var bucketNotFound: InvalidParameterValue {
             InvalidParameterValue(.bucketNotFound)
+        }
+
+        /// 请忽略此参数，服务会默认提供存储功能。
+        public static var bucketNotSupport: InvalidParameterValue {
+            InvalidParameterValue(.bucketNotSupport)
         }
 
         /// 存储桶所在地域无效。
@@ -109,6 +116,11 @@ extension TCSmhError {
             InvalidParameterValue(.phoneNumber)
         }
 
+        /// 参数取值错误。
+        public static var other: InvalidParameterValue {
+            InvalidParameterValue(.other)
+        }
+
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
@@ -118,6 +130,8 @@ extension TCSmhError {
                 code = .invalidParameterValue_BucketNameNotBelongYou
             case .bucketNotFound:
                 code = .invalidParameterValue_BucketNotFound
+            case .bucketNotSupport:
+                code = .invalidParameterValue_BucketNotSupport
             case .bucketRegionInvalid:
                 code = .invalidParameterValue_BucketRegionInvalid
             case .cosStorageClass:
@@ -134,6 +148,8 @@ extension TCSmhError {
                 code = .invalidParameterValue_NotSuperAdmin
             case .phoneNumber:
                 code = .invalidParameterValue_PhoneNumber
+            case .other:
+                code = .invalidParameterValue
             }
             return TCSmhError(code, context: self.context)
         }

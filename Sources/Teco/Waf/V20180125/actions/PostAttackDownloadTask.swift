@@ -47,13 +47,17 @@ extension Waf {
         /// 默认为desc，可以取值desc和asc
         public let sort: String?
 
-        public init(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil) {
+        /// 下载的日志条数
+        public let count: Int64?
+
+        public init(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, count: Int64? = nil) {
             self.domain = domain
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
             self.queryString = queryString
             self.taskName = taskName
             self.sort = sort
+            self.count = count
         }
 
         enum CodingKeys: String, CodingKey {
@@ -63,6 +67,7 @@ extension Waf {
             case queryString = "QueryString"
             case taskName = "TaskName"
             case sort = "Sort"
+            case count = "Count"
         }
     }
 
@@ -100,15 +105,15 @@ extension Waf {
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
-        self.postAttackDownloadTask(.init(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, count: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
+        self.postAttackDownloadTask(.init(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort, count: count), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
-        try await self.postAttackDownloadTask(.init(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), region: region, logger: logger, on: eventLoop)
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, count: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
+        try await self.postAttackDownloadTask(.init(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort, count: count), region: region, logger: logger, on: eventLoop)
     }
 }

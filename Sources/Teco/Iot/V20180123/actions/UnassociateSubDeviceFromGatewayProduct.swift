@@ -49,26 +49,30 @@ extension Iot {
     }
 
     /// 取消子设备产品与网关设备产品的关联
+    @available(*, unavailable, message: "业务无客户使用，下线接口。")
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
-        self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("UnassociateSubDeviceFromGatewayProduct is no longer available.")
     }
 
     /// 取消子设备产品与网关设备产品的关联
+    @available(*, unavailable, message: "业务无客户使用，下线接口。")
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("UnassociateSubDeviceFromGatewayProduct is no longer available.")
     }
 
     /// 取消子设备产品与网关设备产品的关联
+    @available(*, unavailable, message: "业务无客户使用，下线接口。")
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
-        self.unassociateSubDeviceFromGatewayProduct(.init(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
+        fatalError("UnassociateSubDeviceFromGatewayProduct is no longer available.")
     }
 
     /// 取消子设备产品与网关设备产品的关联
+    @available(*, unavailable, message: "业务无客户使用，下线接口。")
     @inlinable @discardableResult
     public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        try await self.unassociateSubDeviceFromGatewayProduct(.init(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
+        fatalError("UnassociateSubDeviceFromGatewayProduct is no longer available.")
     }
 }

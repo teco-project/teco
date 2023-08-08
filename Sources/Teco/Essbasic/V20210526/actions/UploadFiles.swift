@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequestModel {
-        /// 应用相关信息，若是第三方应用集成调用 appid 和proxyappid 必填
+        /// 应用相关信息，若是第三方应用集成调用 若是第三方应用集成调用,Agent.AppId 和 Agent.ProxyOrganizationOpenId 必填
         public let agent: Agent
 
         /// 文件对应业务类型
@@ -52,11 +52,11 @@ extension Essbasic {
 
     /// UploadFiles返回参数结构体
     public struct UploadFilesResponse: TCResponseModel {
-        /// 文件id数组，有效期一个小时；有效期内此文件id可以反复使用
-        public let fileIds: [String]
-
         /// 上传成功文件数量
         public let totalCount: Int64
+
+        /// 文件id数组，有效期一个小时；有效期内此文件id可以反复使用
+        public let fileIds: [String]
 
         /// 文件Url
         public let fileUrls: [String]
@@ -65,8 +65,8 @@ extension Essbasic {
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case fileIds = "FileIds"
             case totalCount = "TotalCount"
+            case fileIds = "FileIds"
             case fileUrls = "FileUrls"
             case requestId = "RequestId"
         }

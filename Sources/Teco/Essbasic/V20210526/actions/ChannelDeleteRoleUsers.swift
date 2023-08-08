@@ -21,23 +21,27 @@ import TecoCore
 extension Essbasic {
     /// ChannelDeleteRoleUsers请求参数结构体
     public struct ChannelDeleteRoleUsersRequest: TCRequestModel {
-        /// 代理信息
+        /// 代理信息此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
-        /// 角色Id
+        /// 角色Id（非超管或法人角色Id）
         public let roleId: String
 
-        /// 用户列表
-        public let userIds: [String]
+        /// 电子签用户ID列表，与OpenIds参数二选一,优先UserIds参数
+        public let userIds: [String]?
 
         /// 操作人信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
 
-        public init(agent: Agent, roleId: String, userIds: [String], operator: UserInfo) {
+        /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
+        public let openIds: [String]?
+
+        public init(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil) {
             self.agent = agent
             self.roleId = roleId
             self.userIds = userIds
             self.operator = `operator`
+            self.openIds = openIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Essbasic {
             case roleId = "RoleId"
             case userIds = "UserIds"
             case `operator` = "Operator"
+            case openIds = "OpenIds"
         }
     }
 
@@ -63,26 +68,34 @@ extension Essbasic {
     }
 
     /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
     public func channelDeleteRoleUsers(_ input: ChannelDeleteRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDeleteRoleUsersResponse> {
         self.client.execute(action: "ChannelDeleteRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
     public func channelDeleteRoleUsers(_ input: ChannelDeleteRoleUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDeleteRoleUsersResponse {
         try await self.client.execute(action: "ChannelDeleteRoleUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
-    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String], operator: UserInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDeleteRoleUsersResponse> {
-        self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDeleteRoleUsersResponse> {
+        self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`, openIds: openIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
-    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String], operator: UserInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDeleteRoleUsersResponse {
-        try await self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDeleteRoleUsersResponse {
+        try await self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`, openIds: openIds), region: region, logger: logger, on: eventLoop)
     }
 }

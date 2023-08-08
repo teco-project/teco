@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// DescribeChannelFlowEvidenceReport请求参数结构体
     public struct DescribeChannelFlowEvidenceReportRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         public let agent: Agent
 
         /// 出证报告编号
@@ -45,13 +45,15 @@ extension Essbasic {
 
     /// DescribeChannelFlowEvidenceReport返回参数结构体
     public struct DescribeChannelFlowEvidenceReportResponse: TCResponseModel {
-        /// 出证报告 URL
+        /// 出证报告下载 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?
 
-        /// 执行中：EvidenceStatusExecuting
-        /// 成功：EvidenceStatusSuccess
-        /// 失败：EvidenceStatusFailed
+        /// 出征任务的执行状态,状态列表如下
+        ///
+        /// - EvidenceStatusExecuting : 出征任务正在执行中
+        /// - EvidenceStatusSuccess : 出征任务执行成功
+        /// - EvidenceStatusFailed : 出征任务执行失败
         public let status: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

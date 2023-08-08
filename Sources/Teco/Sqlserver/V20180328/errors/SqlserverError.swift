@@ -34,6 +34,7 @@ public struct TCSqlserverError: TCSqlserverErrorType {
         case failedOperation_GcsError = "FailedOperation.GcsError"
         case failedOperation_GetVpcFailed = "FailedOperation.GetVpcFailed"
         case failedOperation_MigrationLockError = "FailedOperation.MigrationLockError"
+        case failedOperation_NotSupport = "FailedOperation.NotSupport"
         case failedOperation_QueryOrderFailed = "FailedOperation.QueryOrderFailed"
         case failedOperation_QueryPriceFailed = "FailedOperation.QueryPriceFailed"
         case failedOperation_SecurityGroupOperationError = "FailedOperation.SecurityGroupOperationError"
@@ -111,6 +112,7 @@ public struct TCSqlserverError: TCSqlserverErrorType {
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_PermissionDenied = "UnauthorizedOperation.PermissionDenied"
         case unknownParameter = "UnknownParameter"
+        case unsupportedOperation = "UnsupportedOperation"
         case unsupportedOperation_NotSupportRepeat = "UnsupportedOperation.NotSupportRepeat"
         case unsupportedOperation_UploadTypeError = "UnsupportedOperation.UploadTypeError"
     }
@@ -191,6 +193,11 @@ public struct TCSqlserverError: TCSqlserverErrorType {
     /// 备份导入任务锁定失败。
     public static var failedOperation_MigrationLockError: TCSqlserverError {
         TCSqlserverError(.failedOperation_MigrationLockError)
+    }
+
+    /// 不支持此类操作。
+    public static var failedOperation_NotSupport: TCSqlserverError {
+        TCSqlserverError(.failedOperation_NotSupport)
     }
 
     /// 查询订单失败。
@@ -578,6 +585,11 @@ public struct TCSqlserverError: TCSqlserverErrorType {
     /// 未知参数错误。
     public static var unknownParameter: TCSqlserverError {
         TCSqlserverError(.unknownParameter)
+    }
+
+    /// 操作不支持。
+    public static var unsupportedOperation: TCSqlserverError {
+        TCSqlserverError(.unsupportedOperation)
     }
 
     /// 不支持重复操作。

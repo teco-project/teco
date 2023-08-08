@@ -228,6 +228,10 @@ extension Rum {
         /// 创建时间
         public let createdAt: String
 
+        /// 实例类型 1:原web相关类型 2:app端类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: Int64?
+
         enum CodingKeys: String, CodingKey {
             case instanceStatus = "InstanceStatus"
             case areaId = "AreaId"
@@ -241,6 +245,7 @@ extension Rum {
             case dataRetentionDays = "DataRetentionDays"
             case instanceName = "InstanceName"
             case createdAt = "CreatedAt"
+            case instanceType = "InstanceType"
         }
     }
 
@@ -302,6 +307,10 @@ extension Rum {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectStatus: Int64?
 
+        /// 日志接入点，用户忽略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessPoint: String?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case creator = "Creator"
@@ -319,6 +328,7 @@ extension Rum {
             case desc = "Desc"
             case isStar = "IsStar"
             case projectStatus = "ProjectStatus"
+            case accessPoint = "AccessPoint"
         }
     }
 
@@ -423,12 +433,17 @@ extension Rum {
     }
 
     /// 标签
-    public struct Tag: TCOutputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签key
         public let key: String
 
         /// 标签value
         public let value: String
+
+        public init(key: String, value: String) {
+            self.key = key
+            self.value = value
+        }
 
         enum CodingKeys: String, CodingKey {
             case key = "Key"

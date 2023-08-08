@@ -130,7 +130,7 @@ extension Redis {
         }
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
@@ -138,7 +138,7 @@ extension Redis {
         self.client.execute(action: "DescribeCommonDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
@@ -146,7 +146,7 @@ extension Redis {
         try await self.client.execute(action: "DescribeCommonDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
@@ -154,7 +154,7 @@ extension Redis {
         self.describeCommonDBInstances(.init(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
@@ -162,7 +162,7 @@ extension Redis {
         try await self.describeCommonDBInstances(.init(vpcIds: vpcIds, subnetIds: subnetIds, payMode: payMode, instanceIds: instanceIds, instanceNames: instanceNames, status: status, orderBy: orderBy, orderByType: orderByType, vips: vips, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
@@ -170,7 +170,7 @@ extension Redis {
         self.client.paginate(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable @discardableResult
@@ -178,7 +178,7 @@ extension Redis {
         self.client.paginate(input: input, region: region, command: self.describeCommonDBInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询Redis实例列表信息
+    /// 查询Redis实例列表信息（已废弃）
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     ///

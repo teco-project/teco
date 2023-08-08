@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// PrepareFlows请求参数结构体
     public struct PrepareFlowsRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 多个合同（签署流程）信息，最大支持20个签署流程。

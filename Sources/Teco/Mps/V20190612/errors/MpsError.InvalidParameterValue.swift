@@ -37,6 +37,7 @@ extension TCMpsError {
             case definition = "InvalidParameterValue.Definition"
             case definitions = "InvalidParameterValue.Definitions"
             case deleteDefaultTemplate = "InvalidParameterValue.DeleteDefaultTemplate"
+            case destinationLanguage = "InvalidParameterValue.DestinationLanguage"
             case disableHigherVideoBitrate = "InvalidParameterValue.DisableHigherVideoBitrate"
             case disableHigherVideoResolution = "InvalidParameterValue.DisableHigherVideoResolution"
             case faceDuplicate = "InvalidParameterValue.FaceDuplicate"
@@ -78,6 +79,7 @@ extension TCMpsError {
             case sessionId = "InvalidParameterValue.SessionId"
             case sessionIdTooLong = "InvalidParameterValue.SessionIdTooLong"
             case soundSystem = "InvalidParameterValue.SoundSystem"
+            case sourceLanguage = "InvalidParameterValue.SourceLanguage"
             case srcFile = "InvalidParameterValue.SrcFile"
             case subtitleFormat = "InvalidParameterValue.SubtitleFormat"
             case svgTemplate = "InvalidParameterValue.SvgTemplate"
@@ -209,6 +211,10 @@ extension TCMpsError {
         /// 参数值错误：不允许删除默认模板。
         public static var deleteDefaultTemplate: InvalidParameterValue {
             InvalidParameterValue(.deleteDefaultTemplate)
+        }
+
+        public static var destinationLanguage: InvalidParameterValue {
+            InvalidParameterValue(.destinationLanguage)
         }
 
         /// 无效的禁止码率低转高开关值。
@@ -416,6 +422,10 @@ extension TCMpsError {
             InvalidParameterValue(.soundSystem)
         }
 
+        public static var sourceLanguage: InvalidParameterValue {
+            InvalidParameterValue(.sourceLanguage)
+        }
+
         /// 源文件错误。
         public static var srcFile: InvalidParameterValue {
             InvalidParameterValue(.srcFile)
@@ -550,6 +560,8 @@ extension TCMpsError {
                 code = .invalidParameterValue_Definitions
             case .deleteDefaultTemplate:
                 code = .invalidParameterValue_DeleteDefaultTemplate
+            case .destinationLanguage:
+                code = .invalidParameterValue_DestinationLanguage
             case .disableHigherVideoBitrate:
                 code = .invalidParameterValue_DisableHigherVideoBitrate
             case .disableHigherVideoResolution:
@@ -632,6 +644,8 @@ extension TCMpsError {
                 code = .invalidParameterValue_SessionIdTooLong
             case .soundSystem:
                 code = .invalidParameterValue_SoundSystem
+            case .sourceLanguage:
+                code = .invalidParameterValue_SourceLanguage
             case .srcFile:
                 code = .invalidParameterValue_SrcFile
             case .subtitleFormat:

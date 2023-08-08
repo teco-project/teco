@@ -285,10 +285,20 @@ extension Taf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Float?
 
+        /// 模型类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let modelType: UInt64?
+
+        /// 入参Uid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uid: String?
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case isFound = "IsFound"
             case score = "Score"
+            case modelType = "ModelType"
+            case uid = "Uid"
         }
     }
 }

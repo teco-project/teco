@@ -22,10 +22,10 @@ import TecoPaginationHelpers
 extension Organization {
     /// ListOrganizationIdentity请求参数结构体
     public struct ListOrganizationIdentityRequest: TCPaginatedRequest {
-        /// 偏移量。
+        /// 偏移量。取值是limit的整数倍。默认值 : 0。
         public let offset: UInt64
 
-        /// 限制数目。最大50
+        /// 限制数目。取值范围：1~50。默认值：10。
         public let limit: UInt64
 
         /// 名称搜索关键字。
@@ -34,11 +34,15 @@ extension Organization {
         /// 身份ID搜索。
         public let identityId: UInt64?
 
-        public init(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil) {
+        /// 身份类型。取值范围 1-预设, 2-自定义
+        public let identityType: UInt64?
+
+        public init(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, identityType: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchKey = searchKey
             self.identityId = identityId
+            self.identityType = identityType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +50,7 @@ extension Organization {
             case limit = "Limit"
             case searchKey = "SearchKey"
             case identityId = "IdentityId"
+            case identityType = "IdentityType"
         }
 
         /// Compute the next request based on API response.
@@ -53,7 +58,7 @@ extension Organization {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ListOrganizationIdentityRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, identityId: self.identityId)
+            return ListOrganizationIdentityRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, searchKey: self.searchKey, identityId: self.identityId, identityType: self.identityType)
         }
     }
 
@@ -101,14 +106,14 @@ extension Organization {
 
     /// 获取组织成员访问身份列表
     @inlinable
-    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationIdentityResponse> {
-        self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId), region: region, logger: logger, on: eventLoop)
+    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, identityType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationIdentityResponse> {
+        self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId, identityType: identityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员访问身份列表
     @inlinable
-    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
-        try await self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId), region: region, logger: logger, on: eventLoop)
+    public func listOrganizationIdentity(offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil, identityType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
+        try await self.listOrganizationIdentity(.init(offset: offset, limit: limit, searchKey: searchKey, identityId: identityId, identityType: identityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员访问身份列表

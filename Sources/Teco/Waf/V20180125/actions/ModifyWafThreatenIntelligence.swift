@@ -22,9 +22,9 @@ extension Waf {
     /// ModifyWafThreatenIntelligence请求参数结构体
     public struct ModifyWafThreatenIntelligenceRequest: TCRequestModel {
         /// 配置WAF威胁情报封禁模块详情
-        public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails
+        public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails?
 
-        public init(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails) {
+        public init(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails? = nil) {
             self.wafThreatenIntelligenceDetails = wafThreatenIntelligenceDetails
         }
 
@@ -36,7 +36,7 @@ extension Waf {
     /// ModifyWafThreatenIntelligence返回参数结构体
     public struct ModifyWafThreatenIntelligenceResponse: TCResponseModel {
         /// 当前WAF威胁情报封禁模块详情
-        public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails
+        public let wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -61,13 +61,13 @@ extension Waf {
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
+    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
         self.modifyWafThreatenIntelligence(.init(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
+    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
         try await self.modifyWafThreatenIntelligence(.init(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
     }
 }

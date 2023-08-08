@@ -43,7 +43,10 @@ extension Wedata {
         /// 数据来源id
         public let datasourceId: String?
 
-        public init(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil) {
+        /// 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        public let scoreType: String?
+
+        public init(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, scoreType: String? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.pageNumber = pageNumber
@@ -51,6 +54,7 @@ extension Wedata {
             self.filters = filters
             self.orderFields = orderFields
             self.datasourceId = datasourceId
+            self.scoreType = scoreType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Wedata {
             case filters = "Filters"
             case orderFields = "OrderFields"
             case datasourceId = "DatasourceId"
+            case scoreType = "ScoreType"
         }
 
         /// Compute the next request based on API response.
@@ -68,7 +73,7 @@ extension Wedata {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTableQualityDetailsRequest(statisticsDate: self.statisticsDate, projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, datasourceId: self.datasourceId)
+            return DescribeTableQualityDetailsRequest(statisticsDate: self.statisticsDate, projectId: self.projectId, pageNumber: self.pageNumber + 1, pageSize: self.pageSize, filters: self.filters, orderFields: self.orderFields, datasourceId: self.datasourceId, scoreType: self.scoreType)
         }
     }
 
@@ -117,16 +122,16 @@ extension Wedata {
     ///
     /// 质量报告-查询表质量详情
     @inlinable
-    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableQualityDetailsResponse> {
-        self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, scoreType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableQualityDetailsResponse> {
+        self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId, scoreType: scoreType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表质量详情
     ///
     /// 质量报告-查询表质量详情
     @inlinable
-    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
-        try await self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeTableQualityDetails(statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil, scoreType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
+        try await self.describeTableQualityDetails(.init(statisticsDate: statisticsDate, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, datasourceId: datasourceId, scoreType: scoreType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表质量详情

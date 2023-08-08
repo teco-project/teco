@@ -42,13 +42,17 @@ extension Cynosdb {
         /// 偏移量
         public let offset: Int64?
 
-        public init(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
+        /// 模糊匹配关键字(同时匹配AccountName和AccountHost，返回并集结果，支持正则)
+        public let accountRegular: String?
+
+        public init(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, accountRegular: String? = nil) {
             self.clusterId = clusterId
             self.accountNames = accountNames
             self.dbType = dbType
             self.hosts = hosts
             self.limit = limit
             self.offset = offset
+            self.accountRegular = accountRegular
         }
 
         enum CodingKeys: String, CodingKey {
@@ -58,6 +62,7 @@ extension Cynosdb {
             case hosts = "Hosts"
             case limit = "Limit"
             case offset = "Offset"
+            case accountRegular = "AccountRegular"
         }
 
         /// Compute the next request based on API response.
@@ -65,7 +70,7 @@ extension Cynosdb {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeAccountsRequest(clusterId: self.clusterId, accountNames: self.accountNames, dbType: self.dbType, hosts: self.hosts, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+            return DescribeAccountsRequest(clusterId: self.clusterId, accountNames: self.accountNames, dbType: self.dbType, hosts: self.hosts, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), accountRegular: self.accountRegular)
         }
     }
 
@@ -118,16 +123,16 @@ extension Cynosdb {
     ///
     /// 本接口(DescribeAccounts)用于查询数据库管理账号。
     @inlinable
-    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, accountRegular: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
+        self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset, accountRegular: accountRegular), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库管理账号
     ///
     /// 本接口(DescribeAccounts)用于查询数据库管理账号。
     @inlinable
-    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeAccounts(clusterId: String, accountNames: [String]? = nil, dbType: String? = nil, hosts: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, accountRegular: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(.init(clusterId: clusterId, accountNames: accountNames, dbType: dbType, hosts: hosts, limit: limit, offset: offset, accountRegular: accountRegular), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库管理账号

@@ -67,7 +67,7 @@ extension Apigateway {
         }
 
         /// Extract the returned item list from the paginated response.
-        public func getItems() -> [ServiceReleaseHistoryInfo] {
+        public func getItems() -> [DescribeServiceReleaseVersionResultVersionListInfo] {
             self.result?.versionList ?? []
         }
 
@@ -118,7 +118,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
     /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
     @inlinable
-    public func describeServiceReleaseVersionPaginated(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ServiceReleaseHistoryInfo])> {
+    public func describeServiceReleaseVersionPaginated(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeServiceReleaseVersionResultVersionListInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)
     }
 
@@ -136,7 +136,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
     /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
     ///
-    /// - Returns: `AsyncSequence`s of `ServiceReleaseHistoryInfo` and `DescribeServiceReleaseVersionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of `DescribeServiceReleaseVersionResultVersionListInfo` and `DescribeServiceReleaseVersionResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceReleaseVersionPaginator(_ input: DescribeServiceReleaseVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceReleaseVersionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceReleaseVersion, logger: logger, on: eventLoop)

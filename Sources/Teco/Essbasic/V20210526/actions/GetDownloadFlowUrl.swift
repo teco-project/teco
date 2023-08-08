@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// GetDownloadFlowUrl请求参数结构体
     public struct GetDownloadFlowUrlRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 文件夹数组，签署流程总数不能超过50个，一个文件夹下，不能超过20个签署流程
@@ -61,6 +61,7 @@ extension Essbasic {
     ///
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
     @inlinable
     public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
         self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,6 +71,7 @@ extension Essbasic {
     ///
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
     @inlinable
     public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
         try await self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,6 +81,7 @@ extension Essbasic {
     ///
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
     @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
         self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -88,6 +91,7 @@ extension Essbasic {
     ///
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
     @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
         try await self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)

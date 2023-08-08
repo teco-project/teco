@@ -461,6 +461,10 @@ extension Cbs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorPrompt: String?
 
+        /// 云盘是否开启性能突发
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let burstPerformance: Bool?
+
         enum CodingKeys: String, CodingKey {
             case deleteWithInstance = "DeleteWithInstance"
             case renewFlag = "RenewFlag"
@@ -503,6 +507,7 @@ extension Cbs {
             case instanceType = "InstanceType"
             case lastAttachInsId = "LastAttachInsId"
             case errorPrompt = "ErrorPrompt"
+            case burstPerformance = "BurstPerformance"
         }
     }
 
@@ -637,64 +642,22 @@ extension Cbs {
         }
     }
 
-    /// 云盘操作日志。
-    public struct DiskOperationLog: TCOutputModel {
-        /// 操作的状态。取值范围：
-        /// SUCCESS :表示操作成功
-        /// FAILED :表示操作失败
-        /// PROCESSING :表示操作中。
-        public let operationState: String
-
-        /// 开始时间。
-        public let startTime: String
-
-        /// 操作者的UIN。
-        public let `operator`: String
-
-        /// 操作类型。取值范围：
-        /// CBS_OPERATION_ATTACH：挂载云硬盘
-        /// CBS_OPERATION_DETACH：解挂云硬盘
-        /// CBS_OPERATION_RENEW：续费
-        /// CBS_OPERATION_EXPAND：扩容
-        /// CBS_OPERATION_CREATE：创建
-        /// CBS_OPERATION_ISOLATE：隔离
-        /// CBS_OPERATION_MODIFY：修改云硬盘属性
-        /// ASP_OPERATION_BIND：关联定期快照策略
-        /// ASP_OPERATION_UNBIND：取消关联定期快照策略
-        public let operation: String
-
-        /// 结束时间。
-        public let endTime: String
-
-        /// 操作的云盘ID。
-        public let diskId: String
-
-        enum CodingKeys: String, CodingKey {
-            case operationState = "OperationState"
-            case startTime = "StartTime"
-            case `operator` = "Operator"
-            case operation = "Operation"
-            case endTime = "EndTime"
-            case diskId = "DiskId"
-        }
-    }
-
     /// 描述键值对过滤器，用于条件过滤查询。
     public struct Filter: TCInputModel {
-        /// 一个或者多个过滤值。
-        public let values: [String]
-
         /// 过滤键的名称。
         public let name: String
 
-        public init(values: [String], name: String) {
-            self.values = values
+        /// 一个或者多个过滤值。
+        public let values: [String]
+
+        public init(name: String, values: [String]) {
             self.name = name
+            self.values = values
         }
 
         enum CodingKeys: String, CodingKey {
-            case values = "Values"
             case name = "Name"
+            case values = "Values"
         }
     }
 
@@ -1027,47 +990,6 @@ extension Cbs {
             case message = "Message"
             case code = "Code"
             case destinationRegion = "DestinationRegion"
-        }
-    }
-
-    /// 快照操作日志，已废弃。
-    public struct SnapshotOperationLog: TCOutputModel {
-        /// 操作的状态。取值范围：
-        /// SUCCESS :表示操作成功
-        /// FAILED :表示操作失败
-        /// PROCESSING :表示操作中。
-        public let operationState: String
-
-        /// 开始时间。
-        public let startTime: String
-
-        /// 操作者的UIN。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `operator`: String?
-
-        /// 操作的快照ID。
-        public let snapshotId: String
-
-        /// 操作类型。取值范围：
-        /// SNAP_OPERATION_DELETE：删除快照
-        /// SNAP_OPERATION_ROLLBACK：回滚快照
-        /// SNAP_OPERATION_MODIFY：修改快照属性
-        /// SNAP_OPERATION_CREATE：创建快照
-        /// SNAP_OPERATION_COPY：跨地域复制快照
-        /// ASP_OPERATION_CREATE_SNAP：由定期快照策略创建快照
-        /// ASP_OPERATION_DELETE_SNAP：由定期快照策略删除快照
-        public let operation: String
-
-        /// 结束时间。
-        public let endTime: String
-
-        enum CodingKeys: String, CodingKey {
-            case operationState = "OperationState"
-            case startTime = "StartTime"
-            case `operator` = "Operator"
-            case snapshotId = "SnapshotId"
-            case operation = "Operation"
-            case endTime = "EndTime"
         }
     }
 

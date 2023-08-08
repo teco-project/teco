@@ -39,33 +39,33 @@ extension Postgres {
         }
     }
 
-    /// 查询支持的数据库版本号列表
+    /// 查询支持的数据库版本
     ///
-    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本。
     @inlinable
     public func describeDBVersions(_ input: DescribeDBVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBVersionsResponse> {
         self.client.execute(action: "DescribeDBVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询支持的数据库版本号列表
+    /// 查询支持的数据库版本
     ///
-    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本。
     @inlinable
     public func describeDBVersions(_ input: DescribeDBVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBVersionsResponse {
         try await self.client.execute(action: "DescribeDBVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询支持的数据库版本号列表
+    /// 查询支持的数据库版本
     ///
-    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本。
     @inlinable
     public func describeDBVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBVersionsResponse> {
         self.describeDBVersions(.init(), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询支持的数据库版本号列表
+    /// 查询支持的数据库版本
     ///
-    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本号列表。
+    /// 本接口（DescribeDBVersions）用于查询支持的数据库版本。
     @inlinable
     public func describeDBVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBVersionsResponse {
         try await self.describeDBVersions(.init(), region: region, logger: logger, on: eventLoop)

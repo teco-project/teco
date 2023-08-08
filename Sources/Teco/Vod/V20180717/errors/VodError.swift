@@ -32,6 +32,7 @@ public struct TCVodError: TCVodErrorType {
         case failedOperation_ClassNameDuplicate = "FailedOperation.ClassNameDuplicate"
         case failedOperation_ClassNoFound = "FailedOperation.ClassNoFound"
         case failedOperation_CoverType = "FailedOperation.CoverType"
+        case failedOperation_DBError = "FailedOperation.DBError"
         case failedOperation_DomainDeploying = "FailedOperation.DomainDeploying"
         case failedOperation_InvalidAccount = "FailedOperation.InvalidAccount"
         case failedOperation_InvalidVodUser = "FailedOperation.InvalidVodUser"
@@ -310,6 +311,11 @@ public struct TCVodError: TCVodErrorType {
     /// 操作失败：不支持的封面类型。
     public static var failedOperation_CoverType: TCVodError {
         TCVodError(.failedOperation_CoverType)
+    }
+
+    /// 操作失败：数据库操作失败。
+    public static var failedOperation_DBError: TCVodError {
+        TCVodError(.failedOperation_DBError)
     }
 
     /// 域名部署中，不能变更配置。
@@ -1288,6 +1294,8 @@ public struct TCVodError: TCVodErrorType {
     }
 
     /// 超过限制值：模板数超限。
+    ///
+    /// None
     public static var limitExceeded_TooMuchTemplate: TCVodError {
         TCVodError(.limitExceeded_TooMuchTemplate)
     }

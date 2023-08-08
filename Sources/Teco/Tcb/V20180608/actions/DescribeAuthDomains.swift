@@ -35,7 +35,7 @@ extension Tcb {
 
     /// DescribeAuthDomains返回参数结构体
     public struct DescribeAuthDomainsResponse: TCResponseModel {
-        /// 安全域名列表列表
+        /// 安全域名列表
         public let domains: [AuthDomain]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

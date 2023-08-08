@@ -53,6 +53,8 @@ extension TCTbaasError {
         }
 
         /// 参数取值不合法。
+        ///
+        /// None
         public static var illegalValue: InvalidParameterValue {
             InvalidParameterValue(.illegalValue)
         }

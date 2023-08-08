@@ -34,6 +34,7 @@ extension TCLighthouseError {
             case instanceIdNotFound = "ResourceNotFound.InstanceIdNotFound"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
             case keyIdNotFound = "ResourceNotFound.KeyIdNotFound"
+            case keyPairNotFound = "ResourceNotFound.KeyPairNotFound"
             case privateBlueprintNotFound = "ResourceNotFound.PrivateBlueprintNotFound"
             case roleNotFound = "ResourceNotFound.RoleNotFound"
             case sceneIdNotFound = "ResourceNotFound.SceneIdNotFound"
@@ -139,6 +140,11 @@ extension TCLighthouseError {
             ResourceNotFound(.keyIdNotFound)
         }
 
+        /// 密钥对不存在。
+        public static var keyPairNotFound: ResourceNotFound {
+            ResourceNotFound(.keyPairNotFound)
+        }
+
         /// 自定义镜像不存在。
         public static var privateBlueprintNotFound: ResourceNotFound {
             ResourceNotFound(.privateBlueprintNotFound)
@@ -202,6 +208,8 @@ extension TCLighthouseError {
                 code = .resourceNotFound_InstanceNotFound
             case .keyIdNotFound:
                 code = .resourceNotFound_KeyIdNotFound
+            case .keyPairNotFound:
+                code = .resourceNotFound_KeyPairNotFound
             case .privateBlueprintNotFound:
                 code = .resourceNotFound_PrivateBlueprintNotFound
             case .roleNotFound:

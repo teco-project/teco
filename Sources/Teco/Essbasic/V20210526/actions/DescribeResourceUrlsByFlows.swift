@@ -22,7 +22,7 @@ extension Essbasic {
     /// DescribeResourceUrlsByFlows请求参数结构体
     public struct DescribeResourceUrlsByFlowsRequest: TCRequestModel {
         /// 应用相关信息。
-        /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 查询资源所对应的签署流程Id，最多支持50个

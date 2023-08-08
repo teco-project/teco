@@ -20,14 +20,9 @@ extension TCTeoError {
     public struct InternalError: TCTeoErrorType {
         enum Code: String {
             case backendError = "InternalError.BackendError"
-            case dbError = "InternalError.DBError"
             case domainConfig = "InternalError.DomainConfig"
             case failedToGenerateUrl = "InternalError.FailedToGenerateUrl"
-            case getRoleError = "InternalError.GetRoleError"
-            case proxyServer = "InternalError.ProxyServer"
             case quotaSystem = "InternalError.QuotaSystem"
-            case routeError = "InternalError.RouteError"
-            case systemError = "InternalError.SystemError"
             case other = "InternalError"
         }
 
@@ -58,11 +53,6 @@ extension TCTeoError {
             InternalError(.backendError)
         }
 
-        /// 数据库错误。
-        public static var dbError: InternalError {
-            InternalError(.dbError)
-        }
-
         /// 获取配置失败。
         public static var domainConfig: InternalError {
             InternalError(.domainConfig)
@@ -73,29 +63,9 @@ extension TCTeoError {
             InternalError(.failedToGenerateUrl)
         }
 
-        /// 获取角色失败。
-        public static var getRoleError: InternalError {
-            InternalError(.getRoleError)
-        }
-
-        /// 后端服务器发生未知错误。
-        public static var proxyServer: InternalError {
-            InternalError(.proxyServer)
-        }
-
         /// 配额系统处理失败。
         public static var quotaSystem: InternalError {
             InternalError(.quotaSystem)
-        }
-
-        /// 后端服务路由地址错误。
-        public static var routeError: InternalError {
-            InternalError(.routeError)
-        }
-
-        /// 内部错误-系统错误。
-        public static var systemError: InternalError {
-            InternalError(.systemError)
         }
 
         /// 内部错误。
@@ -108,22 +78,12 @@ extension TCTeoError {
             switch self.error {
             case .backendError:
                 code = .internalError_BackendError
-            case .dbError:
-                code = .internalError_DBError
             case .domainConfig:
                 code = .internalError_DomainConfig
             case .failedToGenerateUrl:
                 code = .internalError_FailedToGenerateUrl
-            case .getRoleError:
-                code = .internalError_GetRoleError
-            case .proxyServer:
-                code = .internalError_ProxyServer
             case .quotaSystem:
                 code = .internalError_QuotaSystem
-            case .routeError:
-                code = .internalError_RouteError
-            case .systemError:
-                code = .internalError_SystemError
             case .other:
                 code = .internalError
             }

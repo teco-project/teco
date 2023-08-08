@@ -19,6 +19,7 @@ import TecoCore
 extension TCCvmError {
     public struct ResourceInUse: TCCvmErrorType {
         enum Code: String {
+            case diskRollbacking = "ResourceInUse.DiskRollbacking"
             case hpcCluster = "ResourceInUse.HpcCluster"
             case other = "ResourceInUse"
         }
@@ -45,6 +46,11 @@ extension TCCvmError {
             self.context = context
         }
 
+        /// 磁盘回滚正在执行中，请稍后再试。
+        public static var diskRollbacking: ResourceInUse {
+            ResourceInUse(.diskRollbacking)
+        }
+
         /// 高性能计算集群使用中。
         public static var hpcCluster: ResourceInUse {
             ResourceInUse(.hpcCluster)
@@ -58,6 +64,8 @@ extension TCCvmError {
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {
+            case .diskRollbacking:
+                code = .resourceInUse_DiskRollbacking
             case .hpcCluster:
                 code = .resourceInUse_HpcCluster
             case .other:

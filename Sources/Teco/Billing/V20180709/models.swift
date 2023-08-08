@@ -21,26 +21,30 @@ import TecoDateHelpers
 extension Billing {
     /// 按交易类型汇总消费详情
     public struct ActionSummaryOverviewItem: TCOutputModel {
-        /// 交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型
+        /// 交易类型编码
         public let actionType: String
 
-        /// 交易类型名称
+        /// 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
         public let actionTypeName: String
-
-        /// 实际花费
-        public let realTotalCost: String
 
         /// 费用所占百分比，两位小数
         public let realTotalCostRatio: String
 
-        /// 现金金额
+        /// 优惠后总价
+        public let realTotalCost: String
+
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
 
         /// 账单月份，格式2019-08
         public let billMonth: String
@@ -51,11 +55,12 @@ extension Billing {
         enum CodingKeys: String, CodingKey {
             case actionType = "ActionType"
             case actionTypeName = "ActionTypeName"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case billMonth = "BillMonth"
             case totalCost = "TotalCost"
         }
@@ -77,52 +82,52 @@ extension Billing {
 
     /// 账单明细数据对象
     public struct BillDetail: TCOutputModel {
-        /// 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         public let businessCodeName: String
 
-        /// 子产品名称：云产品子类，如云服务器CVM-标准型S1
+        /// 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
         public let productCodeName: String
 
-        /// 计费模式：包年包月和按量计费
+        /// 计费模式：资源的计费模式，区分为包年包月和按量计费
         public let payModeName: String
 
-        /// 项目:资源所属项目
+        /// 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         public let projectName: String
 
-        /// 区域：资源所属地域，如华南地区（广州）
+        /// 地域：资源所属地域，如华南地区（广州）
         public let regionName: String
 
         /// 可用区：资源所属可用区，如广州三区
         public let zoneName: String
 
-        /// 资源实例ID
+        /// 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
         public let resourceId: String
 
-        /// 实例名称
+        /// 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
         public let resourceName: String
 
-        /// 交易类型
+        /// 交易类型，如包年包月新购、包年包月续费、按量计费扣费等类型
         public let actionTypeName: String
 
-        /// 订单ID
+        /// 订单ID：包年包月计费模式下订购的订单号
         public let orderId: String
 
-        /// 交易ID
+        /// 交易ID：结算扣费单号
         public let billId: String
 
-        /// 扣费时间
+        /// 扣费时间：结算扣费时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
-        /// 开始使用时间
+        /// 开始使用时间：产品服务开始使用时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
-        /// 结束使用时间
+        /// 结束使用时间：产品服务结束使用时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
@@ -131,37 +136,41 @@ extension Billing {
         /// 组件列表
         public let componentSet: [BillDetailComponent]
 
-        /// 支付者UIN
+        /// 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
         public let payerUin: String
 
-        /// 使用者UIN
+        /// 使用者UIN：实际使用资源的账号 ID
         public let ownerUin: String
 
-        /// 操作者UIN
+        /// 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
         public let operateUin: String
 
-        /// Tag 信息
+        /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [BillTagInfo]?
 
-        /// 产品名称代码
+        /// 产品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessCode: String?
 
-        /// 子产品名称代码
+        /// 子产品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productCode: String?
 
-        /// 交易类型代码
+        /// 交易类型编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionType: String?
 
-        /// 区域ID
+        /// 地域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: String?
 
-        /// 项目ID:资源所属项目ID
+        /// 项目ID
         public let projectId: Int64
+
+        /// 价格属性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let priceInfo: [String]?
 
         enum CodingKeys: String, CodingKey {
             case businessCodeName = "BusinessCodeName"
@@ -188,96 +197,109 @@ extension Billing {
             case actionType = "ActionType"
             case regionId = "RegionId"
             case projectId = "ProjectId"
+            case priceInfo = "PriceInfo"
         }
     }
 
     /// 账单明细组件对象
     public struct BillDetailComponent: TCOutputModel {
-        /// 组件类型:资源组件类型的名称，如内存、硬盘等
+        /// 组件类型：用户购买的产品或服务对应的组件大类，例如：云服务器 CVM 的组件：CPU、内存等
         public let componentCodeName: String
 
-        /// 组件名称:资源组件的名称，如云数据库MySQL-内存等
+        /// 组件名称：用户购买的产品或服务，所包含的具体组件
         public let itemCodeName: String
 
-        /// 组件刊例价:资源组件的原始价格，保持原始粒度
+        /// 组件刊例价：组件的官网原始单价（如果客户享受一口价/合同价则默认不展示）
         public let singlePrice: String
 
-        /// 组件指定价
+        /// 组件指定价（已废弃）
         public let specifiedPrice: String
 
-        /// 价格单位
+        /// 组件价格单位：组件价格的单位，单位构成：元/用量单位/时长单位
         public let priceUnit: String
 
-        /// 组件用量
+        /// 组件用量：该组件实际结算用量，组件用量 = 组件原始用量 - 抵扣用量（含资源包
         public let usedAmount: String
 
-        /// 组件用量单位
+        /// 组件用量单位：组件用量对应的单位
         public let usedAmountUnit: String
 
-        /// 使用时长
+        /// 原始用量/时长：组件被资源包抵扣前的原始用量/时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realTotalMeasure: String?
+
+        /// 抵扣用量/时长（含资源包）：组件被资源包抵扣的用量/时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deductedMeasure: String?
+
+        /// 使用时长：资源使用的时长
         public let timeSpan: String
 
-        /// 时长单位
+        /// 时长单位：资源使用时长的单位
         public let timeUnitName: String
 
-        /// 组件原价
+        /// 组件原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
         public let cost: String
 
-        /// 折扣率
+        /// 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
         public let discount: String
 
         /// 优惠类型
         public let reduceType: String
 
-        /// 优惠后总价
+        /// 优惠后总价：优惠后总价=（原价 - 预留实例抵扣原价 - 节省计划抵扣原价）* 折扣率
         public let realCost: String
 
-        /// 代金券支付金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
 
-        /// 现金支付金额
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送账户支付金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 组件类型代码
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
+        /// 组件类型编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemCode: String?
 
-        /// 组件名称代码
+        /// 组件名称编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let componentCode: String?
 
-        /// 合同价
+        /// 组件单价：组件的折后单价，组件单价 = 刊例价 * 折扣
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contractPrice: String?
 
-        /// 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
+        /// 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceType: String?
 
-        /// 预留实例抵扣的使用时长，时长单位与被抵扣的时长单位保持一致
+        /// 预留实例抵扣的使用时长：本产品或服务使用预留实例抵扣的使用时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riTimeSpan: String?
 
-        /// 按组件原价的口径换算的预留实例抵扣金额
+        /// 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCostWithRI: String?
 
-        /// 节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
+        /// 节省计划抵扣率：节省计划可用余额额度范围内，节省计划对于此组件打的折扣率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spDeductionRate: String?
 
-        /// 节省计划抵扣的SP包面值
+        /// 节省计划抵扣金额（已废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spDeduction: String?
 
-        /// 按组件原价的口径换算的节省计划抵扣金额
+        /// 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCostWithSP: String?
 
-        /// 综合了官网折扣、预留实例抵扣、节省计划抵扣的混合折扣率。若没有预留实例抵扣、节省计划抵扣,混合折扣率等于折扣率
+        /// 混合折扣率：综合各类折扣抵扣信息后的最终折扣率，混合折扣率 = 优惠后总价 / 组件原价
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blendedDiscount: String?
 
@@ -289,6 +311,8 @@ extension Billing {
             case priceUnit = "PriceUnit"
             case usedAmount = "UsedAmount"
             case usedAmountUnit = "UsedAmountUnit"
+            case realTotalMeasure = "RealTotalMeasure"
+            case deductedMeasure = "DeductedMeasure"
             case timeSpan = "TimeSpan"
             case timeUnitName = "TimeUnitName"
             case cost = "Cost"
@@ -298,6 +322,7 @@ extension Billing {
             case voucherPayAmount = "VoucherPayAmount"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case itemCode = "ItemCode"
             case componentCode = "ComponentCode"
             case contractPrice = "ContractPrice"
@@ -313,134 +338,129 @@ extension Billing {
 
     /// 账单资源汇总数据对象
     public struct BillResourceSummary: TCOutputModel {
-        /// 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         public let businessCodeName: String
 
-        /// 子产品名称：云产品子类，如云服务器CVM-标准型S1， 当没有获取到子产品名称时，返回"-"
+        /// 子产品名称：用户采购的具体产品细分类型，例如：云服务器 CVM-标准型 S1
         public let productCodeName: String
 
-        /// 计费模式：包年包月和按量计费
+        /// 计费模式：资源的计费模式，区分为包年包月和按量计费
         public let payModeName: String
 
-        /// 项目
+        /// 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         public let projectName: String
 
-        /// 地域
+        /// 地域：资源所属地域，如华南地区（广州）
         public let regionName: String
 
-        /// 可用区
+        /// 可用区：资源所属可用区，如广州三区
         public let zoneName: String
 
-        /// 资源实例ID
+        /// 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
         public let resourceId: String
 
-        /// 资源实例名称
+        /// 资源别名：用户在控制台为资源设置的名称，如果未设置，则默认为空
         public let resourceName: String
 
-        /// 交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型
+        /// 交易类型：如包年包月新购、包年包月续费、按量计费扣费等类型
         public let actionTypeName: String
 
-        /// 订单ID
+        /// 订单ID：包年包月计费模式下订购的订单号
         public let orderId: String
 
-        /// 扣费时间
+        /// 扣费时间：结算扣费时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var payTime: Date
 
-        /// 开始使用时间
+        /// 开始使用时间：产品服务开始使用时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeBeginTime: Date
 
-        /// 结束使用时间
+        /// 结束使用时间：产品服务结束使用时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var feeEndTime: Date
 
-        /// 配置描述
+        /// 配置描述：该资源下的计费项名称和用量合并展示，仅在资源账单体现
         public let configDesc: String
 
-        /// 扩展字段1
+        /// 扩展字段1：产品对应的扩展属性信息，仅在资源账单体现
         public let extendField1: String
 
-        /// 扩展字段2
+        /// 扩展字段2：产品对应的扩展属性信息，仅在资源账单体现
         public let extendField2: String
 
-        /// 原价，单位为元
+        /// 原价：原价 = 组件刊例价 * 组件用量 * 使用时长（如果客户享受一口价/合同价则默认不展示，退费类场景也默认不展示）
         public let totalCost: String
 
-        /// 折扣率
-        /// 当聚合之后折扣不唯一或者合同价的情况下，返回“-”
+        /// 折扣率：本资源享受的折扣率（如果客户享受一口价/合同价则默认不展示，退费场景也默认不展示）
         public let discount: String
 
         /// 优惠类型
         public let reduceType: String
 
-        /// 优惠后总价，单位为元
+        /// 优惠后总价
         public let realTotalCost: String
 
-        /// 代金券支付金额，单位为元
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
 
-        /// 现金账户支付金额，单位为元
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送账户支付金额，单位为元
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 扩展字段3
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
+        /// 扩展字段3：产品对应的扩展属性信息，仅在资源账单体现
         public let extendField3: String
 
-        /// 扩展字段4
+        /// 扩展字段4：产品对应的扩展属性信息，仅在资源账单体现
         public let extendField4: String
 
-        /// 扩展字段5
+        /// 扩展字段5：产品对应的扩展属性信息，仅在资源账单体现
         public let extendField5: String
 
-        /// Tag 信息
+        /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [BillTagInfo]?
 
-        /// 付款方uin
+        /// 支付者UIN：支付者的账号 ID，账号 ID 是用户在腾讯云的唯一账号标识
         public let payerUin: String
 
-        /// 资源所有者uin,无值则返回"-"
+        /// 使用者UIN：实际使用资源的账号 ID
         public let ownerUin: String
 
-        /// 操作者uin,无值则返回"-"
+        /// 操作者UIN：操作者账号 ID（预付费资源下单或后付费操作开通资源账号的 ID 或者角色 ID ）
         public let operateUin: String
 
-        /// 产品名称代码
+        /// 产品编码
         public let businessCode: String
 
-        /// 子产品名称代码
+        /// 子产品编码
         public let productCode: String
 
-        /// 区域ID
+        /// 地域ID
         public let regionId: Int64
 
-        /// 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
-        ///
-        /// ri=Standard RI
-        ///
-        /// svp=Savings Plan
-        ///
-        /// si=Spot Instances
-        ///
-        /// rp=Resource Pack
+        /// 实例类型：购买的产品服务对应的实例类型，包括资源包、RI、SP、竞价实例。正常的实例展示默认为不展示
         public let instanceType: String
 
-        /// 按组件原价的口径换算的预留实例抵扣金额
+        /// 预留实例抵扣组件原价：本产品或服务使用预留实例抵扣的组件原价金额
         public let originalCostWithRI: String
 
-        /// 节省计划抵扣的SP包面值
-        public let spDeduction: String
+        /// 节省计划抵扣金额（已废弃）
+        public let spDeduction: String?
 
-        /// 按组件原价的口径换算的节省计划抵扣金额
+        /// 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
         public let originalCostWithSP: String
 
         enum CodingKeys: String, CodingKey {
@@ -467,6 +487,7 @@ extension Billing {
             case voucherPayAmount = "VoucherPayAmount"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case extendField3 = "ExtendField3"
             case extendField4 = "ExtendField4"
             case extendField5 = "ExtendField5"
@@ -548,29 +569,72 @@ extension Billing {
         }
     }
 
+    /// 产品汇总信息
+    public struct BusinessSummaryInfo: TCOutputModel {
+        /// 产品编码
+        public let businessCode: String?
+
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        public let businessCodeName: String?
+
+        /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCost: String?
+
+        /// 优惠后总价
+        public let realTotalCost: String?
+
+        /// 现金账户支出：通过现金账户支付的金额
+        public let cashPayAmount: String?
+
+        /// 赠送账户支出：使用赠送金支付的金额
+        public let incentivePayAmount: String?
+
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        public let voucherPayAmount: String?
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
+        enum CodingKeys: String, CodingKey {
+            case businessCode = "BusinessCode"
+            case businessCodeName = "BusinessCodeName"
+            case totalCost = "TotalCost"
+            case realTotalCost = "RealTotalCost"
+            case cashPayAmount = "CashPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
+        }
+    }
+
     /// 按产品汇总产品详情
     public struct BusinessSummaryOverviewItem: TCOutputModel {
-        /// 产品名称代码
+        /// 产品编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessCode: String?
 
-        /// 产品名称：云产品大类，如云服务器CVM、云数据库MySQL
+        /// 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
         public let businessCodeName: String
-
-        /// 实际花费
-        public let realTotalCost: String
 
         /// 费用所占百分比，两位小数
         public let realTotalCostRatio: String
 
-        /// 现金金额
+        /// 优惠后总价
+        public let realTotalCost: String
+
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        public let transferPayAmount: String
 
         /// 账单月份，格式2019-08
         public let billMonth: String
@@ -578,50 +642,47 @@ extension Billing {
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         public let totalCost: String
 
-        /// 分成金金额
-        public let transferPayAmount: String
-
         enum CodingKeys: String, CodingKey {
             case businessCode = "BusinessCode"
             case businessCodeName = "BusinessCodeName"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case billMonth = "BillMonth"
             case totalCost = "TotalCost"
-            case transferPayAmount = "TransferPayAmount"
         }
     }
 
     /// 按产品汇总总费用
     public struct BusinessSummaryTotal: TCOutputModel {
-        /// 总花费
+        /// 优惠后总价
         public let realTotalCost: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 现金金额
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        public let transferPayAmount: String
 
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         public let totalCost: String
-
-        /// 分成金金额
-        public let transferPayAmount: String
 
         enum CodingKeys: String, CodingKey {
             case realTotalCost = "RealTotalCost"
             case voucherPayAmount = "VoucherPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case cashPayAmount = "CashPayAmount"
-            case totalCost = "TotalCost"
             case transferPayAmount = "TransferPayAmount"
+            case totalCost = "TotalCost"
         }
     }
 
@@ -799,11 +860,31 @@ extension Billing {
         /// 费用趋势
         public let trend: ConsumptionSummaryTrend
 
+        /// 现金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cashPayAmount: String?
+
+        /// 赠送金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incentivePayAmount: String?
+
+        /// 代金券
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voucherPayAmount: String?
+
+        /// 分成金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
         enum CodingKeys: String, CodingKey {
             case businessCode = "BusinessCode"
             case businessCodeName = "BusinessCodeName"
             case realTotalCost = "RealTotalCost"
             case trend = "Trend"
+            case cashPayAmount = "CashPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
         }
     }
 
@@ -824,12 +905,32 @@ extension Billing {
         /// 产品消耗详情
         public let business: [ConsumptionBusinessSummaryDataItem]
 
+        /// 现金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cashPayAmount: String?
+
+        /// 赠送金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incentivePayAmount: String?
+
+        /// 代金券
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voucherPayAmount: String?
+
+        /// 分成金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case projectName = "ProjectName"
             case realTotalCost = "RealTotalCost"
             case trend = "Trend"
             case business = "Business"
+            case cashPayAmount = "CashPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
         }
     }
 
@@ -922,6 +1023,42 @@ extension Billing {
         /// 消耗类型
         public let consumptionTypeName: String
 
+        /// 折前价
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realCost: String?
+
+        /// 费用起始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let feeBeginTime: String?
+
+        /// 费用结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let feeEndTime: String?
+
+        /// 天数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dayDiff: String?
+
+        /// 每日消耗
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dailyTotalCost: String?
+
+        /// 订单号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderId: String?
+
+        /// 代金券
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voucherPayAmount: String?
+
+        /// 赠送金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incentivePayAmount: String?
+
+        /// 分成金
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case resourceName = "ResourceName"
@@ -936,6 +1073,15 @@ extension Billing {
             case businessCode = "BusinessCode"
             case businessCodeName = "BusinessCodeName"
             case consumptionTypeName = "ConsumptionTypeName"
+            case realCost = "RealCost"
+            case feeBeginTime = "FeeBeginTime"
+            case feeEndTime = "FeeEndTime"
+            case dayDiff = "DayDiff"
+            case dailyTotalCost = "DailyTotalCost"
+            case orderId = "OrderId"
+            case voucherPayAmount = "VoucherPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case transferPayAmount = "TransferPayAmount"
         }
     }
 
@@ -1128,7 +1274,7 @@ extension Billing {
         /// 订单号
         public let orderId: String
 
-        /// 订单状态
+        /// 订单的状态 1：未支付 2：已支付3：发货中 4：已发货 5：发货失败 6：已退款 7：已关单 8：订单过期 9：订单已失效 10：产品已失效 11：代付拒绝 12：支付中
         public let status: Int64
 
         /// 支付者
@@ -1302,49 +1448,49 @@ extension Billing {
         }
     }
 
-    /// 按付费模式汇总消费详情
+    /// 按计费模式汇总消费详情
     public struct PayModeSummaryOverviewItem: TCOutputModel {
-        /// 付费模式
+        /// 计费模式编码
         public let payMode: String
 
-        /// 付费模式名称
+        /// 计费模式：区分为包年包月和按量计费
         public let payModeName: String
-
-        /// 实际花费
-        public let realTotalCost: String
 
         /// 费用所占百分比，两位小数
         public let realTotalCostRatio: String
 
-        /// 按交易类型：包年包月新购/续费/升降配/退款、按量计费扣费、调账补偿/扣费等类型汇总消费详情
-        public let detail: [ActionSummaryOverviewItem]
+        /// 优惠后总价
+        public let realTotalCost: String
 
-        /// 现金金额
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        public let transferPayAmount: String
 
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         public let totalCost: String
 
-        /// 分成金金额
-        public let transferPayAmount: String
+        /// 按交易类型汇总消费详情
+        public let detail: [ActionSummaryOverviewItem]
 
         enum CodingKeys: String, CodingKey {
             case payMode = "PayMode"
             case payModeName = "PayModeName"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
-            case detail = "Detail"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
-            case totalCost = "TotalCost"
             case transferPayAmount = "TransferPayAmount"
+            case totalCost = "TotalCost"
+            case detail = "Detail"
         }
     }
 
@@ -1372,23 +1518,26 @@ extension Billing {
         /// 项目ID
         public let projectId: String
 
-        /// 项目名称
+        /// 项目名称：资源归属的项目，用户在控制台给资源自主分配项目，未分配则是默认项目
         public let projectName: String
-
-        /// 实际花费
-        public let realTotalCost: String
 
         /// 费用所占百分比，两位小数
         public let realTotalCostRatio: String
 
-        /// 现金金额
+        /// 优惠后总价
+        public let realTotalCost: String
+
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        public let transferPayAmount: String
 
         /// 账单月份，格式2019-08
         public let billMonth: String
@@ -1396,20 +1545,17 @@ extension Billing {
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         public let totalCost: String
 
-        /// 分成金金额
-        public let transferPayAmount: String
-
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case projectName = "ProjectName"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case billMonth = "BillMonth"
             case totalCost = "TotalCost"
-            case transferPayAmount = "TransferPayAmount"
         }
     }
 
@@ -1419,23 +1565,26 @@ extension Billing {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: String?
 
-        /// 地域名称
+        /// 地域名称：资源所属地域，例如华南地区（广州）
         public let regionName: String
-
-        /// 实际花费
-        public let realTotalCost: String
 
         /// 费用所占百分比，两位小数
         public let realTotalCostRatio: String
 
-        /// 现金金额
+        /// 优惠后总价
+        public let realTotalCost: String
+
+        /// 现金账户支出：通过现金账户支付的金额
         public let cashPayAmount: String
 
-        /// 赠送金金额
+        /// 赠送账户支出：使用赠送金支付的金额
         public let incentivePayAmount: String
 
-        /// 代金券金额
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
         public let voucherPayAmount: String
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        public let transferPayAmount: String
 
         /// 账单月份，格式2019-08
         public let billMonth: String
@@ -1443,26 +1592,69 @@ extension Billing {
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         public let totalCost: String
 
-        /// 分成金金额
-        public let transferPayAmount: String
-
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case regionName = "RegionName"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
+            case transferPayAmount = "TransferPayAmount"
             case billMonth = "BillMonth"
             case totalCost = "TotalCost"
+        }
+    }
+
+    /// 账单多维度汇总消费详情
+    public struct SummaryDetail: TCOutputModel {
+        /// 账单维度编码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupKey: String?
+
+        /// 账单维度值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupValue: String?
+
+        /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
+        public let totalCost: String?
+
+        /// 优惠后总价
+        public let realTotalCost: String?
+
+        /// 现金账户支出：通过现金账户支付的金额
+        public let cashPayAmount: String?
+
+        /// 赠送账户支出：使用赠送金支付的金额
+        public let incentivePayAmount: String?
+
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        public let voucherPayAmount: String?
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
+
+        /// 产品汇总信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let business: [BusinessSummaryInfo]?
+
+        enum CodingKeys: String, CodingKey {
+            case groupKey = "GroupKey"
+            case groupValue = "GroupValue"
+            case totalCost = "TotalCost"
+            case realTotalCost = "RealTotalCost"
+            case cashPayAmount = "CashPayAmount"
+            case incentivePayAmount = "IncentivePayAmount"
+            case voucherPayAmount = "VoucherPayAmount"
             case transferPayAmount = "TransferPayAmount"
+            case business = "Business"
         }
     }
 
     /// 总数
     public struct SummaryTotal: TCOutputModel {
-        /// 总数
+        /// 优惠后总价
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realTotalCost: String?
 
@@ -1482,43 +1674,43 @@ extension Billing {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
 
-        /// 实际花费
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realTotalCost: String?
-
         /// 费用所占百分比，两位小数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realTotalCostRatio: String?
+
+        /// 优惠后总价
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realTotalCost: String?
+
+        /// 现金账户支出：通过现金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cashPayAmount: String?
+
+        /// 赠送账户支出：使用赠送金支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incentivePayAmount: String?
+
+        /// 优惠券支出：使用各类优惠券（如代金券、现金券等）支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voucherPayAmount: String?
+
+        /// 分成金账户支出：通过分成金账户支付的金额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transferPayAmount: String?
 
         /// 原价，单位为元。TotalCost字段自账单3.0（即2021-05）之后开始生效，账单3.0之前返回"-"。合同价的情况下，TotalCost字段与官网价格存在差异，也返回“-”。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCost: String?
 
-        /// 现金金额
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cashPayAmount: String?
-
-        /// 赠送金金额
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let incentivePayAmount: String?
-
-        /// 代金券金额
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let voucherPayAmount: String?
-
-        /// 分成金金额
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transferPayAmount: String?
-
         enum CodingKeys: String, CodingKey {
             case tagValue = "TagValue"
-            case realTotalCost = "RealTotalCost"
             case realTotalCostRatio = "RealTotalCostRatio"
-            case totalCost = "TotalCost"
+            case realTotalCost = "RealTotalCost"
             case cashPayAmount = "CashPayAmount"
             case incentivePayAmount = "IncentivePayAmount"
             case voucherPayAmount = "VoucherPayAmount"
             case transferPayAmount = "TransferPayAmount"
+            case totalCost = "TotalCost"
         }
     }
 

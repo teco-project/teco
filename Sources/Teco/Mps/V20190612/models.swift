@@ -178,32 +178,41 @@ extension Mps {
     }
 
     /// 编排原子任务
-    public struct ActivityPara: TCInputModel {
+    public struct ActivityPara: TCInputModel, TCOutputModel {
         /// 视频转码任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transcodeTask: TranscodeTaskInput?
 
         /// 视频转动图任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let animatedGraphicTask: AnimatedGraphicTaskInput?
 
         /// 视频按时间点截图任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotByTimeOffsetTask: SnapshotByTimeOffsetTaskInput?
 
         /// 视频采样截图任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleSnapshotTask: SampleSnapshotTaskInput?
 
         /// 视频截雪碧图任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageSpriteTask: ImageSpriteTaskInput?
 
         /// 转自适应码流任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let adaptiveDynamicStreamingTask: AdaptiveDynamicStreamingTaskInput?
 
         /// 视频内容审核类型任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
         /// 视频内容分析类型任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiAnalysisTask: AiAnalysisTaskInput?
 
         /// 视频内容识别类型任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiRecognitionTask: AiRecognitionTaskInput?
 
         public init(transcodeTask: TranscodeTaskInput? = nil, animatedGraphicTask: AnimatedGraphicTaskInput? = nil, snapshotByTimeOffsetTask: SnapshotByTimeOffsetTaskInput? = nil, sampleSnapshotTask: SampleSnapshotTaskInput? = nil, imageSpriteTask: ImageSpriteTaskInput? = nil, adaptiveDynamicStreamingTask: AdaptiveDynamicStreamingTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil) {
@@ -868,7 +877,7 @@ extension Mps {
 
     /// 视频质检输入参数类型
     public struct AiQualityControlTaskInput: TCInputModel, TCOutputModel {
-        /// 视频质检模板 ID 。
+        /// 视频质检模板 ID 。暂时可以直接使用 预设模板ID 10，后面控制台支持用户配置自定义模板。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let definition: UInt64?
 
@@ -924,7 +933,8 @@ extension Mps {
         public let ocrFullTextTask: AiRecognitionTaskOcrFullTextResult?
 
         /// 翻译结果，当 Type 为
-        ///  TransTextRecognition 时有效。
+        ///
+        /// TransTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transTextTask: AiRecognitionTaskTransTextResult?
 
@@ -2483,14 +2493,19 @@ extension Mps {
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
 
-        public init(switch: String, subtitleFormat: String? = nil) {
+        /// 视频源语言。
+        public let sourceLanguage: String?
+
+        public init(switch: String, subtitleFormat: String? = nil, sourceLanguage: String? = nil) {
             self.switch = `switch`
             self.subtitleFormat = subtitleFormat
+            self.sourceLanguage = sourceLanguage
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormat = "SubtitleFormat"
+            case sourceLanguage = "SourceLanguage"
         }
     }
 
@@ -2505,14 +2520,19 @@ extension Mps {
         /// <li>vtt：生成 WebVTT 字幕文件。</li>
         public let subtitleFormat: String?
 
-        public init(switch: String? = nil, subtitleFormat: String? = nil) {
+        /// 视频源语言。
+        public let sourceLanguage: String?
+
+        public init(switch: String? = nil, subtitleFormat: String? = nil, sourceLanguage: String? = nil) {
             self.switch = `switch`
             self.subtitleFormat = subtitleFormat
+            self.sourceLanguage = sourceLanguage
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormat = "SubtitleFormat"
+            case sourceLanguage = "SourceLanguage"
         }
     }
 
@@ -2614,7 +2634,7 @@ extension Mps {
     }
 
     /// 音频流配置参数
-    public struct AudioTemplateInfoForUpdate: TCInputModel {
+    public struct AudioTemplateInfoForUpdate: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// <li>libmp3lame。</li>
@@ -2631,9 +2651,11 @@ extension Mps {
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// <li>libfdk_aac；</li>
         /// <li>libmp3lame。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: UInt64?
 
         /// 音频流的采样率，可选值：
@@ -2641,6 +2663,7 @@ extension Mps {
         /// <li>44100</li>
         /// <li>48000</li>
         /// 单位：Hz。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleRate: UInt64?
 
         /// 音频通道方式，可选值：
@@ -2648,9 +2671,11 @@ extension Mps {
         /// <li>2：双通道</li>
         /// <li>6：立体声</li>
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioChannel: Int64?
 
         /// 指定输出要保留的音频轨道。默认是全部保留源的。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamSelects: [Int64]?
 
         public init(codec: String? = nil, bitrate: UInt64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil, streamSelects: [Int64]? = nil) {
@@ -2675,7 +2700,9 @@ extension Mps {
         /// 绑定的 AWS S3 存储桶。
         public let s3Bucket: String
 
-        /// 绑定的桶所在 AWS 区域。
+        /// 绑定的桶所在 AWS 区域，目前支持：
+        /// us-east-1
+        /// eu-west-3
         public let s3Region: String
 
         /// 绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
@@ -3100,7 +3127,7 @@ extension Mps {
         /// SRT模式，可选[LISTENER|CALLER]，默认为LISTENER。
         public let mode: String?
 
-        /// 流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。
+        /// 流Id，可选大小写字母、数字和特殊字符（.#!:&,=_-），长度为0~512。具体格式可以参考：https://github.com/Haivision/srt/blob/master/docs/features/access-control.md#standard-keys。
         public let streamId: String?
 
         /// 延迟，默认0，单位ms，范围为[0, 3000]。
@@ -3358,6 +3385,39 @@ extension Mps {
         }
     }
 
+    /// 查询Event的配置信息。
+    public struct DescribeEvent: TCOutputModel {
+        /// Event的名称。
+        public let eventName: String
+
+        /// Event的Id，唯一标识一个event。
+        public let eventId: String
+
+        /// Event创建时间，格式为yyyy-MM-ddTHH:mm:ssZ。
+        public let createTime: String
+
+        /// Event的描述。
+        public let description: String
+
+        /// Event的状态信息
+        /// 0：未运行
+        /// 1：运行中
+        public let status: UInt64
+
+        /// Event关联的Flow列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let attachedFlowGroup: [DescribeFlowId]?
+
+        enum CodingKeys: String, CodingKey {
+            case eventName = "EventName"
+            case eventId = "EventId"
+            case createTime = "CreateTime"
+            case description = "Description"
+            case status = "Status"
+            case attachedFlowGroup = "AttachedFlowGroup"
+        }
+    }
+
     /// 查询Flow的配置信息。
     public struct DescribeFlow: TCOutputModel {
         /// 流Id。
@@ -3393,6 +3453,25 @@ extension Mps {
             case inputGroup = "InputGroup"
             case outputGroup = "OutputGroup"
             case eventId = "EventId"
+            case region = "Region"
+        }
+    }
+
+    /// Event管理的Flow列表
+    public struct DescribeFlowId: TCInputModel, TCOutputModel {
+        /// FlowId，唯一标识一个flow。
+        public let flowId: String
+
+        /// flow所在的区域名称。
+        public let region: String
+
+        public init(flowId: String, region: String) {
+            self.flowId = flowId
+            self.region = region
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case flowId = "FlowId"
             case region = "Region"
         }
     }
@@ -3854,6 +3933,42 @@ extension Mps {
         }
     }
 
+    /// 诊断结果项。
+    public struct DiagnoseResult: TCOutputModel {
+        /// 诊断出的异常类别。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let category: String?
+
+        /// 诊断出的具体异常类型。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 诊断出异常开始的PTS时间戳。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: Float?
+
+        /// 诊断出的异常描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 诊断到异常的北京时间，采用 ISO 日期格式。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dateTime: String?
+
+        /// 诊断出的异常级别。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let severityLevel: String?
+
+        enum CodingKeys: String, CodingKey {
+            case category = "Category"
+            case type = "Type"
+            case timestamp = "Timestamp"
+            case description = "Description"
+            case dateTime = "DateTime"
+            case severityLevel = "SeverityLevel"
+        }
+    }
+
     /// 编辑点播视频文件信息
     public struct EditMediaFileInfo: TCInputModel, TCOutputModel {
         /// 视频的输入信息。
@@ -3950,9 +4065,14 @@ extension Mps {
         /// 编辑后的视频文件路径。
         public let path: String
 
+        /// 编辑后的视频文件元信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metaData: MediaMetaData?
+
         enum CodingKeys: String, CodingKey {
             case outputStorage = "OutputStorage"
             case path = "Path"
+            case metaData = "MetaData"
         }
     }
 
@@ -4871,6 +4991,50 @@ extension Mps {
         }
     }
 
+    /// 直播流分析结果
+    public struct LiveStreamAiAnalysisResultInfo: TCOutputModel {
+        /// 直播分析子任务结果，暂时只支持直播拆条。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resultSet: [LiveStreamAiAnalysisResultItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case resultSet = "ResultSet"
+        }
+    }
+
+    /// 直播流 AI 分析结果
+    public struct LiveStreamAiAnalysisResultItem: TCOutputModel {
+        /// 结果的类型，取值范围：
+        /// <li>SegmentRecognition：拆条。</li>
+        public let type: String
+
+        /// 拆条结果，当 Type 为
+        /// SegmentRecognition 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let segmentResultSet: [SegmentRecognitionItem]?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case segmentResultSet = "SegmentResultSet"
+        }
+    }
+
+    /// 直播流质检结果
+    public struct LiveStreamAiQualityControlResultInfo: TCOutputModel {
+        /// 质检结果列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityControlResults: [QualityControlResult]?
+
+        /// 格式诊断结果列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diagnoseResults: [DiagnoseResult]?
+
+        enum CodingKeys: String, CodingKey {
+            case qualityControlResults = "QualityControlResults"
+            case diagnoseResults = "DiagnoseResults"
+        }
+    }
+
     /// 直播流 AI 识别结果
     public struct LiveStreamAiRecognitionResultInfo: TCOutputModel {
         /// 内容识别结果列表。
@@ -5146,11 +5310,26 @@ extension Mps {
         /// 识别片段置信度。取值：0~100。
         public let confidence: Float
 
+        /// 识别开始UTC时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 识别结束UTC时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 稳态标记。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let steadyState: Bool?
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
             case confidence = "Confidence"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case steadyState = "SteadyState"
         }
     }
 
@@ -5365,12 +5544,27 @@ extension Mps {
         /// 翻译文本。
         public let trans: String
 
+        /// 翻译开始UTC时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 翻译结束UTC时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 稳态标记。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let steadyState: Bool?
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case startPtsTime = "StartPtsTime"
             case endPtsTime = "EndPtsTime"
             case confidence = "Confidence"
             case trans = "Trans"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case steadyState = "SteadyState"
         }
     }
 
@@ -5569,11 +5763,21 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channel: Int64?
 
+        /// 音频Codecs。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codecs: String?
+
+        /// 音频响度。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loudness: Float?
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case samplingRate = "SamplingRate"
             case codec = "Codec"
             case channel = "Channel"
+            case codecs = "Codecs"
+            case loudness = "Loudness"
         }
     }
 
@@ -5894,6 +6098,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AdaptiveDynamicStreamingInfoItem?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5901,6 +6113,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -5925,6 +6139,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaAnimatedGraphicsItem?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5932,6 +6154,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -5956,6 +6180,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaImageSpriteItem?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -5963,6 +6195,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6073,6 +6307,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaSampleSnapshotItem?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6080,6 +6322,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6104,6 +6348,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: MediaSnapshotByTimeOffsetItem?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6111,6 +6363,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6307,6 +6561,10 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hdrType: String?
 
+        /// 视频Codecs。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let codecs: String?
+
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
             case height = "Height"
@@ -6317,6 +6575,7 @@ extension Mps {
             case colorSpace = "ColorSpace"
             case colorTransfer = "ColorTransfer"
             case hdrType = "HdrType"
+            case codecs = "Codecs"
         }
     }
 
@@ -6667,16 +6926,22 @@ extension Mps {
         public let audioTemplate: AudioTemplateInfoForUpdate?
 
         /// 极速高清转码参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tehdConfig: TEHDConfigForUpdate?
 
         /// 字幕流配置参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subtitleTemplate: SubtitleTemplate?
 
         /// 外挂音轨参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addonAudioStream: [MediaInputInfo]?
 
-        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil, addonAudioStream: [MediaInputInfo]? = nil) {
+        /// 转码扩展字段。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stdExtInfo: String?
+
+        public init(container: String? = nil, removeVideo: UInt64? = nil, removeAudio: UInt64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, subtitleTemplate: SubtitleTemplate? = nil, addonAudioStream: [MediaInputInfo]? = nil, stdExtInfo: String? = nil) {
             self.container = container
             self.removeVideo = removeVideo
             self.removeAudio = removeAudio
@@ -6685,6 +6950,7 @@ extension Mps {
             self.tehdConfig = tehdConfig
             self.subtitleTemplate = subtitleTemplate
             self.addonAudioStream = addonAudioStream
+            self.stdExtInfo = stdExtInfo
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6696,6 +6962,7 @@ extension Mps {
             case tehdConfig = "TEHDConfig"
             case subtitleTemplate = "SubtitleTemplate"
             case addonAudioStream = "AddonAudioStream"
+            case stdExtInfo = "StdExtInfo"
         }
     }
 
@@ -7594,20 +7861,28 @@ extension Mps {
     }
 
     /// AWS S3存储输入
-    public struct S3InputInfo: TCInputModel {
+    public struct S3InputInfo: TCInputModel, TCOutputModel {
         /// S3 bucket。
-        public let s3Bucket: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3Bucket: String?
 
-        /// S3 bucket 对应的区域。
-        public let s3Region: String
+        /// S3 bucket 对应的区域，目前支持：
+        /// us-east-1
+        /// eu-west-3
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3Region: String?
 
         /// S3 bucket 中的媒体资源路径。
-        public let s3Object: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let s3Object: String?
 
         /// AWS 内网访问 媒体资源的秘钥id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretId: String?
 
         /// AWS 内网访问 媒体资源的秘钥key。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretKey: String?
 
         public init(s3Bucket: String, s3Region: String, s3Object: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
@@ -7843,6 +8118,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiAnalysisResult]?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7850,6 +8133,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -7905,6 +8190,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiRecognitionResult]?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7912,6 +8205,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -7936,6 +8231,14 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: [AiContentReviewResult]?
 
+        /// 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let beginProcessTime: String?
+
+        /// 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -7943,6 +8246,8 @@ extension Mps {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -7998,7 +8303,7 @@ extension Mps {
         /// Enabled：已启用，
         /// Disabled：已禁用。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: [String]?
+        public let status: String?
 
         /// 编排绑定的触发规则。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -8063,6 +8368,29 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case intensity = "Intensity"
+        }
+    }
+
+    /// 智能拆条片段。
+    public struct SegmentRecognitionItem: TCOutputModel {
+        /// 置信度。
+        public let confidence: Float
+
+        /// 片段起始时间偏移。
+        public let startTimeOffset: Float
+
+        /// 片段结束时间偏移。
+        public let endTimeOffset: Float
+
+        /// 拆条片段URL。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let segmentUrl: String?
+
+        enum CodingKeys: String, CodingKey {
+            case confidence = "Confidence"
+            case startTimeOffset = "StartTimeOffset"
+            case endTimeOffset = "EndTimeOffset"
+            case segmentUrl = "SegmentUrl"
         }
     }
 
@@ -8219,11 +8547,13 @@ extension Mps {
     }
 
     /// 字幕流配置参数。
-    public struct SubtitleTemplate: TCInputModel {
+    public struct SubtitleTemplate: TCInputModel, TCOutputModel {
         /// 要压制到视频中的字幕文件地址。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
 
         /// 指定要压制到视频中的字幕轨道，如果有指定Path，则Path 优先级更高。Path 和 StreamIndex 至少指定一个。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamIndex: Int64?
 
         /// 字体类型，
@@ -8232,18 +8562,22 @@ extension Mps {
         /// <li>simkai.ttf：楷体</li>
         /// <li>arial.ttf：仅支持英文</li>
         /// 默认hei.ttf
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontType: String?
 
         /// 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontSize: String?
 
         /// 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontColor: String?
 
         /// 文字透明度，取值范围：(0, 1]
         /// <li>0：完全透明</li>
         /// <li>1：完全不透明</li>
         /// 默认值：1。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontAlpha: Float?
 
         public init(path: String? = nil, streamIndex: Int64? = nil, fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
@@ -8372,7 +8706,8 @@ extension Mps {
     /// 极速高清参数配置。
     public struct TEHDConfig: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
-        /// <li>TEHD-100：极速高清-100。</li>
+        /// <li>TEHD-100：极速高清-100（视频极速高清）。</li>
+        /// <li>TEHD-200：极速高清-200（音频极速高清）。</li>
         /// 不填代表不启用极速高清。
         public let type: String
 
@@ -8392,13 +8727,16 @@ extension Mps {
     }
 
     /// 极速高清参数配置。
-    public struct TEHDConfigForUpdate: TCInputModel {
+    public struct TEHDConfigForUpdate: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
-        /// <li>TEHD-100：极速高清-100。</li>
+        /// <li>TEHD-100：极速高清-100（视频极速高清）。</li>
+        /// <li>TEHD-200：极速高清-200（音频极速高清）。</li>
         /// 不填代表不修改。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         /// 视频码率上限，不填代表不修改。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxVideoBitrate: UInt64?
 
         public init(type: String? = nil, maxVideoBitrate: UInt64? = nil) {
@@ -8950,6 +9288,58 @@ extension Mps {
         }
     }
 
+    /// 语音翻译任务控制参数
+    public struct TranslateConfigureInfo: TCInputModel, TCOutputModel {
+        /// 语音翻译任务开关，可选值：
+        /// <li>ON：开启智能语音翻译任务；</li>
+        /// <li>OFF：关闭智能语音翻译任务。</li>
+        public let `switch`: String
+
+        /// 视频源语言。
+        public let sourceLanguage: String?
+
+        /// 翻译目标语言。
+        public let destinationLanguage: String?
+
+        public init(switch: String, sourceLanguage: String? = nil, destinationLanguage: String? = nil) {
+            self.switch = `switch`
+            self.sourceLanguage = sourceLanguage
+            self.destinationLanguage = destinationLanguage
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case sourceLanguage = "SourceLanguage"
+            case destinationLanguage = "DestinationLanguage"
+        }
+    }
+
+    /// 语音翻译任务控制参数
+    public struct TranslateConfigureInfoForUpdate: TCInputModel {
+        /// 语音翻译任务开关，可选值：
+        /// <li>ON：开启智能语音翻译任务；</li>
+        /// <li>OFF：关闭智能语音翻译任务。</li>
+        public let `switch`: String?
+
+        /// 视频源语言。
+        public let sourceLanguage: String?
+
+        /// 翻译目标语言。
+        public let destinationLanguage: String?
+
+        public init(switch: String? = nil, sourceLanguage: String? = nil, destinationLanguage: String? = nil) {
+            self.switch = `switch`
+            self.sourceLanguage = sourceLanguage
+            self.destinationLanguage = destinationLanguage
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case sourceLanguage = "SourceLanguage"
+            case destinationLanguage = "DestinationLanguage"
+        }
+    }
+
     /// 媒体处理 URL 对象信息。
     public struct UrlInputInfo: TCInputModel, TCOutputModel {
         /// 视频的 URL。
@@ -9391,27 +9781,31 @@ extension Mps {
     }
 
     /// 视频流配置参数
-    public struct VideoTemplateInfoForUpdate: TCInputModel {
+    public struct VideoTemplateInfoForUpdate: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
         /// <li>libx264：H.264 编码</li>
         /// <li>libx265：H.265 编码</li>
         /// <li>av1：AOMedia Video 1 编码</li>
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
 
-        /// 视频帧率，取值范围：[0, 100]，单位：Hz。
+        /// 视频帧率，取值范围：[0, 120]，单位：Hz。
         /// 当取值为 0，表示帧率和原始视频保持一致。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fps: UInt64?
 
         /// 视频流的码率，取值范围：0 和 [128, 35000]，单位：kbps。
         /// 当取值为 0，表示视频码率和原始视频保持一致。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bitrate: UInt64?
 
         /// 分辨率自适应，可选值：
         /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
         /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
         /// 注意：自适应模式时，Width不能小于Height。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
@@ -9419,12 +9813,15 @@ extension Mps {
         /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
         /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
         /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: UInt64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let height: UInt64?
 
         /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。当填 0 时，系统将自动设置 gop 长度。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gop: UInt64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
@@ -9432,16 +9829,19 @@ extension Mps {
         /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
         /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
         /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fillType: String?
 
         /// 视频恒定码率控制因子。取值范围为[0, 51]，填0表示禁用该参数。
         /// 如果没有特殊需求，不建议指定该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vcrf: UInt64?
 
         /// 内容自适应编码。可选值：
         /// <li>0：不开启</li>
         /// <li>1：开启</li>
         /// 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentAdaptStream: UInt64?
 
         public init(codec: String? = nil, fps: UInt64? = nil, bitrate: UInt64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, gop: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, contentAdaptStream: UInt64? = nil) {

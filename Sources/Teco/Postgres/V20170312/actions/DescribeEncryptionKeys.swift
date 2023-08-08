@@ -48,33 +48,33 @@ extension Postgres {
         }
     }
 
-    /// 实例密钥信息列表
+    /// 查询实例密钥信息列表
     ///
-    /// 获取实例的密钥信息列表。
+    /// 本接口 （DescribeEncryptionKeys） 用于查询实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEncryptionKeysResponse> {
         self.client.execute(action: "DescribeEncryptionKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 实例密钥信息列表
+    /// 查询实例密钥信息列表
     ///
-    /// 获取实例的密钥信息列表。
+    /// 本接口 （DescribeEncryptionKeys） 用于查询实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptionKeysResponse {
         try await self.client.execute(action: "DescribeEncryptionKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 实例密钥信息列表
+    /// 查询实例密钥信息列表
     ///
-    /// 获取实例的密钥信息列表。
+    /// 本接口 （DescribeEncryptionKeys） 用于查询实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEncryptionKeysResponse> {
         self.describeEncryptionKeys(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 实例密钥信息列表
+    /// 查询实例密钥信息列表
     ///
-    /// 获取实例的密钥信息列表。
+    /// 本接口 （DescribeEncryptionKeys） 用于查询实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptionKeysResponse {
         try await self.describeEncryptionKeys(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)

@@ -36,15 +36,31 @@ extension Ess {
         /// 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
         public let reviewMessage: String?
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
-        public init(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil) {
+        /// 审核签署节点使用 非必填 如果填写则审核该签署节点。给个人审核时必填。
+        public let recipientId: String?
+
+        /// 操作类型：（接口通过该字段区分操作类型）
+        ///
+        /// SignReview:签署审核
+        /// CreateReview:发起审核
+        ///
+        /// 默认：SignReview；SignReview:签署审核
+        ///
+        /// 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
+        /// 若发起个人审核，则指定该字段为：SignReview
+        public let operateType: String?
+
+        public init(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil) {
             self.operator = `operator`
             self.flowId = flowId
             self.reviewType = reviewType
             self.reviewMessage = reviewMessage
             self.agent = agent
+            self.recipientId = recipientId
+            self.operateType = operateType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -53,6 +69,8 @@ extension Ess {
             case reviewType = "ReviewType"
             case reviewMessage = "ReviewMessage"
             case agent = "Agent"
+            case recipientId = "RecipientId"
+            case operateType = "OperateType"
         }
     }
 
@@ -95,8 +113,8 @@ extension Ess {
     /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
-    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignReviewResponse> {
-        self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignReviewResponse> {
+        self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交企业签署流程审批结果
@@ -106,7 +124,7 @@ extension Ess {
     /// 在通过接口(CreateFlow 或者CreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true，且发起方企业作为签署方参与了流程签署，则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
-    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
-        try await self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent), region: region, logger: logger, on: eventLoop)
+    public func createFlowSignReview(operator: UserInfo, flowId: String, reviewType: String, reviewMessage: String? = nil, agent: Agent? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignReviewResponse {
+        try await self.createFlowSignReview(.init(operator: `operator`, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, agent: agent, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 }

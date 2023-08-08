@@ -49,7 +49,7 @@ extension Emr {
         public let taskCount: UInt64
 
         /// 货币种类。取值范围：
-        /// <li>CNY：表示人民币。</li>
+        /// <li>CNY：表示人民币。</li>
         public let currency: String
 
         /// 扩容的Router节点数量。
@@ -97,7 +97,7 @@ extension Emr {
 
         /// 扩容的时间单位。取值范围：
         /// <li>s：表示秒。</li>
-        /// <li>m：表示月份。</li>
+        /// <li>m：表示月份。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
 

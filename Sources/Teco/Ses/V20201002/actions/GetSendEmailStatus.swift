@@ -86,7 +86,7 @@ extension Ses {
         }
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -95,7 +95,7 @@ extension Ses {
         self.client.execute(action: "GetSendEmailStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -104,7 +104,7 @@ extension Ses {
         try await self.client.execute(action: "GetSendEmailStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -113,7 +113,7 @@ extension Ses {
         self.getSendEmailStatus(.init(requestDate: requestDate, offset: offset, limit: limit, messageId: messageId, toEmailAddress: toEmailAddress), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -122,7 +122,7 @@ extension Ses {
         try await self.getSendEmailStatus(.init(requestDate: requestDate, offset: offset, limit: limit, messageId: messageId, toEmailAddress: toEmailAddress), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -131,7 +131,7 @@ extension Ses {
         self.client.paginate(input: input, region: region, command: self.getSendEmailStatus, logger: logger, on: eventLoop)
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
@@ -140,7 +140,7 @@ extension Ses {
         self.client.paginate(input: input, region: region, command: self.getSendEmailStatus, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取邮件发送的状态（待废弃）
+    /// 获取邮件发送的状态
     ///
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒

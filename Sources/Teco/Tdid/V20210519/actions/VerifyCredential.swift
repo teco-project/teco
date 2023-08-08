@@ -56,26 +56,30 @@ extension Tdid {
     }
 
     /// 验证凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("VerifyCredential is no longer available.")
     }
 
     /// 验证凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("VerifyCredential is no longer available.")
     }
 
     /// 验证凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        self.verifyCredential(.init(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        fatalError("VerifyCredential is no longer available.")
     }
 
     /// 验证凭证
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.verifyCredential(.init(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        fatalError("VerifyCredential is no longer available.")
     }
 }

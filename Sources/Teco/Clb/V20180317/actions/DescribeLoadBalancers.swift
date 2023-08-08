@@ -35,7 +35,7 @@ extension Clb {
         /// 负载均衡实例的名称。
         public let loadBalancerName: String?
 
-        /// 腾讯云为负载均衡实例分配的域名，本参数仅对传统型公网负载均衡才有意义。
+        /// 腾讯云为负载均衡实例分配的域名。
         public let domain: String?
 
         /// 负载均衡实例的 VIP 地址，支持多个。

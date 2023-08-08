@@ -50,7 +50,7 @@ extension Tmt {
     /// 文件翻译结果查询
     ///
     /// 在调用文档翻译请求接口后，有回调和轮询两种方式获取识别结果。
-    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
+    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(_ input: GetFileTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
@@ -60,7 +60,7 @@ extension Tmt {
     /// 文件翻译结果查询
     ///
     /// 在调用文档翻译请求接口后，有回调和轮询两种方式获取识别结果。
-    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
+    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(_ input: GetFileTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
@@ -70,7 +70,7 @@ extension Tmt {
     /// 文件翻译结果查询
     ///
     /// 在调用文档翻译请求接口后，有回调和轮询两种方式获取识别结果。
-    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
+    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
@@ -80,7 +80,7 @@ extension Tmt {
     /// 文件翻译结果查询
     ///
     /// 在调用文档翻译请求接口后，有回调和轮询两种方式获取识别结果。
-    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
+    /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {

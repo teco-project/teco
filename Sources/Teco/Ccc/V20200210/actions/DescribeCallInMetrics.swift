@@ -30,16 +30,21 @@ extension Ccc {
         /// 是否返回线路维度信息，默认“否”
         public let enabledNumber: Bool?
 
-        public init(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil) {
+        /// 筛选技能组列表
+        public let groupIdList: [Int64]?
+
+        public init(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, groupIdList: [Int64]? = nil) {
             self.sdkAppId = sdkAppId
             self.enabledSkillGroup = enabledSkillGroup
             self.enabledNumber = enabledNumber
+            self.groupIdList = groupIdList
         }
 
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case enabledSkillGroup = "EnabledSkillGroup"
             case enabledNumber = "EnabledNumber"
+            case groupIdList = "GroupIdList"
         }
     }
 
@@ -85,13 +90,13 @@ extension Ccc {
 
     /// 获取呼入实时数据统计指标
     @inlinable
-    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallInMetricsResponse> {
-        self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber), region: region, logger: logger, on: eventLoop)
+    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, groupIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallInMetricsResponse> {
+        self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber, groupIdList: groupIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取呼入实时数据统计指标
     @inlinable
-    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
-        try await self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber), region: region, logger: logger, on: eventLoop)
+    public func describeCallInMetrics(sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil, groupIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
+        try await self.describeCallInMetrics(.init(sdkAppId: sdkAppId, enabledSkillGroup: enabledSkillGroup, enabledNumber: enabledNumber, groupIdList: groupIdList), region: region, logger: logger, on: eventLoop)
     }
 }

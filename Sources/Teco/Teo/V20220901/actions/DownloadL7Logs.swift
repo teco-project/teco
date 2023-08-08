@@ -36,16 +36,16 @@ extension Teo {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date
 
-        /// 站点集合，不填默认选择全部站点。
+        /// 站点集合，此参数必填，不填默认查询为空。
         public let zoneIds: [String]?
 
         /// 子域名集合，不填默认选择全部子域名。
         public let domains: [String]?
 
-        /// 分页查询的限制数目，默认值为20，最大查询条目为1000。
+        /// 分页查询的限制数目，默认值为 20，最大查询条目为 1000。
         public let limit: Int64?
 
-        /// 分页的偏移量，默认值为0。
+        /// 分页的偏移量，默认值为 0。
         public let offset: Int64?
 
         public init(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
@@ -77,25 +77,24 @@ extension Teo {
 
     /// DownloadL7Logs返回参数结构体
     public struct DownloadL7LogsResponse: TCPaginatedResponse {
-        /// 七层离线日志数据列表。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: [L7OfflineLog]?
-
         /// 查询结果的总条数。
         public let totalCount: Int64
+
+        /// 七层离线日志数据列表。
+        public let data: [L7OfflineLog]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case data = "Data"
             case totalCount = "TotalCount"
+            case data = "Data"
             case requestId = "RequestId"
         }
 
         /// Extract the returned item list from the paginated response.
         public func getItems() -> [L7OfflineLog] {
-            self.data ?? []
+            self.data
         }
 
         /// Extract the total count from the paginated response.

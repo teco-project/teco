@@ -45,6 +45,9 @@ extension Cam {
         /// 分组用户总数
         public let member: UInt64
 
+        /// 身份提供商数。
+        public let identityProviders: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -55,6 +58,7 @@ extension Cam {
             case user = "User"
             case group = "Group"
             case member = "Member"
+            case identityProviders = "IdentityProviders"
             case requestId = "RequestId"
         }
     }

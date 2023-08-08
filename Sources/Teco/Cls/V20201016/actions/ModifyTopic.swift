@@ -42,7 +42,17 @@ extension Cls {
         /// 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         public let period: Int64?
 
-        public init(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil) {
+        /// 日志主题描述
+        public let describes: String?
+
+        /// 0：关闭日志沉降。
+        /// 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        public let hotPeriod: UInt64?
+
+        /// webtracking开关； false: 关闭 true: 开启
+        public let isWebTracking: Bool?
+
+        public init(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil) {
             self.topicId = topicId
             self.topicName = topicName
             self.tags = tags
@@ -50,6 +60,9 @@ extension Cls {
             self.autoSplit = autoSplit
             self.maxSplitPartitions = maxSplitPartitions
             self.period = period
+            self.describes = describes
+            self.hotPeriod = hotPeriod
+            self.isWebTracking = isWebTracking
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +73,9 @@ extension Cls {
             case autoSplit = "AutoSplit"
             case maxSplitPartitions = "MaxSplitPartitions"
             case period = "Period"
+            case describes = "Describes"
+            case hotPeriod = "HotPeriod"
+            case isWebTracking = "IsWebTracking"
         }
     }
 
@@ -93,15 +109,15 @@ extension Cls {
     ///
     /// 本接口用于修改日志主题。
     @inlinable @discardableResult
-    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(.init(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.modifyTopic(.init(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period, describes: describes, hotPeriod: hotPeriod, isWebTracking: isWebTracking), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable @discardableResult
-    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(.init(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.modifyTopic(.init(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period, describes: describes, hotPeriod: hotPeriod, isWebTracking: isWebTracking), region: region, logger: logger, on: eventLoop)
     }
 }

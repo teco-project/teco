@@ -30,16 +30,21 @@ extension Wedata {
         /// 项目id
         public let projectId: String
 
-        public init(taskIds: [String], taskType: Int64, projectId: String) {
+        /// 是否删除开发态任务。默认不删除开发态，为 0 不删除 , 为 1 删除
+        public let deleteKFFlag: Int64?
+
+        public init(taskIds: [String], taskType: Int64, projectId: String, deleteKFFlag: Int64? = nil) {
             self.taskIds = taskIds
             self.taskType = taskType
             self.projectId = projectId
+            self.deleteKFFlag = deleteKFFlag
         }
 
         enum CodingKeys: String, CodingKey {
             case taskIds = "TaskIds"
             case taskType = "TaskType"
             case projectId = "ProjectId"
+            case deleteKFFlag = "DeleteKFFlag"
         }
     }
 
@@ -82,13 +87,13 @@ extension Wedata {
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
-        self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, deleteKFFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
+        self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId, deleteKFFlag: deleteKFFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
-        try await self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, deleteKFFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
+        try await self.batchDeleteIntegrationTasks(.init(taskIds: taskIds, taskType: taskType, projectId: projectId, deleteKFFlag: deleteKFFlag), region: region, logger: logger, on: eventLoop)
     }
 }

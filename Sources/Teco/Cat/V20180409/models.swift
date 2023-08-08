@@ -54,7 +54,7 @@ extension Cat {
     }
 
     /// 健值对
-    public struct KeyValuePair: TCInputModel {
+    public struct KeyValuePair: TCInputModel, TCOutputModel {
         /// 健
         public let key: String
 

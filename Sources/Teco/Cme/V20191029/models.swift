@@ -165,7 +165,7 @@ extension Cme {
         public let authorizee: Entity
 
         /// 详细授权值。 取值有：
-        /// <li>R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中</li>
+        /// <li>R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中。</li>
         /// <li>X：可用，可以使用该素材（将其添加到 Project），但不能将其复制到自己的媒资库中，意味着被授权者无法将该资源进一步扩散给其他个人或团队。</li>
         /// <li>C：可复制，既可以使用该素材（将其添加到 Project），也可以将其复制到自己的媒资库中。</li>
         /// <li>W：可修改、删除媒资。</li>
@@ -1027,14 +1027,19 @@ extension Cme {
         /// 结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
 
-        public init(loopCount: Int64? = nil, endTime: String? = nil) {
+        /// 自动启动时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let autoStartTime: String?
+
+        public init(loopCount: Int64? = nil, endTime: String? = nil, autoStartTime: String? = nil) {
             self.loopCount = loopCount
             self.endTime = endTime
+            self.autoStartTime = autoStartTime
         }
 
         enum CodingKeys: String, CodingKey {
             case loopCount = "LoopCount"
             case endTime = "EndTime"
+            case autoStartTime = "AutoStartTime"
         }
     }
 
@@ -1060,8 +1065,11 @@ extension Cme {
         /// 项目启动时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
-        /// 项目结束时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如果项目还在运行中，改字段为空。
+        /// 项目结束时间。采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如果项目还在运行中，该字段为空。
         public let stopTime: String
+
+        /// 推流时长，单位：秒。项目结束后，返回上次项目运行时的推流时长。如果项目是 Working 状态，返回的时长是0。
+        public let duration: Float
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -1071,6 +1079,7 @@ extension Cme {
             case playSetting = "PlaySetting"
             case startTime = "StartTime"
             case stopTime = "StopTime"
+            case duration = "Duration"
         }
     }
 
@@ -1112,6 +1121,7 @@ extension Cme {
         /// 输入源的媒体类型，取值有：
         /// <li>CME：多媒体创作引擎的媒体文件；</li>
         /// <li>VOD：云点播的媒资文件。</li>
+        /// <li>EXTERNAL：非多媒体创建引擎或者云点播的媒资文件。</li>
         public let type: String?
 
         /// 云点播媒体文件 ID。当 Type = VOD 时必填。
@@ -1120,11 +1130,23 @@ extension Cme {
         /// 多媒体创作引擎的媒体 ID。当 Type = CME  时必填。
         public let materialId: String?
 
-        public init(id: String? = nil, type: String? = nil, fileId: String? = nil, materialId: String? = nil) {
+        /// 文件播放的起始位置，单位：秒。默认为0，从文件头开始播放。当 Type = CME  或者 VOD 时有效。
+        public let offset: Float?
+
+        /// 播放时长，单位：秒。默认播放整个文件。当 Type = CME  或者 VOD 时有效。
+        public let duration: Float?
+
+        /// 外部文件的 Url， Type=EXTERNAL 时必填，可以是点播文件或者直播文件，支持的 Scheme 包括HTTP、HTTPS、RTMP。
+        public let url: String?
+
+        public init(id: String? = nil, type: String? = nil, fileId: String? = nil, materialId: String? = nil, offset: Float? = nil, duration: Float? = nil, url: String? = nil) {
             self.id = id
             self.type = type
             self.fileId = fileId
             self.materialId = materialId
+            self.offset = offset
+            self.duration = duration
+            self.url = url
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1132,6 +1154,9 @@ extension Cme {
             case type = "Type"
             case fileId = "FileId"
             case materialId = "MaterialId"
+            case offset = "Offset"
+            case duration = "Duration"
+            case url = "Url"
         }
     }
 

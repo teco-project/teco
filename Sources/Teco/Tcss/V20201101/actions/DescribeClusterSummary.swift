@@ -60,6 +60,9 @@ extension Tcss {
         /// 未导入的集群数量
         public let notImportedClusterCount: UInt64
 
+        /// eks集群数量
+        public let serverlessClusterCount: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -75,6 +78,7 @@ extension Tcss {
             case manualCheckClusterCount = "ManualCheckClusterCount"
             case failedClusterCount = "FailedClusterCount"
             case notImportedClusterCount = "NotImportedClusterCount"
+            case serverlessClusterCount = "ServerlessClusterCount"
             case requestId = "RequestId"
         }
     }

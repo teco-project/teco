@@ -24,7 +24,7 @@ extension Ccc {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
-        /// 坐席账号。
+        /// 座席账号。
         public let seatUserId: String
 
         public init(sdkAppId: Int64, seatUserId: String) {

@@ -45,7 +45,10 @@ extension Cls {
         /// 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         public let serviceLogging: Bool?
 
-        public init(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil) {
+        /// 机器组元数据信息列表
+        public let metaTags: [MetaTagInfo]?
+
+        public init(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.machineGroupType = machineGroupType
@@ -54,6 +57,7 @@ extension Cls {
             self.updateStartTime = updateStartTime
             self.updateEndTime = updateEndTime
             self.serviceLogging = serviceLogging
+            self.metaTags = metaTags
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Cls {
             case updateStartTime = "UpdateStartTime"
             case updateEndTime = "UpdateEndTime"
             case serviceLogging = "ServiceLogging"
+            case metaTags = "MetaTags"
         }
     }
 
@@ -92,13 +97,13 @@ extension Cls {
 
     /// 修改机器组
     @inlinable @discardableResult
-    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
-        self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
+    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
+        self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改机器组
     @inlinable @discardableResult
-    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
-        try await self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
+    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, metaTags: [MetaTagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
+        try await self.modifyMachineGroup(.init(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging, metaTags: metaTags), region: region, logger: logger, on: eventLoop)
     }
 }

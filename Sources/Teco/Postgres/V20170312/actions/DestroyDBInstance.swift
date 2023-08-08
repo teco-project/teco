@@ -45,7 +45,7 @@ extension Postgres {
 
     /// 销毁实例
     ///
-    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，调用前请仔细确认要操作的实例。只能销毁隔离中的实例。
     @inlinable @discardableResult
     public func destroyDBInstance(_ input: DestroyDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDBInstanceResponse> {
         self.client.execute(action: "DestroyDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -53,7 +53,7 @@ extension Postgres {
 
     /// 销毁实例
     ///
-    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，调用前请仔细确认要操作的实例。只能销毁隔离中的实例。
     @inlinable @discardableResult
     public func destroyDBInstance(_ input: DestroyDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
         try await self.client.execute(action: "DestroyDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,7 +61,7 @@ extension Postgres {
 
     /// 销毁实例
     ///
-    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，调用前请仔细确认要操作的实例。只能销毁隔离中的实例。
     @inlinable @discardableResult
     public func destroyDBInstance(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDBInstanceResponse> {
         self.destroyDBInstance(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Postgres {
 
     /// 销毁实例
     ///
-    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，只能销毁隔离中的实例。
+    /// 本接口 (DestroyDBInstance) 用于彻底销毁指定DBInstanceId对应的实例，销毁后实例数据将彻底删除，无法找回，调用前请仔细确认要操作的实例。只能销毁隔离中的实例。
     @inlinable @discardableResult
     public func destroyDBInstance(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDBInstanceResponse {
         try await self.destroyDBInstance(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)

@@ -27,26 +27,33 @@ extension Ess {
         /// 出证报告编号
         public let reportId: String
 
-        public init(operator: UserInfo, reportId: String) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, reportId: String, agent: Agent? = nil) {
             self.operator = `operator`
             self.reportId = reportId
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case reportId = "ReportId"
+            case agent = "Agent"
         }
     }
 
     /// DescribeFlowEvidenceReport返回参数结构体
     public struct DescribeFlowEvidenceReportResponse: TCResponseModel {
-        /// 报告 URL
+        /// 出证报告PDF的下载 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportUrl: String?
 
-        /// 执行中：EvidenceStatusExecuting
-        /// 成功：EvidenceStatusSuccess
-        /// 失败：EvidenceStatusFailed
+        /// 出证任务执行的状态, 分布表示下面的含义
+        ///
+        /// EvidenceStatusExecuting  出证任务在执行中
+        /// EvidenceStatusSuccess  出证任务执行成功
+        /// EvidenceStatusFailed  出证任务执行失败
         public let status: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -61,7 +68,7 @@ extension Ess {
 
     /// 查询出证报告
     ///
-    /// 查询出证报告，返回报告 URL。
+    /// 查询出证报告，返回报告 URL。出证报告编号通过CreateFlowEvidenceReport接口获取。
     @inlinable
     public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
         self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,7 +76,7 @@ extension Ess {
 
     /// 查询出证报告
     ///
-    /// 查询出证报告，返回报告 URL。
+    /// 查询出证报告，返回报告 URL。出证报告编号通过CreateFlowEvidenceReport接口获取。
     @inlinable
     public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
         try await self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -77,17 +84,17 @@ extension Ess {
 
     /// 查询出证报告
     ///
-    /// 查询出证报告，返回报告 URL。
+    /// 查询出证报告，返回报告 URL。出证报告编号通过CreateFlowEvidenceReport接口获取。
     @inlinable
-    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
-        self.describeFlowEvidenceReport(.init(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
+        self.describeFlowEvidenceReport(.init(operator: `operator`, reportId: reportId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
     ///
-    /// 查询出证报告，返回报告 URL。
+    /// 查询出证报告，返回报告 URL。出证报告编号通过CreateFlowEvidenceReport接口获取。
     @inlinable
-    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
-        try await self.describeFlowEvidenceReport(.init(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
+        try await self.describeFlowEvidenceReport(.init(operator: `operator`, reportId: reportId, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

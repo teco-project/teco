@@ -54,7 +54,10 @@ extension Dnspod {
         /// 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         public let status: String?
 
-        public init(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil) {
+        /// 备注
+        public let remark: String?
+
+        public init(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, remark: String? = nil) {
             self.domain = domain
             self.recordType = recordType
             self.recordLine = recordLine
@@ -66,6 +69,7 @@ extension Dnspod {
             self.ttl = ttl
             self.weight = weight
             self.status = status
+            self.remark = remark
         }
 
         enum CodingKeys: String, CodingKey {
@@ -80,6 +84,7 @@ extension Dnspod {
             case ttl = "TTL"
             case weight = "Weight"
             case status = "Status"
+            case remark = "Remark"
         }
     }
 
@@ -111,13 +116,13 @@ extension Dnspod {
 
     /// 添加记录
     @inlinable
-    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
-        self.createRecord(.init(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), region: region, logger: logger, on: eventLoop)
+    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
+        self.createRecord(.init(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加记录
     @inlinable
-    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
-        try await self.createRecord(.init(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), region: region, logger: logger, on: eventLoop)
+    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
+        try await self.createRecord(.init(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

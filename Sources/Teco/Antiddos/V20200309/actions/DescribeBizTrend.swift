@@ -26,7 +26,7 @@ extension Antiddos {
         /// 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
         public let statistics: String
 
-        /// 大禹子产品代号（bgpip表示高防IP）
+        /// DDoS防护子产品代号（bgpip表示高防IP）
         public let business: String
 
         /// 统计周期，可取值60，300，1800，3600，21600，86400，单位秒
@@ -56,7 +56,12 @@ extension Antiddos {
         /// 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
         public let protoInfo: [ProtocolPort]?
 
-        public init(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil) {
+        /// 业务类型可取值domain, port
+        /// port：端口业务
+        /// domain：域名业务
+        public let businessType: String?
+
+        public init(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, businessType: String? = nil) {
             self.statistics = statistics
             self.business = business
             self.period = period
@@ -66,6 +71,7 @@ extension Antiddos {
             self.metricName = metricName
             self.domain = domain
             self.protoInfo = protoInfo
+            self.businessType = businessType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -78,6 +84,7 @@ extension Antiddos {
             case metricName = "MetricName"
             case domain = "Domain"
             case protoInfo = "ProtoInfo"
+            case businessType = "BusinessType"
         }
     }
 
@@ -89,12 +96,17 @@ extension Antiddos {
         /// 统计纬度
         public let metricName: String
 
+        /// 返回DataList中的最大值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxData: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case dataList = "DataList"
             case metricName = "MetricName"
+            case maxData = "MaxData"
             case requestId = "RequestId"
         }
     }
@@ -119,15 +131,15 @@ extension Antiddos {
     ///
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
-        self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
+    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, businessType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
+        self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo, businessType: businessType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP业务流量曲线
     ///
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo), region: region, logger: logger, on: eventLoop)
+    public func describeBizTrend(statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil, businessType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.describeBizTrend(.init(statistics: statistics, business: business, period: period, startTime: startTime, endTime: endTime, id: id, metricName: metricName, domain: domain, protoInfo: protoInfo, businessType: businessType), region: region, logger: logger, on: eventLoop)
     }
 }

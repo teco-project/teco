@@ -20,6 +20,7 @@ extension TCThpcError {
     public struct UnsupportedOperation: TCThpcErrorType {
         enum Code: String {
             case autoScalingType = "UnsupportedOperation.AutoScalingType"
+            case clusterAcceptOtherRequest = "UnsupportedOperation.ClusterAcceptOtherRequest"
             case clusterStatusNotSupport = "UnsupportedOperation.ClusterStatusNotSupport"
             case invalidNodeRole = "UnsupportedOperation.InvalidNodeRole"
             case nodeStatusNotSupport = "UnsupportedOperation.NodeStatusNotSupport"
@@ -55,6 +56,10 @@ extension TCThpcError {
         /// 弹性伸缩类型不支持此操作。
         public static var autoScalingType: UnsupportedOperation {
             UnsupportedOperation(.autoScalingType)
+        }
+
+        public static var clusterAcceptOtherRequest: UnsupportedOperation {
+            UnsupportedOperation(.clusterAcceptOtherRequest)
         }
 
         /// 该集群当前状态不支持该操作。
@@ -102,6 +107,8 @@ extension TCThpcError {
             switch self.error {
             case .autoScalingType:
                 code = .unsupportedOperation_AutoScalingType
+            case .clusterAcceptOtherRequest:
+                code = .unsupportedOperation_ClusterAcceptOtherRequest
             case .clusterStatusNotSupport:
                 code = .unsupportedOperation_ClusterStatusNotSupport
             case .invalidNodeRole:

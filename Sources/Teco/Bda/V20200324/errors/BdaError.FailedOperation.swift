@@ -21,6 +21,7 @@ extension TCBdaError {
         enum Code: String {
             case audioDecodeFailed = "FailedOperation.AudioDecodeFailed"
             case audioEncodeFailed = "FailedOperation.AudioEncodeFailed"
+            case balanceInsufficient = "FailedOperation.BalanceInsufficient"
             case bodyFeatureFail = "FailedOperation.BodyFeatureFail"
             case bodyJointsFail = "FailedOperation.BodyJointsFail"
             case bodyQualityNotQualified = "FailedOperation.BodyQualityNotQualified"
@@ -88,6 +89,11 @@ extension TCBdaError {
         /// 音频编码失败。
         public static var audioEncodeFailed: FailedOperation {
             FailedOperation(.audioEncodeFailed)
+        }
+
+        /// 余额不足，开通失败，请充值后再开通。
+        public static var balanceInsufficient: FailedOperation {
+            FailedOperation(.balanceInsufficient)
         }
 
         /// 人体特征检测失败。
@@ -272,6 +278,8 @@ extension TCBdaError {
                 code = .failedOperation_AudioDecodeFailed
             case .audioEncodeFailed:
                 code = .failedOperation_AudioEncodeFailed
+            case .balanceInsufficient:
+                code = .failedOperation_BalanceInsufficient
             case .bodyFeatureFail:
                 code = .failedOperation_BodyFeatureFail
             case .bodyJointsFail:

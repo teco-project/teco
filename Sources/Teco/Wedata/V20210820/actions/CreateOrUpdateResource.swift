@@ -21,13 +21,13 @@ import TecoCore
 extension Wedata {
     /// CreateOrUpdateResource请求参数结构体
     public struct CreateOrUpdateResourceRequest: TCRequestModel {
-        /// 项目ID
+        /// 项目ID，必填项
         public let projectId: String?
 
-        /// 文件名
+        /// 文件名，必填项
         public let files: [String]?
 
-        /// 文件所属路径，资源管理根路径为 /datastudio/resouce
+        /// 必填项，文件所属路径，资源管理根路径为 /datastudio/resource/项目ID/文件夹名
         public let filePath: String?
 
         /// cos存储桶名字
@@ -39,7 +39,7 @@ extension Wedata {
         /// 是否为新文件，新增为 true，更新为 false
         public let newFile: Bool?
 
-        /// 文件大小
+        /// 必填项，文件大小，与 Files 字段对应
         public let filesSize: [String]?
 
         public init(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil) {

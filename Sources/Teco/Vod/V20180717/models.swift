@@ -137,6 +137,38 @@ extension Vod {
         }
     }
 
+    /// 视频画面低光、过曝检测的控制参数。
+    public struct AbnormalLightingConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面低光、过曝检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面低光、过曝检测的控制参数。
+    public struct AbnormalLightingConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面低光、过曝检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
     /// 域名的地区加速信息
     public struct AccelerateAreaInfo: TCOutputModel {
         /// 加速地区，可选值：
@@ -183,13 +215,17 @@ extension Vod {
 
         /// 数字水印类型。可选值：
         /// <li>Trace 表示经过溯源水印处理；</li>
+        /// <li>CopyRight 表示经过版权水印处理；</li>
         /// <li>None 表示没有经过数字水印处理。</li>
         public let digitalWatermarkType: String?
 
         /// 子流信息列表。
         public let subStreamSet: [MediaSubStreamInfoItem]?
 
-        public init(definition: Int64, package: String, drmType: String, url: String, size: Int64? = nil, digitalWatermarkType: String? = nil, subStreamSet: [MediaSubStreamInfoItem]? = nil) {
+        /// 版权信息。
+        public let copyRightWatermarkText: String?
+
+        public init(definition: Int64, package: String, drmType: String, url: String, size: Int64? = nil, digitalWatermarkType: String? = nil, subStreamSet: [MediaSubStreamInfoItem]? = nil, copyRightWatermarkText: String? = nil) {
             self.definition = definition
             self.package = package
             self.drmType = drmType
@@ -197,6 +233,7 @@ extension Vod {
             self.size = size
             self.digitalWatermarkType = digitalWatermarkType
             self.subStreamSet = subStreamSet
+            self.copyRightWatermarkText = copyRightWatermarkText
         }
 
         enum CodingKeys: String, CodingKey {
@@ -207,6 +244,7 @@ extension Vod {
             case size = "Size"
             case digitalWatermarkType = "DigitalWatermarkType"
             case subStreamSet = "SubStreamSet"
+            case copyRightWatermarkText = "CopyRightWatermarkText"
         }
     }
 
@@ -221,13 +259,17 @@ extension Vod {
         /// 溯源水印。
         public let traceWatermark: TraceWatermarkInput?
 
+        /// 版权水印。
+        public let copyRightWatermark: CopyRightWatermarkInput?
+
         /// 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         public let subtitleSet: [String]?
 
-        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, subtitleSet: [String]? = nil) {
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, copyRightWatermark: CopyRightWatermarkInput? = nil, subtitleSet: [String]? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.traceWatermark = traceWatermark
+            self.copyRightWatermark = copyRightWatermark
             self.subtitleSet = subtitleSet
         }
 
@@ -235,6 +277,7 @@ extension Vod {
             case definition = "Definition"
             case watermarkSet = "WatermarkSet"
             case traceWatermark = "TraceWatermark"
+            case copyRightWatermark = "CopyRightWatermark"
             case subtitleSet = "SubtitleSet"
         }
     }
@@ -443,6 +486,12 @@ extension Vod {
         /// 智能分类任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 智能分类任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 智能分类任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -451,6 +500,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -507,6 +558,12 @@ extension Vod {
         /// 智能封面任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 智能封面任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 智能封面任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -515,6 +572,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -571,6 +630,12 @@ extension Vod {
         /// 智能按帧标签任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 智能按帧标签任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 智能按帧标签任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -579,6 +644,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -635,6 +702,12 @@ extension Vod {
         /// 智能精彩片段任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 智能精彩片段任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 智能精彩片段任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -643,6 +716,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -713,6 +788,12 @@ extension Vod {
         /// 智能标签任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 智能标签任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 智能标签任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -721,6 +802,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -894,8 +977,14 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiRecognitionTaskAsrFullTextResultOutput?
 
-        /// 任务进度，取值范围 [0-100] 。
+        /// 语音全文识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
+
+        /// 语音全文识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 语音全文识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -905,6 +994,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1007,6 +1098,12 @@ extension Vod {
         /// 语音关键词识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 语音关键词识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 语音关键词识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1015,6 +1112,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1103,6 +1202,12 @@ extension Vod {
         /// 人脸识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 人脸识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 人脸识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1111,6 +1216,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1213,6 +1320,12 @@ extension Vod {
         /// 视频片头片尾识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 视频片头片尾识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 视频片头片尾识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1221,6 +1334,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1294,6 +1409,12 @@ extension Vod {
         /// 物体识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 物体识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 物体识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1302,6 +1423,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1394,6 +1517,12 @@ extension Vod {
         /// 文本全文识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 文本全文识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 文本全文识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1402,6 +1531,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1494,6 +1625,12 @@ extension Vod {
         /// 文本关键词识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 文本关键词识别任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 文本关键词识别任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1502,6 +1639,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -1595,6 +1734,12 @@ extension Vod {
         /// 视频拆条任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 视频拆条任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 视频拆条任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -1603,6 +1748,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -2064,6 +2211,9 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: AiReviewPoliticalOcrTaskOutput?
 
+        /// 音视频审核 Ocr 文字涉及令人不适宜信息的任务进度，取值范围 [0-100] 。
+        public let progress: Int64?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -2071,6 +2221,7 @@ extension Vod {
             case message = "Message"
             case input = "Input"
             case output = "Output"
+            case progress = "Progress"
         }
     }
 
@@ -2469,7 +2620,7 @@ extension Vod {
         /// 人脸 ID 集合，当 Type为delete 时，该字段必填。
         public let faceIds: [String]?
 
-        /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合。
+        /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合，仅支持 jpeg、png 图片格式。
         /// <li>当 Type为add 或 reset 时，该字段必填；</li>
         /// <li>数组长度限制：5 张图片。</li>
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
@@ -2753,16 +2904,26 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         public let subtitleFormat: String?
 
-        public init(switch: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil) {
+        /// 媒体源语言，取值范围：
+        /// <li>zh：中文普通话；</li>
+        /// <li>en：英语；</li>
+        /// <li>ja：日语；</li>
+        /// <li>zh-ca：粤语。</li>
+        /// <font color=red>注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
+        public let srcLanguage: String?
+
+        public init(switch: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil, srcLanguage: String? = nil) {
             self.switch = `switch`
             self.subtitleFormats = subtitleFormats
             self.subtitleFormat = subtitleFormat
+            self.srcLanguage = srcLanguage
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormats = "SubtitleFormats"
             case subtitleFormat = "SubtitleFormat"
+            case srcLanguage = "SrcLanguage"
         }
     }
 
@@ -2782,16 +2943,25 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
         public let subtitleFormat: String?
 
-        public init(switch: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil) {
+        /// 媒体源语言，取值范围：
+        /// <li>zh：中文普通话；</li>
+        /// <li>en：英语；</li>
+        /// <li>ja：日语；</li>
+        /// <li>zh-ca：粤语。</li>
+        public let srcLanguage: String?
+
+        public init(switch: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil, srcLanguage: String? = nil) {
             self.switch = `switch`
             self.subtitleFormatsOperation = subtitleFormatsOperation
             self.subtitleFormat = subtitleFormat
+            self.srcLanguage = srcLanguage
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case subtitleFormatsOperation = "SubtitleFormatsOperation"
             case subtitleFormat = "SubtitleFormat"
+            case srcLanguage = "SrcLanguage"
         }
     }
 
@@ -3064,6 +3234,70 @@ extension Vod {
         }
     }
 
+    /// 视频画面黑边、白边、黑屏、白屏检测的控制参数。
+    public struct BlackWhiteEdgeConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面黑边、白边、黑屏、白屏检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面黑边、白边、黑屏、白屏检测的控制参数。
+    public struct BlackWhiteEdgeConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面黑边、白边、黑屏、白屏检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面模糊检测的控制参数。
+    public struct BlurConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面模糊检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面模糊检测的控制参数。
+    public struct BlurConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面模糊检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
     /// 画布信息。制作视频时，如果源素材（视频或者图片）不能填满输出的视频窗口，将用设置的画布进行背景绘制。
     public struct Canvas: TCInputModel, TCOutputModel {
         /// 背景颜色，取值有：
@@ -3072,11 +3306,11 @@ extension Vod {
         /// 默认值：Black。
         public let color: String?
 
-        /// 画布宽度，即输出视频的宽度，取值范围：0~ 4096，单位：px。
+        /// 画布宽度，即输出视频的宽度，取值范围：0~ 3840，单位：px。
         /// 默认值：0，表示和第一个视频轨的第一个视频片段的视频宽度一致。
         public let width: Int64?
 
-        /// 画布高度，即输出视频的高度（或长边），取值范围：0~ 4096，单位：px。
+        /// 画布高度，即输出视频的高度（或长边），取值范围：0~ 3840，单位：px。
         /// 默认值：0，表示和第一个视频轨的第一个视频片段的视频高度一致。
         public let height: Int64?
 
@@ -3565,6 +3799,20 @@ extension Vod {
         }
     }
 
+    /// 版权水印参数
+    public struct CopyRightWatermarkInput: TCInputModel, TCOutputModel {
+        /// 版权信息，最大长度为 200 个字符。
+        public let text: String
+
+        public init(text: String) {
+            self.text = text
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+        }
+    }
+
     /// 对视频截图做封面任务输入参数类型
     public struct CoverBySnapshotTaskInput: TCInputModel, TCOutputModel {
         /// 指定时间点截图模板 ID。
@@ -3629,6 +3877,38 @@ extension Vod {
         /// 智能封面任务开关，可选值：
         /// <li>ON：开启智能封面任务；</li>
         /// <li>OFF：关闭智能封面任务。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面花屏检测的控制参数。
+    public struct CrashScreenConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面花屏检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面花屏检测的控制参数。
+    public struct CrashScreenConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面花屏检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3757,8 +4037,12 @@ extension Vod {
         /// 媒体文件的 Md5 值。
         public let md5: String
 
+        /// 媒体文件的 Sha1 值。
+        public let sha1: String?
+
         enum CodingKeys: String, CodingKey {
             case md5 = "Md5"
+            case sha1 = "Sha1"
         }
     }
 
@@ -3793,6 +4077,10 @@ extension Vod {
         /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
         public let createTime: String
 
+        /// 域名 QUIC 配置信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let quicConfig: DomainQUICConfig?
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case accelerateAreaInfos = "AccelerateAreaInfos"
@@ -3801,6 +4089,7 @@ extension Vod {
             case urlSignatureAuthPolicy = "UrlSignatureAuthPolicy"
             case refererAuthPolicy = "RefererAuthPolicy"
             case createTime = "CreateTime"
+            case quicConfig = "QUICConfig"
         }
     }
 
@@ -3816,6 +4105,22 @@ extension Vod {
 
         enum CodingKeys: String, CodingKey {
             case certExpireTime = "CertExpireTime"
+        }
+    }
+
+    /// 域名 QUIC 配置信息
+    public struct DomainQUICConfig: TCInputModel, TCOutputModel {
+        /// QUIC 配置状态，可选值：
+        /// <li>Enabled: 启用；</li>
+        /// <li>Disabled: 禁用。</li>
+        public let status: String
+
+        public init(status: String) {
+            self.status = status
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
         }
     }
 
@@ -4125,16 +4430,23 @@ extension Vod {
         /// 默认值：0。
         public let height: UInt64?
 
-        public init(resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil) {
+        /// 视频帧率，取值范围：[0, 100]，单位：Hz。
+        /// 当取值为0，将自动为视频设置帧率。
+        /// 默认值为 0。
+        public let fps: Int64?
+
+        public init(resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, fps: Int64? = nil) {
             self.resolutionAdaptive = resolutionAdaptive
             self.width = width
             self.height = height
+            self.fps = fps
         }
 
         enum CodingKeys: String, CodingKey {
             case resolutionAdaptive = "ResolutionAdaptive"
             case width = "Width"
             case height = "Height"
+            case fps = "Fps"
         }
     }
 
@@ -4171,7 +4483,9 @@ extension Vod {
         /// <li>RebuildMediaComplete：音画质重生完成事件。</li>
         /// <li>ReviewAudioVideoComplete：音视频审核完成；</li>
         /// <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
+        /// <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
         /// <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
+        /// <li>QualityInspectComplete：音画质检测完成。</li>
         /// <b>兼容 2017 版的事件类型：</b>
         /// <li>TranscodeComplete：视频转码完成；</li>
         /// <li>ConcatComplete：视频拼接完成；</li>
@@ -4252,6 +4566,10 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extractTraceWatermarkCompleteEvent: ExtractTraceWatermarkTask?
 
+        /// 版权水印提取完成事件，当事件类型为 ExtractCopyRightWatermarkComplete 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extractCopyRightWatermarkCompleteEvent: ExtractCopyRightWatermarkTask?
+
         /// 音视频审核完成事件，当事件类型为 ReviewAudioVideoComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reviewAudioVideoCompleteEvent: ReviewAudioVideoTask?
@@ -4263,6 +4581,10 @@ extension Vod {
         /// 获取文件属性完成事件，当事件类型为 DescribeFileAttributesComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let describeFileAttributesCompleteEvent: DescribeFileAttributesTask?
+
+        /// 音画质检测完成事件，当事件类型为 QualityInspectComplete 时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityInspectCompleteEvent: QualityInspectTask?
 
         enum CodingKeys: String, CodingKey {
             case eventHandle = "EventHandle"
@@ -4285,9 +4607,80 @@ extension Vod {
             case restoreMediaCompleteEvent = "RestoreMediaCompleteEvent"
             case rebuildMediaCompleteEvent = "RebuildMediaCompleteEvent"
             case extractTraceWatermarkCompleteEvent = "ExtractTraceWatermarkCompleteEvent"
+            case extractCopyRightWatermarkCompleteEvent = "ExtractCopyRightWatermarkCompleteEvent"
             case reviewAudioVideoCompleteEvent = "ReviewAudioVideoCompleteEvent"
             case reduceMediaBitrateCompleteEvent = "ReduceMediaBitrateCompleteEvent"
             case describeFileAttributesCompleteEvent = "DescribeFileAttributesCompleteEvent"
+            case qualityInspectCompleteEvent = "QualityInspectCompleteEvent"
+        }
+    }
+
+    /// 提取版权水印任务。
+    public struct ExtractCopyRightWatermarkTask: TCOutputModel {
+        /// 任务 ID。
+        public let taskId: String?
+
+        /// 任务状态，取值：
+        /// <li>PROCESSING：处理中；</li>
+        /// <li>FINISH：已完成。</li>
+        public let status: String?
+
+        /// 错误码，0 表示成功，其他值表示失败：
+        /// <li>40000：输入参数不合法，请检查输入参数；</li>
+        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
+        /// <li>70000：内部服务错误，建议重试。</li>
+        public let errCode: Int64?
+
+        /// 错误信息。
+        public let message: String?
+
+        /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        public let errCodeExt: String?
+
+        /// 提取版权水印任务输入信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let input: ExtractCopyRightWatermarkTaskInput?
+
+        /// 提取版权水印任务输出信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: ExtractCopyRightWatermarkTaskOutput?
+
+        /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        public let sessionId: String?
+
+        /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        public let sessionContext: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case status = "Status"
+            case errCode = "ErrCode"
+            case message = "Message"
+            case errCodeExt = "ErrCodeExt"
+            case input = "Input"
+            case output = "Output"
+            case sessionId = "SessionId"
+            case sessionContext = "SessionContext"
+        }
+    }
+
+    /// 提取版权水印任务输入
+    public struct ExtractCopyRightWatermarkTaskInput: TCOutputModel {
+        /// 需要提取水印的媒体 URL。
+        public let url: String?
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+        }
+    }
+
+    /// 提取版权水印输出信息
+    public struct ExtractCopyRightWatermarkTaskOutput: TCOutputModel {
+        /// 版权信息。
+        public let text: String?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
         }
     }
 
@@ -4343,8 +4736,12 @@ extension Vod {
         /// 需要提取水印的媒体 URL。
         public let url: String
 
+        /// 媒体文件 ID。Url 对应的原始媒体文件 ID。
+        public let fileId: String?
+
         enum CodingKeys: String, CodingKey {
             case url = "Url"
+            case fileId = "FileId"
         }
     }
 
@@ -4687,6 +5084,12 @@ extension Vod {
         /// 默认值：stretch 。
         public let fillType: String
 
+        /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let createTime: String?
+
+        /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let updateTime: String?
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
             case name = "Name"
@@ -4694,6 +5097,8 @@ extension Vod {
             case headCandidateSet = "HeadCandidateSet"
             case tailCandidateSet = "TailCandidateSet"
             case fillType = "FillType"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
         }
     }
 
@@ -4821,8 +5226,9 @@ extension Vod {
     /// 单个图片处理操作。
     public struct ImageOperation: TCInputModel, TCOutputModel {
         /// 图片处理类型。可选类型有：
-        /// <li>Scale : 图片缩略处理。</li>
-        /// <li>CenterCut : 图片裁剪处理。</li>
+        /// <li>Scale : 图片缩略处理；</li>
+        /// <li>CenterCut : 图片裁剪处理；</li>
+        /// <li>Blur : 图片模糊处理。</li>
         public let type: String
 
         /// 图片缩略处理，仅当 Type 为 Scale 时有效。
@@ -5184,6 +5590,38 @@ extension Vod {
             case height = "Height"
             case repeatType = "RepeatType"
             case transparency = "Transparency"
+        }
+    }
+
+    /// 视频画面抖动重影检测的控制参数。
+    public struct JitterConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面抖动重影检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面抖动重影检测的控制参数。
+    public struct JitterConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面抖动重影检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
         }
     }
 
@@ -5759,7 +6197,10 @@ extension Vod {
         /// <li>OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）；</li>
         /// <li>TranscodeFiles（删除转码文件）；</li>
         /// <li>AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；</li>
-        /// <li>WechatPublishFiles（删除微信发布文件）。</li>
+        /// <li>WechatPublishFiles（删除微信发布文件）；</li>
+        /// <li>WechatMiniProgramPublishFiles（删除微信小程序发布文件）。</li>
+        /// <font color=red>注意：</font> <li>取值为OriginalFiles时，文件上传时携带的封面文件会被删除；</li>
+        /// <li>取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。</li>
         public let type: String
 
         /// 删除由Type参数指定的种类下的视频模板号，模板定义参见[转码模板](https://cloud.tencent.com/document/product/266/33478#.3Cspan-id-.3D-.22zm.22-.3E.3C.2Fspan.3E.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
@@ -5922,7 +6363,7 @@ extension Vod {
     }
 
     /// 视频打点信息
-    public struct MediaKeyFrameDescItem: TCInputModel {
+    public struct MediaKeyFrameDescItem: TCInputModel, TCOutputModel {
         /// 打点的视频偏移时间，单位：秒。
         public let timeOffset: Float
 
@@ -6108,6 +6549,12 @@ extension Vod {
         /// 对视频转自适应码流任务的输出。
         public let output: AdaptiveDynamicStreamingInfoItem
 
+        /// 转自适应码流任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 转自适应码流任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6116,6 +6563,8 @@ extension Vod {
             case progress = "Progress"
             case input = "Input"
             case output = "Output"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6143,6 +6592,12 @@ extension Vod {
         /// 转动图任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 转动图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 转动图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6151,6 +6606,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6177,6 +6634,12 @@ extension Vod {
         /// 对视频截图做封面任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 截图做封面任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 截图做封面任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6185,6 +6648,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6212,6 +6677,12 @@ extension Vod {
         /// 对视频截雪碧图任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 截雪碧图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 截雪碧图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6220,6 +6691,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6343,6 +6816,12 @@ extension Vod {
         /// 对视频做采样截图任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 采样截图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 采样截图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6351,6 +6830,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6378,6 +6859,12 @@ extension Vod {
         /// 对视频按指定时间点截图任务进度，取值范围 [0-100] 。
         public let progress: Int64
 
+        /// 时间点截图任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let beginProcessTime: String?
+
+        /// 时间点截图任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let finishTime: String?
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case errCodeExt = "ErrCodeExt"
@@ -6386,6 +6873,8 @@ extension Vod {
             case input = "Input"
             case output = "Output"
             case progress = "Progress"
+            case beginProcessTime = "BeginProcessTime"
+            case finishTime = "FinishTime"
         }
     }
 
@@ -6733,6 +7222,7 @@ extension Vod {
         public let url: String
 
         /// 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/266/33476)。
+        /// <font color=red>注意：取值 0 表示原始文件。</font>
         public let definition: Int64
 
         /// 视频流码率平均值与音频流码率平均值之和， 单位：bps。
@@ -6765,8 +7255,12 @@ extension Vod {
 
         /// 数字水印类型。可选值：
         /// <li>Trace 表示经过溯源水印处理；</li>
+        /// <li>CopyRight 表示经过版权水印处理；</li>
         /// <li>None 表示没有经过数字水印处理。</li>
         public let digitalWatermarkType: String
+
+        /// 版权信息。
+        public let copyRightWatermarkText: String
 
         enum CodingKeys: String, CodingKey {
             case url = "Url"
@@ -6781,6 +7275,7 @@ extension Vod {
             case videoStreamSet = "VideoStreamSet"
             case audioStreamSet = "AudioStreamSet"
             case digitalWatermarkType = "DigitalWatermarkType"
+            case copyRightWatermarkText = "CopyRightWatermarkText"
         }
     }
 
@@ -6835,6 +7330,38 @@ extension Vod {
             case fps = "Fps"
             case codecTag = "CodecTag"
             case dynamicRangeInfo = "DynamicRangeInfo"
+        }
+    }
+
+    /// 视频画面马赛克检测的控制参数。
+    public struct MosaicConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面马赛克检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面马赛克检测的控制参数。
+    public struct MosaicConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面马赛克检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
         }
     }
 
@@ -6899,6 +7426,38 @@ extension Vod {
             case height = "Height"
             case startTimeOffset = "StartTimeOffset"
             case endTimeOffset = "EndTimeOffset"
+        }
+    }
+
+    /// 视频画面噪点检测的控制参数。
+    public struct NoiseConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面噪点检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面噪点检测的控制参数。
+    public struct NoiseConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面噪点检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
         }
     }
 
@@ -8186,6 +8745,325 @@ extension Vod {
         }
     }
 
+    /// 视频画面二维码检测的控制参数。
+    public struct QRCodeConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面二维码检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面二维码检测的控制参数。
+    public struct QRCodeConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面二维码检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 视频画面质量评价的控制参数。
+    public struct QualityEvaluationConfigureInfo: TCInputModel, TCOutputModel {
+        /// 视频画面质量评价检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        /// 视频画面质量评价过滤阈值，结果只返回低于该值的时间段，默认值为 60。
+        public let score: Int64?
+
+        public init(switch: String, score: Int64? = nil) {
+            self.switch = `switch`
+            self.score = score
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case score = "Score"
+        }
+    }
+
+    /// 视频画面质量评价的控制参数。
+    public struct QualityEvaluationConfigureInfoForUpdate: TCInputModel {
+        /// 视频画面质量评价开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        /// 视频画面质量评价过滤阈值，结果只返回低于该值的时间段。
+        public let score: Int64?
+
+        public init(switch: String? = nil, score: Int64? = nil) {
+            self.switch = `switch`
+            self.score = score
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case score = "Score"
+        }
+    }
+
+    /// 音画质检测异常片段信息。
+    public struct QualityInspectItem: TCOutputModel {
+        /// 异常片段起始的偏移时间，单位：秒。
+        public let startTimeOffset: Float
+
+        /// 异常片段终止的偏移时间，单位：秒。
+        public let endTimeOffset: Float
+
+        /// 检测出异常的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
+        /// <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
+        /// <li>BlackWhiteEdge：黑白边；</li>
+        /// <li>Mosaic：马赛克；</li>
+        /// <li>QRCode：二维码；</li>
+        /// <li>AppletCode：小程序码；</li>
+        /// <li>BarCode：条形码。</li>
+        public let areaCoordSet: [Int64]
+
+        /// 置信度，取值范围：[0, 100]。
+        /// <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
+        /// <li>Mosaic：马赛克；</li>
+        /// <li>QRCode：二维码；</li>
+        /// <li>AppletCode：小程序码；</li>
+        /// <li>BarCode：条形码。</li>
+        public let confidence: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case startTimeOffset = "StartTimeOffset"
+            case endTimeOffset = "EndTimeOffset"
+            case areaCoordSet = "AreaCoordSet"
+            case confidence = "Confidence"
+        }
+    }
+
+    /// 音画质检测异常结果信息。
+    public struct QualityInspectResultItem: TCOutputModel {
+        /// 异常类型，取值范围：
+        /// <li>Jitter：抖动；</li>
+        /// <li>Blur：模糊；</li>
+        /// <li>LowLighting：低光照；</li>
+        /// <li>HighLighting：过曝；</li>
+        /// <li>CrashScreen：花屏；</li>
+        /// <li>BlackWhiteEdge：黑白边；</li>
+        /// <li>SolidColorScreen：纯色屏；</li>
+        /// <li>Noise：噪点；</li>
+        /// <li>Mosaic：马赛克；</li>
+        /// <li>QRCode：二维码；</li>
+        /// <li>AppletCode：小程序码；</li>
+        /// <li>BarCode：条形码；</li>
+        /// <li>LowVoice：低音；</li>
+        /// <li>HighVoice：爆音；</li>
+        /// <li>NoVoice：静音；</li>
+        /// <li>LowEvaluation：无参考打分低于阈值。</li>
+        public let type: String?
+
+        /// 异常片段列表。
+        /// <font color=red>注意：</font> 该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        public let segmentSet: [QualityInspectItem]?
+
+        /// 异常片段列表文件 URL。文件 内容 为  JSON，数据结构与 SegmentSet 字段一致。（文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        public let segmentSetFileUrl: String?
+
+        /// 异常片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let segmentSetFileUrlExpireTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case segmentSet = "SegmentSet"
+            case segmentSetFileUrl = "SegmentSetFileUrl"
+            case segmentSetFileUrlExpireTime = "SegmentSetFileUrlExpireTime"
+        }
+    }
+
+    /// 音画质检测任务信息。
+    public struct QualityInspectTask: TCOutputModel {
+        /// 任务 ID。
+        public let taskId: String?
+
+        /// 任务状态，取值：
+        /// <li>PROCESSING：处理中；</li>
+        /// <li>FINISH：已完成。</li>
+        public let status: String?
+
+        /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        public let errCodeExt: String?
+
+        /// 错误信息。
+        public let message: String?
+
+        /// 音画质检测输入音视频的元信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let metaData: MediaMetaData?
+
+        /// 音画质检测任务输入。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let input: QualityInspectTaskInput?
+
+        /// 音画质检测任务输出。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let output: QualityInspectTaskOutput?
+
+        /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        public let sessionId: String?
+
+        /// 来源上下文，用于透传用户请求信息，音画质检测完成回调将返回该字段值，最长 1000 个字符。
+        public let sessionContext: String?
+
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case status = "Status"
+            case errCodeExt = "ErrCodeExt"
+            case message = "Message"
+            case metaData = "MetaData"
+            case input = "Input"
+            case output = "Output"
+            case sessionId = "SessionId"
+            case sessionContext = "SessionContext"
+        }
+    }
+
+    /// 音画质检测任务的输入。
+    public struct QualityInspectTaskInput: TCOutputModel {
+        /// 媒体文件 ID。
+        public let fileId: String?
+
+        /// 音画质检测模板 ID。
+        public let definition: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case fileId = "FileId"
+            case definition = "Definition"
+        }
+    }
+
+    /// 音画质检测任务的输出。
+    public struct QualityInspectTaskOutput: TCOutputModel {
+        /// 媒体文件是否无音频轨，取值范围：
+        /// <li>0：否，即有音频轨；</li>
+        /// <li>1：是，即无音频轨。</li>
+        public let noAudio: Int64
+
+        /// 媒体文件是否无视频轨，取值范围：
+        /// <li>0：否，即有视频轨；</li>
+        /// <li>1：是，即无视频轨。</li>
+        public let noVideo: Int64
+
+        /// 视频画面质量评分，取值范围：[0, 100]。
+        public let qualityEvaluationScore: UInt64
+
+        /// 音画质检测出的异常项列表。
+        public let qualityInspectResultSet: [QualityInspectResultItem]
+
+        enum CodingKeys: String, CodingKey {
+            case noAudio = "NoAudio"
+            case noVideo = "NoVideo"
+            case qualityEvaluationScore = "QualityEvaluationScore"
+            case qualityInspectResultSet = "QualityInspectResultSet"
+        }
+    }
+
+    /// 音画质检测模板详情。
+    public struct QualityInspectTemplateItem: TCOutputModel {
+        /// 模板 ID。
+        public let definition: Int64?
+
+        /// 模板类型，可选值：
+        /// <li>Preset：系统预置模板；</li>
+        /// <li>Custom：用户自定义模板。</li>
+        public let type: String?
+
+        /// 模板名称。
+        public let name: String?
+
+        /// 模板描述。
+        public let comment: String?
+
+        /// 截帧间隔，单位为秒。
+        public let screenshotInterval: Float?
+
+        /// 视频画面抖动重影检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jitterConfigure: JitterConfigureInfo?
+
+        /// 视频画面模糊检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let blurConfigure: BlurConfigureInfo?
+
+        /// 视频画面低光、过曝检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let abnormalLightingConfigure: AbnormalLightingConfigureInfo?
+
+        /// 视频画面花屏检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let crashScreenConfigure: CrashScreenConfigureInfo?
+
+        /// 视频画面黑边、白边、黑屏、白屏检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let blackWhiteEdgeConfigure: BlackWhiteEdgeConfigureInfo?
+
+        /// 视频画面噪点检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let noiseConfigure: NoiseConfigureInfo?
+
+        /// 视频画面马赛克检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mosaicConfigure: MosaicConfigureInfo?
+
+        /// 视频画面二维码检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qrCodeConfigure: QRCodeConfigureInfo?
+
+        /// 视频画面质量评价的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualityEvaluationConfigure: QualityEvaluationConfigureInfo?
+
+        /// 音频（静音、低音、爆音）检测的控制参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let voiceConfigure: VoiceConfigureInfo?
+
+        /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let createTime: String?
+
+        /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case type = "Type"
+            case name = "Name"
+            case comment = "Comment"
+            case screenshotInterval = "ScreenshotInterval"
+            case jitterConfigure = "JitterConfigure"
+            case blurConfigure = "BlurConfigure"
+            case abnormalLightingConfigure = "AbnormalLightingConfigure"
+            case crashScreenConfigure = "CrashScreenConfigure"
+            case blackWhiteEdgeConfigure = "BlackWhiteEdgeConfigure"
+            case noiseConfigure = "NoiseConfigure"
+            case mosaicConfigure = "MosaicConfigure"
+            case qrCodeConfigure = "QRCodeConfigure"
+            case qualityEvaluationConfigure = "QualityEvaluationConfigure"
+            case voiceConfigure = "VoiceConfigure"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+        }
+    }
+
     /// 音画质重生音频控制控制信息。
     public struct RebuildAudioInfo: TCInputModel, TCOutputModel {
         /// 音频降噪控制参数。
@@ -8918,14 +9796,26 @@ extension Vod {
 
     /// 智能去除水印任务的输出。
     public struct RemoveWaterMarkTaskOutput: TCOutputModel {
-        /// 视频 ID。
+        /// 媒体文件 ID。
         public let fileId: String
+
+        /// 文件类型，例如 mp4、mp3 等。
+        public let fileType: String?
+
+        /// 媒体文件播放地址。
+        public let fileUrl: String?
+
+        /// 文件名称，最长 64 个字符。
+        public let mediaName: String?
 
         /// 元信息。包括大小、时长、视频流信息、音频流信息等。
         public let metaData: MediaMetaData
 
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
+            case fileType = "FileType"
+            case fileUrl = "FileUrl"
+            case mediaName = "MediaName"
             case metaData = "MetaData"
         }
     }
@@ -9440,16 +10330,34 @@ extension Vod {
         /// 轮播播单描述信息，长度限制：256 个字符。
         public let desc: String
 
+        /// 播放状态，可选值：
+        /// <li>Enabled：启动状态；</li>
+        /// <li>Disabled：停止状态。</li>
+        /// 默认值：Enabled。
+        public let status: String?
+
+        /// 播放模式，可选值：
+        /// <li>Loop：循环播放播单；</li>
+        /// <li>Linear：单次播放，播单播放完停止播放。</li>
+        /// 默认值：Loop。
+        public let playBackMode: String?
+
+        /// 轮播播放地址。
+        public let url: String?
+
         enum CodingKeys: String, CodingKey {
             case roundPlayId = "RoundPlayId"
             case startTime = "StartTime"
             case roundPlaylist = "RoundPlaylist"
             case name = "Name"
             case desc = "Desc"
+            case status = "Status"
+            case playBackMode = "PlayBackMode"
+            case url = "Url"
         }
     }
 
-    /// 加权轮播媒体文件信息
+    /// 轮播媒体文件信息
     public struct RoundPlayListItemInfo: TCInputModel, TCOutputModel {
         /// 媒体文件标识。
         public let fileId: String
@@ -10052,6 +10960,7 @@ extension Vod {
         /// <li>流量数据，单位是字节。</li>
         /// <li>带宽数据，单位是比特每秒。</li>
         /// <li>直播剪辑数据，单位是秒。</li>
+        /// <li>轮播数据，单位是秒。</li>
         public let value: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -11006,6 +11915,9 @@ extension Vod {
         /// 溯源水印。
         public let traceWatermark: TraceWatermarkInput?
 
+        /// 版权水印。
+        public let copyRightWatermark: CopyRightWatermarkInput?
+
         /// 马赛克列表，最大可支持 10 张。
         public let mosaicSet: [MosaicInput]?
 
@@ -11024,10 +11936,11 @@ extension Vod {
         /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         public let endTimeOffset: Float?
 
-        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, mosaicSet: [MosaicInput]? = nil, headTailSet: [HeadTailTaskInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
+        public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, copyRightWatermark: CopyRightWatermarkInput? = nil, mosaicSet: [MosaicInput]? = nil, headTailSet: [HeadTailTaskInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.traceWatermark = traceWatermark
+            self.copyRightWatermark = copyRightWatermark
             self.mosaicSet = mosaicSet
             self.headTailSet = headTailSet
             self.startTimeOffset = startTimeOffset
@@ -11038,6 +11951,7 @@ extension Vod {
             case definition = "Definition"
             case watermarkSet = "WatermarkSet"
             case traceWatermark = "TraceWatermark"
+            case copyRightWatermark = "CopyRightWatermark"
             case mosaicSet = "MosaicSet"
             case headTailSet = "HeadTailSet"
             case startTimeOffset = "StartTimeOffset"
@@ -11791,6 +12705,38 @@ extension Vod {
             case height = "Height"
             case audioOperations = "AudioOperations"
             case imageOperations = "ImageOperations"
+        }
+    }
+
+    /// 音频（静音、低音、爆音）检测的控制参数。
+    public struct VoiceConfigureInfo: TCInputModel, TCOutputModel {
+        /// 音频（静音、低音、爆音）检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
+    /// 音频（静音、低音、爆音）检测的控制参数。
+    public struct VoiceConfigureInfoForUpdate: TCInputModel {
+        /// 音频（静音、低音、爆音）检测开关，可选值：
+        /// <li>ON：开启；</li>
+        /// <li>OFF：关闭。</li>
+        public let `switch`: String?
+
+        public init(switch: String? = nil) {
+            self.switch = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
         }
     }
 

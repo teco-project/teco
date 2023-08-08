@@ -21,14 +21,11 @@ import TecoCore
 extension Ess {
     /// DeleteSealPolicies请求参数结构体
     public struct DeleteSealPoliciesRequest: TCRequestModel {
-        /// 操作撤销的用户信息
+        /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
         /// 印章授权编码数组。这个参数跟下面的SealId其中一个必填，另外一个可选填
         public let policyIds: [String]?
-
-        /// 应用相关
-        public let agent: Agent?
 
         /// 印章ID。这个参数跟上面的PolicyIds其中一个必填，另外一个可选填
         public let sealId: String?
@@ -36,20 +33,23 @@ extension Ess {
         /// 待授权的员工ID
         public let userIds: [String]?
 
-        public init(operator: UserInfo, policyIds: [String]? = nil, agent: Agent? = nil, sealId: String? = nil, userIds: [String]? = nil) {
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
+        public let agent: Agent?
+
+        public init(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.policyIds = policyIds
-            self.agent = agent
             self.sealId = sealId
             self.userIds = userIds
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case policyIds = "PolicyIds"
-            case agent = "Agent"
             case sealId = "SealId"
             case userIds = "UserIds"
+            case agent = "Agent"
         }
     }
 
@@ -63,7 +63,7 @@ extension Ess {
         }
     }
 
-    /// 撤销员工的印章权限
+    /// 撤销印章授权
     ///
     /// 撤销员工持有的印章权限
     @inlinable @discardableResult
@@ -71,7 +71,7 @@ extension Ess {
         self.client.execute(action: "DeleteSealPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销员工的印章权限
+    /// 撤销印章授权
     ///
     /// 撤销员工持有的印章权限
     @inlinable @discardableResult
@@ -79,19 +79,19 @@ extension Ess {
         try await self.client.execute(action: "DeleteSealPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销员工的印章权限
+    /// 撤销印章授权
     ///
     /// 撤销员工持有的印章权限
     @inlinable @discardableResult
-    public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, agent: Agent? = nil, sealId: String? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealPoliciesResponse> {
-        self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, agent: agent, sealId: sealId, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealPoliciesResponse> {
+        self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, sealId: sealId, userIds: userIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销员工的印章权限
+    /// 撤销印章授权
     ///
     /// 撤销员工持有的印章权限
     @inlinable @discardableResult
-    public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, agent: Agent? = nil, sealId: String? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealPoliciesResponse {
-        try await self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, agent: agent, sealId: sealId, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    public func deleteSealPolicies(operator: UserInfo, policyIds: [String]? = nil, sealId: String? = nil, userIds: [String]? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealPoliciesResponse {
+        try await self.deleteSealPolicies(.init(operator: `operator`, policyIds: policyIds, sealId: sealId, userIds: userIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

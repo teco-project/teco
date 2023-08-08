@@ -68,33 +68,33 @@ extension Postgres {
         }
     }
 
-    /// 添加RO组网络
+    /// 创建RO组网络
     ///
-    /// 可对RO组进行网络的添加操作。
+    /// 本接口（CreateReadOnlyGroupNetworkAccess）用于创建RO组的网络。
     @inlinable
     public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
         self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加RO组网络
+    /// 创建RO组网络
     ///
-    /// 可对RO组进行网络的添加操作。
+    /// 本接口（CreateReadOnlyGroupNetworkAccess）用于创建RO组的网络。
     @inlinable
     public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
         try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加RO组网络
+    /// 创建RO组网络
     ///
-    /// 可对RO组进行网络的添加操作。
+    /// 本接口（CreateReadOnlyGroupNetworkAccess）用于创建RO组的网络。
     @inlinable
     public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
         self.createReadOnlyGroupNetworkAccess(.init(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加RO组网络
+    /// 创建RO组网络
     ///
-    /// 可对RO组进行网络的添加操作。
+    /// 本接口（CreateReadOnlyGroupNetworkAccess）用于创建RO组的网络。
     @inlinable
     public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
         try await self.createReadOnlyGroupNetworkAccess(.init(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)

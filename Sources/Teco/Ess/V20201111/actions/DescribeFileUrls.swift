@@ -99,7 +99,8 @@ extension Ess {
 
     /// DescribeFileUrls返回参数结构体
     public struct DescribeFileUrlsResponse: TCPaginatedResponse {
-        /// URL信息
+        /// 文件URL信息；
+        /// 链接不是永久链接，有效期5分钟后链接失效。
         public let fileUrls: [FileUrl]
 
         /// URL数量
@@ -127,7 +128,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
@@ -136,7 +137,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
@@ -145,7 +146,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
@@ -154,7 +155,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
@@ -163,7 +164,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
     public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [FileUrl])> {
@@ -172,7 +173,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable @discardableResult
     public func describeFileUrlsPaginated(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFileUrlsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -181,7 +182,7 @@ extension Ess {
 
     /// 查询文件下载URL
     ///
-    /// 查询文件下载URL
+    /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     ///
     /// - Returns: `AsyncSequence`s of `FileUrl` and `DescribeFileUrlsResponse` that can be iterated over asynchronously on demand.

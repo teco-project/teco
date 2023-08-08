@@ -43,7 +43,7 @@ extension Fmu {
         }
     }
 
-    /// 撤销视频美颜任务
+    /// 撤销视频美颜任务(此接口目前已下线)
     ///
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult
@@ -51,7 +51,7 @@ extension Fmu {
         self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 撤销视频美颜任务
+    /// 撤销视频美颜任务(此接口目前已下线)
     ///
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult
@@ -59,7 +59,7 @@ extension Fmu {
         try await self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 撤销视频美颜任务
+    /// 撤销视频美颜任务(此接口目前已下线)
     ///
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult
@@ -67,7 +67,7 @@ extension Fmu {
         self.cancelBeautifyVideoJob(.init(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 撤销视频美颜任务
+    /// 撤销视频美颜任务(此接口目前已下线)
     ///
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult

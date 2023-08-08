@@ -40,6 +40,7 @@ public struct TCCamError: TCCamErrorType {
         case failedOperation_UserUnbindNoPermission = "FailedOperation.UserUnbindNoPermission"
         case internalError = "InternalError"
         case internalError_SystemError = "InternalError.SystemError"
+        case internalError_UnknownError = "InternalError.UnknownError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue_IdentityKeyError = "InvalidParameterValue.IdentityKeyError"
         case invalidParameterValue_IdentityUrlError = "InvalidParameterValue.IdentityUrlError"
@@ -231,6 +232,11 @@ public struct TCCamError: TCCamErrorType {
     /// 内部错误。
     public static var internalError_SystemError: TCCamError {
         TCCamError(.internalError_SystemError)
+    }
+
+    /// 增加一次调用重试。
+    public static var internalError_UnknownError: TCCamError {
+        TCCamError(.internalError_UnknownError)
     }
 
     /// 参数错误。

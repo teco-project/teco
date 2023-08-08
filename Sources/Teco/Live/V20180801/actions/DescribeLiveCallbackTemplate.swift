@@ -49,7 +49,7 @@ extension Live {
         }
     }
 
-    /// 获取单个回调模板
+    /// 获取直播单个回调模板
     ///
     /// 获取单个回调模板。
     @inlinable
@@ -57,7 +57,7 @@ extension Live {
         self.client.execute(action: "DescribeLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取单个回调模板
+    /// 获取直播单个回调模板
     ///
     /// 获取单个回调模板。
     @inlinable
@@ -65,7 +65,7 @@ extension Live {
         try await self.client.execute(action: "DescribeLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取单个回调模板
+    /// 获取直播单个回调模板
     ///
     /// 获取单个回调模板。
     @inlinable
@@ -73,7 +73,7 @@ extension Live {
         self.describeLiveCallbackTemplate(.init(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取单个回调模板
+    /// 获取直播单个回调模板
     ///
     /// 获取单个回调模板。
     @inlinable

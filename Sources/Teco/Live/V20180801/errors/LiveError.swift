@@ -26,6 +26,7 @@ public protocol TCLiveErrorType: TCServiceErrorType {
 
 public struct TCLiveError: TCLiveErrorType {
     enum Code: String {
+        case authFailure = "AuthFailure"
         case dryRunOperation = "DryRunOperation"
         case failedOperation = "FailedOperation"
         case failedOperation_AiTranscodeOptionFail = "FailedOperation.AiTranscodeOptionFail"
@@ -42,9 +43,11 @@ public struct TCLiveError: TCLiveErrorType {
         case failedOperation_CertificateNotFound = "FailedOperation.CertificateNotFound"
         case failedOperation_ConfInUsed = "FailedOperation.ConfInUsed"
         case failedOperation_ConfigCDNFailed = "FailedOperation.ConfigCDNFailed"
+        case failedOperation_ConflictAction = "FailedOperation.ConflictAction"
         case failedOperation_CosBucketNotExist = "FailedOperation.CosBucketNotExist"
         case failedOperation_CosBucketNotPermission = "FailedOperation.CosBucketNotPermission"
         case failedOperation_CosRoleNotExists = "FailedOperation.CosRoleNotExists"
+        case failedOperation_DatabaseNotAccessible = "FailedOperation.DatabaseNotAccessible"
         case failedOperation_DeleteDomainInLockedTime = "FailedOperation.DeleteDomainInLockedTime"
         case failedOperation_DomainAdded = "FailedOperation.DomainAdded"
         case failedOperation_DomainGslbFail = "FailedOperation.DomainGslbFail"
@@ -55,11 +58,15 @@ public struct TCLiveError: TCLiveErrorType {
         case failedOperation_GetStreamResolutionError = "FailedOperation.GetStreamResolutionError"
         case failedOperation_HasNotLivingStream = "FailedOperation.HasNotLivingStream"
         case failedOperation_HostOutLimit = "FailedOperation.HostOutLimit"
+        case failedOperation_InputStreamMixTypeNotAccessible = "FailedOperation.InputStreamMixTypeNotAccessible"
         case failedOperation_InvalidCertificateStatusCode = "FailedOperation.InvalidCertificateStatusCode"
         case failedOperation_InvalidParam = "FailedOperation.InvalidParam"
         case failedOperation_InvokeCdnApiFail = "FailedOperation.InvokeCdnApiFail"
         case failedOperation_InvokeVideoApiFail = "FailedOperation.InvokeVideoApiFail"
         case failedOperation_JiFeiNoEnoughFund = "FailedOperation.JiFeiNoEnoughFund"
+        case failedOperation_MonitorIsActive = "FailedOperation.MonitorIsActive"
+        case failedOperation_MonitorLimitExceeded = "FailedOperation.MonitorLimitExceeded"
+        case failedOperation_MonitorNotExist = "FailedOperation.MonitorNotExist"
         case failedOperation_NetworkError = "FailedOperation.NetworkError"
         case failedOperation_NoProjectPermission = "FailedOperation.NoProjectPermission"
         case failedOperation_NoRealNameAuth = "FailedOperation.NoRealNameAuth"
@@ -67,8 +74,12 @@ public struct TCLiveError: TCLiveErrorType {
         case failedOperation_ParentDomainAdded = "FailedOperation.ParentDomainAdded"
         case failedOperation_ProcessMixError = "FailedOperation.ProcessMixError"
         case failedOperation_QueryUploadInfoFailed = "FailedOperation.QueryUploadInfoFailed"
+        case failedOperation_RelateServerNotAccessible = "FailedOperation.RelateServerNotAccessible"
+        case failedOperation_RelatedRunningMonitorLimitExceeded = "FailedOperation.RelatedRunningMonitorLimitExceeded"
         case failedOperation_RuleAlreadyExist = "FailedOperation.RuleAlreadyExist"
         case failedOperation_SdkNoPackage = "FailedOperation.SdkNoPackage"
+        case failedOperation_StartTaskFailed = "FailedOperation.StartTaskFailed"
+        case failedOperation_StopTaskFailed = "FailedOperation.StopTaskFailed"
         case failedOperation_StreamNotExist = "FailedOperation.StreamNotExist"
         case failedOperation_SubDomainAdded = "FailedOperation.SubDomainAdded"
         case failedOperation_TagUnbindError = "FailedOperation.TagUnbindError"
@@ -131,6 +142,8 @@ public struct TCLiveError: TCLiveErrorType {
         case invalidParameter_CancelSessionNotExist = "InvalidParameter.CancelSessionNotExist"
         case invalidParameter_CloudCrtIdError = "InvalidParameter.CloudCrtIdError"
         case invalidParameter_CloudDomainIsStop = "InvalidParameter.CloudDomainIsStop"
+        case invalidParameter_ConfInUsed = "InvalidParameter.ConfInUsed"
+        case invalidParameter_ConfNotFound = "InvalidParameter.ConfNotFound"
         case invalidParameter_CrtDateInUsing = "InvalidParameter.CrtDateInUsing"
         case invalidParameter_CrtDateNotFound = "InvalidParameter.CrtDateNotFound"
         case invalidParameter_CrtDateNotLegal = "InvalidParameter.CrtDateNotLegal"
@@ -151,6 +164,8 @@ public struct TCLiveError: TCLiveErrorType {
         case invalidParameter_InvalidCallbackUrl = "InvalidParameter.InvalidCallbackUrl"
         case invalidParameter_InvalidCropParam = "InvalidParameter.InvalidCropParam"
         case invalidParameter_InvalidLayerParam = "InvalidParameter.InvalidLayerParam"
+        case invalidParameter_InvalidMixInputParam = "InvalidParameter.InvalidMixInputParam"
+        case invalidParameter_InvalidOutputParam = "InvalidParameter.InvalidOutputParam"
         case invalidParameter_InvalidOutputStreamID = "InvalidParameter.InvalidOutputStreamID"
         case invalidParameter_InvalidOutputType = "InvalidParameter.InvalidOutputType"
         case invalidParameter_InvalidPictureID = "InvalidParameter.InvalidPictureID"
@@ -162,7 +177,10 @@ public struct TCLiveError: TCLiveErrorType {
         case invalidParameter_InvalidWatermark = "InvalidParameter.InvalidWatermark"
         case invalidParameter_MpHostDelete = "InvalidParameter.MpHostDelete"
         case invalidParameter_MpPluginNoUse = "InvalidParameter.MpPluginNoUse"
+        case invalidParameter_NotAllowUseLVB = "InvalidParameter.NotAllowUseLVB"
         case invalidParameter_OtherError = "InvalidParameter.OtherError"
+        case invalidParameter_ProcessorAlreadyExist = "InvalidParameter.ProcessorAlreadyExist"
+        case invalidParameter_RuleNotFound = "InvalidParameter.RuleNotFound"
         case invalidParameter_SessionOutputStreamChanged = "InvalidParameter.SessionOutputStreamChanged"
         case invalidParameter_TaskNotExist = "InvalidParameter.TaskNotExist"
         case invalidParameter_TaskNumMoreThanLimit = "InvalidParameter.TaskNumMoreThanLimit"
@@ -184,6 +202,7 @@ public struct TCLiveError: TCLiveErrorType {
         case resourceNotFound_CrtDomainNotFound = "ResourceNotFound.CrtDomainNotFound"
         case resourceNotFound_DomainNoRecord = "ResourceNotFound.DomainNoRecord"
         case resourceNotFound_DomainNotExist = "ResourceNotFound.DomainNotExist"
+        case resourceNotFound_EmptyData = "ResourceNotFound.EmptyData"
         case resourceNotFound_ForbidService = "ResourceNotFound.ForbidService"
         case resourceNotFound_FreezeService = "ResourceNotFound.FreezeService"
         case resourceNotFound_InvalidUser = "ResourceNotFound.InvalidUser"
@@ -237,6 +256,11 @@ public struct TCLiveError: TCLiveErrorType {
     internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
+    }
+
+    /// CAM签名/鉴权错误。
+    public static var authFailure: TCLiveError {
+        TCLiveError(.authFailure)
     }
 
     /// DryRun 操作，代表请求将会是成功的，只是多传了 DryRun 参数。
@@ -333,6 +357,13 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_ConfigCDNFailed)
     }
 
+    /// 任务接口执行冲突。
+    ///
+    /// 该错误出现在用户同时对同一个监播任务进行多个写操作（包括创建、修改、删除）时出现，请从业务逻辑层面避免同时写操作。
+    public static var failedOperation_ConflictAction: TCLiveError {
+        TCLiveError(.failedOperation_ConflictAction)
+    }
+
     /// Cos bucket 不存在。
     public static var failedOperation_CosBucketNotExist: TCLiveError {
         TCLiveError(.failedOperation_CosBucketNotExist)
@@ -346,6 +377,13 @@ public struct TCLiveError: TCLiveErrorType {
     /// Cos 角色不存在，请前往 控制台 -&gt; 功能配置 -&gt; 直播截图&amp;鉴黄 页面进行授权。
     public static var failedOperation_CosRoleNotExists: TCLiveError {
         TCLiveError(.failedOperation_CosRoleNotExists)
+    }
+
+    /// 数据库访问异常。
+    ///
+    /// 该错误出现在监播任务访问数据库异常时，若出现，请工单联系。
+    public static var failedOperation_DatabaseNotAccessible: TCLiveError {
+        TCLiveError(.failedOperation_DatabaseNotAccessible)
     }
 
     /// 2天内有产生流量，域名处于锁定期间，2天内无流量产生才允许删除域名。
@@ -408,6 +446,13 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_HostOutLimit)
     }
 
+    /// 禁止监播c流。
+    ///
+    /// 监播流中存在mixtype为combined的混流输出流（c流），用户需要修改配置，将监播输入流中的c流删除。
+    public static var failedOperation_InputStreamMixTypeNotAccessible: TCLiveError {
+        TCLiveError(.failedOperation_InputStreamMixTypeNotAccessible)
+    }
+
     /// 证书状态不正确。
     ///
     /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
@@ -435,6 +480,27 @@ public struct TCLiveError: TCLiveErrorType {
     /// 计费平台返回余额不足。
     public static var failedOperation_JiFeiNoEnoughFund: TCLiveError {
         TCLiveError(.failedOperation_JiFeiNoEnoughFund)
+    }
+
+    /// 监播任务处于启动状态。
+    ///
+    /// 该错误码出现在删除监播任务时。若出现此错误码，请先停止监播任务，再删除。
+    public static var failedOperation_MonitorIsActive: TCLiveError {
+        TCLiveError(.failedOperation_MonitorIsActive)
+    }
+
+    /// 监播任务超出限制。
+    ///
+    /// 该错误码出现在监播任务个数超出最大限制。若确有需要提高监播个数，请工单联系我们。
+    public static var failedOperation_MonitorLimitExceeded: TCLiveError {
+        TCLiveError(.failedOperation_MonitorLimitExceeded)
+    }
+
+    /// 监播任务不存在。
+    ///
+    /// 该错误码出现时，说明请求中的MonitorId不存在，请检查确认MonitorId是否正确。
+    public static var failedOperation_MonitorNotExist: TCLiveError {
+        TCLiveError(.failedOperation_MonitorNotExist)
     }
 
     /// 当前 CA 机构访问繁忙，请稍后重试。
@@ -480,6 +546,20 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.failedOperation_QueryUploadInfoFailed)
     }
 
+    /// 关联服务无法访问。
+    ///
+    /// 出现该错误码代表访问内部关联服务时出现一些异常，一般重试可解决。若重试也无法解决，请工单联系我们。
+    public static var failedOperation_RelateServerNotAccessible: TCLiveError {
+        TCLiveError(.failedOperation_RelateServerNotAccessible)
+    }
+
+    /// 输入关联的运行中的监播任务超出限制。
+    ///
+    /// 该错误码出现在一条流出现在多个监播任务中时。如果确有需要同时在多个任务中监播一条流，请工单联系我们。
+    public static var failedOperation_RelatedRunningMonitorLimitExceeded: TCLiveError {
+        TCLiveError(.failedOperation_RelatedRunningMonitorLimitExceeded)
+    }
+
     /// 规则已经存在。
     public static var failedOperation_RuleAlreadyExist: TCLiveError {
         TCLiveError(.failedOperation_RuleAlreadyExist)
@@ -488,6 +568,20 @@ public struct TCLiveError: TCLiveErrorType {
     /// 用户没有有效的流量套餐包。
     public static var failedOperation_SdkNoPackage: TCLiveError {
         TCLiveError(.failedOperation_SdkNoPackage)
+    }
+
+    /// 启动监播任务失败。
+    ///
+    /// 该错误码出现时，说明启动监播任务失败，请结合错误码ErrMsg判定启动失败的具体原因。如果您需要帮助，请工单联系我们。
+    public static var failedOperation_StartTaskFailed: TCLiveError {
+        TCLiveError(.failedOperation_StartTaskFailed)
+    }
+
+    /// 停止监播任务失败。
+    ///
+    /// 该错误码出现在停止监播任务失败时，请结合错误信息ErrMsg判断失败原因。若需要帮助，请工单联系我们。
+    public static var failedOperation_StopTaskFailed: TCLiveError {
+        TCLiveError(.failedOperation_StopTaskFailed)
     }
 
     /// 流不存在。
@@ -802,6 +896,14 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.invalidParameter_CloudDomainIsStop)
     }
 
+    public static var invalidParameter_ConfInUsed: TCLiveError {
+        TCLiveError(.invalidParameter_ConfInUsed)
+    }
+
+    public static var invalidParameter_ConfNotFound: TCLiveError {
+        TCLiveError(.invalidParameter_ConfNotFound)
+    }
+
     /// 证书使用中。
     public static var invalidParameter_CrtDateInUsing: TCLiveError {
         TCLiveError(.invalidParameter_CrtDateInUsing)
@@ -904,6 +1006,16 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.invalidParameter_InvalidLayerParam)
     }
 
+    /// 混流输入参数无效。
+    public static var invalidParameter_InvalidMixInputParam: TCLiveError {
+        TCLiveError(.invalidParameter_InvalidMixInputParam)
+    }
+
+    /// 输出流参数无效。
+    public static var invalidParameter_InvalidOutputParam: TCLiveError {
+        TCLiveError(.invalidParameter_InvalidOutputParam)
+    }
+
     /// 输出流 ID 被占用。
     public static var invalidParameter_InvalidOutputStreamID: TCLiveError {
         TCLiveError(.invalidParameter_InvalidOutputStreamID)
@@ -959,9 +1071,24 @@ public struct TCLiveError: TCLiveErrorType {
         TCLiveError(.invalidParameter_MpPluginNoUse)
     }
 
+    /// 该APPID未开通LVB服务。
+    ///
+    /// 请至控制台-云直播页面开通直播。
+    public static var invalidParameter_NotAllowUseLVB: TCLiveError {
+        TCLiveError(.invalidParameter_NotAllowUseLVB)
+    }
+
     /// 其他错误。
     public static var invalidParameter_OtherError: TCLiveError {
         TCLiveError(.invalidParameter_OtherError)
+    }
+
+    public static var invalidParameter_ProcessorAlreadyExist: TCLiveError {
+        TCLiveError(.invalidParameter_ProcessorAlreadyExist)
+    }
+
+    public static var invalidParameter_RuleNotFound: TCLiveError {
+        TCLiveError(.invalidParameter_RuleNotFound)
     }
 
     /// 同一会话输出流发生变化。
@@ -1069,6 +1196,11 @@ public struct TCLiveError: TCLiveErrorType {
     /// 域名不存在或不匹配。
     public static var resourceNotFound_DomainNotExist: TCLiveError {
         TCLiveError(.resourceNotFound_DomainNotExist)
+    }
+
+    /// 资源为空，没有找到对应域名。
+    public static var resourceNotFound_EmptyData: TCLiveError {
+        TCLiveError(.resourceNotFound_EmptyData)
     }
 
     /// 用户被禁用。

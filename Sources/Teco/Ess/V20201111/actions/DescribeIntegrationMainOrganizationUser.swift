@@ -48,35 +48,39 @@ extension Ess {
         }
     }
 
-    /// 查询集成版主企业员工账号
+    /// 查询集团主企业员工账号
     ///
     /// 通过子企业影子账号查询主企业员工账号
+    @available(*, unavailable, message: "集团企业统一使用主代子进行操作，无需根据子企业账号进行转化查询，该接口需要屏蔽下线")
     @inlinable
     public func describeIntegrationMainOrganizationUser(_ input: DescribeIntegrationMainOrganizationUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationMainOrganizationUserResponse> {
-        self.client.execute(action: "DescribeIntegrationMainOrganizationUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeIntegrationMainOrganizationUser is no longer available.")
     }
 
-    /// 查询集成版主企业员工账号
+    /// 查询集团主企业员工账号
     ///
     /// 通过子企业影子账号查询主企业员工账号
+    @available(*, unavailable, message: "集团企业统一使用主代子进行操作，无需根据子企业账号进行转化查询，该接口需要屏蔽下线")
     @inlinable
     public func describeIntegrationMainOrganizationUser(_ input: DescribeIntegrationMainOrganizationUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationMainOrganizationUserResponse {
-        try await self.client.execute(action: "DescribeIntegrationMainOrganizationUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeIntegrationMainOrganizationUser is no longer available.")
     }
 
-    /// 查询集成版主企业员工账号
+    /// 查询集团主企业员工账号
     ///
     /// 通过子企业影子账号查询主企业员工账号
+    @available(*, unavailable, message: "集团企业统一使用主代子进行操作，无需根据子企业账号进行转化查询，该接口需要屏蔽下线")
     @inlinable
     public func describeIntegrationMainOrganizationUser(operator: UserInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationMainOrganizationUserResponse> {
-        self.describeIntegrationMainOrganizationUser(.init(operator: `operator`), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeIntegrationMainOrganizationUser is no longer available.")
     }
 
-    /// 查询集成版主企业员工账号
+    /// 查询集团主企业员工账号
     ///
     /// 通过子企业影子账号查询主企业员工账号
+    @available(*, unavailable, message: "集团企业统一使用主代子进行操作，无需根据子企业账号进行转化查询，该接口需要屏蔽下线")
     @inlinable
     public func describeIntegrationMainOrganizationUser(operator: UserInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationMainOrganizationUserResponse {
-        try await self.describeIntegrationMainOrganizationUser(.init(operator: `operator`), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeIntegrationMainOrganizationUser is no longer available.")
     }
 }

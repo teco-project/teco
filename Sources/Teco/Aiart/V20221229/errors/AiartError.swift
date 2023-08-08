@@ -33,6 +33,7 @@ public struct TCAiartError: TCAiartErrorType {
         case failedOperation_ImageDownloadError = "FailedOperation.ImageDownloadError"
         case failedOperation_ImageResolutionExceed = "FailedOperation.ImageResolutionExceed"
         case failedOperation_ImageSizeExceed = "FailedOperation.ImageSizeExceed"
+        case failedOperation_InnerError = "FailedOperation.InnerError"
         case failedOperation_RequestEntityTooLarge = "FailedOperation.RequestEntityTooLarge"
         case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
         case failedOperation_RpcFail = "FailedOperation.RpcFail"
@@ -47,6 +48,7 @@ public struct TCAiartError: TCAiartErrorType {
         case operationDenied_ImageIllegalDetected = "OperationDenied.ImageIllegalDetected"
         case operationDenied_TextIllegalDetected = "OperationDenied.TextIllegalDetected"
         case requestLimitExceeded = "RequestLimitExceeded"
+        case requestLimitExceeded_JobNumExceed = "RequestLimitExceeded.JobNumExceed"
         case resourceUnavailable_Delivering = "ResourceUnavailable.Delivering"
         case resourceUnavailable_InArrears = "ResourceUnavailable.InArrears"
         case resourceUnavailable_LowBalance = "ResourceUnavailable.LowBalance"
@@ -63,6 +65,7 @@ public struct TCAiartError: TCAiartErrorType {
             InvalidParameter.self,
             InvalidParameterValue.self,
             OperationDenied.self,
+            RequestLimitExceeded.self,
             ResourceUnavailable.self,
             ResourcesSoldOut.self
         ]
@@ -90,6 +93,8 @@ public struct TCAiartError: TCAiartErrorType {
         self.context = context
     }
 
+    /// 无权执行该操作，请检查您的CAM策略，确保您拥有对应的CAM权限。
+    ///
     /// 检查当前子账号是否拥有AI绘画的CAM策略
     public static var authFailure_UnauthorizedOperation: TCAiartError {
         TCAiartError(.authFailure_UnauthorizedOperation)
@@ -123,6 +128,10 @@ public struct TCAiartError: TCAiartErrorType {
     /// base64编码后的图片数据大小不超过10M。
     public static var failedOperation_ImageSizeExceed: TCAiartError {
         TCAiartError(.failedOperation_ImageSizeExceed)
+    }
+
+    public static var failedOperation_InnerError: TCAiartError {
+        TCAiartError(.failedOperation_InnerError)
     }
 
     /// 整个请求体太大（通常主要是图片）。
@@ -184,12 +193,12 @@ public struct TCAiartError: TCAiartErrorType {
         TCAiartError(.invalidParameter_InvalidParameter)
     }
 
-    /// 图片包含非法信息，审核不通过。
+    /// 图片包含违法违规信息，审核不通过。
     public static var operationDenied_ImageIllegalDetected: TCAiartError {
         TCAiartError(.operationDenied_ImageIllegalDetected)
     }
 
-    /// 文本包含非法信息，审核不通过。
+    /// 文本包含违法违规信息，审核不通过。
     public static var operationDenied_TextIllegalDetected: TCAiartError {
         TCAiartError(.operationDenied_TextIllegalDetected)
     }
@@ -197,6 +206,11 @@ public struct TCAiartError: TCAiartErrorType {
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCAiartError {
         TCAiartError(.requestLimitExceeded)
+    }
+
+    /// 可购买提升更多同时处理任务数
+    public static var requestLimitExceeded_JobNumExceed: TCAiartError {
+        TCAiartError(.requestLimitExceeded_JobNumExceed)
     }
 
     /// 资源正在发货中。

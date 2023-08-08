@@ -22,7 +22,7 @@ extension Essbasic {
     /// ChannelCreateMultiFlowSignQRCode请求参数结构体
     public struct ChannelCreateMultiFlowSignQRCodeRequest: TCRequestModel {
         /// 应用相关信息。
-        /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        /// 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 模版ID
@@ -31,7 +31,9 @@ extension Essbasic {
         /// 签署流程名称，最大长度200个字符。
         public let flowName: String
 
-        /// 最大可发起签署流程份数，默认5份；发起签署流程数量超过此上限后，二维码自动失效。
+        /// 最大可发起签署流程份数
+        /// <br/>默认5份
+        /// <br/>备注：发起签署流程数量超过此上限后，二维码自动失效。
         public let maxFlowNum: Int64?
 
         /// 签署流程有效天数 默认7天 最高设置不超过30天
@@ -40,7 +42,8 @@ extension Essbasic {
         /// 二维码有效天数 默认7天 最高设置不超过90天
         public let qrEffectiveDay: Int64?
 
-        /// 限制二维码用户条件
+        /// 指定的签署二维码签署人
+        /// <br/>指定后，只允许知道的人操作和签署
         public let restrictions: [ApproverRestriction]?
 
         /// 回调地址，最大长度1000个字符
@@ -101,8 +104,15 @@ extension Essbasic {
 
     /// 创建一码多扫签署流程二维码
     ///
-    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
-    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    ///
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
     @inlinable
     public func channelCreateMultiFlowSignQRCode(_ input: ChannelCreateMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateMultiFlowSignQRCodeResponse> {
         self.client.execute(action: "ChannelCreateMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -110,8 +120,15 @@ extension Essbasic {
 
     /// 创建一码多扫签署流程二维码
     ///
-    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
-    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    ///
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
     @inlinable
     public func channelCreateMultiFlowSignQRCode(_ input: ChannelCreateMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
         try await self.client.execute(action: "ChannelCreateMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -119,8 +136,15 @@ extension Essbasic {
 
     /// 创建一码多扫签署流程二维码
     ///
-    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
-    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    ///
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
     @inlinable
     public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, approverRestrictions: ApproverRestriction? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateMultiFlowSignQRCodeResponse> {
         self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, approverRestrictions: approverRestrictions, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -128,8 +152,15 @@ extension Essbasic {
 
     /// 创建一码多扫签署流程二维码
     ///
-    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫签署流程二维码。
-    /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
+    /// 此接口（ChannelCreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    ///
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
     @inlinable
     public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, approverRestrictions: ApproverRestriction? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
         try await self.channelCreateMultiFlowSignQRCode(.init(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, approverRestrictions: approverRestrictions, operator: `operator`), region: region, logger: logger, on: eventLoop)

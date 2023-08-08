@@ -30,16 +30,21 @@ extension Wedata {
         /// 数据来源id
         public let datasourceId: String?
 
-        public init(statisticsDate: Int64, projectId: String, datasourceId: String? = nil) {
+        /// 过滤参数
+        public let filters: [Filter]?
+
+        public init(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, filters: [Filter]? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.datasourceId = datasourceId
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
             case statisticsDate = "StatisticsDate"
             case projectId = "ProjectId"
             case datasourceId = "DatasourceId"
+            case filters = "Filters"
         }
     }
 
@@ -78,15 +83,15 @@ extension Wedata {
     ///
     /// 质量报告-查询质量评分
     @inlinable
-    public func describeDimensionScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDimensionScoreResponse> {
-        self.describeDimensionScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeDimensionScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDimensionScoreResponse> {
+        self.describeDimensionScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维度评分
     ///
     /// 质量报告-查询质量评分
     @inlinable
-    public func describeDimensionScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDimensionScoreResponse {
-        try await self.describeDimensionScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeDimensionScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDimensionScoreResponse {
+        try await self.describeDimensionScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

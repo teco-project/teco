@@ -24,7 +24,7 @@ extension Vpc {
         /// 弹性网卡ID，支持批量修改。
         public let networkInterfaceIds: [String]
 
-        /// 服务质量，可选值：PT、AU、AG、DEFAULT，分别代表白金、金、银、默认四个等级。
+        /// 服务质量，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
         public let qosLevel: String
 
         /// DirectSend端口范围最大值。

@@ -21,7 +21,7 @@ import TecoCore
 extension Dlc {
     /// DescribeEngineUsageInfo请求参数结构体
     public struct DescribeEngineUsageInfoRequest: TCRequestModel {
-        /// House Id
+        /// 数据引擎ID
         public let dataEngineId: String
 
         public init(dataEngineId: String) {
@@ -55,33 +55,33 @@ extension Dlc {
         }
     }
 
-    /// 获取数据引擎资源使用情况
+    /// 查询数据引擎资源使用情况
     ///
-    /// 本接口根据引擎ID获取数据引擎资源使用情况
+    /// 本接口根据引擎ID查询数据引擎资源使用情况
     @inlinable
     public func describeEngineUsageInfo(_ input: DescribeEngineUsageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEngineUsageInfoResponse> {
         self.client.execute(action: "DescribeEngineUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取数据引擎资源使用情况
+    /// 查询数据引擎资源使用情况
     ///
-    /// 本接口根据引擎ID获取数据引擎资源使用情况
+    /// 本接口根据引擎ID查询数据引擎资源使用情况
     @inlinable
     public func describeEngineUsageInfo(_ input: DescribeEngineUsageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEngineUsageInfoResponse {
         try await self.client.execute(action: "DescribeEngineUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取数据引擎资源使用情况
+    /// 查询数据引擎资源使用情况
     ///
-    /// 本接口根据引擎ID获取数据引擎资源使用情况
+    /// 本接口根据引擎ID查询数据引擎资源使用情况
     @inlinable
     public func describeEngineUsageInfo(dataEngineId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEngineUsageInfoResponse> {
         self.describeEngineUsageInfo(.init(dataEngineId: dataEngineId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取数据引擎资源使用情况
+    /// 查询数据引擎资源使用情况
     ///
-    /// 本接口根据引擎ID获取数据引擎资源使用情况
+    /// 本接口根据引擎ID查询数据引擎资源使用情况
     @inlinable
     public func describeEngineUsageInfo(dataEngineId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEngineUsageInfoResponse {
         try await self.describeEngineUsageInfo(.init(dataEngineId: dataEngineId), region: region, logger: logger, on: eventLoop)

@@ -18,8 +18,6 @@ import NIOCore
 import TecoCore
 
 /// 品牌经营管家 (bma)
-///
-///
 public struct Bma: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

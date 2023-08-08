@@ -38,9 +38,7 @@ public struct TCTdidError: TCTdidErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_IllegalValue = "InvalidParameterValue.IllegalValue"
-        case missingParameter = "MissingParameter"
         case resourceNotFound = "ResourceNotFound"
-        case resourceUnavailable = "ResourceUnavailable"
         case unsupportedOperation = "UnsupportedOperation"
     }
 
@@ -131,19 +129,9 @@ public struct TCTdidError: TCTdidErrorType {
         TCTdidError(.invalidParameterValue_IllegalValue)
     }
 
-    /// 缺少参数错误。
-    public static var missingParameter: TCTdidError {
-        TCTdidError(.missingParameter)
-    }
-
     /// 资源不存在。
     public static var resourceNotFound: TCTdidError {
         TCTdidError(.resourceNotFound)
-    }
-
-    /// 资源不可用。
-    public static var resourceUnavailable: TCTdidError {
-        TCTdidError(.resourceUnavailable)
     }
 
     /// 操作不支持。

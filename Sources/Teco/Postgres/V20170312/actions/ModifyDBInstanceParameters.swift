@@ -48,25 +48,33 @@ extension Postgres {
         }
     }
 
-    /// 批量修改参数
+    /// 修改实例参数
+    ///
+    /// 本接口 (ModifyDBInstanceParameters) 用于修改实例参数。
     @inlinable @discardableResult
     public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
         self.client.execute(action: "ModifyDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 批量修改参数
+    /// 修改实例参数
+    ///
+    /// 本接口 (ModifyDBInstanceParameters) 用于修改实例参数。
     @inlinable @discardableResult
     public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
         try await self.client.execute(action: "ModifyDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 批量修改参数
+    /// 修改实例参数
+    ///
+    /// 本接口 (ModifyDBInstanceParameters) 用于修改实例参数。
     @inlinable @discardableResult
     public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
         self.modifyDBInstanceParameters(.init(dbInstanceId: dbInstanceId, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 批量修改参数
+    /// 修改实例参数
+    ///
+    /// 本接口 (ModifyDBInstanceParameters) 用于修改实例参数。
     @inlinable @discardableResult
     public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
         try await self.modifyDBInstanceParameters(.init(dbInstanceId: dbInstanceId, paramList: paramList), region: region, logger: logger, on: eventLoop)

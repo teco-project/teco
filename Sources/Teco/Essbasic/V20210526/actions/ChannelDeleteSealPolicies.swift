@@ -21,13 +21,14 @@ import TecoCore
 extension Essbasic {
     /// ChannelDeleteSealPolicies请求参数结构体
     public struct ChannelDeleteSealPoliciesRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 指定印章ID
         public let sealId: String
 
-        /// 指定用户ID数组
+        /// 指定用户ID数组，电子签系统用户ID
+        /// 可以填写OpenId，系统会通过组织+渠道+OpenId查询得到UserId进行授权取消。
         public let userIds: [String]
 
         /// 组织机构信息，不用传

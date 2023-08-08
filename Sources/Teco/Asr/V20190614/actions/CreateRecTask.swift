@@ -23,41 +23,44 @@ extension Asr {
     public struct CreateRecTaskRequest: TCRequestModel {
         /// 引擎模型类型。注意：非电话场景请务必使用16k的引擎。
         /// 电话场景：
-        /// • 8k_en：电话 8k 英语；
-        /// • 8k_zh：电话 8k 中文普通话通用；
+        /// • 8k_zh：中文电话通用；
+        /// • 8k_en：英文电话通用；
+        ///
         /// 非电话场景：
-        /// • 16k_zh：16k 中文普通话通用；
-        /// • 16k_zh_video：16k 音视频领域；
-        /// • 16k_en：16k 英语；
-        /// • 16k_ca：16k 粤语；
-        /// • 16k_ja：16k 日语；
-        /// • 16k_vi：16k 越南语；
-        /// • 16k_ms：16k 马来语；
-        /// • 16k_id：16k 印度尼西亚语；
-        /// • 16k_fil：16k 菲律宾语；
-        /// • 16k_zh_edu 中文教育；
-        /// • 16k_en_edu 英文教育；
-        /// • 16k_zh_medical  医疗；
-        /// • 16k_th 泰语；
-        /// • 16k_zh-PY 中英粤;
+        /// • 16k_zh：中文通用；
+        /// • 16k_zh-PY：中英粤;
+        /// • 16k_zh_medical：中文医疗；
+        /// • 16k_en：英语；
+        /// • 16k_yue：粤语；
+        /// • 16k_ja：日语；
+        /// • 16k_ko：韩语；
+        /// • 16k_vi：越南语；
+        /// • 16k_ms：马来语；
+        /// • 16k_id：印度尼西亚语；
+        /// • 16k_fil：菲律宾语；
+        /// • 16k_th：泰语；
+        /// • 16k_pt：葡萄牙语；
+        /// • 16k_tr：土耳其语；
+        /// • 16k_ar：阿拉伯语；
+        /// • 16k_es：西班牙语；
         /// • 16k_zh_dialect：多方言，支持23种方言（上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话）；
         public let engineModelType: String
 
         /// 识别声道数。1：单声道（非电话场景，直接选择单声道即可，忽略音频声道数）；2：双声道（仅支持8k_zh电话场景，双声道应分别对应通话双方）。注意：双声道的电话音频已物理分离说话人，无需再开启说话人分离功能。
         public let channelNum: UInt64
 
-        /// 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：词级别粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)(不含标点，含语速值)；2：词级别粒度的详细识别结果（包含标点、语速值）；3: 标点符号分段，包含每段时间戳，特别适用于字幕场景（包含词级时间、标点、语速值）。
+        /// 识别结果返回形式。0： 识别结果文本(含分段时间戳)； 1：词级别粒度的[详细识别结果](https://cloud.tencent.com/document/api/1093/37824#SentenceDetail)(不含标点，含语速值)；2：词级别粒度的详细识别结果（包含标点、语速值）；3: 标点符号分段，包含每段时间戳，特别适用于字幕场景（包含词级时间、标点、语速值）。4：【增值付费功能】对识别结果按照语义分段，并展示词级别粒度的详细识别结果，仅支持8k_zh、16k_zh引擎，需购买对应资源包使用（注意：如果账号后付费功能开启并使用此功能，将[自动计费](https://cloud.tencent.com/document/product/1093/35686)）
         public let resTextFormat: UInt64
 
         /// 语音数据来源。0：语音 URL；1：语音数据（post body）。
         public let sourceType: UInt64
 
-        /// 是否开启说话人分离，0：不开启，1：开启(仅支持8k_zh，16k_zh，16k_zh_video，单声道音频)，默认值为 0。
-        /// 注意：8k电话场景建议使用双声道来区分通话双方，设置ChannelNum=2即可，不用开启说话人分离。
+        /// 是否开启说话人分离，0：不开启，1：开启(仅支持8k_zh/16k_zh，ChannelNum=1时可用)，默认值为 0。
+        /// 注意：8k电话场景建议使用双声道来区分通话双方，设置ChannelNum=2即可，不用开启说话人分离，如果设置了ChannelNum=1，后台会先转码成单声道，说话人分离结果可能产生偏差。
         public let speakerDiarization: Int64?
 
         /// 说话人分离人数（需配合开启说话人分离使用），取值范围：0-10，0代表自动分离（目前仅支持≤6个人），1-10代表指定说话人数分离。默认值为 0。
-        /// 注：话者分离目前是beta版本，请根据您的需要谨慎使用
+        /// 注：此功能结果仅供参考，请根据您的需要谨慎使用。
         public let speakerNumber: Int64?
 
         /// 回调 URL，用户自行搭建的用于接收识别结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。回调格式&内容详见：[录音识别回调说明](https://cloud.tencent.com/document/product/1093/52632)
@@ -172,14 +175,14 @@ extension Asr {
     /// 录音文件识别请求
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
-    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
     /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
-    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。推荐使用 [ 腾讯云COS](https://cloud.tencent.com/document/product/436/38484) 来存储&生成URL提交任务，无外网&流量下行费用，节约成本、提升任务速度。(COS桶权限需要设置公有读私有写，或URL设置外部可访问)
     /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
     /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    /// • 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createRecTask(_ input: CreateRecTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
         self.client.execute(action: "CreateRecTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -188,14 +191,14 @@ extension Asr {
     /// 录音文件识别请求
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
-    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
     /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
-    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。推荐使用 [ 腾讯云COS](https://cloud.tencent.com/document/product/436/38484) 来存储&生成URL提交任务，无外网&流量下行费用，节约成本、提升任务速度。(COS桶权限需要设置公有读私有写，或URL设置外部可访问)
     /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
     /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    /// • 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createRecTask(_ input: CreateRecTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
         try await self.client.execute(action: "CreateRecTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -204,14 +207,14 @@ extension Asr {
     /// 录音文件识别请求
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
-    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
     /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
-    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。推荐使用 [ 腾讯云COS](https://cloud.tencent.com/document/product/436/38484) 来存储&生成URL提交任务，无外网&流量下行费用，节约成本、提升任务速度。(COS桶权限需要设置公有读私有写，或URL设置外部可访问)
     /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
     /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    /// • 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, sentenceMaxLength: Int64? = nil, emotionRecognition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
         self.createRecTask(.init(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword, sentenceMaxLength: sentenceMaxLength, emotionRecognition: emotionRecognition), region: region, logger: logger, on: eventLoop)
@@ -220,14 +223,14 @@ extension Asr {
     /// 录音文件识别请求
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
-    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    /// • 支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
     /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
-    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。推荐使用 [ 腾讯云COS](https://cloud.tencent.com/document/product/436/38484) 来存储&生成URL提交任务，无外网&流量下行费用，节约成本、提升任务速度。(COS桶权限需要设置公有读私有写，或URL设置外部可访问)
     /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
     /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    /// • 默认接口请求频率限制：20次/秒。
     @inlinable
     public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, sentenceMaxLength: Int64? = nil, emotionRecognition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
         try await self.createRecTask(.init(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword, sentenceMaxLength: sentenceMaxLength, emotionRecognition: emotionRecognition), region: region, logger: logger, on: eventLoop)

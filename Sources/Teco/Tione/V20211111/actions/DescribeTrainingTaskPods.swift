@@ -41,12 +41,16 @@ extension Tione {
         /// 数量
         public let totalCount: UInt64
 
+        /// pod详细信息
+        public let podInfoList: PodInfo
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case podNames = "PodNames"
             case totalCount = "TotalCount"
+            case podInfoList = "PodInfoList"
             case requestId = "RequestId"
         }
     }

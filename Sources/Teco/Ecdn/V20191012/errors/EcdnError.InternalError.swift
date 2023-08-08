@@ -24,6 +24,7 @@ extension TCEcdnError {
             case dataSystemError = "InternalError.DataSystemError"
             case ecdnConfigError = "InternalError.EcdnConfigError"
             case ecdnDbError = "InternalError.EcdnDbError"
+            case ecdnQuerySystemError = "InternalError.EcdnQuerySystemError"
             case ecdnSystemError = "InternalError.EcdnSystemError"
             case error = "InternalError.Error"
             case proxyServer = "InternalError.ProxyServer"
@@ -77,6 +78,11 @@ extension TCEcdnError {
             InternalError(.ecdnDbError)
         }
 
+        /// 系统内部错误，请联系客户人员解决或稍后重试。
+        public static var ecdnQuerySystemError: InternalError {
+            InternalError(.ecdnQuerySystemError)
+        }
+
         /// 系统错误，请联系腾讯云工程师进一步排查。
         public static var ecdnSystemError: InternalError {
             InternalError(.ecdnSystemError)
@@ -110,6 +116,8 @@ extension TCEcdnError {
                 code = .internalError_EcdnConfigError
             case .ecdnDbError:
                 code = .internalError_EcdnDbError
+            case .ecdnQuerySystemError:
+                code = .internalError_EcdnQuerySystemError
             case .ecdnSystemError:
                 code = .internalError_EcdnSystemError
             case .error:

@@ -27,14 +27,24 @@ extension Ccc {
         /// 筛选坐席列表，默认不传返回全部坐席信息
         public let staffList: [String]?
 
-        public init(sdkAppId: Int64, staffList: [String]? = nil) {
+        /// 筛选技能组ID列表
+        public let groupIdList: [Int64]?
+
+        /// 筛选坐席状态列表
+        public let statusList: [String]?
+
+        public init(sdkAppId: Int64, staffList: [String]? = nil, groupIdList: [Int64]? = nil, statusList: [String]? = nil) {
             self.sdkAppId = sdkAppId
             self.staffList = staffList
+            self.groupIdList = groupIdList
+            self.statusList = statusList
         }
 
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case staffList = "StaffList"
+            case groupIdList = "GroupIdList"
+            case statusList = "StatusList"
         }
     }
 
@@ -66,13 +76,13 @@ extension Ccc {
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
-        self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
+    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, groupIdList: [Int64]? = nil, statusList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
+        self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList, groupIdList: groupIdList, statusList: statusList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
-        try await self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
+    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, groupIdList: [Int64]? = nil, statusList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
+        try await self.describeStaffStatusMetrics(.init(sdkAppId: sdkAppId, staffList: staffList, groupIdList: groupIdList, statusList: statusList), region: region, logger: logger, on: eventLoop)
     }
 }

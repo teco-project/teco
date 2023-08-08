@@ -37,12 +37,16 @@ extension Dbbrain {
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
 
-        public init(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+        /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        public let product: String?
+
+        public init(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.filterIds = filterIds
             self.statuses = statuses
             self.offset = offset
             self.limit = limit
+            self.product = product
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Dbbrain {
             case statuses = "Statuses"
             case offset = "Offset"
             case limit = "Limit"
+            case product = "Product"
         }
 
         /// Compute the next request based on API response.
@@ -58,7 +63,7 @@ extension Dbbrain {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeSqlFiltersRequest(instanceId: self.instanceId, filterIds: self.filterIds, statuses: self.statuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+            return DescribeSqlFiltersRequest(instanceId: self.instanceId, filterIds: self.filterIds, statuses: self.statuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
         }
     }
 
@@ -110,16 +115,16 @@ extension Dbbrain {
     ///
     /// 查询实例SQL限流任务列表。
     @inlinable
-    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlFiltersResponse> {
-        self.describeSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlFiltersResponse> {
+        self.describeSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例SQL限流任务列表
     ///
     /// 查询实例SQL限流任务列表。
     @inlinable
-    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
-        try await self.describeSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+    public func describeSqlFilters(instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
+        try await self.describeSqlFilters(.init(instanceId: instanceId, filterIds: filterIds, statuses: statuses, offset: offset, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例SQL限流任务列表

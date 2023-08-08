@@ -51,7 +51,10 @@ extension Tcss {
         /// 安全模式（证书校验）：0（默认） 非安全模式（跳过证书校验）：1
         public let insecure: UInt64?
 
-        public init(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil) {
+        /// 联通性检测的记录ID
+        public let connDetectConfig: [ConnDetectConfig]?
+
+        public init(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, connDetectConfig: [ConnDetectConfig]? = nil) {
             self.name = name
             self.username = username
             self.password = password
@@ -62,6 +65,7 @@ extension Tcss {
             self.registryRegion = registryRegion
             self.speedLimit = speedLimit
             self.insecure = insecure
+            self.connDetectConfig = connDetectConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -75,6 +79,7 @@ extension Tcss {
             case registryRegion = "RegistryRegion"
             case speedLimit = "SpeedLimit"
             case insecure = "Insecure"
+            case connDetectConfig = "ConnDetectConfig"
         }
     }
 
@@ -117,13 +122,13 @@ extension Tcss {
 
     /// 新增单个镜像仓库详细信息
     @inlinable
-    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAssetImageRegistryRegistryDetailResponse> {
-        self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
+    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, connDetectConfig: [ConnDetectConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAssetImageRegistryRegistryDetailResponse> {
+        self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure, connDetectConfig: connDetectConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增单个镜像仓库详细信息
     @inlinable
-    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAssetImageRegistryRegistryDetailResponse {
-        try await self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
+    public func addAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, connDetectConfig: [ConnDetectConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAssetImageRegistryRegistryDetailResponse {
+        try await self.addAssetImageRegistryRegistryDetail(.init(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure, connDetectConfig: connDetectConfig), region: region, logger: logger, on: eventLoop)
     }
 }

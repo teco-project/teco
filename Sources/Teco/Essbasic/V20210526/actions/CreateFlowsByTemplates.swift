@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// CreateFlowsByTemplates请求参数结构体
     public struct CreateFlowsByTemplatesRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 均必填。
         public let agent: Agent
 
         /// 多个合同（签署流程）信息，最多支持20个
@@ -87,9 +87,9 @@ extension Essbasic {
         }
     }
 
-    /// 使用多个模板批量创建签署流程
+    /// 使用模板创建签署流程
     ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
@@ -97,9 +97,9 @@ extension Essbasic {
         self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 使用多个模板批量创建签署流程
+    /// 使用模板创建签署流程
     ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
@@ -107,9 +107,9 @@ extension Essbasic {
         try await self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 使用多个模板批量创建签署流程
+    /// 使用模板创建签署流程
     ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
@@ -117,9 +117,9 @@ extension Essbasic {
         self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 使用多个模板批量创建签署流程
+    /// 使用模板创建签署流程
     ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable

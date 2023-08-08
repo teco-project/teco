@@ -83,6 +83,14 @@ extension Tbp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseText: String?
 
+        /// 结果类型 {中间逻辑出错:0; 任务型机器人:1; 问答型机器人:2; 闲聊型机器人:3; 未匹配上，返回预设兜底话术:5; 未匹配上，返回相似问题列表:6}。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resultType: String?
+
+        /// 机器人应答。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let responseMessage: ResponseMessage?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -94,11 +102,13 @@ extension Tbp {
             case inputText = "InputText"
             case sessionAttributes = "SessionAttributes"
             case responseText = "ResponseText"
+            case resultType = "ResultType"
+            case responseMessage = "ResponseMessage"
             case requestId = "RequestId"
         }
     }
 
-    /// 文本处理
+    /// 文本处理（旧）
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
@@ -106,7 +116,7 @@ extension Tbp {
         self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 文本处理
+    /// 文本处理（旧）
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
@@ -114,7 +124,7 @@ extension Tbp {
         try await self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 文本处理
+    /// 文本处理（旧）
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
@@ -122,7 +132,7 @@ extension Tbp {
         self.textProcess(.init(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 文本处理
+    /// 文本处理（旧）
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable

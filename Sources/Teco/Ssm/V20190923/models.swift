@@ -137,6 +137,18 @@ extension Ssm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetUin: UInt64?
 
+        /// 轮转的频率，以天作为单位，在轮转开启状态下生效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rotationFrequency: Int64?
+
+        /// 云产品凭据对应的云产品实例 ID 号。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceID: String?
+
+        /// 用户指定的轮转开始时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rotationBeginTime: String?
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case description = "Description"
@@ -154,6 +166,9 @@ extension Ssm {
             case projectID = "ProjectID"
             case associatedInstanceIDs = "AssociatedInstanceIDs"
             case targetUin = "TargetUin"
+            case rotationFrequency = "RotationFrequency"
+            case resourceID = "ResourceID"
+            case rotationBeginTime = "RotationBeginTime"
         }
     }
 

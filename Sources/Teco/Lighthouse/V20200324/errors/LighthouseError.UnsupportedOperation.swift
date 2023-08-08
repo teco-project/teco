@@ -49,6 +49,7 @@ extension TCLighthouseError {
             case resourceNotReturnable = "UnsupportedOperation.ResourceNotReturnable"
             case snapshotBusy = "UnsupportedOperation.SnapshotBusy"
             case systemBusy = "UnsupportedOperation.SystemBusy"
+            case tatAgentNotOnline = "UnsupportedOperation.TatAgentNotOnline"
             case windowsNotAllowToAssociateKeyPair = "UnsupportedOperation.WindowsNotAllowToAssociateKeyPair"
             case windowsNotSupportKeyPair = "UnsupportedOperation.WindowsNotSupportKeyPair"
             case other = "UnsupportedOperation"
@@ -228,6 +229,11 @@ extension TCLighthouseError {
             UnsupportedOperation(.systemBusy)
         }
 
+        /// 实例上腾讯云助手 agent 不在线。
+        public static var tatAgentNotOnline: UnsupportedOperation {
+            UnsupportedOperation(.tatAgentNotOnline)
+        }
+
         /// Windows实例不支持绑定密钥对。
         public static var windowsNotAllowToAssociateKeyPair: UnsupportedOperation {
             UnsupportedOperation(.windowsNotAllowToAssociateKeyPair)
@@ -308,6 +314,8 @@ extension TCLighthouseError {
                 code = .unsupportedOperation_SnapshotBusy
             case .systemBusy:
                 code = .unsupportedOperation_SystemBusy
+            case .tatAgentNotOnline:
+                code = .unsupportedOperation_TatAgentNotOnline
             case .windowsNotAllowToAssociateKeyPair:
                 code = .unsupportedOperation_WindowsNotAllowToAssociateKeyPair
             case .windowsNotSupportKeyPair:

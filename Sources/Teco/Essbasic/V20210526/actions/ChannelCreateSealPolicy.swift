@@ -21,41 +21,43 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateSealPolicy请求参数结构体
     public struct ChannelCreateSealPolicyRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 指定印章ID
         public let sealId: String
 
-        /// 指定待授权的用户ID数组
+        /// 指定待授权的用户ID数组,电子签的用户ID
+        /// 可以填写OpenId，系统会通过组织+渠道+OpenId查询得到UserId进行授权。
         public let userIds: [String]
-
-        /// 企业机构信息，不用传
-        public let organization: OrganizationInfo?
 
         /// 操作人（用户）信息，不用传
         public let `operator`: UserInfo?
 
-        public init(agent: Agent, sealId: String, userIds: [String], organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
+        /// 企业机构信息，不用传
+        public let organization: OrganizationInfo?
+
+        public init(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.sealId = sealId
             self.userIds = userIds
-            self.organization = organization
             self.operator = `operator`
+            self.organization = organization
         }
 
         enum CodingKeys: String, CodingKey {
             case agent = "Agent"
             case sealId = "SealId"
             case userIds = "UserIds"
-            case organization = "Organization"
             case `operator` = "Operator"
+            case organization = "Organization"
         }
     }
 
     /// ChannelCreateSealPolicy返回参数结构体
     public struct ChannelCreateSealPolicyResponse: TCResponseModel {
-        /// 最终授权成功的用户ID数组。其他的跳过的是已经授权了的
+        /// 最终授权成功的电子签系统用户ID数组。其他的跳过的是已经授权了的。
+        /// 请求参数填写OpenId时，返回授权成功的 Openid。
         public let userIds: [String]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -87,15 +89,15 @@ extension Essbasic {
     ///
     /// 将指定印章授权给第三方平台子客企业下的某些员工
     @inlinable
-    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateSealPolicyResponse> {
-        self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateSealPolicyResponse> {
+        self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建印章授权
     ///
     /// 将指定印章授权给第三方平台子客企业下的某些员工
     @inlinable
-    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateSealPolicyResponse {
-        try await self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateSealPolicyResponse {
+        try await self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

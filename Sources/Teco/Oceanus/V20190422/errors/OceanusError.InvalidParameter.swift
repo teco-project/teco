@@ -21,6 +21,7 @@ extension TCOceanusError {
         enum Code: String {
             case appIdResourceNotMatch = "InvalidParameter.AppIdResourceNotMatch"
             case illegalMaxParallelism = "InvalidParameter.IllegalMaxParallelism"
+            case illegalSearchKeyword = "InvalidParameter.IllegalSearchKeyword"
             case invalidAppId = "InvalidParameter.InvalidAppId"
             case invalidClusterId = "InvalidParameter.InvalidClusterId"
             case invalidName = "InvalidParameter.InvalidName"
@@ -67,6 +68,13 @@ extension TCOceanusError {
         /// 另外，如果当前作业处于暂停中，则不允许修改 MaxParallelism 的值，以防止状态恢复报错。
         public static var illegalMaxParallelism: InvalidParameter {
             InvalidParameter(.illegalMaxParallelism)
+        }
+
+        /// 非法的搜索字符串。
+        ///
+        /// 检查搜索关键字中是否包含特殊字符 : * 等，如有请去掉。
+        public static var illegalSearchKeyword: InvalidParameter {
+            InvalidParameter(.illegalSearchKeyword)
         }
 
         /// appid错误。
@@ -137,6 +145,8 @@ extension TCOceanusError {
                 code = .invalidParameter_AppIdResourceNotMatch
             case .illegalMaxParallelism:
                 code = .invalidParameter_IllegalMaxParallelism
+            case .illegalSearchKeyword:
+                code = .invalidParameter_IllegalSearchKeyword
             case .invalidAppId:
                 code = .invalidParameter_InvalidAppId
             case .invalidClusterId:

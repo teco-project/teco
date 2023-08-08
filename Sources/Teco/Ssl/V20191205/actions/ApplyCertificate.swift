@@ -42,10 +42,10 @@ extension Ssl {
         /// 有效期，默认12个月，目前仅支持12个月。
         public let validityPeriod: String?
 
-        /// 加密算法，仅支持 RSA。
+        /// 加密算法，支持 RSA及ECC。
         public let csrEncryptAlgo: String?
 
-        /// 密钥对参数，仅支持2048。
+        /// 密钥对参数，RSA仅支持2048。ECC仅支持prime256v1
         public let csrKeyParameter: String?
 
         /// CSR 的加密密码。

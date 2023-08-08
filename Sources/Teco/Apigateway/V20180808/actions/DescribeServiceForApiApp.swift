@@ -74,10 +74,6 @@ extension Apigateway {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modifiedTime: Date?
 
-        /// 独立集群名称。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let exclusiveSetName: String?
-
         /// 网络类型列表，INNER为内网访问，OUTER为外网访问。
         public let netTypes: [String]
 
@@ -136,7 +132,6 @@ extension Apigateway {
             case `protocol` = "Protocol"
             case createdTime = "CreatedTime"
             case modifiedTime = "ModifiedTime"
-            case exclusiveSetName = "ExclusiveSetName"
             case netTypes = "NetTypes"
             case internalSubDomain = "InternalSubDomain"
             case outerSubDomain = "OuterSubDomain"

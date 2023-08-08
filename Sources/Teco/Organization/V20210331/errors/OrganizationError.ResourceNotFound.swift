@@ -19,6 +19,7 @@ import TecoCore
 extension TCOrganizationError {
     public struct ResourceNotFound: TCOrganizationErrorType {
         enum Code: String {
+            case emailBindRecordNotExist = "ResourceNotFound.EmailBindRecordNotExist"
             case memberIdentityNotExist = "ResourceNotFound.MemberIdentityNotExist"
             case memberNotExist = "ResourceNotFound.MemberNotExist"
             case memberPolicyNotExist = "ResourceNotFound.MemberPolicyNotExist"
@@ -26,6 +27,7 @@ extension TCOrganizationError {
             case organizationNodeNotExist = "ResourceNotFound.OrganizationNodeNotExist"
             case organizationNotExist = "ResourceNotFound.OrganizationNotExist"
             case organizationServiceNotExist = "ResourceNotFound.OrganizationServiceNotExist"
+            case userNotExist = "ResourceNotFound.UserNotExist"
         }
 
         private let error: Code
@@ -48,6 +50,11 @@ extension TCOrganizationError {
         internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
+        }
+
+        /// 邮箱绑定记录不存在。
+        public static var emailBindRecordNotExist: ResourceNotFound {
+            ResourceNotFound(.emailBindRecordNotExist)
         }
 
         /// 成员可授权身份不存在。
@@ -85,9 +92,16 @@ extension TCOrganizationError {
             ResourceNotFound(.organizationServiceNotExist)
         }
 
+        /// 用户不存在。
+        public static var userNotExist: ResourceNotFound {
+            ResourceNotFound(.userNotExist)
+        }
+
         public func asOrganizationError() -> TCOrganizationError {
             let code: TCOrganizationError.Code
             switch self.error {
+            case .emailBindRecordNotExist:
+                code = .resourceNotFound_EmailBindRecordNotExist
             case .memberIdentityNotExist:
                 code = .resourceNotFound_MemberIdentityNotExist
             case .memberNotExist:
@@ -102,6 +116,8 @@ extension TCOrganizationError {
                 code = .resourceNotFound_OrganizationNotExist
             case .organizationServiceNotExist:
                 code = .resourceNotFound_OrganizationServiceNotExist
+            case .userNotExist:
+                code = .resourceNotFound_UserNotExist
             }
             return TCOrganizationError(code, context: self.context)
         }

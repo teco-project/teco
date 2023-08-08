@@ -19,8 +19,12 @@ import TecoCore
 extension TCLighthouseError {
     public struct ResourceUnavailable: TCLighthouseErrorType {
         enum Code: String {
+            case blueprintInvalid = "ResourceUnavailable.BlueprintInvalid"
             case blueprintUnavailable = "ResourceUnavailable.BlueprintUnavailable"
             case bundleUnavailable = "ResourceUnavailable.BundleUnavailable"
+            case dockerUnavailable = "ResourceUnavailable.DockerUnavailable"
+            case tatAgentUnavailable = "ResourceUnavailable.TATAgentUnavailable"
+            case tatServiceError = "ResourceUnavailable.TATServiceError"
             case other = "ResourceUnavailable"
         }
 
@@ -46,6 +50,11 @@ extension TCLighthouseError {
             self.context = context
         }
 
+        /// 指定实例镜像不符合要求。
+        public static var blueprintInvalid: ResourceUnavailable {
+            ResourceUnavailable(.blueprintInvalid)
+        }
+
         /// 镜像资源不可用。
         public static var blueprintUnavailable: ResourceUnavailable {
             ResourceUnavailable(.blueprintUnavailable)
@@ -56,6 +65,21 @@ extension TCLighthouseError {
             ResourceUnavailable(.bundleUnavailable)
         }
 
+        /// Docker资源不可用。
+        public static var dockerUnavailable: ResourceUnavailable {
+            ResourceUnavailable(.dockerUnavailable)
+        }
+
+        /// TAT agent不可用。
+        public static var tatAgentUnavailable: ResourceUnavailable {
+            ResourceUnavailable(.tatAgentUnavailable)
+        }
+
+        /// TAT 服务错误。
+        public static var tatServiceError: ResourceUnavailable {
+            ResourceUnavailable(.tatServiceError)
+        }
+
         /// 资源不可用。
         public static var other: ResourceUnavailable {
             ResourceUnavailable(.other)
@@ -64,10 +88,18 @@ extension TCLighthouseError {
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {
+            case .blueprintInvalid:
+                code = .resourceUnavailable_BlueprintInvalid
             case .blueprintUnavailable:
                 code = .resourceUnavailable_BlueprintUnavailable
             case .bundleUnavailable:
                 code = .resourceUnavailable_BundleUnavailable
+            case .dockerUnavailable:
+                code = .resourceUnavailable_DockerUnavailable
+            case .tatAgentUnavailable:
+                code = .resourceUnavailable_TATAgentUnavailable
+            case .tatServiceError:
+                code = .resourceUnavailable_TATServiceError
             case .other:
                 code = .resourceUnavailable
             }

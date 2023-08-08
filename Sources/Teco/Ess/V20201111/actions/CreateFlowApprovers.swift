@@ -33,11 +33,15 @@ extension Ess {
         /// 企微消息中的发起人
         public let initiator: String?
 
-        public init(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil) {
+        /// 代理相关应用信息，如集团主企业代子企业操作
+        public let agent: Agent?
+
+        public init(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.flowId = flowId
             self.approvers = approvers
             self.initiator = initiator
+            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Ess {
             case flowId = "FlowId"
             case approvers = "Approvers"
             case initiator = "Initiator"
+            case agent = "Agent"
         }
     }
 
@@ -58,51 +63,55 @@ extension Ess {
         }
     }
 
-    /// 补充签署流程本企业签署人信息
+    /// 补充签署流程企业签署人信息
     ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    ///
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    /// ### 适用场景
+    /// 在通过模板或者文件发起合同时，若未指定企业签署人信息，则流程发起后，可以调用此接口补充或签签署人。
+    /// 同一签署人可以补充多个员工作为或签签署人,最终实际签署人取决于谁先领取合同完成签署。
+    /// ### 限制条件
+    /// -  本企业(发起方企业)支持通过企业微信UserId 或者 姓名+手机号补充
+    /// - 他方企业仅支持通过姓名+手机号补充
     @inlinable @discardableResult
     public func createFlowApprovers(_ input: CreateFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
         self.client.execute(action: "CreateFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 补充签署流程本企业签署人信息
+    /// 补充签署流程企业签署人信息
     ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    ///
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    /// ### 适用场景
+    /// 在通过模板或者文件发起合同时，若未指定企业签署人信息，则流程发起后，可以调用此接口补充或签签署人。
+    /// 同一签署人可以补充多个员工作为或签签署人,最终实际签署人取决于谁先领取合同完成签署。
+    /// ### 限制条件
+    /// -  本企业(发起方企业)支持通过企业微信UserId 或者 姓名+手机号补充
+    /// - 他方企业仅支持通过姓名+手机号补充
     @inlinable @discardableResult
     public func createFlowApprovers(_ input: CreateFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
         try await self.client.execute(action: "CreateFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 补充签署流程本企业签署人信息
+    /// 补充签署流程企业签署人信息
     ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    ///
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    /// ### 适用场景
+    /// 在通过模板或者文件发起合同时，若未指定企业签署人信息，则流程发起后，可以调用此接口补充或签签署人。
+    /// 同一签署人可以补充多个员工作为或签签署人,最终实际签署人取决于谁先领取合同完成签署。
+    /// ### 限制条件
+    /// -  本企业(发起方企业)支持通过企业微信UserId 或者 姓名+手机号补充
+    /// - 他方企业仅支持通过姓名+手机号补充
     @inlinable @discardableResult
-    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
-        self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator), region: region, logger: logger, on: eventLoop)
+    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
+        self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 补充签署流程本企业签署人信息
+    /// 补充签署流程企业签署人信息
     ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    ///
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    /// ### 适用场景
+    /// 在通过模板或者文件发起合同时，若未指定企业签署人信息，则流程发起后，可以调用此接口补充或签签署人。
+    /// 同一签署人可以补充多个员工作为或签签署人,最终实际签署人取决于谁先领取合同完成签署。
+    /// ### 限制条件
+    /// -  本企业(发起方企业)支持通过企业微信UserId 或者 姓名+手机号补充
+    /// - 他方企业仅支持通过姓名+手机号补充
     @inlinable @discardableResult
-    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
-        try await self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator), region: region, logger: logger, on: eventLoop)
+    public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], initiator: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
+        try await self.createFlowApprovers(.init(operator: `operator`, flowId: flowId, approvers: approvers, initiator: initiator, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

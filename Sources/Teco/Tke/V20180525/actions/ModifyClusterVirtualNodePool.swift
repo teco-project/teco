@@ -30,6 +30,9 @@ extension Tke {
         /// 节点池名称
         public let name: String?
 
+        /// 安全组ID列表
+        public let securityGroupIds: [String]?
+
         /// 虚拟节点label
         public let labels: [Label]?
 
@@ -39,10 +42,11 @@ extension Tke {
         /// 删除保护开关
         public let deletionProtection: Bool?
 
-        public init(clusterId: String, nodePoolId: String, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil) {
+        public init(clusterId: String, nodePoolId: String, name: String? = nil, securityGroupIds: [String]? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil) {
             self.clusterId = clusterId
             self.nodePoolId = nodePoolId
             self.name = name
+            self.securityGroupIds = securityGroupIds
             self.labels = labels
             self.taints = taints
             self.deletionProtection = deletionProtection
@@ -52,6 +56,7 @@ extension Tke {
             case clusterId = "ClusterId"
             case nodePoolId = "NodePoolId"
             case name = "Name"
+            case securityGroupIds = "SecurityGroupIds"
             case labels = "Labels"
             case taints = "Taints"
             case deletionProtection = "DeletionProtection"
@@ -82,13 +87,13 @@ extension Tke {
 
     /// 修改虚拟节点池
     @inlinable @discardableResult
-    public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterVirtualNodePoolResponse> {
-        self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, securityGroupIds: [String]? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterVirtualNodePoolResponse> {
+        self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, securityGroupIds: securityGroupIds, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改虚拟节点池
     @inlinable @discardableResult
-    public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterVirtualNodePoolResponse {
-        try await self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
+    public func modifyClusterVirtualNodePool(clusterId: String, nodePoolId: String, name: String? = nil, securityGroupIds: [String]? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterVirtualNodePoolResponse {
+        try await self.modifyClusterVirtualNodePool(.init(clusterId: clusterId, nodePoolId: nodePoolId, name: name, securityGroupIds: securityGroupIds, labels: labels, taints: taints, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 }

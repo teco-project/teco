@@ -21,10 +21,15 @@ import TecoCore
 extension Live {
     /// DescribeUploadStreamNums请求参数结构体
     public struct DescribeUploadStreamNumsRequest: TCRequestModel {
-        /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
+        /// 起始时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
         public let startTime: String
 
-        /// 结束时间点，格式为yyyy-mm-dd HH:MM:SS，起始和结束时间跨度不支持超过31天。支持最近31天的数据查询
+        /// 结束时间点，接口查询支持两种时间格式：
+        /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
+        /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        /// 起始和结束时间跨度不支持超过31天。支持最近31天的数据查询
         public let endTime: String
 
         /// 直播域名，若不填，表示总体数据。
@@ -66,24 +71,32 @@ extension Live {
     }
 
     /// 直播上行路数查询
+    ///
+    /// 直播上行路数查询。
     @inlinable
     public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
         self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播上行路数查询
+    ///
+    /// 直播上行路数查询。
     @inlinable
     public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
         try await self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播上行路数查询
+    ///
+    /// 直播上行路数查询。
     @inlinable
     public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
         self.describeUploadStreamNums(.init(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播上行路数查询
+    ///
+    /// 直播上行路数查询。
     @inlinable
     public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
         try await self.describeUploadStreamNums(.init(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)

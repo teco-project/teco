@@ -26,45 +26,38 @@ public protocol TCNlpErrorType: TCServiceErrorType {
 
 public struct TCNlpError: TCNlpErrorType {
     enum Code: String {
-        case authFailure_InvalidAuthorization = "AuthFailure.InvalidAuthorization"
         case failedOperation = "FailedOperation"
         case failedOperation_BalanceInsufficient = "FailedOperation.BalanceInsufficient"
-        case failedOperation_IllegalTextError = "FailedOperation.IllegalTextError"
+        case failedOperation_InnerError = "FailedOperation.InnerError"
         case failedOperation_NoCouplets = "FailedOperation.NoCouplets"
         case failedOperation_NoPoetry = "FailedOperation.NoPoetry"
+        case failedOperation_NoResults = "FailedOperation.NoResults"
         case failedOperation_NotFoundData = "FailedOperation.NotFoundData"
         case failedOperation_RequestTimeout = "FailedOperation.RequestTimeout"
+        case failedOperation_ResourceBusy = "FailedOperation.ResourceBusy"
         case failedOperation_RpcFail = "FailedOperation.RpcFail"
-        case failedOperation_TextEmbeddingFailed = "FailedOperation.TextEmbeddingFailed"
         case failedOperation_UnKnowError = "FailedOperation.UnKnowError"
         case failedOperation_Unknown = "FailedOperation.Unknown"
-        case failedOperation_WordNotFound = "FailedOperation.WordNotFound"
         case internalError = "InternalError"
-        case internalError_ResourceRequestError = "InternalError.ResourceRequestError"
         case internalError_ServiceCallError = "InternalError.ServiceCallError"
         case internalError_ServiceError = "InternalError.ServiceError"
-        case invalidParameter = "InvalidParameter"
-        case invalidParameterValue_EmptyValueError = "InvalidParameterValue.EmptyValueError"
+        case internalError_TextClassifyError = "InternalError.TextClassifyError"
+        case internalError_TextParsingError = "InternalError.TextParsingError"
         case invalidParameterValue_Genre = "InvalidParameterValue.Genre"
+        case invalidParameterValue_InvalidParameter = "InvalidParameterValue.InvalidParameter"
         case invalidParameterValue_PoetryType = "InvalidParameterValue.PoetryType"
         case invalidParameterValue_SensitiveText = "InvalidParameterValue.SensitiveText"
         case invalidParameterValue_TargetType = "InvalidParameterValue.TargetType"
         case invalidParameterValue_Text = "InvalidParameterValue.Text"
-        case invalidParameterValue_TextEncodeError = "InvalidParameterValue.TextEncodeError"
-        case invalidParameterValue_TextFormatError = "InvalidParameterValue.TextFormatError"
         case invalidParameterValue_TextNumTooMuch = "InvalidParameterValue.TextNumTooMuch"
         case invalidParameterValue_TextTooLong = "InvalidParameterValue.TextTooLong"
-        case invalidParameterValue_ValueRangeError = "InvalidParameterValue.ValueRangeError"
+        case invalidParameter_ServiceError = "InvalidParameter.ServiceError"
+        case invalidParameter_TextTooLongCode = "InvalidParameter.TextTooLongCode"
         case limitExceeded_ResourceReachedLimit = "LimitExceeded.ResourceReachedLimit"
         case requestLimitExceeded_UinLimitExceeded = "RequestLimitExceeded.UinLimitExceeded"
-        case resourceInUse_NameExists = "ResourceInUse.NameExists"
-        case resourceInUse_ResourceOperating = "ResourceInUse.ResourceOperating"
         case resourceInsufficient_QuotaRunOut = "ResourceInsufficient.QuotaRunOut"
         case resourceNotFound = "ResourceNotFound"
-        case resourceNotFound_DataNotFound = "ResourceNotFound.DataNotFound"
-        case resourceNotFound_FileNotFound = "ResourceNotFound.FileNotFound"
         case resourceUnavailable = "ResourceUnavailable"
-        case resourceUnavailable_FileUnavailable = "ResourceUnavailable.FileUnavailable"
         case resourceUnavailable_Freeze = "ResourceUnavailable.Freeze"
         case resourceUnavailable_InArrears = "ResourceUnavailable.InArrears"
         case resourceUnavailable_IsOpening = "ResourceUnavailable.IsOpening"
@@ -72,23 +65,19 @@ public struct TCNlpError: TCNlpErrorType {
         case resourceUnavailable_Recover = "ResourceUnavailable.Recover"
         case resourceUnavailable_ServiceNotOpenedError = "ResourceUnavailable.ServiceNotOpenedError"
         case resourceUnavailable_StopUsing = "ResourceUnavailable.StopUsing"
-        case unauthorizedOperation_AuthenticateFailed = "UnauthorizedOperation.AuthenticateFailed"
     }
 
     /// Error domains affliated to ``TCNlpError``.
     public static var domains: [TCErrorType.Type] {
         [
-            AuthFailure.self,
             FailedOperation.self,
             InternalError.self,
+            InvalidParameter.self,
             InvalidParameterValue.self,
             LimitExceeded.self,
             RequestLimitExceeded.self,
-            ResourceInUse.self,
             ResourceInsufficient.self,
-            ResourceNotFound.self,
-            ResourceUnavailable.self,
-            UnauthorizedOperation.self
+            ResourceUnavailable.self
         ]
     }
 
@@ -114,11 +103,6 @@ public struct TCNlpError: TCNlpErrorType {
         self.context = context
     }
 
-    /// 请求头部的 Authorization 不符合腾讯云标准。
-    public static var authFailure_InvalidAuthorization: TCNlpError {
-        TCNlpError(.authFailure_InvalidAuthorization)
-    }
-
     /// 操作失败。
     public static var failedOperation: TCNlpError {
         TCNlpError(.failedOperation)
@@ -129,9 +113,9 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.failedOperation_BalanceInsufficient)
     }
 
-    /// 非法文本输入导致返回异常
-    public static var failedOperation_IllegalTextError: TCNlpError {
-        TCNlpError(.failedOperation_IllegalTextError)
+    /// 服务内部错误，请重试。
+    public static var failedOperation_InnerError: TCNlpError {
+        TCNlpError(.failedOperation_InnerError)
     }
 
     /// 暂无春联生成，请更换关键词重试。
@@ -144,6 +128,11 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.failedOperation_NoPoetry)
     }
 
+    /// 暂无结果，请更换文本重试。
+    public static var failedOperation_NoResults: TCNlpError {
+        TCNlpError(.failedOperation_NoResults)
+    }
+
     /// 未查询到结果。
     public static var failedOperation_NotFoundData: TCNlpError {
         TCNlpError(.failedOperation_NotFoundData)
@@ -154,14 +143,14 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.failedOperation_RequestTimeout)
     }
 
+    /// 服务器繁忙，请稍后再试。
+    public static var failedOperation_ResourceBusy: TCNlpError {
+        TCNlpError(.failedOperation_ResourceBusy)
+    }
+
     /// RPC请求失败，一般为算法微服务故障。
     public static var failedOperation_RpcFail: TCNlpError {
         TCNlpError(.failedOperation_RpcFail)
-    }
-
-    /// 文本向量化失败
-    public static var failedOperation_TextEmbeddingFailed: TCNlpError {
-        TCNlpError(.failedOperation_TextEmbeddingFailed)
     }
 
     /// 内部错误。
@@ -174,19 +163,9 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.failedOperation_Unknown)
     }
 
-    /// 查找不到词语
-    public static var failedOperation_WordNotFound: TCNlpError {
-        TCNlpError(.failedOperation_WordNotFound)
-    }
-
-    /// 内部错误。
+    /// 内部错误
     public static var internalError: TCNlpError {
         TCNlpError(.internalError)
-    }
-
-    /// 资源请求错误
-    public static var internalError_ResourceRequestError: TCNlpError {
-        TCNlpError(.internalError_ResourceRequestError)
     }
 
     /// 内部服务调用错误。
@@ -199,19 +178,22 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.internalError_ServiceError)
     }
 
-    /// 参数错误。
-    public static var invalidParameter: TCNlpError {
-        TCNlpError(.invalidParameter)
+    public static var internalError_TextClassifyError: TCNlpError {
+        TCNlpError(.internalError_TextClassifyError)
     }
 
-    /// 参数空值错误
-    public static var invalidParameterValue_EmptyValueError: TCNlpError {
-        TCNlpError(.invalidParameterValue_EmptyValueError)
+    public static var internalError_TextParsingError: TCNlpError {
+        TCNlpError(.internalError_TextParsingError)
     }
 
     /// Genre非法，请参考Genre参数说明。
     public static var invalidParameterValue_Genre: TCNlpError {
         TCNlpError(.invalidParameterValue_Genre)
+    }
+
+    /// 参数不合法。
+    public static var invalidParameterValue_InvalidParameter: TCNlpError {
+        TCNlpError(.invalidParameterValue_InvalidParameter)
     }
 
     /// PoetryType非法，请参考PoetryType参数说明。
@@ -234,16 +216,6 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.invalidParameterValue_Text)
     }
 
-    /// 文本编码错误，不符合utf-8
-    public static var invalidParameterValue_TextEncodeError: TCNlpError {
-        TCNlpError(.invalidParameterValue_TextEncodeError)
-    }
-
-    /// 文本输入格式错误
-    public static var invalidParameterValue_TextFormatError: TCNlpError {
-        TCNlpError(.invalidParameterValue_TextFormatError)
-    }
-
     /// 输入文本超出数量限制
     public static var invalidParameterValue_TextNumTooMuch: TCNlpError {
         TCNlpError(.invalidParameterValue_TextNumTooMuch)
@@ -254,9 +226,14 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.invalidParameterValue_TextTooLong)
     }
 
-    /// 参数取值范围错误
-    public static var invalidParameterValue_ValueRangeError: TCNlpError {
-        TCNlpError(.invalidParameterValue_ValueRangeError)
+    /// 服务调用失败。
+    public static var invalidParameter_ServiceError: TCNlpError {
+        TCNlpError(.invalidParameter_ServiceError)
+    }
+
+    /// 文本长度超过限制。
+    public static var invalidParameter_TextTooLongCode: TCNlpError {
+        TCNlpError(.invalidParameter_TextTooLongCode)
     }
 
     /// 资源用量达到上限。
@@ -269,16 +246,6 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.requestLimitExceeded_UinLimitExceeded)
     }
 
-    /// 名称已存在
-    public static var resourceInUse_NameExists: TCNlpError {
-        TCNlpError(.resourceInUse_NameExists)
-    }
-
-    /// 资源正在操作中
-    public static var resourceInUse_ResourceOperating: TCNlpError {
-        TCNlpError(.resourceInUse_ResourceOperating)
-    }
-
     /// 额度用尽，请充值后重试
     public static var resourceInsufficient_QuotaRunOut: TCNlpError {
         TCNlpError(.resourceInsufficient_QuotaRunOut)
@@ -289,24 +256,9 @@ public struct TCNlpError: TCNlpErrorType {
         TCNlpError(.resourceNotFound)
     }
 
-    /// 数据资源不存在
-    public static var resourceNotFound_DataNotFound: TCNlpError {
-        TCNlpError(.resourceNotFound_DataNotFound)
-    }
-
-    /// 文件资源不存在
-    public static var resourceNotFound_FileNotFound: TCNlpError {
-        TCNlpError(.resourceNotFound_FileNotFound)
-    }
-
     /// 资源不可用。
     public static var resourceUnavailable: TCNlpError {
         TCNlpError(.resourceUnavailable)
-    }
-
-    /// 文件资源不可用
-    public static var resourceUnavailable_FileUnavailable: TCNlpError {
-        TCNlpError(.resourceUnavailable_FileUnavailable)
     }
 
     /// 帐号已被冻结。
@@ -342,11 +294,6 @@ public struct TCNlpError: TCNlpErrorType {
     /// 帐号已停服。
     public static var resourceUnavailable_StopUsing: TCNlpError {
         TCNlpError(.resourceUnavailable_StopUsing)
-    }
-
-    /// 实名认证失败
-    public static var unauthorizedOperation_AuthenticateFailed: TCNlpError {
-        TCNlpError(.unauthorizedOperation_AuthenticateFailed)
     }
 
     public func asNlpError() -> TCNlpError {

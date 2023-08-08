@@ -99,49 +99,55 @@ extension Dcdb {
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogs(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
-        self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogs(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
-        self.describeSqlLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.describeSqlLogs(.init(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogsPaginated(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [SqlLogItem])> {
-        self.client.paginate(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable @discardableResult
     public func describeSqlLogsPaginated(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSqlLogsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
-        self.client.paginate(input: input, region: region, command: self.describeSqlLogs, callback: onResponse, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 
     /// 获取SQL日志
@@ -149,8 +155,9 @@ extension Dcdb {
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     ///
     /// - Returns: `AsyncSequence`s of `SqlLogItem` and `DescribeSqlLogsResponse` that can be iterated over asynchronously on demand.
+    @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlLogsRequest> {
-        TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
+        fatalError("DescribeSqlLogs is no longer available.")
     }
 }

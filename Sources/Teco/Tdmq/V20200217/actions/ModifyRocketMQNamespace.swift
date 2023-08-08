@@ -27,21 +27,25 @@ extension Tdmq {
         /// 命名空间名称，3-64个字符，只能包含字母、数字、“-”及“_”
         public let namespaceId: String
 
-        /// 未消费消息的保留时间，以毫秒为单位，60秒-15天
-        public let ttl: UInt64
+        /// 已废弃
+        public let ttl: UInt64?
 
-        /// 消息持久化后保留的时间，以毫秒为单位
-        public let retentionTime: UInt64
+        /// 已废弃
+        public let retentionTime: UInt64?
 
         /// 说明，最大128个字符
         public let remark: String?
 
-        public init(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil) {
+        /// 是否开启公网访问
+        public let publicAccessEnabled: Bool?
+
+        public init(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.ttl = ttl
             self.retentionTime = retentionTime
             self.remark = remark
+            self.publicAccessEnabled = publicAccessEnabled
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tdmq {
             case ttl = "Ttl"
             case retentionTime = "RetentionTime"
             case remark = "Remark"
+            case publicAccessEnabled = "PublicAccessEnabled"
         }
     }
 
@@ -77,13 +82,13 @@ extension Tdmq {
 
     /// 更新RocketMQ命名空间
     @inlinable @discardableResult
-    public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQNamespaceResponse> {
-        self.modifyRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQNamespaceResponse> {
+        self.modifyRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ命名空间
     @inlinable @discardableResult
-    public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
-        try await self.modifyRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64? = nil, retentionTime: UInt64? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
+        try await self.modifyRocketMQNamespace(.init(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 }

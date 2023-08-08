@@ -21,7 +21,8 @@ import TecoCore
 extension Postgres {
     /// ModifyDBInstanceSecurityGroups请求参数结构体
     public struct ModifyDBInstanceSecurityGroupsRequest: TCRequestModel {
-        /// 实例或只读组要绑定的安全组列表
+        /// 实例或只读组要绑定的安全组列表。
+        /// 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
         public let securityGroupIdSet: [String]
 
         /// 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId

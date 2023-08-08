@@ -52,33 +52,33 @@ extension Postgres {
         }
     }
 
-    /// 查询实例安全组信息
+    /// 查询实例安全组
     ///
-    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
     @inlinable
     public func describeDBInstanceSecurityGroups(_ input: DescribeDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSecurityGroupsResponse> {
         self.client.execute(action: "DescribeDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例安全组信息
+    /// 查询实例安全组
     ///
-    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
     @inlinable
     public func describeDBInstanceSecurityGroups(_ input: DescribeDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSecurityGroupsResponse {
         try await self.client.execute(action: "DescribeDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例安全组信息
+    /// 查询实例安全组
     ///
-    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
     @inlinable
     public func describeDBInstanceSecurityGroups(dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSecurityGroupsResponse> {
         self.describeDBInstanceSecurityGroups(.init(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例安全组信息
+    /// 查询实例安全组
     ///
-    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
+    /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组。
     @inlinable
     public func describeDBInstanceSecurityGroups(dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSecurityGroupsResponse {
         try await self.describeDBInstanceSecurityGroups(.init(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)

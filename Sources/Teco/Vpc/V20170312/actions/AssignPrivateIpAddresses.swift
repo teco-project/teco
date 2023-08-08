@@ -30,16 +30,21 @@ extension Vpc {
         /// 新申请的内网IP地址个数，与PrivateIpAddresses至少提供一个。内网IP地址个数总和不能超过配额数，详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
         public let secondaryPrivateIpAddressCount: UInt64?
 
-        public init(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil) {
+        /// IP服务质量等级，和SecondaryPrivateIpAddressCount配合使用，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        public let qosLevel: String?
+
+        public init(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddresses = privateIpAddresses
             self.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount
+            self.qosLevel = qosLevel
         }
 
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case privateIpAddresses = "PrivateIpAddresses"
             case secondaryPrivateIpAddressCount = "SecondaryPrivateIpAddressCount"
+            case qosLevel = "QosLevel"
         }
     }
 
@@ -92,8 +97,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
-        self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
+    public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
+        self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡申请内网 IP
@@ -105,7 +110,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
-        try await self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
+    public func assignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
+        try await self.assignPrivateIpAddresses(.init(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, qosLevel: qosLevel), region: region, logger: logger, on: eventLoop)
     }
 }

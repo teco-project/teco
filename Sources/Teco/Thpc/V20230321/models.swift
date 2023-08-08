@@ -36,11 +36,19 @@ extension Thpc {
         /// 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
         public let storageType: String?
 
-        public init(localPath: String, remotePath: String, protocol: String? = nil, storageType: String? = nil) {
+        /// 文件系统挂载挂载命令参数选项。
+        ///
+        /// - NFS 3.0默认值：vers=3,nolock,proto=tcp,noresvport
+        /// - NFS 4.0默认值：vers=4.0,noresvport
+        /// - TURBO默认值：user_xattr
+        public let mountOption: String?
+
+        public init(localPath: String, remotePath: String, protocol: String? = nil, storageType: String? = nil, mountOption: String? = nil) {
             self.localPath = localPath
             self.remotePath = remotePath
             self.protocol = `protocol`
             self.storageType = storageType
+            self.mountOption = mountOption
         }
 
         enum CodingKeys: String, CodingKey {
@@ -48,6 +56,7 @@ extension Thpc {
             case remotePath = "RemotePath"
             case `protocol` = "Protocol"
             case storageType = "StorageType"
+            case mountOption = "MountOption"
         }
     }
 
@@ -68,11 +77,15 @@ extension Thpc {
         /// 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
         public let storageType: String
 
+        /// 文件系统挂载命令参数选项。
+        public let mountOption: String?
+
         enum CodingKeys: String, CodingKey {
             case localPath = "LocalPath"
             case remotePath = "RemotePath"
             case `protocol` = "Protocol"
             case storageType = "StorageType"
+            case mountOption = "MountOption"
         }
     }
 
@@ -177,6 +190,9 @@ extension Thpc {
         /// 登录节点数量。
         public let loginNodeCount: Int64
 
+        /// 弹性伸缩类型。<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        public let autoScalingType: String
+
         /// 集群所属私有网络ID。
         public let vpcId: String
 
@@ -193,6 +209,7 @@ extension Thpc {
             case managerNodeSet = "ManagerNodeSet"
             case loginNodeSet = "LoginNodeSet"
             case loginNodeCount = "LoginNodeCount"
+            case autoScalingType = "AutoScalingType"
             case vpcId = "VpcId"
         }
     }
@@ -223,7 +240,10 @@ extension Thpc {
         /// 最多支持60个字符。
         public let instanceName: String?
 
-        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil) {
+        /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        public let projectId: Int64?
+
+        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, projectId: Int64? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -231,6 +251,7 @@ extension Thpc {
             self.dataDisks = dataDisks
             self.internetAccessible = internetAccessible
             self.instanceName = instanceName
+            self.projectId = projectId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -241,6 +262,7 @@ extension Thpc {
             case dataDisks = "DataDisks"
             case internetAccessible = "InternetAccessible"
             case instanceName = "InstanceName"
+            case projectId = "ProjectId"
         }
     }
 
@@ -294,12 +316,16 @@ extension Thpc {
         /// 私有网络相关信息配置。
         public let virtualPrivateCloud: VirtualPrivateCloud?
 
-        public init(placement: Placement, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil) {
+        /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        public let projectId: Int64?
+
+        public init(placement: Placement, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, projectId: Int64? = nil) {
             self.placement = placement
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
             self.virtualPrivateCloud = virtualPrivateCloud
+            self.projectId = projectId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -308,6 +334,7 @@ extension Thpc {
             case instanceChargePrepaid = "InstanceChargePrepaid"
             case instanceType = "InstanceType"
             case virtualPrivateCloud = "VirtualPrivateCloud"
+            case projectId = "ProjectId"
         }
     }
 
@@ -514,7 +541,7 @@ extension Thpc {
 
     /// 登录节点信息。
     public struct LoginNode: TCInputModel {
-        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br>默认值：POSTPAID_BY_HOUR。
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
@@ -538,7 +565,10 @@ extension Thpc {
         /// 最多支持60个字符。
         public let instanceName: String?
 
-        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil) {
+        /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        public let projectId: Int64?
+
+        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, projectId: Int64? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -546,6 +576,7 @@ extension Thpc {
             self.dataDisks = dataDisks
             self.internetAccessible = internetAccessible
             self.instanceName = instanceName
+            self.projectId = projectId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -556,6 +587,7 @@ extension Thpc {
             case dataDisks = "DataDisks"
             case internetAccessible = "InternetAccessible"
             case instanceName = "InstanceName"
+            case projectId = "ProjectId"
         }
     }
 
@@ -611,7 +643,10 @@ extension Thpc {
         /// 最多支持60个字符（包含模式串）。
         public let instanceName: String?
 
-        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil) {
+        /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
+        public let projectId: Int64?
+
+        public init(instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, projectId: Int64? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -619,6 +654,7 @@ extension Thpc {
             self.dataDisks = dataDisks
             self.internetAccessible = internetAccessible
             self.instanceName = instanceName
+            self.projectId = projectId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -629,6 +665,7 @@ extension Thpc {
             case dataDisks = "DataDisks"
             case internetAccessible = "InternetAccessible"
             case instanceName = "InstanceName"
+            case projectId = "ProjectId"
         }
     }
 
@@ -709,6 +746,28 @@ extension Thpc {
         }
     }
 
+    /// 描述节点执行脚本信息。
+    public struct NodeScript: TCInputModel, TCOutputModel {
+        /// 节点执行脚本获取地址。
+        /// 目前仅支持cos地址。地址最大长度：255。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scriptPath: String?
+
+        /// 脚本执行超时时间（包含拉取脚本的时间）。单位秒，默认值：30。取值范围：10～1200。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeout: Int64?
+
+        public init(scriptPath: String, timeout: Int64? = nil) {
+            self.scriptPath = scriptPath
+            self.timeout = timeout
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case scriptPath = "ScriptPath"
+            case timeout = "Timeout"
+        }
+    }
+
     /// 描述了实例的抽象位置
     public struct Placement: TCInputModel, TCOutputModel {
         /// 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
@@ -729,10 +788,10 @@ extension Thpc {
         /// 队列名称。
         public let queueName: String
 
-        /// 队列中弹性节点数量最小值。取值范围0～200。
+        /// 队列中弹性节点数量最小值。默认值：0。取值范围：0～200。
         public let minSize: UInt64?
 
-        /// 队列中弹性节点数量最大值。取值范围0～200。
+        /// 队列中弹性节点数量最大值。默认值：10。取值范围：0～200。
         public let maxSize: UInt64?
 
         /// 是否开启自动扩容。
@@ -756,7 +815,22 @@ extension Thpc {
         /// 扩容节点配置信息。
         public let expansionNodeConfigs: [ExpansionNodeConfig]?
 
-        public init(queueName: String, minSize: UInt64? = nil, maxSize: UInt64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, expansionNodeConfigs: [ExpansionNodeConfig]? = nil) {
+        /// 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
+        public let desiredIdleNodeCapacity: Int64?
+
+        /// 扩容比例。默认值：100。取值范围：1～100。
+        /// 如果扩容比例为50，那么每轮只会扩容当前作业负载所需的50%数量的节点。
+        public let scaleOutRatio: Int64?
+
+        /// 比例扩容阈值。默认值：0。取值范围：0～200。
+        /// 当作业负载需要扩容节点数量大于此值，当前扩容轮次按照ScaleOutRatio配置的比例进行扩容。当作业负载需要扩容节点数量小于此值，当前扩容轮次扩容当前作业负载所需数量的节点。
+        /// 此参数配合ScaleOutRatio参数进行使用，用于比例扩容场景下，在作业负载所需节点数量较小时，加快收敛速度。
+        public let scaleOutNodeThreshold: Int64?
+
+        /// 每轮扩容最大节点个数。默认值：100。取值范围：1～100。
+        public let maxNodesPerCycle: Int64?
+
+        public init(queueName: String, minSize: UInt64? = nil, maxSize: UInt64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, expansionNodeConfigs: [ExpansionNodeConfig]? = nil, desiredIdleNodeCapacity: Int64? = nil, scaleOutRatio: Int64? = nil, scaleOutNodeThreshold: Int64? = nil, maxNodesPerCycle: Int64? = nil) {
             self.queueName = queueName
             self.minSize = minSize
             self.maxSize = maxSize
@@ -767,6 +841,10 @@ extension Thpc {
             self.dataDisks = dataDisks
             self.internetAccessible = internetAccessible
             self.expansionNodeConfigs = expansionNodeConfigs
+            self.desiredIdleNodeCapacity = desiredIdleNodeCapacity
+            self.scaleOutRatio = scaleOutRatio
+            self.scaleOutNodeThreshold = scaleOutNodeThreshold
+            self.maxNodesPerCycle = maxNodesPerCycle
         }
 
         enum CodingKeys: String, CodingKey {
@@ -780,6 +858,10 @@ extension Thpc {
             case dataDisks = "DataDisks"
             case internetAccessible = "InternetAccessible"
             case expansionNodeConfigs = "ExpansionNodeConfigs"
+            case desiredIdleNodeCapacity = "DesiredIdleNodeCapacity"
+            case scaleOutRatio = "ScaleOutRatio"
+            case scaleOutNodeThreshold = "ScaleOutNodeThreshold"
+            case maxNodesPerCycle = "MaxNodesPerCycle"
         }
     }
 
@@ -803,6 +885,25 @@ extension Thpc {
         /// 扩容节点配置信息。
         public let expansionNodeConfigs: [ExpansionNodeConfigOverview]?
 
+        /// 队列中期望的空闲节点数量（包含弹性节点和静态节点）。默认值：0。队列中，处于空闲状态的节点小于此值，集群会扩容弹性节点；处于空闲状态的节点大于此值，集群会缩容弹性节点。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desiredIdleNodeCapacity: Int64?
+
+        /// 扩容比例。默认值：100。取值范围：1～100。
+        /// 如果扩容比例为50，那么每轮只会扩容当前作业负载所需的50%数量的节点。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleOutRatio: Int64?
+
+        /// 比例扩容阈值。默认值：0。取值范围：0～200。
+        /// 当作业负载需要扩容节点数量大于此值，当前扩容轮次按照ScaleOutRatio配置的的比例进行扩容。当作业负载需要扩容节点数量小于此值，当前扩容轮次扩容当前作业负载所需数量的节点。
+        /// 此参数配合ScaleOutRatio参数进行使用，用于比例扩容场景下，在作业负载所需节点数量较小时，加快收敛速度。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scaleOutNodeThreshold: Int64?
+
+        /// 每轮扩容最大节点个数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxNodesPerCycle: Int64?
+
         enum CodingKeys: String, CodingKey {
             case queueName = "QueueName"
             case minSize = "MinSize"
@@ -810,6 +911,10 @@ extension Thpc {
             case enableAutoExpansion = "EnableAutoExpansion"
             case enableAutoShrink = "EnableAutoShrink"
             case expansionNodeConfigs = "ExpansionNodeConfigs"
+            case desiredIdleNodeCapacity = "DesiredIdleNodeCapacity"
+            case scaleOutRatio = "ScaleOutRatio"
+            case scaleOutNodeThreshold = "ScaleOutNodeThreshold"
+            case maxNodesPerCycle = "MaxNodesPerCycle"
         }
     }
 

@@ -23,6 +23,7 @@ extension TCCdbError {
             case auditCreateLogFileError = "InternalError.AuditCreateLogFileError"
             case auditDeleteLogFileError = "InternalError.AuditDeleteLogFileError"
             case auditDeletePolicyError = "InternalError.AuditDeletePolicyError"
+            case auditDescribeLogError = "InternalError.AuditDescribeLogError"
             case auditError = "InternalError.AuditError"
             case auditModifyStatusError = "InternalError.AuditModifyStatusError"
             case auditOssLogicError = "InternalError.AuditOssLogicError"
@@ -111,6 +112,11 @@ extension TCCdbError {
         /// 审计内部服务错误。
         public static var auditDeletePolicyError: InternalError {
             InternalError(.auditDeletePolicyError)
+        }
+
+        /// 查询审计日志错误。
+        public static var auditDescribeLogError: InternalError {
+            InternalError(.auditDescribeLogError)
         }
 
         /// 审计内部服务错误。
@@ -354,6 +360,8 @@ extension TCCdbError {
                 code = .internalError_AuditDeleteLogFileError
             case .auditDeletePolicyError:
                 code = .internalError_AuditDeletePolicyError
+            case .auditDescribeLogError:
+                code = .internalError_AuditDescribeLogError
             case .auditError:
                 code = .internalError_AuditError
             case .auditModifyStatusError:

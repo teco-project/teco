@@ -58,26 +58,30 @@ extension Tdid {
     }
 
     /// 创建机构DID
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateTDid is no longer available.")
     }
 
     /// 创建机构DID
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        try await self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateTDid is no longer available.")
     }
 
     /// 创建机构DID
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        self.createTDid(.init(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDid is no longer available.")
     }
 
     /// 创建机构DID
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        try await self.createTDid(.init(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDid is no longer available.")
     }
 }

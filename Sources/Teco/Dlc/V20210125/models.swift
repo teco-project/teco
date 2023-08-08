@@ -229,6 +229,67 @@ extension Dlc {
         }
     }
 
+    /// 任务公共指标
+    public struct CommonMetrics: TCOutputModel {
+        /// 创建任务时长，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTaskTime: Float?
+
+        /// 预处理总时长，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processTime: Float?
+
+        /// 排队时长，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queueTime: Float?
+
+        /// 执行时长，单位：ms
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executionTime: Float?
+
+        /// 是否命中结果缓存
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isResultCacheHit: Bool?
+
+        /// 匹配物化视图数据量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let matchedMVBytes: Int64?
+
+        /// 匹配物化视图列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let matchedMVs: String?
+
+        /// 结果数据量，单位：byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let affectedBytes: String?
+
+        /// 结果行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let affectedRows: Int64?
+
+        /// 扫描数据量，单位：byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processedBytes: Int64?
+
+        /// 扫描行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let processedRows: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case createTaskTime = "CreateTaskTime"
+            case processTime = "ProcessTime"
+            case queueTime = "QueueTime"
+            case executionTime = "ExecutionTime"
+            case isResultCacheHit = "IsResultCacheHit"
+            case matchedMVBytes = "MatchedMVBytes"
+            case matchedMVs = "MatchedMVs"
+            case affectedBytes = "AffectedBytes"
+            case affectedRows = "AffectedRows"
+            case processedBytes = "ProcessedBytes"
+            case processedRows = "ProcessedRows"
+        }
+    }
+
     /// 定时启停策略信息
     public struct CrontabResumeSuspendStrategy: TCInputModel, TCOutputModel {
         /// 定时拉起时间：如：周一8点
@@ -783,7 +844,39 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startStandbyCluster: Bool?
 
-        public init(dataEngineName: String, engineType: String, clusterType: String, quotaId: String? = nil, state: Int64? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, size: Int64? = nil, mode: Int64? = nil, minClusters: Int64? = nil, maxClusters: Int64? = nil, autoResume: Bool? = nil, spendAfter: Int64? = nil, cidrBlock: String? = nil, defaultDataEngine: Bool? = nil, message: String? = nil, dataEngineId: String? = nil, subAccountUin: String? = nil, expireTime: String? = nil, isolatedTime: String? = nil, reversalTime: String? = nil, userAlias: String? = nil, tagList: [TagInfo]? = nil, permissions: [String]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, renewFlag: Int64? = nil, autoSuspendTime: Int64? = nil, networkConnectionSet: [NetworkConnection]? = nil, uiURL: String? = nil, resourceType: String? = nil, imageVersionId: String? = nil, childImageVersionId: String? = nil, imageVersionName: String? = nil, startStandbyCluster: Bool? = nil) {
+        /// spark jar 包年包月集群是否开启弹性
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticSwitch: Bool?
+
+        /// spark jar 包年包月集群弹性上限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticLimit: Int64?
+
+        /// 是否为默认引擎
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultHouse: Bool?
+
+        /// 单个集群任务最大并发数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxConcurrency: Int64?
+
+        /// 任务排队上限时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tolerableQueueTime: Int64?
+
+        /// 用户appid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAppId: Int64?
+
+        /// 用户uin
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userUin: String?
+
+        /// SessionResourceTemplate
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessionResourceTemplate: SessionResourceTemplate?
+
+        public init(dataEngineName: String, engineType: String, clusterType: String, quotaId: String? = nil, state: Int64? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, size: Int64? = nil, mode: Int64? = nil, minClusters: Int64? = nil, maxClusters: Int64? = nil, autoResume: Bool? = nil, spendAfter: Int64? = nil, cidrBlock: String? = nil, defaultDataEngine: Bool? = nil, message: String? = nil, dataEngineId: String? = nil, subAccountUin: String? = nil, expireTime: String? = nil, isolatedTime: String? = nil, reversalTime: String? = nil, userAlias: String? = nil, tagList: [TagInfo]? = nil, permissions: [String]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, renewFlag: Int64? = nil, autoSuspendTime: Int64? = nil, networkConnectionSet: [NetworkConnection]? = nil, uiURL: String? = nil, resourceType: String? = nil, imageVersionId: String? = nil, childImageVersionId: String? = nil, imageVersionName: String? = nil, startStandbyCluster: Bool? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, defaultHouse: Bool? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, userAppId: Int64? = nil, userUin: String? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil) {
             self.dataEngineName = dataEngineName
             self.engineType = engineType
             self.clusterType = clusterType
@@ -821,6 +914,14 @@ extension Dlc {
             self.childImageVersionId = childImageVersionId
             self.imageVersionName = imageVersionName
             self.startStandbyCluster = startStandbyCluster
+            self.elasticSwitch = elasticSwitch
+            self.elasticLimit = elasticLimit
+            self.defaultHouse = defaultHouse
+            self.maxConcurrency = maxConcurrency
+            self.tolerableQueueTime = tolerableQueueTime
+            self.userAppId = userAppId
+            self.userUin = userUin
+            self.sessionResourceTemplate = sessionResourceTemplate
         }
 
         enum CodingKeys: String, CodingKey {
@@ -861,6 +962,14 @@ extension Dlc {
             case childImageVersionId = "ChildImageVersionId"
             case imageVersionName = "ImageVersionName"
             case startStandbyCluster = "StartStandbyCluster"
+            case elasticSwitch = "ElasticSwitch"
+            case elasticLimit = "ElasticLimit"
+            case defaultHouse = "DefaultHouse"
+            case maxConcurrency = "MaxConcurrency"
+            case tolerableQueueTime = "TolerableQueueTime"
+            case userAppId = "UserAppId"
+            case userUin = "UserUin"
+            case sessionResourceTemplate = "SessionResourceTemplate"
         }
     }
 
@@ -902,7 +1011,22 @@ extension Dlc {
 
     /// 数据治理规则
     public struct DataGovernPolicy: TCInputModel, TCOutputModel {
-        public init() {
+        /// 治理规则类型，Customize: 自定义；Intelligence: 智能治理
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleType: String?
+
+        /// 治理引擎
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let governEngine: String?
+
+        public init(ruleType: String? = nil, governEngine: String? = nil) {
+            self.ruleType = ruleType
+            self.governEngine = governEngine
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleType = "RuleType"
+            case governEngine = "GovernEngine"
         }
     }
 
@@ -975,7 +1099,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let governPolicy: DataGovernPolicy?
 
-        /// 数据库ID
+        /// 数据库ID（无效字段）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
 
@@ -1040,11 +1164,16 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logJson: String?
 
+        /// 日志ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pkgLogId: String?
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case topicId = "TopicId"
             case topicName = "TopicName"
             case logJson = "LogJson"
+            case pkgLogId = "PkgLogId"
         }
     }
 
@@ -1613,6 +1742,22 @@ extension Dlc {
         }
     }
 
+    /// Presto监控指标
+    public struct PrestoMonitorMetrics: TCOutputModel {
+        /// Alluxio本地缓存命中率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let localCacheHitRate: Float?
+
+        /// Fragment缓存命中率
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fragmentCacheHitRate: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case localCacheHitRate = "LocalCacheHitRate"
+            case fragmentCacheHitRate = "FragmentCacheHitRate"
+        }
+    }
+
     /// 数据库和数据表属性信息
     public struct Property: TCInputModel, TCOutputModel {
         /// 属性key名称。
@@ -1684,6 +1829,39 @@ extension Dlc {
             case databaseName = "DatabaseName"
             case sqlStatement = "SQLStatement"
             case updateTime = "UpdateTime"
+        }
+    }
+
+    /// Spark批作业集群Session资源配置模板；
+    public struct SessionResourceTemplate: TCInputModel, TCOutputModel {
+        /// driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let driverSize: String?
+
+        /// executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorSize: String?
+
+        /// 指定executor数量，最小值为1，最大值小于集群规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorNums: UInt64?
+
+        /// 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorMaxNumbers: UInt64?
+
+        public init(driverSize: String? = nil, executorSize: String? = nil, executorNums: UInt64? = nil, executorMaxNumbers: UInt64? = nil) {
+            self.driverSize = driverSize
+            self.executorSize = executorSize
+            self.executorNums = executorNums
+            self.executorMaxNumbers = executorMaxNumbers
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case driverSize = "DriverSize"
+            case executorSize = "ExecutorSize"
+            case executorNums = "ExecutorNums"
+            case executorMaxNumbers = "ExecutorMaxNumbers"
         }
     }
 
@@ -1809,6 +1987,26 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sparkImageVersion: String?
 
+        /// 查询脚本关联id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessionId: String?
+
+        /// spark_emr_livy
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataEngineClusterType: String?
+
+        /// Spark 3.2-EMR
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataEngineImageVersion: String?
+
+        /// 任务资源配置是否继承集群模板，0（默认）不继承，1：继承
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isInherit: UInt64?
+
+        /// 是否使用session脚本的sql运行任务：false：否，true：是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSessionStarted: Bool?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1846,6 +2044,74 @@ extension Dlc {
             case dataEngineStatus = "DataEngineStatus"
             case jobExecutorMaxNumbers = "JobExecutorMaxNumbers"
             case sparkImageVersion = "SparkImageVersion"
+            case sessionId = "SessionId"
+            case dataEngineClusterType = "DataEngineClusterType"
+            case dataEngineImageVersion = "DataEngineImageVersion"
+            case isInherit = "IsInherit"
+            case isSessionStarted = "IsSessionStarted"
+        }
+    }
+
+    /// Spark监控数据
+    public struct SparkMonitorMetrics: TCOutputModel {
+        /// shuffle写溢出到COS数据量，单位：byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let shuffleWriteBytesCos: Int64?
+
+        /// shuffle写数据量，单位：byte
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let shuffleWriteBytesTotal: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case shuffleWriteBytesCos = "ShuffleWriteBytesCos"
+            case shuffleWriteBytesTotal = "ShuffleWriteBytesTotal"
+        }
+    }
+
+    /// SparkSQL批任务运行日志
+    public struct SparkSessionBatchLog: TCOutputModel {
+        /// 日志步骤：BEG/CS/DS/DSS/DSF/FINF/RTO/CANCEL/CT/DT/DTS/DTF/FINT/EXCE
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let step: String?
+
+        /// 时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: String?
+
+        /// 日志提示
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 日志操作
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operate: [SparkSessionBatchLogOperate]?
+
+        enum CodingKeys: String, CodingKey {
+            case step = "Step"
+            case time = "Time"
+            case message = "Message"
+            case operate = "Operate"
+        }
+    }
+
+    /// SparkSQL批任务日志操作信息。
+    public struct SparkSessionBatchLogOperate: TCOutputModel {
+        /// 操作提示
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let text: String?
+
+        /// 操作类型：COPY、LOG、UI、RESULT、List、TAB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operate: String?
+
+        /// 补充信息：如：taskid、sessionid、sparkui等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supplement: [KVPair]?
+
+        enum CodingKeys: String, CodingKey {
+            case text = "Text"
+            case operate = "Operate"
+            case supplement = "Supplement"
         }
     }
 
@@ -2059,7 +2325,11 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let governPolicy: DataGovernPolicy?
 
-        public init(databaseName: String, tableName: String, datasourceConnectionName: String? = nil, tableComment: String? = nil, type: String? = nil, tableFormat: String? = nil, userAlias: String? = nil, userSubUin: String? = nil, governPolicy: DataGovernPolicy? = nil) {
+        /// 库数据治理是否关闭，关闭：true，开启：false
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbGovernPolicyIsDisable: String?
+
+        public init(databaseName: String, tableName: String, datasourceConnectionName: String? = nil, tableComment: String? = nil, type: String? = nil, tableFormat: String? = nil, userAlias: String? = nil, userSubUin: String? = nil, governPolicy: DataGovernPolicy? = nil, dbGovernPolicyIsDisable: String? = nil) {
             self.databaseName = databaseName
             self.tableName = tableName
             self.datasourceConnectionName = datasourceConnectionName
@@ -2069,6 +2339,7 @@ extension Dlc {
             self.userAlias = userAlias
             self.userSubUin = userSubUin
             self.governPolicy = governPolicy
+            self.dbGovernPolicyIsDisable = dbGovernPolicyIsDisable
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2081,6 +2352,7 @@ extension Dlc {
             case userAlias = "UserAlias"
             case userSubUin = "UserSubUin"
             case governPolicy = "GovernPolicy"
+            case dbGovernPolicyIsDisable = "DbGovernPolicyIsDisable"
         }
     }
 
@@ -2159,6 +2431,10 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordCount: Int64?
 
+        /// xxxx
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mapMaterializedViewName: String?
+
         enum CodingKeys: String, CodingKey {
             case tableBaseInfo = "TableBaseInfo"
             case columns = "Columns"
@@ -2170,6 +2446,7 @@ extension Dlc {
             case inputFormat = "InputFormat"
             case storageSize = "StorageSize"
             case recordCount = "RecordCount"
+            case mapMaterializedViewName = "MapMaterializedViewName"
         }
     }
 
@@ -2233,7 +2510,7 @@ extension Dlc {
         /// 任务创建时间。
         public let createTime: String
 
-        /// 任务状态：0 初始化， 1 执行中， 2 执行成功，-1 执行失败，-3 已取消。
+        /// 任务状态：0 初始化， 1 执行中， 2 执行成功，3 数据写入中，4 排队中。-1 执行失败，-3 已取消。
         public let state: Int64
 
         /// 任务SQL类型，DDL|DML等
@@ -2328,6 +2605,38 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cmdArgs: String?
 
+        /// 集群镜像大版本名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageVersion: String?
+
+        /// driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let driverSize: String?
+
+        /// executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorSize: String?
+
+        /// 指定executor数量，最小值为1，最大值小于集群规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorNums: UInt64?
+
+        /// 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executorMaxNumbers: UInt64?
+
+        /// 任务公共指标数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let commonMetrics: CommonMetrics?
+
+        /// spark任务指标数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sparkMonitorMetrics: SparkMonitorMetrics?
+
+        /// presto任务指标数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let prestoMonitorMetrics: PrestoMonitorMetrics?
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case dataAmount = "DataAmount"
@@ -2361,6 +2670,14 @@ extension Dlc {
             case uiUrl = "UiUrl"
             case totalTime = "TotalTime"
             case cmdArgs = "CmdArgs"
+            case imageVersion = "ImageVersion"
+            case driverSize = "DriverSize"
+            case executorSize = "ExecutorSize"
+            case executorNums = "ExecutorNums"
+            case executorMaxNumbers = "ExecutorMaxNumbers"
+            case commonMetrics = "CommonMetrics"
+            case sparkMonitorMetrics = "SparkMonitorMetrics"
+            case prestoMonitorMetrics = "PrestoMonitorMetrics"
         }
     }
 

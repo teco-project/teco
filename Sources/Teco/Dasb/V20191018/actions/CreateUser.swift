@@ -30,7 +30,7 @@ extension Dasb {
         public let realName: String
 
         /// 大陆手机号直接填写，如果是其他国家、地区号码， 按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
-        public let phone: String
+        public let phone: String?
 
         /// 电子邮件
         public let email: String?
@@ -61,7 +61,7 @@ extension Dasb {
         /// 所属部门ID，如：“1.2.3”
         public let departmentId: String?
 
-        public init(userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
+        public init(userName: String, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
             self.userName = userName
             self.realName = realName
             self.phone = phone
@@ -116,13 +116,13 @@ extension Dasb {
 
     /// 新建用户
     @inlinable
-    public func createUser(userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
+    public func createUser(userName: String, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
         self.createUser(.init(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建用户
     @inlinable
-    public func createUser(userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+    public func createUser(userName: String, realName: String, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.createUser(.init(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

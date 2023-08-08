@@ -29,6 +29,11 @@ public struct TCEmrError: TCEmrErrorType {
         case failedOperation = "FailedOperation"
         case failedOperation_CheckIfSupportPodStretch = "FailedOperation.CheckIfSupportPodStretch"
         case failedOperation_DuplicateOrderNotAllowed = "FailedOperation.DuplicateOrderNotAllowed"
+        case failedOperation_GetCamRoleFailed = "FailedOperation.GetCamRoleFailed"
+        case failedOperation_GetCamServerFailed = "FailedOperation.GetCamServerFailed"
+        case failedOperation_GetCvmConfigQuotaFailed = "FailedOperation.GetCvmConfigQuotaFailed"
+        case failedOperation_GetCvmServerFailed = "FailedOperation.GetCvmServerFailed"
+        case failedOperation_GetTradeServerFailed = "FailedOperation.GetTradeServerFailed"
         case failedOperation_NotSupportPod = "FailedOperation.NotSupportPod"
         case failedOperation_RefundCvmFailed = "FailedOperation.RefundCvmFailed"
         case internalError = "InternalError"
@@ -55,8 +60,10 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_InvalidTkeInstance = "InvalidParameterValue.InvalidTkeInstance"
+        case invalidParameter_AppIdResourceNotMatch = "InvalidParameter.AppIdResourceNotMatch"
         case invalidParameter_DisplayStrategyNotMatch = "InvalidParameter.DisplayStrategyNotMatch"
         case invalidParameter_HALessMasterCount = "InvalidParameter.HALessMasterCount"
+        case invalidParameter_ImpalaQueryException = "InvalidParameter.ImpalaQueryException"
         case invalidParameter_IncorrectCommonCount = "InvalidParameter.IncorrectCommonCount"
         case invalidParameter_IncorrectMasterCount = "InvalidParameter.IncorrectMasterCount"
         case invalidParameter_InvalidAllNodeResourceSpec = "InvalidParameter.InvalidAllNodeResourceSpec"
@@ -90,6 +97,7 @@ public struct TCEmrError: TCEmrErrorType {
         case invalidParameter_InvalidMetaDataJdbcUrl = "InvalidParameter.InvalidMetaDataJdbcUrl"
         case invalidParameter_InvalidMetaType = "InvalidParameter.InvalidMetaType"
         case invalidParameter_InvalidModifySpec = "InvalidParameter.InvalidModifySpec"
+        case invalidParameter_InvalidNodeFlag = "InvalidParameter.InvalidNodeFlag"
         case invalidParameter_InvalidNodeType = "InvalidParameter.InvalidNodeType"
         case invalidParameter_InvalidPassword = "InvalidParameter.InvalidPassword"
         case invalidParameter_InvalidPaymode = "InvalidParameter.InvalidPaymode"
@@ -138,6 +146,7 @@ public struct TCEmrError: TCEmrErrorType {
         case resourceInsufficient_InstanceInsufficient = "ResourceInsufficient.InstanceInsufficient"
         case resourceNotFound_CDBInfoNotFound = "ResourceNotFound.CDBInfoNotFound"
         case resourceNotFound_ClusterNotFound = "ResourceNotFound.ClusterNotFound"
+        case resourceNotFound_CvmInstanceNotFound = "ResourceNotFound.CvmInstanceNotFound"
         case resourceNotFound_HardwareInfoNotFound = "ResourceNotFound.HardwareInfoNotFound"
         case resourceNotFound_InstanceNotFound = "ResourceNotFound.InstanceNotFound"
         case resourceNotFound_ResourceNotFound = "ResourceNotFound.ResourceNotFound"
@@ -207,6 +216,31 @@ public struct TCEmrError: TCEmrErrorType {
     /// 重复的订单，请检查emr控制台。
     public static var failedOperation_DuplicateOrderNotAllowed: TCEmrError {
         TCEmrError(.failedOperation_DuplicateOrderNotAllowed)
+    }
+
+    /// 获取cam角色失败。
+    public static var failedOperation_GetCamRoleFailed: TCEmrError {
+        TCEmrError(.failedOperation_GetCamRoleFailed)
+    }
+
+    /// 调用cam服务失败。
+    public static var failedOperation_GetCamServerFailed: TCEmrError {
+        TCEmrError(.failedOperation_GetCamServerFailed)
+    }
+
+    /// 获取cvm 规格信息失败。
+    public static var failedOperation_GetCvmConfigQuotaFailed: TCEmrError {
+        TCEmrError(.failedOperation_GetCvmConfigQuotaFailed)
+    }
+
+    /// 调用cvm服务失败。
+    public static var failedOperation_GetCvmServerFailed: TCEmrError {
+        TCEmrError(.failedOperation_GetCvmServerFailed)
+    }
+
+    /// 调去询价中心服务失败
+    public static var failedOperation_GetTradeServerFailed: TCEmrError {
+        TCEmrError(.failedOperation_GetTradeServerFailed)
     }
 
     /// 操作失败，不支持pod。
@@ -339,6 +373,11 @@ public struct TCEmrError: TCEmrErrorType {
         TCEmrError(.invalidParameterValue_InvalidTkeInstance)
     }
 
+    /// 参数错误。
+    public static var invalidParameter_AppIdResourceNotMatch: TCEmrError {
+        TCEmrError(.invalidParameter_AppIdResourceNotMatch)
+    }
+
     /// 展示策略错误。
     public static var invalidParameter_DisplayStrategyNotMatch: TCEmrError {
         TCEmrError(.invalidParameter_DisplayStrategyNotMatch)
@@ -347,6 +386,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 参数错误。
     public static var invalidParameter_HALessMasterCount: TCEmrError {
         TCEmrError(.invalidParameter_HALessMasterCount)
+    }
+
+    /// impala查询参数异常。
+    public static var invalidParameter_ImpalaQueryException: TCEmrError {
+        TCEmrError(.invalidParameter_ImpalaQueryException)
     }
 
     /// Common节点数量无效。
@@ -512,6 +556,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 变配规格无效。
     public static var invalidParameter_InvalidModifySpec: TCEmrError {
         TCEmrError(.invalidParameter_InvalidModifySpec)
+    }
+
+    /// 不合法的节点类型。
+    public static var invalidParameter_InvalidNodeFlag: TCEmrError {
+        TCEmrError(.invalidParameter_InvalidNodeFlag)
     }
 
     /// 无效的NodeType。
@@ -752,6 +801,11 @@ public struct TCEmrError: TCEmrErrorType {
     /// 无法找到该实例。
     public static var resourceNotFound_ClusterNotFound: TCEmrError {
         TCEmrError(.resourceNotFound_ClusterNotFound)
+    }
+
+    /// 无法找到指定的CVM实例。
+    public static var resourceNotFound_CvmInstanceNotFound: TCEmrError {
+        TCEmrError(.resourceNotFound_CvmInstanceNotFound)
     }
 
     /// 无法找到硬件信息。

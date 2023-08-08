@@ -21,35 +21,49 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateEmbedWebUrl请求参数结构体
     public struct ChannelCreateEmbedWebUrlRequest: TCRequestModel {
-        /// WEB嵌入资源类型，取值范围：CREATE_SEAL创建印章，CREATE_TEMPLATE创建模板，MODIFY_TEMPLATE修改模板，PREVIEW_TEMPLATE预览模板，PREVIEW_FLOW预览流程
-        public let embedType: String
-
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 必填。
+        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
-        /// 渠道操作者信息
-        public let `operator`: UserInfo?
+        /// 要生成WEB嵌入界面的类型, 可以选择的值如下:
+        ///
+        /// - CREATE_SEAL: 生成创建印章的嵌入页面
+        /// - CREATE_TEMPLATE：生成创建模板的嵌入页面
+        /// - MODIFY_TEMPLATE：生成修改模板的嵌入页面
+        /// - PREVIEW_TEMPLATE：生成预览模板的嵌入页面
+        /// - PREVIEW_FLOW：生成预览合同文档的嵌入页面
+        /// - PREVIEW_FLOW_DETAIL：生成预览合同详情的嵌入页面
+        /// - PREVIEW_SEAL_LIST：生成预览印章列表的嵌入页面
+        /// - PREVIEW_SEAL_DETAIL：生成预览印章详情的嵌入页面
+        /// - EXTEND_SERVICE：生成扩展服务的嵌入页面
+        public let embedType: String
 
-        /// WEB嵌入的业务资源ID，EmbedType取值MODIFY_TEMPLATE或PREVIEW_TEMPLATE或 PREVIEW_FLOW时BusinessId必填
+        /// WEB嵌入的业务资源ID
+        ///
+        /// - 当EmbedType取值MODIFY_TEMPLATE，PREVIEW_TEMPLATE时需要填写模板id作为BusinessId
+        /// - 当EmbedType取值PREVIEW_FLOW，PREVIEW_FLOW_DETAIL时需要填写合同id作为BusinessId
+        /// - 当EmbedType取值PREVIEW_SEAL_DETAIL需要填写印章id作为BusinessId
         public let businessId: String?
 
         /// 是否隐藏控件，只有预览模板时生效
         public let hiddenComponents: Bool?
 
-        public init(embedType: String, agent: Agent, operator: UserInfo? = nil, businessId: String? = nil, hiddenComponents: Bool? = nil) {
-            self.embedType = embedType
+        /// 渠道操作者信息
+        public let `operator`: UserInfo?
+
+        public init(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil) {
             self.agent = agent
-            self.operator = `operator`
+            self.embedType = embedType
             self.businessId = businessId
             self.hiddenComponents = hiddenComponents
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
-            case embedType = "EmbedType"
             case agent = "Agent"
-            case `operator` = "Operator"
+            case embedType = "EmbedType"
             case businessId = "BusinessId"
             case hiddenComponents = "HiddenComponents"
+            case `operator` = "Operator"
         }
     }
 
@@ -67,9 +81,9 @@ extension Essbasic {
         }
     }
 
-    /// 创建嵌入web的链接
+    /// 获取常规模块web页面
     ///
-    /// 本接口（ChannelCreateEmbedWebUrl）用于创建嵌入web的链接
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
     @inlinable
@@ -77,9 +91,9 @@ extension Essbasic {
         self.client.execute(action: "ChannelCreateEmbedWebUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建嵌入web的链接
+    /// 获取常规模块web页面
     ///
-    /// 本接口（ChannelCreateEmbedWebUrl）用于创建嵌入web的链接
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
     @inlinable
@@ -87,23 +101,23 @@ extension Essbasic {
         try await self.client.execute(action: "ChannelCreateEmbedWebUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建嵌入web的链接
+    /// 获取常规模块web页面
     ///
-    /// 本接口（ChannelCreateEmbedWebUrl）用于创建嵌入web的链接
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
     @inlinable
-    public func channelCreateEmbedWebUrl(embedType: String, agent: Agent, operator: UserInfo? = nil, businessId: String? = nil, hiddenComponents: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateEmbedWebUrlResponse> {
-        self.channelCreateEmbedWebUrl(.init(embedType: embedType, agent: agent, operator: `operator`, businessId: businessId, hiddenComponents: hiddenComponents), region: region, logger: logger, on: eventLoop)
+    public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateEmbedWebUrlResponse> {
+        self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建嵌入web的链接
+    /// 获取常规模块web页面
     ///
-    /// 本接口（ChannelCreateEmbedWebUrl）用于创建嵌入web的链接
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
     @inlinable
-    public func channelCreateEmbedWebUrl(embedType: String, agent: Agent, operator: UserInfo? = nil, businessId: String? = nil, hiddenComponents: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateEmbedWebUrlResponse {
-        try await self.channelCreateEmbedWebUrl(.init(embedType: embedType, agent: agent, operator: `operator`, businessId: businessId, hiddenComponents: hiddenComponents), region: region, logger: logger, on: eventLoop)
+    public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateEmbedWebUrlResponse {
+        try await self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

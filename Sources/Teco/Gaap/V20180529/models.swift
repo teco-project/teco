@@ -1575,6 +1575,10 @@ extension Gaap {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let featureBitmap: UInt64?
 
+        /// 接入区域支持的能力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportFeature: SupportFeature?
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case regionName = "RegionName"
@@ -1582,6 +1586,7 @@ extension Gaap {
             case regionAreaName = "RegionAreaName"
             case idcType = "IDCType"
             case featureBitmap = "FeatureBitmap"
+            case supportFeature = "SupportFeature"
         }
     }
 
@@ -1823,6 +1828,16 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case data = "Data"
+        }
+    }
+
+    /// 加速区域支持的能力，包括支持的网络类型等等。
+    public struct SupportFeature: TCOutputModel {
+        /// 接入区域支持的网络类型列表，normal表示支持常规BGP，cn2表示精品BGP，triple表示三网，secure_eip表示定制安全eip。
+        public let networkType: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case networkType = "NetworkType"
         }
     }
 

@@ -20,9 +20,11 @@ extension TCTmtError {
     public struct FailedOperation: TCTmtErrorType {
         enum Code: String {
             case insertErr = "FailedOperation.InsertErr"
+            case languageRecognitionErr = "FailedOperation.LanguageRecognitionErr"
             case noFreeAmount = "FailedOperation.NoFreeAmount"
             case requestAiLabErr = "FailedOperation.RequestAiLabErr"
             case serviceIsolate = "FailedOperation.ServiceIsolate"
+            case stopUsing = "FailedOperation.StopUsing"
             case userNotRegistered = "FailedOperation.UserNotRegistered"
             case other = "FailedOperation"
         }
@@ -54,6 +56,11 @@ extension TCTmtError {
             FailedOperation(.insertErr)
         }
 
+        /// 暂时无法识别该语种。
+        public static var languageRecognitionErr: FailedOperation {
+            FailedOperation(.languageRecognitionErr)
+        }
+
         /// 本月免费额度已用完，如需继续使用您可以在机器翻译控制台升级为付费使用。
         public static var noFreeAmount: FailedOperation {
             FailedOperation(.noFreeAmount)
@@ -67,6 +74,10 @@ extension TCTmtError {
         /// 账号因为欠费停止服务，请在腾讯云账户充值。
         public static var serviceIsolate: FailedOperation {
             FailedOperation(.serviceIsolate)
+        }
+
+        public static var stopUsing: FailedOperation {
+            FailedOperation(.stopUsing)
         }
 
         /// 服务未开通，请在腾讯云官网机器翻译控制台开通服务。
@@ -84,12 +95,16 @@ extension TCTmtError {
             switch self.error {
             case .insertErr:
                 code = .failedOperation_InsertErr
+            case .languageRecognitionErr:
+                code = .failedOperation_LanguageRecognitionErr
             case .noFreeAmount:
                 code = .failedOperation_NoFreeAmount
             case .requestAiLabErr:
                 code = .failedOperation_RequestAiLabErr
             case .serviceIsolate:
                 code = .failedOperation_ServiceIsolate
+            case .stopUsing:
+                code = .failedOperation_StopUsing
             case .userNotRegistered:
                 code = .failedOperation_UserNotRegistered
             case .other:

@@ -24,12 +24,17 @@ extension Eis {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
 
-        public init(runtimeClass: Int64? = nil) {
+        /// 计划类型：0-pro 1-lite
+        public let planType: Int64?
+
+        public init(runtimeClass: Int64? = nil, planType: Int64? = nil) {
             self.runtimeClass = runtimeClass
+            self.planType = planType
         }
 
         enum CodingKeys: String, CodingKey {
             case runtimeClass = "RuntimeClass"
+            case planType = "PlanType"
         }
     }
 
@@ -67,15 +72,15 @@ extension Eis {
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
-        self.listRuntimesMC(.init(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+    public func listRuntimesMC(runtimeClass: Int64? = nil, planType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
+        self.listRuntimesMC(.init(runtimeClass: runtimeClass, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
-        try await self.listRuntimesMC(.init(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+    public func listRuntimesMC(runtimeClass: Int64? = nil, planType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
+        try await self.listRuntimesMC(.init(runtimeClass: runtimeClass, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 }

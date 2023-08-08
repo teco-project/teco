@@ -68,25 +68,25 @@ extension Iotvideo {
         }
     }
 
-    /// 判断是否开启的转发的权限
+    /// 判断是否开启转发的权限
     @inlinable
     public func checkForwardAuth(_ input: CheckForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
         self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 判断是否开启的转发的权限
+    /// 判断是否开启转发的权限
     @inlinable
     public func checkForwardAuth(_ input: CheckForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
         try await self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 判断是否开启的转发的权限
+    /// 判断是否开启转发的权限
     @inlinable
     public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
         self.checkForwardAuth(.init(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 判断是否开启的转发的权限
+    /// 判断是否开启转发的权限
     @inlinable
     public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
         try await self.checkForwardAuth(.init(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)

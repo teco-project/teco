@@ -37,8 +37,10 @@ public struct TCTioneError: TCTioneErrorType {
         case failedOperation_BindingTagsFailed = "FailedOperation.BindingTagsFailed"
         case failedOperation_CAMFailure = "FailedOperation.CAMFailure"
         case failedOperation_CallClusterFail = "FailedOperation.CallClusterFail"
+        case failedOperation_CheckBillingWhiteListFailed = "FailedOperation.CheckBillingWhiteListFailed"
         case failedOperation_ClsServiceNotActived = "FailedOperation.ClsServiceNotActived"
         case failedOperation_ClusterQueryFailed = "FailedOperation.ClusterQueryFailed"
+        case failedOperation_CreateImageFailed = "FailedOperation.CreateImageFailed"
         case failedOperation_CreateJobInstanceFailed = "FailedOperation.CreateJobInstanceFailed"
         case failedOperation_DCCosClientErr = "FailedOperation.DCCosClientErr"
         case failedOperation_DCCreateAsyncTaskError = "FailedOperation.DCCreateAsyncTaskError"
@@ -52,12 +54,17 @@ public struct TCTioneError: TCTioneErrorType {
         case failedOperation_DCQueryDatasetContentErr = "FailedOperation.DCQueryDatasetContentErr"
         case failedOperation_DCUnmarshalDataErr = "FailedOperation.DCUnmarshalDataErr"
         case failedOperation_DCUnsupportedOperation = "FailedOperation.DCUnsupportedOperation"
+        case failedOperation_DeleteNotebookStorageFailed = "FailedOperation.DeleteNotebookStorageFailed"
         case failedOperation_DuplicateName = "FailedOperation.DuplicateName"
+        case failedOperation_DuplicateNameTaskIsCreating = "FailedOperation.DuplicateNameTaskIsCreating"
         case failedOperation_ExecDatabaseFail = "FailedOperation.ExecDatabaseFail"
         case failedOperation_ExecTagFail = "FailedOperation.ExecTagFail"
+        case failedOperation_FreezeBillFailed = "FailedOperation.FreezeBillFailed"
         case failedOperation_InsufficientWhitelistQuota = "FailedOperation.InsufficientWhitelistQuota"
         case failedOperation_InvalidUserType = "FailedOperation.InvalidUserType"
         case failedOperation_KmsKeyNotOpen = "FailedOperation.KmsKeyNotOpen"
+        case failedOperation_ModifyBillingInstanceBatchFailed = "FailedOperation.ModifyBillingInstanceBatchFailed"
+        case failedOperation_ModifyResourceBillingTagsFailed = "FailedOperation.ModifyResourceBillingTagsFailed"
         case failedOperation_MoveModelDirFailed = "FailedOperation.MoveModelDirFailed"
         case failedOperation_NoFreeBucket = "FailedOperation.NoFreeBucket"
         case failedOperation_NoPermission = "FailedOperation.NoPermission"
@@ -67,15 +74,24 @@ public struct TCTioneError: TCTioneErrorType {
         case failedOperation_QueryDatabaseFail = "FailedOperation.QueryDatabaseFail"
         case failedOperation_QueryModelsByTagsFailed = "FailedOperation.QueryModelsByTagsFailed"
         case failedOperation_QueryPriceFailed = "FailedOperation.QueryPriceFailed"
+        case failedOperation_QueryResourceGroupNamesFailed = "FailedOperation.QueryResourceGroupNamesFailed"
+        case failedOperation_QueryResourceSpecFailed = "FailedOperation.QueryResourceSpecFailed"
         case failedOperation_QuerySpecsFailed = "FailedOperation.QuerySpecsFailed"
         case failedOperation_QueryTagFail = "FailedOperation.QueryTagFail"
         case failedOperation_RecordNotFound = "FailedOperation.RecordNotFound"
         case failedOperation_RepoBindByInstance = "FailedOperation.RepoBindByInstance"
+        case failedOperation_StopJobInstanceFailed = "FailedOperation.StopJobInstanceFailed"
         case failedOperation_StsQueryFailed = "FailedOperation.StsQueryFailed"
         case failedOperation_Timedout = "FailedOperation.Timedout"
+        case failedOperation_UnBindingTagsFailed = "FailedOperation.UnBindingTagsFailed"
+        case failedOperation_UnSubmitNotAllowToStop = "FailedOperation.UnSubmitNotAllowToStop"
+        case failedOperation_UnfreezeBillFailed = "FailedOperation.UnfreezeBillFailed"
         case failedOperation_UnknownInstanceType = "FailedOperation.UnknownInstanceType"
         case failedOperation_UnmarshalData = "FailedOperation.UnmarshalData"
         case internalError = "InternalError"
+        case internalError_BindingTagsFailed = "InternalError.BindingTagsFailed"
+        case internalError_CreateJobInstanceFailed = "InternalError.CreateJobInstanceFailed"
+        case internalError_CreateTcrInstanceTokenFailed = "InternalError.CreateTcrInstanceTokenFailed"
         case internalError_FreezeBillFailed = "InternalError.FreezeBillFailed"
         case internalError_InsufficientBalance = "InternalError.InsufficientBalance"
         case internalError_NoPermission = "InternalError.NoPermission"
@@ -83,11 +99,16 @@ public struct TCTioneError: TCTioneErrorType {
         case internalError_QueryBindingTagsFailed = "InternalError.QueryBindingTagsFailed"
         case internalError_QueryHDFSInfoFailed = "InternalError.QueryHDFSInfoFailed"
         case internalError_QueryResourceGroupFailed = "InternalError.QueryResourceGroupFailed"
+        case internalError_QueryResourceSpecFailed = "InternalError.QueryResourceSpecFailed"
+        case internalError_QuerySubnetInfoFailed = "InternalError.QuerySubnetInfoFailed"
         case internalError_StopJobInstanceFailed = "InternalError.StopJobInstanceFailed"
+        case internalError_UnSubmittedStatusNotAllowStop = "InternalError.UnSubmittedStatusNotAllowStop"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_AIMarketPublicAlgoVersionNotExist = "InvalidParameterValue.AIMarketPublicAlgoVersionNotExist"
         case invalidParameterValue_BadName = "InvalidParameterValue.BadName"
         case invalidParameterValue_ClsConfigRequired = "InvalidParameterValue.ClsConfigRequired"
+        case invalidParameterValue_CodeRepoDuplicated = "InvalidParameterValue.CodeRepoDuplicated"
         case invalidParameterValue_CodeRepoNotFound = "InvalidParameterValue.CodeRepoNotFound"
         case invalidParameterValue_DCAnnotationType = "InvalidParameterValue.DCAnnotationType"
         case invalidParameterValue_DCCosPathInfo = "InvalidParameterValue.DCCosPathInfo"
@@ -99,10 +120,21 @@ public struct TCTioneError: TCTioneErrorType {
         case invalidParameterValue_DatasetNumLimitExceeded = "InvalidParameterValue.DatasetNumLimitExceeded"
         case invalidParameterValue_DuplicateName = "InvalidParameterValue.DuplicateName"
         case invalidParameterValue_FrameworkVersionNotSupport = "InvalidParameterValue.FrameworkVersionNotSupport"
+        case invalidParameterValue_GetCFSMountIPFailed = "InvalidParameterValue.GetCFSMountIPFailed"
         case invalidParameterValue_ImageNotFound = "InvalidParameterValue.ImageNotFound"
         case invalidParameterValue_InvalidFilter = "InvalidParameterValue.InvalidFilter"
+        case invalidParameterValue_LifecycleNotFound = "InvalidParameterValue.LifecycleNotFound"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
         case invalidParameterValue_NotAllow = "InvalidParameterValue.NotAllow"
+        case invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup = "InvalidParameterValue.NotAllowedToCreateNotebookWithBareMetalResourceGroup"
+        case invalidParameterValue_PageLimitExceeded = "InvalidParameterValue.PageLimitExceeded"
+        case invalidParameterValue_RDMAConfigIllegal = "InvalidParameterValue.RDMAConfigIllegal"
+        case invalidParameterValue_ResourceConfigIllegal = "InvalidParameterValue.ResourceConfigIllegal"
+        case invalidParameterValue_SubnetNotFound = "InvalidParameterValue.SubnetNotFound"
+        case invalidParameterValue_TopicNotFound = "InvalidParameterValue.TopicNotFound"
+        case invalidParameterValue_UnsupportedDataConfig = "InvalidParameterValue.UnsupportedDataConfig"
+        case invalidParameterValue_VolumeShrinkNotAllow = "InvalidParameterValue.VolumeShrinkNotAllow"
+        case invalidParameter_FilterKeyStatusConflictWithChargeStatus = "InvalidParameter.FilterKeyStatusConflictWithChargeStatus"
         case invalidParameter_ModelFileInvalid = "InvalidParameter.ModelFileInvalid"
         case invalidParameter_TgwInvalidInterface = "InvalidParameter.TgwInvalidInterface"
         case invalidParameter_TgwInvalidRequestBody = "InvalidParameter.TgwInvalidRequestBody"
@@ -111,10 +143,15 @@ public struct TCTioneError: TCTioneErrorType {
         case missingParameter = "MissingParameter"
         case operationDenied = "OperationDenied"
         case operationDenied_BalanceInsufficient = "OperationDenied.BalanceInsufficient"
+        case operationDenied_BillingException = "OperationDenied.BillingException"
         case operationDenied_BillingStatusResourceInsufficient = "OperationDenied.BillingStatusResourceInsufficient"
+        case operationDenied_IpIllegal = "OperationDenied.IpIllegal"
         case operationDenied_MIYINGBalanceInsufficient = "OperationDenied.MIYINGBalanceInsufficient"
         case operationDenied_NetworkCidrIllegal = "OperationDenied.NetworkCidrIllegal"
+        case operationDenied_NotAllow = "OperationDenied.NotAllow"
+        case operationDenied_NotSupportSaveImage = "OperationDenied.NotSupportSaveImage"
         case operationDenied_ResourceGroupInsufficient = "OperationDenied.ResourceGroupInsufficient"
+        case operationDenied_SubnetIllegal = "OperationDenied.SubnetIllegal"
         case operationDenied_WhitelistQuotaExceed = "OperationDenied.WhitelistQuotaExceed"
         case resourceInUse = "ResourceInUse"
         case resourceInsufficient = "ResourceInsufficient"
@@ -229,6 +266,11 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_CallClusterFail)
     }
 
+    /// 查询计费白名单失败
+    public static var failedOperation_CheckBillingWhiteListFailed: TCTioneError {
+        TCTioneError(.failedOperation_CheckBillingWhiteListFailed)
+    }
+
     /// 尚未开通CLS日志服务，请开前往开通。
     public static var failedOperation_ClsServiceNotActived: TCTioneError {
         TCTioneError(.failedOperation_ClsServiceNotActived)
@@ -239,6 +281,10 @@ public struct TCTioneError: TCTioneErrorType {
     /// 请稍后重试或提工单询问小助手
     public static var failedOperation_ClusterQueryFailed: TCTioneError {
         TCTioneError(.failedOperation_ClusterQueryFailed)
+    }
+
+    public static var failedOperation_CreateImageFailed: TCTioneError {
+        TCTioneError(.failedOperation_CreateImageFailed)
     }
 
     /// 启动实例失败。
@@ -308,9 +354,20 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_DCUnsupportedOperation)
     }
 
+    /// 删除Notebook实例存储失败。
+    ///
+    /// 请稍后重试
+    public static var failedOperation_DeleteNotebookStorageFailed: TCTioneError {
+        TCTioneError(.failedOperation_DeleteNotebookStorageFailed)
+    }
+
     /// 名称重复。
     public static var failedOperation_DuplicateName: TCTioneError {
         TCTioneError(.failedOperation_DuplicateName)
+    }
+
+    public static var failedOperation_DuplicateNameTaskIsCreating: TCTioneError {
+        TCTioneError(.failedOperation_DuplicateNameTaskIsCreating)
     }
 
     /// 数据库执行错误。
@@ -323,6 +380,13 @@ public struct TCTioneError: TCTioneErrorType {
     /// 请重试
     public static var failedOperation_ExecTagFail: TCTioneError {
         TCTioneError(.failedOperation_ExecTagFail)
+    }
+
+    /// 余额不足冻结失败。
+    ///
+    /// 请先充值。
+    public static var failedOperation_FreezeBillFailed: TCTioneError {
+        TCTioneError(.failedOperation_FreezeBillFailed)
     }
 
     /// 白名单免费配额不足。
@@ -338,6 +402,17 @@ public struct TCTioneError: TCTioneErrorType {
     /// 密钥管理系统服务未开通，请先开通腾讯云密钥管理系统服务。
     public static var failedOperation_KmsKeyNotOpen: TCTioneError {
         TCTioneError(.failedOperation_KmsKeyNotOpen)
+    }
+
+    /// 变更计费配置失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_ModifyBillingInstanceBatchFailed: TCTioneError {
+        TCTioneError(.failedOperation_ModifyBillingInstanceBatchFailed)
+    }
+
+    public static var failedOperation_ModifyResourceBillingTagsFailed: TCTioneError {
+        TCTioneError(.failedOperation_ModifyResourceBillingTagsFailed)
     }
 
     /// 移动模型目录失败。
@@ -362,7 +437,7 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_NotAllow)
     }
 
-    /// 请求正在处理中，请稍候再试。
+    /// 请求正在处理中，请稍后再试。
     public static var failedOperation_Processing: TCTioneError {
         TCTioneError(.failedOperation_Processing)
     }
@@ -393,6 +468,20 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_QueryPriceFailed)
     }
 
+    /// 查询资源组名称失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_QueryResourceGroupNamesFailed: TCTioneError {
+        TCTioneError(.failedOperation_QueryResourceGroupNamesFailed)
+    }
+
+    /// 查询计费项详情失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_QueryResourceSpecFailed: TCTioneError {
+        TCTioneError(.failedOperation_QueryResourceSpecFailed)
+    }
+
     /// 查询计费项失败。
     public static var failedOperation_QuerySpecsFailed: TCTioneError {
         TCTioneError(.failedOperation_QuerySpecsFailed)
@@ -417,6 +506,13 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.failedOperation_RepoBindByInstance)
     }
 
+    /// 停止实例失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_StopJobInstanceFailed: TCTioneError {
+        TCTioneError(.failedOperation_StopJobInstanceFailed)
+    }
+
     /// 密钥服务访问失败，请重试。
     public static var failedOperation_StsQueryFailed: TCTioneError {
         TCTioneError(.failedOperation_StsQueryFailed)
@@ -425,6 +521,27 @@ public struct TCTioneError: TCTioneErrorType {
     /// 实例启动失败。
     public static var failedOperation_Timedout: TCTioneError {
         TCTioneError(.failedOperation_Timedout)
+    }
+
+    /// 解绑标签失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_UnBindingTagsFailed: TCTioneError {
+        TCTioneError(.failedOperation_UnBindingTagsFailed)
+    }
+
+    /// 当前任务后台提交重试中，不允许操作停止，请稍后再试。
+    ///
+    /// 请稍后再试
+    public static var failedOperation_UnSubmitNotAllowToStop: TCTioneError {
+        TCTioneError(.failedOperation_UnSubmitNotAllowToStop)
+    }
+
+    /// 解冻失败。
+    ///
+    /// 请稍后重试。
+    public static var failedOperation_UnfreezeBillFailed: TCTioneError {
+        TCTioneError(.failedOperation_UnfreezeBillFailed)
     }
 
     /// 未知的实例规格。
@@ -442,6 +559,18 @@ public struct TCTioneError: TCTioneErrorType {
     /// 内部错误。
     public static var internalError: TCTioneError {
         TCTioneError(.internalError)
+    }
+
+    public static var internalError_BindingTagsFailed: TCTioneError {
+        TCTioneError(.internalError_BindingTagsFailed)
+    }
+
+    public static var internalError_CreateJobInstanceFailed: TCTioneError {
+        TCTioneError(.internalError_CreateJobInstanceFailed)
+    }
+
+    public static var internalError_CreateTcrInstanceTokenFailed: TCTioneError {
+        TCTioneError(.internalError_CreateTcrInstanceTokenFailed)
     }
 
     /// 冻结失败。
@@ -487,9 +616,23 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.internalError_QueryResourceGroupFailed)
     }
 
+    /// 查询资源套餐规格失败
+    public static var internalError_QueryResourceSpecFailed: TCTioneError {
+        TCTioneError(.internalError_QueryResourceSpecFailed)
+    }
+
+    /// 查询子网信息失败。
+    public static var internalError_QuerySubnetInfoFailed: TCTioneError {
+        TCTioneError(.internalError_QuerySubnetInfoFailed)
+    }
+
     /// 停止任务失败。
     public static var internalError_StopJobInstanceFailed: TCTioneError {
         TCTioneError(.internalError_StopJobInstanceFailed)
+    }
+
+    public static var internalError_UnSubmittedStatusNotAllowStop: TCTioneError {
+        TCTioneError(.internalError_UnSubmittedStatusNotAllowStop)
     }
 
     /// 参数错误。
@@ -502,6 +645,11 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.invalidParameterValue)
     }
 
+    /// AI市场公共算法版本Id不存在
+    public static var invalidParameterValue_AIMarketPublicAlgoVersionNotExist: TCTioneError {
+        TCTioneError(.invalidParameterValue_AIMarketPublicAlgoVersionNotExist)
+    }
+
     /// 名称不合法。
     public static var invalidParameterValue_BadName: TCTioneError {
         TCTioneError(.invalidParameterValue_BadName)
@@ -510,6 +658,13 @@ public struct TCTioneError: TCTioneErrorType {
     /// 请设置日志集、日志主题ID。
     public static var invalidParameterValue_ClsConfigRequired: TCTioneError {
         TCTioneError(.invalidParameterValue_ClsConfigRequired)
+    }
+
+    /// 存储库重复配置，请移除重复的存储库配置后重试。
+    ///
+    /// 请移除重复的存储库配置后重试
+    public static var invalidParameterValue_CodeRepoDuplicated: TCTioneError {
+        TCTioneError(.invalidParameterValue_CodeRepoDuplicated)
     }
 
     /// 存储库不存在。
@@ -569,6 +724,10 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.invalidParameterValue_FrameworkVersionNotSupport)
     }
 
+    public static var invalidParameterValue_GetCFSMountIPFailed: TCTioneError {
+        TCTioneError(.invalidParameterValue_GetCFSMountIPFailed)
+    }
+
     /// 训练任务镜像不存在。
     public static var invalidParameterValue_ImageNotFound: TCTioneError {
         TCTioneError(.invalidParameterValue_ImageNotFound)
@@ -581,6 +740,13 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.invalidParameterValue_InvalidFilter)
     }
 
+    /// 生命周期脚本无效。
+    ///
+    /// 请选择正确的生命周期脚本。
+    public static var invalidParameterValue_LifecycleNotFound: TCTioneError {
+        TCTioneError(.invalidParameterValue_LifecycleNotFound)
+    }
+
     /// 参数值数量超过限制。
     ///
     /// 减少参数值数量
@@ -591,6 +757,50 @@ public struct TCTioneError: TCTioneErrorType {
     /// 操作不允许。
     public static var invalidParameterValue_NotAllow: TCTioneError {
         TCTioneError(.invalidParameterValue_NotAllow)
+    }
+
+    public static var invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup: TCTioneError {
+        TCTioneError(.invalidParameterValue_NotAllowedToCreateNotebookWithBareMetalResourceGroup)
+    }
+
+    public static var invalidParameterValue_PageLimitExceeded: TCTioneError {
+        TCTioneError(.invalidParameterValue_PageLimitExceeded)
+    }
+
+    public static var invalidParameterValue_RDMAConfigIllegal: TCTioneError {
+        TCTioneError(.invalidParameterValue_RDMAConfigIllegal)
+    }
+
+    /// 资源配置不合法
+    public static var invalidParameterValue_ResourceConfigIllegal: TCTioneError {
+        TCTioneError(.invalidParameterValue_ResourceConfigIllegal)
+    }
+
+    /// 子网不存在。
+    public static var invalidParameterValue_SubnetNotFound: TCTioneError {
+        TCTioneError(.invalidParameterValue_SubnetNotFound)
+    }
+
+    /// 未找到当前日志主题。
+    public static var invalidParameterValue_TopicNotFound: TCTioneError {
+        TCTioneError(.invalidParameterValue_TopicNotFound)
+    }
+
+    /// 裸金属类型资源组不支持配置输入数据
+    public static var invalidParameterValue_UnsupportedDataConfig: TCTioneError {
+        TCTioneError(.invalidParameterValue_UnsupportedDataConfig)
+    }
+
+    /// Notebook卷大小只能增加，如需减小容量请重新创建实例。
+    public static var invalidParameterValue_VolumeShrinkNotAllow: TCTioneError {
+        TCTioneError(.invalidParameterValue_VolumeShrinkNotAllow)
+    }
+
+    /// 接口过滤条件"运行状态"与"计费状态"不能同时存在。
+    ///
+    /// 请移除"运行状态"与"计费状态"其中一个过滤条件。
+    public static var invalidParameter_FilterKeyStatusConflictWithChargeStatus: TCTioneError {
+        TCTioneError(.invalidParameter_FilterKeyStatusConflictWithChargeStatus)
     }
 
     /// 模型包不符合规范。
@@ -639,9 +849,18 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.operationDenied_BalanceInsufficient)
     }
 
-    /// 后付费资源售罄。
+    public static var operationDenied_BillingException: TCTioneError {
+        TCTioneError(.operationDenied_BillingException)
+    }
+
+    /// 按量计费资源售罄。
     public static var operationDenied_BillingStatusResourceInsufficient: TCTioneError {
         TCTioneError(.operationDenied_BillingStatusResourceInsufficient)
+    }
+
+    /// IP不合法。
+    public static var operationDenied_IpIllegal: TCTioneError {
+        TCTioneError(.operationDenied_IpIllegal)
     }
 
     /// 觅影资源包余额不足，请先充值。
@@ -654,9 +873,22 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.operationDenied_NetworkCidrIllegal)
     }
 
+    public static var operationDenied_NotAllow: TCTioneError {
+        TCTioneError(.operationDenied_NotAllow)
+    }
+
+    public static var operationDenied_NotSupportSaveImage: TCTioneError {
+        TCTioneError(.operationDenied_NotSupportSaveImage)
+    }
+
     /// 预付费资源组余量不足。
     public static var operationDenied_ResourceGroupInsufficient: TCTioneError {
         TCTioneError(.operationDenied_ResourceGroupInsufficient)
+    }
+
+    /// 子网不合法。
+    public static var operationDenied_SubnetIllegal: TCTioneError {
+        TCTioneError(.operationDenied_SubnetIllegal)
     }
 
     /// 白名单免费配额不足。
@@ -701,7 +933,7 @@ public struct TCTioneError: TCTioneErrorType {
         TCTioneError(.unauthorizedOperation)
     }
 
-    /// 资源不属于当前登陆用户主账号，无权限访问。
+    /// 资源不属于当前登录用户主账号，无权限访问。
     ///
     /// 请确认资源ID是否正确，或者切换账号进行访问。
     public static var unauthorizedOperation_NoPermission: TCTioneError {

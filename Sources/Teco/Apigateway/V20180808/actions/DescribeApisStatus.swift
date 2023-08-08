@@ -60,7 +60,7 @@ extension Apigateway {
     /// DescribeApisStatus返回参数结构体
     public struct DescribeApisStatusResponse: TCPaginatedResponse {
         /// API 详情列表。
-        public let result: ApisStatus
+        public let result: DescribeApisStatusResultInfo
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -71,7 +71,7 @@ extension Apigateway {
         }
 
         /// Extract the returned item list from the paginated response.
-        public func getItems() -> [DesApisStatus] {
+        public func getItems() -> [DescribeApisStatusResultApiIdStatusSetInfo] {
             self.result.apiIdStatusSet
         }
 
@@ -117,7 +117,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     @inlinable
-    public func describeApisStatusPaginated(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DesApisStatus])> {
+    public func describeApisStatusPaginated(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DescribeApisStatusResultApiIdStatusSetInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
     }
 
@@ -133,7 +133,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DesApisStatus` and `DescribeApisStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of `DescribeApisStatusResultApiIdStatusSetInfo` and `DescribeApisStatusResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApisStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)

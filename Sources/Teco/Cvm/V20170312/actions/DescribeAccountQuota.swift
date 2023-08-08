@@ -39,7 +39,7 @@ extension Cvm {
     /// DescribeAccountQuota返回参数结构体
     public struct DescribeAccountQuotaResponse: TCResponseModel {
         /// 用户appid
-        public let appId: String
+        public let appId: UInt64
 
         /// 配额数据
         public let accountQuotaOverview: AccountQuotaOverview

@@ -25,10 +25,10 @@ extension Cynosdb {
         /// 数据库引擎版本号
         public let engineVersions: [String]?
 
-        /// 模版名称
+        /// 模板名称
         public let templateNames: [String]?
 
-        /// 模版ID
+        /// 模板ID
         public let templateIds: [Int64]?
 
         /// 数据库类型，可选值：NORMAL，SERVERLESS
@@ -43,7 +43,7 @@ extension Cynosdb {
         /// 查询的模板对应的产品类型
         public let products: [String]?
 
-        /// 模版类型
+        /// 模板类型
         public let templateTypes: [String]?
 
         /// 版本类型

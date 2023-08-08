@@ -1773,10 +1773,10 @@ extension Pts {
     /// 场景列表
     public struct Scenario: TCOutputModel {
         /// 场景ID
-        public let scenarioId: String?
+        public let scenarioId: String
 
         /// 场景名
-        public let name: String?
+        public let name: String
 
         /// 场景描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1819,10 +1819,10 @@ extension Pts {
         public let cronId: String?
 
         /// 场景创建时间
-        public let createdAt: String?
+        public let createdAt: String
 
         /// 场景修改时间
-        public let updatedAt: String?
+        public let updatedAt: String
 
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -49,11 +49,13 @@ extension TCPostgresError {
             case masterInstanceQueryError = "FailedOperation.MasterInstanceQueryError"
             case modifyROGroupError = "FailedOperation.ModifyROGroupError"
             case networkNumLimitError = "FailedOperation.NetworkNumLimitError"
+            case noAvailableStandby = "FailedOperation.NoAvailableStandby"
             case operateFrequencyLimitedError = "FailedOperation.OperateFrequencyLimitedError"
             case ossAccessError = "FailedOperation.OssAccessError"
             case ossOperationFailed = "FailedOperation.OssOperationFailed"
             case payOrderFailed = "FailedOperation.PayOrderFailed"
             case postPaidUnblockError = "FailedOperation.PostPaidUnblockError"
+            case preCheckError = "FailedOperation.PreCheckError"
             case presignedURLGetError = "FailedOperation.PresignedURLGetError"
             case queryDealFailed = "FailedOperation.QueryDealFailed"
             case queryInstanceBatchError = "FailedOperation.QueryInstanceBatchError"
@@ -259,6 +261,10 @@ extension TCPostgresError {
             FailedOperation(.networkNumLimitError)
         }
 
+        public static var noAvailableStandby: FailedOperation {
+            FailedOperation(.noAvailableStandby)
+        }
+
         /// 操作超过频率限制，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var operateFrequencyLimitedError: FailedOperation {
             FailedOperation(.operateFrequencyLimitedError)
@@ -282,6 +288,11 @@ extension TCPostgresError {
         /// 按量计费实例账户解冻结失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var postPaidUnblockError: FailedOperation {
             FailedOperation(.postPaidUnblockError)
+        }
+
+        /// 接口会同时返回Message来解释报错原因。
+        public static var preCheckError: FailedOperation {
+            FailedOperation(.preCheckError)
         }
 
         /// 获取预签名授权URL错误。
@@ -492,6 +503,8 @@ extension TCPostgresError {
                 code = .failedOperation_ModifyROGroupError
             case .networkNumLimitError:
                 code = .failedOperation_NetworkNumLimitError
+            case .noAvailableStandby:
+                code = .failedOperation_NoAvailableStandby
             case .operateFrequencyLimitedError:
                 code = .failedOperation_OperateFrequencyLimitedError
             case .ossAccessError:
@@ -502,6 +515,8 @@ extension TCPostgresError {
                 code = .failedOperation_PayOrderFailed
             case .postPaidUnblockError:
                 code = .failedOperation_PostPaidUnblockError
+            case .preCheckError:
+                code = .failedOperation_PreCheckError
             case .presignedURLGetError:
                 code = .failedOperation_PresignedURLGetError
             case .queryDealFailed:

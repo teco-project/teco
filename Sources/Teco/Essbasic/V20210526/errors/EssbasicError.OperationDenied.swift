@@ -30,15 +30,19 @@ extension TCEssbasicError {
             case forbid = "OperationDenied.Forbid"
             case invalidApproverAge = "OperationDenied.InvalidApproverAge"
             case noApiAuth = "OperationDenied.NoApiAuth"
+            case noApproverMobileCheckPermission = "OperationDenied.NoApproverMobileCheckPermission"
             case noFlowPermission = "OperationDenied.NoFlowPermission"
             case noIdentityVerify = "OperationDenied.NoIdentityVerify"
+            case noPermissionUseResource = "OperationDenied.NoPermissionUseResource"
             case noQuota = "OperationDenied.NoQuota"
             case notBelongSuperAdminOrLegalPerson = "OperationDenied.NotBelongSuperAdminOrLegalPerson"
             case operateType = "OperationDenied.OperateType"
             case operatorHasNoPermission = "OperationDenied.OperatorHasNoPermission"
             case outQueryLimit = "OperationDenied.OutQueryLimit"
             case overseaAbilityNotOpen = "OperationDenied.OverseaAbilityNotOpen"
+            case personNoOpenServerSign = "OperationDenied.PersonNoOpenServerSign"
             case proveNoQuota = "OperationDenied.ProveNoQuota"
+            case requiredComponentNotFill = "OperationDenied.RequiredComponentNotFill"
             case userNotInOrganization = "OperationDenied.UserNotInOrganization"
             case whiteListForbid = "OperationDenied.WhiteListForbid"
             case other = "OperationDenied"
@@ -127,6 +131,11 @@ extension TCEssbasicError {
             OperationDenied(.noApiAuth)
         }
 
+        /// 企业暂未开通手机号验证身份的服务，请在企业中心开通再使用
+        public static var noApproverMobileCheckPermission: OperationDenied {
+            OperationDenied(.noApproverMobileCheckPermission)
+        }
+
         /// 无权操作合同。
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
@@ -137,6 +146,10 @@ extension TCEssbasicError {
         /// 请检查证件信息是否正确、人脸是否匹配。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var noIdentityVerify: OperationDenied {
             OperationDenied(.noIdentityVerify)
+        }
+
+        public static var noPermissionUseResource: OperationDenied {
+            OperationDenied(.noPermissionUseResource)
         }
 
         /// 流程配额不足。
@@ -175,9 +188,18 @@ extension TCEssbasicError {
             OperationDenied(.overseaAbilityNotOpen)
         }
 
+        public static var personNoOpenServerSign: OperationDenied {
+            OperationDenied(.personNoOpenServerSign)
+        }
+
         /// 出证计费额度不足。
         public static var proveNoQuota: OperationDenied {
             OperationDenied(.proveNoQuota)
+        }
+
+        /// 必填控件未填
+        public static var requiredComponentNotFill: OperationDenied {
+            OperationDenied(.requiredComponentNotFill)
         }
 
         /// 用户不归属于当前企业，无法操作，请检查后重试。
@@ -222,10 +244,14 @@ extension TCEssbasicError {
                 code = .operationDenied_InvalidApproverAge
             case .noApiAuth:
                 code = .operationDenied_NoApiAuth
+            case .noApproverMobileCheckPermission:
+                code = .operationDenied_NoApproverMobileCheckPermission
             case .noFlowPermission:
                 code = .operationDenied_NoFlowPermission
             case .noIdentityVerify:
                 code = .operationDenied_NoIdentityVerify
+            case .noPermissionUseResource:
+                code = .operationDenied_NoPermissionUseResource
             case .noQuota:
                 code = .operationDenied_NoQuota
             case .notBelongSuperAdminOrLegalPerson:
@@ -238,8 +264,12 @@ extension TCEssbasicError {
                 code = .operationDenied_OutQueryLimit
             case .overseaAbilityNotOpen:
                 code = .operationDenied_OverseaAbilityNotOpen
+            case .personNoOpenServerSign:
+                code = .operationDenied_PersonNoOpenServerSign
             case .proveNoQuota:
                 code = .operationDenied_ProveNoQuota
+            case .requiredComponentNotFill:
+                code = .operationDenied_RequiredComponentNotFill
             case .userNotInOrganization:
                 code = .operationDenied_UserNotInOrganization
             case .whiteListForbid:

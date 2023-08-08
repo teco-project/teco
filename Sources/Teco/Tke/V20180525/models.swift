@@ -19,6 +19,35 @@ import TecoCore
 import TecoDateHelpers
 
 extension Tke {
+    /// addon的具体描述
+    public struct Addon: TCOutputModel {
+        /// addon名称
+        public let addonName: String?
+
+        /// addon的版本
+        public let addonVersion: String?
+
+        /// addon的参数，是一个json格式的base64转码后的字符串
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rawValues: String?
+
+        /// addon的状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phase: String?
+
+        /// addon失败的原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case addonName = "AddonName"
+            case addonVersion = "AddonVersion"
+            case rawValues = "RawValues"
+            case phase = "Phase"
+            case reason = "Reason"
+        }
+    }
+
     /// app所支持的chart
     public struct AppChart: TCOutputModel {
         /// chart名称
@@ -58,7 +87,7 @@ extension Tke {
     }
 
     /// 自动变配集群等级
-    public struct AutoUpgradeClusterLevel: TCInputModel {
+    public struct AutoUpgradeClusterLevel: TCInputModel, TCOutputModel {
         /// 是否开启自动变配集群等级
         public let isAutoUpgrade: Bool
 
@@ -90,6 +119,50 @@ extension Tke {
             case initializing = "Initializing"
             case normal = "Normal"
             case total = "Total"
+        }
+    }
+
+    /// 仓储仓库信息
+    public struct BackupStorageLocation: TCOutputModel {
+        /// 备份仓库名称
+        public let name: String?
+
+        /// 存储仓库所属地域，比如COS广州(ap-guangzhou)
+        public let storageRegion: String?
+
+        /// 存储服务提供方，默认腾讯云
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let provider: String?
+
+        /// 对象存储桶名称，如果是COS必须是tke-backup-前缀开头
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bucket: String?
+
+        /// 对象存储桶路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// 存储仓库状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 详细状态信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
+        /// 最后一次检查时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastValidationTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case storageRegion = "StorageRegion"
+            case provider = "Provider"
+            case bucket = "Bucket"
+            case path = "Path"
+            case state = "State"
+            case message = "Message"
+            case lastValidationTime = "LastValidationTime"
         }
     }
 
@@ -440,7 +513,7 @@ extension Tke {
     }
 
     /// 集群弹性伸缩配置
-    public struct ClusterAsGroupOption: TCOutputModel {
+    public struct ClusterAsGroupOption: TCInputModel, TCOutputModel {
         /// 是否开启缩容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isScaleDownEnabled: Bool?
@@ -465,11 +538,11 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scaleDownUtilizationThreshold: Int64?
 
-        /// 含有本地存储Pod的节点是否不缩容(默认： FALSE)
+        /// 含有本地存储Pod的节点是否不缩容(默认： true)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skipNodesWithLocalStorage: Bool?
 
-        /// 含有kube-system namespace下非DaemonSet管理的Pod的节点是否不缩容 (默认： FALSE)
+        /// 含有kube-system namespace下非DaemonSet管理的Pod的节点是否不缩容 (默认： true)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skipNodesWithSystemPods: Bool?
 
@@ -492,6 +565,22 @@ extension Tke {
         /// CA删除未在Kubernetes中注册的节点之前等待的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unregisteredNodeRemovalTime: Int64?
+
+        public init(isScaleDownEnabled: Bool? = nil, expander: String? = nil, maxEmptyBulkDelete: Int64? = nil, scaleDownDelay: Int64? = nil, scaleDownUnneededTime: Int64? = nil, scaleDownUtilizationThreshold: Int64? = nil, skipNodesWithLocalStorage: Bool? = nil, skipNodesWithSystemPods: Bool? = nil, ignoreDaemonSetsUtilization: Bool? = nil, okTotalUnreadyCount: Int64? = nil, maxTotalUnreadyPercentage: Int64? = nil, scaleDownUnreadyTime: Int64? = nil, unregisteredNodeRemovalTime: Int64? = nil) {
+            self.isScaleDownEnabled = isScaleDownEnabled
+            self.expander = expander
+            self.maxEmptyBulkDelete = maxEmptyBulkDelete
+            self.scaleDownDelay = scaleDownDelay
+            self.scaleDownUnneededTime = scaleDownUnneededTime
+            self.scaleDownUtilizationThreshold = scaleDownUtilizationThreshold
+            self.skipNodesWithLocalStorage = skipNodesWithLocalStorage
+            self.skipNodesWithSystemPods = skipNodesWithSystemPods
+            self.ignoreDaemonSetsUtilization = ignoreDaemonSetsUtilization
+            self.okTotalUnreadyCount = okTotalUnreadyCount
+            self.maxTotalUnreadyPercentage = maxTotalUnreadyPercentage
+            self.scaleDownUnreadyTime = scaleDownUnreadyTime
+            self.unregisteredNodeRemovalTime = unregisteredNodeRemovalTime
+        }
 
         enum CodingKeys: String, CodingKey {
             case isScaleDownEnabled = "IsScaleDownEnabled"
@@ -756,6 +845,9 @@ extension Tke {
         /// Configmap数量
         public let configMapCount: UInt64
 
+        /// ReplicaSets数量
+        public let rsCount: UInt64?
+
         /// CRD数量
         public let crdCount: UInt64
 
@@ -772,6 +864,7 @@ extension Tke {
             case nodeCount = "NodeCount"
             case podCount = "PodCount"
             case configMapCount = "ConfigMapCount"
+            case rsCount = "RSCount"
             case crdCount = "CRDCount"
             case enable = "Enable"
             case otherCount = "OtherCount"
@@ -801,6 +894,9 @@ extension Tke {
         /// 变配触发类型：manual 手动,auto 自动
         public let triggerType: String
 
+        /// 创建时间
+        public let createdAt: String?
+
         /// 开始时间
         public let startedAt: String
 
@@ -815,6 +911,7 @@ extension Tke {
             case oldLevel = "OldLevel"
             case newLevel = "NewLevel"
             case triggerType = "TriggerType"
+            case createdAt = "CreatedAt"
             case startedAt = "StartedAt"
             case endedAt = "EndedAt"
         }
@@ -1216,7 +1313,7 @@ extension Tke {
     }
 
     /// 描述了k8s节点数据盘相关配置与信息。
-    public struct DataDisk: TCOutputModel {
+    public struct DataDisk: TCInputModel, TCOutputModel {
         /// 云盘类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
@@ -1240,6 +1337,15 @@ extension Tke {
         /// 挂载设备名或分区名，当且仅当添加已有节点时需要
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskPartition: String?
+
+        public init(diskType: String, fileSystem: String, diskSize: Int64, autoFormatAndMount: Bool, mountTarget: String, diskPartition: String) {
+            self.diskType = diskType
+            self.fileSystem = fileSystem
+            self.diskSize = diskSize
+            self.autoFormatAndMount = autoFormatAndMount
+            self.mountTarget = mountTarget
+            self.diskPartition = diskPartition
+        }
 
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
@@ -1489,7 +1595,15 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeType: String?
 
-        public init(clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil) {
+        /// 边缘集群组件的版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let edgeVersion: String?
+
+        /// 集群绑定的云标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tagSpecification: TagSpecification?
+
+        public init(clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, tagSpecification: TagSpecification? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1505,6 +1619,8 @@ extension Tke {
             self.level = level
             self.autoUpgradeClusterLevel = autoUpgradeClusterLevel
             self.chargeType = chargeType
+            self.edgeVersion = edgeVersion
+            self.tagSpecification = tagSpecification
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1523,6 +1639,8 @@ extension Tke {
             case level = "Level"
             case autoUpgradeClusterLevel = "AutoUpgradeClusterLevel"
             case chargeType = "ChargeType"
+            case edgeVersion = "EdgeVersion"
+            case tagSpecification = "TagSpecification"
         }
     }
 
@@ -2477,7 +2595,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desiredPodNumber: Int64?
 
-        /// GPU驱动相关参数
+        /// GPU驱动相关参数,相关的GPU参数获取:https://cloud.tencent.com/document/api/213/15715
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gpuArgs: GPUArgs?
 
@@ -2683,6 +2801,256 @@ extension Tke {
             case endAt = "EndAt"
             case checkResult = "CheckResult"
             case detail = "Detail"
+        }
+    }
+
+    /// kms加密参数
+    public struct KMSConfiguration: TCInputModel {
+        /// kms id
+        public let keyId: String?
+
+        /// kms 地域
+        public let kmsRegion: String?
+
+        public init(keyId: String? = nil, kmsRegion: String? = nil) {
+            self.keyId = keyId
+            self.kmsRegion = kmsRegion
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case keyId = "KeyId"
+            case kmsRegion = "KmsRegion"
+        }
+    }
+
+    /// 集群巡检诊断的默认目录类型
+    public struct KubeJarvisStateCatalogue: TCOutputModel {
+        /// 目录级别，支持参数：
+        /// first：一级目录
+        /// second：二级目录
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let catalogueLevel: String?
+
+        /// 目录名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let catalogueName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case catalogueLevel = "CatalogueLevel"
+            case catalogueName = "CatalogueName"
+        }
+    }
+
+    /// 集群巡检诊断结果
+    public struct KubeJarvisStateDiagnostic: TCOutputModel {
+        /// 诊断开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 诊断结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 诊断目录
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let catalogues: [KubeJarvisStateCatalogue]?
+
+        /// 诊断类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 诊断名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 诊断描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desc: String?
+
+        /// 诊断结果列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let results: [KubeJarvisStateResultsItem]?
+
+        /// 诊断结果统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statistics: [KubeJarvisStateStatistic]?
+
+        enum CodingKeys: String, CodingKey {
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case catalogues = "Catalogues"
+            case type = "Type"
+            case name = "Name"
+            case desc = "Desc"
+            case results = "Results"
+            case statistics = "Statistics"
+        }
+    }
+
+    /// 集群巡检诊断概览
+    public struct KubeJarvisStateDiagnosticOverview: TCOutputModel {
+        /// 诊断目录
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let catalogues: [KubeJarvisStateCatalogue]?
+
+        /// 诊断结果统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statistics: [KubeJarvisStateStatistic]?
+
+        enum CodingKeys: String, CodingKey {
+            case catalogues = "Catalogues"
+            case statistics = "Statistics"
+        }
+    }
+
+    /// 集群巡检检查结果概览
+    public struct KubeJarvisStateInspectionOverview: TCOutputModel {
+        /// 集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 诊断结果统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statistics: [KubeJarvisStateStatistic]?
+
+        /// 诊断结果详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diagnostics: [KubeJarvisStateDiagnosticOverview]?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case statistics = "Statistics"
+            case diagnostics = "Diagnostics"
+        }
+    }
+
+    /// 集群巡检检查结果
+    public struct KubeJarvisStateInspectionResult: TCOutputModel {
+        /// 集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 诊断开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: String?
+
+        /// 诊断结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: String?
+
+        /// 诊断结果统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statistics: [KubeJarvisStateStatistic]?
+
+        /// 诊断结果详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diagnostics: [KubeJarvisStateDiagnostic]?
+
+        /// 查询巡检报告相关报错
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let error: String?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case statistics = "Statistics"
+            case diagnostics = "Diagnostics"
+            case error = "Error"
+        }
+    }
+
+    /// 集群巡检结果历史列表
+    public struct KubeJarvisStateInspectionResultsItem: TCOutputModel {
+        /// 巡检结果名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 诊断结果统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statistics: [KubeJarvisStateStatistic]?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case statistics = "Statistics"
+        }
+    }
+
+    /// 集群巡检诊断对象信息
+    public struct KubeJarvisStateResultObjInfo: TCOutputModel {
+        /// 对象属性名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let propertyName: String?
+
+        /// 对象属性值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let propertyValue: String?
+
+        enum CodingKeys: String, CodingKey {
+            case propertyName = "PropertyName"
+            case propertyValue = "PropertyValue"
+        }
+    }
+
+    /// 集群巡检诊断结果详情信息
+    public struct KubeJarvisStateResultsItem: TCOutputModel {
+        /// 诊断结果级别
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let level: String?
+
+        /// 诊断对象名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let objName: String?
+
+        /// 诊断对象信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let objInfo: [KubeJarvisStateResultObjInfo]?
+
+        /// 诊断项标题
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let title: String?
+
+        /// 诊断项描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desc: String?
+
+        /// 诊断建议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proposal: String?
+
+        /// 诊断建议文档链接
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proposalDocUrl: String?
+
+        /// 诊断建议文档名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proposalDocName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case level = "Level"
+            case objName = "ObjName"
+            case objInfo = "ObjInfo"
+            case title = "Title"
+            case desc = "Desc"
+            case proposal = "Proposal"
+            case proposalDocUrl = "ProposalDocUrl"
+            case proposalDocName = "ProposalDocName"
+        }
+    }
+
+    /// 集群巡检统计结果
+    public struct KubeJarvisStateStatistic: TCOutputModel {
+        /// 诊断结果的健康水平
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let healthyLevel: String?
+
+        /// 诊断结果的统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case healthyLevel = "HealthyLevel"
+            case count = "Count"
         }
     }
 
@@ -5076,14 +5444,19 @@ extension Tke {
         /// 子网ID
         public let subnetId: String
 
-        public init(displayName: String, subnetId: String) {
+        /// 腾讯云标签
+        public let tags: [Tag]?
+
+        public init(displayName: String, subnetId: String, tags: [Tag]? = nil) {
             self.displayName = displayName
             self.subnetId = subnetId
+            self.tags = tags
         }
 
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
             case subnetId = "SubnetId"
+            case tags = "Tags"
         }
     }
 

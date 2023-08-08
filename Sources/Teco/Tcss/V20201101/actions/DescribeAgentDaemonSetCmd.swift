@@ -36,12 +36,16 @@ extension Tcss {
         /// 命令有效期，非腾讯云时必填
         public let expireDate: String?
 
-        public init(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil) {
+        /// 集群自定义参数
+        public let clusterCustomParameters: [ClusterCustomParameters]?
+
+        public init(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, clusterCustomParameters: [ClusterCustomParameters]? = nil) {
             self.isCloud = isCloud
             self.netType = netType
             self.regionCode = regionCode
             self.vpcId = vpcId
             self.expireDate = expireDate
+            self.clusterCustomParameters = clusterCustomParameters
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +54,7 @@ extension Tcss {
             case regionCode = "RegionCode"
             case vpcId = "VpcId"
             case expireDate = "ExpireDate"
+            case clusterCustomParameters = "ClusterCustomParameters"
         }
     }
 
@@ -81,13 +86,13 @@ extension Tcss {
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
-        self.describeAgentDaemonSetCmd(.init(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
+    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, clusterCustomParameters: [ClusterCustomParameters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
+        self.describeAgentDaemonSetCmd(.init(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, clusterCustomParameters: clusterCustomParameters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
-        try await self.describeAgentDaemonSetCmd(.init(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
+    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, clusterCustomParameters: [ClusterCustomParameters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
+        try await self.describeAgentDaemonSetCmd(.init(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, clusterCustomParameters: clusterCustomParameters), region: region, logger: logger, on: eventLoop)
     }
 }

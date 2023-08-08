@@ -45,7 +45,7 @@ extension Billing {
 
     /// DescribeBillSummaryByPayMode返回参数结构体
     public struct DescribeBillSummaryByPayModeResponse: TCResponseModel {
-        /// 数据是否准备好，0未准备好，1准备好
+        /// 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         public let ready: UInt64
 
         /// 各付费模式花费分布详情
@@ -62,25 +62,25 @@ extension Billing {
         }
     }
 
-    /// 获取按付费模式汇总费用分布
+    /// 获取按计费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
         self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取按付费模式汇总费用分布
+    /// 获取按计费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
         try await self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取按付费模式汇总费用分布
+    /// 获取按计费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
         self.describeBillSummaryByPayMode(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取按付费模式汇总费用分布
+    /// 获取按计费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
         try await self.describeBillSummaryByPayMode(.init(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)

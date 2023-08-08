@@ -45,7 +45,10 @@ extension Mps {
         /// 语音关键词识别控制参数。
         public let asrWordsConfigure: AsrWordsConfigureInfoForUpdate?
 
-        public init(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil) {
+        /// 语音翻译控制参数。
+        public let translateConfigure: TranslateConfigureInfoForUpdate?
+
+        public init(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, translateConfigure: TranslateConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -54,6 +57,7 @@ extension Mps {
             self.ocrWordsConfigure = ocrWordsConfigure
             self.asrFullTextConfigure = asrFullTextConfigure
             self.asrWordsConfigure = asrWordsConfigure
+            self.translateConfigure = translateConfigure
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +69,7 @@ extension Mps {
             case ocrWordsConfigure = "OcrWordsConfigure"
             case asrFullTextConfigure = "AsrFullTextConfigure"
             case asrWordsConfigure = "AsrWordsConfigure"
+            case translateConfigure = "TranslateConfigure"
         }
     }
 
@@ -98,15 +103,15 @@ extension Mps {
     ///
     /// 修改用户自定义内容识别模板。
     @inlinable @discardableResult
-    public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
-        self.modifyAIRecognitionTemplate(.init(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
+    public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, translateConfigure: TranslateConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
+        self.modifyAIRecognitionTemplate(.init(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, translateConfigure: translateConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改内容识别模板
     ///
     /// 修改用户自定义内容识别模板。
     @inlinable @discardableResult
-    public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
-        try await self.modifyAIRecognitionTemplate(.init(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
+    public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, translateConfigure: TranslateConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
+        try await self.modifyAIRecognitionTemplate(.init(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, translateConfigure: translateConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

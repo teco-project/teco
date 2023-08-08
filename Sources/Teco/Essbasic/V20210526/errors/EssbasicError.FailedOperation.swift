@@ -24,6 +24,7 @@ extension TCEssbasicError {
             case existSameSealName = "FailedOperation.ExistSameSealName"
             case flowNumExceed = "FailedOperation.FlowNumExceed"
             case hasAuthorized = "FailedOperation.HasAuthorized"
+            case noRoleAuth = "FailedOperation.NoRoleAuth"
             case notAvailableSignReview = "FailedOperation.NotAvailableSignReview"
             case qrCodeCreatorSignComponents = "FailedOperation.QrCodeCreatorSignComponents"
             case qrCodeSignUsers = "FailedOperation.QrCodeSignUsers"
@@ -83,6 +84,10 @@ extension TCEssbasicError {
             FailedOperation(.hasAuthorized)
         }
 
+        public static var noRoleAuth: FailedOperation {
+            FailedOperation(.noRoleAuth)
+        }
+
         /// 当前合同状态无法进行签署审批。
         public static var notAvailableSignReview: FailedOperation {
             FailedOperation(.notAvailableSignReview)
@@ -134,6 +139,8 @@ extension TCEssbasicError {
                 code = .failedOperation_FlowNumExceed
             case .hasAuthorized:
                 code = .failedOperation_HasAuthorized
+            case .noRoleAuth:
+                code = .failedOperation_NoRoleAuth
             case .notAvailableSignReview:
                 code = .failedOperation_NotAvailableSignReview
             case .qrCodeCreatorSignComponents:

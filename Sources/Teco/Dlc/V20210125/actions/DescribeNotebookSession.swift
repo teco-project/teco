@@ -47,33 +47,33 @@ extension Dlc {
         }
     }
 
-    /// 获取notebook livy session详情信息
+    /// 查询交互式 session详情信息
     ///
-    /// 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+    /// 本接口（DescribeNotebookSession）用于查询交互式 session详情信息
     @inlinable
     public func describeNotebookSession(_ input: DescribeNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionResponse> {
         self.client.execute(action: "DescribeNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session详情信息
+    /// 查询交互式 session详情信息
     ///
-    /// 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+    /// 本接口（DescribeNotebookSession）用于查询交互式 session详情信息
     @inlinable
     public func describeNotebookSession(_ input: DescribeNotebookSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionResponse {
         try await self.client.execute(action: "DescribeNotebookSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取notebook livy session详情信息
+    /// 查询交互式 session详情信息
     ///
-    /// 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+    /// 本接口（DescribeNotebookSession）用于查询交互式 session详情信息
     @inlinable
     public func describeNotebookSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookSessionResponse> {
         self.describeNotebookSession(.init(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取notebook livy session详情信息
+    /// 查询交互式 session详情信息
     ///
-    /// 本接口（DescribeNotebookSession）用于获取notebook livy session详情信息
+    /// 本接口（DescribeNotebookSession）用于查询交互式 session详情信息
     @inlinable
     public func describeNotebookSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSessionResponse {
         try await self.describeNotebookSession(.init(sessionId: sessionId), region: region, logger: logger, on: eventLoop)

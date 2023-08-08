@@ -43,7 +43,10 @@ extension Facefusion {
         /// 图片Url地址
         public let url: String?
 
-        public init(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil) {
+        /// 融合参数
+        public let fuseParam: FuseParam?
+
+        public init(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, fuseParam: FuseParam? = nil) {
             self.projectId = projectId
             self.modelId = modelId
             self.rspImgType = rspImgType
@@ -51,6 +54,7 @@ extension Facefusion {
             self.pornDetect = pornDetect
             self.celebrityIdentify = celebrityIdentify
             self.url = url
+            self.fuseParam = fuseParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Facefusion {
             case pornDetect = "PornDetect"
             case celebrityIdentify = "CelebrityIdentify"
             case url = "Url"
+            case fuseParam = "FuseParam"
         }
     }
 
@@ -108,8 +113,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionResponse> {
-        self.faceFusion(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url), region: region, logger: logger, on: eventLoop)
+    public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionResponse> {
+        self.faceFusion(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸融合
@@ -118,7 +123,7 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionResponse {
-        try await self.faceFusion(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url), region: region, logger: logger, on: eventLoop)
+    public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionResponse {
+        try await self.faceFusion(.init(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url, fuseParam: fuseParam), region: region, logger: logger, on: eventLoop)
     }
 }

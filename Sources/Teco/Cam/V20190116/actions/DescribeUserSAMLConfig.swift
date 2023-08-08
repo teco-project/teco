@@ -33,12 +33,16 @@ extension Cam {
         /// 状态：0:未设置，1:已开启，2:已禁用
         public let status: UInt64
 
+        /// 辅助域名
+        public let auxiliaryDomain: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case samlMetadata = "SAMLMetadata"
             case status = "Status"
+            case auxiliaryDomain = "AuxiliaryDomain"
             case requestId = "RequestId"
         }
     }

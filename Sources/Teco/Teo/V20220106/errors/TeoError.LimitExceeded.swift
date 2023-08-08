@@ -21,7 +21,6 @@ extension TCTeoError {
         enum Code: String {
             case batchQuota = "LimitExceeded.BatchQuota"
             case dailyQuota = "LimitExceeded.DailyQuota"
-            case other = "LimitExceeded"
         }
 
         private let error: Code
@@ -56,11 +55,6 @@ extension TCTeoError {
             LimitExceeded(.dailyQuota)
         }
 
-        /// 超过配额限制。
-        public static var other: LimitExceeded {
-            LimitExceeded(.other)
-        }
-
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {
@@ -68,8 +62,6 @@ extension TCTeoError {
                 code = .limitExceeded_BatchQuota
             case .dailyQuota:
                 code = .limitExceeded_DailyQuota
-            case .other:
-                code = .limitExceeded
             }
             return TCTeoError(code, context: self.context)
         }

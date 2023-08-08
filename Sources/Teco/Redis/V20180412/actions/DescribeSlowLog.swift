@@ -22,22 +22,22 @@ import TecoPaginationHelpers
 extension Redis {
     /// DescribeSlowLog请求参数结构体
     public struct DescribeSlowLogRequest: TCPaginatedRequest {
-        /// 实例Id。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 开始时间。
+        /// 预查询慢日志的起始时间。
         public let beginTime: String
 
-        /// 结束时间。
+        /// 预查询慢日志的结束时间。
         public let endTime: String
 
-        /// 慢查询平均执行时间阈值（单位：毫秒）。
+        /// 慢查询平均执行时间阈值，单位：毫秒。
         public let minQueryTime: Int64?
 
-        /// 每个页面展示的慢查询条数，默认值为20。
+        /// 每个页面展示的慢查询条数，默认值为20。取值范围：[20,1000]。
         public let limit: Int64?
 
-        /// 慢查询条数的偏移量，取Limit整数倍。
+        /// 慢查询条数的偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: Int64?
 
         /// 节点所属角色。<ul><li>master：主节点。</li><li>slave：从节点。</li></ul>

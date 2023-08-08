@@ -64,32 +64,24 @@ extension Monitor {
     }
 
     /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
         self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
         self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds, hierarchicalNotices: hierarchicalNotices), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
         try await self.modifyAlarmPolicyNotice(.init(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds, hierarchicalNotices: hierarchicalNotices), region: region, logger: logger, on: eventLoop)

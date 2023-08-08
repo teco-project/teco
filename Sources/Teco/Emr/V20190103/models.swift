@@ -594,6 +594,27 @@ extension Emr {
         }
     }
 
+    /// 操作的进程范围
+    public struct ComponentBasicRestartInfo: TCInputModel, TCOutputModel {
+        /// 进程名，必填，如NameNode
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let componentName: String?
+
+        /// 操作的IP列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipList: [String]?
+
+        public init(componentName: String? = nil, ipList: [String]? = nil) {
+            self.componentName = componentName
+            self.ipList = ipList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case componentName = "ComponentName"
+            case ipList = "IpList"
+        }
+    }
+
     /// 自定义配置参数
     public struct Configuration: TCInputModel, TCOutputModel {
         /// 配置文件名，支持SPARK、HIVE、HDFS、YARN的部分配置文件自定义。
@@ -1175,6 +1196,57 @@ extension Emr {
         }
     }
 
+    /// Hive查询详情
+    public struct HiveQuery: TCOutputModel {
+        /// 查询语句
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statement: String?
+
+        /// 执行时长
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: String?
+
+        /// 开始时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: Int64?
+
+        /// 结束时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: Int64?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 用户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// appId列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let jobIds: [String]?
+
+        /// 执行引擎
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let executionEngine: String?
+
+        /// 查询ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        enum CodingKeys: String, CodingKey {
+            case statement = "Statement"
+            case duration = "Duration"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case state = "State"
+            case user = "User"
+            case jobIds = "JobIds"
+            case executionEngine = "ExecutionEngine"
+            case id = "Id"
+        }
+    }
+
     /// Pod HostPath挂载方式描述
     public struct HostVolumeContext: TCInputModel, TCOutputModel {
         /// Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
@@ -1187,6 +1259,122 @@ extension Emr {
 
         enum CodingKeys: String, CodingKey {
             case volumePath = "VolumePath"
+        }
+    }
+
+    /// Impala查询详情
+    public struct ImpalaQuery: TCOutputModel {
+        /// 执行语句
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statement: String?
+
+        /// 查询ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: Int64?
+
+        /// 运行时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: String?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: Int64?
+
+        /// 执行状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 获取行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rowsFetched: Int64?
+
+        /// 用户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 默认DB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultDB: String?
+
+        /// 执行的Coordinator节点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coordinator: String?
+
+        /// 单节点内存峰值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxNodePeakMemoryUsage: String?
+
+        /// 查询类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queryType: String?
+
+        /// 扫描的HDFS行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanHDFSRows: Int64?
+
+        /// 扫描的Kudu行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanKUDURows: Int64?
+
+        /// 扫描的总行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scanRowsTotal: Int64?
+
+        /// 读取的总字节数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalBytesRead: Int64?
+
+        /// 发送的总字节数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalBytesSent: Int64?
+
+        /// CPU总时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCpuTime: Int64?
+
+        /// 内部数据发送总量(Bytes)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalInnerBytesSent: Int64?
+
+        /// 内部扫描数据发送总量(Bytes)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalScanBytesSent: Int64?
+
+        /// 预估单节点内存
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let estimatedPerHostMemBytes: Int64?
+
+        /// 从缓存中获取的数据行数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numRowsFetchedFromCache: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case statement = "Statement"
+            case id = "Id"
+            case startTime = "StartTime"
+            case duration = "Duration"
+            case endTime = "EndTime"
+            case state = "State"
+            case rowsFetched = "RowsFetched"
+            case user = "User"
+            case defaultDB = "DefaultDB"
+            case coordinator = "Coordinator"
+            case maxNodePeakMemoryUsage = "MaxNodePeakMemoryUsage"
+            case queryType = "QueryType"
+            case scanHDFSRows = "ScanHDFSRows"
+            case scanKUDURows = "ScanKUDURows"
+            case scanRowsTotal = "ScanRowsTotal"
+            case totalBytesRead = "TotalBytesRead"
+            case totalBytesSent = "TotalBytesSent"
+            case totalCpuTime = "TotalCpuTime"
+            case totalInnerBytesSent = "TotalInnerBytesSent"
+            case totalScanBytesSent = "TotalScanBytesSent"
+            case estimatedPerHostMemBytes = "EstimatedPerHostMemBytes"
+            case numRowsFetchedFromCache = "NumRowsFetchedFromCache"
         }
     }
 
@@ -1374,17 +1562,20 @@ extension Emr {
     }
 
     /// 多云盘参数
-    public struct MultiDisk: TCInputModel {
+    public struct MultiDisk: TCInputModel, TCOutputModel {
         /// 云盘类型
         /// <li>CLOUD_SSD：表示云SSD。</li>
         /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
         /// <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
         /// 云盘大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volume: Int64?
 
         /// 该类型云盘个数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: Int64?
 
         public init(diskType: String? = nil, volume: Int64? = nil, count: Int64? = nil) {
@@ -1724,6 +1915,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tradeVersion: Int64?
 
+        /// 各组件状态，Zookeeper:STARTED,ResourceManager:STARTED，STARTED已启动，STOPED已停止
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let servicesStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
             case serialNo = "SerialNo"
@@ -1775,6 +1970,7 @@ extension Emr {
             case serviceClient = "ServiceClient"
             case disableApiTermination = "DisableApiTermination"
             case tradeVersion = "TradeVersion"
+            case servicesStatus = "ServicesStatus"
         }
     }
 
@@ -1814,6 +2010,21 @@ extension Emr {
             case tags = "Tags"
             case dataDisk = "DataDisk"
             case localDataDisk = "LocalDataDisk"
+        }
+    }
+
+    /// 操作范围
+    public struct OpScope: TCInputModel, TCOutputModel {
+        /// 操作范围，要操作的服务信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceInfoList: [ServiceBasicRestartInfo]?
+
+        public init(serviceInfoList: [ServiceBasicRestartInfo]? = nil) {
+            self.serviceInfoList = serviceInfoList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceInfoList = "ServiceInfoList"
         }
     }
 
@@ -2902,6 +3113,25 @@ extension Emr {
         }
     }
 
+    /// 操作的服务范围
+    public struct ServiceBasicRestartInfo: TCInputModel, TCOutputModel {
+        /// 服务名，必填，如HDFS
+        public let serviceName: String?
+
+        /// 如果没传，则表示所有进程
+        public let componentInfoList: [ComponentBasicRestartInfo]?
+
+        public init(serviceName: String? = nil, componentInfoList: [ComponentBasicRestartInfo]? = nil) {
+            self.serviceName = serviceName
+            self.componentInfoList = componentInfoList
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceName = "ServiceName"
+            case componentInfoList = "ComponentInfoList"
+        }
+    }
+
     /// 节点信息
     public struct ShortNodeInfo: TCInputModel, TCOutputModel {
         /// 节点类型，Master/Core/Task/Router/Common
@@ -2965,6 +3195,40 @@ extension Emr {
             case executionStep = "ExecutionStep"
             case actionOnFailure = "ActionOnFailure"
             case user = "User"
+        }
+    }
+
+    /// 重启/停止/启动服务/监控的配置
+    public struct StrategyConfig: TCInputModel, TCOutputModel {
+        /// 0:关闭滚动重启
+        /// 1:开启滚动启动
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rollingRestartSwitch: Int64?
+
+        /// 滚动重启每批次的重启数量，最大重启台数为 99999 台
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchSize: Int64?
+
+        /// 滚动重启每批停止等待时间 ,最大间隔为 5 分钟 单位是秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeWait: Int64?
+
+        /// 操作失败处理策略，0:失败阻塞, 1:失败自动跳过
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dealOnFail: Int64?
+
+        public init(rollingRestartSwitch: Int64? = nil, batchSize: Int64? = nil, timeWait: Int64? = nil, dealOnFail: Int64? = nil) {
+            self.rollingRestartSwitch = rollingRestartSwitch
+            self.batchSize = batchSize
+            self.timeWait = timeWait
+            self.dealOnFail = dealOnFail
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case rollingRestartSwitch = "RollingRestartSwitch"
+            case batchSize = "BatchSize"
+            case timeWait = "TimeWait"
+            case dealOnFail = "DealOnFail"
         }
     }
 
@@ -3067,6 +3331,27 @@ extension Emr {
             case cpuCores = "CPUCores"
             case resourceId = "ResourceId"
             case instanceType = "InstanceType"
+        }
+    }
+
+    /// 容器集群用户组信息
+    public struct UserAndGroup: TCInputModel, TCOutputModel {
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        /// 用户组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userGroup: String?
+
+        public init(userName: String, userGroup: String) {
+            self.userName = userName
+            self.userGroup = userGroup
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case userGroup = "UserGroup"
         }
     }
 
@@ -3181,6 +3466,257 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+        }
+    }
+
+    /// Yarn 运行的Application信息
+    public struct YarnApplication: TCOutputModel {
+        /// 应用ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 用户
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let user: String?
+
+        /// 应用名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 队列
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queue: String?
+
+        /// 应用类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let applicationType: String?
+
+        /// 运行时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elapsedTime: String?
+
+        /// 状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let state: String?
+
+        /// 最终状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finalStatus: String?
+
+        /// 进度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let progress: Int64?
+
+        /// 开始时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startedTime: Int64?
+
+        /// 结束时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishedTime: Int64?
+
+        /// 申请内存MB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allocatedMB: Int64?
+
+        /// 申请VCores
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allocatedVCores: Int64?
+
+        /// 运行的Containers数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runningContainers: Int64?
+
+        /// 内存MB*时间秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let memorySeconds: Int64?
+
+        /// VCores*时间秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vCoreSeconds: Int64?
+
+        /// 队列资源占比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queueUsagePercentage: Float?
+
+        /// 集群资源占比
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterUsagePercentage: Float?
+
+        /// 预占用的内存
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preemptedResourceMB: Int64?
+
+        /// 预占用的VCore
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preemptedResourceVCores: Int64?
+
+        /// 预占的非应用程序主节点容器数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numNonAMContainerPreempted: Int64?
+
+        /// AM预占用的容器数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numAMContainerPreempted: Int64?
+
+        /// Map总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mapsTotal: Int64?
+
+        /// 完成的Map数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mapsCompleted: Int64?
+
+        /// Reduce总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reducesTotal: Int64?
+
+        /// 完成的Reduce数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reducesCompleted: Int64?
+
+        /// 平均Map时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avgMapTime: Int64?
+
+        /// 平均Reduce时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avgReduceTime: Int64?
+
+        /// 平均Shuffle时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avgShuffleTime: Int64?
+
+        /// 平均Merge时间毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avgMergeTime: Int64?
+
+        /// 失败的Reduce执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failedReduceAttempts: Int64?
+
+        /// Kill的Reduce执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let killedReduceAttempts: Int64?
+
+        /// 成功的Reduce执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let successfulReduceAttempts: Int64?
+
+        /// 失败的Map执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failedMapAttempts: Int64?
+
+        /// Kill的Map执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let killedMapAttempts: Int64?
+
+        /// 成功的Map执行次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let successfulMapAttempts: Int64?
+
+        /// GC毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let gcTimeMillis: Int64?
+
+        /// Map使用的VCore毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vCoreMillisMaps: Int64?
+
+        /// Map使用的内存毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mbMillisMaps: Int64?
+
+        /// Reduce使用的VCore毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vCoreMillisReduces: Int64?
+
+        /// Reduce使用的内存毫秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mbMillisReduces: Int64?
+
+        /// 启动Map的总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalLaunchedMaps: Int64?
+
+        /// 启动Reduce的总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalLaunchedReduces: Int64?
+
+        /// Map输入记录数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mapInputRecords: Int64?
+
+        /// Map输出记录数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mapOutputRecords: Int64?
+
+        /// Reduce输入记录数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reduceInputRecords: Int64?
+
+        /// Reduce输出记录数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reduceOutputRecords: Int64?
+
+        /// HDFS写入字节数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hdfsBytesWritten: Int64?
+
+        /// HDFS读取字节数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hdfsBytesRead: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case id = "Id"
+            case user = "User"
+            case name = "Name"
+            case queue = "Queue"
+            case applicationType = "ApplicationType"
+            case elapsedTime = "ElapsedTime"
+            case state = "State"
+            case finalStatus = "FinalStatus"
+            case progress = "Progress"
+            case startedTime = "StartedTime"
+            case finishedTime = "FinishedTime"
+            case allocatedMB = "AllocatedMB"
+            case allocatedVCores = "AllocatedVCores"
+            case runningContainers = "RunningContainers"
+            case memorySeconds = "MemorySeconds"
+            case vCoreSeconds = "VCoreSeconds"
+            case queueUsagePercentage = "QueueUsagePercentage"
+            case clusterUsagePercentage = "ClusterUsagePercentage"
+            case preemptedResourceMB = "PreemptedResourceMB"
+            case preemptedResourceVCores = "PreemptedResourceVCores"
+            case numNonAMContainerPreempted = "NumNonAMContainerPreempted"
+            case numAMContainerPreempted = "NumAMContainerPreempted"
+            case mapsTotal = "MapsTotal"
+            case mapsCompleted = "MapsCompleted"
+            case reducesTotal = "ReducesTotal"
+            case reducesCompleted = "ReducesCompleted"
+            case avgMapTime = "AvgMapTime"
+            case avgReduceTime = "AvgReduceTime"
+            case avgShuffleTime = "AvgShuffleTime"
+            case avgMergeTime = "AvgMergeTime"
+            case failedReduceAttempts = "FailedReduceAttempts"
+            case killedReduceAttempts = "KilledReduceAttempts"
+            case successfulReduceAttempts = "SuccessfulReduceAttempts"
+            case failedMapAttempts = "FailedMapAttempts"
+            case killedMapAttempts = "KilledMapAttempts"
+            case successfulMapAttempts = "SuccessfulMapAttempts"
+            case gcTimeMillis = "GcTimeMillis"
+            case vCoreMillisMaps = "VCoreMillisMaps"
+            case mbMillisMaps = "MbMillisMaps"
+            case vCoreMillisReduces = "VCoreMillisReduces"
+            case mbMillisReduces = "MbMillisReduces"
+            case totalLaunchedMaps = "TotalLaunchedMaps"
+            case totalLaunchedReduces = "TotalLaunchedReduces"
+            case mapInputRecords = "MapInputRecords"
+            case mapOutputRecords = "MapOutputRecords"
+            case reduceInputRecords = "ReduceInputRecords"
+            case reduceOutputRecords = "ReduceOutputRecords"
+            case hdfsBytesWritten = "HDFSBytesWritten"
+            case hdfsBytesRead = "HDFSBytesRead"
         }
     }
 

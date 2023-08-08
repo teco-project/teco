@@ -20,6 +20,7 @@ extension TCLcicError {
     public struct InvalidParameter: TCLcicErrorType {
         enum Code: String {
             case content = "InvalidParameter.Content"
+            case cssOrJs = "InvalidParameter.CssOrJs"
             case endTime = "InvalidParameter.EndTime"
             case groupMemberOverLimit = "InvalidParameter.GroupMemberOverLimit"
             case groupParamInvalid = "InvalidParameter.GroupParamInvalid"
@@ -56,6 +57,11 @@ extension TCLcicError {
         /// 内容包含非法信息（如色情，恐暴，政治等）。
         public static var content: InvalidParameter {
             InvalidParameter(.content)
+        }
+
+        /// css/js地址无法访问
+        public static var cssOrJs: InvalidParameter {
+            InvalidParameter(.cssOrJs)
         }
 
         /// 结束时间不能早于开始时间。
@@ -116,6 +122,8 @@ extension TCLcicError {
             switch self.error {
             case .content:
                 code = .invalidParameter_Content
+            case .cssOrJs:
+                code = .invalidParameter_CssOrJs
             case .endTime:
                 code = .invalidParameter_EndTime
             case .groupMemberOverLimit:

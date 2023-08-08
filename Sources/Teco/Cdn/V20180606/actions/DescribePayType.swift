@@ -24,26 +24,35 @@ extension Cdn {
         /// 指定服务地域查询
         /// mainland：境内计费方式查询
         /// overseas：境外计费方式查询
-        /// 未填充时默认为 mainland
+        /// global：全球计费方式查询
+        /// 未填充时，默认为 mainland
         public let area: String?
 
         /// 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         public let product: String?
 
-        public init(area: String? = nil, product: String? = nil) {
+        /// 指定资源包查询
+        /// flux：流量包
+        /// https：HTTPS请求包
+        /// 未填充时，默认为 flux
+        public let type: String?
+
+        public init(area: String? = nil, product: String? = nil, type: String? = nil) {
             self.area = area
             self.product = product
+            self.type = type
         }
 
         enum CodingKeys: String, CodingKey {
             case area = "Area"
             case product = "Product"
+            case type = "Type"
         }
     }
 
     /// DescribePayType返回参数结构体
     public struct DescribePayTypeResponse: TCResponseModel {
-        /// 计费类型：
+        /// 计费类型
         /// flux：流量计费
         /// bandwidth：带宽计费
         /// request：请求数计费
@@ -52,12 +61,13 @@ extension Cdn {
         /// 日结计费方式切换时，若当日产生消耗，则此字段表示第二天即将生效的计费方式，若未产生消耗，则表示已经生效的计费方式。
         public let payType: String
 
-        /// 计费周期：
+        /// 计费周期
         /// day：日结计费
         /// month：月结计费
         /// hour：小时结计费
         public let billingCycle: String
 
+        /// 统计类型
         /// monthMax：日峰值月平均，月结模式
         /// day95：日 95 带宽，月结模式
         /// month95：月95带宽，月结模式
@@ -65,12 +75,12 @@ extension Cdn {
         /// max：峰值带宽，日结模式
         public let statType: String
 
-        /// 境外计费类型：
+        /// 计费区域
         /// all：全地区统一计费
         /// multiple：分地区计费
         public let regionType: String
 
-        /// 当前生效计费类型：
+        /// 当前生效计费类型
         /// flux：流量计费
         /// bandwidth：带宽计费
         /// request：请求数计费
@@ -111,15 +121,15 @@ extension Cdn {
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
-        self.describePayType(.init(area: area, product: product), region: region, logger: logger, on: eventLoop)
+    public func describePayType(area: String? = nil, product: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
+        self.describePayType(.init(area: area, product: product, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询计费方式
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
-        try await self.describePayType(.init(area: area, product: product), region: region, logger: logger, on: eventLoop)
+    public func describePayType(area: String? = nil, product: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
+        try await self.describePayType(.init(area: area, product: product, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

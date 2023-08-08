@@ -37,12 +37,16 @@ extension Sqlserver {
         /// 排序规则（desc-降序，asc-升序），默认desc
         public let orderByType: String?
 
-        public init(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil) {
+        /// 是否已开启TDE加密，enable-已加密，disable-未加密
+        public let encryption: String?
+
+        public init(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, encryption: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.limit = limit
             self.offset = offset
             self.name = name
             self.orderByType = orderByType
+            self.encryption = encryption
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Sqlserver {
             case offset = "Offset"
             case name = "Name"
             case orderByType = "OrderByType"
+            case encryption = "Encryption"
         }
 
         /// Compute the next request based on API response.
@@ -58,7 +63,7 @@ extension Sqlserver {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDBsRequest(instanceIdSet: self.instanceIdSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), name: self.name, orderByType: self.orderByType)
+            return DescribeDBsRequest(instanceIdSet: self.instanceIdSet, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), name: self.name, orderByType: self.orderByType, encryption: self.encryption)
         }
     }
 
@@ -110,16 +115,16 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
-        self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, encryption: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
+        self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
-        try await self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, encryption: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
+        try await self.describeDBs(.init(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表

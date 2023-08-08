@@ -45,7 +45,7 @@ extension TCTioneError {
             self.context = context
         }
 
-        /// 资源不属于当前登陆用户主账号，无权限访问。
+        /// 资源不属于当前登录用户主账号，无权限访问。
         ///
         /// 请确认资源ID是否正确，或者切换账号进行访问。
         public static var noPermission: UnauthorizedOperation {

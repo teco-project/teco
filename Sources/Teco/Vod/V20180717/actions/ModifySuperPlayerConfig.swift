@@ -50,7 +50,7 @@ extension Vod {
         /// 允许输出的雪碧图模板 ID。
         public let imageSpriteDefinition: UInt64?
 
-        /// 播放器对不于不同分辨率的子流展示名字。
+        /// 播放器对于不同分辨率的子流展示名字。
         public let resolutionNames: [ResolutionNameInfo]?
 
         /// 播放时使用的域名。填 Default 表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的域名。

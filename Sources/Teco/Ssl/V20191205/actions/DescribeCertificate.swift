@@ -163,6 +163,22 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tags]?
 
+        /// CA证书的所有加密方式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caEncryptAlgorithms: [String]?
+
+        /// CA证书的所有通用名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caCommonNames: [String]?
+
+        /// CA证书所有的到期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caEndTimes: [String]?
+
+        /// DV证书吊销验证值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dvRevokeAuthDetail: [DvAuths]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -199,6 +215,10 @@ extension Ssl {
             case submittedData = "SubmittedData"
             case deployable = "Deployable"
             case tags = "Tags"
+            case caEncryptAlgorithms = "CAEncryptAlgorithms"
+            case caCommonNames = "CACommonNames"
+            case caEndTimes = "CAEndTimes"
+            case dvRevokeAuthDetail = "DvRevokeAuthDetail"
             case requestId = "RequestId"
         }
     }

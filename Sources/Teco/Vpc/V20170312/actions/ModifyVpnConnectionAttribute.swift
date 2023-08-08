@@ -30,7 +30,7 @@ extension Vpc {
         /// 预共享密钥。
         public let preShareKey: String?
 
-        /// SPD策略组，例如：{"10.0.0.5/24":["172.123.10.5/16"]}，10.0.0.5/24是vpc内网段172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。
+        /// SPD策略组，例如：{"10.0.0.5/24":["172.123.10.5/16"]}，10.0.0.5/24是vpc内网段，172.123.10.5/16是IDC网段。用户指定VPC内哪些网段可以和您IDC中哪些网段通信。
         public let securityPolicyDatabases: [SecurityPolicyDatabase]?
 
         /// IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议。
@@ -39,13 +39,13 @@ extension Vpc {
         /// IPSec配置，腾讯云提供IPSec安全会话设置。
         public let ipsecOptionsSpecification: IPSECOptionsSpecification?
 
-        /// 是否启用通道健康检查
+        /// 是否启用通道健康检查，默认为False。
         public let enableHealthCheck: Bool?
 
-        /// 本端通道探测ip
+        /// 本端通道探测IP。
         public let healthCheckLocalIp: String?
 
-        /// 对端通道探测ip
+        /// 对端通道探测IP。
         public let healthCheckRemoteIp: String?
 
         /// 协商类型，默认为active（主动协商）。可选值：active（主动协商），passive（被动协商），flowTrigger（流量协商）
@@ -60,7 +60,10 @@ extension Vpc {
         /// DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
         public let dpdAction: String?
 
-        public init(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil) {
+        /// 对端网关ID，4.0及以上网关下的通道支持更新。
+        public let customerGatewayId: String?
+
+        public init(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, customerGatewayId: String? = nil) {
             self.vpnConnectionId = vpnConnectionId
             self.vpnConnectionName = vpnConnectionName
             self.preShareKey = preShareKey
@@ -74,6 +77,7 @@ extension Vpc {
             self.dpdEnable = dpdEnable
             self.dpdTimeout = dpdTimeout
             self.dpdAction = dpdAction
+            self.customerGatewayId = customerGatewayId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -90,6 +94,7 @@ extension Vpc {
             case dpdEnable = "DpdEnable"
             case dpdTimeout = "DpdTimeout"
             case dpdAction = "DpdAction"
+            case customerGatewayId = "CustomerGatewayId"
         }
     }
 
@@ -123,15 +128,15 @@ extension Vpc {
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable @discardableResult
-    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
-        self.modifyVpnConnectionAttribute(.init(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, customerGatewayId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
+        self.modifyVpnConnectionAttribute(.init(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction, customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable @discardableResult
-    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
-        try await self.modifyVpnConnectionAttribute(.init(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, customerGatewayId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.modifyVpnConnectionAttribute(.init(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction, customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

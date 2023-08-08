@@ -153,9 +153,11 @@ extension Trtc {
         public let bucket: String
 
         /// 第三方存储的access_key账号信息。
+        /// 若存储至腾讯云COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretId值。
         public let accessKey: String
 
         /// 第三方存储的secret_key账号信息。
+        /// 若存储至腾讯云COS，请前往https://console.cloud.tencent.com/cam/capi 查看或创建，对应链接中密钥字段的SecretKey值。
         public let secretKey: String
 
         /// 第三方云存储bucket 的指定位置，由字符串数组组成。合法的字符串范围a~z,A~Z,0~9,'_'和'-'，举个例子，录制文件xxx.m3u8在 ["prefix1", "prefix2"]作用下，会变成prefix1/prefix2/TaskId/xxx.m3u8。
@@ -346,7 +348,7 @@ extension Trtc {
         /// 水印参数。
         public let waterMarkParams: WaterMarkParams?
 
-        /// 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。若此参数不生效，请请提交工单寻求帮助。
+        /// 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。若此参数不生效，请提交工单寻求帮助。
         public let renderMode: UInt64?
 
         public init(template: UInt64? = nil, mainVideoUserId: String? = nil, mainVideoStreamType: UInt64? = nil, smallVideoLayoutParams: SmallVideoLayoutParams? = nil, mainVideoRightAlign: UInt64? = nil, mixVideoUids: [String]? = nil, presetLayoutConfig: [PresetLayoutConfig]? = nil, placeHolderMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, waterMarkParams: WaterMarkParams? = nil, renderMode: UInt64? = nil) {
@@ -496,7 +498,7 @@ extension Trtc {
         /// 子画面在输出时的层级，不填默认为0。
         public let zOrder: UInt64?
 
-        /// 子画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底。不填默认为0。
+        /// 子画面在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底。不填默认为0。
         public let renderMode: UInt64?
 
         /// 【此参数配置无效，暂不支持】子画面的背景颜色，常用的颜色有：
@@ -515,7 +517,10 @@ extension Trtc {
         /// 客户自定义裁剪，针对原始输入流裁剪
         public let customCrop: McuCustomCrop?
 
-        public init(userMediaStream: UserMediaStream? = nil, imageWidth: UInt64? = nil, imageHeight: UInt64? = nil, locationX: UInt64? = nil, locationY: UInt64? = nil, zOrder: UInt64? = nil, renderMode: UInt64? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, customCrop: McuCustomCrop? = nil) {
+        /// 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩。不填默认为3。
+        public let backgroundRenderMode: UInt64?
+
+        public init(userMediaStream: UserMediaStream? = nil, imageWidth: UInt64? = nil, imageHeight: UInt64? = nil, locationX: UInt64? = nil, locationY: UInt64? = nil, zOrder: UInt64? = nil, renderMode: UInt64? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, customCrop: McuCustomCrop? = nil, backgroundRenderMode: UInt64? = nil) {
             self.userMediaStream = userMediaStream
             self.imageWidth = imageWidth
             self.imageHeight = imageHeight
@@ -526,6 +531,7 @@ extension Trtc {
             self.backGroundColor = backGroundColor
             self.backgroundImageUrl = backgroundImageUrl
             self.customCrop = customCrop
+            self.backgroundRenderMode = backgroundRenderMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -539,6 +545,7 @@ extension Trtc {
             case backGroundColor = "BackGroundColor"
             case backgroundImageUrl = "BackgroundImageUrl"
             case customCrop = "CustomCrop"
+            case backgroundRenderMode = "BackgroundRenderMode"
         }
     }
 
@@ -716,12 +723,16 @@ extension Trtc {
         /// 混流布局的水印参数。
         public let waterMarkList: [McuWaterMarkParams]?
 
-        public init(videoEncode: VideoEncode? = nil, layoutParams: McuLayoutParams? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, waterMarkList: [McuWaterMarkParams]? = nil) {
+        /// 背景图在输出时的显示模式：0为裁剪，1为缩放并显示黑底，2为变比例伸缩。后台默认为变比例伸缩。
+        public let backgroundRenderMode: UInt64?
+
+        public init(videoEncode: VideoEncode? = nil, layoutParams: McuLayoutParams? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, waterMarkList: [McuWaterMarkParams]? = nil, backgroundRenderMode: UInt64? = nil) {
             self.videoEncode = videoEncode
             self.layoutParams = layoutParams
             self.backGroundColor = backGroundColor
             self.backgroundImageUrl = backgroundImageUrl
             self.waterMarkList = waterMarkList
+            self.backgroundRenderMode = backgroundRenderMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -730,6 +741,7 @@ extension Trtc {
             case backGroundColor = "BackGroundColor"
             case backgroundImageUrl = "BackgroundImageUrl"
             case waterMarkList = "WaterMarkList"
+            case backgroundRenderMode = "BackgroundRenderMode"
         }
     }
 
@@ -1059,7 +1071,7 @@ extension Trtc {
 
     /// MCU混流的输出参数
     public struct OutputParams: TCInputModel {
-        /// 直播流 ID，由用户自定义设置，该流 ID 不能与用户旁路的流 ID 相同。
+        /// 直播流 ID，由用户自定义设置，该流 ID 不能与用户旁路的流 ID 相同，限制64字节。
         public let streamId: String
 
         /// 取值范围[0,1]， 填0：直播流为音视频(默认); 填1：直播流为纯音频
@@ -1237,7 +1249,7 @@ extension Trtc {
         /// 指定订阅流白名单或者黑名单。
         public let subscribeStreamUserIds: SubscribeStreamUserIds?
 
-        /// 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。
+        /// 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。3：输出文件格式为mp4。4：输出文件格式为aac。
         public let outputFormat: UInt64?
 
         /// 单流录制模式下，用户的音视频是否合并，0：单流音视频不合并（默认）。1：单流音视频合并成一个ts。混流录制此参数无需设置，默认音视频合并。
@@ -1351,24 +1363,6 @@ extension Trtc {
             case userNumber = "UserNumber"
             case userCount = "UserCount"
             case roomNumbers = "RoomNumbers"
-        }
-    }
-
-    /// SdkAppId级别实时音视频的用量数据
-    public struct SdkAppIdNewTrtcTimeUsage: TCOutputModel {
-        /// SdkAppId的值。
-        public let sdkAppId: String
-
-        /// 统计的时间点数据。
-        public let trtcTimeUsages: [TrtcTimeNewUsage]
-
-        /// 统计的麦下用量的时间点数据。
-        public let audienceTrtcTimeUsages: [TrtcTimeNewUsage]
-
-        enum CodingKeys: String, CodingKey {
-            case sdkAppId = "SdkAppId"
-            case trtcTimeUsages = "TrtcTimeUsages"
-            case audienceTrtcTimeUsages = "AudienceTrtcTimeUsages"
         }
     }
 
@@ -1515,10 +1509,10 @@ extension Trtc {
 
     /// 第三方存储参数。
     public struct StorageParams: TCInputModel {
-        /// 第三方云存储的账号信息（CloudStorage参数暂不可用，请使用CloudVod参数存储至云点播）。
+        /// 第三方云存储的账号信息（特别说明：若您选择存储至对象存储COS将会收取录制文件投递至COS的费用，详见云端录制收费说明，存储至VOD将不收取此项费用。）。
         public let cloudStorage: CloudStorage?
 
-        /// 【必填】腾讯云云点播的账号信息，目前仅支持存储至腾讯云点播VOD。
+        /// 腾讯云云点播的账号信息。
         public let cloudVod: CloudVod?
 
         public init(cloudStorage: CloudStorage? = nil, cloudVod: CloudVod? = nil) {
@@ -1648,52 +1642,6 @@ extension Trtc {
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
-        }
-    }
-
-    /// 实时音视频用量的某一时间段的统计信息.
-    public struct TrtcTimeNewUsage: TCOutputModel {
-        /// 时间点。
-        public let timeKey: String
-
-        /// 通话人数。仅供参考。在线人数以仪表盘查询结果为准。
-        public let voiceUserNum: UInt64
-
-        /// 音视频通话收费时长。单位：秒。
-        public let videoTime: UInt64
-
-        /// 标清视频通话收费时长。单位：秒。
-        public let class1VideoTime: UInt64
-
-        /// 高清视频通话收费时长。单位：秒。
-        public let class2VideoTime: UInt64
-
-        /// 超高清视频通话收费时长。单位：秒。
-        public let class3VideoTime: UInt64
-
-        /// 音频通话收费时长。单位：秒。
-        public let audioTime: UInt64
-
-        /// 带宽。单位：Mbps。
-        public let bandwidth: Float
-
-        /// 2k视频通话收费时长。单位：秒。
-        public let video2KTime: UInt64
-
-        /// 4k视频通话收费时长。单位：秒。
-        public let video4KTime: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case timeKey = "TimeKey"
-            case voiceUserNum = "VoiceUserNum"
-            case videoTime = "VideoTime"
-            case class1VideoTime = "Class1VideoTime"
-            case class2VideoTime = "Class2VideoTime"
-            case class3VideoTime = "Class3VideoTime"
-            case audioTime = "AudioTime"
-            case bandwidth = "Bandwidth"
-            case video2KTime = "Video2KTime"
-            case video4KTime = "Video4KTime"
         }
     }
 

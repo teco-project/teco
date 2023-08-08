@@ -78,6 +78,9 @@ extension Cwp {
         /// 自动加购订单是否自动续费 ,true 开启, false 关闭
         public let autoRepurchaseRenewSwitch: Bool
 
+        /// 已销毁订单数
+        public let destroyOrderNum: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -99,6 +102,7 @@ extension Cwp {
             case availableLHLicenseCnt = "AvailableLHLicenseCnt"
             case autoRepurchaseSwitch = "AutoRepurchaseSwitch"
             case autoRepurchaseRenewSwitch = "AutoRepurchaseRenewSwitch"
+            case destroyOrderNum = "DestroyOrderNum"
             case requestId = "RequestId"
         }
     }

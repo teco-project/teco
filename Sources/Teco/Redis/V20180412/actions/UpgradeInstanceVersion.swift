@@ -21,13 +21,19 @@ import TecoCore
 extension Redis {
     /// UpgradeInstanceVersion请求参数结构体
     public struct UpgradeInstanceVersionRequest: TCRequestModel {
-        /// 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的Type，即实例要变更的目标类型
+        /// 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的**TypeId**，即实例要变更的目标类型。
+        /// - Redis 4.0 及以上的版本，支持相同版本的实例从标准架构升级至集群架构，例如，支持 Redis 4.0 标准架构升级至 Redis 4.0 集群架构。
+        /// - 不支持跨版本架构升级，例如，Redis 4.0 标准架构升级至 Redis 5.0 集群架构。
+        /// - 不支持 Redis 2.8 版本升级架构。
+        /// - 不支持从集群架构降级至标准架构。
         public let targetInstanceType: String
 
-        /// 切换模式：1-维护时间窗切换，2-立即切换
+        /// 切换时间。
+        /// - 1：维护时间窗切换。
+        /// - 2：立即切换。
         public let switchOption: Int64
 
-        /// 实例ID
+        /// 指定实例 ID。例如：crs-xjhsdj****，请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
         public let instanceId: String
 
         public init(targetInstanceType: String, switchOption: Int64, instanceId: String) {
@@ -57,33 +63,33 @@ extension Redis {
         }
     }
 
-    /// 升级实例版本或者结构
+    /// 升级实例架构
     ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    /// 将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
     @inlinable
     public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
         self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 升级实例版本或者结构
+    /// 升级实例架构
     ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    /// 将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
     @inlinable
     public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
         try await self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 升级实例版本或者结构
+    /// 升级实例架构
     ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    /// 将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
     @inlinable
     public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
         self.upgradeInstanceVersion(.init(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 升级实例版本或者结构
+    /// 升级实例架构
     ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    /// 将当前实例升级到更高版本，或者将当前标准架构升级至集群架构。
     @inlinable
     public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
         try await self.upgradeInstanceVersion(.init(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)

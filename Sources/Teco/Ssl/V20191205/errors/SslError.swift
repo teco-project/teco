@@ -35,11 +35,23 @@ public struct TCSslError: TCSslErrorType {
         case failedOperation_CannotBeDeletedIssued = "FailedOperation.CannotBeDeletedIssued"
         case failedOperation_CannotBeDeletedWithinHour = "FailedOperation.CannotBeDeletedWithinHour"
         case failedOperation_CannotGetOrder = "FailedOperation.CannotGetOrder"
+        case failedOperation_CertificateDeployDetailRollbackStatusInvalid = "FailedOperation.CertificateDeployDetailRollbackStatusInvalid"
+        case failedOperation_CertificateDeployHasPendingRecord = "FailedOperation.CertificateDeployHasPendingRecord"
+        case failedOperation_CertificateDeployInstanceEmpty = "FailedOperation.CertificateDeployInstanceEmpty"
+        case failedOperation_CertificateDeployNotExist = "FailedOperation.CertificateDeployNotExist"
+        case failedOperation_CertificateDeployRetryStatusInvalid = "FailedOperation.CertificateDeployRetryStatusInvalid"
+        case failedOperation_CertificateDeployRollbackStatusInvalid = "FailedOperation.CertificateDeployRollbackStatusInvalid"
         case failedOperation_CertificateExists = "FailedOperation.CertificateExists"
         case failedOperation_CertificateHasRenewed = "FailedOperation.CertificateHasRenewed"
+        case failedOperation_CertificateHostDeployCanNotAllow = "FailedOperation.CertificateHostDeployCanNotAllow"
+        case failedOperation_CertificateHostResourceInnerInterrupt = "FailedOperation.CertificateHostResourceInnerInterrupt"
+        case failedOperation_CertificateHostResourceInstanceHugeLimit = "FailedOperation.CertificateHostResourceInstanceHugeLimit"
+        case failedOperation_CertificateHostResourceTypeInvalid = "FailedOperation.CertificateHostResourceTypeInvalid"
         case failedOperation_CertificateHostingTypeNumberLimit = "FailedOperation.CertificateHostingTypeNumberLimit"
         case failedOperation_CertificateInvalid = "FailedOperation.CertificateInvalid"
         case failedOperation_CertificateMismatch = "FailedOperation.CertificateMismatch"
+        case failedOperation_CertificateNotAvailable = "FailedOperation.CertificateNotAvailable"
+        case failedOperation_CertificateNotDeployInstance = "FailedOperation.CertificateNotDeployInstance"
         case failedOperation_CertificateNotFound = "FailedOperation.CertificateNotFound"
         case failedOperation_ConfirmLetterTooLarge = "FailedOperation.ConfirmLetterTooLarge"
         case failedOperation_ConfirmLetterTooSmall = "FailedOperation.ConfirmLetterTooSmall"
@@ -68,6 +80,7 @@ public struct TCSslError: TCSslErrorType {
         case failedOperation_RevokeResourceFailed = "FailedOperation.RevokeResourceFailed"
         case failedOperation_RoleNotFoundAuthorization = "FailedOperation.RoleNotFoundAuthorization"
         case failedOperation_SystemError = "FailedOperation.SystemError"
+        case failedOperation_TradeError = "FailedOperation.TradeError"
         case internalError = "InternalError"
         case internalError_BackendResponseEmpty = "InternalError.BackendResponseEmpty"
         case internalError_BackendResponseError = "InternalError.BackendResponseError"
@@ -76,7 +89,14 @@ public struct TCSslError: TCSslErrorType {
         case invalidParameter_CertificateIdNumberLimit = "InvalidParameter.CertificateIdNumberLimit"
         case invalidParameter_CertificatesNumberExceeded = "InvalidParameter.CertificatesNumberExceeded"
         case invalidParameter_ContainsInvalidCertificateId = "InvalidParameter.ContainsInvalidCertificateId"
+        case invalidParameter_DomainCountInvalid = "InvalidParameter.DomainCountInvalid"
+        case invalidParameter_DomainInvalid = "InvalidParameter.DomainInvalid"
         case invalidParameter_PackageIdsInvalid = "InvalidParameter.PackageIdsInvalid"
+        case invalidParameter_PeriodInvalid = "InvalidParameter.PeriodInvalid"
+        case invalidParameter_ProductPidInvalid = "InvalidParameter.ProductPidInvalid"
+        case invalidParameter_RenewAlgorithmInvalid = "InvalidParameter.RenewAlgorithmInvalid"
+        case invalidParameter_RenewCsrInvalid = "InvalidParameter.RenewCsrInvalid"
+        case invalidParameter_RenewGenCsrMethodInvalid = "InvalidParameter.RenewGenCsrMethodInvalid"
         case invalidParameter_WithDetailReason = "InvalidParameter.WithDetailReason"
         case limitExceeded_RateLimitExceeded = "LimitExceeded.RateLimitExceeded"
         case missingParameter = "MissingParameter"
@@ -164,6 +184,46 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.failedOperation_CannotGetOrder)
     }
 
+    /// 记录状态必须完结才可以执行该操作。
+    ///
+    /// 等待任务完结，再执行回滚操作
+    public static var failedOperation_CertificateDeployDetailRollbackStatusInvalid: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployDetailRollbackStatusInvalid)
+    }
+
+    /// 证书部署有正在进行中的任务，请部署完成后再重试。
+    ///
+    /// 请部署完成后再重试。
+    public static var failedOperation_CertificateDeployHasPendingRecord: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployHasPendingRecord)
+    }
+
+    /// 已选择的云资源无实例，无法更新，请重新核对后重试。
+    public static var failedOperation_CertificateDeployInstanceEmpty: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployInstanceEmpty)
+    }
+
+    /// 证书部署记录不存在。
+    ///
+    /// 请重新选择
+    public static var failedOperation_CertificateDeployNotExist: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployNotExist)
+    }
+
+    /// 记录状态必须失败才可以执行该操作。
+    ///
+    /// 任务状态不为失败不可以重试
+    public static var failedOperation_CertificateDeployRetryStatusInvalid: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployRetryStatusInvalid)
+    }
+
+    /// 必须有部署成功的记录才可以回滚。
+    ///
+    /// 不可以回滚该记录
+    public static var failedOperation_CertificateDeployRollbackStatusInvalid: TCSslError {
+        TCSslError(.failedOperation_CertificateDeployRollbackStatusInvalid)
+    }
+
     /// 证书已存在。
     public static var failedOperation_CertificateExists: TCSslError {
         TCSslError(.failedOperation_CertificateExists)
@@ -172,6 +232,28 @@ public struct TCSslError: TCSslErrorType {
     /// 已替换证书，无法进行托管。
     public static var failedOperation_CertificateHasRenewed: TCSslError {
         TCSslError(.failedOperation_CertificateHasRenewed)
+    }
+
+    /// 当前证书不允许使用一键更新的功能。
+    public static var failedOperation_CertificateHostDeployCanNotAllow: TCSslError {
+        TCSslError(.failedOperation_CertificateHostDeployCanNotAllow)
+    }
+
+    /// 当前为内部账号，账号涉及实例资源较多，无法使用部署功能，请联系SSL证书特殊处理。
+    ///
+    /// 请联系SSL证书特殊处理
+    public static var failedOperation_CertificateHostResourceInnerInterrupt: TCSslError {
+        TCSslError(.failedOperation_CertificateHostResourceInnerInterrupt)
+    }
+
+    /// 当前账号下实例数量过多，无法正常加载，请您切换加载方式。切换后点击“刷新列表”等待一段时间后即可全部加载。
+    public static var failedOperation_CertificateHostResourceInstanceHugeLimit: TCSslError {
+        TCSslError(.failedOperation_CertificateHostResourceInstanceHugeLimit)
+    }
+
+    /// 云资源类型无效。
+    public static var failedOperation_CertificateHostResourceTypeInvalid: TCSslError {
+        TCSslError(.failedOperation_CertificateHostResourceTypeInvalid)
     }
 
     /// 证书资源托管数量超过限制。
@@ -187,6 +269,20 @@ public struct TCSslError: TCSslErrorType {
     /// 证书与私钥不对应。
     public static var failedOperation_CertificateMismatch: TCSslError {
         TCSslError(.failedOperation_CertificateMismatch)
+    }
+
+    /// 证书不可用，请检查后再试。
+    ///
+    /// 重新选择部署证书
+    public static var failedOperation_CertificateNotAvailable: TCSslError {
+        TCSslError(.failedOperation_CertificateNotAvailable)
+    }
+
+    /// 证书不可以部署到实例列表下。
+    ///
+    /// 重新选择部署实例
+    public static var failedOperation_CertificateNotDeployInstance: TCSslError {
+        TCSslError(.failedOperation_CertificateNotDeployInstance)
     }
 
     /// 证书不存在。
@@ -335,6 +431,11 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.failedOperation_SystemError)
     }
 
+    /// 计费中心错误。
+    public static var failedOperation_TradeError: TCSslError {
+        TCSslError(.failedOperation_TradeError)
+    }
+
     /// 内部错误。
     public static var internalError: TCSslError {
         TCSslError(.internalError)
@@ -375,9 +476,44 @@ public struct TCSslError: TCSslErrorType {
         TCSslError(.invalidParameter_ContainsInvalidCertificateId)
     }
 
+    /// 域名数量无效。
+    public static var invalidParameter_DomainCountInvalid: TCSslError {
+        TCSslError(.invalidParameter_DomainCountInvalid)
+    }
+
+    /// 域名无效，请重新输入。
+    public static var invalidParameter_DomainInvalid: TCSslError {
+        TCSslError(.invalidParameter_DomainInvalid)
+    }
+
     /// 权益点ID列表无效。
     public static var invalidParameter_PackageIdsInvalid: TCSslError {
         TCSslError(.invalidParameter_PackageIdsInvalid)
+    }
+
+    /// 证书期限无效。
+    public static var invalidParameter_PeriodInvalid: TCSslError {
+        TCSslError(.invalidParameter_PeriodInvalid)
+    }
+
+    /// 产品PID无效。
+    public static var invalidParameter_ProductPidInvalid: TCSslError {
+        TCSslError(.invalidParameter_ProductPidInvalid)
+    }
+
+    /// 算法无效。
+    public static var invalidParameter_RenewAlgorithmInvalid: TCSslError {
+        TCSslError(.invalidParameter_RenewAlgorithmInvalid)
+    }
+
+    /// CSR无效。
+    public static var invalidParameter_RenewCsrInvalid: TCSslError {
+        TCSslError(.invalidParameter_RenewCsrInvalid)
+    }
+
+    /// 生成CSR方式无效。
+    public static var invalidParameter_RenewGenCsrMethodInvalid: TCSslError {
+        TCSslError(.invalidParameter_RenewGenCsrMethodInvalid)
     }
 
     /// 参数有误。

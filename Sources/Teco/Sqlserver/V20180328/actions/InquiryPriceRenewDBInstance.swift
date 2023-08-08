@@ -63,7 +63,7 @@ extension Sqlserver {
 
     /// 查询实例续费价格
     ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDBInstanceResponse> {
         self.client.execute(action: "InquiryPriceRenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,7 +71,7 @@ extension Sqlserver {
 
     /// 查询实例续费价格
     ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
         try await self.client.execute(action: "InquiryPriceRenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,7 +79,7 @@ extension Sqlserver {
 
     /// 查询实例续费价格
     ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(instanceId: String, period: UInt64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewDBInstanceResponse> {
         self.inquiryPriceRenewDBInstance(.init(instanceId: instanceId, period: period, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
@@ -87,7 +87,7 @@ extension Sqlserver {
 
     /// 查询实例续费价格
     ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewDBInstance(instanceId: String, period: UInt64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
         try await self.inquiryPriceRenewDBInstance(.init(instanceId: instanceId, period: period, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)

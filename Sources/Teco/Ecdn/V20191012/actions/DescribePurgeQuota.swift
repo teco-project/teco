@@ -48,9 +48,10 @@ extension Ecdn {
     /// 查询刷新接口的用量配额。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
-        self.client.execute(action: "DescribePurgeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("DescribePurgeQuota is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -58,9 +59,10 @@ extension Ecdn {
     /// 查询刷新接口的用量配额。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
-        try await self.client.execute(action: "DescribePurgeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("DescribePurgeQuota is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -68,9 +70,10 @@ extension Ecdn {
     /// 查询刷新接口的用量配额。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
-        self.describePurgeQuota(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribePurgeQuota is no longer available.")
     }
 
     /// 查询刷新用量配额
@@ -78,8 +81,9 @@ extension Ecdn {
     /// 查询刷新接口的用量配额。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
-        try await self.describePurgeQuota(.init(), region: region, logger: logger, on: eventLoop)
+        fatalError("DescribePurgeQuota is no longer available.")
     }
 }

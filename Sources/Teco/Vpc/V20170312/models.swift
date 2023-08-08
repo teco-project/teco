@@ -36,12 +36,17 @@ extension Vpc {
         /// 更新时间
         public let updateTime: String
 
+        /// Remark
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let remark: String?
+
         enum CodingKeys: String, CodingKey {
             case targetCidr = "TargetCidr"
             case vpnGatewayIdSslAccessPolicyId = "VpnGatewayIdSslAccessPolicyId"
             case forAllClient = "ForAllClient"
             case userGroupIds = "UserGroupIds"
             case updateTime = "UpdateTime"
+            case remark = "Remark"
         }
     }
 
@@ -62,25 +67,25 @@ extension Vpc {
     /// 描述 EIP 信息
     public struct Address: TCOutputModel {
         /// `EIP`的`ID`，是`EIP`的唯一标识。
-        public let addressId: String?
+        public let addressId: String
 
         /// `EIP`名称。
-        public let addressName: String?
+        public let addressName: String
 
         /// `EIP`状态，包含'CREATING'(创建中),'BINDING'(绑定中),'BIND'(已绑定),'UNBINDING'(解绑中),'UNBIND'(已解绑),'OFFLINING'(释放中),'BIND_ENI'(绑定悬空弹性网卡)
-        public let addressStatus: String?
+        public let addressStatus: String
 
         /// 外网IP地址
-        public let addressIp: String?
+        public let addressIp: String
 
         /// 绑定的资源实例`ID`。可能是一个`CVM`，`NAT`。
-        public let instanceId: String?
+        public let instanceId: String
 
         /// 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdTime: Date?
+        @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 绑定的弹性网卡ID
         public let networkInterfaceId: String
@@ -134,6 +139,20 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSet: [Tag]?
 
+        /// 到期时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCDateEncoding public var deadlineDate: Date?
+
+        /// EIP绑定的实例类型。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        /// 高防包ID,当EIP类型为高防EIP时，返回EIP绑定的高防包ID.
+        public let antiDDoSPackageId: String
+
         enum CodingKeys: String, CodingKey {
             case addressId = "AddressId"
             case addressName = "AddressName"
@@ -154,6 +173,9 @@ extension Vpc {
             case bandwidth = "Bandwidth"
             case internetChargeType = "InternetChargeType"
             case tagSet = "TagSet"
+            case deadlineDate = "DeadlineDate"
+            case instanceType = "InstanceType"
+            case antiDDoSPackageId = "AntiDDoSPackageId"
         }
     }
 
@@ -801,6 +823,23 @@ extension Vpc {
 
     /// 云联网（CCN）地域出带宽上限。
     public struct CcnRegionBandwidthLimitInfo: TCOutputModel {
+        /// 源地域，例如：ap-shanghai
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceRegion: String?
+
+        /// 目的地域， 例如：ap-shanghai
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let destinationRegion: String?
+
+        /// 出带宽上限，单位：Mbps。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let bandwidthLimit: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case sourceRegion = "SourceRegion"
+            case destinationRegion = "DestinationRegion"
+            case bandwidthLimit = "BandwidthLimit"
+        }
     }
 
     /// CCN路由策略对象
@@ -1537,7 +1576,7 @@ extension Vpc {
         /// 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
         public let name: String
 
-        /// 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+        /// 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。当值类型为布尔类型时，可直接取值为字符串"TRUE"或 "FALSE"。
         public let values: [String]
 
         public init(name: String, values: [String]) {
@@ -2013,6 +2052,32 @@ extension Vpc {
         }
     }
 
+    /// 占用ip的资源信息
+    public struct IpAddressStates: TCOutputModel {
+        /// VPC实例ID。
+        public let vpcId: String
+
+        /// 子网实例ID。
+        public let subnetId: String
+
+        /// IP地址。
+        public let ipAddress: String
+
+        /// 资源类型
+        public let resourceType: String
+
+        /// 资源ID
+        public let resourceId: String
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case ipAddress = "IpAddress"
+            case resourceType = "ResourceType"
+            case resourceId = "ResourceId"
+        }
+    }
+
     /// IP在线查询的字段信息
     public struct IpField: TCInputModel {
         /// 国家字段信息
@@ -2347,6 +2412,10 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restrictState: String?
 
+        /// NAT网关大版本号，传统型=1，标准型=2
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let natProductVersion: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
             case natGatewayName = "NatGatewayName"
@@ -2367,6 +2436,7 @@ extension Vpc {
             case isExclusive = "IsExclusive"
             case exclusiveGatewayBandwidth = "ExclusiveGatewayBandwidth"
             case restrictState = "RestrictState"
+            case natProductVersion = "NatProductVersion"
         }
     }
 
@@ -2475,7 +2545,7 @@ extension Vpc {
         /// 下一跳类型为PEERCONNECTION，取值对等连接ID，形如：pcx-12345678；
         /// 下一跳类型为NAT，取值Nat网关，形如：nat-12345678；
         /// 下一跳类型为NORMAL_CVM，取值云服务器IPv4地址，形如：10.0.0.12；
-        /// 下一跳类型为CCN，取值云云联网ID，形如：ccn-12345678；
+        /// 下一跳类型为CCN，取值云联网ID，形如：ccn-12345678；
         /// 下一跳类型为NONEXTHOP，指定网络探测为无下一跳的网络探测；
         public let nextHopDestination: String
 
@@ -2896,7 +2966,7 @@ extension Vpc {
         /// 实例价格。
         public let instancePrice: ItemPrice?
 
-        /// 网络价格。
+        /// 带宽价格。
         public let bandwidthPrice: ItemPrice?
 
         enum CodingKeys: String, CodingKey {
@@ -2932,7 +3002,10 @@ extension Vpc {
         /// AVAILABLE：可用的
         public let state: String?
 
-        public init(privateIpAddress: String, primary: Bool? = nil, publicIpAddress: String? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
+        /// IP服务质量等级，可选值：PT、AU、AG、DEFAULT，分别代表云金、云银、云铜、默认四个等级。
+        public let qosLevel: String?
+
+        public init(privateIpAddress: String, primary: Bool? = nil, publicIpAddress: String? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil, qosLevel: String? = nil) {
             self.privateIpAddress = privateIpAddress
             self.primary = primary
             self.publicIpAddress = publicIpAddress
@@ -2940,6 +3013,7 @@ extension Vpc {
             self.description = description
             self.isWanIpBlocked = isWanIpBlocked
             self.state = state
+            self.qosLevel = qosLevel
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2950,6 +3024,7 @@ extension Vpc {
             case description = "Description"
             case isWanIpBlocked = "IsWanIpBlocked"
             case state = "State"
+            case qosLevel = "QosLevel"
         }
     }
 
@@ -3203,6 +3278,46 @@ extension Vpc {
         }
     }
 
+    /// 资源统计信息
+    public struct ResourceStatistics: TCOutputModel {
+        /// Vpc实例ID，例如：vpc-f1xjkw1b。
+        public let vpcId: String
+
+        /// 子网实例ID，例如：subnet-bthucmmy。
+        public let subnetId: String
+
+        /// 当前已使用的IP总数。
+        public let ip: UInt64
+
+        /// 资源统计信息。
+        public let resourceStatisticsItemSet: [ResourceStatisticsItem]
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case ip = "Ip"
+            case resourceStatisticsItemSet = "ResourceStatisticsItemSet"
+        }
+    }
+
+    /// 资源统计项。
+    public struct ResourceStatisticsItem: TCOutputModel {
+        /// 资源类型。比如，CVM，ENI等。
+        public let resourceType: String
+
+        /// 资源名称。
+        public let resourceName: String
+
+        /// 资源个数。
+        public let resourceCount: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case resourceType = "ResourceType"
+            case resourceName = "ResourceName"
+            case resourceCount = "ResourceCount"
+        }
+    }
+
     /// 路由策略对象
     public struct Route: TCInputModel, TCOutputModel {
         /// 目的网段，取值不能在私有网络网段内，例如：112.20.51.0/24。
@@ -3221,6 +3336,7 @@ extension Vpc {
         public let gatewayType: String
 
         /// 下一跳地址，这里只需要指定不同下一跳类型的网关ID，系统会自动匹配到下一跳地址。
+        /// 特殊说明：GatewayType为NORMAL_CVM时，GatewayId填写实例的内网IP。
         public let gatewayId: String
 
         /// 路由策略ID。IPv4路由策略ID是有意义的值，IPv6路由策略是无意义的值0。后续建议完全使用字符串唯一ID `RouteItemId`操作路由策略。
@@ -3470,12 +3586,24 @@ extension Vpc {
         /// 实例关联安全组数
         public let instanceSecurityGroupLimit: UInt64
 
+        /// 安全组展开后的规则数限制
+        public let securityGroupExtendedPolicyLimit: UInt64?
+
+        /// 被引用的安全组关联CVM、ENI的实例配额
+        public let securityGroupReferedCvmAndEniLimit: UInt64?
+
+        /// 被引用的安全组关联数据库、LB等服务实例配额
+        public let securityGroupReferedSvcLimit: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case securityGroupLimit = "SecurityGroupLimit"
             case securityGroupPolicyLimit = "SecurityGroupPolicyLimit"
             case referedSecurityGroupLimit = "ReferedSecurityGroupLimit"
             case securityGroupInstanceLimit = "SecurityGroupInstanceLimit"
             case instanceSecurityGroupLimit = "InstanceSecurityGroupLimit"
+            case securityGroupExtendedPolicyLimit = "SecurityGroupExtendedPolicyLimit"
+            case securityGroupReferedCvmAndEniLimit = "SecurityGroupReferedCvmAndEniLimit"
+            case securityGroupReferedSvcLimit = "SecurityGroupReferedSvcLimit"
         }
     }
 
@@ -3494,7 +3622,7 @@ extension Vpc {
         /// 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
         public let serviceTemplate: ServiceTemplateSpecification?
 
-        /// 网段或IP(互斥)。
+        /// 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。
         public let cidrBlock: String?
 
         /// 网段或IPv6(互斥)。
@@ -3545,14 +3673,17 @@ extension Vpc {
     }
 
     /// 安全组规则集合
-    public struct SecurityGroupPolicySet: TCInputModel {
+    public struct SecurityGroupPolicySet: TCInputModel, TCOutputModel {
         /// 安全组规则当前版本。用户每次更新安全规则版本会自动加1，防止更新的路由规则已过期，不填不考虑冲突。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
 
         /// 出站规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let egress: [SecurityGroupPolicy]?
 
         /// 入站规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ingress: [SecurityGroupPolicy]?
 
         public init(version: String? = nil, egress: [SecurityGroupPolicy]? = nil, ingress: [SecurityGroupPolicy]? = nil) {
@@ -3802,10 +3933,10 @@ extension Vpc {
 
     /// NAT的SNAT规则
     public struct SourceIpTranslationNatRule: TCInputModel, TCOutputModel {
-        /// 资源ID
+        /// 资源ID，如果ResourceType为USERDEFINED，可以为空
         public let resourceId: String
 
-        /// 资源类型，目前包含SUBNET、NETWORKINTERFACE
+        /// 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
 
@@ -3872,23 +4003,27 @@ extension Vpc {
         /// 客户端证书
         public let sslVpnCert: String
 
+        /// SSL-VPN-CLIENT 实例ID。
+        public let sslVpnClientId: String?
+
         enum CodingKeys: String, CodingKey {
             case sslVpnClientConfiguration = "SslVpnClientConfiguration"
             case sslVpnRootCert = "SslVpnRootCert"
             case sslVpnKey = "SslVpnKey"
             case sslVpnCert = "SslVpnCert"
+            case sslVpnClientId = "SslVpnClientId"
         }
     }
 
     /// SSL-VPN-CLIENT 出参
     public struct SslVpnClient: TCOutputModel {
-        /// VPC实例ID
+        /// VPC实例ID。
         public let vpcId: String
 
-        /// SSL-VPN-SERVER 实例ID
+        /// SSL-VPN-SERVER 实例ID。
         public let sslVpnServerId: String
 
-        /// 证书状态.
+        /// 证书状态。
         /// 0:创建中
         /// 1:正常
         /// 2:已停用
@@ -3896,16 +4031,16 @@ extension Vpc {
         /// 4.创建出错
         public let certStatus: UInt64
 
-        /// SSL-VPN-CLIENT 实例ID
+        /// SSL-VPN-CLIENT 实例ID。
         public let sslVpnClientId: String
 
-        /// 证书开始时间
+        /// 证书开始时间。
         public let certBeginTime: String
 
-        /// 证书到期时间
+        /// 证书到期时间。
         public let certEndTime: String
 
-        /// CLIENT NAME
+        /// CLIENT NAME。
         public let name: String
 
         /// 创建CLIENT 状态。
@@ -4170,6 +4305,26 @@ extension Vpc {
         }
     }
 
+    /// 流量描述。
+    public struct TrafficFlow: TCOutputModel {
+        /// 实际流量，单位为 字节
+        public let value: UInt64
+
+        /// 格式化后的流量，单位见参数 FormatUnit
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formatValue: Float?
+
+        /// 格式化后流量的单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let formatUnit: String?
+
+        enum CodingKeys: String, CodingKey {
+            case value = "Value"
+            case formatValue = "FormatValue"
+            case formatUnit = "FormatUnit"
+        }
+    }
+
     /// 流量包信息描述类型
     public struct TrafficPackage: TCOutputModel {
         /// 流量包唯一ID
@@ -4224,6 +4379,59 @@ extension Vpc {
         }
     }
 
+    /// 共享流量包用量明细
+    public struct UsedDetail: TCOutputModel {
+        /// 流量包唯一ID
+        public let trafficPackageId: String
+
+        /// 流量包名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trafficPackageName: String?
+
+        /// 流量包总量
+        public let totalAmount: TrafficFlow
+
+        /// 本次抵扣
+        public let deduction: TrafficFlow
+
+        /// 本次抵扣后剩余量
+        public let remainingAmount: TrafficFlow
+
+        /// 抵扣时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var time: Date
+
+        /// 资源类型。可能的值: CVM, LB, NAT, HAVIP, EIP
+        public let resourceType: String
+
+        /// 资源ID
+        public let resourceId: String
+
+        /// 资源名称
+        public let resourceName: String
+
+        /// 流量包到期时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampEncoding public var deadline: Date
+
+        enum CodingKeys: String, CodingKey {
+            case trafficPackageId = "TrafficPackageId"
+            case trafficPackageName = "TrafficPackageName"
+            case totalAmount = "TotalAmount"
+            case deduction = "Deduction"
+            case remainingAmount = "RemainingAmount"
+            case time = "Time"
+            case resourceType = "ResourceType"
+            case resourceId = "ResourceId"
+            case resourceName = "ResourceName"
+            case deadline = "Deadline"
+        }
+    }
+
     /// 私有网络(VPC)对象。
     public struct Vpc: TCOutputModel {
         /// `VPC`名称。
@@ -4236,13 +4444,13 @@ extension Vpc {
         public let cidrBlock: String
 
         /// 是否默认`VPC`。
-        public let isDefault: Bool?
+        public let isDefault: Bool
 
         /// 是否开启组播。
         public let enableMulticast: Bool
 
         /// 创建时间。
-        public let createdTime: String?
+        public let createdTime: String
 
         /// `DNS`列表。
         public let dnsServerSet: [String]
@@ -4506,10 +4714,10 @@ extension Vpc {
         /// 网关实例名称。
         public let vpnGatewayName: String
 
-        /// 网关实例类型：'IPSEC', 'SSL','CCN'。
+        /// 网关实例类型：'IPSEC', 'SSL','CCN','SSL_CCN'。
         public let type: String
 
-        /// 网关实例状态， 'PENDING'：生产中，'DELETING'：删除中，'AVAILABLE'：运行中。
+        /// 网关实例状态， 'PENDING'：生产中，'PENDING_ERROR'：生产失败，'DELETING'：删除中，'DELETING_ERROR'：删除失败，'AVAILABLE'：运行中。
         public let state: String
 
         /// 网关公网IP。
@@ -4518,7 +4726,7 @@ extension Vpc {
         /// 网关续费类型：'NOTIFY_AND_MANUAL_RENEW'：手动续费，'NOTIFY_AND_AUTO_RENEW'：自动续费，'NOT_NOTIFY_AND_NOT_RENEW'：到期不续费。
         public let renewFlag: String
 
-        /// 网关付费类型：POSTPAID_BY_HOUR：按小时后付费，PREPAID：包年包月预付费，
+        /// 网关付费类型：POSTPAID_BY_HOUR：按量计费，PREPAID：包年包月预付费。
         public let instanceChargeType: String
 
         /// 网关出带宽。
@@ -4542,22 +4750,22 @@ extension Vpc {
         /// 计费模式变更，PREPAID_TO_POSTPAID：包年包月预付费到期转按小时后付费。
         public let newPurchasePlan: String
 
-        /// 网关计费装，PROTECTIVELY_ISOLATED：被安全隔离的实例，NORMAL：正常。
+        /// 网关计费状态，PROTECTIVELY_ISOLATED：被安全隔离的实例，NORMAL：正常。
         public let restrictState: String
 
-        /// 可用区，如：ap-guangzhou-2
+        /// 可用区，如：ap-guangzhou-2。
         public let zone: String
 
-        /// 网关带宽配额信息
+        /// 网关带宽配额信息。
         public let vpnGatewayQuotaSet: [VpnGatewayQuota]
 
-        /// 网关实例版本信息
+        /// 网关实例版本信息。
         public let version: String
 
-        /// Type值为CCN时，该值表示云联网实例ID
+        /// Type值为CCN时，该值表示云联网实例ID。
         public let networkInstanceId: String
 
-        /// CDC 实例ID
+        /// CDC 实例ID。
         public let cdcId: String
 
         /// SSL-VPN 客户端连接数。

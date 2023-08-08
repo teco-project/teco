@@ -62,6 +62,7 @@ extension TCAsError {
             case lbProjectInconsistent = "InvalidParameterValue.LbProjectInconsistent"
             case lifecycleHookNameDuplicated = "InvalidParameterValue.LifecycleHookNameDuplicated"
             case limitExceeded = "InvalidParameterValue.LimitExceeded"
+            case listenerTargetTypeNotSupported = "InvalidParameterValue.ListenerTargetTypeNotSupported"
             case missingBandwidthPackageId = "InvalidParameterValue.MissingBandwidthPackageId"
             case noResourcePermission = "InvalidParameterValue.NoResourcePermission"
             case notStringTypeFloat = "InvalidParameterValue.NotStringTypeFloat"
@@ -227,6 +228,8 @@ extension TCAsError {
             InvalidParameterValue(.invalidClbRegion)
         }
 
+        /// 指定的置放群组ID格式不正确。
+        ///
         /// 请提供规范的置放群组ID，类似ps-xxxxxxxx，字母x代表小写字符或者数字。
         public static var invalidDisasterRecoverGroupId: InvalidParameterValue {
             InvalidParameterValue(.invalidDisasterRecoverGroupId)
@@ -327,6 +330,11 @@ extension TCAsError {
         /// 取值超出限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
+        }
+
+        /// 不支持目标组类型的监听器。
+        public static var listenerTargetTypeNotSupported: InvalidParameterValue {
+            InvalidParameterValue(.listenerTargetTypeNotSupported)
         }
 
         /// 当前账户在带宽包模式中必须填写带宽包ID参数。
@@ -528,6 +536,8 @@ extension TCAsError {
                 code = .invalidParameterValue_LifecycleHookNameDuplicated
             case .limitExceeded:
                 code = .invalidParameterValue_LimitExceeded
+            case .listenerTargetTypeNotSupported:
+                code = .invalidParameterValue_ListenerTargetTypeNotSupported
             case .missingBandwidthPackageId:
                 code = .invalidParameterValue_MissingBandwidthPackageId
             case .noResourcePermission:

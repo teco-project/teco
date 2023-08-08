@@ -61,25 +61,25 @@ extension Fmu {
         }
     }
 
-    /// 视频美颜
+    /// 视频美颜(此接口目前已下线)
     @inlinable
     public func beautifyVideo(_ input: BeautifyVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
         self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 视频美颜
+    /// 视频美颜(此接口目前已下线)
     @inlinable
     public func beautifyVideo(_ input: BeautifyVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
         try await self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 视频美颜
+    /// 视频美颜(此接口目前已下线)
     @inlinable
     public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
         self.beautifyVideo(.init(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 视频美颜
+    /// 视频美颜(此接口目前已下线)
     @inlinable
     public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
         try await self.beautifyVideo(.init(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)

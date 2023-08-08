@@ -51,33 +51,33 @@ extension Postgres {
         }
     }
 
-    /// 获取订单信息
+    /// 查询订单信息
     ///
-    /// 本接口（DescribeOrders）用于获取订单信息。
+    /// 本接口（DescribeOrders）用于查询订单信息。
     @inlinable
     public func describeOrders(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
         self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取订单信息
+    /// 查询订单信息
     ///
-    /// 本接口（DescribeOrders）用于获取订单信息。
+    /// 本接口（DescribeOrders）用于查询订单信息。
     @inlinable
     public func describeOrders(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
         try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取订单信息
+    /// 查询订单信息
     ///
-    /// 本接口（DescribeOrders）用于获取订单信息。
+    /// 本接口（DescribeOrders）用于查询订单信息。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
         self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取订单信息
+    /// 查询订单信息
     ///
-    /// 本接口（DescribeOrders）用于获取订单信息。
+    /// 本接口（DescribeOrders）用于查询订单信息。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
         try await self.describeOrders(.init(dealNames: dealNames), region: region, logger: logger, on: eventLoop)

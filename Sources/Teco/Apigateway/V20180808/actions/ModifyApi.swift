@@ -69,7 +69,7 @@ extension Apigateway {
         /// API 的后端 Mock 返回信息。如果 ServiceType 是 Mock，则此参数必传。
         public let serviceMockReturnMessage: String?
 
-        /// API绑定微服务服务列表。
+        /// API绑定微服务列表。
         public let microServices: [MicroServiceReq]?
 
         /// 微服务的负载均衡配置。

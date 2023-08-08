@@ -42,7 +42,10 @@ extension Mps {
         /// 语音关键词识别控制参数。
         public let asrWordsConfigure: AsrWordsConfigureInfo?
 
-        public init(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil) {
+        /// 语音翻译控制参数。
+        public let translateConfigure: TranslateConfigureInfo?
+
+        public init(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, translateConfigure: TranslateConfigureInfo? = nil) {
             self.name = name
             self.comment = comment
             self.faceConfigure = faceConfigure
@@ -50,6 +53,7 @@ extension Mps {
             self.ocrWordsConfigure = ocrWordsConfigure
             self.asrFullTextConfigure = asrFullTextConfigure
             self.asrWordsConfigure = asrWordsConfigure
+            self.translateConfigure = translateConfigure
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +64,7 @@ extension Mps {
             case ocrWordsConfigure = "OcrWordsConfigure"
             case asrFullTextConfigure = "AsrFullTextConfigure"
             case asrWordsConfigure = "AsrWordsConfigure"
+            case translateConfigure = "TranslateConfigure"
         }
     }
 
@@ -97,15 +102,15 @@ extension Mps {
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。
     @inlinable
-    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIRecognitionTemplateResponse> {
-        self.createAIRecognitionTemplate(.init(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
+    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, translateConfigure: TranslateConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIRecognitionTemplateResponse> {
+        self.createAIRecognitionTemplate(.init(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, translateConfigure: translateConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建内容识别模板
     ///
     /// 创建用户自定义内容识别模板，数量上限：50。
     @inlinable
-    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
-        try await self.createAIRecognitionTemplate(.init(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
+    public func createAIRecognitionTemplate(name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, translateConfigure: TranslateConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
+        try await self.createAIRecognitionTemplate(.init(name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure, translateConfigure: translateConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

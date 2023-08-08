@@ -158,6 +158,108 @@ extension Tcaplusdb {
         }
     }
 
+    /// 备份保留策略详情
+    /// 集群策略： ClueterId=集群Id， TableGroupId=-1,  TableName="-1"
+    /// 集群+表格组策略： ClueterId=集群Id， TableGroupId=表格组Id,  TableName="-1"
+    /// 集群+表格组+表格策略： ClueterId=集群Id， TableGroupId=表格组Id,  TableName="表格名"
+    ///
+    /// FileTag=0 txh引擎文件， =1 ulog流水文件， 当要设置为=1时， 这两项不可变 TableGroupId=-1和TableName="-1"
+    /// ExpireDay为大于等于1，小于999的整形数字
+    /// OperType=0 代表动作为新增， =1 代表动作为删除， =2 代表动作为修改， 其中0和2可以混用，后端实现兼容
+    public struct BackupExpireRuleInfo: TCInputModel {
+        /// 所属表格组ID
+        public let tableGroupId: String
+
+        /// 表名称
+        public let tableName: String
+
+        /// 文件标签，见上面描述
+        public let fileTag: UInt64
+
+        /// 淘汰天数，见上面描述
+        public let expireDay: UInt64
+
+        /// 操作类型，见上面描述
+        public let operType: UInt64
+
+        public init(tableGroupId: String, tableName: String, fileTag: UInt64, expireDay: UInt64, operType: UInt64) {
+            self.tableGroupId = tableGroupId
+            self.tableName = tableName
+            self.fileTag = fileTag
+            self.expireDay = expireDay
+            self.operType = operType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tableGroupId = "TableGroupId"
+            case tableName = "TableName"
+            case fileTag = "FileTag"
+            case expireDay = "ExpireDay"
+            case operType = "OperType"
+        }
+    }
+
+    /// 备份记录
+    /// 作为出参时，每个字段都会填充
+    /// 作为入参时， 原封不动将每个字段填回结构体， 注意只有FIleTag=OSDATA才可以调用此接口
+    public struct BackupRecords: TCInputModel, TCOutputModel {
+        /// 表格组ID
+        public let zoneId: UInt64
+
+        /// 表名称
+        public let tableName: String
+
+        /// 备份源
+        public let backupType: String
+
+        /// 文件标签：TCAPLUS_FULL或OSDATA
+        public let fileTag: String
+
+        /// 分片数量
+        public let shardCount: UInt64
+
+        /// 备份批次日期
+        public let backupBatchTime: String
+
+        /// 备份文件汇总大小
+        public let backupFileSize: UInt64
+
+        /// 备份成功率
+        public let backupSuccRate: String
+
+        /// 备份文件过期时间
+        public let backupExpireTime: String
+
+        /// 业务ID
+        public let appId: UInt64
+
+        public init(zoneId: UInt64, tableName: String, backupType: String, fileTag: String, shardCount: UInt64, backupBatchTime: String, backupFileSize: UInt64, backupSuccRate: String, backupExpireTime: String, appId: UInt64) {
+            self.zoneId = zoneId
+            self.tableName = tableName
+            self.backupType = backupType
+            self.fileTag = fileTag
+            self.shardCount = shardCount
+            self.backupBatchTime = backupBatchTime
+            self.backupFileSize = backupFileSize
+            self.backupSuccRate = backupSuccRate
+            self.backupExpireTime = backupExpireTime
+            self.appId = appId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case zoneId = "ZoneId"
+            case tableName = "TableName"
+            case backupType = "BackupType"
+            case fileTag = "FileTag"
+            case shardCount = "ShardCount"
+            case backupBatchTime = "BackupBatchTime"
+            case backupFileSize = "BackupFileSize"
+            case backupSuccRate = "BackupSuccRate"
+            case backupExpireTime = "BackupExpireTime"
+            case appId = "AppId"
+        }
+    }
+
     /// 集群详细信息
     public struct ClusterInfo: TCOutputModel {
         /// 集群名称

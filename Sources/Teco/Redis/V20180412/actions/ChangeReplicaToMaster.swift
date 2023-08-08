@@ -21,10 +21,10 @@ import TecoCore
 extension Redis {
     /// ChangeReplicaToMaster请求参数结构体
     public struct ChangeReplicaToMasterRequest: TCRequestModel {
-        /// 实例Id
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
-        /// 副本组Id，多AZ实例必填
+        /// 副本节点组 ID，请通过接口[DescribeInstanceZoneInfo](https://cloud.tencent.com/document/product/239/50312)获取多 AZ备节点组的 ID 信息。单 AZ，则无需配置该参数。
         public let groupId: Int64?
 
         public init(instanceId: String, groupId: Int64? = nil) {
@@ -40,7 +40,7 @@ extension Redis {
 
     /// ChangeReplicaToMaster返回参数结构体
     public struct ChangeReplicaToMasterResponse: TCResponseModel {
-        /// 异步任务ID
+        /// 异步任务ID。
         public let taskId: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -54,7 +54,7 @@ extension Redis {
 
     /// 副本组提主
     ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    /// 本接口（ChangeReplicaToMaster）适用于实例副本组提主或副本提主。
     @inlinable
     public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
         self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -62,7 +62,7 @@ extension Redis {
 
     /// 副本组提主
     ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    /// 本接口（ChangeReplicaToMaster）适用于实例副本组提主或副本提主。
     @inlinable
     public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
         try await self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,7 +70,7 @@ extension Redis {
 
     /// 副本组提主
     ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    /// 本接口（ChangeReplicaToMaster）适用于实例副本组提主或副本提主。
     @inlinable
     public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
         self.changeReplicaToMaster(.init(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
@@ -78,7 +78,7 @@ extension Redis {
 
     /// 副本组提主
     ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    /// 本接口（ChangeReplicaToMaster）适用于实例副本组提主或副本提主。
     @inlinable
     public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
         try await self.changeReplicaToMaster(.init(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)

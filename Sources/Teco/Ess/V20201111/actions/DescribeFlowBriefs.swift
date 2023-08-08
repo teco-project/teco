@@ -24,10 +24,10 @@ extension Ess {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
-        /// 需要查询的流程ID列表，限制最大20个
+        /// 需要查询的流程ID列表，限制最大100个
         public let flowIds: [String]
 
-        /// 应用相关信息
+        /// 代理相关应用信息，如集团主企业代子企业操作的场景中ProxyOrganizationId必填
         public let agent: Agent?
 
         public init(operator: UserInfo, flowIds: [String], agent: Agent? = nil) {
@@ -59,9 +59,9 @@ extension Ess {
 
     /// 查询流程摘要
     ///
-    /// 查询流程摘要
+    /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 日调用量默认10W
+    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
         self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,9 +69,9 @@ extension Ess {
 
     /// 查询流程摘要
     ///
-    /// 查询流程摘要
+    /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 日调用量默认10W
+    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
         try await self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,9 +79,9 @@ extension Ess {
 
     /// 查询流程摘要
     ///
-    /// 查询流程摘要
+    /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 日调用量默认10W
+    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
         self.describeFlowBriefs(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -89,9 +89,9 @@ extension Ess {
 
     /// 查询流程摘要
     ///
-    /// 查询流程摘要
+    /// 查询流程基础信息
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
-    /// 日调用量默认10W
+    /// 每个企业限制日调用量限制：10W，当日超过此限制后再调用接口返回错误
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
         try await self.describeFlowBriefs(.init(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)

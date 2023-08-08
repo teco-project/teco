@@ -35,6 +35,12 @@ extension Ses {
         /// 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         public let replyToAddresses: String?
 
+        /// 抄送人邮箱地址，最多支持抄送20人。
+        public let cc: [String]?
+
+        /// 密送人邮箱地址，最多支持抄送20人。
+        public let bcc: [String]?
+
         /// 使用模板发送时，填写的模板相关参数。因 Simple 已经废除使用，Template 为必填项
         public let template: Template?
 
@@ -44,17 +50,19 @@ extension Ses {
         /// 需要发送附件时，填写附件相关参数。腾讯云接口请求最大支持 8M 的请求包，附件内容经过 Base64 预期扩大1.5倍，应该控制所有附件的总大小最大在 4M 以内，整体请求超出 8M 时接口会返回错误
         public let attachments: [Attachment]?
 
-        /// 退订选项 1: 加入退订链接 0: 不加入退订链接
+        /// 退订链接选项 0: 不加入退订链接 1: 简体中文 2: 英文 3: 繁体中文 4: 西班牙语 5: 法语 6: 德语 7: 日语 8: 韩语 9: 阿拉伯语 10: 泰语
         public let unsubscribe: String?
 
         /// 邮件触发类型 0:非触发类，默认类型，营销类邮件、非即时类邮件等选择此类型  1:触发类，验证码等即时发送类邮件，若邮件超过一定大小，系统会自动选择非触发类型通道
         public let triggerType: UInt64?
 
-        public init(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil) {
+        public init(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil) {
             self.fromEmailAddress = fromEmailAddress
             self.destination = destination
             self.subject = subject
             self.replyToAddresses = replyToAddresses
+            self.cc = cc
+            self.bcc = bcc
             self.template = template
             self.simple = simple
             self.attachments = attachments
@@ -67,6 +75,8 @@ extension Ses {
             case destination = "Destination"
             case subject = "Subject"
             case replyToAddresses = "ReplyToAddresses"
+            case cc = "Cc"
+            case bcc = "Bcc"
             case template = "Template"
             case simple = "Simple"
             case attachments = "Attachments"
@@ -109,15 +119,15 @@ extension Ses {
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
-        self.sendEmail(.init(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
+    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
+        self.sendEmail(.init(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, cc: cc, bcc: bcc, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送邮件
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
-        try await self.sendEmail(.init(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
+    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
+        try await self.sendEmail(.init(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, cc: cc, bcc: bcc, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
     }
 }

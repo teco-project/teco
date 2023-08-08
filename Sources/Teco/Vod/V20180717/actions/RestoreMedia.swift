@@ -21,10 +21,10 @@ import TecoCore
 extension Vod {
     /// RestoreMedia请求参数结构体
     public struct RestoreMediaRequest: TCRequestModel {
-        /// 媒体文件唯一标识列表。
+        /// 媒体文件唯一标识列表，最大长度：100。
         public let fileIds: [String]
 
-        /// 解冻出的临时媒体文件的可访问持续时长，单位为“天”。
+        /// 解冻出的临时媒体文件的可访问持续时长，必须大于0，单位为“天”。
         public let restoreDay: UInt64?
 
         /// 解冻模式。当媒体文件当前的存储类型为归档存储时，有以下取值：

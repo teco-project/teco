@@ -33,11 +33,15 @@ extension Apm {
         /// 是否查询官方demo实例
         public let demoInstanceFlag: Int64?
 
-        public init(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil) {
+        /// 是否查询全地域实例
+        public let allRegionsFlag: Int64?
+
+        public init(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, allRegionsFlag: Int64? = nil) {
             self.tags = tags
             self.instanceName = instanceName
             self.instanceIds = instanceIds
             self.demoInstanceFlag = demoInstanceFlag
+            self.allRegionsFlag = allRegionsFlag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +49,7 @@ extension Apm {
             case instanceName = "InstanceName"
             case instanceIds = "InstanceIds"
             case demoInstanceFlag = "DemoInstanceFlag"
+            case allRegionsFlag = "AllRegionsFlag"
         }
     }
 
@@ -83,15 +88,15 @@ extension Apm {
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
-        self.describeApmInstances(.init(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), region: region, logger: logger, on: eventLoop)
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, allRegionsFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
+        self.describeApmInstances(.init(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag, allRegionsFlag: allRegionsFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
-        try await self.describeApmInstances(.init(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), region: region, logger: logger, on: eventLoop)
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, allRegionsFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
+        try await self.describeApmInstances(.init(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag, allRegionsFlag: allRegionsFlag), region: region, logger: logger, on: eventLoop)
     }
 }

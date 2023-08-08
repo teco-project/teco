@@ -37,11 +37,13 @@ public struct TCWedataError: TCWedataErrorType {
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameter_ClientIpNotAuthorized = "InvalidParameter.ClientIpNotAuthorized"
+        case invalidParameter_DataEngineInstanceNotExists = "InvalidParameter.DataEngineInstanceNotExists"
         case invalidParameter_DuplicateName = "InvalidParameter.DuplicateName"
         case invalidParameter_InvalidFilterParameter = "InvalidParameter.InvalidFilterParameter"
         case invalidParameter_RuleNotExist = "InvalidParameter.RuleNotExist"
         case invalidParameter_RuleTemplateNotExist = "InvalidParameter.RuleTemplateNotExist"
         case invalidParameter_ServiceIsBusy = "InvalidParameter.ServiceIsBusy"
+        case invalidParameter_WeDataRoleNotExists = "InvalidParameter.WeDataRoleNotExists"
         case invalidParameter_WorkspaceNotExist = "InvalidParameter.WorkspaceNotExist"
         case limitExceeded = "LimitExceeded"
         case missingParameter = "MissingParameter"
@@ -52,6 +54,7 @@ public struct TCWedataError: TCWedataErrorType {
         case resourceInsufficient = "ResourceInsufficient"
         case resourceNotFound = "ResourceNotFound"
         case resourceUnavailable = "ResourceUnavailable"
+        case resourcesSoldOut = "ResourcesSoldOut"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_UserNotInProject = "UnauthorizedOperation.UserNotInProject"
         case unknownParameter = "UnknownParameter"
@@ -154,6 +157,13 @@ public struct TCWedataError: TCWedataErrorType {
         TCWedataError(.invalidParameter_ClientIpNotAuthorized)
     }
 
+    /// 数据引擎实例不存在。
+    ///
+    /// 修正输入参数，确保数据引擎实例存在。
+    public static var invalidParameter_DataEngineInstanceNotExists: TCWedataError {
+        TCWedataError(.invalidParameter_DataEngineInstanceNotExists)
+    }
+
     /// 名称重复。
     public static var invalidParameter_DuplicateName: TCWedataError {
         TCWedataError(.invalidParameter_DuplicateName)
@@ -181,6 +191,11 @@ public struct TCWedataError: TCWedataErrorType {
     /// 服务繁忙，请稍后重试
     public static var invalidParameter_ServiceIsBusy: TCWedataError {
         TCWedataError(.invalidParameter_ServiceIsBusy)
+    }
+
+    /// WeData_QCSRole不存在，请进行服务授权。
+    public static var invalidParameter_WeDataRoleNotExists: TCWedataError {
+        TCWedataError(.invalidParameter_WeDataRoleNotExists)
     }
 
     /// 工作空间不存在。
@@ -231,6 +246,11 @@ public struct TCWedataError: TCWedataErrorType {
     /// 资源不可用。
     public static var resourceUnavailable: TCWedataError {
         TCWedataError(.resourceUnavailable)
+    }
+
+    /// 资源售罄。
+    public static var resourcesSoldOut: TCWedataError {
+        TCWedataError(.resourcesSoldOut)
     }
 
     /// 未授权操作。

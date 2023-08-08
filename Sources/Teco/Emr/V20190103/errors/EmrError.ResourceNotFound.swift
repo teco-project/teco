@@ -21,6 +21,7 @@ extension TCEmrError {
         enum Code: String {
             case cdbInfoNotFound = "ResourceNotFound.CDBInfoNotFound"
             case clusterNotFound = "ResourceNotFound.ClusterNotFound"
+            case cvmInstanceNotFound = "ResourceNotFound.CvmInstanceNotFound"
             case hardwareInfoNotFound = "ResourceNotFound.HardwareInfoNotFound"
             case instanceNotFound = "ResourceNotFound.InstanceNotFound"
             case resourceNotFound = "ResourceNotFound.ResourceNotFound"
@@ -61,6 +62,11 @@ extension TCEmrError {
             ResourceNotFound(.clusterNotFound)
         }
 
+        /// 无法找到指定的CVM实例。
+        public static var cvmInstanceNotFound: ResourceNotFound {
+            ResourceNotFound(.cvmInstanceNotFound)
+        }
+
         /// 无法找到硬件信息。
         public static var hardwareInfoNotFound: ResourceNotFound {
             ResourceNotFound(.hardwareInfoNotFound)
@@ -98,6 +104,8 @@ extension TCEmrError {
                 code = .resourceNotFound_CDBInfoNotFound
             case .clusterNotFound:
                 code = .resourceNotFound_ClusterNotFound
+            case .cvmInstanceNotFound:
+                code = .resourceNotFound_CvmInstanceNotFound
             case .hardwareInfoNotFound:
                 code = .resourceNotFound_HardwareInfoNotFound
             case .instanceNotFound:

@@ -50,7 +50,7 @@ extension Vpc {
 
     /// 重置VPN通道
     ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    /// 本接口（ResetVpnConnection）用于重置VPN通道。
     @inlinable @discardableResult
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -58,7 +58,7 @@ extension Vpc {
 
     /// 重置VPN通道
     ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    /// 本接口（ResetVpnConnection）用于重置VPN通道。
     @inlinable @discardableResult
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,7 +66,7 @@ extension Vpc {
 
     /// 重置VPN通道
     ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    /// 本接口（ResetVpnConnection）用于重置VPN通道。
     @inlinable @discardableResult
     public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.resetVpnConnection(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
@@ -74,7 +74,7 @@ extension Vpc {
 
     /// 重置VPN通道
     ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    /// 本接口（ResetVpnConnection）用于重置VPN通道。
     @inlinable @discardableResult
     public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.resetVpnConnection(.init(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)

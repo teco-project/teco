@@ -28,10 +28,10 @@ extension Redis {
         /// 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: Int64
 
-        /// 复制组ID。
+        /// 指定复制组 ID。例如：crs-rpl-m3zt****。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID。
         public let groupId: String?
 
-        /// 模糊查询的关键字，可以设置为复制组ID或复制组名称进行模糊查询。
+        /// 模糊查询的关键字，可以设置为复制组ID或复制组名称进行模糊查询。请登录[Redis 控制台](https://console.cloud.tencent.com/redis/replication)的全球复制组列表获取复制组 ID及名称。
         public let searchKey: String?
 
         public init(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil) {
@@ -87,7 +87,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable
     public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationGroupResponse> {
         self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -95,7 +95,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable
     public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
         try await self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -103,7 +103,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationGroupResponse> {
         self.describeReplicationGroup(.init(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
@@ -111,7 +111,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
         try await self.describeReplicationGroup(.init(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable
     public func describeReplicationGroupPaginated(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Groups])> {
         self.client.paginate(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
@@ -127,7 +127,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     @inlinable @discardableResult
     public func describeReplicationGroupPaginated(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReplicationGroupResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReplicationGroup, callback: onResponse, logger: logger, on: eventLoop)
@@ -135,7 +135,7 @@ extension Redis {
 
     /// 查询复制组
     ///
-    /// 本接口（DescribeReplicationGroup）查询复制组。
+    /// 本接口（DescribeReplicationGroup）用于查询复制组。
     ///
     /// - Returns: `AsyncSequence`s of `Groups` and `DescribeReplicationGroupResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -50,12 +50,20 @@ extension TCCdbError {
             case modifyAuditStatusError = "OperationDenied.ModifyAuditStatusError"
             case notSupportBasic = "OperationDenied.NotSupportBasic"
             case notSupportModifyLocalRootHostError = "OperationDenied.NotSupportModifyLocalRootHostError"
+            case operationDeniedError = "OperationDenied.OperationDeniedError"
             case otherOderInProcess = "OperationDenied.OtherOderInProcess"
             case overQuota = "OperationDenied.OverQuota"
+            case proxyAddressLimitError = "OperationDenied.ProxyAddressLimitError"
+            case proxyAddressNotFund = "OperationDenied.ProxyAddressNotFund"
+            case proxyNodeCountLimitError = "OperationDenied.ProxyNodeCountLimitError"
             case proxyUpgradeTaskStatusError = "OperationDenied.ProxyUpgradeTaskStatusError"
+            case queryAuditLogsError = "OperationDenied.QueryAuditLogsError"
+            case resourceNotFoundError = "OperationDenied.ResourceNotFoundError"
+            case resourceNotFundError = "OperationDenied.ResourceNotFundError"
             case resultOverLimit = "OperationDenied.ResultOverLimit"
             case subAccountOperationDenied = "OperationDenied.SubAccountOperationDenied"
             case unSupportRefundError = "OperationDenied.UnSupportRefundError"
+            case unsupportCreateAddressError = "OperationDenied.UnsupportCreateAddressError"
             case unsupportOpenAuditError = "OperationDenied.UnsupportOpenAuditError"
             case userHasNoStrategy = "OperationDenied.UserHasNoStrategy"
             case wrongPassword = "OperationDenied.WrongPassword"
@@ -240,6 +248,11 @@ extension TCCdbError {
             OperationDenied(.notSupportModifyLocalRootHostError)
         }
 
+        /// 操作拒绝。
+        public static var operationDeniedError: OperationDenied {
+            OperationDenied(.operationDeniedError)
+        }
+
         /// 当前有其他订单正在处于下单过程中，请稍后重试。
         public static var otherOderInProcess: OperationDenied {
             OperationDenied(.otherOderInProcess)
@@ -250,9 +263,39 @@ extension TCCdbError {
             OperationDenied(.overQuota)
         }
 
+        /// 代理地址超限。
+        public static var proxyAddressLimitError: OperationDenied {
+            OperationDenied(.proxyAddressLimitError)
+        }
+
+        /// 代理地址未找到。
+        public static var proxyAddressNotFund: OperationDenied {
+            OperationDenied(.proxyAddressNotFund)
+        }
+
+        /// 代理节点超限。
+        public static var proxyNodeCountLimitError: OperationDenied {
+            OperationDenied(.proxyNodeCountLimitError)
+        }
+
         /// 数据库代理升级任务中，不允许该操作。
         public static var proxyUpgradeTaskStatusError: OperationDenied {
             OperationDenied(.proxyUpgradeTaskStatusError)
+        }
+
+        /// 查询审计日志失败。
+        public static var queryAuditLogsError: OperationDenied {
+            OperationDenied(.queryAuditLogsError)
+        }
+
+        /// 资源未找到。
+        public static var resourceNotFoundError: OperationDenied {
+            OperationDenied(.resourceNotFoundError)
+        }
+
+        /// 资源未找到。
+        public static var resourceNotFundError: OperationDenied {
+            OperationDenied(.resourceNotFundError)
         }
 
         /// 结果集超过限制，请缩小检索范围。
@@ -268,6 +311,11 @@ extension TCCdbError {
         /// 该实例暂不支持退款。
         public static var unSupportRefundError: OperationDenied {
             OperationDenied(.unSupportRefundError)
+        }
+
+        /// 不支持创建代理地址。
+        public static var unsupportCreateAddressError: OperationDenied {
+            OperationDenied(.unsupportCreateAddressError)
         }
 
         /// 不支持开通审计。
@@ -360,18 +408,34 @@ extension TCCdbError {
                 code = .operationDenied_NotSupportBasic
             case .notSupportModifyLocalRootHostError:
                 code = .operationDenied_NotSupportModifyLocalRootHostError
+            case .operationDeniedError:
+                code = .operationDenied_OperationDeniedError
             case .otherOderInProcess:
                 code = .operationDenied_OtherOderInProcess
             case .overQuota:
                 code = .operationDenied_OverQuota
+            case .proxyAddressLimitError:
+                code = .operationDenied_ProxyAddressLimitError
+            case .proxyAddressNotFund:
+                code = .operationDenied_ProxyAddressNotFund
+            case .proxyNodeCountLimitError:
+                code = .operationDenied_ProxyNodeCountLimitError
             case .proxyUpgradeTaskStatusError:
                 code = .operationDenied_ProxyUpgradeTaskStatusError
+            case .queryAuditLogsError:
+                code = .operationDenied_QueryAuditLogsError
+            case .resourceNotFoundError:
+                code = .operationDenied_ResourceNotFoundError
+            case .resourceNotFundError:
+                code = .operationDenied_ResourceNotFundError
             case .resultOverLimit:
                 code = .operationDenied_ResultOverLimit
             case .subAccountOperationDenied:
                 code = .operationDenied_SubAccountOperationDenied
             case .unSupportRefundError:
                 code = .operationDenied_UnSupportRefundError
+            case .unsupportCreateAddressError:
+                code = .operationDenied_UnsupportCreateAddressError
             case .unsupportOpenAuditError:
                 code = .operationDenied_UnsupportOpenAuditError
             case .userHasNoStrategy:

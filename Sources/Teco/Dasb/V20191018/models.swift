@@ -160,6 +160,56 @@ extension Dasb {
         }
     }
 
+    /// 审计日志
+    public struct AuditLogResult: TCOutputModel {
+        /// 被审计会话的Sid
+        public let sid: String
+
+        /// 审计者的编号
+        public let uin: String
+
+        /// 审计动作发生的时间
+        public let time: String
+
+        /// 审计者的Ip
+        public let clientIp: String
+
+        /// 审计动作类型，1--回放、2--中断、3--监控
+        public let operation: Int64
+
+        /// 被审计主机的Id
+        public let instanceId: String
+
+        /// 被审计主机的主机名
+        public let deviceName: String
+
+        /// 被审计会话所属的类型，如字符会话
+        public let `protocol`: String
+
+        /// 被审计主机的内部Ip
+        public let privateIp: String
+
+        /// 被审计主机的外部Ip
+        public let publicIp: String
+
+        /// 审计者的子账号
+        public let subAccountUin: String
+
+        enum CodingKeys: String, CodingKey {
+            case sid = "Sid"
+            case uin = "Uin"
+            case time = "Time"
+            case clientIp = "ClientIp"
+            case operation = "Operation"
+            case instanceId = "InstanceId"
+            case deviceName = "DeviceName"
+            case `protocol` = "Protocol"
+            case privateIp = "PrivateIp"
+            case publicIp = "PublicIp"
+            case subAccountUin = "SubAccountUin"
+        }
+    }
+
     /// 高危命令模板
     public struct CmdTemplate: TCOutputModel {
         /// 高危命令模板ID
@@ -175,6 +225,83 @@ extension Dasb {
             case id = "Id"
             case name = "Name"
             case cmdList = "CmdList"
+        }
+    }
+
+    /// 命令集合
+    public struct Command: TCOutputModel {
+        /// 命令
+        public let cmd: String
+
+        /// 命令输入的时间
+        public let time: String
+
+        /// 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        public let timeOffset: UInt64
+
+        /// 命令执行情况，1--允许，2--拒绝，3--确认
+        public let action: Int64
+
+        /// 会话id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sid: String?
+
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userName: String?
+
+        /// 设备account
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let account: String?
+
+        /// 设备ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// source ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fromIp: String?
+
+        /// 该命令所属会话的会话开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessTime: String?
+
+        /// 复核时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let confirmTime: String?
+
+        /// 用户部门id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userDepartmentId: String?
+
+        /// 用户部门name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userDepartmentName: String?
+
+        /// 设备部门id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceDepartmentId: String?
+
+        /// 设备部门name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceDepartmentName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case cmd = "Cmd"
+            case time = "Time"
+            case timeOffset = "TimeOffset"
+            case action = "Action"
+            case sid = "Sid"
+            case userName = "UserName"
+            case account = "Account"
+            case instanceId = "InstanceId"
+            case fromIp = "FromIp"
+            case sessTime = "SessTime"
+            case confirmTime = "ConfirmTime"
+            case userDepartmentId = "UserDepartmentId"
+            case userDepartmentName = "UserDepartmentName"
+            case deviceDepartmentId = "DeviceDepartmentId"
+            case deviceDepartmentName = "DeviceDepartmentName"
         }
     }
 
@@ -246,6 +373,10 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let department: Department?
 
+        /// 数据库资产的多节点
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipPortSet: [String]?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case instanceId = "InstanceId"
@@ -262,6 +393,7 @@ extension Dasb {
             case subnetId = "SubnetId"
             case resource = "Resource"
             case department = "Department"
+            case ipPortSet = "IpPortSet"
         }
     }
 
@@ -308,12 +440,16 @@ extension Dasb {
         /// 资产所属的部门ID
         public let departmentId: String?
 
-        public init(osName: String, ip: String, port: UInt64, name: String? = nil, departmentId: String? = nil) {
+        /// 资产多节点：字段ip和端口
+        public let ipPortSet: [String]?
+
+        public init(osName: String, ip: String, port: UInt64, name: String? = nil, departmentId: String? = nil, ipPortSet: [String]? = nil) {
             self.osName = osName
             self.ip = ip
             self.port = port
             self.name = name
             self.departmentId = departmentId
+            self.ipPortSet = ipPortSet
         }
 
         enum CodingKeys: String, CodingKey {
@@ -322,6 +458,7 @@ extension Dasb {
             case port = "Port"
             case name = "Name"
             case departmentId = "DepartmentId"
+            case ipPortSet = "IpPortSet"
         }
     }
 
@@ -367,6 +504,76 @@ extension Dasb {
             case name = "Name"
             case department = "Department"
             case count = "Count"
+        }
+    }
+
+    /// 登录日志
+    public struct LoginEvent: TCOutputModel {
+        /// 用户名
+        public let userName: String
+
+        /// 姓名
+        public let realName: String
+
+        /// 操作时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var time: Date
+
+        /// 来源IP
+        public let sourceIp: String
+
+        /// 登录入口：1-字符界面,2-图形界面，3-web页面, 4-API
+        public let entry: UInt64
+
+        /// 操作结果，1-成功，2-失败
+        public let result: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case realName = "RealName"
+            case time = "Time"
+            case sourceIp = "SourceIp"
+            case entry = "Entry"
+            case result = "Result"
+        }
+    }
+
+    /// 操作日志
+    public struct OperationEvent: TCOutputModel {
+        /// 用户名
+        public let userName: String
+
+        /// 姓名
+        public let realName: String
+
+        /// 操作时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var time: Date
+
+        /// 来源IP
+        public let sourceIp: String
+
+        /// 操作类型
+        public let kind: UInt64
+
+        /// 具体操作内容
+        public let operation: String
+
+        /// 操作结果，1-成功，2-失败
+        public let result: UInt64
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case realName = "RealName"
+            case time = "Time"
+            case sourceIp = "SourceIp"
+            case kind = "Kind"
+            case operation = "Operation"
+            case result = "Result"
         }
     }
 
@@ -499,6 +706,333 @@ extension Dasb {
         }
     }
 
+    /// 命令执行检索结果
+    public struct SearchCommandResult: TCOutputModel {
+        /// 命令输入的时间
+        public let time: String
+
+        /// 用户名
+        public let userName: String
+
+        /// 姓名
+        public let realName: String
+
+        /// 资产ID
+        public let instanceId: String
+
+        /// 资产名称
+        public let deviceName: String
+
+        /// 资产公网IP
+        public let publicIp: String
+
+        /// 资产内网IP
+        public let privateIp: String
+
+        /// 命令
+        public let cmd: String
+
+        /// 命令执行情况，1--允许，2--拒绝
+        public let action: UInt64
+
+        /// 命令所属的会话ID
+        public let sid: String
+
+        /// 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        public let timeOffset: UInt64
+
+        /// 账号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let account: String?
+
+        /// source ip
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fromIp: String?
+
+        /// 该命令所属会话的会话开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sessTime: String?
+
+        /// 复核时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let confirmTime: String?
+
+        /// 部门id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userDepartmentId: String?
+
+        /// 用户部门名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userDepartmentName: String?
+
+        /// 设备部门id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceDepartmentId: String?
+
+        /// 设备部门名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deviceDepartmentName: String?
+
+        enum CodingKeys: String, CodingKey {
+            case time = "Time"
+            case userName = "UserName"
+            case realName = "RealName"
+            case instanceId = "InstanceId"
+            case deviceName = "DeviceName"
+            case publicIp = "PublicIp"
+            case privateIp = "PrivateIp"
+            case cmd = "Cmd"
+            case action = "Action"
+            case sid = "Sid"
+            case timeOffset = "TimeOffset"
+            case account = "Account"
+            case fromIp = "FromIp"
+            case sessTime = "SessTime"
+            case confirmTime = "ConfirmTime"
+            case userDepartmentId = "UserDepartmentId"
+            case userDepartmentName = "UserDepartmentName"
+            case deviceDepartmentId = "DeviceDepartmentId"
+            case deviceDepartmentName = "DeviceDepartmentName"
+        }
+    }
+
+    /// 文件操作搜索结果
+    public struct SearchFileBySidResult: TCOutputModel {
+        /// 文件操作时间
+        public let time: String
+
+        /// 1-上传文件 2-下载文件 3-删除文件 4-移动文件 5-重命名文件 6-新建文件夹 7-移动文件夹 8-重命名文件夹 9-删除文件夹
+        public let method: Int64
+
+        /// 文件传输协议
+        public let `protocol`: String
+
+        /// method为上传、下载、删除时文件在服务器上的位置, 或重命名、移动文件前文件的位置
+        public let fileCurr: String
+
+        /// method为重命名、移动文件时代表移动后的新位置.其他情况为null
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileNew: String?
+
+        /// method为上传文件、下载文件、删除文件时显示文件大小。其他情况为null
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let size: Int64?
+
+        /// 堡垒机拦截情况, 1-已执行，  2-被阻断
+        public let action: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case time = "Time"
+            case method = "Method"
+            case `protocol` = "Protocol"
+            case fileCurr = "FileCurr"
+            case fileNew = "FileNew"
+            case size = "Size"
+            case action = "Action"
+        }
+    }
+
+    /// 文件传输检索结果
+    public struct SearchFileResult: TCOutputModel {
+        /// 文件传输的时间
+        public let time: String
+
+        /// 用户名
+        public let userName: String
+
+        /// 姓名
+        public let realName: String
+
+        /// 资产ID
+        public let instanceId: String
+
+        /// 资产名称
+        public let deviceName: String
+
+        /// 资产公网IP
+        public let publicIp: String
+
+        /// 资产内网IP
+        public let privateIp: String
+
+        /// 操作结果：1 - 已执行，2 - 已阻断
+        public let action: UInt64
+
+        /// 操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹
+        public let method: UInt64
+
+        /// 下载的文件（夹）路径及名称
+        public let fileCurr: String
+
+        /// 上传或新建文件（夹）路径及名称
+        public let fileNew: String
+
+        enum CodingKeys: String, CodingKey {
+            case time = "Time"
+            case userName = "UserName"
+            case realName = "RealName"
+            case instanceId = "InstanceId"
+            case deviceName = "DeviceName"
+            case publicIp = "PublicIp"
+            case privateIp = "PrivateIp"
+            case action = "Action"
+            case method = "Method"
+            case fileCurr = "FileCurr"
+            case fileNew = "FileNew"
+        }
+    }
+
+    /// 用于搜索文件传输记录等日志时按照protocol和method进行过滤
+    public struct SearchFileTypeFilter: TCInputModel {
+        /// 需要查询的文件传输类型，如SFTP/CLIP/RDP/RZSZ
+        public let `protocol`: String
+
+        /// 在当前指定的protocol下进一步过滤具体操作类型,如剪贴板文件上传，剪贴板文件下载等
+        public let method: [Int64]?
+
+        public init(protocol: String, method: [Int64]? = nil) {
+            self.protocol = `protocol`
+            self.method = method
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `protocol` = "Protocol"
+            case method = "Method"
+        }
+    }
+
+    /// 命令和所属会话
+    public struct SessionCommand: TCOutputModel {
+        /// 开始时间
+        public let startTime: String
+
+        /// 结束时间
+        public let endTime: String
+
+        /// 用户名
+        public let userName: String
+
+        /// 账号
+        public let realName: String
+
+        /// 设备名
+        public let deviceName: String
+
+        /// 内部Ip
+        public let privateIp: String
+
+        /// 外部Ip
+        public let publicIp: String
+
+        /// 命令列表
+        public let commands: [Command]
+
+        /// 记录数
+        public let count: UInt64
+
+        /// 会话Id
+        public let id: String
+
+        /// 设备id
+        public let instanceId: String
+
+        /// 设备所属的地域
+        public let apCode: String
+
+        enum CodingKeys: String, CodingKey {
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case userName = "UserName"
+            case realName = "RealName"
+            case deviceName = "DeviceName"
+            case privateIp = "PrivateIp"
+            case publicIp = "PublicIp"
+            case commands = "Commands"
+            case count = "Count"
+            case id = "Id"
+            case instanceId = "InstanceId"
+            case apCode = "ApCode"
+        }
+    }
+
+    /// 搜索字符或图形会话时返回的SessionResul结构体
+    public struct SessionResult: TCOutputModel {
+        /// 用户名
+        public let userName: String
+
+        /// 姓名
+        public let realName: String
+
+        /// 主机账号
+        public let account: String
+
+        /// 开始时间
+        public let startTime: String
+
+        /// 结束时间
+        public let endTime: String
+
+        /// 会话大小
+        public let size: UInt64
+
+        /// 设备ID
+        public let instanceId: String
+
+        /// 设备名
+        public let deviceName: String
+
+        /// 内部Ip
+        public let privateIp: String
+
+        /// 外部Ip
+        public let publicIp: String
+
+        /// 来源Ip
+        public let fromIp: String
+
+        /// 会话持续时长
+        public let duration: Float
+
+        /// 该会话内命令数量 ，搜索图形会话时该字段无意义
+        public let count: UInt64
+
+        /// 该会话内高危命令数，搜索图形时该字段无意义
+        public let dangerCount: UInt64
+
+        /// 会话状态，如1会话活跃  2会话结束  3强制离线  4其他错误
+        public let status: UInt64
+
+        /// 会话Id
+        public let id: String
+
+        /// 设备所属的地域
+        public let apCode: String
+
+        /// 会话协议
+        public let `protocol`: String
+
+        enum CodingKeys: String, CodingKey {
+            case userName = "UserName"
+            case realName = "RealName"
+            case account = "Account"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case size = "Size"
+            case instanceId = "InstanceId"
+            case deviceName = "DeviceName"
+            case privateIp = "PrivateIp"
+            case publicIp = "PublicIp"
+            case fromIp = "FromIp"
+            case duration = "Duration"
+            case count = "Count"
+            case dangerCount = "DangerCount"
+            case status = "Status"
+            case id = "Id"
+            case apCode = "ApCode"
+            case `protocol` = "Protocol"
+        }
+    }
+
     /// 资产标签
     public struct TagFilter: TCInputModel {
         /// 标签键
@@ -526,11 +1060,11 @@ extension Dasb {
         /// 用户姓名， 最大20个字符，不能包含空白字符
         public let realName: String
 
-        /// 手机号码， 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
-        public let phone: String
-
         /// 用户ID
         public let id: UInt64?
+
+        /// 手机号码， 大陆手机号直接填写，如果是其他国家、地区号码,按照"国家地区代码|手机号"的格式输入。如: "+852|xxxxxxxx"
+        public let phone: String?
 
         /// 电子邮件
         public let email: String?
@@ -566,11 +1100,11 @@ extension Dasb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let departmentId: String?
 
-        public init(userName: String, realName: String, phone: String, id: UInt64? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupSet: [Group]? = nil, authType: UInt64? = nil, validateTime: String? = nil, department: Department? = nil, departmentId: String? = nil) {
+        public init(userName: String, realName: String, id: UInt64? = nil, phone: String? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupSet: [Group]? = nil, authType: UInt64? = nil, validateTime: String? = nil, department: Department? = nil, departmentId: String? = nil) {
             self.userName = userName
             self.realName = realName
-            self.phone = phone
             self.id = id
+            self.phone = phone
             self.email = email
             self._validateFrom = .init(wrappedValue: validateFrom)
             self._validateTo = .init(wrappedValue: validateTo)
@@ -584,8 +1118,8 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case userName = "UserName"
             case realName = "RealName"
-            case phone = "Phone"
             case id = "Id"
+            case phone = "Phone"
             case email = "Email"
             case validateFrom = "ValidateFrom"
             case validateTo = "ValidateTo"

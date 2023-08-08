@@ -33,11 +33,23 @@ extension Wedata {
         /// 实时任务 201   离线任务 202  默认实时任务
         public let taskType: UInt64?
 
-        public init(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil) {
+        /// 额外参数
+        public let extConfig: [RecordField]?
+
+        /// 提交版本描述
+        public let versionDesc: String?
+
+        /// 提交版本号
+        public let instanceVersion: Int64?
+
+        public init(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, extConfig: [RecordField]? = nil, versionDesc: String? = nil, instanceVersion: Int64? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.commitType = commitType
             self.taskType = taskType
+            self.extConfig = extConfig
+            self.versionDesc = versionDesc
+            self.instanceVersion = instanceVersion
         }
 
         enum CodingKeys: String, CodingKey {
@@ -45,6 +57,9 @@ extension Wedata {
             case projectId = "ProjectId"
             case commitType = "CommitType"
             case taskType = "TaskType"
+            case extConfig = "ExtConfig"
+            case versionDesc = "VersionDesc"
+            case instanceVersion = "InstanceVersion"
         }
     }
 
@@ -76,13 +91,13 @@ extension Wedata {
 
     /// 提交集成任务
     @inlinable
-    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitIntegrationTaskResponse> {
-        self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), region: region, logger: logger, on: eventLoop)
+    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, extConfig: [RecordField]? = nil, versionDesc: String? = nil, instanceVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitIntegrationTaskResponse> {
+        self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType, extConfig: extConfig, versionDesc: versionDesc, instanceVersion: instanceVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交集成任务
     @inlinable
-    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitIntegrationTaskResponse {
-        try await self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType), region: region, logger: logger, on: eventLoop)
+    public func commitIntegrationTask(taskId: String, projectId: String, commitType: Int64? = nil, taskType: UInt64? = nil, extConfig: [RecordField]? = nil, versionDesc: String? = nil, instanceVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitIntegrationTaskResponse {
+        try await self.commitIntegrationTask(.init(taskId: taskId, projectId: projectId, commitType: commitType, taskType: taskType, extConfig: extConfig, versionDesc: versionDesc, instanceVersion: instanceVersion), region: region, logger: logger, on: eventLoop)
     }
 }

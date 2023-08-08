@@ -27,7 +27,7 @@ extension Clb {
         /// 要查询的负载均衡监听器 ID 数组，最大为100个。
         public let listenerIds: [String]?
 
-        /// 要查询的监听器协议类型，取值 TCP | UDP | HTTP | HTTPS | TCP_SSL。
+        /// 要查询的监听器协议类型，取值 TCP | UDP | HTTP | HTTPS | TCP_SSL | QUIC。
         public let `protocol`: String?
 
         /// 要查询的监听器的端口。

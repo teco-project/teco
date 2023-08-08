@@ -30,16 +30,16 @@ extension Essbasic {
         /// 合同流程基础信息
         public let flowInfo: BaseFlowInfo
 
-        /// 合同签署人信息
-        public let flowApproverList: [CommonFlowApprover]
-
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         public let agent: Agent?
 
-        /// 合同流程配置信息
+        /// 合同流程配置信息，用于配置发起合同时定制化
         public let flowOption: CreateFlowOption?
 
-        /// 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
+        /// 合同签署人信息
+        public let flowApproverList: [CommonFlowApprover]?
+
+        /// 通过flowid快速获得之前成功通过页面发起的合同生成链接
         public let flowId: String?
 
         /// 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
@@ -51,13 +51,13 @@ extension Essbasic {
         /// 操作人（用户）信息，不用传
         public let `operator`: UserInfo?
 
-        public init(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, flowApproverList: [CommonFlowApprover], agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
+        public init(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
             self.resourceId = resourceId
             self.resourceType = resourceType
             self.flowInfo = flowInfo
-            self.flowApproverList = flowApproverList
             self.agent = agent
             self.flowOption = flowOption
+            self.flowApproverList = flowApproverList
             self.flowId = flowId
             self.needPreview = needPreview
             self.organization = organization
@@ -68,9 +68,9 @@ extension Essbasic {
             case resourceId = "ResourceId"
             case resourceType = "ResourceType"
             case flowInfo = "FlowInfo"
-            case flowApproverList = "FlowApproverList"
             case agent = "Agent"
             case flowOption = "FlowOption"
+            case flowApproverList = "FlowApproverList"
             case flowId = "FlowId"
             case needPreview = "NeedPreview"
             case organization = "Organization"
@@ -96,7 +96,7 @@ extension Essbasic {
         }
     }
 
-    /// 创建预发起合同
+    /// 获取模板发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -108,7 +108,7 @@ extension Essbasic {
         self.client.execute(action: "ChannelCreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建预发起合同
+    /// 获取模板发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -120,7 +120,7 @@ extension Essbasic {
         try await self.client.execute(action: "ChannelCreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建预发起合同
+    /// 获取模板发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -128,11 +128,11 @@ extension Essbasic {
     /// 合同发起后，填写及签署流程与现有操作流程一致
     /// 注意：目前仅支持模板发起
     @inlinable
-    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, flowApproverList: [CommonFlowApprover], agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePrepareFlowResponse> {
-        self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, flowApproverList: flowApproverList, agent: agent, flowOption: flowOption, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePrepareFlowResponse> {
+        self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建预发起合同
+    /// 获取模板发起合同web页面
     ///
     /// 创建预发起合同
     /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
@@ -140,7 +140,7 @@ extension Essbasic {
     /// 合同发起后，填写及签署流程与现有操作流程一致
     /// 注意：目前仅支持模板发起
     @inlinable
-    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, flowApproverList: [CommonFlowApprover], agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePrepareFlowResponse {
-        try await self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, flowApproverList: flowApproverList, agent: agent, flowOption: flowOption, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePrepareFlowResponse {
+        try await self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

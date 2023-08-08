@@ -30,16 +30,26 @@ extension Wedata {
         /// 数据来源id
         public let datasourceId: String?
 
-        public init(statisticsDate: Int64, projectId: String, datasourceId: String? = nil) {
+        /// 1:按全维度权重计算,2:按已配置维度权重计算,3:不按维度权重计算,默认1
+        public let scoreType: String?
+
+        /// 过滤参数
+        public let filters: [Filter]?
+
+        public init(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, scoreType: String? = nil, filters: [Filter]? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.datasourceId = datasourceId
+            self.scoreType = scoreType
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
             case statisticsDate = "StatisticsDate"
             case projectId = "ProjectId"
             case datasourceId = "DatasourceId"
+            case scoreType = "ScoreType"
+            case filters = "Filters"
         }
     }
 
@@ -78,15 +88,15 @@ extension Wedata {
     ///
     /// 质量报告-质量评分
     @inlinable
-    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreResponse> {
-        self.describeQualityScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, scoreType: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreResponse> {
+        self.describeQualityScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId, scoreType: scoreType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询质量评分
     ///
     /// 质量报告-质量评分
     @inlinable
-    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreResponse {
-        try await self.describeQualityScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+    public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, scoreType: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreResponse {
+        try await self.describeQualityScore(.init(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId, scoreType: scoreType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

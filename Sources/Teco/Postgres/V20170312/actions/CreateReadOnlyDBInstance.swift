@@ -21,110 +21,125 @@ import TecoCore
 extension Postgres {
     /// CreateReadOnlyDBInstance请求参数结构体
     public struct CreateReadOnlyDBInstanceRequest: TCRequestModel {
-        /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
+        /// 实例所属主可用区， 如：ap-guangzhou-3；
+        /// 可用区信息可以通过调用 [DescribeZones](https://cloud.tencent.com/document/api/409/16769) 接口的返回值中的Zone字段来获取。
+        public let zone: String
+
+        /// 只读实例的主实例ID。
+        public let masterDBInstanceId: String
+
+        /// 售卖规格码。该参数可以通过调用[DescribeClasses](https://cloud.tencent.com/document/api/409/89019)的返回值中的SpecCode字段来获取。
         public let specCode: String
 
         /// 实例容量大小，单位：GB。
         public let storage: UInt64
 
-        /// 一次性购买的实例数量。取值1-100
+        /// 购买实例数量，取值范围：[1-10]。一次性购买支持最大数量10个，若超过该数量，可进行多次调用进行购买。
         public let instanceCount: UInt64
 
-        /// 购买时长，单位：月。目前只支持1,2,3,4,5,6,7,8,9,10,11,12,24,36这些值，按量计费模式下该参数传1。
+        /// 购买时长，单位：月。
+        /// <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        /// <li>后付费：只支持1
         public let period: UInt64
 
-        /// 只读实例的主实例ID
-        public let masterDBInstanceId: String
+        /// 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
+        public let vpcId: String?
 
-        /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
-        public let zone: String
+        /// 私有网络子网ID，形如subnet-xxxxxxxx。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
+        public let subnetId: String?
 
-        /// 项目ID。
-        public let projectId: UInt64?
-
-        /// 【废弃】不再需要指定，内核版本号与主实例保持一致
-        public let dbVersion: String?
-
-        /// 实例计费类型。目前支持：PREPAID（预付费，即包年包月），POSTPAID_BY_HOUR（后付费，即按量计费）。如果主实例为后付费，只读实例必须也为后付费。
+        /// 实例计费类型，目前支持：
+        /// <li>PREPAID：预付费，即包年包月。
+        /// <li>POSTPAID_BY_HOUR：后付费，即按量计费。
+        /// 默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
         public let instanceChargeType: String?
 
-        /// 是否自动使用代金券。1（是），0（否），默认不使用。
+        /// 是否自动使用代金券：
+        /// <li>0：否
+        /// <li>1：是
+        /// 默认值：0
         public let autoVoucher: UInt64?
 
         /// 代金券ID列表，目前仅支持指定一张代金券。
         public let voucherIds: [String]?
 
-        /// 续费标记：0-正常续费（默认）；1-自动续费；
+        /// 续费标记：
+        /// <li>0：手动续费
+        /// <li>1：自动续费
+        /// 默认值：0
         public let autoRenewFlag: Int64?
 
-        /// 私有网络ID。
-        public let vpcId: String?
-
-        /// 私有网络子网ID。
-        public let subnetId: String?
+        /// 项目ID。
+        public let projectId: UInt64?
 
         /// 优惠活动ID
         public let activityId: Int64?
 
-        /// 实例名(后续支持)
-        public let name: String?
-
-        /// 是否需要支持Ipv6，1：是，0：否
-        public let needSupportIpv6: UInt64?
-
         /// 只读组ID。
         public let readOnlyGroupId: String?
 
-        /// 实例需要绑定的Tag信息，默认为空（该类型为Tag数组类型）
+        /// 实例需要绑定的Tag信息，默认为空；可以通过调用 [DescribeTags](https://cloud.tencent.com/document/api/651/35316) 返回值中的 Tags 字段来获取。
         public let tagList: Tag?
 
-        /// 安全组id
+        /// 实例所属安全组，该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
 
-        public init(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil) {
+        /// 是否需要支持Ipv6：
+        /// <li>0：否
+        /// <li>1：是
+        /// 默认值：0
+        public let needSupportIpv6: UInt64?
+
+        /// 实例名(后续支持)
+        public let name: String?
+
+        /// 【废弃】不再需要指定，内核版本号与主实例保持一致
+        public let dbVersion: String?
+
+        public init(zone: String, masterDBInstanceId: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, vpcId: String? = nil, subnetId: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, projectId: UInt64? = nil, activityId: Int64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, needSupportIpv6: UInt64? = nil, name: String? = nil, dbVersion: String? = nil) {
+            self.zone = zone
+            self.masterDBInstanceId = masterDBInstanceId
             self.specCode = specCode
             self.storage = storage
             self.instanceCount = instanceCount
             self.period = period
-            self.masterDBInstanceId = masterDBInstanceId
-            self.zone = zone
-            self.projectId = projectId
-            self.dbVersion = dbVersion
+            self.vpcId = vpcId
+            self.subnetId = subnetId
             self.instanceChargeType = instanceChargeType
             self.autoVoucher = autoVoucher
             self.voucherIds = voucherIds
             self.autoRenewFlag = autoRenewFlag
-            self.vpcId = vpcId
-            self.subnetId = subnetId
+            self.projectId = projectId
             self.activityId = activityId
-            self.name = name
-            self.needSupportIpv6 = needSupportIpv6
             self.readOnlyGroupId = readOnlyGroupId
             self.tagList = tagList
             self.securityGroupIds = securityGroupIds
+            self.needSupportIpv6 = needSupportIpv6
+            self.name = name
+            self.dbVersion = dbVersion
         }
 
         enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+            case masterDBInstanceId = "MasterDBInstanceId"
             case specCode = "SpecCode"
             case storage = "Storage"
             case instanceCount = "InstanceCount"
             case period = "Period"
-            case masterDBInstanceId = "MasterDBInstanceId"
-            case zone = "Zone"
-            case projectId = "ProjectId"
-            case dbVersion = "DBVersion"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
             case instanceChargeType = "InstanceChargeType"
             case autoVoucher = "AutoVoucher"
             case voucherIds = "VoucherIds"
             case autoRenewFlag = "AutoRenewFlag"
-            case vpcId = "VpcId"
-            case subnetId = "SubnetId"
+            case projectId = "ProjectId"
             case activityId = "ActivityId"
-            case name = "Name"
-            case needSupportIpv6 = "NeedSupportIpv6"
             case readOnlyGroupId = "ReadOnlyGroupId"
             case tagList = "TagList"
             case securityGroupIds = "SecurityGroupIds"
+            case needSupportIpv6 = "NeedSupportIpv6"
+            case name = "Name"
+            case dbVersion = "DBVersion"
         }
     }
 
@@ -170,15 +185,15 @@ extension Postgres {
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
-        self.createReadOnlyDBInstance(.init(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstance(zone: String, masterDBInstanceId: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, vpcId: String? = nil, subnetId: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, projectId: UInt64? = nil, activityId: Int64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, needSupportIpv6: UInt64? = nil, name: String? = nil, dbVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
+        self.createReadOnlyDBInstance(.init(zone: zone, masterDBInstanceId: masterDBInstanceId, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, vpcId: vpcId, subnetId: subnetId, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, projectId: projectId, activityId: activityId, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds, needSupportIpv6: needSupportIpv6, name: name, dbVersion: dbVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建只读实例
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
-        try await self.createReadOnlyDBInstance(.init(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstance(zone: String, masterDBInstanceId: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, vpcId: String? = nil, subnetId: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, projectId: UInt64? = nil, activityId: Int64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, needSupportIpv6: UInt64? = nil, name: String? = nil, dbVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
+        try await self.createReadOnlyDBInstance(.init(zone: zone, masterDBInstanceId: masterDBInstanceId, specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, vpcId: vpcId, subnetId: subnetId, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, projectId: projectId, activityId: activityId, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds, needSupportIpv6: needSupportIpv6, name: name, dbVersion: dbVersion), region: region, logger: logger, on: eventLoop)
     }
 }

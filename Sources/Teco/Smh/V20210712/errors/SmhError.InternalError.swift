@@ -19,6 +19,9 @@ import TecoCore
 extension TCSmhError {
     public struct InternalError: TCSmhErrorType {
         enum Code: String {
+            case balanceLess = "InternalError.BalanceLess"
+            case modifyResourceStatusFail = "InternalError.ModifyResourceStatusFail"
+            case postpaidFail = "InternalError.PostpaidFail"
             case sendSms = "InternalError.SendSms"
             case other = "InternalError"
         }
@@ -45,6 +48,18 @@ extension TCSmhError {
             self.context = context
         }
 
+        public static var balanceLess: InternalError {
+            InternalError(.balanceLess)
+        }
+
+        public static var modifyResourceStatusFail: InternalError {
+            InternalError(.modifyResourceStatusFail)
+        }
+
+        public static var postpaidFail: InternalError {
+            InternalError(.postpaidFail)
+        }
+
         /// 发送短信验证码时发生错误。
         public static var sendSms: InternalError {
             InternalError(.sendSms)
@@ -58,6 +73,12 @@ extension TCSmhError {
         public func asSmhError() -> TCSmhError {
             let code: TCSmhError.Code
             switch self.error {
+            case .balanceLess:
+                code = .internalError_BalanceLess
+            case .modifyResourceStatusFail:
+                code = .internalError_ModifyResourceStatusFail
+            case .postpaidFail:
+                code = .internalError_PostpaidFail
             case .sendSms:
                 code = .internalError_SendSms
             case .other:

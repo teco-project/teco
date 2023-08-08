@@ -24,7 +24,7 @@ extension Antiddos {
         /// 资源ID
         public let id: String
 
-        /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
+        /// DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
         /// =get表示读取防护等级；=set表示修改防护等级

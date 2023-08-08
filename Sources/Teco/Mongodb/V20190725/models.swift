@@ -236,7 +236,7 @@ extension Mongodb {
         /// 原价
         public let originalPrice: Float
 
-        /// 折扣加
+        /// 折扣价
         public let discountPrice: Float
 
         public init(unitPrice: Float, originalPrice: Float, discountPrice: Float) {
@@ -484,28 +484,32 @@ extension Mongodb {
 
     /// 实例可修改参数枚举类型集合。
     public struct InstanceEnumParam: TCOutputModel {
-        /// 参数当前值
+        /// 参数当前值。
         public let currentValue: String
 
-        /// 默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 枚举值，所有支持的值
+        /// 枚举值，所有支持的值。
         public let enumValue: [String]
 
-        /// 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        /// 参数修改之后是否需要重启生效。
+        /// - 1：需要重启后生效。
+        /// - 0：无需重启，设置成功即可生效。
         public let needRestart: String
 
-        /// 参数名称
+        /// 参数名称。
         public let paramName: String
 
-        /// 中英文说明
+        /// 参数说明。
         public let tips: [String]
 
-        /// 参数值类型说明
+        /// 参数值类型说明。
         public let valueType: String
 
-        /// 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        /// 是否为运行中参数值。
+        /// - 1：运行中参数值。
+        /// - 0：非运行中参数值。
         public let status: UInt64
 
         enum CodingKeys: String, CodingKey {
@@ -520,36 +524,40 @@ extension Mongodb {
         }
     }
 
-    /// 实例可修改参数integer类型集合。
+    /// 实例可修改参数 Integer 类型集合。
     public struct InstanceIntegerParam: TCOutputModel {
-        /// 当前值
+        /// 参数当前值。
         public let currentValue: String
 
-        /// 默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 最大值
+        /// 参数最大值。
         public let max: String
 
-        /// 最小值
+        /// 最小值。
         public let min: String
 
-        /// 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        /// 参数修改之后是否需要重启生效。
+        /// - 1:需要重启后生效。
+        /// - 0：无需重启，设置成功即可生效。
         public let needRestart: String
 
-        /// 参数名称
+        /// 参数名称。
         public let paramName: String
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: [String]
 
-        /// 参数类型
+        /// 参数类型。
         public let valueType: String
 
-        /// 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        /// 是否为运行中参数值。
+        /// - 1：运行中参数值。
+        /// - 0：非运行中参数值。
         public let status: UInt64
 
-        /// 冗余字段，可忽略
+        /// 冗余字段，可忽略。
         public let unit: String
 
         enum CodingKeys: String, CodingKey {
@@ -568,28 +576,32 @@ extension Mongodb {
 
     /// 实例可修改参数Multi类型集合。
     public struct InstanceMultiParam: TCOutputModel {
-        /// 当前值
+        /// 参数当前值。
         public let currentValue: String
 
-        /// 默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 指导值范围
+        /// 参考值范围。
         public let enumValue: [String]
 
-        /// 是否需要重启生效 1:需要重启后生效；0：无需重启，设置成功即可生效；
+        /// 参数修改后是否需要重启才会生效。
+        /// - 1：需要重启后生效。
+        /// - 0：无需重启，设置成功即可生效。
         public let needRestart: String
 
-        /// 参数名称
+        /// 参数名称。
         public let paramName: String
 
-        /// 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        /// 是否为运行中参数值。
+        /// - 1：运行中参数值。
+        /// - 0：非运行中参数值。
         public let status: UInt64
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: [String]
 
-        /// 当前值的类型描述，默认为multi
+        /// 当前值的类型描述，默认为multi。
         public let valueType: String
 
         enum CodingKeys: String, CodingKey {
@@ -604,30 +616,32 @@ extension Mongodb {
         }
     }
 
-    /// 实例可修改参数text类型集合。
+    /// 实例可修改参数为 Text 类型的参数集合。
     public struct InstanceTextParam: TCOutputModel {
-        /// 当前值
+        /// 参数当前值。
         public let currentValue: String
 
-        /// 默认值
+        /// 参数默认值。
         public let defaultValue: String
 
-        /// 是否需要重启
+        /// 修改参数值之后是否需要重启。
         public let needRestart: String
 
-        /// 参数名称
+        /// 参数名称。
         public let paramName: String
 
-        /// text类型值
+        /// Text 类型参数对应的值。
         public let textValue: String
 
-        /// 参数说明
+        /// 参数说明。
         public let tips: [String]
 
-        /// 值类型说明
+        /// 参数值类型说明。
         public let valueType: String
 
-        /// 是否为运行中参数值 1:运行中参数值；0：非运行中参数值；
+        /// 是否为运行中的参数值。
+        /// - 1：运行中参数值。
+        /// - 0：非运行中参数值。
         public let status: String
 
         enum CodingKeys: String, CodingKey {

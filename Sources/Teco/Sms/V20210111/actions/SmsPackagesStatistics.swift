@@ -32,11 +32,11 @@ extension Sms {
         public let offset: UInt64
 
         /// 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
-        /// 注：拉取套餐包的创建时间不小于起始时间。
+        /// 注：接口会返回 BeginTime 到 EndTime 之间创建的套餐包的统计信息。
         public let beginTime: String
 
         /// 结束时间，格式为yyyymmddhh，精确到小时，例如2021050118，表示2021年5月1号18时。
-        /// 注：EndTime 必须大于 BeginTime且小于当前时间，拉取套餐包的创建时间不大于结束时间。
+        /// 注：EndTime 必须大于 BeginTime 且小于当前时间。
         public let endTime: String
 
         public init(smsSdkAppId: String, limit: UInt64, offset: UInt64, beginTime: String, endTime: String) {

@@ -57,6 +57,7 @@ public struct TCMpsError: TCMpsErrorType {
         case invalidParameterValue_Definition = "InvalidParameterValue.Definition"
         case invalidParameterValue_Definitions = "InvalidParameterValue.Definitions"
         case invalidParameterValue_DeleteDefaultTemplate = "InvalidParameterValue.DeleteDefaultTemplate"
+        case invalidParameterValue_DestinationLanguage = "InvalidParameterValue.DestinationLanguage"
         case invalidParameterValue_DisableHigherVideoBitrate = "InvalidParameterValue.DisableHigherVideoBitrate"
         case invalidParameterValue_DisableHigherVideoResolution = "InvalidParameterValue.DisableHigherVideoResolution"
         case invalidParameterValue_FaceDuplicate = "InvalidParameterValue.FaceDuplicate"
@@ -98,6 +99,7 @@ public struct TCMpsError: TCMpsErrorType {
         case invalidParameterValue_SessionId = "InvalidParameterValue.SessionId"
         case invalidParameterValue_SessionIdTooLong = "InvalidParameterValue.SessionIdTooLong"
         case invalidParameterValue_SoundSystem = "InvalidParameterValue.SoundSystem"
+        case invalidParameterValue_SourceLanguage = "InvalidParameterValue.SourceLanguage"
         case invalidParameterValue_SrcFile = "InvalidParameterValue.SrcFile"
         case invalidParameterValue_SubtitleFormat = "InvalidParameterValue.SubtitleFormat"
         case invalidParameterValue_SvgTemplate = "InvalidParameterValue.SvgTemplate"
@@ -335,6 +337,10 @@ public struct TCMpsError: TCMpsErrorType {
         TCMpsError(.invalidParameterValue_DeleteDefaultTemplate)
     }
 
+    public static var invalidParameterValue_DestinationLanguage: TCMpsError {
+        TCMpsError(.invalidParameterValue_DestinationLanguage)
+    }
+
     /// 无效的禁止码率低转高开关值。
     public static var invalidParameterValue_DisableHigherVideoBitrate: TCMpsError {
         TCMpsError(.invalidParameterValue_DisableHigherVideoBitrate)
@@ -538,6 +544,10 @@ public struct TCMpsError: TCMpsErrorType {
     /// 参数错误：音频通道方式。
     public static var invalidParameterValue_SoundSystem: TCMpsError {
         TCMpsError(.invalidParameterValue_SoundSystem)
+    }
+
+    public static var invalidParameterValue_SourceLanguage: TCMpsError {
+        TCMpsError(.invalidParameterValue_SourceLanguage)
     }
 
     /// 源文件错误。

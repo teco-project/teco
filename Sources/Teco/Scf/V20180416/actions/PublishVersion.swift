@@ -64,7 +64,8 @@ extension Scf {
         public let timeout: Int64
 
         /// 函数的运行环境
-        public let runtime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runtime: String?
 
         /// 函数的命名空间
         public let namespace: String

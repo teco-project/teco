@@ -21,25 +21,25 @@ import TecoCore
 extension Cbs {
     /// ModifySnapshotsSharePermission请求参数结构体
     public struct ModifySnapshotsSharePermissionRequest: TCRequestModel {
+        /// 快照ID, 可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询获取。
+        public let snapshotIds: [String]
+
         /// 接收分享快照的账号Id列表，array型参数的格式可以参考[API简介](https://cloud.tencent.com/document/api/213/568)。帐号ID不同于QQ号，查询用户帐号ID请查看[帐号信息](https://console.cloud.tencent.com/developer)中的帐号ID栏。
         public let accountIds: [String]
 
         /// 操作，包括 SHARE，CANCEL。其中SHARE代表分享操作，CANCEL代表取消分享操作。
         public let permission: String
 
-        /// 快照ID, 可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询获取。
-        public let snapshotIds: [String]
-
-        public init(accountIds: [String], permission: String, snapshotIds: [String]) {
+        public init(snapshotIds: [String], accountIds: [String], permission: String) {
+            self.snapshotIds = snapshotIds
             self.accountIds = accountIds
             self.permission = permission
-            self.snapshotIds = snapshotIds
         }
 
         enum CodingKeys: String, CodingKey {
+            case snapshotIds = "SnapshotIds"
             case accountIds = "AccountIds"
             case permission = "Permission"
-            case snapshotIds = "SnapshotIds"
         }
     }
 
@@ -91,8 +91,8 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable @discardableResult
-    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
-        self.modifySnapshotsSharePermission(.init(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
+    public func modifySnapshotsSharePermission(snapshotIds: [String], accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
+        self.modifySnapshotsSharePermission(.init(snapshotIds: snapshotIds, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照分享信息
@@ -105,7 +105,7 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable @discardableResult
-    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
-        try await self.modifySnapshotsSharePermission(.init(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
+    public func modifySnapshotsSharePermission(snapshotIds: [String], accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
+        try await self.modifySnapshotsSharePermission(.init(snapshotIds: snapshotIds, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
 }

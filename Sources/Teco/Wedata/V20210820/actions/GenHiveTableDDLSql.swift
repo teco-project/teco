@@ -81,7 +81,16 @@ extension Wedata {
         /// 增加的delete file数量阈值
         public let addDeleteFiles: Int64?
 
-        public init(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil) {
+        /// 下游节点数据源ID
+        public let targetDatasourceId: String?
+
+        /// dlc upsert主键
+        public let upsertKeys: [String]?
+
+        /// dlc表治理信息
+        public let tableBaseInfo: TableBaseInfo?
+
+        public init(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil, targetDatasourceId: String? = nil, upsertKeys: [String]? = nil, tableBaseInfo: TableBaseInfo? = nil) {
             self.projectId = projectId
             self.sinkDatabase = sinkDatabase
             self.id = id
@@ -102,6 +111,9 @@ extension Wedata {
             self.addEqualityDeletes = addEqualityDeletes
             self.addPositionDeletes = addPositionDeletes
             self.addDeleteFiles = addDeleteFiles
+            self.targetDatasourceId = targetDatasourceId
+            self.upsertKeys = upsertKeys
+            self.tableBaseInfo = tableBaseInfo
         }
 
         enum CodingKeys: String, CodingKey {
@@ -125,6 +137,9 @@ extension Wedata {
             case addEqualityDeletes = "AddEqualityDeletes"
             case addPositionDeletes = "AddPositionDeletes"
             case addDeleteFiles = "AddDeleteFiles"
+            case targetDatasourceId = "TargetDatasourceId"
+            case upsertKeys = "UpsertKeys"
+            case tableBaseInfo = "TableBaseInfo"
         }
     }
 
@@ -161,13 +176,13 @@ extension Wedata {
 
     /// 生成建hive表的sql
     @inlinable
-    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenHiveTableDDLSqlResponse> {
-        self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList, partitions: partitions, properties: properties, tableMode: tableMode, tableVersion: tableVersion, upsertFlag: upsertFlag, tableComment: tableComment, addDataFiles: addDataFiles, addEqualityDeletes: addEqualityDeletes, addPositionDeletes: addPositionDeletes, addDeleteFiles: addDeleteFiles), region: region, logger: logger, on: eventLoop)
+    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil, targetDatasourceId: String? = nil, upsertKeys: [String]? = nil, tableBaseInfo: TableBaseInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenHiveTableDDLSqlResponse> {
+        self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList, partitions: partitions, properties: properties, tableMode: tableMode, tableVersion: tableVersion, upsertFlag: upsertFlag, tableComment: tableComment, addDataFiles: addDataFiles, addEqualityDeletes: addEqualityDeletes, addPositionDeletes: addPositionDeletes, addDeleteFiles: addDeleteFiles, targetDatasourceId: targetDatasourceId, upsertKeys: upsertKeys, tableBaseInfo: tableBaseInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成建hive表的sql
     @inlinable
-    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
-        try await self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList, partitions: partitions, properties: properties, tableMode: tableMode, tableVersion: tableVersion, upsertFlag: upsertFlag, tableComment: tableComment, addDataFiles: addDataFiles, addEqualityDeletes: addEqualityDeletes, addPositionDeletes: addPositionDeletes, addDeleteFiles: addDeleteFiles), region: region, logger: logger, on: eventLoop)
+    public func genHiveTableDDLSql(projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil, partitions: [Partition]? = nil, properties: [Property]? = nil, tableMode: Int64? = nil, tableVersion: String? = nil, upsertFlag: Bool? = nil, tableComment: String? = nil, addDataFiles: Int64? = nil, addEqualityDeletes: Int64? = nil, addPositionDeletes: Int64? = nil, addDeleteFiles: Int64? = nil, targetDatasourceId: String? = nil, upsertKeys: [String]? = nil, tableBaseInfo: TableBaseInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
+        try await self.genHiveTableDDLSql(.init(projectId: projectId, sinkDatabase: sinkDatabase, id: id, msType: msType, datasourceId: datasourceId, sourceDatabase: sourceDatabase, tableName: tableName, sinkType: sinkType, schemaName: schemaName, sourceFieldInfoList: sourceFieldInfoList, partitions: partitions, properties: properties, tableMode: tableMode, tableVersion: tableVersion, upsertFlag: upsertFlag, tableComment: tableComment, addDataFiles: addDataFiles, addEqualityDeletes: addEqualityDeletes, addPositionDeletes: addPositionDeletes, addDeleteFiles: addDeleteFiles, targetDatasourceId: targetDatasourceId, upsertKeys: upsertKeys, tableBaseInfo: tableBaseInfo), region: region, logger: logger, on: eventLoop)
     }
 }

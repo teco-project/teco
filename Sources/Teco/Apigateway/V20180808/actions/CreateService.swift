@@ -32,16 +32,13 @@ extension Apigateway {
         /// 用户自定义的服务描述。
         public let serviceDesc: String?
 
-        /// 独立集群名称，用于指定创建服务所在的独立集群。
-        public let exclusiveSetName: String?
-
         /// 网络类型列表，用于指定支持的访问类型，INNER为内网访问，OUTER为外网访问。默认为OUTER。
         public let netTypes: [String]?
 
         /// IP版本号，支持IPv4和IPv6，默认为IPv4。
         public let ipVersion: String?
 
-        /// 集群名称。保留字段，tsf serverlss类型使用。
+        /// 集群名称。保留字段，tsf serverless类型使用。
         public let setServerName: String?
 
         /// 用户类型。保留类型，serverless用户使用。
@@ -56,11 +53,10 @@ extension Apigateway {
         /// vpc属性
         public let uniqVpcId: String?
 
-        public init(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {
+        public init(serviceName: String, protocol: String, serviceDesc: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {
             self.serviceName = serviceName
             self.protocol = `protocol`
             self.serviceDesc = serviceDesc
-            self.exclusiveSetName = exclusiveSetName
             self.netTypes = netTypes
             self.ipVersion = ipVersion
             self.setServerName = setServerName
@@ -74,7 +70,6 @@ extension Apigateway {
             case serviceName = "ServiceName"
             case `protocol` = "Protocol"
             case serviceDesc = "ServiceDesc"
-            case exclusiveSetName = "ExclusiveSetName"
             case netTypes = "NetTypes"
             case ipVersion = "IpVersion"
             case setServerName = "SetServerName"
@@ -154,8 +149,8 @@ extension Apigateway {
     /// 本接口（CreateService）用于创建服务。
     /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。
     @inlinable
-    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceResponse> {
-        self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
+    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceResponse> {
+        self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建服务
@@ -163,7 +158,7 @@ extension Apigateway {
     /// 本接口（CreateService）用于创建服务。
     /// API 网关使用的最大单元为服务，每个服务中可创建多个 API 接口。每个服务有一个默认域名供客户调用，用户也可绑定自定义域名到此服务中。
     @inlinable
-    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
-        try await self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, exclusiveSetName: exclusiveSetName, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
+    public func createService(serviceName: String, protocol: String, serviceDesc: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
+        try await self.createService(.init(serviceName: serviceName, protocol: `protocol`, serviceDesc: serviceDesc, netTypes: netTypes, ipVersion: ipVersion, setServerName: setServerName, appIdType: appIdType, tags: tags, instanceId: instanceId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -35,7 +35,7 @@ extension Cdb {
 
     /// DescribeRemoteBackupConfig返回参数结构体
     public struct DescribeRemoteBackupConfigResponse: TCResponseModel {
-        /// 异地备份保留天时间，单位为天
+        /// 异地备份保留时间，单位为天
         public let expireDays: Int64
 
         /// 异地数据备份开关，off - 关闭异地备份，on-开启异地备份

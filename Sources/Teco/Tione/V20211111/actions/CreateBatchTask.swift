@@ -24,7 +24,7 @@ extension Tione {
         /// 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let batchTaskName: String
 
-        /// 计费模式，eg：PREPAID预付费，即包年包月；POSTPAID_BY_HOUR按小时后付费
+        /// 计费模式，eg：PREPAID 包年包月；POSTPAID_BY_HOUR 按量计费
         public let chargeType: String
 
         /// 资源配置
@@ -42,7 +42,7 @@ extension Tione {
         /// 任务周期描述
         public let cronInfo: CronInfo?
 
-        /// 预付费专用资源组
+        /// 包年包月资源组ID
         public let resourceGroupId: String?
 
         /// 标签配置

@@ -21,6 +21,8 @@ extension TCEssbasicError {
         enum Code: String {
             case application = "InvalidParameter.Application"
             case approverType = "InvalidParameter.ApproverType"
+            case approverVerifyType = "InvalidParameter.ApproverVerifyType"
+            case authorizationType = "InvalidParameter.AuthorizationType"
             case bizApproverAlreadyExists = "InvalidParameter.BizApproverAlreadyExists"
             case businessLicense = "InvalidParameter.BusinessLicense"
             case cancelReason = "InvalidParameter.CancelReason"
@@ -50,21 +52,25 @@ extension TCEssbasicError {
             case generateType = "InvalidParameter.GenerateType"
             case image = "InvalidParameter.Image"
             case invalidId = "InvalidParameter.InvalidId"
+            case limit = "InvalidParameter.Limit"
             case limitSealName = "InvalidParameter.LimitSealName"
             case menuStatus = "InvalidParameter.MenuStatus"
             case missingRequiredParameterValue = "InvalidParameter.MissingRequiredParameterValue"
             case mobile = "InvalidParameter.Mobile"
             case name = "InvalidParameter.Name"
             case nonsupportMobile = "InvalidParameter.NonsupportMobile"
+            case offset = "InvalidParameter.Offset"
             case openId = "InvalidParameter.OpenId"
             case organizationId = "InvalidParameter.OrganizationId"
             case organizationName = "InvalidParameter.OrganizationName"
             case paramError = "InvalidParameter.ParamError"
             case resourceType = "InvalidParameter.ResourceType"
+            case roleId = "InvalidParameter.RoleId"
             case sensitiveFileContent = "InvalidParameter.SensitiveFileContent"
             case signComponentType = "InvalidParameter.SignComponentType"
             case signComponents = "InvalidParameter.SignComponents"
             case status = "InvalidParameter.Status"
+            case uniformSocialCreditCode = "InvalidParameter.UniformSocialCreditCode"
             case unordered = "InvalidParameter.Unordered"
             case unsupportedComponentType = "InvalidParameter.UnsupportedComponentType"
             case other = "InvalidParameter"
@@ -102,6 +108,16 @@ extension TCEssbasicError {
         /// 参数错误，不合法的签署人类型，请修改后重试。
         public static var approverType: InvalidParameter {
             InvalidParameter(.approverType)
+        }
+
+        public static var approverVerifyType: InvalidParameter {
+            InvalidParameter(.approverVerifyType)
+        }
+
+        /// 1:上传授权书
+        /// 2:法人授权
+        public static var authorizationType: InvalidParameter {
+            InvalidParameter(.authorizationType)
         }
 
         /// 重复添加签署人。
@@ -180,6 +196,7 @@ extension TCEssbasicError {
             InvalidParameter(.endPoint)
         }
 
+        /// 流程id不存在。
         public static var fFowIds: InvalidParameter {
             InvalidParameter(.fFowIds)
         }
@@ -254,6 +271,10 @@ extension TCEssbasicError {
             InvalidParameter(.invalidId)
         }
 
+        public static var limit: InvalidParameter {
+            InvalidParameter(.limit)
+        }
+
         /// 印章名称长度超出。
         public static var limitSealName: InvalidParameter {
             InvalidParameter(.limitSealName)
@@ -286,6 +307,10 @@ extension TCEssbasicError {
             InvalidParameter(.nonsupportMobile)
         }
 
+        public static var offset: InvalidParameter {
+            InvalidParameter(.offset)
+        }
+
         /// OpenId不合法。
         public static var openId: InvalidParameter {
             InvalidParameter(.openId)
@@ -313,6 +338,10 @@ extension TCEssbasicError {
             InvalidParameter(.resourceType)
         }
 
+        public static var roleId: InvalidParameter {
+            InvalidParameter(.roleId)
+        }
+
         /// 文件内容敏感信息。
         public static var sensitiveFileContent: InvalidParameter {
             InvalidParameter(.sensitiveFileContent)
@@ -323,6 +352,7 @@ extension TCEssbasicError {
             InvalidParameter(.signComponentType)
         }
 
+        /// 类型不支持。
         public static var signComponents: InvalidParameter {
             InvalidParameter(.signComponents)
         }
@@ -332,6 +362,10 @@ extension TCEssbasicError {
         /// 请检查流程状态是否正确。再重试，若仍未解决，请联系工作人员 ，并提供有报错的requestid。
         public static var status: InvalidParameter {
             InvalidParameter(.status)
+        }
+
+        public static var uniformSocialCreditCode: InvalidParameter {
+            InvalidParameter(.uniformSocialCreditCode)
         }
 
         /// 参数错误，不合法的签署顺序，请检查后重试。
@@ -356,6 +390,10 @@ extension TCEssbasicError {
                 code = .invalidParameter_Application
             case .approverType:
                 code = .invalidParameter_ApproverType
+            case .approverVerifyType:
+                code = .invalidParameter_ApproverVerifyType
+            case .authorizationType:
+                code = .invalidParameter_AuthorizationType
             case .bizApproverAlreadyExists:
                 code = .invalidParameter_BizApproverAlreadyExists
             case .businessLicense:
@@ -414,6 +452,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_Image
             case .invalidId:
                 code = .invalidParameter_InvalidId
+            case .limit:
+                code = .invalidParameter_Limit
             case .limitSealName:
                 code = .invalidParameter_LimitSealName
             case .menuStatus:
@@ -426,6 +466,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_Name
             case .nonsupportMobile:
                 code = .invalidParameter_NonsupportMobile
+            case .offset:
+                code = .invalidParameter_Offset
             case .openId:
                 code = .invalidParameter_OpenId
             case .organizationId:
@@ -436,6 +478,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_ParamError
             case .resourceType:
                 code = .invalidParameter_ResourceType
+            case .roleId:
+                code = .invalidParameter_RoleId
             case .sensitiveFileContent:
                 code = .invalidParameter_SensitiveFileContent
             case .signComponentType:
@@ -444,6 +488,8 @@ extension TCEssbasicError {
                 code = .invalidParameter_SignComponents
             case .status:
                 code = .invalidParameter_Status
+            case .uniformSocialCreditCode:
+                code = .invalidParameter_UniformSocialCreditCode
             case .unordered:
                 code = .invalidParameter_Unordered
             case .unsupportedComponentType:

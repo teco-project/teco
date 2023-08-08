@@ -51,7 +51,7 @@ extension Cdb {
         /// 实例类型，默认为 master，支持值包括：master - 表示主实例，dr - 表示灾备实例，ro - 表示只读实例。
         public let instanceRole: String?
 
-        /// 主实例的可用区信息，购买灾备、RO实例时必填。
+        /// 主实例地域信息，购买灾备、RO实例时，该字段必填。
         public let masterRegion: String?
 
         /// 自定义端口，端口支持范围：[ 1024-65535 ] 。
@@ -84,7 +84,7 @@ extension Cdb {
         /// 购买按量计费实例该字段无意义。
         public let autoRenewFlag: Int64?
 
-        /// 实例名称。一次购买多个实例命名会用后缀数字区分，例instnaceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
+        /// 实例名称。一次购买多个实例命名会用后缀数字区分，例instanceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
         public let instanceName: String?
 
         /// 实例标签信息。
@@ -102,7 +102,7 @@ extension Cdb {
         /// 参数模板id。
         public let paramTemplateId: Int64?
 
-        /// 告警策略id数组。云监控DescribeAlarmPolicy接口返回的OriginId。
+        /// 告警策略id数组。腾讯云可观测平台DescribeAlarmPolicy接口返回的OriginId。
         public let alarmPolicyList: [Int64]?
 
         /// 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要购买三节点实例， 请将该值设置为3 或指定 BackupZone 参数。当购买主实例，且未指定该参数和 BackupZone 参数时，该值默认是 2， 即购买两节点实例。

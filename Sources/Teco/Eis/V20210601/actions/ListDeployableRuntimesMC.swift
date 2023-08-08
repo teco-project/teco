@@ -21,7 +21,25 @@ import TecoCore
 extension Eis {
     /// ListDeployableRuntimesMC请求参数结构体
     public struct ListDeployableRuntimesMCRequest: TCRequestModel {
-        public init() {
+        /// 应用id
+        public let projectId: Int64?
+
+        /// 实例id
+        public let instanceId: Int64?
+
+        /// 版本类型 0-pro 1-lite
+        public let planType: Int64?
+
+        public init(projectId: Int64? = nil, instanceId: Int64? = nil, planType: Int64? = nil) {
+            self.projectId = projectId
+            self.instanceId = instanceId
+            self.planType = planType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case projectId = "ProjectId"
+            case instanceId = "InstanceId"
+            case planType = "PlanType"
         }
     }
 
@@ -59,15 +77,15 @@ extension Eis {
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
-        self.listDeployableRuntimesMC(.init(), region: region, logger: logger, on: eventLoop)
+    public func listDeployableRuntimesMC(projectId: Int64? = nil, instanceId: Int64? = nil, planType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
+        self.listDeployableRuntimesMC(.init(projectId: projectId, instanceId: instanceId, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可部署运行时列表
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
-        try await self.listDeployableRuntimesMC(.init(), region: region, logger: logger, on: eventLoop)
+    public func listDeployableRuntimesMC(projectId: Int64? = nil, instanceId: Int64? = nil, planType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
+        try await self.listDeployableRuntimesMC(.init(projectId: projectId, instanceId: instanceId, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 }

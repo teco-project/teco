@@ -31,16 +31,24 @@ extension Mna {
         /// 搜索设备的关键字（ID或者设备名），为空时匹配所有设备
         public let keyword: String?
 
-        public init(pageSize: Int64, pageNumber: Int64, keyword: String? = nil) {
+        /// DeviceType
+        /// 不传：返回所有设备；
+        /// 1:自有设备；
+        /// 2:三方设备
+        public let deviceType: Int64?
+
+        public init(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, deviceType: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.keyword = keyword
+            self.deviceType = deviceType
         }
 
         enum CodingKeys: String, CodingKey {
             case pageSize = "PageSize"
             case pageNumber = "PageNumber"
             case keyword = "Keyword"
+            case deviceType = "DeviceType"
         }
 
         /// Compute the next request based on API response.
@@ -48,7 +56,7 @@ extension Mna {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return GetDevicesRequest(pageSize: self.pageSize, pageNumber: self.pageNumber + 1, keyword: self.keyword)
+            return GetDevicesRequest(pageSize: self.pageSize, pageNumber: self.pageNumber + 1, keyword: self.keyword, deviceType: self.deviceType)
         }
     }
 
@@ -99,16 +107,16 @@ extension Mna {
     ///
     /// 获取设备信息列表
     @inlinable
-    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
-        self.getDevices(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword), region: region, logger: logger, on: eventLoop)
+    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, deviceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
+        self.getDevices(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, deviceType: deviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备信息列表
     ///
     /// 获取设备信息列表
     @inlinable
-    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
-        try await self.getDevices(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword), region: region, logger: logger, on: eventLoop)
+    public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, deviceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
+        try await self.getDevices(.init(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword, deviceType: deviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备信息列表

@@ -33,7 +33,10 @@ public struct TCEssError: TCEssErrorType {
         case failedOperation_AgeNotAchieveNormalLegal = "FailedOperation.AgeNotAchieveNormalLegal"
         case failedOperation_FlowHasDocument = "FailedOperation.FlowHasDocument"
         case failedOperation_FlowHasNoDocument = "FailedOperation.FlowHasNoDocument"
+        case failedOperation_LicenseNoQuota = "FailedOperation.LicenseNoQuota"
         case failedOperation_NoSignReviewPass = "FailedOperation.NoSignReviewPass"
+        case failedOperation_NotAvailableSignReview = "FailedOperation.NotAvailableSignReview"
+        case failedOperation_NotFoundShadowUser = "FailedOperation.NotFoundShadowUser"
         case failedOperation_OrganizationExperienceChange = "FailedOperation.OrganizationExperienceChange"
         case failedOperation_OrganizationNameChanged = "FailedOperation.OrganizationNameChanged"
         case failedOperation_OrganizationNameNeedChange = "FailedOperation.OrganizationNameNeedChange"
@@ -43,6 +46,8 @@ public struct TCEssError: TCEssErrorType {
         case failedOperation_QrCodeTemplateId = "FailedOperation.QrCodeTemplateId"
         case failedOperation_RequestLimitExceeded = "FailedOperation.RequestLimitExceeded"
         case failedOperation_TemplateHasNoResource = "FailedOperation.TemplateHasNoResource"
+        case failedOperation_UserAutoSignEnableAlready = "FailedOperation.UserAutoSignEnableAlready"
+        case failedOperation_UserAutoSignEnableUrlNotExist = "FailedOperation.UserAutoSignEnableUrlNotExist"
         case failedOperation_UserInfoNoMatch = "FailedOperation.UserInfoNoMatch"
         case internalError = "InternalError"
         case internalError_Api = "InternalError.Api"
@@ -63,6 +68,7 @@ public struct TCEssError: TCEssErrorType {
         case internalError_System = "InternalError.System"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameterValue_InvalidMobile = "InvalidParameterValue.InvalidMobile"
         case invalidParameterValue_Mask = "InvalidParameterValue.Mask"
         case invalidParameter_ApproverType = "InvalidParameter.ApproverType"
         case invalidParameter_BusinessId = "InvalidParameter.BusinessId"
@@ -81,6 +87,7 @@ public struct TCEssError: TCEssErrorType {
         case invalidParameter_CustomShowMap = "InvalidParameter.CustomShowMap"
         case invalidParameter_DataExists = "InvalidParameter.DataExists"
         case invalidParameter_DataNotFound = "InvalidParameter.DataNotFound"
+        case invalidParameter_DepartUserId = "InvalidParameter.DepartUserId"
         case invalidParameter_EmptyParams = "InvalidParameter.EmptyParams"
         case invalidParameter_EndPoint = "InvalidParameter.EndPoint"
         case invalidParameter_FlowCallbackUrl = "InvalidParameter.FlowCallbackUrl"
@@ -105,10 +112,13 @@ public struct TCEssError: TCEssErrorType {
         case invalidParameter_InvalidRoleName = "InvalidParameter.InvalidRoleName"
         case invalidParameter_InvalidVerifyChannel = "InvalidParameter.InvalidVerifyChannel"
         case invalidParameter_InvalidVerifyCode = "InvalidParameter.InvalidVerifyCode"
+        case invalidParameter_Limit = "InvalidParameter.Limit"
         case invalidParameter_MissingRequiredComponentValue = "InvalidParameter.MissingRequiredComponentValue"
         case invalidParameter_Mobile = "InvalidParameter.Mobile"
         case invalidParameter_Name = "InvalidParameter.Name"
+        case invalidParameter_NonsupportMobile = "InvalidParameter.NonsupportMobile"
         case invalidParameter_NotifyType = "InvalidParameter.NotifyType"
+        case invalidParameter_Offset = "InvalidParameter.Offset"
         case invalidParameter_OrganizationName = "InvalidParameter.OrganizationName"
         case invalidParameter_ParamError = "InvalidParameter.ParamError"
         case invalidParameter_PersonAutoSignTag = "InvalidParameter.PersonAutoSignTag"
@@ -116,6 +126,7 @@ public struct TCEssError: TCEssErrorType {
         case invalidParameter_QrEffectDay = "InvalidParameter.QrEffectDay"
         case invalidParameter_QrFlowEffectDay = "InvalidParameter.QrFlowEffectDay"
         case invalidParameter_ResourceType = "InvalidParameter.ResourceType"
+        case invalidParameter_RoleId = "InvalidParameter.RoleId"
         case invalidParameter_SealId = "InvalidParameter.SealId"
         case invalidParameter_Sensitive = "InvalidParameter.Sensitive"
         case invalidParameter_SignComponents = "InvalidParameter.SignComponents"
@@ -164,6 +175,8 @@ public struct TCEssError: TCEssErrorType {
         case operationDenied_Forbid = "OperationDenied.Forbid"
         case operationDenied_InvalidApproverAge = "OperationDenied.InvalidApproverAge"
         case operationDenied_ManyResourceId = "OperationDenied.ManyResourceId"
+        case operationDenied_NoApiAuth = "OperationDenied.NoApiAuth"
+        case operationDenied_NoApproverMobileCheckPermission = "OperationDenied.NoApproverMobileCheckPermission"
         case operationDenied_NoFlowPermission = "OperationDenied.NoFlowPermission"
         case operationDenied_NoIdentityVerify = "OperationDenied.NoIdentityVerify"
         case operationDenied_NoLogin = "OperationDenied.NoLogin"
@@ -183,6 +196,7 @@ public struct TCEssError: TCEssErrorType {
         case operationDenied_PersonHasNoSignature = "OperationDenied.PersonHasNoSignature"
         case operationDenied_PersonNoOpenServerSign = "OperationDenied.PersonNoOpenServerSign"
         case operationDenied_PersonServerSignForbid = "OperationDenied.PersonServerSignForbid"
+        case operationDenied_ProveNoQuota = "OperationDenied.ProveNoQuota"
         case operationDenied_QrHasExpire = "OperationDenied.QrHasExpire"
         case operationDenied_QrInvalid = "OperationDenied.QrInvalid"
         case operationDenied_RequiredComponentNotFill = "OperationDenied.RequiredComponentNotFill"
@@ -291,9 +305,22 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.failedOperation_FlowHasNoDocument)
     }
 
+    public static var failedOperation_LicenseNoQuota: TCEssError {
+        TCEssError(.failedOperation_LicenseNoQuota)
+    }
+
     /// 签署审核未通过，请先完成审核。
     public static var failedOperation_NoSignReviewPass: TCEssError {
         TCEssError(.failedOperation_NoSignReviewPass)
+    }
+
+    public static var failedOperation_NotAvailableSignReview: TCEssError {
+        TCEssError(.failedOperation_NotAvailableSignReview)
+    }
+
+    /// 未找到集团子企业相关用户信息，请检查用户相关参数
+    public static var failedOperation_NotFoundShadowUser: TCEssError {
+        TCEssError(.failedOperation_NotFoundShadowUser)
     }
 
     /// 企业经营状态与工商局信息不符。
@@ -345,6 +372,14 @@ public struct TCEssError: TCEssErrorType {
     /// 模板无资源信息。
     public static var failedOperation_TemplateHasNoResource: TCEssError {
         TCEssError(.failedOperation_TemplateHasNoResource)
+    }
+
+    public static var failedOperation_UserAutoSignEnableAlready: TCEssError {
+        TCEssError(.failedOperation_UserAutoSignEnableAlready)
+    }
+
+    public static var failedOperation_UserAutoSignEnableUrlNotExist: TCEssError {
+        TCEssError(.failedOperation_UserAutoSignEnableUrlNotExist)
     }
 
     /// 用户信息不匹配，请检查后重试。
@@ -449,6 +484,10 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.invalidParameterValue)
     }
 
+    public static var invalidParameterValue_InvalidMobile: TCEssError {
+        TCEssError(.invalidParameterValue_InvalidMobile)
+    }
+
     /// 需要屏蔽的告警。
     public static var invalidParameterValue_Mask: TCEssError {
         TCEssError(.invalidParameterValue_Mask)
@@ -537,6 +576,10 @@ public struct TCEssError: TCEssErrorType {
     /// 数据不存在。
     public static var invalidParameter_DataNotFound: TCEssError {
         TCEssError(.invalidParameter_DataNotFound)
+    }
+
+    public static var invalidParameter_DepartUserId: TCEssError {
+        TCEssError(.invalidParameter_DepartUserId)
     }
 
     /// 参数为空，请检查参数修改后重试。
@@ -659,6 +702,10 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.invalidParameter_InvalidVerifyCode)
     }
 
+    public static var invalidParameter_Limit: TCEssError {
+        TCEssError(.invalidParameter_Limit)
+    }
+
     /// 缺少必填控件的值。
     ///
     /// 请检查必填控件是否都已填充非空值。
@@ -680,9 +727,18 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.invalidParameter_Name)
     }
 
+    /// 修改手机号为合法的格式。
+    public static var invalidParameter_NonsupportMobile: TCEssError {
+        TCEssError(.invalidParameter_NonsupportMobile)
+    }
+
     /// 不支持的通知类型，请检查并联系客服处理。
     public static var invalidParameter_NotifyType: TCEssError {
         TCEssError(.invalidParameter_NotifyType)
+    }
+
+    public static var invalidParameter_Offset: TCEssError {
+        TCEssError(.invalidParameter_Offset)
     }
 
     /// 不合法的企业名称，请修改后重试。
@@ -718,6 +774,10 @@ public struct TCEssError: TCEssErrorType {
     /// 不合法的资源类型，请联系客服了解，并在修改后重试。
     public static var invalidParameter_ResourceType: TCEssError {
         TCEssError(.invalidParameter_ResourceType)
+    }
+
+    public static var invalidParameter_RoleId: TCEssError {
+        TCEssError(.invalidParameter_RoleId)
     }
 
     /// 不合法的印章id，请检查印章id是够正确，并在修改后重试。
@@ -960,6 +1020,15 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.operationDenied_ManyResourceId)
     }
 
+    /// 请参考实际的错误描述进行处理，请仔细阅读API文档，优先检查参数及重试，如重试多次仍未解决，请联系开发人员。
+    public static var operationDenied_NoApiAuth: TCEssError {
+        TCEssError(.operationDenied_NoApiAuth)
+    }
+
+    public static var operationDenied_NoApproverMobileCheckPermission: TCEssError {
+        TCEssError(.operationDenied_NoApproverMobileCheckPermission)
+    }
+
     /// 无权限操作签署流程，请联系客服了解权限，并在修改后重试。
     public static var operationDenied_NoFlowPermission: TCEssError {
         TCEssError(.operationDenied_NoFlowPermission)
@@ -1059,6 +1128,10 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.operationDenied_PersonServerSignForbid)
     }
 
+    public static var operationDenied_ProveNoQuota: TCEssError {
+        TCEssError(.operationDenied_ProveNoQuota)
+    }
+
     /// 签署二维码已过期，请检查后重试。
     public static var operationDenied_QrHasExpire: TCEssError {
         TCEssError(.operationDenied_QrHasExpire)
@@ -1084,6 +1157,7 @@ public struct TCEssError: TCEssErrorType {
         TCEssError(.operationDenied_ServerSignNoSupportSignature)
     }
 
+    /// 子企业暂未加入。
     public static var operationDenied_SubOrgNotJoin: TCEssError {
         TCEssError(.operationDenied_SubOrgNotJoin)
     }

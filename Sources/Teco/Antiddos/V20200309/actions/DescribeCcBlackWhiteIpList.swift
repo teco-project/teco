@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Antiddos {
     /// DescribeCcBlackWhiteIpList请求参数结构体
     public struct DescribeCcBlackWhiteIpListRequest: TCPaginatedRequest {
-        /// 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
+        /// DDoS防护子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
         public let business: String
 
         /// 指定特定实例Id

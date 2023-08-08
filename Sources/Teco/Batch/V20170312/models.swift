@@ -1108,7 +1108,7 @@ extension Batch {
 
     /// 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
-        /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：非带宽包用户默认与子机付费类型保持一致。
+        /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
         public let internetChargeType: String?
 
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
@@ -1848,7 +1848,7 @@ extension Batch {
     }
 
     /// HDD的本地存储信息
-    public struct StorageBlock: TCOutputModel {
+    public struct StorageBlock: TCInputModel, TCOutputModel {
         /// HDD本地存储类型，值为：LOCAL_PRO.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -1860,6 +1860,12 @@ extension Batch {
         /// HDD本地存储的最大容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSize: Int64?
+
+        public init(type: String? = nil, minSize: Int64? = nil, maxSize: Int64? = nil) {
+            self.type = type
+            self.minSize = minSize
+            self.maxSize = maxSize
+        }
 
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -1881,6 +1887,7 @@ extension Batch {
         public let diskSize: Int64?
 
         /// 所属的独享集群ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
 
         public init(diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil, cdcId: String? = nil) {

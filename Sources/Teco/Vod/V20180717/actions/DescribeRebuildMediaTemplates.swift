@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribeRebuildMediaTemplates请求参数结构体
     public struct DescribeRebuildMediaTemplatesRequest: TCPaginatedRequest {
-        /// 音画质重生模板列表。
+        /// 视频重生模板列表。
         public let definitions: [Int64]?
 
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -69,7 +69,7 @@ extension Vod {
         /// 符合过滤条件的记录总数。
         public let totalCount: Int64
 
-        /// 音画质重生模板详情列表。
+        /// 视频重生模板详情列表。
         public let rebuildMediaTemplateSet: [RebuildMediaTemplate]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -92,57 +92,57 @@ extension Vod {
         }
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable
     public func describeRebuildMediaTemplates(_ input: DescribeRebuildMediaTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRebuildMediaTemplatesResponse> {
         self.client.execute(action: "DescribeRebuildMediaTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable
     public func describeRebuildMediaTemplates(_ input: DescribeRebuildMediaTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebuildMediaTemplatesResponse {
         try await self.client.execute(action: "DescribeRebuildMediaTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable
     public func describeRebuildMediaTemplates(definitions: [Int64]? = nil, subAppId: Int64? = nil, type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRebuildMediaTemplatesResponse> {
         self.describeRebuildMediaTemplates(.init(definitions: definitions, subAppId: subAppId, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable
     public func describeRebuildMediaTemplates(definitions: [Int64]? = nil, subAppId: Int64? = nil, type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebuildMediaTemplatesResponse {
         try await self.describeRebuildMediaTemplates(.init(definitions: definitions, subAppId: subAppId, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable
     public func describeRebuildMediaTemplatesPaginated(_ input: DescribeRebuildMediaTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [RebuildMediaTemplate])> {
         self.client.paginate(input: input, region: region, command: self.describeRebuildMediaTemplates, logger: logger, on: eventLoop)
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     @inlinable @discardableResult
     public func describeRebuildMediaTemplatesPaginated(_ input: DescribeRebuildMediaTemplatesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeRebuildMediaTemplatesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeRebuildMediaTemplates, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取音画质重生模板列表
+    /// 获取视频重生模板列表
     ///
-    /// 获取音画质重生模板列表。
+    /// 获取视频重生模板列表。
     ///
     /// - Returns: `AsyncSequence`s of `RebuildMediaTemplate` and `DescribeRebuildMediaTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable

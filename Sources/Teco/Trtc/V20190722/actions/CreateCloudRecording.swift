@@ -36,7 +36,7 @@ extension Trtc {
         /// 云端录制控制参数。
         public let recordParams: RecordParams
 
-        /// 云端录制文件上传到云存储的参数(目前只支持使用腾讯云点播作为存储)。
+        /// 云端录制文件上传到云存储的参数(目前支持云点播VOD和对象存储COS)。点播和对象存储的参数必填其中之一，不支持同时设置点播和对象存储。
         public let storageParams: StorageParams
 
         /// TRTC房间号的类型，必须和录制的房间所对应的RoomId类型相同:
@@ -53,7 +53,7 @@ extension Trtc {
         /// 接口可以调用的时效性，从成功开启录制并获得任务ID后开始计算，超时后无法调用查询、更新和停止等接口，但是录制任务不会停止。 参数的单位是小时，默认72小时（3天），最大可设置720小时（30天），最小设置6小时。举例说明：如果不设置该参数，那么开始录制成功后，查询、更新和停止录制的调用时效为72个小时。
         public let resourceExpiredHour: UInt64?
 
-        /// TRTC房间权限加密串，只有在TRTC控制台启用了高级权限控制的时候需要携带，在TRTC控制台如果开启高级权限控制后，TRTC 的后台服务系统会校验一个叫做 [PrivateMapKey]（https://cloud.tencent.com/document/product/647/32240） 的“权限票据”，权限票据中包含了一个加密后的 RoomId 和一个加密后的“权限位列表”。由于 PrivateMapKey 中包含 RoomId，所以只提供了 UserSig 没有提供 PrivateMapKey 时，并不能进入指定的房间。
+        /// TRTC房间权限加密串，只有在TRTC控制台启用了高级权限控制的时候需要携带，在TRTC控制台如果开启高级权限控制后，TRTC 的后台服务系统会校验一个叫做 [PrivateMapKey] 的“权限票据”，权限票据中包含了一个加密后的 RoomId 和一个加密后的“权限位列表”。由于 PrivateMapKey 中包含 RoomId，所以只提供了 UserSig 没有提供 PrivateMapKey 时，并不能进入指定的房间。
         public let privateMapKey: String?
 
         public init(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil) {
@@ -102,17 +102,17 @@ extension Trtc {
     /// 开始云端录制
     ///
     /// 接口说明：
-    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面混流一路。
     ///
     /// 您可以通过此接口实现如下目标：
     /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
-    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前支持云点播VOD和对象存储COS
     /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
     /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
     ///
     /// 关键名词：
-    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
-    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频，录制服务会实时将录制文件上传至您指定的云存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个视频文件，并将录制文件上传至您指定的云存储。（录制结束后可前往云点播控制台https://console.cloud.tencent.com/vod/media 或 对象存储COS控制台https://console.cloud.tencent.com/cos/bucket查看文件）。
     @inlinable
     public func createCloudRecording(_ input: CreateCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
         self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -121,17 +121,17 @@ extension Trtc {
     /// 开始云端录制
     ///
     /// 接口说明：
-    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面混流一路。
     ///
     /// 您可以通过此接口实现如下目标：
     /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
-    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前支持云点播VOD和对象存储COS
     /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
     /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
     ///
     /// 关键名词：
-    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
-    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频，录制服务会实时将录制文件上传至您指定的云存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个视频文件，并将录制文件上传至您指定的云存储。（录制结束后可前往云点播控制台https://console.cloud.tencent.com/vod/media 或 对象存储COS控制台https://console.cloud.tencent.com/cos/bucket查看文件）。
     @inlinable
     public func createCloudRecording(_ input: CreateCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
         try await self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -140,17 +140,17 @@ extension Trtc {
     /// 开始云端录制
     ///
     /// 接口说明：
-    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面混流一路。
     ///
     /// 您可以通过此接口实现如下目标：
     /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
-    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前支持云点播VOD和对象存储COS
     /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
     /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
     ///
     /// 关键名词：
-    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
-    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频，录制服务会实时将录制文件上传至您指定的云存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个视频文件，并将录制文件上传至您指定的云存储。（录制结束后可前往云点播控制台https://console.cloud.tencent.com/vod/media 或 对象存储COS控制台https://console.cloud.tencent.com/cos/bucket查看文件）。
     @inlinable
     public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
         self.createCloudRecording(.init(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)
@@ -159,17 +159,17 @@ extension Trtc {
     /// 开始云端录制
     ///
     /// 接口说明：
-    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制有或者多路视频画面混流一路。
+    /// 启动云端录制功能，完成房间内的音视频录制，并上传到指定的云存储。您可以通过此 API 接口把TRTC 房间中的每一路音视频流做单独的录制又或者多路视频画面混流一路。
     ///
     /// 您可以通过此接口实现如下目标：
     /// * 指定订阅流参数（RecordParams）来指定需要录制的主播的黑名单或者白名单。
-    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前仅支持云点播存储（CloudVod）
+    /// * 指定第三方存储的参数（StorageParams）来指定上传到您希望的云存储，目前支持云点播VOD和对象存储COS
     /// * 指定混流模式下的音视频转码详细参数（MixTranscodeParams），包括视频分辨率、视频码率、视频帧率、以及声音质量等
     /// * 指定混流模式各路画面的位置和布局或者也可以指定自动模板的方式来配置。
     ///
     /// 关键名词：
-    /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
-    /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
+    /// * 单流录制：分别录制房间的订阅UserId的音频和视频，录制服务会实时将录制文件上传至您指定的云存储。
+    /// * 合流录制：将房间内订阅UserId的音视频混录成一个视频文件，并将录制文件上传至您指定的云存储。（录制结束后可前往云点播控制台https://console.cloud.tencent.com/vod/media 或 对象存储COS控制台https://console.cloud.tencent.com/cos/bucket查看文件）。
     @inlinable
     public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
         try await self.createCloudRecording(.init(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)

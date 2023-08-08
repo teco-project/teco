@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// DescribeMachineInfo请求参数结构体
     public struct DescribeMachineInfoRequest: TCRequestModel {
-        /// 云镜客户端唯一Uuid。
+        /// 主机安全客户端唯一Uuid。
         public let uuid: String?
 
         /// Quuid , Uuid 必填一项
@@ -43,7 +43,7 @@ extension Cwp {
         /// 机器ip。
         public let machineIp: String
 
-        /// 受云镜保护天数。
+        /// 受主机安全保护天数。
         public let protectDays: UInt64
 
         /// 操作系统。
@@ -66,7 +66,7 @@ extension Cwp {
         /// CVM或BM主机唯一Uuid。
         public let quuid: String
 
-        /// 云镜客户端唯一Uuid。
+        /// 主机安全客户端唯一Uuid。
         public let uuid: String
 
         /// 是否开通专业版。
@@ -108,7 +108,7 @@ extension Cwp {
         /// 是否有资产扫描记录，0无，1有
         public let hasAssetScan: UInt64
 
-        /// 防护版本 BASIC_VERSION 基础版, PRO_VERSION 专业版 Flagship 旗舰版.
+        /// 防护版本：BASIC_VERSION 基础版，PRO_VERSION 专业版，Flagship 旗舰版，GENERAL_DISCOUNT 普惠版
         public let protectType: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

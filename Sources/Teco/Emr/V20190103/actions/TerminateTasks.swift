@@ -24,7 +24,7 @@ extension Emr {
         /// 实例ID。
         public let instanceId: String
 
-        /// 待销毁节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr/static/hardware)查询。
+        /// 待销毁节点的资源ID列表。资源ID形如：emr-vm-xxxxxxxx。有效的资源ID可通过登录[控制台](https://console.cloud.tencent.com/emr)查询。
         public let resourceIds: [String]
 
         public init(instanceId: String, resourceIds: [String]) {

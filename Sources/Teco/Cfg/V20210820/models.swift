@@ -17,6 +17,25 @@
 import TecoCore
 
 extension Cfg {
+    /// 动作库筛选栏位
+    public struct ActionFilter: TCInputModel {
+        /// 关键字
+        public let keyword: String
+
+        /// 搜索内容值
+        public let values: [String]
+
+        public init(keyword: String, values: [String]) {
+            self.keyword = keyword
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case keyword = "Keyword"
+            case values = "Values"
+        }
+    }
+
     /// 查询-保护策略
     public struct DescribePolicy: TCOutputModel {
         /// 保护策略ID列表
@@ -60,12 +79,17 @@ extension Cfg {
     }
 
     /// 展示标签列表
-    public struct TagWithDescribe: TCOutputModel {
+    public struct TagWithDescribe: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
 
         /// 标签值
         public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
@@ -148,7 +172,15 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagWithDescribe]?
 
-        public init(taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]? = nil) {
+        /// 关联的演练计划ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskPlanId: Int64?
+
+        /// 关联的演练计划名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskPlanTitle: String?
+
+        public init(taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]? = nil, taskPlanId: Int64? = nil, taskPlanTitle: String? = nil) {
             self.taskId = taskId
             self.taskTitle = taskTitle
             self.taskDescription = taskDescription
@@ -170,6 +202,8 @@ extension Cfg {
             self.taskMonitors = taskMonitors
             self.taskPolicy = taskPolicy
             self.tags = tags
+            self.taskPlanId = taskPlanId
+            self.taskPlanTitle = taskPlanTitle
         }
 
         enum CodingKeys: String, CodingKey {
@@ -194,6 +228,8 @@ extension Cfg {
             case taskMonitors = "TaskMonitors"
             case taskPolicy = "TaskPolicy"
             case tags = "Tags"
+            case taskPlanId = "TaskPlanId"
+            case taskPlanTitle = "TaskPlanTitle"
         }
     }
 
@@ -269,7 +305,18 @@ extension Cfg {
         /// 执行模式。1 --- 顺序执行，2 --- 阶段执行
         public let taskGroupMode: Int64
 
-        public init(taskGroupId: Int64, taskGroupTitle: String, taskGroupDescription: String, taskGroupOrder: Int64, objectTypeId: Int64, taskGroupCreateTime: String, taskGroupUpdateTime: String, taskGroupActions: [TaskGroupAction], taskGroupInstanceList: [String], taskGroupMode: Int64) {
+        /// 不参演的实例列表
+        public let taskGroupDiscardInstanceList: [String]?
+
+        /// 参演实例列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskGroupSelectedInstanceList: [String]?
+
+        /// 机器选取规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskGroupInstancesExecuteRule: [TaskGroupInstancesExecuteRules]?
+
+        public init(taskGroupId: Int64, taskGroupTitle: String, taskGroupDescription: String, taskGroupOrder: Int64, objectTypeId: Int64, taskGroupCreateTime: String, taskGroupUpdateTime: String, taskGroupActions: [TaskGroupAction], taskGroupInstanceList: [String], taskGroupMode: Int64, taskGroupDiscardInstanceList: [String]? = nil, taskGroupSelectedInstanceList: [String]? = nil, taskGroupInstancesExecuteRule: [TaskGroupInstancesExecuteRules]? = nil) {
             self.taskGroupId = taskGroupId
             self.taskGroupTitle = taskGroupTitle
             self.taskGroupDescription = taskGroupDescription
@@ -280,6 +327,9 @@ extension Cfg {
             self.taskGroupActions = taskGroupActions
             self.taskGroupInstanceList = taskGroupInstanceList
             self.taskGroupMode = taskGroupMode
+            self.taskGroupDiscardInstanceList = taskGroupDiscardInstanceList
+            self.taskGroupSelectedInstanceList = taskGroupSelectedInstanceList
+            self.taskGroupInstancesExecuteRule = taskGroupInstancesExecuteRule
         }
 
         enum CodingKeys: String, CodingKey {
@@ -293,6 +343,9 @@ extension Cfg {
             case taskGroupActions = "TaskGroupActions"
             case taskGroupInstanceList = "TaskGroupInstanceList"
             case taskGroupMode = "TaskGroupMode"
+            case taskGroupDiscardInstanceList = "TaskGroupDiscardInstanceList"
+            case taskGroupSelectedInstanceList = "TaskGroupSelectedInstanceList"
+            case taskGroupInstancesExecuteRule = "TaskGroupInstancesExecuteRule"
         }
     }
 
@@ -544,6 +597,33 @@ extension Cfg {
         }
     }
 
+    /// 机器选取规则
+    public struct TaskGroupInstancesExecuteRules: TCInputModel, TCOutputModel {
+        /// 实例选取模式
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskGroupInstancesExecuteMode: Int64?
+
+        /// 按比例选取模式下选取比例
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskGroupInstancesExecutePercent: Int64?
+
+        /// 按数量选取模式下选取数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskGroupInstancesExecuteNum: Int64?
+
+        public init(taskGroupInstancesExecuteMode: Int64? = nil, taskGroupInstancesExecutePercent: Int64? = nil, taskGroupInstancesExecuteNum: Int64? = nil) {
+            self.taskGroupInstancesExecuteMode = taskGroupInstancesExecuteMode
+            self.taskGroupInstancesExecutePercent = taskGroupInstancesExecutePercent
+            self.taskGroupInstancesExecuteNum = taskGroupInstancesExecuteNum
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case taskGroupInstancesExecuteMode = "TaskGroupInstancesExecuteMode"
+            case taskGroupInstancesExecutePercent = "TaskGroupInstancesExecutePercent"
+            case taskGroupInstancesExecuteNum = "TaskGroupInstancesExecuteNum"
+        }
+    }
+
     /// 任务列表信息
     public struct TaskListItem: TCOutputModel {
         /// 任务ID
@@ -576,6 +656,10 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskPreCheckSuccess: Bool?
 
+        /// 演练是否符合预期 1-符合预期 2-不符合预期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskExpect: Int64?
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskTitle = "TaskTitle"
@@ -586,6 +670,7 @@ extension Cfg {
             case taskUpdateTime = "TaskUpdateTime"
             case taskPreCheckStatus = "TaskPreCheckStatus"
             case taskPreCheckSuccess = "TaskPreCheckSuccess"
+            case taskExpect = "TaskExpect"
         }
     }
 
@@ -703,6 +788,10 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagWithDescribe]?
 
+        /// 经验来源 0-自建 1-专家推荐
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateSource: Int64?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateTitle = "TemplateTitle"
@@ -719,6 +808,7 @@ extension Cfg {
             case templateMonitors = "TemplateMonitors"
             case templatePolicy = "TemplatePolicy"
             case tags = "Tags"
+            case templateSource = "TemplateSource"
         }
     }
 
@@ -891,6 +981,10 @@ extension Cfg {
         /// 经验库关联的任务数量
         public let templateUsedNum: Int64
 
+        /// 经验库来源 0-自建经验 1-专家推荐
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateSource: Int64?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateTitle = "TemplateTitle"
@@ -900,6 +994,7 @@ extension Cfg {
             case templateCreateTime = "TemplateCreateTime"
             case templateUpdateTime = "TemplateUpdateTime"
             case templateUsedNum = "TemplateUsedNum"
+            case templateSource = "TemplateSource"
         }
     }
 

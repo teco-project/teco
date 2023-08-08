@@ -54,7 +54,9 @@ public struct TCOceanusError: TCOceanusErrorType {
         case invalidParameterValue_ClusterId = "InvalidParameterValue.ClusterId"
         case invalidParameterValue_ClusterIds = "InvalidParameterValue.ClusterIds"
         case invalidParameterValue_CuMem = "InvalidParameterValue.CuMem"
+        case invalidParameterValue_InvalidLimit = "InvalidParameterValue.InvalidLimit"
         case invalidParameterValue_InvalidStartMode = "InvalidParameterValue.InvalidStartMode"
+        case invalidParameterValue_InvalidTime = "InvalidParameterValue.InvalidTime"
         case invalidParameterValue_JobIdValueError = "InvalidParameterValue.JobIdValueError"
         case invalidParameterValue_JobName = "InvalidParameterValue.JobName"
         case invalidParameterValue_JobNameExisted = "InvalidParameterValue.JobNameExisted"
@@ -68,6 +70,7 @@ public struct TCOceanusError: TCOceanusErrorType {
         case invalidParameterValue_UnknownStopType = "InvalidParameterValue.UnknownStopType"
         case invalidParameter_AppIdResourceNotMatch = "InvalidParameter.AppIdResourceNotMatch"
         case invalidParameter_IllegalMaxParallelism = "InvalidParameter.IllegalMaxParallelism"
+        case invalidParameter_IllegalSearchKeyword = "InvalidParameter.IllegalSearchKeyword"
         case invalidParameter_InvalidAppId = "InvalidParameter.InvalidAppId"
         case invalidParameter_InvalidClusterId = "InvalidParameter.InvalidClusterId"
         case invalidParameter_InvalidName = "InvalidParameter.InvalidName"
@@ -91,6 +94,7 @@ public struct TCOceanusError: TCOceanusErrorType {
         case resourceNotFound_Job = "ResourceNotFound.Job"
         case resourceNotFound_JobConfig = "ResourceNotFound.JobConfig"
         case resourceNotFound_JobId = "ResourceNotFound.JobId"
+        case resourceNotFound_LogTopic = "ResourceNotFound.LogTopic"
         case resourceNotFound_Resource = "ResourceNotFound.Resource"
         case resourceNotFound_ResourceConfig = "ResourceNotFound.ResourceConfig"
         case resourceNotFound_ResourceNotExist = "ResourceNotFound.ResourceNotExist"
@@ -109,6 +113,7 @@ public struct TCOceanusError: TCOceanusErrorType {
         case resourceUnavailable_ResourceLocNotExists = "ResourceUnavailable.ResourceLocNotExists"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_ClsSqlNotEnabled = "UnsupportedOperation.ClsSqlNotEnabled"
         case unsupportedOperation_InvalidCheckpointIntervalError = "UnsupportedOperation.InvalidCheckpointIntervalError"
         case unsupportedOperation_NoPermissionAccess = "UnsupportedOperation.NoPermissionAccess"
         case unsupportedOperation_UnsupportedStartMode = "UnsupportedOperation.UnsupportedStartMode"
@@ -293,9 +298,19 @@ public struct TCOceanusError: TCOceanusErrorType {
         TCOceanusError(.invalidParameterValue_CuMem)
     }
 
+    /// 无效限制错误。
+    public static var invalidParameterValue_InvalidLimit: TCOceanusError {
+        TCOceanusError(.invalidParameterValue_InvalidLimit)
+    }
+
     /// 无效启动模式。
     public static var invalidParameterValue_InvalidStartMode: TCOceanusError {
         TCOceanusError(.invalidParameterValue_InvalidStartMode)
+    }
+
+    /// 无效时间错误。
+    public static var invalidParameterValue_InvalidTime: TCOceanusError {
+        TCOceanusError(.invalidParameterValue_InvalidTime)
     }
 
     /// 作业id的参数无效。
@@ -364,6 +379,13 @@ public struct TCOceanusError: TCOceanusErrorType {
     /// 另外，如果当前作业处于暂停中，则不允许修改 MaxParallelism 的值，以防止状态恢复报错。
     public static var invalidParameter_IllegalMaxParallelism: TCOceanusError {
         TCOceanusError(.invalidParameter_IllegalMaxParallelism)
+    }
+
+    /// 非法的搜索字符串。
+    ///
+    /// 检查搜索关键字中是否包含特殊字符 : * 等，如有请去掉。
+    public static var invalidParameter_IllegalSearchKeyword: TCOceanusError {
+        TCOceanusError(.invalidParameter_IllegalSearchKeyword)
     }
 
     /// appid错误。
@@ -487,6 +509,11 @@ public struct TCOceanusError: TCOceanusErrorType {
         TCOceanusError(.resourceNotFound_JobId)
     }
 
+    /// 找不到日志。
+    public static var resourceNotFound_LogTopic: TCOceanusError {
+        TCOceanusError(.resourceNotFound_LogTopic)
+    }
+
     /// 程序包不存在。
     public static var resourceNotFound_Resource: TCOceanusError {
         TCOceanusError(.resourceNotFound_Resource)
@@ -575,6 +602,11 @@ public struct TCOceanusError: TCOceanusErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCOceanusError {
         TCOceanusError(.unsupportedOperation)
+    }
+
+    /// Cls Sql未启用。
+    public static var unsupportedOperation_ClsSqlNotEnabled: TCOceanusError {
+        TCOceanusError(.unsupportedOperation_ClsSqlNotEnabled)
     }
 
     /// Checkpoint 时间间隔，错误。

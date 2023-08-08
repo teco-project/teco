@@ -33,7 +33,7 @@ extension Sts {
         /// 会话名称
         public let roleSessionName: String
 
-        /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
+        /// 指定临时访问凭证的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: UInt64?
 
         public init(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil) {
@@ -58,10 +58,10 @@ extension Sts {
         /// 对象里面包含 Token，TmpSecretId，TmpSecretKey 三元组
         public let credentials: Credentials
 
-        /// 证书无效的时间，返回 Unix 时间戳，精确到秒
+        /// 临时访问凭证的过期时间，返回 Unix 时间戳，精确到秒
         public let expiredTime: UInt64
 
-        /// 证书无效的时间，以 ISO8601 格式的 UTC 时间表示
+        /// 临时访问凭证的过期时间，以 ISO8601 格式的 UTC 时间表示
         public let expiration: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -75,33 +75,41 @@ extension Sts {
         }
     }
 
-    /// 根据 SAML 断言申请角色临时凭证
+    /// 根据 SAML 断言申请角色临时访问凭证
     ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
         self.client.execute(action: "AssumeRoleWithSAML", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 根据 SAML 断言申请角色临时凭证
+    /// 根据 SAML 断言申请角色临时访问凭证
     ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
         try await self.client.execute(action: "AssumeRoleWithSAML", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 根据 SAML 断言申请角色临时凭证
+    /// 根据 SAML 断言申请角色临时访问凭证
     ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
         self.assumeRoleWithSAML(.init(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 根据 SAML 断言申请角色临时凭证
+    /// 根据 SAML 断言申请角色临时访问凭证
     ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时访问凭证。
+    ///
+    /// 注意：当使用签名方法 V3 调用本接口时，请求头无须传入 X-TC-Token, 但 Authorization 需要传入值 SKIP。
     @inlinable
     public func assumeRoleWithSAML(samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
         try await self.assumeRoleWithSAML(.init(samlAssertion: samlAssertion, principalArn: principalArn, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)

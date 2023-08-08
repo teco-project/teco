@@ -40,13 +40,17 @@ extension Trp {
         /// 批次ID
         public let batchId: String?
 
-        public init(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil) {
+        /// 安心码
+        public let code: String?
+
+        public init(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil, code: String? = nil) {
             self.corpId = corpId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.merchantId = merchantId
             self.productId = productId
             self.batchId = batchId
+            self.code = code
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Trp {
             case merchantId = "MerchantId"
             case productId = "ProductId"
             case batchId = "BatchId"
+            case code = "Code"
         }
 
         /// Compute the next request based on API response.
@@ -63,7 +68,7 @@ extension Trp {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeScanStatsRequest(corpId: self.corpId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, merchantId: self.merchantId, productId: self.productId, batchId: self.batchId)
+            return DescribeScanStatsRequest(corpId: self.corpId, pageSize: self.pageSize, pageNumber: (self.pageNumber ?? 0) + 1, merchantId: self.merchantId, productId: self.productId, batchId: self.batchId, code: self.code)
         }
     }
 
@@ -109,8 +114,8 @@ extension Trp {
     /// 查询扫码的统计信息列表，支持按照商户ID，产品ID，批次ID，安心码筛选，筛选条件至少有一个
     /// 没有被扫过的不会返回
     @inlinable
-    public func describeScanStats(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStatsResponse> {
-        self.describeScanStats(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, productId: productId, batchId: batchId), region: region, logger: logger, on: eventLoop)
+    public func describeScanStats(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStatsResponse> {
+        self.describeScanStats(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, productId: productId, batchId: batchId, code: code), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫码统计列表
@@ -118,8 +123,8 @@ extension Trp {
     /// 查询扫码的统计信息列表，支持按照商户ID，产品ID，批次ID，安心码筛选，筛选条件至少有一个
     /// 没有被扫过的不会返回
     @inlinable
-    public func describeScanStats(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStatsResponse {
-        try await self.describeScanStats(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, productId: productId, batchId: batchId), region: region, logger: logger, on: eventLoop)
+    public func describeScanStats(corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchId: String? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStatsResponse {
+        try await self.describeScanStats(.init(corpId: corpId, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, productId: productId, batchId: batchId, code: code), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫码统计列表

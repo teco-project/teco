@@ -89,6 +89,7 @@ public struct TCTsfError: TCTsfErrorType {
         case failedOperation_TkeClusterCreateFailed = "FailedOperation.TkeClusterCreateFailed"
         case failedOperation_TkeClusterDeleteFailed = "FailedOperation.TkeClusterDeleteFailed"
         case failedOperation_TkeClusterQueryFailed = "FailedOperation.TkeClusterQueryFailed"
+        case failedOperation_TokenQueryFailed = "FailedOperation.TokenQueryFailed"
         case failedOperation_TsfApmAgentTaskQueryError = "FailedOperation.TsfApmAgentTaskQueryError"
         case failedOperation_TsfApmAgentTaskWriteError = "FailedOperation.TsfApmAgentTaskWriteError"
         case failedOperation_TsfApmApmAgentNoConnection = "FailedOperation.TsfApmApmAgentNoConnection"
@@ -167,6 +168,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ApplicationNameNull = "InvalidParameterValue.ApplicationNameNull"
         case invalidParameterValue_ApplicationNameRegxInvalid = "InvalidParameterValue.ApplicationNameRegxInvalid"
         case invalidParameterValue_ApplicationNotExists = "InvalidParameterValue.ApplicationNotExists"
+        case invalidParameterValue_ApplicationOrderTypeInvalid = "InvalidParameterValue.ApplicationOrderTypeInvalid"
         case invalidParameterValue_ApplicationPageLimitInvalid = "InvalidParameterValue.ApplicationPageLimitInvalid"
         case invalidParameterValue_ApplicationTypeInvalid = "InvalidParameterValue.ApplicationTypeInvalid"
         case invalidParameterValue_ClusterCidrConflict = "InvalidParameterValue.ClusterCidrConflict"
@@ -194,6 +196,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ContainergroupAccesstypeNull = "InvalidParameterValue.ContainergroupAccesstypeNull"
         case invalidParameterValue_ContainergroupApplicationIdNull = "InvalidParameterValue.ContainergroupApplicationIdNull"
         case invalidParameterValue_ContainergroupCpulimitOver = "InvalidParameterValue.ContainergroupCpulimitOver"
+        case invalidParameterValue_ContainergroupEnvValueNotSet = "InvalidParameterValue.ContainergroupEnvValueNotSet"
         case invalidParameterValue_ContainergroupGroupidNull = "InvalidParameterValue.ContainergroupGroupidNull"
         case invalidParameterValue_ContainergroupGroupnameLegnth = "InvalidParameterValue.ContainergroupGroupnameLegnth"
         case invalidParameterValue_ContainergroupGroupnameNull = "InvalidParameterValue.ContainergroupGroupnameNull"
@@ -205,6 +208,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ContainergroupMemlimitOver = "InvalidParameterValue.ContainergroupMemlimitOver"
         case invalidParameterValue_ContainergroupNodePortInvalid = "InvalidParameterValue.ContainergroupNodePortInvalid"
         case invalidParameterValue_ContainergroupPortInvalid = "InvalidParameterValue.ContainergroupPortInvalid"
+        case invalidParameterValue_ContainergroupPortNull = "InvalidParameterValue.ContainergroupPortNull"
         case invalidParameterValue_ContainergroupPortsRepeat = "InvalidParameterValue.ContainergroupPortsRepeat"
         case invalidParameterValue_ContainergroupProtocolInvalid = "InvalidParameterValue.ContainergroupProtocolInvalid"
         case invalidParameterValue_ContainergroupProtocolMixError = "InvalidParameterValue.ContainergroupProtocolMixError"
@@ -223,6 +227,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_CvmCaeMasterTaskNotExist = "InvalidParameterValue.CvmCaeMasterTaskNotExist"
         case invalidParameterValue_DeployGroupNotExists = "InvalidParameterValue.DeployGroupNotExists"
         case invalidParameterValue_FileConfigAlreadyReleased = "InvalidParameterValue.FileConfigAlreadyReleased"
+        case invalidParameterValue_FileConfigCodeUnsupported = "InvalidParameterValue.FileConfigCodeUnsupported"
         case invalidParameterValue_FileConfigExists = "InvalidParameterValue.FileConfigExists"
         case invalidParameterValue_FileConfigExistsPath = "InvalidParameterValue.FileConfigExistsPath"
         case invalidParameterValue_FileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
@@ -288,6 +293,7 @@ public struct TCTsfError: TCTsfErrorType {
         case invalidParameterValue_ServiceNameRepeated = "InvalidParameterValue.ServiceNameRepeated"
         case invalidParameterValue_ServiceNotExistsOrPermissionDenied = "InvalidParameterValue.ServiceNotExistsOrPermissionDenied"
         case invalidParameterValue_TaskParameterInvalid = "InvalidParameterValue.TaskParameterInvalid"
+        case invalidParameterValue_TsfApmBusiLogSearchParseRspDateFormatError = "InvalidParameterValue.TsfApmBusiLogSearchParseRspDateFormatError"
         case invalidParameterValue_WrongDontStartValue = "InvalidParameterValue.WrongDontStartValue"
         case invalidParameter_ApplicationDeleteFailed = "InvalidParameter.ApplicationDeleteFailed"
         case invalidParameter_BadRequest = "InvalidParameter.BadRequest"
@@ -763,6 +769,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.failedOperation_TkeClusterQueryFailed)
     }
 
+    /// TOKEN查询失败。
+    public static var failedOperation_TokenQueryFailed: TCTsfError {
+        TCTsfError(.failedOperation_TokenQueryFailed)
+    }
+
     /// TSF应用性能管理任务数据库查询失败。
     public static var failedOperation_TsfApmAgentTaskQueryError: TCTsfError {
         TCTsfError(.failedOperation_TsfApmAgentTaskQueryError)
@@ -1153,6 +1164,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_ApplicationNotExists)
     }
 
+    /// 无效的应用排序类型。
+    public static var invalidParameterValue_ApplicationOrderTypeInvalid: TCTsfError {
+        TCTsfError(.invalidParameterValue_ApplicationOrderTypeInvalid)
+    }
+
     /// 无效的应用分页参数。
     public static var invalidParameterValue_ApplicationPageLimitInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_ApplicationPageLimitInvalid)
@@ -1288,6 +1304,11 @@ public struct TCTsfError: TCTsfErrorType {
         TCTsfError(.invalidParameterValue_ContainergroupCpulimitOver)
     }
 
+    /// 容器 Env 的 Value 和 ValueFrom 至少要有一个。
+    public static var invalidParameterValue_ContainergroupEnvValueNotSet: TCTsfError {
+        TCTsfError(.invalidParameterValue_ContainergroupEnvValueNotSet)
+    }
+
     /// 部署组ID不能为空。
     public static var invalidParameterValue_ContainergroupGroupidNull: TCTsfError {
         TCTsfError(.invalidParameterValue_ContainergroupGroupidNull)
@@ -1341,6 +1362,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 服务端口值非法。
     public static var invalidParameterValue_ContainergroupPortInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_ContainergroupPortInvalid)
+    }
+
+    /// 服务端口不能为空。
+    public static var invalidParameterValue_ContainergroupPortNull: TCTsfError {
+        TCTsfError(.invalidParameterValue_ContainergroupPortNull)
     }
 
     /// 服务端口不允许重复映射。
@@ -1431,6 +1457,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 文件配置项已经发布。
     public static var invalidParameterValue_FileConfigAlreadyReleased: TCTsfError {
         TCTsfError(.invalidParameterValue_FileConfigAlreadyReleased)
+    }
+
+    /// 文件配置项编码方式不支持。
+    public static var invalidParameterValue_FileConfigCodeUnsupported: TCTsfError {
+        TCTsfError(.invalidParameterValue_FileConfigCodeUnsupported)
     }
 
     /// 文件配置项已存在。
@@ -1756,6 +1787,11 @@ public struct TCTsfError: TCTsfErrorType {
     /// 无效请求参数。
     public static var invalidParameterValue_TaskParameterInvalid: TCTsfError {
         TCTsfError(.invalidParameterValue_TaskParameterInvalid)
+    }
+
+    /// TSF应用性能管理业务日志搜索解析时间格式错误。
+    public static var invalidParameterValue_TsfApmBusiLogSearchParseRspDateFormatError: TCTsfError {
+        TCTsfError(.invalidParameterValue_TsfApmBusiLogSearchParseRspDateFormatError)
     }
 
     /// 仅有停止状态下的部署组才可以不启动。

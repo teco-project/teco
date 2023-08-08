@@ -26,6 +26,7 @@ extension TCTsfError {
             case applicationNameNull = "InvalidParameterValue.ApplicationNameNull"
             case applicationNameRegxInvalid = "InvalidParameterValue.ApplicationNameRegxInvalid"
             case applicationNotExists = "InvalidParameterValue.ApplicationNotExists"
+            case applicationOrderTypeInvalid = "InvalidParameterValue.ApplicationOrderTypeInvalid"
             case applicationPageLimitInvalid = "InvalidParameterValue.ApplicationPageLimitInvalid"
             case applicationTypeInvalid = "InvalidParameterValue.ApplicationTypeInvalid"
             case clusterCidrConflict = "InvalidParameterValue.ClusterCidrConflict"
@@ -53,6 +54,7 @@ extension TCTsfError {
             case containergroupAccesstypeNull = "InvalidParameterValue.ContainergroupAccesstypeNull"
             case containergroupApplicationIdNull = "InvalidParameterValue.ContainergroupApplicationIdNull"
             case containergroupCpulimitOver = "InvalidParameterValue.ContainergroupCpulimitOver"
+            case containergroupEnvValueNotSet = "InvalidParameterValue.ContainergroupEnvValueNotSet"
             case containergroupGroupidNull = "InvalidParameterValue.ContainergroupGroupidNull"
             case containergroupGroupnameLegnth = "InvalidParameterValue.ContainergroupGroupnameLegnth"
             case containergroupGroupnameNull = "InvalidParameterValue.ContainergroupGroupnameNull"
@@ -64,6 +66,7 @@ extension TCTsfError {
             case containergroupMemlimitOver = "InvalidParameterValue.ContainergroupMemlimitOver"
             case containergroupNodePortInvalid = "InvalidParameterValue.ContainergroupNodePortInvalid"
             case containergroupPortInvalid = "InvalidParameterValue.ContainergroupPortInvalid"
+            case containergroupPortNull = "InvalidParameterValue.ContainergroupPortNull"
             case containergroupPortsRepeat = "InvalidParameterValue.ContainergroupPortsRepeat"
             case containergroupProtocolInvalid = "InvalidParameterValue.ContainergroupProtocolInvalid"
             case containergroupProtocolMixError = "InvalidParameterValue.ContainergroupProtocolMixError"
@@ -82,6 +85,7 @@ extension TCTsfError {
             case cvmCaeMasterTaskNotExist = "InvalidParameterValue.CvmCaeMasterTaskNotExist"
             case deployGroupNotExists = "InvalidParameterValue.DeployGroupNotExists"
             case fileConfigAlreadyReleased = "InvalidParameterValue.FileConfigAlreadyReleased"
+            case fileConfigCodeUnsupported = "InvalidParameterValue.FileConfigCodeUnsupported"
             case fileConfigExists = "InvalidParameterValue.FileConfigExists"
             case fileConfigExistsPath = "InvalidParameterValue.FileConfigExistsPath"
             case fileConfigExistsPathOther = "InvalidParameterValue.FileConfigExistsPathOther"
@@ -147,6 +151,7 @@ extension TCTsfError {
             case serviceNameRepeated = "InvalidParameterValue.ServiceNameRepeated"
             case serviceNotExistsOrPermissionDenied = "InvalidParameterValue.ServiceNotExistsOrPermissionDenied"
             case taskParameterInvalid = "InvalidParameterValue.TaskParameterInvalid"
+            case tsfApmBusiLogSearchParseRspDateFormatError = "InvalidParameterValue.TsfApmBusiLogSearchParseRspDateFormatError"
             case wrongDontStartValue = "InvalidParameterValue.WrongDontStartValue"
             case other = "InvalidParameterValue"
         }
@@ -206,6 +211,11 @@ extension TCTsfError {
         /// 无法获取应用。
         public static var applicationNotExists: InvalidParameterValue {
             InvalidParameterValue(.applicationNotExists)
+        }
+
+        /// 无效的应用排序类型。
+        public static var applicationOrderTypeInvalid: InvalidParameterValue {
+            InvalidParameterValue(.applicationOrderTypeInvalid)
         }
 
         /// 无效的应用分页参数。
@@ -343,6 +353,11 @@ extension TCTsfError {
             InvalidParameterValue(.containergroupCpulimitOver)
         }
 
+        /// 容器 Env 的 Value 和 ValueFrom 至少要有一个。
+        public static var containergroupEnvValueNotSet: InvalidParameterValue {
+            InvalidParameterValue(.containergroupEnvValueNotSet)
+        }
+
         /// 部署组ID不能为空。
         public static var containergroupGroupidNull: InvalidParameterValue {
             InvalidParameterValue(.containergroupGroupidNull)
@@ -396,6 +411,11 @@ extension TCTsfError {
         /// 服务端口值非法。
         public static var containergroupPortInvalid: InvalidParameterValue {
             InvalidParameterValue(.containergroupPortInvalid)
+        }
+
+        /// 服务端口不能为空。
+        public static var containergroupPortNull: InvalidParameterValue {
+            InvalidParameterValue(.containergroupPortNull)
         }
 
         /// 服务端口不允许重复映射。
@@ -486,6 +506,11 @@ extension TCTsfError {
         /// 文件配置项已经发布。
         public static var fileConfigAlreadyReleased: InvalidParameterValue {
             InvalidParameterValue(.fileConfigAlreadyReleased)
+        }
+
+        /// 文件配置项编码方式不支持。
+        public static var fileConfigCodeUnsupported: InvalidParameterValue {
+            InvalidParameterValue(.fileConfigCodeUnsupported)
         }
 
         /// 文件配置项已存在。
@@ -813,6 +838,11 @@ extension TCTsfError {
             InvalidParameterValue(.taskParameterInvalid)
         }
 
+        /// TSF应用性能管理业务日志搜索解析时间格式错误。
+        public static var tsfApmBusiLogSearchParseRspDateFormatError: InvalidParameterValue {
+            InvalidParameterValue(.tsfApmBusiLogSearchParseRspDateFormatError)
+        }
+
         /// 仅有停止状态下的部署组才可以不启动。
         public static var wrongDontStartValue: InvalidParameterValue {
             InvalidParameterValue(.wrongDontStartValue)
@@ -840,6 +870,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_ApplicationNameRegxInvalid
             case .applicationNotExists:
                 code = .invalidParameterValue_ApplicationNotExists
+            case .applicationOrderTypeInvalid:
+                code = .invalidParameterValue_ApplicationOrderTypeInvalid
             case .applicationPageLimitInvalid:
                 code = .invalidParameterValue_ApplicationPageLimitInvalid
             case .applicationTypeInvalid:
@@ -894,6 +926,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_ContainergroupApplicationIdNull
             case .containergroupCpulimitOver:
                 code = .invalidParameterValue_ContainergroupCpulimitOver
+            case .containergroupEnvValueNotSet:
+                code = .invalidParameterValue_ContainergroupEnvValueNotSet
             case .containergroupGroupidNull:
                 code = .invalidParameterValue_ContainergroupGroupidNull
             case .containergroupGroupnameLegnth:
@@ -916,6 +950,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_ContainergroupNodePortInvalid
             case .containergroupPortInvalid:
                 code = .invalidParameterValue_ContainergroupPortInvalid
+            case .containergroupPortNull:
+                code = .invalidParameterValue_ContainergroupPortNull
             case .containergroupPortsRepeat:
                 code = .invalidParameterValue_ContainergroupPortsRepeat
             case .containergroupProtocolInvalid:
@@ -952,6 +988,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_DeployGroupNotExists
             case .fileConfigAlreadyReleased:
                 code = .invalidParameterValue_FileConfigAlreadyReleased
+            case .fileConfigCodeUnsupported:
+                code = .invalidParameterValue_FileConfigCodeUnsupported
             case .fileConfigExists:
                 code = .invalidParameterValue_FileConfigExists
             case .fileConfigExistsPath:
@@ -1082,6 +1120,8 @@ extension TCTsfError {
                 code = .invalidParameterValue_ServiceNotExistsOrPermissionDenied
             case .taskParameterInvalid:
                 code = .invalidParameterValue_TaskParameterInvalid
+            case .tsfApmBusiLogSearchParseRspDateFormatError:
+                code = .invalidParameterValue_TsfApmBusiLogSearchParseRspDateFormatError
             case .wrongDontStartValue:
                 code = .invalidParameterValue_WrongDontStartValue
             case .other:

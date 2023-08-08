@@ -30,16 +30,21 @@ extension Cwp {
         /// 告警时间
         public let alarmTime: Int64
 
-        public init(uuid: String, alarmVid: String, alarmTime: Int64) {
+        /// 告警来源表ID
+        public let tableId: Int64?
+
+        public init(uuid: String, alarmVid: String, alarmTime: Int64, tableId: Int64? = nil) {
             self.uuid = uuid
             self.alarmVid = alarmVid
             self.alarmTime = alarmTime
+            self.tableId = tableId
         }
 
         enum CodingKeys: String, CodingKey {
             case uuid = "Uuid"
             case alarmVid = "AlarmVid"
             case alarmTime = "AlarmTime"
+            case tableId = "TableId"
         }
     }
 
@@ -72,13 +77,13 @@ extension Cwp {
 
     /// 获取告警点所在事件的所有节点信息
     @inlinable
-    public func describeAlarmIncidentNodes(uuid: String, alarmVid: String, alarmTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmIncidentNodesResponse> {
-        self.describeAlarmIncidentNodes(.init(uuid: uuid, alarmVid: alarmVid, alarmTime: alarmTime), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmIncidentNodes(uuid: String, alarmVid: String, alarmTime: Int64, tableId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmIncidentNodesResponse> {
+        self.describeAlarmIncidentNodes(.init(uuid: uuid, alarmVid: alarmVid, alarmTime: alarmTime, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警点所在事件的所有节点信息
     @inlinable
-    public func describeAlarmIncidentNodes(uuid: String, alarmVid: String, alarmTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmIncidentNodesResponse {
-        try await self.describeAlarmIncidentNodes(.init(uuid: uuid, alarmVid: alarmVid, alarmTime: alarmTime), region: region, logger: logger, on: eventLoop)
+    public func describeAlarmIncidentNodes(uuid: String, alarmVid: String, alarmTime: Int64, tableId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmIncidentNodesResponse {
+        try await self.describeAlarmIncidentNodes(.init(uuid: uuid, alarmVid: alarmVid, alarmTime: alarmTime, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 }

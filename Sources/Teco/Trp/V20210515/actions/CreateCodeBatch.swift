@@ -48,7 +48,13 @@ extension Trp {
         /// 批次编号，业务字段不判断唯一性
         public let batchCode: String?
 
-        public init(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil) {
+        /// 有效期
+        public let validDate: String?
+
+        /// 生产日期
+        public let productionDate: String?
+
+        public init(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil) {
             self.corpId = corpId
             self.merchantId = merchantId
             self.productId = productId
@@ -58,6 +64,8 @@ extension Trp {
             self.mpTpl = mpTpl
             self.cloneId = cloneId
             self.batchCode = batchCode
+            self.validDate = validDate
+            self.productionDate = productionDate
         }
 
         enum CodingKeys: String, CodingKey {
@@ -70,6 +78,8 @@ extension Trp {
             case mpTpl = "MpTpl"
             case cloneId = "CloneId"
             case batchCode = "BatchCode"
+            case validDate = "ValidDate"
+            case productionDate = "ProductionDate"
         }
     }
 
@@ -101,13 +111,13 @@ extension Trp {
 
     /// 新增批次
     @inlinable
-    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
-        self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
+    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
+        self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode, validDate: validDate, productionDate: productionDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增批次
     @inlinable
-    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
-        try await self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
+    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, validDate: String? = nil, productionDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
+        try await self.createCodeBatch(.init(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode, validDate: validDate, productionDate: productionDate), region: region, logger: logger, on: eventLoop)
     }
 }

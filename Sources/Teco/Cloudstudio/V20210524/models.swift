@@ -382,9 +382,14 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spaceKey: String?
 
+        /// 工作空间名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
         enum CodingKeys: String, CodingKey {
             case workspaceId = "WorkspaceId"
             case spaceKey = "SpaceKey"
+            case name = "Name"
         }
     }
 
@@ -660,10 +665,6 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pluginFile: String?
 
-        /// xxx
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prebuildFile: String?
-
         /// 是否标记
         public let marked: Bool
 
@@ -719,7 +720,6 @@ extension Cloudstudio {
             case userVersionControlRefType = "UserVersionControlRefType"
             case devFile = "DevFile"
             case pluginFile = "PluginFile"
-            case prebuildFile = "PrebuildFile"
             case marked = "Marked"
             case markAt = "MarkAt"
             case createDate = "CreateDate"

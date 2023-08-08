@@ -21,6 +21,7 @@ extension TCLighthouseError {
         enum Code: String {
             case bundleAndBlueprintNotMatch = "InvalidParameter.BundleAndBlueprintNotMatch"
             case bundleIdNotFound = "InvalidParameter.BundleIdNotFound"
+            case conflict = "InvalidParameter.Conflict"
             case filterValueLimitExceeded = "InvalidParameter.FilterValueLimitExceeded"
             case firewallRulesDuplicated = "InvalidParameter.FirewallRulesDuplicated"
             case firewallRulesExist = "InvalidParameter.FirewallRulesExist"
@@ -30,6 +31,7 @@ extension TCLighthouseError {
             case invalidFilterInvalidValuesNotList = "InvalidParameter.InvalidFilterInvalidValuesNotList"
             case invalidFilterNotDict = "InvalidParameter.InvalidFilterNotDict"
             case invalidFilterNotSupportedName = "InvalidParameter.InvalidFilterNotSupportedName"
+            case mustSpecifyOneAttributeToModify = "InvalidParameter.MustSpecifyOneAttributeToModify"
             case onlyAllowModifyOneAttribute = "InvalidParameter.OnlyAllowModifyOneAttribute"
             case parameterConflict = "InvalidParameter.ParameterConflict"
             case other = "InvalidParameter"
@@ -67,6 +69,11 @@ extension TCLighthouseError {
         /// 产品未定义的套餐 ID。
         public static var bundleIdNotFound: InvalidParameter {
             InvalidParameter(.bundleIdNotFound)
+        }
+
+        /// 参数冲突。
+        public static var conflict: InvalidParameter {
+            InvalidParameter(.conflict)
         }
 
         /// 参数非法，Filter 参数中的 Values 取值数量超过允许的最大数量。
@@ -114,6 +121,11 @@ extension TCLighthouseError {
             InvalidParameter(.invalidFilterNotSupportedName)
         }
 
+        /// 必须要指定一个要修改的属性。
+        public static var mustSpecifyOneAttributeToModify: InvalidParameter {
+            InvalidParameter(.mustSpecifyOneAttributeToModify)
+        }
+
         /// 参数非法，每次只能修改一个属性。
         public static var onlyAllowModifyOneAttribute: InvalidParameter {
             InvalidParameter(.onlyAllowModifyOneAttribute)
@@ -136,6 +148,8 @@ extension TCLighthouseError {
                 code = .invalidParameter_BundleAndBlueprintNotMatch
             case .bundleIdNotFound:
                 code = .invalidParameter_BundleIdNotFound
+            case .conflict:
+                code = .invalidParameter_Conflict
             case .filterValueLimitExceeded:
                 code = .invalidParameter_FilterValueLimitExceeded
             case .firewallRulesDuplicated:
@@ -154,6 +168,8 @@ extension TCLighthouseError {
                 code = .invalidParameter_InvalidFilterNotDict
             case .invalidFilterNotSupportedName:
                 code = .invalidParameter_InvalidFilterNotSupportedName
+            case .mustSpecifyOneAttributeToModify:
+                code = .invalidParameter_MustSpecifyOneAttributeToModify
             case .onlyAllowModifyOneAttribute:
                 code = .invalidParameter_OnlyAllowModifyOneAttribute
             case .parameterConflict:

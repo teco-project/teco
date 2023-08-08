@@ -30,16 +30,26 @@ extension Dnspod {
         /// 是否星标域名，”yes”、”no” 分别代表是和否。
         public let isMark: String?
 
-        public init(domain: String, groupId: UInt64? = nil, isMark: String? = nil) {
+        /// 添加子域名时，是否迁移相关父域名的解析记录。不传默认为 true
+        public let transferSubDomain: Bool?
+
+        /// 域名绑定的标签
+        public let tags: [TagItem]?
+
+        public init(domain: String, groupId: UInt64? = nil, isMark: String? = nil, transferSubDomain: Bool? = nil, tags: [TagItem]? = nil) {
             self.domain = domain
             self.groupId = groupId
             self.isMark = isMark
+            self.transferSubDomain = transferSubDomain
+            self.tags = tags
         }
 
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case groupId = "GroupId"
             case isMark = "IsMark"
+            case transferSubDomain = "TransferSubDomain"
+            case tags = "Tags"
         }
     }
 
@@ -71,13 +81,13 @@ extension Dnspod {
 
     /// 添加域名
     @inlinable
-    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
-        self.createDomain(.init(domain: domain, groupId: groupId, isMark: isMark), region: region, logger: logger, on: eventLoop)
+    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, transferSubDomain: Bool? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
+        self.createDomain(.init(domain: domain, groupId: groupId, isMark: isMark, transferSubDomain: transferSubDomain, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名
     @inlinable
-    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.createDomain(.init(domain: domain, groupId: groupId, isMark: isMark), region: region, logger: logger, on: eventLoop)
+    public func createDomain(domain: String, groupId: UInt64? = nil, isMark: String? = nil, transferSubDomain: Bool? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.createDomain(.init(domain: domain, groupId: groupId, isMark: isMark, transferSubDomain: transferSubDomain, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

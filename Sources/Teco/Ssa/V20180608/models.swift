@@ -49,6 +49,27 @@ extension Ssa {
         }
     }
 
+    /// 空Aggregations结构体
+    public struct AlertListAggregations: TCInputModel, TCOutputModel {
+        /// 名字
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let value: String?
+
+        public init(name: String? = nil, value: String? = nil) {
+            self.name = name
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case value = "Value"
+        }
+    }
+
     /// 告警列表响应数据
     public struct AlertListData: TCOutputModel {
         /// 总数
@@ -59,9 +80,14 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertList: [AlertType]?
 
+        /// 聚合参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let aggregations: AlertListAggregations?
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case alertList = "AlertList"
+            case aggregations = "Aggregations"
         }
     }
 
@@ -167,6 +193,34 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let victimAssetSub: String?
 
+        /// 资产vpc
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let victimAssetVpc: String?
+
+        /// 时间戳
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timestamp: String?
+
+        /// 资产组名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetGroupName: [String]?
+
+        /// 资产项目名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetProjectName: String?
+
+        /// 失陷资产内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let victimAssetContent: [String]?
+
+        /// 错误报告状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wrongReportStatus: Int64?
+
+        /// 错误报告Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wrongReportConditionId: Int64?
+
         enum CodingKeys: String, CodingKey {
             case alertTime = "AlertTime"
             case alertId = "AlertId"
@@ -193,6 +247,13 @@ extension Ssa {
             case assetPublicIp = "AssetPublicIp"
             case attackTactic = "AttackTactic"
             case victimAssetSub = "VictimAssetSub"
+            case victimAssetVpc = "VictimAssetVpc"
+            case timestamp = "Timestamp"
+            case assetGroupName = "AssetGroupName"
+            case assetProjectName = "AssetProjectName"
+            case victimAssetContent = "VictimAssetContent"
+            case wrongReportStatus = "WrongReportStatus"
+            case wrongReportConditionId = "WrongReportConditionId"
         }
     }
 
@@ -510,6 +571,30 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetVulNum: Int64?
 
+        /// 资产事件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetEventNum: Int64?
+
+        /// cspm风险
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetCspmRiskNum: Int64?
+
+        /// 资产删除时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ssaAssetDeleteTime: String?
+
+        /// 费用类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeType: String?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetRegionName: String?
+
+        /// vpc信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetVpcid: String?
+
         enum CodingKeys: String, CodingKey {
             case assetType = "AssetType"
             case name = "Name"
@@ -556,6 +641,12 @@ extension Ssa {
             case rdpRisk = "RDPRisk"
             case eventRisk = "EventRisk"
             case assetVulNum = "AssetVulNum"
+            case assetEventNum = "AssetEventNum"
+            case assetCspmRiskNum = "AssetCspmRiskNum"
+            case ssaAssetDeleteTime = "SsaAssetDeleteTime"
+            case chargeType = "ChargeType"
+            case assetRegionName = "AssetRegionName"
+            case assetVpcid = "AssetVpcid"
         }
     }
 
@@ -902,7 +993,7 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concernType: Int64?
 
-        /// 实体类型
+        /// 实体类型 1: 非云上IP，2: 云上IP，3: 域名，4: IP，5: 文件，6: 进程
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let entityType: Int64?
 
@@ -913,6 +1004,110 @@ extension Ssa {
         /// 最近数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticsCount: Int64?
+
+        /// IP国家
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipCountry: String?
+
+        /// IP省份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipProvince: String?
+
+        /// 结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: String?
+
+        /// 置信度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let confidence: Int64?
+
+        /// 服务商
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipIsp: String?
+
+        /// 是否基础设施
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipInfrastructure: String?
+
+        /// 威胁类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let threatType: [String]?
+
+        /// 威胁团伙
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groups: [String]?
+
+        /// 状态威胁情报接口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 恶意标签
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [String]?
+
+        /// 资产类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let victimAssetType: String?
+
+        /// 资产名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let victimAssetName: String?
+
+        /// 注册者
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domainRegistrant: String?
+
+        /// 注册机构
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domainRegisteredInstitution: String?
+
+        /// 注册时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domainRegistrationTime: String?
+
+        /// 文件名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileName: String?
+
+        /// MD5
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileMd5: String?
+
+        /// 病毒名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let virusName: String?
+
+        /// 文件路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let filePath: String?
+
+        /// 文件大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileSize: String?
+
+        /// 进程名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procName: String?
+
+        /// 进程ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pid: String?
+
+        /// 进程路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procPath: String?
+
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let procUser: String?
+
+        /// 已防御
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defendedCount: UInt64?
+
+        /// 仅检测
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let detectedCount: UInt64?
 
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -939,6 +1134,32 @@ extension Ssa {
             case entityType = "EntityType"
             case concern = "Concern"
             case statisticsCount = "StatisticsCount"
+            case ipCountry = "IpCountry"
+            case ipProvince = "IpProvince"
+            case result = "Result"
+            case confidence = "Confidence"
+            case ipIsp = "IpIsp"
+            case ipInfrastructure = "IpInfrastructure"
+            case threatType = "ThreatType"
+            case groups = "Groups"
+            case status = "Status"
+            case tags = "Tags"
+            case victimAssetType = "VictimAssetType"
+            case victimAssetName = "VictimAssetName"
+            case domainRegistrant = "DomainRegistrant"
+            case domainRegisteredInstitution = "DomainRegisteredInstitution"
+            case domainRegistrationTime = "DomainRegistrationTime"
+            case fileName = "FileName"
+            case fileMd5 = "FileMd5"
+            case virusName = "VirusName"
+            case filePath = "FilePath"
+            case fileSize = "FileSize"
+            case procName = "ProcName"
+            case pid = "Pid"
+            case procPath = "ProcPath"
+            case procUser = "ProcUser"
+            case defendedCount = "DefendedCount"
+            case detectedCount = "DetectedCount"
             case searchData = "SearchData"
             case ipCountryIso = "IpCountryIso"
             case ipProvinceIso = "IpProvinceIso"
@@ -1416,6 +1637,137 @@ extension Ssa {
         }
     }
 
+    /// 域名列表
+    public struct DomainInfo: TCOutputModel {
+        /// 域名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domain: String?
+
+        /// 解析地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resolveAddr: [String]?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: [String]?
+
+        /// 资产类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetType: [String]?
+
+        /// 漏洞风险
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let riskVulCount: UInt64?
+
+        /// 敏感内容
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sensitiveCount: UInt64?
+
+        /// 挂马暗链
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let horseLinkCount: UInt64?
+
+        /// 网页篡改
+        public let webModifyCount: UInt64
+
+        /// 上次扫描时间
+        public let scanTime: String
+
+        /// 最近发现时间
+        public let discoverTime: String
+
+        /// 扫描次数
+        public let scanTaskCount: UInt64
+
+        /// 端口
+        public let portRisk: UInt64
+
+        /// 弱口令
+        public let weekPwdCount: UInt64
+
+        /// 资产归属
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetLocation: String?
+
+        /// 网络风险
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkRisk: UInt64?
+
+        /// 网络攻击
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkAttack: UInt64?
+
+        /// bot访问
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let botVisit: UInt64?
+
+        /// 网络访问
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkAccess: UInt64?
+
+        /// 资产创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// waf状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wafStatus: UInt64?
+
+        /// 最近扫描时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastScanTime: String?
+
+        /// 资产id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetId: [String]?
+
+        /// 资产名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let assetName: [String]?
+
+        /// 类别
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sourceType: String?
+
+        /// 是否核心资产
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNotCore: UInt64?
+
+        /// 是否云外资产
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isCloud: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case domain = "Domain"
+            case resolveAddr = "ResolveAddr"
+            case region = "Region"
+            case assetType = "AssetType"
+            case riskVulCount = "RiskVulCount"
+            case sensitiveCount = "SensitiveCount"
+            case horseLinkCount = "HorseLinkCount"
+            case webModifyCount = "WebModifyCount"
+            case scanTime = "ScanTime"
+            case discoverTime = "DiscoverTime"
+            case scanTaskCount = "ScanTaskCount"
+            case portRisk = "PortRisk"
+            case weekPwdCount = "WeekPwdCount"
+            case assetLocation = "AssetLocation"
+            case networkRisk = "NetworkRisk"
+            case networkAttack = "NetworkAttack"
+            case botVisit = "BotVisit"
+            case networkAccess = "NetworkAccess"
+            case createTime = "CreateTime"
+            case wafStatus = "WafStatus"
+            case lastScanTime = "LastScanTime"
+            case assetId = "AssetId"
+            case assetName = "AssetName"
+            case sourceType = "SourceType"
+            case isNotCore = "IsNotCore"
+            case isCloud = "IsCloud"
+        }
+    }
+
     /// 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
     ///
     /// 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -1570,6 +1922,14 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityStatus: [SecurityStatus]?
 
+        /// 处置建议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disposalRecommendation: Int64?
+
+        /// 测绘类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mappingType: String?
+
         enum CodingKeys: String, CodingKey {
             case assetName = "AssetName"
             case assetIp = "AssetIp"
@@ -1589,6 +1949,8 @@ extension Ssa {
             case mappingStatus = "MappingStatus"
             case region = "Region"
             case securityStatus = "SecurityStatus"
+            case disposalRecommendation = "DisposalRecommendation"
+            case mappingType = "MappingType"
         }
     }
 
@@ -1627,6 +1989,35 @@ extension Ssa {
             case filterKey = "FilterKey"
             case filterOperatorType = "FilterOperatorType"
             case filterValue = "FilterValue"
+        }
+    }
+
+    /// 过滤
+    public struct QueryFilterV3: TCInputModel, TCOutputModel {
+        /// 过滤条件
+        public let filter: QueryFilter?
+
+        /// 有无子条件
+        public let hasSub: Bool?
+
+        /// 查询条件
+        public let subFilters: [QueryFilter]?
+
+        /// 逻辑操作(只支持32位)
+        public let logic: UInt64?
+
+        public init(filter: QueryFilter? = nil, hasSub: Bool? = nil, subFilters: [QueryFilter]? = nil, logic: UInt64? = nil) {
+            self.filter = filter
+            self.hasSub = hasSub
+            self.subFilters = subFilters
+            self.logic = logic
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case filter = "Filter"
+            case hasSub = "HasSub"
+            case subFilters = "SubFilters"
+            case logic = "Logic"
         }
     }
 
@@ -1967,10 +2358,10 @@ extension Ssa {
     /// 标签
     public struct Tag: TCOutputModel {
         /// 数据库标识
-        public let fid: Int64
+        public let fid: Int64?
 
-        /// 标签名称
-        public let fname: String
+        /// 标签名称字段
+        public let fname: String?
 
         enum CodingKeys: String, CodingKey {
             case fid = "Fid"

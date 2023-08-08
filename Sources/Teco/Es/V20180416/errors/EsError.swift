@@ -36,12 +36,14 @@ public struct TCEsError: TCEsErrorType {
         case failedOperation_ErrorClusterStateUnhealth = "FailedOperation.ErrorClusterStateUnhealth"
         case failedOperation_NoPayment = "FailedOperation.NoPayment"
         case failedOperation_NotAuthenticated = "FailedOperation.NotAuthenticated"
-        case failedOperation_UnsupportResetNodeTypeAndScaleoutDisk = "FailedOperation.UnsupportResetNodeTypeAndScaleoutDisk"
-        case failedOperation_UnsupportResetScaledownAndModifyDisk = "FailedOperation.UnsupportResetScaledownAndModifyDisk"
-        case failedOperation_UnsupportReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportReverseRegulationNodeTypeAndDisk"
+        case failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk = "FailedOperation.UnsupportedResetNodeTypeAndScaleOutDisk"
+        case failedOperation_UnsupportedRestScaleDownAndModifyDisk = "FailedOperation.UnsupportedRestScaleDownAndModifyDisk"
+        case failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk = "FailedOperation.UnsupportedReverseRegulationNodeTypeAndDisk"
         case internalError = "InternalError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
+        case invalidParameter_InvalidInstanceId = "InvalidParameter.InvalidInstanceId"
+        case invalidParameter_InvalidSecurityGroupIds = "InvalidParameter.InvalidSecurityGroupIds"
         case missingParameter = "MissingParameter"
         case requestLimitExceeded = "RequestLimitExceeded"
         case resourceInUse = "ResourceInUse"
@@ -50,16 +52,26 @@ public struct TCEsError: TCEsErrorType {
         case resourceInsufficient_HiddenZone = "ResourceInsufficient.HiddenZone"
         case resourceInsufficient_Subnet = "ResourceInsufficient.Subnet"
         case resourceNotFound = "ResourceNotFound"
+        case resourceNotFound_DBInfoNotFound = "ResourceNotFound.DBInfoNotFound"
+        case resourceNotFound_SecurityGroupNotFound = "ResourceNotFound.SecurityGroupNotFound"
         case resourceUnavailable = "ResourceUnavailable"
         case resourcesSoldOut = "ResourcesSoldOut"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
+        case unsupportedOperation_StatusNotSupport = "UnsupportedOperation.StatusNotSupport"
     }
 
     /// Error domains affliated to ``TCEsError``.
     public static var domains: [TCErrorType.Type] {
-        [AuthFailure.self, FailedOperation.self, ResourceInsufficient.self]
+        [
+            AuthFailure.self,
+            FailedOperation.self,
+            InvalidParameter.self,
+            ResourceInsufficient.self,
+            ResourceNotFound.self,
+            UnsupportedOperation.self
+        ]
     }
 
     private let error: Code
@@ -141,20 +153,20 @@ public struct TCEsError: TCEsErrorType {
     }
 
     /// 不支持在滚动重启扩容计算资源同时扩容磁盘数量。
-    public static var failedOperation_UnsupportResetNodeTypeAndScaleoutDisk: TCEsError {
-        TCEsError(.failedOperation_UnsupportResetNodeTypeAndScaleoutDisk)
+    public static var failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk: TCEsError {
+        TCEsError(.failedOperation_UnsupportedResetNodeTypeAndScaleOutDisk)
     }
 
     /// 不支持在滚动重启缩容计算资源同时修改磁盘大小
-    public static var failedOperation_UnsupportResetScaledownAndModifyDisk: TCEsError {
-        TCEsError(.failedOperation_UnsupportResetScaledownAndModifyDisk)
+    public static var failedOperation_UnsupportedRestScaleDownAndModifyDisk: TCEsError {
+        TCEsError(.failedOperation_UnsupportedRestScaleDownAndModifyDisk)
     }
 
     /// 不支持反向调节节点配置和磁盘容量。
     ///
     /// 只能同时扩容节点配置和磁盘容量或磁盘数量。
-    public static var failedOperation_UnsupportReverseRegulationNodeTypeAndDisk: TCEsError {
-        TCEsError(.failedOperation_UnsupportReverseRegulationNodeTypeAndDisk)
+    public static var failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk: TCEsError {
+        TCEsError(.failedOperation_UnsupportedReverseRegulationNodeTypeAndDisk)
     }
 
     /// 内部错误。
@@ -170,6 +182,14 @@ public struct TCEsError: TCEsErrorType {
     /// 参数取值错误。
     public static var invalidParameterValue: TCEsError {
         TCEsError(.invalidParameterValue)
+    }
+
+    public static var invalidParameter_InvalidInstanceId: TCEsError {
+        TCEsError(.invalidParameter_InvalidInstanceId)
+    }
+
+    public static var invalidParameter_InvalidSecurityGroupIds: TCEsError {
+        TCEsError(.invalidParameter_InvalidSecurityGroupIds)
     }
 
     /// 缺少参数错误。
@@ -212,6 +232,14 @@ public struct TCEsError: TCEsErrorType {
         TCEsError(.resourceNotFound)
     }
 
+    public static var resourceNotFound_DBInfoNotFound: TCEsError {
+        TCEsError(.resourceNotFound_DBInfoNotFound)
+    }
+
+    public static var resourceNotFound_SecurityGroupNotFound: TCEsError {
+        TCEsError(.resourceNotFound_SecurityGroupNotFound)
+    }
+
     /// 资源不可用。
     public static var resourceUnavailable: TCEsError {
         TCEsError(.resourceUnavailable)
@@ -235,6 +263,10 @@ public struct TCEsError: TCEsErrorType {
     /// 操作不支持。
     public static var unsupportedOperation: TCEsError {
         TCEsError(.unsupportedOperation)
+    }
+
+    public static var unsupportedOperation_StatusNotSupport: TCEsError {
+        TCEsError(.unsupportedOperation_StatusNotSupport)
     }
 
     public func asEsError() -> TCEsError {

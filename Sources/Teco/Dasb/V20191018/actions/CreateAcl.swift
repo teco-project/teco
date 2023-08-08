@@ -74,6 +74,9 @@ extension Dasb {
         /// 关联的高危命令模板ID
         public let cmdTemplateIdSet: [UInt64]?
 
+        /// 关联高危DB模板ID
+        public let acTemplateIdSet: [String]?
+
         /// 是否开启rdp磁盘映射文件上传
         public let allowDiskFileUp: Bool?
 
@@ -106,7 +109,7 @@ extension Dasb {
         /// 访问权限所属部门的ID
         public let departmentId: String?
 
-        public init(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil) {
+        public init(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, acTemplateIdSet: [String]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil) {
             self.name = name
             self.allowDiskRedirect = allowDiskRedirect
             self.allowAnyAccount = allowAnyAccount
@@ -124,6 +127,7 @@ extension Dasb {
             self.deviceGroupIdSet = deviceGroupIdSet
             self.accountSet = accountSet
             self.cmdTemplateIdSet = cmdTemplateIdSet
+            self.acTemplateIdSet = acTemplateIdSet
             self.allowDiskFileUp = allowDiskFileUp
             self.allowDiskFileDown = allowDiskFileDown
             self.allowShellFileUp = allowShellFileUp
@@ -152,6 +156,7 @@ extension Dasb {
             case deviceGroupIdSet = "DeviceGroupIdSet"
             case accountSet = "AccountSet"
             case cmdTemplateIdSet = "CmdTemplateIdSet"
+            case acTemplateIdSet = "ACTemplateIdSet"
             case allowDiskFileUp = "AllowDiskFileUp"
             case allowDiskFileDown = "AllowDiskFileDown"
             case allowShellFileUp = "AllowShellFileUp"
@@ -191,13 +196,13 @@ extension Dasb {
 
     /// 新建访问权限
     @inlinable
-    public func createAcl(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
-        self.createAcl(.init(name: name, allowDiskRedirect: allowDiskRedirect, allowAnyAccount: allowAnyAccount, allowClipFileUp: allowClipFileUp, allowClipFileDown: allowClipFileDown, allowClipTextUp: allowClipTextUp, allowClipTextDown: allowClipTextDown, allowFileUp: allowFileUp, maxFileUpSize: maxFileUpSize, allowFileDown: allowFileDown, maxFileDownSize: maxFileDownSize, userIdSet: userIdSet, userGroupIdSet: userGroupIdSet, deviceIdSet: deviceIdSet, deviceGroupIdSet: deviceGroupIdSet, accountSet: accountSet, cmdTemplateIdSet: cmdTemplateIdSet, allowDiskFileUp: allowDiskFileUp, allowDiskFileDown: allowDiskFileDown, allowShellFileUp: allowShellFileUp, allowShellFileDown: allowShellFileDown, allowFileDel: allowFileDel, validateFrom: validateFrom, validateTo: validateTo, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+    public func createAcl(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, acTemplateIdSet: [String]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
+        self.createAcl(.init(name: name, allowDiskRedirect: allowDiskRedirect, allowAnyAccount: allowAnyAccount, allowClipFileUp: allowClipFileUp, allowClipFileDown: allowClipFileDown, allowClipTextUp: allowClipTextUp, allowClipTextDown: allowClipTextDown, allowFileUp: allowFileUp, maxFileUpSize: maxFileUpSize, allowFileDown: allowFileDown, maxFileDownSize: maxFileDownSize, userIdSet: userIdSet, userGroupIdSet: userGroupIdSet, deviceIdSet: deviceIdSet, deviceGroupIdSet: deviceGroupIdSet, accountSet: accountSet, cmdTemplateIdSet: cmdTemplateIdSet, acTemplateIdSet: acTemplateIdSet, allowDiskFileUp: allowDiskFileUp, allowDiskFileDown: allowDiskFileDown, allowShellFileUp: allowShellFileUp, allowShellFileDown: allowShellFileDown, allowFileDel: allowFileDel, validateFrom: validateFrom, validateTo: validateTo, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建访问权限
     @inlinable
-    public func createAcl(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
-        try await self.createAcl(.init(name: name, allowDiskRedirect: allowDiskRedirect, allowAnyAccount: allowAnyAccount, allowClipFileUp: allowClipFileUp, allowClipFileDown: allowClipFileDown, allowClipTextUp: allowClipTextUp, allowClipTextDown: allowClipTextDown, allowFileUp: allowFileUp, maxFileUpSize: maxFileUpSize, allowFileDown: allowFileDown, maxFileDownSize: maxFileDownSize, userIdSet: userIdSet, userGroupIdSet: userGroupIdSet, deviceIdSet: deviceIdSet, deviceGroupIdSet: deviceGroupIdSet, accountSet: accountSet, cmdTemplateIdSet: cmdTemplateIdSet, allowDiskFileUp: allowDiskFileUp, allowDiskFileDown: allowDiskFileDown, allowShellFileUp: allowShellFileUp, allowShellFileDown: allowShellFileDown, allowFileDel: allowFileDel, validateFrom: validateFrom, validateTo: validateTo, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+    public func createAcl(name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, acTemplateIdSet: [String]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
+        try await self.createAcl(.init(name: name, allowDiskRedirect: allowDiskRedirect, allowAnyAccount: allowAnyAccount, allowClipFileUp: allowClipFileUp, allowClipFileDown: allowClipFileDown, allowClipTextUp: allowClipTextUp, allowClipTextDown: allowClipTextDown, allowFileUp: allowFileUp, maxFileUpSize: maxFileUpSize, allowFileDown: allowFileDown, maxFileDownSize: maxFileDownSize, userIdSet: userIdSet, userGroupIdSet: userGroupIdSet, deviceIdSet: deviceIdSet, deviceGroupIdSet: deviceGroupIdSet, accountSet: accountSet, cmdTemplateIdSet: cmdTemplateIdSet, acTemplateIdSet: acTemplateIdSet, allowDiskFileUp: allowDiskFileUp, allowDiskFileDown: allowDiskFileDown, allowShellFileUp: allowShellFileUp, allowShellFileDown: allowShellFileDown, allowFileDel: allowFileDel, validateFrom: validateFrom, validateTo: validateTo, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

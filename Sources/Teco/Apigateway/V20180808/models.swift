@@ -189,6 +189,7 @@ extension Apigateway {
         public let apiAppId: String
 
         /// 应用SECRET
+        /// 注意:此字段可能返回null，表示取不到有效值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiAppSecret: String?
 
@@ -211,6 +212,7 @@ extension Apigateway {
         @TCTimestampISO8601Encoding public var modifiedTime: Date?
 
         /// 应用KEY
+        /// 注意:此字段可能返回null，表示取不到有效值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiAppKey: String?
 
@@ -267,7 +269,7 @@ extension Apigateway {
     }
 
     /// API绑定策略列表
-    public struct ApiEnvironmentStrategyStataus: TCOutputModel {
+    public struct ApiEnvironmentStrategyStatus: TCOutputModel {
         /// API绑定的限流策略数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?
@@ -291,7 +293,8 @@ extension Apigateway {
         public let apiId: String
 
         /// API描述
-        public let apiDesc: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiDesc: String?
 
         /// API PATH。
         public let path: String
@@ -483,7 +486,7 @@ extension Apigateway {
 
         /// API的后端服务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceParameters: [ServiceParameter]?
+        public let serviceParameters: [DescribeApiResultServiceParametersInfo]?
 
         /// 常量参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -549,7 +552,7 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceWebsocketTransportFunctionQualifier: String?
 
-        /// API绑定微服务服务列表。
+        /// API绑定微服务列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let microServices: [MicroService]?
 
@@ -836,18 +839,8 @@ extension Apigateway {
         }
     }
 
-    /// 描述api列表状态
-    public struct ApisStatus: TCOutputModel {
-        /// 符合条件的 API 接口数量。
-        public let totalCount: Int64
-
-        /// API 接口列表。
-        public let apiIdStatusSet: [DesApisStatus]
-
-        enum CodingKeys: String, CodingKey {
-            case totalCount = "TotalCount"
-            case apiIdStatusSet = "ApiIdStatusSet"
-        }
+    /// key-value
+    public struct ApigatewayTags: TCOutputModel {
     }
 
     /// 插件绑定的API信息
@@ -1049,17 +1042,21 @@ extension Apigateway {
     }
 
     /// 常量参数
-    public struct ConstantParameter: TCInputModel {
+    public struct ConstantParameter: TCInputModel, TCOutputModel {
         /// 常量参数名称。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
 
         /// 常量参数描述。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let desc: String?
 
         /// 常量参数位置。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let position: String?
 
         /// 常量参数默认值。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultValue: String?
 
         public init(name: String? = nil, desc: String? = nil, position: String? = nil, defaultValue: String? = nil) {
@@ -1116,6 +1113,35 @@ extension Apigateway {
             case bucketName = "BucketName"
             case authorization = "Authorization"
             case pathMatchMode = "PathMatchMode"
+        }
+    }
+
+    /// 创建api返回
+    public struct CreateApiResultInfo: TCOutputModel {
+        /// api id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiId: String?
+
+        /// 路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// 请求方法
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let method: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
+
+        enum CodingKeys: String, CodingKey {
+            case apiId = "ApiId"
+            case path = "Path"
+            case method = "Method"
+            case createdTime = "CreatedTime"
         }
     }
 
@@ -1282,6 +1308,190 @@ extension Apigateway {
         }
     }
 
+    /// ServiceParameter
+    public struct DescribeApiResultServiceParametersInfo: TCInputModel, TCOutputModel {
+        /// API的后端服务参数名称。只有ServiceType是HTTP才会用到此参数。前后端参数名称可不同。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// API 的后端服务参数位置，如 head。只有 ServiceType 是 HTTP 才会用到此参数。前后端参数位置可配置不同。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let position: String?
+
+        /// API 的后端服务参数对应的前端参数位置，如 head。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let relevantRequestParameterPosition: String?
+
+        /// API 的后端服务参数对应的前端参数名称。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let relevantRequestParameterName: String?
+
+        /// API 的后端服务参数默认值。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultValue: String?
+
+        /// API 的后端服务参数备注。只有 ServiceType 是 HTTP 才会用到此参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let relevantRequestParameterDesc: String?
+
+        public init(name: String? = nil, position: String? = nil, relevantRequestParameterPosition: String? = nil, relevantRequestParameterName: String? = nil, defaultValue: String? = nil, relevantRequestParameterDesc: String? = nil) {
+            self.name = name
+            self.position = position
+            self.relevantRequestParameterPosition = relevantRequestParameterPosition
+            self.relevantRequestParameterName = relevantRequestParameterName
+            self.defaultValue = defaultValue
+            self.relevantRequestParameterDesc = relevantRequestParameterDesc
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case position = "Position"
+            case relevantRequestParameterPosition = "RelevantRequestParameterPosition"
+            case relevantRequestParameterName = "RelevantRequestParameterName"
+            case defaultValue = "DefaultValue"
+            case relevantRequestParameterDesc = "RelevantRequestParameterDesc"
+        }
+    }
+
+    /// api状态详情
+    public struct DescribeApisStatusResultApiIdStatusSetInfo: TCOutputModel {
+        /// 服务唯一ID。
+        public let serviceId: String
+
+        /// API唯一ID。
+        public let apiId: String
+
+        /// 用户自定义的 API 接口描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiDesc: String?
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date?
+
+        /// 最后修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var modifiedTime: Date?
+
+        /// API 接口的名称。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiName: String?
+
+        /// VPCID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: Int64?
+
+        /// VPC唯一ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqVpcId: String?
+
+        /// API类型。取值为NORMAL（普通API）和TSF（微服务API）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiType: String?
+
+        /// API协议。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 是否买后调试。（云市场预留字段）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isDebugAfterCharge: Bool?
+
+        /// API 鉴权类型。取值为SECRET（密钥对鉴权）、NONE（免鉴权）、OAUTH、EIAM。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let authType: String?
+
+        /// OAUTH API的类型。当AuthType 为 OAUTH时该字段有效， 取值为NORMAL（业务API）和 OAUTH（授权API）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiBusinessType: String?
+
+        /// 关联的授权API 唯一 ID，当AuthType为OAUTH且ApiBusinessType为NORMAL时生效。标示业务API绑定的oauth2.0授权API唯一ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let authRelationApiId: String?
+
+        /// OAUTH 配置信息。当AuthType是OAUTH时生效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oauthConfig: OauthConfig?
+
+        /// 授权API关联的业务API列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let relationBuniessApiIds: [String]?
+
+        /// API关联的标签信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [ApigatewayTags]?
+
+        /// API 的路径，如 /path。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// API 的请求方法，如 GET。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let method: String?
+
+        enum CodingKeys: String, CodingKey {
+            case serviceId = "ServiceId"
+            case apiId = "ApiId"
+            case apiDesc = "ApiDesc"
+            case createdTime = "CreatedTime"
+            case modifiedTime = "ModifiedTime"
+            case apiName = "ApiName"
+            case vpcId = "VpcId"
+            case uniqVpcId = "UniqVpcId"
+            case apiType = "ApiType"
+            case `protocol` = "Protocol"
+            case isDebugAfterCharge = "IsDebugAfterCharge"
+            case authType = "AuthType"
+            case apiBusinessType = "ApiBusinessType"
+            case authRelationApiId = "AuthRelationApiId"
+            case oauthConfig = "OauthConfig"
+            case relationBuniessApiIds = "RelationBuniessApiIds"
+            case tags = "Tags"
+            case path = "Path"
+            case method = "Method"
+        }
+    }
+
+    /// 描述api列表状态
+    public struct DescribeApisStatusResultInfo: TCOutputModel {
+        /// 符合条件的 API 接口数量。
+        public let totalCount: Int64
+
+        /// API 接口列表。
+        public let apiIdStatusSet: [DescribeApisStatusResultApiIdStatusSetInfo]
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case apiIdStatusSet = "ApiIdStatusSet"
+        }
+    }
+
+    /// 数据结构
+    public struct DescribeExclusiveInstancesResult: TCOutputModel {
+    }
+
+    /// 服务发布列表详情
+    public struct DescribeServiceReleaseVersionResultVersionListInfo: TCOutputModel {
+        /// 版本号。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionName: String?
+
+        /// 版本描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionDesc: String?
+
+        enum CodingKeys: String, CodingKey {
+            case versionName = "VersionName"
+            case versionDesc = "VersionDesc"
+        }
+    }
+
     /// 查询后端通道绑定API列表
     public struct DescribeUpstreamBindApis: TCOutputModel {
         /// 总数
@@ -1307,20 +1517,6 @@ extension Apigateway {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case upstreamSet = "UpstreamSet"
-        }
-    }
-
-    /// api文档下载
-    public struct DocumentSDK: TCOutputModel {
-        /// 生成的 document 会存放到 COS 中，此出参返回产生文件的下载链接。
-        public let documentURL: String
-
-        /// 生成的 SDK 会存放到 COS 中，此出参返回产生 SDK 文件的下载链接。
-        public let sdkURL: String
-
-        enum CodingKeys: String, CodingKey {
-            case documentURL = "DocumentURL"
-            case sdkURL = "SdkURL"
         }
     }
 
@@ -1406,14 +1602,9 @@ extension Apigateway {
         /// 限流值
         public let quota: Int64
 
-        /// 限流最大值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxQuota: Int64?
-
         enum CodingKeys: String, CodingKey {
             case environmentName = "EnvironmentName"
             case quota = "Quota"
-            case maxQuota = "MaxQuota"
         }
     }
 
@@ -1479,17 +1670,21 @@ extension Apigateway {
     }
 
     /// 健康检查配置，包括TsfHealthCheckConf和TargetServicesHealthCheckConf
-    public struct HealthCheckConf: TCInputModel {
+    public struct HealthCheckConf: TCInputModel, TCOutputModel {
         /// 是否开启健康检查。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isHealthCheck: Bool?
 
         /// 健康检查阈值。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestVolumeThreshold: Int64?
 
         /// 窗口大小。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sleepWindowInMilliseconds: Int64?
 
         /// 阈值百分比。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorThresholdPercentage: Int64?
 
         public init(isHealthCheck: Bool? = nil, requestVolumeThreshold: Int64? = nil, sleepWindowInMilliseconds: Int64? = nil, errorThresholdPercentage: Int64? = nil) {
@@ -1504,6 +1699,22 @@ extension Apigateway {
             case requestVolumeThreshold = "RequestVolumeThreshold"
             case sleepWindowInMilliseconds = "SleepWindowInMilliseconds"
             case errorThresholdPercentage = "ErrorThresholdPercentage"
+        }
+    }
+
+    /// 策略列表
+    public struct IPStrategiesStatus: TCOutputModel {
+        /// 策略数量。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        /// 策略列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strategySet: [IPStrategy]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case strategySet = "StrategySet"
         }
     }
 
@@ -1614,22 +1825,6 @@ extension Apigateway {
         }
     }
 
-    /// 策略列表
-    public struct IPStrategysStatus: TCOutputModel {
-        /// 策略数量。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalCount: Int64?
-
-        /// 策略列表。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let strategySet: [IPStrategy]?
-
-        enum CodingKeys: String, CodingKey {
-            case totalCount = "TotalCount"
-            case strategySet = "StrategySet"
-        }
-    }
-
     /// 独享实例预付费详情
     public struct InstanceChargePrepaid: TCOutputModel {
         /// 自动续费标示
@@ -1699,7 +1894,7 @@ extension Apigateway {
 
         /// 可用区列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zones: String?
+        public let zones: [String]?
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -1820,7 +2015,7 @@ extension Apigateway {
     }
 
     /// k8s 服务的配置
-    public struct K8sService: TCInputModel {
+    public struct K8sService: TCInputModel, TCOutputModel {
         /// 权重
         public let weight: Int64
 
@@ -1932,6 +2127,70 @@ extension Apigateway {
             case clusterId = "ClusterId"
             case namespaceId = "NamespaceId"
             case microServiceName = "MicroServiceName"
+        }
+    }
+
+    /// 后端通道详细信息
+    public struct ModifyUpstreamResultInfo: TCOutputModel {
+        /// 后端通道唯一ID
+        public let upstreamId: String
+
+        /// 后端通道名字
+        public let upstreamName: String
+
+        /// 后端通道描述
+        public let upstreamDescription: String
+
+        /// 后端协议，取值范围：HTTP, HTTPS
+        public let scheme: String
+
+        /// 负载均衡算法，取值范围：ROUND_ROBIN
+        public let algorithm: String
+
+        /// VPC唯一ID
+        public let uniqVpcId: String
+
+        /// 请求重试次数
+        public let retries: UInt64
+
+        /// 后端节点
+        public let nodes: [UpstreamNode]
+
+        /// 创建时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        /// 健康检查配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let healthChecker: UpstreamHealthChecker?
+
+        /// 后端的类型，取值范围：IP_PORT, K8S
+        public let upstreamType: String
+
+        /// K8S容器服务配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let k8sServices: [K8sService]?
+
+        /// 网关转发给后端的Host请求头
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let upstreamHost: String?
+
+        enum CodingKeys: String, CodingKey {
+            case upstreamId = "UpstreamId"
+            case upstreamName = "UpstreamName"
+            case upstreamDescription = "UpstreamDescription"
+            case scheme = "Scheme"
+            case algorithm = "Algorithm"
+            case uniqVpcId = "UniqVpcId"
+            case retries = "Retries"
+            case nodes = "Nodes"
+            case createdTime = "CreatedTime"
+            case healthChecker = "HealthChecker"
+            case upstreamType = "UpstreamType"
+            case k8sServices = "K8sServices"
+            case upstreamHost = "UpstreamHost"
         }
     }
 
@@ -2585,7 +2844,7 @@ extension Apigateway {
 
         /// 发布版本列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let versionList: [ServiceReleaseHistoryInfo]?
+        public let versionList: [DescribeServiceReleaseVersionResultVersionListInfo]?
 
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
@@ -2640,12 +2899,17 @@ extension Apigateway {
     }
 
     /// API绑定的标签信息。
-    public struct Tag: TCOutputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签的 key。
         public let key: String
 
         /// 便签的 value。
         public let value: String
+
+        public init(key: String, value: String) {
+            self.key = key
+            self.value = value
+        }
 
         enum CodingKeys: String, CodingKey {
             case key = "Key"
@@ -2688,7 +2952,7 @@ extension Apigateway {
     }
 
     /// TsfLoadBalanceConf 出参使用
-    public struct TsfLoadBalanceConfResp: TCOutputModel {
+    public struct TsfLoadBalanceConfResp: TCInputModel, TCOutputModel {
         /// 是否开启负载均衡。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isLoadBalance: Bool?
@@ -2704,6 +2968,13 @@ extension Apigateway {
         /// 会话保持超时时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionStickTimeout: Int64?
+
+        public init(isLoadBalance: Bool? = nil, method: String? = nil, sessionStickRequired: Bool? = nil, sessionStickTimeout: Int64? = nil) {
+            self.isLoadBalance = isLoadBalance
+            self.method = method
+            self.sessionStickRequired = sessionStickRequired
+            self.sessionStickTimeout = sessionStickTimeout
+        }
 
         enum CodingKeys: String, CodingKey {
             case isLoadBalance = "IsLoadBalance"
@@ -2941,7 +3212,8 @@ extension Apigateway {
         public let usagePlanName: String
 
         /// 使用计划描述。
-        public let usagePlanDesc: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let usagePlanDesc: String?
 
         /// 使用计划qps，-1表示没有限制。
         public let maxRequestNumPreSec: Int64
@@ -3124,10 +3396,6 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usagePlanDesc: String?
 
-        /// 初始化调用次数。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let initQuota: Int64?
-
         /// 每秒请求限制数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRequestNumPreSec: Int64?
@@ -3135,10 +3403,6 @@ extension Apigateway {
         /// 最大调用次数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRequestNum: Int64?
-
-        /// 是否隐藏。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isHide: Int64?
 
         /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。格式为：YYYY-MM-DDThh:mm:ssZ。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3174,10 +3438,8 @@ extension Apigateway {
             case usagePlanId = "UsagePlanId"
             case usagePlanName = "UsagePlanName"
             case usagePlanDesc = "UsagePlanDesc"
-            case initQuota = "InitQuota"
             case maxRequestNumPreSec = "MaxRequestNumPreSec"
             case maxRequestNum = "MaxRequestNum"
-            case isHide = "IsHide"
             case createdTime = "CreatedTime"
             case modifiedTime = "ModifiedTime"
             case bindSecretIdTotalCount = "BindSecretIdTotalCount"

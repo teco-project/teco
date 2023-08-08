@@ -24,17 +24,25 @@ extension Tcr {
         /// 实例ID
         public let registryId: String
 
-        /// 实例的规格
-        public let registryType: String
+        /// 实例的规格,
+        /// 基础版：basic
+        /// 标准版：standard
+        /// 高级版：premium
+        public let registryType: String?
 
-        public init(registryId: String, registryType: String) {
+        /// 实例删除保护，false为关闭
+        public let deletionProtection: Bool?
+
+        public init(registryId: String, registryType: String? = nil, deletionProtection: Bool? = nil) {
             self.registryId = registryId
             self.registryType = registryType
+            self.deletionProtection = deletionProtection
         }
 
         enum CodingKeys: String, CodingKey {
             case registryId = "RegistryId"
             case registryType = "RegistryType"
+            case deletionProtection = "DeletionProtection"
         }
     }
 
@@ -62,13 +70,13 @@ extension Tcr {
 
     /// 更新实例信息
     @inlinable @discardableResult
-    public func modifyInstance(registryId: String, registryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
-        self.modifyInstance(.init(registryId: registryId, registryType: registryType), region: region, logger: logger, on: eventLoop)
+    public func modifyInstance(registryId: String, registryType: String? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
+        self.modifyInstance(.init(registryId: registryId, registryType: registryType, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新实例信息
     @inlinable @discardableResult
-    public func modifyInstance(registryId: String, registryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
-        try await self.modifyInstance(.init(registryId: registryId, registryType: registryType), region: region, logger: logger, on: eventLoop)
+    public func modifyInstance(registryId: String, registryType: String? = nil, deletionProtection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.modifyInstance(.init(registryId: registryId, registryType: registryType, deletionProtection: deletionProtection), region: region, logger: logger, on: eventLoop)
     }
 }

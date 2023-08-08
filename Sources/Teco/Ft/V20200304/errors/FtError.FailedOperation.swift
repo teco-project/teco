@@ -41,6 +41,7 @@ extension TCFtError {
             case requestTimeout = "FailedOperation.RequestTimeout"
             case rpcFail = "FailedOperation.RpcFail"
             case taskNotExist = "FailedOperation.TaskNotExist"
+            case unknown = "FailedOperation.Unknown"
             case other = "FailedOperation"
         }
 
@@ -176,6 +177,11 @@ extension TCFtError {
             FailedOperation(.taskNotExist)
         }
 
+        /// 未知错误。
+        public static var unknown: FailedOperation {
+            FailedOperation(.unknown)
+        }
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
@@ -228,6 +234,8 @@ extension TCFtError {
                 code = .failedOperation_RpcFail
             case .taskNotExist:
                 code = .failedOperation_TaskNotExist
+            case .unknown:
+                code = .failedOperation_Unknown
             case .other:
                 code = .failedOperation
             }

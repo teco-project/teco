@@ -81,37 +81,6 @@ extension Cdb {
         }
     }
 
-    /// 地址
-    public struct Address: TCOutputModel {
-        /// 地址
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vip: String?
-
-        /// 端口
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vPort: UInt64?
-
-        /// 私有网络ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let uniqVpcId: String?
-
-        /// 私有网络子网ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let uniqSubnet: String?
-
-        /// 描述
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let desc: String?
-
-        enum CodingKeys: String, CodingKey {
-            case vip = "Vip"
-            case vPort = "VPort"
-            case uniqVpcId = "UniqVpcId"
-            case uniqSubnet = "UniqSubnet"
-            case desc = "Desc"
-        }
-    }
-
     /// 审计日志聚合条件
     public struct AggregationCondition: TCInputModel {
         /// 聚合字段。目前仅支持host-源IP、user-用户名、dbName-数据库名、sqlType-sql类型。
@@ -164,6 +133,90 @@ extension Cdb {
             case type = "Type"
             case compare = "Compare"
             case value = "Value"
+        }
+    }
+
+    /// 审计日志详细信息
+    public struct AuditLog: TCOutputModel {
+        /// 影响行数。
+        public let affectRows: Int64
+
+        /// 错误码。
+        public let errCode: Int64
+
+        /// SQL 类型。
+        public let sqlType: String
+
+        /// 审计策略名称，逐步下线。
+        public let policyName: String
+
+        /// 数据库名称。
+        public let dbName: String
+
+        /// SQL 语句。
+        public let sql: String
+
+        /// 客户端地址。
+        public let host: String
+
+        /// 用户名。
+        public let user: String
+
+        /// 执行时间，微秒。
+        public let execTime: Int64
+
+        /// 时间。
+        public let timestamp: String
+
+        /// 返回行数。
+        public let sentRows: Int64
+
+        /// 线程ID。
+        public let threadId: Int64
+
+        /// 扫描行数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let checkRows: Int64?
+
+        /// cpu执行时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpuTime: Float?
+
+        /// IO等待时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ioWaitTime: UInt64?
+
+        /// 锁等待时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lockWaitTime: UInt64?
+
+        /// 开始时间，与timestamp构成一个精确到纳秒的时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nsTime: UInt64?
+
+        /// 事物持续时间，微秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let trxLivingTime: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case affectRows = "AffectRows"
+            case errCode = "ErrCode"
+            case sqlType = "SqlType"
+            case policyName = "PolicyName"
+            case dbName = "DBName"
+            case sql = "Sql"
+            case host = "Host"
+            case user = "User"
+            case execTime = "ExecTime"
+            case timestamp = "Timestamp"
+            case sentRows = "SentRows"
+            case threadId = "ThreadId"
+            case checkRows = "CheckRows"
+            case cpuTime = "CpuTime"
+            case ioWaitTime = "IoWaitTime"
+            case lockWaitTime = "LockWaitTime"
+            case nsTime = "NsTime"
+            case trxLivingTime = "TrxLivingTime"
         }
     }
 
@@ -272,7 +325,16 @@ extension Cdb {
         /// 事务持续时间，格式为M-N，例如：10-200
         public let transactionLivingTimeSection: String?
 
-        public init(host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil, affectRowsSection: String? = nil, sentRowsSection: String? = nil, execTimeSection: String? = nil, lockWaitTimeSection: String? = nil, ioWaitTimeSection: String? = nil, transactionLivingTimeSection: String? = nil) {
+        /// 线程ID
+        public let threadId: [String]?
+
+        /// 返回行数。表示筛选返回行数大于该值的审计日志。
+        public let sentRows: Int64?
+
+        /// mysql错误码
+        public let errCode: [Int64]?
+
+        public init(host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil, affectRowsSection: String? = nil, sentRowsSection: String? = nil, execTimeSection: String? = nil, lockWaitTimeSection: String? = nil, ioWaitTimeSection: String? = nil, transactionLivingTimeSection: String? = nil, threadId: [String]? = nil, sentRows: Int64? = nil, errCode: [Int64]? = nil) {
             self.host = host
             self.user = user
             self.dbName = dbName
@@ -290,6 +352,9 @@ extension Cdb {
             self.lockWaitTimeSection = lockWaitTimeSection
             self.ioWaitTimeSection = ioWaitTimeSection
             self.transactionLivingTimeSection = transactionLivingTimeSection
+            self.threadId = threadId
+            self.sentRows = sentRows
+            self.errCode = errCode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -310,6 +375,9 @@ extension Cdb {
             case lockWaitTimeSection = "LockWaitTimeSection"
             case ioWaitTimeSection = "IoWaitTimeSection"
             case transactionLivingTimeSection = "TransactionLivingTimeSection"
+            case threadId = "ThreadId"
+            case sentRows = "SentRows"
+            case errCode = "ErrCode"
         }
     }
 
@@ -395,6 +463,21 @@ extension Cdb {
             case description = "Description"
             case ruleFilters = "RuleFilters"
             case auditAll = "AuditAll"
+        }
+    }
+
+    /// 审计规则的过滤条件
+    public struct AuditRuleFilters: TCInputModel, TCOutputModel {
+        /// 单条审计规则。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleFilters: [RuleFilters]?
+
+        public init(ruleFilters: [RuleFilters]? = nil) {
+            self.ruleFilters = ruleFilters
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleFilters = "RuleFilters"
         }
     }
 
@@ -588,52 +671,6 @@ extension Cdb {
             case binlogBackupCount = "BinlogBackupCount"
             case binlogBackupVolume = "BinlogBackupVolume"
             case backupVolume = "BackupVolume"
-        }
-    }
-
-    /// proxy代理组信息
-    public struct BaseGroupInfo: TCOutputModel {
-        /// 代理组ID
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyGroupId: String?
-
-        /// 代理节点数
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeCount: UInt64?
-
-        /// 状态：发货中（init）运行中（online）下线中（offline）销毁中（destroy）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String?
-
-        /// 地域
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String?
-
-        /// 可用区
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zone: String?
-
-        /// 是否开启读写分离
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let openRW: Bool?
-
-        /// 当前代理版本
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let currentProxyVersion: String?
-
-        /// 支持升级版本
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let supportUpgradeProxyVersion: String?
-
-        enum CodingKeys: String, CodingKey {
-            case proxyGroupId = "ProxyGroupId"
-            case nodeCount = "NodeCount"
-            case status = "Status"
-            case region = "Region"
-            case zone = "Zone"
-            case openRW = "OpenRW"
-            case currentProxyVersion = "CurrentProxyVersion"
-            case supportUpgradeProxyVersion = "SupportUpgradeProxyVersion"
         }
     }
 
@@ -1050,27 +1087,6 @@ extension Cdb {
         }
     }
 
-    /// 连接池信息
-    public struct ConnectionPoolInfo: TCOutputModel {
-        /// 是否开启了连接池
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPool: Bool?
-
-        /// 连接池类型：SessionConnectionPool（会话级别连接池）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolType: String?
-
-        /// 连接池保持阈值：单位（秒）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let poolConnectionTimeOut: Int64?
-
-        enum CodingKeys: String, CodingKey {
-            case connectionPool = "ConnectionPool"
-            case connectionPoolType = "ConnectionPoolType"
-            case poolConnectionTimeOut = "PoolConnectionTimeOut"
-        }
-    }
-
     /// proxy配置
     public struct CustomConfig: TCOutputModel {
         /// 设备
@@ -1430,6 +1446,9 @@ extension Cdb {
         /// 规则限定的方向，进站规则为 INPUT
         public let dir: String?
 
+        /// 地址模块
+        public let addressModule: String
+
         /// 规则描述
         public let desc: String
 
@@ -1439,7 +1458,57 @@ extension Cdb {
             case portRange = "PortRange"
             case ipProtocol = "IpProtocol"
             case dir = "Dir"
+            case addressModule = "AddressModule"
             case desc = "Desc"
+        }
+    }
+
+    /// 审计日志搜索过滤器
+    public struct InstanceAuditLogFilters: TCInputModel {
+        /// 过滤项。sql 暂时不支持搜索。目前支持以下搜索条件：
+        ///
+        /// 等于、不等于、包含、不包含：
+        /// host - 客户端地址；
+        /// user - 用户名；
+        /// dbName - 数据库名称；
+        ///
+        /// 等于、不等于：
+        /// sqlType - SQL类型；
+        /// errCode - 错误码；
+        /// threadId - 线程ID；
+        ///
+        /// 范围搜索（时间类型统一为微妙）：
+        /// execTime - 执行时间；
+        /// lockWaitTime - 执行时间；
+        /// ioWaitTime - IO等待时间；
+        /// trxLivingTime - 事物持续时间；
+        /// cpuTime - cpu时间；
+        /// checkRows - 扫描行数；
+        /// affectRows - 影响行数；
+        /// sentRows - 返回行数。
+        public let type: String?
+
+        /// 过滤条件。支持以下条件：
+        /// INC - 包含,
+        /// EXC - 不包含,
+        /// EQS - 等于,
+        /// NEQ - 不等于,
+        /// RA - 范围。
+        public let compare: String?
+
+        /// 过滤的值。
+        public let value: [String]?
+
+        public init(type: String? = nil, compare: String? = nil, value: [String]? = nil) {
+            self.type = type
+            self.compare = compare
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case compare = "Compare"
+            case value = "Value"
         }
     }
 
@@ -1806,6 +1875,9 @@ extension Cdb {
         /// 规则限定的方向，进站规则为 OUTPUT
         public let dir: String?
 
+        /// 地址模块
+        public let addressModule: String
+
         /// 规则描述
         public let desc: String
 
@@ -1815,6 +1887,7 @@ extension Cdb {
             case portRange = "PortRange"
             case ipProtocol = "IpProtocol"
             case dir = "Dir"
+            case addressModule = "AddressModule"
             case desc = "Desc"
         }
     }
@@ -1885,12 +1958,17 @@ extension Cdb {
         /// 参数模板类型
         public let templateType: String
 
+        /// 参数模板引擎
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let engineType: String?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case name = "Name"
             case description = "Description"
             case engineVersion = "EngineVersion"
             case templateType = "TemplateType"
+            case engineType = "EngineType"
         }
     }
 
@@ -1948,6 +2026,10 @@ extension Cdb {
         /// 参数是公式类型时，该字段有效，表示公式类型最小值
         public let minFunc: String
 
+        /// 参数是否不支持修改
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isNotSupportEdit: Bool?
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case paramType = "ParamType"
@@ -1960,225 +2042,295 @@ extension Cdb {
             case enumValue = "EnumValue"
             case maxFunc = "MaxFunc"
             case minFunc = "MinFunc"
+            case isNotSupportEdit = "IsNotSupportEdit"
         }
     }
 
-    /// 数据库代理连接池规格配置
-    public struct PoolConf: TCOutputModel {
-        /// 连接池类型：SessionConnectionPool（会话级别连接池
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolType: String?
+    /// 数据库代理地址信息
+    public struct ProxyAddress: TCOutputModel {
+        /// 代理组地址ID
+        public let proxyAddressId: String
 
-        /// 最大可保持连接阈值：单位（秒）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxPoolConnectionTimeOut: Int64?
+        /// 私有网络ID
+        public let uniqVpcId: String
 
-        /// 最小可保持连接阈值：单位（秒）
+        /// 私有子网ID
+        public let uniqSubnetId: String
+
+        /// IP地址
+        public let vip: String
+
+        /// 端口
+        public let vPort: UInt64
+
+        /// 权重分配模式；
+        /// 系统自动分配："system"， 自定义："custom"
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let minPoolConnectionTimeOut: Int64?
+        public let weightMode: String?
+
+        /// 是否开启延迟剔除，取值："true" | "false"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isKickOut: Bool?
+
+        /// 最小保留数量，最小取值：0
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let minCount: UInt64?
+
+        /// 延迟剔除阈值，最小取值：0
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxDelay: UInt64?
+
+        /// 是否自动添加RO，取值："true" | "false"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoAddRo: Bool?
+
+        /// 是否是只读，取值："true" | "false"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let readOnly: Bool?
+
+        /// 是否开启事务分离
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transSplit: Bool?
+
+        /// 是否开启故障转移
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failOver: Bool?
+
+        /// 是否开启连接池
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionPool: Bool?
+
+        /// 描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let desc: String?
+
+        /// 实例读权重分配
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyAllocation: [ProxyAllocation]?
 
         enum CodingKeys: String, CodingKey {
-            case connectionPoolType = "ConnectionPoolType"
-            case maxPoolConnectionTimeOut = "MaxPoolConnectionTimeOut"
-            case minPoolConnectionTimeOut = "MinPoolConnectionTimeOut"
+            case proxyAddressId = "ProxyAddressId"
+            case uniqVpcId = "UniqVpcId"
+            case uniqSubnetId = "UniqSubnetId"
+            case vip = "Vip"
+            case vPort = "VPort"
+            case weightMode = "WeightMode"
+            case isKickOut = "IsKickOut"
+            case minCount = "MinCount"
+            case maxDelay = "MaxDelay"
+            case autoAddRo = "AutoAddRo"
+            case readOnly = "ReadOnly"
+            case transSplit = "TransSplit"
+            case failOver = "FailOver"
+            case connectionPool = "ConnectionPool"
+            case desc = "Desc"
+            case proxyAllocation = "ProxyAllocation"
         }
     }
 
-    /// 数据代理组信息
-    public struct ProxyGroup: TCOutputModel {
-        /// 代理基本信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseGroup: BaseGroupInfo?
+    /// 代理节点权重分布
+    public struct ProxyAllocation: TCInputModel, TCOutputModel {
+        /// 代理节点所属地域
+        public let region: String
 
-        /// 代理地址信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let address: [Address]?
+        /// 代理节点所属可用区
+        public let zone: String
 
-        /// 代理连接池信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolInfo: ConnectionPoolInfo?
+        /// 代理实例分布
+        public let proxyInstance: [ProxyInst]
 
-        /// 代理节点信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNode: [ProxyNodeInfo]?
-
-        /// 代理路由信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInfo?
+        public init(region: String, zone: String, proxyInstance: [ProxyInst]) {
+            self.region = region
+            self.zone = zone
+            self.proxyInstance = proxyInstance
+        }
 
         enum CodingKeys: String, CodingKey {
-            case baseGroup = "BaseGroup"
-            case address = "Address"
-            case connectionPoolInfo = "ConnectionPoolInfo"
+            case region = "Region"
+            case zone = "Zone"
+            case proxyInstance = "ProxyInstance"
+        }
+    }
+
+    /// 代理组详情
+    public struct ProxyGroupInfo: TCOutputModel {
+        /// 代理组ID
+        public let proxyGroupId: String
+
+        /// 代理版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyVersion: String?
+
+        /// 代理支持升级版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportUpgradeProxyVersion: String?
+
+        /// 代理状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 代理任务状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskStatus: String?
+
+        /// 代理组节点信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyNode: [ProxyNode]?
+
+        /// 代理组地址信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyAddress: [ProxyAddress]?
+
+        /// 连接池阈值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connectionPoolLimit: UInt64?
+
+        /// 支持创建地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportCreateProxyAddress: Bool?
+
+        /// 支持升级代理版本所需的cdb版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportUpgradeProxyMysqlVersion: String?
+
+        enum CodingKeys: String, CodingKey {
+            case proxyGroupId = "ProxyGroupId"
+            case proxyVersion = "ProxyVersion"
+            case supportUpgradeProxyVersion = "SupportUpgradeProxyVersion"
+            case status = "Status"
+            case taskStatus = "TaskStatus"
             case proxyNode = "ProxyNode"
-            case rwInstInfo = "RWInstInfo"
+            case proxyAddress = "ProxyAddress"
+            case connectionPoolLimit = "ConnectionPoolLimit"
+            case supportCreateProxyAddress = "SupportCreateProxyAddress"
+            case supportUpgradeProxyMysqlVersion = "SupportUpgradeProxyMysqlVersion"
         }
     }
 
-    /// 数据代理组信息
-    public struct ProxyGroups: TCOutputModel {
-        /// 代理基本信息
+    /// 代理实例
+    public struct ProxyInst: TCInputModel, TCOutputModel {
+        /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseGroup: BaseGroupInfo?
+        public let instanceId: String?
 
-        /// 代理地址信息
+        /// 实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let address: [Address]?
+        public let instanceName: String?
 
-        /// 代理连接池信息
+        /// 实例类型：1 master 主实例; 2 ro 只读实例; 3 dr 灾备实例; 4 sdr 小灾备实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolInfo: ConnectionPoolInfo?
+        public let instanceType: Int64?
 
-        /// 代理节点信息
+        /// 实例状态，可能的返回值：0-创建中；1-运行中；4-隔离中；5-已隔离
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNode: [ProxyNodeInfo]?
+        public let status: Int64?
 
-        /// 代理路由信息
+        /// 只读权重,如果权重为系统自动分配，改值不生效，只代表是否启用该实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInfos?
+        public let weight: UInt64?
+
+        /// 实例所属地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 实例所属可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        public init(instanceId: String? = nil, instanceName: String? = nil, instanceType: Int64? = nil, status: Int64? = nil, weight: UInt64? = nil, region: String? = nil, zone: String? = nil) {
+            self.instanceId = instanceId
+            self.instanceName = instanceName
+            self.instanceType = instanceType
+            self.status = status
+            self.weight = weight
+            self.region = region
+            self.zone = zone
+        }
 
         enum CodingKeys: String, CodingKey {
-            case baseGroup = "BaseGroup"
-            case address = "Address"
-            case connectionPoolInfo = "ConnectionPoolInfo"
-            case proxyNode = "ProxyNode"
-            case rwInstInfo = "RWInstInfo"
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case instanceType = "InstanceType"
+            case status = "Status"
+            case weight = "Weight"
+            case region = "Region"
+            case zone = "Zone"
         }
     }
 
-    /// 代理节点信息
-    public struct ProxyNodeInfo: TCOutputModel {
+    /// 代理节点
+    public struct ProxyNode: TCOutputModel {
         /// 代理节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNodeId: String?
+        public let proxyId: String?
 
-        /// 节点当前连接数
+        /// CPU核数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNodeConnections: UInt64?
+        public let cpu: UInt64?
 
-        /// cup
+        /// 内存大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNodeCpu: UInt64?
+        public let mem: UInt64?
 
-        /// 内存
+        /// 节点状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNodeMem: UInt64?
+        public let status: String?
 
-        /// 节点状态：
-        /// init（申请中）
-        /// online（运行中）
-        /// offline（离线中）
-        /// destroy（已销毁）
-        /// recovering（故障恢复中）
-        /// error（节点故障）
+        /// 代理节点可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyStatus: String?
+        public let zone: String?
+
+        /// 代理节点地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 连接数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let connection: UInt64?
 
         enum CodingKeys: String, CodingKey {
-            case proxyNodeId = "ProxyNodeId"
-            case proxyNodeConnections = "ProxyNodeConnections"
-            case proxyNodeCpu = "ProxyNodeCpu"
-            case proxyNodeMem = "ProxyNodeMem"
-            case proxyStatus = "ProxyStatus"
+            case proxyId = "ProxyId"
+            case cpu = "Cpu"
+            case mem = "Mem"
+            case status = "Status"
+            case zone = "Zone"
+            case region = "Region"
+            case connection = "Connection"
         }
     }
 
-    /// proxy读写分离信息
-    public struct RWInfo: TCOutputModel {
-        /// 代理实例数量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instCount: UInt64?
+    /// 节点规格配置
+    public struct ProxyNodeCustom: TCInputModel {
+        /// 节点个数
+        public let nodeCount: UInt64
 
-        /// 权重分配模式；
-        /// 系统自动分配："system"， 自定义："custom"
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let weightMode: String?
+        /// CPU核数
+        public let cpu: UInt64
 
-        /// 是否开启延迟剔除
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isKickOut: Bool?
+        /// 内存大小
+        public let mem: UInt64
 
-        /// 最小保留数
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let minCount: UInt64?
+        /// 地域
+        public let region: String
 
-        /// 延迟剔除阈值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxDelay: UInt64?
+        /// 可用区
+        public let zone: String
 
-        /// 是否开启故障转移
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let failOver: Bool?
-
-        /// 是否自动添加RO
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let autoAddRo: Bool?
-
-        /// 代理实例信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInstanceInfo?
+        public init(nodeCount: UInt64, cpu: UInt64, mem: UInt64, region: String, zone: String) {
+            self.nodeCount = nodeCount
+            self.cpu = cpu
+            self.mem = mem
+            self.region = region
+            self.zone = zone
+        }
 
         enum CodingKeys: String, CodingKey {
-            case instCount = "InstCount"
-            case weightMode = "WeightMode"
-            case isKickOut = "IsKickOut"
-            case minCount = "MinCount"
-            case maxDelay = "MaxDelay"
-            case failOver = "FailOver"
-            case autoAddRo = "AutoAddRo"
-            case rwInstInfo = "RWInstInfo"
+            case nodeCount = "NodeCount"
+            case cpu = "Cpu"
+            case mem = "Mem"
+            case region = "Region"
+            case zone = "Zone"
         }
-    }
-
-    /// proxy读写分离信息
-    public struct RWInfos: TCOutputModel {
-        /// 代理实例数量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instCount: UInt64?
-
-        /// 权重分配模式；
-        /// 系统自动分配："system"， 自定义："custom"
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let weightMode: String?
-
-        /// 是否开启延迟剔除
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isKickOut: Bool?
-
-        /// 最小保留数
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let minCount: UInt64?
-
-        /// 延迟剔除阈值
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxDelay: UInt64?
-
-        /// 是否开启故障转移
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let failOver: Bool?
-
-        /// 是否自动添加RO
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let autoAddRo: Bool?
-
-        /// 代理实例信息
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: [RWInstanceInfo]?
-
-        enum CodingKeys: String, CodingKey {
-            case instCount = "InstCount"
-            case weightMode = "WeightMode"
-            case isKickOut = "IsKickOut"
-            case minCount = "MinCount"
-            case maxDelay = "MaxDelay"
-            case failOver = "FailOver"
-            case autoAddRo = "AutoAddRo"
-            case rwInstInfo = "RWInstInfo"
-        }
-    }
-
-    /// 代理实例信息
-    public struct RWInstanceInfo: TCOutputModel {
     }
 
     /// 解隔离任务结果
@@ -2202,7 +2354,7 @@ extension Cdb {
     /// 异地备份信息
     public struct RemoteBackupInfo: TCOutputModel {
         /// 异地备份子任务的ID
-        public let subBackupId: [Int64]
+        public let subBackupId: Int64
 
         /// 异地备份所在地域
         public let region: String
@@ -2252,7 +2404,7 @@ extension Cdb {
         /// 读写权重分配模式，可选值：system-系统自动分配；custom-自定义。
         public let weightMode: String?
 
-        /// 权重值。
+        /// 该字段已经废弃，无意义。查看只读实例的权重，请查看 RoInstances 字段里的 Weight 值。
         public let weight: Int64?
 
         /// 只读组中的只读实例详情。
@@ -2363,75 +2515,101 @@ extension Cdb {
     }
 
     /// RO实例的详细信息
-    public struct RoInstanceInfo: TCOutputModel {
+    public struct RoInstanceInfo: TCInputModel, TCOutputModel {
         /// RO组对应的主实例的ID
-        public let masterInstanceId: String
+        public let masterInstanceId: String?
 
         /// RO实例在RO组内的状态，可能的值：online-在线，offline-下线
-        public let roStatus: String
+        public let roStatus: String?
 
         /// RO实例在RO组内上一次下线的时间
-        public let offlineTime: String
+        public let offlineTime: String?
 
         /// RO实例在RO组内的权重
-        public let weight: Int64
+        public let weight: Int64?
 
         /// RO实例所在区域名称，如ap-shanghai
-        public let region: String
+        public let region: String?
 
         /// RO可用区的正式名称，如ap-shanghai-1
-        public let zone: String
+        public let zone: String?
 
         /// RO实例ID，格式如：cdbro-c1nl9rpv
-        public let instanceId: String
+        public let instanceId: String?
 
         /// RO实例状态，可能返回值：0-创建中，1-运行中，3-异地RO（仅在使用DescribeDBInstances查询主实例信息时，返回值中异地RO的状态恒等于3，其他场景下无此值），4-删除中
-        public let status: Int64
+        public let status: Int64?
 
         /// 实例类型，可能返回值：1-主实例，2-灾备实例，3-只读实例
-        public let instanceType: Int64
+        public let instanceType: Int64?
 
         /// RO实例名称
-        public let instanceName: String
+        public let instanceName: String?
 
         /// 按量计费状态，可能的取值：1-正常，2-欠费
-        public let hourFeeStatus: Int64
+        public let hourFeeStatus: Int64?
 
         /// RO实例任务状态，可能返回值：<br>0-没有任务<br>1-升级中<br>2-数据导入中<br>3-开放Slave中<br>4-外网访问开通中<br>5-批量操作执行中<br>6-回档中<br>7-外网访问关闭中<br>8-密码修改中<br>9-实例名修改中<br>10-重启中<br>12-自建迁移中<br>13-删除库表中<br>14-灾备实例创建同步中
-        public let taskStatus: Int64
+        public let taskStatus: Int64?
 
         /// RO实例内存大小，单位：MB
-        public let memory: Int64
+        public let memory: Int64?
 
         /// RO实例硬盘大小，单位：GB
-        public let volume: Int64
+        public let volume: Int64?
 
         /// 每次查询数量
-        public let qps: Int64
+        public let qps: Int64?
 
         /// RO实例的内网IP地址
-        public let vip: String
+        public let vip: String?
 
         /// RO实例访问端口
-        public let vport: Int64
+        public let vport: Int64?
 
         /// RO实例所在私有网络ID
-        public let vpcId: Int64
+        public let vpcId: Int64?
 
         /// RO实例所在私有网络子网ID
-        public let subnetId: Int64
+        public let subnetId: Int64?
 
         /// RO实例规格描述，目前可取值 CUSTOM
-        public let deviceType: String
+        public let deviceType: String?
 
         /// RO实例数据库引擎版本，可能返回值：5.1、5.5、5.6、5.7、8.0
-        public let engineVersion: String
+        public let engineVersion: String?
 
         /// RO实例到期时间，时间格式：yyyy-mm-dd hh:mm:ss，如实例为按量计费模式，则此字段值为0000-00-00 00:00:00
-        public let deadlineTime: String
+        public let deadlineTime: String?
 
         /// RO实例计费类型，可能返回值：0-包年包月，1-按量计费，2-后付费月结
-        public let payType: Int64
+        public let payType: Int64?
+
+        public init(masterInstanceId: String? = nil, roStatus: String? = nil, offlineTime: String? = nil, weight: Int64? = nil, region: String? = nil, zone: String? = nil, instanceId: String? = nil, status: Int64? = nil, instanceType: Int64? = nil, instanceName: String? = nil, hourFeeStatus: Int64? = nil, taskStatus: Int64? = nil, memory: Int64? = nil, volume: Int64? = nil, qps: Int64? = nil, vip: String? = nil, vport: Int64? = nil, vpcId: Int64? = nil, subnetId: Int64? = nil, deviceType: String? = nil, engineVersion: String? = nil, deadlineTime: String? = nil, payType: Int64? = nil) {
+            self.masterInstanceId = masterInstanceId
+            self.roStatus = roStatus
+            self.offlineTime = offlineTime
+            self.weight = weight
+            self.region = region
+            self.zone = zone
+            self.instanceId = instanceId
+            self.status = status
+            self.instanceType = instanceType
+            self.instanceName = instanceName
+            self.hourFeeStatus = hourFeeStatus
+            self.taskStatus = taskStatus
+            self.memory = memory
+            self.volume = volume
+            self.qps = qps
+            self.vip = vip
+            self.vport = vport
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+            self.deviceType = deviceType
+            self.engineVersion = engineVersion
+            self.deadlineTime = deadlineTime
+            self.payType = payType
+        }
 
         enum CodingKeys: String, CodingKey {
             case masterInstanceId = "MasterInstanceId"
@@ -2666,6 +2844,30 @@ extension Cdb {
         }
     }
 
+    /// 审计规则的规则过滤条件
+    public struct RuleFilters: TCInputModel, TCOutputModel {
+        /// 审计规则过滤条件的参数名称。可选值：host – 客户端 IP；user – 数据库账户；dbName – 数据库名称；sqlType-SQL类型；sql-sql语句；affectRows -影响行数；sentRows-返回行数；checkRows-扫描行数；execTime-执行时间。
+        public let type: String
+
+        /// 审计规则过滤条件的匹配类型。可选值：INC – 包含；EXC – 不包含；EQS – 等于；NEQ – 不等于；REG-正则；GT-大于；LT-小于。
+        public let compare: String
+
+        /// 审计规则过滤条件的匹配值。sqlType条件的Value需在以下选择"alter", "changeuser", "create", "delete", "drop", "execute", "insert", "login", "logout", "other", "replace", "select", "set", "update"。
+        public let value: [String]
+
+        public init(type: String, compare: String, value: [String]) {
+            self.type = type
+            self.compare = compare
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case compare = "Compare"
+            case value = "Value"
+        }
+    }
+
     /// 安全组详情
     public struct SecurityGroup: TCOutputModel {
         /// 项目ID
@@ -2875,16 +3077,6 @@ extension Cdb {
         }
     }
 
-    /// 表名
-    public struct TableName: TCOutputModel {
-        /// 表名
-        public let tableName: String
-
-        enum CodingKeys: String, CodingKey {
-            case tableName = "TableName"
-        }
-    }
-
     /// 数据库表权限
     public struct TablePrivilege: TCInputModel, TCOutputModel {
         /// 数据库名
@@ -2929,12 +3121,17 @@ extension Cdb {
     }
 
     /// 标签信息
-    public struct TagInfo: TCOutputModel {
+    public struct TagInfo: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
 
         /// 标签值
         public let tagValue: [String]
+
+        public init(tagKey: String, tagValue: [String]) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"

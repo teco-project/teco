@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelCreateFlowSignReview请求参数结构体
     public struct ChannelCreateFlowSignReviewRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
         /// 签署流程编号
@@ -37,15 +37,23 @@ extension Essbasic {
         /// 当ReviewType 是REJECT 时此字段必填,字符串长度不超过200
         public let reviewMessage: String?
 
-        /// 签署节点审核时需要指定
+        /// 签署节点审核时需要指定，给个人审核时必填。
         public let recipientId: String?
 
-        public init(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil) {
+        /// 操作类型，默认：SignReview；SignReview:签署审核，CreateReview：发起审核
+        /// 注：接口通过该字段区分操作类型
+        /// 该字段不传或者为空，则默认为SignReview签署审核，走签署审核流程
+        /// 若想使用发起审核，请指定该字段为：CreateReview
+        /// 若发起个人审核，则指定该字段为：SignReview
+        public let operateType: String?
+
+        public init(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, operateType: String? = nil) {
             self.agent = agent
             self.flowId = flowId
             self.reviewType = reviewType
             self.reviewMessage = reviewMessage
             self.recipientId = recipientId
+            self.operateType = operateType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -54,6 +62,7 @@ extension Essbasic {
             case reviewType = "ReviewType"
             case reviewMessage = "ReviewMessage"
             case recipientId = "RecipientId"
+            case operateType = "OperateType"
         }
     }
 
@@ -69,10 +78,11 @@ extension Essbasic {
 
     /// 提交企业签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
+    /// 提交企业流程审批结果
+    /// 目前存在两种审核操作，签署审核，发起审核
+    /// 签署审核：通过接口（CreateFlowsByTemplates或ChannelCreateFlowByFiles或ChannelCreatePrepareFlow）发起签署流程后，若指定了参数 NeedSignReview 为true,则可以调用此接口，指定operate=SignReview，提交企业内部签署审批结果；若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效
     ///
-    /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 发起审核：通过接口ChannelCreatePrepareFlow指定发起后需要审核，则可以通过调用此接口，指定operate=CreateReview，提交企业内部审批结果，可多次提交，当通过后，后续提交结果无效
     @inlinable @discardableResult
     public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
         self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,10 +90,11 @@ extension Essbasic {
 
     /// 提交企业签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
+    /// 提交企业流程审批结果
+    /// 目前存在两种审核操作，签署审核，发起审核
+    /// 签署审核：通过接口（CreateFlowsByTemplates或ChannelCreateFlowByFiles或ChannelCreatePrepareFlow）发起签署流程后，若指定了参数 NeedSignReview 为true,则可以调用此接口，指定operate=SignReview，提交企业内部签署审批结果；若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效
     ///
-    /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 发起审核：通过接口ChannelCreatePrepareFlow指定发起后需要审核，则可以通过调用此接口，指定operate=CreateReview，提交企业内部审批结果，可多次提交，当通过后，后续提交结果无效
     @inlinable @discardableResult
     public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
         try await self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -91,23 +102,25 @@ extension Essbasic {
 
     /// 提交企业签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
+    /// 提交企业流程审批结果
+    /// 目前存在两种审核操作，签署审核，发起审核
+    /// 签署审核：通过接口（CreateFlowsByTemplates或ChannelCreateFlowByFiles或ChannelCreatePrepareFlow）发起签署流程后，若指定了参数 NeedSignReview 为true,则可以调用此接口，指定operate=SignReview，提交企业内部签署审批结果；若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效
     ///
-    /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 发起审核：通过接口ChannelCreatePrepareFlow指定发起后需要审核，则可以通过调用此接口，指定operate=CreateReview，提交企业内部审批结果，可多次提交，当通过后，后续提交结果无效
     @inlinable @discardableResult
-    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
-        self.channelCreateFlowSignReview(.init(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
+        self.channelCreateFlowSignReview(.init(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交企业签署流程审批结果
     ///
-    /// 提交企业签署流程审批结果
+    /// 提交企业流程审批结果
+    /// 目前存在两种审核操作，签署审核，发起审核
+    /// 签署审核：通过接口（CreateFlowsByTemplates或ChannelCreateFlowByFiles或ChannelCreatePrepareFlow）发起签署流程后，若指定了参数 NeedSignReview 为true,则可以调用此接口，指定operate=SignReview，提交企业内部签署审批结果；若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效
     ///
-    /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
-    /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
+    /// 发起审核：通过接口ChannelCreatePrepareFlow指定发起后需要审核，则可以通过调用此接口，指定operate=CreateReview，提交企业内部审批结果，可多次提交，当通过后，后续提交结果无效
     @inlinable @discardableResult
-    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
-        try await self.channelCreateFlowSignReview(.init(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, operateType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
+        try await self.channelCreateFlowSignReview(.init(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 }

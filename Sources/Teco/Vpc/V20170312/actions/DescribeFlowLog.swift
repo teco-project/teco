@@ -21,10 +21,10 @@ import TecoCore
 extension Vpc {
     /// DescribeFlowLog请求参数结构体
     public struct DescribeFlowLogRequest: TCRequestModel {
-        /// 私用网络ID或者统一ID，建议使用统一ID
+        /// 私用网络ID或者统一ID，建议使用统一ID。
         public let vpcId: String
 
-        /// 流日志唯一ID
+        /// 流日志唯一ID。
         public let flowLogId: String
 
         public init(vpcId: String, flowLogId: String) {
@@ -40,7 +40,7 @@ extension Vpc {
 
     /// DescribeFlowLog返回参数结构体
     public struct DescribeFlowLogResponse: TCResponseModel {
-        /// 流日志信息
+        /// 流日志信息。
         public let flowLog: [FlowLog]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -54,7 +54,7 @@ extension Vpc {
 
     /// 查询流日志实例信息
     ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息。
     @inlinable
     public func describeFlowLog(_ input: DescribeFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLogResponse> {
         self.client.execute(action: "DescribeFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -62,7 +62,7 @@ extension Vpc {
 
     /// 查询流日志实例信息
     ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息。
     @inlinable
     public func describeFlowLog(_ input: DescribeFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
         try await self.client.execute(action: "DescribeFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,7 +70,7 @@ extension Vpc {
 
     /// 查询流日志实例信息
     ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息。
     @inlinable
     public func describeFlowLog(vpcId: String, flowLogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLogResponse> {
         self.describeFlowLog(.init(vpcId: vpcId, flowLogId: flowLogId), region: region, logger: logger, on: eventLoop)
@@ -78,7 +78,7 @@ extension Vpc {
 
     /// 查询流日志实例信息
     ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息。
     @inlinable
     public func describeFlowLog(vpcId: String, flowLogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
         try await self.describeFlowLog(.init(vpcId: vpcId, flowLogId: flowLogId), region: region, logger: logger, on: eventLoop)

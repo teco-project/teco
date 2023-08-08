@@ -25,6 +25,7 @@ extension TCFtError {
             case faceRectInvalidThrid = "InvalidParameterValue.FaceRectInvalidThrid"
             case imageEmpty = "InvalidParameterValue.ImageEmpty"
             case imageSizeExceed = "InvalidParameterValue.ImageSizeExceed"
+            case lutImageSizeInvalid = "InvalidParameterValue.LutImageSizeInvalid"
             case noFaceInPhoto = "InvalidParameterValue.NoFaceInPhoto"
             case parameterValueError = "InvalidParameterValue.ParameterValueError"
             case urlIllegal = "InvalidParameterValue.UrlIllegal"
@@ -83,6 +84,11 @@ extension TCFtError {
             InvalidParameterValue(.imageSizeExceed)
         }
 
+        /// 图片尺寸不对。
+        public static var lutImageSizeInvalid: InvalidParameterValue {
+            InvalidParameterValue(.lutImageSizeInvalid)
+        }
+
         /// 图片中没有人脸。
         public static var noFaceInPhoto: InvalidParameterValue {
             InvalidParameterValue(.noFaceInPhoto)
@@ -118,6 +124,8 @@ extension TCFtError {
                 code = .invalidParameterValue_ImageEmpty
             case .imageSizeExceed:
                 code = .invalidParameterValue_ImageSizeExceed
+            case .lutImageSizeInvalid:
+                code = .invalidParameterValue_LutImageSizeInvalid
             case .noFaceInPhoto:
                 code = .invalidParameterValue_NoFaceInPhoto
             case .parameterValueError:

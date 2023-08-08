@@ -42,7 +42,13 @@ extension Monitor {
         /// 批量绑定标签
         public let batchTag: [PolicyTag]?
 
-        public init(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil) {
+        /// 是否同步eb
+        public let ebEventFlag: Int64?
+
+        /// 事件配置的告警
+        public let ebSubject: String?
+
+        public init(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, ebEventFlag: Int64? = nil, ebSubject: String? = nil) {
             self.module = module
             self.policyId = policyId
             self.groupId = groupId
@@ -50,6 +56,8 @@ extension Monitor {
             self.tag = tag
             self.instanceGroupId = instanceGroupId
             self.batchTag = batchTag
+            self.ebEventFlag = ebEventFlag
+            self.ebSubject = ebSubject
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,6 +68,8 @@ extension Monitor {
             case tag = "Tag"
             case instanceGroupId = "InstanceGroupId"
             case batchTag = "BatchTag"
+            case ebEventFlag = "EbEventFlag"
+            case ebSubject = "EbSubject"
         }
     }
 
@@ -87,13 +97,13 @@ extension Monitor {
 
     /// 策略绑定标签
     @inlinable @discardableResult
-    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyTagResponse> {
-        self.bindingPolicyTag(.init(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag), region: region, logger: logger, on: eventLoop)
+    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, ebEventFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyTagResponse> {
+        self.bindingPolicyTag(.init(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag, ebEventFlag: ebEventFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 策略绑定标签
     @inlinable @discardableResult
-    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
-        try await self.bindingPolicyTag(.init(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag), region: region, logger: logger, on: eventLoop)
+    public func bindingPolicyTag(module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil, ebEventFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
+        try await self.bindingPolicyTag(.init(module: module, policyId: policyId, groupId: groupId, serviceType: serviceType, tag: tag, instanceGroupId: instanceGroupId, batchTag: batchTag, ebEventFlag: ebEventFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 }

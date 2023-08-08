@@ -37,12 +37,16 @@ extension Dnspod {
         /// 根据关键字搜索域名
         public let keyword: String?
 
-        public init(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil) {
+        /// 标签过滤
+        public let tags: [TagItemFilter]?
+
+        public init(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, tags: [TagItemFilter]? = nil) {
             self.type = type
             self.offset = offset
             self.limit = limit
             self.groupId = groupId
             self.keyword = keyword
+            self.tags = tags
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Dnspod {
             case limit = "Limit"
             case groupId = "GroupId"
             case keyword = "Keyword"
+            case tags = "Tags"
         }
 
         /// Compute the next request based on API response.
@@ -58,7 +63,7 @@ extension Dnspod {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeDomainListRequest(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword)
+            return DescribeDomainListRequest(type: self.type, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, groupId: self.groupId, keyword: self.keyword, tags: self.tags)
         }
     }
 
@@ -99,14 +104,14 @@ extension Dnspod {
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
-        self.describeDomainList(.init(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
+    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, tags: [TagItemFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
+        self.describeDomainList(.init(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
-        try await self.describeDomainList(.init(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
+    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, tags: [TagItemFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
+        try await self.describeDomainList(.init(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名列表

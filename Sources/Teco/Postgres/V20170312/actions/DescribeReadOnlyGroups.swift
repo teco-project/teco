@@ -22,7 +22,9 @@ import TecoPaginationHelpers
 extension Postgres {
     /// DescribeReadOnlyGroups请求参数结构体
     public struct DescribeReadOnlyGroupsRequest: TCPaginatedRequest {
-        /// 过滤条件，必须传入主实例ID进行过滤，否则返回值将为空，过滤参数为：db-master-instance-id
+        /// 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
+        /// db-master-instance-id：按照主实例过滤，类型为string。
+        /// read-only-group-id：按照只读组ID过滤，类型为string。
         public let filters: [Filter]?
 
         /// 查询每一页的条数，默认为10
@@ -81,57 +83,57 @@ extension Postgres {
         }
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable
     public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
         self.client.execute(action: "DescribeReadOnlyGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable
     public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
         try await self.client.execute(action: "DescribeReadOnlyGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable
     public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
         self.describeReadOnlyGroups(.init(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable
     public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
         try await self.describeReadOnlyGroups(.init(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable
     public func describeReadOnlyGroupsPaginated(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [ReadOnlyGroup])> {
         self.client.paginate(input: input, region: region, command: self.describeReadOnlyGroups, logger: logger, on: eventLoop)
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     @inlinable @discardableResult
     public func describeReadOnlyGroupsPaginated(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeReadOnlyGroupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeReadOnlyGroups, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 查询只读组信息
+    /// 查询只读组列表
     ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    /// 本接口（DescribeReadOnlyGroups）用于查询只读组列表
     ///
     /// - Returns: `AsyncSequence`s of `ReadOnlyGroup` and `DescribeReadOnlyGroupsResponse` that can be iterated over asynchronously on demand.
     @inlinable

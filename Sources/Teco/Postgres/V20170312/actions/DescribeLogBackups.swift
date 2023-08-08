@@ -105,7 +105,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable
     public func describeLogBackups(_ input: DescribeLogBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogBackupsResponse> {
         self.client.execute(action: "DescribeLogBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable
     public func describeLogBackups(_ input: DescribeLogBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogBackupsResponse {
         try await self.client.execute(action: "DescribeLogBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -121,7 +121,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable
     public func describeLogBackups(minFinishTime: String? = nil, maxFinishTime: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogBackupsResponse> {
         self.describeLogBackups(.init(minFinishTime: minFinishTime, maxFinishTime: maxFinishTime, filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable
     public func describeLogBackups(minFinishTime: String? = nil, maxFinishTime: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogBackupsResponse {
         try await self.describeLogBackups(.init(minFinishTime: minFinishTime, maxFinishTime: maxFinishTime, filters: filters, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
@@ -137,7 +137,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable
     public func describeLogBackupsPaginated(_ input: DescribeLogBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [LogBackup])> {
         self.client.paginate(input: input, region: region, command: self.describeLogBackups, logger: logger, on: eventLoop)
@@ -145,7 +145,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     @inlinable @discardableResult
     public func describeLogBackupsPaginated(_ input: DescribeLogBackupsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLogBackupsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeLogBackups, callback: onResponse, logger: logger, on: eventLoop)
@@ -153,7 +153,7 @@ extension Postgres {
 
     /// 查询日志备份列表
     ///
-    /// 本接口 (DescribeLogBackups) 用于查询日志备份列表。
+    /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     ///
     /// - Returns: `AsyncSequence`s of `LogBackup` and `DescribeLogBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -56,25 +56,33 @@ extension Postgres {
         }
     }
 
-    /// 获取实例可修改参数列表
+    /// 查询实例参数
+    ///
+    /// 本接口（DescribeDBInstanceAttribute）用于查询实例的参数信息。
     @inlinable
     public func describeDBInstanceParameters(_ input: DescribeDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceParametersResponse> {
         self.client.execute(action: "DescribeDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例可修改参数列表
+    /// 查询实例参数
+    ///
+    /// 本接口（DescribeDBInstanceAttribute）用于查询实例的参数信息。
     @inlinable
     public func describeDBInstanceParameters(_ input: DescribeDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceParametersResponse {
         try await self.client.execute(action: "DescribeDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取实例可修改参数列表
+    /// 查询实例参数
+    ///
+    /// 本接口（DescribeDBInstanceAttribute）用于查询实例的参数信息。
     @inlinable
     public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceParametersResponse> {
         self.describeDBInstanceParameters(.init(dbInstanceId: dbInstanceId, paramName: paramName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例可修改参数列表
+    /// 查询实例参数
+    ///
+    /// 本接口（DescribeDBInstanceAttribute）用于查询实例的参数信息。
     @inlinable
     public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceParametersResponse {
         try await self.describeDBInstanceParameters(.init(dbInstanceId: dbInstanceId, paramName: paramName), region: region, logger: logger, on: eventLoop)

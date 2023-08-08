@@ -64,7 +64,7 @@ extension Dcdb {
         /// 实例名称， 可以通过该字段自主的设置实例的名字
         public let instanceName: String?
 
-        /// 是否支持IPv6
+        /// 是否支持IPv6，0:不支持，1:支持
         public let ipv6Flag: Int64?
 
         /// 标签键值对数组
@@ -82,7 +82,7 @@ extension Dcdb {
         /// 需要回档的源实例ID
         public let rollbackInstanceId: String?
 
-        /// 回档时间
+        /// 回档时间，例如“2021-11-22 00:00:00”
         public let rollbackTime: String?
 
         /// 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
@@ -160,25 +160,25 @@ extension Dcdb {
         }
     }
 
-    /// 创建DCDB后付费实例
+    /// 创建TDSQL按量计费实例
     @inlinable
     public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDCDBInstanceResponse> {
         self.client.execute(action: "CreateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建DCDB后付费实例
+    /// 创建TDSQL按量计费实例
     @inlinable
     public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
         try await self.client.execute(action: "CreateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建DCDB后付费实例
+    /// 创建TDSQL按量计费实例
     @inlinable
     public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDCDBInstanceResponse> {
         self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建DCDB后付费实例
+    /// 创建TDSQL按量计费实例
     @inlinable
     public func createHourDCDBInstance(shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
         try await self.createHourDCDBInstance(.init(shardMemory: shardMemory, shardStorage: shardStorage, shardNodeCount: shardNodeCount, shardCount: shardCount, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, shardCpu: shardCpu, dbVersionId: dbVersionId, zones: zones, securityGroupId: securityGroupId, instanceName: instanceName, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)

@@ -27,13 +27,13 @@ extension Sqlserver {
         /// 实例ID，形如mssql-k8voqdlz
         public let instanceId: String
 
-        /// 查询开始时间
+        /// 开始时间(yyyy-MM-dd HH:mm:ss)
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
-        /// 查询结束时间
+        /// 结束时间(yyyy-MM-dd HH:mm:ss)
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.

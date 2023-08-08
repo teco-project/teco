@@ -27,6 +27,7 @@ extension Cdb {
         /// 审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
+        /// 90 - 三个月；
         /// 180 - 六个月；
         /// 365 - 一年；
         /// 1095 - 三年；
@@ -36,22 +37,28 @@ extension Cdb {
         /// 高频审计日志保存时长。支持值包括：
         /// 7 - 一周
         /// 30 - 一个月；
-        /// 180 - 六个月；
-        /// 365 - 一年；
-        /// 1095 - 三年；
-        /// 1825 - 五年；
         public let highLogExpireDay: UInt64?
 
-        public init(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil) {
+        /// 审计规则。同RuleTemplateIds都不填是全审计。
+        public let auditRuleFilters: [AuditRuleFilters]?
+
+        /// 规则模版ID。同AuditRuleFilters都不填是全审计。
+        public let ruleTemplateIds: [String]?
+
+        public init(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.highLogExpireDay = highLogExpireDay
+            self.auditRuleFilters = auditRuleFilters
+            self.ruleTemplateIds = ruleTemplateIds
         }
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case logExpireDay = "LogExpireDay"
             case highLogExpireDay = "HighLogExpireDay"
+            case auditRuleFilters = "AuditRuleFilters"
+            case ruleTemplateIds = "RuleTemplateIds"
         }
     }
 
@@ -85,15 +92,15 @@ extension Cdb {
     ///
     /// CDB实例开通审计服务
     @inlinable @discardableResult
-    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
-        self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
+        self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通审计服务
     ///
     /// CDB实例开通审计服务
     @inlinable @discardableResult
-    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
-        try await self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
+    public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
+        try await self.openAuditService(.init(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

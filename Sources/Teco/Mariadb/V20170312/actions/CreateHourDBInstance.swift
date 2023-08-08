@@ -54,7 +54,7 @@ extension Mariadb {
         /// 安全组ID，不传表示不绑定安全组
         public let securityGroupIds: [String]?
 
-        /// 是否支持IPv6
+        /// 是否支持IPv6，0:不支持，1:支持
         public let ipv6Flag: Int64?
 
         /// 标签键值对数组
@@ -71,7 +71,7 @@ extension Mariadb {
         /// innodb_page_size（innodb数据页，默认16K），sync_mode（同步模式：0 - 异步； 1 - 强同步；2 - 强同步可退化，默认为强同步可退化）。
         public let initParams: [DBParamValue]?
 
-        /// 回档源实例ID
+        /// 回档源实例ID，例如“2021-11-22 00:00:00”
         public let rollbackInstanceId: String?
 
         /// 回档时间
@@ -145,25 +145,25 @@ extension Mariadb {
         }
     }
 
-    /// 创建后付费实例
+    /// 创建MariaDB按量计费实例
     @inlinable
     public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDBInstanceResponse> {
         self.client.execute(action: "CreateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建后付费实例
+    /// 创建MariaDB按量计费实例
     @inlinable
     public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
         try await self.client.execute(action: "CreateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建后付费实例
+    /// 创建MariaDB按量计费实例
     @inlinable
     public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHourDBInstanceResponse> {
         self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建后付费实例
+    /// 创建MariaDB按量计费实例
     @inlinable
     public func createHourDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
         try await self.createHourDBInstance(.init(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, count: count, projectId: projectId, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, ipv6Flag: ipv6Flag, resourceTags: resourceTags, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId, initParams: initParams, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)

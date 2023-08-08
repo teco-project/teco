@@ -98,14 +98,14 @@ extension Vod {
         }
     }
 
-    /// 视频处理
+    /// 媒体处理
     ///
     /// 对点播中的音视频媒体发起处理任务，功能包括：
     /// 1. 视频转码（带水印）；
     /// 2. 视频转动图；
     /// 3. 对视频按指定时间点截图；
     /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
+    /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
@@ -118,14 +118,14 @@ extension Vod {
         self.client.execute(action: "ProcessMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 视频处理
+    /// 媒体处理
     ///
     /// 对点播中的音视频媒体发起处理任务，功能包括：
     /// 1. 视频转码（带水印）；
     /// 2. 视频转动图；
     /// 3. 对视频按指定时间点截图；
     /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
+    /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
@@ -138,14 +138,14 @@ extension Vod {
         try await self.client.execute(action: "ProcessMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 视频处理
+    /// 媒体处理
     ///
     /// 对点播中的音视频媒体发起处理任务，功能包括：
     /// 1. 视频转码（带水印）；
     /// 2. 视频转动图；
     /// 3. 对视频按指定时间点截图；
     /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
+    /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
@@ -158,14 +158,14 @@ extension Vod {
         self.processMedia(.init(fileId: fileId, subAppId: subAppId, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 视频处理
+    /// 媒体处理
     ///
     /// 对点播中的音视频媒体发起处理任务，功能包括：
     /// 1. 视频转码（带水印）；
     /// 2. 视频转动图；
     /// 3. 对视频按指定时间点截图；
     /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
+    /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；

@@ -19,6 +19,7 @@ import TecoCore
 extension TCMsError {
     public struct UnauthorizedOperation: TCMsErrorType {
         enum Code: String {
+            case authFailed = "UnauthorizedOperation.AuthFailed"
             case notWhiteUser = "UnauthorizedOperation.NotWhiteUser"
             case other = "UnauthorizedOperation"
         }
@@ -45,6 +46,11 @@ extension TCMsError {
             self.context = context
         }
 
+        /// 鉴权失败。
+        public static var authFailed: UnauthorizedOperation {
+            UnauthorizedOperation(.authFailed)
+        }
+
         /// 不是白名单用户。
         public static var notWhiteUser: UnauthorizedOperation {
             UnauthorizedOperation(.notWhiteUser)
@@ -58,6 +64,8 @@ extension TCMsError {
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {
+            case .authFailed:
+                code = .unauthorizedOperation_AuthFailed
             case .notWhiteUser:
                 code = .unauthorizedOperation_NotWhiteUser
             case .other:

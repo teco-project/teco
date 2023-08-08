@@ -24,7 +24,7 @@ extension Dlc {
         /// 工作组Id
         public let workGroupId: Int64
 
-        /// 工作组描述
+        /// 工作组描述，最大字符数限制50
         public let workGroupDescription: String
 
         public init(workGroupId: Int64, workGroupDescription: String) {

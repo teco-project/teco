@@ -28,19 +28,19 @@ extension Dlc {
         /// 正序或者倒序，例如：desc
         public let sorting: String?
 
-        /// 按照该参数过滤,支持spark-job-name
+        /// 过滤条件，如下支持的过滤类型，传参Name应为其一:spark-job-name（作业名称），spark-job-id（作业id），spark-app-type（作业类型，1：批任务，2：流任务，4：SQL作业），user-name（创建人），key-word（作业名称或ID关键词模糊搜索）
         public let filters: [Filter]?
 
-        /// 更新时间起始点
+        /// 更新时间起始点，支持格式：yyyy-MM-dd HH:mm:ss
         public let startTime: String?
 
-        /// 更新时间截止点
+        /// 更新时间截止点，支持格式：yyyy-MM-dd HH:mm:ss
         public let endTime: String?
 
-        /// 查询列表偏移量
+        /// 查询列表偏移量, 默认值0
         public let offset: Int64?
 
-        /// 查询列表限制数量
+        /// 查询列表限制数量, 默认值100
         public let limit: Int64?
 
         public init(sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
@@ -100,43 +100,43 @@ extension Dlc {
         }
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable
     public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobsResponse> {
         self.client.execute(action: "DescribeSparkAppJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable
     public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
         try await self.client.execute(action: "DescribeSparkAppJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable
     public func describeSparkAppJobs(sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobsResponse> {
         self.describeSparkAppJobs(.init(sortBy: sortBy, sorting: sorting, filters: filters, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable
     public func describeSparkAppJobs(sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
         try await self.describeSparkAppJobs(.init(sortBy: sortBy, sorting: sorting, filters: filters, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable
     public func describeSparkAppJobsPaginated(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [SparkJobInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeSparkAppJobs, logger: logger, on: eventLoop)
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     @inlinable @discardableResult
     public func describeSparkAppJobsPaginated(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSparkAppJobsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeSparkAppJobs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
-    /// 获取spark应用列表
+    /// 查询spark作业列表
     ///
     /// - Returns: `AsyncSequence`s of `SparkJobInfo` and `DescribeSparkAppJobsResponse` that can be iterated over asynchronously on demand.
     @inlinable

@@ -27,6 +27,9 @@ extension Bma {
         /// 企业名称
         public let companyName: String?
 
+        /// 品牌logo
+        public let brandLogo: String?
+
         /// 联系电话
         public let phone: String?
 
@@ -60,9 +63,13 @@ extension Bma {
         /// 保护小程序
         public let protectMiniPrograms: [String]?
 
-        public init(brandName: String, companyName: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil) {
+        /// 请求来源：0-反钓鱼 2-反假冒
+        public let apiSource: Int64?
+
+        public init(brandName: String, companyName: String? = nil, brandLogo: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil, apiSource: Int64? = nil) {
             self.brandName = brandName
             self.companyName = companyName
+            self.brandLogo = brandLogo
             self.phone = phone
             self.license = license
             self.authorization = authorization
@@ -74,11 +81,13 @@ extension Bma {
             self.protectAPPs = protectAPPs
             self.protectOfficialAccounts = protectOfficialAccounts
             self.protectMiniPrograms = protectMiniPrograms
+            self.apiSource = apiSource
         }
 
         enum CodingKeys: String, CodingKey {
             case brandName = "BrandName"
             case companyName = "CompanyName"
+            case brandLogo = "BrandLogo"
             case phone = "Phone"
             case license = "License"
             case authorization = "Authorization"
@@ -90,6 +99,7 @@ extension Bma {
             case protectAPPs = "ProtectAPPs"
             case protectOfficialAccounts = "ProtectOfficialAccounts"
             case protectMiniPrograms = "ProtectMiniPrograms"
+            case apiSource = "APISource"
         }
     }
 
@@ -121,13 +131,13 @@ extension Bma {
 
     /// 添加品牌
     @inlinable
-    public func createBPBrand(brandName: String, companyName: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPBrandResponse> {
-        self.createBPBrand(.init(brandName: brandName, companyName: companyName, phone: phone, license: license, authorization: authorization, trademarkNames: trademarkNames, trademarks: trademarks, isTransfers: isTransfers, transfers: transfers, protectURLs: protectURLs, protectAPPs: protectAPPs, protectOfficialAccounts: protectOfficialAccounts, protectMiniPrograms: protectMiniPrograms), region: region, logger: logger, on: eventLoop)
+    public func createBPBrand(brandName: String, companyName: String? = nil, brandLogo: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil, apiSource: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPBrandResponse> {
+        self.createBPBrand(.init(brandName: brandName, companyName: companyName, brandLogo: brandLogo, phone: phone, license: license, authorization: authorization, trademarkNames: trademarkNames, trademarks: trademarks, isTransfers: isTransfers, transfers: transfers, protectURLs: protectURLs, protectAPPs: protectAPPs, protectOfficialAccounts: protectOfficialAccounts, protectMiniPrograms: protectMiniPrograms, apiSource: apiSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加品牌
     @inlinable
-    public func createBPBrand(brandName: String, companyName: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPBrandResponse {
-        try await self.createBPBrand(.init(brandName: brandName, companyName: companyName, phone: phone, license: license, authorization: authorization, trademarkNames: trademarkNames, trademarks: trademarks, isTransfers: isTransfers, transfers: transfers, protectURLs: protectURLs, protectAPPs: protectAPPs, protectOfficialAccounts: protectOfficialAccounts, protectMiniPrograms: protectMiniPrograms), region: region, logger: logger, on: eventLoop)
+    public func createBPBrand(brandName: String, companyName: String? = nil, brandLogo: String? = nil, phone: String? = nil, license: String? = nil, authorization: String? = nil, trademarkNames: [String]? = nil, trademarks: [String]? = nil, isTransfers: [String]? = nil, transfers: [String]? = nil, protectURLs: [String]? = nil, protectAPPs: [String]? = nil, protectOfficialAccounts: [String]? = nil, protectMiniPrograms: [String]? = nil, apiSource: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPBrandResponse {
+        try await self.createBPBrand(.init(brandName: brandName, companyName: companyName, brandLogo: brandLogo, phone: phone, license: license, authorization: authorization, trademarkNames: trademarkNames, trademarks: trademarks, isTransfers: isTransfers, transfers: transfers, protectURLs: protectURLs, protectAPPs: protectAPPs, protectOfficialAccounts: protectOfficialAccounts, protectMiniPrograms: protectMiniPrograms, apiSource: apiSource), region: region, logger: logger, on: eventLoop)
     }
 }

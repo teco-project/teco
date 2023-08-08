@@ -21,7 +21,7 @@ import TecoCore
 extension Essbasic {
     /// ChannelCancelMultiFlowSignQRCode请求参数结构体
     public struct ChannelCancelMultiFlowSignQRCodeRequest: TCRequestModel {
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId必填。
         public let agent: Agent
 
         /// 二维码id

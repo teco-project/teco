@@ -28,10 +28,10 @@ extension Billing {
         /// 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         public let endTime: String
 
-        /// 每次获取数据量
+        /// 每次获取数据量，最大值为100
         public let limit: UInt64
 
-        /// 偏移量
+        /// 偏移量,默认从0开始
         public let offset: UInt64
 
         /// 查询账单数据的用户UIN

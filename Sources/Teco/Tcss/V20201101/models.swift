@@ -225,6 +225,39 @@ extension Tcss {
         /// 迁移中: REMOVING
         public let containerStatus: String
 
+        /// 集群ID
+        public let clusterID: String?
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// pod 名称
+        public let podName: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// 集群id
+        public let nodeUniqueID: String?
+
+        /// 节点公网ip
+        public let publicIP: String?
+
+        /// 节点名称
+        public let nodeName: String?
+
+        /// 节点id
+        public let nodeID: String?
+
+        /// uuid
+        public let hostID: String?
+
+        /// 节点内网ip
+        public let hostIP: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case processPath = "ProcessPath"
             case eventType = "EventType"
@@ -252,6 +285,17 @@ extension Tcss {
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
             case containerStatus = "ContainerStatus"
+            case clusterID = "ClusterID"
+            case nodeType = "NodeType"
+            case podName = "PodName"
+            case podIP = "PodIP"
+            case nodeUniqueID = "NodeUniqueID"
+            case publicIP = "PublicIP"
+            case nodeName = "NodeName"
+            case nodeID = "NodeID"
+            case hostID = "HostID"
+            case hostIP = "HostIP"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -572,6 +616,39 @@ extension Tcss {
         /// 迁移中: REMOVING
         public let containerStatus: String
 
+        /// 节点名称：如果是超级节点，展示的实质上是它的node_id
+        public let nodeName: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 集群id
+        public let clusterID: String?
+
+        /// 节点的唯一id，主要是超级节点使用
+        public let nodeUniqueID: String?
+
+        /// 节点公网IP
+        public let publicIP: String?
+
+        /// 节点id
+        public let nodeID: String?
+
+        /// uuid
+        public let hostID: String?
+
+        /// 节点内网ip
+        public let hostIP: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case processName = "ProcessName"
             case matchRuleName = "MatchRuleName"
@@ -600,6 +677,17 @@ extension Tcss {
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
             case containerStatus = "ContainerStatus"
+            case nodeName = "NodeName"
+            case podName = "PodName"
+            case podIP = "PodIP"
+            case nodeType = "NodeType"
+            case clusterID = "ClusterID"
+            case nodeUniqueID = "NodeUniqueID"
+            case publicIP = "PublicIP"
+            case nodeID = "NodeID"
+            case hostID = "HostID"
+            case hostIP = "HostIP"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -608,7 +696,7 @@ extension Tcss {
         /// 开关,true:开启，false:禁用
         public let isEnable: Bool
 
-        /// 生效惊现id，空数组代表全部镜像
+        /// 生效镜像id，空数组代表全部镜像
         public let imageIds: [String]
 
         /// 用户策略的子策略数组
@@ -711,6 +799,9 @@ extension Tcss {
         /// 检查结果的验证信息
         public let verifyInfo: String
 
+        /// 节点名称
+        public let nodeName: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -721,6 +812,7 @@ extension Tcss {
             case containerRuntime = "ContainerRuntime"
             case region = "Region"
             case verifyInfo = "VerifyInfo"
+            case nodeName = "NodeName"
         }
     }
 
@@ -772,9 +864,19 @@ extension Tcss {
         public let bindRuleName: String
 
         /// 集群类型:
-        /// CT_TKE: TKE集群
-        /// CT_USER_CREATE: 用户自建集群
+        /// CT_TKE:TKE集群;
+        /// CT_USER_CREATE:用户自建集群;
+        /// CT_TKE_SERVERLESS:TKE Serverless集群;
         public let clusterType: String
+
+        /// 集群版本
+        public let clusterVersion: String?
+
+        /// 内存量
+        public let memLimit: Int64?
+
+        /// cpu
+        public let cpuLimit: Int64?
 
         enum CodingKeys: String, CodingKey {
             case clusterID = "ClusterID"
@@ -782,6 +884,9 @@ extension Tcss {
             case status = "Status"
             case bindRuleName = "BindRuleName"
             case clusterType = "ClusterType"
+            case clusterVersion = "ClusterVersion"
+            case memLimit = "MemLimit"
+            case cpuLimit = "CpuLimit"
         }
     }
 
@@ -1202,6 +1307,25 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterRegion = "ClusterRegion"
+        }
+    }
+
+    /// 集群自定义参数
+    public struct ClusterCustomParameters: TCInputModel {
+        /// 参数名
+        public let name: String
+
+        /// 参数值
+        public let values: [String]
+
+        public init(name: String, values: [String]) {
+            self.name = name
+            self.values = values
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case values = "Values"
         }
     }
 
@@ -1819,9 +1943,14 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let k8sVersion: String?
 
+        /// 主机上Containerd版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let containerdVersion: String?
+
         enum CodingKeys: String, CodingKey {
             case dockerVersion = "DockerVersion"
             case k8sVersion = "K8SVersion"
+            case containerdVersion = "ContainerdVersion"
         }
     }
 
@@ -2144,9 +2273,48 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
 
+        /// 可修复版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fixedVersion: String?
+
+        /// 路径
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: String?
+
+        /// 类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let type: String?
+
+        /// 组件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
         enum CodingKeys: String, CodingKey {
             case component = "Component"
             case version = "Version"
+            case fixedVersion = "FixedVersion"
+            case path = "Path"
+            case type = "Type"
+            case name = "Name"
+        }
+    }
+
+    /// 联通性检测配置
+    public struct ConnDetectConfig: TCInputModel {
+        /// 主机quuid
+        public let quuid: String?
+
+        /// 主机uuid
+        public let uuid: String?
+
+        public init(quuid: String? = nil, uuid: String? = nil) {
+            self.quuid = quuid
+            self.uuid = uuid
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case quuid = "Quuid"
+            case uuid = "Uuid"
         }
     }
 
@@ -2220,6 +2388,27 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolateTime: String?
 
+        /// 超级节点id
+        public let nodeID: String?
+
+        /// podip
+        public let podIP: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// 节点类型:节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 超级节点唯一id
+        public let nodeUniqueID: String?
+
+        /// 所属Pod的CPU
+        public let podCpu: Int64?
+
+        /// 所属Pod的内存
+        public let podMem: Int64?
+
         enum CodingKeys: String, CodingKey {
             case containerID = "ContainerID"
             case containerName = "ContainerName"
@@ -2241,6 +2430,13 @@ extension Tcss {
             case netSubStatus = "NetSubStatus"
             case isolateSource = "IsolateSource"
             case isolateTime = "IsolateTime"
+            case nodeID = "NodeID"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
+            case podCpu = "PodCpu"
+            case podMem = "PodMem"
         }
     }
 
@@ -2423,12 +2619,13 @@ extension Tcss {
     /// 容器逃逸事件列表
     public struct EscapeEventInfo: TCOutputModel {
         /// 事件类型
-        ///    ESCAPE_HOST_ACESS_FILE:宿主机文件访问逃逸
-        ///    ESCAPE_MOUNT_NAMESPACE:MountNamespace逃逸
-        ///    ESCAPE_PRIVILEDGE:程序提权逃逸
-        ///    ESCAPE_PRIVILEDGE_CONTAINER_START:特权容器启动逃逸
-        ///    ESCAPE_MOUNT_SENSITIVE_PTAH:敏感路径挂载
-        ///    ESCAPE_SYSCALL:Syscall逃逸
+        ///    ESCAPE_CGROUPS：利用cgroup机制逃逸
+        ///    ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸
+        ///    ESCAPE_DOCKER_API：访问Docker API接口逃逸
+        ///    ESCAPE_VUL_OCCURRED：逃逸漏洞利用
+        ///    MOUNT_SENSITIVE_PTAH：敏感路径挂载
+        ///    PRIVILEGE_CONTAINER_START：特权容器
+        ///    PRIVILEGE：程序提权逃逸
         public let eventType: String
 
         /// 容器名
@@ -2528,6 +2725,30 @@ extension Tcss {
         /// 迁移中: REMOVING
         public let containerStatus: String
 
+        /// 节点所属集群ID
+        public let clusterID: String?
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// 节点唯一id
+        public let nodeUniqueID: String?
+
+        /// 节点公网ip
+        public let publicIP: String?
+
+        /// 节点id
+        public let nodeID: String?
+
+        /// 节点内网ip
+        public let hostIP: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case eventType = "EventType"
             case containerName = "ContainerName"
@@ -2550,6 +2771,14 @@ extension Tcss {
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
             case containerStatus = "ContainerStatus"
+            case clusterID = "ClusterID"
+            case nodeType = "NodeType"
+            case podIP = "PodIP"
+            case nodeUniqueID = "NodeUniqueID"
+            case publicIP = "PublicIP"
+            case nodeID = "NodeID"
+            case hostIP = "HostIP"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -2816,6 +3045,9 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfo]?
 
+        /// 集群id
+        public let clusterID: String?
+
         enum CodingKeys: String, CodingKey {
             case hostID = "HostID"
             case hostIP = "HostIP"
@@ -2834,6 +3066,7 @@ extension Tcss {
             case regionID = "RegionID"
             case project = "Project"
             case tags = "Tags"
+            case clusterID = "ClusterID"
         }
     }
 
@@ -2925,7 +3158,7 @@ extension Tcss {
     }
 
     /// 基本镜像信息
-    public struct ImageInfo: TCInputModel {
+    public struct ImageInfo: TCInputModel, TCOutputModel {
         /// 实例名称
         public let instanceName: String
 
@@ -4143,6 +4376,10 @@ extension Tcss {
         /// 操作人uin
         public let uin: String
 
+        /// 策略id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyId: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -4153,6 +4390,7 @@ extension Tcss {
             case operationTime = "OperationTime"
             case appId = "AppId"
             case uin = "Uin"
+            case policyId = "PolicyId"
         }
     }
 
@@ -4195,6 +4433,10 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let networkPolicyPluginError: String?
 
+        /// 容器网络插件
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterNetworkSettings: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -4208,6 +4450,7 @@ extension Tcss {
             case enableRuleCount = "EnableRuleCount"
             case networkPolicyPluginStatus = "NetworkPolicyPluginStatus"
             case networkPolicyPluginError = "NetworkPolicyPluginError"
+            case clusterNetworkSettings = "ClusterNetworkSettings"
         }
     }
 
@@ -4490,6 +4733,21 @@ extension Tcss {
         /// 外网ip
         public let publicIp: String
 
+        /// 节点id
+        public let nodeID: String?
+
+        /// podip
+        public let podIP: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// 节点类型
+        public let nodeType: String?
+
+        /// 超级节点唯一id
+        public let nodeUniqueID: String?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case publicIP = "PublicIP"
@@ -4505,6 +4763,11 @@ extension Tcss {
             case runAs = "RunAs"
             case hostName = "HostName"
             case publicIp = "PublicIp"
+            case nodeID = "NodeID"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
         }
     }
 
@@ -4644,6 +4907,21 @@ extension Tcss {
         /// 外网ip
         public let publicIp: String
 
+        /// 节点id
+        public let nodeID: String?
+
+        /// podip
+        public let podIP: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// 节点类型
+        public let nodeType: String?
+
+        /// 超级节点唯一id
+        public let nodeUniqueID: String?
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case runAs = "RunAs"
@@ -4657,6 +4935,11 @@ extension Tcss {
             case processName = "ProcessName"
             case hostName = "HostName"
             case publicIp = "PublicIp"
+            case nodeID = "NodeID"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
         }
     }
 
@@ -4721,6 +5004,36 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionName = "RegionName"
+        }
+    }
+
+    /// 镜像仓库联通性检测结果
+    public struct RegistryConnDetectResult: TCOutputModel {
+        /// 联通性检测的主机quuid 或者 backend
+        public let quuid: String
+
+        /// 联通性检测的主机uuid 或者 backend
+        public let uuid: String
+
+        /// 检测结果状态
+        public let connDetectStatus: String
+
+        /// 检测结果信息
+        public let connDetectMessage: String
+
+        /// 失败的解决方案
+        public let solution: String
+
+        /// 失败原因
+        public let failReason: String
+
+        enum CodingKeys: String, CodingKey {
+            case quuid = "Quuid"
+            case uuid = "Uuid"
+            case connDetectStatus = "ConnDetectStatus"
+            case connDetectMessage = "ConnDetectMessage"
+            case solution = "Solution"
+            case failReason = "FailReason"
         }
     }
 
@@ -5062,6 +5375,33 @@ extension Tcss {
         /// 迁移中: REMOVING
         public let containerStatus: String
 
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 集群I'D
+        public let clusterID: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// 节点唯一id
+        public let nodeUniqueID: String?
+
+        /// 节点公网ip
+        public let publicIP: String?
+
+        /// 节点id
+        public let nodeID: String?
+
+        /// uuid
+        public let hostID: String?
+
+        /// 节点内网ip
+        public let hostIP: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case processName = "ProcessName"
             case processPath = "ProcessPath"
@@ -5085,6 +5425,15 @@ extension Tcss {
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
             case containerStatus = "ContainerStatus"
+            case nodeType = "NodeType"
+            case clusterID = "ClusterID"
+            case podIP = "PodIP"
+            case nodeUniqueID = "NodeUniqueID"
+            case publicIP = "PublicIP"
+            case nodeID = "NodeID"
+            case hostID = "HostID"
+            case hostIP = "HostIP"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -5199,36 +5548,33 @@ extension Tcss {
     /// 运行时安全事件基本信息
     public struct RunTimeEventBaseInfo: TCOutputModel {
         /// 事件唯一ID
-        public let eventId: String
+        public let eventId: String?
 
         /// 事件发现时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var foundTime: Date
+        @TCTimestampEncoding public var foundTime: Date?
 
         /// 容器id
-        public let containerId: String
+        public let containerId: String?
 
         /// 容器名称
-        public let containerName: String
+        public let containerName: String?
 
         /// 镜像id
-        public let imageId: String
+        public let imageId: String?
 
         /// 镜像名称
-        public let imageName: String
+        public let imageName: String?
 
         /// 节点名称
-        public let nodeName: String
-
-        /// Pod名称
-        public let podName: String
+        public let nodeName: String?
 
         /// 状态， “EVENT_UNDEAL”:事件未处理
         ///     "EVENT_DEALED":事件已经处理
         ///     "EVENT_INGNORE"：事件已经忽略
-        public let status: String
+        public let status: String?
 
         /// 事件名称：
         /// 宿主机文件访问逃逸、
@@ -5239,7 +5585,7 @@ extension Tcss {
         /// 敏感路径挂载
         /// 恶意进程启动
         /// 文件篡改
-        public let eventName: String
+        public let eventName: String?
 
         /// 事件类型
         ///    ESCAPE_HOST_ACESS_FILE:宿主机文件访问逃逸
@@ -5248,13 +5594,13 @@ extension Tcss {
         ///    ESCAPE_PRIVILEDGE_CONTAINER_START:特权容器启动逃逸
         ///    ESCAPE_MOUNT_SENSITIVE_PTAH:敏感路径挂载
         ///    ESCAPE_SYSCALL:Syscall逃逸
-        public let eventType: String
+        public let eventType: String?
 
         /// 事件数量
-        public let eventCount: Int64
+        public let eventCount: Int64?
 
         /// 最近生成时间
-        public let latestFoundTime: String
+        public let latestFoundTime: String?
 
         /// 内网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5289,6 +5635,42 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerIsolateOperationSrc: String?
 
+        /// 节点ID
+        public let nodeID: String?
+
+        /// 节点类型:NORMAL:普通节点;SUPER:超级节点
+        public let nodeType: String?
+
+        /// 节点子网ID
+        public let nodeSubNetID: String?
+
+        /// 节点子网名称
+        public let nodeSubNetName: String?
+
+        /// 节点子网网段
+        public let nodeSubNetCIDR: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// podIP
+        public let podIP: String?
+
+        /// pod状态
+        public let podStatus: String?
+
+        /// 集群id
+        public let clusterID: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
+        /// 节点唯一id
+        public let nodeUniqueID: String?
+
+        /// uuid
+        public let hostID: String?
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case foundTime = "FoundTime"
@@ -5297,7 +5679,6 @@ extension Tcss {
             case imageId = "ImageId"
             case imageName = "ImageName"
             case nodeName = "NodeName"
-            case podName = "PodName"
             case status = "Status"
             case eventName = "EventName"
             case eventType = "EventType"
@@ -5308,6 +5689,18 @@ extension Tcss {
             case containerNetStatus = "ContainerNetStatus"
             case containerNetSubStatus = "ContainerNetSubStatus"
             case containerIsolateOperationSrc = "ContainerIsolateOperationSrc"
+            case nodeID = "NodeID"
+            case nodeType = "NodeType"
+            case nodeSubNetID = "NodeSubNetID"
+            case nodeSubNetName = "NodeSubNetName"
+            case nodeSubNetCIDR = "NodeSubNetCIDR"
+            case podName = "PodName"
+            case podIP = "PodIP"
+            case podStatus = "PodStatus"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
+            case nodeUniqueID = "NodeUniqueID"
+            case hostID = "HostID"
         }
     }
 
@@ -5552,8 +5945,11 @@ extension Tcss {
 
     /// 安全日志接入详情
     public struct SecLogJoinInfo: TCOutputModel {
-        /// 已接入数量
+        /// 已接入普通主机数量
         public let count: UInt64
+
+        /// 已接入超级节点数量
+        public let superNodeCount: UInt64?
 
         /// 是否已接入(true:已接入 false:未接入)
         public let isJoined: Bool
@@ -5567,6 +5963,7 @@ extension Tcss {
 
         enum CodingKeys: String, CodingKey {
             case count = "Count"
+            case superNodeCount = "SuperNodeCount"
             case isJoined = "IsJoined"
             case logType = "LogType"
         }
@@ -5710,6 +6107,21 @@ extension Tcss {
         /// 外网ip
         public let publicIp: String
 
+        /// 节点id
+        public let nodeID: String?
+
+        /// podip
+        public let podIP: String?
+
+        /// pod名称
+        public let podName: String?
+
+        /// 节点类型
+        public let nodeType: String?
+
+        /// 超级节点唯一id
+        public let nodeUniqueID: String?
+
         enum CodingKeys: String, CodingKey {
             case serviceID = "ServiceID"
             case hostID = "HostID"
@@ -5732,6 +6144,11 @@ extension Tcss {
             case containerId = "ContainerId"
             case hostName = "HostName"
             case publicIp = "PublicIp"
+            case nodeID = "NodeID"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
         }
     }
 
@@ -5740,7 +6157,7 @@ extension Tcss {
         /// 扣费时间
         public let payTime: String
 
-        /// 计费核数
+        /// 计费核数(已废弃)
         public let coresCnt: UInt64
 
         enum CodingKeys: String, CodingKey {
@@ -5948,6 +6365,39 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkPlatform: [String]?
 
+        /// 节点ID
+        public let nodeID: String?
+
+        /// 节点名称
+        public let nodeName: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// pod(实例)的名字
+        public let podName: String?
+
+        /// 节点所属集群ID
+        public let clusterID: String?
+
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 节点外网IP
+        public let publicIP: String?
+
+        /// 节点内网IP
+        public let innerIP: String?
+
+        /// 节点唯一ID
+        public let nodeUniqueID: String?
+
+        /// 普通节点ID
+        public let hostID: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case filePath = "FilePath"
@@ -5970,6 +6420,17 @@ extension Tcss {
             case md5 = "MD5"
             case riskLevel = "RiskLevel"
             case checkPlatform = "CheckPlatform"
+            case nodeID = "NodeID"
+            case nodeName = "NodeName"
+            case podIP = "PodIP"
+            case podName = "PodName"
+            case clusterID = "ClusterID"
+            case nodeType = "NodeType"
+            case publicIP = "PublicIP"
+            case innerIP = "InnerIP"
+            case nodeUniqueID = "NodeUniqueID"
+            case hostID = "HostID"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -5987,10 +6448,10 @@ extension Tcss {
         /// 镜像Id
         public let imageId: String
 
-        /// 主机名称
+        /// 节点名
         public let hostName: String
 
-        /// 主机ip
+        /// 节点内网ip
         public let hostIp: String
 
         /// 扫描状态：
@@ -6031,6 +6492,15 @@ extension Tcss {
         /// SEND_CANCEL_SUCCESSED:下发成功
         public let errorMsg: String
 
+        /// 节点类型：NORMAL普通节点、SUPER超级节点
+        public let nodeType: String?
+
+        /// 节点外网IP
+        public let publicIP: String?
+
+        /// 节点ID
+        public let nodeID: String?
+
         enum CodingKeys: String, CodingKey {
             case containerName = "ContainerName"
             case containerId = "ContainerId"
@@ -6044,6 +6514,9 @@ extension Tcss {
             case riskCnt = "RiskCnt"
             case id = "Id"
             case errorMsg = "ErrorMsg"
+            case nodeType = "NodeType"
+            case publicIP = "PublicIP"
+            case nodeID = "NodeID"
         }
     }
 
@@ -6123,6 +6596,24 @@ extension Tcss {
         /// 外网IP
         public let publicIP: String
 
+        /// 集群ID
+        public let clusterID: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
+        /// 节点类型[NORMAL:普通节点|SUPER:超级节点]
+        public let nodeType: String?
+
+        /// 超级节点唯一ID
+        public let nodeUniqueID: String?
+
+        /// 超级节点ID
+        public let nodeID: String?
+
+        /// 超级节点名称
+        public let nodeName: String?
+
         enum CodingKeys: String, CodingKey {
             case hostIP = "HostIP"
             case containerID = "ContainerID"
@@ -6132,6 +6623,12 @@ extension Tcss {
             case hostName = "HostName"
             case hostID = "HostID"
             case publicIP = "PublicIP"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
+            case nodeType = "NodeType"
+            case nodeUniqueID = "NodeUniqueID"
+            case nodeID = "NodeID"
+            case nodeName = "NodeName"
         }
     }
 
@@ -6184,6 +6681,44 @@ extension Tcss {
             case hostCount = "HostCount"
             case containerCount = "ContainerCount"
             case componentList = "ComponentList"
+        }
+    }
+
+    /// 漏洞影响的仓库镜像列表
+    public struct VulAffectedRegistryImageInfo: TCOutputModel {
+        /// 镜像ID
+        public let imageID: String
+
+        /// 镜像名称
+        public let imageName: String
+
+        /// 镜像版本
+        public let imageTag: String
+
+        /// 镜像命名空间
+        public let namespace: String
+
+        /// 镜像地址
+        public let imageRepoAddress: String
+
+        /// 组件列表
+        public let componentList: [VulAffectedImageComponentInfo]
+
+        /// 是否为镜像的最新版本
+        public let isLatestImage: Bool
+
+        /// 内部镜像资产ID
+        public let imageAssetId: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case imageID = "ImageID"
+            case imageName = "ImageName"
+            case imageTag = "ImageTag"
+            case namespace = "Namespace"
+            case imageRepoAddress = "ImageRepoAddress"
+            case componentList = "ComponentList"
+            case isLatestImage = "IsLatestImage"
+            case imageAssetId = "ImageAssetId"
         }
     }
 
@@ -6271,7 +6806,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerIsolateOperationSrc: String?
 
-        /// 主机QUUID
+        /// 主机QUUID/超级节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quuid: String?
 
@@ -6279,9 +6814,27 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostIP: String?
 
-        /// 主机名称
+        /// 主机名称/超级节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
+
+        /// 节点类型[NORMAL:普通节点|SUPER:超级节点]
+        public let nodeType: String?
+
+        /// 外网IP
+        public let publicIP: String?
+
+        /// 超级节点唯一ID
+        public let nodeUniqueID: String?
+
+        /// 超级节点ID
+        public let nodeID: String?
+
+        /// 集群ID
+        public let clusterID: String?
+
+        /// 集群名称
+        public let clusterName: String?
 
         enum CodingKeys: String, CodingKey {
             case cveid = "CVEID"
@@ -6306,6 +6859,12 @@ extension Tcss {
             case quuid = "QUUID"
             case hostIP = "HostIP"
             case hostName = "HostName"
+            case nodeType = "NodeType"
+            case publicIP = "PublicIP"
+            case nodeUniqueID = "NodeUniqueID"
+            case nodeID = "NodeID"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -6353,7 +6912,7 @@ extension Tcss {
         /// 事件ID
         public let eventID: Int64
 
-        /// 主机名称
+        /// 主机名称/超级节点名称
         public let hostName: String
 
         /// 主机内网IP
@@ -6402,7 +6961,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverArg: String?
 
-        /// 主机QUUID
+        /// 主机QUUID/超级节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quuid: String?
 
@@ -6450,6 +7009,33 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let raspDetail: [RaspInfo]?
 
+        /// 超级节点子网名称
+        public let nodeSubNetName: String?
+
+        /// 超级节点子网网段
+        public let nodeSubNetCIDR: String?
+
+        /// pod ip
+        public let podIP: String?
+
+        /// 节点类型[NORMAL:普通节点|SUPER:超级节点]
+        public let nodeType: String?
+
+        /// 超级节点ID
+        public let nodeID: String?
+
+        /// 超级节点唯一ID
+        public let nodeUniqueID: String?
+
+        /// 超级节点子网ID
+        public let nodeSubNetID: String?
+
+        /// 集群ID
+        public let clusterID: String?
+
+        /// 集群名称
+        public let clusterName: String?
+
         enum CodingKeys: String, CodingKey {
             case cveid = "CVEID"
             case vulName = "VulName"
@@ -6486,6 +7072,15 @@ extension Tcss {
             case containerStatus = "ContainerStatus"
             case jndiUrl = "JNDIUrl"
             case raspDetail = "RaspDetail"
+            case nodeSubNetName = "NodeSubNetName"
+            case nodeSubNetCIDR = "NodeSubNetCIDR"
+            case podIP = "PodIP"
+            case nodeType = "NodeType"
+            case nodeID = "NodeID"
+            case nodeUniqueID = "NodeUniqueID"
+            case nodeSubNetID = "NodeSubNetID"
+            case clusterID = "ClusterID"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -6508,13 +7103,13 @@ extension Tcss {
 
     /// 漏洞防御的主机信息
     public struct VulDefenceHost: TCOutputModel {
-        /// 主机名称
+        /// 主机名称/超级节点名称
         public let hostName: String
 
         /// 主机ip即内网ip
         public let hostIP: String
 
-        /// 主机QUUID
+        /// 主机QUUID/超级节点ID
         public let hostID: String
 
         /// 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENDED:未防御
@@ -6529,6 +7124,30 @@ extension Tcss {
         /// 更新时间
         public let modifyTime: String
 
+        /// 节点类型[NORMAL:普通节点|SUPER:超级节点]
+        public let nodeType: String?
+
+        /// 超级节点子网名称
+        public let nodeSubNetName: String?
+
+        /// 超级节点子网网段
+        public let nodeSubNetCIDR: String?
+
+        /// 超级节点子网ID
+        public let nodeSubNetID: String?
+
+        /// 超级节点唯一ID
+        public let nodeUniqueID: String?
+
+        /// 超级节点ID
+        public let nodeID: String?
+
+        /// Pod Ip
+        public let podIP: String?
+
+        /// Pod 名称
+        public let podName: String?
+
         enum CodingKeys: String, CodingKey {
             case hostName = "HostName"
             case hostIP = "HostIP"
@@ -6537,6 +7156,14 @@ extension Tcss {
             case publicIP = "PublicIP"
             case createTime = "CreateTime"
             case modifyTime = "ModifyTime"
+            case nodeType = "NodeType"
+            case nodeSubNetName = "NodeSubNetName"
+            case nodeSubNetCIDR = "NodeSubNetCIDR"
+            case nodeSubNetID = "NodeSubNetID"
+            case nodeUniqueID = "NodeUniqueID"
+            case nodeID = "NodeID"
+            case podIP = "PodIP"
+            case podName = "PodName"
         }
     }
 

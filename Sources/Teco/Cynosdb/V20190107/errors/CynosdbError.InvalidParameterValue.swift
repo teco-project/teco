@@ -45,6 +45,7 @@ extension TCCynosdbError {
             case regionZoneUnavailable = "InvalidParameterValue.RegionZoneUnavailable"
             case storagePoolNotFound = "InvalidParameterValue.StoragePoolNotFound"
             case subnetNotFound = "InvalidParameterValue.SubnetNotFound"
+            case valueNotFound = "InvalidParameterValue.ValueNotFound"
             case vpcNotFound = "InvalidParameterValue.VpcNotFound"
             case other = "InvalidParameterValue"
         }
@@ -201,6 +202,11 @@ extension TCCynosdbError {
             InvalidParameterValue(.subnetNotFound)
         }
 
+        /// 未找到该数据。
+        public static var valueNotFound: InvalidParameterValue {
+            InvalidParameterValue(.valueNotFound)
+        }
+
         /// 找不到所选VPC网络。
         public static var vpcNotFound: InvalidParameterValue {
             InvalidParameterValue(.vpcNotFound)
@@ -266,6 +272,8 @@ extension TCCynosdbError {
                 code = .invalidParameterValue_StoragePoolNotFound
             case .subnetNotFound:
                 code = .invalidParameterValue_SubnetNotFound
+            case .valueNotFound:
+                code = .invalidParameterValue_ValueNotFound
             case .vpcNotFound:
                 code = .invalidParameterValue_VpcNotFound
             case .other:

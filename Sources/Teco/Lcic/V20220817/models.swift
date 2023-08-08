@@ -17,7 +17,7 @@
 import TecoCore
 
 extension Lcic {
-    /// 房间问答问题详情
+    /// 房间问答答案详情
     public struct AnswerInfo: TCOutputModel {
         /// 用户名
         public let name: String?
@@ -66,16 +66,16 @@ extension Lcic {
         /// 场景参数，一个应用下可以设置多个不同场景。
         public let scene: String
 
-        /// logo地址。
+        /// logo地址，用于上课时展示的课堂或平台图标，支持开发商自定义业务品牌展示。
         public let logoUrl: String?
 
-        /// 主页地址，可设置用于跳转。
+        /// HomeUrl：主页地址，用于上课结束后课堂跳转，支持跳转到自己的业务系统。如果配置为空则下课后关闭课堂页面。
         public let homeUrl: String?
 
-        /// 自定义的js。
+        /// JsUrl ：自定义js。针对应用用于开发上自定义课堂界面、模块功能、监控操作，支持数据请求与响应处理。
         public let jsUrl: String?
 
-        /// 自定义的css。
+        /// Css : 自定义的css。针对应用用于支持课堂界面的、模块的UI渲染修改、皮肤配色修改、功能模块的隐藏和展示。
         public let cssUrl: String?
 
         public init(scene: String, logoUrl: String? = nil, homeUrl: String? = nil, jsUrl: String? = nil, cssUrl: String? = nil) {
@@ -213,6 +213,22 @@ extension Lcic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: UInt64?
 
+        /// 课件页数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pages: UInt64?
+
+        /// 宽，仅在静态转码的课件有效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let width: UInt64?
+
+        /// 高，仅在静态转码的课件有效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let height: UInt64?
+
+        /// 封面，仅转码的课件会生成封面
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cover: String?
+
         enum CodingKeys: String, CodingKey {
             case documentId = "DocumentId"
             case documentUrl = "DocumentUrl"
@@ -228,6 +244,10 @@ extension Lcic {
             case documentType = "DocumentType"
             case documentSize = "DocumentSize"
             case updateTime = "UpdateTime"
+            case pages = "Pages"
+            case width = "Width"
+            case height = "Height"
+            case cover = "Cover"
         }
     }
 
@@ -250,11 +270,19 @@ extension Lcic {
     /// 房间事件信息。
     public struct EventInfo: TCOutputModel {
         /// 事件发生的秒级unix时间戳。
-        public let timestamp: UInt64?
+        public let timestamp: UInt64
 
         /// 事件类型,有以下值:
         /// RoomStart:房间开始 RoomEnd:房间结束 MemberJoin:成员加入 MemberQuit:成员退出 RecordFinish:录制结束
-        public let eventType: String?
+        /// CameraOn: 摄像头打开
+        /// CameraOff: 摄像头关闭
+        /// MicOn: 麦克风打开
+        /// MicOff: 麦克风关闭
+        /// ScreenOn: 屏幕共享打开
+        /// ScreenOff: 屏幕共享关闭
+        /// VisibleOn: 页面可见
+        /// VisibleOff: 页面不可见
+        public let eventType: String
 
         /// 事件详细内容，包含房间号,成员类型事件包含用户Id。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -369,6 +397,24 @@ extension Lcic {
         /// 每个成员发送消息数量。
         public let perMemberMessageCount: Int64?
 
+        /// 用户角色。0代表学生；1代表老师； 2助教；3巡课。
+        public let role: UInt64?
+
+        /// 上课班号
+        public let groupId: String?
+
+        /// 子上课班号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subGroupId: [String]?
+
+        /// 用户的上台状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stage: Int64?
+
+        /// 用户状态。0为未到，1为在线，2为离线，3为被踢，4为永久被踢，5为暂时掉线
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentState: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userName = "UserName"
@@ -386,6 +432,11 @@ extension Lcic {
             case device = "Device"
             case perMemberMicCount = "PerMemberMicCount"
             case perMemberMessageCount = "PerMemberMessageCount"
+            case role = "Role"
+            case groupId = "GroupId"
+            case subGroupId = "SubGroupId"
+            case stage = "Stage"
+            case currentState = "CurrentState"
         }
     }
 
@@ -436,7 +487,7 @@ extension Lcic {
         }
     }
 
-    /// 房间问答答案详情
+    /// 房间问答问题详情
     public struct QuestionInfo: TCOutputModel {
         /// 问题ID
         public let questionId: String?
@@ -466,22 +517,22 @@ extension Lcic {
     /// 批量创建房间的房间信息
     public struct RoomInfo: TCInputModel {
         /// 房间名称。
-        public let name: String?
+        public let name: String
 
         /// 预定的房间开始时间，unix时间戳。
-        public let startTime: UInt64?
+        public let startTime: UInt64
 
         /// 预定的房间结束时间，unix时间戳。
-        public let endTime: UInt64?
+        public let endTime: UInt64
 
         /// 分辨率。可以有如下取值： 1 标清 2 高清 3 全高清
-        public let resolution: UInt64?
+        public let resolution: UInt64
 
         /// 最大连麦人数（不包括老师）。取值范围[0, 16]
-        public let maxMicNumber: UInt64?
+        public let maxMicNumber: UInt64
 
         /// 房间子类型，可以有以下取值： videodoc 文档+视频 video 纯视频
-        public let subType: String?
+        public let subType: String
 
         /// 老师ID。通过[注册用户]接口获取的UserId。
         public let teacherId: String?
@@ -513,7 +564,22 @@ extension Lcic {
         /// 房间绑定的群组ID
         public let groupId: String?
 
-        public init(name: String, startTime: UInt64, endTime: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil) {
+        /// 打开学生麦克风/摄像头的授权开关
+        public let enableDirectControl: UInt64?
+
+        /// 开启专注模式。 0 收看全部角色音视频(默认) 1 只看老师和助教
+        public let interactionMode: Int64?
+
+        /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        public let videoOrientation: Int64?
+
+        /// 开启课后评分。 0：不开启(默认)  1：开启
+        public let isGradingRequiredPostClass: Int64?
+
+        /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
+        public let roomType: Int64?
+
+        public init(name: String, startTime: UInt64, endTime: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, turnOffMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, rtcAudienceNumber: UInt64? = nil, audienceType: UInt64? = nil, recordLayout: UInt64? = nil, groupId: String? = nil, enableDirectControl: UInt64? = nil, interactionMode: Int64? = nil, videoOrientation: Int64? = nil, isGradingRequiredPostClass: Int64? = nil, roomType: Int64? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -530,6 +596,11 @@ extension Lcic {
             self.audienceType = audienceType
             self.recordLayout = recordLayout
             self.groupId = groupId
+            self.enableDirectControl = enableDirectControl
+            self.interactionMode = interactionMode
+            self.videoOrientation = videoOrientation
+            self.isGradingRequiredPostClass = isGradingRequiredPostClass
+            self.roomType = roomType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -549,6 +620,104 @@ extension Lcic {
             case audienceType = "AudienceType"
             case recordLayout = "RecordLayout"
             case groupId = "GroupId"
+            case enableDirectControl = "EnableDirectControl"
+            case interactionMode = "InteractionMode"
+            case videoOrientation = "VideoOrientation"
+            case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
+            case roomType = "RoomType"
+        }
+    }
+
+    /// 房间列表
+    public struct RoomItem: TCOutputModel {
+        /// 名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 房间ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roomId: UInt64?
+
+        /// 房间状态。0 未开始 ；1进行中  ；2 已结束
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: UInt64?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startTime: UInt64?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endTime: UInt64?
+
+        /// 实际开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realStartTime: UInt64?
+
+        /// 实际结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realEndTime: UInt64?
+
+        /// 分辨率。1 标清
+        /// 2 高清
+        /// 3 全高清
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resolution: UInt64?
+
+        /// 最大允许连麦人数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxRTCMember: UInt64?
+
+        /// 房间录制地址。已废弃，使用新字段 RecordUrl
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let replayUrl: String?
+
+        /// 录制地址（协议为https)。仅在房间结束后存在。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordUrl: String?
+
+        /// 最高房间内人数（包括老师），0表示不限制，默认为0
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxMicNumber: UInt64?
+
+        /// 打开学生麦克风/摄像头的授权开关
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableDirectControl: UInt64?
+
+        /// 开启专注模式。 0 收看全部角色音视频(默认) 1 只看老师和助教
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let interactionMode: Int64?
+
+        /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let videoOrientation: Int64?
+
+        /// 开启课后评分。 0：不开启(默认)  1：开启
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isGradingRequiredPostClass: Int64?
+
+        /// 房间类型。0:小班课（默认值）；1:大班课；2:1V1（后续扩展）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roomType: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case roomId = "RoomId"
+            case status = "Status"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case realStartTime = "RealStartTime"
+            case realEndTime = "RealEndTime"
+            case resolution = "Resolution"
+            case maxRTCMember = "MaxRTCMember"
+            case replayUrl = "ReplayUrl"
+            case recordUrl = "RecordUrl"
+            case maxMicNumber = "MaxMicNumber"
+            case enableDirectControl = "EnableDirectControl"
+            case interactionMode = "InteractionMode"
+            case videoOrientation = "VideoOrientation"
+            case isGradingRequiredPostClass = "IsGradingRequiredPostClass"
+            case roomType = "RoomType"
         }
     }
 

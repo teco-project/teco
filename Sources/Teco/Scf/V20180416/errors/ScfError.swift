@@ -27,6 +27,7 @@ public protocol TCScfErrorType: TCServiceErrorType {
 public struct TCScfError: TCScfErrorType {
     enum Code: String {
         case failedOperation = "FailedOperation"
+        case failedOperation_AccountInsufficient = "FailedOperation.AccountInsufficient"
         case failedOperation_ApiGateway = "FailedOperation.ApiGateway"
         case failedOperation_Apigw = "FailedOperation.Apigw"
         case failedOperation_ApmConfigInstanceId = "FailedOperation.ApmConfigInstanceId"
@@ -57,6 +58,7 @@ public struct TCScfError: TCScfErrorType {
         case failedOperation_GetFunctionAddress = "FailedOperation.GetFunctionAddress"
         case failedOperation_InstanceNotFound = "FailedOperation.InstanceNotFound"
         case failedOperation_InsufficientBalance = "FailedOperation.InsufficientBalance"
+        case failedOperation_InsufficientResources = "FailedOperation.InsufficientResources"
         case failedOperation_InvokeFunction = "FailedOperation.InvokeFunction"
         case failedOperation_Namespace = "FailedOperation.Namespace"
         case failedOperation_OpenService = "FailedOperation.OpenService"
@@ -69,6 +71,7 @@ public struct TCScfError: TCScfErrorType {
         case failedOperation_PublishLayerVersion = "FailedOperation.PublishLayerVersion"
         case failedOperation_PublishVersion = "FailedOperation.PublishVersion"
         case failedOperation_QcsRoleNotFound = "FailedOperation.QcsRoleNotFound"
+        case failedOperation_QueryError = "FailedOperation.QueryError"
         case failedOperation_ReservedExceedTotal = "FailedOperation.ReservedExceedTotal"
         case failedOperation_ReservedInProgress = "FailedOperation.ReservedInProgress"
         case failedOperation_ServiceClosed = "FailedOperation.ServiceClosed"
@@ -161,6 +164,7 @@ public struct TCScfError: TCScfErrorType {
         case invalidParameterValue_Layers = "InvalidParameterValue.Layers"
         case invalidParameterValue_Limit = "InvalidParameterValue.Limit"
         case invalidParameterValue_LimitExceeded = "InvalidParameterValue.LimitExceeded"
+        case invalidParameterValue_LogFormat = "InvalidParameterValue.LogFormat"
         case invalidParameterValue_MaxConcurrency = "InvalidParameterValue.MaxConcurrency"
         case invalidParameterValue_Memory = "InvalidParameterValue.Memory"
         case invalidParameterValue_MemorySize = "InvalidParameterValue.MemorySize"
@@ -204,6 +208,7 @@ public struct TCScfError: TCScfErrorType {
         case invalidParameterValue_TriggerName = "InvalidParameterValue.TriggerName"
         case invalidParameterValue_TriggerProvisionedConcurrencyNum = "InvalidParameterValue.TriggerProvisionedConcurrencyNum"
         case invalidParameterValue_Type = "InvalidParameterValue.Type"
+        case invalidParameterValue_Vpc = "InvalidParameterValue.Vpc"
         case invalidParameterValue_VpcNotSetWhenOpenCfs = "InvalidParameterValue.VpcNotSetWhenOpenCfs"
         case invalidParameterValue_WebSocketsParams = "InvalidParameterValue.WebSocketsParams"
         case invalidParameterValue_ZipFile = "InvalidParameterValue.ZipFile"
@@ -247,6 +252,7 @@ public struct TCScfError: TCScfErrorType {
         case missingParameter_Code = "MissingParameter.Code"
         case missingParameter_Runtime = "MissingParameter.Runtime"
         case operationDenied_AccountIsolate = "OperationDenied.AccountIsolate"
+        case operationDenied_AccountNotExists = "OperationDenied.AccountNotExists"
         case resourceInUse = "ResourceInUse"
         case resourceInUse_Alias = "ResourceInUse.Alias"
         case resourceInUse_Cdn = "ResourceInUse.Cdn"
@@ -291,6 +297,7 @@ public struct TCScfError: TCScfErrorType {
         case resourceNotFound_Vpc = "ResourceNotFound.Vpc"
         case resourceUnavailable_InsufficientBalance = "ResourceUnavailable.InsufficientBalance"
         case resourceUnavailable_Namespace = "ResourceUnavailable.Namespace"
+        case resourceUnavailable_ServiceSuspended = "ResourceUnavailable.ServiceSuspended"
         case unauthorizedOperation = "UnauthorizedOperation"
         case unauthorizedOperation_CAM = "UnauthorizedOperation.CAM"
         case unauthorizedOperation_CodeSecret = "UnauthorizedOperation.CodeSecret"
@@ -310,8 +317,10 @@ public struct TCScfError: TCScfErrorType {
         case unsupportedOperation_Cos = "UnsupportedOperation.Cos"
         case unsupportedOperation_EipFixed = "UnsupportedOperation.EipFixed"
         case unsupportedOperation_NotSupportRegion = "UnsupportedOperation.NotSupportRegion"
+        case unsupportedOperation_PublishVersion = "UnsupportedOperation.PublishVersion"
         case unsupportedOperation_Region = "UnsupportedOperation.Region"
         case unsupportedOperation_Trigger = "UnsupportedOperation.Trigger"
+        case unsupportedOperation_UpdateFunctionCode = "UnsupportedOperation.UpdateFunctionCode"
         case unsupportedOperation_UpdateFunctionEventInvokeConfig = "UnsupportedOperation.UpdateFunctionEventInvokeConfig"
         case unsupportedOperation_VpcConfig = "UnsupportedOperation.VpcConfig"
     }
@@ -360,6 +369,11 @@ public struct TCScfError: TCScfErrorType {
     /// 操作失败。
     public static var failedOperation: TCScfError {
         TCScfError(.failedOperation)
+    }
+
+    /// 请检查账户余额。
+    public static var failedOperation_AccountInsufficient: TCScfError {
+        TCScfError(.failedOperation_AccountInsufficient)
     }
 
     /// API网关触发器创建失败。
@@ -514,6 +528,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.failedOperation_InsufficientBalance)
     }
 
+    /// 请稍后再试。
+    public static var failedOperation_InsufficientResources: TCScfError {
+        TCScfError(.failedOperation_InsufficientResources)
+    }
+
     /// 调用函数失败。
     public static var failedOperation_InvokeFunction: TCScfError {
         TCScfError(.failedOperation_InvokeFunction)
@@ -572,6 +591,11 @@ public struct TCScfError: TCScfErrorType {
     /// 角色不存在。
     public static var failedOperation_QcsRoleNotFound: TCScfError {
         TCScfError(.failedOperation_QcsRoleNotFound)
+    }
+
+    /// 请确认请求是否存在。
+    public static var failedOperation_QueryError: TCScfError {
+        TCScfError(.failedOperation_QueryError)
     }
 
     /// ReservedExceedTotal 总保留超限。
@@ -1046,6 +1070,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.invalidParameterValue_LimitExceeded)
     }
 
+    /// 请检查日志格式。
+    public static var invalidParameterValue_LogFormat: TCScfError {
+        TCScfError(.invalidParameterValue_LogFormat)
+    }
+
     /// MaxConcurrency 参数传入错误。
     public static var invalidParameterValue_MaxConcurrency: TCScfError {
         TCScfError(.invalidParameterValue_MaxConcurrency)
@@ -1261,6 +1290,11 @@ public struct TCScfError: TCScfErrorType {
     /// Type传入错误。
     public static var invalidParameterValue_Type: TCScfError {
         TCScfError(.invalidParameterValue_Type)
+    }
+
+    /// 请检查VPC是否正确。
+    public static var invalidParameterValue_Vpc: TCScfError {
+        TCScfError(.invalidParameterValue_Vpc)
     }
 
     /// 开启cfs配置的同时必须开启vpc。
@@ -1486,6 +1520,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.operationDenied_AccountIsolate)
     }
 
+    /// 请检查账号是否合法。
+    public static var operationDenied_AccountNotExists: TCScfError {
+        TCScfError(.operationDenied_AccountNotExists)
+    }
+
     /// 资源被占用。
     public static var resourceInUse: TCScfError {
         TCScfError(.resourceInUse)
@@ -1708,6 +1747,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.resourceUnavailable_Namespace)
     }
 
+    /// 请先解冻。
+    public static var resourceUnavailable_ServiceSuspended: TCScfError {
+        TCScfError(.resourceUnavailable_ServiceSuspended)
+    }
+
     /// 未授权操作。
     public static var unauthorizedOperation: TCScfError {
         TCScfError(.unauthorizedOperation)
@@ -1805,6 +1849,11 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.unsupportedOperation_NotSupportRegion)
     }
 
+    /// 请检查资源状态。
+    public static var unsupportedOperation_PublishVersion: TCScfError {
+        TCScfError(.unsupportedOperation_PublishVersion)
+    }
+
     /// 不支持此地域。
     public static var unsupportedOperation_Region: TCScfError {
         TCScfError(.unsupportedOperation_Region)
@@ -1813,6 +1862,11 @@ public struct TCScfError: TCScfErrorType {
     /// Trigger操作不支持。
     public static var unsupportedOperation_Trigger: TCScfError {
         TCScfError(.unsupportedOperation_Trigger)
+    }
+
+    /// 请检查参数。
+    public static var unsupportedOperation_UpdateFunctionCode: TCScfError {
+        TCScfError(.unsupportedOperation_UpdateFunctionCode)
     }
 
     /// 指定的配置暂不支持，请修正后再试。

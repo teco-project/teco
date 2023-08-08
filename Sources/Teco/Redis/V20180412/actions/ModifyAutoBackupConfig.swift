@@ -21,7 +21,7 @@ import TecoCore
 extension Redis {
     /// ModifyAutoBackupConfig请求参数结构体
     public struct ModifyAutoBackupConfigRequest: TCRequestModel {
-        /// 实例ID。
+        /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
         /// 设置自动备份周期。可设置为Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。该参数暂不支持修改。
@@ -30,7 +30,7 @@ extension Redis {
         /// 备份时间段。可设置为每个整点。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         public let timePeriod: String
 
-        /// 自动备份类型： 1 “定时回档”。
+        /// 自动备份类型。目前仅能配置为：1 ，指定时备份。
         public let autoBackupType: Int64?
 
         public init(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil) {
@@ -50,13 +50,13 @@ extension Redis {
 
     /// ModifyAutoBackupConfig返回参数结构体
     public struct ModifyAutoBackupConfigResponse: TCResponseModel {
-        /// 自动备份类型： 1 “定时回档”
+        /// 自动备份类型。目前仅能配置为：1 ，指定时备份。
         public let autoBackupType: Int64
 
         /// 自动备份周期。取值为：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         public let weekDays: [String]
 
-        /// 自动备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
+        /// 自动定时备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         public let timePeriod: String
 
         /// 全量备份文件保存天数,单位：天。
@@ -75,24 +75,32 @@ extension Redis {
     }
 
     /// 设置自动备份配置
+    ///
+    /// 本接口（ModifyAutoBackupConfig）用于设置自动备份的配置。
     @inlinable
     public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
         self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动备份配置
+    ///
+    /// 本接口（ModifyAutoBackupConfig）用于设置自动备份的配置。
     @inlinable
     public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
         try await self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置自动备份配置
+    ///
+    /// 本接口（ModifyAutoBackupConfig）用于设置自动备份的配置。
     @inlinable
     public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
         self.modifyAutoBackupConfig(.init(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动备份配置
+    ///
+    /// 本接口（ModifyAutoBackupConfig）用于设置自动备份的配置。
     @inlinable
     public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
         try await self.modifyAutoBackupConfig(.init(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)

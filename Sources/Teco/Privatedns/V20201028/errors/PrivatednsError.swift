@@ -36,9 +36,11 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         case failedOperation_DataError = "FailedOperation.DataError"
         case failedOperation_DeleteLastBindVpcRecordFailed = "FailedOperation.DeleteLastBindVpcRecordFailed"
         case failedOperation_DeleteRecordFailed = "FailedOperation.DeleteRecordFailed"
+        case failedOperation_DeleteVpcEndPointFailed = "FailedOperation.DeleteVpcEndPointFailed"
         case failedOperation_DeleteZoneFailed = "FailedOperation.DeleteZoneFailed"
         case failedOperation_ModifyRecordFailed = "FailedOperation.ModifyRecordFailed"
         case failedOperation_ModifyZoneFailed = "FailedOperation.ModifyZoneFailed"
+        case failedOperation_UpdateRecordFailed = "FailedOperation.UpdateRecordFailed"
         case internalError = "InternalError"
         case internalError_UndefiendError = "InternalError.UndefiendError"
         case invalidParameter = "InvalidParameter"
@@ -46,6 +48,8 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         case invalidParameterValue_IllegalTTLValue = "InvalidParameterValue.IllegalTTLValue"
         case invalidParameterValue_ReservedDomain = "InvalidParameterValue.ReservedDomain"
         case invalidParameter_AccountExist = "InvalidParameter.AccountExist"
+        case invalidParameter_EndPointBindForwardRule = "InvalidParameter.EndPointBindForwardRule"
+        case invalidParameter_EndPointNotExists = "InvalidParameter.EndPointNotExists"
         case invalidParameter_IllegalCidr = "InvalidParameter.IllegalCidr"
         case invalidParameter_IllegalDomain = "InvalidParameter.IllegalDomain"
         case invalidParameter_IllegalDomainTld = "InvalidParameter.IllegalDomainTld"
@@ -54,6 +58,7 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         case invalidParameter_IllegalRecordValue = "InvalidParameter.IllegalRecordValue"
         case invalidParameter_IllegalVpcInfo = "InvalidParameter.IllegalVpcInfo"
         case invalidParameter_InvalidMX = "InvalidParameter.InvalidMX"
+        case invalidParameter_MXNotSupported = "InvalidParameter.MXNotSupported"
         case invalidParameter_RecordAAAACountExceed = "InvalidParameter.RecordAAAACountExceed"
         case invalidParameter_RecordACountExceed = "InvalidParameter.RecordACountExceed"
         case invalidParameter_RecordCNAMECountExceed = "InvalidParameter.RecordCNAMECountExceed"
@@ -192,6 +197,13 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
         TCPrivatednsError(.failedOperation_DeleteRecordFailed)
     }
 
+    /// 删除终端节点失败。
+    ///
+    /// 删除终端节点失败，需要连续小助手处理。
+    public static var failedOperation_DeleteVpcEndPointFailed: TCPrivatednsError {
+        TCPrivatednsError(.failedOperation_DeleteVpcEndPointFailed)
+    }
+
     /// 解析域删除失败。
     public static var failedOperation_DeleteZoneFailed: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_DeleteZoneFailed)
@@ -205,6 +217,11 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
     /// 私有域修改失败。
     public static var failedOperation_ModifyZoneFailed: TCPrivatednsError {
         TCPrivatednsError(.failedOperation_ModifyZoneFailed)
+    }
+
+    /// 检查输入是否有误，若检查无误可以联系后台排查。
+    public static var failedOperation_UpdateRecordFailed: TCPrivatednsError {
+        TCPrivatednsError(.failedOperation_UpdateRecordFailed)
     }
 
     /// 内部错误。
@@ -242,6 +259,20 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
     /// 数据已经存在，无需重复操作。
     public static var invalidParameter_AccountExist: TCPrivatednsError {
         TCPrivatednsError(.invalidParameter_AccountExist)
+    }
+
+    /// 终端节点已经绑定了转发规则。
+    ///
+    /// 终端节点已经绑定了转发规则，可以先删除已经绑定了的转发规则之后再继续操作。
+    public static var invalidParameter_EndPointBindForwardRule: TCPrivatednsError {
+        TCPrivatednsError(.invalidParameter_EndPointBindForwardRule)
+    }
+
+    /// 终端节点不存在。
+    ///
+    /// 确认终端节点ID是否正确
+    public static var invalidParameter_EndPointNotExists: TCPrivatednsError {
+        TCPrivatednsError(.invalidParameter_EndPointNotExists)
     }
 
     /// 非法CIDR。
@@ -282,6 +313,11 @@ public struct TCPrivatednsError: TCPrivatednsErrorType {
     /// MX 必须为5-50之间且为5的倍数。
     public static var invalidParameter_InvalidMX: TCPrivatednsError {
         TCPrivatednsError(.invalidParameter_InvalidMX)
+    }
+
+    /// MX参数传空
+    public static var invalidParameter_MXNotSupported: TCPrivatednsError {
+        TCPrivatednsError(.invalidParameter_MXNotSupported)
     }
 
     /// AAAA记录负载均衡数量超过50。

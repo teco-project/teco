@@ -83,17 +83,27 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskInfoSet: [IntegrationTaskInfo]?
 
+        /// 任务总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskInfoSet = "TaskInfoSet"
+            case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
 
         /// Extract the returned item list from the paginated response.
         public func getItems() -> [IntegrationTaskInfo] {
             self.taskInfoSet ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 
@@ -123,7 +133,7 @@ extension Wedata {
 
     /// 查询集成任务列表
     @inlinable
-    public func describeIntegrationTasksPaginated(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Never?, [IntegrationTaskInfo])> {
+    public func describeIntegrationTasksPaginated(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [IntegrationTaskInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeIntegrationTasks, logger: logger, on: eventLoop)
     }
 

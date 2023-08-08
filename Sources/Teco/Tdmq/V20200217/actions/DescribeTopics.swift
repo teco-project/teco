@@ -25,6 +25,9 @@ extension Tdmq {
         /// 环境（命名空间）名称。
         public let environmentId: String
 
+        /// Pulsar 集群的ID
+        public let clusterId: String
+
         /// 主题名模糊匹配。
         public let topicName: String?
 
@@ -41,9 +44,6 @@ extension Tdmq {
         /// 3：持久分区主题类型；
         public let topicType: UInt64?
 
-        /// Pulsar 集群的ID
-        public let clusterId: String?
-
         /// * TopicName
         /// 按照主题名字查询，精确查询。
         /// 类型：String
@@ -55,24 +55,24 @@ extension Tdmq {
         /// 2：系统创建
         public let topicCreator: UInt64?
 
-        public init(environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil) {
+        public init(environmentId: String, clusterId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil) {
             self.environmentId = environmentId
+            self.clusterId = clusterId
             self.topicName = topicName
             self.offset = offset
             self.limit = limit
             self.topicType = topicType
-            self.clusterId = clusterId
             self.filters = filters
             self.topicCreator = topicCreator
         }
 
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
+            case clusterId = "ClusterId"
             case topicName = "TopicName"
             case offset = "Offset"
             case limit = "Limit"
             case topicType = "TopicType"
-            case clusterId = "ClusterId"
             case filters = "Filters"
             case topicCreator = "TopicCreator"
         }
@@ -82,7 +82,7 @@ extension Tdmq {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTopicsRequest(environmentId: self.environmentId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, topicType: self.topicType, clusterId: self.clusterId, filters: self.filters, topicCreator: self.topicCreator)
+            return DescribeTopicsRequest(environmentId: self.environmentId, clusterId: self.clusterId, topicName: self.topicName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, topicType: self.topicType, filters: self.filters, topicCreator: self.topicCreator)
         }
     }
 
@@ -134,16 +134,16 @@ extension Tdmq {
     ///
     /// 获取环境下主题列表
     @inlinable
-    public func describeTopics(environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
-        self.describeTopics(.init(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, clusterId: clusterId, filters: filters, topicCreator: topicCreator), region: region, logger: logger, on: eventLoop)
+    public func describeTopics(environmentId: String, clusterId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
+        self.describeTopics(.init(environmentId: environmentId, clusterId: clusterId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, filters: filters, topicCreator: topicCreator), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主题列表
     ///
     /// 获取环境下主题列表
     @inlinable
-    public func describeTopics(environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
-        try await self.describeTopics(.init(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, clusterId: clusterId, filters: filters, topicCreator: topicCreator), region: region, logger: logger, on: eventLoop)
+    public func describeTopics(environmentId: String, clusterId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
+        try await self.describeTopics(.init(environmentId: environmentId, clusterId: clusterId, topicName: topicName, offset: offset, limit: limit, topicType: topicType, filters: filters, topicCreator: topicCreator), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主题列表

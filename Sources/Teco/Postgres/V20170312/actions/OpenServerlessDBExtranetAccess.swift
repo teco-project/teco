@@ -48,25 +48,33 @@ extension Postgres {
         }
     }
 
-    /// 开通serverlessDB实例外网
+    /// 开通serverlessDB实例公网地址
+    ///
+    /// 本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
     @inlinable @discardableResult
     public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
         self.client.execute(action: "OpenServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 开通serverlessDB实例外网
+    /// 开通serverlessDB实例公网地址
+    ///
+    /// 本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
     @inlinable @discardableResult
     public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
         try await self.client.execute(action: "OpenServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 开通serverlessDB实例外网
+    /// 开通serverlessDB实例公网地址
+    ///
+    /// 本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
     @inlinable @discardableResult
     public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
         self.openServerlessDBExtranetAccess(.init(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 开通serverlessDB实例外网
+    /// 开通serverlessDB实例公网地址
+    ///
+    /// 本接口（OpenServerlessDBExtranetAccess）用于开通serverlessDB实例公网地址。
     @inlinable @discardableResult
     public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
         try await self.openServerlessDBExtranetAccess(.init(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)

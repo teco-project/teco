@@ -32,9 +32,11 @@ public struct TCIotvideoError: TCIotvideoErrorType {
         case failedOperation_DeviceRunningOtherOtaTask = "FailedOperation.DeviceRunningOtherOtaTask"
         case failedOperation_PermissionDenied = "FailedOperation.PermissionDenied"
         case internalError = "InternalError"
+        case internalError_DBOperationError = "InternalError.DBOperationError"
         case invalidParameter = "InvalidParameter"
         case invalidParameterValue = "InvalidParameterValue"
         case invalidParameterValue_FirmwareAlreadyExist = "InvalidParameterValue.FirmwareAlreadyExist"
+        case resourceNotFound = "ResourceNotFound"
         case resourceNotFound_DeviceFirmwareTaskNotExist = "ResourceNotFound.DeviceFirmwareTaskNotExist"
         case resourceNotFound_DeviceHasNoFirmware = "ResourceNotFound.DeviceHasNoFirmware"
         case resourceNotFound_FirmwareNotExist = "ResourceNotFound.FirmwareNotExist"
@@ -45,7 +47,7 @@ public struct TCIotvideoError: TCIotvideoErrorType {
 
     /// Error domains affliated to ``TCIotvideoError``.
     public static var domains: [TCErrorType.Type] {
-        [FailedOperation.self, InvalidParameterValue.self, ResourceNotFound.self]
+        [FailedOperation.self, InternalError.self, InvalidParameterValue.self, ResourceNotFound.self]
     }
 
     private let error: Code
@@ -100,6 +102,11 @@ public struct TCIotvideoError: TCIotvideoErrorType {
         TCIotvideoError(.internalError)
     }
 
+    /// 数据库内部错误。
+    public static var internalError_DBOperationError: TCIotvideoError {
+        TCIotvideoError(.internalError_DBOperationError)
+    }
+
     /// 参数错误。
     public static var invalidParameter: TCIotvideoError {
         TCIotvideoError(.invalidParameter)
@@ -113,6 +120,11 @@ public struct TCIotvideoError: TCIotvideoErrorType {
     /// 固件已存在。
     public static var invalidParameterValue_FirmwareAlreadyExist: TCIotvideoError {
         TCIotvideoError(.invalidParameterValue_FirmwareAlreadyExist)
+    }
+
+    /// 资源不存在。
+    public static var resourceNotFound: TCIotvideoError {
+        TCIotvideoError(.resourceNotFound)
     }
 
     /// 设备固件升级任务不存在。

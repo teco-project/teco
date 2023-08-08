@@ -21,13 +21,13 @@ import TecoCore
 extension Vpc {
     /// AssociateDirectConnectGatewayNatGateway请求参数结构体
     public struct AssociateDirectConnectGatewayNatGatewayRequest: TCRequestModel {
-        /// 专线网关ID。
+        /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
         /// NAT网关ID。
         public let natGatewayId: String
 
-        /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        /// 专线网关ID。
         public let directConnectGatewayId: String
 
         public init(vpcId: String, natGatewayId: String, directConnectGatewayId: String) {

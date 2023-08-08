@@ -45,7 +45,17 @@ extension Cls {
         /// 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存
         public let period: Int64?
 
-        public init(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil) {
+        /// 日志主题描述
+        public let describes: String?
+
+        /// 0：关闭日志沉降。
+        /// 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        public let hotPeriod: UInt64?
+
+        /// webtracking开关； false: 关闭 true： 开启
+        public let isWebTracking: Bool?
+
+        public init(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil) {
             self.logsetId = logsetId
             self.topicName = topicName
             self.partitionCount = partitionCount
@@ -54,6 +64,9 @@ extension Cls {
             self.maxSplitPartitions = maxSplitPartitions
             self.storageType = storageType
             self.period = period
+            self.describes = describes
+            self.hotPeriod = hotPeriod
+            self.isWebTracking = isWebTracking
         }
 
         enum CodingKeys: String, CodingKey {
@@ -65,6 +78,9 @@ extension Cls {
             case maxSplitPartitions = "MaxSplitPartitions"
             case storageType = "StorageType"
             case period = "Period"
+            case describes = "Describes"
+            case hotPeriod = "HotPeriod"
+            case isWebTracking = "IsWebTracking"
         }
     }
 
@@ -102,15 +118,15 @@ extension Cls {
     ///
     /// 本接口用于创建日志主题。
     @inlinable
-    public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(.init(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period), region: region, logger: logger, on: eventLoop)
+    public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.createTopic(.init(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period, describes: describes, hotPeriod: hotPeriod, isWebTracking: isWebTracking), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志主题
     ///
     /// 本接口用于创建日志主题。
     @inlinable
-    public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(.init(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period), region: region, logger: logger, on: eventLoop)
+    public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, describes: String? = nil, hotPeriod: UInt64? = nil, isWebTracking: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(.init(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period, describes: describes, hotPeriod: hotPeriod, isWebTracking: isWebTracking), region: region, logger: logger, on: eventLoop)
     }
 }

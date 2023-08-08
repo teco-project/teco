@@ -20,6 +20,7 @@ extension TCAaiError {
     public struct InvalidParameterValue: TCAaiErrorType {
         enum Code: String {
             case appIdNotRegistered = "InvalidParameterValue.AppIdNotRegistered"
+            case codec = "InvalidParameterValue.Codec"
             case errorInvalidAppid = "InvalidParameterValue.ErrorInvalidAppid"
             case errorInvalidClientip = "InvalidParameterValue.ErrorInvalidClientip"
             case errorInvalidEngservice = "InvalidParameterValue.ErrorInvalidEngservice"
@@ -68,6 +69,11 @@ extension TCAaiError {
         /// appid未注册。
         public static var appIdNotRegistered: InvalidParameterValue {
             InvalidParameterValue(.appIdNotRegistered)
+        }
+
+        /// 编解码错误。
+        public static var codec: InvalidParameterValue {
+            InvalidParameterValue(.codec)
         }
 
         /// AppId无效。
@@ -184,6 +190,8 @@ extension TCAaiError {
             switch self.error {
             case .appIdNotRegistered:
                 code = .invalidParameterValue_AppIdNotRegistered
+            case .codec:
+                code = .invalidParameterValue_Codec
             case .errorInvalidAppid:
                 code = .invalidParameterValue_ErrorInvalidAppid
             case .errorInvalidClientip:

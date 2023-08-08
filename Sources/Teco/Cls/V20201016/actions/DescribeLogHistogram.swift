@@ -36,12 +36,18 @@ extension Cls {
         /// 时间间隔: 单位ms  限制性条件：(To-From) / interval <= 200
         public let interval: Int64?
 
-        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil) {
+        /// 检索语法规则，默认值为0。
+        /// 0：Lucene语法，1：CQL语法。
+        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        public let syntaxRule: UInt64?
+
+        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, syntaxRule: UInt64? = nil) {
             self.from = from
             self.to = to
             self.query = query
             self.topicId = topicId
             self.interval = interval
+            self.syntaxRule = syntaxRule
         }
 
         enum CodingKeys: String, CodingKey {
@@ -50,6 +56,7 @@ extension Cls {
             case query = "Query"
             case topicId = "TopicId"
             case interval = "Interval"
+            case syntaxRule = "SyntaxRule"
         }
     }
 
@@ -95,15 +102,15 @@ extension Cls {
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
-        self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
+    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
+        self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志数量直方图
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        try await self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
+    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, syntaxRule: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.describeLogHistogram(.init(from: from, to: to, query: query, topicId: topicId, interval: interval, syntaxRule: syntaxRule), region: region, logger: logger, on: eventLoop)
     }
 }

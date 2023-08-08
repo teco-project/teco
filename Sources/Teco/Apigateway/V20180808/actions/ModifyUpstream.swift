@@ -92,7 +92,7 @@ extension Apigateway {
     public struct ModifyUpstreamResponse: TCResponseModel {
         /// 返回修改后的后端通道信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UpstreamInfo?
+        public let result: ModifyUpstreamResultInfo?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

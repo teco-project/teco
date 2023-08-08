@@ -40,8 +40,9 @@ extension Scf {
         /// 以升序还是降序的方式返回结果，可选值 ASC 和 DESC，默认DESC
         public let order: String?
 
-        /// * Qualifier:
-        /// 函数版本，别名
+        /// * Qualifier: 函数版本，别名
+        /// * TriggerName: 函数触发器名称
+        /// * Description: 函数触发器描述
         public let filters: [Filter]?
 
         public init(functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil) {

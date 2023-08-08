@@ -30,16 +30,26 @@ extension Ccc {
         /// 分机名称
         public let extensionName: String
 
-        public init(sdkAppId: UInt64, extensionId: String, extensionName: String) {
+        /// 绑定的技能组列表
+        public let skillGroupIds: [UInt64]?
+
+        /// 绑定的坐席邮箱
+        public let relation: String?
+
+        public init(sdkAppId: UInt64, extensionId: String, extensionName: String, skillGroupIds: [UInt64]? = nil, relation: String? = nil) {
             self.sdkAppId = sdkAppId
             self.extensionId = extensionId
             self.extensionName = extensionName
+            self.skillGroupIds = skillGroupIds
+            self.relation = relation
         }
 
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case extensionId = "ExtensionId"
             case extensionName = "ExtensionName"
+            case skillGroupIds = "SkillGroupIds"
+            case relation = "Relation"
         }
     }
 
@@ -67,13 +77,13 @@ extension Ccc {
 
     /// 创建话机账号
     @inlinable @discardableResult
-    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
-        self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
+    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, skillGroupIds: [UInt64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
+        self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建话机账号
     @inlinable @discardableResult
-    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
-        try await self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
+    public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, skillGroupIds: [UInt64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
+        try await self.createExtension(.init(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }
 }

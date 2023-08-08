@@ -23,7 +23,7 @@ import TecoDateHelpers
 extension Antiddos {
     /// DescribeCCTrend请求参数结构体
     public struct DescribeCCTrendRequest: TCRequestModel {
-        /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
+        /// DDoS防护子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         public let business: String
 
         /// 资源的IP

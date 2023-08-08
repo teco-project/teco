@@ -51,6 +51,21 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportDefenseVulCount: Int64?
 
+        /// 普通节点个数
+        public let hostNodeCount: Int64
+
+        /// 超级节点范围
+        public let superScope: Int64
+
+        /// 超级节点个数
+        public let superNodeCount: Int64
+
+        /// 超级节点Id列表
+        public let superNodeIds: [String]
+
+        /// 开通容器安全的超级结点总数
+        public let nodeTotalCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -62,6 +77,11 @@ extension Tcss {
             case hostIDs = "HostIDs"
             case hostTotalCount = "HostTotalCount"
             case supportDefenseVulCount = "SupportDefenseVulCount"
+            case hostNodeCount = "HostNodeCount"
+            case superScope = "SuperScope"
+            case superNodeCount = "SuperNodeCount"
+            case superNodeIds = "SuperNodeIds"
+            case nodeTotalCount = "NodeTotalCount"
             case requestId = "RequestId"
         }
     }

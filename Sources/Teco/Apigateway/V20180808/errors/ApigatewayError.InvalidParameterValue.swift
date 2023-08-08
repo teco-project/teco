@@ -33,7 +33,6 @@ extension TCApigatewayError {
             case invalidEnv = "InvalidParameterValue.InvalidEnv"
             case invalidEnvStatus = "InvalidParameterValue.InvalidEnvStatus"
             case invalidFilterNotSupportedName = "InvalidParameterValue.InvalidFilterNotSupportedName"
-            case invalidGenLanguage = "InvalidParameterValue.InvalidGenLanguage"
             case invalidIPAddress = "InvalidParameterValue.InvalidIPAddress"
             case invalidMaxRequestNum = "InvalidParameterValue.InvalidMaxRequestNum"
             case invalidMethod = "InvalidParameterValue.InvalidMethod"
@@ -160,11 +159,6 @@ extension TCApigatewayError {
         /// 修改参数取值内容为可选范围内的取值。
         public static var invalidFilterNotSupportedName: InvalidParameterValue {
             InvalidParameterValue(.invalidFilterNotSupportedName)
-        }
-
-        /// 参数GenLanguage取值错误。
-        public static var invalidGenLanguage: InvalidParameterValue {
-            InvalidParameterValue(.invalidGenLanguage)
         }
 
         /// 参数后端地址取值错误。
@@ -354,8 +348,6 @@ extension TCApigatewayError {
                 code = .invalidParameterValue_InvalidEnvStatus
             case .invalidFilterNotSupportedName:
                 code = .invalidParameterValue_InvalidFilterNotSupportedName
-            case .invalidGenLanguage:
-                code = .invalidParameterValue_InvalidGenLanguage
             case .invalidIPAddress:
                 code = .invalidParameterValue_InvalidIPAddress
             case .invalidMaxRequestNum:

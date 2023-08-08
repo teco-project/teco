@@ -1033,6 +1033,39 @@ extension Dts {
         }
     }
 
+    /// 数据同步中的选项
+    public struct DynamicOptions: TCInputModel, TCOutputModel {
+        /// 所要同步的DML和DDL的选项，Insert(插入操作)、Update(更新操作)、Delete(删除操作)、DDL(结构同步)，PartialDDL(自定义,和DdlOptions一起起作用 )；必填、dts会用该值覆盖原有的值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let opTypes: [String]?
+
+        /// DDL同步选项，具体描述要同步那些DDL; 当OpTypes取值PartialDDL时、字段不能为空；必填、dts会用该值覆盖原有的值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ddlOptions: [DdlOption]?
+
+        /// 冲突处理选项，ReportError(报错)、Ignore(忽略)、Cover(覆盖)、ConditionCover(条件覆盖); 目前目标端为kafka的链路不支持修改该配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let conflictHandleType: String?
+
+        /// 冲突处理的详细选项，如条件覆盖中的条件行和条件操作；不能部分更新该选项的内部字段；有更新时、需要全量更新该字段
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let conflictHandleOption: ConflictHandleOption?
+
+        public init(opTypes: [String], ddlOptions: [DdlOption], conflictHandleType: String? = nil, conflictHandleOption: ConflictHandleOption? = nil) {
+            self.opTypes = opTypes
+            self.ddlOptions = ddlOptions
+            self.conflictHandleType = conflictHandleType
+            self.conflictHandleOption = conflictHandleOption
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case opTypes = "OpTypes"
+            case ddlOptions = "DdlOptions"
+            case conflictHandleType = "ConflictHandleType"
+            case conflictHandleOption = "ConflictHandleOption"
+        }
+    }
+
     /// 数据同步中的描述源端和目的端的信息
     public struct Endpoint: TCInputModel, TCOutputModel {
         /// 地域英文名，如：ap-guangzhou
@@ -1476,7 +1509,7 @@ extension Dts {
         public let isDstReadOnly: Bool?
 
         /// 其他附加信息，对于特定库可设置额外参数，Redis可定义如下的参数:
-        /// ["ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 	"ReplTimeout":120，		复制超时时间(秒) ]
+        /// ["DstWriteMode":normal, 	目标库写入模式,可取值clearData(清空目标实例数据)、overwrite(以覆盖写的方式执行任务)、normal(跟正常流程一样，不做额外动作) 	"IsDstReadOnly":true, 	是否在迁移时设置目标库只读,true(设置只读)、false(不设置只读) 	"ClientOutputBufferHardLimit":512, 	从机缓冲区的硬性容量限制(MB) 	"ClientOutputBufferSoftLimit":512, 	从机缓冲区的软性容量限制(MB) 	"ClientOutputBufferPersistTime":60, 从机缓冲区的软性限制持续时间(秒) 	"ReplBacklogSize":512, 	环形缓冲区容量限制(MB) 	"ReplTimeout":120，		复制超时时间(秒) ]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraAttr: [KeyValuePairOption]?
 
@@ -1503,7 +1536,7 @@ extension Dts {
 
     /// 同步的数据库对对象描述
     public struct Objects: TCInputModel, TCOutputModel {
-        /// 迁移对象类型 Partial(部分对象)，默认为Partial
+        /// 同步对象类型 Partial(部分对象)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
 
@@ -1511,7 +1544,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databases: [Database]?
 
-        /// 高级对象类型，如function、procedure，当需要同步高级对象时，初始化类型必须包含结构初始化类型，即Options.InitType字段值为Structure或Full
+        /// 高级对象类型，如function、procedure，当需要同步高级对象时，初始化类型必须包含结构初始化类型，即任务的Options.InitType字段值为Structure或Full
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
 
@@ -1798,7 +1831,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warnings: [StepTip]?
 
-        /// 当前步骤进度，范围为[0-100]
+        /// 当前步骤进度，范围为[0-100]，若为-1表示当前步骤不支持查看进度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
 
@@ -2322,7 +2355,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewName: String?
 
-        /// 新view名
+        /// 预留字段、目前暂时不支持view的重命名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newViewName: String?
 

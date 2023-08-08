@@ -24,7 +24,7 @@ extension Essbasic {
         /// 签署流程编号
         public let flowId: String
 
-        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent?
 
         /// 撤回原因，最大不超过200字符

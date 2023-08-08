@@ -63,26 +63,30 @@ extension Tdid {
     }
 
     /// 新建DID根据公钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
-        self.client.execute(action: "CreateTDidByPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPublicKey is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(_ input: CreateTDidByPublicKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
-        try await self.client.execute(action: "CreateTDidByPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        fatalError("CreateTDidByPublicKey is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPublicKeyResponse> {
-        self.createTDidByPublicKey(.init(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPublicKey is no longer available.")
     }
 
     /// 新建DID根据公钥生成Tdid
+    @available(*, unavailable, message: "该接口不再使用")
     @inlinable
     public func createTDidByPublicKey(clusterId: String, groupId: UInt64, publicKey: String, encryptPubKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPublicKeyResponse {
-        try await self.createTDidByPublicKey(.init(clusterId: clusterId, groupId: groupId, publicKey: publicKey, encryptPubKey: encryptPubKey), region: region, logger: logger, on: eventLoop)
+        fatalError("CreateTDidByPublicKey is no longer available.")
     }
 }

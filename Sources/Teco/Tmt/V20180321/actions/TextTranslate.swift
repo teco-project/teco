@@ -21,7 +21,7 @@ import TecoCore
 extension Tmt {
     /// TextTranslate请求参数结构体
     public struct TextTranslateRequest: TCRequestModel {
-        /// 待翻译的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度需要低于2000字符。
+        /// 待翻译的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度需要低于6000字符。
         public let sourceText: String
 
         /// 源语言，支持：
