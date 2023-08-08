@@ -85,7 +85,7 @@ extension Cloudstudio {
         public let destroy: [LifeCycleCommand]?
 
         public init(init: [LifeCycleCommand]? = nil, start: [LifeCycleCommand]? = nil, destroy: [LifeCycleCommand]? = nil) {
-            self.init = `init`
+            self.`init` = `init`
             self.start = start
             self.destroy = destroy
         }
