@@ -21,10 +21,8 @@ import TecoCore
 extension Cloudstudio {
     /// CreateWorkspaceByAgent请求参数结构体
     public struct CreateWorkspaceByAgentRequest: TCRequestModel {
-        /// 无
         public let cloudStudioSessionTeam: String
 
-        /// 无
         public let agentSpaceDTO: AgentSpaceDTO
 
         public init(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO) {

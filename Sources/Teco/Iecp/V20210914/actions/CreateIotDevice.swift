@@ -30,7 +30,6 @@ extension Iecp {
         /// 描述
         public let description: String?
 
-        /// 无
         public let unitID: Int64?
 
         public init(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil) {

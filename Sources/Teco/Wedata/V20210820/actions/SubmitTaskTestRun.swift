@@ -21,31 +21,22 @@ import TecoCore
 extension Wedata {
     /// SubmitTaskTestRun请求参数结构体
     public struct SubmitTaskTestRunRequest: TCRequestModel {
-        /// 无
         public let taskIds: String
 
-        /// 无
         public let projectId: String
 
-        /// 无
         public let workFlowId: String?
 
-        /// 无
         public let name: String?
 
-        /// 无
         public let tasks: [StageCloudApiRequest]?
 
-        /// 无
         public let description: String?
 
-        /// 无
         public let runParams: String?
 
-        /// 无
         public let scriptContent: String?
 
-        /// 无
         public let versionId: String?
 
         public init(taskIds: String, projectId: String, workFlowId: String? = nil, name: String? = nil, tasks: [StageCloudApiRequest]? = nil, description: String? = nil, runParams: String? = nil, scriptContent: String? = nil, versionId: String? = nil) {
@@ -75,10 +66,8 @@ extension Wedata {
 
     /// SubmitTaskTestRun返回参数结构体
     public struct SubmitTaskTestRunResponse: TCResponseModel {
-        /// 无
         public let jobId: Int64
 
-        /// 无
         public let recordId: [Int64]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

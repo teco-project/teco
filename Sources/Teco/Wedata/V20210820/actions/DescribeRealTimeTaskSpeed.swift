@@ -21,7 +21,6 @@ import TecoCore
 extension Wedata {
     /// DescribeRealTimeTaskSpeed请求参数结构体
     public struct DescribeRealTimeTaskSpeedRequest: TCRequestModel {
-        /// 无
         public let taskId: String
 
         /// 带毫秒的时间戳
@@ -33,7 +32,6 @@ extension Wedata {
         /// 粒度，1或者5
         public let granularity: UInt64
 
-        /// 无
         public let projectId: String
 
         public init(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String) {

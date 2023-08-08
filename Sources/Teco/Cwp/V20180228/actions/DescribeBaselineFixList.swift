@@ -64,7 +64,6 @@ extension Cwp {
 
     /// DescribeBaselineFixList返回参数结构体
     public struct DescribeBaselineFixListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineFix]
 
         /// 总数

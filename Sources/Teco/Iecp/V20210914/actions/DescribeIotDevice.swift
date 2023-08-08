@@ -24,10 +24,8 @@ extension Iecp {
         /// 设备id，传0值表示此参数无效
         public let deviceId: Int64?
 
-        /// 无
         public let productID: String?
 
-        /// 无
         public let deviceName: String?
 
         public init(deviceId: Int64? = nil, productID: String? = nil, deviceName: String? = nil) {
@@ -90,13 +88,10 @@ extension Iecp {
         /// 设备在线状态
         public let status: Int64
 
-        /// 无
         public let region: String
 
-        /// 无
         public let unitID: Int64
 
-        /// 无
         public let unitName: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

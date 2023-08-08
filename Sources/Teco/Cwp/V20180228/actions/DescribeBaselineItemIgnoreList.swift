@@ -69,7 +69,6 @@ extension Cwp {
 
     /// DescribeBaselineItemIgnoreList返回参数结构体
     public struct DescribeBaselineItemIgnoreListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineItemInfo]
 
         /// 总数

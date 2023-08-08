@@ -21,10 +21,8 @@ import TecoCore
 extension Cloudstudio {
     /// RecoverWorkspace请求参数结构体
     public struct RecoverWorkspaceRequest: TCRequestModel {
-        /// 无
         public let cloudStudioSessionTeam: String
 
-        /// 无
         public let spaceKey: String
 
         public init(cloudStudioSessionTeam: String, spaceKey: String) {

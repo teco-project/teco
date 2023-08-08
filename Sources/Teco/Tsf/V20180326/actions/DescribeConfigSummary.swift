@@ -40,13 +40,10 @@ extension Tsf {
         /// 升序传 0，降序传 1
         public let orderType: Int64?
 
-        /// 无
         public let configTagList: [String]?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
-        /// 无
         public let configIdList: [String]?
 
         public init(applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil) {

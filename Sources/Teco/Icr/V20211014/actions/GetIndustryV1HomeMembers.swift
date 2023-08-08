@@ -21,10 +21,8 @@ import TecoCore
 extension Icr {
     /// GetIndustryV1HomeMembers请求参数结构体
     public struct GetIndustryV1HomeMembersRequest: TCRequestModel {
-        /// 无
         public let payload: GetIndustryV1HomeMembersReqPayload
 
-        /// 无
         public let metadata: ReqMetadata?
 
         public init(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil) {

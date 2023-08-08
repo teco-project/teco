@@ -30,7 +30,6 @@ extension Tsf {
         /// 泳道部署组信息
         public let laneGroupList: [LaneGroup]
 
-        /// 无
         public let programIdList: [String]?
 
         public init(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil) {

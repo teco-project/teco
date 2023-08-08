@@ -21,7 +21,6 @@ import TecoCore
 extension Ecm {
     /// QueryVpcTaskResult请求参数结构体
     public struct QueryVpcTaskResultRequest: TCRequestModel {
-        /// 无
         public let taskId: String
 
         public init(taskId: String) {

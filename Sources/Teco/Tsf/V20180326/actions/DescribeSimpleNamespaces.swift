@@ -52,7 +52,6 @@ extension Tsf {
         /// 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认，命名空间。1：非默认命名空间
         public let isDefault: String?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
         public init(namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil) {

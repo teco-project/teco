@@ -1494,23 +1494,16 @@ extension Bmlb {
         /// 该负载均衡对应的所在的SubnetId
         public let subnetId: String?
 
-        /// 无
         public let status: UInt64?
 
-        /// 无
         public let payMode: String?
 
-        /// 无
         public let latestPayMode: String?
 
-        /// 无
-        ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
-        /// 无
-        ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var statusTime: Date?
@@ -1524,16 +1517,13 @@ extension Bmlb {
         /// 负载均衡的IPV4的VIP。
         public let loadBalancerVips: [String]?
 
-        /// 无
         public let supportListenerTypes: [String]?
 
-        /// 无
         public let bandwidth: UInt64?
 
         /// 负载均衡个性化配置ID
         public let confId: String?
 
-        /// 无
         public let confName: String?
 
         /// 负载均衡的IPV6的VIP。

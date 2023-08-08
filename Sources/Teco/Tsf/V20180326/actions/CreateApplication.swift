@@ -51,7 +51,6 @@ extension Tsf {
         /// 忽略创建镜像仓库
         public let ignoreCreateImageRepository: Bool?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil) {

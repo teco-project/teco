@@ -21,10 +21,8 @@ import TecoCore
 extension Cloudstudio {
     /// RemoveWorkspace请求参数结构体
     public struct RemoveWorkspaceRequest: TCRequestModel {
-        /// 无
         public let cloudStudioSessionTeam: String
 
-        /// 无
         public let spaceKey: String
 
         /// 是否强制，true或者false

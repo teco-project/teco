@@ -400,10 +400,8 @@ extension Iecp {
 
     /// 从单元批量解绑设备
     public struct DeleteEdgeUnitDevicesDevice: TCInputModel {
-        /// 无
         public let productId: String
 
-        /// 无
         public let deviceName: String
 
         public init(productId: String, deviceName: String) {
@@ -1269,13 +1267,10 @@ extension Iecp {
         /// 设备版本
         public let version: String
 
-        /// 无
         public let region: String
 
-        /// 无
         public let unitID: Int64
 
-        /// 无
         public let unitName: String
 
         enum CodingKeys: String, CodingKey {
@@ -1390,10 +1385,8 @@ extension Iecp {
         /// 组件可视化信息
         public let workloadVisualConfig: String?
 
-        /// 无
         public let detailUrl: String?
 
-        /// 无
         public let installed: Bool?
 
         public init(id: Int64, appName: String, author: String? = nil, releaseTime: String? = nil, outline: String? = nil, detail: String? = nil, icon: String? = nil, version: String? = nil, workloadVisualConfig: String? = nil, detailUrl: String? = nil, installed: Bool? = nil) {
@@ -1889,52 +1882,36 @@ extension Iecp {
 
     /// 消息路由
     public struct RouteInfo: TCOutputModel {
-        /// 无
         public let routeID: Int64
 
-        /// 无
         public let routeName: String
 
-        /// 无
         public let sourceProductID: String
 
-        /// 无
         public let topicFilter: String
 
-        /// 无
         public let mode: String
 
-        /// 无
         public let targetOptions: String
 
-        /// 无
         public let createTime: String
 
-        /// 无
         public let descript: String
 
-        /// 无
         public let healthy: String
 
-        /// 无
         public let status: String
 
-        /// 无
         public let messageCount: Int64
 
-        /// 无
         public let messageLastTime: String
 
-        /// 无
         public let sourceProductName: String
 
-        /// 无
         public let sourceUnitIDList: [String]
 
-        /// 无
         public let sourceUnitNameList: [String]
 
-        /// 无
         public let sourceDeviceNameList: [String]
 
         enum CodingKeys: String, CodingKey {

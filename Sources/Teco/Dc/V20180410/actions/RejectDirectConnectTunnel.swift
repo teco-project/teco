@@ -21,7 +21,6 @@ import TecoCore
 extension Dc {
     /// RejectDirectConnectTunnel请求参数结构体
     public struct RejectDirectConnectTunnelRequest: TCRequestModel {
-        /// 无
         public let directConnectTunnelId: String
 
         public init(directConnectTunnelId: String) {

@@ -21,13 +21,10 @@ import TecoCore
 extension Iecp {
     /// CreateEdgeUnitDevices请求参数结构体
     public struct CreateEdgeUnitDevicesRequest: TCRequestModel {
-        /// 无
         public let edgeUnitId: Int64
 
-        /// 无
         public let productId: String
 
-        /// 无
         public let deviceNames: [String]
 
         public init(edgeUnitId: Int64, productId: String, deviceNames: [String]) {

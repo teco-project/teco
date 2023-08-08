@@ -21,7 +21,6 @@ import TecoCore
 extension Ecm {
     /// DescribeInstancesDeniedActions请求参数结构体
     public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
-        /// 无
         public let instanceIdSet: [String]
 
         public init(instanceIdSet: [String]) {

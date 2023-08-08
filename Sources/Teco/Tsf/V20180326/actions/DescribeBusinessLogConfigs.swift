@@ -31,10 +31,8 @@ extension Tsf {
         /// 模糊匹配关键词
         public let searchWord: String?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
-        /// 无
         public let configIdList: [String]?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil) {

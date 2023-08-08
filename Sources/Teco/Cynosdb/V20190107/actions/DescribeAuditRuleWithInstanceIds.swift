@@ -35,7 +35,6 @@ extension Cynosdb {
 
     /// DescribeAuditRuleWithInstanceIds返回参数结构体
     public struct DescribeAuditRuleWithInstanceIdsResponse: TCResponseModel {
-        /// 无
         public let totalCount: Int64
 
         /// 实例审计规则信息。

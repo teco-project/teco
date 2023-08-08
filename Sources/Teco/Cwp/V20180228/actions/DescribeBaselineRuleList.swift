@@ -66,7 +66,6 @@ extension Cwp {
 
     /// DescribeBaselineRuleList返回参数结构体
     public struct DescribeBaselineRuleListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineRule]
 
         /// 总数
