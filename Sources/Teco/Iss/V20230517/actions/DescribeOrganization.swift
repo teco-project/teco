@@ -27,47 +27,91 @@ extension Iss {
 
     /// 查询组织数据返回结果
     public struct DescribeOrganizationResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let organizationId: String?
+
+            public let name: String?
+
+            public let parentId: String?
+
+            public let level: Int64?
+
+            public let appId: Int64?
+
+            public let parentIds: String?
+
+            public let total: Int64?
+
+            public let online: Int64?
+
+            enum CodingKeys: String, CodingKey {
+                case organizationId = "OrganizationId"
+                case name = "Name"
+                case parentId = "ParentId"
+                case level = "Level"
+                case appId = "AppId"
+                case parentIds = "ParentIds"
+                case total = "Total"
+                case online = "Online"
+            }
+        }
+
         /// 组织 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let organizationId: String?
+        public var organizationId: String? {
+            self.data.organizationId
+        }
 
         /// 组织名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String?
+        public var name: String? {
+            self.data.name
+        }
 
         /// 组织父节点 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let parentId: String?
+        public var parentId: String? {
+            self.data.parentId
+        }
 
         /// 组织层级
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let level: Int64?
+        public var level: Int64? {
+            self.data.level
+        }
 
         /// 用户id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appId: Int64?
+        public var appId: Int64? {
+            self.data.appId
+        }
 
         /// 组织结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let parentIds: String?
+        public var parentIds: String? {
+            self.data.parentIds
+        }
 
         /// 设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let total: Int64?
+        public var total: Int64? {
+            self.data.total
+        }
 
         /// 设备在线数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let online: Int64?
+        public var online: Int64? {
+            self.data.online
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case organizationId = "OrganizationId"
-            case name = "Name"
-            case parentId = "ParentId"
-            case level = "Level"
-            case appId = "AppId"
-            case parentIds = "ParentIds"
-            case total = "Total"
-            case online = "Online"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

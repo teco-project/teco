@@ -35,12 +35,28 @@ extension Iss {
 
     /// 查询网关服务版本信息返回数据
     public struct DescribeGatewayVersionResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let services: [DescribeGatewayVersion]?
+
+            enum CodingKeys: String, CodingKey {
+                case services = "Services"
+            }
+        }
+
         /// 网关服务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let services: [DescribeGatewayVersion]?
+        public var services: [DescribeGatewayVersion]? {
+            self.data.services
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case services = "Services"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

@@ -54,17 +54,37 @@ extension Wedata {
 
     /// 分页查询实例响应
     public struct DescribeBaselineInstancesResponse: TCPaginatedResponse {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let baselineInstances: [BaselineInstanceVo]?
+
+            public let totalCount: Int64?
+
+            enum CodingKeys: String, CodingKey {
+                case baselineInstances = "BaselineInstances"
+                case totalCount = "TotalCount"
+            }
+        }
+
         /// 基线实例数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baselineInstances: [BaselineInstanceVo]?
+        public var baselineInstances: [BaselineInstanceVo]? {
+            self.data.baselineInstances
+        }
 
         /// 总数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalCount: Int64?
+        public var totalCount: Int64? {
+            self.data.totalCount
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case baselineInstances = "BaselineInstances"
-            case totalCount = "TotalCount"
+            case data = "Data"
+            case requestId = "RequestId"
         }
 
         /// Extract the returned item list from the paginated response.

@@ -35,62 +35,118 @@ extension Iss {
 
     /// 查询网关信息返回结果
     public struct DescribeGatewayResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let gatewayId: String?
+
+            public let gwId: String?
+
+            public let name: String?
+
+            public let description: String?
+
+            public let clusterId: String?
+
+            public let clusterName: String?
+
+            public let status: Int64?
+
+            public let version: [GatewayVersion]?
+
+            public let deviceNum: Int64?
+
+            public let createdAt: String?
+
+            public let region: String?
+
+            enum CodingKeys: String, CodingKey {
+                case gatewayId = "GatewayId"
+                case gwId = "GwId"
+                case name = "Name"
+                case description = "Description"
+                case clusterId = "ClusterId"
+                case clusterName = "ClusterName"
+                case status = "Status"
+                case version = "Version"
+                case deviceNum = "DeviceNum"
+                case createdAt = "CreatedAt"
+                case region = "Region"
+            }
+        }
+
         /// 网关索引ID，用于网关查询，更新，删除操作
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gatewayId: String?
+        public var gatewayId: String? {
+            self.data.gatewayId
+        }
 
         /// 网关编码，由网关设备生成的唯一编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gwId: String?
+        public var gwId: String? {
+            self.data.gwId
+        }
 
         /// 网关名称，仅支持中文、英文、数字、_、-，长度不超过32个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String?
+        public var name: String? {
+            self.data.name
+        }
 
         /// 网关描述，仅支持中文、英文、数字、_、-，长度不超过128个字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let description: String?
+        public var description: String? {
+            self.data.description
+        }
 
         /// 服务节点id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusterId: String?
+        public var clusterId: String? {
+            self.data.clusterId
+        }
 
         /// 服务节点名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusterName: String?
+        public var clusterName: String? {
+            self.data.clusterName
+        }
 
         /// 网关状态，0：离线，1:在线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: Int64?
+        public var status: Int64? {
+            self.data.status
+        }
 
         /// 网关版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let version: [GatewayVersion]?
+        public var version: [GatewayVersion]? {
+            self.data.version
+        }
 
         /// 网关下挂设备数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deviceNum: Int64?
+        public var deviceNum: Int64? {
+            self.data.deviceNum
+        }
 
         /// 激活时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createdAt: String?
+        public var createdAt: String? {
+            self.data.createdAt
+        }
 
         /// 所属地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String?
+        public var region: String? {
+            self.data.region
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case gatewayId = "GatewayId"
-            case gwId = "GwId"
-            case name = "Name"
-            case description = "Description"
-            case clusterId = "ClusterId"
-            case clusterName = "ClusterName"
-            case status = "Status"
-            case version = "Version"
-            case deviceNum = "DeviceNum"
-            case createdAt = "CreatedAt"
-            case region = "Region"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

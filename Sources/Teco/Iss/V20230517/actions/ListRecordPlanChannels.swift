@@ -27,12 +27,28 @@ extension Iss {
 
     /// 用户下所有实时上云计划中的通道id列表返回数据
     public struct ListRecordPlanChannelsResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let list: [String]?
+
+            enum CodingKeys: String, CodingKey {
+                case list = "List"
+            }
+        }
+
         /// 用户所有计划下通道id，存在通道是为数组格式，不存在时，字段数据为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let list: [String]?
+        public var list: [String]? {
+            self.data.list
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case list = "List"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

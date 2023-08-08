@@ -55,12 +55,28 @@ extension Iss {
 
     /// 本地录像播放url数据结构
     public struct PlayRecordResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let flv: String?
+
+            enum CodingKeys: String, CodingKey {
+                case flv = "Flv"
+            }
+        }
+
         /// 录像播放地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let flv: String?
+        public var flv: String? {
+            self.data.flv
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case flv = "Flv"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

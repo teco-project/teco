@@ -52,22 +52,46 @@ extension Iss {
 
     /// 获取开流地址返回数据
     public struct ControlDeviceStreamResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let flv: String?
+
+            public let hls: String?
+
+            public let rtmp: String?
+
+            enum CodingKeys: String, CodingKey {
+                case flv = "Flv"
+                case hls = "Hls"
+                case rtmp = "Rtmp"
+            }
+        }
+
         /// flv 流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let flv: String?
+        public var flv: String? {
+            self.data.flv
+        }
 
         /// hls 流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hls: String?
+        public var hls: String? {
+            self.data.hls
+        }
 
         /// rtmp 流地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rtmp: String?
+        public var rtmp: String? {
+            self.data.rtmp
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case flv = "Flv"
-            case hls = "Hls"
-            case rtmp = "Rtmp"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

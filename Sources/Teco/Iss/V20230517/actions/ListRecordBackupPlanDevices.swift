@@ -60,27 +60,55 @@ extension Iss {
 
     /// 查询录像上云计划关联通道的返回数据
     public struct ListRecordBackupPlanDevicesResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let pageNumber: Int64?
+
+            public let pageSize: Int64?
+
+            public let totalCount: Int64?
+
+            public let list: RecordPlanChannelInfo?
+
+            enum CodingKeys: String, CodingKey {
+                case pageNumber = "PageNumber"
+                case pageSize = "PageSize"
+                case totalCount = "TotalCount"
+                case list = "List"
+            }
+        }
+
         /// 第几页
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pageNumber: Int64?
+        public var pageNumber: Int64? {
+            self.data.pageNumber
+        }
 
         /// 当前页的设备数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pageSize: Int64?
+        public var pageSize: Int64? {
+            self.data.pageSize
+        }
 
         /// 本次查询的设备通道总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalCount: Int64?
+        public var totalCount: Int64? {
+            self.data.totalCount
+        }
 
         /// 设备通道信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let list: RecordPlanChannelInfo?
+        public var list: RecordPlanChannelInfo? {
+            self.data.list
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case pageNumber = "PageNumber"
-            case pageSize = "PageSize"
-            case totalCount = "TotalCount"
-            case list = "List"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

@@ -27,22 +27,46 @@ extension Iss {
 
     /// 查询域名可绑定集群数据
     public struct DescribeDomainRegionResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let label: String?
+
+            public let value: String?
+
+            public let region: String?
+
+            enum CodingKeys: String, CodingKey {
+                case label = "Label"
+                case value = "Value"
+                case region = "Region"
+            }
+        }
+
         /// 服务节点描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let label: String?
+        public var label: String? {
+            self.data.label
+        }
 
         /// 服务节点 ID（对应为其他接口中所需的 ClusterId）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String?
+        public var value: String? {
+            self.data.value
+        }
 
         /// 地域信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String?
+        public var region: String? {
+            self.data.region
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case label = "Label"
-            case value = "Value"
-            case region = "Region"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

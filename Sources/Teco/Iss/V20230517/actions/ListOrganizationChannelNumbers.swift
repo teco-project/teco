@@ -35,15 +35,35 @@ extension Iss {
 
     /// 组织目录下的未添加到实时上云计划中的通道数量返回数据
     public struct ListOrganizationChannelNumbersResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let totalCount: Int64
+
+            public let notInPlanCount: Int64?
+
+            enum CodingKeys: String, CodingKey {
+                case totalCount = "TotalCount"
+                case notInPlanCount = "NotInPlanCount"
+            }
+        }
+
         /// 组织下通道总数
-        public let totalCount: Int64
+        public var totalCount: Int64 {
+            self.data.totalCount
+        }
 
         /// 组织下未添加到计划的通道总数
-        public let notInPlanCount: Int64?
+        public var notInPlanCount: Int64? {
+            self.data.notInPlanCount
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case totalCount = "TotalCount"
-            case notInPlanCount = "NotInPlanCount"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 

@@ -60,43 +60,91 @@ extension Iss {
 
     /// 新增录像上云计划返回数据
     public struct AddRecordBackupPlanResponse: TCResponseModel {
+        private let data: Wrapped
+
+        private struct Wrapped: Codable {
+            public let planId: String
+
+            public let planName: String
+
+            public let templateId: String
+
+            public let describe: String
+
+            public let lifeCycle: LifeCycleData
+
+            public let status: Int64
+
+            public let channelCount: Int64
+
+            public let createAt: String
+
+            public let updateAt: String
+
+            enum CodingKeys: String, CodingKey {
+                case planId = "PlanId"
+                case planName = "PlanName"
+                case templateId = "TemplateId"
+                case describe = "Describe"
+                case lifeCycle = "LifeCycle"
+                case status = "Status"
+                case channelCount = "ChannelCount"
+                case createAt = "CreateAt"
+                case updateAt = "UpdateAt"
+            }
+        }
+
         /// 录像上云计划ID
-        public let planId: String
+        public var planId: String {
+            self.data.planId
+        }
 
         /// 录像上云计划名称
-        public let planName: String
+        public var planName: String {
+            self.data.planName
+        }
 
         /// 录像上云模板ID
-        public let templateId: String
+        public var templateId: String {
+            self.data.templateId
+        }
 
         /// 录像上云计划描述
-        public let describe: String
+        public var describe: String {
+            self.data.describe
+        }
 
         /// 云文件生命周期
-        public let lifeCycle: LifeCycleData
+        public var lifeCycle: LifeCycleData {
+            self.data.lifeCycle
+        }
 
         /// 录像上云计划状态，1:正常使用中，0:删除中，无法使用
-        public let status: Int64
+        public var status: Int64 {
+            self.data.status
+        }
 
         /// 通道数量
-        public let channelCount: Int64
+        public var channelCount: Int64 {
+            self.data.channelCount
+        }
 
         /// 创建时间
-        public let createAt: String
+        public var createAt: String {
+            self.data.createAt
+        }
 
         /// 修改时间
-        public let updateAt: String
+        public var updateAt: String {
+            self.data.updateAt
+        }
+
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case planId = "PlanId"
-            case planName = "PlanName"
-            case templateId = "TemplateId"
-            case describe = "Describe"
-            case lifeCycle = "LifeCycle"
-            case status = "Status"
-            case channelCount = "ChannelCount"
-            case createAt = "CreateAt"
-            case updateAt = "UpdateAt"
+            case data = "Data"
+            case requestId = "RequestId"
         }
     }
 
