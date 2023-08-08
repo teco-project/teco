@@ -21,7 +21,6 @@ import TecoCore
 extension Cwp {
     /// ModifyBaselinePolicy请求参数结构体
     public struct ModifyBaselinePolicyRequest: TCRequestModel {
-        /// 无
         public let data: BaselinePolicy
 
         /// <li>RuleName - String - 是否必填：否 - 规则名称</li>

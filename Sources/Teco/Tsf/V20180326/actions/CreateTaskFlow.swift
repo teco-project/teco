@@ -33,7 +33,6 @@ extension Tsf {
         /// 工作流执行超时时间
         public let timeOut: UInt64
 
-        /// 无
         public let programIdList: [String]?
 
         public init(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil) {

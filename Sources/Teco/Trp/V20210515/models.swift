@@ -215,7 +215,6 @@ extension Trp {
 
     /// 码类型
     public struct CodeItem: TCInputModel, TCOutputModel {
-        /// 无
         public let code: String?
 
         public init(code: String? = nil) {
@@ -1098,7 +1097,6 @@ extension Trp {
         /// 溯源阶段状态 0: 无效, 1: 有效
         public let status: Int64
 
-        /// 无
         public let traceItems: [TraceItem]?
 
         public init(traceId: String, corpId: UInt64, type: UInt64, code: String, rank: UInt64, phase: UInt64, phaseName: String, traceTime: String, createTime: String, chainStatus: UInt64, chainTime: String, chainData: ChainData, phaseData: PhaseData, status: Int64, traceItems: [TraceItem]? = nil) {

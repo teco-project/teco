@@ -72,7 +72,6 @@ extension Cwp {
 
     /// DescribeBaselineHostDetectList返回参数结构体
     public struct DescribeBaselineHostDetectListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineHostDetect]
 
         /// 总数

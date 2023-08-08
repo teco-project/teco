@@ -66,7 +66,6 @@ extension Tsf {
         /// native secret
         public let kuberneteNativeSecret: String?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(clusterName: String, clusterType: String, vpcId: String, clusterCIDR: String? = nil, clusterDesc: String? = nil, tsfRegionId: String? = nil, tsfZoneId: String? = nil, subnetId: String? = nil, clusterVersion: String? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, programId: String? = nil, kuberneteApiServer: String? = nil, kuberneteNativeType: String? = nil, kuberneteNativeSecret: String? = nil, programIdList: [String]? = nil) {

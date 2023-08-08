@@ -31,10 +31,8 @@ extension Tsf {
         /// 搜索关键字
         public let searchWord: String?
 
-        /// 无
         public let laneIdList: [String]?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
         public init(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil) {

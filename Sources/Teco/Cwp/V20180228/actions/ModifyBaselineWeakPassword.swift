@@ -21,7 +21,6 @@ import TecoCore
 extension Cwp {
     /// ModifyBaselineWeakPassword请求参数结构体
     public struct ModifyBaselineWeakPasswordRequest: TCRequestModel {
-        /// 无
         public let data: [BaselineWeakPassword]
 
         public init(data: [BaselineWeakPassword]) {

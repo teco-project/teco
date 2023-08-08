@@ -21,7 +21,6 @@ import TecoCore
 extension Cwp {
     /// ModifyBaselineRule请求参数结构体
     public struct ModifyBaselineRuleRequest: TCRequestModel {
-        /// 无
         public let data: BaselineRule
 
         /// 是否过滤全选

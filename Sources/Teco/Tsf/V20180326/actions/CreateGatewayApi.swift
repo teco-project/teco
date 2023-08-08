@@ -27,7 +27,6 @@ extension Tsf {
         /// Api信息
         public let apiList: [ApiInfo]
 
-        /// 无
         public let programIdList: [String]?
 
         public init(groupId: String, apiList: [ApiInfo], programIdList: [String]? = nil) {

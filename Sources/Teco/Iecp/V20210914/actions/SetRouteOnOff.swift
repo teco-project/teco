@@ -21,7 +21,6 @@ import TecoCore
 extension Iecp {
     /// SetRouteOnOff请求参数结构体
     public struct SetRouteOnOffRequest: TCRequestModel {
-        /// 无
         public let routeID: Int64
 
         /// on 或 off

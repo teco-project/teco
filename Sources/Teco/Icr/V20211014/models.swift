@@ -222,13 +222,10 @@ extension Icr {
         /// 渠道
         public let channelID: String?
 
-        /// 无
         public let businessName: String?
 
-        /// 无
         public let guid: String?
 
-        /// 无
         public let appKey: String?
 
         /// 位置定位服务
@@ -277,10 +274,8 @@ extension Icr {
 
     /// 请求参数Vagrant
     public struct ReqMetadataVagrant: TCInputModel {
-        /// 无
         public let key: String?
 
-        /// 无
         public let value: String?
 
         public init(key: String? = nil, value: String? = nil) {
@@ -296,16 +291,12 @@ extension Icr {
 
     /// 回包的meta data
     public struct RspMetadata: TCOutputModel {
-        /// 无
         public let code: Int64
 
-        /// 无
         public let message: String
 
-        /// 无
         public let sessionID: String
 
-        /// 无
         public let sessionDelta: String
 
         enum CodingKeys: String, CodingKey {

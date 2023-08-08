@@ -30,7 +30,6 @@ extension Wedata {
         /// 项目Id
         public let projectId: String
 
-        /// 无
         public let searchCondition: SearchCondition?
 
         public init(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil) {

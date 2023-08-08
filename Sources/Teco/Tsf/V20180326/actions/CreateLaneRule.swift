@@ -36,7 +36,6 @@ extension Tsf {
         /// 泳道Id
         public let laneId: String
 
-        /// 无
         public let programIdList: [String]?
 
         public init(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil) {

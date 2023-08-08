@@ -22,22 +22,16 @@ import TecoPaginationHelpers
 extension Iecp {
     /// DescribeMessageRouteList请求参数结构体
     public struct DescribeMessageRouteListRequest: TCPaginatedRequest {
-        /// 无
         public let limit: Int64
 
-        /// 无
         public let offset: Int64
 
-        /// 无
         public let filter: String?
 
-        /// 无
         public let startTime: String?
 
-        /// 无
         public let endTime: String?
 
-        /// 无
         public let order: String?
 
         public init(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil) {
@@ -69,10 +63,8 @@ extension Iecp {
 
     /// DescribeMessageRouteList返回参数结构体
     public struct DescribeMessageRouteListResponse: TCPaginatedResponse {
-        /// 无
         public let routeList: [RouteInfo]
 
-        /// 无
         public let totalCount: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

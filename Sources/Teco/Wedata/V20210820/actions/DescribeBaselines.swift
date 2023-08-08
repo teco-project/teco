@@ -22,7 +22,6 @@ import TecoPaginationHelpers
 extension Wedata {
     /// DescribeBaselines请求参数结构体
     public struct DescribeBaselinesRequest: TCPaginatedRequest {
-        /// 无
         public let filters: [Filter]
 
         /// 页面下标

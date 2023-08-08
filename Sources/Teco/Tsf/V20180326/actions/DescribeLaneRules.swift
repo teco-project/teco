@@ -34,7 +34,6 @@ extension Tsf {
         /// 泳道规则ID（用于精确搜索）
         public let ruleId: String?
 
-        /// 无
         public let ruleIdList: [String]?
 
         public init(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil) {

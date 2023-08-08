@@ -74,7 +74,6 @@ extension Cwp {
 
     /// DescribeBaselineItemList返回参数结构体
     public struct DescribeBaselineItemListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineItem]
 
         /// 总数

@@ -67,7 +67,6 @@ extension Cwp {
 
     /// DescribeBaselineDownloadList返回参数结构体
     public struct DescribeBaselineDownloadListResponse: TCPaginatedResponse {
-        /// 无
         public let list: [BaselineDownload]
 
         /// 总数

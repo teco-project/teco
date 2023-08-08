@@ -21,7 +21,6 @@ import TecoCore
 extension Iecp {
     /// DeleteMessageRoute请求参数结构体
     public struct DeleteMessageRouteRequest: TCRequestModel {
-        /// 无
         public let routeID: Int64
 
         public init(routeID: Int64) {

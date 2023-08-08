@@ -21,7 +21,6 @@ import TecoCore
 extension Iecp {
     /// DeleteIotDeviceBatch请求参数结构体
     public struct DeleteIotDeviceBatchRequest: TCRequestModel {
-        /// 无
         public let deviceIDList: [UInt64]
 
         public init(deviceIDList: [UInt64]) {

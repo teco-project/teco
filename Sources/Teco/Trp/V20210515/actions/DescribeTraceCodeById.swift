@@ -40,7 +40,6 @@ extension Trp {
 
     /// DescribeTraceCodeById返回参数结构体
     public struct DescribeTraceCodeByIdResponse: TCResponseModel {
-        /// 无
         public let traceCode: TraceCode
 
         /// 码路径，如level是2，则为 [1级, 2级]

@@ -21,7 +21,6 @@ import TecoCore
 extension Tsf {
     /// DescribeConfigTemplate请求参数结构体
     public struct DescribeConfigTemplateRequest: TCRequestModel {
-        /// 无
         public let configTemplateId: String
 
         public init(configTemplateId: String) {

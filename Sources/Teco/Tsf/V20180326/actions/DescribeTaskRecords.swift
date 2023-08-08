@@ -43,7 +43,6 @@ extension Tsf {
         /// 任务触发类型，UNICAST、BROADCAST。
         public let executeType: String?
 
-        /// 无
         public let ids: [String]?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil) {

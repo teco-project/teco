@@ -42,7 +42,6 @@ extension Iecp {
         /// 描述
         public let descript: String?
 
-        /// 无
         public let targetOptions: String?
 
         public init(routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil) {

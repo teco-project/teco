@@ -49,10 +49,8 @@ extension Emr {
         /// 支持搜索的字段
         public let searchFields: [SearchItem]?
 
-        /// 无
         public let orderField: String?
 
-        /// 无
         public let asc: Int64?
 
         public init(instanceId: String, nodeFlag: String, offset: Int64? = nil, limit: Int64? = nil, hardwareResourceType: String? = nil, searchFields: [SearchItem]? = nil, orderField: String? = nil, asc: Int64? = nil) {

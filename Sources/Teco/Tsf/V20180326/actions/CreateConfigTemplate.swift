@@ -33,7 +33,6 @@ extension Tsf {
         /// 配置模板描述
         public let configTemplateDesc: String?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(configTemplateName: String, configTemplateType: String, configTemplateValue: String, configTemplateDesc: String? = nil, programIdList: [String]? = nil) {

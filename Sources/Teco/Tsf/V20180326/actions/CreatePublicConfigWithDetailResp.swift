@@ -39,7 +39,6 @@ extension Tsf {
         /// Base64编码的配置项
         public let encodeWithBase64: Bool?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil) {

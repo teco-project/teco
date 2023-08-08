@@ -66,7 +66,6 @@ extension Tsf {
         /// 任务参数，长度限制10000个字符
         public let taskArgument: String?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {

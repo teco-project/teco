@@ -67,7 +67,6 @@ extension Cwp {
         /// 总数
         public let total: Int64
 
-        /// 无
         public let list: [BaselineWeakPassword]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

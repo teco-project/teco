@@ -21,7 +21,6 @@ import TecoCore
 extension Goosefs {
     /// AttachFileSystemBucket请求参数结构体
     public struct AttachFileSystemBucketRequest: TCRequestModel {
-        /// 无
         public let fileSystemId: String
 
         /// 关联新Bucket

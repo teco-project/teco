@@ -54,7 +54,6 @@ extension Wedata {
         /// 更新人名字
         public let updateName: String
 
-        /// 无
         public let isNewAlarm: Bool
 
         /// 现有告警规则信息

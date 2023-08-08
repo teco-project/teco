@@ -21,7 +21,6 @@ import TecoCore
 extension Wedata {
     /// DescribeBaselineById请求参数结构体
     public struct DescribeBaselineByIdRequest: TCRequestModel {
-        /// 无
         public let baselineId: String
 
         /// 1

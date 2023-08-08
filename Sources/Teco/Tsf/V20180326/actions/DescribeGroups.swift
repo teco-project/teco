@@ -52,7 +52,6 @@ extension Tsf {
         /// 部署组状态过滤字段
         public let status: String?
 
-        /// 无
         public let groupIdList: [String]?
 
         public init(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil) {

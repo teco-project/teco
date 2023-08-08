@@ -1624,13 +1624,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneTag: String?
 
-        /// 无
         public let vpcSettings: VPCSettings?
 
-        /// 无
         public let placement: Placement?
 
-        /// 无
         public let resourceSpec: NewResourceSpec?
 
         public init(zoneTag: String? = nil, vpcSettings: VPCSettings? = nil, placement: Placement? = nil, resourceSpec: NewResourceSpec? = nil) {

@@ -24,7 +24,6 @@ extension Cloudstudio {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
-        /// 无
         public let userDefinedTemplateParams: UserDefinedTemplateParams
 
         public init(cloudStudioSessionTeam: String, userDefinedTemplateParams: UserDefinedTemplateParams) {

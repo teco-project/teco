@@ -21,10 +21,8 @@ import TecoCore
 extension Iecp {
     /// DeleteEdgeUnitDevices请求参数结构体
     public struct DeleteEdgeUnitDevicesRequest: TCRequestModel {
-        /// 无
         public let edgeUnitId: Int64
 
-        /// 无
         public let devices: [DeleteEdgeUnitDevicesDevice]
 
         public init(edgeUnitId: Int64, devices: [DeleteEdgeUnitDevicesDevice]) {

@@ -84,7 +84,6 @@ extension Cfg {
 
     /// DescribeTaskList返回参数结构体
     public struct DescribeTaskListResponse: TCPaginatedResponse {
-        /// 无
         public let taskList: [TaskListItem]
 
         /// 列表数量

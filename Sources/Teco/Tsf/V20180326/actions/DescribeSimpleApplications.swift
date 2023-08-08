@@ -43,7 +43,6 @@ extension Tsf {
         /// 通过id和name进行关键词过滤
         public let searchWord: String?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
         public init(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil) {

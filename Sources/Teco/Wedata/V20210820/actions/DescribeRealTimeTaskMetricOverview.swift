@@ -24,7 +24,6 @@ extension Wedata {
         /// 要查看的实时任务的任务Id
         public let taskId: String
 
-        /// 无
         public let projectId: String
 
         /// 开始时间

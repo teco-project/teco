@@ -45,7 +45,6 @@ extension Tsf {
         /// 需要绑定的数据集ID
         public let programId: String?
 
-        /// 无
         public let programIdList: [String]?
 
         public init(namespaceName: String, clusterId: String? = nil, namespaceDesc: String? = nil, namespaceResourceType: String? = nil, namespaceType: String? = nil, namespaceId: String? = nil, isHaEnable: String? = nil, programId: String? = nil, programIdList: [String]? = nil) {

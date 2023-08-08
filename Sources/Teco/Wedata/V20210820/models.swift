@@ -3422,13 +3422,10 @@ extension Wedata {
 
     /// 函数类型或函数分类
     public struct FunctionTypeOrKind: TCOutputModel {
-        /// 无
         public let name: String
 
-        /// 无
         public let zhName: String
 
-        /// 无
         public let enName: String
 
         enum CodingKeys: String, CodingKey {
@@ -9023,48 +9020,33 @@ extension Wedata {
         }
     }
 
-    /// 无
     public struct StageCloudApiRequest: TCInputModel {
-        /// 无
         public let clusterId: String?
 
-        /// 无
         public let stageId: String?
 
-        /// 无
         public let jobId: String?
 
-        /// 无
         public let stageName: String?
 
-        /// 无
         public let type: String?
 
-        /// 无
         public let mode: String?
 
-        /// 无
         public let version: String?
 
-        /// 无
         public let queue: String?
 
-        /// 无
         public let content: String?
 
-        /// 无
         public let parameters: [Property]?
 
-        /// 无
         public let description: String?
 
-        /// 无
         public let projectId: String?
 
-        /// 无
         public let jobType: String?
 
-        /// 无
         public let workFlowId: String?
 
         public init(clusterId: String? = nil, stageId: String? = nil, jobId: String? = nil, stageName: String? = nil, type: String? = nil, mode: String? = nil, version: String? = nil, queue: String? = nil, content: String? = nil, parameters: [Property]? = nil, description: String? = nil, projectId: String? = nil, jobType: String? = nil, workFlowId: String? = nil) {

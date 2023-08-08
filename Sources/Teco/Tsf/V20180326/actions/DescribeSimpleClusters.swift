@@ -37,7 +37,6 @@ extension Tsf {
         /// 对id和name进行关键词过滤
         public let searchWord: String?
 
-        /// 无
         public let disableProgramAuthCheck: Bool?
 
         public init(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil) {
