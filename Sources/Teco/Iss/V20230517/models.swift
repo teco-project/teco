@@ -20,15 +20,15 @@ extension Iss {
     /// AI分析配置
     public struct AIConfig: TCInputModel, TCOutputModel {
         /// AI 分析类型。可选值为 Facemask(口罩识别)、Chefhat(厨师帽识别)、Smoking(抽烟检测)、Chefcloth(厨师服识别)、PhoneCall(接打电话识别)、Pet(宠物识别)、Body(人体识别)和Car(车辆车牌识别)等
-        public let detectType: String
+        public let detectType: String?
 
         /// 截图频率。可选值1～20秒
-        public let timeInterval: UInt64
+        public let timeInterval: UInt64?
 
         /// 模板生效的时间段。最多包含5组时间段
-        public let operTimeSlot: [OperTimeSlot]
+        public let operTimeSlot: [OperTimeSlot]?
 
-        public init(detectType: String, timeInterval: UInt64, operTimeSlot: [OperTimeSlot]) {
+        public init(detectType: String? = nil, timeInterval: UInt64? = nil, operTimeSlot: [OperTimeSlot]? = nil) {
             self.detectType = detectType
             self.timeInterval = timeInterval
             self.operTimeSlot = operTimeSlot
@@ -163,7 +163,7 @@ extension Iss {
     /// AI模板信息
     public struct AITemplates: TCInputModel, TCOutputModel {
         /// AI 类别。可选值 AI(AI 分析)和 Snapshot(截图)，Templates 列表中只能出现一种类型。
-        public let tag: String
+        public let tag: String?
 
         /// AI 分析配置。和"SnapshotConfig"二选一。
         public let aiConfig: AIConfig?
@@ -171,7 +171,7 @@ extension Iss {
         /// 截图配置。和"AIConfig"二选一。
         public let snapshotConfig: SnapshotConfig?
 
-        public init(tag: String, aiConfig: AIConfig? = nil, snapshotConfig: SnapshotConfig? = nil) {
+        public init(tag: String? = nil, aiConfig: AIConfig? = nil, snapshotConfig: SnapshotConfig? = nil) {
             self.tag = tag
             self.aiConfig = aiConfig
             self.snapshotConfig = snapshotConfig
@@ -941,12 +941,12 @@ extension Iss {
     /// AI分析的时间段配置
     public struct OperTimeSlot: TCInputModel, TCOutputModel {
         /// 开始时间。格式为"hh:mm:ss"，且 Start 必须小于 End
-        public let start: String
+        public let start: String?
 
         /// 结束时间。格式为"hh:mm:ss"，且 Start 必须小于 End
-        public let end: String
+        public let end: String?
 
-        public init(start: String, end: String) {
+        public init(start: String? = nil, end: String? = nil) {
             self.start = start
             self.end = end
         }
@@ -1304,12 +1304,12 @@ extension Iss {
     /// 截图配置
     public struct SnapshotConfig: TCInputModel, TCOutputModel {
         /// 截图频率。可选值1～20秒
-        public let timeInterval: UInt64
+        public let timeInterval: UInt64?
 
         /// 模板生效的时间段。最多包含5组时间段
-        public let operTimeSlot: [OperTimeSlot]
+        public let operTimeSlot: [OperTimeSlot]?
 
-        public init(timeInterval: UInt64, operTimeSlot: [OperTimeSlot]) {
+        public init(timeInterval: UInt64? = nil, operTimeSlot: [OperTimeSlot]? = nil) {
             self.timeInterval = timeInterval
             self.operTimeSlot = operTimeSlot
         }

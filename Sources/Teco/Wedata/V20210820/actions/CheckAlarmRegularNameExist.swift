@@ -28,7 +28,8 @@ extension Wedata {
         public let alarmRegularName: String
 
         /// 任务ID
-        public let taskId: String?
+        @available(*, deprecated)
+        public let taskId: String? = nil
 
         /// 主键ID
         public let id: String?
@@ -36,10 +37,17 @@ extension Wedata {
         /// 任务类型:201.实时,202.离线
         public let taskType: Int64?
 
+        public init(projectId: String, alarmRegularName: String, id: String? = nil, taskType: Int64? = nil) {
+            self.projectId = projectId
+            self.alarmRegularName = alarmRegularName
+            self.id = id
+            self.taskType = taskType
+        }
+
+        @available(*, deprecated, renamed: "init(projectId:alarmRegularName:id:taskType:)", message: "'taskId' is deprecated in 'CheckAlarmRegularNameExistRequest'. Setting this parameter has no effect.")
         public init(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil) {
             self.projectId = projectId
             self.alarmRegularName = alarmRegularName
-            self.taskId = taskId
             self.id = id
             self.taskType = taskType
         }
@@ -81,11 +89,25 @@ extension Wedata {
 
     /// 判断告警规则重名
     @inlinable
+    public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAlarmRegularNameExistResponse> {
+        self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 判断告警规则重名
+    @available(*, deprecated, renamed: "checkAlarmRegularNameExist(projectId:alarmRegularName:id:taskType:region:logger:on:)", message: "'taskId' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAlarmRegularNameExistResponse> {
         self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, taskId: taskId, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 判断告警规则重名
+    @inlinable
+    public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
+        try await self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 判断告警规则重名
+    @available(*, deprecated, renamed: "checkAlarmRegularNameExist(projectId:alarmRegularName:id:taskType:region:logger:on:)", message: "'taskId' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func checkAlarmRegularNameExist(projectId: String, alarmRegularName: String, taskId: String? = nil, id: String? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
         try await self.checkAlarmRegularNameExist(.init(projectId: projectId, alarmRegularName: alarmRegularName, taskId: taskId, id: id, taskType: taskType), region: region, logger: logger, on: eventLoop)

@@ -7885,7 +7885,7 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let s3SecretKey: String?
 
-        public init(s3Bucket: String, s3Region: String, s3Object: String, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
+        public init(s3Bucket: String? = nil, s3Region: String? = nil, s3Object: String? = nil, s3SecretId: String? = nil, s3SecretKey: String? = nil) {
             self.s3Bucket = s3Bucket
             self.s3Region = s3Region
             self.s3Object = s3Object

@@ -54,14 +54,28 @@ extension Ess {
 
         /// 默认为false，查询SaaS模板库列表；
         /// 为true，查询第三方应用集成平台企业模板库管理列表
-        public let isChannel: Bool?
+        @available(*, deprecated)
+        public let isChannel: Bool? = nil
 
         /// 暂未开放
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
         /// 暂未开放
-        public let generateSource: UInt64?
+        @available(*, deprecated)
+        public let generateSource: UInt64? = nil
 
+        public init(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil) {
+            self.operator = `operator`
+            self.agent = agent
+            self.contentType = contentType
+            self.filters = filters
+            self.offset = offset
+            self.limit = limit
+            self.applicationId = applicationId
+        }
+
+        @available(*, deprecated, renamed: "init(operator:agent:contentType:filters:offset:limit:applicationId:)", message: "'isChannel', 'organization' and 'generateSource' are deprecated in 'DescribeFlowTemplatesRequest'. Setting these parameters has no effect.")
         public init(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil) {
             self.operator = `operator`
             self.agent = agent
@@ -70,9 +84,6 @@ extension Ess {
             self.offset = offset
             self.limit = limit
             self.applicationId = applicationId
-            self.isChannel = isChannel
-            self.organization = organization
-            self.generateSource = generateSource
         }
 
         enum CodingKeys: String, CodingKey {
@@ -93,7 +104,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFlowTemplatesRequest(operator: self.operator, agent: self.agent, contentType: self.contentType, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationId: self.applicationId, isChannel: self.isChannel, organization: self.organization, generateSource: self.generateSource)
+            return DescribeFlowTemplatesRequest(operator: self.operator, agent: self.agent, contentType: self.contentType, filters: self.filters, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, applicationId: self.applicationId)
         }
     }
 
@@ -181,6 +192,27 @@ extension Ess {
     /// >- 签署控件 SignComponents
     /// >- 生成模板的文件基础信息 FileInfos
     @inlinable
+    public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
+        self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板
+    ///
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
+    @available(*, deprecated, renamed: "describeFlowTemplates(operator:agent:contentType:filters:offset:limit:applicationId:region:logger:on:)", message: "'isChannel', 'organization' and 'generateSource' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
         self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId, isChannel: isChannel, organization: organization, generateSource: generateSource), region: region, logger: logger, on: eventLoop)
     }
@@ -200,6 +232,27 @@ extension Ess {
     /// >- 填写控件 Components
     /// >- 签署控件 SignComponents
     /// >- 生成模板的文件基础信息 FileInfos
+    @inlinable
+    public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
+        try await self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询模板
+    ///
+    /// 本接口用于查询本企业模板列表。
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。
+    ///
+    /// > **适用场景**
+    /// >
+    /// >  该接口常用来配合“模板发起合同-创建电子文档”接口作为前置的接口使用。
+    /// >  一个模板通常会包含以下结构信息
+    /// >- 模板基本信息
+    /// >- 发起方参与信息Promoter、签署参与方 Recipients，后者会在模板发起合同时用于指定参与方
+    /// >- 填写控件 Components
+    /// >- 签署控件 SignComponents
+    /// >- 生成模板的文件基础信息 FileInfos
+    @available(*, deprecated, renamed: "describeFlowTemplates(operator:agent:contentType:filters:offset:limit:applicationId:region:logger:on:)", message: "'isChannel', 'organization' and 'generateSource' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func describeFlowTemplates(operator: UserInfo, agent: Agent? = nil, contentType: Int64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationId: String? = nil, isChannel: Bool? = nil, organization: OrganizationInfo? = nil, generateSource: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
         try await self.describeFlowTemplates(.init(operator: `operator`, agent: agent, contentType: contentType, filters: filters, offset: offset, limit: limit, applicationId: applicationId, isChannel: isChannel, organization: organization, generateSource: generateSource), region: region, logger: logger, on: eventLoop)

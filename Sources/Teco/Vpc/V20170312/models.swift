@@ -151,7 +151,7 @@ extension Vpc {
         public let instanceType: String?
 
         /// 高防包ID,当EIP类型为高防EIP时，返回EIP绑定的高防包ID.
-        public let antiDDoSPackageId: String
+        public let antiDDoSPackageId: String?
 
         enum CodingKeys: String, CodingKey {
             case addressId = "AddressId"

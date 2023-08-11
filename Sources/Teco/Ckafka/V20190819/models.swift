@@ -1054,6 +1054,7 @@ extension Ckafka {
 
         /// 删除时间。目前该参数字段已废弃，将会在未来被删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let deleteRouteTimestamp: String?
 
         enum CodingKeys: String, CodingKey {

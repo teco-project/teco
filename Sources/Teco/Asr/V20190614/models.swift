@@ -54,7 +54,7 @@ extension Asr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
 
-        public init(word: String, weight: Int64) {
+        public init(word: String? = nil, weight: Int64? = nil) {
             self.word = word
             self.weight = weight
         }

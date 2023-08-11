@@ -43,7 +43,8 @@ extension Dlc {
         public let maxClusters: Int64?
 
         /// 是否为默认虚拟集群
-        public let defaultDataEngine: Bool?
+        @available(*, deprecated)
+        public let defaultDataEngine: Bool? = nil
 
         /// VPC网段
         public let cidrBlock: String?
@@ -111,6 +112,39 @@ extension Dlc {
         /// spark作业集群session资源配置模板
         public let sessionResourceTemplate: SessionResourceTemplate?
 
+        public init(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil) {
+            self.engineType = engineType
+            self.dataEngineName = dataEngineName
+            self.clusterType = clusterType
+            self.mode = mode
+            self.autoResume = autoResume
+            self.minClusters = minClusters
+            self.maxClusters = maxClusters
+            self.cidrBlock = cidrBlock
+            self.message = message
+            self.size = size
+            self.payMode = payMode
+            self.timeSpan = timeSpan
+            self.timeUnit = timeUnit
+            self.autoRenew = autoRenew
+            self.tags = tags
+            self.autoSuspend = autoSuspend
+            self.crontabResumeSuspend = crontabResumeSuspend
+            self.crontabResumeSuspendStrategy = crontabResumeSuspendStrategy
+            self.engineExecType = engineExecType
+            self.maxConcurrency = maxConcurrency
+            self.tolerableQueueTime = tolerableQueueTime
+            self.autoSuspendTime = autoSuspendTime
+            self.resourceType = resourceType
+            self.dataEngineConfigPairs = dataEngineConfigPairs
+            self.imageVersionName = imageVersionName
+            self.mainClusterName = mainClusterName
+            self.elasticSwitch = elasticSwitch
+            self.elasticLimit = elasticLimit
+            self.sessionResourceTemplate = sessionResourceTemplate
+        }
+
+        @available(*, deprecated, renamed: "init(engineType:dataEngineName:clusterType:mode:autoResume:minClusters:maxClusters:cidrBlock:message:size:payMode:timeSpan:timeUnit:autoRenew:tags:autoSuspend:crontabResumeSuspend:crontabResumeSuspendStrategy:engineExecType:maxConcurrency:tolerableQueueTime:autoSuspendTime:resourceType:dataEngineConfigPairs:imageVersionName:mainClusterName:elasticSwitch:elasticLimit:sessionResourceTemplate:)", message: "'defaultDataEngine' is deprecated in 'CreateDataEngineRequest'. Setting this parameter has no effect.")
         public init(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, defaultDataEngine: Bool? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil) {
             self.engineType = engineType
             self.dataEngineName = dataEngineName
@@ -119,7 +153,6 @@ extension Dlc {
             self.autoResume = autoResume
             self.minClusters = minClusters
             self.maxClusters = maxClusters
-            self.defaultDataEngine = defaultDataEngine
             self.cidrBlock = cidrBlock
             self.message = message
             self.size = size
@@ -212,6 +245,15 @@ extension Dlc {
     ///
     /// 为用户创建数据引擎
     @inlinable
+    public func createDataEngine(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataEngineResponse> {
+        self.createDataEngine(.init(engineType: engineType, dataEngineName: dataEngineName, clusterType: clusterType, mode: mode, autoResume: autoResume, minClusters: minClusters, maxClusters: maxClusters, cidrBlock: cidrBlock, message: message, size: size, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, autoRenew: autoRenew, tags: tags, autoSuspend: autoSuspend, crontabResumeSuspend: crontabResumeSuspend, crontabResumeSuspendStrategy: crontabResumeSuspendStrategy, engineExecType: engineExecType, maxConcurrency: maxConcurrency, tolerableQueueTime: tolerableQueueTime, autoSuspendTime: autoSuspendTime, resourceType: resourceType, dataEngineConfigPairs: dataEngineConfigPairs, imageVersionName: imageVersionName, mainClusterName: mainClusterName, elasticSwitch: elasticSwitch, elasticLimit: elasticLimit, sessionResourceTemplate: sessionResourceTemplate), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建数据引擎.
+    ///
+    /// 为用户创建数据引擎
+    @available(*, deprecated, renamed: "createDataEngine(engineType:dataEngineName:clusterType:mode:autoResume:minClusters:maxClusters:cidrBlock:message:size:payMode:timeSpan:timeUnit:autoRenew:tags:autoSuspend:crontabResumeSuspend:crontabResumeSuspendStrategy:engineExecType:maxConcurrency:tolerableQueueTime:autoSuspendTime:resourceType:dataEngineConfigPairs:imageVersionName:mainClusterName:elasticSwitch:elasticLimit:sessionResourceTemplate:region:logger:on:)", message: "'defaultDataEngine' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createDataEngine(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, defaultDataEngine: Bool? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataEngineResponse> {
         self.createDataEngine(.init(engineType: engineType, dataEngineName: dataEngineName, clusterType: clusterType, mode: mode, autoResume: autoResume, minClusters: minClusters, maxClusters: maxClusters, defaultDataEngine: defaultDataEngine, cidrBlock: cidrBlock, message: message, size: size, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, autoRenew: autoRenew, tags: tags, autoSuspend: autoSuspend, crontabResumeSuspend: crontabResumeSuspend, crontabResumeSuspendStrategy: crontabResumeSuspendStrategy, engineExecType: engineExecType, maxConcurrency: maxConcurrency, tolerableQueueTime: tolerableQueueTime, autoSuspendTime: autoSuspendTime, resourceType: resourceType, dataEngineConfigPairs: dataEngineConfigPairs, imageVersionName: imageVersionName, mainClusterName: mainClusterName, elasticSwitch: elasticSwitch, elasticLimit: elasticLimit, sessionResourceTemplate: sessionResourceTemplate), region: region, logger: logger, on: eventLoop)
     }
@@ -219,6 +261,15 @@ extension Dlc {
     /// 创建数据引擎.
     ///
     /// 为用户创建数据引擎
+    @inlinable
+    public func createDataEngine(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataEngineResponse {
+        try await self.createDataEngine(.init(engineType: engineType, dataEngineName: dataEngineName, clusterType: clusterType, mode: mode, autoResume: autoResume, minClusters: minClusters, maxClusters: maxClusters, cidrBlock: cidrBlock, message: message, size: size, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, autoRenew: autoRenew, tags: tags, autoSuspend: autoSuspend, crontabResumeSuspend: crontabResumeSuspend, crontabResumeSuspendStrategy: crontabResumeSuspendStrategy, engineExecType: engineExecType, maxConcurrency: maxConcurrency, tolerableQueueTime: tolerableQueueTime, autoSuspendTime: autoSuspendTime, resourceType: resourceType, dataEngineConfigPairs: dataEngineConfigPairs, imageVersionName: imageVersionName, mainClusterName: mainClusterName, elasticSwitch: elasticSwitch, elasticLimit: elasticLimit, sessionResourceTemplate: sessionResourceTemplate), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建数据引擎.
+    ///
+    /// 为用户创建数据引擎
+    @available(*, deprecated, renamed: "createDataEngine(engineType:dataEngineName:clusterType:mode:autoResume:minClusters:maxClusters:cidrBlock:message:size:payMode:timeSpan:timeUnit:autoRenew:tags:autoSuspend:crontabResumeSuspend:crontabResumeSuspendStrategy:engineExecType:maxConcurrency:tolerableQueueTime:autoSuspendTime:resourceType:dataEngineConfigPairs:imageVersionName:mainClusterName:elasticSwitch:elasticLimit:sessionResourceTemplate:region:logger:on:)", message: "'defaultDataEngine' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createDataEngine(engineType: String, dataEngineName: String, clusterType: String, mode: Int64, autoResume: Bool, minClusters: Int64? = nil, maxClusters: Int64? = nil, defaultDataEngine: Bool? = nil, cidrBlock: String? = nil, message: String? = nil, size: Int64? = nil, payMode: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenew: Int64? = nil, tags: [TagInfo]? = nil, autoSuspend: Bool? = nil, crontabResumeSuspend: Int64? = nil, crontabResumeSuspendStrategy: CrontabResumeSuspendStrategy? = nil, engineExecType: String? = nil, maxConcurrency: Int64? = nil, tolerableQueueTime: Int64? = nil, autoSuspendTime: Int64? = nil, resourceType: String? = nil, dataEngineConfigPairs: [DataEngineConfigPair]? = nil, imageVersionName: String? = nil, mainClusterName: String? = nil, elasticSwitch: Bool? = nil, elasticLimit: Int64? = nil, sessionResourceTemplate: SessionResourceTemplate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataEngineResponse {
         try await self.createDataEngine(.init(engineType: engineType, dataEngineName: dataEngineName, clusterType: clusterType, mode: mode, autoResume: autoResume, minClusters: minClusters, maxClusters: maxClusters, defaultDataEngine: defaultDataEngine, cidrBlock: cidrBlock, message: message, size: size, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, autoRenew: autoRenew, tags: tags, autoSuspend: autoSuspend, crontabResumeSuspend: crontabResumeSuspend, crontabResumeSuspendStrategy: crontabResumeSuspendStrategy, engineExecType: engineExecType, maxConcurrency: maxConcurrency, tolerableQueueTime: tolerableQueueTime, autoSuspendTime: autoSuspendTime, resourceType: resourceType, dataEngineConfigPairs: dataEngineConfigPairs, imageVersionName: imageVersionName, mainClusterName: mainClusterName, elasticSwitch: elasticSwitch, elasticLimit: elasticLimit, sessionResourceTemplate: sessionResourceTemplate), region: region, logger: logger, on: eventLoop)

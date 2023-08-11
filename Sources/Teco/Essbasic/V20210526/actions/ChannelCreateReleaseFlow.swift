@@ -37,22 +37,32 @@ extension Essbasic {
         public let callbackUrl: String?
 
         /// 暂未开放
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
         /// 签署流程的签署截止时间。 值为unix时间戳,精确到秒,不传默认为当前时间七天后
         public let deadline: Int64?
 
+        public init(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, deadline: Int64? = nil) {
+            self.agent = agent
+            self.needRelievedFlowId = needRelievedFlowId
+            self.reliveInfo = reliveInfo
+            self.releasedApprovers = releasedApprovers
+            self.callbackUrl = callbackUrl
+            self.deadline = deadline
+        }
+
+        @available(*, deprecated, renamed: "init(agent:needRelievedFlowId:reliveInfo:releasedApprovers:callbackUrl:deadline:)", message: "'organization' and 'operator' are deprecated in 'ChannelCreateReleaseFlowRequest'. Setting these parameters has no effect.")
         public init(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil) {
             self.agent = agent
             self.needRelievedFlowId = needRelievedFlowId
             self.reliveInfo = reliveInfo
             self.releasedApprovers = releasedApprovers
             self.callbackUrl = callbackUrl
-            self.organization = organization
-            self.operator = `operator`
             self.deadline = deadline
         }
 
@@ -105,6 +115,16 @@ extension Essbasic {
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
+        self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, deadline: deadline), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 发起解除协议
+    ///
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 合同发起人必须在电子签已经进行实名。
+    @available(*, deprecated, renamed: "channelCreateReleaseFlow(agent:needRelievedFlowId:reliveInfo:releasedApprovers:callbackUrl:deadline:region:logger:on:)", message: "'organization' and 'operator' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
         self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`, deadline: deadline), region: region, logger: logger, on: eventLoop)
     }
@@ -113,6 +133,16 @@ extension Essbasic {
     ///
     /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
+        try await self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, deadline: deadline), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 发起解除协议
+    ///
+    /// 发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 合同发起人必须在电子签已经进行实名。
+    @available(*, deprecated, renamed: "channelCreateReleaseFlow(agent:needRelievedFlowId:reliveInfo:releasedApprovers:callbackUrl:deadline:region:logger:on:)", message: "'organization' and 'operator' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, deadline: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
         try await self.channelCreateReleaseFlow(.init(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`, deadline: deadline), region: region, logger: logger, on: eventLoop)

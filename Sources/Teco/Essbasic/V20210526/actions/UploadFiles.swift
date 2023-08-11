@@ -33,13 +33,20 @@ extension Essbasic {
         public let fileInfos: [UploadFile]?
 
         /// 操作者的信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil) {
+            self.agent = agent
+            self.businessType = businessType
+            self.fileInfos = fileInfos
+        }
+
+        @available(*, deprecated, renamed: "init(agent:businessType:fileInfos:)", message: "'operator' is deprecated in 'UploadFilesRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.businessType = businessType
             self.fileInfos = fileInfos
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -107,6 +114,20 @@ extension Essbasic {
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
+    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(.init(agent: agent, businessType: businessType, fileInfos: fileInfos), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
+    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
+    /// 代码示例：
+    /// HttpProfile httpProfile = new HttpProfile();
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    @available(*, deprecated, renamed: "uploadFiles(agent:businessType:fileInfos:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
         self.uploadFiles(.init(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -119,6 +140,20 @@ extension Essbasic {
     /// 代码示例：
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    @inlinable
+    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(.init(agent: agent, businessType: businessType, fileInfos: fileInfos), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。
+    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
+    /// 代码示例：
+    /// HttpProfile httpProfile = new HttpProfile();
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    @available(*, deprecated, renamed: "uploadFiles(agent:businessType:fileInfos:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
         try await self.uploadFiles(.init(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)

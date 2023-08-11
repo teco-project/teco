@@ -28,12 +28,18 @@ extension Essbasic {
         public let flowId: String
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowId: String) {
+            self.agent = agent
+            self.flowId = flowId
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowId:)", message: "'operator' is deprecated in 'CreateChannelFlowEvidenceReportRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowId: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowId = flowId
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +101,16 @@ extension Essbasic {
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
+    public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
+        self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
+    @available(*, deprecated, renamed: "createChannelFlowEvidenceReport(agent:flowId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
         self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -103,6 +119,16 @@ extension Essbasic {
     ///
     /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
+    @inlinable
+    public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
+        try await self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
+    @available(*, deprecated, renamed: "createChannelFlowEvidenceReport(agent:flowId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createChannelFlowEvidenceReport(agent: Agent, flowId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
         try await self.createChannelFlowEvidenceReport(.init(agent: agent, flowId: flowId, operator: `operator`), region: region, logger: logger, on: eventLoop)

@@ -37,14 +37,22 @@ extension Essbasic {
         public let filters: [Filter]?
 
         /// 操作人信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil) {
+            self.agent = agent
+            self.offset = offset
+            self.limit = limit
+            self.filters = filters
+        }
+
+        @available(*, deprecated, renamed: "init(agent:offset:limit:filters:)", message: "'operator' is deprecated in 'ChannelDescribeRolesRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.offset = offset
             self.limit = limit
             self.filters = filters
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -60,7 +68,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return ChannelDescribeRolesRequest(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, filters: self.filters, operator: self.operator)
+            return ChannelDescribeRolesRequest(agent: self.agent, offset: self.offset + response.limit, limit: self.limit, filters: self.filters)
         }
     }
 
@@ -121,6 +129,15 @@ extension Essbasic {
     ///
     /// 查询角色列表，支持根据类型和状态过滤角色列表
     @inlinable
+    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeRolesResponse> {
+        self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
+    @available(*, deprecated, renamed: "channelDescribeRoles(agent:offset:limit:filters:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDescribeRolesResponse> {
         self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -128,6 +145,15 @@ extension Essbasic {
     /// 查询角色列表
     ///
     /// 查询角色列表，支持根据类型和状态过滤角色列表
+    @inlinable
+    public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeRolesResponse {
+        try await self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询角色列表
+    ///
+    /// 查询角色列表，支持根据类型和状态过滤角色列表
+    @available(*, deprecated, renamed: "channelDescribeRoles(agent:offset:limit:filters:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelDescribeRoles(agent: Agent, offset: UInt64, limit: String, filters: [Filter]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDescribeRolesResponse {
         try await self.channelDescribeRoles(.init(agent: agent, offset: offset, limit: limit, filters: filters, operator: `operator`), region: region, logger: logger, on: eventLoop)

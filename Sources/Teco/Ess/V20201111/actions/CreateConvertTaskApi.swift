@@ -34,18 +34,26 @@ extension Ess {
         public let `operator`: UserInfo?
 
         /// 应用号信息
-        public let agent: Agent?
+        @available(*, deprecated)
+        public let agent: Agent? = nil
 
         /// 暂未开放
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
+        public init(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil) {
+            self.resourceType = resourceType
+            self.resourceName = resourceName
+            self.resourceId = resourceId
+            self.operator = `operator`
+        }
+
+        @available(*, deprecated, renamed: "init(resourceType:resourceName:resourceId:operator:)", message: "'agent' and 'organization' are deprecated in 'CreateConvertTaskApiRequest'. Setting these parameters has no effect.")
         public init(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
             self.resourceId = resourceId
             self.operator = `operator`
-            self.agent = agent
-            self.organization = organization
         }
 
         enum CodingKeys: String, CodingKey {
@@ -92,6 +100,15 @@ extension Ess {
     ///
     /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
     @inlinable
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
+        self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
+    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConvertTaskApiResponse> {
         self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
@@ -99,6 +116,15 @@ extension Ess {
     /// 创建文件转换任务
     ///
     /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
+    @inlinable
+    public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
+        try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建文件转换任务
+    ///
+    /// 上传了word、excel、图片文件后，通过该接口发起文件转换任务，将word、excel、图片文件转换为pdf文件。
+    @available(*, deprecated, renamed: "createConvertTaskApi(resourceType:resourceName:resourceId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func createConvertTaskApi(resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConvertTaskApiResponse {
         try await self.createConvertTaskApi(.init(resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)

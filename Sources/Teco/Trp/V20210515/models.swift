@@ -785,20 +785,20 @@ extension Trp {
     /// 原始扫码日志
     public struct RawScanLog: TCOutputModel {
         /// 日志ID
-        public let logId: Int64
+        public let logId: Int64?
 
         /// 微信小程序openid
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let openid: String?
 
         /// 扫码时间
-        public let createTime: String
+        public let createTime: String?
 
         /// 溯源码
-        public let code: String
+        public let code: String?
 
         /// 企业ID
-        public let corpId: UInt64
+        public let corpId: UInt64?
 
         /// 商户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。

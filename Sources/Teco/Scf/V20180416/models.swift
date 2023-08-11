@@ -1298,12 +1298,15 @@ extension Scf {
         public let availableStatus: String
 
         /// 触发器最小资源ID
+        @available(*, deprecated)
         public let resourceId: String?
 
         /// 触发器和云函数绑定状态
+        @available(*, deprecated)
         public let bindStatus: String?
 
         /// 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
+        @available(*, deprecated)
         public let triggerAttribute: String?
 
         /// 触发器绑定的别名或版本
@@ -1454,12 +1457,15 @@ extension Scf {
         @TCTimestampEncoding public var modTime: Date
 
         /// 触发器最小资源ID
+        @available(*, deprecated)
         public let resourceId: String?
 
         /// 触发器和云函数绑定状态
+        @available(*, deprecated)
         public let bindStatus: String?
 
         /// 触发器类型，双向表示两侧控制台均可操作，单向表示SCF控制台单向创建
+        @available(*, deprecated)
         public let triggerAttribute: String?
 
         /// 客户自定义触发器描述

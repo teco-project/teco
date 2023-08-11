@@ -40,14 +40,22 @@ extension Teo {
 
         /// 若有编码转换，仅清除编码转换后匹配的资源。
         /// 若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
-        public let encodeUrl: Bool?
+        @available(*, deprecated)
+        public let encodeUrl: Bool? = nil
 
+        public init(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil) {
+            self.zoneId = zoneId
+            self.type = type
+            self.method = method
+            self.targets = targets
+        }
+
+        @available(*, deprecated, renamed: "init(zoneId:type:method:targets:)", message: "'encodeUrl' is deprecated in 'CreatePurgeTaskRequest'. Setting this parameter has no effect.")
         public init(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, encodeUrl: Bool? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.method = method
             self.targets = targets
-            self.encodeUrl = encodeUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -104,6 +112,17 @@ extension Teo {
     ///
     /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
     @inlinable
+    public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
+        self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建清除缓存任务
+    ///
+    /// 当源站资源更新，但节点缓存 TTL 未过期时，用户仍会访问到旧的资源，此时可以通过该接口实现节点资源更新。触发更新的方法有以下两种：<li>直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；</li><li>标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
+    ///
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    @available(*, deprecated, renamed: "createPurgeTask(zoneId:type:method:targets:region:logger:on:)", message: "'encodeUrl' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
         self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)
     }
@@ -113,6 +132,17 @@ extension Teo {
     /// 当源站资源更新，但节点缓存 TTL 未过期时，用户仍会访问到旧的资源，此时可以通过该接口实现节点资源更新。触发更新的方法有以下两种：<li>直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；</li><li>标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
     ///
     /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    @inlinable
+    public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
+        try await self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建清除缓存任务
+    ///
+    /// 当源站资源更新，但节点缓存 TTL 未过期时，用户仍会访问到旧的资源，此时可以通过该接口实现节点资源更新。触发更新的方法有以下两种：<li>直接删除：不做任何校验，直接删除节点缓存，用户请求时触发回源拉取；</li><li>标记过期：将节点资源置为过期，用户请求时触发回源校验，即发送带有 If-None-Match 和 If-Modified-Since 头部的 HTTP 条件请求。若源站响应 200，则节点会回源拉取新的资源并更新缓存；若源站响应 304，则节点不会更新缓存；</li>
+    ///
+    /// 清除缓存任务详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。</li>
+    @available(*, deprecated, renamed: "createPurgeTask(zoneId:type:method:targets:region:logger:on:)", message: "'encodeUrl' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createPurgeTask(zoneId: String, type: String, method: String? = nil, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
         try await self.createPurgeTask(.init(zoneId: zoneId, type: type, method: method, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)

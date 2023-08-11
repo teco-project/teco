@@ -79,8 +79,31 @@ extension Essbasic {
         public let autoSignScene: String?
 
         /// 操作者的信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil) {
+            self.agent = agent
+            self.flowName = flowName
+            self.flowApprovers = flowApprovers
+            self.fileIds = fileIds
+            self.components = components
+            self.deadline = deadline
+            self.callbackUrl = callbackUrl
+            self.unordered = unordered
+            self.flowType = flowType
+            self.flowDescription = flowDescription
+            self.customShowMap = customShowMap
+            self.customerData = customerData
+            self.needSignReview = needSignReview
+            self.approverVerifyType = approverVerifyType
+            self.signBeanTag = signBeanTag
+            self.ccInfos = ccInfos
+            self.ccNotifyType = ccNotifyType
+            self.autoSignScene = autoSignScene
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowName:flowApprovers:fileIds:components:deadline:callbackUrl:unordered:flowType:flowDescription:customShowMap:customerData:needSignReview:approverVerifyType:signBeanTag:ccInfos:ccNotifyType:autoSignScene:)", message: "'operator' is deprecated in 'ChannelCreateFlowByFilesRequest'. Setting this parameter has no effect.")
         public init(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowName = flowName
@@ -100,7 +123,6 @@ extension Essbasic {
             self.ccInfos = ccInfos
             self.ccNotifyType = ccNotifyType
             self.autoSignScene = autoSignScene
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -161,6 +183,15 @@ extension Essbasic {
     ///
     /// 接口（ChannelCreateFlowByFiles）用于通过文件创建签署流程。此接口静默签能力不可直接使用，请联系客户经理申请使用
     @inlinable
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
+        self.channelCreateFlowByFiles(.init(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, ccInfos: ccInfos, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过文件创建签署流程
+    ///
+    /// 接口（ChannelCreateFlowByFiles）用于通过文件创建签署流程。此接口静默签能力不可直接使用，请联系客户经理申请使用
+    @available(*, deprecated, renamed: "channelCreateFlowByFiles(agent:flowName:flowApprovers:fileIds:components:deadline:callbackUrl:unordered:flowType:flowDescription:customShowMap:customerData:needSignReview:approverVerifyType:signBeanTag:ccInfos:ccNotifyType:autoSignScene:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
         self.channelCreateFlowByFiles(.init(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, ccInfos: ccInfos, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -168,6 +199,15 @@ extension Essbasic {
     /// 通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于通过文件创建签署流程。此接口静默签能力不可直接使用，请联系客户经理申请使用
+    @inlinable
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
+        try await self.channelCreateFlowByFiles(.init(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, ccInfos: ccInfos, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过文件创建签署流程
+    ///
+    /// 接口（ChannelCreateFlowByFiles）用于通过文件创建签署流程。此接口静默签能力不可直接使用，请联系客户经理申请使用
+    @available(*, deprecated, renamed: "channelCreateFlowByFiles(agent:flowName:flowApprovers:fileIds:components:deadline:callbackUrl:unordered:flowType:flowDescription:customShowMap:customerData:needSignReview:approverVerifyType:signBeanTag:ccInfos:ccNotifyType:autoSignScene:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, ccInfos: [CcInfo]? = nil, ccNotifyType: Int64? = nil, autoSignScene: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
         try await self.channelCreateFlowByFiles(.init(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag, ccInfos: ccInfos, ccNotifyType: ccNotifyType, autoSignScene: autoSignScene, operator: `operator`), region: region, logger: logger, on: eventLoop)

@@ -46,8 +46,19 @@ extension Ess {
         public let customIds: [String]?
 
         /// 不再使用，上传文件链接数组，最多支持20个URL
-        public let fileUrls: String?
+        @available(*, deprecated)
+        public let fileUrls: String? = nil
 
+        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil) {
+            self.businessType = businessType
+            self.caller = caller
+            self.fileInfos = fileInfos
+            self.fileType = fileType
+            self.coverRect = coverRect
+            self.customIds = customIds
+        }
+
+        @available(*, deprecated, renamed: "init(businessType:caller:fileInfos:fileType:coverRect:customIds:)", message: "'fileUrls' is deprecated in 'UploadFilesRequest'. Setting this parameter has no effect.")
         public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil) {
             self.businessType = businessType
             self.caller = caller
@@ -55,7 +66,6 @@ extension Ess {
             self.fileType = fileType
             self.coverRect = coverRect
             self.customIds = customIds
-            self.fileUrls = fileUrls
         }
 
         enum CodingKeys: String, CodingKey {
@@ -125,6 +135,21 @@ extension Ess {
     /// HttpProfile httpProfile = new HttpProfile();<br/>
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");<br/>
     @inlinable
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 多文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。<br/>
+    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。<br/>
+    ///
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。<br/>
+    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：<br/>
+    /// HttpProfile httpProfile = new HttpProfile();<br/>
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");<br/>
+    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
         self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
     }
@@ -138,6 +163,21 @@ extension Ess {
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：<br/>
     /// HttpProfile httpProfile = new HttpProfile();<br/>
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");<br/>
+    @inlinable
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 多文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。<br/>
+    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。<br/>
+    ///
+    /// 其中上传的文件，图片类型(png/jpg/jpeg)大小限制为5M，其他大小限制为60M。<br/>
+    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn,代码示例：<br/>
+    /// HttpProfile httpProfile = new HttpProfile();<br/>
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");<br/>
+    @available(*, deprecated, renamed: "uploadFiles(businessType:caller:fileInfos:fileType:coverRect:customIds:region:logger:on:)", message: "'fileUrls' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
         try await self.uploadFiles(.init(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)

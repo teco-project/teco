@@ -84,6 +84,7 @@ extension Ess {
 
         /// 已加入的企业数量(废弃,请使用ActivatedTotal)
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let activedTotal: UInt64?
 
         /// 导出文件的url

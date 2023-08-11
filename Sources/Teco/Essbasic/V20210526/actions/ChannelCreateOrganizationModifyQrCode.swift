@@ -36,10 +36,10 @@ extension Essbasic {
     /// ChannelCreateOrganizationModifyQrCode返回参数结构体
     public struct ChannelCreateOrganizationModifyQrCodeResponse: TCResponseModel {
         /// 二维码下载链接
-        public let qrCodeUrl: String
+        public let qrCodeUrl: String?
 
         /// 二维码失效时间 UNIX 时间戳 精确到秒
-        public let expiredTime: Int64
+        public let expiredTime: Int64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

@@ -70,10 +70,10 @@ extension Tcss {
         public let insecure: UInt64?
 
         /// 联通性检测结果详情
-        public let connDetectDetail: [RegistryConnDetectResult]
+        public let connDetectDetail: [RegistryConnDetectResult]?
 
         /// tcr情况下instance_id
-        public let instanceID: String
+        public let instanceID: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

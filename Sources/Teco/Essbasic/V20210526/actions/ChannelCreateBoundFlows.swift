@@ -29,12 +29,18 @@ extension Essbasic {
         public let flowIds: [String]?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowIds: [String]? = nil) {
+            self.agent = agent
+            self.flowIds = flowIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowIds:)", message: "'operator' is deprecated in 'ChannelCreateBoundFlowsRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -74,6 +80,15 @@ extension Essbasic {
     ///
     /// 此接口（ChannelCreateBoundFlows）用于子客领取合同，经办人需要有相应的角色，合同不能重复领取。
     @inlinable @discardableResult
+    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
+        self.channelCreateBoundFlows(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 领取未归属的合同
+    ///
+    /// 此接口（ChannelCreateBoundFlows）用于子客领取合同，经办人需要有相应的角色，合同不能重复领取。
+    @available(*, deprecated, renamed: "channelCreateBoundFlows(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
     public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
         self.channelCreateBoundFlows(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -81,6 +96,15 @@ extension Essbasic {
     /// 领取未归属的合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于子客领取合同，经办人需要有相应的角色，合同不能重复领取。
+    @inlinable @discardableResult
+    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
+        try await self.channelCreateBoundFlows(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 领取未归属的合同
+    ///
+    /// 此接口（ChannelCreateBoundFlows）用于子客领取合同，经办人需要有相应的角色，合同不能重复领取。
+    @available(*, deprecated, renamed: "channelCreateBoundFlows(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
     public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
         try await self.channelCreateBoundFlows(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)

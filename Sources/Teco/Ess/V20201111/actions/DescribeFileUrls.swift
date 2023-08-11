@@ -52,14 +52,29 @@ extension Ess {
         public let urlTtl: Int64?
 
         /// 暂不开放
-        public let ccToken: String?
+        @available(*, deprecated)
+        public let ccToken: String? = nil
 
         /// 暂不开放
-        public let scene: String?
+        @available(*, deprecated)
+        public let scene: String? = nil
 
         /// 应用相关信息
-        public let agent: Agent?
+        @available(*, deprecated)
+        public let agent: Agent? = nil
 
+        public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil) {
+            self.operator = `operator`
+            self.businessType = businessType
+            self.businessIds = businessIds
+            self.fileName = fileName
+            self.fileType = fileType
+            self.offset = offset
+            self.limit = limit
+            self.urlTtl = urlTtl
+        }
+
+        @available(*, deprecated, renamed: "init(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:)", message: "'ccToken', 'scene' and 'agent' are deprecated in 'DescribeFileUrlsRequest'. Setting these parameters has no effect.")
         public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil) {
             self.operator = `operator`
             self.businessType = businessType
@@ -69,9 +84,6 @@ extension Ess {
             self.offset = offset
             self.limit = limit
             self.urlTtl = urlTtl
-            self.ccToken = ccToken
-            self.scene = scene
-            self.agent = agent
         }
 
         enum CodingKeys: String, CodingKey {
@@ -93,7 +105,7 @@ extension Ess {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeFileUrlsRequest(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl, ccToken: self.ccToken, scene: self.scene, agent: self.agent)
+            return DescribeFileUrlsRequest(operator: self.operator, businessType: self.businessType, businessIds: self.businessIds, fileName: self.fileName, fileType: self.fileType, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, urlTtl: self.urlTtl)
         }
     }
 
@@ -149,6 +161,16 @@ extension Ess {
     /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
+        self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL。
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:region:logger:on:)", message: "'ccToken', 'scene' and 'agent' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
         self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), region: region, logger: logger, on: eventLoop)
     }
@@ -157,6 +179,16 @@ extension Ess {
     ///
     /// 查询文件下载URL。
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @inlinable
+    public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询文件下载URL
+    ///
+    /// 查询文件下载URL。
+    /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
+    @available(*, deprecated, renamed: "describeFileUrls(operator:businessType:businessIds:fileName:fileType:offset:limit:urlTtl:region:logger:on:)", message: "'ccToken', 'scene' and 'agent' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func describeFileUrls(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
         try await self.describeFileUrls(.init(operator: `operator`, businessType: businessType, businessIds: businessIds, fileName: fileName, fileType: fileType, offset: offset, limit: limit, urlTtl: urlTtl, ccToken: ccToken, scene: scene, agent: agent), region: region, logger: logger, on: eventLoop)

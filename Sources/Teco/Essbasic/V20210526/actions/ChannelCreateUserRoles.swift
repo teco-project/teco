@@ -34,14 +34,22 @@ extension Essbasic {
         public let openIds: [String]?
 
         /// 操作者信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil) {
+            self.agent = agent
+            self.roleIds = roleIds
+            self.userIds = userIds
+            self.openIds = openIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:roleIds:userIds:openIds:)", message: "'operator' is deprecated in 'ChannelCreateUserRolesRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.roleIds = roleIds
             self.userIds = userIds
             self.openIds = openIds
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -87,6 +95,15 @@ extension Essbasic {
     ///
     /// 通过此接口，绑定员工角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
+    public func channelCreateUserRoles(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateUserRolesResponse> {
+        self.channelCreateUserRoles(.init(agent: agent, roleIds: roleIds, userIds: userIds, openIds: openIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 绑定员工角色
+    ///
+    /// 通过此接口，绑定员工角色，支持以电子签userId、客户系统userId两种方式调用。
+    @available(*, deprecated, renamed: "channelCreateUserRoles(agent:roleIds:userIds:openIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelCreateUserRoles(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateUserRolesResponse> {
         self.channelCreateUserRoles(.init(agent: agent, roleIds: roleIds, userIds: userIds, openIds: openIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -94,6 +111,15 @@ extension Essbasic {
     /// 绑定员工角色
     ///
     /// 通过此接口，绑定员工角色，支持以电子签userId、客户系统userId两种方式调用。
+    @inlinable
+    public func channelCreateUserRoles(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateUserRolesResponse {
+        try await self.channelCreateUserRoles(.init(agent: agent, roleIds: roleIds, userIds: userIds, openIds: openIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 绑定员工角色
+    ///
+    /// 通过此接口，绑定员工角色，支持以电子签userId、客户系统userId两种方式调用。
+    @available(*, deprecated, renamed: "channelCreateUserRoles(agent:roleIds:userIds:openIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelCreateUserRoles(agent: Agent, roleIds: [String], userIds: [String]? = nil, openIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateUserRolesResponse {
         try await self.channelCreateUserRoles(.init(agent: agent, roleIds: roleIds, userIds: userIds, openIds: openIds, operator: `operator`), region: region, logger: logger, on: eventLoop)

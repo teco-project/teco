@@ -2267,6 +2267,7 @@ extension Tcss {
     public struct ComponentsInfo: TCOutputModel {
         /// 组件名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let component: String?
 
         /// 组件版本信息

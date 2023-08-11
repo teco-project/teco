@@ -59,6 +59,7 @@ extension Ms {
         public let cosKey: String
 
         /// 密钥TOCKEN信息
+        @available(*, deprecated)
         public let cosTocken: String
 
         /// 密钥可访问的文件前缀人。例如：CosPrefix=test/123/666，则该密钥只能操作test/123/666为前缀的文件，例如test/123/666/1.txt

@@ -55,11 +55,26 @@ extension Ess {
         public let callbackUrl: String?
 
         /// 应用信息
-        public let agent: Agent?
+        @available(*, deprecated)
+        public let agent: Agent? = nil
 
         /// 限制二维码用户条件（已弃用）
-        public let approverRestrictions: ApproverRestriction?
+        @available(*, deprecated)
+        public let approverRestrictions: ApproverRestriction? = nil
 
+        public init(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil) {
+            self.operator = `operator`
+            self.templateId = templateId
+            self.flowName = flowName
+            self.maxFlowNum = maxFlowNum
+            self.flowEffectiveDay = flowEffectiveDay
+            self.qrEffectiveDay = qrEffectiveDay
+            self.restrictions = restrictions
+            self.userData = userData
+            self.callbackUrl = callbackUrl
+        }
+
+        @available(*, deprecated, renamed: "init(operator:templateId:flowName:maxFlowNum:flowEffectiveDay:qrEffectiveDay:restrictions:userData:callbackUrl:)", message: "'agent' and 'approverRestrictions' are deprecated in 'CreateMultiFlowSignQRCodeRequest'. Setting these parameters has no effect.")
         public init(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil) {
             self.operator = `operator`
             self.templateId = templateId
@@ -70,8 +85,6 @@ extension Ess {
             self.restrictions = restrictions
             self.userData = userData
             self.callbackUrl = callbackUrl
-            self.agent = agent
-            self.approverRestrictions = approverRestrictions
         }
 
         enum CodingKeys: String, CodingKey {
@@ -151,6 +164,23 @@ extension Ess {
     /// - B端企业的签署方式是静默签署
     /// - B端企业是非首位签署
     @inlinable
+    public func createMultiFlowSignQRCode(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiFlowSignQRCodeResponse> {
+        self.createMultiFlowSignQRCode(.init(operator: `operator`, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, userData: userData, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建一码多扫流程签署二维码
+    ///
+    /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
+    /// 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
+    @available(*, deprecated, renamed: "createMultiFlowSignQRCode(operator:templateId:flowName:maxFlowNum:flowEffectiveDay:qrEffectiveDay:restrictions:userData:callbackUrl:region:logger:on:)", message: "'agent' and 'approverRestrictions' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func createMultiFlowSignQRCode(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiFlowSignQRCodeResponse> {
         self.createMultiFlowSignQRCode(.init(operator: `operator`, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, userData: userData, callbackUrl: callbackUrl, agent: agent, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)
     }
@@ -166,6 +196,23 @@ extension Ess {
     /// - 模板中配置的签署顺序是无序
     /// - B端企业的签署方式是静默签署
     /// - B端企业是非首位签署
+    @inlinable
+    public func createMultiFlowSignQRCode(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiFlowSignQRCodeResponse {
+        try await self.createMultiFlowSignQRCode(.init(operator: `operator`, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, userData: userData, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建一码多扫流程签署二维码
+    ///
+    /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
+    /// 适用场景：无需填写签署人信息，可通过模板id生成签署二维码，签署人可通过扫描二维码补充签署信息进行实名签署。常用于提前不知道签署人的身份信息场景，例如：劳务工招工、大批量员工入职等场景。
+    ///
+    /// **本接口适用于发起方没有填写控件的 B2C或者单C模板**
+    ///
+    /// **若是B2C模板,还要满足以下任意一个条件**
+    /// - 模板中配置的签署顺序是无序
+    /// - B端企业的签署方式是静默签署
+    /// - B端企业是非首位签署
+    @available(*, deprecated, renamed: "createMultiFlowSignQRCode(operator:templateId:flowName:maxFlowNum:flowEffectiveDay:qrEffectiveDay:restrictions:userData:callbackUrl:region:logger:on:)", message: "'agent' and 'approverRestrictions' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func createMultiFlowSignQRCode(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, userData: String? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiFlowSignQRCodeResponse {
         try await self.createMultiFlowSignQRCode(.init(operator: `operator`, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, userData: userData, callbackUrl: callbackUrl, agent: agent, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)

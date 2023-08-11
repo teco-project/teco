@@ -1090,12 +1090,18 @@ extension Teo {
         /// <li>on：开启；</li>
         /// <li>off：关闭。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ignoreCacheControl: String?
+        @available(*, deprecated)
+        public let ignoreCacheControl: String? = nil
 
+        public init(switch: String, cacheTime: Int64? = nil) {
+            self.switch = `switch`
+            self.cacheTime = cacheTime
+        }
+
+        @available(*, deprecated, renamed: "init(switch:cacheTime:)", message: "'ignoreCacheControl' is deprecated in 'Cache'. Setting this parameter has no effect.")
         public init(switch: String, cacheTime: Int64? = nil, ignoreCacheControl: String? = nil) {
             self.switch = `switch`
             self.cacheTime = cacheTime
-            self.ignoreCacheControl = ignoreCacheControl
         }
 
         enum CodingKeys: String, CodingKey {

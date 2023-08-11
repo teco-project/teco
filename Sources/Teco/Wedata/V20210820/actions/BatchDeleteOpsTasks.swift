@@ -53,7 +53,7 @@ extension Wedata {
     /// BatchDeleteOpsTasks返回参数结构体
     public struct BatchDeleteOpsTasksResponse: TCResponseModel {
         /// 返回批量操作成功个数、失败个数、操作总数
-        public let data: BatchOperationOpsDto
+        public let data: BatchOperationOpsDto?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

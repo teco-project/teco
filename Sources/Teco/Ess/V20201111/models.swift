@@ -36,22 +36,27 @@ extension Ess {
     /// 代理相关应用信息，如集团主企业代子企业操作
     public struct Agent: TCInputModel {
         /// 代理机构的应用编号,32位字符串，一般不用传
-        public let appId: String?
+        @available(*, deprecated)
+        public let appId: String? = nil
 
         /// 被代理机构的应用号，一般不用传
-        public let proxyAppId: String?
+        @available(*, deprecated)
+        public let proxyAppId: String? = nil
 
         /// 被代理机构在电子签平台的机构编号，集团代理下场景必传
         public let proxyOrganizationId: String?
 
         /// 被代理机构的经办人，一般不用传
-        public let proxyOperator: String?
+        @available(*, deprecated)
+        public let proxyOperator: String? = nil
 
-        public init(appId: String? = nil, proxyAppId: String? = nil, proxyOrganizationId: String? = nil, proxyOperator: String? = nil) {
-            self.appId = appId
-            self.proxyAppId = proxyAppId
+        public init(proxyOrganizationId: String? = nil) {
             self.proxyOrganizationId = proxyOrganizationId
-            self.proxyOperator = proxyOperator
+        }
+
+        @available(*, deprecated, renamed: "init(proxyOrganizationId:)", message: "'appId', 'proxyAppId' and 'proxyOperator' are deprecated in 'Agent'. Setting these parameters has no effect.")
+        public init(appId: String? = nil, proxyAppId: String? = nil, proxyOrganizationId: String? = nil, proxyOperator: String? = nil) {
+            self.proxyOrganizationId = proxyOrganizationId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -294,7 +299,8 @@ extension Ess {
         public let callbackUrl: String
 
         /// 回调加密key，已废弃
-        public let token: String?
+        @available(*, deprecated)
+        public let token: String? = nil
 
         /// 回调加密key
         public let callbackKey: String?
@@ -302,9 +308,15 @@ extension Ess {
         /// 回调验签token
         public let callbackToken: String?
 
+        public init(callbackUrl: String, callbackKey: String? = nil, callbackToken: String? = nil) {
+            self.callbackUrl = callbackUrl
+            self.callbackKey = callbackKey
+            self.callbackToken = callbackToken
+        }
+
+        @available(*, deprecated, renamed: "init(callbackUrl:callbackKey:callbackToken:)", message: "'token' is deprecated in 'CallbackInfo'. Setting this parameter has no effect.")
         public init(callbackUrl: String, token: String? = nil, callbackKey: String? = nil, callbackToken: String? = nil) {
             self.callbackUrl = callbackUrl
-            self.token = token
             self.callbackKey = callbackKey
             self.callbackToken = callbackToken
         }
@@ -320,22 +332,27 @@ extension Ess {
     /// 此结构体 (Caller) 用于描述调用方属性。
     public struct Caller: TCInputModel {
         /// 应用号
-        public let applicationId: String?
+        @available(*, deprecated)
+        public let applicationId: String? = nil
 
         /// 主机构ID
-        public let organizationId: String?
+        @available(*, deprecated)
+        public let organizationId: String? = nil
 
         /// 经办人的用户ID，同UserId
         public let operatorId: String?
 
         /// 下属机构ID
-        public let subOrganizationId: String?
+        @available(*, deprecated)
+        public let subOrganizationId: String? = nil
 
-        public init(applicationId: String? = nil, organizationId: String? = nil, operatorId: String? = nil, subOrganizationId: String? = nil) {
-            self.applicationId = applicationId
-            self.organizationId = organizationId
+        public init(operatorId: String? = nil) {
             self.operatorId = operatorId
-            self.subOrganizationId = subOrganizationId
+        }
+
+        @available(*, deprecated, renamed: "init(operatorId:)", message: "'applicationId', 'organizationId' and 'subOrganizationId' are deprecated in 'Caller'. Setting these parameters has no effect.")
+        public init(applicationId: String? = nil, organizationId: String? = nil, operatorId: String? = nil, subOrganizationId: String? = nil) {
+            self.operatorId = operatorId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -896,7 +913,7 @@ extension Ess {
         public let mobile: String
 
         /// 传入的企微账号id
-        public let weworkOpenId: String
+        public let weworkOpenId: String?
 
         /// 失败原因
         public let reason: String
@@ -1342,7 +1359,8 @@ extension Ess {
         public let approverOption: ApproverOption?
 
         /// 签署完前端跳转的url，暂未使用
-        public let jumpUrl: String?
+        @available(*, deprecated)
+        public let jumpUrl: String? = nil
 
         /// 签署ID
         /// - 发起流程时系统自动补充
@@ -1376,6 +1394,34 @@ extension Ess {
         /// 合同签署方式(默认1,2) <br/>1-人脸认证 <br/>2-签署密码 <br/>3-运营商三要素
         public let approverSignTypes: [UInt64]?
 
+        public init(approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil, signId: String? = nil, approverNeedSignReview: Bool? = nil, signComponents: [Component]? = nil, components: [Component]? = nil, componentLimitType: [String]? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [UInt64]? = nil) {
+            self.approverType = approverType
+            self.organizationName = organizationName
+            self.approverName = approverName
+            self.approverMobile = approverMobile
+            self.approverIdCardType = approverIdCardType
+            self.approverIdCardNumber = approverIdCardNumber
+            self.recipientId = recipientId
+            self.verifyChannel = verifyChannel
+            self.notifyType = notifyType
+            self.isFullText = isFullText
+            self.preReadTime = preReadTime
+            self.userId = userId
+            self.required = required
+            self.approverSource = approverSource
+            self.customApproverTag = customApproverTag
+            self.registerInfo = registerInfo
+            self.approverOption = approverOption
+            self.signId = signId
+            self.approverNeedSignReview = approverNeedSignReview
+            self.signComponents = signComponents
+            self.components = components
+            self.componentLimitType = componentLimitType
+            self.approverVerifyTypes = approverVerifyTypes
+            self.approverSignTypes = approverSignTypes
+        }
+
+        @available(*, deprecated, renamed: "init(approverType:organizationName:approverName:approverMobile:approverIdCardType:approverIdCardNumber:recipientId:verifyChannel:notifyType:isFullText:preReadTime:userId:required:approverSource:customApproverTag:registerInfo:approverOption:signId:approverNeedSignReview:signComponents:components:componentLimitType:approverVerifyTypes:approverSignTypes:)", message: "'jumpUrl' is deprecated in 'FlowCreateApprover'. Setting this parameter has no effect.")
         public init(approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil, jumpUrl: String? = nil, signId: String? = nil, approverNeedSignReview: Bool? = nil, signComponents: [Component]? = nil, components: [Component]? = nil, componentLimitType: [String]? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [UInt64]? = nil) {
             self.approverType = approverType
             self.organizationName = organizationName
@@ -1394,7 +1440,6 @@ extension Ess {
             self.customApproverTag = customApproverTag
             self.registerInfo = registerInfo
             self.approverOption = approverOption
-            self.jumpUrl = jumpUrl
             self.signId = signId
             self.approverNeedSignReview = approverNeedSignReview
             self.signComponents = signComponents
@@ -2029,26 +2074,30 @@ extension Ess {
     /// 机构信息
     public struct OrganizationInfo: TCInputModel, TCOutputModel {
         /// 机构在平台的编号，内部字段，暂未开放
-        public let organizationId: String?
+        @available(*, deprecated)
+        public let organizationId: String? = nil
 
         /// 用户渠道，内部字段，暂未开放
-        public let channel: String?
+        @available(*, deprecated)
+        public let channel: String? = nil
 
         /// 用户在渠道的机构编号，内部字段，暂未开放
-        public let organizationOpenId: String?
+        @available(*, deprecated)
+        public let organizationOpenId: String? = nil
 
         /// 用户真实的IP，内部字段，暂未开放
-        public let clientIp: String?
+        @available(*, deprecated)
+        public let clientIp: String? = nil
 
         /// 机构的代理IP，内部字段，暂未开放
-        public let proxyIp: String?
+        @available(*, deprecated)
+        public let proxyIp: String? = nil
 
+        public init() {
+        }
+
+        @available(*, deprecated, renamed: "init()", message: "'organizationId', 'channel', 'organizationOpenId', 'clientIp' and 'proxyIp' are deprecated in 'OrganizationInfo'. Setting these parameters has no effect.")
         public init(organizationId: String? = nil, channel: String? = nil, organizationOpenId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
-            self.organizationId = organizationId
-            self.channel = channel
-            self.organizationOpenId = organizationOpenId
-            self.clientIp = clientIp
-            self.proxyIp = proxyIp
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2234,14 +2283,20 @@ extension Ess {
         public let legalName: String
 
         /// 社会统一信用代码
-        public let uscc: String?
+        @available(*, deprecated)
+        public let uscc: String? = nil
 
         /// 社会统一信用代码
         public let unifiedSocialCreditCode: String?
 
+        public init(legalName: String, unifiedSocialCreditCode: String? = nil) {
+            self.legalName = legalName
+            self.unifiedSocialCreditCode = unifiedSocialCreditCode
+        }
+
+        @available(*, deprecated, renamed: "init(legalName:unifiedSocialCreditCode:)", message: "'uscc' is deprecated in 'RegisterInfo'. Setting this parameter has no effect.")
         public init(legalName: String, uscc: String? = nil, unifiedSocialCreditCode: String? = nil) {
             self.legalName = legalName
-            self.uscc = uscc
             self.unifiedSocialCreditCode = unifiedSocialCreditCode
         }
 
@@ -2561,7 +2616,7 @@ extension Ess {
         public let note: String?
 
         /// 传入的企微账号id
-        public let weworkOpenId: String
+        public let weworkOpenId: String?
 
         enum CodingKeys: String, CodingKey {
             case displayName = "DisplayName"
@@ -2699,8 +2754,34 @@ extension Ess {
 
         /// 模板内部指定的印章列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let seals: [SealInfo]?
+        @available(*, deprecated)
+        public let seals: [SealInfo]? = nil
 
+        public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, templateType: Int64? = nil, available: Int64? = nil, organizationId: String? = nil, previewUrl: String? = nil, templateVersion: String? = nil, published: Bool? = nil, templateSeals: [SealInfo]? = nil) {
+            self.templateId = templateId
+            self.templateName = templateName
+            self.description = description
+            self.documentResourceIds = documentResourceIds
+            self.fileInfos = fileInfos
+            self.attachmentResourceIds = attachmentResourceIds
+            self.signOrder = signOrder
+            self.recipients = recipients
+            self.components = components
+            self.signComponents = signComponents
+            self.status = status
+            self.creator = creator
+            self.createdOn = createdOn
+            self.promoter = promoter
+            self.templateType = templateType
+            self.available = available
+            self.organizationId = organizationId
+            self.previewUrl = previewUrl
+            self.templateVersion = templateVersion
+            self.published = published
+            self.templateSeals = templateSeals
+        }
+
+        @available(*, deprecated, renamed: "init(templateId:templateName:description:documentResourceIds:fileInfos:attachmentResourceIds:signOrder:recipients:components:signComponents:status:creator:createdOn:promoter:templateType:available:organizationId:previewUrl:templateVersion:published:templateSeals:)", message: "'seals' is deprecated in 'TemplateInfo'. Setting this parameter has no effect.")
         public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, templateType: Int64? = nil, available: Int64? = nil, organizationId: String? = nil, previewUrl: String? = nil, templateVersion: String? = nil, published: Bool? = nil, templateSeals: [SealInfo]? = nil, seals: [SealInfo]? = nil) {
             self.templateId = templateId
             self.templateName = templateName
@@ -2723,7 +2804,6 @@ extension Ess {
             self.templateVersion = templateVersion
             self.published = published
             self.templateSeals = templateSeals
-            self.seals = seals
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2777,23 +2857,28 @@ extension Ess {
         public let userId: String?
 
         /// 用户的来源渠道，一般不用传，特定场景根据接口说明传值
-        public let channel: String?
+        @available(*, deprecated)
+        public let channel: String? = nil
 
         /// 用户在渠道的编号，一般不用传，特定场景根据接口说明传值
-        public let openId: String?
+        @available(*, deprecated)
+        public let openId: String? = nil
 
         /// 用户真实IP，内部字段，暂未开放
-        public let clientIp: String?
+        @available(*, deprecated)
+        public let clientIp: String? = nil
 
         /// 用户代理IP，内部字段，暂未开放
-        public let proxyIp: String?
+        @available(*, deprecated)
+        public let proxyIp: String? = nil
 
+        public init(userId: String? = nil) {
+            self.userId = userId
+        }
+
+        @available(*, deprecated, renamed: "init(userId:)", message: "'channel', 'openId', 'clientIp' and 'proxyIp' are deprecated in 'UserInfo'. Setting these parameters has no effect.")
         public init(userId: String? = nil, channel: String? = nil, openId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.userId = userId
-            self.channel = channel
-            self.openId = openId
-            self.clientIp = clientIp
-            self.proxyIp = proxyIp
         }
 
         enum CodingKeys: String, CodingKey {

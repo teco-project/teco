@@ -33,13 +33,20 @@ extension Essbasic {
         public let flowGroupId: String?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil) {
+            self.agent = agent
+            self.flowIds = flowIds
+            self.flowGroupId = flowGroupId
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowIds:flowGroupId:)", message: "'operator' is deprecated in 'DescribeFlowDetailInfoRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
             self.flowGroupId = flowGroupId
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -103,6 +110,15 @@ extension Essbasic {
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
+        self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询合同(签署流程)的详细信息
+    ///
+    /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
+    @available(*, deprecated, renamed: "describeFlowDetailInfo(agent:flowIds:flowGroupId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
         self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -110,6 +126,15 @@ extension Essbasic {
     /// 查询合同(签署流程)的详细信息
     ///
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
+    @inlinable
+    public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
+        try await self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询合同(签署流程)的详细信息
+    ///
+    /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
+    @available(*, deprecated, renamed: "describeFlowDetailInfo(agent:flowIds:flowGroupId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
         try await self.describeFlowDetailInfo(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, operator: `operator`), region: region, logger: logger, on: eventLoop)

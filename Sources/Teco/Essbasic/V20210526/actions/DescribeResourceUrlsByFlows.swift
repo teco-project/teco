@@ -29,12 +29,18 @@ extension Essbasic {
         public let flowIds: [String]?
 
         /// 操作者的信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowIds: [String]? = nil) {
+            self.agent = agent
+            self.flowIds = flowIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowIds:)", message: "'operator' is deprecated in 'DescribeResourceUrlsByFlowsRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -86,6 +92,16 @@ extension Essbasic {
     /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
     /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
     @inlinable
+    public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUrlsByFlowsResponse> {
+        self.describeResourceUrlsByFlows(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 根据签署流程信息批量获取资源下载链接
+    ///
+    /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
+    /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
+    @available(*, deprecated, renamed: "describeResourceUrlsByFlows(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUrlsByFlowsResponse> {
         self.describeResourceUrlsByFlows(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -94,6 +110,16 @@ extension Essbasic {
     ///
     /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
     /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
+    @inlinable
+    public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUrlsByFlowsResponse {
+        try await self.describeResourceUrlsByFlows(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 根据签署流程信息批量获取资源下载链接
+    ///
+    /// 根据签署流程信息批量获取资源下载链接，可以下载签署中、签署完的合同，需合作企业先进行授权。
+    /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
+    @available(*, deprecated, renamed: "describeResourceUrlsByFlows(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUrlsByFlowsResponse {
         try await self.describeResourceUrlsByFlows(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)

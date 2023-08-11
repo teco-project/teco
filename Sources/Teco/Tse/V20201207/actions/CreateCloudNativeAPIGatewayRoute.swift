@@ -70,7 +70,8 @@ extension Tse {
         public let stripPath: Bool?
 
         /// 是否开启强制HTTPS
-        public let forceHttps: Bool?
+        @available(*, deprecated)
+        public let forceHttps: Bool? = nil
 
         /// 四层匹配的目的端口
         public let destinationPorts: [UInt64]?
@@ -78,6 +79,22 @@ extension Tse {
         /// 路由的Headers
         public let headers: [KVMapping]?
 
+        public init(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil) {
+            self.gatewayId = gatewayId
+            self.serviceID = serviceID
+            self.routeName = routeName
+            self.methods = methods
+            self.hosts = hosts
+            self.paths = paths
+            self.protocols = protocols
+            self.preserveHost = preserveHost
+            self.httpsRedirectStatusCode = httpsRedirectStatusCode
+            self.stripPath = stripPath
+            self.destinationPorts = destinationPorts
+            self.headers = headers
+        }
+
+        @available(*, deprecated, renamed: "init(gatewayId:serviceID:routeName:methods:hosts:paths:protocols:preserveHost:httpsRedirectStatusCode:stripPath:destinationPorts:headers:)", message: "'forceHttps' is deprecated in 'CreateCloudNativeAPIGatewayRouteRequest'. Setting this parameter has no effect.")
         public init(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, forceHttps: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil) {
             self.gatewayId = gatewayId
             self.serviceID = serviceID
@@ -89,7 +106,6 @@ extension Tse {
             self.preserveHost = preserveHost
             self.httpsRedirectStatusCode = httpsRedirectStatusCode
             self.stripPath = stripPath
-            self.forceHttps = forceHttps
             self.destinationPorts = destinationPorts
             self.headers = headers
         }
@@ -135,11 +151,25 @@ extension Tse {
 
     /// 创建云原生网关路由
     @inlinable @discardableResult
+    public func createCloudNativeAPIGatewayRoute(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudNativeAPIGatewayRouteResponse> {
+        self.createCloudNativeAPIGatewayRoute(.init(gatewayId: gatewayId, serviceID: serviceID, routeName: routeName, methods: methods, hosts: hosts, paths: paths, protocols: protocols, preserveHost: preserveHost, httpsRedirectStatusCode: httpsRedirectStatusCode, stripPath: stripPath, destinationPorts: destinationPorts, headers: headers), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建云原生网关路由
+    @available(*, deprecated, renamed: "createCloudNativeAPIGatewayRoute(gatewayId:serviceID:routeName:methods:hosts:paths:protocols:preserveHost:httpsRedirectStatusCode:stripPath:destinationPorts:headers:region:logger:on:)", message: "'forceHttps' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
     public func createCloudNativeAPIGatewayRoute(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, forceHttps: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudNativeAPIGatewayRouteResponse> {
         self.createCloudNativeAPIGatewayRoute(.init(gatewayId: gatewayId, serviceID: serviceID, routeName: routeName, methods: methods, hosts: hosts, paths: paths, protocols: protocols, preserveHost: preserveHost, httpsRedirectStatusCode: httpsRedirectStatusCode, stripPath: stripPath, forceHttps: forceHttps, destinationPorts: destinationPorts, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云原生网关路由
+    @inlinable @discardableResult
+    public func createCloudNativeAPIGatewayRoute(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudNativeAPIGatewayRouteResponse {
+        try await self.createCloudNativeAPIGatewayRoute(.init(gatewayId: gatewayId, serviceID: serviceID, routeName: routeName, methods: methods, hosts: hosts, paths: paths, protocols: protocols, preserveHost: preserveHost, httpsRedirectStatusCode: httpsRedirectStatusCode, stripPath: stripPath, destinationPorts: destinationPorts, headers: headers), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建云原生网关路由
+    @available(*, deprecated, renamed: "createCloudNativeAPIGatewayRoute(gatewayId:serviceID:routeName:methods:hosts:paths:protocols:preserveHost:httpsRedirectStatusCode:stripPath:destinationPorts:headers:region:logger:on:)", message: "'forceHttps' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
     public func createCloudNativeAPIGatewayRoute(gatewayId: String, serviceID: String, routeName: String? = nil, methods: [String]? = nil, hosts: [String]? = nil, paths: [String]? = nil, protocols: [String]? = nil, preserveHost: Bool? = nil, httpsRedirectStatusCode: Int64? = nil, stripPath: Bool? = nil, forceHttps: Bool? = nil, destinationPorts: [UInt64]? = nil, headers: [KVMapping]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudNativeAPIGatewayRouteResponse {
         try await self.createCloudNativeAPIGatewayRoute(.init(gatewayId: gatewayId, serviceID: serviceID, routeName: routeName, methods: methods, hosts: hosts, paths: paths, protocols: protocols, preserveHost: preserveHost, httpsRedirectStatusCode: httpsRedirectStatusCode, stripPath: stripPath, forceHttps: forceHttps, destinationPorts: destinationPorts, headers: headers), region: region, logger: logger, on: eventLoop)

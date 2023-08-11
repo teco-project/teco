@@ -28,12 +28,18 @@ extension Essbasic {
         public let reportId: String
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, reportId: String) {
+            self.agent = agent
+            self.reportId = reportId
+        }
+
+        @available(*, deprecated, renamed: "init(agent:reportId:)", message: "'operator' is deprecated in 'DescribeChannelFlowEvidenceReportRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, reportId: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.reportId = reportId
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -86,6 +92,15 @@ extension Essbasic {
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
+    public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelFlowEvidenceReportResponse> {
+        self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @available(*, deprecated, renamed: "describeChannelFlowEvidenceReport(agent:reportId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelFlowEvidenceReportResponse> {
         self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -93,6 +108,15 @@ extension Essbasic {
     /// 查询出证报告
     ///
     /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
+        try await self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @available(*, deprecated, renamed: "describeChannelFlowEvidenceReport(agent:reportId:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
         try await self.describeChannelFlowEvidenceReport(.init(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)

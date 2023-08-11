@@ -43,14 +43,28 @@ extension Essbasic {
         public let flowId: String?
 
         /// 该参数不可用，请通过获取 web 可嵌入接口获取合同流程预览 URL
-        public let needPreview: Bool?
+        @available(*, deprecated)
+        public let needPreview: Bool? = nil
 
         /// 企业机构信息，不用传
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
         /// 操作人（用户）信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil) {
+            self.resourceId = resourceId
+            self.resourceType = resourceType
+            self.flowInfo = flowInfo
+            self.agent = agent
+            self.flowOption = flowOption
+            self.flowApproverList = flowApproverList
+            self.flowId = flowId
+        }
+
+        @available(*, deprecated, renamed: "init(resourceId:resourceType:flowInfo:agent:flowOption:flowApproverList:flowId:)", message: "'needPreview', 'organization' and 'operator' are deprecated in 'ChannelCreatePrepareFlowRequest'. Setting these parameters has no effect.")
         public init(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil) {
             self.resourceId = resourceId
             self.resourceType = resourceType
@@ -59,9 +73,6 @@ extension Essbasic {
             self.flowOption = flowOption
             self.flowApproverList = flowApproverList
             self.flowId = flowId
-            self.needPreview = needPreview
-            self.organization = organization
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -128,6 +139,19 @@ extension Essbasic {
     /// 合同发起后，填写及签署流程与现有操作流程一致
     /// 注意：目前仅支持模板发起
     @inlinable
+    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePrepareFlowResponse> {
+        self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模板发起合同web页面
+    ///
+    /// 创建预发起合同
+    /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
+    /// 可指定合同信息不可更改，签署人信息不可更改
+    /// 合同发起后，填写及签署流程与现有操作流程一致
+    /// 注意：目前仅支持模板发起
+    @available(*, deprecated, renamed: "channelCreatePrepareFlow(resourceId:resourceType:flowInfo:agent:flowOption:flowApproverList:flowId:region:logger:on:)", message: "'needPreview', 'organization' and 'operator' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreatePrepareFlowResponse> {
         self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -139,6 +163,19 @@ extension Essbasic {
     /// 可指定合同信息不可更改，签署人信息不可更改
     /// 合同发起后，填写及签署流程与现有操作流程一致
     /// 注意：目前仅支持模板发起
+    @inlinable
+    public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePrepareFlowResponse {
+        try await self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取模板发起合同web页面
+    ///
+    /// 创建预发起合同
+    /// 通过此接口指定：合同，签署人，填写控件信息，生成预创建合同链接，点击后跳转到web页面完成合同创建并发起
+    /// 可指定合同信息不可更改，签署人信息不可更改
+    /// 合同发起后，填写及签署流程与现有操作流程一致
+    /// 注意：目前仅支持模板发起
+    @available(*, deprecated, renamed: "channelCreatePrepareFlow(resourceId:resourceType:flowInfo:agent:flowOption:flowApproverList:flowId:region:logger:on:)", message: "'needPreview', 'organization' and 'operator' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func channelCreatePrepareFlow(resourceId: String, resourceType: Int64, flowInfo: BaseFlowInfo, agent: Agent? = nil, flowOption: CreateFlowOption? = nil, flowApproverList: [CommonFlowApprover]? = nil, flowId: String? = nil, needPreview: Bool? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreatePrepareFlowResponse {
         try await self.channelCreatePrepareFlow(.init(resourceId: resourceId, resourceType: resourceType, flowInfo: flowInfo, agent: agent, flowOption: flowOption, flowApproverList: flowApproverList, flowId: flowId, needPreview: needPreview, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)

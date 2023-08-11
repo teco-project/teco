@@ -31,13 +31,20 @@ extension Essbasic {
         public let proxyOrganizationOperators: [ProxyOrganizationOperator]
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator]) {
+            self.agent = agent
+            self.operatorType = operatorType
+            self.proxyOrganizationOperators = proxyOrganizationOperators
+        }
+
+        @available(*, deprecated, renamed: "init(agent:operatorType:proxyOrganizationOperators:)", message: "'operator' is deprecated in 'SyncProxyOrganizationOperatorsRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil) {
             self.agent = agent
             self.operatorType = operatorType
             self.proxyOrganizationOperators = proxyOrganizationOperators
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -93,6 +100,16 @@ extension Essbasic {
     /// 此接口（SyncProxyOrganizationOperators）用于同步 第三方平台子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于第三方应用平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
+    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
+        self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 同步企业经办人列表
+    ///
+    /// 此接口（SyncProxyOrganizationOperators）用于同步 第三方平台子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于第三方应用平台的，无法针对员工做新增/更新/离职等操作。
+    /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
+    @available(*, deprecated, renamed: "syncProxyOrganizationOperators(agent:operatorType:proxyOrganizationOperators:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
         self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -101,6 +118,16 @@ extension Essbasic {
     ///
     /// 此接口（SyncProxyOrganizationOperators）用于同步 第三方平台子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于第三方应用平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
+    @inlinable
+    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
+        try await self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 同步企业经办人列表
+    ///
+    /// 此接口（SyncProxyOrganizationOperators）用于同步 第三方平台子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于第三方应用平台的，无法针对员工做新增/更新/离职等操作。
+    /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
+    @available(*, deprecated, renamed: "syncProxyOrganizationOperators(agent:operatorType:proxyOrganizationOperators:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
         try await self.syncProxyOrganizationOperators(.init(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)

@@ -2381,7 +2381,8 @@ extension Wedata {
     public struct DimensionCount: TCInputModel, TCOutputModel {
         /// 维度类型1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dimType: UInt64?
+        @available(*, deprecated)
+        public let dimType: UInt64? = nil
 
         /// 统计值
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2391,8 +2392,13 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualityDim: UInt64?
 
+        public init(count: UInt64? = nil, qualityDim: UInt64? = nil) {
+            self.count = count
+            self.qualityDim = qualityDim
+        }
+
+        @available(*, deprecated, renamed: "init(count:qualityDim:)", message: "'dimType' is deprecated in 'DimensionCount'. Setting this parameter has no effect.")
         public init(dimType: UInt64? = nil, count: UInt64? = nil, qualityDim: UInt64? = nil) {
-            self.dimType = dimType
             self.count = count
             self.qualityDim = qualityDim
         }
@@ -8969,11 +8975,13 @@ extension Wedata {
     public struct SourceObject: TCInputModel, TCOutputModel {
         /// 源字段详细类型，int、string
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceObjectDataTypeName: String?
+        @available(*, deprecated)
+        public let sourceObjectDataTypeName: String? = nil
 
         /// 源字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceObjectValue: String?
+        @available(*, deprecated)
+        public let sourceObjectValue: String? = nil
 
         /// 源字段详细类型，int、string
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -8987,9 +8995,14 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectType: UInt64?
 
+        public init(objectDataTypeName: String? = nil, objectValue: String? = nil, objectType: UInt64? = nil) {
+            self.objectDataTypeName = objectDataTypeName
+            self.objectValue = objectValue
+            self.objectType = objectType
+        }
+
+        @available(*, deprecated, renamed: "init(objectDataTypeName:objectValue:objectType:)", message: "'sourceObjectDataTypeName' and 'sourceObjectValue' are deprecated in 'SourceObject'. Setting these parameters has no effect.")
         public init(sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, objectDataTypeName: String? = nil, objectValue: String? = nil, objectType: UInt64? = nil) {
-            self.sourceObjectDataTypeName = sourceObjectDataTypeName
-            self.sourceObjectValue = sourceObjectValue
             self.objectDataTypeName = objectDataTypeName
             self.objectValue = objectValue
             self.objectType = objectType

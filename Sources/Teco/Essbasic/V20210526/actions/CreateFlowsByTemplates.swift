@@ -36,14 +36,22 @@ extension Essbasic {
         public let previewType: Int64?
 
         /// 操作者的信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil) {
+            self.agent = agent
+            self.flowInfos = flowInfos
+            self.needPreview = needPreview
+            self.previewType = previewType
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowInfos:needPreview:previewType:)", message: "'operator' is deprecated in 'CreateFlowsByTemplatesRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowInfos = flowInfos
             self.needPreview = needPreview
             self.previewType = previewType
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -113,6 +121,17 @@ extension Essbasic {
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
+        self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 使用模板创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @available(*, deprecated, renamed: "createFlowsByTemplates(agent:flowInfos:needPreview:previewType:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
         self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -122,6 +141,17 @@ extension Essbasic {
     /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
+        try await self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 使用模板创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用模板批量创建签署流程。当前可批量发起合同（签署流程）数量为1-20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @available(*, deprecated, renamed: "createFlowsByTemplates(agent:flowInfos:needPreview:previewType:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
         try await self.createFlowsByTemplates(.init(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)

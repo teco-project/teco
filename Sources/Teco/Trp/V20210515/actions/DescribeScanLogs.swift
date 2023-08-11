@@ -56,6 +56,7 @@ extension Trp {
     /// DescribeScanLogs返回参数结构体
     public struct DescribeScanLogsResponse: TCResponseModel {
         /// 【弃用】
+        @available(*, deprecated)
         public let products: [ScanLog]
 
         /// 条数
