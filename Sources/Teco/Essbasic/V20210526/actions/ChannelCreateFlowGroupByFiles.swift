@@ -37,14 +37,22 @@ extension Essbasic {
         public let approverVerifyType: String?
 
         /// 操作者的信息，此参数不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil) {
+            self.flowFileInfos = flowFileInfos
+            self.flowGroupName = flowGroupName
+            self.agent = agent
+            self.approverVerifyType = approverVerifyType
+        }
+
+        @available(*, deprecated, renamed: "init(flowFileInfos:flowGroupName:agent:approverVerifyType:)", message: "'operator' is deprecated in 'ChannelCreateFlowGroupByFilesRequest'. Setting this parameter has no effect.")
         public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil) {
             self.flowFileInfos = flowFileInfos
             self.flowGroupName = flowGroupName
             self.agent = agent
             self.approverVerifyType = approverVerifyType
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -96,6 +104,15 @@ extension Essbasic {
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
+        self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @available(*, deprecated, renamed: "channelCreateFlowGroupByFiles(flowFileInfos:flowGroupName:agent:approverVerifyType:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
         self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -103,6 +120,15 @@ extension Essbasic {
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @inlinable
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @available(*, deprecated, renamed: "channelCreateFlowGroupByFiles(flowFileInfos:flowGroupName:agent:approverVerifyType:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
         try await self.channelCreateFlowGroupByFiles(.init(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)

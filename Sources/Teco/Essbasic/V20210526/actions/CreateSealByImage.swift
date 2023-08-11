@@ -31,13 +31,20 @@ extension Essbasic {
         public let sealImage: String
 
         /// 操作者的信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, sealName: String, sealImage: String) {
+            self.agent = agent
+            self.sealName = sealName
+            self.sealImage = sealImage
+        }
+
+        @available(*, deprecated, renamed: "init(agent:sealName:sealImage:)", message: "'operator' is deprecated in 'CreateSealByImageRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.sealName = sealName
             self.sealImage = sealImage
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -82,6 +89,15 @@ extension Essbasic {
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
     @inlinable
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
+        self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过图片为子客企业代创建印章
+    ///
+    /// 通过图片为子客企业代创建印章，图片最大5MB
+    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealByImageResponse> {
         self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -89,6 +105,15 @@ extension Essbasic {
     /// 通过图片为子客企业代创建印章
     ///
     /// 通过图片为子客企业代创建印章，图片最大5MB
+    @inlinable
+    public func createSealByImage(agent: Agent, sealName: String, sealImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
+        try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 通过图片为子客企业代创建印章
+    ///
+    /// 通过图片为子客企业代创建印章，图片最大5MB
+    @available(*, deprecated, renamed: "createSealByImage(agent:sealName:sealImage:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createSealByImage(agent: Agent, sealName: String, sealImage: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealByImageResponse {
         try await self.createSealByImage(.init(agent: agent, sealName: sealName, sealImage: sealImage, operator: `operator`), region: region, logger: logger, on: eventLoop)

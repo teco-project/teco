@@ -28,12 +28,18 @@ extension Essbasic {
         public let downLoadFlows: [DownloadFlowInfo]?
 
         /// 操作者的信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil) {
+            self.agent = agent
+            self.downLoadFlows = downLoadFlows
+        }
+
+        @available(*, deprecated, renamed: "init(agent:downLoadFlows:)", message: "'operator' is deprecated in 'GetDownloadFlowUrlRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.downLoadFlows = downLoadFlows
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -83,6 +89,17 @@ extension Essbasic {
     /// 当前接口限制最多合同（流程）50个.
     /// 返回的链接只能使用一次
     @inlinable
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
+        self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取合同（流程）批量下载链接
+    ///
+    /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
+    /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
+    @available(*, deprecated, renamed: "getDownloadFlowUrl(agent:downLoadFlows:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
         self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -92,6 +109,17 @@ extension Essbasic {
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
     /// 返回的链接只能使用一次
+    @inlinable
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
+        try await self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取合同（流程）批量下载链接
+    ///
+    /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
+    /// 当前接口限制最多合同（流程）50个.
+    /// 返回的链接只能使用一次
+    @available(*, deprecated, renamed: "getDownloadFlowUrl(agent:downLoadFlows:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
         try await self.getDownloadFlowUrl(.init(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)

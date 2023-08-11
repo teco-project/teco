@@ -57,10 +57,10 @@ extension Ess {
         public let flowDetailInfos: [FlowDetailInfo]
 
         /// 合同组ID
-        public let flowGroupId: String
+        public let flowGroupId: String?
 
         /// 合同组名称
-        public let flowGroupName: String
+        public let flowGroupName: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

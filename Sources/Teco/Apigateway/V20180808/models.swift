@@ -348,6 +348,7 @@ extension Apigateway {
 
         /// 授权API关联的业务API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let relationBuniessApiIds: [String]?
 
         /// oauth配置信息。
@@ -1271,6 +1272,7 @@ extension Apigateway {
 
         /// 授权API关联的业务API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let relationBuniessApiIds: [String]?
 
         /// API关联的标签信息。
@@ -1421,6 +1423,7 @@ extension Apigateway {
 
         /// 授权API关联的业务API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let relationBuniessApiIds: [String]?
 
         /// API关联的标签信息。
@@ -2271,7 +2274,8 @@ extension Apigateway {
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var modifedTime: Date
+        @available(*, deprecated)
+        @TCTimestampISO8601Encoding public var modifedTime: Date?
 
         /// 字符类型的值，当Type为string时才有意义
         /// 注意：此字段可能返回 null，表示取不到有效值。

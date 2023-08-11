@@ -49,7 +49,7 @@ extension Iotvideo {
         public let thumbnailURL: String
 
         /// 缩略图访问地址的过期时间
-        public let expireTime: Int64
+        public let expireTime: Int64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

@@ -48,14 +48,22 @@ extension Essbasic {
         public let hiddenComponents: Bool?
 
         /// 渠道操作者信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil) {
+            self.agent = agent
+            self.embedType = embedType
+            self.businessId = businessId
+            self.hiddenComponents = hiddenComponents
+        }
+
+        @available(*, deprecated, renamed: "init(agent:embedType:businessId:hiddenComponents:)", message: "'operator' is deprecated in 'ChannelCreateEmbedWebUrlRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.embedType = embedType
             self.businessId = businessId
             self.hiddenComponents = hiddenComponents
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -107,6 +115,17 @@ extension Essbasic {
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
     @inlinable
+    public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateEmbedWebUrlResponse> {
+        self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取常规模块web页面
+    ///
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
+    /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
+    /// 进入web连接后与当前控制台操作保持一致
+    @available(*, deprecated, renamed: "channelCreateEmbedWebUrl(agent:embedType:businessId:hiddenComponents:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateEmbedWebUrlResponse> {
         self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -116,6 +135,17 @@ extension Essbasic {
     /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
     /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
     /// 进入web连接后与当前控制台操作保持一致
+    @inlinable
+    public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateEmbedWebUrlResponse {
+        try await self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取常规模块web页面
+    ///
+    /// 本接口（ChannelCreateEmbedWebUrl）用于创建常规模块嵌入web的链接
+    /// 本接口支持创建：创建印章，创建模板，修改模板，预览模板，预览合同流程的web链接
+    /// 进入web连接后与当前控制台操作保持一致
+    @available(*, deprecated, renamed: "channelCreateEmbedWebUrl(agent:embedType:businessId:hiddenComponents:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelCreateEmbedWebUrl(agent: Agent, embedType: String, businessId: String? = nil, hiddenComponents: Bool? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateEmbedWebUrlResponse {
         try await self.channelCreateEmbedWebUrl(.init(agent: agent, embedType: embedType, businessId: businessId, hiddenComponents: hiddenComponents, operator: `operator`), region: region, logger: logger, on: eventLoop)

@@ -436,7 +436,7 @@ extension Faceid {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagList: [String]?
 
-        public init(encryptList: [String], ciphertextBlob: String, iv: String, algorithm: String? = nil, tagList: [String]? = nil) {
+        public init(encryptList: [String]? = nil, ciphertextBlob: String? = nil, iv: String? = nil, algorithm: String? = nil, tagList: [String]? = nil) {
             self.encryptList = encryptList
             self.ciphertextBlob = ciphertextBlob
             self.iv = iv

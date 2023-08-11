@@ -28,12 +28,18 @@ extension Essbasic {
         public let flowIds: [String]
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, flowIds: [String]) {
+            self.agent = agent
+            self.flowIds = flowIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowIds:)", message: "'operator' is deprecated in 'ChannelCreateBatchCancelFlowUrlRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowIds: [String], operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -109,6 +115,23 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
+        self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 根据签署流程id创建批量撤销url
+    ///
+    /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    /// 接口调用成功返回批量撤销合同的链接，通过链接跳转到电子签小程序完成批量撤销;
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @available(*, deprecated, renamed: "channelCreateBatchCancelFlowUrl(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
         self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -124,6 +147,23 @@ extension Essbasic {
     ///
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
+        try await self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 根据签署流程id创建批量撤销url
+    ///
+    /// 指定需要批量撤销的签署流程Id，获取批量撤销链接 - 不建议使用此接口，可使用ChannelBatchCancelFlows
+    /// 客户指定需要撤销的签署流程Id，最多100个，超过100不处理；
+    /// 接口调用成功返回批量撤销合同的链接，通过链接跳转到电子签小程序完成批量撤销;
+    ///
+    /// 可以撤回：未全部签署完成
+    ///  不可以撤回：已全部签署完成、已拒签、已过期、已撤回、拒绝填写、已解除等合同状态。
+    ///
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @available(*, deprecated, renamed: "channelCreateBatchCancelFlowUrl(agent:flowIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
         try await self.channelCreateBatchCancelFlowUrl(.init(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)

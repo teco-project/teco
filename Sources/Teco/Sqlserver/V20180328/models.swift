@@ -1021,10 +1021,10 @@ extension Sqlserver {
     /// 订单号对应的资源ID列表
     public struct DealInstance: TCOutputModel {
         /// 实例ID
-        public let instanceId: [String]
+        public let instanceId: [String]?
 
         /// 订单号
-        public let dealName: String
+        public let dealName: String?
 
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"

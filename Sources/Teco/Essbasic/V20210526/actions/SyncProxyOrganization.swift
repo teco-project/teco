@@ -38,15 +38,24 @@ extension Essbasic {
         public let proxyLegalName: String?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil) {
+            self.agent = agent
+            self.proxyOrganizationName = proxyOrganizationName
+            self.businessLicense = businessLicense
+            self.uniformSocialCreditCode = uniformSocialCreditCode
+            self.proxyLegalName = proxyLegalName
+        }
+
+        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:)", message: "'operator' is deprecated in 'SyncProxyOrganizationRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
             self.businessLicense = businessLicense
             self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyLegalName = proxyLegalName
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -89,6 +98,15 @@ extension Essbasic {
     ///
     /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
     @inlinable @discardableResult
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
+        self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 同步企业信息
+    ///
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
     public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationResponse> {
         self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -96,6 +114,15 @@ extension Essbasic {
     /// 同步企业信息
     ///
     /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    @inlinable @discardableResult
+    public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
+        try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 同步企业信息
+    ///
+    /// 此接口（SyncProxyOrganization）用于同步第三方平台子客企业信息，主要是子客企业的营业执照，便于子客企业开通过程中不用手动上传。若有需要调用此接口，需要在创建控制链接CreateConsoleLoginUrl之后即刻进行调用。
+    @available(*, deprecated, renamed: "syncProxyOrganization(agent:proxyOrganizationName:businessLicense:uniformSocialCreditCode:proxyLegalName:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
     public func syncProxyOrganization(agent: Agent, proxyOrganizationName: String, businessLicense: String? = nil, uniformSocialCreditCode: String? = nil, proxyLegalName: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationResponse {
         try await self.syncProxyOrganization(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, businessLicense: businessLicense, uniformSocialCreditCode: uniformSocialCreditCode, proxyLegalName: proxyLegalName, operator: `operator`), region: region, logger: logger, on: eventLoop)

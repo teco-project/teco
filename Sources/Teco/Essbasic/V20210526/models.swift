@@ -34,14 +34,22 @@ extension Essbasic {
         public let proxyAppId: String?
 
         /// 内部参数，暂未开放使用
-        public let proxyOrganizationId: String?
+        @available(*, deprecated)
+        public let proxyOrganizationId: String? = nil
 
+        public init(appId: String, proxyOrganizationOpenId: String? = nil, proxyOperator: UserInfo? = nil, proxyAppId: String? = nil) {
+            self.appId = appId
+            self.proxyOrganizationOpenId = proxyOrganizationOpenId
+            self.proxyOperator = proxyOperator
+            self.proxyAppId = proxyAppId
+        }
+
+        @available(*, deprecated, renamed: "init(appId:proxyOrganizationOpenId:proxyOperator:proxyAppId:)", message: "'proxyOrganizationId' is deprecated in 'Agent'. Setting this parameter has no effect.")
         public init(appId: String, proxyOrganizationOpenId: String? = nil, proxyOperator: UserInfo? = nil, proxyAppId: String? = nil, proxyOrganizationId: String? = nil) {
             self.appId = appId
             self.proxyOrganizationOpenId = proxyOrganizationOpenId
             self.proxyOperator = proxyOperator
             self.proxyAppId = proxyAppId
-            self.proxyOrganizationId = proxyOrganizationId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -299,11 +307,29 @@ extension Essbasic {
         public let isFullText: Bool?
 
         /// 通知类型：SMS（短信） NONE（不做通知）, 不传 默认SMS
-        public let notifyType: String?
+        @available(*, deprecated)
+        public let notifyType: String? = nil
 
         /// 签署人配置
         public let approverOption: CommonApproverOption?
 
+        public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, approverOption: CommonApproverOption? = nil) {
+            self.notChannelOrganization = notChannelOrganization
+            self.approverType = approverType
+            self.organizationId = organizationId
+            self.organizationOpenId = organizationOpenId
+            self.organizationName = organizationName
+            self.userId = userId
+            self.openId = openId
+            self.approverName = approverName
+            self.approverMobile = approverMobile
+            self.recipientId = recipientId
+            self.preReadTime = preReadTime
+            self.isFullText = isFullText
+            self.approverOption = approverOption
+        }
+
+        @available(*, deprecated, renamed: "init(notChannelOrganization:approverType:organizationId:organizationOpenId:organizationName:userId:openId:approverName:approverMobile:recipientId:preReadTime:isFullText:approverOption:)", message: "'notifyType' is deprecated in 'CommonFlowApprover'. Setting this parameter has no effect.")
         public init(notChannelOrganization: Bool, approverType: Int64? = nil, organizationId: String? = nil, organizationOpenId: String? = nil, organizationName: String? = nil, userId: String? = nil, openId: String? = nil, approverName: String? = nil, approverMobile: String? = nil, recipientId: String? = nil, preReadTime: Int64? = nil, isFullText: Bool? = nil, notifyType: String? = nil, approverOption: CommonApproverOption? = nil) {
             self.notChannelOrganization = notChannelOrganization
             self.approverType = approverType
@@ -317,7 +343,6 @@ extension Essbasic {
             self.recipientId = recipientId
             self.preReadTime = preReadTime
             self.isFullText = isFullText
-            self.notifyType = notifyType
             self.approverOption = approverOption
         }
 
@@ -942,7 +967,8 @@ extension Essbasic {
         public let deadline: Int64?
 
         /// 签署完回调url，最大长度1000个字符
-        public let callbackUrl: String?
+        @available(*, deprecated)
+        public let callbackUrl: String? = nil
 
         /// 使用PDF文件直接发起合同时，签署人指定的签署控件；<br/>使用模板发起合同时，指定本企业印章签署控件的印章ID: <br/>通过ComponentId或ComponenetName指定签署控件，ComponentValue为印章ID。
         public let signComponents: [Component]?
@@ -983,6 +1009,31 @@ extension Essbasic {
         /// 默认为SMS(签署方为子客时该字段不生效)
         public let notifyType: String?
 
+        public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil) {
+            self.name = name
+            self.idCardType = idCardType
+            self.idCardNumber = idCardNumber
+            self.mobile = mobile
+            self.organizationName = organizationName
+            self.notChannelOrganization = notChannelOrganization
+            self.openId = openId
+            self.organizationOpenId = organizationOpenId
+            self.approverType = approverType
+            self.recipientId = recipientId
+            self.deadline = deadline
+            self.signComponents = signComponents
+            self.componentLimitType = componentLimitType
+            self.preReadTime = preReadTime
+            self.jumpUrl = jumpUrl
+            self.approverOption = approverOption
+            self.approverNeedSignReview = approverNeedSignReview
+            self.approverVerifyTypes = approverVerifyTypes
+            self.approverSignTypes = approverSignTypes
+            self.signId = signId
+            self.notifyType = notifyType
+        }
+
+        @available(*, deprecated, renamed: "init(name:idCardType:idCardNumber:mobile:organizationName:notChannelOrganization:openId:organizationOpenId:approverType:recipientId:deadline:signComponents:componentLimitType:preReadTime:jumpUrl:approverOption:approverNeedSignReview:approverVerifyTypes:approverSignTypes:signId:notifyType:)", message: "'callbackUrl' is deprecated in 'FlowApproverInfo'. Setting this parameter has no effect.")
         public init(name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [Int64]? = nil, signId: String? = nil, notifyType: String? = nil) {
             self.name = name
             self.idCardType = idCardType
@@ -995,7 +1046,6 @@ extension Essbasic {
             self.approverType = approverType
             self.recipientId = recipientId
             self.deadline = deadline
-            self.callbackUrl = callbackUrl
             self.signComponents = signComponents
             self.componentLimitType = componentLimitType
             self.preReadTime = preReadTime
@@ -1501,17 +1551,24 @@ extension Essbasic {
         public let channel: String?
 
         /// 用户真实的IP
-        public let clientIp: String?
+        @available(*, deprecated)
+        public let clientIp: String? = nil
 
         /// 机构的代理IP
-        public let proxyIp: String?
+        @available(*, deprecated)
+        public let proxyIp: String? = nil
 
+        public init(organizationOpenId: String, organizationId: String? = nil, channel: String? = nil) {
+            self.organizationOpenId = organizationOpenId
+            self.organizationId = organizationId
+            self.channel = channel
+        }
+
+        @available(*, deprecated, renamed: "init(organizationOpenId:organizationId:channel:)", message: "'clientIp' and 'proxyIp' are deprecated in 'OrganizationInfo'. Setting these parameters has no effect.")
         public init(organizationOpenId: String, organizationId: String? = nil, channel: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.organizationOpenId = organizationOpenId
             self.organizationId = organizationId
             self.channel = channel
-            self.clientIp = clientIp
-            self.proxyIp = proxyIp
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1929,6 +1986,7 @@ extension Essbasic {
 
         /// 自定义用户编号
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let customUserId: String?
 
         /// 用户姓名
@@ -2116,6 +2174,7 @@ extension Essbasic {
         public let templateType: Int64
 
         /// 是否是发起人 ,已弃用
+        @available(*, deprecated)
         public let isPromoter: Bool
 
         /// 模板的创建者信息，电子签系统用户ID
@@ -2242,23 +2301,28 @@ extension Essbasic {
         public let openId: String?
 
         /// 内部参数，暂未开放使用
-        public let channel: String?
+        @available(*, deprecated)
+        public let channel: String? = nil
 
         /// 内部参数，暂未开放使用
-        public let customUserId: String?
+        @available(*, deprecated)
+        public let customUserId: String? = nil
 
         /// 内部参数，暂未开放使用
-        public let clientIp: String?
+        @available(*, deprecated)
+        public let clientIp: String? = nil
 
         /// 内部参数，暂未开放使用
-        public let proxyIp: String?
+        @available(*, deprecated)
+        public let proxyIp: String? = nil
 
+        public init(openId: String? = nil) {
+            self.openId = openId
+        }
+
+        @available(*, deprecated, renamed: "init(openId:)", message: "'channel', 'customUserId', 'clientIp' and 'proxyIp' are deprecated in 'UserInfo'. Setting these parameters has no effect.")
         public init(openId: String? = nil, channel: String? = nil, customUserId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.openId = openId
-            self.channel = channel
-            self.customUserId = customUserId
-            self.clientIp = clientIp
-            self.proxyIp = proxyIp
         }
 
         enum CodingKeys: String, CodingKey {

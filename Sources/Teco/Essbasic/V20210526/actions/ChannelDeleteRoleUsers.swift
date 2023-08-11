@@ -31,16 +31,24 @@ extension Essbasic {
         public let userIds: [String]?
 
         /// 操作人信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
         /// 客户系统用户ID列表，与UserIds参数二选一,优先UserIds参数
         public let openIds: [String]?
 
+        public init(agent: Agent, roleId: String, userIds: [String]? = nil, openIds: [String]? = nil) {
+            self.agent = agent
+            self.roleId = roleId
+            self.userIds = userIds
+            self.openIds = openIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:roleId:userIds:openIds:)", message: "'operator' is deprecated in 'ChannelDeleteRoleUsersRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil) {
             self.agent = agent
             self.roleId = roleId
             self.userIds = userIds
-            self.operator = `operator`
             self.openIds = openIds
         }
 
@@ -87,6 +95,15 @@ extension Essbasic {
     ///
     /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
     @inlinable
+    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDeleteRoleUsersResponse> {
+        self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, openIds: openIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
+    @available(*, deprecated, renamed: "channelDeleteRoleUsers(agent:roleId:userIds:openIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelDeleteRoleUsersResponse> {
         self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`, openIds: openIds), region: region, logger: logger, on: eventLoop)
     }
@@ -94,6 +111,15 @@ extension Essbasic {
     /// 删除员工绑定角色
     ///
     /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
+    @inlinable
+    public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDeleteRoleUsersResponse {
+        try await self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, openIds: openIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 删除员工绑定角色
+    ///
+    /// 通过此接口，删除员工绑定的角色，支持以电子签userId、客户系统userId两种方式调用。
+    @available(*, deprecated, renamed: "channelDeleteRoleUsers(agent:roleId:userIds:openIds:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelDeleteRoleUsers(agent: Agent, roleId: String, userIds: [String]? = nil, operator: UserInfo? = nil, openIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelDeleteRoleUsersResponse {
         try await self.channelDeleteRoleUsers(.init(agent: agent, roleId: roleId, userIds: userIds, operator: `operator`, openIds: openIds), region: region, logger: logger, on: eventLoop)

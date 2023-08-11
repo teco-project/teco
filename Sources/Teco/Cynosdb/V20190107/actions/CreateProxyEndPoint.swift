@@ -131,7 +131,7 @@ extension Cynosdb {
         public let taskId: Int64
 
         /// 数据库代理组ID
-        public let proxyGroupId: String
+        public let proxyGroupId: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

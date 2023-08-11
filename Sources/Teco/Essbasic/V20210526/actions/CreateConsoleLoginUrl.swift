@@ -53,8 +53,23 @@ extension Essbasic {
         public let authorizationTypes: [Int64]?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil) {
+            self.agent = agent
+            self.proxyOrganizationName = proxyOrganizationName
+            self.proxyOperatorName = proxyOperatorName
+            self.module = module
+            self.moduleId = moduleId
+            self.uniformSocialCreditCode = uniformSocialCreditCode
+            self.menuStatus = menuStatus
+            self.endpoint = endpoint
+            self.autoJumpBackEvent = autoJumpBackEvent
+            self.authorizationTypes = authorizationTypes
+        }
+
+        @available(*, deprecated, renamed: "init(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:)", message: "'operator' is deprecated in 'CreateConsoleLoginUrlRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.proxyOrganizationName = proxyOrganizationName
@@ -66,7 +81,6 @@ extension Essbasic {
             self.endpoint = endpoint
             self.autoJumpBackEvent = autoJumpBackEvent
             self.authorizationTypes = authorizationTypes
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -140,6 +154,18 @@ extension Essbasic {
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
+        self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 生成控制台、移动端链接
+    ///
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
+    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
+    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
+    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
         self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -150,6 +176,18 @@ extension Essbasic {
     /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    @inlinable
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 生成控制台、移动端链接
+    ///
+    /// 此接口（CreateConsoleLoginUrl）用于创建第三方平台子客企业控制台Web/移动登录链接。登录链接是子客控制台的唯一入口。
+    /// 若子客企业未激活，会进入企业激活流程，首次参与激活流程的经办人会成为超管。（若企业激活过程中填写信息有误，需要重置激活流程，可以换一个经办人OpenId获取新的链接进入。）
+    /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
+    /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
+    @available(*, deprecated, renamed: "createConsoleLoginUrl(agent:proxyOrganizationName:proxyOperatorName:module:moduleId:uniformSocialCreditCode:menuStatus:endpoint:autoJumpBackEvent:authorizationTypes:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, authorizationTypes: [Int64]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
         try await self.createConsoleLoginUrl(.init(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, authorizationTypes: authorizationTypes, operator: `operator`), region: region, logger: logger, on: eventLoop)

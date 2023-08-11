@@ -64,8 +64,21 @@ extension Apigateway {
         ///
         /// 说明：
         /// “:”表示包含，“!=”表示不等于，字段含义见输出参数的LogSet说明
-        public let logQuerys: [LogQuery]?
+        @available(*, deprecated)
+        public let logQuerys: [LogQuery]? = nil
 
+        public init(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil) {
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
+            self.serviceId = serviceId
+            self.filters = filters
+            self.limit = limit
+            self.conText = conText
+            self.sort = sort
+            self.query = query
+        }
+
+        @available(*, deprecated, renamed: "init(startTime:endTime:serviceId:filters:limit:conText:sort:query:)", message: "'logQuerys' is deprecated in 'DescribeLogSearchRequest'. Setting this parameter has no effect.")
         public init(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil) {
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
@@ -75,7 +88,6 @@ extension Apigateway {
             self.conText = conText
             self.sort = sort
             self.query = query
-            self.logQuerys = logQuerys
         }
 
         enum CodingKeys: String, CodingKey {
@@ -160,6 +172,15 @@ extension Apigateway {
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
+        self.describeLogSearch(.init(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @available(*, deprecated, renamed: "describeLogSearch(startTime:endTime:serviceId:filters:limit:conText:sort:query:region:logger:on:)", message: "'logQuerys' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
         self.describeLogSearch(.init(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)
     }
@@ -167,6 +188,15 @@ extension Apigateway {
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
+    @inlinable
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
+        try await self.describeLogSearch(.init(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @available(*, deprecated, renamed: "describeLogSearch(startTime:endTime:serviceId:filters:limit:conText:sort:query:region:logger:on:)", message: "'logQuerys' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
         try await self.describeLogSearch(.init(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)

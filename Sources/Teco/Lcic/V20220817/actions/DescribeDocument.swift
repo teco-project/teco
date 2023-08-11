@@ -78,10 +78,10 @@ extension Lcic {
         public let updateTime: UInt64
 
         /// 课件页数
-        public let pages: UInt64
+        public let pages: UInt64?
 
         /// 课件预览地址
-        public let preview: String
+        public let preview: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

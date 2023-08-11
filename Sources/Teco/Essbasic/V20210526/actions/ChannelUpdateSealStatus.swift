@@ -34,14 +34,22 @@ extension Essbasic {
         public let reason: String?
 
         /// 操作者的信息
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, status: String, sealId: String, reason: String? = nil) {
+            self.agent = agent
+            self.status = status
+            self.sealId = sealId
+            self.reason = reason
+        }
+
+        @available(*, deprecated, renamed: "init(agent:status:sealId:reason:)", message: "'operator' is deprecated in 'ChannelUpdateSealStatusRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.status = status
             self.sealId = sealId
             self.reason = reason
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -83,6 +91,15 @@ extension Essbasic {
     ///
     /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
     @inlinable @discardableResult
+    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelUpdateSealStatusResponse> {
+        self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 更新印章状态
+    ///
+    /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
+    @available(*, deprecated, renamed: "channelUpdateSealStatus(agent:status:sealId:reason:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
     public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelUpdateSealStatusResponse> {
         self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -90,6 +107,15 @@ extension Essbasic {
     /// 更新印章状态
     ///
     /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
+    @inlinable @discardableResult
+    public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelUpdateSealStatusResponse {
+        try await self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 更新印章状态
+    ///
+    /// 本接口（ChannelUpdateSealStatus）用于第三方应用平台为子客企业更新印章状态
+    @available(*, deprecated, renamed: "channelUpdateSealStatus(agent:status:sealId:reason:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
     public func channelUpdateSealStatus(agent: Agent, status: String, sealId: String, reason: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelUpdateSealStatusResponse {
         try await self.channelUpdateSealStatus(.init(agent: agent, status: status, sealId: sealId, reason: reason, operator: `operator`), region: region, logger: logger, on: eventLoop)

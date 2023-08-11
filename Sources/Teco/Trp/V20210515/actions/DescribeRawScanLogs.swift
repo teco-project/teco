@@ -72,7 +72,7 @@ extension Trp {
     /// DescribeRawScanLogs返回参数结构体
     public struct DescribeRawScanLogsResponse: TCPaginatedResponse {
         /// 原始扫码日志
-        public let scanLogs: [RawScanLog]
+        public let scanLogs: [RawScanLog]?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -84,7 +84,7 @@ extension Trp {
 
         /// Extract the returned item list from the paginated response.
         public func getItems() -> [RawScanLog] {
-            self.scanLogs
+            self.scanLogs ?? []
         }
     }
 

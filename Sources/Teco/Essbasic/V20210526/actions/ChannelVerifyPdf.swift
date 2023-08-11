@@ -28,12 +28,18 @@ extension Essbasic {
         public let agent: Agent?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(flowId: String, agent: Agent? = nil) {
+            self.flowId = flowId
+            self.agent = agent
+        }
+
+        @available(*, deprecated, renamed: "init(flowId:agent:)", message: "'operator' is deprecated in 'ChannelVerifyPdfRequest'. Setting this parameter has no effect.")
         public init(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -81,6 +87,15 @@ extension Essbasic {
     ///
     /// 对流程的合同文件进行验证，判断文件是否合法。
     @inlinable
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
+        self.channelVerifyPdf(.init(flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
+    @available(*, deprecated, renamed: "channelVerifyPdf(flowId:agent:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
         self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -88,6 +103,15 @@ extension Essbasic {
     /// 流程文件验签
     ///
     /// 对流程的合同文件进行验证，判断文件是否合法。
+    @inlinable
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
+        try await self.channelVerifyPdf(.init(flowId: flowId, agent: agent), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 流程文件验签
+    ///
+    /// 对流程的合同文件进行验证，判断文件是否合法。
+    @available(*, deprecated, renamed: "channelVerifyPdf(flowId:agent:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
         try await self.channelVerifyPdf(.init(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)

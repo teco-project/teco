@@ -71,6 +71,7 @@ extension As {
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 该参数已废弃，请勿使用。
+        @available(*, deprecated)
         public let activityRelatedInstanceSet: [ActivtyRelatedInstance]
 
         /// 伸缩活动状态简要描述。
@@ -458,15 +459,22 @@ extension As {
         public let monitorService: RunMonitorServiceEnabled?
 
         /// 该参数已废弃，查询时会返回空值，请勿使用。
-        public let automationService: [RunAutomationServiceEnabled]?
+        @available(*, deprecated)
+        public let automationService: [RunAutomationServiceEnabled]? = nil
 
         /// 开启自动化助手服务。若不指定该参数，则默认逻辑与CVM保持一致。注意：此字段可能返回 null，表示取不到有效值。
         public let automationToolsService: RunAutomationServiceEnabled?
 
+        public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationToolsService: RunAutomationServiceEnabled? = nil) {
+            self.securityService = securityService
+            self.monitorService = monitorService
+            self.automationToolsService = automationToolsService
+        }
+
+        @available(*, deprecated, renamed: "init(securityService:monitorService:automationToolsService:)", message: "'automationService' is deprecated in 'EnhancedService'. Setting this parameter has no effect.")
         public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: [RunAutomationServiceEnabled]? = nil, automationToolsService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
-            self.automationService = automationService
             self.automationToolsService = automationToolsService
         }
 

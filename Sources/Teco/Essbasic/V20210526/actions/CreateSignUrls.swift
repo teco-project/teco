@@ -64,7 +64,8 @@ extension Essbasic {
         public let jumpUrl: String?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
         /// 生成的签署链接在签署过程隐藏的按钮列表, 可以设置隐藏的按钮列表如下
         ///
@@ -74,6 +75,23 @@ extension Essbasic {
         /// 3:签署成功页的查看详情按钮
         public let hides: [Int64]?
 
+        public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, hides: [Int64]? = nil) {
+            self.agent = agent
+            self.flowIds = flowIds
+            self.flowGroupId = flowGroupId
+            self.endpoint = endpoint
+            self.generateType = generateType
+            self.organizationName = organizationName
+            self.name = name
+            self.mobile = mobile
+            self.organizationOpenId = organizationOpenId
+            self.openId = openId
+            self.autoJumpBack = autoJumpBack
+            self.jumpUrl = jumpUrl
+            self.hides = hides
+        }
+
+        @available(*, deprecated, renamed: "init(agent:flowIds:flowGroupId:endpoint:generateType:organizationName:name:mobile:organizationOpenId:openId:autoJumpBack:jumpUrl:hides:)", message: "'operator' is deprecated in 'CreateSignUrlsRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil) {
             self.agent = agent
             self.flowIds = flowIds
@@ -87,7 +105,6 @@ extension Essbasic {
             self.openId = openId
             self.autoJumpBack = autoJumpBack
             self.jumpUrl = jumpUrl
-            self.operator = `operator`
             self.hides = hides
         }
 
@@ -213,6 +230,37 @@ extension Essbasic {
     /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
     /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
     @inlinable
+    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
+        self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, hides: hides), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取跳转小程序查看或签署链接
+    ///
+    /// 创建跳转小程序查看或签署的链接。
+    ///
+    /// 跳转小程序的几种方式：主要是设置不同的EndPoint
+    /// 1. 通过链接Url直接跳转到小程序，不需要返回
+    /// 设置EndPoint为WEIXINAPP，得到链接打开即可。（与短信提醒用户签署形式一样）。
+    ///
+    /// 2. 通过链接Url打开H5引导页-->点击跳转到小程序-->签署完退出小程序-->回到H5引导页-->跳转到指定JumpUrl
+    /// 设置EndPoint为CHANNEL，指定JumpUrl，得到链接打开即可。
+    ///
+    /// 3. 客户App直接跳转到小程序-->小程序签署完成-->返回App
+    /// 跳转到小程序的实现，参考官方文档
+    /// https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/launchApp.html
+    /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
+    /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
+    ///
+    /// 4. 客户小程序直接跳到电子签小程序-->签署完成退出电子签小程序-->回到客户小程序
+    /// 跳转到小程序的实现，参考官方文档（分为全屏、半屏两种方式）
+    /// 全屏方式：
+    /// （https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html）
+    /// 半屏方式：
+    /// （https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html）
+    /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
+    /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
+    @available(*, deprecated, renamed: "createSignUrls(agent:flowIds:flowGroupId:endpoint:generateType:organizationName:name:mobile:organizationOpenId:openId:autoJumpBack:jumpUrl:hides:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlsResponse> {
         self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`, hides: hides), region: region, logger: logger, on: eventLoop)
     }
@@ -242,6 +290,37 @@ extension Essbasic {
     /// （https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html）
     /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
     /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
+    @inlinable
+    public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlsResponse {
+        try await self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, hides: hides), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 获取跳转小程序查看或签署链接
+    ///
+    /// 创建跳转小程序查看或签署的链接。
+    ///
+    /// 跳转小程序的几种方式：主要是设置不同的EndPoint
+    /// 1. 通过链接Url直接跳转到小程序，不需要返回
+    /// 设置EndPoint为WEIXINAPP，得到链接打开即可。（与短信提醒用户签署形式一样）。
+    ///
+    /// 2. 通过链接Url打开H5引导页-->点击跳转到小程序-->签署完退出小程序-->回到H5引导页-->跳转到指定JumpUrl
+    /// 设置EndPoint为CHANNEL，指定JumpUrl，得到链接打开即可。
+    ///
+    /// 3. 客户App直接跳转到小程序-->小程序签署完成-->返回App
+    /// 跳转到小程序的实现，参考官方文档
+    /// https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/launchApp.html
+    /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
+    /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
+    ///
+    /// 4. 客户小程序直接跳到电子签小程序-->签署完成退出电子签小程序-->回到客户小程序
+    /// 跳转到小程序的实现，参考官方文档（分为全屏、半屏两种方式）
+    /// 全屏方式：
+    /// （https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html）
+    /// 半屏方式：
+    /// （https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html）
+    /// 其中小程序的原始Id，请联系<对接技术人员>获取，或者查看小程序信息自助获取。
+    /// 使用CreateSignUrls，设置EndPoint为APP，得到path。
+    @available(*, deprecated, renamed: "createSignUrls(agent:flowIds:flowGroupId:endpoint:generateType:organizationName:name:mobile:organizationOpenId:openId:autoJumpBack:jumpUrl:hides:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createSignUrls(agent: Agent, flowIds: [String]? = nil, flowGroupId: String? = nil, endpoint: String? = nil, generateType: String? = nil, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil, autoJumpBack: Bool? = nil, jumpUrl: String? = nil, operator: UserInfo? = nil, hides: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlsResponse {
         try await self.createSignUrls(.init(agent: agent, flowIds: flowIds, flowGroupId: flowGroupId, endpoint: endpoint, generateType: generateType, organizationName: organizationName, name: name, mobile: mobile, organizationOpenId: organizationOpenId, openId: openId, autoJumpBack: autoJumpBack, jumpUrl: jumpUrl, operator: `operator`, hides: hides), region: region, logger: logger, on: eventLoop)

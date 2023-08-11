@@ -213,6 +213,7 @@ extension Billing {
         public let singlePrice: String
 
         /// 组件指定价（已废弃）
+        @available(*, deprecated)
         public let specifiedPrice: String
 
         /// 组件价格单位：组件价格的单位，单位构成：元/用量单位/时长单位
@@ -293,6 +294,7 @@ extension Billing {
 
         /// 节省计划抵扣金额（已废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
+        @available(*, deprecated)
         public let spDeduction: String?
 
         /// 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率
@@ -458,6 +460,7 @@ extension Billing {
         public let originalCostWithRI: String
 
         /// 节省计划抵扣金额（已废弃）
+        @available(*, deprecated)
         public let spDeduction: String?
 
         /// 节省计划抵扣组件原价：节省计划抵扣原价=节省计划包抵扣金额/节省计划抵扣率

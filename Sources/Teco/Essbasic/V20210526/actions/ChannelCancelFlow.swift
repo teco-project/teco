@@ -38,14 +38,22 @@ extension Essbasic {
         public let cancelMessageFormat: Int64?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil) {
+            self.flowId = flowId
+            self.agent = agent
+            self.cancelMessage = cancelMessage
+            self.cancelMessageFormat = cancelMessageFormat
+        }
+
+        @available(*, deprecated, renamed: "init(flowId:agent:cancelMessage:cancelMessageFormat:)", message: "'operator' is deprecated in 'ChannelCancelFlowRequest'. Setting this parameter has no effect.")
         public init(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.cancelMessage = cancelMessage
             self.cancelMessageFormat = cancelMessageFormat
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -93,6 +101,17 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelFlowResponse> {
+        self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 撤销签署流程
+    ///
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @available(*, deprecated, renamed: "channelCancelFlow(flowId:agent:cancelMessage:cancelMessageFormat:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable @discardableResult
     public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelFlowResponse> {
         self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -102,6 +121,17 @@ extension Essbasic {
     /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable @discardableResult
+    public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
+        try await self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 撤销签署流程
+    ///
+    /// 撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @available(*, deprecated, renamed: "channelCancelFlow(flowId:agent:cancelMessage:cancelMessageFormat:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable @discardableResult
     public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
         try await self.channelCancelFlow(.init(flowId: flowId, agent: agent, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)

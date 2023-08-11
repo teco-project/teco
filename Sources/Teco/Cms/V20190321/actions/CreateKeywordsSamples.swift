@@ -45,7 +45,7 @@ extension Cms {
         public let sampleIDs: [String]?
 
         /// 成功入库关键词列表
-        public let successInfos: [UserKeywordInfo]
+        public let successInfos: [UserKeywordInfo]?
 
         /// 重复关键词列表
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -32,17 +32,24 @@ extension Essbasic {
         public let userIds: [String]
 
         /// 操作人（用户）信息，不用传
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
         /// 企业机构信息，不用传
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
+        public init(agent: Agent, sealId: String, userIds: [String]) {
+            self.agent = agent
+            self.sealId = sealId
+            self.userIds = userIds
+        }
+
+        @available(*, deprecated, renamed: "init(agent:sealId:userIds:)", message: "'operator' and 'organization' are deprecated in 'ChannelCreateSealPolicyRequest'. Setting these parameters has no effect.")
         public init(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.sealId = sealId
             self.userIds = userIds
-            self.operator = `operator`
-            self.organization = organization
         }
 
         enum CodingKeys: String, CodingKey {
@@ -89,6 +96,15 @@ extension Essbasic {
     ///
     /// 将指定印章授权给第三方平台子客企业下的某些员工
     @inlinable
+    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateSealPolicyResponse> {
+        self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建印章授权
+    ///
+    /// 将指定印章授权给第三方平台子客企业下的某些员工
+    @available(*, deprecated, renamed: "channelCreateSealPolicy(agent:sealId:userIds:region:logger:on:)", message: "'operator' and 'organization' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateSealPolicyResponse> {
         self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
@@ -96,6 +112,15 @@ extension Essbasic {
     /// 创建印章授权
     ///
     /// 将指定印章授权给第三方平台子客企业下的某些员工
+    @inlinable
+    public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateSealPolicyResponse {
+        try await self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 创建印章授权
+    ///
+    /// 将指定印章授权给第三方平台子客企业下的某些员工
+    @available(*, deprecated, renamed: "channelCreateSealPolicy(agent:sealId:userIds:region:logger:on:)", message: "'operator' and 'organization' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func channelCreateSealPolicy(agent: Agent, sealId: String, userIds: [String], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateSealPolicyResponse {
         try await self.channelCreateSealPolicy(.init(agent: agent, sealId: sealId, userIds: userIds, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)

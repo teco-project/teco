@@ -28,16 +28,22 @@ extension Ess {
         public let `operator`: UserInfo?
 
         /// 应用号信息
-        public let agent: Agent?
+        @available(*, deprecated)
+        public let agent: Agent? = nil
 
         /// 暂未开放
-        public let organization: OrganizationInfo?
+        @available(*, deprecated)
+        public let organization: OrganizationInfo? = nil
 
+        public init(taskId: String, operator: UserInfo? = nil) {
+            self.taskId = taskId
+            self.operator = `operator`
+        }
+
+        @available(*, deprecated, renamed: "init(taskId:operator:)", message: "'agent' and 'organization' are deprecated in 'GetTaskResultApiRequest'. Setting these parameters has no effect.")
         public init(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.taskId = taskId
             self.operator = `operator`
-            self.agent = agent
-            self.organization = organization
         }
 
         enum CodingKeys: String, CodingKey {
@@ -109,6 +115,16 @@ extension Ess {
     /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
     /// 注意：大文件转换所需的时间可能会比较长。
     @inlinable
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
+        self.getTaskResultApi(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
+    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
+    @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
         self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
@@ -117,6 +133,16 @@ extension Ess {
     ///
     /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
     /// 注意：大文件转换所需的时间可能会比较长。
+    @inlinable
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
+        try await self.getTaskResultApi(.init(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 查询转换任务状态
+    ///
+    /// 查询转换任务的状态。转换任务Id通过发起转换任务接口（CreateConvertTaskApi）获取。
+    /// 注意：大文件转换所需的时间可能会比较长。
+    @available(*, deprecated, renamed: "getTaskResultApi(taskId:operator:region:logger:on:)", message: "'agent' and 'organization' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
         try await self.getTaskResultApi(.init(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)

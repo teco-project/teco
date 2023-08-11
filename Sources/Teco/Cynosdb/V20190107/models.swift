@@ -2987,7 +2987,7 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newTable: String?
 
-        public init(oldTable: String, newTable: String) {
+        public init(oldTable: String? = nil, newTable: String? = nil) {
             self.oldTable = oldTable
             self.newTable = newTable
         }

@@ -52,8 +52,19 @@ extension Essbasic {
         public let offset: UInt64?
 
         /// 暂未开放
-        public let `operator`: UserInfo?
+        @available(*, deprecated)
+        public let `operator`: UserInfo? = nil
 
+        public init(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
+            self.agent = agent
+            self._startDate = .init(wrappedValue: startDate)
+            self._endDate = .init(wrappedValue: endDate)
+            self.needAggregate = needAggregate
+            self.limit = limit
+            self.offset = offset
+        }
+
+        @available(*, deprecated, renamed: "init(agent:startDate:endDate:needAggregate:limit:offset:)", message: "'operator' is deprecated in 'DescribeUsageRequest'. Setting this parameter has no effect.")
         public init(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self._startDate = .init(wrappedValue: startDate)
@@ -61,7 +72,6 @@ extension Essbasic {
             self.needAggregate = needAggregate
             self.limit = limit
             self.offset = offset
-            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -79,7 +89,7 @@ extension Essbasic {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeUsageRequest(agent: self.agent, startDate: self.startDate, endDate: self.endDate, needAggregate: self.needAggregate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), operator: self.operator)
+            return DescribeUsageRequest(agent: self.agent, startDate: self.startDate, endDate: self.endDate, needAggregate: self.needAggregate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
         }
     }
 
@@ -135,6 +145,16 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
+    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
+        self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 合同用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @available(*, deprecated, renamed: "describeUsage(agent:startDate:endDate:needAggregate:limit:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
+    @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
         self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -143,6 +163,16 @@ extension Essbasic {
     ///
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
+        try await self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    }
+
+    /// 合同用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @available(*, deprecated, renamed: "describeUsage(agent:startDate:endDate:needAggregate:limit:offset:region:logger:on:)", message: "'operator' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
         try await self.describeUsage(.init(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)

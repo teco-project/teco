@@ -8957,18 +8957,18 @@ extension Vod {
         /// 媒体文件是否无音频轨，取值范围：
         /// <li>0：否，即有音频轨；</li>
         /// <li>1：是，即无音频轨。</li>
-        public let noAudio: Int64
+        public let noAudio: Int64?
 
         /// 媒体文件是否无视频轨，取值范围：
         /// <li>0：否，即有视频轨；</li>
         /// <li>1：是，即无视频轨。</li>
-        public let noVideo: Int64
+        public let noVideo: Int64?
 
         /// 视频画面质量评分，取值范围：[0, 100]。
-        public let qualityEvaluationScore: UInt64
+        public let qualityEvaluationScore: UInt64?
 
         /// 音画质检测出的异常项列表。
-        public let qualityInspectResultSet: [QualityInspectResultItem]
+        public let qualityInspectResultSet: [QualityInspectResultItem]?
 
         enum CodingKeys: String, CodingKey {
             case noAudio = "NoAudio"

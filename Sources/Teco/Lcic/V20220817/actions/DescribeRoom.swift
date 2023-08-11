@@ -105,16 +105,16 @@ extension Lcic {
         /// 开启专注模式。
         /// 0 收看全部角色音视频(默认)
         /// 1 只看老师和助教
-        public let interactionMode: Int64
+        public let interactionMode: Int64?
 
         /// 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
-        public let videoOrientation: UInt64
+        public let videoOrientation: UInt64?
 
         /// 开启课后评分。 0：不开启(默认)  1：开启
-        public let isGradingRequiredPostClass: Int64
+        public let isGradingRequiredPostClass: Int64?
 
         /// 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
-        public let roomType: Int64
+        public let roomType: Int64?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String

@@ -34,6 +34,7 @@ extension Cam {
         public let roles: UInt64
 
         /// 身份提供商数
+        @available(*, deprecated)
         public let idps: UInt64
 
         /// 子账户数
