@@ -96,7 +96,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SimpleGroup`` list from the paginated response.
         public func getItems() -> [SimpleGroup] {
             self.result?.content ?? []
         }

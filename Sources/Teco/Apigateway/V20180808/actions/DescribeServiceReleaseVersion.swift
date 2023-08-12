@@ -66,7 +66,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DescribeServiceReleaseVersionResultVersionListInfo`` list from the paginated response.
         public func getItems() -> [DescribeServiceReleaseVersionResultVersionListInfo] {
             self.result?.versionList ?? []
         }

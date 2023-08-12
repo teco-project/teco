@@ -103,7 +103,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetWebLocationBaseInfo`` list from the paginated response.
         public func getItems() -> [AssetWebLocationBaseInfo] {
             self.locations ?? []
         }

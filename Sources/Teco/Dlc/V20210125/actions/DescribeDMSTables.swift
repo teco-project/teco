@@ -121,7 +121,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DMSTableInfo`` list from the paginated response.
         public func getItems() -> [DMSTableInfo] {
             self.tableList ?? []
         }

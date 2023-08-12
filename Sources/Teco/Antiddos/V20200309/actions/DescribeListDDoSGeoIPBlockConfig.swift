@@ -74,7 +74,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSGeoIPBlockConfigRelation`` list from the paginated response.
         public func getItems() -> [DDoSGeoIPBlockConfigRelation] {
             self.configList
         }

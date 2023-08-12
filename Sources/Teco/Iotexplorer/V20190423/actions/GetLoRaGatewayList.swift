@@ -70,7 +70,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LoRaGatewayItem`` list from the paginated response.
         public func getItems() -> [LoRaGatewayItem] {
             self.gateways ?? []
         }

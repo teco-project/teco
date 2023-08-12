@@ -144,7 +144,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DCDBInstanceInfo`` list from the paginated response.
         public func getItems() -> [DCDBInstanceInfo] {
             self.instances
         }

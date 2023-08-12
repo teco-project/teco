@@ -84,7 +84,7 @@ extension Oceanus {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceRefJobInfo`` list from the paginated response.
         public func getItems() -> [ResourceRefJobInfo] {
             self.refJobInfos
         }

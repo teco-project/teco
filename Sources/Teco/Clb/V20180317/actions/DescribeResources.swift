@@ -71,7 +71,7 @@ extension Clb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ZoneResource`` list from the paginated response.
         public func getItems() -> [ZoneResource] {
             self.zoneResourceSet
         }

@@ -74,7 +74,7 @@ extension Rum {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RumProject`` list from the paginated response.
         public func getItems() -> [RumProject] {
             self.projectSet
         }

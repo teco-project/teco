@@ -75,7 +75,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GameServerSessionQueue`` list from the paginated response.
         public func getItems() -> [GameServerSessionQueue] {
             self.gameServerSessionQueues ?? []
         }

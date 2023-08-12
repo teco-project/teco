@@ -72,7 +72,7 @@ extension Cis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ContainerInstance`` list from the paginated response.
         public func getItems() -> [ContainerInstance] {
             self.containerInstanceList
         }

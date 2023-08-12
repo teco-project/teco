@@ -89,7 +89,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NodeGroupInfo`` list from the paginated response.
         public func getItems() -> [NodeGroupInfo] {
             self.nodeGroupInfo
         }

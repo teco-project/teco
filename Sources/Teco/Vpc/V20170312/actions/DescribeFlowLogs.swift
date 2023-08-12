@@ -126,7 +126,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FlowLog`` list from the paginated response.
         public func getItems() -> [FlowLog] {
             self.flowLog
         }

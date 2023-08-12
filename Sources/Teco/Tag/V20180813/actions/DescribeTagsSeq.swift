@@ -97,7 +97,7 @@ extension Tag {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TagWithDelete`` list from the paginated response.
         public func getItems() -> [TagWithDelete] {
             self.tags
         }

@@ -66,7 +66,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DatahubTopicDTO`` list from the paginated response.
         public func getItems() -> [DatahubTopicDTO] {
             self.result?.topicList ?? []
         }

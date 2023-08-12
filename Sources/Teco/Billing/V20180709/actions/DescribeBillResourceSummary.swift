@@ -135,7 +135,7 @@ extension Billing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BillResourceSummary`` list from the paginated response.
         public func getItems() -> [BillResourceSummary] {
             self.resourceSummarySet
         }

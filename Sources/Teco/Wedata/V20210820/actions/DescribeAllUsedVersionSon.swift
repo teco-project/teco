@@ -65,7 +65,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskOpsDto`` list from the paginated response.
         public func getItems() -> [TaskOpsDto] {
             self.data.items ?? []
         }

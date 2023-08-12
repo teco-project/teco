@@ -120,7 +120,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BackupFileInfo`` list from the paginated response.
         public func getItems() -> [BackupFileInfo] {
             self.backupList
         }

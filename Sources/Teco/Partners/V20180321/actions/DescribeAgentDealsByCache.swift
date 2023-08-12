@@ -112,7 +112,7 @@ extension Partners {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AgentDealNewElem`` list from the paginated response.
         public func getItems() -> [AgentDealNewElem] {
             self.agentDealSet
         }

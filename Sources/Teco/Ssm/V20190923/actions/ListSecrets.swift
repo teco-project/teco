@@ -108,7 +108,7 @@ extension Ssm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SecretMetadata`` list from the paginated response.
         public func getItems() -> [SecretMetadata] {
             self.secretMetadatas
         }

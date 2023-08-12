@@ -116,7 +116,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PlaySumStatInfo`` list from the paginated response.
         public func getItems() -> [PlaySumStatInfo] {
             self.dataInfoList
         }

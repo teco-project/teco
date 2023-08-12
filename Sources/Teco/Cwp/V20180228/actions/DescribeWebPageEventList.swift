@@ -82,7 +82,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProtectEventLists`` list from the paginated response.
         public func getItems() -> [ProtectEventLists] {
             self.list
         }

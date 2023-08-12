@@ -69,7 +69,7 @@ extension Keewidb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceParamHistory`` list from the paginated response.
         public func getItems() -> [InstanceParamHistory] {
             self.instanceParamHistory
         }

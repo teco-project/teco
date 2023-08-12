@@ -84,7 +84,7 @@ extension Cme {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MaterialInfo`` list from the paginated response.
         public func getItems() -> [MaterialInfo] {
             self.materialInfoSet
         }

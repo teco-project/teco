@@ -103,7 +103,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetWebFrameBaseInfo`` list from the paginated response.
         public func getItems() -> [AssetWebFrameBaseInfo] {
             self.webFrames ?? []
         }

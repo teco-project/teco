@@ -75,7 +75,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComplianceAssetPolicyItem`` list from the paginated response.
         public func getItems() -> [ComplianceAssetPolicyItem] {
             self.assetPolicyItemList
         }

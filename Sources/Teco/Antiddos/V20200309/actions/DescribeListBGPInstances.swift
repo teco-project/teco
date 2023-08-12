@@ -149,7 +149,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BGPInstance`` list from the paginated response.
         public func getItems() -> [BGPInstance] {
             self.instanceList
         }

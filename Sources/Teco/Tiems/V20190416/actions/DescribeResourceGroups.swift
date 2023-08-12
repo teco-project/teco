@@ -80,7 +80,7 @@ extension Tiems {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceGroup`` list from the paginated response.
         public func getItems() -> [ResourceGroup] {
             self.resourceGroups ?? []
         }

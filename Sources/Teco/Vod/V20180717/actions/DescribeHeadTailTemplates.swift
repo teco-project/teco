@@ -74,7 +74,7 @@ extension Vod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HeadTailTemplate`` list from the paginated response.
         public func getItems() -> [HeadTailTemplate] {
             self.headTailTemplateSet
         }

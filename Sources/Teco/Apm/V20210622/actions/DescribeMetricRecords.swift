@@ -121,7 +121,7 @@ extension Apm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApmMetricRecord`` list from the paginated response.
         public func getItems() -> [ApmMetricRecord] {
             self.records ?? []
         }

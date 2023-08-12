@@ -85,7 +85,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ClusterParamModifyLog`` list from the paginated response.
         public func getItems() -> [ClusterParamModifyLog] {
             self.clusterParamLogs ?? []
         }

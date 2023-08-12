@@ -121,7 +121,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DescribeBasicAlarmListAlarms`` list from the paginated response.
         public func getItems() -> [DescribeBasicAlarmListAlarms] {
             self.alarms ?? []
         }

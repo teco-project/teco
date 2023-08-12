@@ -105,7 +105,7 @@ extension Cpdp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PayRollAuthResult`` list from the paginated response.
         public func getItems() -> [PayRollAuthResult] {
             self.results ?? []
         }

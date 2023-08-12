@@ -79,7 +79,7 @@ extension Cmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``QueueSet`` list from the paginated response.
         public func getItems() -> [QueueSet] {
             self.queueSet
         }

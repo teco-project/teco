@@ -90,7 +90,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Alias`` list from the paginated response.
         public func getItems() -> [Alias] {
             self.aliases ?? []
         }

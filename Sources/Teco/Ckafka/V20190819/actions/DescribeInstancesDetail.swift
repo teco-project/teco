@@ -100,7 +100,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceDetail`` list from the paginated response.
         public func getItems() -> [InstanceDetail] {
             self.result.instanceList
         }

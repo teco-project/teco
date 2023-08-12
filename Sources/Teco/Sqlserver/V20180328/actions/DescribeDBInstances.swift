@@ -146,7 +146,7 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DBInstance`` list from the paginated response.
         public func getItems() -> [DBInstance] {
             self.dbInstances
         }

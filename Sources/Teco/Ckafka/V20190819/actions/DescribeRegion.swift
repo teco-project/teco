@@ -71,7 +71,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Region`` list from the paginated response.
         public func getItems() -> [Region] {
             self.result ?? []
         }

@@ -69,7 +69,7 @@ extension Youmall {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PersonProfile`` list from the paginated response.
         public func getItems() -> [PersonProfile] {
             self.personSet
         }

@@ -116,7 +116,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InLongAgentDetail`` list from the paginated response.
         public func getItems() -> [InLongAgentDetail] {
             self.items
         }

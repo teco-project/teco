@@ -99,7 +99,7 @@ extension Tbaas {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Block`` list from the paginated response.
         public func getItems() -> [Block] {
             self.blockList
         }

@@ -79,7 +79,7 @@ extension Dasb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Group`` list from the paginated response.
         public func getItems() -> [Group] {
             self.groupSet
         }

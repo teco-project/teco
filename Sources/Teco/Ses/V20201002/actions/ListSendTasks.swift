@@ -79,7 +79,7 @@ extension Ses {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SendTaskData`` list from the paginated response.
         public func getItems() -> [SendTaskData] {
             self.data
         }

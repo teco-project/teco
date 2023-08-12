@@ -95,7 +95,7 @@ extension Bm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CustomImage`` list from the paginated response.
         public func getItems() -> [CustomImage] {
             self.customImageSet
         }

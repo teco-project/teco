@@ -76,7 +76,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``K8sApiAbnormalRuleScopeInfo`` list from the paginated response.
         public func getItems() -> [K8sApiAbnormalRuleScopeInfo] {
             self.list
         }

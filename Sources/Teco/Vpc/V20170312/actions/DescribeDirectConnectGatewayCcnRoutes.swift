@@ -76,7 +76,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DirectConnectGatewayCcnRoute`` list from the paginated response.
         public func getItems() -> [DirectConnectGatewayCcnRoute] {
             self.routeSet
         }

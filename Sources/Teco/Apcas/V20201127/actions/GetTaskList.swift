@@ -80,7 +80,7 @@ extension Apcas {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ListModel`` list from the paginated response.
         public func getItems() -> [ListModel] {
             self.taskListData.taskList
         }

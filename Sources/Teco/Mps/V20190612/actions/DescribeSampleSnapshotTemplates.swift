@@ -76,7 +76,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SampleSnapshotTemplate`` list from the paginated response.
         public func getItems() -> [SampleSnapshotTemplate] {
             self.sampleSnapshotTemplateSet
         }

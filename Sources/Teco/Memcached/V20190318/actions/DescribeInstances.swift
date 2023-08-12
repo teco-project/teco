@@ -109,7 +109,7 @@ extension Memcached {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceListInfo`` list from the paginated response.
         public func getItems() -> [InstanceListInfo] {
             self.instanceList
         }

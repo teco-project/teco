@@ -100,7 +100,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AlarmReceiverInfo`` list from the paginated response.
         public func getItems() -> [AlarmReceiverInfo] {
             self.alarmReceiverInfoList ?? []
         }

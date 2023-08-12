@@ -81,7 +81,7 @@ extension Yunjing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Component`` list from the paginated response.
         public func getItems() -> [Component] {
             self.components
         }

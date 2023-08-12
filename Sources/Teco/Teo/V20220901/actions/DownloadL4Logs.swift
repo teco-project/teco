@@ -92,7 +92,7 @@ extension Teo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``L4OfflineLog`` list from the paginated response.
         public func getItems() -> [L4OfflineLog] {
             self.data
         }

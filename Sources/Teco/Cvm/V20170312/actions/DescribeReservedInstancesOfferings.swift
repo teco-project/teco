@@ -100,7 +100,7 @@ extension Cvm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ReservedInstancesOffering`` list from the paginated response.
         public func getItems() -> [ReservedInstancesOffering] {
             self.reservedInstancesOfferingsSet
         }

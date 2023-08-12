@@ -79,7 +79,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SREInstance`` list from the paginated response.
         public func getItems() -> [SREInstance] {
             self.content
         }

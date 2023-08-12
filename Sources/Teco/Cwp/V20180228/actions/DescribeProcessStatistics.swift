@@ -70,7 +70,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProcessStatistics`` list from the paginated response.
         public func getItems() -> [ProcessStatistics] {
             self.processStatistics
         }

@@ -80,7 +80,7 @@ extension Tiw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RunningTaskItem`` list from the paginated response.
         public func getItems() -> [RunningTaskItem] {
             self.tasks
         }

@@ -81,7 +81,7 @@ extension Trp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CodePack`` list from the paginated response.
         public func getItems() -> [CodePack] {
             self.codePacks ?? []
         }

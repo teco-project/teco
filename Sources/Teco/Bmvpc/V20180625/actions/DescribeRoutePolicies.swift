@@ -88,7 +88,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RoutePolicy`` list from the paginated response.
         public func getItems() -> [RoutePolicy] {
             self.routePolicySet
         }

@@ -120,7 +120,7 @@ extension Teo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSAttackEvent`` list from the paginated response.
         public func getItems() -> [DDoSAttackEvent] {
             self.data ?? []
         }

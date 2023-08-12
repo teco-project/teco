@@ -64,7 +64,7 @@ extension Youmall {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ShopInfo`` list from the paginated response.
         public func getItems() -> [ShopInfo] {
             self.shopInfoSet
         }

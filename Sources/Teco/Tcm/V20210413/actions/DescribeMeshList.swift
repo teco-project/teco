@@ -70,7 +70,7 @@ extension Tcm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Mesh`` list from the paginated response.
         public func getItems() -> [Mesh] {
             self.meshList ?? []
         }

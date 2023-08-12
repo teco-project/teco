@@ -112,7 +112,7 @@ extension Ess {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupOrganization`` list from the paginated response.
         public func getItems() -> [GroupOrganization] {
             self.list ?? []
         }

@@ -99,7 +99,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TrainingModelDTO`` list from the paginated response.
         public func getItems() -> [TrainingModelDTO] {
             self.trainingModels
         }

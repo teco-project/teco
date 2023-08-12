@@ -64,7 +64,7 @@ extension Ses {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TemplatesMetadata`` list from the paginated response.
         public func getItems() -> [TemplatesMetadata] {
             self.templatesMetadata
         }

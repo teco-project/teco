@@ -75,7 +75,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProductResourceInfo`` list from the paginated response.
         public func getItems() -> [ProductResourceInfo] {
             self.result ?? []
         }

@@ -65,7 +65,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NamespaceInfo`` list from the paginated response.
         public func getItems() -> [NamespaceInfo] {
             self.data.namespaceInfo
         }

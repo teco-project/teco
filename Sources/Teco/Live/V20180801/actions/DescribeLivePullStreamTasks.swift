@@ -88,7 +88,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PullStreamTaskInfo`` list from the paginated response.
         public func getItems() -> [PullStreamTaskInfo] {
             self.taskInfos
         }

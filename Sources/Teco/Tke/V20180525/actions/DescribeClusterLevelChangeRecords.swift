@@ -79,7 +79,7 @@ extension Tke {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ClusterLevelChangeRecord`` list from the paginated response.
         public func getItems() -> [ClusterLevelChangeRecord] {
             self.items
         }

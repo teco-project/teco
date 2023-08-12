@@ -89,7 +89,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``IMCdrInfo`` list from the paginated response.
         public func getItems() -> [IMCdrInfo] {
             self.imCdrs
         }

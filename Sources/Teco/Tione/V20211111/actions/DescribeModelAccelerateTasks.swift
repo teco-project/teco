@@ -88,7 +88,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ModelAccelerateTask`` list from the paginated response.
         public func getItems() -> [ModelAccelerateTask] {
             self.modelAccelerateTasks ?? []
         }

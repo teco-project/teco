@@ -65,7 +65,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Program`` list from the paginated response.
         public func getItems() -> [Program] {
             self.result.content
         }

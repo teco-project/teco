@@ -70,7 +70,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ZookeeperReplica`` list from the paginated response.
         public func getItems() -> [ZookeeperReplica] {
             self.replicas
         }

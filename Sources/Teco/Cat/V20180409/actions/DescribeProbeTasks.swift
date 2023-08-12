@@ -142,7 +142,7 @@ extension Cat {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProbeTask`` list from the paginated response.
         public func getItems() -> [ProbeTask] {
             self.taskSet ?? []
         }

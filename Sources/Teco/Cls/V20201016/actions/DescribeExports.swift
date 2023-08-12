@@ -69,7 +69,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExportInfo`` list from the paginated response.
         public func getItems() -> [ExportInfo] {
             self.exports
         }

@@ -106,7 +106,7 @@ extension Hasim {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LinkInfo`` list from the paginated response.
         public func getItems() -> [LinkInfo] {
             self.data?.list ?? []
         }

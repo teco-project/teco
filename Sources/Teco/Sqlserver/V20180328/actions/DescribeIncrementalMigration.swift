@@ -99,7 +99,7 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Migration`` list from the paginated response.
         public func getItems() -> [Migration] {
             self.incrementalMigrationSet
         }

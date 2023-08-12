@@ -86,7 +86,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FileConfig`` list from the paginated response.
         public func getItems() -> [FileConfig] {
             self.result?.content ?? []
         }

@@ -72,7 +72,7 @@ extension Chdfs {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MountPoint`` list from the paginated response.
         public func getItems() -> [MountPoint] {
             self.mountPoints
         }

@@ -114,7 +114,7 @@ extension Dayu {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSEventRecord`` list from the paginated response.
         public func getItems() -> [DDoSEventRecord] {
             self.data
         }

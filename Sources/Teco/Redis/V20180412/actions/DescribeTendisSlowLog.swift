@@ -84,7 +84,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TendisSlowLogDetail`` list from the paginated response.
         public func getItems() -> [TendisSlowLogDetail] {
             self.tendisSlowLogDetail
         }

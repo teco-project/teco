@@ -111,7 +111,7 @@ extension Ssl {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CdnInstanceDetail`` list from the paginated response.
         public func getItems() -> [CdnInstanceDetail] {
             self.instanceList ?? []
         }

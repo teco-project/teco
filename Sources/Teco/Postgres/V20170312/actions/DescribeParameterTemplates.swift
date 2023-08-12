@@ -79,7 +79,7 @@ extension Postgres {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ParameterTemplate`` list from the paginated response.
         public func getItems() -> [ParameterTemplate] {
             self.parameterTemplateSet
         }

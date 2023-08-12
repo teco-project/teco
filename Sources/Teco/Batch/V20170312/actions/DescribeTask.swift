@@ -104,7 +104,7 @@ extension Batch {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInstanceView`` list from the paginated response.
         public func getItems() -> [TaskInstanceView] {
             self.taskInstanceSet
         }

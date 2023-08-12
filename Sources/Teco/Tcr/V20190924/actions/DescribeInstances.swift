@@ -81,7 +81,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Registry`` list from the paginated response.
         public func getItems() -> [Registry] {
             self.registries ?? []
         }

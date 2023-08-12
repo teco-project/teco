@@ -76,7 +76,7 @@ extension Dc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DirectConnectTunnelRoute`` list from the paginated response.
         public func getItems() -> [DirectConnectTunnelRoute] {
             self.routes
         }

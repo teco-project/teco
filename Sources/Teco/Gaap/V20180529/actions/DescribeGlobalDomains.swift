@@ -80,7 +80,7 @@ extension Gaap {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Domain`` list from the paginated response.
         public func getItems() -> [Domain] {
             self.domains
         }

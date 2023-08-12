@@ -81,7 +81,7 @@ extension Cfw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VpcDnsInfo`` list from the paginated response.
         public func getItems() -> [VpcDnsInfo] {
             self.vpcDnsSwitchLst ?? []
         }

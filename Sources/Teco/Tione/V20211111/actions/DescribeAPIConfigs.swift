@@ -82,7 +82,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``APIConfigDetail`` list from the paginated response.
         public func getItems() -> [APIConfigDetail] {
             self.details ?? []
         }

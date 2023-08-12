@@ -61,7 +61,7 @@ extension Ame {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Package`` list from the paginated response.
         public func getItems() -> [Package] {
             self.packages ?? []
         }

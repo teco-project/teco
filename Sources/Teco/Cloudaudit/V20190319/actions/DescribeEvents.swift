@@ -94,7 +94,7 @@ extension Cloudaudit {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Event`` list from the paginated response.
         public func getItems() -> [Event] {
             self.events ?? []
         }

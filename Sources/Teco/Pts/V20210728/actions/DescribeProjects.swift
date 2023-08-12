@@ -90,7 +90,7 @@ extension Pts {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Project`` list from the paginated response.
         public func getItems() -> [Project] {
             self.projectSet ?? []
         }

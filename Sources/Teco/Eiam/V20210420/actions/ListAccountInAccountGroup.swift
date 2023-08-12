@@ -81,7 +81,7 @@ extension Eiam {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AppAccountInfo`` list from the paginated response.
         public func getItems() -> [AppAccountInfo] {
             self.accountList ?? []
         }

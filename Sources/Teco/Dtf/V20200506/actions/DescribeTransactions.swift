@@ -90,7 +90,7 @@ extension Dtf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Transaction`` list from the paginated response.
         public func getItems() -> [Transaction] {
             self.result.content
         }

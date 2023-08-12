@@ -105,7 +105,7 @@ extension Ssa {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ListDataSaEventPub`` list from the paginated response.
         public func getItems() -> [ListDataSaEventPub] {
             self.dataSaEventPub.list
         }

@@ -76,7 +76,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ContainerEvent`` list from the paginated response.
         public func getItems() -> [ContainerEvent] {
             self.result?.content ?? []
         }

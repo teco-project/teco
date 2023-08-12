@@ -69,7 +69,7 @@ extension Bma {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FakeURLData`` list from the paginated response.
         public func getItems() -> [FakeURLData] {
             self.fakeURLs
         }

@@ -99,7 +99,7 @@ extension Tiw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RoomUsageDataItem`` list from the paginated response.
         public func getItems() -> [RoomUsageDataItem] {
             self.usages
         }

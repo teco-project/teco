@@ -96,7 +96,7 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Table`` list from the paginated response.
         public func getItems() -> [Table] {
             self.noPrimaryKeyTables
         }

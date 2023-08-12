@@ -77,7 +77,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WorkflowInfo`` list from the paginated response.
         public func getItems() -> [WorkflowInfo] {
             self.workflowInfoSet
         }

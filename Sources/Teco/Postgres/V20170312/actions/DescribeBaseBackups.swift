@@ -93,7 +93,7 @@ extension Postgres {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BaseBackup`` list from the paginated response.
         public func getItems() -> [BaseBackup] {
             self.baseBackupSet
         }

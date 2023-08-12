@@ -69,7 +69,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SqlFileInfo`` list from the paginated response.
         public func getItems() -> [SqlFileInfo] {
             self.items
         }

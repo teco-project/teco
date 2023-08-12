@@ -82,7 +82,7 @@ extension Batch {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComputeEnvView`` list from the paginated response.
         public func getItems() -> [ComputeEnvView] {
             self.computeEnvSet
         }

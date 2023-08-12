@@ -88,7 +88,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VpcResource`` list from the paginated response.
         public func getItems() -> [VpcResource] {
             self.vpcResourceSet
         }

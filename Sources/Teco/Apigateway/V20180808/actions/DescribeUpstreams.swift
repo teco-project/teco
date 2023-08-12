@@ -65,7 +65,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UpstreamInfo`` list from the paginated response.
         public func getItems() -> [UpstreamInfo] {
             self.result.upstreamSet
         }

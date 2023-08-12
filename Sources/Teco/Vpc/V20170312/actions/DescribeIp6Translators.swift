@@ -78,7 +78,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Ip6Translator`` list from the paginated response.
         public func getItems() -> [Ip6Translator] {
             self.ip6TranslatorSet
         }

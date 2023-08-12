@@ -109,7 +109,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ParamTemplateListInfo`` list from the paginated response.
         public func getItems() -> [ParamTemplateListInfo] {
             self.items
         }

@@ -75,7 +75,7 @@ extension Iai {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PersonGroupInfo`` list from the paginated response.
         public func getItems() -> [PersonGroupInfo] {
             self.personGroupInfos
         }

@@ -98,7 +98,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetEnvBaseInfo`` list from the paginated response.
         public func getItems() -> [AssetEnvBaseInfo] {
             self.envs ?? []
         }

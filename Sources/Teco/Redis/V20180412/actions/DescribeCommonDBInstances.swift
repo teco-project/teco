@@ -119,7 +119,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RedisCommonInstanceList`` list from the paginated response.
         public func getItems() -> [RedisCommonInstanceList] {
             self.instanceDetails
         }

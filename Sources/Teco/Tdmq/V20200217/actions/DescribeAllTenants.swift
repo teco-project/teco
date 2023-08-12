@@ -94,7 +94,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InternalTenant`` list from the paginated response.
         public func getItems() -> [InternalTenant] {
             self.tenants
         }

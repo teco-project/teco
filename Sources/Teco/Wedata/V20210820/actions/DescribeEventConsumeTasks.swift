@@ -66,7 +66,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EventCaseConsumeLogOptDto`` list from the paginated response.
         public func getItems() -> [EventCaseConsumeLogOptDto] {
             self.data?.items ?? []
         }

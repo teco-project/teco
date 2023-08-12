@@ -74,7 +74,7 @@ extension Cme {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``JoinTeamInfo`` list from the paginated response.
         public func getItems() -> [JoinTeamInfo] {
             self.teamSet
         }

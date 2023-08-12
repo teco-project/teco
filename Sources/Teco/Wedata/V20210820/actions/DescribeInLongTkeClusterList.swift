@@ -109,7 +109,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InLongTkeDetail`` list from the paginated response.
         public func getItems() -> [InLongTkeDetail] {
             self.items
         }

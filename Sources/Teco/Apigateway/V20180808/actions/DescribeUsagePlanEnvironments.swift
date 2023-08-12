@@ -71,7 +71,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UsagePlanEnvironment`` list from the paginated response.
         public func getItems() -> [UsagePlanEnvironment] {
             self.result?.environmentList ?? []
         }

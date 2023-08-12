@@ -69,7 +69,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FenceBindProductItem`` list from the paginated response.
         public func getItems() -> [FenceBindProductItem] {
             self.list
         }

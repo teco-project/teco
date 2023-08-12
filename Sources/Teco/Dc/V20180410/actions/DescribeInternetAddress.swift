@@ -75,7 +75,7 @@ extension Dc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InternetAddressDetail`` list from the paginated response.
         public func getItems() -> [InternetAddressDetail] {
             self.subnets ?? []
         }

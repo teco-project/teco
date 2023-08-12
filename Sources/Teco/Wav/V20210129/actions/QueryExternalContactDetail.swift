@@ -76,7 +76,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FollowUser`` list from the paginated response.
         public func getItems() -> [FollowUser] {
             self.followUser ?? []
         }

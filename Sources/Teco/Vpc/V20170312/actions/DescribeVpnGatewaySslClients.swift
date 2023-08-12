@@ -85,7 +85,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SslVpnClient`` list from the paginated response.
         public func getItems() -> [SslVpnClient] {
             self.sslVpnClientSet
         }

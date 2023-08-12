@@ -88,7 +88,7 @@ extension Trro {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SessionInfo`` list from the paginated response.
         public func getItems() -> [SessionInfo] {
             self.deviceSessionList
         }

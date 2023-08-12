@@ -66,7 +66,7 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SceneItem`` list from the paginated response.
         public func getItems() -> [SceneItem] {
             self.list ?? []
         }

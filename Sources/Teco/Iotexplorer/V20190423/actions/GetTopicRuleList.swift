@@ -64,7 +64,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TopicRuleInfo`` list from the paginated response.
         public func getItems() -> [TopicRuleInfo] {
             self.rules
         }

@@ -88,7 +88,7 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AccountDetail`` list from the paginated response.
         public func getItems() -> [AccountDetail] {
             self.accounts
         }

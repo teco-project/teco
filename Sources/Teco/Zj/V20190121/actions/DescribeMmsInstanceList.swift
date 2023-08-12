@@ -75,7 +75,7 @@ extension Zj {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MmsInstanceInfo`` list from the paginated response.
         public func getItems() -> [MmsInstanceInfo] {
             self.data.list
         }

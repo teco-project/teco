@@ -83,7 +83,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EndPointService`` list from the paginated response.
         public func getItems() -> [EndPointService] {
             self.endPointServiceSet
         }

@@ -71,7 +71,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DealerInfo`` list from the paginated response.
         public func getItems() -> [DealerInfo] {
             self.pageData ?? []
         }

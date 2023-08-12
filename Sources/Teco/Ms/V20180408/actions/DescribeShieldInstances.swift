@@ -84,7 +84,7 @@ extension Ms {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AppSetInfo`` list from the paginated response.
         public func getItems() -> [AppSetInfo] {
             self.appSet
         }

@@ -76,7 +76,7 @@ extension Eiam {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UserGroupInformation`` list from the paginated response.
         public func getItems() -> [UserGroupInformation] {
             self.userGroupList ?? []
         }

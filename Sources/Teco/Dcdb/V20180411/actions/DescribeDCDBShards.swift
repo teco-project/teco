@@ -89,7 +89,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DCDBShardInfo`` list from the paginated response.
         public func getItems() -> [DCDBShardInfo] {
             self.shards
         }

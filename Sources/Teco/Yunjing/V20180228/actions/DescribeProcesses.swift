@@ -81,7 +81,7 @@ extension Yunjing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Process`` list from the paginated response.
         public func getItems() -> [Process] {
             self.processes
         }

@@ -81,7 +81,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``KongRoutePreview`` list from the paginated response.
         public func getItems() -> [KongRoutePreview] {
             self.result?.routeList ?? []
         }

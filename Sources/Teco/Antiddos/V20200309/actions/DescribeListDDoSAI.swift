@@ -74,7 +74,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSAIRelation`` list from the paginated response.
         public func getItems() -> [DDoSAIRelation] {
             self.configList
         }

@@ -82,7 +82,7 @@ extension Trp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RawScanLog`` list from the paginated response.
         public func getItems() -> [RawScanLog] {
             self.scanLogs ?? []
         }

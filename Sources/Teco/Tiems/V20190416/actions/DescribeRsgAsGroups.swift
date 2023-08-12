@@ -79,7 +79,7 @@ extension Tiems {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RsgAsGroup`` list from the paginated response.
         public func getItems() -> [RsgAsGroup] {
             self.rsgAsGroupSet
         }

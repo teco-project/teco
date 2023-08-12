@@ -184,7 +184,7 @@ extension Dnspod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RecordListItem`` list from the paginated response.
         public func getItems() -> [RecordListItem] {
             self.recordList
         }

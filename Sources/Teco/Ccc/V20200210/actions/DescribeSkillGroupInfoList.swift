@@ -84,7 +84,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SkillGroupInfoItem`` list from the paginated response.
         public func getItems() -> [SkillGroupInfoItem] {
             self.skillGroupList
         }

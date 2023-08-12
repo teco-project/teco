@@ -79,7 +79,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EscapeEventInfo`` list from the paginated response.
         public func getItems() -> [EscapeEventInfo] {
             self.eventSet
         }

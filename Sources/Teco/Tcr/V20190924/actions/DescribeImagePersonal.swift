@@ -70,7 +70,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TagInfo`` list from the paginated response.
         public func getItems() -> [TagInfo] {
             self.data.tagInfo
         }

@@ -75,7 +75,7 @@ extension Cmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Subscription`` list from the paginated response.
         public func getItems() -> [Subscription] {
             self.subscriptionSet ?? []
         }

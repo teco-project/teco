@@ -74,7 +74,7 @@ extension Domain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PhoneEmailData`` list from the paginated response.
         public func getItems() -> [PhoneEmailData] {
             self.phoneEmailList
         }

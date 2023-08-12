@@ -70,7 +70,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CcnBandwidth`` list from the paginated response.
         public func getItems() -> [CcnBandwidth] {
             self.ccnBandwidthSet
         }

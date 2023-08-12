@@ -76,7 +76,7 @@ extension Gaap {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Certificate`` list from the paginated response.
         public func getItems() -> [Certificate] {
             self.certificateSet
         }

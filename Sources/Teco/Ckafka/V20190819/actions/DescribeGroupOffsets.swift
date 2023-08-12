@@ -80,7 +80,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupOffsetTopic`` list from the paginated response.
         public func getItems() -> [GroupOffsetTopic] {
             self.result.topicList ?? []
         }

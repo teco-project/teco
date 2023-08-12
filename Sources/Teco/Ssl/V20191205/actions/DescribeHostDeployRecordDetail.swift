@@ -86,7 +86,7 @@ extension Ssl {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeployRecordDetail`` list from the paginated response.
         public func getItems() -> [DeployRecordDetail] {
             self.deployRecordDetailList ?? []
         }

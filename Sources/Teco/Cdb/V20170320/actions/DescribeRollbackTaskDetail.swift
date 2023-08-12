@@ -75,7 +75,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RollbackTask`` list from the paginated response.
         public func getItems() -> [RollbackTask] {
             self.items ?? []
         }

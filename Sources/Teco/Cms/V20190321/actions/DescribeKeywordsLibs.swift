@@ -69,7 +69,7 @@ extension Cms {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``KeywordsLibInfo`` list from the paginated response.
         public func getItems() -> [KeywordsLibInfo] {
             self.infos
         }

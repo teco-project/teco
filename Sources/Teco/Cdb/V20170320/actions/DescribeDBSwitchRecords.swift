@@ -69,7 +69,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DBSwitchInfo`` list from the paginated response.
         public func getItems() -> [DBSwitchInfo] {
             self.items
         }

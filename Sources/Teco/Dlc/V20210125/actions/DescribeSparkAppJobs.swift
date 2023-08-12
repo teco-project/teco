@@ -89,7 +89,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SparkJobInfo`` list from the paginated response.
         public func getItems() -> [SparkJobInfo] {
             self.sparkAppJobs
         }

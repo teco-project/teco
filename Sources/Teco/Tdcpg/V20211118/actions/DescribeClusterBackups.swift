@@ -69,7 +69,7 @@ extension Tdcpg {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Backup`` list from the paginated response.
         public func getItems() -> [Backup] {
             self.backupSet
         }

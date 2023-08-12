@@ -64,7 +64,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInfo`` list from the paginated response.
         public func getItems() -> [TaskInfo] {
             self.tasks
         }

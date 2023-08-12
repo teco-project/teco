@@ -70,7 +70,7 @@ extension Cdn {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ViolationUrl`` list from the paginated response.
         public func getItems() -> [ViolationUrl] {
             self.urlRecordList ?? []
         }

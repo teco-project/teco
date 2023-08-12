@@ -148,7 +148,7 @@ extension Tiia {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImageInfo`` list from the paginated response.
         public func getItems() -> [ImageInfo] {
             self.imageInfos ?? []
         }

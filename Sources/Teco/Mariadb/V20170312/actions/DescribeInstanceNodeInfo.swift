@@ -69,7 +69,7 @@ extension Mariadb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NodeInfo`` list from the paginated response.
         public func getItems() -> [NodeInfo] {
             self.nodesInfo
         }

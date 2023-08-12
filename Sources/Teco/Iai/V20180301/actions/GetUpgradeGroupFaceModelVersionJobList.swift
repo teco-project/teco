@@ -64,7 +64,7 @@ extension Iai {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UpgradeJobInfo`` list from the paginated response.
         public func getItems() -> [UpgradeJobInfo] {
             self.jobInfos
         }
