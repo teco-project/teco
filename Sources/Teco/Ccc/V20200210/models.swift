@@ -1193,7 +1193,6 @@ extension Ccc {
         ///
         /// 电话呼出	        210	           notInService	不在服务区
         ///
-        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endStatusString: String?
 
