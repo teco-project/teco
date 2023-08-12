@@ -25,7 +25,17 @@ extension Tat {
         /// 执行任务ID列表，每次请求的上限为100。参数不支持同时指定 `InvocationTaskIds` 和 `Filters`。
         public let invocationTaskIds: [String]?
 
-        /// 过滤条件。<br> <li> invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。<br> <li> invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。<br> <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。 <br> <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。 <br>每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InvocationTaskIds` 和 `Filters` 。
+        /// 过滤条件。
+        ///
+        /// <li> invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。
+        ///
+        /// <li> invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。
+        ///
+        /// <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。
+        ///
+        /// <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
+        ///
+        /// 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InvocationTaskIds` 和 `Filters` 。
         public let filters: [Filter]?
 
         /// 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
@@ -34,7 +44,13 @@ extension Tat {
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
 
-        /// 是否隐藏输出，取值范围：<br><li>True：隐藏输出 <br><li>False：不隐藏 <br>默认为 True。
+        /// 是否隐藏输出，取值范围：
+        ///
+        /// <li>True：隐藏输出
+        ///
+        /// <li>False：不隐藏
+        ///
+        /// 默认为 True。
         public let hideOutput: Bool?
 
         public init(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil) {

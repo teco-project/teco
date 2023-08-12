@@ -78,7 +78,9 @@ extension Clb {
         /// 主可用区ID，如 ："100001" （对应的是广州一区）。
         public let masterZone: String?
 
-        /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。<br/>`Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
+        /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。
+        ///
+        /// `Filter.Name`和`Filter.Values`皆为必填项。详细的过滤条件如下：
         /// <li> charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的实例计费模式过滤，包括"PREPAID","POSTPAID_BY_HOUR"。</li>
         /// <li> internet-charge-type - String - 是否必填：否 - （过滤条件）按照 CLB 的网络计费模式过滤，包括"BANDWIDTH_PREPAID","TRAFFIC_POSTPAID_BY_HOUR","BANDWIDTH_POSTPAID_BY_HOUR","BANDWIDTH_PACKAGE"。</li>
         /// <li> master-zone-id - String - 是否必填：否 - （过滤条件）按照 CLB 的主可用区ID过滤，如 ："100001" （对应的是广州一区）。</li>

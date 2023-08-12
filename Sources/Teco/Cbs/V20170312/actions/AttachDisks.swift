@@ -30,7 +30,11 @@ extension Cbs {
         /// 可选参数，不传该参数则仅执行挂载操作。传入`True`时，会在挂载成功后将云硬盘设置为随云主机销毁模式，仅对按量计费云硬盘有效。
         public let deleteWithInstance: Bool?
 
-        /// 可选参数，用于控制云盘挂载时使用的挂载模式，目前仅对黑石裸金属机型有效。取值范围：<br><li>PF<br><li>VF
+        /// 可选参数，用于控制云盘挂载时使用的挂载模式，目前仅对黑石裸金属机型有效。取值范围：
+        ///
+        /// <li>PF
+        ///
+        /// <li>VF
         public let attachMode: String?
 
         public init(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil) {

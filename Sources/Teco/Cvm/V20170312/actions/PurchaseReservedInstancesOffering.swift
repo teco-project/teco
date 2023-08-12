@@ -30,10 +30,14 @@ extension Cvm {
         /// 试运行
         public let dryRun: Bool?
 
-        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性
+        /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
+        ///
+        /// 更多详细信息请参阅：如何保证幂等性
         public let clientToken: String?
 
-        /// 预留实例显示名称。<br><li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
+        /// 预留实例显示名称。
+        ///
+        /// <li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
         public let reservedInstanceName: String?
 
         public init(instanceCount: Int64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil) {

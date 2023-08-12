@@ -35,13 +35,20 @@ extension Bm {
 
     /// DescribeOperationResult返回参数结构体
     public struct DescribeOperationResultResponse: TCResponseModel {
-        /// 任务的整体状态，取值如下：<br>
-        /// 1：成功<br>
-        /// 2：失败<br>
-        /// 3：部分成功，部分失败<br>
-        /// 4：未完成<br>
-        /// 5：部分成功，部分未完成<br>
-        /// 6：部分未完成，部分失败<br>
+        /// 任务的整体状态，取值如下：
+        ///
+        /// 1：成功
+        ///
+        /// 2：失败
+        ///
+        /// 3：部分成功，部分失败
+        ///
+        /// 4：未完成
+        ///
+        /// 5：部分成功，部分未完成
+        ///
+        /// 6：部分未完成，部分失败
+        ///
         /// 7：部分未完成，部分失败，部分成功
         public let taskStatus: UInt64
 

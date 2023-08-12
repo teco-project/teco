@@ -22,21 +22,21 @@ import TecoPaginationHelpers
 extension Cls {
     /// DescribeDataTransformInfo请求参数结构体
     public struct DescribeDataTransformInfoRequest: TCPaginatedRequest {
-        /// <br><li> taskName
+        /// <li> taskName
         ///
         /// 按照【加工任务名称】进行过滤。
         /// 类型：String
         ///
         /// 必选：否
         ///
-        /// <br><li> taskId
+        /// <li> taskId
         ///
         /// 按照【加工任务id】进行过滤。
         /// 类型：String
         ///
         /// 必选：否
         ///
-        /// <br><li> srctopicId
+        /// <li> srctopicId
         ///
         /// 按照【源topicId】进行过滤。
         /// 类型：String

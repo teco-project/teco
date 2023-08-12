@@ -620,12 +620,14 @@ extension Ess {
         public let keywordIndexes: [Int64]?
 
         /// 是否锁定控件值不允许编辑（嵌入式发起使用）
-        /// <br/>默认false：不锁定控件值，允许在页面编辑控件值
+        ///
+        /// 默认false：不锁定控件值，允许在页面编辑控件值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lockComponentValue: Bool?
 
         /// 是否禁止移动和删除控件
-        /// <br/>默认false，不禁止移动和删除控件
+        ///
+        /// 默认false，不禁止移动和删除控件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let forbidMoveAndDelete: Bool?
 
@@ -691,49 +693,75 @@ extension Ess {
     /// 创建合同个性化参数
     public struct CreateFlowOption: TCInputModel {
         /// 是否允许修改发起合同时确认弹窗的合同信息（合同名称、合同类型、签署截止时间），若不允许编辑，则表单字段将被禁止输入。
-        /// <br/>true：允许编辑（默认），<br/>false：不允许编辑<br/>默认：false：不允许编辑
+        ///
+        /// true：允许编辑（默认），
+        ///
+        /// false：不允许编辑
+        ///
+        /// 默认：false：不允许编辑
         public let canEditFlow: Bool?
 
         /// 是否允许编辑模板控件
-        /// <br/>true:允许编辑模板控件信息
-        /// <br/>false:不允许编辑模板控件信息
-        /// <br/>默认false:不允许编辑模板控件信息
+        ///
+        /// true:允许编辑模板控件信息
+        ///
+        /// false:不允许编辑模板控件信息
+        ///
+        /// 默认false:不允许编辑模板控件信息
         public let canEditFormField: Bool?
 
         /// 发起页面隐藏合同名称展示
-        /// <br/>true:发起页面隐藏合同名称展示
-        /// <br/>false:发起页面不隐藏合同名称展示
-        /// <br/>默认false:发起页面不隐藏合同名称展示
+        ///
+        /// true:发起页面隐藏合同名称展示
+        ///
+        /// false:发起页面不隐藏合同名称展示
+        ///
+        /// 默认false:发起页面不隐藏合同名称展示
         public let hideShowFlowName: Bool?
 
         /// 发起页面隐藏合同类型展示
-        /// <br/>true:发起页面隐藏合同类型展示
-        /// <br/>false:发起页面不隐藏合同类型展示
-        /// <br/>默认false:发起页面不隐藏合同类型展示
+        ///
+        /// true:发起页面隐藏合同类型展示
+        ///
+        /// false:发起页面不隐藏合同类型展示
+        ///
+        /// 默认false:发起页面不隐藏合同类型展示
         public let hideShowFlowType: Bool?
 
         /// 发起页面隐藏合同截止日期展示
-        /// <br/>true:发起页面隐藏合同截止日期展示
-        /// <br/>false:发起页面不隐藏合同截止日期展示
-        /// <br/>默认false:发起页面不隐藏合同截止日期展示
+        ///
+        /// true:发起页面隐藏合同截止日期展示
+        ///
+        /// false:发起页面不隐藏合同截止日期展示
+        ///
+        /// 默认false:发起页面不隐藏合同截止日期展示
         public let hideShowDeadline: Bool?
 
         /// 发起页面允许跳过添加签署人环节
-        /// <br/>true:发起页面允许跳过添加签署人环节
-        /// <br/>false:发起页面不允许跳过添加签署人环节
-        /// <br/>默认false:发起页面不允许跳过添加签署人环节
+        ///
+        /// true:发起页面允许跳过添加签署人环节
+        ///
+        /// false:发起页面不允许跳过添加签署人环节
+        ///
+        /// 默认false:发起页面不允许跳过添加签署人环节
         public let canSkipAddApprover: Bool?
 
         /// 文件发起页面跳过文件上传步骤
-        /// <br/>true:文件发起页面跳过文件上传步骤
-        /// <br/>false:文件发起页面不跳过文件上传步骤
-        /// <br/>默认false:文件发起页面不跳过文件上传步骤
+        ///
+        /// true:文件发起页面跳过文件上传步骤
+        ///
+        /// false:文件发起页面不跳过文件上传步骤
+        ///
+        /// 默认false:文件发起页面不跳过文件上传步骤
         public let skipUploadFile: Bool?
 
         /// 禁止编辑填写控件
-        /// <br/>true:禁止编辑填写控件
-        /// <br/>false:允许编辑填写控件
-        /// <br/>默认false:允许编辑填写控件
+        ///
+        /// true:禁止编辑填写控件
+        ///
+        /// false:允许编辑填写控件
+        ///
+        /// 默认false:允许编辑填写控件
         public let forbidEditFillComponent: Bool?
 
         /// 定制化发起合同弹窗的描述信息，描述信息最长500
@@ -818,15 +846,21 @@ extension Ess {
     /// 个性化参数
     public struct EmbedUrlOption: TCInputModel {
         /// 合同详情预览，允许展示控件信息
-        /// <br/>true：允许在合同详情页展示控件
-        /// <br/>false：不允许在合同详情页展示控件
-        /// <br/>默认false，合同详情页不展示控件
+        ///
+        /// true：允许在合同详情页展示控件
+        ///
+        /// false：不允许在合同详情页展示控件
+        ///
+        /// 默认false，合同详情页不展示控件
         public let showFlowDetailComponent: Bool?
 
         /// 模板预览，允许展示模板控件信息
-        /// <br/>true：允许在模板预览页展示控件
-        /// <br/>false：不允许在模板预览页展示控件
-        /// <br/>默认false，模板预览页不展示控件
+        ///
+        /// true：允许在模板预览页展示控件
+        ///
+        /// false：不允许在模板预览页展示控件
+        ///
+        /// 默认false，模板预览页不展示控件
         public let showTemplateComponent: Bool?
 
         public init(showFlowDetailComponent: Bool? = nil, showTemplateComponent: Bool? = nil) {
@@ -1026,11 +1060,13 @@ extension Ess {
 
         /// 签署人来源
         /// WEWORKAPP: 企业微信
-        /// <br/>仅【企微或签】时指定WEWORKAPP
+        ///
+        /// 仅【企微或签】时指定WEWORKAPP
         public let approverSource: String?
 
         /// 企业自定义账号ID
-        /// <br/>当ApproverSource为WEWORKAPP的企微或签场景下，必须指企业自有应用获取企微明文的userid
+        ///
+        /// 当ApproverSource为WEWORKAPP的企微或签场景下，必须指企业自有应用获取企微明文的userid
         public let customUserId: String?
 
         /// 补充签署人姓名
@@ -1295,15 +1331,18 @@ extension Ess {
         public let approverType: Int64
 
         /// 签署人企业名称
-        /// <br/>当approverType=1 或 approverType=3时，必须指定
+        ///
+        /// 当approverType=1 或 approverType=3时，必须指定
         public let organizationName: String?
 
         /// 签署方经办人姓名
-        /// <br/>在未指定签署人电子签UserId情况下，为必填参数
+        ///
+        /// 在未指定签署人电子签UserId情况下，为必填参数
         public let approverName: String?
 
         /// 签署方经办人手机号码
-        /// <br/>在未指定签署人电子签UserId情况下，为必填参数
+        ///
+        /// 在未指定签署人电子签UserId情况下，为必填参数
         public let approverMobile: String?
 
         /// 签署方经办人证件类型ID_CARD 身份证
@@ -1315,18 +1354,24 @@ extension Ess {
         public let approverIdCardNumber: String?
 
         /// 签署方经办人在模板中的参与方ID
-        /// <br/>模板发起合同时，该参数为必填项
-        /// <br/>文件发起合同是，该参数无序传值
+        ///
+        /// 模板发起合同时，该参数为必填项
+        ///
+        /// 文件发起合同是，该参数无序传值
         public let recipientId: String?
 
         /// 签署意愿确认渠道,WEIXINAPP:人脸识别
         public let verifyChannel: [String]?
 
         /// 是否发送短信
-        /// <br/>sms--短信通知
-        /// <br/>none--不通知
-        /// <br/>默认为sms
-        /// <br/>发起方=签署方时不发送短信
+        ///
+        /// sms--短信通知
+        ///
+        /// none--不通知
+        ///
+        /// 默认为sms
+        ///
+        /// 发起方=签署方时不发送短信
         public let notifyType: String?
 
         /// 合同强制需要阅读全文，无需传此参数
@@ -1336,20 +1381,25 @@ extension Ess {
         public let preReadTime: UInt64?
 
         /// 签署方经办人的电子签用户ID
-        /// <br/>当未指定签署人姓名+手机号的情况下，该字段毕传
+        ///
+        /// 当未指定签署人姓名+手机号的情况下，该字段毕传
         public let userId: String?
 
         /// 当前只支持true，默认为true
         public let required: Bool?
 
         /// 签署人用户来源
-        /// <br/>企微侧用户请传入：WEWORKAPP
+        ///
+        /// 企微侧用户请传入：WEWORKAPP
         public let approverSource: String?
 
         /// 企业签署方或签标识，客户自定义，64位长度
-        /// <br>用于发起含有或签签署人的合同。或签参与人必须有此字段。
-        /// <br/>合同内不同或签参与人CustomApproverTag需要保证唯一。
-        /// <br/>如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
+        ///
+        /// 用于发起含有或签签署人的合同。或签参与人必须有此字段。
+        ///
+        /// 合同内不同或签参与人CustomApproverTag需要保证唯一。
+        ///
+        /// 如果或签签署人为本方企微参与人，ApproverSource参数需要指定WEWORKAPP
         public let customApproverTag: String?
 
         /// 快速注册相关信息，目前暂未开放！
@@ -1368,17 +1418,22 @@ extension Ess {
         public let signId: String?
 
         /// 当前签署方进行签署操作是否需要企业内部审批
-        /// <br>true 则为需要
-        /// <br/>false,无序企业内部审批（默认）
-        /// <br/>为个人签署方时则由发起方企业审核。
+        ///
+        /// true 则为需要
+        ///
+        /// false,无序企业内部审批（默认）
+        ///
+        /// 为个人签署方时则由发起方企业审核。
         public let approverNeedSignReview: Bool?
 
         /// 签署人签署控件
-        /// <br/>文件发起时，可通过该参数为签署人指定签署控件类型以及位置
+        ///
+        /// 文件发起时，可通过该参数为签署人指定签署控件类型以及位置
         public let signComponents: [Component]?
 
         /// 签署人填写控件
-        /// <br/>文件发起时，可通过该参数为签署人指定填写控件类型以及位置
+        ///
+        /// 文件发起时，可通过该参数为签署人指定填写控件类型以及位置
         public let components: [Component]?
 
         /// 签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
@@ -1388,10 +1443,20 @@ extension Ess {
         /// 	SYSTEM_ESIGN -- 系统签名（该类型可以在用户签署时根据用户姓名一键生成一个签名来进行签署）
         public let componentLimitType: [String]?
 
-        /// 合同查看方式<br/>默认1 -实名查看 <br/>2-短信验证码查看(企业签署方暂不支持该方式)
+        /// 合同查看方式
+        ///
+        /// 默认1 -实名查看
+        ///
+        /// 2-短信验证码查看(企业签署方暂不支持该方式)
         public let approverVerifyTypes: [Int64]?
 
-        /// 合同签署方式(默认1,2) <br/>1-人脸认证 <br/>2-签署密码 <br/>3-运营商三要素
+        /// 合同签署方式(默认1,2)
+        ///
+        /// 1-人脸认证
+        ///
+        /// 2-签署密码
+        ///
+        /// 3-运营商三要素
         public let approverSignTypes: [UInt64]?
 
         public init(approverType: Int64, organizationName: String? = nil, approverName: String? = nil, approverMobile: String? = nil, approverIdCardType: String? = nil, approverIdCardNumber: String? = nil, recipientId: String? = nil, verifyChannel: [String]? = nil, notifyType: String? = nil, isFullText: Bool? = nil, preReadTime: UInt64? = nil, userId: String? = nil, required: Bool? = nil, approverSource: String? = nil, customApproverTag: String? = nil, registerInfo: RegisterInfo? = nil, approverOption: ApproverOption? = nil, signId: String? = nil, approverNeedSignReview: Bool? = nil, signComponents: [Component]? = nil, components: [Component]? = nil, componentLimitType: [String]? = nil, approverVerifyTypes: [Int64]? = nil, approverSignTypes: [UInt64]? = nil) {
@@ -2920,13 +2985,17 @@ extension Ess {
     /// 页面主题配置
     public struct WebThemeConfig: TCInputModel {
         /// 是否页面底部显示电子签logo
-        /// <br/>true：允许在页面底部隐藏电子签logo
-        /// <br/>false：不允许允许在页面底部隐藏电子签logo
-        /// <br/>默认false，不隐藏logo
+        ///
+        /// true：允许在页面底部隐藏电子签logo
+        ///
+        /// false：不允许允许在页面底部隐藏电子签logo
+        ///
+        /// 默认false，不隐藏logo
         public let displaySignBrandLogo: Bool?
 
         /// 主题颜色
-        /// <br/>支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        ///
+        /// 支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
         public let webEmbedThemeColor: String?
 
         public init(displaySignBrandLogo: Bool? = nil, webEmbedThemeColor: String? = nil) {

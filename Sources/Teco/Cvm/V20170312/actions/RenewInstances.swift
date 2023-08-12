@@ -28,7 +28,13 @@ extension Cvm {
         /// 包年包月实例该参数为必传参数。</dx-alert>
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
-        /// 是否续费弹性数据盘。取值范围：<br><li>TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘<br><li>FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘<br><br>默认取值：TRUE。
+        /// 是否续费弹性数据盘。取值范围：
+        ///
+        /// <li>TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘
+        ///
+        /// <li>FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘
+        ///
+        /// 默认取值：TRUE。
         public let renewPortableDataDisk: Bool?
 
         public init(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewPortableDataDisk: Bool? = nil) {

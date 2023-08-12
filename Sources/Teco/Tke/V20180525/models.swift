@@ -3108,7 +3108,13 @@ extension Tke {
 
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel, TCOutputModel {
-        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
+        /// <li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
+        ///
+        /// <li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
+        ///
+        /// 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
 
@@ -3116,7 +3122,13 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyIds: [String]?
 
-        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        ///
+        /// <li>TRUE：表示保持镜像的登录设置
+        ///
+        /// <li>FALSE：表示不保持镜像的登录设置
+        ///
+        /// 默认取值：FALSE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
 
@@ -4981,7 +4993,13 @@ extension Tke {
 
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        /// 是否开启云自动化助手。取值范围：
+        ///
+        /// <li>TRUE：表示开启云自动化助手服务
+        ///
+        /// <li>FALSE：表示不开启云自动化助手服务
+        ///
+        /// 默认取值：FALSE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -5019,7 +5037,13 @@ extension Tke {
 
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
+        /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云监控服务
+        ///
+        /// <li>FALSE：表示不开启云监控服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -5033,7 +5057,13 @@ extension Tke {
 
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云安全服务
+        ///
+        /// <li>FALSE：表示不开启云安全服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {

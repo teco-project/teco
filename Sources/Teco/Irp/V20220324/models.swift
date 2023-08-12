@@ -95,10 +95,18 @@ extension Irp {
         /// 用户id列表
         public let userIdList: [UserIdInfo]
 
-        /// 会话id，使用获取推荐结果中返回的RecTraceId填入。<br>注意：如果和在线推荐请求中的traceId不同，会影响行为特征归因，影响推荐算法效果
+        /// 会话id，使用获取推荐结果中返回的RecTraceId填入。
+        ///
+        /// 注意：如果和在线推荐请求中的traceId不同，会影响行为特征归因，影响推荐算法效果
         public let recTraceId: String
 
-        /// 算法来源：用来区分行为来源于哪个算法。值为**business，tencent，other** 三者之一<br>● business 表示业务自己的算法对照组<br>● tencent 为腾讯算法<br>● other 为其他算法
+        /// 算法来源：用来区分行为来源于哪个算法。值为**business，tencent，other** 三者之一
+        ///
+        /// ● business 表示业务自己的算法对照组
+        ///
+        /// ● tencent 为腾讯算法
+        ///
+        /// ● other 为其他算法
         public let source: String
 
         /// 物料类型

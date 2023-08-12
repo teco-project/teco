@@ -37,11 +37,16 @@ extension As {
         public let notificationUserGroupIds: [String]?
 
         /// 通知接收端类型，取值如下
-        /// <br><li>USER_GROUP：用户组
-        /// <br><li>CMQ_QUEUE：CMQ 队列
-        /// <br><li>CMQ_TOPIC：CMQ 主题
-        /// <br><li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
-        /// <br><li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
+        ///
+        /// <li>USER_GROUP：用户组
+        ///
+        /// <li>CMQ_QUEUE：CMQ 队列
+        ///
+        /// <li>CMQ_TOPIC：CMQ 主题
+        ///
+        /// <li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
+        ///
+        /// <li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
         ///
         /// 默认值为：`USER_GROUP`。
         public let targetType: String?

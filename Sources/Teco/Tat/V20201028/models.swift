@@ -525,8 +525,10 @@ extension Tat {
     /// 周期执行器设置。
     public struct ScheduleSettings: TCInputModel, TCOutputModel {
         /// 执行策略：
-        /// <br><li>ONCE：单次执行
-        /// <br><li>RECURRENCE：周期执行
+        ///
+        /// <li>ONCE：单次执行
+        ///
+        /// <li>RECURRENCE：周期执行
         public let policy: String
 
         /// 触发 Crontab 表达式。Policy 为 RECURRENCE 时，需要指定此字段。Crontab 按北京时间解析。

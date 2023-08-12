@@ -144,7 +144,6 @@ extension Nlp {
         /// translation_m2a：从现代文改写为古文
         /// translation_a2m：从古文改写为现代文
         ///
-        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let embellishType: String?
 

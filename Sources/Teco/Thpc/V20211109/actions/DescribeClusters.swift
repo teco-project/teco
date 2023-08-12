@@ -22,7 +22,9 @@ import TecoPaginationHelpers
 extension Thpc {
     /// DescribeClusters请求参数结构体
     public struct DescribeClustersRequest: TCPaginatedRequest {
-        /// 集群ID列表。通过该参数可以指定需要查询信息的集群列表。<br>如果您不指定该参数，则返回Limit数量以内的集群信息。
+        /// 集群ID列表。通过该参数可以指定需要查询信息的集群列表。
+        ///
+        /// 如果您不指定该参数，则返回Limit数量以内的集群信息。
         public let clusterIds: [String]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。

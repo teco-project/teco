@@ -21,7 +21,9 @@ import TecoCore
 extension Cbs {
     /// RenewDisk请求参数结构体
     public struct RenewDiskRequest: TCRequestModel {
-        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月云硬盘的续费时长。<br>在云硬盘与挂载的实例一起续费的场景下，可以指定参数CurInstanceDeadline，此时云硬盘会按对齐到实例续费后的到期时间来续费。
+        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月云硬盘的续费时长。
+        ///
+        /// 在云硬盘与挂载的实例一起续费的场景下，可以指定参数CurInstanceDeadline，此时云硬盘会按对齐到实例续费后的到期时间来续费。
         public let diskChargePrepaid: DiskChargePrepaid
 
         /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。

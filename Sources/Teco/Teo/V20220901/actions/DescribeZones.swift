@@ -29,7 +29,37 @@ extension Teo {
         public let limit: Int64?
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>zone-name<br>   按照【<strong>站点名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。<br>   类型：String<br>   必选：否</li><li>status<br>   按照【<strong>站点状态</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-key<br>   按照【<strong>标签键</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>tag-value<br>   按照【<strong>标签值</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
+        /// <li>zone-name
+        ///
+        /// 按照【<strong>站点名称</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li><li>zone-id
+        ///
+        /// 按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li><li>status
+        ///
+        /// 按照【<strong>站点状态</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li><li>tag-key
+        ///
+        /// 按照【<strong>标签键</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li><li>tag-value
+        ///
+        /// 按照【<strong>标签值</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li>模糊查询时仅支持过滤字段名为zone-name。
         public let filters: [AdvancedFilter]?
 
         /// 排序字段，取值有：

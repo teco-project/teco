@@ -32,7 +32,19 @@ extension Teo {
         public let limit: Int64?
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>target-name<br>   按照【<strong>目标域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-name<br>   按照【<strong>别称域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为alias-name。
+        /// <li>target-name
+        ///
+        /// 按照【<strong>目标域名名称</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li><li>alias-name
+        ///
+        /// 按照【<strong>别称域名名称</strong>】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否</li>模糊查询时仅支持过滤字段名为alias-name。
         public let filters: [AdvancedFilter]?
 
         public init(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil) {

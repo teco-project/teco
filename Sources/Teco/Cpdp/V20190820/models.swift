@@ -1826,7 +1826,8 @@ extension Cpdp {
         public let externalContractUserInfo: [ExternalContractUserInfo]
 
         /// 签约方式，枚举值，
-        /// <br/>CONTRACT_METHOD_WECHAT_INVALID: 无效
+        ///
+        /// CONTRACT_METHOD_WECHAT_INVALID: 无效
         /// CONTRACT_METHOD_WECHAT_APP: 微信APP
         /// CONTRACT_METHOD_WECHAT_PUBLIC: 微信公众号
         /// CONTRACT_METHOD_WECHAT_MINIPROGRAM: 微信小程序

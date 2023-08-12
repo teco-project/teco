@@ -25,11 +25,13 @@ extension Essbasic {
         public let agent: Agent
 
         /// 合同(流程)编号数组，最多支持100个。
-        /// <br/>备注：该参数和合同组编号必须二选一, 如果填写FlowGroupId则忽略此FlowIds的入参
+        ///
+        /// 备注：该参数和合同组编号必须二选一, 如果填写FlowGroupId则忽略此FlowIds的入参
         public let flowIds: [String]?
 
         /// 合同组编号
-        /// <br/>备注：该参数和合同(流程)编号数组必须二选一
+        ///
+        /// 备注：该参数和合同(流程)编号数组必须二选一
         public let flowGroupId: String?
 
         /// 暂未开放

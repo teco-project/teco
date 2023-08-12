@@ -32,8 +32,10 @@ extension Essbasic {
         public let flowName: String
 
         /// 最大可发起签署流程份数
-        /// <br/>默认5份
-        /// <br/>备注：发起签署流程数量超过此上限后，二维码自动失效。
+        ///
+        /// 默认5份
+        ///
+        /// 备注：发起签署流程数量超过此上限后，二维码自动失效。
         public let maxFlowNum: Int64?
 
         /// 签署流程有效天数 默认7天 最高设置不超过30天
@@ -43,7 +45,8 @@ extension Essbasic {
         public let qrEffectiveDay: Int64?
 
         /// 指定的签署二维码签署人
-        /// <br/>指定后，只允许知道的人操作和签署
+        ///
+        /// 指定后，只允许知道的人操作和签署
         public let restrictions: [ApproverRestriction]?
 
         /// 回调地址，最大长度1000个字符

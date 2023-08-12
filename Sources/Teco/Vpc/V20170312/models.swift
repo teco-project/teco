@@ -3056,7 +3056,13 @@ extension Vpc {
 
     /// 描述配额信息
     public struct Quota: TCOutputModel {
-        /// 配额名称，取值范围：<br><li>`TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；<br><li>`DAILY_EIP_APPLY`：用户当前地域下今日申购次数；<br><li>`DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
+        /// 配额名称，取值范围：
+        ///
+        /// <li>`TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；
+        ///
+        /// <li>`DAILY_EIP_APPLY`：用户当前地域下今日申购次数；
+        ///
+        /// <li>`DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
         public let quotaId: String?
 
         /// 当前数量

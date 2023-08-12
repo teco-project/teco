@@ -1193,7 +1193,15 @@ extension Lighthouse {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60。
         public let period: Int64
 
-        /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        /// 自动续费标识。取值范围：
+        ///
+        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        ///
+        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费
+        ///
+        /// <li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知
+        ///
+        /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
 
         public init(period: Int64, renewFlag: String? = nil) {
@@ -1369,8 +1377,24 @@ extension Lighthouse {
         public let autoGeneratePassword: String?
 
         /// 实例登录密码。具体按照操作系统的复杂度要求。
-        /// `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能包含空格, 不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字：0-9<br><li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
-        /// `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符<br><li>小写字母：[a-z]<br><li>大写字母：[A-Z]<br><li>数字： 0-9<br><li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
+        /// `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能包含空格, 不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：
+        ///
+        /// <li>小写字母：[a-z]
+        ///
+        /// <li>大写字母：[A-Z]
+        ///
+        /// <li>数字：0-9
+        ///
+        /// <li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
+        /// `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
+        ///
+        /// <li>小写字母：[a-z]
+        ///
+        /// <li>大写字母：[A-Z]
+        ///
+        /// <li>数字： 0-9
+        ///
+        /// <li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
         public let password: String?
 
         /// 密钥ID列表，最多同时指定5个密钥。关联密钥后，就可以通过对应的私钥来访问实例。密钥与密码不能同时指定，同时WINDOWS操作系统不支持指定密钥。密钥ID列表可以通过[DescribeKeyPairs](https://cloud.tencent.com/document/product/1207/55540)接口获取。

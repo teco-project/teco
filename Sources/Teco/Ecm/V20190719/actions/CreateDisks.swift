@@ -24,10 +24,28 @@ extension Ecm {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。
         public let placement: Placement
 
-        /// 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>CDCPAID：独享集群付费<br>各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
+        /// 云硬盘计费类型。
+        ///
+        /// <li>PREPAID：预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// <li>CDCPAID：独享集群付费
+        ///
+        /// 各类型价格请参考云硬盘[价格总览](/document/product/362/2413)。
         public let diskChargeType: String
 
-        /// 硬盘介质类型。取值范围：<br><li>CLOUD_BASIC：表示普通云硬盘<br><li>CLOUD_PREMIUM：表示高性能云硬盘<br><li>CLOUD_SSD：表示SSD云硬盘<br><li>CLOUD_HSSD：表示增强型SSD云硬盘<br><li>CLOUD_TSSD：表示极速型SSD云硬盘。
+        /// 硬盘介质类型。取值范围：
+        ///
+        /// <li>CLOUD_BASIC：表示普通云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：表示高性能云硬盘
+        ///
+        /// <li>CLOUD_SSD：表示SSD云硬盘
+        ///
+        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘
+        ///
+        /// <li>CLOUD_TSSD：表示极速型SSD云硬盘。
         public let diskType: String
 
         /// 云盘显示名称。不传则默认为“未命名”。最大长度不能超60个字节。
@@ -36,16 +54,26 @@ extension Ecm {
         /// 云盘绑定的标签。
         public let tags: [Tag]?
 
-        /// 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
+        /// 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。
+        ///
+        /// 创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
         public let diskChargePrepaid: DiskChargePrepaid?
 
         /// 创建云硬盘数量，不传则默认为1。单次请求最多可创建的云盘数有限制，具体参见[云硬盘使用限制](https://cloud.tencent.com/doc/product/362/5145)。
         public let diskCount: UInt64?
 
-        /// 可选参数。使用此参数可给云硬盘购买额外的性能。<br>当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
+        /// 可选参数。使用此参数可给云硬盘购买额外的性能。
+        ///
+        /// 当前仅支持极速型云盘（CLOUD_TSSD）和增强型SSD云硬盘（CLOUD_HSSD）
         public let throughputPerformance: UInt64?
 
-        /// 云硬盘大小，单位为GB。<br><li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小<br><li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小<br><li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
+        /// 云硬盘大小，单位为GB。
+        ///
+        /// <li>如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小
+        ///
+        /// <li>如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小
+        ///
+        /// <li>云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         public let diskSize: UInt64?
 
         /// 可选参数，默认为False。传入True时，云盘将创建为共享型云盘。

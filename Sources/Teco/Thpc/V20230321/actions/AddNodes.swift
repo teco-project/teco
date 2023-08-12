@@ -36,13 +36,23 @@ extension Thpc {
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像和特定自定义镜像。
         public let imageId: String?
 
-        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
+        /// <li>PREPAID：预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// <li>SPOTPAID：竞价付费
+        ///
+        /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
-        /// 节点机型。不同实例机型指定了不同的资源规格。<br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        /// 节点机型。不同实例机型指定了不同的资源规格。
+        ///
+        /// <li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
@@ -71,7 +81,11 @@ extension Thpc {
         /// 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。<li>SGE默认队列为：all.q。
         public let queueName: String?
 
-        /// 添加节点角色。默认值：Compute<br><li>Compute：计算节点。<br><li>Login：登录节点。
+        /// 添加节点角色。默认值：Compute
+        ///
+        /// <li>Compute：计算节点。
+        ///
+        /// <li>Login：登录节点。
         public let nodeRole: String?
 
         /// 是否只预检此次请求。

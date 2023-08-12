@@ -116,7 +116,6 @@ extension Ms {
         /// assets资源文件加密不能加密APP图标
         /// assets目录文件，不能加密以下后缀规则的文件".wav", ".mp2", ".mp3", ".ogg", ".aac", ".mpg",".mpeg", ".mid", ".midi", ".smf", ".jet", ".rtttl", ".imy", ".xmf", ".mp4", ".m4a", ".m4v", ".3gp",".3gpp", ".3g2", ".3gpp2", ".amr", ".awb", ".wma", ".wmv"
         ///
-        ///
         /// apk[dex+so+vmp+res+assets]加固参数示例：
         /// ‘{
         ///     "dex": {

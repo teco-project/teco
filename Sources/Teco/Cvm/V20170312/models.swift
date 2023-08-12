@@ -91,7 +91,15 @@ extension Cvm {
         /// 购买实例的时长，单位：月。取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。
         public let period: UInt64
 
-        /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_AUTO_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        /// 自动续费标识。取值范围：
+        ///
+        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        ///
+        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        ///
+        /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        ///
+        /// 默认取值：NOTIFY_AND_AUTO_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
 
         public init(period: UInt64, renewFlag: String? = nil) {
@@ -122,7 +130,8 @@ extension Cvm {
         /// 服务器序列号。
         public let serialNumber: String
 
-        /// CHC的状态<br/>
+        /// CHC的状态
+        ///
         /// <ul>
         /// <li>INIT: 设备已录入。还未配置带外和部署网络</li>
         /// <li>READY: 已配置带外和部署网络</li>
@@ -254,7 +263,31 @@ extension Cvm {
         /// 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         public let diskSize: Int64
 
-        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><li>CLOUD_BSSD：通用型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
+        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
+        /// <li>LOCAL_BASIC：本地硬盘
+        ///
+        /// <li>LOCAL_SSD：本地SSD硬盘
+        ///
+        /// <li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>CLOUD_BASIC：普通云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：高性能云硬盘
+        ///
+        /// <li>CLOUD_SSD：SSD云硬盘
+        ///
+        /// <li>CLOUD_HSSD：增强型SSD云硬盘
+        ///
+        /// <li>CLOUD_TSSD：极速型SSD云硬盘
+        ///
+        /// <li>CLOUD_BSSD：通用型SSD云硬盘
+        ///
+        /// 默认取值：LOCAL_BASIC。
+        ///
+        /// 该参数对`ResizeInstanceDisk`接口无效。
         public let diskType: String?
 
         /// 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
@@ -263,8 +296,10 @@ extension Cvm {
 
         /// 数据盘是否随子机销毁。取值范围：
         /// <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
-        /// <li>FALSE：子机销毁时，保留数据盘<br>
-        /// 默认取值：TRUE<br>
+        /// <li>FALSE：子机销毁时，保留数据盘
+        ///
+        /// 默认取值：TRUE
+        ///
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
@@ -275,8 +310,10 @@ extension Cvm {
 
         /// 数据盘是加密。取值范围：
         /// <li>TRUE：加密
-        /// <li>FALSE：不加密<br>
-        /// 默认取值：FALSE<br>
+        /// <li>FALSE：不加密
+        ///
+        /// 默认取值：FALSE
+        ///
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
@@ -328,7 +365,13 @@ extension Cvm {
         /// 分散置放群组名称，长度1-60个字符。
         public let name: String
 
-        /// 分散置放群组类型，取值范围：<br><li>HOST：物理机<br><li>SW：交换机<br><li>RACK：机架
+        /// 分散置放群组类型，取值范围：
+        ///
+        /// <li>HOST：物理机
+        ///
+        /// <li>SW：交换机
+        ///
+        /// <li>RACK：机架
         public let type: String
 
         /// 分散置放群组内最大容纳云服务器数量。
@@ -415,7 +458,11 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseAddress: Bool?
 
-        /// 不支持的网络类型，取值范围：<br><li>BASIC：基础网络<br><li>VPC1.0：私有网络VPC1.0
+        /// 不支持的网络类型，取值范围：
+        ///
+        /// <li>BASIC：基础网络
+        ///
+        /// <li>VPC1.0：私有网络VPC1.0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unsupportNetworks: [String]?
 
@@ -784,13 +831,27 @@ extension Cvm {
         /// 实例内存容量，单位：`GB`。
         public let memory: Int64?
 
-        /// 实例业务状态。取值范围：<br><li>NORMAL：表示正常状态的实例<br><li>EXPIRED：表示过期的实例<br><li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。
+        /// 实例业务状态。取值范围：
+        ///
+        /// <li>NORMAL：表示正常状态的实例
+        ///
+        /// <li>EXPIRED：表示过期的实例
+        ///
+        /// <li>PROTECTIVELY_ISOLATED：表示被安全隔离的实例。
         public let restrictState: String?
 
         /// 实例名称。
         public let instanceName: String?
 
-        /// 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        /// 实例计费模式。取值范围：
+        ///
+        /// <li>`PREPAID`：表示预付费，即包年包月
+        ///
+        /// <li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费
+        ///
+        /// <li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
+        ///
+        /// <li>`SPOTPAID`：表示竞价实例付费。
         public let instanceChargeType: String?
 
         /// 实例系统盘信息。
@@ -815,8 +876,15 @@ extension Cvm {
         /// 生产实例所使用的镜像`ID`。
         public let imageId: String?
 
-        /// 自动续费标识。取值范围：<br><li>`NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费<br><li>`NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费<br><li>`DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
-        /// <br><li>注意：后付费模式本项为null
+        /// 自动续费标识。取值范围：
+        ///
+        /// <li>`NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费
+        ///
+        /// <li>`NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费
+        ///
+        /// <li>`DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
+        ///
+        /// <li>注意：后付费模式本项为null
         public let renewFlag: String?
 
         /// 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
@@ -840,14 +908,38 @@ extension Cvm {
         /// 实例登录设置。目前只返回实例所关联的密钥。
         public let loginSettings: LoginSettings
 
-        /// 实例状态。取值范围：<br><li>PENDING：表示创建中<br></li><li>LAUNCH_FAILED：表示创建失败<br></li><li>RUNNING：表示运行中<br></li><li>STOPPED：表示关机<br></li><li>STARTING：表示开机中<br></li><li>STOPPING：表示关机中<br></li><li>REBOOTING：表示重启中<br></li><li>SHUTDOWN：表示停止待销毁<br></li><li>TERMINATING：表示销毁中。<br></li>
+        /// 实例状态。取值范围：
+        ///
+        /// <li>PENDING：表示创建中
+        ///
+        /// </li><li>LAUNCH_FAILED：表示创建失败
+        ///
+        /// </li><li>RUNNING：表示运行中
+        ///
+        /// </li><li>STOPPED：表示关机
+        ///
+        /// </li><li>STARTING：表示开机中
+        ///
+        /// </li><li>STOPPING：表示关机中
+        ///
+        /// </li><li>REBOOTING：表示重启中
+        ///
+        /// </li><li>SHUTDOWN：表示停止待销毁
+        ///
+        /// </li><li>TERMINATING：表示销毁中。
+        ///
+        /// </li>
         public let instanceState: String
 
         /// 实例关联的标签列表。
         public let tags: [Tag]
 
         /// 实例的关机计费模式。
-        /// 取值范围：<br><li>KEEP_CHARGING：关机继续收费<br><li>STOP_CHARGING：关机停止收费<li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件<br>
+        /// 取值范围：
+        ///
+        /// <li>KEEP_CHARGING：关机继续收费
+        ///
+        /// <li>STOP_CHARGING：关机停止收费<li>NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件
         public let stopChargingMode: String
 
         /// 实例全局唯一ID
@@ -857,7 +949,13 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperation: String?
 
-        /// 实例的最新操作状态。取值范围：<br><li>SUCCESS：表示操作成功<br><li>OPERATING：表示操作执行中<br><li>FAILED：表示操作失败
+        /// 实例的最新操作状态。取值范围：
+        ///
+        /// <li>SUCCESS：表示操作成功
+        ///
+        /// <li>OPERATING：表示操作执行中
+        ///
+        /// <li>FAILED：表示操作失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationState: String?
 
@@ -889,7 +987,17 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dedicatedClusterId: String?
 
-        /// 实例隔离类型。取值范围：<br><li>ARREAR：表示欠费隔离<br></li><li>EXPIRE：表示到期隔离<br></li><li>MANMADE：表示主动退还隔离<br></li><li>NOTISOLATED：表示未隔离<br></li>
+        /// 实例隔离类型。取值范围：
+        ///
+        /// <li>ARREAR：表示欠费隔离
+        ///
+        /// </li><li>EXPIRE：表示到期隔离
+        ///
+        /// </li><li>MANMADE：表示主动退还隔离
+        ///
+        /// </li><li>NOTISOLATED：表示未隔离
+        ///
+        /// </li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isolatedSource: String?
 
@@ -900,7 +1008,13 @@ extension Cvm {
         /// 实例的操作系统许可类型，默认为TencentCloud
         public let licenseType: String?
 
-        /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
+        /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
+        ///
+        /// <li>TRUE：表示开启实例保护，不允许通过api接口删除实例
+        ///
+        /// <li>FALSE：表示关闭实例保护，允许通过api接口删除实例
+        ///
+        /// 默认取值：FALSE。
         public let disableApiTermination: Bool?
 
         /// 默认登录用户。
@@ -964,7 +1078,15 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let period: Int64?
 
-        /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
+        /// 自动续费标识。取值范围：
+        ///
+        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        ///
+        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        ///
+        /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        ///
+        /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: String?
 
@@ -1041,7 +1163,27 @@ extension Cvm {
         /// 实例`ID`。
         public let instanceId: String?
 
-        /// 实例状态。取值范围：<br><li>PENDING：表示创建中<br></li><li>LAUNCH_FAILED：表示创建失败<br></li><li>RUNNING：表示运行中<br></li><li>STOPPED：表示关机<br></li><li>STARTING：表示开机中<br></li><li>STOPPING：表示关机中<br></li><li>REBOOTING：表示重启中<br></li><li>SHUTDOWN：表示停止待销毁<br></li><li>TERMINATING：表示销毁中。<br></li>
+        /// 实例状态。取值范围：
+        ///
+        /// <li>PENDING：表示创建中
+        ///
+        /// </li><li>LAUNCH_FAILED：表示创建失败
+        ///
+        /// </li><li>RUNNING：表示运行中
+        ///
+        /// </li><li>STOPPED：表示关机
+        ///
+        /// </li><li>STARTING：表示开机中
+        ///
+        /// </li><li>STOPPING：表示关机中
+        ///
+        /// </li><li>REBOOTING：表示重启中
+        ///
+        /// </li><li>SHUTDOWN：表示停止待销毁
+        ///
+        /// </li><li>TERMINATING：表示销毁中。
+        ///
+        /// </li>
         public let instanceState: String?
 
         enum CodingKeys: String, CodingKey {
@@ -1115,7 +1257,15 @@ extension Cvm {
         /// 实例机型。
         public let instanceType: String
 
-        /// 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        /// 实例计费模式。取值范围：
+        ///
+        /// <li>PREPAID：表示预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：表示后付费，即按量计费
+        ///
+        /// <li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
+        ///
+        /// <li>`SPOTPAID`：表示竞价实例付费。
         public let instanceChargeType: String
 
         /// 网卡类型，例如：25代表25G网卡
@@ -1140,7 +1290,11 @@ extension Cvm {
         /// 本地磁盘规格列表。当该参数返回为空值时，表示当前情况下无法创建本地盘。
         public let localDiskTypeList: [LocalDiskType]
 
-        /// 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
+        /// 实例是否售卖。取值范围：
+        ///
+        /// <li>SELL：表示实例可购买
+        ///
+        /// <li>SOLD_OUT：表示实例已售罄。
         public let status: String
 
         /// 实例的售卖价格。
@@ -1205,13 +1359,29 @@ extension Cvm {
 
     /// 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
-        /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
+        /// 网络计费类型。取值范围：
+        ///
+        /// <li>BANDWIDTH_PREPAID：预付费按带宽结算
+        ///
+        /// <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
+        ///
+        /// <li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
+        ///
+        /// <li>BANDWIDTH_PACKAGE：带宽包用户
+        ///
+        /// 默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
         public let internetChargeType: String?
 
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
         public let internetMaxBandwidthOut: Int64?
 
-        /// 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
+        /// 是否分配公网IP。取值范围：
+        ///
+        /// <li>TRUE：表示分配公网IP
+        ///
+        /// <li>FALSE：表示不分配公网IP
+        ///
+        /// 当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
         public let publicIpAssigned: Bool?
 
         /// 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
@@ -1277,11 +1447,17 @@ extension Cvm {
 
     /// 描述了单项的价格信息
     public struct ItemPrice: TCOutputModel {
-        /// 后续合计费用的原价，后付费模式使用，单位：元。<br><li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        /// 后续合计费用的原价，后付费模式使用，单位：元。
+        ///
+        /// <li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
 
-        /// 后续计价单元，后付费模式使用，可取值范围： <br><li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：<br><li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        /// 后续计价单元，后付费模式使用，可取值范围：
+        ///
+        /// <li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：
+        ///
+        /// <li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
 
@@ -1297,7 +1473,9 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discount: Float?
 
-        /// 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        /// 后续合计费用的折扣价，后付费模式使用，单位：元
+        ///
+        /// <li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
 
@@ -1508,7 +1686,15 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceName: String?
 
-        /// 实例计费模式。取值范围：<br><li>`PREPAID`：表示预付费，即包年包月<br><li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费<br><li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        /// 实例计费模式。取值范围：
+        ///
+        /// <li>`PREPAID`：表示预付费，即包年包月
+        ///
+        /// <li>`POSTPAID_BY_HOUR`：表示后付费，即按量计费
+        ///
+        /// <li>`CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
+        ///
+        /// <li>`SPOTPAID`：表示竞价实例付费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceChargeType: String?
 
@@ -1678,7 +1864,11 @@ extension Cvm {
         /// 本地磁盘最大值。
         public let maxSize: Int64
 
-        /// 购买时本地盘是否为必选。取值范围：<br><li>REQUIRED：表示必选<br><li>OPTIONAL：表示可选。
+        /// 购买时本地盘是否为必选。取值范围：
+        ///
+        /// <li>REQUIRED：表示必选
+        ///
+        /// <li>OPTIONAL：表示可选。
         public let required: String
 
         enum CodingKeys: String, CodingKey {
@@ -1692,7 +1882,13 @@ extension Cvm {
 
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel, TCOutputModel {
-        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
+        /// <li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
+        ///
+        /// <li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
+        ///
+        /// 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
 
@@ -1700,7 +1896,13 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyIds: [String]?
 
-        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        ///
+        /// <li>TRUE：表示保持镜像的登录设置
+        ///
+        /// <li>FALSE：表示不保持镜像的登录设置
+        ///
+        /// 默认取值：FALSE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
 
@@ -1719,7 +1921,11 @@ extension Cvm {
 
     /// 描述了单台实例操作次数限制
     public struct OperationCountLimit: TCOutputModel {
-        /// 实例操作。取值范围：<br><li>`INSTANCE_DEGRADE`：降配操作<br><li>`INTERNET_CHARGE_TYPE_CHANGE`：修改网络带宽计费模式
+        /// 实例操作。取值范围：
+        ///
+        /// <li>`INSTANCE_DEGRADE`：降配操作
+        ///
+        /// <li>`INTERNET_CHARGE_TYPE_CHANGE`：修改网络带宽计费模式
         public let operation: String
 
         /// 实例ID。
@@ -2327,7 +2533,13 @@ extension Cvm {
 
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        /// 是否开启云自动化助手。取值范围：
+        ///
+        /// <li>TRUE：表示开启云自动化助手服务
+        ///
+        /// <li>FALSE：表示不开启云自动化助手服务
+        ///
+        /// 默认取值：FALSE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -2341,7 +2553,13 @@ extension Cvm {
 
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
+        /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云监控服务
+        ///
+        /// <li>FALSE：表示不开启云监控服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -2355,7 +2573,13 @@ extension Cvm {
 
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云安全服务
+        ///
+        /// <li>FALSE：表示不开启云安全服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -2488,7 +2712,21 @@ extension Cvm {
 
     /// 描述了操作系统所在块设备即系统盘的信息
     public struct SystemDisk: TCInputModel, TCOutputModel {
-        /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_BSSD：通用性SSD云硬盘<br><br>默认取值：当前有库存的硬盘类型。
+        /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
+        /// <li>LOCAL_BASIC：本地硬盘
+        ///
+        /// <li>LOCAL_SSD：本地SSD硬盘
+        ///
+        /// <li>CLOUD_BASIC：普通云硬盘
+        ///
+        /// <li>CLOUD_SSD：SSD云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：高性能云硬盘
+        ///
+        /// <li>CLOUD_BSSD：通用性SSD云硬盘
+        ///
+        /// 默认取值：当前有库存的硬盘类型。
         public let diskType: String?
 
         /// 系统盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID。暂时不支持该参数。
@@ -2565,7 +2803,13 @@ extension Cvm {
         /// 私有网络子网ID，形如`subnet-xxx`。有效的私有网络子网ID可通过登录[控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1)查询；也可以调用接口  [DescribeSubnets](/document/api/215/15784) ，从接口返回中的`unSubnetId`字段获取。若在创建子机时SubnetId与VpcId同时传入`DEFAULT`，则强制使用默认vpc网络。
         public let subnetId: String
 
-        /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：<br><li>TRUE：表示用作公网网关<br><li>FALSE：表示不作为公网网关<br><br>默认取值：FALSE。
+        /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：
+        ///
+        /// <li>TRUE：表示用作公网网关
+        ///
+        /// <li>FALSE：表示不作为公网网关
+        ///
+        /// 默认取值：FALSE。
         public let asVpcGateway: Bool?
 
         /// 私有网络子网 IP 数组，在创建实例、修改实例vpc属性操作中可使用此参数。当前仅批量创建多台实例时支持传入相同子网的多个 IP。

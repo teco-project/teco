@@ -157,7 +157,11 @@ extension Cdc {
         /// 机型描述
         public let remark: String
 
-        /// 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
+        /// 实例是否售卖。取值范围：
+        ///
+        /// <li>SELL：表示实例可购买
+        ///
+        /// <li>SOLD_OUT：表示实例已售罄。
         public let status: String
 
         enum CodingKeys: String, CodingKey {

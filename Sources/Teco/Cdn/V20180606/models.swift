@@ -3741,7 +3741,9 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [IpFilterPathRule]?
 
-        /// IP 黑白名单验证失败时返回的 code <br><font color=red>已下线，参数失效，不支持自定义状态码，固定返回514</font>
+        /// IP 黑白名单验证失败时返回的 code
+        ///
+        /// <font color=red>已下线，参数失效，不支持自定义状态码，固定返回514</font>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
 
