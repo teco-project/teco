@@ -128,7 +128,7 @@ extension Cdc {
 
     /// 查询专有集群配置列表
     ///
-    /// - Returns: `AsyncSequence`s of `DedicatedClusterType` and `DescribeDedicatedClusterTypesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DedicatedClusterType`` and ``DescribeDedicatedClusterTypesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDedicatedClusterTypesPaginator(_ input: DescribeDedicatedClusterTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterTypesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterTypes, logger: logger, on: eventLoop)

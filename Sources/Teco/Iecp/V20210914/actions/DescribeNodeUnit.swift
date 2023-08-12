@@ -134,7 +134,7 @@ extension Iecp {
 
     /// 查询边缘单元NodeUnit列表
     ///
-    /// - Returns: `AsyncSequence`s of `NodeUnitInfo` and `DescribeNodeUnitResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NodeUnitInfo`` and ``DescribeNodeUnitResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNodeUnitPaginator(_ input: DescribeNodeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNodeUnitRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNodeUnit, logger: logger, on: eventLoop)

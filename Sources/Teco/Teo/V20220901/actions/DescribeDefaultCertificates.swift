@@ -119,7 +119,7 @@ extension Teo {
 
     /// 查询默认证书列表
     ///
-    /// - Returns: `AsyncSequence`s of `DefaultServerCertInfo` and `DescribeDefaultCertificatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DefaultServerCertInfo`` and ``DescribeDefaultCertificatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDefaultCertificatesPaginator(_ input: DescribeDefaultCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDefaultCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDefaultCertificates, logger: logger, on: eventLoop)

@@ -140,7 +140,7 @@ extension Ecm {
 
     /// 获取模块列表
     ///
-    /// - Returns: `AsyncSequence`s of `ModuleItem` and `DescribeModuleResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ModuleItem`` and ``DescribeModuleResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)

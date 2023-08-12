@@ -138,7 +138,7 @@ extension Teo {
     ///
     /// 用于查询域名配置信息
     ///
-    /// - Returns: `AsyncSequence`s of `DetailHost` and `DescribeHostsSettingResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DetailHost`` and ``DescribeHostsSettingResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostsSettingPaginator(_ input: DescribeHostsSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostsSettingRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostsSetting, logger: logger, on: eventLoop)

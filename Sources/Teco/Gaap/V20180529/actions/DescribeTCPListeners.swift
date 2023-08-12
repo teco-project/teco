@@ -159,7 +159,7 @@ extension Gaap {
     ///
     /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
     ///
-    /// - Returns: `AsyncSequence`s of `TCPListener` and `DescribeTCPListenersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TCPListener`` and ``DescribeTCPListenersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTCPListenersPaginator(_ input: DescribeTCPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTCPListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTCPListeners, logger: logger, on: eventLoop)

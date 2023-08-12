@@ -124,7 +124,7 @@ extension Cynosdb {
 
     /// 查询数据库列表
     ///
-    /// - Returns: `AsyncSequence`s of `DbInfo` and `DescribeClusterDetailDatabasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DbInfo`` and ``DescribeClusterDetailDatabasesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterDetailDatabasesPaginator(_ input: DescribeClusterDetailDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterDetailDatabasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterDetailDatabases, logger: logger, on: eventLoop)

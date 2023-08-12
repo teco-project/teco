@@ -139,7 +139,7 @@ extension Tsf {
 
     /// 查询简单应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `SimpleApplication` and `DescribeSimpleApplicationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SimpleApplication`` and ``DescribeSimpleApplicationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSimpleApplicationsPaginator(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleApplications, logger: logger, on: eventLoop)

@@ -153,7 +153,7 @@ extension Tcss {
     ///
     /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
     ///
-    /// - Returns: `AsyncSequence`s of `CompliancePolicyItemSummary` and `DescribeComplianceTaskPolicyItemSummaryListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CompliancePolicyItemSummary`` and ``DescribeComplianceTaskPolicyItemSummaryListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceTaskPolicyItemSummaryListPaginator(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceTaskPolicyItemSummaryListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceTaskPolicyItemSummaryList, logger: logger, on: eventLoop)

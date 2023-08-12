@@ -138,7 +138,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpnGatewayRoutes）用于查询VPN网关路由。
     ///
-    /// - Returns: `AsyncSequence`s of `VpnGatewayRoute` and `DescribeVpnGatewayRoutesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpnGatewayRoute`` and ``DescribeVpnGatewayRoutesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewayRoutesPaginator(_ input: DescribeVpnGatewayRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewayRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewayRoutes, logger: logger, on: eventLoop)

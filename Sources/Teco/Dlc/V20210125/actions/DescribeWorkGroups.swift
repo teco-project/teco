@@ -133,7 +133,7 @@ extension Dlc {
 
     /// 获取工作组列表
     ///
-    /// - Returns: `AsyncSequence`s of `WorkGroupInfo` and `DescribeWorkGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WorkGroupInfo`` and ``DescribeWorkGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)

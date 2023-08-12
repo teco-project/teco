@@ -148,7 +148,7 @@ extension Vpc {
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
     ///
-    /// - Returns: `AsyncSequence`s of `Ip6Translator` and `DescribeIp6TranslatorsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Ip6Translator`` and ``DescribeIp6TranslatorsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIp6TranslatorsPaginator(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIp6TranslatorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIp6Translators, logger: logger, on: eventLoop)

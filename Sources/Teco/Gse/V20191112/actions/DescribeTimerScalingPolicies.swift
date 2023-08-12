@@ -155,7 +155,7 @@ extension Gse {
     ///
     /// 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `TimerScalingPolicy` and `DescribeTimerScalingPoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TimerScalingPolicy`` and ``DescribeTimerScalingPoliciesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPoliciesPaginator(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTimerScalingPoliciesRequest> {

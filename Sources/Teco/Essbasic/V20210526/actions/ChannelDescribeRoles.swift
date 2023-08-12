@@ -179,7 +179,7 @@ extension Essbasic {
     ///
     /// 查询角色列表，支持根据类型和状态过滤角色列表
     ///
-    /// - Returns: `AsyncSequence`s of `ChannelRole` and `ChannelDescribeRolesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ChannelRole`` and ``ChannelDescribeRolesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func channelDescribeRolesPaginator(_ input: ChannelDescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ChannelDescribeRolesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.channelDescribeRoles, logger: logger, on: eventLoop)

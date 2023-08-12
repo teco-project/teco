@@ -138,7 +138,7 @@ extension Tcss {
     ///
     /// 查询某类资产的列表
     ///
-    /// - Returns: `AsyncSequence`s of `ComplianceAssetInfo` and `DescribeComplianceAssetListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComplianceAssetInfo`` and ``DescribeComplianceAssetListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceAssetListPaginator(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)

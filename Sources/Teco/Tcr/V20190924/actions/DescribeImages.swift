@@ -157,7 +157,7 @@ extension Tcr {
     ///
     /// 查询镜像版本列表或指定容器镜像信息
     ///
-    /// - Returns: `AsyncSequence`s of `TcrImageInfo` and `DescribeImagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TcrImageInfo`` and ``DescribeImagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)

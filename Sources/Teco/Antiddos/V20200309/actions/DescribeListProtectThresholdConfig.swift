@@ -147,7 +147,7 @@ extension Antiddos {
     ///
     /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
     ///
-    /// - Returns: `AsyncSequence`s of `ProtectThresholdRelation` and `DescribeListProtectThresholdConfigResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProtectThresholdRelation`` and ``DescribeListProtectThresholdConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListProtectThresholdConfigPaginator(_ input: DescribeListProtectThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListProtectThresholdConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListProtectThresholdConfig, logger: logger, on: eventLoop)

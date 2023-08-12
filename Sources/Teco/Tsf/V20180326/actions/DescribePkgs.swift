@@ -158,7 +158,7 @@ extension Tsf {
     ///
     /// 无
     ///
-    /// - Returns: `AsyncSequence`s of `PkgInfo` and `DescribePkgsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PkgInfo`` and ``DescribePkgsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePkgsPaginator(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePkgsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePkgs, logger: logger, on: eventLoop)

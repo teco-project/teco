@@ -136,7 +136,7 @@ extension Wedata {
 
     /// 查询基线实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineInstanceVo` and `DescribeBaselineInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineInstanceVo`` and ``DescribeBaselineInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineInstancesPaginator(_ input: DescribeBaselineInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineInstances, logger: logger, on: eventLoop)

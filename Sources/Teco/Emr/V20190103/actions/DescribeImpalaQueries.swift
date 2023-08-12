@@ -142,7 +142,7 @@ extension Emr {
     ///
     /// DescribeImpalaQueries
     ///
-    /// - Returns: `AsyncSequence`s of `ImpalaQuery` and `DescribeImpalaQueriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImpalaQuery`` and ``DescribeImpalaQueriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImpalaQueriesPaginator(_ input: DescribeImpalaQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImpalaQueriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImpalaQueries, logger: logger, on: eventLoop)

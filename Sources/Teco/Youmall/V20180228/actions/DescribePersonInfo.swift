@@ -160,7 +160,7 @@ extension Youmall {
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     ///
-    /// - Returns: `AsyncSequence`s of `PersonInfo` and `DescribePersonInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PersonInfo`` and ``DescribePersonInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePersonInfoPaginator(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonInfo, logger: logger, on: eventLoop)

@@ -134,7 +134,7 @@ extension Tdmq {
     ///
     /// 查询用户已购的RocketMQ专享实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `RocketMQVipInstance` and `DescribeRocketMQVipInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RocketMQVipInstance`` and ``DescribeRocketMQVipInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRocketMQVipInstancesPaginator(_ input: DescribeRocketMQVipInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQVipInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQVipInstances, logger: logger, on: eventLoop)

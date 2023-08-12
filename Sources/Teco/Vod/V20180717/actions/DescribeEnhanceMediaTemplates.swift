@@ -144,7 +144,7 @@ extension Vod {
     ///
     /// 获取音画质重生模板列表。
     ///
-    /// - Returns: `AsyncSequence`s of `RebuildMediaTemplate` and `DescribeEnhanceMediaTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RebuildMediaTemplate`` and ``DescribeEnhanceMediaTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEnhanceMediaTemplatesPaginator(_ input: DescribeEnhanceMediaTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEnhanceMediaTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnhanceMediaTemplates, logger: logger, on: eventLoop)

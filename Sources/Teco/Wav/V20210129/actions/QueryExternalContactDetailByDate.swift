@@ -133,7 +133,7 @@ extension Wav {
     ///
     /// 企业可通过传入起始和结束时间，获取该时间段的外部联系人详情列表
     ///
-    /// - Returns: `AsyncSequence`s of `ExternalContactDetailPro` and `QueryExternalContactDetailByDateResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExternalContactDetailPro`` and ``QueryExternalContactDetailByDateResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryExternalContactDetailByDatePaginator(_ input: QueryExternalContactDetailByDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryExternalContactDetailByDateRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryExternalContactDetailByDate, logger: logger, on: eventLoop)

@@ -181,7 +181,7 @@ extension Cme {
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     ///
-    /// - Returns: `AsyncSequence`s of `MaterialInfo` and `SearchMaterialResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MaterialInfo`` and ``SearchMaterialResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchMaterialPaginator(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchMaterialRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)

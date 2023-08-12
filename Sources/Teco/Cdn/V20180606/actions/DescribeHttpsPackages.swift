@@ -139,7 +139,7 @@ extension Cdn {
     ///
     /// DescribeHttpsPackages 用于查询 CDN HTTPS请求包详情。
     ///
-    /// - Returns: `AsyncSequence`s of `HttpsPackage` and `DescribeHttpsPackagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HttpsPackage`` and ``DescribeHttpsPackagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHttpsPackagesPaginator(_ input: DescribeHttpsPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHttpsPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHttpsPackages, logger: logger, on: eventLoop)

@@ -138,7 +138,7 @@ extension Tke {
 
     /// 获取告警历史
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAlertHistoryItem` and `DescribePrometheusAlertHistoryResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAlertHistoryItem`` and ``DescribePrometheusAlertHistoryResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusAlertHistoryPaginator(_ input: DescribePrometheusAlertHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertHistoryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertHistory, logger: logger, on: eventLoop)

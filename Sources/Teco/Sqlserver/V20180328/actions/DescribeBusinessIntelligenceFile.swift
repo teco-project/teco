@@ -157,7 +157,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     ///
-    /// - Returns: `AsyncSequence`s of `BusinessIntelligenceFile` and `DescribeBusinessIntelligenceFileResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BusinessIntelligenceFile`` and ``DescribeBusinessIntelligenceFileResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBusinessIntelligenceFilePaginator(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBusinessIntelligenceFileRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)

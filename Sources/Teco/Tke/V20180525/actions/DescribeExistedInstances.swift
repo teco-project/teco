@@ -158,7 +158,7 @@ extension Tke {
     ///
     /// 查询已经存在的节点，判断是否可以加入集群
     ///
-    /// - Returns: `AsyncSequence`s of `ExistedInstance` and `DescribeExistedInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExistedInstance`` and ``DescribeExistedInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExistedInstancesPaginator(_ input: DescribeExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExistedInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExistedInstances, logger: logger, on: eventLoop)

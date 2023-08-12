@@ -175,7 +175,7 @@ extension Ssa {
     ///
     /// 域名列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `DomainInfo` and `DescribeDomainListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DomainInfo`` and ``DescribeDomainListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainListPaginator(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainList, logger: logger, on: eventLoop)

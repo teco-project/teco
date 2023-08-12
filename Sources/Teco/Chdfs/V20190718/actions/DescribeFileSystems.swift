@@ -124,7 +124,7 @@ extension Chdfs {
     ///
     /// 查看文件系统列表。
     ///
-    /// - Returns: `AsyncSequence`s of `FileSystem` and `DescribeFileSystemsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FileSystem`` and ``DescribeFileSystemsResponse`` that can be iterated over asynchronously on demand.
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeFileSystemsPaginator(_ input: DescribeFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileSystemsRequest> {

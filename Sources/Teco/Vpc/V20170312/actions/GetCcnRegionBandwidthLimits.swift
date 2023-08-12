@@ -151,7 +151,7 @@ extension Vpc {
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     ///
-    /// - Returns: `AsyncSequence`s of `CcnBandwidthInfo` and `GetCcnRegionBandwidthLimitsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CcnBandwidthInfo`` and ``GetCcnRegionBandwidthLimitsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getCcnRegionBandwidthLimitsPaginator(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCcnRegionBandwidthLimitsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCcnRegionBandwidthLimits, logger: logger, on: eventLoop)

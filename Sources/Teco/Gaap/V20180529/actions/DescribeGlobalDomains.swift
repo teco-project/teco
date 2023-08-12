@@ -129,7 +129,7 @@ extension Gaap {
 
     /// 查询域名列表
     ///
-    /// - Returns: `AsyncSequence`s of `Domain` and `DescribeGlobalDomainsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Domain`` and ``DescribeGlobalDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGlobalDomainsPaginator(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGlobalDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)

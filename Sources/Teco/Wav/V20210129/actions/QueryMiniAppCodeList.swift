@@ -110,7 +110,7 @@ extension Wav {
 
     /// 查询小程序码列表接口
     ///
-    /// - Returns: `AsyncSequence`s of `MiniAppCodeInfo` and `QueryMiniAppCodeListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MiniAppCodeInfo`` and ``QueryMiniAppCodeListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryMiniAppCodeListPaginator(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMiniAppCodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)

@@ -182,7 +182,7 @@ extension Cpdp {
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     ///
-    /// - Returns: `AsyncSequence`s of `QueryOrderOutOrderList` and `QueryOrderResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``QueryOrderOutOrderList`` and ``QueryOrderResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryOrderPaginator(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryOrderRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)

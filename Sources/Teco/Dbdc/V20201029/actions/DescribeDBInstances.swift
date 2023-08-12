@@ -142,7 +142,7 @@ extension Dbdc {
     ///
     /// 本接口用于查询独享集群内的DB实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `DBInstanceDetail` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DBInstanceDetail`` and ``DescribeDBInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)

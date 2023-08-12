@@ -152,7 +152,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeSubnets）用于查询黑石子网列表。
     ///
-    /// - Returns: `AsyncSequence`s of `SubnetInfo` and `DescribeSubnetsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SubnetInfo`` and ``DescribeSubnetsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubnetsPaginator(_ input: DescribeSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnets, logger: logger, on: eventLoop)

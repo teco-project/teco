@@ -146,7 +146,7 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeProxyNodes）用于查询代理接口列表。
     ///
-    /// - Returns: `AsyncSequence`s of `ProxyNodeInfo` and `DescribeProxyNodesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProxyNodeInfo`` and ``DescribeProxyNodesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProxyNodesPaginator(_ input: DescribeProxyNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxyNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxyNodes, logger: logger, on: eventLoop)

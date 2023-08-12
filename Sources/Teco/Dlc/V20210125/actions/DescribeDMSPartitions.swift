@@ -163,7 +163,7 @@ extension Dlc {
 
     /// DMS元数据获取分区
     ///
-    /// - Returns: `AsyncSequence`s of `DMSPartition` and `DescribeDMSPartitionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DMSPartition`` and ``DescribeDMSPartitionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDMSPartitionsPaginator(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDMSPartitionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSPartitions, logger: logger, on: eventLoop)

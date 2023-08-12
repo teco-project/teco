@@ -129,7 +129,7 @@ extension Cwp {
 
     /// 获取基线规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineRule` and `DescribeBaselineRuleListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineRule`` and ``DescribeBaselineRuleListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineRuleListPaginator(_ input: DescribeBaselineRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineRuleList, logger: logger, on: eventLoop)

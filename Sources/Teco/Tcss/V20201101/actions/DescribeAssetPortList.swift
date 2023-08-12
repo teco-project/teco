@@ -138,7 +138,7 @@ extension Tcss {
     ///
     /// 容器安全搜索查询端口占用列表
     ///
-    /// - Returns: `AsyncSequence`s of `PortInfo` and `DescribeAssetPortListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PortInfo`` and ``DescribeAssetPortListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetPortListPaginator(_ input: DescribeAssetPortListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetPortListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetPortList, logger: logger, on: eventLoop)

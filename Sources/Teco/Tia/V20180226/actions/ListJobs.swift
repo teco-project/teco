@@ -123,7 +123,7 @@ extension Tia {
     ///
     /// 列举训练任务
     ///
-    /// - Returns: `AsyncSequence`s of `Job` and `ListJobsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Job`` and ``ListJobsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listJobsPaginator(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)

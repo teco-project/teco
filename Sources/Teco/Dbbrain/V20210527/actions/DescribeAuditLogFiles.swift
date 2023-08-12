@@ -144,7 +144,7 @@ extension Dbbrain {
     ///
     /// 用于创建云数据库实例的审计日志文件
     ///
-    /// - Returns: `AsyncSequence`s of `AuditLogFile` and `DescribeAuditLogFilesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditLogFile`` and ``DescribeAuditLogFilesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditLogFilesPaginator(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditLogFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLogFiles, logger: logger, on: eventLoop)

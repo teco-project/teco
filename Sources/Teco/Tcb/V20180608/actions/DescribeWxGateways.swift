@@ -125,7 +125,7 @@ extension Tcb {
 
     /// 查看安全网关
     ///
-    /// - Returns: `AsyncSequence`s of `GatewayItem` and `DescribeWxGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GatewayItem`` and ``DescribeWxGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWxGatewaysPaginator(_ input: DescribeWxGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWxGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWxGateways, logger: logger, on: eventLoop)

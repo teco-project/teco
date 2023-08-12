@@ -142,7 +142,7 @@ extension Cwp {
     ///
     /// 查询授权绑定任务的进度
     ///
-    /// - Returns: `AsyncSequence`s of `LicenseBindTaskDetail` and `DescribeLicenseBindScheduleResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LicenseBindTaskDetail`` and ``DescribeLicenseBindScheduleResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLicenseBindSchedulePaginator(_ input: DescribeLicenseBindScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseBindScheduleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseBindSchedule, logger: logger, on: eventLoop)

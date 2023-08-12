@@ -151,7 +151,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
     ///
-    /// - Returns: `AsyncSequence`s of `CustomerGateway` and `DescribeCustomerGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomerGateway`` and ``DescribeCustomerGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomerGatewaysPaginator(_ input: DescribeCustomerGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomerGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomerGateways, logger: logger, on: eventLoop)

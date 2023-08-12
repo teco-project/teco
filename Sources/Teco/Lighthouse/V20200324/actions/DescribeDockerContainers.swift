@@ -149,7 +149,7 @@ extension Lighthouse {
     ///
     /// 查询实例内的容器列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DockerContainer` and `DescribeDockerContainersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DockerContainer`` and ``DescribeDockerContainersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDockerContainersPaginator(_ input: DescribeDockerContainersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDockerContainersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDockerContainers, logger: logger, on: eventLoop)

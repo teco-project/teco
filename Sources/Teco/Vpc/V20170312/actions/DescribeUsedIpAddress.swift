@@ -151,7 +151,7 @@ extension Vpc {
     /// 本接口(DescribeUsedIpAddress)用于查询Subnet或者Vpc内的ip的使用情况，
     /// 如ip被占用，返回占用ip的资源类别与id；如未被占用，返回空值
     ///
-    /// - Returns: `AsyncSequence`s of `IpAddressStates` and `DescribeUsedIpAddressResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IpAddressStates`` and ``DescribeUsedIpAddressResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsedIpAddressPaginator(_ input: DescribeUsedIpAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsedIpAddressRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsedIpAddress, logger: logger, on: eventLoop)

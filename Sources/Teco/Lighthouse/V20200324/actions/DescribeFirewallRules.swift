@@ -136,7 +136,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
     ///
-    /// - Returns: `AsyncSequence`s of `FirewallRuleInfo` and `DescribeFirewallRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FirewallRuleInfo`` and ``DescribeFirewallRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFirewallRulesPaginator(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirewallRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)

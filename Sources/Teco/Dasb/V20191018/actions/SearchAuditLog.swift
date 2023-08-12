@@ -131,7 +131,7 @@ extension Dasb {
 
     /// 搜索审计日志
     ///
-    /// - Returns: `AsyncSequence`s of `AuditLogResult` and `SearchAuditLogResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditLogResult`` and ``SearchAuditLogResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchAuditLogPaginator(_ input: SearchAuditLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchAuditLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchAuditLog, logger: logger, on: eventLoop)

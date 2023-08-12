@@ -118,7 +118,7 @@ extension Bma {
 
     /// 查询白名单列表
     ///
-    /// - Returns: `AsyncSequence`s of `WhiteListData` and `DescribeBPWhiteListsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WhiteListData`` and ``DescribeBPWhiteListsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBPWhiteListsPaginator(_ input: DescribeBPWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPWhiteListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPWhiteLists, logger: logger, on: eventLoop)

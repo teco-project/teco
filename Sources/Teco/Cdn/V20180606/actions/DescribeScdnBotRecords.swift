@@ -234,7 +234,7 @@ extension Cdn {
 
     /// 查询BOT会话记录列表
     ///
-    /// - Returns: `AsyncSequence`s of `BotRecord` and `DescribeScdnBotRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BotRecord`` and ``DescribeScdnBotRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScdnBotRecordsPaginator(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScdnBotRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScdnBotRecords, logger: logger, on: eventLoop)

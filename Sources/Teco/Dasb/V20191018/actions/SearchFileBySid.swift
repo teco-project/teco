@@ -139,7 +139,7 @@ extension Dasb {
 
     /// 搜索文件传输会话下文件操作列表
     ///
-    /// - Returns: `AsyncSequence`s of `SearchFileBySidResult` and `SearchFileBySidResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SearchFileBySidResult`` and ``SearchFileBySidResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchFileBySidPaginator(_ input: SearchFileBySidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchFileBySidRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchFileBySid, logger: logger, on: eventLoop)

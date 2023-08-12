@@ -119,7 +119,7 @@ extension Tcr {
 
     /// 查询实例自定义域名列表
     ///
-    /// - Returns: `AsyncSequence`s of `CustomizedDomainInfo` and `DescribeInstanceCustomizedDomainResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomizedDomainInfo`` and ``DescribeInstanceCustomizedDomainResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceCustomizedDomainPaginator(_ input: DescribeInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceCustomizedDomainRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceCustomizedDomain, logger: logger, on: eventLoop)

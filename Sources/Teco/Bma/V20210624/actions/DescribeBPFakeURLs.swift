@@ -122,7 +122,7 @@ extension Bma {
 
     /// 查询仿冒链接
     ///
-    /// - Returns: `AsyncSequence`s of `FakeURLInfo` and `DescribeBPFakeURLsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FakeURLInfo`` and ``DescribeBPFakeURLsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBPFakeURLsPaginator(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPFakeURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)

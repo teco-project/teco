@@ -147,7 +147,7 @@ extension Keewidb {
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理（Proxy）慢日志。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceProxySlowlogDetail` and `DescribeProxySlowLogResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceProxySlowlogDetail`` and ``DescribeProxySlowLogResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProxySlowLogPaginator(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxySlowLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)

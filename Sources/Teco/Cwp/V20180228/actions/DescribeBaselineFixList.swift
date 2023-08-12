@@ -127,7 +127,7 @@ extension Cwp {
 
     /// 获取基线修复列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineFix` and `DescribeBaselineFixListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineFix`` and ``DescribeBaselineFixListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineFixListPaginator(_ input: DescribeBaselineFixListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineFixListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineFixList, logger: logger, on: eventLoop)

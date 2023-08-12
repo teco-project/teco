@@ -123,7 +123,7 @@ extension Tdmq {
 
     /// 枚举cmq死信队列源队列
     ///
-    /// - Returns: `AsyncSequence`s of `CmqDeadLetterSource` and `DescribeCmqDeadLetterSourceQueuesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CmqDeadLetterSource`` and ``DescribeCmqDeadLetterSourceQueuesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCmqDeadLetterSourceQueuesPaginator(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmqDeadLetterSourceQueuesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqDeadLetterSourceQueues, logger: logger, on: eventLoop)

@@ -119,7 +119,7 @@ extension Tsf {
 
     /// 查询仓库列表
     ///
-    /// - Returns: `AsyncSequence`s of `RepositoryInfo` and `DescribeRepositoriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RepositoryInfo`` and ``DescribeRepositoriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)

@@ -159,7 +159,7 @@ extension Cwp {
     ///
     /// 获取漏洞列表数据
     ///
-    /// - Returns: `AsyncSequence`s of `VulInfoList` and `DescribeVulListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VulInfoList`` and ``DescribeVulListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulListPaginator(_ input: DescribeVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulList, logger: logger, on: eventLoop)

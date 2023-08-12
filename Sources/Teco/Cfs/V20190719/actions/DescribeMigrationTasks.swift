@@ -153,7 +153,7 @@ extension Cfs {
     /// 用于获取迁移任务列表。
     /// 此接口需提交工单，开启白名单之后才能使用。
     ///
-    /// - Returns: `AsyncSequence`s of `MigrationTaskInfo` and `DescribeMigrationTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MigrationTaskInfo`` and ``DescribeMigrationTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMigrationTasksPaginator(_ input: DescribeMigrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrationTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrationTasks, logger: logger, on: eventLoop)

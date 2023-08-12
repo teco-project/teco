@@ -143,7 +143,7 @@ extension Tiw {
     ///
     /// 根据指定的任务类型，获取当前正在执行中的任务列表。只能查询最近3天内创建的任务。
     ///
-    /// - Returns: `AsyncSequence`s of `RunningTaskItem` and `DescribeRunningTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RunningTaskItem`` and ``DescribeRunningTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRunningTasksPaginator(_ input: DescribeRunningTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRunningTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRunningTasks, logger: logger, on: eventLoop)

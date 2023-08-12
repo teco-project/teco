@@ -161,7 +161,7 @@ extension As {
     /// * 可以根据定时任务ID、定时任务名称或者伸缩组ID等信息来查询定时任务的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的定时任务。
     ///
-    /// - Returns: `AsyncSequence`s of `ScheduledAction` and `DescribeScheduledActionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ScheduledAction`` and ``DescribeScheduledActionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScheduledActionsPaginator(_ input: DescribeScheduledActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScheduledActionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScheduledActions, logger: logger, on: eventLoop)

@@ -137,7 +137,7 @@ extension Dbdc {
     ///
     /// 本接口用于查询主机列表
     ///
-    /// - Returns: `AsyncSequence`s of `HostDetail` and `DescribeHostListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HostDetail`` and ``DescribeHostListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostListPaginator(_ input: DescribeHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostList, logger: logger, on: eventLoop)

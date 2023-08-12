@@ -144,7 +144,7 @@ extension Eiam {
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     ///
-    /// - Returns: `AsyncSequence`s of `AuthorizationInfo` and `ListApplicationAuthorizationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuthorizationInfo`` and ``ListApplicationAuthorizationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listApplicationAuthorizationsPaginator(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListApplicationAuthorizationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listApplicationAuthorizations, logger: logger, on: eventLoop)

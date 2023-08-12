@@ -167,7 +167,7 @@ extension Ccc {
     ///
     /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     ///
-    /// - Returns: `AsyncSequence`s of `MessageBody` and `DescribeChatMessagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MessageBody`` and ``DescribeChatMessagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeChatMessagesPaginator(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChatMessagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChatMessages, logger: logger, on: eventLoop)

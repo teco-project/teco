@@ -142,7 +142,7 @@ extension Dasb {
 
     /// 命令检索
     ///
-    /// - Returns: `AsyncSequence`s of `SessionCommand` and `SearchSessionCommandResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SessionCommand`` and ``SearchSessionCommandResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchSessionCommandPaginator(_ input: SearchSessionCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchSessionCommandRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchSessionCommand, logger: logger, on: eventLoop)

@@ -148,7 +148,7 @@ extension Cwp {
     ///
     /// 入侵检测，获取恶意请求列表
     ///
-    /// - Returns: `AsyncSequence`s of `RiskDnsList` and `DescribeRiskDnsListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RiskDnsList`` and ``DescribeRiskDnsListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRiskDnsListPaginator(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskDnsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)

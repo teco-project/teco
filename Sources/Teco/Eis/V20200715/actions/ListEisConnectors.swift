@@ -132,7 +132,7 @@ extension Eis {
     ///
     /// 连接器列表
     ///
-    /// - Returns: `AsyncSequence`s of `EisConnectorSummary` and `ListEisConnectorsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EisConnectorSummary`` and ``ListEisConnectorsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listEisConnectorsPaginator(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListEisConnectorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listEisConnectors, logger: logger, on: eventLoop)

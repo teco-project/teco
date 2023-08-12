@@ -144,7 +144,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
     ///
-    /// - Returns: `AsyncSequence`s of `DirectConnectGateway` and `DescribeDirectConnectGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DirectConnectGateway`` and ``DescribeDirectConnectGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDirectConnectGatewaysPaginator(_ input: DescribeDirectConnectGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectGateways, logger: logger, on: eventLoop)

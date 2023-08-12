@@ -201,7 +201,7 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取第三方平台所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     ///
-    /// - Returns: `AsyncSequence`s of `UsageDetail` and `DescribeUsageResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UsageDetail`` and ``DescribeUsageResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsagePaginator(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsage, logger: logger, on: eventLoop)

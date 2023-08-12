@@ -140,7 +140,7 @@ extension Trp {
     ///
     /// 支持增量查询扫码日志，通常提供给数据同步使用，调用时需要指定从哪一行开始查询数据
     ///
-    /// - Returns: `AsyncSequence`s of `RawScanLog` and `DescribeRawScanLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RawScanLog`` and ``DescribeRawScanLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRawScanLogsPaginator(_ input: DescribeRawScanLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRawScanLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRawScanLogs, logger: logger, on: eventLoop)

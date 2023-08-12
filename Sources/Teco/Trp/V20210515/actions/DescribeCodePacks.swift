@@ -130,7 +130,7 @@ extension Trp {
 
     /// 查询码包列表
     ///
-    /// - Returns: `AsyncSequence`s of `CodePack` and `DescribeCodePacksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CodePack`` and ``DescribeCodePacksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCodePacksPaginator(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodePacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodePacks, logger: logger, on: eventLoop)

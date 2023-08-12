@@ -137,7 +137,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportNonlocalLoginPlaces) 用于获取专业周报异地登录数据。
     ///
-    /// - Returns: `AsyncSequence`s of `WeeklyReportNonlocalLoginPlace` and `DescribeWeeklyReportNonlocalLoginPlacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WeeklyReportNonlocalLoginPlace`` and ``DescribeWeeklyReportNonlocalLoginPlacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWeeklyReportNonlocalLoginPlacesPaginator(_ input: DescribeWeeklyReportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportNonlocalLoginPlacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportNonlocalLoginPlaces, logger: logger, on: eventLoop)

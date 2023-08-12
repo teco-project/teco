@@ -140,7 +140,7 @@ extension Cdn {
     /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     ///
-    /// - Returns: `AsyncSequence`s of `ViolationUrl` and `DescribeUrlViolationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ViolationUrl`` and ``DescribeUrlViolationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUrlViolationsPaginator(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUrlViolationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUrlViolations, logger: logger, on: eventLoop)

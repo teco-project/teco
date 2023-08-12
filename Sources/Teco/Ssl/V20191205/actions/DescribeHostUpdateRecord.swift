@@ -125,7 +125,7 @@ extension Ssl {
 
     /// 查询证书云资源更新记录列表
     ///
-    /// - Returns: `AsyncSequence`s of `UpdateRecordInfo` and `DescribeHostUpdateRecordResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UpdateRecordInfo`` and ``DescribeHostUpdateRecordResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostUpdateRecordPaginator(_ input: DescribeHostUpdateRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostUpdateRecordRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostUpdateRecord, logger: logger, on: eventLoop)

@@ -135,7 +135,7 @@ extension Pts {
 
     /// 查询文件列表
     ///
-    /// - Returns: `AsyncSequence`s of `File` and `DescribeFilesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``File`` and ``DescribeFilesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFilesPaginator(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFiles, logger: logger, on: eventLoop)

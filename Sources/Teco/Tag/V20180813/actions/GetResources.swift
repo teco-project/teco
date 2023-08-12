@@ -140,7 +140,7 @@ extension Tag {
     ///
     /// 查询绑定了标签的资源列表。
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceTagMapping` and `GetResourcesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceTagMapping`` and ``GetResourcesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getResourcesPaginator(_ input: GetResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getResources, logger: logger, on: eventLoop)

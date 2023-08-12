@@ -139,7 +139,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     ///
-    /// - Returns: `AsyncSequence`s of `DirectConnectGatewayCcnRoute` and `DescribeDirectConnectGatewayCcnRoutesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DirectConnectGatewayCcnRoute`` and ``DescribeDirectConnectGatewayCcnRoutesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDirectConnectGatewayCcnRoutesPaginator(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectGatewayCcnRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectGatewayCcnRoutes, logger: logger, on: eventLoop)

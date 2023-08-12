@@ -134,7 +134,7 @@ extension Wav {
     ///
     /// 通过接口拉取租户已有潜客客户档案列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `CustomerProfile` and `QueryCustomerProfileListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomerProfile`` and ``QueryCustomerProfileListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryCustomerProfileListPaginator(_ input: QueryCustomerProfileListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCustomerProfileListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCustomerProfileList, logger: logger, on: eventLoop)

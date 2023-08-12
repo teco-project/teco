@@ -156,7 +156,7 @@ extension Dasb {
 
     /// 查询操作日志
     ///
-    /// - Returns: `AsyncSequence`s of `OperationEvent` and `DescribeOperationEventResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OperationEvent`` and ``DescribeOperationEventResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOperationEventPaginator(_ input: DescribeOperationEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOperationEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOperationEvent, logger: logger, on: eventLoop)

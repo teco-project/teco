@@ -132,7 +132,7 @@ extension Tcss {
 
     /// 镜像仓库查询木马病毒列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImageVirus` and `DescribeAssetImageRegistryVirusListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageVirus`` and ``DescribeAssetImageRegistryVirusListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageRegistryVirusListPaginator(_ input: DescribeAssetImageRegistryVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRegistryVirusListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRegistryVirusList, logger: logger, on: eventLoop)

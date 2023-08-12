@@ -133,7 +133,7 @@ extension Tcr {
     ///
     /// 用于获取个人版镜像仓库tag列表
     ///
-    /// - Returns: `AsyncSequence`s of `TagInfo` and `DescribeImagePersonalResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TagInfo`` and ``DescribeImagePersonalResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImagePersonalPaginator(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagePersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)

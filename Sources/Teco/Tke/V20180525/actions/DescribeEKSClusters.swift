@@ -124,7 +124,7 @@ extension Tke {
 
     /// 查询弹性集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `EksCluster` and `DescribeEKSClustersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EksCluster`` and ``DescribeEKSClustersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEKSClustersPaginator(_ input: DescribeEKSClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEKSClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEKSClusters, logger: logger, on: eventLoop)

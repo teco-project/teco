@@ -132,7 +132,7 @@ extension Tcss {
 
     /// 查询k8sapi异常请求规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `K8sApiAbnormalRuleListItem` and `DescribeK8sApiAbnormalRuleListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``K8sApiAbnormalRuleListItem`` and ``DescribeK8sApiAbnormalRuleListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeK8sApiAbnormalRuleListPaginator(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, logger: logger, on: eventLoop)

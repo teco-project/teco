@@ -163,7 +163,7 @@ extension Ckafka {
     ///
     /// 用户账户下获取实例列表详情
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceDetail` and `DescribeInstancesDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceDetail`` and ``DescribeInstancesDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesDetailPaginator(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesDetail, logger: logger, on: eventLoop)

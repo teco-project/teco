@@ -139,7 +139,7 @@ extension Mps {
     ///
     /// 批量查询媒体传输事件的配置信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DescribeEvent` and `DescribeStreamLinkEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DescribeEvent`` and ``DescribeStreamLinkEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStreamLinkEventsPaginator(_ input: DescribeStreamLinkEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamLinkEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkEvents, logger: logger, on: eventLoop)

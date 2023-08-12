@@ -126,7 +126,7 @@ extension Ssa {
 
     /// 云安全配置检查项结果列表
     ///
-    /// - Returns: `AsyncSequence`s of `SocCheckResult` and `DescribeSocCheckResultListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SocCheckResult`` and ``DescribeSocCheckResultListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSocCheckResultListPaginator(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSocCheckResultListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)

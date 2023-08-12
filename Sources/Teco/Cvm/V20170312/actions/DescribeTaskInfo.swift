@@ -246,7 +246,7 @@ extension Cvm {
     /// - 可以根据实例ID、实例名称或任务状态等信息来查询维修任务列表。过滤信息详情可参考入参说明。
     /// - 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的维修任务列表。
     ///
-    /// - Returns: `AsyncSequence`s of `RepairTaskInfo` and `DescribeTaskInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RepairTaskInfo`` and ``DescribeTaskInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskInfoPaginator(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInfo, logger: logger, on: eventLoop)

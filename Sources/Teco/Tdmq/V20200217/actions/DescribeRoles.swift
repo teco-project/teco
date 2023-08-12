@@ -131,7 +131,7 @@ extension Tdmq {
 
     /// 获取角色列表
     ///
-    /// - Returns: `AsyncSequence`s of `Role` and `DescribeRolesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Role`` and ``DescribeRolesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRolesPaginator(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRolesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoles, logger: logger, on: eventLoop)

@@ -160,7 +160,7 @@ extension Scf {
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Function` and `ListFunctionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Function`` and ``ListFunctionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listFunctionsPaginator(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFunctionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)

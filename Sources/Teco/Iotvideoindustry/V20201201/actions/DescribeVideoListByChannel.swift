@@ -150,7 +150,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     ///
-    /// - Returns: `AsyncSequence`s of `RecordTaskItem` and `DescribeVideoListByChannelResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordTaskItem`` and ``DescribeVideoListByChannelResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVideoListByChannelPaginator(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoListByChannelRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoListByChannel, logger: logger, on: eventLoop)

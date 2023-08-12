@@ -132,7 +132,7 @@ extension Ame {
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     ///
-    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `DescribeKTVSingerMusicsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KTVMusicBaseInfo`` and ``DescribeKTVSingerMusicsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKTVSingerMusicsPaginator(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVSingerMusicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)

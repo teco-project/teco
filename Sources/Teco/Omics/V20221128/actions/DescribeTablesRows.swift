@@ -144,7 +144,7 @@ extension Omics {
     ///
     /// 查询表格行数据。
     ///
-    /// - Returns: `AsyncSequence`s of `TableRow` and `DescribeTablesRowsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TableRow`` and ``DescribeTablesRowsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTablesRowsPaginator(_ input: DescribeTablesRowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTablesRowsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTablesRows, logger: logger, on: eventLoop)

@@ -124,7 +124,7 @@ extension Wav {
     ///
     /// 根据游标拉取渠道活码列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ChannelCodeInnerDetail` and `QueryChannelCodeListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ChannelCodeInnerDetail`` and ``QueryChannelCodeListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryChannelCodeListPaginator(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryChannelCodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryChannelCodeList, logger: logger, on: eventLoop)

@@ -128,7 +128,7 @@ extension Ccc {
 
     /// 获取主被叫受保护的电话服务记录与录音
     ///
-    /// - Returns: `AsyncSequence`s of `TelCdrInfo` and `DescribeProtectedTelCdrResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TelCdrInfo`` and ``DescribeProtectedTelCdrResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProtectedTelCdrPaginator(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectedTelCdrRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectedTelCdr, logger: logger, on: eventLoop)

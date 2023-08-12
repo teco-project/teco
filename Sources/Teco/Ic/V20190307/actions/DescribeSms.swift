@@ -145,7 +145,7 @@ extension Ic {
 
     /// 查询短信列表
     ///
-    /// - Returns: `AsyncSequence`s of `ResSms` and `DescribeSmsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResSms`` and ``DescribeSmsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSmsPaginator(_ input: DescribeSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSmsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSms, logger: logger, on: eventLoop)

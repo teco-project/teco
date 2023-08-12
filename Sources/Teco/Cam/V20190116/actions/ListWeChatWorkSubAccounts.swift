@@ -113,7 +113,7 @@ extension Cam {
 
     /// 获取企业微信子用户列表
     ///
-    /// - Returns: `AsyncSequence`s of `WeChatWorkSubAccount` and `ListWeChatWorkSubAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WeChatWorkSubAccount`` and ``ListWeChatWorkSubAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listWeChatWorkSubAccountsPaginator(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListWeChatWorkSubAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)

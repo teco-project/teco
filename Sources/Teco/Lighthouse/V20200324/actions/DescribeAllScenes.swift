@@ -132,7 +132,7 @@ extension Lighthouse {
     ///
     /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
     ///
-    /// - Returns: `AsyncSequence`s of `SceneInfo` and `DescribeAllScenesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SceneInfo`` and ``DescribeAllScenesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAllScenesPaginator(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllScenesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllScenes, logger: logger, on: eventLoop)

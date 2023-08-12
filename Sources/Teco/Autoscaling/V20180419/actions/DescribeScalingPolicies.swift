@@ -142,7 +142,7 @@ extension As {
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
     ///
-    /// - Returns: `AsyncSequence`s of `ScalingPolicy` and `DescribeScalingPoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ScalingPolicy`` and ``DescribeScalingPoliciesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScalingPoliciesPaginator(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScalingPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScalingPolicies, logger: logger, on: eventLoop)

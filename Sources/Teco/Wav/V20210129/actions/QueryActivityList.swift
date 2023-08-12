@@ -124,7 +124,7 @@ extension Wav {
     ///
     /// 根据游标拉取活动列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ActivityDetail` and `QueryActivityListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ActivityDetail`` and ``QueryActivityListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryActivityListPaginator(_ input: QueryActivityListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryActivityListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityList, logger: logger, on: eventLoop)

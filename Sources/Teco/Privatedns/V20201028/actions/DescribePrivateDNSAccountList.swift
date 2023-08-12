@@ -118,7 +118,7 @@ extension Privatedns {
 
     /// 获取私有域解析账号列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrivateDNSAccount` and `DescribePrivateDNSAccountListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrivateDNSAccount`` and ``DescribePrivateDNSAccountListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivateDNSAccountListPaginator(_ input: DescribePrivateDNSAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateDNSAccountListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateDNSAccountList, logger: logger, on: eventLoop)

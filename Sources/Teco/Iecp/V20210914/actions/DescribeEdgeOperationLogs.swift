@@ -140,7 +140,7 @@ extension Iecp {
 
     /// 查询边缘操作日志
     ///
-    /// - Returns: `AsyncSequence`s of `OperationLog` and `DescribeEdgeOperationLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OperationLog`` and ``DescribeEdgeOperationLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeOperationLogsPaginator(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeOperationLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeOperationLogs, logger: logger, on: eventLoop)

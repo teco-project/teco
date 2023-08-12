@@ -138,7 +138,7 @@ extension Zj {
     ///
     /// 获取人群包列表接口
     ///
-    /// - Returns: `AsyncSequence`s of `SmsGetCrowdPackList` and `GetCrowdPackListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SmsGetCrowdPackList`` and ``GetCrowdPackListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getCrowdPackListPaginator(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCrowdPackListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)

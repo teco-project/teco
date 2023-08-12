@@ -147,7 +147,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `MigrateTask` and `DescribeMigrationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MigrateTask`` and ``DescribeMigrationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMigrationsPaginator(_ input: DescribeMigrationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrations, logger: logger, on: eventLoop)

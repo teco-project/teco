@@ -177,7 +177,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeTasks)用于查询云数据库实例任务列表。
     ///
-    /// - Returns: `AsyncSequence`s of `TaskDetail` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskDetail`` and ``DescribeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

@@ -134,7 +134,7 @@ extension Wav {
     ///
     /// 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
     ///
-    /// - Returns: `AsyncSequence`s of `ExternalUserEventInfo` and `QueryExternalUserEventListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExternalUserEventInfo`` and ``QueryExternalUserEventListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryExternalUserEventListPaginator(_ input: QueryExternalUserEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryExternalUserEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryExternalUserEventList, logger: logger, on: eventLoop)

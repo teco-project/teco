@@ -130,7 +130,7 @@ extension Cfw {
 
     /// 展示当前natfw 实例对应的vpc dns开关
     ///
-    /// - Returns: `AsyncSequence`s of `VpcDnsInfo` and `DescribeNatFwVpcDnsLstResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpcDnsInfo`` and ``DescribeNatFwVpcDnsLstResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatFwVpcDnsLstPaginator(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwVpcDnsLstRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwVpcDnsLst, logger: logger, on: eventLoop)

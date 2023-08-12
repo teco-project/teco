@@ -146,7 +146,7 @@ extension Yunjing {
     ///
     /// 按分页形式展示网络攻击日志列表
     ///
-    /// - Returns: `AsyncSequence`s of `DefendAttackLog` and `DescribeAttackLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DefendAttackLog`` and ``DescribeAttackLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAttackLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)

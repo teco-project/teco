@@ -119,7 +119,7 @@ extension Yunjing {
 
     /// 获取异地登录白名单列表
     ///
-    /// - Returns: `AsyncSequence`s of `LoginWhiteLists` and `DescribeLoginWhiteListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LoginWhiteLists`` and ``DescribeLoginWhiteListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLoginWhiteListPaginator(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoginWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)

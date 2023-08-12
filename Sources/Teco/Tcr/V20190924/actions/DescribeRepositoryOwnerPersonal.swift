@@ -128,7 +128,7 @@ extension Tcr {
     ///
     /// 用于在个人版中获取用户全部的镜像仓库列表
     ///
-    /// - Returns: `AsyncSequence`s of `RepoInfo` and `DescribeRepositoryOwnerPersonalResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RepoInfo`` and ``DescribeRepositoryOwnerPersonalResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRepositoryOwnerPersonalPaginator(_ input: DescribeRepositoryOwnerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoryOwnerPersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositoryOwnerPersonal, logger: logger, on: eventLoop)

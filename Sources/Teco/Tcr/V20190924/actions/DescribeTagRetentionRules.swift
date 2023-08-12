@@ -123,7 +123,7 @@ extension Tcr {
 
     /// 查询版本保留规则
     ///
-    /// - Returns: `AsyncSequence`s of `RetentionPolicy` and `DescribeTagRetentionRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RetentionPolicy`` and ``DescribeTagRetentionRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagRetentionRulesPaginator(_ input: DescribeTagRetentionRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagRetentionRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionRules, logger: logger, on: eventLoop)

@@ -134,7 +134,7 @@ extension Cwp {
     ///
     /// 查询一个用户下的基线策略信息
     ///
-    /// - Returns: `AsyncSequence`s of `Strategy` and `DescribeBaselineStrategyListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Strategy`` and ``DescribeBaselineStrategyListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineStrategyListPaginator(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineStrategyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)

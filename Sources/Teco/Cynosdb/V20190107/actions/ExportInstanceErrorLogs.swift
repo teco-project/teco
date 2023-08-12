@@ -159,7 +159,7 @@ extension Cynosdb {
     ///
     /// 此接口（ExportInstanceErrorLogs）用于导出实例错误日志。
     ///
-    /// - Returns: `AsyncSequence`s of `ErrorLogItemExport` and `ExportInstanceErrorLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ErrorLogItemExport`` and ``ExportInstanceErrorLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func exportInstanceErrorLogsPaginator(_ input: ExportInstanceErrorLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ExportInstanceErrorLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.exportInstanceErrorLogs, logger: logger, on: eventLoop)

@@ -138,7 +138,7 @@ extension Tcr {
     ///
     /// 用于查询应用更新触发器触发日志
     ///
-    /// - Returns: `AsyncSequence`s of `TriggerLogResp` and `DescribeApplicationTriggerLogPersonalResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TriggerLogResp`` and ``DescribeApplicationTriggerLogPersonalResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationTriggerLogPersonalPaginator(_ input: DescribeApplicationTriggerLogPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationTriggerLogPersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationTriggerLogPersonal, logger: logger, on: eventLoop)

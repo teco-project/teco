@@ -147,7 +147,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeXEvents）用于查询扩展事件列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Events` and `DescribeXEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Events`` and ``DescribeXEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeXEventsPaginator(_ input: DescribeXEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeXEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeXEvents, logger: logger, on: eventLoop)

@@ -608,7 +608,7 @@ extension Vod {
     /// - （不推荐：应使用 CreateTime 替代）指定单个起始创建时间 StartTime 进行搜索。
     /// - （不推荐：应使用 CreateTime 替代）指定单个结尾创建时间 EndTime 进行搜索。
     ///
-    /// - Returns: `AsyncSequence`s of `MediaInfo` and `SearchMediaResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MediaInfo`` and ``SearchMediaResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchMediaPaginator(_ input: SearchMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchMediaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMedia, logger: logger, on: eventLoop)

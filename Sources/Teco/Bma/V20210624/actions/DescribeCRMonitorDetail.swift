@@ -145,7 +145,7 @@ extension Bma {
     ///
     /// 版权保护-查询作品监测详情接口
     ///
-    /// - Returns: `AsyncSequence`s of `MonitorTort` and `DescribeCRMonitorDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MonitorTort`` and ``DescribeCRMonitorDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCRMonitorDetailPaginator(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCRMonitorDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCRMonitorDetail, logger: logger, on: eventLoop)

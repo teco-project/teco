@@ -120,7 +120,7 @@ extension Tse {
 
     /// 查询云原生网关服务列表
     ///
-    /// - Returns: `AsyncSequence`s of `KongServicePreview` and `DescribeCloudNativeAPIGatewayServicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KongServicePreview`` and ``DescribeCloudNativeAPIGatewayServicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudNativeAPIGatewayServicesPaginator(_ input: DescribeCloudNativeAPIGatewayServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudNativeAPIGatewayServicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudNativeAPIGatewayServices, logger: logger, on: eventLoop)

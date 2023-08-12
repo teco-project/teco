@@ -247,7 +247,7 @@ extension Dnspod {
     ///
     /// 获取某个域名下的解析记录列表
     ///
-    /// - Returns: `AsyncSequence`s of `RecordListItem` and `DescribeRecordFilterListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordListItem`` and ``DescribeRecordFilterListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRecordFilterListPaginator(_ input: DescribeRecordFilterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordFilterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordFilterList, logger: logger, on: eventLoop)

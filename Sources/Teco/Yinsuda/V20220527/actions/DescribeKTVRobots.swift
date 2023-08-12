@@ -156,7 +156,7 @@ extension Yinsuda {
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     ///
-    /// - Returns: `AsyncSequence`s of `KTVRobotInfo` and `DescribeKTVRobotsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KTVRobotInfo`` and ``DescribeKTVRobotsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKTVRobotsPaginator(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVRobotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)

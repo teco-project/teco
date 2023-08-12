@@ -128,7 +128,7 @@ extension Emr {
 
     /// 获取hive查询信息
     ///
-    /// - Returns: `AsyncSequence`s of `HiveQuery` and `DescribeHiveQueriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HiveQuery`` and ``DescribeHiveQueriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHiveQueriesPaginator(_ input: DescribeHiveQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHiveQueriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHiveQueries, logger: logger, on: eventLoop)

@@ -175,7 +175,7 @@ extension Ess {
     ///
     /// 此API接口用户查询加入集团的成员企业
     ///
-    /// - Returns: `AsyncSequence`s of `GroupOrganization` and `DescribeOrganizationGroupOrganizationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupOrganization`` and ``DescribeOrganizationGroupOrganizationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationGroupOrganizationsPaginator(_ input: DescribeOrganizationGroupOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationGroupOrganizationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationGroupOrganizations, logger: logger, on: eventLoop)

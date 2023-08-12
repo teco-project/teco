@@ -185,7 +185,7 @@ extension Dbbrain {
     ///
     /// 获取指定时间内某个sql模板的慢日志明细
     ///
-    /// - Returns: `AsyncSequence`s of `SlowLogInfoItem` and `DescribeSlowLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SlowLogInfoItem`` and ``DescribeSlowLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)

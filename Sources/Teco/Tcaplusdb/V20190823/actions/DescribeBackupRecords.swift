@@ -170,7 +170,7 @@ extension Tcaplusdb {
     /// 查询集群+表格组级别时， 将TableName设置为"-1"
     /// 查询集群+表格组+表格级别时， 都不能设置为“-1”
     ///
-    /// - Returns: `AsyncSequence`s of `BackupRecords` and `DescribeBackupRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BackupRecords`` and ``DescribeBackupRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupRecordsPaginator(_ input: DescribeBackupRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupRecords, logger: logger, on: eventLoop)

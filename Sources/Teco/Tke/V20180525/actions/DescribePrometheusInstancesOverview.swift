@@ -135,7 +135,7 @@ extension Tke {
     ///
     /// 获取与云监控融合实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusInstancesOverview` and `DescribePrometheusInstancesOverviewResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusInstancesOverview`` and ``DescribePrometheusInstancesOverviewResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusInstancesOverviewPaginator(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusInstancesOverviewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)

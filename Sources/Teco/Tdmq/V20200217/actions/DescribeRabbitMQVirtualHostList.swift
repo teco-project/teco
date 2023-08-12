@@ -119,7 +119,7 @@ extension Tdmq {
 
     /// RabbitMQ专享版查询虚拟主机列表
     ///
-    /// - Returns: `AsyncSequence`s of `RabbitMQPrivateVirtualHost` and `DescribeRabbitMQVirtualHostListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RabbitMQPrivateVirtualHost`` and ``DescribeRabbitMQVirtualHostListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRabbitMQVirtualHostListPaginator(_ input: DescribeRabbitMQVirtualHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRabbitMQVirtualHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRabbitMQVirtualHostList, logger: logger, on: eventLoop)

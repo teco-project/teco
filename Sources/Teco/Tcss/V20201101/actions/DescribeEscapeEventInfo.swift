@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `EscapeEventInfo` and `DescribeEscapeEventInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EscapeEventInfo`` and ``DescribeEscapeEventInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEscapeEventInfoPaginator(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEscapeEventInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)

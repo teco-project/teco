@@ -120,7 +120,7 @@ extension Anicloud {
 
     /// 查询购买资源
     ///
-    /// - Returns: `AsyncSequence`s of `Resource` and `QueryResourceResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Resource`` and ``QueryResourceResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryResourcePaginator(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryResourceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)

@@ -124,7 +124,7 @@ extension Oceanus {
 
     /// 授权工作空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `WorkSpaceSetItem` and `DescribeWorkSpacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WorkSpaceSetItem`` and ``DescribeWorkSpacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWorkSpacesPaginator(_ input: DescribeWorkSpacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkSpacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkSpaces, logger: logger, on: eventLoop)

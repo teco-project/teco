@@ -137,7 +137,7 @@ extension Cme {
     ///
     /// 查询视频编码配置信息。
     ///
-    /// - Returns: `AsyncSequence`s of `VideoEncodingPreset` and `DescribeVideoEncodingPresetsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VideoEncodingPreset`` and ``DescribeVideoEncodingPresetsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVideoEncodingPresetsPaginator(_ input: DescribeVideoEncodingPresetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoEncodingPresetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoEncodingPresets, logger: logger, on: eventLoop)

@@ -150,7 +150,7 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     ///
-    /// - Returns: `AsyncSequence`s of `UserManagerUserBriefInfo` and `DescribeUsersForUserManagerResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserManagerUserBriefInfo`` and ``DescribeUsersForUserManagerResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsersForUserManagerPaginator(_ input: DescribeUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsersForUserManagerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsersForUserManager, logger: logger, on: eventLoop)

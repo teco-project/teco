@@ -124,7 +124,7 @@ extension Tke {
 
     /// 获取告警规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAlertRuleDetail` and `DescribePrometheusAlertRuleResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAlertRuleDetail`` and ``DescribePrometheusAlertRuleResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusAlertRulePaginator(_ input: DescribePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertRuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertRule, logger: logger, on: eventLoop)

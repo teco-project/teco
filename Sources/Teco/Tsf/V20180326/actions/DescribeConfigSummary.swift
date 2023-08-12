@@ -141,7 +141,7 @@ extension Tsf {
 
     /// 查询配置汇总列表
     ///
-    /// - Returns: `AsyncSequence`s of `Config` and `DescribeConfigSummaryResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Config`` and ``DescribeConfigSummaryResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConfigSummaryPaginator(_ input: DescribeConfigSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigSummaryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigSummary, logger: logger, on: eventLoop)

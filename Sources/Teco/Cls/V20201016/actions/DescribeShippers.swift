@@ -123,7 +123,7 @@ extension Cls {
 
     /// 获取投递到COS的任务配置信息
     ///
-    /// - Returns: `AsyncSequence`s of `ShipperInfo` and `DescribeShippersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ShipperInfo`` and ``DescribeShippersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeShippersPaginator(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShippersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)

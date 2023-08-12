@@ -145,7 +145,7 @@ extension Gse {
     ///
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceExtend` and `DescribeInstancesExtendResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceExtend`` and ``DescribeInstancesExtendResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtendPaginator(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesExtendRequest> {

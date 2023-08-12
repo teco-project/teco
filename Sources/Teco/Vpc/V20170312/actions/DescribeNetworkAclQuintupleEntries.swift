@@ -144,7 +144,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkAclQuintupleEntry` and `DescribeNetworkAclQuintupleEntriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkAclQuintupleEntry`` and ``DescribeNetworkAclQuintupleEntriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkAclQuintupleEntriesPaginator(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkAclQuintupleEntriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkAclQuintupleEntries, logger: logger, on: eventLoop)

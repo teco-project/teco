@@ -150,7 +150,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
     ///
-    /// - Returns: `AsyncSequence`s of `SlowlogInfo` and `DescribeSlowlogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SlowlogInfo`` and ``DescribeSlowlogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowlogsPaginator(_ input: DescribeSlowlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowlogs, logger: logger, on: eventLoop)

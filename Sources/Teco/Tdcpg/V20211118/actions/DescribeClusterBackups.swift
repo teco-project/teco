@@ -118,7 +118,7 @@ extension Tdcpg {
 
     /// 查询集群的备份集
     ///
-    /// - Returns: `AsyncSequence`s of `Backup` and `DescribeClusterBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Backup`` and ``DescribeClusterBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterBackupsPaginator(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterBackups, logger: logger, on: eventLoop)

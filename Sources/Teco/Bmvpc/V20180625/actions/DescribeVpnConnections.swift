@@ -160,7 +160,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     ///
-    /// - Returns: `AsyncSequence`s of `VpnConnection` and `DescribeVpnConnectionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpnConnection`` and ``DescribeVpnConnectionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnConnectionsPaginator(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnConnections, logger: logger, on: eventLoop)

@@ -163,7 +163,7 @@ extension Scf {
 
     /// 拉取函数异步事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `AsyncEvent` and `ListAsyncEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AsyncEvent`` and ``ListAsyncEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listAsyncEventsPaginator(_ input: ListAsyncEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListAsyncEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listAsyncEvents, logger: logger, on: eventLoop)

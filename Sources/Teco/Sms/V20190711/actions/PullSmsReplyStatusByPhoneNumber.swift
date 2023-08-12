@@ -161,7 +161,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     ///
-    /// - Returns: `AsyncSequence`s of `PullSmsReplyStatus` and `PullSmsReplyStatusByPhoneNumberResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PullSmsReplyStatus`` and ``PullSmsReplyStatusByPhoneNumberResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func pullSmsReplyStatusByPhoneNumberPaginator(_ input: PullSmsReplyStatusByPhoneNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<PullSmsReplyStatusByPhoneNumberRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.pullSmsReplyStatusByPhoneNumber, logger: logger, on: eventLoop)

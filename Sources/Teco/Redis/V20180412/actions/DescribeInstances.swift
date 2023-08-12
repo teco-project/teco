@@ -262,7 +262,7 @@ extension Redis {
     ///
     /// 本接口（DescribeInstances）用于查询Redis实例列表。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceSet` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceSet`` and ``DescribeInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

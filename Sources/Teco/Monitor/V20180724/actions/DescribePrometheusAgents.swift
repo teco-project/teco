@@ -129,7 +129,7 @@ extension Monitor {
 
     /// 列出 Prometheus CVM Agent
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAgent` and `DescribePrometheusAgentsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAgent`` and ``DescribePrometheusAgentsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusAgentsPaginator(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAgentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)

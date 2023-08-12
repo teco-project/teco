@@ -141,7 +141,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNatGatewaySourceIpTranslationNatRules）用于查询NAT网关SNAT转发规则对象数组。
     ///
-    /// - Returns: `AsyncSequence`s of `SourceIpTranslationNatRule` and `DescribeNatGatewaySourceIpTranslationNatRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SourceIpTranslationNatRule`` and ``DescribeNatGatewaySourceIpTranslationNatRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatGatewaySourceIpTranslationNatRulesPaginator(_ input: DescribeNatGatewaySourceIpTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewaySourceIpTranslationNatRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewaySourceIpTranslationNatRules, logger: logger, on: eventLoop)

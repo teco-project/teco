@@ -124,7 +124,7 @@ extension Dc {
 
     /// 获取用户互联网公网地址信息
     ///
-    /// - Returns: `AsyncSequence`s of `InternetAddressDetail` and `DescribeInternetAddressResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InternetAddressDetail`` and ``DescribeInternetAddressResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInternetAddressPaginator(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInternetAddressRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInternetAddress, logger: logger, on: eventLoop)

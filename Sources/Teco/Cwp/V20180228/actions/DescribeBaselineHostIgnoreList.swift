@@ -117,7 +117,7 @@ extension Cwp {
 
     /// 获取忽略规则主机列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineHost` and `DescribeBaselineHostIgnoreListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineHost`` and ``DescribeBaselineHostIgnoreListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineHostIgnoreListPaginator(_ input: DescribeBaselineHostIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineHostIgnoreListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineHostIgnoreList, logger: logger, on: eventLoop)

@@ -133,7 +133,7 @@ extension Waf {
     ///
     /// 查询用户所有域名的详细信息
     ///
-    /// - Returns: `AsyncSequence`s of `DomainInfo` and `DescribeDomainsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DomainInfo`` and ``DescribeDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)

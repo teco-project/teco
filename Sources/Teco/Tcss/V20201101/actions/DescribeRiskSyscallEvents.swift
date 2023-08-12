@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 查询运行时运行时高危系统调用列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `RiskSyscallEventInfo` and `DescribeRiskSyscallEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RiskSyscallEventInfo`` and ``DescribeRiskSyscallEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRiskSyscallEventsPaginator(_ input: DescribeRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskSyscallEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskSyscallEvents, logger: logger, on: eventLoop)

@@ -198,7 +198,7 @@ extension Monitor {
     ///
     /// 分页获取产品事件的列表
     ///
-    /// - Returns: `AsyncSequence`s of `DescribeProductEventListEvents` and `DescribeProductEventListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DescribeProductEventListEvents`` and ``DescribeProductEventListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProductEventListPaginator(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductEventList, logger: logger, on: eventLoop)

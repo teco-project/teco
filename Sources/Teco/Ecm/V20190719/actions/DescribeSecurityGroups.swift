@@ -127,7 +127,7 @@ extension Ecm {
 
     /// 查看安全组
     ///
-    /// - Returns: `AsyncSequence`s of `SecurityGroup` and `DescribeSecurityGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SecurityGroup`` and ``DescribeSecurityGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSecurityGroupsPaginator(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)

@@ -136,7 +136,7 @@ extension Tke {
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusTemplate` and `DescribePrometheusTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusTemplate`` and ``DescribePrometheusTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusTemplatesPaginator(_ input: DescribePrometheusTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusTemplates, logger: logger, on: eventLoop)

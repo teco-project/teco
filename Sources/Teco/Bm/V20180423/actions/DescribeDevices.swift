@@ -220,7 +220,7 @@ extension Bm {
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceInfo` and `DescribeDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceInfo`` and ``DescribeDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDevicesPaginator(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevices, logger: logger, on: eventLoop)

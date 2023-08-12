@@ -118,7 +118,7 @@ extension Dayu {
 
     /// 获取调度域名列表
     ///
-    /// - Returns: `AsyncSequence`s of `SchedulingDomain` and `DescribeSchedulingDomainListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SchedulingDomain`` and ``DescribeSchedulingDomainListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSchedulingDomainListPaginator(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSchedulingDomainListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSchedulingDomainList, logger: logger, on: eventLoop)

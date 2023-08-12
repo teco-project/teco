@@ -154,7 +154,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     ///
-    /// - Returns: `AsyncSequence`s of `SqlLogItem` and `DescribeSqlLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SqlLogItem`` and ``DescribeSqlLogsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlLogsRequest> {

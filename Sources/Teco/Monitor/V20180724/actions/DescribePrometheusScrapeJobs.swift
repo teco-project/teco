@@ -134,7 +134,7 @@ extension Monitor {
 
     /// 列出 Prometheus 抓取任务
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusScrapeJob` and `DescribePrometheusScrapeJobsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusScrapeJob`` and ``DescribePrometheusScrapeJobsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusScrapeJobsPaginator(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusScrapeJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)

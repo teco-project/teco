@@ -182,7 +182,7 @@ extension Redis {
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     ///
-    /// - Returns: `AsyncSequence`s of `RedisCommonInstanceList` and `DescribeCommonDBInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RedisCommonInstanceList`` and ``DescribeCommonDBInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCommonDBInstancesPaginator(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCommonDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)

@@ -194,7 +194,7 @@ extension Wedata {
 
     /// 查询父目录下所有子文件夹+工作流
     ///
-    /// - Returns: `AsyncSequence`s of `FolderOpsDto` and `DescribeAllByFolderNewResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FolderOpsDto`` and ``DescribeAllByFolderNewResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAllByFolderNewPaginator(_ input: DescribeAllByFolderNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllByFolderNewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllByFolderNew, logger: logger, on: eventLoop)

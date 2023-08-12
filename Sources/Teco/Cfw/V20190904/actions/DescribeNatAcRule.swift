@@ -148,7 +148,7 @@ extension Cfw {
 
     /// 查询NAT访问控制列表
     ///
-    /// - Returns: `AsyncSequence`s of `DescAcItem` and `DescribeNatAcRuleResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DescAcItem`` and ``DescribeNatAcRuleResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatAcRulePaginator(_ input: DescribeNatAcRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatAcRuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatAcRule, logger: logger, on: eventLoop)

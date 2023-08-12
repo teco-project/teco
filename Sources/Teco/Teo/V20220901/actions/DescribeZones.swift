@@ -151,7 +151,7 @@ extension Teo {
     ///
     /// 用户查询用户站点信息列表，支持分页。
     ///
-    /// - Returns: `AsyncSequence`s of `Zone` and `DescribeZonesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Zone`` and ``DescribeZonesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeZonesPaginator(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZonesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)

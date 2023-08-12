@@ -165,7 +165,7 @@ extension Wedata {
 
     /// 获取采集器列表
     ///
-    /// - Returns: `AsyncSequence`s of `InLongAgentDetail` and `DescribeInLongAgentListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InLongAgentDetail`` and ``DescribeInLongAgentListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInLongAgentListPaginator(_ input: DescribeInLongAgentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInLongAgentListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInLongAgentList, logger: logger, on: eventLoop)

@@ -118,7 +118,7 @@ extension Tdmq {
 
     /// 获取租户VPC绑定关系
     ///
-    /// - Returns: `AsyncSequence`s of `VpcBindRecord` and `DescribeBindVpcsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpcBindRecord`` and ``DescribeBindVpcsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBindVpcsPaginator(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindVpcs, logger: logger, on: eventLoop)

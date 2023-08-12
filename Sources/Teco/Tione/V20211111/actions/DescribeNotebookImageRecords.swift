@@ -123,7 +123,7 @@ extension Tione {
 
     /// 查看notebook镜像保存记录
     ///
-    /// - Returns: `AsyncSequence`s of `NotebookImageRecord` and `DescribeNotebookImageRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NotebookImageRecord`` and ``DescribeNotebookImageRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNotebookImageRecordsPaginator(_ input: DescribeNotebookImageRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookImageRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookImageRecords, logger: logger, on: eventLoop)

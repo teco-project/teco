@@ -189,7 +189,7 @@ extension Wedata {
 
     /// 获取关联子实例
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceOpsDto` and `DescribeSonInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceOpsDto`` and ``DescribeSonInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSonInstancesPaginator(_ input: DescribeSonInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSonInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSonInstances, logger: logger, on: eventLoop)

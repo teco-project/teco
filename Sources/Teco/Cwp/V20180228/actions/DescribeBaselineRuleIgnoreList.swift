@@ -129,7 +129,7 @@ extension Cwp {
 
     /// 获取基线忽略规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineRule` and `DescribeBaselineRuleIgnoreListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineRule`` and ``DescribeBaselineRuleIgnoreListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineRuleIgnoreListPaginator(_ input: DescribeBaselineRuleIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineRuleIgnoreListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineRuleIgnoreList, logger: logger, on: eventLoop)

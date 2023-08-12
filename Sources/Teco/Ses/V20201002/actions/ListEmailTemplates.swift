@@ -113,7 +113,7 @@ extension Ses {
 
     /// 获取当前邮件模板列表
     ///
-    /// - Returns: `AsyncSequence`s of `TemplatesMetadata` and `ListEmailTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TemplatesMetadata`` and ``ListEmailTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listEmailTemplatesPaginator(_ input: ListEmailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListEmailTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listEmailTemplates, logger: logger, on: eventLoop)

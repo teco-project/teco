@@ -137,7 +137,7 @@ extension Cws {
     ///
     /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
     ///
-    /// - Returns: `AsyncSequence`s of `MonitorsDetail` and `DescribeMonitorsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MonitorsDetail`` and ``DescribeMonitorsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMonitorsPaginator(_ input: DescribeMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMonitorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMonitors, logger: logger, on: eventLoop)

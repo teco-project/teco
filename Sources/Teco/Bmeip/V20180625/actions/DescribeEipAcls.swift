@@ -153,7 +153,7 @@ extension Bmeip {
 
     /// 查询弹性公网IP ACL
     ///
-    /// - Returns: `AsyncSequence`s of `EipAcl` and `DescribeEipAclsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EipAcl`` and ``DescribeEipAclsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEipAclsPaginator(_ input: DescribeEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipAclsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEipAcls, logger: logger, on: eventLoop)

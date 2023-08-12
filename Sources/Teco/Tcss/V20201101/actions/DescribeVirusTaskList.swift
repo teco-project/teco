@@ -140,7 +140,7 @@ extension Tcss {
 
     /// 运行时查询文件查杀任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `VirusTaskInfo` and `DescribeVirusTaskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VirusTaskInfo`` and ``DescribeVirusTaskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVirusTaskListPaginator(_ input: DescribeVirusTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusTaskList, logger: logger, on: eventLoop)

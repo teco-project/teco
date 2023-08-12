@@ -146,7 +146,7 @@ extension Tag {
 
     /// 根据标签键获取资源标签
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceIdTag` and `DescribeResourceTagsByTagKeysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceIdTag`` and ``DescribeResourceTagsByTagKeysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourceTagsByTagKeysPaginator(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByTagKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByTagKeys, logger: logger, on: eventLoop)

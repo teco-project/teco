@@ -150,7 +150,7 @@ extension Tcss {
     ///
     /// 容器安全查询镜像风险列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImageRiskInfo` and `DescribeAssetImageRiskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageRiskInfo`` and ``DescribeAssetImageRiskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageRiskListPaginator(_ input: DescribeAssetImageRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRiskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRiskList, logger: logger, on: eventLoop)

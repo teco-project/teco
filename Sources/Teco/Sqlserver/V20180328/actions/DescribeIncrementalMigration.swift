@@ -162,7 +162,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     ///
-    /// - Returns: `AsyncSequence`s of `Migration` and `DescribeIncrementalMigrationResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Migration`` and ``DescribeIncrementalMigrationResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIncrementalMigrationPaginator(_ input: DescribeIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIncrementalMigrationRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIncrementalMigration, logger: logger, on: eventLoop)

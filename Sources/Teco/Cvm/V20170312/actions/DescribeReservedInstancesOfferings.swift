@@ -163,7 +163,7 @@ extension Cvm {
     ///
     /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
     ///
-    /// - Returns: `AsyncSequence`s of `ReservedInstancesOffering` and `DescribeReservedInstancesOfferingsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReservedInstancesOffering`` and ``DescribeReservedInstancesOfferingsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReservedInstancesOfferingsPaginator(_ input: DescribeReservedInstancesOfferingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReservedInstancesOfferingsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReservedInstancesOfferings, logger: logger, on: eventLoop)

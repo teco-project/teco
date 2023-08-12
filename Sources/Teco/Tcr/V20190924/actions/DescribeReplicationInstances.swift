@@ -119,7 +119,7 @@ extension Tcr {
 
     /// 查询从实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `ReplicationRegistry` and `DescribeReplicationInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReplicationRegistry`` and ``DescribeReplicationInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReplicationInstancesPaginator(_ input: DescribeReplicationInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReplicationInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationInstances, logger: logger, on: eventLoop)

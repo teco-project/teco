@@ -123,7 +123,7 @@ extension Cdc {
 
     /// 查询站点列表
     ///
-    /// - Returns: `AsyncSequence`s of `Site` and `DescribeSitesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Site`` and ``DescribeSitesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSitesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)

@@ -128,7 +128,7 @@ extension Cwp {
 
     /// 获取客户端异常事件
     ///
-    /// - Returns: `AsyncSequence`s of `RecordInfo` and `DescribeClientExceptionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordInfo`` and ``DescribeClientExceptionResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClientExceptionPaginator(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientExceptionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientException, logger: logger, on: eventLoop)

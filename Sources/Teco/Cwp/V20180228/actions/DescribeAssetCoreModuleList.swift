@@ -142,7 +142,7 @@ extension Cwp {
 
     /// 查询资产管理内核模块列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssetCoreModuleBaseInfo` and `DescribeAssetCoreModuleListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssetCoreModuleBaseInfo`` and ``DescribeAssetCoreModuleListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetCoreModuleListPaginator(_ input: DescribeAssetCoreModuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetCoreModuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetCoreModuleList, logger: logger, on: eventLoop)

@@ -137,7 +137,7 @@ extension Vod {
     ///
     /// 获取片头片尾模板列表。
     ///
-    /// - Returns: `AsyncSequence`s of `HeadTailTemplate` and `DescribeHeadTailTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HeadTailTemplate`` and ``DescribeHeadTailTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHeadTailTemplatesPaginator(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHeadTailTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHeadTailTemplates, logger: logger, on: eventLoop)

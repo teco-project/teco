@@ -130,7 +130,7 @@ extension Trp {
 
     /// 查询二维码列表
     ///
-    /// - Returns: `AsyncSequence`s of `TraceCode` and `DescribeTraceCodesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TraceCode`` and ``DescribeTraceCodesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTraceCodesPaginator(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTraceCodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceCodes, logger: logger, on: eventLoop)

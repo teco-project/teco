@@ -160,7 +160,7 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表。
     ///
-    /// - Returns: `AsyncSequence`s of `TagWithDelete` and `DescribeTagsSeqResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TagWithDelete`` and ``DescribeTagsSeqResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagsSeqPaginator(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagsSeqRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagsSeq, logger: logger, on: eventLoop)

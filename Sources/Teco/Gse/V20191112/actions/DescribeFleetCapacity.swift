@@ -140,7 +140,7 @@ extension Gse {
     ///
     /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
     ///
-    /// - Returns: `AsyncSequence`s of `FleetCapacity` and `DescribeFleetCapacityResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FleetCapacity`` and ``DescribeFleetCapacityResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetCapacityPaginator(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetCapacityRequest> {

@@ -152,7 +152,7 @@ extension Tcr {
     ///
     /// 查询命名空间列表或指定命名空间信息
     ///
-    /// - Returns: `AsyncSequence`s of `TcrNamespaceInfo` and `DescribeNamespacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TcrNamespaceInfo`` and ``DescribeNamespacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)

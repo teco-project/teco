@@ -160,7 +160,7 @@ extension Iss {
     ///
     /// 用于获取网关列表。
     ///
-    /// - Returns: `AsyncSequence`s of `GatewaysData` and `ListGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GatewaysData`` and ``ListGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listGatewaysPaginator(_ input: ListGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listGateways, logger: logger, on: eventLoop)

@@ -312,7 +312,7 @@ extension Essbasic {
     /// >- 签署控件 SignComponents
     /// >- 生成模板的文件基础信息 FileInfos
     ///
-    /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TemplateInfo`` and ``DescribeTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTemplatesPaginator(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)

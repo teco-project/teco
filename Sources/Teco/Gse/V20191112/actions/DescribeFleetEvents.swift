@@ -161,7 +161,7 @@ extension Gse {
     ///
     /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Event` and `DescribeFleetEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Event`` and ``DescribeFleetEventsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetEventsPaginator(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFleetEventsRequest> {

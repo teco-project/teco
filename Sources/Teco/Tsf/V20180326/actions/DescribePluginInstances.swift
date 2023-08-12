@@ -143,7 +143,7 @@ extension Tsf {
     ///
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     ///
-    /// - Returns: `AsyncSequence`s of `GatewayPlugin` and `DescribePluginInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GatewayPlugin`` and ``DescribePluginInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePluginInstancesPaginator(_ input: DescribePluginInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePluginInstances, logger: logger, on: eventLoop)

@@ -133,7 +133,7 @@ extension Bm {
 
     /// 获取自定义脚本信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `UserCmd` and `DescribeUserCmdsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserCmd`` and ``DescribeUserCmdsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserCmdsPaginator(_ input: DescribeUserCmdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserCmdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmds, logger: logger, on: eventLoop)

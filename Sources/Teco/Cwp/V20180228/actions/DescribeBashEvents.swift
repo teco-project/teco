@@ -137,7 +137,7 @@ extension Cwp {
 
     /// 获取高危命令列表
     ///
-    /// - Returns: `AsyncSequence`s of `BashEvent` and `DescribeBashEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BashEvent`` and ``DescribeBashEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBashEventsPaginator(_ input: DescribeBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashEvents, logger: logger, on: eventLoop)

@@ -139,7 +139,7 @@ extension Monitor {
     ///
     /// 查询腾讯云可观测平台云产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     ///
-    /// - Returns: `AsyncSequence`s of `ProductSimple` and `DescribeProductListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProductSimple`` and ``DescribeProductListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProductListPaginator(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductList, logger: logger, on: eventLoop)

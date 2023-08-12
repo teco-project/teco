@@ -172,7 +172,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
     ///
-    /// - Returns: `AsyncSequence`s of `Migration` and `DescribeBackupMigrationResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Migration`` and ``DescribeBackupMigrationResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupMigrationPaginator(_ input: DescribeBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupMigrationRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupMigration, logger: logger, on: eventLoop)

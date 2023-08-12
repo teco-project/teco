@@ -125,7 +125,7 @@ extension Iecp {
 
     /// 查询边缘单元列表
     ///
-    /// - Returns: `AsyncSequence`s of `EdgeCloudCluster` and `DescribeEdgeUnitsCloudResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EdgeCloudCluster`` and ``DescribeEdgeUnitsCloudResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeUnitsCloudPaginator(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitsCloudRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitsCloud, logger: logger, on: eventLoop)

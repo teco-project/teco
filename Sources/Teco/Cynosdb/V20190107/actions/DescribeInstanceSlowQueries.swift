@@ -167,7 +167,7 @@ extension Cynosdb {
     ///
     /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
     ///
-    /// - Returns: `AsyncSequence`s of `SlowQueriesItem` and `DescribeInstanceSlowQueriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SlowQueriesItem`` and ``DescribeInstanceSlowQueriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceSlowQueriesPaginator(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceSlowQueriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceSlowQueries, logger: logger, on: eventLoop)

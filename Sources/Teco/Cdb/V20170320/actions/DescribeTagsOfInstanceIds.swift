@@ -131,7 +131,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     ///
-    /// - Returns: `AsyncSequence`s of `TagsInfoOfInstance` and `DescribeTagsOfInstanceIdsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TagsInfoOfInstance`` and ``DescribeTagsOfInstanceIdsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagsOfInstanceIdsPaginator(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagsOfInstanceIdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)

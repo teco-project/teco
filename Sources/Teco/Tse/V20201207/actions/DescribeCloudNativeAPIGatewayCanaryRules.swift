@@ -119,7 +119,7 @@ extension Tse {
 
     /// 查询云原生网关灰度规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `CloudNativeAPIGatewayCanaryRule` and `DescribeCloudNativeAPIGatewayCanaryRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CloudNativeAPIGatewayCanaryRule`` and ``DescribeCloudNativeAPIGatewayCanaryRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudNativeAPIGatewayCanaryRulesPaginator(_ input: DescribeCloudNativeAPIGatewayCanaryRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudNativeAPIGatewayCanaryRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudNativeAPIGatewayCanaryRules, logger: logger, on: eventLoop)

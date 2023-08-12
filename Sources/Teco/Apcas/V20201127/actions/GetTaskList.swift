@@ -143,7 +143,7 @@ extension Apcas {
     ///
     /// 查询当前账号AppID下的画像洞察任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `ListModel` and `GetTaskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ListModel`` and ``GetTaskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getTaskListPaginator(_ input: GetTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTaskList, logger: logger, on: eventLoop)

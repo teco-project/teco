@@ -123,7 +123,7 @@ extension Ivld {
 
     /// 批量描述自定义人物
     ///
-    /// - Returns: `AsyncSequence`s of `CustomPersonInfo` and `DescribeCustomPersonsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomPersonInfo`` and ``DescribeCustomPersonsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomPersonsPaginator(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomPersonsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomPersons, logger: logger, on: eventLoop)

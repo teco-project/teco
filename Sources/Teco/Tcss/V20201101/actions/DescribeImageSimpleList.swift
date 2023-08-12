@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImageSimpleInfo` and `DescribeImageSimpleListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageSimpleInfo`` and ``DescribeImageSimpleListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageSimpleListPaginator(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSimpleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSimpleList, logger: logger, on: eventLoop)

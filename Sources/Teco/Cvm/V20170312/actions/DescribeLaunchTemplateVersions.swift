@@ -152,7 +152,7 @@ extension Cvm {
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     ///
-    /// - Returns: `AsyncSequence`s of `LaunchTemplateVersionInfo` and `DescribeLaunchTemplateVersionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LaunchTemplateVersionInfo`` and ``DescribeLaunchTemplateVersionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLaunchTemplateVersionsPaginator(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaunchTemplateVersionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaunchTemplateVersions, logger: logger, on: eventLoop)

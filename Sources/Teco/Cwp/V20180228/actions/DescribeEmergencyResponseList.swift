@@ -144,7 +144,7 @@ extension Cwp {
     ///
     /// 专家服务-应急响应列表
     ///
-    /// - Returns: `AsyncSequence`s of `EmergencyResponseInfo` and `DescribeEmergencyResponseListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EmergencyResponseInfo`` and ``DescribeEmergencyResponseListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEmergencyResponseListPaginator(_ input: DescribeEmergencyResponseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEmergencyResponseListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyResponseList, logger: logger, on: eventLoop)

@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的特征过滤规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `PacketFilterRelation` and `DescribeListPacketFilterConfigResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PacketFilterRelation`` and ``DescribeListPacketFilterConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListPacketFilterConfigPaginator(_ input: DescribeListPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListPacketFilterConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListPacketFilterConfig, logger: logger, on: eventLoop)

@@ -141,7 +141,7 @@ extension Tcss {
 
     /// 查询漏洞影响的镜像列表
     ///
-    /// - Returns: `AsyncSequence`s of `VulAffectedImageInfo` and `DescribeVulImageListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VulAffectedImageInfo`` and ``DescribeVulImageListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulImageListPaginator(_ input: DescribeVulImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulImageList, logger: logger, on: eventLoop)

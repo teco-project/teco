@@ -189,7 +189,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeFlowLogs）用于查询获取流日志集合。
     ///
-    /// - Returns: `AsyncSequence`s of `FlowLog` and `DescribeFlowLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FlowLog`` and ``DescribeFlowLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFlowLogsPaginator(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)

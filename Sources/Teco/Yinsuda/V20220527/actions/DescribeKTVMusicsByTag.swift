@@ -151,7 +151,7 @@ extension Yinsuda {
     ///
     /// 通过标签过滤歌曲列表。
     ///
-    /// - Returns: `AsyncSequence`s of `KTVMusicBaseInfo` and `DescribeKTVMusicsByTagResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KTVMusicBaseInfo`` and ``DescribeKTVMusicsByTagResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKTVMusicsByTagPaginator(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVMusicsByTagRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)

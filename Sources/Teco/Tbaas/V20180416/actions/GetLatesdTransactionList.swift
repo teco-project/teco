@@ -153,7 +153,7 @@ extension Tbaas {
 
     /// 获取最新交易列表（已废弃）
     ///
-    /// - Returns: `AsyncSequence`s of `TransactionItem` and `GetLatesdTransactionListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TransactionItem`` and ``GetLatesdTransactionListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getLatesdTransactionListPaginator(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLatesdTransactionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLatesdTransactionList, logger: logger, on: eventLoop)

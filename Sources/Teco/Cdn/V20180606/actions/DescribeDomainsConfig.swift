@@ -138,7 +138,7 @@ extension Cdn {
     ///
     /// DescribeDomainsConfig 用于查询内容分发网络加速域名（含境内、境外）的所有配置信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DetailDomain` and `DescribeDomainsConfigResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DetailDomain`` and ``DescribeDomainsConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainsConfigPaginator(_ input: DescribeDomainsConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainsConfig, logger: logger, on: eventLoop)

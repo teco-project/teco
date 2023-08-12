@@ -142,7 +142,7 @@ extension Ssl {
 
     /// 获得权益包列表
     ///
-    /// - Returns: `AsyncSequence`s of `PackageInfo` and `DescribePackagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PackageInfo`` and ``DescribePackagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePackagesPaginator(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)

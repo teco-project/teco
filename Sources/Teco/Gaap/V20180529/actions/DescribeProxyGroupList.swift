@@ -150,7 +150,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     ///
-    /// - Returns: `AsyncSequence`s of `ProxyGroupInfo` and `DescribeProxyGroupListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProxyGroupInfo`` and ``DescribeProxyGroupListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProxyGroupListPaginator(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxyGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxyGroupList, logger: logger, on: eventLoop)

@@ -141,7 +141,7 @@ extension Dlc {
     ///
     /// 本接口（DescribeNotebookSessionStatementSqlResult）用于获取statement运行结果。
     ///
-    /// - Returns: `AsyncSequence`s of `Column` and `DescribeNotebookSessionStatementSqlResultResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Column`` and ``DescribeNotebookSessionStatementSqlResultResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNotebookSessionStatementSqlResultPaginator(_ input: DescribeNotebookSessionStatementSqlResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookSessionStatementSqlResultRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookSessionStatementSqlResult, logger: logger, on: eventLoop)

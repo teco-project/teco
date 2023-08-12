@@ -125,7 +125,7 @@ extension Trp {
 
     /// 查询渠道商下属企业额度使用情况
     ///
-    /// - Returns: `AsyncSequence`s of `CorpQuota` and `DescribeCorpQuotasResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CorpQuota`` and ``DescribeCorpQuotasResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCorpQuotasPaginator(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCorpQuotasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCorpQuotas, logger: logger, on: eventLoop)

@@ -118,7 +118,7 @@ extension Iot {
 
     /// 获取Topic列表
     ///
-    /// - Returns: `AsyncSequence`s of `Topic` and `GetTopicsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Topic`` and ``GetTopicsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getTopicsPaginator(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)

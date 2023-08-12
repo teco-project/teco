@@ -144,7 +144,7 @@ extension Vod {
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `AdaptiveDynamicStreamingTemplate` and `DescribeAdaptiveDynamicStreamingTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AdaptiveDynamicStreamingTemplate`` and ``DescribeAdaptiveDynamicStreamingTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAdaptiveDynamicStreamingTemplatesPaginator(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAdaptiveDynamicStreamingTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAdaptiveDynamicStreamingTemplates, logger: logger, on: eventLoop)

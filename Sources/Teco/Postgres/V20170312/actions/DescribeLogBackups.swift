@@ -155,7 +155,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeLogBackups）用于查询日志备份列表。
     ///
-    /// - Returns: `AsyncSequence`s of `LogBackup` and `DescribeLogBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LogBackup`` and ``DescribeLogBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLogBackupsPaginator(_ input: DescribeLogBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogBackups, logger: logger, on: eventLoop)

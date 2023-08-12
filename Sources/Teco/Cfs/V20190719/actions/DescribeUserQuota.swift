@@ -139,7 +139,7 @@ extension Cfs {
     ///
     /// 查询文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
     ///
-    /// - Returns: `AsyncSequence`s of `UserQuota` and `DescribeUserQuotaResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserQuota`` and ``DescribeUserQuotaResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserQuotaPaginator(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserQuotaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)

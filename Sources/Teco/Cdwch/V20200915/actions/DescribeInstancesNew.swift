@@ -147,7 +147,7 @@ extension Cdwch {
     ///
     /// 获取实例列表，供外部sdk使用
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceInfo` and `DescribeInstancesNewResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceInfo`` and ``DescribeInstancesNewResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesNewPaginator(_ input: DescribeInstancesNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesNewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesNew, logger: logger, on: eventLoop)

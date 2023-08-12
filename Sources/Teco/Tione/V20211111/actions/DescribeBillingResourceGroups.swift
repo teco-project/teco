@@ -145,7 +145,7 @@ extension Tione {
 
     /// 查询资源组详情
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceGroup` and `DescribeBillingResourceGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceGroup`` and ``DescribeBillingResourceGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBillingResourceGroupsPaginator(_ input: DescribeBillingResourceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillingResourceGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillingResourceGroups, logger: logger, on: eventLoop)

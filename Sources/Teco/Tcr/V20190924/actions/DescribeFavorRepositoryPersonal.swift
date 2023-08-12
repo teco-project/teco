@@ -114,7 +114,7 @@ extension Tcr {
 
     /// 查询个人收藏仓库
     ///
-    /// - Returns: `AsyncSequence`s of `Favors` and `DescribeFavorRepositoryPersonalResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Favors`` and ``DescribeFavorRepositoryPersonalResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFavorRepositoryPersonalPaginator(_ input: DescribeFavorRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFavorRepositoryPersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFavorRepositoryPersonal, logger: logger, on: eventLoop)

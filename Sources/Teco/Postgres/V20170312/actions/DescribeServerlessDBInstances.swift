@@ -143,7 +143,7 @@ extension Postgres {
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息
     ///
-    /// - Returns: `AsyncSequence`s of `ServerlessDBInstance` and `DescribeServerlessDBInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ServerlessDBInstance`` and ``DescribeServerlessDBInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServerlessDBInstancesPaginator(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServerlessDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServerlessDBInstances, logger: logger, on: eventLoop)

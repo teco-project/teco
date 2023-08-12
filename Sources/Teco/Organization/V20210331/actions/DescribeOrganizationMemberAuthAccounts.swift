@@ -125,7 +125,7 @@ extension Organization {
 
     /// 获取组织成员被绑定授权关系的子账号列表
     ///
-    /// - Returns: `AsyncSequence`s of `OrgMemberAuthAccount` and `DescribeOrganizationMemberAuthAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OrgMemberAuthAccount`` and ``DescribeOrganizationMemberAuthAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationMemberAuthAccountsPaginator(_ input: DescribeOrganizationMemberAuthAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberAuthAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberAuthAccounts, logger: logger, on: eventLoop)

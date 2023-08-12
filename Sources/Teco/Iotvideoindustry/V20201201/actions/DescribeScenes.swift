@@ -115,7 +115,7 @@ extension Iotvideoindustry {
 
     /// 获取场景列表
     ///
-    /// - Returns: `AsyncSequence`s of `SceneItem` and `DescribeScenesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SceneItem`` and ``DescribeScenesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScenesPaginator(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)

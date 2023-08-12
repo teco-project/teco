@@ -144,7 +144,7 @@ extension Vod {
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
     ///
-    /// - Returns: `AsyncSequence`s of `ProcedureTemplate` and `DescribeProcedureTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProcedureTemplate`` and ``DescribeProcedureTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProcedureTemplatesPaginator(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcedureTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)

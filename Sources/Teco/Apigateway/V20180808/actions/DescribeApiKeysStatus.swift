@@ -136,7 +136,7 @@ extension Apigateway {
     /// 本接口（DescribeApiKeysStatus）用于查询密钥列表。
     /// 当用户创建了多个密钥对时，可使用本接口查询一个或多个 API 密钥信息。
     ///
-    /// - Returns: `AsyncSequence`s of `ApiKey` and `DescribeApiKeysStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApiKey`` and ``DescribeApiKeysStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApiKeysStatusPaginator(_ input: DescribeApiKeysStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiKeysStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiKeysStatus, logger: logger, on: eventLoop)

@@ -117,7 +117,7 @@ extension Teo {
 
     /// 查询源站防护信息
     ///
-    /// - Returns: `AsyncSequence`s of `OriginProtectionInfo` and `DescribeOriginProtectionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OriginProtectionInfo`` and ``DescribeOriginProtectionResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOriginProtectionPaginator(_ input: DescribeOriginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOriginProtectionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOriginProtection, logger: logger, on: eventLoop)

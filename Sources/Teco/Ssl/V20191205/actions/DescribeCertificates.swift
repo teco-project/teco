@@ -184,7 +184,7 @@ extension Ssl {
     ///
     /// 本接口（DescribeCertificates）用于获取证书列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Certificates` and `DescribeCertificatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Certificates`` and ``DescribeCertificatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)

@@ -123,7 +123,7 @@ extension Dasb {
 
     /// 查询命令模板列表
     ///
-    /// - Returns: `AsyncSequence`s of `CmdTemplate` and `DescribeCmdTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CmdTemplate`` and ``DescribeCmdTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCmdTemplatesPaginator(_ input: DescribeCmdTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmdTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmdTemplates, logger: logger, on: eventLoop)

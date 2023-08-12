@@ -140,7 +140,7 @@ extension Tcss {
 
     /// 查询安全日志接入对象列表
     ///
-    /// - Returns: `AsyncSequence`s of `SecLogJoinObjectInfo` and `DescribeSecLogJoinObjectListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SecLogJoinObjectInfo`` and ``DescribeSecLogJoinObjectListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSecLogJoinObjectListPaginator(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecLogJoinObjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)

@@ -162,7 +162,7 @@ extension Iotvideoindustry {
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
     /// 请使用DescribeVideoListByChannel接口
     ///
-    /// - Returns: `AsyncSequence`s of `RecordTaskItem` and `GetVideoListByConResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordTaskItem`` and ``GetVideoListByConResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getVideoListByConPaginator(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetVideoListByConRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)

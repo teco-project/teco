@@ -143,7 +143,7 @@ extension Cynosdb {
     ///
     /// 此接口（DescribeBinlogs）用来查询集群Binlog日志列表。
     ///
-    /// - Returns: `AsyncSequence`s of `BinlogItem` and `DescribeBinlogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BinlogItem`` and ``DescribeBinlogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBinlogsPaginator(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBinlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBinlogs, logger: logger, on: eventLoop)

@@ -140,7 +140,7 @@ extension Organization {
 
     /// 以成员维度获取组织财务信息
     ///
-    /// - Returns: `AsyncSequence`s of `OrgMemberFinancial` and `DescribeOrganizationFinancialByMemberResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OrgMemberFinancial`` and ``DescribeOrganizationFinancialByMemberResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationFinancialByMemberPaginator(_ input: DescribeOrganizationFinancialByMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationFinancialByMemberRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationFinancialByMember, logger: logger, on: eventLoop)

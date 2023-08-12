@@ -147,7 +147,7 @@ extension Dlc {
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DatabaseResponseInfo` and `DescribeDatabasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DatabaseResponseInfo`` and ``DescribeDatabasesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDatabasesPaginator(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatabasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)

@@ -129,7 +129,7 @@ extension Wav {
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DealerInfo` and `QueryDealerInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DealerInfo`` and ``QueryDealerInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryDealerInfoListPaginator(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryDealerInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryDealerInfoList, logger: logger, on: eventLoop)

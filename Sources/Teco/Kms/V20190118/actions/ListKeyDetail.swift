@@ -168,7 +168,7 @@ extension Kms {
     ///
     /// 根据指定Offset和Limit获取主密钥列表详情。
     ///
-    /// - Returns: `AsyncSequence`s of `KeyMetadata` and `ListKeyDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KeyMetadata`` and ``ListKeyDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listKeyDetailPaginator(_ input: ListKeyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyDetail, logger: logger, on: eventLoop)

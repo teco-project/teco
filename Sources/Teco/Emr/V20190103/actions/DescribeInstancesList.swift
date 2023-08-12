@@ -133,7 +133,7 @@ extension Emr {
 
     /// 查询集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `EmrListInstance` and `DescribeInstancesListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EmrListInstance`` and ``DescribeInstancesListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesListPaginator(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesList, logger: logger, on: eventLoop)

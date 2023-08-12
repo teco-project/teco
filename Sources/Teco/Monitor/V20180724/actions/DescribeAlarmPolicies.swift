@@ -256,7 +256,7 @@ extension Monitor {
     ///
     /// 查询告警策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `AlarmPolicy` and `DescribeAlarmPoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlarmPolicy`` and ``DescribeAlarmPoliciesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlarmPoliciesPaginator(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)

@@ -124,7 +124,7 @@ extension Zj {
 
     /// 获取彩信实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `MmsInstanceInfo` and `DescribeMmsInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MmsInstanceInfo`` and ``DescribeMmsInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMmsInstanceListPaginator(_ input: DescribeMmsInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMmsInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMmsInstanceList, logger: logger, on: eventLoop)

@@ -139,7 +139,7 @@ extension Mps {
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `ImageSpriteTemplate` and `DescribeImageSpriteTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageSpriteTemplate`` and ``DescribeImageSpriteTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageSpriteTemplatesPaginator(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSpriteTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSpriteTemplates, logger: logger, on: eventLoop)

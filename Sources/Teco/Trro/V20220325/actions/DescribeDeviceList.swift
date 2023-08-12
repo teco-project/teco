@@ -146,7 +146,7 @@ extension Trro {
     ///
     /// 用于获取设备信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceInfo` and `DescribeDeviceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceInfo`` and ``DescribeDeviceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceListPaginator(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceList, logger: logger, on: eventLoop)

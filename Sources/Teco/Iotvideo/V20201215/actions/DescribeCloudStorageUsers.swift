@@ -123,7 +123,7 @@ extension Iotvideo {
 
     /// 拉取云存用户列表
     ///
-    /// - Returns: `AsyncSequence`s of `CloudStorageUserInfo` and `DescribeCloudStorageUsersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CloudStorageUserInfo`` and ``DescribeCloudStorageUsersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudStorageUsersPaginator(_ input: DescribeCloudStorageUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudStorageUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudStorageUsers, logger: logger, on: eventLoop)

@@ -151,7 +151,7 @@ extension Eis {
 
     /// 获取运行时部署的应用实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `RuntimeDeployedInstanceMC` and `ListRuntimeDeployedInstancesMCResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RuntimeDeployedInstanceMC`` and ``ListRuntimeDeployedInstancesMCResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listRuntimeDeployedInstancesMCPaginator(_ input: ListRuntimeDeployedInstancesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListRuntimeDeployedInstancesMCRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRuntimeDeployedInstancesMC, logger: logger, on: eventLoop)

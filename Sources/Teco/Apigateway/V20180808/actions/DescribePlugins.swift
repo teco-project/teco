@@ -143,7 +143,7 @@ extension Apigateway {
     ///
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
     ///
-    /// - Returns: `AsyncSequence`s of `Plugin` and `DescribePluginsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Plugin`` and ``DescribePluginsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePluginsPaginator(_ input: DescribePluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlugins, logger: logger, on: eventLoop)

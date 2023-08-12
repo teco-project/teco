@@ -162,7 +162,7 @@ extension Yinsuda {
     ///
     /// 批量获取直播会员充值流水详细信息，包括：流水号，订单状态，下订单时间等
     ///
-    /// - Returns: `AsyncSequence`s of `LiveVipTradeInfo` and `DescribeLiveVipTradeInfosResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LiveVipTradeInfo`` and ``DescribeLiveVipTradeInfosResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveVipTradeInfosPaginator(_ input: DescribeLiveVipTradeInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveVipTradeInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveVipTradeInfos, logger: logger, on: eventLoop)

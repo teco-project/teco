@@ -144,7 +144,7 @@ extension Vod {
     ///
     /// 获取音画质检测模板列表。
     ///
-    /// - Returns: `AsyncSequence`s of `QualityInspectTemplateItem` and `DescribeQualityInspectTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``QualityInspectTemplateItem`` and ``DescribeQualityInspectTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeQualityInspectTemplatesPaginator(_ input: DescribeQualityInspectTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeQualityInspectTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeQualityInspectTemplates, logger: logger, on: eventLoop)

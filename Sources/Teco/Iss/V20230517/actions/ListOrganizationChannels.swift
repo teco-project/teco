@@ -177,7 +177,7 @@ extension Iss {
     ///
     /// 用于查询组织目录下的通道列表
     ///
-    /// - Returns: `AsyncSequence`s of `OrganizationChannelInfo` and `ListOrganizationChannelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OrganizationChannelInfo`` and ``ListOrganizationChannelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listOrganizationChannelsPaginator(_ input: ListOrganizationChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListOrganizationChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listOrganizationChannels, logger: logger, on: eventLoop)

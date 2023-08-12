@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的协议封禁配置列表
     ///
-    /// - Returns: `AsyncSequence`s of `ProtocolBlockRelation` and `DescribeListProtocolBlockConfigResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProtocolBlockRelation`` and ``DescribeListProtocolBlockConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListProtocolBlockConfigPaginator(_ input: DescribeListProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListProtocolBlockConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListProtocolBlockConfig, logger: logger, on: eventLoop)

@@ -132,7 +132,7 @@ extension Tdmq {
     ///
     /// 查询用户已购的Pulsar专业版实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `PulsarProInstance` and `DescribePulsarProInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PulsarProInstance`` and ``DescribePulsarProInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePulsarProInstancesPaginator(_ input: DescribePulsarProInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePulsarProInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePulsarProInstances, logger: logger, on: eventLoop)

@@ -144,7 +144,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeProcesses) 用于获取进程列表数据。
     ///
-    /// - Returns: `AsyncSequence`s of `Process` and `DescribeProcessesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Process`` and ``DescribeProcessesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProcessesPaginator(_ input: DescribeProcessesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcessesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcesses, logger: logger, on: eventLoop)

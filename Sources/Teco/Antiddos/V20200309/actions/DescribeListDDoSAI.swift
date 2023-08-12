@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的AI防护开关列表
     ///
-    /// - Returns: `AsyncSequence`s of `DDoSAIRelation` and `DescribeListDDoSAIResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DDoSAIRelation`` and ``DescribeListDDoSAIResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListDDoSAIPaginator(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSAIRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSAI, logger: logger, on: eventLoop)

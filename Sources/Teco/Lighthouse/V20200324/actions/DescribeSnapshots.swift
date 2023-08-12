@@ -151,7 +151,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Snapshot` and `DescribeSnapshotsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Snapshot`` and ``DescribeSnapshotsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotsPaginator(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)

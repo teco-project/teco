@@ -110,7 +110,7 @@ extension Dlc {
 
     /// 查询任务结果
     ///
-    /// - Returns: `AsyncSequence`s of `Column` and `DescribeTaskResultResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Column`` and ``DescribeTaskResultResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskResultPaginator(_ input: DescribeTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskResultRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskResult, logger: logger, on: eventLoop)

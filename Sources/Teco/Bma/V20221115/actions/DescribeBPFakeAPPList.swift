@@ -118,7 +118,7 @@ extension Bma {
 
     /// 查询仿冒应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `FakeAPPData` and `DescribeBPFakeAPPListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FakeAPPData`` and ``DescribeBPFakeAPPListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBPFakeAPPListPaginator(_ input: DescribeBPFakeAPPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPFakeAPPListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPFakeAPPList, logger: logger, on: eventLoop)

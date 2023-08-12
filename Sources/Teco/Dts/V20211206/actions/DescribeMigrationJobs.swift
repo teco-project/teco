@@ -185,7 +185,7 @@ extension Dts {
 
     /// 查询数据迁移任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `JobItem` and `DescribeMigrationJobsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``JobItem`` and ``DescribeMigrationJobsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMigrationJobsPaginator(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrationJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrationJobs, logger: logger, on: eventLoop)

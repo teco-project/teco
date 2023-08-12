@@ -127,7 +127,7 @@ extension Tione {
 
     /// 查看notebook生命周期脚本列表
     ///
-    /// - Returns: `AsyncSequence`s of `NotebookLifecycleScriptsSummary` and `DescribeNotebookLifecycleScriptsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NotebookLifecycleScriptsSummary`` and ``DescribeNotebookLifecycleScriptsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNotebookLifecycleScriptsPaginator(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookLifecycleScriptsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookLifecycleScripts, logger: logger, on: eventLoop)

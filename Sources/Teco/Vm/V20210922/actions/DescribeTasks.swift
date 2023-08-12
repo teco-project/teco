@@ -166,7 +166,7 @@ extension Vm {
     ///
     /// 默认接口请求频率限制：**20次/秒**。
     ///
-    /// - Returns: `AsyncSequence`s of `TaskData` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskData`` and ``DescribeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

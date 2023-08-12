@@ -129,7 +129,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     ///
-    /// - Returns: `AsyncSequence`s of `UsagePlanStatusInfo` and `DescribeUsagePlansStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UsagePlanStatusInfo`` and ``DescribeUsagePlansStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsagePlansStatusPaginator(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlansStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)

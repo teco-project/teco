@@ -153,7 +153,7 @@ extension Cls {
     ///
     /// 本接口用于获取告警策略列表。
     ///
-    /// - Returns: `AsyncSequence`s of `AlarmInfo` and `DescribeAlarmsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlarmInfo`` and ``DescribeAlarmsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlarmsPaginator(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)

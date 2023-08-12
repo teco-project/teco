@@ -148,7 +148,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpnGatewaySslClients）用于查询SSL-VPN-CLIENT 列表。
     ///
-    /// - Returns: `AsyncSequence`s of `SslVpnClient` and `DescribeVpnGatewaySslClientsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SslVpnClient`` and ``DescribeVpnGatewaySslClientsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewaySslClientsPaginator(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslClientsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslClients, logger: logger, on: eventLoop)

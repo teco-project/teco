@@ -134,7 +134,7 @@ extension Tcbr {
     ///
     /// 查询云托管服务列表接口
     ///
-    /// - Returns: `AsyncSequence`s of `ServerBaseInfo` and `DescribeCloudRunServersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ServerBaseInfo`` and ``DescribeCloudRunServersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudRunServersPaginator(_ input: DescribeCloudRunServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudRunServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudRunServers, logger: logger, on: eventLoop)

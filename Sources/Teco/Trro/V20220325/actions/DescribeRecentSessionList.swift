@@ -137,7 +137,7 @@ extension Trro {
 
     /// 获取最新设备会话列表
     ///
-    /// - Returns: `AsyncSequence`s of `RecentSessionInfo` and `DescribeRecentSessionListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecentSessionInfo`` and ``DescribeRecentSessionListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRecentSessionListPaginator(_ input: DescribeRecentSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecentSessionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecentSessionList, logger: logger, on: eventLoop)

@@ -133,7 +133,7 @@ extension Cwp {
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     ///
-    /// - Returns: `AsyncSequence`s of `ComponentStatistics` and `DescribeComponentStatisticsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComponentStatistics`` and ``DescribeComponentStatisticsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComponentStatisticsPaginator(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComponentStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComponentStatistics, logger: logger, on: eventLoop)

@@ -154,7 +154,7 @@ extension Tcss {
     ///
     /// 搜索查询容器列表
     ///
-    /// - Returns: `AsyncSequence`s of `ContainerInfo` and `DescribeAssetContainerListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ContainerInfo`` and ``DescribeAssetContainerListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetContainerListPaginator(_ input: DescribeAssetContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetContainerListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetContainerList, logger: logger, on: eventLoop)

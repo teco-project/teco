@@ -134,7 +134,7 @@ extension Dasb {
 
     /// 根据会话Id搜索Command
     ///
-    /// - Returns: `AsyncSequence`s of `Command` and `SearchCommandBySidResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Command`` and ``SearchCommandBySidResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchCommandBySidPaginator(_ input: SearchCommandBySidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchCommandBySidRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchCommandBySid, logger: logger, on: eventLoop)

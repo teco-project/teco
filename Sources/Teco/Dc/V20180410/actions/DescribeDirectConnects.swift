@@ -142,7 +142,7 @@ extension Dc {
     ///
     /// 查询物理专线列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DirectConnect` and `DescribeDirectConnectsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DirectConnect`` and ``DescribeDirectConnectsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDirectConnectsPaginator(_ input: DescribeDirectConnectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnects, logger: logger, on: eventLoop)

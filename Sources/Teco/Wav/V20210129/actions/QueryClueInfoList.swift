@@ -139,7 +139,7 @@ extension Wav {
     ///
     /// 企业可通过此接口获取线索列表。
     ///
-    /// - Returns: `AsyncSequence`s of `ClueInfoDetail` and `QueryClueInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClueInfoDetail`` and ``QueryClueInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryClueInfoListPaginator(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryClueInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)

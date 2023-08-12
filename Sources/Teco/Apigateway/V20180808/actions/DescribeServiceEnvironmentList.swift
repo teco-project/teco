@@ -129,7 +129,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceEnvironmentList）用于查询一个服务的环境列表，可查询到此服务下所有环境及其状态。
     ///
-    /// - Returns: `AsyncSequence`s of `Environment` and `DescribeServiceEnvironmentListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Environment`` and ``DescribeServiceEnvironmentListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceEnvironmentListPaginator(_ input: DescribeServiceEnvironmentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceEnvironmentListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceEnvironmentList, logger: logger, on: eventLoop)

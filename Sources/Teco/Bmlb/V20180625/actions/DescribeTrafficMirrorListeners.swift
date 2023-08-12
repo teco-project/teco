@@ -167,7 +167,7 @@ extension Bmlb {
     ///
     /// 获取流量镜像的监听器列表信息。
     ///
-    /// - Returns: `AsyncSequence`s of `TrafficMirrorListener` and `DescribeTrafficMirrorListenersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TrafficMirrorListener`` and ``DescribeTrafficMirrorListenersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTrafficMirrorListenersPaginator(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficMirrorListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)

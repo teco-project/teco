@@ -149,7 +149,7 @@ extension Tke {
     ///
     /// 在应用市场中查询正在安装中的应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `PendingRelease` and `DescribeClusterPendingReleasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PendingRelease`` and ``DescribeClusterPendingReleasesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterPendingReleasesPaginator(_ input: DescribeClusterPendingReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterPendingReleasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterPendingReleases, logger: logger, on: eventLoop)

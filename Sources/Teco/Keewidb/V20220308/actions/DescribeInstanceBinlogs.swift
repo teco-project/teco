@@ -142,7 +142,7 @@ extension Keewidb {
     ///
     /// 本接口（DescribeInstanceBinlogs）用于查询增量备份列表。
     ///
-    /// - Returns: `AsyncSequence`s of `BinlogInfo` and `DescribeInstanceBinlogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BinlogInfo`` and ``DescribeInstanceBinlogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceBinlogsPaginator(_ input: DescribeInstanceBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceBinlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceBinlogs, logger: logger, on: eventLoop)

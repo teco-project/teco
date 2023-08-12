@@ -140,7 +140,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkAcl` and `DescribeNetworkAclsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkAcl`` and ``DescribeNetworkAclsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkAclsPaginator(_ input: DescribeNetworkAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkAclsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkAcls, logger: logger, on: eventLoop)

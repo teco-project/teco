@@ -138,7 +138,7 @@ extension Iotexplorer {
 
     /// 获取围栏告警事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `FenceEventItem` and `DescribeFenceEventListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FenceEventItem`` and ``DescribeFenceEventListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFenceEventListPaginator(_ input: DescribeFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFenceEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFenceEventList, logger: logger, on: eventLoop)

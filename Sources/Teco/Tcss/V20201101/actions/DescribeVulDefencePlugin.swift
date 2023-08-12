@@ -126,7 +126,7 @@ extension Tcss {
 
     /// 查询漏洞防御插件列表
     ///
-    /// - Returns: `AsyncSequence`s of `VulDefencePlugin` and `DescribeVulDefencePluginResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VulDefencePlugin`` and ``DescribeVulDefencePluginResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulDefencePluginPaginator(_ input: DescribeVulDefencePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulDefencePluginRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefencePlugin, logger: logger, on: eventLoop)

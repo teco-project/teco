@@ -151,7 +151,7 @@ extension Cwp {
     ///
     /// 用于网页防篡改获取区域主机列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Machine` and `DescribeMachineListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Machine`` and ``DescribeMachineListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMachineListPaginator(_ input: DescribeMachineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachineListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachineList, logger: logger, on: eventLoop)

@@ -123,7 +123,7 @@ extension Tcr {
 
     /// 查询触发器
     ///
-    /// - Returns: `AsyncSequence`s of `WebhookTrigger` and `DescribeWebhookTriggerResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WebhookTrigger`` and ``DescribeWebhookTriggerResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebhookTriggerPaginator(_ input: DescribeWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebhookTriggerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTrigger, logger: logger, on: eventLoop)

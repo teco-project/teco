@@ -147,7 +147,7 @@ extension Cr {
 
     /// 查看黑名单数据列表
     ///
-    /// - Returns: `AsyncSequence`s of `BlackListData` and `QueryBlackListDataResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BlackListData`` and ``QueryBlackListDataResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryBlackListDataPaginator(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryBlackListDataRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)

@@ -118,7 +118,7 @@ extension Tag {
 
     /// 获取项目列表
     ///
-    /// - Returns: `AsyncSequence`s of `Project` and `DescribeProjectsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Project`` and ``DescribeProjectsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)

@@ -156,7 +156,7 @@ extension Ecm {
     ///
     /// 查询私有网络列表
     ///
-    /// - Returns: `AsyncSequence`s of `VpcInfo` and `DescribeVpcsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpcInfo`` and ``DescribeVpcsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)

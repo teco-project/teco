@@ -165,7 +165,7 @@ extension Vpc {
     ///
     /// 本接口 (DescribeSpecificTrafficPackageUsedDetails) 用于查询指定 共享流量包 的用量明细。
     ///
-    /// - Returns: `AsyncSequence`s of `UsedDetail` and `DescribeSpecificTrafficPackageUsedDetailsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UsedDetail`` and ``DescribeSpecificTrafficPackageUsedDetailsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSpecificTrafficPackageUsedDetailsPaginator(_ input: DescribeSpecificTrafficPackageUsedDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSpecificTrafficPackageUsedDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSpecificTrafficPackageUsedDetails, logger: logger, on: eventLoop)

@@ -119,7 +119,7 @@ extension Tsf {
 
     /// 查询服务API列表
     ///
-    /// - Returns: `AsyncSequence`s of `MsApiArray` and `DescribeMsApiListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MsApiArray`` and ``DescribeMsApiListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMsApiListPaginator(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMsApiListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMsApiList, logger: logger, on: eventLoop)

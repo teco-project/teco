@@ -139,7 +139,7 @@ extension Ess {
 
     /// 查询企业角色列表
     ///
-    /// - Returns: `AsyncSequence`s of `IntegrateRole` and `DescribeIntegrationRolesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IntegrateRole`` and ``DescribeIntegrationRolesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIntegrationRolesPaginator(_ input: DescribeIntegrationRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationRolesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationRoles, logger: logger, on: eventLoop)

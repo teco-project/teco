@@ -123,7 +123,7 @@ extension Tcb {
 
     /// 获取终端用户列表
     ///
-    /// - Returns: `AsyncSequence`s of `EndUserInfo` and `DescribeEndUsersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EndUserInfo`` and ``DescribeEndUsersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEndUsersPaginator(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEndUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEndUsers, logger: logger, on: eventLoop)

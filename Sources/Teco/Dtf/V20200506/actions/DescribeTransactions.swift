@@ -139,7 +139,7 @@ extension Dtf {
 
     /// 查询主事务列表
     ///
-    /// - Returns: `AsyncSequence`s of `Transaction` and `DescribeTransactionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Transaction`` and ``DescribeTransactionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTransactionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)

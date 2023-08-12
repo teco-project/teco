@@ -132,7 +132,7 @@ extension Tcss {
     ///
     /// 查询所有检查项接口，返回总数和检查项列表
     ///
-    /// - Returns: `AsyncSequence`s of `ClusterCheckItem` and `DescribeCheckItemListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClusterCheckItem`` and ``DescribeCheckItemListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCheckItemListPaginator(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCheckItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCheckItemList, logger: logger, on: eventLoop)

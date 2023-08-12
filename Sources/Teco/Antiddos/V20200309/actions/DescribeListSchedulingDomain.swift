@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取智能调度域名列表
     ///
-    /// - Returns: `AsyncSequence`s of `SchedulingDomainInfo` and `DescribeListSchedulingDomainResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SchedulingDomainInfo`` and ``DescribeListSchedulingDomainResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListSchedulingDomainPaginator(_ input: DescribeListSchedulingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListSchedulingDomainRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListSchedulingDomain, logger: logger, on: eventLoop)

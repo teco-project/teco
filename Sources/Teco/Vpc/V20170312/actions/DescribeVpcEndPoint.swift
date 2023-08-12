@@ -141,7 +141,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpcEndPoint）用于查询终端节点列表。
     ///
-    /// - Returns: `AsyncSequence`s of `EndPoint` and `DescribeVpcEndPointResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EndPoint`` and ``DescribeVpcEndPointResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcEndPointPaginator(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcEndPointRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)

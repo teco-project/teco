@@ -140,7 +140,7 @@ extension Bmvpc {
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
     ///
-    /// - Returns: `AsyncSequence`s of `VpcInfo` and `DescribeVpcsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpcInfo`` and ``DescribeVpcsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)

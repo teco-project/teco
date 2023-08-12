@@ -143,7 +143,7 @@ extension Iai {
     ///
     /// 获取指定人员库中的人员列表。
     ///
-    /// - Returns: `AsyncSequence`s of `PersonInfo` and `GetPersonListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PersonInfo`` and ``GetPersonListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getPersonListPaginator(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPersonListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)

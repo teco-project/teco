@@ -131,7 +131,7 @@ extension Trro {
     ///
     /// 用于获取项目列表
     ///
-    /// - Returns: `AsyncSequence`s of `ProjectInfo` and `DescribeProjectListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProjectInfo`` and ``DescribeProjectListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProjectListPaginator(_ input: DescribeProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjectList, logger: logger, on: eventLoop)

@@ -133,7 +133,7 @@ extension Cwp {
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     ///
-    /// - Returns: `AsyncSequence`s of `OpenPortStatistics` and `DescribeOpenPortStatisticsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OpenPortStatistics`` and ``DescribeOpenPortStatisticsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOpenPortStatisticsPaginator(_ input: DescribeOpenPortStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOpenPortStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpenPortStatistics, logger: logger, on: eventLoop)

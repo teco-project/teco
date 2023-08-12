@@ -128,7 +128,7 @@ extension Scf {
 
     /// 列出命名空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `Namespace` and `ListNamespacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Namespace`` and ``ListNamespacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listNamespacesPaginator(_ input: ListNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listNamespaces, logger: logger, on: eventLoop)

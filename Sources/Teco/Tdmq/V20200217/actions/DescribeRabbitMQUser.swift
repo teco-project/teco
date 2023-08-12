@@ -133,7 +133,7 @@ extension Tdmq {
 
     /// 查询RabbitMQ用户列表
     ///
-    /// - Returns: `AsyncSequence`s of `RabbitMQUser` and `DescribeRabbitMQUserResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RabbitMQUser`` and ``DescribeRabbitMQUserResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRabbitMQUserPaginator(_ input: DescribeRabbitMQUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRabbitMQUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRabbitMQUser, logger: logger, on: eventLoop)

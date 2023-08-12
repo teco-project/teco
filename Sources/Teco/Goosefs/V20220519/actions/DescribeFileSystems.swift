@@ -127,7 +127,7 @@ extension Goosefs {
     ///
     /// 列出所有的文件系统
     ///
-    /// - Returns: `AsyncSequence`s of `FSAttribute` and `DescribeFileSystemsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FSAttribute`` and ``DescribeFileSystemsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFileSystemsPaginator(_ input: DescribeFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileSystemsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileSystems, logger: logger, on: eventLoop)

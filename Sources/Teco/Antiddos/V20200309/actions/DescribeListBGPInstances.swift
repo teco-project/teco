@@ -198,7 +198,7 @@ extension Antiddos {
 
     /// 获取高防包资产实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `BGPInstance` and `DescribeListBGPInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BGPInstance`` and ``DescribeListBGPInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListBGPInstancesPaginator(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBGPInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)

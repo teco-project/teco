@@ -134,7 +134,7 @@ extension Tcr {
 
     /// 查询自定义账号
     ///
-    /// - Returns: `AsyncSequence`s of `CustomAccount` and `DescribeCustomAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomAccount`` and ``DescribeCustomAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomAccountsPaginator(_ input: DescribeCustomAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomAccounts, logger: logger, on: eventLoop)

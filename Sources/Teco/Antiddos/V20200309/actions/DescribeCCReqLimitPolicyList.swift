@@ -138,7 +138,7 @@ extension Antiddos {
 
     /// 获取CC频率限制策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `CCReqLimitPolicy` and `DescribeCCReqLimitPolicyListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CCReqLimitPolicy`` and ``DescribeCCReqLimitPolicyListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCCReqLimitPolicyListPaginator(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCReqLimitPolicyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)

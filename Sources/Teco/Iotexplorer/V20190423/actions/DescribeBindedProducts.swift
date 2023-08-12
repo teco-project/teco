@@ -123,7 +123,7 @@ extension Iotexplorer {
 
     /// 获取网关产品已经绑定的子产品
     ///
-    /// - Returns: `AsyncSequence`s of `BindProductInfo` and `DescribeBindedProductsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BindProductInfo`` and ``DescribeBindedProductsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBindedProductsPaginator(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindedProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)

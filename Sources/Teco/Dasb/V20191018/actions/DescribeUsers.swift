@@ -154,7 +154,7 @@ extension Dasb {
 
     /// 查询用户列表
     ///
-    /// - Returns: `AsyncSequence`s of `User` and `DescribeUsersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``User`` and ``DescribeUsersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsersPaginator(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsers, logger: logger, on: eventLoop)

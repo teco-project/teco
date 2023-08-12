@@ -142,7 +142,7 @@ extension Cws {
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Vul` and `DescribeVulsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Vul`` and ``DescribeVulsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulsPaginator(_ input: DescribeVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVuls, logger: logger, on: eventLoop)

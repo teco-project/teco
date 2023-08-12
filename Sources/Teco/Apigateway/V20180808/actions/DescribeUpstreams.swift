@@ -114,7 +114,7 @@ extension Apigateway {
 
     /// 查询后端通道列表详情
     ///
-    /// - Returns: `AsyncSequence`s of `UpstreamInfo` and `DescribeUpstreamsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UpstreamInfo`` and ``DescribeUpstreamsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUpstreamsPaginator(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)

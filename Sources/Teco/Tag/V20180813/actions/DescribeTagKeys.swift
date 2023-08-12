@@ -145,7 +145,7 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表中的标签键。
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `DescribeTagKeysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``DescribeTagKeysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagKeysPaginator(_ input: DescribeTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagKeys, logger: logger, on: eventLoop)

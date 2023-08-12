@@ -175,7 +175,7 @@ extension Live {
     ///
     /// 用于查询回调事件。
     ///
-    /// - Returns: `AsyncSequence`s of `CallbackEventInfo` and `DescribeCallbackRecordsListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CallbackEventInfo`` and ``DescribeCallbackRecordsListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCallbackRecordsListPaginator(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCallbackRecordsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)

@@ -133,7 +133,7 @@ extension Tdmq {
 
     /// 获取RocketMQ主题列表
     ///
-    /// - Returns: `AsyncSequence`s of `RocketMQTopic` and `DescribeRocketMQTopicsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RocketMQTopic`` and ``DescribeRocketMQTopicsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRocketMQTopicsPaginator(_ input: DescribeRocketMQTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQTopics, logger: logger, on: eventLoop)

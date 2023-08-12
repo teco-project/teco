@@ -124,7 +124,7 @@ extension Cloudhsm {
 
     /// 查询子网列表
     ///
-    /// - Returns: `AsyncSequence`s of `Subnet` and `DescribeSubnetResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Subnet`` and ``DescribeSubnetResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubnetPaginator(_ input: DescribeSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnet, logger: logger, on: eventLoop)

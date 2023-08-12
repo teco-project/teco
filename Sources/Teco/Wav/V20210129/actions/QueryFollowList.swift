@@ -125,7 +125,7 @@ extension Wav {
 
     /// 查询指定时间范围内发生过跟进的潜客信息
     ///
-    /// - Returns: `AsyncSequence`s of `FollowInfo` and `QueryFollowListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FollowInfo`` and ``QueryFollowListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryFollowListPaginator(_ input: QueryFollowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryFollowListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryFollowList, logger: logger, on: eventLoop)

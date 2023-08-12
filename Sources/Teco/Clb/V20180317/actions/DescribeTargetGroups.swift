@@ -123,7 +123,7 @@ extension Clb {
 
     /// 查询目标组信息
     ///
-    /// - Returns: `AsyncSequence`s of `TargetGroupInfo` and `DescribeTargetGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TargetGroupInfo`` and ``DescribeTargetGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTargetGroupsPaginator(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTargetGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroups, logger: logger, on: eventLoop)

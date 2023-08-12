@@ -134,7 +134,7 @@ extension Tdmq {
 
     /// 枚举cmq全量主题
     ///
-    /// - Returns: `AsyncSequence`s of `CmqTopic` and `DescribeCmqTopicsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CmqTopic`` and ``DescribeCmqTopicsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCmqTopicsPaginator(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmqTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqTopics, logger: logger, on: eventLoop)

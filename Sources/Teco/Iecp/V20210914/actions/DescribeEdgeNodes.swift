@@ -139,7 +139,7 @@ extension Iecp {
 
     /// 查询边缘节点列表
     ///
-    /// - Returns: `AsyncSequence`s of `EdgeNodeInfo` and `DescribeEdgeNodesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EdgeNodeInfo`` and ``DescribeEdgeNodesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeNodesPaginator(_ input: DescribeEdgeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeNodes, logger: logger, on: eventLoop)

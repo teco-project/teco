@@ -145,7 +145,7 @@ extension Postgres {
     ///
     /// 本接口(DescribeBackupSummaries)用于查询实例备份的统计信息，返回以实例为维度的备份个数、占用容量等信息（容量单位为字节）。
     ///
-    /// - Returns: `AsyncSequence`s of `BackupSummary` and `DescribeBackupSummariesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BackupSummary`` and ``DescribeBackupSummariesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupSummariesPaginator(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupSummariesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupSummaries, logger: logger, on: eventLoop)

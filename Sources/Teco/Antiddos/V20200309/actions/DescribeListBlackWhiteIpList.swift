@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的IP黑白名单列表
     ///
-    /// - Returns: `AsyncSequence`s of `BlackWhiteIpRelation` and `DescribeListBlackWhiteIpListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BlackWhiteIpRelation`` and ``DescribeListBlackWhiteIpListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListBlackWhiteIpListPaginator(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBlackWhiteIpListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBlackWhiteIpList, logger: logger, on: eventLoop)

@@ -138,7 +138,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
     ///
-    /// - Returns: `AsyncSequence`s of `DeployGroupInfo` and `DescribeDeployGroupListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeployGroupInfo`` and ``DescribeDeployGroupListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeployGroupListPaginator(_ input: DescribeDeployGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeployGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeployGroupList, logger: logger, on: eventLoop)

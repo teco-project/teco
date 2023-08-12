@@ -125,7 +125,7 @@ extension Tsf {
 
     /// 获取容器事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `ContainerEvent` and `DescribeContainerEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ContainerEvent`` and ``DescribeContainerEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeContainerEventsPaginator(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerEvents, logger: logger, on: eventLoop)

@@ -142,7 +142,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     ///
-    /// - Returns: `AsyncSequence`s of `DhcpIp` and `DescribeDhcpIpsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DhcpIp`` and ``DescribeDhcpIpsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDhcpIpsPaginator(_ input: DescribeDhcpIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDhcpIpsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDhcpIps, logger: logger, on: eventLoop)

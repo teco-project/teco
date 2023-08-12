@@ -129,7 +129,7 @@ extension Cwp {
 
     /// 获取资产管理Web应用插件列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssetWebAppPluginInfo` and `DescribeAssetWebAppPluginListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssetWebAppPluginInfo`` and ``DescribeAssetWebAppPluginListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetWebAppPluginListPaginator(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebAppPluginListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebAppPluginList, logger: logger, on: eventLoop)

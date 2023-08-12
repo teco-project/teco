@@ -152,7 +152,7 @@ extension Tdmq {
     ///
     /// 查询指定环境和主题下的订阅者列表
     ///
-    /// - Returns: `AsyncSequence`s of `Subscription` and `DescribeSubscriptionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Subscription`` and ``DescribeSubscriptionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubscriptionsPaginator(_ input: DescribeSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscriptionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscriptions, logger: logger, on: eventLoop)

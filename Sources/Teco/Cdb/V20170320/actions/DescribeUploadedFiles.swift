@@ -132,7 +132,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     ///
-    /// - Returns: `AsyncSequence`s of `SqlFileInfo` and `DescribeUploadedFilesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SqlFileInfo`` and ``DescribeUploadedFilesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUploadedFilesPaginator(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUploadedFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUploadedFiles, logger: logger, on: eventLoop)

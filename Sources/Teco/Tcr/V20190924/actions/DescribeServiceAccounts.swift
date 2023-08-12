@@ -134,7 +134,7 @@ extension Tcr {
 
     /// 查询服务级账号
     ///
-    /// - Returns: `AsyncSequence`s of `ServiceAccount` and `DescribeServiceAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ServiceAccount`` and ``DescribeServiceAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceAccountsPaginator(_ input: DescribeServiceAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceAccounts, logger: logger, on: eventLoop)

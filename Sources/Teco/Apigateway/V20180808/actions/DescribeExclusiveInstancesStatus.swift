@@ -114,7 +114,7 @@ extension Apigateway {
 
     /// 查询专享实例列表（新）
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceInfo` and `DescribeExclusiveInstancesStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceInfo`` and ``DescribeExclusiveInstancesStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExclusiveInstancesStatusPaginator(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExclusiveInstancesStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)

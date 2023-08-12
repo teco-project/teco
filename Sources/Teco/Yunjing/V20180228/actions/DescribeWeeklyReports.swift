@@ -127,7 +127,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
     ///
-    /// - Returns: `AsyncSequence`s of `WeeklyReport` and `DescribeWeeklyReportsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WeeklyReport`` and ``DescribeWeeklyReportsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWeeklyReportsPaginator(_ input: DescribeWeeklyReportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReports, logger: logger, on: eventLoop)

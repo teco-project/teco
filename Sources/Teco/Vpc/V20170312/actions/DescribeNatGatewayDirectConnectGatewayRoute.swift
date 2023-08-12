@@ -137,7 +137,7 @@ extension Vpc {
     ///
     /// 查询专线绑定NAT的路由
     ///
-    /// - Returns: `AsyncSequence`s of `NatDirectConnectGatewayRoute` and `DescribeNatGatewayDirectConnectGatewayRouteResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NatDirectConnectGatewayRoute`` and ``DescribeNatGatewayDirectConnectGatewayRouteResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatGatewayDirectConnectGatewayRoutePaginator(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewayDirectConnectGatewayRouteRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)

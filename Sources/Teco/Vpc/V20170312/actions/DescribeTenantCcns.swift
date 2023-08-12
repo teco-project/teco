@@ -149,7 +149,7 @@ extension Vpc {
     /// 该接口一般用来封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间封禁, 只能按更粗的云联网实例粒度封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度封禁（DescribeCrossBorderCcnRegionBandwidthLimits）
     /// 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
     ///
-    /// - Returns: `AsyncSequence`s of `CcnInstanceInfo` and `DescribeTenantCcnsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CcnInstanceInfo`` and ``DescribeTenantCcnsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTenantCcnsPaginator(_ input: DescribeTenantCcnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTenantCcnsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTenantCcns, logger: logger, on: eventLoop)

@@ -150,7 +150,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     ///
-    /// - Returns: `AsyncSequence`s of `GroupDeviceItem` and `DescribeGroupDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupDeviceItem`` and ``DescribeGroupDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGroupDevicesPaginator(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupDevices, logger: logger, on: eventLoop)

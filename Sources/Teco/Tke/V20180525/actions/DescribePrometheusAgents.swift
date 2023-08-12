@@ -118,7 +118,7 @@ extension Tke {
 
     /// 获取被关联集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAgentOverview` and `DescribePrometheusAgentsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAgentOverview`` and ``DescribePrometheusAgentsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusAgentsPaginator(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAgentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)

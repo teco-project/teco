@@ -128,7 +128,7 @@ extension Eb {
 
     /// 获取事件连接器列表
     ///
-    /// - Returns: `AsyncSequence`s of `Connection` and `ListConnectionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Connection`` and ``ListConnectionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listConnectionsPaginator(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listConnections, logger: logger, on: eventLoop)

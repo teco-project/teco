@@ -158,7 +158,7 @@ extension Wedata {
 
     /// 获取TKE集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `InLongTkeDetail` and `DescribeInLongTkeClusterListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InLongTkeDetail`` and ``DescribeInLongTkeClusterListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInLongTkeClusterListPaginator(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInLongTkeClusterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)

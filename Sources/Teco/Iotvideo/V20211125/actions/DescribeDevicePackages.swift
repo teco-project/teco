@@ -138,7 +138,7 @@ extension Iotvideo {
     ///
     /// 根据设备信息拉取有效套餐列表
     ///
-    /// - Returns: `AsyncSequence`s of `PackageInfo` and `DescribeDevicePackagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PackageInfo`` and ``DescribeDevicePackagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDevicePackagesPaginator(_ input: DescribeDevicePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDevicePackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevicePackages, logger: logger, on: eventLoop)

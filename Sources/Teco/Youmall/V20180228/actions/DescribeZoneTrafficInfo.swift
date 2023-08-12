@@ -163,7 +163,7 @@ extension Youmall {
     ///
     /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
     ///
-    /// - Returns: `AsyncSequence`s of `ZoneTrafficInfo` and `DescribeZoneTrafficInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ZoneTrafficInfo`` and ``DescribeZoneTrafficInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeZoneTrafficInfoPaginator(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZoneTrafficInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZoneTrafficInfo, logger: logger, on: eventLoop)

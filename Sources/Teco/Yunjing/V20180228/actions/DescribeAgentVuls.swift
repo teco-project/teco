@@ -146,7 +146,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
     ///
-    /// - Returns: `AsyncSequence`s of `AgentVul` and `DescribeAgentVulsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AgentVul`` and ``DescribeAgentVulsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentVulsPaginator(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentVulsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentVuls, logger: logger, on: eventLoop)

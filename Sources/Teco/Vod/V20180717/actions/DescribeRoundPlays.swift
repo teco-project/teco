@@ -137,7 +137,7 @@ extension Vod {
     ///
     /// 该接口用于获取轮播播单列表。
     ///
-    /// - Returns: `AsyncSequence`s of `RoundPlayInfo` and `DescribeRoundPlaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RoundPlayInfo`` and ``DescribeRoundPlaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRoundPlaysPaginator(_ input: DescribeRoundPlaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRoundPlaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoundPlays, logger: logger, on: eventLoop)

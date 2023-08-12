@@ -142,7 +142,7 @@ extension Cvm {
     ///
     /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
     ///
-    /// - Returns: `AsyncSequence`s of `HostItem` and `DescribeHostsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HostItem`` and ``DescribeHostsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostsPaginator(_ input: DescribeHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHosts, logger: logger, on: eventLoop)

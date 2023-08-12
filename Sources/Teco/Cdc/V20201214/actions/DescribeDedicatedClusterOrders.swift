@@ -133,7 +133,7 @@ extension Cdc {
 
     /// 查询专用集群订单列表
     ///
-    /// - Returns: `AsyncSequence`s of `DedicatedClusterOrder` and `DescribeDedicatedClusterOrdersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DedicatedClusterOrder`` and ``DescribeDedicatedClusterOrdersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDedicatedClusterOrdersPaginator(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterOrdersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)

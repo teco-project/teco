@@ -124,7 +124,7 @@ extension Tem {
 
     /// 查询分页的日志收集配置列表
     ///
-    /// - Returns: `AsyncSequence`s of `LogConfig` and `DescribePagedLogConfigListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LogConfig`` and ``DescribePagedLogConfigListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePagedLogConfigListPaginator(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePagedLogConfigListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePagedLogConfigList, logger: logger, on: eventLoop)

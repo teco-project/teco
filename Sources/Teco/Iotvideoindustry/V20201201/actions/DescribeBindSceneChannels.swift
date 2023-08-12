@@ -120,7 +120,7 @@ extension Iotvideoindustry {
 
     /// 获取场景绑定通道列表
     ///
-    /// - Returns: `AsyncSequence`s of `ChannelItem` and `DescribeBindSceneChannelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ChannelItem`` and ``DescribeBindSceneChannelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBindSceneChannelsPaginator(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindSceneChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindSceneChannels, logger: logger, on: eventLoop)

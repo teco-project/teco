@@ -169,7 +169,7 @@ extension Ssl {
     ///
     /// 查询证书clb云资源部署实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `ClbInstanceDetail` and `DescribeHostClbInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClbInstanceDetail`` and ``DescribeHostClbInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostClbInstanceListPaginator(_ input: DescribeHostClbInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostClbInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostClbInstanceList, logger: logger, on: eventLoop)

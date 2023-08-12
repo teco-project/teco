@@ -172,7 +172,7 @@ extension Cynosdb {
     ///
     /// 查询用户指定产品下的所有参数模板信息
     ///
-    /// - Returns: `AsyncSequence`s of `ParamTemplateListInfo` and `DescribeParamTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ParamTemplateListInfo`` and ``DescribeParamTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeParamTemplatesPaginator(_ input: DescribeParamTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeParamTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeParamTemplates, logger: logger, on: eventLoop)

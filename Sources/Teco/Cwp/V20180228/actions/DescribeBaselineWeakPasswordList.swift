@@ -127,7 +127,7 @@ extension Cwp {
 
     /// 获取基线弱口令列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineWeakPassword` and `DescribeBaselineWeakPasswordListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineWeakPassword`` and ``DescribeBaselineWeakPasswordListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineWeakPasswordListPaginator(_ input: DescribeBaselineWeakPasswordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineWeakPasswordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineWeakPasswordList, logger: logger, on: eventLoop)

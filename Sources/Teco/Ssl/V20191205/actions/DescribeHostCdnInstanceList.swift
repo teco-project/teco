@@ -160,7 +160,7 @@ extension Ssl {
 
     /// 查询证书cdn云资源部署实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `CdnInstanceDetail` and `DescribeHostCdnInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CdnInstanceDetail`` and ``DescribeHostCdnInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostCdnInstanceListPaginator(_ input: DescribeHostCdnInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostCdnInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostCdnInstanceList, logger: logger, on: eventLoop)

@@ -165,7 +165,7 @@ extension Teo {
     ///
     /// 查询加速域名列表，支持搜索、分页、排序、过滤。
     ///
-    /// - Returns: `AsyncSequence`s of `AccelerationDomain` and `DescribeAccelerationDomainsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AccelerationDomain`` and ``DescribeAccelerationDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccelerationDomainsPaginator(_ input: DescribeAccelerationDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccelerationDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccelerationDomains, logger: logger, on: eventLoop)

@@ -142,7 +142,7 @@ extension Es {
     ///
     /// 查询实例指定条件下的操作记录
     ///
-    /// - Returns: `AsyncSequence`s of `Operation` and `DescribeInstanceOperationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Operation`` and ``DescribeInstanceOperationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceOperationsPaginator(_ input: DescribeInstanceOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceOperationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceOperations, logger: logger, on: eventLoop)
