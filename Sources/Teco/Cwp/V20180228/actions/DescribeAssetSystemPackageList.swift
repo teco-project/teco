@@ -98,7 +98,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetSystemPackageInfo`` list from the paginated response.
         public func getItems() -> [AssetSystemPackageInfo] {
             self.packages ?? []
         }
@@ -147,7 +147,7 @@ extension Cwp {
 
     /// 获取资产管理系统安装包列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssetSystemPackageInfo` and `DescribeAssetSystemPackageListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssetSystemPackageInfo`` and ``DescribeAssetSystemPackageListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetSystemPackageListPaginator(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetSystemPackageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetSystemPackageList, logger: logger, on: eventLoop)

@@ -94,7 +94,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BundleSetOpt`` list from the paginated response.
         public func getItems() -> [BundleSetOpt] {
             self.bundleSet
         }
@@ -143,7 +143,7 @@ extension Tdmq {
 
     /// 运营端获取命名空间bundle列表
     ///
-    /// - Returns: `AsyncSequence`s of `BundleSetOpt` and `DescribeNamespaceBundlesOptResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BundleSetOpt`` and ``DescribeNamespaceBundlesOptResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNamespaceBundlesOptPaginator(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespaceBundlesOptRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaceBundlesOpt, logger: logger, on: eventLoop)

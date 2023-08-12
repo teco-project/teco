@@ -74,7 +74,7 @@ extension Trro {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``License`` list from the paginated response.
         public func getItems() -> [License] {
             self.licenses
         }
@@ -137,7 +137,7 @@ extension Trro {
     ///
     /// 按授权查看license列表
     ///
-    /// - Returns: `AsyncSequence`s of `License` and `GetLicensesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``License`` and ``GetLicensesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getLicensesPaginator(_ input: GetLicensesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLicensesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLicenses, logger: logger, on: eventLoop)

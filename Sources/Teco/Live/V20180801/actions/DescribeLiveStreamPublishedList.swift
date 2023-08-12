@@ -110,7 +110,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``StreamName`` list from the paginated response.
         public func getItems() -> [StreamName] {
             self.publishInfo
         }
@@ -180,7 +180,7 @@ extension Live {
     /// 返回已经推过流的流列表。<br>
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     ///
-    /// - Returns: `AsyncSequence`s of `StreamName` and `DescribeLiveStreamPublishedListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``StreamName`` and ``DescribeLiveStreamPublishedListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveStreamPublishedListPaginator(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamPublishedListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)

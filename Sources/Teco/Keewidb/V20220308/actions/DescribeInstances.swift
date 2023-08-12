@@ -160,7 +160,7 @@ extension Keewidb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceInfo`` list from the paginated response.
         public func getItems() -> [InstanceInfo] {
             self.instanceSet
         }
@@ -223,7 +223,7 @@ extension Keewidb {
     ///
     /// 本接口（DescribeInstances）可以根据地域、网络、实例id、标签、计费方式等条件，搜索查询实例列表。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceInfo` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceInfo`` and ``DescribeInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

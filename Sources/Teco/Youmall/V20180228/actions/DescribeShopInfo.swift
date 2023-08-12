@@ -64,7 +64,7 @@ extension Youmall {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ShopInfo`` list from the paginated response.
         public func getItems() -> [ShopInfo] {
             self.shopInfoSet
         }
@@ -127,7 +127,7 @@ extension Youmall {
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `ShopInfo` and `DescribeShopInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ShopInfo`` and ``DescribeShopInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeShopInfoPaginator(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShopInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)

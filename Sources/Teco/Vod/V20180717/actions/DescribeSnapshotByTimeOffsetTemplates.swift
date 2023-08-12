@@ -81,7 +81,7 @@ extension Vod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SnapshotByTimeOffsetTemplate`` list from the paginated response.
         public func getItems() -> [SnapshotByTimeOffsetTemplate] {
             self.snapshotByTimeOffsetTemplateSet
         }
@@ -144,7 +144,7 @@ extension Vod {
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `SnapshotByTimeOffsetTemplate` and `DescribeSnapshotByTimeOffsetTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SnapshotByTimeOffsetTemplate`` and ``DescribeSnapshotByTimeOffsetTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotByTimeOffsetTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)

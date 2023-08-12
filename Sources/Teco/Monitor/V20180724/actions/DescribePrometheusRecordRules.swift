@@ -74,7 +74,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrometheusRecordRuleYamlItem`` list from the paginated response.
         public func getItems() -> [PrometheusRecordRuleYamlItem] {
             self.records
         }
@@ -137,7 +137,7 @@ extension Monitor {
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusRecordRuleYamlItem` and `DescribePrometheusRecordRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusRecordRuleYamlItem`` and ``DescribePrometheusRecordRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusRecordRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)

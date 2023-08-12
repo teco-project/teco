@@ -98,7 +98,7 @@ extension Mongodb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``String`` list from the paginated response.
         public func getItems() -> [String] {
             self.slowLogs ?? []
         }
@@ -161,7 +161,7 @@ extension Mongodb {
     ///
     /// 本接口（DescribeSlowLogs）用于获取云数据库慢日志信息。接口只支持查询最近7天内慢日志。
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `DescribeSlowLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``DescribeSlowLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)

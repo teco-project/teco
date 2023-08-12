@@ -140,7 +140,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BGPIPInstance`` list from the paginated response.
         public func getItems() -> [BGPIPInstance] {
             self.instanceList
         }
@@ -189,7 +189,7 @@ extension Antiddos {
 
     /// 获取高防IP资产实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `BGPIPInstance` and `DescribeListBGPIPInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BGPIPInstance`` and ``DescribeListBGPIPInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListBGPIPInstancesPaginator(_ input: DescribeListBGPIPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBGPIPInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBGPIPInstances, logger: logger, on: eventLoop)

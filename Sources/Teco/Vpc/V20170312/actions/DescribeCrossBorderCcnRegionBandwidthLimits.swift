@@ -70,7 +70,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CcnBandwidth`` list from the paginated response.
         public func getItems() -> [CcnBandwidth] {
             self.ccnBandwidthSet
         }
@@ -147,7 +147,7 @@ extension Vpc {
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（DescribeTenantCcns）
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     ///
-    /// - Returns: `AsyncSequence`s of `CcnBandwidth` and `DescribeCrossBorderCcnRegionBandwidthLimitsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CcnBandwidth`` and ``DescribeCrossBorderCcnRegionBandwidthLimitsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCrossBorderCcnRegionBandwidthLimitsPaginator(_ input: DescribeCrossBorderCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCrossBorderCcnRegionBandwidthLimitsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCrossBorderCcnRegionBandwidthLimits, logger: logger, on: eventLoop)

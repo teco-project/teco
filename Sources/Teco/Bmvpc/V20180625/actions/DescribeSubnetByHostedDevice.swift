@@ -74,7 +74,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SubnetInfo`` list from the paginated response.
         public func getItems() -> [SubnetInfo] {
             self.data
         }
@@ -137,7 +137,7 @@ extension Bmvpc {
     ///
     /// 托管可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询托管加入的子网。
     ///
-    /// - Returns: `AsyncSequence`s of `SubnetInfo` and `DescribeSubnetByHostedDeviceResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SubnetInfo`` and ``DescribeSubnetByHostedDeviceResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubnetByHostedDevicePaginator(_ input: DescribeSubnetByHostedDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetByHostedDeviceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnetByHostedDevice, logger: logger, on: eventLoop)

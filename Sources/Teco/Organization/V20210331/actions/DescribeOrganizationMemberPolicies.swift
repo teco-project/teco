@@ -76,7 +76,7 @@ extension Organization {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``OrgMemberPolicy`` list from the paginated response.
         public func getItems() -> [OrgMemberPolicy] {
             self.items ?? []
         }
@@ -125,7 +125,7 @@ extension Organization {
 
     /// 获取组织成员的授权策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `OrgMemberPolicy` and `DescribeOrganizationMemberPoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``OrgMemberPolicy`` and ``DescribeOrganizationMemberPoliciesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationMemberPoliciesPaginator(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberPolicies, logger: logger, on: eventLoop)

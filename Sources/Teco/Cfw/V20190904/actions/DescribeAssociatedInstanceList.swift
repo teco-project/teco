@@ -96,7 +96,7 @@ extension Cfw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssociatedInstanceInfo`` list from the paginated response.
         public func getItems() -> [AssociatedInstanceInfo] {
             self.data ?? []
         }
@@ -145,7 +145,7 @@ extension Cfw {
 
     /// 获取安全组关联实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssociatedInstanceInfo` and `DescribeAssociatedInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssociatedInstanceInfo`` and ``DescribeAssociatedInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssociatedInstanceListPaginator(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssociatedInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)

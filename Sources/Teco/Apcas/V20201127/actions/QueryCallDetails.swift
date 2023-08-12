@@ -75,7 +75,7 @@ extension Apcas {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CallDetailItem`` list from the paginated response.
         public func getItems() -> [CallDetailItem] {
             self.callDetails.callDetailSet
         }
@@ -124,7 +124,7 @@ extension Apcas {
 
     /// 查询调用明细
     ///
-    /// - Returns: `AsyncSequence`s of `CallDetailItem` and `QueryCallDetailsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CallDetailItem`` and ``QueryCallDetailsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryCallDetailsPaginator(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCallDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCallDetails, logger: logger, on: eventLoop)

@@ -119,7 +119,7 @@ extension Pts {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Job`` list from the paginated response.
         public func getItems() -> [Job] {
             self.jobSet ?? []
         }
@@ -168,7 +168,7 @@ extension Pts {
 
     /// 查询任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `Job` and `DescribeJobsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Job`` and ``DescribeJobsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeJobsPaginator(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)

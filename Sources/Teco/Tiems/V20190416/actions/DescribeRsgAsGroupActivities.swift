@@ -95,7 +95,7 @@ extension Tiems {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RsgAsGroupActivity`` list from the paginated response.
         public func getItems() -> [RsgAsGroupActivity] {
             self.rsgAsGroupActivitySet ?? []
         }
@@ -150,7 +150,7 @@ extension Tiems {
 
     /// 查询伸缩组活动
     ///
-    /// - Returns: `AsyncSequence`s of `RsgAsGroupActivity` and `DescribeRsgAsGroupActivitiesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RsgAsGroupActivity`` and ``DescribeRsgAsGroupActivitiesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupActivitiesPaginator(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRsgAsGroupActivitiesRequest> {

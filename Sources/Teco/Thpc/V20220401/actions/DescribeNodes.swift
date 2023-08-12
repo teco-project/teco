@@ -74,7 +74,7 @@ extension Thpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NodeOverview`` list from the paginated response.
         public func getItems() -> [NodeOverview] {
             self.nodeSet
         }
@@ -137,7 +137,7 @@ extension Thpc {
     ///
     /// 本接口 (DescribeNodes) 用于查询指定集群节点概览信息列表。
     ///
-    /// - Returns: `AsyncSequence`s of `NodeOverview` and `DescribeNodesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NodeOverview`` and ``DescribeNodesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNodesPaginator(_ input: DescribeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNodes, logger: logger, on: eventLoop)

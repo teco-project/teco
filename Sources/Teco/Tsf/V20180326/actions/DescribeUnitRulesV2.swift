@@ -76,7 +76,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UnitRule`` list from the paginated response.
         public func getItems() -> [UnitRule] {
             self.result?.content ?? []
         }
@@ -125,7 +125,7 @@ extension Tsf {
 
     /// 查询单元化规则列表V2
     ///
-    /// - Returns: `AsyncSequence`s of `UnitRule` and `DescribeUnitRulesV2Response` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UnitRule`` and ``DescribeUnitRulesV2Response`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUnitRulesV2Paginator(_ input: DescribeUnitRulesV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnitRulesV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitRulesV2, logger: logger, on: eventLoop)

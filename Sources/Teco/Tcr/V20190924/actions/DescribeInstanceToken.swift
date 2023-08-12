@@ -69,7 +69,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TcrInstanceToken`` list from the paginated response.
         public func getItems() -> [TcrInstanceToken] {
             self.tokens
         }
@@ -118,7 +118,7 @@ extension Tcr {
 
     /// 查询长期访问凭证信息
     ///
-    /// - Returns: `AsyncSequence`s of `TcrInstanceToken` and `DescribeInstanceTokenResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TcrInstanceToken`` and ``DescribeInstanceTokenResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceTokenPaginator(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceTokenRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceToken, logger: logger, on: eventLoop)

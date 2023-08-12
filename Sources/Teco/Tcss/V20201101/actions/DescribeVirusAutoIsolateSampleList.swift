@@ -82,7 +82,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VirusAutoIsolateSampleInfo`` list from the paginated response.
         public func getItems() -> [VirusAutoIsolateSampleInfo] {
             self.list
         }
@@ -131,7 +131,7 @@ extension Tcss {
 
     /// 查询木马自动隔离样本列表
     ///
-    /// - Returns: `AsyncSequence`s of `VirusAutoIsolateSampleInfo` and `DescribeVirusAutoIsolateSampleListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VirusAutoIsolateSampleInfo`` and ``DescribeVirusAutoIsolateSampleListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVirusAutoIsolateSampleListPaginator(_ input: DescribeVirusAutoIsolateSampleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusAutoIsolateSampleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusAutoIsolateSampleList, logger: logger, on: eventLoop)

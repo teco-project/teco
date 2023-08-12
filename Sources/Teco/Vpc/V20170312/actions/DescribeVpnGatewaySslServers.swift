@@ -84,7 +84,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SslVpnSever`` list from the paginated response.
         public func getItems() -> [SslVpnSever] {
             self.sslVpnSeverSet
         }
@@ -147,7 +147,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpnGatewaySslServers）用于查询SSL-VPN SERVER 列表信息。
     ///
-    /// - Returns: `AsyncSequence`s of `SslVpnSever` and `DescribeVpnGatewaySslServersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SslVpnSever`` and ``DescribeVpnGatewaySslServersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewaySslServersPaginator(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)

@@ -120,7 +120,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BackupFileInfo`` list from the paginated response.
         public func getItems() -> [BackupFileInfo] {
             self.backupList
         }
@@ -169,7 +169,7 @@ extension Cynosdb {
 
     /// 查询备份文件列表
     ///
-    /// - Returns: `AsyncSequence`s of `BackupFileInfo` and `DescribeBackupListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BackupFileInfo`` and ``DescribeBackupListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupListPaginator(_ input: DescribeBackupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupList, logger: logger, on: eventLoop)

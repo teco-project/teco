@@ -128,7 +128,7 @@ extension Scf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FunctionLog`` list from the paginated response.
         public func getItems() -> [FunctionLog] {
             self.data
         }
@@ -191,7 +191,7 @@ extension Scf {
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     ///
-    /// - Returns: `AsyncSequence`s of `FunctionLog` and `GetFunctionLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FunctionLog`` and ``GetFunctionLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getFunctionLogsPaginator(_ input: GetFunctionLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetFunctionLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getFunctionLogs, logger: logger, on: eventLoop)

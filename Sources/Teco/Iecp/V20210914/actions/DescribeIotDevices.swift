@@ -84,7 +84,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``IotDevicesInfo`` list from the paginated response.
         public func getItems() -> [IotDevicesInfo] {
             self.deviceSet
         }
@@ -133,7 +133,7 @@ extension Iecp {
 
     /// 获取设备列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `IotDevicesInfo` and `DescribeIotDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IotDevicesInfo`` and ``DescribeIotDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIotDevicesPaginator(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIotDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)

@@ -79,7 +79,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Asset`` list from the paginated response.
         public func getItems() -> [Asset] {
             self.assets
         }
@@ -148,7 +148,7 @@ extension Gse {
     ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Asset` and `DescribeAssetsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Asset`` and ``DescribeAssetsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetsPaginator(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetsRequest> {

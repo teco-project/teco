@@ -84,7 +84,7 @@ extension Dasb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``User`` list from the paginated response.
         public func getItems() -> [User] {
             self.userSet
         }
@@ -133,7 +133,7 @@ extension Dasb {
 
     /// 查询用户组成员列表
     ///
-    /// - Returns: `AsyncSequence`s of `User` and `DescribeUserGroupMembersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``User`` and ``DescribeUserGroupMembersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserGroupMembersPaginator(_ input: DescribeUserGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserGroupMembersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserGroupMembers, logger: logger, on: eventLoop)

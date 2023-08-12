@@ -79,7 +79,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WebhookTriggerLog`` list from the paginated response.
         public func getItems() -> [WebhookTriggerLog] {
             self.logs
         }
@@ -128,7 +128,7 @@ extension Tcr {
 
     /// 获取触发器日志
     ///
-    /// - Returns: `AsyncSequence`s of `WebhookTriggerLog` and `DescribeWebhookTriggerLogResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WebhookTriggerLog`` and ``DescribeWebhookTriggerLogResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebhookTriggerLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)

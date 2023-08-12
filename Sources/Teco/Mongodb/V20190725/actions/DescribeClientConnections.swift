@@ -69,7 +69,7 @@ extension Mongodb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ClientConnection`` list from the paginated response.
         public func getItems() -> [ClientConnection] {
             self.clients
         }
@@ -132,7 +132,7 @@ extension Mongodb {
     ///
     /// 本接口（DescribeClientConnections）用于查询实例客户端连接信息，包括连接 IP 和连接数量。
     ///
-    /// - Returns: `AsyncSequence`s of `ClientConnection` and `DescribeClientConnectionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClientConnection`` and ``DescribeClientConnectionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClientConnectionsPaginator(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)

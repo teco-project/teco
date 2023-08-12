@@ -93,7 +93,7 @@ extension Tdcpg {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Instance`` list from the paginated response.
         public func getItems() -> [Instance] {
             self.instanceSet
         }
@@ -142,7 +142,7 @@ extension Tdcpg {
 
     /// 查询实例
     ///
-    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeClusterInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Instance`` and ``DescribeClusterInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterInstancesPaginator(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterInstances, logger: logger, on: eventLoop)

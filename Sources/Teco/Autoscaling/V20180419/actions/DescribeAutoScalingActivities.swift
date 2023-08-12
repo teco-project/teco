@@ -97,7 +97,7 @@ extension As {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Activity`` list from the paginated response.
         public func getItems() -> [Activity] {
             self.activitySet
         }
@@ -160,7 +160,7 @@ extension As {
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     ///
-    /// - Returns: `AsyncSequence`s of `Activity` and `DescribeAutoScalingActivitiesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Activity`` and ``DescribeAutoScalingActivitiesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAutoScalingActivitiesPaginator(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoScalingActivitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoScalingActivities, logger: logger, on: eventLoop)

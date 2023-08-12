@@ -79,7 +79,7 @@ extension Rum {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RumAreaInfo`` list from the paginated response.
         public func getItems() -> [RumAreaInfo] {
             self.areaSet
         }
@@ -128,7 +128,7 @@ extension Rum {
 
     /// 查询片区信息
     ///
-    /// - Returns: `AsyncSequence`s of `RumAreaInfo` and `DescribeTawAreasResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RumAreaInfo`` and ``DescribeTawAreasResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTawAreasPaginator(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawAreasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)

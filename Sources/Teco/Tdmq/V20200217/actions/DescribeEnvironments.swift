@@ -82,7 +82,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Environment`` list from the paginated response.
         public func getItems() -> [Environment] {
             self.environmentSet
         }
@@ -145,7 +145,7 @@ extension Tdmq {
     ///
     /// 获取租户下命名空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `Environment` and `DescribeEnvironmentsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Environment`` and ``DescribeEnvironmentsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEnvironmentsPaginator(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEnvironmentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)

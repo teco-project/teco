@@ -79,7 +79,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RiskSyscallWhiteListBaseInfo`` list from the paginated response.
         public func getItems() -> [RiskSyscallWhiteListBaseInfo] {
             self.whiteListSet
         }
@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 查询运行时高危系统调用白名单列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `RiskSyscallWhiteListBaseInfo` and `DescribeRiskSyscallWhiteListsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RiskSyscallWhiteListBaseInfo`` and ``DescribeRiskSyscallWhiteListsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRiskSyscallWhiteListsPaginator(_ input: DescribeRiskSyscallWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskSyscallWhiteListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskSyscallWhiteLists, logger: logger, on: eventLoop)

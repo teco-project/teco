@@ -70,7 +70,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BindApiInfo`` list from the paginated response.
         public func getItems() -> [BindApiInfo] {
             self.result.bindApiSet
         }
@@ -119,7 +119,7 @@ extension Apigateway {
 
     /// 查询后端通道所绑定的API列表
     ///
-    /// - Returns: `AsyncSequence`s of `BindApiInfo` and `DescribeUpstreamBindApisResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BindApiInfo`` and ``DescribeUpstreamBindApisResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUpstreamBindApisPaginator(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamBindApisRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)

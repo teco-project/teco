@@ -123,7 +123,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``StdoutLogV2`` list from the paginated response.
         public func getItems() -> [StdoutLogV2] {
             self.result?.content ?? []
         }
@@ -172,7 +172,7 @@ extension Tsf {
 
     /// 标准输出日志搜索
     ///
-    /// - Returns: `AsyncSequence`s of `StdoutLogV2` and `SearchStdoutLogResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``StdoutLogV2`` and ``SearchStdoutLogResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchStdoutLogPaginator(_ input: SearchStdoutLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchStdoutLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchStdoutLog, logger: logger, on: eventLoop)

@@ -96,7 +96,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApplicationForPage`` list from the paginated response.
         public func getItems() -> [ApplicationForPage] {
             self.result?.content ?? []
         }
@@ -145,7 +145,7 @@ extension Tsf {
 
     /// 获取应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `ApplicationForPage` and `DescribeApplicationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApplicationForPage`` and ``DescribeApplicationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationsPaginator(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplications, logger: logger, on: eventLoop)

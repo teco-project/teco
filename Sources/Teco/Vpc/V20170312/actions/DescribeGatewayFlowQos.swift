@@ -77,7 +77,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GatewayQos`` list from the paginated response.
         public func getItems() -> [GatewayQos] {
             self.gatewayQosSet
         }
@@ -140,7 +140,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
     ///
-    /// - Returns: `AsyncSequence`s of `GatewayQos` and `DescribeGatewayFlowQosResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GatewayQos`` and ``DescribeGatewayFlowQosResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGatewayFlowQosPaginator(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayFlowQosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayFlowQos, logger: logger, on: eventLoop)

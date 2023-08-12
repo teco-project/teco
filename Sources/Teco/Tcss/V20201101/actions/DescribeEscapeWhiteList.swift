@@ -82,7 +82,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EscapeWhiteListInfo`` list from the paginated response.
         public func getItems() -> [EscapeWhiteListInfo] {
             self.list
         }
@@ -131,7 +131,7 @@ extension Tcss {
 
     /// 查询逃逸白名单
     ///
-    /// - Returns: `AsyncSequence`s of `EscapeWhiteListInfo` and `DescribeEscapeWhiteListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EscapeWhiteListInfo`` and ``DescribeEscapeWhiteListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEscapeWhiteListPaginator(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEscapeWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)

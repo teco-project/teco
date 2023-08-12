@@ -89,7 +89,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``K8sApiAbnormalEventListItem`` list from the paginated response.
         public func getItems() -> [K8sApiAbnormalEventListItem] {
             self.list
         }
@@ -138,7 +138,7 @@ extension Tcss {
 
     /// 查询k8s api异常事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `K8sApiAbnormalEventListItem` and `DescribeK8sApiAbnormalEventListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``K8sApiAbnormalEventListItem`` and ``DescribeK8sApiAbnormalEventListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeK8sApiAbnormalEventListPaginator(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalEventList, logger: logger, on: eventLoop)

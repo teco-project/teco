@@ -125,7 +125,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LivePackageInfo`` list from the paginated response.
         public func getItems() -> [LivePackageInfo] {
             self.livePackageInfoList ?? []
         }
@@ -188,7 +188,7 @@ extension Live {
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     ///
-    /// - Returns: `AsyncSequence`s of `LivePackageInfo` and `DescribeLivePackageInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LivePackageInfo`` and ``DescribeLivePackageInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLivePackageInfoPaginator(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLivePackageInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)

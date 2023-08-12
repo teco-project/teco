@@ -69,7 +69,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExpertServiceOrderInfo`` list from the paginated response.
         public func getItems() -> [ExpertServiceOrderInfo] {
             self.list
         }
@@ -132,7 +132,7 @@ extension Cwp {
     ///
     /// 专家服务-专家服务订单列表
     ///
-    /// - Returns: `AsyncSequence`s of `ExpertServiceOrderInfo` and `DescribeExpertServiceOrderListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExpertServiceOrderInfo`` and ``DescribeExpertServiceOrderListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExpertServiceOrderListPaginator(_ input: DescribeExpertServiceOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExpertServiceOrderListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExpertServiceOrderList, logger: logger, on: eventLoop)

@@ -71,7 +71,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WorkFlowExecuteDto`` list from the paginated response.
         public func getItems() -> [WorkFlowExecuteDto] {
             self.data?.items ?? []
         }
@@ -120,7 +120,7 @@ extension Wedata {
 
     /// 查询工作流画布运行起止时间
     ///
-    /// - Returns: `AsyncSequence`s of `WorkFlowExecuteDto` and `DescribeWorkflowExecuteByIdResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WorkFlowExecuteDto`` and ``DescribeWorkflowExecuteByIdResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWorkflowExecuteByIdPaginator(_ input: DescribeWorkflowExecuteByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkflowExecuteByIdRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkflowExecuteById, logger: logger, on: eventLoop)

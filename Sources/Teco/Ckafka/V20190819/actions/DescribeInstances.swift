@@ -85,7 +85,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Instance`` list from the paginated response.
         public func getItems() -> [Instance] {
             self.result.instanceList ?? []
         }
@@ -148,7 +148,7 @@ extension Ckafka {
     ///
     /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Instance`` and ``DescribeInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

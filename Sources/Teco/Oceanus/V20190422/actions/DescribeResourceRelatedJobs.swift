@@ -84,7 +84,7 @@ extension Oceanus {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceRefJobInfo`` list from the paginated response.
         public func getItems() -> [ResourceRefJobInfo] {
             self.refJobInfos
         }
@@ -133,7 +133,7 @@ extension Oceanus {
 
     /// 获取资源关联作业信息
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceRefJobInfo` and `DescribeResourceRelatedJobsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceRefJobInfo`` and ``DescribeResourceRelatedJobsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourceRelatedJobsPaginator(_ input: DescribeResourceRelatedJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceRelatedJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceRelatedJobs, logger: logger, on: eventLoop)

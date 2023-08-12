@@ -84,7 +84,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExtensionInfo`` list from the paginated response.
         public func getItems() -> [ExtensionInfo] {
             self.extensionList
         }
@@ -133,7 +133,7 @@ extension Ccc {
 
     /// 查询话机列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ExtensionInfo` and `DescribeExtensionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExtensionInfo`` and ``DescribeExtensionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExtensionsPaginator(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExtensionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExtensions, logger: logger, on: eventLoop)

@@ -66,7 +66,7 @@ extension Tiia {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupInfo`` list from the paginated response.
         public func getItems() -> [GroupInfo] {
             self.groups ?? []
         }
@@ -145,7 +145,7 @@ extension Tiia {
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     ///
-    /// - Returns: `AsyncSequence`s of `GroupInfo` and `DescribeGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupInfo`` and ``DescribeGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)

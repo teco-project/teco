@@ -90,7 +90,7 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LogData`` list from the paginated response.
         public func getItems() -> [LogData] {
             self.data ?? []
         }
@@ -160,7 +160,7 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     ///
-    /// - Returns: `AsyncSequence`s of `LogData` and `DescribeLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LogData`` and ``DescribeLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLogsPaginator(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)

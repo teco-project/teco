@@ -78,7 +78,7 @@ extension Omics {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Run`` list from the paginated response.
         public func getItems() -> [Run] {
             self.runs
         }
@@ -141,7 +141,7 @@ extension Omics {
     ///
     /// 查询任务列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Run` and `DescribeRunsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Run`` and ``DescribeRunsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRunsPaginator(_ input: DescribeRunsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRunsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuns, logger: logger, on: eventLoop)

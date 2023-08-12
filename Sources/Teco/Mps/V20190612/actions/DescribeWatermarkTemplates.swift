@@ -78,7 +78,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WatermarkTemplate`` list from the paginated response.
         public func getItems() -> [WatermarkTemplate] {
             self.watermarkTemplateSet
         }
@@ -141,7 +141,7 @@ extension Mps {
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `WatermarkTemplate` and `DescribeWatermarkTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WatermarkTemplate`` and ``DescribeWatermarkTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWatermarkTemplatesPaginator(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWatermarkTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)

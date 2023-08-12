@@ -148,7 +148,7 @@ extension Tiia {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImageInfo`` list from the paginated response.
         public func getItems() -> [ImageInfo] {
             self.imageInfos ?? []
         }
@@ -232,7 +232,7 @@ extension Tiia {
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     ///
-    /// - Returns: `AsyncSequence`s of `ImageInfo` and `SearchImageResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageInfo`` and ``SearchImageResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchImagePaginator(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchImageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)

@@ -79,7 +79,7 @@ extension Tcaplusdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TableInfoNew`` list from the paginated response.
         public func getItems() -> [TableInfoNew] {
             self.tableInfos
         }
@@ -128,7 +128,7 @@ extension Tcaplusdb {
 
     /// 查询回收站中的表详情
     ///
-    /// - Returns: `AsyncSequence`s of `TableInfoNew` and `DescribeTablesInRecycleResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TableInfoNew`` and ``DescribeTablesInRecycleResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTablesInRecyclePaginator(_ input: DescribeTablesInRecycleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTablesInRecycleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTablesInRecycle, logger: logger, on: eventLoop)

@@ -71,7 +71,7 @@ extension Cdn {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ScdnDomain`` list from the paginated response.
         public func getItems() -> [ScdnDomain] {
             self.domainList ?? []
         }
@@ -134,7 +134,7 @@ extension Cdn {
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
     ///
-    /// - Returns: `AsyncSequence`s of `ScdnDomain` and `ListScdnDomainsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ScdnDomain`` and ``ListScdnDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listScdnDomainsPaginator(_ input: ListScdnDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListScdnDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listScdnDomains, logger: logger, on: eventLoop)

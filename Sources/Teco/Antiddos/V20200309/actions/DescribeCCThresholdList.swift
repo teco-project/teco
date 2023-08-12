@@ -74,7 +74,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CCThresholdPolicy`` list from the paginated response.
         public func getItems() -> [CCThresholdPolicy] {
             self.thresholdList
         }
@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取CC清洗阈值列表
     ///
-    /// - Returns: `AsyncSequence`s of `CCThresholdPolicy` and `DescribeCCThresholdListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CCThresholdPolicy`` and ``DescribeCCThresholdListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCCThresholdListPaginator(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCThresholdListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)

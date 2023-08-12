@@ -98,7 +98,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AuditLog`` list from the paginated response.
         public func getItems() -> [AuditLog] {
             self.items ?? []
         }
@@ -161,7 +161,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     ///
-    /// - Returns: `AsyncSequence`s of `AuditLog` and `DescribeAuditLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditLog`` and ``DescribeAuditLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditLogsPaginator(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)

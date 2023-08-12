@@ -76,7 +76,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Folder`` list from the paginated response.
         public func getItems() -> [Folder] {
             self.data?.items ?? []
         }
@@ -146,7 +146,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 拉取文件夹目录
     ///
-    /// - Returns: `AsyncSequence`s of `Folder` and `DescribeFolderListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Folder`` and ``DescribeFolderListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFolderListPaginator(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFolderListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFolderList, logger: logger, on: eventLoop)

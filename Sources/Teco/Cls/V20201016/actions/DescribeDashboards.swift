@@ -111,7 +111,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DashboardInfo`` list from the paginated response.
         public func getItems() -> [DashboardInfo] {
             self.dashboardInfos
         }
@@ -174,7 +174,7 @@ extension Cls {
     ///
     /// 本接口用于获取仪表盘
     ///
-    /// - Returns: `AsyncSequence`s of `DashboardInfo` and `DescribeDashboardsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DashboardInfo`` and ``DescribeDashboardsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDashboardsPaginator(_ input: DescribeDashboardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDashboardsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDashboards, logger: logger, on: eventLoop)

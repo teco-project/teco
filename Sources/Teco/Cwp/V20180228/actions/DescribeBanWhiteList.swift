@@ -70,7 +70,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BanWhiteListDetail`` list from the paginated response.
         public func getItems() -> [BanWhiteListDetail] {
             self.whiteList
         }
@@ -119,7 +119,7 @@ extension Cwp {
 
     /// 获取阻断白名单列表
     ///
-    /// - Returns: `AsyncSequence`s of `BanWhiteListDetail` and `DescribeBanWhiteListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BanWhiteListDetail`` and ``DescribeBanWhiteListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBanWhiteListPaginator(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBanWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)

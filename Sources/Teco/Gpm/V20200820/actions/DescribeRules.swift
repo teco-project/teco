@@ -96,7 +96,7 @@ extension Gpm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RuleBriefInfo`` list from the paginated response.
         public func getItems() -> [RuleBriefInfo] {
             self.ruleInfoList ?? []
         }
@@ -151,7 +151,7 @@ extension Gpm {
 
     /// 分页查询规则集列表
     ///
-    /// - Returns: `AsyncSequence`s of `RuleBriefInfo` and `DescribeRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RuleBriefInfo`` and ``DescribeRulesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeRulesPaginator(_ input: DescribeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRulesRequest> {

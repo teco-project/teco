@@ -77,7 +77,7 @@ extension Yunjing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MaliciousRequest`` list from the paginated response.
         public func getItems() -> [MaliciousRequest] {
             self.maliciousRequests
         }
@@ -140,7 +140,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
     ///
-    /// - Returns: `AsyncSequence`s of `MaliciousRequest` and `DescribeMaliciousRequestsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MaliciousRequest`` and ``DescribeMaliciousRequestsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMaliciousRequestsPaginator(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMaliciousRequestsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMaliciousRequests, logger: logger, on: eventLoop)

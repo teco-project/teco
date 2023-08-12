@@ -89,7 +89,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AiSamplePerson`` list from the paginated response.
         public func getItems() -> [AiSamplePerson] {
             self.personSet
         }
@@ -152,7 +152,7 @@ extension Mps {
     ///
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `AiSamplePerson` and `DescribePersonSamplesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AiSamplePerson`` and ``DescribePersonSamplesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePersonSamplesPaginator(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonSamplesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonSamples, logger: logger, on: eventLoop)

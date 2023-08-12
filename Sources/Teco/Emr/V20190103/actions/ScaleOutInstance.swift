@@ -211,7 +211,7 @@ extension Emr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``String`` list from the paginated response.
         public func getItems() -> [String] {
             self.dealNames ?? []
         }
@@ -269,7 +269,7 @@ extension Emr {
     ///
     /// 扩容节点
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `ScaleOutInstanceResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``ScaleOutInstanceResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ScaleOutInstanceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)

@@ -81,7 +81,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ScanIgnoreVul`` list from the paginated response.
         public func getItems() -> [ScanIgnoreVul] {
             self.list
         }
@@ -130,7 +130,7 @@ extension Tcss {
 
     /// 查询扫描忽略的漏洞列表
     ///
-    /// - Returns: `AsyncSequence`s of `ScanIgnoreVul` and `DescribeScanIgnoreVulListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ScanIgnoreVul`` and ``DescribeScanIgnoreVulListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScanIgnoreVulListPaginator(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanIgnoreVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanIgnoreVulList, logger: logger, on: eventLoop)

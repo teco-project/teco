@@ -70,7 +70,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GatewayDeployGroup`` list from the paginated response.
         public func getItems() -> [GatewayDeployGroup] {
             self.result.content
         }
@@ -119,7 +119,7 @@ extension Tsf {
 
     /// 查询某个API分组已绑定的网关部署组信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `GatewayDeployGroup` and `DescribeGroupBindedGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GatewayDeployGroup`` and ``DescribeGroupBindedGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGroupBindedGatewaysPaginator(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupBindedGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)

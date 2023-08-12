@@ -79,7 +79,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RetentionTask`` list from the paginated response.
         public func getItems() -> [RetentionTask] {
             self.retentionTaskList
         }
@@ -128,7 +128,7 @@ extension Tcr {
 
     /// 查询版本保留执行任务
     ///
-    /// - Returns: `AsyncSequence`s of `RetentionTask` and `DescribeTagRetentionExecutionTaskResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RetentionTask`` and ``DescribeTagRetentionExecutionTaskResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagRetentionExecutionTaskPaginator(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagRetentionExecutionTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionExecutionTask, logger: logger, on: eventLoop)

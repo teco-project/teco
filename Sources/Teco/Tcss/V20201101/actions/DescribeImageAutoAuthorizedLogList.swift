@@ -84,7 +84,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AutoAuthorizedImageInfo`` list from the paginated response.
         public func getItems() -> [AutoAuthorizedImageInfo] {
             self.list
         }
@@ -133,7 +133,7 @@ extension Tcss {
 
     /// 查询镜像自动授权结果列表
     ///
-    /// - Returns: `AsyncSequence`s of `AutoAuthorizedImageInfo` and `DescribeImageAutoAuthorizedLogListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AutoAuthorizedImageInfo`` and ``DescribeImageAutoAuthorizedLogListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageAutoAuthorizedLogListPaginator(_ input: DescribeImageAutoAuthorizedLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageAutoAuthorizedLogListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageAutoAuthorizedLogList, logger: logger, on: eventLoop)

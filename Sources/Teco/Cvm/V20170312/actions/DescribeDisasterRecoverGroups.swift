@@ -74,7 +74,7 @@ extension Cvm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DisasterRecoverGroup`` list from the paginated response.
         public func getItems() -> [DisasterRecoverGroup] {
             self.disasterRecoverGroupSet
         }
@@ -137,7 +137,7 @@ extension Cvm {
     ///
     /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DisasterRecoverGroup` and `DescribeDisasterRecoverGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DisasterRecoverGroup`` and ``DescribeDisasterRecoverGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDisasterRecoverGroupsPaginator(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDisasterRecoverGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDisasterRecoverGroups, logger: logger, on: eventLoop)

@@ -69,7 +69,7 @@ extension Bma {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ReportFakeURLInfo`` list from the paginated response.
         public func getItems() -> [ReportFakeURLInfo] {
             self.reportFakeURLInfos
         }
@@ -118,7 +118,7 @@ extension Bma {
 
     /// 查询举报列表
     ///
-    /// - Returns: `AsyncSequence`s of `ReportFakeURLInfo` and `DescribeBPReportFakeURLsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReportFakeURLInfo`` and ``DescribeBPReportFakeURLsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBPReportFakeURLsPaginator(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPReportFakeURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPReportFakeURLs, logger: logger, on: eventLoop)

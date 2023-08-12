@@ -69,7 +69,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NacosServerInterface`` list from the paginated response.
         public func getItems() -> [NacosServerInterface] {
             self.content
         }
@@ -118,7 +118,7 @@ extension Tse {
 
     /// 查询nacos服务接口列表
     ///
-    /// - Returns: `AsyncSequence`s of `NacosServerInterface` and `DescribeNacosServerInterfacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NacosServerInterface`` and ``DescribeNacosServerInterfacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNacosServerInterfacesPaginator(_ input: DescribeNacosServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNacosServerInterfacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNacosServerInterfaces, logger: logger, on: eventLoop)

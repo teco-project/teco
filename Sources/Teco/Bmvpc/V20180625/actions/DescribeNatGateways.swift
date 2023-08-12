@@ -99,7 +99,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NatGatewayInfo`` list from the paginated response.
         public func getItems() -> [NatGatewayInfo] {
             self.natGatewayInfoSet
         }
@@ -162,7 +162,7 @@ extension Bmvpc {
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     ///
-    /// - Returns: `AsyncSequence`s of `NatGatewayInfo` and `DescribeNatGatewaysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NatGatewayInfo`` and ``DescribeNatGatewaysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatGatewaysPaginator(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)

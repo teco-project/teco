@@ -69,7 +69,7 @@ extension Lighthouse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Scene`` list from the paginated response.
         public func getItems() -> [Scene] {
             self.sceneSet
         }
@@ -132,7 +132,7 @@ extension Lighthouse {
     ///
     /// 本接口(DescribeScenes)用于查看使用场景列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Scene` and `DescribeScenesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Scene`` and ``DescribeScenesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScenesPaginator(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenes, logger: logger, on: eventLoop)

@@ -74,7 +74,7 @@ extension Ses {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ReceiverData`` list from the paginated response.
         public func getItems() -> [ReceiverData] {
             self.data
         }
@@ -137,7 +137,7 @@ extension Ses {
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     ///
-    /// - Returns: `AsyncSequence`s of `ReceiverData` and `ListReceiversResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReceiverData`` and ``ListReceiversResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listReceiversPaginator(_ input: ListReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListReceiversRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listReceivers, logger: logger, on: eventLoop)

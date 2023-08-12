@@ -84,7 +84,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UserInfo`` list from the paginated response.
         public func getItems() -> [UserInfo] {
             self.userSet
         }
@@ -133,7 +133,7 @@ extension Dlc {
 
     /// 获取用户列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `UserInfo` and `DescribeUsersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserInfo`` and ``DescribeUsersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsersPaginator(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsers, logger: logger, on: eventLoop)

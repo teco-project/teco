@@ -91,7 +91,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TimeShiftStreamInfo`` list from the paginated response.
         public func getItems() -> [TimeShiftStreamInfo] {
             self.streamList ?? []
         }
@@ -154,7 +154,7 @@ extension Live {
     ///
     /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
     ///
-    /// - Returns: `AsyncSequence`s of `TimeShiftStreamInfo` and `DescribeTimeShiftStreamListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TimeShiftStreamInfo`` and ``DescribeTimeShiftStreamListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTimeShiftStreamListPaginator(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTimeShiftStreamListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTimeShiftStreamList, logger: logger, on: eventLoop)

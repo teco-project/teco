@@ -134,7 +134,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``StreamEventInfo`` list from the paginated response.
         public func getItems() -> [StreamEventInfo] {
             self.eventList
         }
@@ -225,7 +225,7 @@ extension Live {
     /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
     /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
     ///
-    /// - Returns: `AsyncSequence`s of `StreamEventInfo` and `DescribeLiveStreamEventListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``StreamEventInfo`` and ``DescribeLiveStreamEventListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveStreamEventListPaginator(_ input: DescribeLiveStreamEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamEventList, logger: logger, on: eventLoop)

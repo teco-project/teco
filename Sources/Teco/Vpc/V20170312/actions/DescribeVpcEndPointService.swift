@@ -83,7 +83,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EndPointService`` list from the paginated response.
         public func getItems() -> [EndPointService] {
             self.endPointServiceSet
         }
@@ -146,7 +146,7 @@ extension Vpc {
     ///
     /// 查询终端节点服务列表。
     ///
-    /// - Returns: `AsyncSequence`s of `EndPointService` and `DescribeVpcEndPointServiceResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EndPointService`` and ``DescribeVpcEndPointServiceResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcEndPointServicePaginator(_ input: DescribeVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcEndPointServiceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcEndPointService, logger: logger, on: eventLoop)

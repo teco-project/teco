@@ -129,7 +129,7 @@ extension Bmeip {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EipInfo`` list from the paginated response.
         public func getItems() -> [EipInfo] {
             self.eipSet
         }
@@ -178,7 +178,7 @@ extension Bmeip {
 
     /// 黑石EIP查询接口
     ///
-    /// - Returns: `AsyncSequence`s of `EipInfo` and `DescribeEipsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EipInfo`` and ``DescribeEipsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)

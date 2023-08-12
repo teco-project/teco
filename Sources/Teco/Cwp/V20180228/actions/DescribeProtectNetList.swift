@@ -81,7 +81,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProtectNetInfo`` list from the paginated response.
         public func getItems() -> [ProtectNetInfo] {
             self.list
         }
@@ -144,7 +144,7 @@ extension Cwp {
     ///
     /// 专家服务-旗舰重保列表
     ///
-    /// - Returns: `AsyncSequence`s of `ProtectNetInfo` and `DescribeProtectNetListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProtectNetInfo`` and ``DescribeProtectNetListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProtectNetListPaginator(_ input: DescribeProtectNetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectNetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectNetList, logger: logger, on: eventLoop)

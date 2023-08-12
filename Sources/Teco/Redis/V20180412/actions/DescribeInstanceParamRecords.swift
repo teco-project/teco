@@ -69,7 +69,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceParamHistory`` list from the paginated response.
         public func getItems() -> [InstanceParamHistory] {
             self.instanceParamHistory
         }
@@ -118,7 +118,7 @@ extension Redis {
 
     /// 查询参数修改历史列表
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceParamHistory` and `DescribeInstanceParamRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceParamHistory`` and ``DescribeInstanceParamRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceParamRecordsPaginator(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceParamRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)

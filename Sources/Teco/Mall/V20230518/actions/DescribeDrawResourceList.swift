@@ -64,7 +64,7 @@ extension Mall {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceDrawListType`` list from the paginated response.
         public func getItems() -> [ResourceDrawListType] {
             self.resourceDrawList
         }
@@ -127,7 +127,7 @@ extension Mall {
     ///
     /// 依据客户的Uin查询开通的资源列表
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceDrawListType` and `DescribeDrawResourceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceDrawListType`` and ``DescribeDrawResourceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDrawResourceListPaginator(_ input: DescribeDrawResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDrawResourceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDrawResourceList, logger: logger, on: eventLoop)

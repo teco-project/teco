@@ -99,7 +99,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceBackupFileItem`` list from the paginated response.
         public func getItems() -> [InstanceBackupFileItem] {
             self.files
         }
@@ -162,7 +162,7 @@ extension Dcdb {
     ///
     /// 本接口(DescribeBackupFiles)用于查看备份文件列表。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceBackupFileItem` and `DescribeBackupFilesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceBackupFileItem`` and ``DescribeBackupFilesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupFilesPaginator(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)

@@ -84,7 +84,7 @@ extension Gme {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApplicationList`` list from the paginated response.
         public func getItems() -> [ApplicationList] {
             self.applicationList
         }
@@ -147,7 +147,7 @@ extension Gme {
     ///
     /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `ApplicationList` and `DescribeApplicationListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApplicationList`` and ``DescribeApplicationListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationListPaginator(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)

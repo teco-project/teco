@@ -81,7 +81,7 @@ extension Eiam {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AccountGroupInfo`` list from the paginated response.
         public func getItems() -> [AccountGroupInfo] {
             self.accountGroupList ?? []
         }
@@ -130,7 +130,7 @@ extension Eiam {
 
     /// 查询账号组列表
     ///
-    /// - Returns: `AsyncSequence`s of `AccountGroupInfo` and `DescribeAccountGroupResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AccountGroupInfo`` and ``DescribeAccountGroupResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccountGroupPaginator(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccountGroup, logger: logger, on: eventLoop)

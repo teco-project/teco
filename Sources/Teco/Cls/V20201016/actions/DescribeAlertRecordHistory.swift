@@ -84,7 +84,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AlertHistoryRecord`` list from the paginated response.
         public func getItems() -> [AlertHistoryRecord] {
             self.records
         }
@@ -147,7 +147,7 @@ extension Cls {
     ///
     /// 获取告警历史，例如今天未恢复的告警
     ///
-    /// - Returns: `AsyncSequence`s of `AlertHistoryRecord` and `DescribeAlertRecordHistoryResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlertHistoryRecord`` and ``DescribeAlertRecordHistoryResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlertRecordHistoryPaginator(_ input: DescribeAlertRecordHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRecordHistoryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRecordHistory, logger: logger, on: eventLoop)

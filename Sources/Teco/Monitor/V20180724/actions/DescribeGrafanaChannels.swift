@@ -80,7 +80,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GrafanaChannel`` list from the paginated response.
         public func getItems() -> [GrafanaChannel] {
             self.notificationChannelSet
         }
@@ -124,7 +124,7 @@ extension Monitor {
 
     /// 列出 Grafana 所有告警通道
     ///
-    /// - Returns: `AsyncSequence`s of `GrafanaChannel` and `DescribeGrafanaChannelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GrafanaChannel`` and ``DescribeGrafanaChannelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGrafanaChannelsPaginator(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGrafanaChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)

@@ -69,7 +69,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VpngwCcnRoutes`` list from the paginated response.
         public func getItems() -> [VpngwCcnRoutes] {
             self.routeSet
         }
@@ -132,7 +132,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由。
     ///
-    /// - Returns: `AsyncSequence`s of `VpngwCcnRoutes` and `DescribeVpnGatewayCcnRoutesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpngwCcnRoutes`` and ``DescribeVpnGatewayCcnRoutesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewayCcnRoutesPaginator(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewayCcnRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewayCcnRoutes, logger: logger, on: eventLoop)

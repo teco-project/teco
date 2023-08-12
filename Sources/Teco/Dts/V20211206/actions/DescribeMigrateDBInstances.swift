@@ -106,7 +106,7 @@ extension Dts {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MigrateDBItem`` list from the paginated response.
         public func getItems() -> [MigrateDBItem] {
             self.instances ?? []
         }
@@ -169,7 +169,7 @@ extension Dts {
     ///
     /// 本接口用于查询支持迁移的云数据库实例
     ///
-    /// - Returns: `AsyncSequence`s of `MigrateDBItem` and `DescribeMigrateDBInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MigrateDBItem`` and ``DescribeMigrateDBInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMigrateDBInstancesPaginator(_ input: DescribeMigrateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrateDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrateDBInstances, logger: logger, on: eventLoop)

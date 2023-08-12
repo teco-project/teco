@@ -76,7 +76,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SalesActionEventDetail`` list from the paginated response.
         public func getItems() -> [SalesActionEventDetail] {
             self.pageData ?? []
         }
@@ -134,7 +134,7 @@ extension Wav {
     ///
     /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     ///
-    /// - Returns: `AsyncSequence`s of `SalesActionEventDetail` and `QueryStaffEventDetailStatisticsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SalesActionEventDetail`` and ``QueryStaffEventDetailStatisticsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryStaffEventDetailStatisticsPaginator(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryStaffEventDetailStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryStaffEventDetailStatistics, logger: logger, on: eventLoop)

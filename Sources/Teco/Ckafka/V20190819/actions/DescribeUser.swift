@@ -70,7 +70,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``User`` list from the paginated response.
         public func getItems() -> [User] {
             self.result.users ?? []
         }
@@ -119,7 +119,7 @@ extension Ckafka {
 
     /// 查询用户信息
     ///
-    /// - Returns: `AsyncSequence`s of `User` and `DescribeUserResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``User`` and ``DescribeUserResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserPaginator(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUser, logger: logger, on: eventLoop)

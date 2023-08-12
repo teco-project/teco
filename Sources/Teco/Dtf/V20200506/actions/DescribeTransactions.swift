@@ -90,7 +90,7 @@ extension Dtf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Transaction`` list from the paginated response.
         public func getItems() -> [Transaction] {
             self.result.content
         }
@@ -139,7 +139,7 @@ extension Dtf {
 
     /// 查询主事务列表
     ///
-    /// - Returns: `AsyncSequence`s of `Transaction` and `DescribeTransactionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Transaction`` and ``DescribeTransactionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTransactionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)

@@ -85,7 +85,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeviceResourceInfo`` list from the paginated response.
         public func getItems() -> [DeviceResourceInfo] {
             self.result ?? []
         }
@@ -148,7 +148,7 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceResourceInfo` and `DescribeDeviceResourcesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceResourceInfo`` and ``DescribeDeviceResourcesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceResourcesPaginator(_ input: DescribeDeviceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceResources, logger: logger, on: eventLoop)

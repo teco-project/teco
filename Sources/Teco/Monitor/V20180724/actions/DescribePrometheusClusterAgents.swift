@@ -73,7 +73,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrometheusAgentOverview`` list from the paginated response.
         public func getItems() -> [PrometheusAgentOverview] {
             self.agents
         }
@@ -122,7 +122,7 @@ extension Monitor {
 
     /// 获取TMP实例关联集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAgentOverview` and `DescribePrometheusClusterAgentsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAgentOverview`` and ``DescribePrometheusClusterAgentsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusClusterAgentsPaginator(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusClusterAgentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusClusterAgents, logger: logger, on: eventLoop)

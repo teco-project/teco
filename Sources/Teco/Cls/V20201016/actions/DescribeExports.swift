@@ -69,7 +69,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExportInfo`` list from the paginated response.
         public func getItems() -> [ExportInfo] {
             self.exports
         }
@@ -132,7 +132,7 @@ extension Cls {
     ///
     /// 本接口用于获取日志下载任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `ExportInfo` and `DescribeExportsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExportInfo`` and ``DescribeExportsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExportsPaginator(_ input: DescribeExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExportsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExports, logger: logger, on: eventLoop)

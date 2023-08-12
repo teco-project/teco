@@ -80,7 +80,7 @@ extension Tiems {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceGroup`` list from the paginated response.
         public func getItems() -> [ResourceGroup] {
             self.resourceGroups ?? []
         }
@@ -135,7 +135,7 @@ extension Tiems {
 
     /// 获取资源组列表
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceGroup` and `DescribeResourceGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceGroup`` and ``DescribeResourceGroupsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeResourceGroupsPaginator(_ input: DescribeResourceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceGroupsRequest> {

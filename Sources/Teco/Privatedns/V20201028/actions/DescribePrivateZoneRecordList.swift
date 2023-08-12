@@ -74,7 +74,7 @@ extension Privatedns {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrivateZoneRecord`` list from the paginated response.
         public func getItems() -> [PrivateZoneRecord] {
             self.recordSet
         }
@@ -123,7 +123,7 @@ extension Privatedns {
 
     /// 获取私有域记录列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrivateZoneRecord` and `DescribePrivateZoneRecordListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrivateZoneRecord`` and ``DescribePrivateZoneRecordListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivateZoneRecordListPaginator(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateZoneRecordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateZoneRecordList, logger: logger, on: eventLoop)

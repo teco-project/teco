@@ -65,7 +65,7 @@ extension Domain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DomainList`` list from the paginated response.
         public func getItems() -> [DomainList] {
             self.domainSet ?? []
         }
@@ -128,7 +128,7 @@ extension Domain {
     ///
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DomainList` and `DescribeDomainNameListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DomainList`` and ``DescribeDomainNameListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainNameListPaginator(_ input: DescribeDomainNameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainNameListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainNameList, logger: logger, on: eventLoop)

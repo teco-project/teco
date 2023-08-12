@@ -84,7 +84,7 @@ extension Dnspod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DomainListItem`` list from the paginated response.
         public func getItems() -> [DomainListItem] {
             self.domainList
         }
@@ -128,7 +128,7 @@ extension Dnspod {
 
     /// 获取域名列表
     ///
-    /// - Returns: `AsyncSequence`s of `DomainListItem` and `DescribeDomainListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DomainListItem`` and ``DescribeDomainListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainListPaginator(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainList, logger: logger, on: eventLoop)

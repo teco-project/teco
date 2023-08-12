@@ -80,7 +80,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Acl`` list from the paginated response.
         public func getItems() -> [Acl] {
             self.result.aclList ?? []
         }
@@ -129,7 +129,7 @@ extension Ckafka {
 
     /// 枚举ACL
     ///
-    /// - Returns: `AsyncSequence`s of `Acl` and `DescribeACLResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Acl`` and ``DescribeACLResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeACLPaginator(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeACLRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)

@@ -146,7 +146,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AlarmHistory`` list from the paginated response.
         public func getItems() -> [AlarmHistory] {
             self.histories
         }
@@ -223,7 +223,7 @@ extension Monitor {
     ///
     /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
     ///
-    /// - Returns: `AsyncSequence`s of `AlarmHistory` and `DescribeAlarmHistoriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlarmHistory`` and ``DescribeAlarmHistoriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlarmHistoriesPaginator(_ input: DescribeAlarmHistoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmHistoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmHistories, logger: logger, on: eventLoop)

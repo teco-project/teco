@@ -95,7 +95,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RedisBackupSet`` list from the paginated response.
         public func getItems() -> [RedisBackupSet] {
             self.backupSet
         }
@@ -158,7 +158,7 @@ extension Redis {
     ///
     /// 本接口（DescribeInstanceBackups）用于查询实例备份列表。
     ///
-    /// - Returns: `AsyncSequence`s of `RedisBackupSet` and `DescribeInstanceBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RedisBackupSet`` and ``DescribeInstanceBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceBackupsPaginator(_ input: DescribeInstanceBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceBackups, logger: logger, on: eventLoop)

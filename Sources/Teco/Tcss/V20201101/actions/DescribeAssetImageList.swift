@@ -83,7 +83,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImagesInfo`` list from the paginated response.
         public func getItems() -> [ImagesInfo] {
             self.list
         }
@@ -146,7 +146,7 @@ extension Tcss {
     ///
     /// 容器安全搜索查询镜像列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImagesInfo` and `DescribeAssetImageListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImagesInfo`` and ``DescribeAssetImageListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageListPaginator(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageList, logger: logger, on: eventLoop)

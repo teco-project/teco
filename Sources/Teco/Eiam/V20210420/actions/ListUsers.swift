@@ -86,7 +86,7 @@ extension Eiam {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UserInformation`` list from the paginated response.
         public func getItems() -> [UserInformation] {
             self.userList ?? []
         }
@@ -149,7 +149,7 @@ extension Eiam {
     ///
     /// 获取用户列表信息。
     ///
-    /// - Returns: `AsyncSequence`s of `UserInformation` and `ListUsersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserInformation`` and ``ListUsersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listUsersPaginator(_ input: ListUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listUsers, logger: logger, on: eventLoop)

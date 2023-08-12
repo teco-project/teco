@@ -82,7 +82,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NatGatewayDestinationIpPortTranslationNatRule`` list from the paginated response.
         public func getItems() -> [NatGatewayDestinationIpPortTranslationNatRule] {
             self.natGatewayDestinationIpPortTranslationNatRuleSet
         }
@@ -145,7 +145,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     ///
-    /// - Returns: `AsyncSequence`s of `NatGatewayDestinationIpPortTranslationNatRule` and `DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NatGatewayDestinationIpPortTranslationNatRule`` and ``DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatGatewayDestinationIpPortTranslationNatRulesPaginator(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDestinationIpPortTranslationNatRules, logger: logger, on: eventLoop)

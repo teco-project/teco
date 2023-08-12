@@ -70,7 +70,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PathRewrite`` list from the paginated response.
         public func getItems() -> [PathRewrite] {
             self.result.content
         }
@@ -119,7 +119,7 @@ extension Tsf {
 
     /// 查询路径重写列表
     ///
-    /// - Returns: `AsyncSequence`s of `PathRewrite` and `DescribePathRewritesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PathRewrite`` and ``DescribePathRewritesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePathRewritesPaginator(_ input: DescribePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePathRewritesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePathRewrites, logger: logger, on: eventLoop)

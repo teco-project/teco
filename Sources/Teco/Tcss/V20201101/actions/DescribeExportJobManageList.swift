@@ -83,7 +83,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExportJobInfo`` list from the paginated response.
         public func getItems() -> [ExportJobInfo] {
             self.list
         }
@@ -132,7 +132,7 @@ extension Tcss {
 
     /// 查询导出任务管理列表
     ///
-    /// - Returns: `AsyncSequence`s of `ExportJobInfo` and `DescribeExportJobManageListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExportJobInfo`` and ``DescribeExportJobManageListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExportJobManageListPaginator(_ input: DescribeExportJobManageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExportJobManageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExportJobManageList, logger: logger, on: eventLoop)

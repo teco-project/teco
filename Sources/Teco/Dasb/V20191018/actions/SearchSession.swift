@@ -132,7 +132,7 @@ extension Dasb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SessionResult`` list from the paginated response.
         public func getItems() -> [SessionResult] {
             self.sessionSet
         }
@@ -181,7 +181,7 @@ extension Dasb {
 
     /// 搜索会话
     ///
-    /// - Returns: `AsyncSequence`s of `SessionResult` and `SearchSessionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SessionResult`` and ``SearchSessionResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchSessionPaginator(_ input: SearchSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchSessionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchSession, logger: logger, on: eventLoop)

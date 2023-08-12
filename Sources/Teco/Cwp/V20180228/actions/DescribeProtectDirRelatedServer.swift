@@ -88,7 +88,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProtectDirRelatedServer`` list from the paginated response.
         public func getItems() -> [ProtectDirRelatedServer] {
             self.list
         }
@@ -151,7 +151,7 @@ extension Cwp {
     ///
     /// 查询防护目录关联服务器列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ProtectDirRelatedServer` and `DescribeProtectDirRelatedServerResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProtectDirRelatedServer`` and ``DescribeProtectDirRelatedServerResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProtectDirRelatedServerPaginator(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectDirRelatedServerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectDirRelatedServer, logger: logger, on: eventLoop)

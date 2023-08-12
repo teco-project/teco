@@ -76,7 +76,7 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``String`` list from the paginated response.
         public func getItems() -> [String] {
             self.dates ?? []
         }
@@ -141,7 +141,7 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `GetRecordDatesByDevResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``GetRecordDatesByDevResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getRecordDatesByDevPaginator(_ input: GetRecordDatesByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetRecordDatesByDevRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getRecordDatesByDev, logger: logger, on: eventLoop)

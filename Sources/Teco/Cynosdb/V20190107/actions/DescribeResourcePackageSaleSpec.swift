@@ -83,7 +83,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SalePackageSpec`` list from the paginated response.
         public func getItems() -> [SalePackageSpec] {
             self.detail ?? []
         }
@@ -132,7 +132,7 @@ extension Cynosdb {
 
     /// 查询资源包规格
     ///
-    /// - Returns: `AsyncSequence`s of `SalePackageSpec` and `DescribeResourcePackageSaleSpecResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SalePackageSpec`` and ``DescribeResourcePackageSaleSpecResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourcePackageSaleSpecPaginator(_ input: DescribeResourcePackageSaleSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcePackageSaleSpecRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourcePackageSaleSpec, logger: logger, on: eventLoop)

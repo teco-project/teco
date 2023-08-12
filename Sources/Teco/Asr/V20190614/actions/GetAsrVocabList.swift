@@ -69,7 +69,7 @@ extension Asr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Vocab`` list from the paginated response.
         public func getItems() -> [Vocab] {
             self.vocabList
         }
@@ -132,7 +132,7 @@ extension Asr {
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Vocab` and `GetAsrVocabListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Vocab`` and ``GetAsrVocabListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getAsrVocabListPaginator(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAsrVocabListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAsrVocabList, logger: logger, on: eventLoop)

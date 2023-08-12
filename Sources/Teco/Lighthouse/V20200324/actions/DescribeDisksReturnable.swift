@@ -69,7 +69,7 @@ extension Lighthouse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DiskReturnable`` list from the paginated response.
         public func getItems() -> [DiskReturnable] {
             self.diskReturnableSet
         }
@@ -132,7 +132,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     ///
-    /// - Returns: `AsyncSequence`s of `DiskReturnable` and `DescribeDisksReturnableResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DiskReturnable`` and ``DescribeDisksReturnableResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDisksReturnablePaginator(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDisksReturnableRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)

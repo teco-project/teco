@@ -101,7 +101,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MakePlanOpsDto`` list from the paginated response.
         public func getItems() -> [MakePlanOpsDto] {
             self.data?.items ?? []
         }
@@ -164,7 +164,7 @@ extension Wedata {
     ///
     /// 根据条件分页查询补录计划
     ///
-    /// - Returns: `AsyncSequence`s of `MakePlanOpsDto` and `DescribeOpsMakePlansResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MakePlanOpsDto`` and ``DescribeOpsMakePlansResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOpsMakePlansPaginator(_ input: DescribeOpsMakePlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOpsMakePlansRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpsMakePlans, logger: logger, on: eventLoop)

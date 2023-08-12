@@ -73,7 +73,7 @@ extension Bma {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Monitor`` list from the paginated response.
         public func getItems() -> [Monitor] {
             self.monitors
         }
@@ -136,7 +136,7 @@ extension Bma {
     ///
     /// 版权保护-查询监测列表接口
     ///
-    /// - Returns: `AsyncSequence`s of `Monitor` and `DescribeCRMonitorsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Monitor`` and ``DescribeCRMonitorsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCRMonitorsPaginator(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCRMonitorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)

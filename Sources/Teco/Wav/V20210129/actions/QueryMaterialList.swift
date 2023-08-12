@@ -71,7 +71,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MaterialInfo`` list from the paginated response.
         public func getItems() -> [MaterialInfo] {
             self.pageData ?? []
         }
@@ -129,7 +129,7 @@ extension Wav {
     ///
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
     ///
-    /// - Returns: `AsyncSequence`s of `MaterialInfo` and `QueryMaterialListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MaterialInfo`` and ``QueryMaterialListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryMaterialListPaginator(_ input: QueryMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMaterialListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)

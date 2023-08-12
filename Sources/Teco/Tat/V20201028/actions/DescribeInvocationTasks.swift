@@ -79,7 +79,7 @@ extension Tat {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InvocationTask`` list from the paginated response.
         public func getItems() -> [InvocationTask] {
             self.invocationTaskSet
         }
@@ -142,7 +142,7 @@ extension Tat {
     ///
     /// 此接口用于查询执行任务详情。
     ///
-    /// - Returns: `AsyncSequence`s of `InvocationTask` and `DescribeInvocationTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InvocationTask`` and ``DescribeInvocationTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInvocationTasksPaginator(_ input: DescribeInvocationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInvocationTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocationTasks, logger: logger, on: eventLoop)

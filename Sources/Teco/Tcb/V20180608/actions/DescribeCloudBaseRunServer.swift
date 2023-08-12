@@ -106,7 +106,7 @@ extension Tcb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CloudBaseRunServerVersionItem`` list from the paginated response.
         public func getItems() -> [CloudBaseRunServerVersionItem] {
             self.versionItems ?? []
         }
@@ -169,7 +169,7 @@ extension Tcb {
     ///
     /// 查询单个服务的详情，版本以及详情
     ///
-    /// - Returns: `AsyncSequence`s of `CloudBaseRunServerVersionItem` and `DescribeCloudBaseRunServerResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CloudBaseRunServerVersionItem`` and ``DescribeCloudBaseRunServerResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudBaseRunServerPaginator(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudBaseRunServerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseRunServer, logger: logger, on: eventLoop)

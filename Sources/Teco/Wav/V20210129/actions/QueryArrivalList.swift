@@ -81,7 +81,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ArrivalInfo`` list from the paginated response.
         public func getItems() -> [ArrivalInfo] {
             self.pageData ?? []
         }
@@ -125,7 +125,7 @@ extension Wav {
 
     /// 查询指定时间范围内发生过到店的潜客到店信息
     ///
-    /// - Returns: `AsyncSequence`s of `ArrivalInfo` and `QueryArrivalListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ArrivalInfo`` and ``QueryArrivalListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryArrivalListPaginator(_ input: QueryArrivalListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryArrivalListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryArrivalList, logger: logger, on: eventLoop)

@@ -90,7 +90,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NodeUnitTemplate`` list from the paginated response.
         public func getItems() -> [NodeUnitTemplate] {
             self.nodeUnitTemplates ?? []
         }
@@ -139,7 +139,7 @@ extension Iecp {
 
     /// 查询边缘单元EdgeUnit模板列表
     ///
-    /// - Returns: `AsyncSequence`s of `NodeUnitTemplate` and `DescribeEdgeUnitNodeUnitTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NodeUnitTemplate`` and ``DescribeEdgeUnitNodeUnitTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeUnitNodeUnitTemplatesPaginator(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitNodeUnitTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)

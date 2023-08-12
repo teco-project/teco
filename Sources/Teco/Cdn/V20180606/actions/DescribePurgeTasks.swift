@@ -118,7 +118,7 @@ extension Cdn {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PurgeTask`` list from the paginated response.
         public func getItems() -> [PurgeTask] {
             self.purgeLogs ?? []
         }
@@ -181,7 +181,7 @@ extension Cdn {
     ///
     /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
     ///
-    /// - Returns: `AsyncSequence`s of `PurgeTask` and `DescribePurgeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PurgeTask`` and ``DescribePurgeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePurgeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)

@@ -74,7 +74,7 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AIModelInfo`` list from the paginated response.
         public func getItems() -> [AIModelInfo] {
             self.models
         }
@@ -123,7 +123,7 @@ extension Iotvideo {
 
     /// 拉取AI模型列表
     ///
-    /// - Returns: `AsyncSequence`s of `AIModelInfo` and `DescribeAIModelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AIModelInfo`` and ``DescribeAIModelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAIModelsPaginator(_ input: DescribeAIModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAIModelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIModels, logger: logger, on: eventLoop)

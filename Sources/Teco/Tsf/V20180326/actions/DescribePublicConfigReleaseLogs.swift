@@ -66,7 +66,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ConfigReleaseLog`` list from the paginated response.
         public func getItems() -> [ConfigReleaseLog] {
             self.result?.content ?? []
         }
@@ -115,7 +115,7 @@ extension Tsf {
 
     /// 查询公共配置发布历史
     ///
-    /// - Returns: `AsyncSequence`s of `ConfigReleaseLog` and `DescribePublicConfigReleaseLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ConfigReleaseLog`` and ``DescribePublicConfigReleaseLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePublicConfigReleaseLogsPaginator(_ input: DescribePublicConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicConfigReleaseLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigReleaseLogs, logger: logger, on: eventLoop)

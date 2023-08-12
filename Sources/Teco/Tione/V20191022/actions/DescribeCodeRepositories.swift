@@ -79,7 +79,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CodeRepoSummary`` list from the paginated response.
         public func getItems() -> [CodeRepoSummary] {
             self.codeRepoSet ?? []
         }
@@ -128,7 +128,7 @@ extension Tione {
 
     /// 查询存储库列表
     ///
-    /// - Returns: `AsyncSequence`s of `CodeRepoSummary` and `DescribeCodeRepositoriesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CodeRepoSummary`` and ``DescribeCodeRepositoriesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCodeRepositoriesPaginator(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodeRepositoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodeRepositories, logger: logger, on: eventLoop)

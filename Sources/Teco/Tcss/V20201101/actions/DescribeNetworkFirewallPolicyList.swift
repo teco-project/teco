@@ -85,7 +85,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetworkPolicyInfoItem`` list from the paginated response.
         public func getItems() -> [NetworkPolicyInfoItem] {
             self.netPolicy
         }
@@ -134,7 +134,7 @@ extension Tcss {
 
     /// 查询集群网络策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkPolicyInfoItem` and `DescribeNetworkFirewallPolicyListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkPolicyInfoItem`` and ``DescribeNetworkFirewallPolicyListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkFirewallPolicyListPaginator(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallPolicyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)

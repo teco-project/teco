@@ -106,7 +106,7 @@ extension Hasim {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LinkInfo`` list from the paginated response.
         public func getItems() -> [LinkInfo] {
             self.data?.list ?? []
         }
@@ -155,7 +155,7 @@ extension Hasim {
 
     /// 查询云兔连接列表
     ///
-    /// - Returns: `AsyncSequence`s of `LinkInfo` and `DescribeLinksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LinkInfo`` and ``DescribeLinksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLinksPaginator(_ input: DescribeLinksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLinksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLinks, logger: logger, on: eventLoop)

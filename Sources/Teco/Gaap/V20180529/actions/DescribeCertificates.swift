@@ -76,7 +76,7 @@ extension Gaap {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Certificate`` list from the paginated response.
         public func getItems() -> [Certificate] {
             self.certificateSet
         }
@@ -139,7 +139,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Certificate` and `DescribeCertificatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Certificate`` and ``DescribeCertificatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)

@@ -75,7 +75,7 @@ extension Kms {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Key`` list from the paginated response.
         public func getItems() -> [Key] {
             self.keys ?? []
         }
@@ -138,7 +138,7 @@ extension Kms {
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     ///
-    /// - Returns: `AsyncSequence`s of `Key` and `ListKeysResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Key`` and ``ListKeysResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listKeysPaginator(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)

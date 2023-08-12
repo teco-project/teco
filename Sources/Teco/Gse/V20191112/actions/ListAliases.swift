@@ -90,7 +90,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Alias`` list from the paginated response.
         public func getItems() -> [Alias] {
             self.aliases ?? []
         }
@@ -159,7 +159,7 @@ extension Gse {
     ///
     /// 本接口（ListAliases）用于检索帐户下的所有别名。
     ///
-    /// - Returns: `AsyncSequence`s of `Alias` and `ListAliasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Alias`` and ``ListAliasesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliasesPaginator(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListAliasesRequest> {

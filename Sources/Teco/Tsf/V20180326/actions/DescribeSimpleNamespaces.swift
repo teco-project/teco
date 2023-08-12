@@ -105,7 +105,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Namespace`` list from the paginated response.
         public func getItems() -> [Namespace] {
             self.result?.content ?? []
         }
@@ -154,7 +154,7 @@ extension Tsf {
 
     /// 查询简单命名空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `Namespace` and `DescribeSimpleNamespacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Namespace`` and ``DescribeSimpleNamespacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSimpleNamespacesPaginator(_ input: DescribeSimpleNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleNamespaces, logger: logger, on: eventLoop)

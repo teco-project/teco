@@ -88,7 +88,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RecordingRuleSet`` list from the paginated response.
         public func getItems() -> [RecordingRuleSet] {
             self.recordingRuleSet ?? []
         }
@@ -151,7 +151,7 @@ extension Monitor {
     ///
     /// 根据条件查询 Prometheus 预聚合规则
     ///
-    /// - Returns: `AsyncSequence`s of `RecordingRuleSet` and `DescribeRecordingRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordingRuleSet`` and ``DescribeRecordingRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRecordingRulesPaginator(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordingRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)

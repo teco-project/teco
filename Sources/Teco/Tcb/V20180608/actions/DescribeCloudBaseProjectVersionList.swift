@@ -86,7 +86,7 @@ extension Tcb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CloudBaseProjectVersion`` list from the paginated response.
         public func getItems() -> [CloudBaseProjectVersion] {
             self.projectVersions ?? []
         }
@@ -149,7 +149,7 @@ extension Tcb {
     ///
     /// 云项目部署列表
     ///
-    /// - Returns: `AsyncSequence`s of `CloudBaseProjectVersion` and `DescribeCloudBaseProjectVersionListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CloudBaseProjectVersion`` and ``DescribeCloudBaseProjectVersionListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudBaseProjectVersionListPaginator(_ input: DescribeCloudBaseProjectVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudBaseProjectVersionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseProjectVersionList, logger: logger, on: eventLoop)

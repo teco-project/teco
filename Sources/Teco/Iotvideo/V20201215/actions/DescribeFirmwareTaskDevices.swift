@@ -80,7 +80,7 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeviceUpdateStatus`` list from the paginated response.
         public func getItems() -> [DeviceUpdateStatus] {
             self.devices
         }
@@ -143,7 +143,7 @@ extension Iotvideo {
     ///
     /// 本接口用于查询固件升级任务的设备列表
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceUpdateStatus` and `DescribeFirmwareTaskDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceUpdateStatus`` and ``DescribeFirmwareTaskDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFirmwareTaskDevicesPaginator(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirmwareTaskDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirmwareTaskDevices, logger: logger, on: eventLoop)

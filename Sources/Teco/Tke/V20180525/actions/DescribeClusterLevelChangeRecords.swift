@@ -79,7 +79,7 @@ extension Tke {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ClusterLevelChangeRecord`` list from the paginated response.
         public func getItems() -> [ClusterLevelChangeRecord] {
             self.items
         }
@@ -128,7 +128,7 @@ extension Tke {
 
     /// 查询集群变配记录
     ///
-    /// - Returns: `AsyncSequence`s of `ClusterLevelChangeRecord` and `DescribeClusterLevelChangeRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClusterLevelChangeRecord`` and ``DescribeClusterLevelChangeRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterLevelChangeRecordsPaginator(_ input: DescribeClusterLevelChangeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterLevelChangeRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterLevelChangeRecords, logger: logger, on: eventLoop)

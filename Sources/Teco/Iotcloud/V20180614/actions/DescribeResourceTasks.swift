@@ -81,7 +81,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FirmwareTaskInfo`` list from the paginated response.
         public func getItems() -> [FirmwareTaskInfo] {
             self.taskInfos ?? []
         }
@@ -130,7 +130,7 @@ extension Iotcloud {
 
     /// 查询资源推送任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `FirmwareTaskInfo` and `DescribeResourceTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FirmwareTaskInfo`` and ``DescribeResourceTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourceTasksPaginator(_ input: DescribeResourceTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTasks, logger: logger, on: eventLoop)

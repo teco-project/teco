@@ -76,7 +76,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SnapshotPolicy`` list from the paginated response.
         public func getItems() -> [SnapshotPolicy] {
             self.snapshotPolicySet
         }
@@ -139,7 +139,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
     ///
-    /// - Returns: `AsyncSequence`s of `SnapshotPolicy` and `DescribeSnapshotPoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SnapshotPolicy`` and ``DescribeSnapshotPoliciesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)

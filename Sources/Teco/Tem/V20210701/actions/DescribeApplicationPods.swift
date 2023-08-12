@@ -88,7 +88,7 @@ extension Tem {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RunVersionPod`` list from the paginated response.
         public func getItems() -> [RunVersionPod] {
             self.result.podList
         }
@@ -137,7 +137,7 @@ extension Tem {
 
     /// 获取应用实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `RunVersionPod` and `DescribeApplicationPodsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RunVersionPod`` and ``DescribeApplicationPodsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationPodsPaginator(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationPodsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)

@@ -88,7 +88,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RoutePolicy`` list from the paginated response.
         public func getItems() -> [RoutePolicy] {
             self.routePolicySet
         }
@@ -151,7 +151,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     ///
-    /// - Returns: `AsyncSequence`s of `RoutePolicy` and `DescribeRoutePoliciesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RoutePolicy`` and ``DescribeRoutePoliciesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRoutePoliciesPaginator(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRoutePoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)

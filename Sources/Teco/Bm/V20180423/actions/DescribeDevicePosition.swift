@@ -84,7 +84,7 @@ extension Bm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DevicePositionInfo`` list from the paginated response.
         public func getItems() -> [DevicePositionInfo] {
             self.devicePositionInfoSet
         }
@@ -147,7 +147,7 @@ extension Bm {
     ///
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     ///
-    /// - Returns: `AsyncSequence`s of `DevicePositionInfo` and `DescribeDevicePositionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DevicePositionInfo`` and ``DescribeDevicePositionResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDevicePositionPaginator(_ input: DescribeDevicePositionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDevicePositionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDevicePosition, logger: logger, on: eventLoop)

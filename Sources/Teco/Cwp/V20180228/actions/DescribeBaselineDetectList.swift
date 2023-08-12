@@ -81,7 +81,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BaselinePolicyDetect`` list from the paginated response.
         public func getItems() -> [BaselinePolicyDetect] {
             self.list
         }
@@ -130,7 +130,7 @@ extension Cwp {
 
     /// 获取基线检测详情记录
     ///
-    /// - Returns: `AsyncSequence`s of `BaselinePolicyDetect` and `DescribeBaselineDetectListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselinePolicyDetect`` and ``DescribeBaselineDetectListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineDetectListPaginator(_ input: DescribeBaselineDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineDetectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineDetectList, logger: logger, on: eventLoop)

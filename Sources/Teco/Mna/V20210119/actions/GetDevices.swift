@@ -81,7 +81,7 @@ extension Mna {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeviceBaseInfo`` list from the paginated response.
         public func getItems() -> [DeviceBaseInfo] {
             self.deviceInfos
         }
@@ -139,7 +139,7 @@ extension Mna {
     ///
     /// 获取设备信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceBaseInfo` and `GetDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceBaseInfo`` and ``GetDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)

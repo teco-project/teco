@@ -64,7 +64,7 @@ extension Bma {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProtectURLInfo`` list from the paginated response.
         public func getItems() -> [ProtectURLInfo] {
             self.protectURLInfos
         }
@@ -113,7 +113,7 @@ extension Bma {
 
     /// 查询保护网站
     ///
-    /// - Returns: `AsyncSequence`s of `ProtectURLInfo` and `DescribeBPProtectURLsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProtectURLInfo`` and ``DescribeBPProtectURLsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBPProtectURLsPaginator(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPProtectURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)

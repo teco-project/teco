@@ -102,7 +102,7 @@ extension Tag {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ResourceTag`` list from the paginated response.
         public func getItems() -> [ResourceTag] {
             self.rows
         }
@@ -151,7 +151,7 @@ extension Tag {
 
     /// 通过标签查询资源列表并集
     ///
-    /// - Returns: `AsyncSequence`s of `ResourceTag` and `DescribeResourcesByTagsUnionResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ResourceTag`` and ``DescribeResourcesByTagsUnionResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourcesByTagsUnionPaginator(_ input: DescribeResourcesByTagsUnionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesByTagsUnionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourcesByTagsUnion, logger: logger, on: eventLoop)

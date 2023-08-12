@@ -113,7 +113,7 @@ extension Cfw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AcListsData`` list from the paginated response.
         public func getItems() -> [AcListsData] {
             self.data
         }
@@ -162,7 +162,7 @@ extension Cfw {
 
     /// 访问控制列表
     ///
-    /// - Returns: `AsyncSequence`s of `AcListsData` and `DescribeAcListsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AcListsData`` and ``DescribeAcListsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAcListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)

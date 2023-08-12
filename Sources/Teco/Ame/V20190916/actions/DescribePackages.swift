@@ -61,7 +61,7 @@ extension Ame {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Package`` list from the paginated response.
         public func getItems() -> [Package] {
             self.packages ?? []
         }
@@ -119,7 +119,7 @@ extension Ame {
     ///
     /// 获取已购曲库包列表接口
     ///
-    /// - Returns: `AsyncSequence`s of `Package` and `DescribePackagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Package`` and ``DescribePackagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePackagesPaginator(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)

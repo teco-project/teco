@@ -80,7 +80,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HaVip`` list from the paginated response.
         public func getItems() -> [HaVip] {
             self.haVipSet
         }
@@ -143,7 +143,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
     ///
-    /// - Returns: `AsyncSequence`s of `HaVip` and `DescribeHaVipsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HaVip`` and ``DescribeHaVipsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHaVipsPaginator(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHaVipsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)

@@ -75,7 +75,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LaneRule`` list from the paginated response.
         public func getItems() -> [LaneRule] {
             self.result?.content ?? []
         }
@@ -124,7 +124,7 @@ extension Tsf {
 
     /// 查询泳道规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `LaneRule` and `DescribeLaneRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LaneRule`` and ``DescribeLaneRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLaneRulesPaginator(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaneRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaneRules, logger: logger, on: eventLoop)

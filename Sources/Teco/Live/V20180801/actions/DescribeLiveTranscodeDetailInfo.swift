@@ -109,7 +109,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TranscodeDetailInfo`` list from the paginated response.
         public func getItems() -> [TranscodeDetailInfo] {
             self.dataInfoList
         }
@@ -172,7 +172,7 @@ extension Live {
     ///
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     ///
-    /// - Returns: `AsyncSequence`s of `TranscodeDetailInfo` and `DescribeLiveTranscodeDetailInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TranscodeDetailInfo`` and ``DescribeLiveTranscodeDetailInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveTranscodeDetailInfoPaginator(_ input: DescribeLiveTranscodeDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveTranscodeDetailInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveTranscodeDetailInfo, logger: logger, on: eventLoop)

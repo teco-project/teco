@@ -70,7 +70,7 @@ extension Cloudhsm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SgUnit`` list from the paginated response.
         public func getItems() -> [SgUnit] {
             self.sgList ?? []
         }
@@ -133,7 +133,7 @@ extension Cloudhsm {
     ///
     /// 根据用户的AppId获取用户安全组列表
     ///
-    /// - Returns: `AsyncSequence`s of `SgUnit` and `DescribeUsgResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SgUnit`` and ``DescribeUsgResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUsgPaginator(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsgRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsg, logger: logger, on: eventLoop)

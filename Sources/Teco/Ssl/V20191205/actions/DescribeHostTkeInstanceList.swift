@@ -106,7 +106,7 @@ extension Ssl {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TkeInstanceDetail`` list from the paginated response.
         public func getItems() -> [TkeInstanceDetail] {
             self.instanceList ?? []
         }
@@ -155,7 +155,7 @@ extension Ssl {
 
     /// 查询证书tke云资源部署实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `TkeInstanceDetail` and `DescribeHostTkeInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TkeInstanceDetail`` and ``DescribeHostTkeInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostTkeInstanceListPaginator(_ input: DescribeHostTkeInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostTkeInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostTkeInstanceList, logger: logger, on: eventLoop)

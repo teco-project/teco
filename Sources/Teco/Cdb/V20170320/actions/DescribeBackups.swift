@@ -69,7 +69,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BackupInfo`` list from the paginated response.
         public func getItems() -> [BackupInfo] {
             self.items
         }
@@ -132,7 +132,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
     ///
-    /// - Returns: `AsyncSequence`s of `BackupInfo` and `DescribeBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BackupInfo`` and ``DescribeBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)

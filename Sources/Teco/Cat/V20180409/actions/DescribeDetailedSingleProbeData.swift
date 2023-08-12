@@ -146,7 +146,7 @@ extension Cat {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DetailedSingleDataDefine`` list from the paginated response.
         public func getItems() -> [DetailedSingleDataDefine] {
             self.dataSet
         }
@@ -209,7 +209,7 @@ extension Cat {
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     ///
-    /// - Returns: `AsyncSequence`s of `DetailedSingleDataDefine` and `DescribeDetailedSingleProbeDataResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DetailedSingleDataDefine`` and ``DescribeDetailedSingleProbeDataResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDetailedSingleProbeDataPaginator(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDetailedSingleProbeDataRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDetailedSingleProbeData, logger: logger, on: eventLoop)

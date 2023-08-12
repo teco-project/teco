@@ -71,7 +71,7 @@ extension Cfw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NatInstanceInfo`` list from the paginated response.
         public func getItems() -> [NatInstanceInfo] {
             self.natinsLst ?? []
         }
@@ -134,7 +134,7 @@ extension Cfw {
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     ///
-    /// - Returns: `AsyncSequence`s of `NatInstanceInfo` and `DescribeNatFwInstancesInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NatInstanceInfo`` and ``DescribeNatFwInstancesInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatFwInstancesInfoPaginator(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwInstancesInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)

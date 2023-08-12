@@ -79,7 +79,7 @@ extension Cmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TopicSet`` list from the paginated response.
         public func getItems() -> [TopicSet] {
             self.topicSet
         }
@@ -128,7 +128,7 @@ extension Cmq {
 
     /// 查询主题详情
     ///
-    /// - Returns: `AsyncSequence`s of `TopicSet` and `DescribeTopicDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TopicSet`` and ``DescribeTopicDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicDetailPaginator(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicDetail, logger: logger, on: eventLoop)

@@ -69,7 +69,7 @@ extension Thpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``QueueOverview`` list from the paginated response.
         public func getItems() -> [QueueOverview] {
             self.queueSet
         }
@@ -132,7 +132,7 @@ extension Thpc {
     ///
     /// 本接口(DescribeQueues)用于查询指定集群队列概览信息列表。
     ///
-    /// - Returns: `AsyncSequence`s of `QueueOverview` and `DescribeQueuesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``QueueOverview`` and ``DescribeQueuesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeQueuesPaginator(_ input: DescribeQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeQueuesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeQueues, logger: logger, on: eventLoop)

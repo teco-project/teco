@@ -96,7 +96,7 @@ extension Trro {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PolicyInfo`` list from the paginated response.
         public func getItems() -> [PolicyInfo] {
             self.policyInfo
         }
@@ -159,7 +159,7 @@ extension Trro {
     ///
     /// 用于查看权限配置
     ///
-    /// - Returns: `AsyncSequence`s of `PolicyInfo` and `DescribePolicyResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PolicyInfo`` and ``DescribePolicyResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePolicyPaginator(_ input: DescribePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePolicyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePolicy, logger: logger, on: eventLoop)

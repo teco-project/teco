@@ -74,7 +74,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RocketMQNamespace`` list from the paginated response.
         public func getItems() -> [RocketMQNamespace] {
             self.namespaces
         }
@@ -123,7 +123,7 @@ extension Tdmq {
 
     /// 获取RocketMQ命名空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `RocketMQNamespace` and `DescribeRocketMQNamespacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RocketMQNamespace`` and ``DescribeRocketMQNamespacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRocketMQNamespacesPaginator(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQNamespaces, logger: logger, on: eventLoop)

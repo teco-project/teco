@@ -90,7 +90,7 @@ extension Ame {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``KTVSingerInfo`` list from the paginated response.
         public func getItems() -> [KTVSingerInfo] {
             self.ktvSingerInfoSet
         }
@@ -153,7 +153,7 @@ extension Ame {
     ///
     /// 根据过滤条件，返回匹配的歌手列表。
     ///
-    /// - Returns: `AsyncSequence`s of `KTVSingerInfo` and `DescribeKTVSingersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KTVSingerInfo`` and ``DescribeKTVSingersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKTVSingersPaginator(_ input: DescribeKTVSingersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVSingersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingers, logger: logger, on: eventLoop)

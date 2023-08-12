@@ -74,7 +74,7 @@ extension Cme {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PlatformInfo`` list from the paginated response.
         public func getItems() -> [PlatformInfo] {
             self.platformInfoSet
         }
@@ -158,7 +158,7 @@ extension Cme {
     ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     ///
-    /// - Returns: `AsyncSequence`s of `PlatformInfo` and `DescribePlatformsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PlatformInfo`` and ``DescribePlatformsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePlatformsPaginator(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePlatformsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlatforms, logger: logger, on: eventLoop)

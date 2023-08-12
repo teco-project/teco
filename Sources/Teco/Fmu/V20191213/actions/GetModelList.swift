@@ -65,7 +65,7 @@ extension Fmu {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ModelInfo`` list from the paginated response.
         public func getItems() -> [ModelInfo] {
             self.modelInfos ?? []
         }
@@ -128,7 +128,7 @@ extension Fmu {
     ///
     /// 查询已注册的唇色素材。
     ///
-    /// - Returns: `AsyncSequence`s of `ModelInfo` and `GetModelListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ModelInfo`` and ``GetModelListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getModelListPaginator(_ input: GetModelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetModelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getModelList, logger: logger, on: eventLoop)

@@ -71,7 +71,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VehicleInfo`` list from the paginated response.
         public func getItems() -> [VehicleInfo] {
             self.pageData ?? []
         }
@@ -129,7 +129,7 @@ extension Wav {
     ///
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
     ///
-    /// - Returns: `AsyncSequence`s of `VehicleInfo` and `QueryVehicleInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VehicleInfo`` and ``QueryVehicleInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryVehicleInfoListPaginator(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryVehicleInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)

@@ -107,7 +107,7 @@ extension Dasb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LoginEvent`` list from the paginated response.
         public func getItems() -> [LoginEvent] {
             self.loginEventSet
         }
@@ -156,7 +156,7 @@ extension Dasb {
 
     /// 查询登录日志
     ///
-    /// - Returns: `AsyncSequence`s of `LoginEvent` and `DescribeLoginEventResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LoginEvent`` and ``DescribeLoginEventResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLoginEventPaginator(_ input: DescribeLoginEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoginEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoginEvent, logger: logger, on: eventLoop)

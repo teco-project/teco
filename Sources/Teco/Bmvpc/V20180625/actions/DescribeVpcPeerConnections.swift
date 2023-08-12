@@ -81,7 +81,7 @@ extension Bmvpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VpcPeerConnection`` list from the paginated response.
         public func getItems() -> [VpcPeerConnection] {
             self.vpcPeerConnectionSet
         }
@@ -130,7 +130,7 @@ extension Bmvpc {
 
     /// 获取对等连接列表
     ///
-    /// - Returns: `AsyncSequence`s of `VpcPeerConnection` and `DescribeVpcPeerConnectionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VpcPeerConnection`` and ``DescribeVpcPeerConnectionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcPeerConnectionsPaginator(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcPeerConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcPeerConnections, logger: logger, on: eventLoop)

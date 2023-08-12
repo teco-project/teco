@@ -70,7 +70,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupPod`` list from the paginated response.
         public func getItems() -> [GroupPod] {
             self.result.content ?? []
         }
@@ -119,7 +119,7 @@ extension Tsf {
 
     /// 获取部署组实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `GroupPod` and `DescribePodInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupPod`` and ``DescribePodInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePodInstancesPaginator(_ input: DescribePodInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePodInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePodInstances, logger: logger, on: eventLoop)

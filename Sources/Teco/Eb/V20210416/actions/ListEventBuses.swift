@@ -79,7 +79,7 @@ extension Eb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EventBus`` list from the paginated response.
         public func getItems() -> [EventBus] {
             self.eventBuses
         }
@@ -128,7 +128,7 @@ extension Eb {
 
     /// 获取事件集列表
     ///
-    /// - Returns: `AsyncSequence`s of `EventBus` and `ListEventBusesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EventBus`` and ``ListEventBusesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listEventBusesPaginator(_ input: ListEventBusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListEventBusesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listEventBuses, logger: logger, on: eventLoop)

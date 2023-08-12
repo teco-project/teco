@@ -76,7 +76,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ContentReviewTemplateItem`` list from the paginated response.
         public func getItems() -> [ContentReviewTemplateItem] {
             self.contentReviewTemplateSet
         }
@@ -139,7 +139,7 @@ extension Mps {
     ///
     /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
     ///
-    /// - Returns: `AsyncSequence`s of `ContentReviewTemplateItem` and `DescribeContentReviewTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ContentReviewTemplateItem`` and ``DescribeContentReviewTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeContentReviewTemplatesPaginator(_ input: DescribeContentReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContentReviewTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContentReviewTemplates, logger: logger, on: eventLoop)

@@ -90,7 +90,7 @@ extension Ess {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Staff`` list from the paginated response.
         public func getItems() -> [Staff] {
             self.employees ?? []
         }
@@ -153,7 +153,7 @@ extension Ess {
     ///
     /// 查询企业员工列表，每次返回的数据量最大为20
     ///
-    /// - Returns: `AsyncSequence`s of `Staff` and `DescribeIntegrationEmployeesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Staff`` and ``DescribeIntegrationEmployeesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIntegrationEmployeesPaginator(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationEmployeesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationEmployees, logger: logger, on: eventLoop)

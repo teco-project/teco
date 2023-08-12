@@ -82,7 +82,7 @@ extension Yinsuda {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``KTVPlaylistBaseInfo`` list from the paginated response.
         public func getItems() -> [KTVPlaylistBaseInfo] {
             self.playlistBaseInfoSet
         }
@@ -145,7 +145,7 @@ extension Yinsuda {
     ///
     /// 获取歌单列表。
     ///
-    /// - Returns: `AsyncSequence`s of `KTVPlaylistBaseInfo` and `DescribeKTVPlaylistsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KTVPlaylistBaseInfo`` and ``DescribeKTVPlaylistsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKTVPlaylistsPaginator(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVPlaylistsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)

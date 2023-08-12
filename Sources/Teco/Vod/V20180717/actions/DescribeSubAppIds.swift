@@ -74,7 +74,7 @@ extension Vod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SubAppIdInfo`` list from the paginated response.
         public func getItems() -> [SubAppIdInfo] {
             self.subAppIdInfoSet
         }
@@ -137,7 +137,7 @@ extension Vod {
     ///
     /// 该接口用于获取当前账号的子应用列表，包含主应用。
     ///
-    /// - Returns: `AsyncSequence`s of `SubAppIdInfo` and `DescribeSubAppIdsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SubAppIdInfo`` and ``DescribeSubAppIdsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubAppIdsPaginator(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubAppIdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubAppIds, logger: logger, on: eventLoop)

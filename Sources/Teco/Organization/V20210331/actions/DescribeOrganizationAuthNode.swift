@@ -71,7 +71,7 @@ extension Organization {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AuthNode`` list from the paginated response.
         public func getItems() -> [AuthNode] {
             self.items ?? []
         }
@@ -120,7 +120,7 @@ extension Organization {
 
     /// 获取已设置管理员的互信主体关系列表
     ///
-    /// - Returns: `AsyncSequence`s of `AuthNode` and `DescribeOrganizationAuthNodeResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuthNode`` and ``DescribeOrganizationAuthNodeResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationAuthNodePaginator(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationAuthNodeRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationAuthNode, logger: logger, on: eventLoop)

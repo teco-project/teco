@@ -87,7 +87,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ServiceGroup`` list from the paginated response.
         public func getItems() -> [ServiceGroup] {
             self.serviceGroups ?? []
         }
@@ -136,7 +136,7 @@ extension Tione {
 
     /// 列举在线推理服务组
     ///
-    /// - Returns: `AsyncSequence`s of `ServiceGroup` and `DescribeModelServiceGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ServiceGroup`` and ``DescribeModelServiceGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeModelServiceGroupsPaginator(_ input: DescribeModelServiceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModelServiceGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelServiceGroups, logger: logger, on: eventLoop)

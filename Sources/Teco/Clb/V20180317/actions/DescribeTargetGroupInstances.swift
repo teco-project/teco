@@ -73,7 +73,7 @@ extension Clb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TargetGroupBackend`` list from the paginated response.
         public func getItems() -> [TargetGroupBackend] {
             self.targetGroupInstanceSet
         }
@@ -136,7 +136,7 @@ extension Clb {
     ///
     /// 获取目标组绑定的服务器信息
     ///
-    /// - Returns: `AsyncSequence`s of `TargetGroupBackend` and `DescribeTargetGroupInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TargetGroupBackend`` and ``DescribeTargetGroupInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTargetGroupInstancesPaginator(_ input: DescribeTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTargetGroupInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroupInstances, logger: logger, on: eventLoop)

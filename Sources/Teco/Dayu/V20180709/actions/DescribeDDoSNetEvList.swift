@@ -114,7 +114,7 @@ extension Dayu {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSEventRecord`` list from the paginated response.
         public func getItems() -> [DDoSEventRecord] {
             self.data
         }
@@ -163,7 +163,7 @@ extension Dayu {
 
     /// 获取高防IP专业版资源的DDoS攻击事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `DDoSEventRecord` and `DescribeDDoSNetEvListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DDoSEventRecord`` and ``DescribeDDoSNetEvListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDDoSNetEvListPaginator(_ input: DescribeDDoSNetEvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDDoSNetEvListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSNetEvList, logger: logger, on: eventLoop)

@@ -83,7 +83,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BindDeviceInfo`` list from the paginated response.
         public func getItems() -> [BindDeviceInfo] {
             self.devices
         }
@@ -132,7 +132,7 @@ extension Iotexplorer {
 
     /// 获取网关绑定的子设备列表
     ///
-    /// - Returns: `AsyncSequence`s of `BindDeviceInfo` and `DescribeGatewayBindDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BindDeviceInfo`` and ``DescribeGatewayBindDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayBindDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)

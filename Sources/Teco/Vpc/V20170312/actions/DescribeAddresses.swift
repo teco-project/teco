@@ -88,7 +88,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Address`` list from the paginated response.
         public func getItems() -> [Address] {
             self.addressSet
         }
@@ -158,7 +158,7 @@ extension Vpc {
     /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
     ///
-    /// - Returns: `AsyncSequence`s of `Address` and `DescribeAddressesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Address`` and ``DescribeAddressesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAddressesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)

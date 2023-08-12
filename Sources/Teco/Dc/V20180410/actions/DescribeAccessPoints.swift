@@ -71,7 +71,7 @@ extension Dc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AccessPoint`` list from the paginated response.
         public func getItems() -> [AccessPoint] {
             self.accessPointSet
         }
@@ -120,7 +120,7 @@ extension Dc {
 
     /// 查询物理专线接入点
     ///
-    /// - Returns: `AsyncSequence`s of `AccessPoint` and `DescribeAccessPointsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AccessPoint`` and ``DescribeAccessPointsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccessPointsPaginator(_ input: DescribeAccessPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessPointsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessPoints, logger: logger, on: eventLoop)

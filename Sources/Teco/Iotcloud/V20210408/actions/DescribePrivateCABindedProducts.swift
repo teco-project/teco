@@ -65,7 +65,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BindProductInfo`` list from the paginated response.
         public func getItems() -> [BindProductInfo] {
             self.products
         }
@@ -109,7 +109,7 @@ extension Iotcloud {
 
     /// 查询私有CA绑定的产品列表
     ///
-    /// - Returns: `AsyncSequence`s of `BindProductInfo` and `DescribePrivateCABindedProductsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BindProductInfo`` and ``DescribePrivateCABindedProductsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivateCABindedProductsPaginator(_ input: DescribePrivateCABindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateCABindedProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateCABindedProducts, logger: logger, on: eventLoop)

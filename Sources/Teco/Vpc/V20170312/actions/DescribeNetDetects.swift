@@ -80,7 +80,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetDetect`` list from the paginated response.
         public func getItems() -> [NetDetect] {
             self.netDetectSet ?? []
         }
@@ -143,7 +143,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
     ///
-    /// - Returns: `AsyncSequence`s of `NetDetect` and `DescribeNetDetectsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetDetect`` and ``DescribeNetDetectsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetDetectsPaginator(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetDetectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetects, logger: logger, on: eventLoop)

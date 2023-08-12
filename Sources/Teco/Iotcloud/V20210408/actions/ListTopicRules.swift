@@ -64,7 +64,7 @@ extension Iotcloud {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TopicRuleInfo`` list from the paginated response.
         public func getItems() -> [TopicRuleInfo] {
             self.rules
         }
@@ -127,7 +127,7 @@ extension Iotcloud {
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `TopicRuleInfo` and `ListTopicRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TopicRuleInfo`` and ``ListTopicRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listTopicRulesPaginator(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTopicRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)

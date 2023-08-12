@@ -93,7 +93,7 @@ extension Postgres {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BaseBackup`` list from the paginated response.
         public func getItems() -> [BaseBackup] {
             self.baseBackupSet
         }
@@ -156,7 +156,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeBaseBackups）用于查询基础备份列表。
     ///
-    /// - Returns: `AsyncSequence`s of `BaseBackup` and `DescribeBaseBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaseBackup`` and ``DescribeBaseBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaseBackupsPaginator(_ input: DescribeBaseBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaseBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaseBackups, logger: logger, on: eventLoop)

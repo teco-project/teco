@@ -80,7 +80,7 @@ extension Iotvideo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VersionData`` list from the paginated response.
         public func getItems() -> [VersionData] {
             self.data ?? []
         }
@@ -143,7 +143,7 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
     ///
-    /// - Returns: `AsyncSequence`s of `VersionData` and `DescribeOtaVersionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VersionData`` and ``DescribeOtaVersionsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOtaVersionsPaginator(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOtaVersionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)

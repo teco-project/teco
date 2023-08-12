@@ -88,7 +88,7 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AccountDetail`` list from the paginated response.
         public func getItems() -> [AccountDetail] {
             self.accounts
         }
@@ -151,7 +151,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     ///
-    /// - Returns: `AsyncSequence`s of `AccountDetail` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AccountDetail`` and ``DescribeAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)

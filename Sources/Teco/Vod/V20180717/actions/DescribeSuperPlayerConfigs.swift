@@ -81,7 +81,7 @@ extension Vod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PlayerConfig`` list from the paginated response.
         public func getItems() -> [PlayerConfig] {
             self.playerConfigSet
         }
@@ -151,7 +151,7 @@ extension Vod {
     /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `PlayerConfig` and `DescribeSuperPlayerConfigsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PlayerConfig`` and ``DescribeSuperPlayerConfigsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSuperPlayerConfigsPaginator(_ input: DescribeSuperPlayerConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSuperPlayerConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSuperPlayerConfigs, logger: logger, on: eventLoop)

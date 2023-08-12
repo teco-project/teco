@@ -86,7 +86,7 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ChannelDetail`` list from the paginated response.
         public func getItems() -> [ChannelDetail] {
             self.channels ?? []
         }
@@ -149,7 +149,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     ///
-    /// - Returns: `AsyncSequence`s of `ChannelDetail` and `DescribeChannelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ChannelDetail`` and ``DescribeChannelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeChannelsPaginator(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChannels, logger: logger, on: eventLoop)

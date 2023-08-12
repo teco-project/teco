@@ -84,7 +84,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``String`` list from the paginated response.
         public func getItems() -> [String] {
             self.presignedUrls ?? []
         }
@@ -153,7 +153,7 @@ extension Gse {
     ///
     /// 本接口用于获取游戏服务器实例的日志URL。
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `GetGameServerInstanceLogUrlResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``GetGameServerInstanceLogUrlResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerInstanceLogUrlPaginator(_ input: GetGameServerInstanceLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetGameServerInstanceLogUrlRequest> {

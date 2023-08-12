@@ -81,7 +81,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``IgnoreRuleEffectHostInfo`` list from the paginated response.
         public func getItems() -> [IgnoreRuleEffectHostInfo] {
             self.ignoreRuleEffectHostList ?? []
         }
@@ -144,7 +144,7 @@ extension Cwp {
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `IgnoreRuleEffectHostInfo` and `DescribeIgnoreRuleEffectHostListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IgnoreRuleEffectHostInfo`` and ``DescribeIgnoreRuleEffectHostListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIgnoreRuleEffectHostListPaginator(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIgnoreRuleEffectHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIgnoreRuleEffectHostList, logger: logger, on: eventLoop)

@@ -81,7 +81,7 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UserProfile`` list from the paginated response.
         public func getItems() -> [UserProfile] {
             self.profileList ?? []
         }
@@ -144,7 +144,7 @@ extension Dbbrain {
     ///
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
     ///
-    /// - Returns: `AsyncSequence`s of `UserProfile` and `DescribeMailProfileResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UserProfile`` and ``DescribeMailProfileResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMailProfilePaginator(_ input: DescribeMailProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMailProfileRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMailProfile, logger: logger, on: eventLoop)

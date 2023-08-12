@@ -70,7 +70,7 @@ extension Waf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ExportAccessInfo`` list from the paginated response.
         public func getItems() -> [ExportAccessInfo] {
             self.exports ?? []
         }
@@ -133,7 +133,7 @@ extension Waf {
     ///
     /// 本接口用于获取访问日志导出列表
     ///
-    /// - Returns: `AsyncSequence`s of `ExportAccessInfo` and `DescribeAccessExportsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ExportAccessInfo`` and ``DescribeAccessExportsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccessExportsPaginator(_ input: DescribeAccessExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessExportsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessExports, logger: logger, on: eventLoop)

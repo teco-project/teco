@@ -86,7 +86,7 @@ extension Ssl {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeployRecordDetail`` list from the paginated response.
         public func getItems() -> [DeployRecordDetail] {
             self.deployRecordDetailList ?? []
         }
@@ -135,7 +135,7 @@ extension Ssl {
 
     /// 查询证书云资源部署记录详情列表
     ///
-    /// - Returns: `AsyncSequence`s of `DeployRecordDetail` and `DescribeHostDeployRecordDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeployRecordDetail`` and ``DescribeHostDeployRecordDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostDeployRecordDetailPaginator(_ input: DescribeHostDeployRecordDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostDeployRecordDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostDeployRecordDetail, logger: logger, on: eventLoop)

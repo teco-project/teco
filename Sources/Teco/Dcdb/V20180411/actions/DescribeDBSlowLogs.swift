@@ -124,7 +124,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SlowLogData`` list from the paginated response.
         public func getItems() -> [SlowLogData] {
             self.data
         }
@@ -187,7 +187,7 @@ extension Dcdb {
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     ///
-    /// - Returns: `AsyncSequence`s of `SlowLogData` and `DescribeDBSlowLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SlowLogData`` and ``DescribeDBSlowLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBSlowLogsPaginator(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)

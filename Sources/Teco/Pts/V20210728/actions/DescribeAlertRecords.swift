@@ -96,7 +96,7 @@ extension Pts {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AlertRecord`` list from the paginated response.
         public func getItems() -> [AlertRecord] {
             self.alertRecordSet ?? []
         }
@@ -159,7 +159,7 @@ extension Pts {
     ///
     /// 返回告警历史项的列表
     ///
-    /// - Returns: `AsyncSequence`s of `AlertRecord` and `DescribeAlertRecordsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlertRecord`` and ``DescribeAlertRecordsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlertRecordsPaginator(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRecords, logger: logger, on: eventLoop)

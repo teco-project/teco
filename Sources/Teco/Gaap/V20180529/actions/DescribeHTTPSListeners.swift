@@ -103,7 +103,7 @@ extension Gaap {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HTTPSListener`` list from the paginated response.
         public func getItems() -> [HTTPSListener] {
             self.listenerSet
         }
@@ -166,7 +166,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
     ///
-    /// - Returns: `AsyncSequence`s of `HTTPSListener` and `DescribeHTTPSListenersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HTTPSListener`` and ``DescribeHTTPSListenersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHTTPSListenersPaginator(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHTTPSListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)

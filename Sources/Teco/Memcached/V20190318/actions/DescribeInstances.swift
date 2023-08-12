@@ -109,7 +109,7 @@ extension Memcached {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceListInfo`` list from the paginated response.
         public func getItems() -> [InstanceListInfo] {
             self.instanceList
         }
@@ -158,7 +158,7 @@ extension Memcached {
 
     /// 获取Cmem实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceListInfo` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceListInfo`` and ``DescribeInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

@@ -107,7 +107,7 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HealthReportTask`` list from the paginated response.
         public func getItems() -> [HealthReportTask] {
             self.tasks
         }
@@ -170,7 +170,7 @@ extension Dbbrain {
     ///
     /// 查询健康报告生成任务列表。
     ///
-    /// - Returns: `AsyncSequence`s of `HealthReportTask` and `DescribeDBDiagReportTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HealthReportTask`` and ``DescribeDBDiagReportTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBDiagReportTasksPaginator(_ input: DescribeDBDiagReportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBDiagReportTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBDiagReportTasks, logger: logger, on: eventLoop)

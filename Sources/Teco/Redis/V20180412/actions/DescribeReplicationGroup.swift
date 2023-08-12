@@ -74,7 +74,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Groups`` list from the paginated response.
         public func getItems() -> [Groups] {
             self.groups
         }
@@ -137,7 +137,7 @@ extension Redis {
     ///
     /// 本接口（DescribeReplicationGroup）用于查询复制组。
     ///
-    /// - Returns: `AsyncSequence`s of `Groups` and `DescribeReplicationGroupResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Groups`` and ``DescribeReplicationGroupResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReplicationGroupPaginator(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReplicationGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)

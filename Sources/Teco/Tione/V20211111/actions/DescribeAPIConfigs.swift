@@ -82,7 +82,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``APIConfigDetail`` list from the paginated response.
         public func getItems() -> [APIConfigDetail] {
             self.details ?? []
         }
@@ -131,7 +131,7 @@ extension Tione {
 
     /// 列举API
     ///
-    /// - Returns: `AsyncSequence`s of `APIConfigDetail` and `DescribeAPIConfigsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``APIConfigDetail`` and ``DescribeAPIConfigsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAPIConfigsPaginator(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)

@@ -84,7 +84,7 @@ extension Lighthouse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DockerActivity`` list from the paginated response.
         public func getItems() -> [DockerActivity] {
             self.dockerActivitySet
         }
@@ -147,7 +147,7 @@ extension Lighthouse {
     ///
     /// 查询实例内的Docker活动列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DockerActivity` and `DescribeDockerActivitiesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DockerActivity`` and ``DescribeDockerActivitiesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDockerActivitiesPaginator(_ input: DescribeDockerActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDockerActivitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDockerActivities, logger: logger, on: eventLoop)

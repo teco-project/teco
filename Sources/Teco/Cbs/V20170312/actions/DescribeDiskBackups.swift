@@ -86,7 +86,7 @@ extension Cbs {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DiskBackup`` list from the paginated response.
         public func getItems() -> [DiskBackup] {
             self.diskBackupSet
         }
@@ -170,7 +170,7 @@ extension Cbs {
     /// 根据备份点ID、创建备份点的云硬盘ID、创建备份点的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器Filter。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的备份点列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DiskBackup` and `DescribeDiskBackupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DiskBackup`` and ``DescribeDiskBackupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiskBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)

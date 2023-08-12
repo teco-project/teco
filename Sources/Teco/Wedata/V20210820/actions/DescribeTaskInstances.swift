@@ -124,7 +124,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInstanceInfo`` list from the paginated response.
         public func getItems() -> [TaskInstanceInfo] {
             self.data.items
         }
@@ -173,7 +173,7 @@ extension Wedata {
 
     /// 查询任务实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `TaskInstanceInfo` and `DescribeTaskInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskInstanceInfo`` and ``DescribeTaskInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskInstancesPaginator(_ input: DescribeTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInstances, logger: logger, on: eventLoop)

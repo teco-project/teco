@@ -100,7 +100,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetWebServiceBaseInfo`` list from the paginated response.
         public func getItems() -> [AssetWebServiceBaseInfo] {
             self.webServices ?? []
         }
@@ -149,7 +149,7 @@ extension Cwp {
 
     /// 查询资产管理Web服务列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssetWebServiceBaseInfo` and `DescribeAssetWebServiceInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssetWebServiceBaseInfo`` and ``DescribeAssetWebServiceInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetWebServiceInfoListPaginator(_ input: DescribeAssetWebServiceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebServiceInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebServiceInfoList, logger: logger, on: eventLoop)

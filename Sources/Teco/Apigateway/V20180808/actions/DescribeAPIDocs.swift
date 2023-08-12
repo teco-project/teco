@@ -60,7 +60,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``APIDoc`` list from the paginated response.
         public func getItems() -> [APIDoc] {
             self.result.apiDocSet
         }
@@ -109,7 +109,7 @@ extension Apigateway {
 
     /// 查询 API 文档列表
     ///
-    /// - Returns: `AsyncSequence`s of `APIDoc` and `DescribeAPIDocsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``APIDoc`` and ``DescribeAPIDocsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAPIDocsPaginator(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIDocsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)

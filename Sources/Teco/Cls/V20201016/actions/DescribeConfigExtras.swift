@@ -70,7 +70,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ConfigExtraInfo`` list from the paginated response.
         public func getItems() -> [ConfigExtraInfo] {
             self.configs ?? []
         }
@@ -133,7 +133,7 @@ extension Cls {
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     ///
-    /// - Returns: `AsyncSequence`s of `ConfigExtraInfo` and `DescribeConfigExtrasResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ConfigExtraInfo`` and ``DescribeConfigExtrasResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConfigExtrasPaginator(_ input: DescribeConfigExtrasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigExtrasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigExtras, logger: logger, on: eventLoop)

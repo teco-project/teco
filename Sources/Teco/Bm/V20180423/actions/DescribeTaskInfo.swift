@@ -117,7 +117,7 @@ extension Bm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInfo`` list from the paginated response.
         public func getItems() -> [TaskInfo] {
             self.taskInfoSet
         }
@@ -236,7 +236,7 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     ///
-    /// - Returns: `AsyncSequence`s of `TaskInfo` and `DescribeTaskInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskInfo`` and ``DescribeTaskInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskInfoPaginator(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInfo, logger: logger, on: eventLoop)

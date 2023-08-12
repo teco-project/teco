@@ -70,7 +70,7 @@ extension Cdc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HostInfo`` list from the paginated response.
         public func getItems() -> [HostInfo] {
             self.hostInfoSet ?? []
         }
@@ -119,7 +119,7 @@ extension Cdc {
 
     /// 专用集群宿主机信息
     ///
-    /// - Returns: `AsyncSequence`s of `HostInfo` and `DescribeDedicatedClusterHostsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HostInfo`` and ``DescribeDedicatedClusterHostsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDedicatedClusterHostsPaginator(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterHosts, logger: logger, on: eventLoop)

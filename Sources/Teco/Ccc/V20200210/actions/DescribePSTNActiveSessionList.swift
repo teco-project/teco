@@ -69,7 +69,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PSTNSessionInfo`` list from the paginated response.
         public func getItems() -> [PSTNSessionInfo] {
             self.sessions
         }
@@ -132,7 +132,7 @@ extension Ccc {
     ///
     /// 获取当前正在通话的会话列表
     ///
-    /// - Returns: `AsyncSequence`s of `PSTNSessionInfo` and `DescribePSTNActiveSessionListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PSTNSessionInfo`` and ``DescribePSTNActiveSessionListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePSTNActiveSessionListPaginator(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePSTNActiveSessionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePSTNActiveSessionList, logger: logger, on: eventLoop)

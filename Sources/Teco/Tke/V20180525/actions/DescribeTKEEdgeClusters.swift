@@ -75,7 +75,7 @@ extension Tke {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EdgeCluster`` list from the paginated response.
         public func getItems() -> [EdgeCluster] {
             self.clusters
         }
@@ -124,7 +124,7 @@ extension Tke {
 
     /// 查询边缘集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `EdgeCluster` and `DescribeTKEEdgeClustersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EdgeCluster`` and ``DescribeTKEEdgeClustersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTKEEdgeClustersPaginator(_ input: DescribeTKEEdgeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTKEEdgeClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTKEEdgeClusters, logger: logger, on: eventLoop)

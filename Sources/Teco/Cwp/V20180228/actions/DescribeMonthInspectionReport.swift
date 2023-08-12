@@ -64,7 +64,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MonthInspectionReport`` list from the paginated response.
         public func getItems() -> [MonthInspectionReport] {
             self.list
         }
@@ -127,7 +127,7 @@ extension Cwp {
     ///
     /// 专家服务-安全管家月巡检报告下载
     ///
-    /// - Returns: `AsyncSequence`s of `MonthInspectionReport` and `DescribeMonthInspectionReportResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MonthInspectionReport`` and ``DescribeMonthInspectionReportResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMonthInspectionReportPaginator(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMonthInspectionReportRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)

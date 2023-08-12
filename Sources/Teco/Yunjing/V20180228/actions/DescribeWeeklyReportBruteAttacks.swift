@@ -74,7 +74,7 @@ extension Yunjing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WeeklyReportBruteAttack`` list from the paginated response.
         public func getItems() -> [WeeklyReportBruteAttack] {
             self.weeklyReportBruteAttacks
         }
@@ -137,7 +137,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     ///
-    /// - Returns: `AsyncSequence`s of `WeeklyReportBruteAttack` and `DescribeWeeklyReportBruteAttacksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WeeklyReportBruteAttack`` and ``DescribeWeeklyReportBruteAttacksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWeeklyReportBruteAttacksPaginator(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportBruteAttacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, logger: logger, on: eventLoop)

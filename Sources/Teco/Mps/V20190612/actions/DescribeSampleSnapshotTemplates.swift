@@ -76,7 +76,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SampleSnapshotTemplate`` list from the paginated response.
         public func getItems() -> [SampleSnapshotTemplate] {
             self.sampleSnapshotTemplateSet
         }
@@ -139,7 +139,7 @@ extension Mps {
     ///
     /// 查询采样截图模板，支持根据条件，分页查询。
     ///
-    /// - Returns: `AsyncSequence`s of `SampleSnapshotTemplate` and `DescribeSampleSnapshotTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SampleSnapshotTemplate`` and ``DescribeSampleSnapshotTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSampleSnapshotTemplatesPaginator(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSampleSnapshotTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)

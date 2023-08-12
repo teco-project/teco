@@ -78,7 +78,7 @@ extension Dc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DirectConnectTunnel`` list from the paginated response.
         public func getItems() -> [DirectConnectTunnel] {
             self.directConnectTunnelSet
         }
@@ -141,7 +141,7 @@ extension Dc {
     ///
     /// 用于查询专用通道列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DirectConnectTunnel` and `DescribeDirectConnectTunnelsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DirectConnectTunnel`` and ``DescribeDirectConnectTunnelsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDirectConnectTunnelsPaginator(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectTunnelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)

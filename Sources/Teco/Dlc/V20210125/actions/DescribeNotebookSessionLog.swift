@@ -73,7 +73,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``String`` list from the paginated response.
         public func getItems() -> [String] {
             self.logs
         }
@@ -131,7 +131,7 @@ extension Dlc {
     ///
     /// 本接口（DescribeNotebookSessionLog）用于查询交互式 session日志
     ///
-    /// - Returns: `AsyncSequence`s of `String` and `DescribeNotebookSessionLogResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``String`` and ``DescribeNotebookSessionLogResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNotebookSessionLogPaginator(_ input: DescribeNotebookSessionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookSessionLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookSessionLog, logger: logger, on: eventLoop)

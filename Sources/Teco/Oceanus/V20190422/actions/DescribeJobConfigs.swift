@@ -89,7 +89,7 @@ extension Oceanus {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``JobConfig`` list from the paginated response.
         public func getItems() -> [JobConfig] {
             self.jobConfigSet
         }
@@ -152,7 +152,7 @@ extension Oceanus {
     ///
     /// 查询作业配置列表，一次最多查询100个
     ///
-    /// - Returns: `AsyncSequence`s of `JobConfig` and `DescribeJobConfigsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``JobConfig`` and ``DescribeJobConfigsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeJobConfigsPaginator(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJobConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJobConfigs, logger: logger, on: eventLoop)

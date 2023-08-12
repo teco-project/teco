@@ -103,7 +103,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AssetWebFrameBaseInfo`` list from the paginated response.
         public func getItems() -> [AssetWebFrameBaseInfo] {
             self.webFrames ?? []
         }
@@ -152,7 +152,7 @@ extension Cwp {
 
     /// 获取资产管理Web框架列表
     ///
-    /// - Returns: `AsyncSequence`s of `AssetWebFrameBaseInfo` and `DescribeAssetWebFrameListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AssetWebFrameBaseInfo`` and ``DescribeAssetWebFrameListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetWebFrameListPaginator(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebFrameListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebFrameList, logger: logger, on: eventLoop)

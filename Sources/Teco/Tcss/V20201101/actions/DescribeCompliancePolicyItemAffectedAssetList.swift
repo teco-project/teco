@@ -76,7 +76,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComplianceAffectedAsset`` list from the paginated response.
         public func getItems() -> [ComplianceAffectedAsset] {
             self.affectedAssetList
         }
@@ -139,7 +139,7 @@ extension Tcss {
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     ///
-    /// - Returns: `AsyncSequence`s of `ComplianceAffectedAsset` and `DescribeCompliancePolicyItemAffectedAssetListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComplianceAffectedAsset`` and ``DescribeCompliancePolicyItemAffectedAssetListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCompliancePolicyItemAffectedAssetListPaginator(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompliancePolicyItemAffectedAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)

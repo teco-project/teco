@@ -82,7 +82,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LicenseDetail`` list from the paginated response.
         public func getItems() -> [LicenseDetail] {
             self.list
         }
@@ -145,7 +145,7 @@ extension Cwp {
     ///
     /// 获取用户所有授权订单信息
     ///
-    /// - Returns: `AsyncSequence`s of `LicenseDetail` and `DescribeLicenseListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LicenseDetail`` and ``DescribeLicenseListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLicenseListPaginator(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseList, logger: logger, on: eventLoop)

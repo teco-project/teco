@@ -73,7 +73,7 @@ extension Clb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ClusterResource`` list from the paginated response.
         public func getItems() -> [ClusterResource] {
             self.clusterResourceSet
         }
@@ -136,7 +136,7 @@ extension Clb {
     ///
     /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
     ///
-    /// - Returns: `AsyncSequence`s of `ClusterResource` and `DescribeClusterResourcesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ClusterResource`` and ``DescribeClusterResourcesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterResourcesPaginator(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterResources, logger: logger, on: eventLoop)

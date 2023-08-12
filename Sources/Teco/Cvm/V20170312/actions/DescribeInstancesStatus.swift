@@ -69,7 +69,7 @@ extension Cvm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceStatus`` list from the paginated response.
         public func getItems() -> [InstanceStatus] {
             self.instanceStatusSet
         }
@@ -153,7 +153,7 @@ extension Cvm {
     /// * 可以根据实例`ID`来查询实例的状态。
     /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例状态。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceStatus` and `DescribeInstancesStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceStatus`` and ``DescribeInstancesStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesStatusPaginator(_ input: DescribeInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesStatus, logger: logger, on: eventLoop)

@@ -95,7 +95,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TemplateGroup`` list from the paginated response.
         public func getItems() -> [TemplateGroup] {
             self.templateGroupList ?? []
         }
@@ -144,7 +144,7 @@ extension Monitor {
 
     /// 获取条件模板列表
     ///
-    /// - Returns: `AsyncSequence`s of `TemplateGroup` and `DescribeConditionsTemplateListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TemplateGroup`` and ``DescribeConditionsTemplateListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConditionsTemplateListPaginator(_ input: DescribeConditionsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConditionsTemplateListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConditionsTemplateList, logger: logger, on: eventLoop)

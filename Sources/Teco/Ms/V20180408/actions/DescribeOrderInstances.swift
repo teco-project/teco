@@ -109,7 +109,7 @@ extension Ms {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Orders`` list from the paginated response.
         public func getItems() -> [Orders] {
             self.orders
         }
@@ -206,7 +206,7 @@ extension Ms {
     /// 2.支持唯一订单号精准匹配查询；
     /// 3.支持唯一资源号精准匹配查询；
     ///
-    /// - Returns: `AsyncSequence`s of `Orders` and `DescribeOrderInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Orders`` and ``DescribeOrderInstancesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "上错服务器了")
     @inlinable
     public func describeOrderInstancesPaginator(_ input: DescribeOrderInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrderInstancesRequest> {

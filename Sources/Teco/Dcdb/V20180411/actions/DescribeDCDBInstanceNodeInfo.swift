@@ -69,7 +69,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BriefNodeInfo`` list from the paginated response.
         public func getItems() -> [BriefNodeInfo] {
             self.nodesInfo
         }
@@ -132,7 +132,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     ///
-    /// - Returns: `AsyncSequence`s of `BriefNodeInfo` and `DescribeDCDBInstanceNodeInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BriefNodeInfo`` and ``DescribeDCDBInstanceNodeInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDCDBInstanceNodeInfoPaginator(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBInstanceNodeInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, logger: logger, on: eventLoop)

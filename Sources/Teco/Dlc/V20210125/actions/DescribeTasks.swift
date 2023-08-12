@@ -104,7 +104,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskResponseInfo`` list from the paginated response.
         public func getItems() -> [TaskResponseInfo] {
             self.taskList
         }
@@ -167,7 +167,7 @@ extension Dlc {
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `TaskResponseInfo` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskResponseInfo`` and ``DescribeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

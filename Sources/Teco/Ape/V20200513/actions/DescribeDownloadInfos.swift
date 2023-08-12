@@ -88,7 +88,7 @@ extension Ape {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DownloadInfo`` list from the paginated response.
         public func getItems() -> [DownloadInfo] {
             self.downloadInfos ?? []
         }
@@ -151,7 +151,7 @@ extension Ape {
     ///
     /// 获取用户图片下载记录
     ///
-    /// - Returns: `AsyncSequence`s of `DownloadInfo` and `DescribeDownloadInfosResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DownloadInfo`` and ``DescribeDownloadInfosResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDownloadInfosPaginator(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDownloadInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDownloadInfos, logger: logger, on: eventLoop)

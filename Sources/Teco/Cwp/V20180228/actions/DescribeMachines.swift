@@ -99,7 +99,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Machine`` list from the paginated response.
         public func getItems() -> [Machine] {
             self.machines
         }
@@ -162,7 +162,7 @@ extension Cwp {
     ///
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
     ///
-    /// - Returns: `AsyncSequence`s of `Machine` and `DescribeMachinesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Machine`` and ``DescribeMachinesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMachinesPaginator(_ input: DescribeMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachinesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachines, logger: logger, on: eventLoop)

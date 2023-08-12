@@ -70,7 +70,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ZookeeperReplica`` list from the paginated response.
         public func getItems() -> [ZookeeperReplica] {
             self.replicas
         }
@@ -119,7 +119,7 @@ extension Tse {
 
     /// 查询Zookeeper类型注册引擎实例副本信息
     ///
-    /// - Returns: `AsyncSequence`s of `ZookeeperReplica` and `DescribeZookeeperReplicasResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ZookeeperReplica`` and ``DescribeZookeeperReplicasResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeZookeeperReplicasPaginator(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZookeeperReplicasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)

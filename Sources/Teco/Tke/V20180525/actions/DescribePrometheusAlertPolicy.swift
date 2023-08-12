@@ -76,7 +76,7 @@ extension Tke {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrometheusAlertPolicyItem`` list from the paginated response.
         public func getItems() -> [PrometheusAlertPolicyItem] {
             self.alertRules ?? []
         }
@@ -125,7 +125,7 @@ extension Tke {
 
     /// 获取2.0实例告警策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusAlertPolicyItem` and `DescribePrometheusAlertPolicyResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusAlertPolicyItem`` and ``DescribePrometheusAlertPolicyResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusAlertPolicyPaginator(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertPolicyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)

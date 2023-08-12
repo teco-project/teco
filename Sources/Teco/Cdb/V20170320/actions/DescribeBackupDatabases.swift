@@ -79,7 +79,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DatabaseName`` list from the paginated response.
         public func getItems() -> [DatabaseName] {
             self.items
         }
@@ -162,7 +162,7 @@ extension Cdb {
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     ///
-    /// - Returns: `AsyncSequence`s of `DatabaseName` and `DescribeBackupDatabasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DatabaseName`` and ``DescribeBackupDatabasesResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "接口已废弃，需要下线")
     @inlinable
     public func describeBackupDatabasesPaginator(_ input: DescribeBackupDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupDatabasesRequest> {

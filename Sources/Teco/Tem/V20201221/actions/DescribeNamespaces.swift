@@ -65,7 +65,7 @@ extension Tem {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TemNamespaceInfo`` list from the paginated response.
         public func getItems() -> [TemNamespaceInfo] {
             self.result.records
         }
@@ -128,7 +128,7 @@ extension Tem {
     ///
     /// 获取租户环境列表
     ///
-    /// - Returns: `AsyncSequence`s of `TemNamespaceInfo` and `DescribeNamespacesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TemNamespaceInfo`` and ``DescribeNamespacesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)

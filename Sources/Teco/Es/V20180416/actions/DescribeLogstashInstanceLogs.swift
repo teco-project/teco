@@ -99,7 +99,7 @@ extension Es {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceLog`` list from the paginated response.
         public func getItems() -> [InstanceLog] {
             self.instanceLogList
         }
@@ -162,7 +162,7 @@ extension Es {
     ///
     /// 查询用户该地域下符合条件的Logstash实例的日志
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceLog` and `DescribeLogstashInstanceLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceLog`` and ``DescribeLogstashInstanceLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLogstashInstanceLogsPaginator(_ input: DescribeLogstashInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogstashInstanceLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogstashInstanceLogs, logger: logger, on: eventLoop)

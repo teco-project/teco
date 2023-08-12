@@ -65,7 +65,7 @@ extension Iai {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupInfo`` list from the paginated response.
         public func getItems() -> [GroupInfo] {
             self.groupInfos
         }
@@ -128,7 +128,7 @@ extension Iai {
     ///
     /// 获取人员库列表。
     ///
-    /// - Returns: `AsyncSequence`s of `GroupInfo` and `GetGroupListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupInfo`` and ``GetGroupListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getGroupListPaginator(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)

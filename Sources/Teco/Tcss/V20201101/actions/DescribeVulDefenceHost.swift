@@ -85,7 +85,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VulDefenceHost`` list from the paginated response.
         public func getItems() -> [VulDefenceHost] {
             self.list
         }
@@ -134,7 +134,7 @@ extension Tcss {
 
     /// 查询漏洞防御的主机列表
     ///
-    /// - Returns: `AsyncSequence`s of `VulDefenceHost` and `DescribeVulDefenceHostResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VulDefenceHost`` and ``DescribeVulDefenceHostResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulDefenceHostPaginator(_ input: DescribeVulDefenceHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulDefenceHostRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefenceHost, logger: logger, on: eventLoop)

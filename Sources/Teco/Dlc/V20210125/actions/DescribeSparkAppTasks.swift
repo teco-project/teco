@@ -95,7 +95,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskResponseInfo`` list from the paginated response.
         public func getItems() -> [TaskResponseInfo] {
             self.sparkAppTasks ?? []
         }
@@ -158,7 +158,7 @@ extension Dlc {
     ///
     /// 查询Spark作业的运行任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `TaskResponseInfo` and `DescribeSparkAppTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskResponseInfo`` and ``DescribeSparkAppTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSparkAppTasksPaginator(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSparkAppTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)

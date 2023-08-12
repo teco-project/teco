@@ -107,7 +107,7 @@ extension Partners {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AgentDealNewElem`` list from the paginated response.
         public func getItems() -> [AgentDealNewElem] {
             self.agentPayDealSet
         }
@@ -170,7 +170,7 @@ extension Partners {
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
     ///
-    /// - Returns: `AsyncSequence`s of `AgentDealNewElem` and `DescribeAgentSelfPayDealsV2Response` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AgentDealNewElem`` and ``DescribeAgentSelfPayDealsV2Response`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentSelfPayDealsV2Paginator(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)

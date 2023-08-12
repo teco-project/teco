@@ -79,7 +79,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComplianceScanFailedAsset`` list from the paginated response.
         public func getItems() -> [ComplianceScanFailedAsset] {
             self.scanFailedAssetList ?? []
         }
@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
     ///
-    /// - Returns: `AsyncSequence`s of `ComplianceScanFailedAsset` and `DescribeComplianceScanFailedAssetListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComplianceScanFailedAsset`` and ``DescribeComplianceScanFailedAssetListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceScanFailedAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)

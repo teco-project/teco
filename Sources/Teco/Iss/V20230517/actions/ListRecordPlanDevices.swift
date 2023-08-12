@@ -120,7 +120,7 @@ extension Iss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RecordPlanChannelInfo`` list from the paginated response.
         public func getItems() -> [RecordPlanChannelInfo] {
             self.list ?? []
         }
@@ -183,7 +183,7 @@ extension Iss {
     ///
     /// 用于查询实时上云计划下的设备通道列表
     ///
-    /// - Returns: `AsyncSequence`s of `RecordPlanChannelInfo` and `ListRecordPlanDevicesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RecordPlanChannelInfo`` and ``ListRecordPlanDevicesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listRecordPlanDevicesPaginator(_ input: ListRecordPlanDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListRecordPlanDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRecordPlanDevices, logger: logger, on: eventLoop)

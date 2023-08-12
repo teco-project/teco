@@ -75,7 +75,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AttachedPluginInfo`` list from the paginated response.
         public func getItems() -> [AttachedPluginInfo] {
             self.result.pluginSummary
         }
@@ -138,7 +138,7 @@ extension Apigateway {
     ///
     /// 展示API上已绑定的插件列表。
     ///
-    /// - Returns: `AsyncSequence`s of `AttachedPluginInfo` and `DescribePluginsByApiResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AttachedPluginInfo`` and ``DescribePluginsByApiResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePluginsByApiPaginator(_ input: DescribePluginsByApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginsByApiRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePluginsByApi, logger: logger, on: eventLoop)

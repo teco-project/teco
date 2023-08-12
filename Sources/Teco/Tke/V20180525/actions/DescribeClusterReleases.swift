@@ -101,7 +101,7 @@ extension Tke {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Release`` list from the paginated response.
         public func getItems() -> [Release] {
             self.releaseSet ?? []
         }
@@ -164,7 +164,7 @@ extension Tke {
     ///
     /// 查询集群在应用市场中已安装应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `Release` and `DescribeClusterReleasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Release`` and ``DescribeClusterReleasesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClusterReleasesPaginator(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterReleasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterReleases, logger: logger, on: eventLoop)

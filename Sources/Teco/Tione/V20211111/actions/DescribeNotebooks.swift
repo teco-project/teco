@@ -96,7 +96,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NotebookSetItem`` list from the paginated response.
         public func getItems() -> [NotebookSetItem] {
             self.notebookSet ?? []
         }
@@ -145,7 +145,7 @@ extension Tione {
 
     /// Notebook列表
     ///
-    /// - Returns: `AsyncSequence`s of `NotebookSetItem` and `DescribeNotebooksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NotebookSetItem`` and ``DescribeNotebooksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNotebooksPaginator(_ input: DescribeNotebooksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebooksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebooks, logger: logger, on: eventLoop)

@@ -96,7 +96,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``IntegrationTaskInfo`` list from the paginated response.
         public func getItems() -> [IntegrationTaskInfo] {
             self.taskInfoSet ?? []
         }
@@ -145,7 +145,7 @@ extension Wedata {
 
     /// 查询集成任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `IntegrationTaskInfo` and `DescribeIntegrationTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IntegrationTaskInfo`` and ``DescribeIntegrationTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIntegrationTasksPaginator(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationTasks, logger: logger, on: eventLoop)

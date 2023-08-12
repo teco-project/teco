@@ -71,7 +71,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PositionSpaceInfo`` list from the paginated response.
         public func getItems() -> [PositionSpaceInfo] {
             self.list ?? []
         }
@@ -120,7 +120,7 @@ extension Iotexplorer {
 
     /// 获取位置空间列表
     ///
-    /// - Returns: `AsyncSequence`s of `PositionSpaceInfo` and `GetPositionSpaceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PositionSpaceInfo`` and ``GetPositionSpaceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getPositionSpaceListPaginator(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPositionSpaceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPositionSpaceList, logger: logger, on: eventLoop)

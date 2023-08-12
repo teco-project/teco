@@ -91,7 +91,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SecretItem`` list from the paginated response.
         public func getItems() -> [SecretItem] {
             self.items ?? []
         }
@@ -140,7 +140,7 @@ extension Iecp {
 
     /// 获取Secrets列表
     ///
-    /// - Returns: `AsyncSequence`s of `SecretItem` and `DescribeSecretsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SecretItem`` and ``DescribeSecretsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSecretsPaginator(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecretsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecrets, logger: logger, on: eventLoop)

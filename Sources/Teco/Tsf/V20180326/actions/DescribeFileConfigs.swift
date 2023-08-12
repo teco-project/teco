@@ -86,7 +86,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``FileConfig`` list from the paginated response.
         public func getItems() -> [FileConfig] {
             self.result?.content ?? []
         }
@@ -135,7 +135,7 @@ extension Tsf {
 
     /// 查询文件配置项列表
     ///
-    /// - Returns: `AsyncSequence`s of `FileConfig` and `DescribeFileConfigsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``FileConfig`` and ``DescribeFileConfigsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFileConfigsPaginator(_ input: DescribeFileConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileConfigs, logger: logger, on: eventLoop)

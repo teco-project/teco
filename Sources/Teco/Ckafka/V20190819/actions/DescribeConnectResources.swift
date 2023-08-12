@@ -75,7 +75,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DescribeConnectResource`` list from the paginated response.
         public func getItems() -> [DescribeConnectResource] {
             self.result.connectResourceList ?? []
         }
@@ -124,7 +124,7 @@ extension Ckafka {
 
     /// 查询Datahub连接源列表
     ///
-    /// - Returns: `AsyncSequence`s of `DescribeConnectResource` and `DescribeConnectResourcesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DescribeConnectResource`` and ``DescribeConnectResourcesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConnectResourcesPaginator(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConnectResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConnectResources, logger: logger, on: eventLoop)

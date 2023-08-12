@@ -94,7 +94,7 @@ extension Cvm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Image`` list from the paginated response.
         public func getItems() -> [Image] {
             self.imageSet
         }
@@ -178,7 +178,7 @@ extension Cvm {
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Image` and `DescribeImagesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Image`` and ``DescribeImagesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)

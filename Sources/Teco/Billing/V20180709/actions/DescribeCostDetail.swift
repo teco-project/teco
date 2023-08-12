@@ -110,7 +110,7 @@ extension Billing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CostDetail`` list from the paginated response.
         public func getItems() -> [CostDetail] {
             self.detailSet ?? []
         }
@@ -159,7 +159,7 @@ extension Billing {
 
     /// 查询消耗明细
     ///
-    /// - Returns: `AsyncSequence`s of `CostDetail` and `DescribeCostDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CostDetail`` and ``DescribeCostDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCostDetailPaginator(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCostDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostDetail, logger: logger, on: eventLoop)

@@ -76,7 +76,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApiEnvironmentStrategy`` list from the paginated response.
         public func getItems() -> [ApiEnvironmentStrategy] {
             self.result?.apiEnvironmentStrategySet ?? []
         }
@@ -139,7 +139,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     ///
-    /// - Returns: `AsyncSequence`s of `ApiEnvironmentStrategy` and `DescribeApiEnvironmentStrategyResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApiEnvironmentStrategy`` and ``DescribeApiEnvironmentStrategyResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApiEnvironmentStrategyPaginator(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiEnvironmentStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiEnvironmentStrategy, logger: logger, on: eventLoop)

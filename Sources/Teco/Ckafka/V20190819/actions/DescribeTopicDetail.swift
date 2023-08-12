@@ -75,7 +75,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TopicDetail`` list from the paginated response.
         public func getItems() -> [TopicDetail] {
             self.result.topicList ?? []
         }
@@ -138,7 +138,7 @@ extension Ckafka {
     ///
     /// 获取主题列表详情（仅控制台调用）
     ///
-    /// - Returns: `AsyncSequence`s of `TopicDetail` and `DescribeTopicDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TopicDetail`` and ``DescribeTopicDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicDetailPaginator(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicDetail, logger: logger, on: eventLoop)

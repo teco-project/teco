@@ -76,7 +76,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Rule`` list from the paginated response.
         public func getItems() -> [Rule] {
             self.data?.items ?? []
         }
@@ -125,7 +125,7 @@ extension Wedata {
 
     /// 分页查询质量规则
     ///
-    /// - Returns: `AsyncSequence`s of `Rule` and `DescribeRulesByPageResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Rule`` and ``DescribeRulesByPageResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRulesByPagePaginator(_ input: DescribeRulesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRulesByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRulesByPage, logger: logger, on: eventLoop)

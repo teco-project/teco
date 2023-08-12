@@ -85,7 +85,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SchedulesInfo`` list from the paginated response.
         public func getItems() -> [SchedulesInfo] {
             self.scheduleInfoSet
         }
@@ -148,7 +148,7 @@ extension Mps {
     ///
     /// 查询编排。
     ///
-    /// - Returns: `AsyncSequence`s of `SchedulesInfo` and `DescribeSchedulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SchedulesInfo`` and ``DescribeSchedulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSchedulesPaginator(_ input: DescribeSchedulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSchedulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSchedules, logger: logger, on: eventLoop)

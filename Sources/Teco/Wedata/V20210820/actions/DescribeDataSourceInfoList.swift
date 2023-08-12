@@ -90,7 +90,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DatasourceBaseInfo`` list from the paginated response.
         public func getItems() -> [DatasourceBaseInfo] {
             self.datasourceSet ?? []
         }
@@ -153,7 +153,7 @@ extension Wedata {
     ///
     /// 获取数据源信息-数据源分页列表
     ///
-    /// - Returns: `AsyncSequence`s of `DatasourceBaseInfo` and `DescribeDataSourceInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DatasourceBaseInfo`` and ``DescribeDataSourceInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDataSourceInfoListPaginator(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataSourceInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)

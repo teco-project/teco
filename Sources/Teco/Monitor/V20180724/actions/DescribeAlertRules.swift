@@ -92,7 +92,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrometheusRuleSet`` list from the paginated response.
         public func getItems() -> [PrometheusRuleSet] {
             self.alertRuleSet ?? []
         }
@@ -155,7 +155,7 @@ extension Monitor {
     ///
     /// Prometheus 报警规则查询接口
     ///
-    /// - Returns: `AsyncSequence`s of `PrometheusRuleSet` and `DescribeAlertRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrometheusRuleSet`` and ``DescribeAlertRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlertRulesPaginator(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRules, logger: logger, on: eventLoop)

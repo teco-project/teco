@@ -89,7 +89,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``HostLoginList`` list from the paginated response.
         public func getItems() -> [HostLoginList] {
             self.hostLoginList ?? []
         }
@@ -138,7 +138,7 @@ extension Cwp {
 
     /// 获取登录审计列表
     ///
-    /// - Returns: `AsyncSequence`s of `HostLoginList` and `DescribeHostLoginListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``HostLoginList`` and ``DescribeHostLoginListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostLoginListPaginator(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostLoginListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)

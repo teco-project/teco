@@ -93,7 +93,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``StreamOnlineInfo`` list from the paginated response.
         public func getItems() -> [StreamOnlineInfo] {
             self.onlineInfo
         }
@@ -184,7 +184,7 @@ extension Live {
     /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
     /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
     ///
-    /// - Returns: `AsyncSequence`s of `StreamOnlineInfo` and `DescribeLiveStreamOnlineListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``StreamOnlineInfo`` and ``DescribeLiveStreamOnlineListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveStreamOnlineListPaginator(_ input: DescribeLiveStreamOnlineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamOnlineListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamOnlineList, logger: logger, on: eventLoop)

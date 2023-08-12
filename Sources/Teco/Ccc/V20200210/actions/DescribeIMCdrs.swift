@@ -89,7 +89,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``IMCdrInfo`` list from the paginated response.
         public func getItems() -> [IMCdrInfo] {
             self.imCdrs
         }
@@ -152,7 +152,7 @@ extension Ccc {
     ///
     /// 获取包括全媒体和文本会话两种类型的服务记录。
     ///
-    /// - Returns: `AsyncSequence`s of `IMCdrInfo` and `DescribeIMCdrsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``IMCdrInfo`` and ``DescribeIMCdrsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIMCdrsPaginator(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIMCdrsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIMCdrs, logger: logger, on: eventLoop)

@@ -71,7 +71,7 @@ extension Cpdp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MerchantManagementList`` list from the paginated response.
         public func getItems() -> [MerchantManagementList] {
             self.result?.list ?? []
         }
@@ -120,7 +120,7 @@ extension Cpdp {
 
     /// 智慧零售-查询管理端商户
     ///
-    /// - Returns: `AsyncSequence`s of `MerchantManagementList` and `QueryMerchantInfoForManagementResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MerchantManagementList`` and ``QueryMerchantInfoForManagementResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryMerchantInfoForManagementPaginator(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMerchantInfoForManagementRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMerchantInfoForManagement, logger: logger, on: eventLoop)

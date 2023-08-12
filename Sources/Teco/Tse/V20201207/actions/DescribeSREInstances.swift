@@ -79,7 +79,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SREInstance`` list from the paginated response.
         public func getItems() -> [SREInstance] {
             self.content
         }
@@ -142,7 +142,7 @@ extension Tse {
     ///
     /// 用于查询引擎实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `SREInstance` and `DescribeSREInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SREInstance`` and ``DescribeSREInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSREInstancesPaginator(_ input: DescribeSREInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSREInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSREInstances, logger: logger, on: eventLoop)

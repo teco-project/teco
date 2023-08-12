@@ -77,7 +77,7 @@ extension Vpc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SnapshotInstance`` list from the paginated response.
         public func getItems() -> [SnapshotInstance] {
             self.instanceSet
         }
@@ -140,7 +140,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
     ///
-    /// - Returns: `AsyncSequence`s of `SnapshotInstance` and `DescribeSnapshotAttachedInstancesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SnapshotInstance`` and ``DescribeSnapshotAttachedInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotAttachedInstancesPaginator(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotAttachedInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotAttachedInstances, logger: logger, on: eventLoop)

@@ -89,7 +89,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AiSampleWord`` list from the paginated response.
         public func getItems() -> [AiSampleWord] {
             self.wordSet ?? []
         }
@@ -152,7 +152,7 @@ extension Mps {
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     ///
-    /// - Returns: `AsyncSequence`s of `AiSampleWord` and `DescribeWordSamplesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AiSampleWord`` and ``DescribeWordSamplesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordSamplesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)

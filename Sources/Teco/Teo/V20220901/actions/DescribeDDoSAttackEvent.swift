@@ -120,7 +120,7 @@ extension Teo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSAttackEvent`` list from the paginated response.
         public func getItems() -> [DDoSAttackEvent] {
             self.data ?? []
         }
@@ -183,7 +183,7 @@ extension Teo {
     ///
     /// 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
     ///
-    /// - Returns: `AsyncSequence`s of `DDoSAttackEvent` and `DescribeDDoSAttackEventResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DDoSAttackEvent`` and ``DescribeDDoSAttackEventResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDDoSAttackEventPaginator(_ input: DescribeDDoSAttackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDDoSAttackEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSAttackEvent, logger: logger, on: eventLoop)

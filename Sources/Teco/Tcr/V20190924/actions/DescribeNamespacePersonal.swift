@@ -65,7 +65,7 @@ extension Tcr {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NamespaceInfo`` list from the paginated response.
         public func getItems() -> [NamespaceInfo] {
             self.data.namespaceInfo
         }
@@ -114,7 +114,7 @@ extension Tcr {
 
     /// 查询个人版命名空间信息
     ///
-    /// - Returns: `AsyncSequence`s of `NamespaceInfo` and `DescribeNamespacePersonalResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NamespaceInfo`` and ``DescribeNamespacePersonalResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNamespacePersonalPaginator(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacePersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)

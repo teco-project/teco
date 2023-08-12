@@ -108,7 +108,7 @@ extension Ssm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SecretMetadata`` list from the paginated response.
         public func getItems() -> [SecretMetadata] {
             self.secretMetadatas
         }
@@ -171,7 +171,7 @@ extension Ssm {
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     ///
-    /// - Returns: `AsyncSequence`s of `SecretMetadata` and `ListSecretsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SecretMetadata`` and ``ListSecretsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listSecretsPaginator(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListSecretsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)

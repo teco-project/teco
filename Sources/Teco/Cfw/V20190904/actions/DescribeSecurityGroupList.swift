@@ -98,7 +98,7 @@ extension Cfw {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SecurityGroupListData`` list from the paginated response.
         public func getItems() -> [SecurityGroupListData] {
             self.data
         }
@@ -147,7 +147,7 @@ extension Cfw {
 
     /// 查询安全组规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `SecurityGroupListData` and `DescribeSecurityGroupListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SecurityGroupListData`` and ``DescribeSecurityGroupListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSecurityGroupListPaginator(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityGroupList, logger: logger, on: eventLoop)

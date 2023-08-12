@@ -85,7 +85,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApplicationStatusInfo`` list from the paginated response.
         public func getItems() -> [ApplicationStatusInfo] {
             self.applicationSet
         }
@@ -134,7 +134,7 @@ extension Iecp {
 
     /// 获取单元下应用列表
     ///
-    /// - Returns: `AsyncSequence`s of `ApplicationStatusInfo` and `DescribeEdgeUnitApplicationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApplicationStatusInfo`` and ``DescribeEdgeUnitApplicationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeUnitApplicationsPaginator(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitApplications, logger: logger, on: eventLoop)

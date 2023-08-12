@@ -81,7 +81,7 @@ extension Tse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``KongRoutePreview`` list from the paginated response.
         public func getItems() -> [KongRoutePreview] {
             self.result?.routeList ?? []
         }
@@ -130,7 +130,7 @@ extension Tse {
 
     /// 查询云原生网关路由列表
     ///
-    /// - Returns: `AsyncSequence`s of `KongRoutePreview` and `DescribeCloudNativeAPIGatewayRoutesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``KongRoutePreview`` and ``DescribeCloudNativeAPIGatewayRoutesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudNativeAPIGatewayRoutesPaginator(_ input: DescribeCloudNativeAPIGatewayRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudNativeAPIGatewayRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudNativeAPIGatewayRoutes, logger: logger, on: eventLoop)

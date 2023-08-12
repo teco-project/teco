@@ -90,7 +90,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MachineGroupInfo`` list from the paginated response.
         public func getItems() -> [MachineGroupInfo] {
             self.machineGroups ?? []
         }
@@ -153,7 +153,7 @@ extension Cls {
     ///
     /// 获取机器组信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `MachineGroupInfo` and `DescribeMachineGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MachineGroupInfo`` and ``DescribeMachineGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMachineGroupsPaginator(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachineGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachineGroups, logger: logger, on: eventLoop)

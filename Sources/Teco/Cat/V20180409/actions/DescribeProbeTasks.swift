@@ -142,7 +142,7 @@ extension Cat {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProbeTask`` list from the paginated response.
         public func getItems() -> [ProbeTask] {
             self.taskSet ?? []
         }
@@ -205,7 +205,7 @@ extension Cat {
     ///
     /// 查询拨测任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `ProbeTask` and `DescribeProbeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProbeTask`` and ``DescribeProbeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProbeTasksPaginator(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProbeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProbeTasks, logger: logger, on: eventLoop)

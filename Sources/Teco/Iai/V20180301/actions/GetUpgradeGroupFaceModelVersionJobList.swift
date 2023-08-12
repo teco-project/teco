@@ -64,7 +64,7 @@ extension Iai {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UpgradeJobInfo`` list from the paginated response.
         public func getItems() -> [UpgradeJobInfo] {
             self.jobInfos
         }
@@ -119,7 +119,7 @@ extension Iai {
 
     /// 获取人员库升级任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `UpgradeJobInfo` and `GetUpgradeGroupFaceModelVersionJobListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UpgradeJobInfo`` and ``GetUpgradeGroupFaceModelVersionJobListResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "避免官网歧义")
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeGroupFaceModelVersionJobListRequest> {

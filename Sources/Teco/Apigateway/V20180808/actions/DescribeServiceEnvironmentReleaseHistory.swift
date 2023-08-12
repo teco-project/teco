@@ -71,7 +71,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ServiceReleaseHistoryInfo`` list from the paginated response.
         public func getItems() -> [ServiceReleaseHistoryInfo] {
             self.result?.versionList ?? []
         }
@@ -141,7 +141,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceEnvironmentReleaseHistory）用于查询服务环境的发布历史。
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     ///
-    /// - Returns: `AsyncSequence`s of `ServiceReleaseHistoryInfo` and `DescribeServiceEnvironmentReleaseHistoryResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ServiceReleaseHistoryInfo`` and ``DescribeServiceEnvironmentReleaseHistoryResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceEnvironmentReleaseHistoryPaginator(_ input: DescribeServiceEnvironmentReleaseHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceEnvironmentReleaseHistoryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceEnvironmentReleaseHistory, logger: logger, on: eventLoop)

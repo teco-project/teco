@@ -70,7 +70,7 @@ extension Yunjing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PrivilegeEscalationProcess`` list from the paginated response.
         public func getItems() -> [PrivilegeEscalationProcess] {
             self.list
         }
@@ -119,7 +119,7 @@ extension Yunjing {
 
     /// 获取本地提权事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `PrivilegeEscalationProcess` and `DescribePrivilegeEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PrivilegeEscalationProcess`` and ``DescribePrivilegeEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivilegeEventsPaginator(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivilegeEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)

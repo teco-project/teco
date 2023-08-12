@@ -134,7 +134,7 @@ extension Bmlb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LoadBalancer`` list from the paginated response.
         public func getItems() -> [LoadBalancer] {
             self.loadBalancerSet
         }
@@ -183,7 +183,7 @@ extension Bmlb {
 
     /// 获取黑石负载均衡实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `LoadBalancer` and `DescribeLoadBalancersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LoadBalancer`` and ``DescribeLoadBalancersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)

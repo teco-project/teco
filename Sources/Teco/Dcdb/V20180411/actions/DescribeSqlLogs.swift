@@ -85,7 +85,7 @@ extension Dcdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SqlLogItem`` list from the paginated response.
         public func getItems() -> [SqlLogItem] {
             self.sqlItems
         }
@@ -154,7 +154,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     ///
-    /// - Returns: `AsyncSequence`s of `SqlLogItem` and `DescribeSqlLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SqlLogItem`` and ``DescribeSqlLogsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "已废弃接口")
     @inlinable
     public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlLogsRequest> {

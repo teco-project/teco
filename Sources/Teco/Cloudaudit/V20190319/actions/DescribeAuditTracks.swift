@@ -64,7 +64,7 @@ extension Cloudaudit {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Tracks`` list from the paginated response.
         public func getItems() -> [Tracks] {
             self.tracks
         }
@@ -113,7 +113,7 @@ extension Cloudaudit {
 
     /// 查询云审计跟踪集列表
     ///
-    /// - Returns: `AsyncSequence`s of `Tracks` and `DescribeAuditTracksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Tracks`` and ``DescribeAuditTracksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditTracksPaginator(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditTracksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditTracks, logger: logger, on: eventLoop)

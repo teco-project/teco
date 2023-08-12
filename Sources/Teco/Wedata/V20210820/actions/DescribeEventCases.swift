@@ -131,7 +131,7 @@ extension Wedata {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EventCaseAuditLogOptDto`` list from the paginated response.
         public func getItems() -> [EventCaseAuditLogOptDto] {
             self.data?.items ?? []
         }
@@ -194,7 +194,7 @@ extension Wedata {
     ///
     /// 根据条件查找事件实例
     ///
-    /// - Returns: `AsyncSequence`s of `EventCaseAuditLogOptDto` and `DescribeEventCasesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EventCaseAuditLogOptDto`` and ``DescribeEventCasesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEventCasesPaginator(_ input: DescribeEventCasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEventCasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEventCases, logger: logger, on: eventLoop)

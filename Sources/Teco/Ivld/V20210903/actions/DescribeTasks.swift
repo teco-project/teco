@@ -75,7 +75,7 @@ extension Ivld {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInfo`` list from the paginated response.
         public func getItems() -> [TaskInfo] {
             self.taskInfoSet ?? []
         }
@@ -152,7 +152,7 @@ extension Ivld {
     ///
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     ///
-    /// - Returns: `AsyncSequence`s of `TaskInfo` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskInfo`` and ``DescribeTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

@@ -82,7 +82,7 @@ extension Batch {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComputeEnvView`` list from the paginated response.
         public func getItems() -> [ComputeEnvView] {
             self.computeEnvSet
         }
@@ -145,7 +145,7 @@ extension Batch {
     ///
     /// 用于查看计算环境列表
     ///
-    /// - Returns: `AsyncSequence`s of `ComputeEnvView` and `DescribeComputeEnvsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComputeEnvView`` and ``DescribeComputeEnvsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComputeEnvsPaginator(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)

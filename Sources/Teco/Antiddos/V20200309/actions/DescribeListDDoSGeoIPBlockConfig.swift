@@ -74,7 +74,7 @@ extension Antiddos {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DDoSGeoIPBlockConfigRelation`` list from the paginated response.
         public func getItems() -> [DDoSGeoIPBlockConfigRelation] {
             self.configList
         }
@@ -123,7 +123,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的区域封禁配置列表
     ///
-    /// - Returns: `AsyncSequence`s of `DDoSGeoIPBlockConfigRelation` and `DescribeListDDoSGeoIPBlockConfigResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DDoSGeoIPBlockConfigRelation`` and ``DescribeListDDoSGeoIPBlockConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListDDoSGeoIPBlockConfigPaginator(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSGeoIPBlockConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, logger: logger, on: eventLoop)

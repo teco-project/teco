@@ -86,7 +86,7 @@ extension Trp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CustomRule`` list from the paginated response.
         public func getItems() -> [CustomRule] {
             self.customRules ?? []
         }
@@ -135,7 +135,7 @@ extension Trp {
 
     /// 查自定义码规则列表
     ///
-    /// - Returns: `AsyncSequence`s of `CustomRule` and `DescribeCustomRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomRule`` and ``DescribeCustomRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomRulesPaginator(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomRules, logger: logger, on: eventLoop)

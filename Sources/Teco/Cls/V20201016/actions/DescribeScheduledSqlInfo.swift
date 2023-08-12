@@ -74,7 +74,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ScheduledSqlTaskInfo`` list from the paginated response.
         public func getItems() -> [ScheduledSqlTaskInfo] {
             self.scheduledSqlTaskInfos
         }
@@ -137,7 +137,7 @@ extension Cls {
     ///
     /// 本接口用于获取ScheduledSql任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `ScheduledSqlTaskInfo` and `DescribeScheduledSqlInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ScheduledSqlTaskInfo`` and ``DescribeScheduledSqlInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScheduledSqlInfoPaginator(_ input: DescribeScheduledSqlInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScheduledSqlInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScheduledSqlInfo, logger: logger, on: eventLoop)

@@ -86,7 +86,7 @@ extension Cwp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BaselineHostDetect`` list from the paginated response.
         public func getItems() -> [BaselineHostDetect] {
             self.list
         }
@@ -135,7 +135,7 @@ extension Cwp {
 
     /// 获取基线检测主机列表
     ///
-    /// - Returns: `AsyncSequence`s of `BaselineHostDetect` and `DescribeBaselineHostDetectListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BaselineHostDetect`` and ``DescribeBaselineHostDetectListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineHostDetectListPaginator(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineHostDetectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)

@@ -75,7 +75,7 @@ extension Cynosdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AuditRuleTemplateInfo`` list from the paginated response.
         public func getItems() -> [AuditRuleTemplateInfo] {
             self.items ?? []
         }
@@ -138,7 +138,7 @@ extension Cynosdb {
     ///
     /// 查询审计规则模版信息
     ///
-    /// - Returns: `AsyncSequence`s of `AuditRuleTemplateInfo` and `DescribeAuditRuleTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditRuleTemplateInfo`` and ``DescribeAuditRuleTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditRuleTemplatesPaginator(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditRuleTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)

@@ -93,7 +93,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImageRisk`` list from the paginated response.
         public func getItems() -> [ImageRisk] {
             self.list ?? []
         }
@@ -142,7 +142,7 @@ extension Tcss {
 
     /// 镜像仓库查询镜像高危行为列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImageRisk` and `DescribeAssetImageRegistryRiskInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageRisk`` and ``DescribeAssetImageRegistryRiskInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageRegistryRiskInfoListPaginator(_ input: DescribeAssetImageRegistryRiskInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRegistryRiskInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRegistryRiskInfoList, logger: logger, on: eventLoop)

@@ -80,7 +80,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetworkAuditRecord`` list from the paginated response.
         public func getItems() -> [NetworkAuditRecord] {
             self.auditList
         }
@@ -129,7 +129,7 @@ extension Tcss {
 
     /// 查询集群策略审计列表
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkAuditRecord` and `DescribeNetworkFirewallAuditRecordResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkAuditRecord`` and ``DescribeNetworkFirewallAuditRecordResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkFirewallAuditRecordPaginator(_ input: DescribeNetworkFirewallAuditRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallAuditRecordRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallAuditRecord, logger: logger, on: eventLoop)

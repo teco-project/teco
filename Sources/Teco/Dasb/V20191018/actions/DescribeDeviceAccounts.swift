@@ -79,7 +79,7 @@ extension Dasb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DeviceAccount`` list from the paginated response.
         public func getItems() -> [DeviceAccount] {
             self.deviceAccountSet
         }
@@ -128,7 +128,7 @@ extension Dasb {
 
     /// 查询主机账号列表
     ///
-    /// - Returns: `AsyncSequence`s of `DeviceAccount` and `DescribeDeviceAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DeviceAccount`` and ``DescribeDeviceAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceAccountsPaginator(_ input: DescribeDeviceAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceAccounts, logger: logger, on: eventLoop)

@@ -73,7 +73,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CompliancePeriodTask`` list from the paginated response.
         public func getItems() -> [CompliancePeriodTask] {
             self.periodTaskSet
         }
@@ -136,7 +136,7 @@ extension Tcss {
     ///
     /// 查询合规检测的定时任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `CompliancePeriodTask` and `DescribeCompliancePeriodTaskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CompliancePeriodTask`` and ``DescribeCompliancePeriodTaskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCompliancePeriodTaskListPaginator(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompliancePeriodTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePeriodTaskList, logger: logger, on: eventLoop)

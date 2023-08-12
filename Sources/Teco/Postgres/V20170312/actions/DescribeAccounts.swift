@@ -79,7 +79,7 @@ extension Postgres {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AccountInfo`` list from the paginated response.
         public func getItems() -> [AccountInfo] {
             self.details
         }
@@ -142,7 +142,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeAccounts）用于查询实例的数据库账号列表。
     ///
-    /// - Returns: `AsyncSequence`s of `AccountInfo` and `DescribeAccountsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AccountInfo`` and ``DescribeAccountsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)

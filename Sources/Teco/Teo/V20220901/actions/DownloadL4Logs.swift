@@ -92,7 +92,7 @@ extension Teo {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``L4OfflineLog`` list from the paginated response.
         public func getItems() -> [L4OfflineLog] {
             self.data
         }
@@ -155,7 +155,7 @@ extension Teo {
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     ///
-    /// - Returns: `AsyncSequence`s of `L4OfflineLog` and `DownloadL4LogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``L4OfflineLog`` and ``DownloadL4LogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func downloadL4LogsPaginator(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DownloadL4LogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL4Logs, logger: logger, on: eventLoop)

@@ -96,7 +96,7 @@ extension Apm {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApmMetricRecord`` list from the paginated response.
         public func getItems() -> [ApmMetricRecord] {
             self.records ?? []
         }
@@ -154,7 +154,7 @@ extension Apm {
     ///
     /// 服务概览数据拉取
     ///
-    /// - Returns: `AsyncSequence`s of `ApmMetricRecord` and `DescribeServiceOverviewResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApmMetricRecord`` and ``DescribeServiceOverviewResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceOverviewPaginator(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceOverviewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)

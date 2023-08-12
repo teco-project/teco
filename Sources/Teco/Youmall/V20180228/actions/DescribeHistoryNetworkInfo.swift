@@ -85,7 +85,7 @@ extension Youmall {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetworkInfo`` list from the paginated response.
         public func getItems() -> [NetworkInfo] {
             self.instanceSet.infos
         }
@@ -148,7 +148,7 @@ extension Youmall {
     ///
     /// 返回当前门店历史网络状态数据
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkInfo` and `DescribeHistoryNetworkInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkInfo`` and ``DescribeHistoryNetworkInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHistoryNetworkInfoPaginator(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHistoryNetworkInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)

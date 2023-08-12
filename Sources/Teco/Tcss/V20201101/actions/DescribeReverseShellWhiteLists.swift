@@ -79,7 +79,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ReverseShellWhiteListBaseInfo`` list from the paginated response.
         public func getItems() -> [ReverseShellWhiteListBaseInfo] {
             self.whiteListSet
         }
@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 查询运行时运行时反弹shell白名单列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ReverseShellWhiteListBaseInfo` and `DescribeReverseShellWhiteListsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReverseShellWhiteListBaseInfo`` and ``DescribeReverseShellWhiteListsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReverseShellWhiteListsPaginator(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellWhiteListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)

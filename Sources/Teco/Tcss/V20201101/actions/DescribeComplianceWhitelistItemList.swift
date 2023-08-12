@@ -84,7 +84,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ComplianceWhitelistItem`` list from the paginated response.
         public func getItems() -> [ComplianceWhitelistItem] {
             self.whitelistItemSet
         }
@@ -147,7 +147,7 @@ extension Tcss {
     ///
     /// 查询白名单列表
     ///
-    /// - Returns: `AsyncSequence`s of `ComplianceWhitelistItem` and `DescribeComplianceWhitelistItemListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ComplianceWhitelistItem`` and ``DescribeComplianceWhitelistItemListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceWhitelistItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)

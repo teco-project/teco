@@ -69,7 +69,7 @@ extension Partners {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RebateInfoElem`` list from the paginated response.
         public func getItems() -> [RebateInfoElem] {
             self.rebateInfoSet
         }
@@ -132,7 +132,7 @@ extension Partners {
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     ///
-    /// - Returns: `AsyncSequence`s of `RebateInfoElem` and `DescribeRebateInfosResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RebateInfoElem`` and ``DescribeRebateInfosResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRebateInfosPaginator(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRebateInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)

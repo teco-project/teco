@@ -90,7 +90,7 @@ extension Tdmq {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Publisher`` list from the paginated response.
         public func getItems() -> [Publisher] {
             self.publishers ?? []
         }
@@ -153,7 +153,7 @@ extension Tdmq {
     ///
     /// 获取生产者信息列表
     ///
-    /// - Returns: `AsyncSequence`s of `Publisher` and `DescribePublishersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Publisher`` and ``DescribePublishersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePublishersPaginator(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublishersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)

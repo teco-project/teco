@@ -88,7 +88,7 @@ extension Tione {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ModelAccelerateTask`` list from the paginated response.
         public func getItems() -> [ModelAccelerateTask] {
             self.modelAccelerateTasks ?? []
         }
@@ -137,7 +137,7 @@ extension Tione {
 
     /// 查询模型加速任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `ModelAccelerateTask` and `DescribeModelAccelerateTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ModelAccelerateTask`` and ``DescribeModelAccelerateTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeModelAccelerateTasksPaginator(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModelAccelerateTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelAccelerateTasks, logger: logger, on: eventLoop)

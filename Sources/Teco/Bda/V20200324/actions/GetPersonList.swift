@@ -73,7 +73,7 @@ extension Bda {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PersonInfo`` list from the paginated response.
         public func getItems() -> [PersonInfo] {
             self.personInfos
         }
@@ -136,7 +136,7 @@ extension Bda {
     ///
     /// 获取指定人体库中的人员列表。
     ///
-    /// - Returns: `AsyncSequence`s of `PersonInfo` and `GetPersonListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PersonInfo`` and ``GetPersonListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getPersonListPaginator(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPersonListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPersonList, logger: logger, on: eventLoop)

@@ -74,7 +74,7 @@ extension Cdc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SiteDetail`` list from the paginated response.
         public func getItems() -> [SiteDetail] {
             self.siteDetailSet
         }
@@ -123,7 +123,7 @@ extension Cdc {
 
     /// 查询站点详情
     ///
-    /// - Returns: `AsyncSequence`s of `SiteDetail` and `DescribeSitesDetailResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SiteDetail`` and ``DescribeSitesDetailResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSitesDetailPaginator(_ input: DescribeSitesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSitesDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSitesDetail, logger: logger, on: eventLoop)

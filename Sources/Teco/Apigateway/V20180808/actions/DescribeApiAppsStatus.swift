@@ -66,7 +66,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ApiAppInfo`` list from the paginated response.
         public func getItems() -> [ApiAppInfo] {
             self.result?.apiAppSet ?? []
         }
@@ -129,7 +129,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     ///
-    /// - Returns: `AsyncSequence`s of `ApiAppInfo` and `DescribeApiAppsStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ApiAppInfo`` and ``DescribeApiAppsStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApiAppsStatusPaginator(_ input: DescribeApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiAppsStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiAppsStatus, logger: logger, on: eventLoop)

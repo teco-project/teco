@@ -82,7 +82,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Script`` list from the paginated response.
         public func getItems() -> [Script] {
             self.scripts ?? []
         }
@@ -145,7 +145,7 @@ extension Dlc {
     ///
     /// 该接口（DescribeScripts）用于查询SQL脚本列表
     ///
-    /// - Returns: `AsyncSequence`s of `Script` and `DescribeScriptsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Script`` and ``DescribeScriptsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScriptsPaginator(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScriptsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)

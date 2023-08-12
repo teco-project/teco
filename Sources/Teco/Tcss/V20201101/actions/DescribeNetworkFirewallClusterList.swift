@@ -80,7 +80,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetworkClusterInfoItem`` list from the paginated response.
         public func getItems() -> [NetworkClusterInfoItem] {
             self.clusterInfoList
         }
@@ -129,7 +129,7 @@ extension Tcss {
 
     /// 查询集群策略列表
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkClusterInfoItem` and `DescribeNetworkFirewallClusterListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkClusterInfoItem`` and ``DescribeNetworkFirewallClusterListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkFirewallClusterListPaginator(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallClusterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallClusterList, logger: logger, on: eventLoop)

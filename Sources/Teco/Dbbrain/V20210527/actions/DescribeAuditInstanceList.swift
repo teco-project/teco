@@ -85,7 +85,7 @@ extension Dbbrain {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AuditInstance`` list from the paginated response.
         public func getItems() -> [AuditInstance] {
             self.items
         }
@@ -134,7 +134,7 @@ extension Dbbrain {
 
     /// 查询实例列表
     ///
-    /// - Returns: `AsyncSequence`s of `AuditInstance` and `DescribeAuditInstanceListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditInstance`` and ``DescribeAuditInstanceListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditInstanceListPaginator(_ input: DescribeAuditInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditInstanceList, logger: logger, on: eventLoop)

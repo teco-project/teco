@@ -74,7 +74,7 @@ extension Iecp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MarketComponentInfo`` list from the paginated response.
         public func getItems() -> [MarketComponentInfo] {
             self.componentList
         }
@@ -123,7 +123,7 @@ extension Iecp {
 
     /// 获取组件市场组件列表
     ///
-    /// - Returns: `AsyncSequence`s of `MarketComponentInfo` and `GetMarketComponentListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MarketComponentInfo`` and ``GetMarketComponentListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getMarketComponentListPaginator(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetMarketComponentListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getMarketComponentList, logger: logger, on: eventLoop)

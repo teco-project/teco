@@ -69,7 +69,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VulIgnoreRegistryImage`` list from the paginated response.
         public func getItems() -> [VulIgnoreRegistryImage] {
             self.list
         }
@@ -118,7 +118,7 @@ extension Tcss {
 
     /// 查询漏洞扫描忽略的仓库镜像列表
     ///
-    /// - Returns: `AsyncSequence`s of `VulIgnoreRegistryImage` and `DescribeVulIgnoreRegistryImageListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VulIgnoreRegistryImage`` and ``DescribeVulIgnoreRegistryImageListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulIgnoreRegistryImageListPaginator(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulIgnoreRegistryImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulIgnoreRegistryImageList, logger: logger, on: eventLoop)

@@ -86,7 +86,7 @@ extension Gse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PlayerSession`` list from the paginated response.
         public func getItems() -> [PlayerSession] {
             self.playerSessions ?? []
         }
@@ -150,7 +150,7 @@ extension Gse {
     ///
     /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
     ///
-    /// - Returns: `AsyncSequence`s of `PlayerSession` and `DescribePlayerSessionsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PlayerSession`` and ``DescribePlayerSessionsResponse`` that can be iterated over asynchronously on demand.
     @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayerSessionsPaginator(_ input: DescribePlayerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePlayerSessionsRequest> {

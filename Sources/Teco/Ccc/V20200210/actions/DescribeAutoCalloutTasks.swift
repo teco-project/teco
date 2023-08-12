@@ -69,7 +69,7 @@ extension Ccc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AutoCalloutTaskInfo`` list from the paginated response.
         public func getItems() -> [AutoCalloutTaskInfo] {
             self.tasks
         }
@@ -118,7 +118,7 @@ extension Ccc {
 
     /// 批量查询自动任务外呼
     ///
-    /// - Returns: `AsyncSequence`s of `AutoCalloutTaskInfo` and `DescribeAutoCalloutTasksResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AutoCalloutTaskInfo`` and ``DescribeAutoCalloutTasksResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAutoCalloutTasksPaginator(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoCalloutTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)

@@ -84,7 +84,7 @@ extension Dlc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``WorkGroupInfo`` list from the paginated response.
         public func getItems() -> [WorkGroupInfo] {
             self.workGroupSet
         }
@@ -133,7 +133,7 @@ extension Dlc {
 
     /// 获取工作组列表
     ///
-    /// - Returns: `AsyncSequence`s of `WorkGroupInfo` and `DescribeWorkGroupsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``WorkGroupInfo`` and ``DescribeWorkGroupsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)

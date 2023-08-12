@@ -99,7 +99,7 @@ extension Sqlserver {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PublishSubscribe`` list from the paginated response.
         public func getItems() -> [PublishSubscribe] {
             self.publishSubscribeSet
         }
@@ -162,7 +162,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     ///
-    /// - Returns: `AsyncSequence`s of `PublishSubscribe` and `DescribePublishSubscribeResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PublishSubscribe`` and ``DescribePublishSubscribeResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePublishSubscribePaginator(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublishSubscribeRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)

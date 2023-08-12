@@ -70,7 +70,7 @@ extension Cdn {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``BriefDomain`` list from the paginated response.
         public func getItems() -> [BriefDomain] {
             self.domains
         }
@@ -133,7 +133,7 @@ extension Cdn {
     ///
     /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
     ///
-    /// - Returns: `AsyncSequence`s of `BriefDomain` and `DescribeDomainsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``BriefDomain`` and ``DescribeDomainsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)

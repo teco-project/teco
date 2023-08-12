@@ -104,7 +104,7 @@ extension Acp {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AppTaskData`` list from the paginated response.
         public func getItems() -> [AppTaskData] {
             self.data ?? []
         }
@@ -167,7 +167,7 @@ extension Acp {
     ///
     /// 获取App隐私合规诊断任务列表
     ///
-    /// - Returns: `AsyncSequence`s of `AppTaskData` and `DescribeScanTaskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AppTaskData`` and ``DescribeScanTaskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)

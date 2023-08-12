@@ -77,7 +77,7 @@ extension Tci {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImageTaskResult`` list from the paginated response.
         public func getItems() -> [ImageTaskResult] {
             self.resultSet
         }
@@ -126,7 +126,7 @@ extension Tci {
 
     /// 拉取任务详情
     ///
-    /// - Returns: `AsyncSequence`s of `ImageTaskResult` and `DescribeImageTaskResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageTaskResult`` and ``DescribeImageTaskResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageTaskPaginator(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageTask, logger: logger, on: eventLoop)

@@ -80,7 +80,7 @@ extension Ses {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SendEmailStatus`` list from the paginated response.
         public func getItems() -> [SendEmailStatus] {
             self.emailStatusList
         }
@@ -145,7 +145,7 @@ extension Ses {
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
     ///
-    /// - Returns: `AsyncSequence`s of `SendEmailStatus` and `GetSendEmailStatusResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SendEmailStatus`` and ``GetSendEmailStatusResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getSendEmailStatusPaginator(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetSendEmailStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getSendEmailStatus, logger: logger, on: eventLoop)

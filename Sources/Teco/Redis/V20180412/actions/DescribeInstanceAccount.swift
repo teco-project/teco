@@ -71,7 +71,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Account`` list from the paginated response.
         public func getItems() -> [Account] {
             self.accounts ?? []
         }
@@ -134,7 +134,7 @@ extension Redis {
     ///
     /// 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
     ///
-    /// - Returns: `AsyncSequence`s of `Account` and `DescribeInstanceAccountResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Account`` and ``DescribeInstanceAccountResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceAccountRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)

@@ -81,7 +81,7 @@ extension Vod {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ReviewTemplate`` list from the paginated response.
         public func getItems() -> [ReviewTemplate] {
             self.reviewTemplateSet
         }
@@ -151,7 +151,7 @@ extension Vod {
     /// 获取审核模板列表。
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     ///
-    /// - Returns: `AsyncSequence`s of `ReviewTemplate` and `DescribeReviewTemplatesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ReviewTemplate`` and ``DescribeReviewTemplatesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReviewTemplatesPaginator(_ input: DescribeReviewTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReviewTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReviewTemplates, logger: logger, on: eventLoop)

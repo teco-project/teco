@@ -100,7 +100,7 @@ extension Cls {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DataTransformTaskInfo`` list from the paginated response.
         public func getItems() -> [DataTransformTaskInfo] {
             self.dataTransformTaskInfos
         }
@@ -163,7 +163,7 @@ extension Cls {
     ///
     /// 本接口用于获取数据加工任务列表基本信息
     ///
-    /// - Returns: `AsyncSequence`s of `DataTransformTaskInfo` and `DescribeDataTransformInfoResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DataTransformTaskInfo`` and ``DescribeDataTransformInfoResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDataTransformInfoPaginator(_ input: DescribeDataTransformInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataTransformInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataTransformInfo, logger: logger, on: eventLoop)

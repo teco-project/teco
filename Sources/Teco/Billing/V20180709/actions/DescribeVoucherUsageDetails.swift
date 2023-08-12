@@ -79,7 +79,7 @@ extension Billing {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``UsageRecords`` list from the paginated response.
         public func getItems() -> [UsageRecords] {
             self.usageRecords ?? []
         }
@@ -128,7 +128,7 @@ extension Billing {
 
     /// 获取代金券使用记录
     ///
-    /// - Returns: `AsyncSequence`s of `UsageRecords` and `DescribeVoucherUsageDetailsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``UsageRecords`` and ``DescribeVoucherUsageDetailsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVoucherUsageDetailsPaginator(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVoucherUsageDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)

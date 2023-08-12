@@ -88,7 +88,7 @@ extension Tic {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``EventInfo`` list from the paginated response.
         public func getItems() -> [EventInfo] {
             self.events
         }
@@ -179,7 +179,7 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     ///
-    /// - Returns: `AsyncSequence`s of `EventInfo` and `DescribeStackEventsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``EventInfo`` and ``DescribeStackEventsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStackEventsPaginator(_ input: DescribeStackEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStackEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStackEvents, logger: logger, on: eventLoop)

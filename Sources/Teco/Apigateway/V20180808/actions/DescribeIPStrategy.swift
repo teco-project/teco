@@ -81,7 +81,7 @@ extension Apigateway {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DesApisStatus`` list from the paginated response.
         public func getItems() -> [DesApisStatus] {
             self.result?.bindApis ?? []
         }
@@ -144,7 +144,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
     ///
-    /// - Returns: `AsyncSequence`s of `DesApisStatus` and `DescribeIPStrategyResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DesApisStatus`` and ``DescribeIPStrategyResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIPStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)

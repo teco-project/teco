@@ -71,7 +71,7 @@ extension Wav {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ActivityJoinDetail`` list from the paginated response.
         public func getItems() -> [ActivityJoinDetail] {
             self.pageData ?? []
         }
@@ -129,7 +129,7 @@ extension Wav {
     ///
     /// 根据游标拉取活动参与列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `ActivityJoinDetail` and `QueryActivityJoinListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ActivityJoinDetail`` and ``QueryActivityJoinListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryActivityJoinListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)

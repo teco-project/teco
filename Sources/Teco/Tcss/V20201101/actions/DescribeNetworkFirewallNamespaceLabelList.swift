@@ -85,7 +85,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``NetworkClusterNamespaceLabelInfo`` list from the paginated response.
         public func getItems() -> [NetworkClusterNamespaceLabelInfo] {
             self.clusterNamespaceLabelList
         }
@@ -134,7 +134,7 @@ extension Tcss {
 
     /// 查询集群网络空间标签列表
     ///
-    /// - Returns: `AsyncSequence`s of `NetworkClusterNamespaceLabelInfo` and `DescribeNetworkFirewallNamespaceLabelListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``NetworkClusterNamespaceLabelInfo`` and ``DescribeNetworkFirewallNamespaceLabelListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkFirewallNamespaceLabelListPaginator(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallNamespaceLabelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, logger: logger, on: eventLoop)

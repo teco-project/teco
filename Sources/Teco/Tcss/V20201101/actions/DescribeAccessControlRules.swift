@@ -79,7 +79,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``RuleBaseInfo`` list from the paginated response.
         public func getItems() -> [RuleBaseInfo] {
             self.ruleSet
         }
@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 查询运行访问控制策略列表信息
     ///
-    /// - Returns: `AsyncSequence`s of `RuleBaseInfo` and `DescribeAccessControlRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``RuleBaseInfo`` and ``DescribeAccessControlRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccessControlRulesPaginator(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessControlRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)

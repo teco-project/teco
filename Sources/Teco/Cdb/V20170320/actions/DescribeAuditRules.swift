@@ -75,7 +75,7 @@ extension Cdb {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AuditRule`` list from the paginated response.
         public func getItems() -> [AuditRule] {
             self.items ?? []
         }
@@ -138,7 +138,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
     ///
-    /// - Returns: `AsyncSequence`s of `AuditRule` and `DescribeAuditRulesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AuditRule`` and ``DescribeAuditRulesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditRulesPaginator(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRules, logger: logger, on: eventLoop)

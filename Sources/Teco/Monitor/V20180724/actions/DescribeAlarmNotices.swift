@@ -114,7 +114,7 @@ extension Monitor {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``AlarmNotice`` list from the paginated response.
         public func getItems() -> [AlarmNotice] {
             self.notices
         }
@@ -163,7 +163,7 @@ extension Monitor {
 
     /// 查询通知模板列表
     ///
-    /// - Returns: `AsyncSequence`s of `AlarmNotice` and `DescribeAlarmNoticesResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``AlarmNotice`` and ``DescribeAlarmNoticesResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlarmNoticesPaginator(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmNoticesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmNotices, logger: logger, on: eventLoop)

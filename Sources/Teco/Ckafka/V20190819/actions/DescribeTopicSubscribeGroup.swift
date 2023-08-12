@@ -70,7 +70,7 @@ extension Ckafka {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``GroupInfoResponse`` list from the paginated response.
         public func getItems() -> [GroupInfoResponse] {
             self.result.groupsInfo ?? []
         }
@@ -119,7 +119,7 @@ extension Ckafka {
 
     /// 查询订阅某主题消息分组信息
     ///
-    /// - Returns: `AsyncSequence`s of `GroupInfoResponse` and `DescribeTopicSubscribeGroupResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``GroupInfoResponse`` and ``DescribeTopicSubscribeGroupResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicSubscribeGroupPaginator(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicSubscribeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicSubscribeGroup, logger: logger, on: eventLoop)

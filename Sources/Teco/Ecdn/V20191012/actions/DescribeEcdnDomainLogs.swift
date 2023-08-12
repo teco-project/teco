@@ -88,7 +88,7 @@ extension Ecdn {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DomainLogs`` list from the paginated response.
         public func getItems() -> [DomainLogs] {
             self.domainLogs ?? []
         }
@@ -151,7 +151,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
     ///
-    /// - Returns: `AsyncSequence`s of `DomainLogs` and `DescribeEcdnDomainLogsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DomainLogs`` and ``DescribeEcdnDomainLogsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEcdnDomainLogsPaginator(_ input: DescribeEcdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEcdnDomainLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEcdnDomainLogs, logger: logger, on: eventLoop)

@@ -91,7 +91,7 @@ extension Scf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TriggerInfo`` list from the paginated response.
         public func getItems() -> [TriggerInfo] {
             self.triggers
         }
@@ -140,7 +140,7 @@ extension Scf {
 
     /// 获取函数触发器列表
     ///
-    /// - Returns: `AsyncSequence`s of `TriggerInfo` and `ListTriggersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TriggerInfo`` and ``ListTriggersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func listTriggersPaginator(_ input: ListTriggersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTriggersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTriggers, logger: logger, on: eventLoop)

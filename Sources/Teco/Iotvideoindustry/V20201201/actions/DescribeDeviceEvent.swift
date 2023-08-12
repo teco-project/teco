@@ -86,7 +86,7 @@ extension Iotvideoindustry {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``Events`` list from the paginated response.
         public func getItems() -> [Events] {
             self.events ?? []
         }
@@ -135,7 +135,7 @@ extension Iotvideoindustry {
 
     /// 获取设备事件
     ///
-    /// - Returns: `AsyncSequence`s of `Events` and `DescribeDeviceEventResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``Events`` and ``DescribeDeviceEventResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceEventPaginator(_ input: DescribeDeviceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceEvent, logger: logger, on: eventLoop)

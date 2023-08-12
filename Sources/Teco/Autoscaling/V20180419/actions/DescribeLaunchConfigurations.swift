@@ -82,7 +82,7 @@ extension As {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``LaunchConfiguration`` list from the paginated response.
         public func getItems() -> [LaunchConfiguration] {
             self.launchConfigurationSet
         }
@@ -166,7 +166,7 @@ extension As {
     /// * 可以根据启动配置ID、启动配置名称等信息来查询启动配置的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的启动配置。
     ///
-    /// - Returns: `AsyncSequence`s of `LaunchConfiguration` and `DescribeLaunchConfigurationsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``LaunchConfiguration`` and ``DescribeLaunchConfigurationsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLaunchConfigurationsPaginator(_ input: DescribeLaunchConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaunchConfigurationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaunchConfigurations, logger: logger, on: eventLoop)

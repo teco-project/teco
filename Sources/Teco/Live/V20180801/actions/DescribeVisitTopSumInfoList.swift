@@ -116,7 +116,7 @@ extension Live {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PlaySumStatInfo`` list from the paginated response.
         public func getItems() -> [PlaySumStatInfo] {
             self.dataInfoList
         }
@@ -179,7 +179,7 @@ extension Live {
     ///
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
     ///
-    /// - Returns: `AsyncSequence`s of `PlaySumStatInfo` and `DescribeVisitTopSumInfoListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PlaySumStatInfo`` and ``DescribeVisitTopSumInfoListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVisitTopSumInfoListPaginator(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVisitTopSumInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)

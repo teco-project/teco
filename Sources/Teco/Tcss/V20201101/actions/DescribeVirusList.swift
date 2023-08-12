@@ -93,7 +93,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``VirusInfo`` list from the paginated response.
         public func getItems() -> [VirusInfo] {
             self.list
         }
@@ -142,7 +142,7 @@ extension Tcss {
 
     /// 查询运行时文件查杀事件列表
     ///
-    /// - Returns: `AsyncSequence`s of `VirusInfo` and `DescribeVirusListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``VirusInfo`` and ``DescribeVirusListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVirusListPaginator(_ input: DescribeVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusList, logger: logger, on: eventLoop)

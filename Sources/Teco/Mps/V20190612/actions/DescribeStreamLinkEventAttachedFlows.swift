@@ -69,7 +69,7 @@ extension Mps {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DescribeFlow`` list from the paginated response.
         public func getItems() -> [DescribeFlow] {
             self.infos
         }
@@ -132,7 +132,7 @@ extension Mps {
     ///
     /// 查询媒体传输事件关联的所有媒体输入流的配置信息。
     ///
-    /// - Returns: `AsyncSequence`s of `DescribeFlow` and `DescribeStreamLinkEventAttachedFlowsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DescribeFlow`` and ``DescribeStreamLinkEventAttachedFlowsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStreamLinkEventAttachedFlowsPaginator(_ input: DescribeStreamLinkEventAttachedFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamLinkEventAttachedFlowsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkEventAttachedFlows, logger: logger, on: eventLoop)

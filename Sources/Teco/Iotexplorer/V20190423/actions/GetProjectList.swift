@@ -91,7 +91,7 @@ extension Iotexplorer {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ProjectEntryEx`` list from the paginated response.
         public func getItems() -> [ProjectEntryEx] {
             self.projects ?? []
         }
@@ -154,7 +154,7 @@ extension Iotexplorer {
     ///
     /// 提供查询用户所创建的项目列表查询功能。
     ///
-    /// - Returns: `AsyncSequence`s of `ProjectEntryEx` and `GetProjectListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ProjectEntryEx`` and ``GetProjectListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func getProjectListPaginator(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetProjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)

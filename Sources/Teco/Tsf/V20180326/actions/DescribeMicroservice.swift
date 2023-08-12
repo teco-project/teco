@@ -76,7 +76,7 @@ extension Tsf {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``MsInstance`` list from the paginated response.
         public func getItems() -> [MsInstance] {
             self.result?.content ?? []
         }
@@ -125,7 +125,7 @@ extension Tsf {
 
     /// 查询微服务详情
     ///
-    /// - Returns: `AsyncSequence`s of `MsInstance` and `DescribeMicroserviceResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``MsInstance`` and ``DescribeMicroserviceResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMicroservicePaginator(_ input: DescribeMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMicroserviceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMicroservice, logger: logger, on: eventLoop)

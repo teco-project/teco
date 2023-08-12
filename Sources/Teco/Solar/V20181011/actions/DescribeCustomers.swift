@@ -120,7 +120,7 @@ extension Solar {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``CustomerInfo`` list from the paginated response.
         public func getItems() -> [CustomerInfo] {
             self.userList ?? []
         }
@@ -169,7 +169,7 @@ extension Solar {
 
     /// 查询客户档案列表
     ///
-    /// - Returns: `AsyncSequence`s of `CustomerInfo` and `DescribeCustomersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``CustomerInfo`` and ``DescribeCustomersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomersPaginator(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomers, logger: logger, on: eventLoop)

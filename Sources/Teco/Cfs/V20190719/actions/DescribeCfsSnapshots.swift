@@ -93,7 +93,7 @@ extension Cfs {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``SnapshotInfo`` list from the paginated response.
         public func getItems() -> [SnapshotInfo] {
             self.snapshots
         }
@@ -156,7 +156,7 @@ extension Cfs {
     ///
     /// 查询文件系统快照列表
     ///
-    /// - Returns: `AsyncSequence`s of `SnapshotInfo` and `DescribeCfsSnapshotsResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``SnapshotInfo`` and ``DescribeCfsSnapshotsResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCfsSnapshotsPaginator(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsSnapshotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsSnapshots, logger: logger, on: eventLoop)

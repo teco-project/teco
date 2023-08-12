@@ -105,7 +105,7 @@ extension Ssa {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ListDataSaEventPub`` list from the paginated response.
         public func getItems() -> [ListDataSaEventPub] {
             self.dataSaEventPub.list
         }
@@ -168,7 +168,7 @@ extension Ssa {
     ///
     /// 安全事件通用字段
     ///
-    /// - Returns: `AsyncSequence`s of `ListDataSaEventPub` and `SaEventPubResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ListDataSaEventPub`` and ``SaEventPubResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func saEventPubPaginator(_ input: SaEventPubRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SaEventPubRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.saEventPub, logger: logger, on: eventLoop)

@@ -74,7 +74,7 @@ extension Trtc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``PictureInfo`` list from the paginated response.
         public func getItems() -> [PictureInfo] {
             self.pictureInfo
         }
@@ -137,7 +137,7 @@ extension Trtc {
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
     ///
-    /// - Returns: `AsyncSequence`s of `PictureInfo` and `DescribePictureResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``PictureInfo`` and ``DescribePictureResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePicturePaginator(_ input: DescribePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePictureRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePicture, logger: logger, on: eventLoop)

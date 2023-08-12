@@ -89,7 +89,7 @@ extension Cdc {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``DedicatedCluster`` list from the paginated response.
         public func getItems() -> [DedicatedCluster] {
             self.dedicatedClusterSet
         }
@@ -138,7 +138,7 @@ extension Cdc {
 
     /// 查询专用集群列表
     ///
-    /// - Returns: `AsyncSequence`s of `DedicatedCluster` and `DescribeDedicatedClustersResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``DedicatedCluster`` and ``DescribeDedicatedClustersResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDedicatedClustersPaginator(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusters, logger: logger, on: eventLoop)

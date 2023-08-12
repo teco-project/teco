@@ -83,7 +83,7 @@ extension Tcss {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``ImageVul`` list from the paginated response.
         public func getItems() -> [ImageVul] {
             self.list ?? []
         }
@@ -132,7 +132,7 @@ extension Tcss {
 
     /// 镜像仓库查询镜像漏洞列表
     ///
-    /// - Returns: `AsyncSequence`s of `ImageVul` and `DescribeAssetImageRegistryVulListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``ImageVul`` and ``DescribeAssetImageRegistryVulListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageRegistryVulListPaginator(_ input: DescribeAssetImageRegistryVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRegistryVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRegistryVulList, logger: logger, on: eventLoop)

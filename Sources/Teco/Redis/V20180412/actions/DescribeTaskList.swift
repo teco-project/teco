@@ -137,7 +137,7 @@ extension Redis {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``TaskInfoDetail`` list from the paginated response.
         public func getItems() -> [TaskInfoDetail] {
             self.tasks
         }
@@ -200,7 +200,7 @@ extension Redis {
     ///
     /// 本接口（DescribeTaskList）用于查询指定实例的任务列表信息。
     ///
-    /// - Returns: `AsyncSequence`s of `TaskInfoDetail` and `DescribeTaskListResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``TaskInfoDetail`` and ``DescribeTaskListResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)

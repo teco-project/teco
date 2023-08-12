@@ -69,7 +69,7 @@ extension Lighthouse {
             case requestId = "RequestId"
         }
 
-        /// Extract the returned item list from the paginated response.
+        /// Extract the returned ``InstanceReturnable`` list from the paginated response.
         public func getItems() -> [InstanceReturnable] {
             self.instanceReturnableSet
         }
@@ -132,7 +132,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
     ///
-    /// - Returns: `AsyncSequence`s of `InstanceReturnable` and `DescribeInstancesReturnableResponse` that can be iterated over asynchronously on demand.
+    /// - Returns: `AsyncSequence`s of ``InstanceReturnable`` and ``DescribeInstancesReturnableResponse`` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesReturnablePaginator(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesReturnableRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesReturnable, logger: logger, on: eventLoop)
