@@ -45,7 +45,75 @@ extension Teo {
         /// 分页查限制数目，默认值：20，最大值：1000。
         public let limit: Int64?
 
-        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>zone-id<br>   按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-xxx，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>job-id<br>   按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>target<br>   按照【<strong>目标资源信息</strong>】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值<br>   类型：String<br>   必选：否<br>   模糊查询：不支持</li><li>domains<br>   按照【<strong>域名</strong>】进行过滤，domains形如：www.qq.com<br>   类型：String<br>   必选：否<br>   模糊查询：不支持。</li><li>statuses<br>   按照【<strong>任务状态</strong>】进行过滤<br>   必选：否<br>   模糊查询：不支持。<br>   可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li><li>type<br>   按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<br>   可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname<br>   purge_cache_tag：CacheTag</li>
+        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>zone-id
+        ///
+        /// 按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-xxx，暂不支持多值
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持</li><li>job-id
+        ///
+        /// 按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持</li><li>target
+        ///
+        /// 按照【<strong>目标资源信息</strong>】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持</li><li>domains
+        ///
+        /// 按照【<strong>域名</strong>】进行过滤，domains形如：www.qq.com
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持。</li><li>statuses
+        ///
+        /// 按照【<strong>任务状态</strong>】进行过滤
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持。
+        ///
+        /// 可选项：
+        ///
+        /// processing：处理中
+        ///
+        /// success：成功
+        ///
+        /// failed：失败
+        ///
+        /// timeout：超时</li><li>type
+        ///
+        /// 按照【<strong>清除缓存类型</strong>】进行过滤，暂不支持多值。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 模糊查询：不支持
+        ///
+        /// 可选项：
+        ///
+        /// purge_url：URL
+        ///
+        /// purge_prefix：前缀
+        ///
+        /// purge_all：全部缓存内容
+        ///
+        /// purge_host：Hostname
+        ///
+        /// purge_cache_tag：CacheTag</li>
         public let filters: [AdvancedFilter]?
 
         public init(zoneId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil) {

@@ -19,7 +19,11 @@ import TecoCore
 extension Irp {
     /// 不喜欢信息
     public struct DislikeInfo: TCInputModel {
-        /// 过滤的类别：<br>● author 作者名<br/>（如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// 过滤的类别：
+        ///
+        /// ● author 作者名
+        ///
+        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
         public let type: String
 
         /// Type对应字段名的值，如：需要过滤的作者名
@@ -41,7 +45,21 @@ extension Irp {
         /// 内容唯一id，建议限制在128字符以内
         public let itemId: String
 
-        /// 内容类型：<br/>● article -图文<br>● text -纯文本<br/>● video -视频<br/>● short_video -时长15秒以内的视频<br/>● mini_video -竖屏视频<br/>● image -纯图片<br/>（如当前类型不满足，请登录控制台进入对应项目，在<b>物料管理->物料类型管理</b>中添加）
+        /// 内容类型：
+        ///
+        /// ● article -图文
+        ///
+        /// ● text -纯文本
+        ///
+        /// ● video -视频
+        ///
+        /// ● short_video -时长15秒以内的视频
+        ///
+        /// ● mini_video -竖屏视频
+        ///
+        /// ● image -纯图片
+        ///
+        /// （如当前类型不满足，请登录控制台进入对应项目，在<b>物料管理->物料类型管理</b>中添加）
         public let itemType: String
 
         /// 内容状态：
@@ -187,10 +205,52 @@ extension Irp {
         /// 内容唯一id
         public let itemId: String
 
-        /// 行为类型：<br> ● expose - 曝光，<b>必须</b><br> ● click - 点击，<b>必须</b><br/>  ● stay - 详情页停留时长，<b>强烈建议</b><br/>  ● videoover - 视频播放时长，<b>强烈建议</b><br/> ●  like - 点赞&喜欢，<b>正效果</b><br/> ● collect - 收藏，<b>正效果</b><br/> ●  share - 转发&分享，<b>正效果</b><br/> ● reward - 打赏，<b>正效果</b><br/> ● unlike - 踩&不喜欢，<b>负效果</b><br/> ●  comment - 评论<br/> 不支持的行为类型，可以映射到未被使用的其他行为类型。如实际业务数据中有私信行为，没有收藏行为，可以将私信行为映射到收藏行为
+        /// 行为类型：
+        ///
+        /// ● expose - 曝光，<b>必须</b>
+        ///
+        /// ● click - 点击，<b>必须</b>
+        ///
+        /// ● stay - 详情页停留时长，<b>强烈建议</b>
+        ///
+        /// ● videoover - 视频播放时长，<b>强烈建议</b>
+        ///
+        /// ●  like - 点赞&喜欢，<b>正效果</b>
+        ///
+        /// ● collect - 收藏，<b>正效果</b>
+        ///
+        /// ●  share - 转发&分享，<b>正效果</b>
+        ///
+        /// ● reward - 打赏，<b>正效果</b>
+        ///
+        /// ● unlike - 踩&不喜欢，<b>负效果</b>
+        ///
+        /// ●  comment - 评论
+        ///
+        /// 不支持的行为类型，可以映射到未被使用的其他行为类型。如实际业务数据中有私信行为，没有收藏行为，可以将私信行为映射到收藏行为
         public let behaviorType: String
 
-        /// 行为类型对应的行为值：<br/> ● expose - 曝光，固定填1<br/> ● click - 点击，固定填1<br/>  ● stay - 详情页停留时长，填停留秒数，取值[1-86400]<br/>  ● videoover - 视频播放时长，填播放结束的秒数，取值[1-86400]<br/> ●  like - 点赞&喜欢，固定填1<br/> ● collect - 收藏，固定填1<br/> ●  share - 转发&分享，固定填1<br/> ● reward - 打赏，填打赏金额，没有则填1<br/> ● unlike - 踩&不喜欢，填不喜欢的原因，没有则填1<br/> ●  comment - 评论，填评论内容，如“上海加油”
+        /// 行为类型对应的行为值：
+        ///
+        /// ● expose - 曝光，固定填1
+        ///
+        /// ● click - 点击，固定填1
+        ///
+        /// ● stay - 详情页停留时长，填停留秒数，取值[1-86400]
+        ///
+        /// ● videoover - 视频播放时长，填播放结束的秒数，取值[1-86400]
+        ///
+        /// ●  like - 点赞&喜欢，固定填1
+        ///
+        /// ● collect - 收藏，固定填1
+        ///
+        /// ●  share - 转发&分享，固定填1
+        ///
+        /// ● reward - 打赏，填打赏金额，没有则填1
+        ///
+        /// ● unlike - 踩&不喜欢，填不喜欢的原因，没有则填1
+        ///
+        /// ●  comment - 评论，填评论内容，如“上海加油”
         public let behaviorValue: String
 
         /// 行为发生的时间戳： 秒级时间戳，尽量实时上报，最长不超过半小时否则会影响推荐结果的准确性
@@ -212,7 +272,15 @@ extension Irp {
         /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，<b>用于构建用户画像信息</b>
         public let userIdList: [UserIdInfo]?
 
-        /// 算法来源： <br>● business 业务自己的算法对照组<br/> ● tencent 腾讯算法<br/> ● other 其他算法<br/>默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
+        /// 算法来源：
+        ///
+        /// ● business 业务自己的算法对照组
+        ///
+        /// ● tencent 腾讯算法
+        ///
+        /// ● other 其他算法
+        ///
+        /// 默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
         public let source: String?
 
         /// 行为发生时的国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，<b>用作特征</b>
@@ -406,11 +474,64 @@ extension Irp {
         /// 商品唯一ID，skuId或spuId，客户根据需求自行决定商品主键粒度
         public let goodsId: String
 
-        /// 行为类型：<br> ● expose - 曝光，<b>必须</b><br> ● click - 点击，<b>必须</b><br/>  ● stay - 详情页停留时长，<b>强烈建议</b><br/>  ● videoover - 视频播放时长，<b>强烈建议</b><br/> ●  like - 点赞&喜欢，<b>正效果</b><br/> ● collect - 收藏，<b>正效果</b><br/> ●  share - 转发&分享，<b>正效果</b><br/> ● reward - 打赏，<b>正效果</b><br/> ● unlike - 踩&不喜欢，<b>负效果</b><br/> ●  comment - 评论<br/> ●  order - 下单<br/> ●  buy - 购买成功<br/> ●  addcart - 加入购物车<br/>
+        /// 行为类型：
+        ///
+        /// ● expose - 曝光，<b>必须</b>
+        ///
+        /// ● click - 点击，<b>必须</b>
+        ///
+        /// ● stay - 详情页停留时长，<b>强烈建议</b>
+        ///
+        /// ● videoover - 视频播放时长，<b>强烈建议</b>
+        ///
+        /// ●  like - 点赞&喜欢，<b>正效果</b>
+        ///
+        /// ● collect - 收藏，<b>正效果</b>
+        ///
+        /// ●  share - 转发&分享，<b>正效果</b>
+        ///
+        /// ● reward - 打赏，<b>正效果</b>
+        ///
+        /// ● unlike - 踩&不喜欢，<b>负效果</b>
+        ///
+        /// ●  comment - 评论
+        ///
+        /// ●  order - 下单
+        ///
+        /// ●  buy - 购买成功
+        ///
+        /// ●  addcart - 加入购物车
+        ///
         /// 不支持的行为类型，可以映射到未被使用的其他行为类型。如实际业务数据中有私信行为，没有收藏行为，可以将私信行为映射到收藏行为
         public let behaviorType: String
 
-        /// 行为类型对应的行为值：<br/> ● expose - 曝光，固定填1<br/> ● click - 点击，固定填1<br/>  ● stay - 详情页停留时长，填停留秒数，取值[1-86400]<br/>  ● videoover - 视频播放时长，填播放结束的秒数，取值[1-86400]<br/> ●  like - 点赞&喜欢，固定填1<br/> ● collect - 收藏，固定填1<br/> ●  share - 转发&分享，固定填1<br/> ● reward - 打赏，填打赏金额，没有则填1<br/> ● unlike - 踩&不喜欢，填不喜欢的原因，没有则填1<br/> ●  comment - 评论，填评论内容，如“上海加油”<br/> ●  order - 下单，固定填1<br/> ●  buy - 购买成功，固定填1<br/> ●  addcart - 加入购物车，固定填1
+        /// 行为类型对应的行为值：
+        ///
+        /// ● expose - 曝光，固定填1
+        ///
+        /// ● click - 点击，固定填1
+        ///
+        /// ● stay - 详情页停留时长，填停留秒数，取值[1-86400]
+        ///
+        /// ● videoover - 视频播放时长，填播放结束的秒数，取值[1-86400]
+        ///
+        /// ●  like - 点赞&喜欢，固定填1
+        ///
+        /// ● collect - 收藏，固定填1
+        ///
+        /// ●  share - 转发&分享，固定填1
+        ///
+        /// ● reward - 打赏，填打赏金额，没有则填1
+        ///
+        /// ● unlike - 踩&不喜欢，填不喜欢的原因，没有则填1
+        ///
+        /// ●  comment - 评论，填评论内容，如“上海加油”
+        ///
+        /// ●  order - 下单，固定填1
+        ///
+        /// ●  buy - 购买成功，固定填1
+        ///
+        /// ●  addcart - 加入购物车，固定填1
         public let behaviorValue: String
 
         /// 行为发生的时间戳： 秒级时间戳，尽量实时上报，最长不超过半小时否则会影响推荐结果的准确性
@@ -419,7 +540,15 @@ extension Irp {
         /// 行为发生的场景ID，在控制台创建场景后获取
         public let sceneId: String
 
-        /// 算法来源： <br>● business 业务自己的算法对照组<br/> ● tencent 腾讯算法<br/> ● other 其他算法<br/>默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
+        /// 算法来源：
+        ///
+        /// ● business 业务自己的算法对照组
+        ///
+        /// ● tencent 腾讯算法
+        ///
+        /// ● other 其他算法
+        ///
+        /// 默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
         public let source: String
 
         /// 标识行为发生在app内哪个页面，取值客户自定，可以是明文或id，建议传明文便于理解、分析，如首页，发现页，用户中心等
@@ -502,7 +631,21 @@ extension Irp {
         /// 商品唯一ID，skuId或spuId，客户根据需求自行决定商品主键粒度。建议限制在128字符以内
         public let goodsId: String
 
-        /// 商品物料展示类型：<br/>● article -图文<br>● text -纯文本<br/>● video -视频<br/>● short_video -时长15秒以内的视频<br/>● mini_video -竖屏视频<br/>● image -纯图片<br/>（如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// 商品物料展示类型：
+        ///
+        /// ● article -图文
+        ///
+        /// ● text -纯文本
+        ///
+        /// ● video -视频
+        ///
+        /// ● short_video -时长15秒以内的视频
+        ///
+        /// ● mini_video -竖屏视频
+        ///
+        /// ● image -纯图片
+        ///
+        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
         public let goodsType: String
 
         /// 商品状态：
@@ -718,7 +861,37 @@ extension Irp {
 
     /// 用户ID信息
     public struct UserIdInfo: TCInputModel {
-        /// 用户ID类型： <br/>● qq: qq号码 <br/>● qq_md5：qq的md5值 <br/>● imei：设备imei <br/>● imei_md5：imei的md5值 <br/>● idfa: Apple 向用户设备随机分配的设备标识符 <br/>● idfa_md5：idfa的md5值 <br/>● oaid：安卓10之后一种非永久性设备标识符 <br/>● oaid_md5：md5后的oaid <br/>● wx_openid：微信openid <br/>● qq_openid：QQ的openid <br/>● phone：电话号码 <br/>● phone_md5：md5后的电话号码 <br/>● phone_sha256：SHA256加密的手机号 <br/>● phone_sm3：国密SM3加密的手机号 <br/>（如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// 用户ID类型：
+        ///
+        /// ● qq: qq号码
+        ///
+        /// ● qq_md5：qq的md5值
+        ///
+        /// ● imei：设备imei
+        ///
+        /// ● imei_md5：imei的md5值
+        ///
+        /// ● idfa: Apple 向用户设备随机分配的设备标识符
+        ///
+        /// ● idfa_md5：idfa的md5值
+        ///
+        /// ● oaid：安卓10之后一种非永久性设备标识符
+        ///
+        /// ● oaid_md5：md5后的oaid
+        ///
+        /// ● wx_openid：微信openid
+        ///
+        /// ● qq_openid：QQ的openid
+        ///
+        /// ● phone：电话号码
+        ///
+        /// ● phone_md5：md5后的电话号码
+        ///
+        /// ● phone_sha256：SHA256加密的手机号
+        ///
+        /// ● phone_sm3：国密SM3加密的手机号
+        ///
+        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
         public let type: String
 
         /// 用户ID值

@@ -25,8 +25,10 @@ extension Ess {
         public let `operator`: UserInfo
 
         /// 主题类型
-        /// <br/>EMBED_WEB_THEME：嵌入式主题
-        /// <br/>目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
+        ///
+        /// EMBED_WEB_THEME：嵌入式主题
+        ///
+        /// 目前只支持EMBED_WEB_THEME，web页面嵌入的主题风格配置
         public let themeType: String
 
         /// 主题配置

@@ -26,8 +26,10 @@ extension Cfs {
         public let fileSystemId: String
 
         /// 过滤条件。
-        /// <br><li>UserType - Array of String - 是否必填：否 -（过滤条件）按配额类型过滤。(Uid| Gid )
-        /// <br><li>UserId - Array of String - 是否必填：否 -（过滤条件）按UID/GID过滤。
+        ///
+        /// <li>UserType - Array of String - 是否必填：否 -（过滤条件）按配额类型过滤。(Uid| Gid )
+        ///
+        /// <li>UserId - Array of String - 是否必填：否 -（过滤条件）按UID/GID过滤。
         public let filters: [Filter]?
 
         /// Offset 分页码

@@ -31,7 +31,15 @@ extension Cvm {
         public let imageDescription: String?
 
         /// 是否执行强制关机以制作镜像。
-        /// 取值范围：<br><li>TRUE：表示关机之后制作镜像<br><li>FALSE：表示开机状态制作镜像<br><br>默认取值：FALSE。<br><br>开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
+        /// 取值范围：
+        ///
+        /// <li>TRUE：表示关机之后制作镜像
+        ///
+        /// <li>FALSE：表示开机状态制作镜像
+        ///
+        /// 默认取值：FALSE。
+        ///
+        /// 开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
         public let forcePoweroff: String?
 
         /// 创建Windows镜像时是否启用Sysprep。

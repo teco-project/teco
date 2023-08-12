@@ -25,9 +25,13 @@ extension Cbs {
         /// 要查询备份点的ID列表。参数不支持同时指定 DiskBackupIds 和 Filters。
         public let diskBackupIds: [String]?
 
-        /// 过滤条件，参数不支持同时指定 DiskBackupIds 和 Filters。过滤条件：<br><li>disk-backup-id - Array of String - 是否必填：否 -（过滤条件）按照备份点的ID过滤。备份点ID形如：dbp-11112222。
-        /// <br><li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照创建备份点的云硬盘ID过滤。
-        /// <br><li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建备份点的云硬盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)
+        /// 过滤条件，参数不支持同时指定 DiskBackupIds 和 Filters。过滤条件：
+        ///
+        /// <li>disk-backup-id - Array of String - 是否必填：否 -（过滤条件）按照备份点的ID过滤。备份点ID形如：dbp-11112222。
+        ///
+        /// <li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照创建备份点的云硬盘ID过滤。
+        ///
+        /// <li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建备份点的云硬盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考API[简介](/document/product/362/15633)中的相关小节。
@@ -36,10 +40,18 @@ extension Cbs {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
         public let limit: UInt64?
 
-        /// 输出云硬盘备份点列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
+        /// 输出云硬盘备份点列表的排列顺序。取值范围：
+        ///
+        /// <li>ASC：升序排列
+        ///
+        /// <li>DESC：降序排列。
         public let order: String?
 
-        /// 云硬盘备份点列表排序的依据字段。取值范围：<br><li>CREATE_TIME：依据云硬盘备份点的创建时间排序<br>默认按创建时间排序。
+        /// 云硬盘备份点列表排序的依据字段。取值范围：
+        ///
+        /// <li>CREATE_TIME：依据云硬盘备份点的创建时间排序
+        ///
+        /// 默认按创建时间排序。
         public let orderField: String?
 
         public init(diskBackupIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {

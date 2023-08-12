@@ -56,7 +56,17 @@ extension Thpc {
         /// 集群ID。
         public let clusterId: String
 
-        /// 集群状态。取值范围：<br><li>PENDING：创建中<br><li>INITING：初始化中<br><li>INIT_FAILED：初始化失败<br><li>RUNNING：运行中<br><li>TERMINATING：销毁中
+        /// 集群状态。取值范围：
+        ///
+        /// <li>PENDING：创建中
+        ///
+        /// <li>INITING：初始化中
+        ///
+        /// <li>INIT_FAILED：初始化失败
+        ///
+        /// <li>RUNNING：运行中
+        ///
+        /// <li>TERMINATING：销毁中
         public let clusterStatus: String
 
         /// 集群名称。
@@ -110,14 +120,23 @@ extension Thpc {
 
     /// 计算节点信息。
     public struct ComputeNode: TCInputModel {
-        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
+        /// <li>PREPAID：预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// <li>SPOTPAID：竞价付费
+        ///
+        /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
-        /// <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        ///
+        /// <li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
@@ -129,7 +148,9 @@ extension Thpc {
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         public let internetAccessible: InternetAccessible?
 
-        /// 节点显示名称。<br><li>
+        /// 节点显示名称。
+        ///
+        /// <li>
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
         public let instanceName: String?
@@ -171,7 +192,27 @@ extension Thpc {
         /// 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         public let diskSize: Int64
 
-        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。
+        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
+        /// <li>LOCAL_BASIC：本地硬盘
+        ///
+        /// <li>LOCAL_SSD：本地SSD硬盘
+        ///
+        /// <li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>CLOUD_BASIC：普通云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：高性能云硬盘
+        ///
+        /// <li>CLOUD_SSD：SSD云硬盘
+        ///
+        /// <li>CLOUD_HSSD：增强型SSD云硬盘
+        ///
+        /// <li>CLOUD_TSSD：极速型SSD云硬盘
+        ///
+        /// 默认取值：LOCAL_BASIC。
         public let diskType: String?
 
         public init(diskSize: Int64, diskType: String? = nil) {
@@ -259,14 +300,23 @@ extension Thpc {
 
     /// 登录节点信息。
     public struct LoginNode: TCInputModel {
-        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
+        /// <li>PREPAID：预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// <li>SPOTPAID：竞价付费
+        ///
+        /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
-        /// <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        ///
+        /// <li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
@@ -278,7 +328,9 @@ extension Thpc {
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         public let internetAccessible: [InternetAccessible]?
 
-        /// 节点显示名称。<br><li>
+        /// 节点显示名称。
+        ///
+        /// <li>
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
         public let instanceName: String?
@@ -316,7 +368,13 @@ extension Thpc {
 
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
-        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
+        /// <li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
+        ///
+        /// <li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
+        ///
+        /// 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         public let password: String?
 
         public init(password: String? = nil) {
@@ -330,14 +388,21 @@ extension Thpc {
 
     /// 管控节点信息
     public struct ManagerNode: TCInputModel {
-        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费<br>默认值：POSTPAID_BY_HOUR。
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
+        /// <li>PREPAID：预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
-        /// <br><li>对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        ///
+        /// <li>对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
@@ -349,7 +414,9 @@ extension Thpc {
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
         public let internetAccessible: InternetAccessible?
 
-        /// 节点显示名称。<br><li>
+        /// 节点显示名称。
+        ///
+        /// <li>
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// </li><li>购买多个节点，如果指定模式串`{R:x}`，表示生成数字[`[x, x+n-1]`，其中`n`表示购买节点的数量，例如`server_{R:3}`，购买1个时，节点显示名称为`server_3`；购买2个时，节点显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。
         /// 购买多个节点，如果不指定模式串，则在节点显示名称添加后缀`1、2...n`，其中`n`表示购买节点的数量，例如`server_`，购买2个时，节点显示名称分别为`server_1`，`server_2`。</li><li>

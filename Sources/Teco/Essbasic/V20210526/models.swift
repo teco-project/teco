@@ -134,7 +134,8 @@ extension Essbasic {
         public let flowName: String
 
         /// 合同流程类型
-        /// <br/>客户自定义，用于合同分类展示
+        ///
+        /// 客户自定义，用于合同分类展示
         public let flowType: String
 
         /// 合同流程描述信息
@@ -144,7 +145,8 @@ extension Essbasic {
         public let deadline: Int64
 
         /// 是否顺序签署(true:无序签,false:顺序签)
-        /// <br/>默认false，有序签署合同
+        ///
+        /// 默认false，有序签署合同
         public let unordered: Bool?
 
         /// 是否打开智能添加填写区(默认开启，打开:"OPEN" 关闭："CLOSE")
@@ -154,9 +156,12 @@ extension Essbasic {
         public let formFields: [FormField]?
 
         /// 本企业(发起方企业)是否需要签署审批
-        /// <br/>true：开启发起方签署审批
-        /// <br/>false：不开启发起方签署审批
-        /// <br/>开启后，使用ChannelCreateFlowSignReview接口提交审批结果，才能继续完成签署
+        ///
+        /// true：开启发起方签署审批
+        ///
+        /// false：不开启发起方签署审批
+        ///
+        /// 开启后，使用ChannelCreateFlowSignReview接口提交审批结果，才能继续完成签署
         public let needSignReview: Bool?
 
         /// 用户流程自定义数据参数
@@ -166,9 +171,12 @@ extension Essbasic {
         public let ccInfos: [CcInfo]?
 
         /// 是否需要开启发起方发起前审核
-        /// <br/>true：开启发起方发起前审核
-        /// <br/>false：不开启发起方发起前审核
-        /// <br/>当指定NeedCreateReview=true，则提交审核后，需要使用接口：ChannelCreateFlowSignReview，来完成发起前审核，审核通过后，可以继续查看，签署合同
+        ///
+        /// true：开启发起方发起前审核
+        ///
+        /// false：不开启发起方发起前审核
+        ///
+        /// 当指定NeedCreateReview=true，则提交审核后，需要使用接口：ChannelCreateFlowSignReview，来完成发起前审核，审核通过后，可以继续查看，签署合同
         public let needCreateReview: Bool?
 
         public init(flowName: String, flowType: String, flowDescription: String, deadline: Int64, unordered: Bool? = nil, intelligentStatus: String? = nil, formFields: [FormField]? = nil, needSignReview: Bool? = nil, userData: String? = nil, ccInfos: [CcInfo]? = nil, needCreateReview: Bool? = nil) {
@@ -868,18 +876,30 @@ extension Essbasic {
         public let approveName: String?
 
         /// 当前签署人的状态, 状态如下
-        /// <br/>PENDING 待签署
-        /// <br/>FILLPENDING 待填写
-        /// <br/>FILLACCEPT 填写完成
-        /// <br/>FILLREJECT 拒绝填写
-        /// <br/>WAITPICKUP 待领取
-        /// <br/>ACCEPT 已签署
-        /// <br/>REJECT 拒签
-        /// <br/>DEADLINE 过期没人处理
-        /// <br/>CANCEL 流程已撤回
-        /// <br/>FORWARD 已经转他人处理
-        /// <br/>STOP 流程已终止
-        /// <br/>RELIEVED 解除协议（已解除）
+        ///
+        /// PENDING 待签署
+        ///
+        /// FILLPENDING 待填写
+        ///
+        /// FILLACCEPT 填写完成
+        ///
+        /// FILLREJECT 拒绝填写
+        ///
+        /// WAITPICKUP 待领取
+        ///
+        /// ACCEPT 已签署
+        ///
+        /// REJECT 拒签
+        ///
+        /// DEADLINE 过期没人处理
+        ///
+        /// CANCEL 流程已撤回
+        ///
+        /// FORWARD 已经转他人处理
+        ///
+        /// STOP 流程已终止
+        ///
+        /// RELIEVED 解除协议（已解除）
         ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveStatus: String?
@@ -892,8 +912,10 @@ extension Essbasic {
         public let approveTime: Int64
 
         /// 参与者类型
-        /// <br/>ORGANIZATION：企业签署人
-        /// <br/>PERSON：个人签署人
+        ///
+        /// ORGANIZATION：企业签署人
+        ///
+        /// PERSON：个人签署人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let approveType: String?
 
@@ -970,7 +992,11 @@ extension Essbasic {
         @available(*, deprecated)
         public let callbackUrl: String? = nil
 
-        /// 使用PDF文件直接发起合同时，签署人指定的签署控件；<br/>使用模板发起合同时，指定本企业印章签署控件的印章ID: <br/>通过ComponentId或ComponenetName指定签署控件，ComponentValue为印章ID。
+        /// 使用PDF文件直接发起合同时，签署人指定的签署控件；
+        ///
+        /// 使用模板发起合同时，指定本企业印章签署控件的印章ID:
+        ///
+        /// 通过ComponentId或ComponenetName指定签署控件，ComponentValue为印章ID。
         public let signComponents: [Component]?
 
         /// 签署方控件类型为 SIGN_SIGNATURE时，可以指定签署方签名方式
@@ -2337,12 +2363,15 @@ extension Essbasic {
     /// 主题配置
     public struct WebThemeConfig: TCInputModel {
         /// 页面底部是否显示电子签logo
-        /// <br/>true：允许在页面底部隐藏电子签logo
-        /// <br/>默认false，不允许允许在页面底部隐藏电子签logo
+        ///
+        /// true：允许在页面底部隐藏电子签logo
+        ///
+        /// 默认false，不允许允许在页面底部隐藏电子签logo
         public let displaySignBrandLogo: Bool?
 
         /// 嵌入式主题颜色
-        /// <br/>支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
+        ///
+        /// 支持十六进制颜色值以及RGB格式颜色值，例如：#D54941，rgb(213, 73, 65)
         public let webEmbedThemeColor: String?
 
         public init(displaySignBrandLogo: Bool? = nil, webEmbedThemeColor: String? = nil) {

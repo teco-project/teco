@@ -36,7 +36,11 @@ extension Thpc {
         /// 指定计算节点的数量。默认取值：0。
         public let computeNodeCount: Int64?
 
-        /// 调度器类型。默认取值：SLURM。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
+        /// 调度器类型。默认取值：SLURM。
+        ///
+        /// <li>SGE：SGE调度器。
+        ///
+        /// <li>SLURM：SLURM调度器。
         public let schedulerType: String?
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
@@ -80,7 +84,11 @@ extension Thpc {
         /// 创建集群时同时绑定的标签对说明。
         public let tags: [Tag]?
 
-        /// 弹性伸缩类型。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。
+        /// 弹性伸缩类型。
+        ///
+        /// <li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        ///
+        /// <li>THPC_AS：集群自动扩缩容由THPC产品内部实现。
         public let autoScalingType: String?
 
         public init(placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil) {

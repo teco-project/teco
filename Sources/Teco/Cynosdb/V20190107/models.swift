@@ -3116,13 +3116,17 @@ extension Cynosdb {
         /// 可用区中文名
         public let zoneZh: String
 
-        /// 是否支持serverless集群<br>
-        /// 0:不支持<br>
+        /// 是否支持serverless集群
+        ///
+        /// 0:不支持
+        ///
         /// 1:支持
         public let isSupportServerless: Int64
 
-        /// 是否支持普通集群<br>
-        /// 0:不支持<br>
+        /// 是否支持普通集群
+        ///
+        /// 0:不支持
+        ///
         /// 1:支持
         public let isSupportNormal: Int64
 

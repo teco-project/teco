@@ -328,7 +328,10 @@ extension Batch {
         /// 计算环境资源类型，当前为CVM和CPM（黑石）
         public let resourceType: String
 
-        /// 计算环境资源来源。<br>BATCH_CREATED：由批量计算创建的实例资源。<br>
+        /// 计算环境资源来源。
+        ///
+        /// BATCH_CREATED：由批量计算创建的实例资源。
+        ///
         /// USER_ATTACHED：用户添加到计算环境中的实例资源。
         public let resourceOrigin: String
 
@@ -406,7 +409,31 @@ extension Batch {
         /// 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         public let diskSize: Int64
 
-        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><li>CLOUD_BSSD：通用型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
+        /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
+        /// <li>LOCAL_BASIC：本地硬盘
+        ///
+        /// <li>LOCAL_SSD：本地SSD硬盘
+        ///
+        /// <li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定
+        ///
+        /// <li>CLOUD_BASIC：普通云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：高性能云硬盘
+        ///
+        /// <li>CLOUD_SSD：SSD云硬盘
+        ///
+        /// <li>CLOUD_HSSD：增强型SSD云硬盘
+        ///
+        /// <li>CLOUD_TSSD：极速型SSD云硬盘
+        ///
+        /// <li>CLOUD_BSSD：通用型SSD云硬盘
+        ///
+        /// 默认取值：LOCAL_BASIC。
+        ///
+        /// 该参数对`ResizeInstanceDisk`接口无效。
         public let diskType: String?
 
         /// 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
@@ -415,8 +442,10 @@ extension Batch {
 
         /// 数据盘是否随子机销毁。取值范围：
         /// <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
-        /// <li>FALSE：子机销毁时，保留数据盘<br>
-        /// 默认取值：TRUE<br>
+        /// <li>FALSE：子机销毁时，保留数据盘
+        ///
+        /// 默认取值：TRUE
+        ///
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
@@ -427,8 +456,10 @@ extension Batch {
 
         /// 数据盘是加密。取值范围：
         /// <li>TRUE：加密
-        /// <li>FALSE：不加密<br>
-        /// 默认取值：FALSE<br>
+        /// <li>FALSE：不加密
+        ///
+        /// 默认取值：FALSE
+        ///
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
@@ -592,7 +623,13 @@ extension Batch {
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         public let enhancedService: EnhancedService?
 
-        /// CVM实例计费类型<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
+        /// CVM实例计费类型
+        ///
+        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        ///
+        /// <li>SPOTPAID：竞价付费
+        ///
+        /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
 
         /// 实例的市场相关选项，如竞价实例相关参数
@@ -784,7 +821,9 @@ extension Batch {
 
     /// 事件配置
     public struct EventConfig: TCInputModel, TCOutputModel {
-        /// 事件类型，包括：<br/><li>“JOB_RUNNING”：作业运行，适用于"SubmitJob"。</li><li>“JOB_SUCCEED”：作业成功，适用于"SubmitJob"。</li><li>“JOB_FAILED”：作业失败，适用于"SubmitJob"。</li><li>“JOB_FAILED_INTERRUPTED”：作业失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_RUNNING”：任务运行，适用于"SubmitJob"。</li><li>“TASK_SUCCEED”：任务成功，适用于"SubmitJob"。</li><li>“TASK_FAILED”：任务失败，适用于"SubmitJob"。</li><li>“TASK_FAILED_INTERRUPTED”：任务失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_RUNNING”：任务实例运行，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_SUCCEED”：任务实例成功，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED”：任务实例失败，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED_INTERRUPTED”：任务实例失败，保留实例，适用于"SubmitJob"。</li><li>“COMPUTE_ENV_CREATED”：计算环境已创建，适用于"CreateComputeEnv"。</li><li>“COMPUTE_ENV_DELETED”：计算环境已删除，适用于"CreateComputeEnv"。</li><li>“COMPUTE_NODE_CREATED”：计算节点已创建，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_CREATION_FAILED”：计算节点创建失败，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_RUNNING”：计算节点运行中，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_ABNORMAL”：计算节点异常，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_DELETING”：计算节点已删除，适用于"CreateComputeEnv"和"SubmitJob"。</li>
+        /// 事件类型，包括：
+        ///
+        /// <li>“JOB_RUNNING”：作业运行，适用于"SubmitJob"。</li><li>“JOB_SUCCEED”：作业成功，适用于"SubmitJob"。</li><li>“JOB_FAILED”：作业失败，适用于"SubmitJob"。</li><li>“JOB_FAILED_INTERRUPTED”：作业失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_RUNNING”：任务运行，适用于"SubmitJob"。</li><li>“TASK_SUCCEED”：任务成功，适用于"SubmitJob"。</li><li>“TASK_FAILED”：任务失败，适用于"SubmitJob"。</li><li>“TASK_FAILED_INTERRUPTED”：任务失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_RUNNING”：任务实例运行，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_SUCCEED”：任务实例成功，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED”：任务实例失败，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED_INTERRUPTED”：任务实例失败，保留实例，适用于"SubmitJob"。</li><li>“COMPUTE_ENV_CREATED”：计算环境已创建，适用于"CreateComputeEnv"。</li><li>“COMPUTE_ENV_DELETED”：计算环境已删除，适用于"CreateComputeEnv"。</li><li>“COMPUTE_NODE_CREATED”：计算节点已创建，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_CREATION_FAILED”：计算节点创建失败，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_RUNNING”：计算节点运行中，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_ABNORMAL”：计算节点异常，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_DELETING”：计算节点已删除，适用于"CreateComputeEnv"和"SubmitJob"。</li>
         public let eventName: String
 
         /// 自定义键值对
@@ -826,7 +865,11 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseAddress: Bool?
 
-        /// 不支持的网络类型，取值范围：<br><li>BASIC：基础网络<br><li>VPC1.0：私有网络VPC1.0
+        /// 不支持的网络类型，取值范围：
+        ///
+        /// <li>BASIC：基础网络
+        ///
+        /// <li>VPC1.0：私有网络VPC1.0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unsupportNetworks: [String]?
 
@@ -1018,7 +1061,15 @@ extension Batch {
         /// 实例机型。
         public let instanceType: String
 
-        /// 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
+        /// 实例计费模式。取值范围：
+        ///
+        /// <li>PREPAID：表示预付费，即包年包月
+        ///
+        /// <li>POSTPAID_BY_HOUR：表示后付费，即按量计费
+        ///
+        /// <li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
+        ///
+        /// <li>`SPOTPAID`：表示竞价实例付费。
         public let instanceChargeType: String
 
         /// 网卡类型，例如：25代表25G网卡
@@ -1043,7 +1094,11 @@ extension Batch {
         /// 本地磁盘规格列表。当该参数返回为空值时，表示当前情况下无法创建本地盘。
         public let localDiskTypeList: [LocalDiskType]
 
-        /// 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
+        /// 实例是否售卖。取值范围：
+        ///
+        /// <li>SELL：表示实例可购买
+        ///
+        /// <li>SOLD_OUT：表示实例已售罄。
         public let status: String
 
         /// 实例的售卖价格。
@@ -1108,13 +1163,29 @@ extension Batch {
 
     /// 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
-        /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
+        /// 网络计费类型。取值范围：
+        ///
+        /// <li>BANDWIDTH_PREPAID：预付费按带宽结算
+        ///
+        /// <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
+        ///
+        /// <li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
+        ///
+        /// <li>BANDWIDTH_PACKAGE：带宽包用户
+        ///
+        /// 默认取值：非带宽包用户默认与子机付费类型保持一致，比如子机付费类型为预付费，网络计费类型默认为预付费；子机付费类型为后付费，网络计费类型默认为后付费。
         public let internetChargeType: String?
 
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
         public let internetMaxBandwidthOut: Int64?
 
-        /// 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
+        /// 是否分配公网IP。取值范围：
+        ///
+        /// <li>TRUE：表示分配公网IP
+        ///
+        /// <li>FALSE：表示不分配公网IP
+        ///
+        /// 当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
         public let publicIpAssigned: Bool?
 
         /// 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
@@ -1137,11 +1208,17 @@ extension Batch {
 
     /// 描述了单项的价格信息
     public struct ItemPrice: TCOutputModel {
-        /// 后续合计费用的原价，后付费模式使用，单位：元。<br><li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        /// 后续合计费用的原价，后付费模式使用，单位：元。
+        ///
+        /// <li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
 
-        /// 后续计价单元，后付费模式使用，可取值范围： <br><li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：<br><li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        /// 后续计价单元，后付费模式使用，可取值范围：
+        ///
+        /// <li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：
+        ///
+        /// <li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
 
@@ -1157,7 +1234,9 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discount: Float?
 
-        /// 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        /// 后续合计费用的折扣价，后付费模式使用，单位：元
+        ///
+        /// <li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
 
@@ -1277,7 +1356,11 @@ extension Batch {
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
-        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。
+        ///
+        /// 默认值为CMQ。
+        ///
+        /// 注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
 
         public init(tasks: [Task], jobName: String? = nil, jobDescription: String? = nil, priority: UInt64? = nil, dependences: [Dependence]? = nil, notifications: [Notification]? = nil, taskExecutionDependOn: String? = nil, stateIfCreateCvmFailed: String? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
@@ -1366,7 +1449,11 @@ extension Batch {
         /// 本地磁盘最大值。
         public let maxSize: Int64
 
-        /// 购买时本地盘是否为必选。取值范围：<br><li>REQUIRED：表示必选<br><li>OPTIONAL：表示可选。
+        /// 购买时本地盘是否为必选。取值范围：
+        ///
+        /// <li>REQUIRED：表示必选
+        ///
+        /// <li>OPTIONAL：表示可选。
         public let required: String
 
         enum CodingKeys: String, CodingKey {
@@ -1380,13 +1467,25 @@ extension Batch {
 
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
-        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? \/ ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? \/]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
+        /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
+        /// <li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? \/ ]中的特殊符号。
+        ///
+        /// <li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? \/]中的特殊符号。
+        ///
+        /// 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         public let password: String?
 
         /// 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         public let keyIds: [String]?
 
-        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
+        /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        ///
+        /// <li>TRUE：表示保持镜像的登录设置
+        ///
+        /// <li>FALSE：表示不保持镜像的登录设置
+        ///
+        /// 默认取值：FALSE。
         public let keepImageLogin: String?
 
         public init(password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
@@ -1465,7 +1564,11 @@ extension Batch {
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
-        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。
+        ///
+        /// 默认值为CMQ。
+        ///
+        /// 注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
 
         public init(envName: String, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, agentRunningMode: AgentRunningMode? = nil, notifications: [Notification]? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
@@ -1541,7 +1644,11 @@ extension Batch {
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
-        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
+        /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。
+        ///
+        /// 默认值为CMQ。
+        ///
+        /// 注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
 
         public init(envName: String, envData: EnvDataCpm, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, notifications: Notification? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
@@ -1788,7 +1895,13 @@ extension Batch {
 
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
+        /// 是否开启云自动化助手。取值范围：
+        ///
+        /// <li>TRUE：表示开启云自动化助手服务
+        ///
+        /// <li>FALSE：表示不开启云自动化助手服务
+        ///
+        /// 默认取值：FALSE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -1802,7 +1915,13 @@ extension Batch {
 
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
+        /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云监控服务
+        ///
+        /// <li>FALSE：表示不开启云监控服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -1816,7 +1935,13 @@ extension Batch {
 
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
-        /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
+        /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
+        /// <li>TRUE：表示开启云安全服务
+        ///
+        /// <li>FALSE：表示不开启云安全服务
+        ///
+        /// 默认取值：TRUE。
         public let enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -1876,7 +2001,21 @@ extension Batch {
 
     /// 描述了操作系统所在块设备即系统盘的信息
     public struct SystemDisk: TCInputModel, TCOutputModel {
-        /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_BSSD：通用性SSD云硬盘<br><br>默认取值：当前有库存的硬盘类型。
+        /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
+        /// <li>LOCAL_BASIC：本地硬盘
+        ///
+        /// <li>LOCAL_SSD：本地SSD硬盘
+        ///
+        /// <li>CLOUD_BASIC：普通云硬盘
+        ///
+        /// <li>CLOUD_SSD：SSD云硬盘
+        ///
+        /// <li>CLOUD_PREMIUM：高性能云硬盘
+        ///
+        /// <li>CLOUD_BSSD：通用性SSD云硬盘
+        ///
+        /// 默认取值：当前有库存的硬盘类型。
         public let diskType: String?
 
         /// 系统盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID。暂时不支持该参数。
@@ -2258,7 +2397,13 @@ extension Batch {
         /// 私有网络子网ID，形如`subnet-xxx`。有效的私有网络子网ID可通过登录[控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1)查询；也可以调用接口  [DescribeSubnets](/document/api/215/15784) ，从接口返回中的`unSubnetId`字段获取。若在创建子机时SubnetId与VpcId同时传入`DEFAULT`，则强制使用默认vpc网络。
         public let subnetId: String
 
-        /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：<br><li>TRUE：表示用作公网网关<br><li>FALSE：表示不作为公网网关<br><br>默认取值：FALSE。
+        /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：
+        ///
+        /// <li>TRUE：表示用作公网网关
+        ///
+        /// <li>FALSE：表示不作为公网网关
+        ///
+        /// 默认取值：FALSE。
         public let asVpcGateway: Bool?
 
         /// 私有网络子网 IP 数组，在创建实例、修改实例vpc属性操作中可使用此参数。当前仅批量创建多台实例时支持传入相同子网的多个 IP。

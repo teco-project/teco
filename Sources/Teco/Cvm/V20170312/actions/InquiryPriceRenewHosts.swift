@@ -27,7 +27,13 @@ extension Cvm {
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
         public let hostChargePrepaid: ChargePrepaid
 
-        /// 试运行，测试使用，不执行具体逻辑。取值范围：<br><li>TRUE：跳过执行逻辑<br><li>FALSE：执行逻辑<br><br>默认取值：FALSE。
+        /// 试运行，测试使用，不执行具体逻辑。取值范围：
+        ///
+        /// <li>TRUE：跳过执行逻辑
+        ///
+        /// <li>FALSE：执行逻辑
+        ///
+        /// 默认取值：FALSE。
         public let dryRun: Bool?
 
         public init(hostIds: [String], hostChargePrepaid: ChargePrepaid, dryRun: Bool? = nil) {

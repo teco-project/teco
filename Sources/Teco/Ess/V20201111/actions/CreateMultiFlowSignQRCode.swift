@@ -31,27 +31,33 @@ extension Ess {
         public let flowName: String
 
         /// 最大可发起签署流程份数，默认5份
-        /// <br/>发起流程数量超过此上限后二维码自动失效
+        ///
+        /// 发起流程数量超过此上限后二维码自动失效
         public let maxFlowNum: Int64?
 
         /// 签署流程有效天数
-        /// <br/>默认7天
-        /// <br/>最高设置不超过30天
+        ///
+        /// 默认7天
+        ///
+        /// 最高设置不超过30天
         public let flowEffectiveDay: Int64?
 
         /// 二维码有效天数 默认7天 最高设置不超过90天
         public let qrEffectiveDay: Int64?
 
         /// 指定的签署人信息
-        /// <br/>指定后，则只允许指定的签署人扫码签署
+        ///
+        /// 指定后，则只允许指定的签署人扫码签署
         public let restrictions: [ApproverRestriction]?
 
         /// 用户自定义字段
-        /// <br/>回调的时候会进行透传，长度需要小于20480
+        ///
+        /// 回调的时候会进行透传，长度需要小于20480
         public let userData: String?
 
         /// 回调地址,最大长度1000字符串
-        /// <br/>回调时机：用户通过签署二维码发起签署流程时，企业额度不足导致失败
+        ///
+        /// 回调时机：用户通过签署二维码发起签署流程时，企业额度不足导致失败
         public let callbackUrl: String?
 
         /// 应用信息

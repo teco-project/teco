@@ -36,7 +36,11 @@ extension Thpc {
         /// 指定计算节点的数量。默认取值：0。
         public let computeNodeCount: Int64?
 
-        /// 调度器类型。<br><li>SGE：SGE调度器。<br><li>SLURM：SLURM调度器。
+        /// 调度器类型。
+        ///
+        /// <li>SGE：SGE调度器。
+        ///
+        /// <li>SLURM：SLURM调度器。
         public let schedulerType: String?
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。

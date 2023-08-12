@@ -21,7 +21,13 @@ import TecoCore
 extension Cvm {
     /// ModifyImageSharePermission请求参数结构体
     public struct ModifyImageSharePermissionRequest: TCRequestModel {
-        /// 镜像ID，形如`img-gvbnzy6f`。镜像Id可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。<br><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。 <br>镜像ID必须指定为状态为`NORMAL`的镜像。镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
+        /// 镜像ID，形如`img-gvbnzy6f`。镜像Id可以通过如下方式获取：
+        ///
+        /// <li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
+        ///
+        /// <li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
+        ///
+        /// 镜像ID必须指定为状态为`NORMAL`的镜像。镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
         public let imageId: String
 
         /// 接收分享镜像的账号Id列表，array型参数的格式可以参考[API简介](/document/api/213/568)。帐号ID不同于QQ号，查询用户帐号ID请查看[帐号信息](https://console.cloud.tencent.com/developer)中的帐号ID栏。
