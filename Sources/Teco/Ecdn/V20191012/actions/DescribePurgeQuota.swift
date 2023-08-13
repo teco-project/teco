@@ -47,7 +47,7 @@ extension Ecdn {
     ///
     /// 查询刷新接口的用量配额。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
@@ -58,7 +58,7 @@ extension Ecdn {
     ///
     /// 查询刷新接口的用量配额。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
@@ -69,7 +69,7 @@ extension Ecdn {
     ///
     /// 查询刷新接口的用量配额。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
@@ -80,7 +80,7 @@ extension Ecdn {
     ///
     /// 查询刷新接口的用量配额。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41956)，使用  CDN 相关API 进行操作。
     @available(*, unavailable, message: "ECDN融合CDN后，接口都用CDN的，此接口已经废弃")
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {

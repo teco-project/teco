@@ -105,7 +105,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 创建弹性网卡同时可以绑定已有安全组。
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(_ input: CreateAndAttachNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
@@ -120,7 +120,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 创建弹性网卡同时可以绑定已有安全组。
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(_ input: CreateAndAttachNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
@@ -135,7 +135,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 创建弹性网卡同时可以绑定已有安全组。
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndAttachNetworkInterfaceResponse> {
@@ -150,7 +150,7 @@ extension Vpc {
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见[弹性网卡使用限制](/document/product/576/18527)。
     /// * 创建弹性网卡同时可以绑定已有安全组。
     /// * 创建弹性网卡同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// - Attention: 本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
     public func createAndAttachNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, instanceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, qosLevel: String? = nil, securityGroupIds: [String]? = nil, networkInterfaceDescription: String? = nil, tags: [Tag]? = nil, attachType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndAttachNetworkInterfaceResponse {
