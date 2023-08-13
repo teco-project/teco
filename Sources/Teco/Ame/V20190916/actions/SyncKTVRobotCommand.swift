@@ -35,7 +35,7 @@ extension Ame {
         /// <li>SetAudioParam：音频参数变更</li>
         /// <li>SendMessage：发送自定义消息</li>
         /// <li>SetDestroyMode：设置销毁模式</li>
-        /// <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
+        /// <li>~~SetVolume：设置音量~~（已废弃，请采用 SetRealVolume）</li>
         /// <li>SetRealVolume：设置真实音量</li>
         public let command: String
 
@@ -60,7 +60,7 @@ extension Ame {
         /// 销毁模式，当Command取SetDestroyMode时，必填。
         public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
 
-        /// <del>音量，当Command取SetVolume时，必填。</del>
+        /// ~~音量，当Command取SetVolume时，必填。~~
         /// （已废弃，请采用 SetRealVolumeCommandInput ）
         public let setVolumeCommandInput: SetVolumeCommandInput?
 
