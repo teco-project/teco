@@ -26,7 +26,7 @@ extension Tiia {
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG、BMP。
         /// • 图片大小：经Base64编码后不超过4M。
-        /// **<font color=#1E90FF>注意：图片需要Base64编码，并且要去掉编码头部。</font>**
+        /// **_注意：图片需要Base64编码，并且要去掉编码头部。_**
         public let imageBase64: String?
 
         /// 图片 URL 地址。

@@ -64,7 +64,7 @@ extension Vod {
 
     /// 图片处理
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 该 API 已经_不再维护_，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
     ///
     /// 对点播中的图片文件发起处理任务，功能包括：
     ///
@@ -80,7 +80,7 @@ extension Vod {
 
     /// 图片处理
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 该 API 已经_不再维护_，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
     ///
     /// 对点播中的图片文件发起处理任务，功能包括：
     ///
@@ -96,7 +96,7 @@ extension Vod {
 
     /// 图片处理
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 该 API 已经_不再维护_，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
     ///
     /// 对点播中的图片文件发起处理任务，功能包括：
     ///
@@ -112,7 +112,7 @@ extension Vod {
 
     /// 图片处理
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
+    /// 该 API 已经_不再维护_，智能识别任务请使用图片智能识别 [ReviewImage](https://cloud.tencent.com/document/api/266/73217) 接口。
     ///
     /// 对点播中的图片文件发起处理任务，功能包括：
     ///

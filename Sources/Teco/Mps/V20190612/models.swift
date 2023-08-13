@@ -5502,7 +5502,7 @@ extension Mps {
 
         /// 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
         ///
-        /// <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
+        /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
         public let notifyType: String?
 
         /// HTTP回调地址，NotifyType为URL时必填。
@@ -8428,7 +8428,7 @@ extension Mps {
         /// <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
         public let extTimeOffsetSet: [String]?
 
-        /// 截图时间点列表，单位为<font color=red>秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
+        /// 截图时间点列表，单位为_秒_。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
         public let timeOffsetSet: [Float]?
 
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
@@ -8805,7 +8805,7 @@ extension Mps {
         /// <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
         /// <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
         /// <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
-        /// <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
+        /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
         public let notifyType: String?
 
         /// HTTP回调地址，NotifyType为URL时必填。

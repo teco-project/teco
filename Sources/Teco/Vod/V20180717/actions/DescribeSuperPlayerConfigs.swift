@@ -94,7 +94,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(_ input: DescribeSuperPlayerConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSuperPlayerConfigsResponse> {
@@ -103,7 +103,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(_ input: DescribeSuperPlayerConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSuperPlayerConfigsResponse {
@@ -112,7 +112,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(subAppId: UInt64? = nil, names: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSuperPlayerConfigsResponse> {
@@ -121,7 +121,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigs(subAppId: UInt64? = nil, names: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSuperPlayerConfigsResponse {
@@ -130,7 +130,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable
     public func describeSuperPlayerConfigsPaginated(_ input: DescribeSuperPlayerConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [PlayerConfig])> {
@@ -139,7 +139,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     @inlinable @discardableResult
     public func describeSuperPlayerConfigsPaginated(_ input: DescribeSuperPlayerConfigsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeSuperPlayerConfigsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -148,7 +148,7 @@ extension Vod {
 
     /// 获取播放器配置列表
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 查询播放器配置，支持根据条件，分页查询。
     ///
     /// - Returns: `AsyncSequence`s of ``PlayerConfig`` and ``DescribeSuperPlayerConfigsResponse`` that can be iterated over asynchronously on demand.

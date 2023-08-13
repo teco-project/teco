@@ -99,7 +99,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
@@ -108,7 +108,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
@@ -117,7 +117,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
@@ -126,7 +126,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {

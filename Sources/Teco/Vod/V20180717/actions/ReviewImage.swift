@@ -47,7 +47,7 @@ extension Vod {
     /// ReviewImage返回参数结构体
     public struct ReviewImageResponse: TCResponseModel {
         /// 图片审核任务结果。
-        /// <font color=red>注意：该字段已废弃，建议使用 MediaReviewResult。</font>
+        /// _注意：该字段已废弃，建议使用 MediaReviewResult。_
         public let reviewResultSet: [ContentReviewResult]
 
         /// 图片审核任务结果。

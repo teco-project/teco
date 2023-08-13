@@ -138,7 +138,7 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>云转推项目：用于直播云转推_（废弃，可使用媒体转推项目替代）_；</li>
     /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
@@ -153,7 +153,7 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>云转推项目：用于直播云转推_（废弃，可使用媒体转推项目替代）_；</li>
     /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
@@ -168,7 +168,7 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>云转推项目：用于直播云转推_（废弃，可使用媒体转推项目替代）_；</li>
     /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, mediaCastProjectInput: MediaCastProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
@@ -183,7 +183,7 @@ extension Cme {
     /// <li>导播台项目：用于云导播台；</li>
     /// <li>视频拆条：用于视频拆条；</li>
     /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推<font color=red>（废弃，可使用媒体转推项目替代）</font>；</li>
+    /// <li>云转推项目：用于直播云转推_（废弃，可使用媒体转推项目替代）_；</li>
     /// <li>媒体转推项目：用于媒体文件转直播输出。</li>
     @inlinable
     public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, mediaCastProjectInput: MediaCastProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {

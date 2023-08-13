@@ -31,7 +31,7 @@ extension Vod {
         public let mediaProcessTask: MediaProcessTaskInput?
 
         /// 音视频内容审核类型任务参数 \*。
-        /// <font color=red>\* 不建议使用</font>，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)。
+        /// _\* 不建议使用_，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)。
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
         /// 音视频内容分析类型任务参数。
@@ -108,7 +108,7 @@ extension Vod {
     /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），_不建议_ 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
     ///
@@ -128,7 +128,7 @@ extension Vod {
     /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），_不建议_ 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
     ///
@@ -148,7 +148,7 @@ extension Vod {
     /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），_不建议_ 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
     ///
@@ -168,7 +168,7 @@ extension Vod {
     /// 5. 对视频截取雪碧图；
     /// 6. 对视频截取一张图做封面；
     /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），<font color=red>不建议</font> 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息），_不建议_ 使用该接口发起，推荐使用 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217)；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
     ///

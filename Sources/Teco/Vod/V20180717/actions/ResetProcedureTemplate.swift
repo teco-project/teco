@@ -34,7 +34,7 @@ extension Vod {
         public let mediaProcessTask: MediaProcessTaskInput?
 
         /// AI 智能内容审核类型任务参数 \*。
-        /// <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
+        /// _\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。_
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
         /// AI 智能内容分析类型任务参数。

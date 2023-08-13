@@ -102,7 +102,7 @@ extension Gme {
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
     /// <tr>
@@ -246,7 +246,7 @@ extension Gme {
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
     /// <tr>
@@ -390,7 +390,7 @@ extension Gme {
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
     /// <tr>
@@ -534,7 +534,7 @@ extension Gme {
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
     /// <tr>

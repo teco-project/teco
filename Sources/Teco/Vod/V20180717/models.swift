@@ -210,7 +210,7 @@ extension Vod {
         /// 媒体文件大小，单位：字节。
         /// <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和；</li>
         /// <li>当媒体文件为 DASH 时，大小是 mpd 和分片文件大小的总和；</li>
-        /// <li><font color=red>注意</font>：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。</li>
+        /// <li>_注意_：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。</li>
         public let size: Int64?
 
         /// 数字水印类型。可选值：
@@ -446,7 +446,7 @@ extension Vod {
     /// 智能分类结果信息
     public struct AiAnalysisTaskClassificationOutput: TCOutputModel {
         /// 视频智能分类列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ClassificationSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ClassificationSetFileUrl 对应的文件中获取。
         public let classificationSet: [MediaAiAnalysisClassificationItem]
 
         /// 视频智能分类列表文件 URL。文件的内容为 JSON，数据结构与 ClassificationSet 字段一致。 （文件不会永久存储，到达 ClassificationSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -518,7 +518,7 @@ extension Vod {
     /// 智能封面结果信息
     public struct AiAnalysisTaskCoverOutput: TCOutputModel {
         /// 智能封面列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 CoverSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 CoverSetFileUrl 对应的文件中获取。
         public let coverSet: [MediaAiAnalysisCoverItem]
 
         /// 智能封面列表文件 URL。文件的内容为 JSON，数据结构与 CoverSet 字段一致。 （文件不会永久存储，到达 CoverSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -590,7 +590,7 @@ extension Vod {
     /// 智能按帧标签结果信息
     public struct AiAnalysisTaskFrameTagOutput: TCOutputModel {
         /// 视频按帧标签列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaAiAnalysisFrameTagSegmentItem]
 
         /// 视频按帧标签列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -662,7 +662,7 @@ extension Vod {
     /// 智能精彩片段结果信息
     public struct AiAnalysisTaskHighlightOutput: TCOutputModel {
         /// 视频智能精彩片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 HighlightSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 HighlightSetFileUrl 对应的文件中获取。
         public let highlightSet: [MediaAiAnalysisHighlightItem]
 
         /// 视频智能精彩片段列表文件 URL。文件的内容为 JSON，数据结构与 HighlightSet 字段一致。 （文件不会永久存储，到达 HighlightSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -748,7 +748,7 @@ extension Vod {
     /// 智能标签结果信息
     public struct AiAnalysisTaskTagOutput: TCOutputModel {
         /// 视频智能标签列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 TagSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 TagSetFileUrl 对应的文件中获取。
         public let tagSet: [MediaAiAnalysisTagItem]
 
         /// 视频智能标签列表文件 URL。文件的内容为 JSON，数据结构与 TagSet 字段一致。 （文件不会永久存储，到达 TagSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1012,7 +1012,7 @@ extension Vod {
     /// 语音全文识别结果。
     public struct AiRecognitionTaskAsrFullTextResultOutput: TCOutputModel {
         /// 语音全文识别片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [AiRecognitionTaskAsrFullTextSegmentItem]
 
         /// 语音全文识别片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1144,7 +1144,7 @@ extension Vod {
     /// 语音关键词识别输出。
     public struct AiRecognitionTaskAsrWordsResultOutput: TCOutputModel {
         /// 语音关键词识别结果集。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         public let resultSet: [AiRecognitionTaskAsrWordsResultItem]
 
         /// 语音关键词识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1258,7 +1258,7 @@ extension Vod {
     /// 智能人脸识别输出。
     public struct AiRecognitionTaskFaceResultOutput: TCOutputModel {
         /// 智能人脸识别结果集。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         public let resultSet: [AiRecognitionTaskFaceResultItem]
 
         /// 智能人脸识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1455,7 +1455,7 @@ extension Vod {
     /// 智能物体识别输出。
     public struct AiRecognitionTaskObjectResultOutput: TCOutputModel {
         /// 智能物体识别结果集。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         public let resultSet: [AiRecognitionTaskObjectResultItem]
 
         /// 智能物体识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1549,7 +1549,7 @@ extension Vod {
     /// 文本全文识别输出。
     public struct AiRecognitionTaskOcrFullTextResultOutput: TCOutputModel {
         /// 文本全文识别结果集。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [AiRecognitionTaskOcrFullTextSegmentItem]
 
         /// 文本全文识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1671,7 +1671,7 @@ extension Vod {
     /// 文本关键词识别输出。
     public struct AiRecognitionTaskOcrWordsResultOutput: TCOutputModel {
         /// 文本关键词识别结果集。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 ResultSetFileUrl 对应的文件中获取。
         public let resultSet: [AiRecognitionTaskOcrWordsResultItem]
 
         /// 文本关键词识别结果集文件 URL。文件的内容为 JSON，数据结构与 ResultSet 字段一致。 （文件不会永久存储，到达ResultSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1766,7 +1766,7 @@ extension Vod {
     /// 视频拆条输出。
     public struct AiRecognitionTaskSegmentResultOutput: TCOutputModel {
         /// 视频拆条片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [AiRecognitionTaskSegmentSegmentItem]
 
         /// 视频拆条片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1838,7 +1838,7 @@ extension Vod {
         public let suggestion: String
 
         /// Asr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
 
         /// Asr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1878,7 +1878,7 @@ extension Vod {
         public let suggestion: String
 
         /// Ocr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
 
         /// Ocr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1925,7 +1925,7 @@ extension Vod {
         public let label: String
 
         /// 有涉及令人不适宜信息嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewPoliticalSegmentItem]
 
         /// 有涉及令人不适宜的信息嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -1966,7 +1966,7 @@ extension Vod {
         public let suggestion: String
 
         /// Asr 文字有涉及令人反感的信息的嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
 
         /// Asr 文字有涉及令人反感的信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2006,7 +2006,7 @@ extension Vod {
         public let suggestion: String
 
         /// Ocr 文字有涉及令人反感的信息的嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
 
         /// Ocr 文字有涉及令人反感的信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2057,7 +2057,7 @@ extension Vod {
         public let label: String
 
         /// 有涉及令人反感的信息的嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewSegmentItem]
 
         /// 涉及令人反感的信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2098,7 +2098,7 @@ extension Vod {
         public let suggestion: String
 
         /// Asr 文字有涉违禁嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewAsrTextSegmentItem]
 
         /// Asr 文字有涉违禁嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2138,7 +2138,7 @@ extension Vod {
         public let suggestion: String
 
         /// Ocr 文字有涉违禁嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
 
         /// Ocr 文字有涉违禁嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2527,7 +2527,7 @@ extension Vod {
         public let suggestion: String
 
         /// Ocr 文字有涉及令人不安全信息嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewOcrTextSegmentItem]
 
         /// Ocr 文字有涉及令人不安全信息嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达 SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2579,7 +2579,7 @@ extension Vod {
         public let label: String
 
         /// 有暴恐嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [MediaContentReviewSegmentItem]
 
         /// 暴恐嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -2901,7 +2901,7 @@ extension Vod {
         /// 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
         /// <li>vtt：生成 WebVTT 字幕文件；</li>
         /// <li>srt：生成 SRT 字幕文件。</li>
-        /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
+        /// _注意：此字段已废弃，建议使用 SubtitleFormats。_
         public let subtitleFormat: String?
 
         /// 媒体源语言，取值范围：
@@ -2909,7 +2909,7 @@ extension Vod {
         /// <li>en：英语；</li>
         /// <li>ja：日语；</li>
         /// <li>zh-ca：粤语。</li>
-        /// <font color=red>注意：</font> 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
+        /// _注意：_ 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
         public let srcLanguage: String?
 
         public init(switch: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil, srcLanguage: String? = nil) {
@@ -2937,10 +2937,10 @@ extension Vod {
         /// 字幕格式列表操作信息。
         public let subtitleFormatsOperation: SubtitleFormatsOperation?
 
-        /// 生成的字幕文件格式，<font color='red'>填空字符串</font>表示不生成字幕文件，可选值：
+        /// 生成的字幕文件格式，_填空字符串_表示不生成字幕文件，可选值：
         /// <li>vtt：生成 WebVTT 字幕文件；</li>
         /// <li>srt：生成 SRT 字幕文件。</li>
-        /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
+        /// _注意：此字段已废弃，建议使用 SubtitleFormatsOperation。_
         public let subtitleFormat: String?
 
         /// 媒体源语言，取值范围：
@@ -6199,7 +6199,7 @@ extension Vod {
         /// <li>AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；</li>
         /// <li>WechatPublishFiles（删除微信发布文件）；</li>
         /// <li>WechatMiniProgramPublishFiles（删除微信小程序发布文件）。</li>
-        /// <font color=red>注意：</font> <li>取值为OriginalFiles时，文件上传时携带的封面文件会被删除；</li>
+        /// _注意：_ <li>取值为OriginalFiles时，文件上传时携带的封面文件会被删除；</li>
         /// <li>取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。</li>
         public let type: String
 
@@ -6417,7 +6417,7 @@ extension Vod {
         public let audioDuration: Float
 
         /// 媒体文件的 Md5 值。
-        /// <li><font color=red>注意</font>：如需要获取媒体文件的 Md5，调用 DescribeFileAttributes 接口，待任务执行完成后获取。</li>
+        /// <li>_注意_：如需要获取媒体文件的 Md5，调用 DescribeFileAttributes 接口，待任务执行完成后获取。</li>
         public let md5: String
 
         enum CodingKeys: String, CodingKey {
@@ -6987,7 +6987,7 @@ extension Vod {
 
     /// 指定时间点截图信息
     public struct MediaSnapshotByTimePicInfoItem: TCOutputModel {
-        /// 该张截图对应视频文件中的时间偏移，单位为<font color=red>毫秒</font>。
+        /// 该张截图对应视频文件中的时间偏移，单位为_毫秒_。
         public let timeOffset: Float
 
         /// 该张截图的 URL 地址。
@@ -7041,7 +7041,7 @@ extension Vod {
         public let height: UInt64?
 
         /// 子流媒体文件大小，单位：Byte。
-        /// <font color=red>注意：</font>在 2023-02-09T16:00:00Z 前处理生成的自适应码流文件此字段为0。
+        /// _注意：_在 2023-02-09T16:00:00Z 前处理生成的自适应码流文件此字段为0。
         public let size: UInt64?
 
         enum CodingKeys: String, CodingKey {
@@ -7222,7 +7222,7 @@ extension Vod {
         public let url: String
 
         /// 转码规格 ID，参见[转码参数模板](https://cloud.tencent.com/document/product/266/33476)。
-        /// <font color=red>注意：取值 0 表示原始文件。</font>
+        /// _注意：取值 0 表示原始文件。_
         public let definition: Int64
 
         /// 视频流码率平均值与音频流码率平均值之和， 单位：bps。
@@ -7319,7 +7319,7 @@ extension Vod {
         public let codecTag: String?
 
         /// 画面动态范围信息。
-        /// <li><font color=red>注意</font>：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。</li>
+        /// <li>_注意_：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。</li>
         public let dynamicRangeInfo: DynamicRangeInfo
 
         enum CodingKeys: String, CodingKey {
@@ -8404,7 +8404,7 @@ extension Vod {
         public let mediaProcessTask: MediaProcessTaskInput?
 
         /// AI 智能审核类型任务参数 \*。
-        /// <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
+        /// _\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
@@ -8828,7 +8828,7 @@ extension Vod {
         public let endTimeOffset: Float
 
         /// 检测出异常的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
-        /// <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
+        /// _注意：_ 仅当 Type 取值为下列之一时，本字段取值有效：
         /// <li>BlackWhiteEdge：黑白边；</li>
         /// <li>Mosaic：马赛克；</li>
         /// <li>QRCode：二维码；</li>
@@ -8837,7 +8837,7 @@ extension Vod {
         public let areaCoordSet: [Int64]
 
         /// 置信度，取值范围：[0, 100]。
-        /// <font color=red>注意：</font> 仅当 Type 取值为下列之一时，本字段取值有效：
+        /// _注意：_ 仅当 Type 取值为下列之一时，本字段取值有效：
         /// <li>Mosaic：马赛克；</li>
         /// <li>QRCode：二维码；</li>
         /// <li>AppletCode：小程序码；</li>
@@ -8874,7 +8874,7 @@ extension Vod {
         public let type: String?
 
         /// 异常片段列表。
-        /// <font color=red>注意：</font> 该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意：_ 该列表最多仅展示前 100 个元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [QualityInspectItem]?
 
         /// 异常片段列表文件 URL。文件 内容 为  JSON，数据结构与 SegmentSet 字段一致。（文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -10125,7 +10125,7 @@ extension Vod {
         public let form: String
 
         /// 有违规信息的嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [ReviewAudioVideoSegmentItem]
 
         /// 涉及违规信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -10172,7 +10172,7 @@ extension Vod {
         public let form: String?
 
         /// 有违规信息的嫌疑的视频片段列表。
-        /// <font color=red>注意</font> ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        /// _注意_ ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
         public let segmentSet: [ReviewImageSegmentItem]?
 
         /// 涉及违规信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
@@ -10659,7 +10659,7 @@ extension Vod {
         /// <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
         public let extTimeOffsetSet: [String]?
 
-        /// 截图时间点列表，单位为<font color=red>毫秒</font>。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
+        /// 截图时间点列表，单位为_毫秒_。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
         public let timeOffsetSet: [Float]?
 
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
@@ -12431,7 +12431,7 @@ extension Vod {
         /// <li>libx265：H.265 编码；</li>
         /// <li>av1：AOMedia Video 1 编码；</li>
         /// <li>H.266：H.266 编码。</li>
-        /// <font color=red>注意：</font>
+        /// _注意：_
         /// <li> av1，H.266 编码容器目前只支持 mp4 ；</li>
         /// <li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
         public let codec: String
@@ -12476,7 +12476,7 @@ extension Vod {
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]。
         ///
-        /// <font color=red>注意：</font>
+        /// _注意：_
         /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
         /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
         /// <li>如果没有特殊需求，不建议指定该参数。</li>
@@ -12534,7 +12534,7 @@ extension Vod {
         /// <li>libx265：H.265 编码；</li>
         /// <li>av1：AOMedia Video 1 编码；</li>
         /// <li>H.266：H.266 编码。</li>
-        /// <font color=red>注意：</font>
+        /// _注意：_
         /// <li> av1，H.266 编码容器目前只支持 mp4 ；</li>
         /// <li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
         public let codec: String?
@@ -12571,7 +12571,7 @@ extension Vod {
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]，填 0 表示禁用该参数。
         ///
-        /// <font color=red>注意：</font>
+        /// _注意：_
         /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
         /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
         /// <li>如果没有特殊需求，不建议指定该参数。</li>
