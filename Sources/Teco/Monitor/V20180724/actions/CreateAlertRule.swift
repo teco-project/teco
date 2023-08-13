@@ -27,7 +27,7 @@ extension Monitor {
         /// 规则名称
         public let ruleName: String
 
-        /// 规则表达式，可参考<a href="https://cloud.tencent.com/document/product/1416/56008">告警规则说明</a>
+        /// 规则表达式，可参考[告警规则说明](https://cloud.tencent.com/document/product/1416/56008)
         public let expr: String
 
         /// 告警通知模板 ID 列表

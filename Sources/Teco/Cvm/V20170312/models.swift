@@ -2315,11 +2315,11 @@ extension Cvm {
         public let reservedInstancesId: String
 
         /// 预留实例计费的规格。形如：S3.MEDIUM4。
-        /// 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费规格列表</a>
+        /// 返回项：[预留实例计费规格列表](https://cloud.tencent.com/document/product/213/11518)
         public let instanceType: String
 
         /// 预留实例计费可购买的可用区。形如：ap-guangzhou-1。
-        /// 返回项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a>
+        /// 返回项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
         public let zone: String
 
         /// 预留实例计费开始时间。形如：1949-10-01 00:00:00
@@ -2358,7 +2358,7 @@ extension Cvm {
         public let offeringType: String
 
         /// 预留实例计费的类型。形如：S3。
-        /// 返回项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例计费类型列表</a>
+        /// 返回项：[预留实例计费类型列表](https://cloud.tencent.com/document/product/213/11518)
         public let instanceFamily: String
 
         /// 已购买的预留实例计费ID。形如：ri-rtbh4han。
@@ -2388,7 +2388,7 @@ extension Cvm {
     /// 描述可购买预留实例计费信息
     public struct ReservedInstancesOffering: TCOutputModel {
         /// 预留实例计费可购买的可用区。形如：ap-guangzhou-1。
-        /// 返回项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a>
+        /// 返回项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
         public let zone: String
 
         /// 可购买的预留实例计费类型的结算货币，使用ISO 4217标准货币代码。
@@ -2404,7 +2404,7 @@ extension Cvm {
         public let fixedPrice: Float
 
         /// 预留实例计费的实例类型。形如：S3.MEDIUM4。
-        /// 返回项：<a href="https://cloud.tencent.com/product/cvm/instances">预留实例计费类型列表</a>
+        /// 返回项：[预留实例计费类型列表](https://cloud.tencent.com/product/cvm/instances)
         public let instanceType: String
 
         /// 预留实例计费的付款类型。形如：All Upfront。

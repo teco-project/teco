@@ -26,7 +26,7 @@ extension Cvm {
         public let chcIds: [String]?
 
         /// - **zone**
-        /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
+        /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)</p>
         /// - **instance-name**
         /// <p style="padding-left: 30px;">按照【**实例名称**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         /// - **instance-state**

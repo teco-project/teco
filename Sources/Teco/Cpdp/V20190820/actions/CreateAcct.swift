@@ -34,15 +34,15 @@ extension Cpdp {
         public let address: String
 
         /// 子商户联系人
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let contact: String
 
         /// 联系人手机号
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let mobile: String
 
         /// 邮箱
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let email: String
 
         /// 聚鑫分配的安全ID
@@ -68,11 +68,11 @@ extension Cpdp {
         public let subMerchantMemberType: String?
 
         /// 子商户密钥
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let subMerchantKey: String?
 
         /// 子商户私钥
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let subMerchantPrivateKey: String?
 
         /// 敏感信息加密类型:
@@ -110,7 +110,7 @@ extension Cpdp {
         public let subMerchantIdType: String?
 
         /// 子商户证件号码
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let subMerchantIdCode: String?
 
         public init(midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil) {

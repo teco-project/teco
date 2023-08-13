@@ -76,7 +76,7 @@ extension Billing {
         public let payMode: String?
 
         /// 产品名称代码
-        /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        /// 备注：如需获取当月使用过的BusinessCode，请调用API：[获取产品汇总费用分布](https://cloud.tencent.com/document/product/555/35761)
         public let businessCode: String?
 
         /// 支付者的账号 ID（账号 ID 是用户在腾讯云的唯一账号标识），默认查询本账号账单，如集团管理账号需查询成员账号自付的账单，该字段需入参成员账号UIN

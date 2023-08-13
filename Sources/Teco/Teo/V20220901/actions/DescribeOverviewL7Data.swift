@@ -47,7 +47,7 @@ extension Teo {
         public let metricNames: [String]
 
         /// 站点集合。
-        /// 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
+        /// 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)。
         public let zoneIds: [String]?
 
         /// 查询的域名集合，不填默认查询所有子域名。

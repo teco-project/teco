@@ -47,7 +47,7 @@ extension Ocr {
         /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         public let textDetections: [TextDetection]
 
-        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看[如何纠正倾斜文本](https://cloud.tencent.com/document/product/866/45139)
         public let angel: Float
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -74,8 +74,8 @@ extension Ocr {
     ///         <tr>
     ///           <th style="width:150px"></th>
     ///           <th >通用印刷体识别（精简版）</th>
-    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-    ///           <th><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th style="width:200px">[【荐】通用印刷体识别](https://cloud.tencent.com/document/product/866/33526)</th>
+    ///           <th>[【荐】通用印刷体识别（高精度版）](https://cloud.tencent.com/document/product/866/34937)</th>
     ///         </tr>
     ///       </thead>
     ///       <tbody>
@@ -144,8 +144,8 @@ extension Ocr {
     ///         <tr>
     ///           <th style="width:150px"></th>
     ///           <th >通用印刷体识别（精简版）</th>
-    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-    ///           <th><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th style="width:200px">[【荐】通用印刷体识别](https://cloud.tencent.com/document/product/866/33526)</th>
+    ///           <th>[【荐】通用印刷体识别（高精度版）](https://cloud.tencent.com/document/product/866/34937)</th>
     ///         </tr>
     ///       </thead>
     ///       <tbody>
@@ -214,8 +214,8 @@ extension Ocr {
     ///         <tr>
     ///           <th style="width:150px"></th>
     ///           <th >通用印刷体识别（精简版）</th>
-    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-    ///           <th><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th style="width:200px">[【荐】通用印刷体识别](https://cloud.tencent.com/document/product/866/33526)</th>
+    ///           <th>[【荐】通用印刷体识别（高精度版）](https://cloud.tencent.com/document/product/866/34937)</th>
     ///         </tr>
     ///       </thead>
     ///       <tbody>
@@ -284,8 +284,8 @@ extension Ocr {
     ///         <tr>
     ///           <th style="width:150px"></th>
     ///           <th >通用印刷体识别（精简版）</th>
-    ///           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-    ///           <th><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
+    ///           <th style="width:200px">[【荐】通用印刷体识别](https://cloud.tencent.com/document/product/866/33526)</th>
+    ///           <th>[【荐】通用印刷体识别（高精度版）](https://cloud.tencent.com/document/product/866/34937)</th>
     ///         </tr>
     ///       </thead>
     ///       <tbody>

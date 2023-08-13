@@ -23,7 +23,7 @@ extension Irp {
         ///
         /// ● author 作者名
         ///
-        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// （如当前类型不满足，请[提单](https://console.cloud.tencent.com/workorder/category)沟通解决方案）
         public let type: String
 
         /// Type对应字段名的值，如：需要过滤的作者名
@@ -102,13 +102,13 @@ extension Irp {
         /// 视频时长，时间秒，大于等于0，小于 3600 * 10。**视频内容必填，其它内容非必填，用作特征**
         public let videoDuration: Int64?
 
-        /// 国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
+        /// 国家，ISO 3166-1 alpha-2编码，参考[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
+        /// 省份，ISO 3166-2行政区编码，如中国参考[ISO_3166-2:CN](https://zh.wikipedia.org/wiki/ISO_3166-2:CN)，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
+        /// 城市地区，统一用国家最新标准地区行政编码，如：[2020年行政区编码](https://www.mca.gov.cn/article/sj/xzqh/2020/)，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
         /// 作者粉丝数，**用作特征**
@@ -283,13 +283,13 @@ extension Irp {
         /// 默认为tencent，区分行为来源于哪个算法，**用于Poc阶段的效果对比验证**
         public let source: String?
 
-        /// 行为发生时的国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
+        /// 行为发生时的国家，ISO 3166-1 alpha-2编码，参考[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 行为发生时的省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
+        /// 行为发生时的省份，ISO 3166-2行政区编码，如中国参考[ISO_3166-2:CN](https://zh.wikipedia.org/wiki/ISO_3166-2:CN)，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 行为发生时的城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
+        /// 行为发生时的城市地区，统一用国家最新标准地区行政编码，如：[2020年行政区编码](https://www.mca.gov.cn/article/sj/xzqh/2020/)，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
         /// 行为发生时的客户端ip，**用作特征**
@@ -394,13 +394,13 @@ extension Irp {
         /// 用户所属行业
         public let industry: String?
 
-        /// 用户常驻国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”
+        /// 用户常驻国家，ISO 3166-1 alpha-2编码，参考[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)，中国：“CN”
         public let residentCountry: String?
 
-        /// 用户常驻省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”
+        /// 用户常驻省份，ISO 3166-2行政区编码，如中国参考[ISO_3166-2:CN](https://zh.wikipedia.org/wiki/ISO_3166-2:CN)，广东省：“CN-GD”
         public let residentProvince: String?
 
-        /// 用户常驻城市，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，
+        /// 用户常驻城市，统一用国家最新标准地区行政编码，如：[2020年行政区编码](https://www.mca.gov.cn/article/sj/xzqh/2020/)，
         public let residentCity: String?
 
         /// 用户注册时间，秒级时间戳（1639624786）
@@ -645,7 +645,7 @@ extension Irp {
         ///
         /// ● image -纯图片
         ///
-        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// （如当前类型不满足，请[提单](https://console.cloud.tencent.com/workorder/category)沟通解决方案）
         public let goodsType: String
 
         /// 商品状态：
@@ -700,13 +700,13 @@ extension Irp {
         /// 商品封面url，不超过10个，**用作特征**
         public let picUrlList: [String]?
 
-        /// 卖家所在国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
+        /// 卖家所在国家，ISO 3166-1 alpha-2编码，参考[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 卖家所在省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
+        /// 卖家所在省份，ISO 3166-2行政区编码，如中国参考[ISO_3166-2:CN](https://zh.wikipedia.org/wiki/ISO_3166-2:CN)，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 卖家所在城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
+        /// 卖家所在城市地区，统一用国家最新标准地区行政编码，如：[2020年行政区编码](https://www.mca.gov.cn/article/sj/xzqh/2020/)，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
         /// 商品是否包邮；1:包邮；2:不包邮；3:满足条件包邮，**用作特征**
@@ -891,7 +891,7 @@ extension Irp {
         ///
         /// ● phone_sm3：国密SM3加密的手机号
         ///
-        /// （如当前类型不满足，请<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决方案）
+        /// （如当前类型不满足，请[提单](https://console.cloud.tencent.com/workorder/category)沟通解决方案）
         public let type: String
 
         /// 用户ID值

@@ -30,7 +30,7 @@ extension Faceid {
         /// 手机号
         public let phone: String
 
-        /// 有加密需求的用户，传入kms的CiphertextBlob，关于数据加密可查阅 <a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        /// 有加密需求的用户，传入kms的CiphertextBlob，关于数据加密可查阅 [数据加密](https://cloud.tencent.com/document/product/1007/47180) 文档。
         public let ciphertextBlob: String?
 
         /// 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的IdCard，Name，Phone中的一个或多个。
@@ -92,7 +92,7 @@ extension Faceid {
 
     /// 手机号三要素核验
     ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅[运营商类](https://cloud.tencent.com/document/product/1007/46063)文档。
     @inlinable
     public func phoneVerification(_ input: PhoneVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
         self.client.execute(action: "PhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -100,7 +100,7 @@ extension Faceid {
 
     /// 手机号三要素核验
     ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅[运营商类](https://cloud.tencent.com/document/product/1007/46063)文档。
     @inlinable
     public func phoneVerification(_ input: PhoneVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
         try await self.client.execute(action: "PhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -108,7 +108,7 @@ extension Faceid {
 
     /// 手机号三要素核验
     ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅[运营商类](https://cloud.tencent.com/document/product/1007/46063)文档。
     @inlinable
     public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
         self.phoneVerification(.init(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), region: region, logger: logger, on: eventLoop)
@@ -116,7 +116,7 @@ extension Faceid {
 
     /// 手机号三要素核验
     ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅[运营商类](https://cloud.tencent.com/document/product/1007/46063)文档。
     @inlinable
     public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
         try await self.phoneVerification(.init(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), region: region, logger: logger, on: eventLoop)

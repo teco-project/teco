@@ -67,7 +67,7 @@ extension Teo {
         /// 过滤条件，详细的过滤条件Key值如下：
         /// - country
         ///
-        /// 按照【**国家/地区**】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。
+        /// 按照【**国家/地区**】进行过滤，国家/地区遵循[ISO 3166](https://zh.wikipedia.org/wiki/ISO_3166-1)规范。
         /// - province
         ///
         /// 按照【**省份**】进行过滤，此参数只支持服务区域为中国大陆。
@@ -99,21 +99,21 @@ extension Teo {
         ///
         /// 若只填写url参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写url+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写url+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         /// - referer
         ///
         /// 按照【**Referer头信息**】进行过滤, Referer形如：example.com。
         ///
         /// 若只填写referer参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写referer+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写referer+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         /// - resourceType
         ///
         /// 按照【**资源类型**】进行过滤，资源类型一般是文件后缀，形如: .jpg, .css。
         ///
         /// 若只填写resourceType参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写resourceType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写resourceType+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         /// - protocol
         ///
         /// 按照【**HTTP协议版本**】进行过滤。
@@ -146,7 +146,7 @@ extension Teo {
         ///
         /// 若只填写statusCode参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写statusCode+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写statusCode+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         ///
         /// 对应的Value可选项如下：
         ///
@@ -269,7 +269,7 @@ extension Teo {
         ///
         /// 若只填写browserType参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写browserType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写browserType+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         ///
         /// 对应Value的可选项如下：
         ///
@@ -310,7 +310,7 @@ extension Teo {
         ///
         /// 若只填写deviceType参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写deviceType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写deviceType+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         ///
         /// 对应Value的可选项如下：
         ///
@@ -331,7 +331,7 @@ extension Teo {
         ///
         /// 若只填写operatingSystemType参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写operatingSystemType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写operatingSystemType+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         ///
         /// 对应Value的可选项如下：
         ///
@@ -360,7 +360,7 @@ extension Teo {
         ///
         /// 若只填写tlsVersion参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写tlsVersion+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// 若同时填写tlsVersion+Zonelds参数，则支持的查询数据范围为套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)与30天两者中的较小值。
         ///
         /// 对应Value的可选项如下：
         ///

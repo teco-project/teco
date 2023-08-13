@@ -88,7 +88,7 @@ extension Billing {
         public let projectId: Int64?
 
         /// 产品名称代码
-        /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
+        /// 备注：如需获取当月使用过的BusinessCode，请调用API：[获取产品汇总费用分布](https://cloud.tencent.com/document/product/555/35761)
         public let businessCode: String?
 
         /// 上一次请求返回的上下文信息，翻页查询Month>=2023-05的月份的数据可加快查询速度，数据量10万级别以上的用户建议使用，查询速度可提升2~10倍

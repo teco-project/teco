@@ -1208,7 +1208,7 @@ extension Wav {
         /// 该成员添加此外部联系人的时间戳，单位为秒
         public let createTime: UInt64
 
-        /// 该成员添加此客户的来源，具体含义详见<a href="https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89">来源定义</a>
+        /// 该成员添加此客户的来源，具体含义详见[来源定义](https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89)
         public let addWay: Int64
 
         /// 发起添加的userid，如果成员主动添加，为成员的userid；如果是客户主动添加，则为客户的外部联系人userid；如果是内部成员共享/管理员分配，则为对应的成员/管理员userid
@@ -1245,7 +1245,7 @@ extension Wav {
         /// 该成员添加此外部联系人的时间戳，单位为秒
         public let createTime: UInt64
 
-        /// 该成员添加此客户的来源，具体含义详见<a href="https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89">来源定义</a>
+        /// 该成员添加此客户的来源，具体含义详见[来源定义](https://work.weixin.qq.com/api/doc/90000/90135/92114#%E6%9D%A5%E6%BA%90%E5%AE%9A%E4%B9%89)
         public let addWay: Int64
 
         /// 发起添加的userid，如果成员主动添加，为成员的userid；如果是客户主动添加，则为客户的外部联系人userid；如果是内部成员共享/管理员分配，则为对应的成员/管理员userid

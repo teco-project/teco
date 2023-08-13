@@ -167,7 +167,7 @@ extension Cls {
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
-        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        /// 详细说明参见[检索条件语法规则](https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules)
         public let syntaxRule: UInt64?
 
         public init(topicId: String, query: String, number: Int64, startTimeOffset: Int64, endTimeOffset: Int64, logsetId: String, syntaxRule: UInt64? = nil) {
@@ -2728,12 +2728,12 @@ extension Cls {
         public let method: String?
 
         /// 请求头。
-        /// 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求头。
+        /// 注意：该参数已废弃，请在[创建告警策略](https://cloud.tencent.com/document/product/614/56466)接口CallBack参数中指定请求头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [String]?
 
         /// 请求内容。
-        /// 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求内容。
+        /// 注意：该参数已废弃，请在[创建告警策略](https://cloud.tencent.com/document/product/614/56466)接口CallBack参数中指定请求内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let body: String?
 

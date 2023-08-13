@@ -1197,11 +1197,11 @@ extension Ame {
     /// 时间范围
     public struct TimeRange: TCInputModel {
         /// - 大于等于此时间（起始时间）。
-        /// - 格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let before: String?
 
         /// - 小于此时间（结束时间）。
-        /// - 格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let after: String?
 
         public init(before: String? = nil, after: String? = nil) {

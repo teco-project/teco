@@ -24,7 +24,7 @@ extension Gme {
         /// 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         public let bizId: UInt64
 
-        /// 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、广告、违禁等场景，<a href="#Label_Value">具体取值见上述 Label 说明。</a>
+        /// 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、广告、违禁等场景，具体取值见上述 Label 说明。
         public let scenes: [String]
 
         /// 是否为直播流。值为 false 时表示普通语音文件检测；为 true 时表示语音流检测。
@@ -35,7 +35,7 @@ extension Gme {
         /// - Url：数据文件的url，为 urlencode 编码，流式则为拉流地址
         public let tasks: [Task]
 
-        /// 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
+        /// 异步检测结果回调地址，具体见上述回调相关说明。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
         public let callback: String?
 
         /// 语种，不传默认中文
@@ -81,7 +81,7 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
+    /// - 打开前往[控制台 - 产品试用](https://console.cloud.tencent.com/gamegme/tryout)免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
     /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
@@ -145,7 +145,7 @@ extension Gme {
     /// <td>Signatue</td>
     /// <td>string</td>
     /// <td>是</td>
-    /// <td>签名，具体见<a href="#Callback_Signatue">签名生成说明</a></td>
+    /// <td>签名，具体见签名生成说明</td>
     /// </tr>
     /// </tbody>
     /// </table>
@@ -154,7 +154,7 @@ extension Gme {
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
+    /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -218,7 +218,7 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
+    /// - 打开前往[控制台 - 产品试用](https://console.cloud.tencent.com/gamegme/tryout)免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
     /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
@@ -282,7 +282,7 @@ extension Gme {
     /// <td>Signatue</td>
     /// <td>string</td>
     /// <td>是</td>
-    /// <td>签名，具体见<a href="#Callback_Signatue">签名生成说明</a></td>
+    /// <td>签名，具体见签名生成说明</td>
     /// </tr>
     /// </tbody>
     /// </table>
@@ -291,7 +291,7 @@ extension Gme {
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
+    /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -355,7 +355,7 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
+    /// - 打开前往[控制台 - 产品试用](https://console.cloud.tencent.com/gamegme/tryout)免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
     /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
@@ -419,7 +419,7 @@ extension Gme {
     /// <td>Signatue</td>
     /// <td>string</td>
     /// <td>是</td>
-    /// <td>签名，具体见<a href="#Callback_Signatue">签名生成说明</a></td>
+    /// <td>签名，具体见签名生成说明</td>
     /// </tr>
     /// </tbody>
     /// </table>
@@ -428,7 +428,7 @@ extension Gme {
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
+    /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -492,7 +492,7 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
+    /// - 打开前往[控制台 - 产品试用](https://console.cloud.tencent.com/gamegme/tryout)免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
     /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
@@ -556,7 +556,7 @@ extension Gme {
     /// <td>Signatue</td>
     /// <td>string</td>
     /// <td>是</td>
-    /// <td>签名，具体见<a href="#Callback_Signatue">签名生成说明</a></td>
+    /// <td>签名，具体见签名生成说明</td>
     /// </tr>
     /// </tbody>
     /// </table>
@@ -565,7 +565,7 @@ extension Gme {
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
+    /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
     /// {
     /// 	"Code": 0,

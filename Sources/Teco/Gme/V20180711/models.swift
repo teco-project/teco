@@ -561,7 +561,7 @@ extension Gme {
 
     /// 语音检测详情
     public struct ScanDetail: TCOutputModel {
-        /// 违规场景，参照<a href="https://cloud.tencent.com/document/product/607/37622#Label_Value">Label</a>定义
+        /// 违规场景，参照[Label](https://cloud.tencent.com/document/product/607/37622#Label_Value)定义
         public let label: String
 
         /// 该场景下概率[0.00,100.00],分值越大违规概率越高
