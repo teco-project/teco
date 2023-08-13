@@ -133,11 +133,11 @@ extension Vod {
         public let sort: SortBy?
 
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
-        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
+        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li>
         public let offset: UInt64?
 
         /// 分页返回的记录条数，默认值：10。将返回第 Offset 到第 Offset+Limit-1 条。
-        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
+        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li>
         public let limit: UInt64?
 
         /// （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
