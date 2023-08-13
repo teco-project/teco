@@ -52,7 +52,7 @@ extension Cynosdb {
         public let autoVoucher: Int64?
 
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         public let dbType: String?
 
         /// 订单来源，字符串长度范围为[0,64)

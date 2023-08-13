@@ -25,8 +25,9 @@ extension Teo {
         public let zoneName: String?
 
         /// 接入方式，取值有：
-        /// <li> full：NS接入；</li>
-        /// <li> partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点；<li>noDomainAccess：无域名接入，取此值时仅Tags字段有效。</li>
+        /// - full：NS接入；
+        /// - partial：CNAME接入，请先调用认证站点API（IdentifyZone）进行站点归属权校验，校验通过后继续调用本接口创建站点；
+        /// - noDomainAccess：无域名接入，取此值时仅Tags字段有效。
         /// </li>不填写使用默认值full。
         public let type: String?
 
@@ -37,8 +38,8 @@ extension Teo {
         public let tags: [Tag]?
 
         /// 是否允许重复接入。
-        /// <li> true：允许重复接入；</li>
-        /// <li> false：不允许重复接入。</li>不填写使用默认值false。
+        /// - true：允许重复接入；
+        /// - false：不允许重复接入。不填写使用默认值false。
         public let allowDuplicates: Bool?
 
         /// 站点别名。数字、英文、-和_组合，限制20个字符。

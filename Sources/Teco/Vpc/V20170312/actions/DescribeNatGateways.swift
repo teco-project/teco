@@ -26,10 +26,10 @@ extension Vpc {
         public let natGatewayIds: [String]?
 
         /// 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。
-        /// <li>nat-gateway-id - String - （过滤条件）协议端口模板实例ID，形如：`nat-123xx454`。</li>
-        /// <li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li>
-        /// <li>nat-gateway-name - String - （过滤条件）协议端口模板实例ID，形如：`test_nat`。</li>
-        /// <li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li>
+        /// - nat-gateway-id - String - （过滤条件）协议端口模板实例ID，形如：`nat-123xx454`。
+        /// - vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。
+        /// - nat-gateway-name - String - （过滤条件）协议端口模板实例ID，形如：`test_nat`。
+        /// - tag-key - String - （过滤条件）标签键，形如：`test-key`。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

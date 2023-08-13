@@ -22,8 +22,8 @@ extension Vpc {
     /// DescribeAddressTemplateGroups请求参数结构体
     public struct DescribeAddressTemplateGroupsRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>address-template-group-name - String - （过滤条件）IP地址模板集合名称。</li>
-        /// <li>address-template-group-id - String - （过滤条件）IP地址模板实集合例ID，例如：ipmg-mdunqeb6。</li>
+        /// - address-template-group-name - String - （过滤条件）IP地址模板集合名称。
+        /// - address-template-group-id - String - （过滤条件）IP地址模板实集合例ID，例如：ipmg-mdunqeb6。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

@@ -21,11 +21,11 @@ import TecoCore
 extension Cwp {
     /// ExportBaselineHostDetectList请求参数结构体
     public struct ExportBaselineHostDetectListRequest: TCRequestModel {
-        /// <li>HostTag - string - 是否必填：否 - 主机标签</i>
-        /// <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        /// <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
-        /// <li>IsPassed - int - 是否必填：否 - 是否通过</li>
-        /// <li>RiskTier - int - 是否必填：否 - 风险等级</li>
+        /// - HostTag - string - 是否必填：否 - 主机标签</i>
+        /// - ItemId - int64 - 是否必填：否 - 项Id</i>
+        /// - RuleId - int64 - 是否必填：否 - 规则Id
+        /// - IsPassed - int - 是否必填：否 - 是否通过
+        /// - RiskTier - int - 是否必填：否 - 风险等级
         public let filters: [Filter]?
 
         /// 0:过滤的结果导出；1:全部导出

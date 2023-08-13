@@ -74,8 +74,10 @@ extension Clb {
         public let exclusiveCluster: ExclusiveCluster?
 
         /// 创建性能容量型实例。
-        /// <ul><li>若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示超强型1规格。
-        /// <ul><li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul></li><li>若需要创建共享型实例，则无需填写此参数。</li></ul>
+        ///
+        /// - 若需要创建性能容量型实例，则此参数必填，且取值为：SLA，表示超强型1规格。
+        ///   - 当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。如需超大型规格的性能容量型，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。
+        /// - 若需要创建共享型实例，则无需填写此参数。
         public let slaType: String?
 
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。

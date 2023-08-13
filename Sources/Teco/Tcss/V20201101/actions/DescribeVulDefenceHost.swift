@@ -23,12 +23,12 @@ extension Tcss {
     /// DescribeVulDefenceHost请求参数结构体
     public struct DescribeVulDefenceHostRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御</li>
-        /// <li>HostName- String - 是否必填：否 - 主机名称/超级节点名称</li>
-        /// <li>HostIP- String - 是否必填：否 - 主机IP</li>
-        /// <li>NodeType- String - 是否必填：否 - 节点类型</li>
-        /// <li>HostName- String - 是否必填：否 - 超级节点名称</li>
-        /// <li>NodeSubNetCIDR- String - 是否必填：否 - 超级节点CIDR</li>
+        /// - Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御
+        /// - HostName- String - 是否必填：否 - 主机名称/超级节点名称
+        /// - HostIP- String - 是否必填：否 - 主机IP
+        /// - NodeType- String - 是否必填：否 - 节点类型
+        /// - HostName- String - 是否必填：否 - 超级节点名称
+        /// - NodeSubNetCIDR- String - 是否必填：否 - 超级节点CIDR
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

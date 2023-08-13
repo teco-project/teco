@@ -26,18 +26,18 @@ extension Lighthouse {
         public let instanceId: String
 
         /// 过滤器列表。
-        /// <li>bundle-id</li>按照【套餐 ID】进行过滤。
+        /// - bundle-id按照【套餐 ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>support-platform-type</li>按照【系统类型】进行过滤。
+        /// - support-platform-type按照【系统类型】进行过滤。
         /// 取值： LINUX_UNIX（Linux/Unix系统）；WINDOWS（Windows 系统）
         /// 类型：String
         /// 必选：否
-        /// <li>bundle-type</li>按照 【套餐类型进行过滤】。
+        /// - bundle-type按照 【套餐类型进行过滤】。
         /// 取值：GENERAL_BUNDLE (通用型套餐); STORAGE_BUNDLE(存储型套餐);ENTERPRISE_BUNDLE( 企业型套餐);EXCLUSIVE_BUNDLE(专属型套餐);BEFAST_BUNDLE(蜂驰型套餐);
         /// 类型：String
         /// 必选：否
-        /// <li>bundle-state</li>按照【套餐状态】进行过滤。
+        /// - bundle-state按照【套餐状态】进行过滤。
         /// 取值: ‘ONLINE’(在线); ‘OFFLINE’(下线);
         /// 类型：String
         /// 必选：否

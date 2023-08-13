@@ -22,11 +22,11 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineItemInfo请求参数结构体
     public struct DescribeBaselineItemInfoRequest: TCPaginatedRequest {
-        /// <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        /// <li>PolicyId - int64 - 是否必填：否 - 项Id</i>
-        /// <li>Level - int - 是否必填：否 - 风险等级</li>
-        /// <li>ItemName - string - 是否必填：否 - 检测项名字</li>
-        /// <li>RuleId - int - 是否必填：否 - 规则Id</li>
+        /// - ItemId - int64 - 是否必填：否 - 项Id</i>
+        /// - PolicyId - int64 - 是否必填：否 - 项Id</i>
+        /// - Level - int - 是否必填：否 - 风险等级
+        /// - ItemName - string - 是否必填：否 - 检测项名字
+        /// - RuleId - int - 是否必填：否 - 规则Id
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

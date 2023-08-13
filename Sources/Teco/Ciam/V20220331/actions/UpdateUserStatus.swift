@@ -28,10 +28,9 @@ extension Ciam {
         public let userId: String
 
         /// 用户状态
-        ///
-        /// <li> **NORMAL** </li>	  正常
-        /// <li> **LOCK** </li>  锁定
-        /// <li> **FREEZE** </li>	  冻结
+        /// - **NORMAL** 	  正常
+        /// - **LOCK**   锁定
+        /// - **FREEZE** 	  冻结
         public let status: String
 
         public init(userStoreId: String, userId: String, status: String) {

@@ -38,8 +38,8 @@ extension Cme {
 
         /// 项目模式，一个项目可以有多种模式并相互切换。
         /// 当 Category 为 VIDEO_EDIT 时，可选模式有：
-        /// <li>Default：默认模式，即普通视频编辑项目。</li>
-        /// <li>VideoEditTemplate：剪辑模板制作模式，用于制作剪辑模板。</li>
+        /// - Default：默认模式，即普通视频编辑项目。
+        /// - VideoEditTemplate：剪辑模板制作模式，用于制作剪辑模板。
         public let mode: String?
 
         public init(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil) {

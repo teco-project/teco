@@ -25,14 +25,14 @@ extension Vod {
         public let domain: String
 
         /// 区域，可选值：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland: 中国境外。</li>
-        /// <li>Global: 全球范围。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland: 中国境外。
+        /// - Global: 全球范围。
         public let area: String
 
         /// 开启或者关闭所选区域的域名加速，可选值：
-        /// <li>Enabled: 开启。</li>
-        /// <li>Disabled：关闭。</li>
+        /// - Enabled: 开启。
+        /// - Disabled：关闭。
         /// 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         public let status: String
 

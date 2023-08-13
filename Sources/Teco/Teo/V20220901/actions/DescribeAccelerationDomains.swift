@@ -26,42 +26,42 @@ extension Teo {
         public let zoneId: String
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>domain-name
+        /// - domain-name
         ///
         /// 按照【**加速域名名称**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        /// <li>origin-type
+        /// - origin-type
         ///
         /// 按照【**源站类型**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        /// <li>origin
+        /// - origin
         ///
         /// 按照【**主源站地址**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        /// <li>backup-origin
+        /// - backup-origin
         ///
         /// 按照【**备用源站地址**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        /// <li>domain-cname
+        /// - domain-cname
         ///
         /// 按照【**加速CNAME名**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        /// <li>share-cname
+        /// - share-cname
         ///
         /// 按照【**共享CNAME名**】进行过滤。
         ///
@@ -71,13 +71,13 @@ extension Teo {
         public let filters: [AdvancedFilter]?
 
         /// 列表排序方式，取值有：
-        /// <li>asc：升序排列；</li>
-        /// <li>desc：降序排列。</li>默认值为asc。
+        /// - asc：升序排列；
+        /// - desc：降序排列。默认值为asc。
         public let direction: String?
 
         /// 匹配方式，取值有：
-        /// <li>all：返回匹配所有查询条件的加速域名；</li>
-        /// <li>any：返回匹配任意一个查询条件的加速域名。</li>默认值为all。
+        /// - all：返回匹配所有查询条件的加速域名；
+        /// - any：返回匹配任意一个查询条件的加速域名。默认值为all。
         public let match: String?
 
         /// 分页查询限制数目，默认值：20，上限：200。
@@ -87,8 +87,8 @@ extension Teo {
         public let offset: Int64?
 
         /// 排序依据，取值有：
-        /// <li>created_on：加速域名创建时间；</li>
-        /// <li>domain-name：加速域名名称；</li>
+        /// - created_on：加速域名创建时间；
+        /// - domain-name：加速域名名称；
         /// </li>默认根据domain-name属性排序。
         public let order: String?
 

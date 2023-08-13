@@ -22,8 +22,8 @@ extension Cwp {
     /// ExportLicenseDetail请求参数结构体
     public struct ExportLicenseDetailRequest: TCRequestModel {
         /// 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
-        /// <li> LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月</li>
-        /// <li>ResourceId 资源ID</li>
+        /// - LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        /// - ResourceId 资源ID
         public let filters: [Filters]?
 
         /// 是否导出全部授权详情

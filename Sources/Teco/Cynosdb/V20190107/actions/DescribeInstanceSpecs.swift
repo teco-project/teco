@@ -22,7 +22,7 @@ extension Cynosdb {
     /// DescribeInstanceSpecs请求参数结构体
     public struct DescribeInstanceSpecsRequest: TCRequestModel {
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         public let dbType: String
 
         /// 是否需要返回可用区信息

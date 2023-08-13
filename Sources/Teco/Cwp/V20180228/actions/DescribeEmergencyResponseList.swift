@@ -23,8 +23,8 @@ extension Cwp {
     /// DescribeEmergencyResponseList请求参数结构体
     public struct DescribeEmergencyResponseListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>Keyword- String - 是否必填：否 - 关键词过滤，</li>
-        /// <li>Uuids - String - 是否必填：否 - 主机id过滤</li>
+        /// - Keyword- String - 是否必填：否 - 关键词过滤，
+        /// - Uuids - String - 是否必填：否 - 主机id过滤
         public let filters: [Filters]?
 
         /// 需要返回的数量，最大值为100

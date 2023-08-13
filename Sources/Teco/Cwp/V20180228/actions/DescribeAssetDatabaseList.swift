@@ -26,11 +26,11 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>User- string - 是否必填：否 - 运行用户</li>
-        /// <li>Ip - String - 是否必填：否 - 绑定IP</li>
-        /// <li>Port - Int - 是否必填：否 - 端口</li>
-        /// <li>Name - Int - 是否必填：否 - 数据库名称
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - User- string - 是否必填：否 - 运行用户
+        /// - Ip - String - 是否必填：否 - 绑定IP
+        /// - Port - Int - 是否必填：否 - 端口
+        /// - Name - Int - 是否必填：否 - 数据库名称
         /// 0:全部
         /// 1:MySQL
         /// 2:Redis
@@ -41,10 +41,10 @@ extension Cwp {
         /// 7:HBase
         /// 8:DB2
         /// 9:Sybase
-        /// 10:TiDB</li>
-        /// <li>Proto - String - 是否必填：否 - 协议：1:TCP, 2:UDP, 3:未知</li>
-        /// <li>OsType - String - 是否必填：否 - 操作系统: linux/windows</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// 10:TiDB
+        /// - Proto - String - 是否必填：否 - 协议：1:TCP, 2:UDP, 3:未知
+        /// - OsType - String - 是否必填：否 - 操作系统: linux/windows
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

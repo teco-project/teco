@@ -35,10 +35,10 @@ extension Lighthouse {
         public let offset: Int64?
 
         /// 过滤器列表。
-        /// <li>container-id</li>按照【容器ID】进行过滤。
+        /// - container-id按照【容器ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>container-name</li>按照【容器名称】进行过滤。
+        /// - container-name按照【容器名称】进行过滤。
         /// 类型：String
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 ContainerIds 和 Filters。

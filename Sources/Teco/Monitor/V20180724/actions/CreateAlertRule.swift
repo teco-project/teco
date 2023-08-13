@@ -34,8 +34,8 @@ extension Monitor {
         public let receivers: [String]
 
         /// 规则状态码，取值如下：
-        /// <li>2=RuleEnabled</li>
-        /// <li>3=RuleDisabled</li>
+        /// - 2=RuleEnabled
+        /// - 3=RuleDisabled
         public let ruleState: Int64?
 
         /// 规则报警持续时间

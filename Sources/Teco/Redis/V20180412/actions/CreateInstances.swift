@@ -22,7 +22,16 @@ extension Redis {
     /// CreateInstances请求参数结构体
     public struct CreateInstancesRequest: TCRequestModel {
         /// 实例类型。
-        /// <ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li></ul>
+        ///
+        /// - 2：Redis 2.8 内存版（标准架构）。
+        /// - 3：CKV 3.2 内存版（标准架构）。
+        /// - 4：CKV 3.2 内存版（集群架构）。
+        /// - 6：Redis 4.0 内存版（标准架构）。
+        /// - 7：Redis 4.0 内存版（集群架构）。
+        /// - 8：Redis 5.0 内存版（标准架构）。
+        /// - 9：Redis 5.0 内存版（集群架构）。
+        /// - 15：Redis 6.2 内存版（标准架构）。
+        /// - 16：Redis 6.2 内存版（集群架构）。
         public let typeId: UInt64
 
         /// 内存容量，单位为MB， 数值需为1024的整数倍。具体规格，请通过 [DescribeProductInfo](https://cloud.tencent.com/document/api/239/30600) 接口查询全地域的售卖规格。

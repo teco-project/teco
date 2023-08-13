@@ -37,10 +37,8 @@ extension Thpc {
         public let computeNodeCount: Int64?
 
         /// 调度器类型。
-        ///
-        /// <li>SGE：SGE调度器。
-        ///
-        /// <li>SLURM：SLURM调度器。
+        /// - SGE：SGE调度器。
+        /// - SLURM：SLURM调度器。
         public let schedulerType: String?
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前仅支持公有镜像。
@@ -66,7 +64,7 @@ extension Thpc {
         public let dryRun: Bool?
 
         /// 域名字服务类型。默认值：NIS
-        /// <li>NIS：NIS域名字服务。
+        /// - NIS：NIS域名字服务。
         public let accountType: String?
 
         /// 集群显示名称。

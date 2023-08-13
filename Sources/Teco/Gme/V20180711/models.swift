@@ -368,9 +368,9 @@ extension Gme {
         public let url: String
 
         /// 检测任务执行结果状态，分别为：
-        /// <li>Start: 任务开始</li>
-        /// <li>Success: 成功结束</li>
-        /// <li>Error: 异常</li>
+        /// - Start: 任务开始
+        /// - Success: 成功结束
+        /// - Error: 异常
         public let status: String
 
         /// 提交检测的应用 ID

@@ -23,27 +23,24 @@ extension Cvm {
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCPaginatedRequest {
         /// 镜像ID列表 。镜像ID如：`img-gvbnzy6f`。array型参数的格式可以参考[API简介](https://cloud.tencent.com/document/api/213/15688)。镜像ID可以通过如下方式获取：
-        ///
-        /// <li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
-        ///
-        /// <li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
+        /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
+        /// - 通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
         public let imageIds: [String]?
 
         /// 过滤条件，每次请求的`Filters`的上限为10，`Filters.Values`的上限为5。参数不可以同时指定`ImageIds`和`Filters`。详细的过滤条件如下：
-        ///
-        /// <li>**image-id**</li>
+        /// - **image-id**
         /// <p style="padding-left: 30px;">按照【**镜像ID**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**image-type**</li>
+        /// - **image-type**
         /// <p style="padding-left: 30px;">按照【**镜像类型**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：</p><p style="padding-left: 30px;">PRIVATE_IMAGE: 私有镜像 (本账户创建的镜像)</p><p style="padding-left: 30px;">PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)</p><p style="padding-left: 30px;">SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像)</p>
-        /// <li>**image-name**</li>
+        /// - **image-name**
         /// <p style="padding-left: 30px;">按照【**镜像名称**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**platform**</li>
+        /// - **platform**
         /// <p style="padding-left: 30px;">按照【**镜像平台**】进行过滤，如CentOS。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**tag-key**</li>
+        /// - **tag-key**
         /// <p style="padding-left: 30px;">按照【**标签键**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**tag-value**</li>
+        /// - **tag-value**
         /// <p style="padding-left: 30px;">按照【**标签值**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**tag:tag-key**</li>
+        /// - **tag:tag-key**
         /// <p style="padding-left: 30px;">按照【**标签键值对**】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         public let filters: [Filter]?
 

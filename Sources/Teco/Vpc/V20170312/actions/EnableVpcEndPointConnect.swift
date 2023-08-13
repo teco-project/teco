@@ -28,7 +28,8 @@ extension Vpc {
         public let endPointId: [String]
 
         /// 是否接受终端节点连接请求。
-        /// <li> true：自动接受。</li> <li> false：不自动接受。</li>
+        /// - true：自动接受。
+        /// - false：不自动接受。
         public let acceptFlag: Bool
 
         public init(endPointServiceId: String, endPointId: [String], acceptFlag: Bool) {

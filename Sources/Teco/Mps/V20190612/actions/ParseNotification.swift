@@ -36,9 +36,9 @@ extension Mps {
     /// ParseNotification返回参数结构体
     public struct ParseNotificationResponse: TCResponseModel {
         /// 支持事件类型，目前取值有：
-        /// <li>WorkflowTask：视频工作流处理任务。</li>
-        /// <li>EditMediaTask：视频编辑任务。</li>
-        /// <li>ScheduleTask：编排任务。</li>
+        /// - WorkflowTask：视频工作流处理任务。
+        /// - EditMediaTask：视频编辑任务。
+        /// - ScheduleTask：编排任务。
         public let eventType: String
 
         /// 视频处理任务信息，仅当 EventType 为 WorkflowTask，该字段有值。

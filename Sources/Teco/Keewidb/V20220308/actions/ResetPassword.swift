@@ -24,11 +24,21 @@ extension Keewidb {
         /// 实例 ID。
         public let instanceId: String
 
-        /// 设置新密码。<ul><li>当参数**NoAuth**设置为**true**，切换为免密实例时，可不设置该参数。</li><li>密码复杂度要求：<ul><li>长度8 - 30位, 推荐使用12位以上的密码。</li><li>不能以"/"开头。</li>
-        /// <li>至少包含以下两项：<ul><li>小写字母a - z</li><li>大写字母A - Z</li><li>数字0 - 9</li><li>()~!@#$%^&*-+=_|{}[]:;<>,.?/</li></ul></li></ul></li></ul>
+        /// 设置新密码。
+        /// - 当参数**NoAuth**设置为**true**，切换为免密实例时，可不设置该参数。</li>
+        /// - 密码复杂度要求：
+        ///   - 长度8 - 30位, 推荐使用12位以上的密码。</li>
+        ///   - 不能以"/"开头。</li>
+        ///   - 至少包含以下两项：
+        ///     - 小写字母a - z
+        ///     - 大写字母A - Z
+        ///     - 数字0 - 9
+        ///     - ()~!@#$%^&*-+=_|{}[]:;<>,.?/
         public let password: String?
 
-        /// 标识实例是否切换免密认证。<ul><li>false：由免密码认证方式切换为密码认证实例。默认为false。</li><li>true：由密码认证方式切换为免密码认证的方式。</li></ul>
+        /// 标识实例是否切换免密认证。
+        /// - false：由免密码认证方式切换为密码认证实例。默认为false。
+        /// - true：由密码认证方式切换为免密码认证的方式。
         public let noAuth: Bool?
 
         public init(instanceId: String, password: String? = nil, noAuth: Bool? = nil) {

@@ -35,8 +35,8 @@ extension Vod {
         public let limit: UInt64?
 
         /// 模板类型过滤条件，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         public init(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {

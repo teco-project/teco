@@ -28,8 +28,7 @@ extension Ciam {
         public let pageable: Pageable
 
         /// Key可选值为condition
-        ///
-        /// <li> **condition** </li>	Values = 查询条件，用户组ID或用户组名称
+        /// - **condition** 	Values = 查询条件，用户组ID或用户组名称
         public let filters: [Filter]?
 
         public init(userStoreId: String, pageable: Pageable, filters: [Filter]? = nil) {

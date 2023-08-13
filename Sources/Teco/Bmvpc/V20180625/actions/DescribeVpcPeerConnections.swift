@@ -27,7 +27,7 @@ extension Bmvpc {
 
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定VpcPeerConnectionIds和Filters。
         /// 过滤条件，参数不支持同时指定VpcPeerConnectionIds和Filters。
-        /// <li>peer-name - String - （过滤条件）对等连接名称。</li>
+        /// - peer-name - String - （过滤条件）对等连接名称。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。

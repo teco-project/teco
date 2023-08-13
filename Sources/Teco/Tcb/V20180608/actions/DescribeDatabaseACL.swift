@@ -41,10 +41,10 @@ extension Tcb {
     /// DescribeDatabaseACL返回参数结构体
     public struct DescribeDatabaseACLResponse: TCResponseModel {
         /// 权限标签。包含以下取值：
-        /// <li> READONLY：所有用户可读，仅创建者和管理员可写</li>
-        /// <li> PRIVATE：仅创建者及管理员可读写</li>
-        /// <li> ADMINWRITE：所有用户可读，仅管理员可写</li>
-        /// <li> ADMINONLY：仅管理员可读写</li>
+        /// - READONLY：所有用户可读，仅创建者和管理员可写
+        /// - PRIVATE：仅创建者及管理员可读写
+        /// - ADMINWRITE：所有用户可读，仅管理员可写
+        /// - ADMINONLY：仅管理员可读写
         public let aclTag: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

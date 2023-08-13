@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselinePolicyList请求参数结构体
     public struct DescribeBaselinePolicyListRequest: TCPaginatedRequest {
-        /// <li>PolicyName - String - 是否必填：否 - 策略名称</li>
+        /// - PolicyName - String - 是否必填：否 - 策略名称
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

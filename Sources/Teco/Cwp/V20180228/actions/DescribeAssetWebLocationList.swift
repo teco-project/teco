@@ -26,12 +26,12 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name - String - 是否必填：否 - 域名</li>
-        /// <li>User - String - 是否必填：否 - 运行用户</li>
-        /// <li>Port - uint64 - 是否必填：否 - 站点端口</li>
-        /// <li>Proto - uint64 - 是否必填：否 - 站点协议：1:HTTP,2:HTTPS</li>
-        /// <li>ServiceType - uint64 - 是否必填：否 - 服务类型：
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name - String - 是否必填：否 - 域名
+        /// - User - String - 是否必填：否 - 运行用户
+        /// - Port - uint64 - 是否必填：否 - 站点端口
+        /// - Proto - uint64 - 是否必填：否 - 站点协议：1:HTTP,2:HTTPS
+        /// - ServiceType - uint64 - 是否必填：否 - 服务类型：
         /// 1:Tomcat
         /// 2：Apache
         /// 3:Nginx
@@ -41,9 +41,9 @@ extension Cwp {
         /// 7:WildFly
         /// 8:Jetty
         /// 9:IHS
-        /// 10:Tengine</li>
-        /// <li>OsType - String - 是否必填：否 - windows/linux</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// 10:Tengine
+        /// - OsType - String - 是否必填：否 - windows/linux
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

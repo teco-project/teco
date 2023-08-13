@@ -22,8 +22,8 @@ extension Vod {
     /// CreateContentReviewTemplate请求参数结构体
     public struct CreateContentReviewTemplateRequest: TCRequestModel {
         /// 音视频审核结果是否进入音视频审核墙（对识别结果进行人工复核）的开关。
-        /// <li>ON：是；</li>
-        /// <li>OFF：否。</li>
+        /// - ON：是；
+        /// - OFF：否。
         public let reviewWallSwitch: String
 
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
@@ -45,8 +45,8 @@ extension Vod {
         public let politicalConfigure: PoliticalConfigureInfo?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
         /// 用户自定义内容审核控制参数。

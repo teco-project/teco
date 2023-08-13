@@ -25,11 +25,11 @@ extension Vpc {
         public let securityGroupIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SecurityGroupIds和Filters。
-        /// <li>security-group-id - String - （过滤条件）安全组ID。</li>
-        /// <li>project-id - Integer - （过滤条件）项目ID。</li>
-        /// <li>security-group-name - String - （过滤条件）安全组名称。</li>
-        /// <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2。</li>
-        /// <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3。</li>
+        /// - security-group-id - String - （过滤条件）安全组ID。
+        /// - project-id - Integer - （过滤条件）项目ID。
+        /// - security-group-name - String - （过滤条件）安全组名称。
+        /// - tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。使用请参考示例2。
+        /// - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例3。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

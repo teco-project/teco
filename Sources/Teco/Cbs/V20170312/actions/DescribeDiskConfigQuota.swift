@@ -22,31 +22,23 @@ extension Cbs {
     /// DescribeDiskConfigQuota请求参数结构体
     public struct DescribeDiskConfigQuotaRequest: TCRequestModel {
         /// 查询类别，取值范围。
-        ///
-        /// <li>INQUIRY_CBS_CONFIG：查询云盘配置列表
-        ///
-        /// <li>INQUIRY_CVM_CONFIG：查询云盘与实例搭配的配置列表。
+        /// - INQUIRY_CBS_CONFIG：查询云盘配置列表
+        /// - INQUIRY_CVM_CONFIG：查询云盘与实例搭配的配置列表。
         public let inquiryType: String
 
         /// 付费模式。取值范围：
-        ///
-        /// <li>PREPAID：预付费
-        ///
-        /// <li>POSTPAID_BY_HOUR：后付费。
+        /// - PREPAID：预付费
+        /// - POSTPAID_BY_HOUR：后付费。
         public let diskChargeType: String?
 
         /// 按照实例机型系列过滤。实例机型系列形如：S1、I1、M1等。详见[实例类型](https://cloud.tencent.com/document/product/213/11518)
         public let instanceFamilies: [String]?
 
         /// 硬盘介质类型。取值范围：
-        ///
-        /// <li>CLOUD_BASIC：表示普通云硬盘
-        ///
-        /// <li>CLOUD_PREMIUM：表示高性能云硬盘
-        ///
-        /// <li>CLOUD_SSD：表示SSD云硬盘
-        ///
-        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘。
+        /// - CLOUD_BASIC：表示普通云硬盘
+        /// - CLOUD_PREMIUM：表示高性能云硬盘
+        /// - CLOUD_SSD：表示SSD云硬盘
+        /// - CLOUD_HSSD：表示增强型SSD云硬盘。
         public let diskTypes: [String]?
 
         /// 查询一个或多个[可用区](/document/product/213/15753#ZoneInfo)下的配置。
@@ -56,10 +48,8 @@ extension Cbs {
         public let memory: UInt64?
 
         /// 系统盘或数据盘。取值范围：
-        ///
-        /// <li>SYSTEM_DISK：表示系统盘
-        ///
-        /// <li>DATA_DISK：表示数据盘。
+        /// - SYSTEM_DISK：表示系统盘
+        /// - DATA_DISK：表示数据盘。
         public let diskUsage: String?
 
         /// 实例CPU核数。

@@ -74,10 +74,10 @@ extension Tcbr {
         public let instanceId: String
 
         /// 状态。包含以下取值：
-        /// <li>INITIALIZING：资源初始化中</li>
-        /// <li>RUNNING：运行中，可正常使用的状态</li>
-        /// <li>UNUSABLE：禁用，不可用</li>
-        /// <li>OVERDUE：资源过期</li>
+        /// - INITIALIZING：资源初始化中
+        /// - RUNNING：运行中，可正常使用的状态
+        /// - UNUSABLE：禁用，不可用
+        /// - OVERDUE：资源过期
         public let status: String
 
         /// 所属地域。
@@ -188,8 +188,8 @@ extension Tcbr {
         public let envId: String
 
         /// 环境来源。包含以下取值：
-        /// <li>miniapp：微信小程序</li>
-        /// <li>qcloud ：腾讯云</li>
+        /// - miniapp：微信小程序
+        /// - qcloud ：腾讯云
         public let source: String
 
         /// 环境别名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符
@@ -202,8 +202,8 @@ extension Tcbr {
         public let updateTime: String
 
         /// 环境状态。包含以下取值：
-        /// <li>NORMAL：正常可用</li>
-        /// <li>UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中</li>
+        /// - NORMAL：正常可用
+        /// - UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中
         public let status: String
 
         /// 是否到期自动降为免费版
@@ -215,8 +215,8 @@ extension Tcbr {
         public let envChannel: String?
 
         /// 支付方式。包含以下取值：
-        /// <li> prepayment：预付费</li>
-        /// <li> postpaid：后付费</li>
+        /// - prepayment：预付费
+        /// - postpaid：后付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payMode: String?
 

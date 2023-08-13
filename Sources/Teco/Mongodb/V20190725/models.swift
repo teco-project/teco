@@ -21,11 +21,17 @@ import TecoDateHelpers
 extension Mongodb {
     /// 用户权限
     public struct Auth: TCInputModel {
-        /// 当前账号具有的权限信息。<ul><li>0：无权限。</li><li>1：只读。</li><li>2：只写。</li><li>3：读写。</li></ul>
+        /// 当前账号具有的权限信息。
+        /// - 0：无权限。
+        /// - 1：只读。
+        /// - 2：只写。
+        /// - 3：读写。
         public let mask: Int64
 
         /// 指具有当前账号权限的数据库名。
-        /// <ul><li>* ：表示所有数据库。</li><li>db.name：表示特定name的数据库。</li></ul>
+        ///
+        /// - * ：表示所有数据库。
+        /// - db.name：表示特定name的数据库。
         public let nameSpace: String
 
         public init(mask: Int64, nameSpace: String) {

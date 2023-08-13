@@ -25,7 +25,7 @@ extension Cwp {
         public let moduleType: String
 
         /// 过滤参数;
-        /// <li>StrategyId 基线策略ID ,仅ModuleType 为 Baseline 时需要</li>
+        /// - StrategyId 基线策略ID ,仅ModuleType 为 Baseline 时需要
         public let filters: [Filters]?
 
         public init(moduleType: String, filters: [Filters]? = nil) {

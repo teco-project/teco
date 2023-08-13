@@ -29,9 +29,9 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | TRUSTED：已信任 | UN_TRUSTED：已取消信任）</li>
-        /// <li>Domain - String - 是否必填：否 - 恶意请求的域名</li>
-        /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
+        /// - Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | TRUSTED：已信任 | UN_TRUSTED：已取消信任）
+        /// - Domain - String - 是否必填：否 - 恶意请求的域名
+        /// - MachineIp - String - 是否必填：否 - 主机内网IP
         public let filters: [Filter]?
 
         /// 云镜客户端唯一UUID。

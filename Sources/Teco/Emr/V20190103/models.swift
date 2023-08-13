@@ -317,33 +317,33 @@ extension Emr {
         public let subnetId: Int64?
 
         /// 实例的状态码。取值范围：
-        /// <li>2：表示集群运行中。</li>
-        /// <li>3：表示集群创建中。</li>
-        /// <li>4：表示集群扩容中。</li>
-        /// <li>5：表示集群增加router节点中。</li>
-        /// <li>6：表示集群安装组件中。</li>
-        /// <li>7：表示集群执行命令中。</li>
-        /// <li>8：表示重启服务中。</li>
-        /// <li>9：表示进入维护中。</li>
-        /// <li>10：表示服务暂停中。</li>
-        /// <li>11：表示退出维护中。</li>
-        /// <li>12：表示退出暂停中。</li>
-        /// <li>13：表示配置下发中。</li>
-        /// <li>14：表示销毁集群中。</li>
-        /// <li>15：表示销毁core节点中。</li>
-        /// <li>16：销毁task节点中。</li>
-        /// <li>17：表示销毁router节点中。</li>
-        /// <li>18：表示更改webproxy密码中。</li>
-        /// <li>19：表示集群隔离中。</li>
-        /// <li>20：表示集群冲正中。</li>
-        /// <li>21：表示集群回收中。</li>
-        /// <li>22：表示变配等待中。</li>
-        /// <li>23：表示集群已隔离。</li>
-        /// <li>24：表示缩容节点中。</li>
-        /// <li>33：表示集群等待退费中。</li>
-        /// <li>34：表示集群已退费。</li>
-        /// <li>301：表示创建失败。</li>
-        /// <li>302：表示扩容失败。</li>
+        /// - 2：表示集群运行中。
+        /// - 3：表示集群创建中。
+        /// - 4：表示集群扩容中。
+        /// - 5：表示集群增加router节点中。
+        /// - 6：表示集群安装组件中。
+        /// - 7：表示集群执行命令中。
+        /// - 8：表示重启服务中。
+        /// - 9：表示进入维护中。
+        /// - 10：表示服务暂停中。
+        /// - 11：表示退出维护中。
+        /// - 12：表示退出暂停中。
+        /// - 13：表示配置下发中。
+        /// - 14：表示销毁集群中。
+        /// - 15：表示销毁core节点中。
+        /// - 16：销毁task节点中。
+        /// - 17：表示销毁router节点中。
+        /// - 18：表示更改webproxy密码中。
+        /// - 19：表示集群隔离中。
+        /// - 20：表示集群冲正中。
+        /// - 21：表示集群回收中。
+        /// - 22：表示变配等待中。
+        /// - 23：表示集群已隔离。
+        /// - 24：表示缩容节点中。
+        /// - 33：表示集群等待退费中。
+        /// - 34：表示集群已退费。
+        /// - 301：表示创建失败。
+        /// - 302：表示扩容失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
 
@@ -646,9 +646,9 @@ extension Emr {
         public let metaDataPass: String?
 
         /// hive共享元数据库类型。取值范围：
-        /// <li>EMR_DEFAULT_META：表示集群默认创建</li>
-        /// <li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li>
-        /// <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        /// - EMR_DEFAULT_META：表示集群默认创建
+        /// - EMR_EXIST_META：表示集群使用指定EMR-MetaDB。
+        /// - USER_CUSTOM_META：表示集群使用自定义MetaDB。
         public let metaType: String?
 
         /// EMR-MetaDB实例
@@ -784,21 +784,21 @@ extension Emr {
         public let count: Int64?
 
         /// 系统盘类型 取值范围：
-        /// <li>CLOUD_SSD：表示云SSD。</li>
-        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
-        /// <li>CLOUD_BASIC：表示云硬盘。</li>
-        /// <li>LOCAL_BASIC：表示本地盘。</li>
-        /// <li>LOCAL_SSD：表示本地SSD。</li>
+        /// - CLOUD_SSD：表示云SSD。
+        /// - CLOUD_PREMIUM：表示高效云盘。
+        /// - CLOUD_BASIC：表示云硬盘。
+        /// - LOCAL_BASIC：表示本地盘。
+        /// - LOCAL_SSD：表示本地SSD。
         ///
         /// 数据盘类型 取值范围：
-        /// <li>CLOUD_SSD：表示云SSD。</li>
-        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
-        /// <li>CLOUD_BASIC：表示云硬盘。</li>
-        /// <li>LOCAL_BASIC：表示本地盘。</li>
-        /// <li>LOCAL_SSD：表示本地SSD。</li>
-        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
-        /// <li>CLOUD_THROUGHPUT：表示吞吐型云硬盘。</li>
-        /// <li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
+        /// - CLOUD_SSD：表示云SSD。
+        /// - CLOUD_PREMIUM：表示高效云盘。
+        /// - CLOUD_BASIC：表示云硬盘。
+        /// - LOCAL_BASIC：表示本地盘。
+        /// - LOCAL_SSD：表示本地SSD。
+        /// - CLOUD_HSSD：表示增强型SSD云硬盘。
+        /// - CLOUD_THROUGHPUT：表示吞吐型云硬盘。
+        /// - CLOUD_TSSD：表示极速型SSD云硬盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -1385,8 +1385,8 @@ extension Emr {
         public let period: Int64
 
         /// 是否自动续费，默认为否。
-        /// <li>true：是</li>
-        /// <li>false：否</li>
+        /// - true：是
+        /// - false：否
         public let renewFlag: Bool
 
         public init(period: Int64, renewFlag: Bool) {
@@ -1564,9 +1564,9 @@ extension Emr {
     /// 多云盘参数
     public struct MultiDisk: TCInputModel, TCOutputModel {
         /// 云盘类型
-        /// <li>CLOUD_SSD：表示云SSD。</li>
-        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
-        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
+        /// - CLOUD_SSD：表示云SSD。
+        /// - CLOUD_PREMIUM：表示高效云盘。
+        /// - CLOUD_HSSD：表示增强型SSD云硬盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -2314,8 +2314,8 @@ extension Emr {
         public let podVolumes: [PodVolume]?
 
         /// 是否浮动规格，默认否
-        /// <li>true：代表是</li>
-        /// <li>false：代表否</li>
+        /// - true：代表是
+        /// - false：代表否
         public let enableDynamicSpecFlag: Bool?
 
         /// 浮动规格
@@ -2928,19 +2928,19 @@ extension Emr {
 
         /// 存储类型
         /// 取值范围：
-        /// <li>4：表示云SSD。</li>
-        /// <li>5：表示高效云盘。</li>
-        /// <li>6：表示增强型SSD云硬盘。</li>
-        /// <li>11：表示吞吐型云硬盘。</li>
-        /// <li>12：表示极速型SSD云硬盘。</li>
+        /// - 4：表示云SSD。
+        /// - 5：表示高效云盘。
+        /// - 6：表示增强型SSD云硬盘。
+        /// - 11：表示吞吐型云硬盘。
+        /// - 12：表示极速型SSD云硬盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageType: Int64?
 
         /// 磁盘类型
         /// 取值范围：
-        /// <li>CLOUD_SSD：表示云SSD。</li>
-        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
-        /// <li>CLOUD_BASIC：表示云硬盘。</li>
+        /// - CLOUD_SSD：表示云SSD。
+        /// - CLOUD_PREMIUM：表示高效云盘。
+        /// - CLOUD_BASIC：表示云硬盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -3014,10 +3014,10 @@ extension Emr {
     /// 扩容节点类型以及数量
     public struct ScaleOutNodeConfig: TCInputModel {
         /// 扩容节点类型取值范围：
-        ///   <li>MASTER</li>
-        ///   <li>TASK</li>
-        ///   <li>CORE</li>
-        ///   <li>ROUTER</li>
+        /// - MASTER
+        /// - TASK
+        /// - CORE
+        /// - ROUTER
         public let nodeFlag: String
 
         /// 扩容节点数量
@@ -3065,9 +3065,9 @@ extension Emr {
         public let cosFileURI: String
 
         /// 引导脚步执行时机范围
-        /// <li>resourceAfter：节点初始化后</li>
-        /// <li>clusterAfter：集群启动后</li>
-        /// <li>clusterBefore：集群启动前</li>
+        /// - resourceAfter：节点初始化后
+        /// - clusterAfter：集群启动后
+        /// - clusterBefore：集群启动前
         public let executionMoment: String
 
         /// 执行脚本参数，参数格式请遵循标准Shell规范
@@ -3747,9 +3747,9 @@ extension Emr {
         public let allNodeResourceSpec: AllNodeResourceSpec?
 
         /// 如果是单可用区，ZoneTag可以不用填， 如果是双AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，如果是三AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，第三个可用区ZoneTag选择third-party，取值范围：
-        ///   <li>master</li>
-        ///   <li>standby</li>
-        ///   <li>third-party</li>
+        /// - master
+        /// - standby
+        /// - third-party
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneTag: String?
 

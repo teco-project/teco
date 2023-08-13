@@ -28,19 +28,21 @@ extension Teo {
         /// 分页查询限制数目。默认值：20，最大值：1000。
         public let limit: Int64?
 
-        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id
+        /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
+        /// - proxy-id
         ///
         /// 按照【**代理ID**】进行过滤。代理ID形如：proxy-ev2sawbwfd。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li><li>zone-id
+        /// 必选：否
+        /// - zone-id
         ///
         /// 按照【**站点ID**】进行过滤。站点ID形如：zone-vawer2vadg。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
+        /// 必选：否
         public let filters: [Filter]?
 
         public init(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {

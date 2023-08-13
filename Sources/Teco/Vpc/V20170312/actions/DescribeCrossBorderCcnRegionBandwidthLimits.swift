@@ -23,7 +23,10 @@ extension Vpc {
     /// DescribeCrossBorderCcnRegionBandwidthLimits请求参数结构体
     public struct DescribeCrossBorderCcnRegionBandwidthLimitsRequest: TCPaginatedRequest {
         /// 过滤条件，目前`value`值个数只支持一个，可支持的字段有：
-        /// <li>`source-region` 源地域，值形如：`["ap-guangzhou"]`</li> <li>`destination-region` 目的地域，值形如：`["ap-shanghai"]`</li> <li>`ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`</li> <li>`user-account-id` 用户账号ID，值形如`["12345678"]`</li>
+        /// - `source-region` 源地域，值形如：`["ap-guangzhou"]`
+        /// - `destination-region` 目的地域，值形如：`["ap-shanghai"]`
+        /// - `ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`
+        /// - `user-account-id` 用户账号ID，值形如`["12345678"]`
         public let filters: [Filter]?
 
         /// 偏移量，默认0。

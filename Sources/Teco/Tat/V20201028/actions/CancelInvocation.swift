@@ -25,8 +25,8 @@ extension Tat {
         public let invocationId: String
 
         /// 实例ID列表，上限100。支持实例类型：
-        /// <li> CVM
-        /// <li> LIGHTHOUSE
+        /// - CVM
+        /// - LIGHTHOUSE
         public let instanceIds: [String]?
 
         public init(invocationId: String, instanceIds: [String]? = nil) {

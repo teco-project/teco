@@ -26,14 +26,10 @@ extension Tat {
         public let invocationTaskIds: [String]?
 
         /// 过滤条件。
-        ///
-        /// <li> invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。
-        ///
-        /// <li> invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。
-        ///
-        /// <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。
-        ///
-        /// <li> command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
+        /// - invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。
+        /// - invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。
+        /// - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。
+        /// - command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
         ///
         /// 每次请求的 `Filters` 的上限为10， `Filter.Values` 的上限为5。参数不支持同时指定 `InvocationTaskIds` 和 `Filters` 。
         public let filters: [Filter]?
@@ -45,10 +41,8 @@ extension Tat {
         public let offset: UInt64?
 
         /// 是否隐藏输出，取值范围：
-        ///
-        /// <li>True：隐藏输出
-        ///
-        /// <li>False：不隐藏
+        /// - True：隐藏输出
+        /// - False：不隐藏
         ///
         /// 默认为 True。
         public let hideOutput: Bool?

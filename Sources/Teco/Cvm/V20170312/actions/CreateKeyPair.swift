@@ -26,8 +26,8 @@ extension Cvm {
 
         /// 密钥对创建后所属的项目ID。
         /// 可以通过以下方式获取项目ID：
-        /// <li>通过项目列表查询项目ID。
-        /// <li>通过调用接口DescribeProject，取返回信息中的`projectId `获取项目ID。
+        /// - 通过项目列表查询项目ID。
+        /// - 通过调用接口DescribeProject，取返回信息中的`projectId `获取项目ID。
         public let projectId: Int64
 
         /// 标签描述列表。通过指定该参数可以同时绑定标签到密钥对。

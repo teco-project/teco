@@ -22,8 +22,8 @@ extension Mps {
     /// CreateAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct CreateAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 自适应转码格式，取值范围：
-        /// <li>HLS，</li>
-        /// <li>MPEG-DASH。</li>
+        /// - HLS，
+        /// - MPEG-DASH。
         public let format: String
 
         /// 转自适应码流输出子流参数信息，最多输出10路子流。
@@ -34,14 +34,14 @@ extension Mps {
         public let name: String?
 
         /// 是否禁止视频低码率转高码率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         /// 默认为否。
         public let disableHigherVideoBitrate: UInt64?
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         /// 默认为否。
         public let disableHigherVideoResolution: UInt64?
 

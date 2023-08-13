@@ -31,8 +31,8 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 客户端上传加速类型，取值有：
-        /// <li> AccelerationWithHTTP：HTTP 传输方式的上传加速。</li>
-        /// <li> AccelerationWithQUIC：QUIC 传输方式的上传加速。</li>
+        /// - AccelerationWithHTTP：HTTP 传输方式的上传加速。
+        /// - AccelerationWithQUIC：QUIC 传输方式的上传加速。
         /// 默认查询所有加速类型的用量 。
         public let type: String?
 

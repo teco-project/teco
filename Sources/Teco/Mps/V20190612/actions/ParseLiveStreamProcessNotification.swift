@@ -36,9 +36,9 @@ extension Mps {
     /// ParseLiveStreamProcessNotification返回参数结构体
     public struct ParseLiveStreamProcessNotificationResponse: TCResponseModel {
         /// 直播流处理结果类型，包含：
-        /// <li>AiReviewResult：内容审核结果；</li>
-        /// <li>AiRecognitionResult：内容识别结果；</li>
-        /// <li>ProcessEof：直播流处理结束。</li>
+        /// - AiReviewResult：内容审核结果；
+        /// - AiRecognitionResult：内容识别结果；
+        /// - ProcessEof：直播流处理结束。
         public let notificationType: String
 
         /// 视频处理任务 ID。

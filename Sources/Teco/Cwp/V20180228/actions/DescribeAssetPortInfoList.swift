@@ -26,18 +26,18 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>Port - uint64 - 是否必填：否 - 端口</li>
-        /// <li>Ip - String - 是否必填：否 - 绑定IP</li>
-        /// <li>ProcessName - String - 是否必填：否 - 监听进程</li>
-        /// <li>Pid - uint64 - 是否必填：否 - PID</li>
-        /// <li>User - String - 是否必填：否 - 运行用户</li>
-        /// <li>Group - String - 是否必填：否 - 所属用户组</li>
-        /// <li>Ppid - uint64 - 是否必填：否 - PPID</li>
-        /// <li>Proto - string - 是否必填：否 - tcp/udp或“”(空字符串筛选未知状态)</li>
-        /// <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
-        /// <li>RunTimeStart - String - 是否必填：否 - 运行开始时间</li>
-        /// <li>RunTimeEnd - String - 是否必填：否 - 运行结束时间</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// - Port - uint64 - 是否必填：否 - 端口
+        /// - Ip - String - 是否必填：否 - 绑定IP
+        /// - ProcessName - String - 是否必填：否 - 监听进程
+        /// - Pid - uint64 - 是否必填：否 - PID
+        /// - User - String - 是否必填：否 - 运行用户
+        /// - Group - String - 是否必填：否 - 所属用户组
+        /// - Ppid - uint64 - 是否必填：否 - PPID
+        /// - Proto - string - 是否必填：否 - tcp/udp或“”(空字符串筛选未知状态)
+        /// - OsType - uint64 - 是否必填：否 - windows/linux
+        /// - RunTimeStart - String - 是否必填：否 - 运行开始时间
+        /// - RunTimeEnd - String - 是否必填：否 - 运行结束时间
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?
 
         /// 需要返回的数量，默认为10，最大值为100

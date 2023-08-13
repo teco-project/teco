@@ -34,13 +34,13 @@ extension Tat {
         @TCTimestampISO8601Encoding public var lastHeartbeatTime: Date
 
         /// Agent状态，取值范围：
-        /// <li> Online：在线
-        /// <li> Offline：离线
+        /// - Online：在线
+        /// - Offline：离线
         public let agentStatus: String
 
         /// Agent运行环境，取值范围：
-        /// <li> Linux：Linux实例
-        /// <li> Windows：Windows实例
+        /// - Linux：Linux实例
+        /// - Windows：Windows实例
         public let environment: String
 
         /// Agent 支持的功能列表。
@@ -209,12 +209,12 @@ extension Tat {
         public let commandId: String
 
         /// 执行任务状态。取值范围：
-        /// <li> PENDING：等待下发
-        /// <li> RUNNING：命令运行中
-        /// <li> SUCCESS：命令成功
-        /// <li> FAILED：命令失败
-        /// <li> TIMEOUT：命令超时
-        /// <li> PARTIAL_FAILED：命令部分失败
+        /// - PENDING：等待下发
+        /// - RUNNING：命令运行中
+        /// - SUCCESS：命令成功
+        /// - FAILED：命令失败
+        /// - TIMEOUT：命令超时
+        /// - PARTIAL_FAILED：命令部分失败
         public let invocationStatus: String
 
         /// 执行任务信息列表。
@@ -316,19 +316,19 @@ extension Tat {
         public let commandId: String
 
         /// 执行任务状态。取值范围：
-        /// <li> PENDING：等待下发
-        /// <li> DELIVERING：下发中
-        /// <li> DELIVER_DELAYED：延时下发
-        /// <li> DELIVER_FAILED：下发失败
-        /// <li> START_FAILED：命令启动失败
-        /// <li> RUNNING：命令运行中
-        /// <li> SUCCESS：命令成功
-        /// <li> FAILED：命令执行失败，执行完退出码不为 0
-        /// <li> TIMEOUT：命令超时
-        /// <li> TASK_TIMEOUT：执行任务超时
-        /// <li> CANCELLING：取消中
-        /// <li> CANCELLED：已取消（命令启动前就被取消）
-        /// <li> TERMINATED：已中止（命令执行期间被取消）
+        /// - PENDING：等待下发
+        /// - DELIVERING：下发中
+        /// - DELIVER_DELAYED：延时下发
+        /// - DELIVER_FAILED：下发失败
+        /// - START_FAILED：命令启动失败
+        /// - RUNNING：命令运行中
+        /// - SUCCESS：命令成功
+        /// - FAILED：命令执行失败，执行完退出码不为 0
+        /// - TIMEOUT：命令超时
+        /// - TASK_TIMEOUT：执行任务超时
+        /// - CANCELLING：取消中
+        /// - CANCELLED：已取消（命令启动前就被取消）
+        /// - TERMINATED：已中止（命令执行期间被取消）
         public let taskStatus: String
 
         /// 实例ID。
@@ -393,19 +393,19 @@ extension Tat {
         public let invocationTaskId: String
 
         /// 执行任务状态。取值范围：
-        /// <li> PENDING：等待下发
-        /// <li> DELIVERING：下发中
-        /// <li> DELIVER_DELAYED：延时下发
-        /// <li> DELIVER_FAILED：下发失败
-        /// <li> START_FAILED：命令启动失败
-        /// <li> RUNNING：命令运行中
-        /// <li> SUCCESS：命令成功
-        /// <li> FAILED：命令执行失败，执行完退出码不为 0
-        /// <li> TIMEOUT：命令超时
-        /// <li> TASK_TIMEOUT：执行任务超时
-        /// <li> CANCELLING：取消中
-        /// <li> CANCELLED：已取消（命令启动前就被取消）
-        /// <li> TERMINATED：已中止（命令执行期间被取消）
+        /// - PENDING：等待下发
+        /// - DELIVERING：下发中
+        /// - DELIVER_DELAYED：延时下发
+        /// - DELIVER_FAILED：下发失败
+        /// - START_FAILED：命令启动失败
+        /// - RUNNING：命令运行中
+        /// - SUCCESS：命令成功
+        /// - FAILED：命令执行失败，执行完退出码不为 0
+        /// - TIMEOUT：命令超时
+        /// - TASK_TIMEOUT：执行任务超时
+        /// - CANCELLING：取消中
+        /// - CANCELLED：已取消（命令启动前就被取消）
+        /// - TERMINATED：已中止（命令执行期间被取消）
         public let taskStatus: String
 
         /// 实例ID。
@@ -525,10 +525,8 @@ extension Tat {
     /// 周期执行器设置。
     public struct ScheduleSettings: TCInputModel, TCOutputModel {
         /// 执行策略：
-        ///
-        /// <li>ONCE：单次执行
-        ///
-        /// <li>RECURRENCE：周期执行
+        /// - ONCE：单次执行
+        /// - RECURRENCE：周期执行
         public let policy: String
 
         /// 触发 Crontab 表达式。Policy 为 RECURRENCE 时，需要指定此字段。Crontab 按北京时间解析。

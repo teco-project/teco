@@ -28,36 +28,32 @@ extension Cls {
         /// 分页单页限制数目，默认值为20，最大值100。
         public let limit: Int64?
 
-        /// <li> dashboardId
+        /// - dashboardId
         ///
         /// 按照【仪表盘id】进行过滤。
         /// 类型：String
         ///
         /// 必选：否
-        ///
-        /// <li> dashboardName
+        /// - dashboardName
         ///
         /// 按照【仪表盘名字】进行模糊搜索过滤。
         /// 类型：String
         ///
         /// 必选：否
-        ///
-        /// <li> dashboardRegion
+        /// - dashboardRegion
         ///
         /// 按照【仪表盘地域】进行过滤，为了兼容老的仪表盘，通过云API创建的仪表盘没有地域属性
         /// 类型：String
         ///
         /// 必选：否
-        ///
-        /// <li> tagKey
+        /// - tagKey
         ///
         /// 按照【标签键】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否
-        ///
-        /// <li> tag:tagKey
+        /// - tag:tagKey
         ///
         /// 按照【标签键值对】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。
         ///

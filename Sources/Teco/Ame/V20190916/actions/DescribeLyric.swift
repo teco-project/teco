@@ -25,8 +25,8 @@ extension Ame {
         public let itemId: String
 
         /// 格式，可选项，可不填写，默认值为：LRC-LRC。
-        /// <li>LRC-LRC：歌词；</li>
-        /// <li>JSON-ST：波形图。</li>
+        /// - LRC-LRC：歌词；
+        /// - JSON-ST：波形图。
         public let subItemType: String?
 
         public init(itemId: String, subItemType: String? = nil) {

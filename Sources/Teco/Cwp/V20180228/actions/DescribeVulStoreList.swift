@@ -22,12 +22,12 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeVulStoreList请求参数结构体
     public struct DescribeVulStoreListRequest: TCPaginatedRequest {
-        /// <li>VulName- string - 是否必填：否 - 漏洞名称</li>
-        /// <li>CveId- string - 是否必填：否 - cveid</li>
-        /// <li>VulCategory- string - 是否必填：否 - 漏洞分类  1 Web-CMS漏洞 ,2 应用漏洞 ,4 Linux软件漏洞,5 Windows系统漏洞</li>
-        /// <li>Method- string - 是否必填：否 - 检测方法 0版本对比,1 poc检测 </li>
-        /// <li>SupportDefense- string - 是否必填：否 - 是否支持防御 0不支持,1支持</li>
-        /// <li>FixSwitch- string - 是否必填：否 - 是否支持自动修复 0不支持,1支持</li>
+        /// - VulName- string - 是否必填：否 - 漏洞名称
+        /// - CveId- string - 是否必填：否 - cveid
+        /// - VulCategory- string - 是否必填：否 - 漏洞分类  1 Web-CMS漏洞 ,2 应用漏洞 ,4 Linux软件漏洞,5 Windows系统漏洞
+        /// - Method- string - 是否必填：否 - 检测方法 0版本对比,1 poc检测
+        /// - SupportDefense- string - 是否必填：否 - 是否支持防御 0不支持,1支持
+        /// - FixSwitch- string - 是否必填：否 - 是否支持自动修复 0不支持,1支持
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

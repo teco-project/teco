@@ -28,7 +28,7 @@ extension Vod {
         public let endTime: String
 
         /// License 类型，默认为 DRM 。目前支持的 License 类型包括：
-        /// <li> DRM: DRM 加密播放 License</li>
+        /// - DRM: DRM 加密播放 License
         public let licenseType: String?
 
         /// 点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。

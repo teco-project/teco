@@ -35,10 +35,10 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Status- String - 是否必填：否 - 主机状态 </li>
-        /// <li>HostIP- String - 是否必填：否 - 主机内网IP </li>
-        /// <li>PublicIP- String - 是否必填：否 - 主机外网IP </li>
-        /// <li>HostName- String - 是否必填：否 - 主机名称 </li>
+        /// - Status- String - 是否必填：否 - 主机状态
+        /// - HostIP- String - 是否必填：否 - 主机内网IP
+        /// - PublicIP- String - 是否必填：否 - 主机外网IP
+        /// - HostName- String - 是否必填：否 - 主机名称
         public let filters: [RunTimeFilters]?
 
         /// 排序字段

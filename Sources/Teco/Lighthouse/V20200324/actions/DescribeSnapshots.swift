@@ -27,16 +27,16 @@ extension Lighthouse {
         public let snapshotIds: [String]?
 
         /// 过滤器列表。
-        /// <li>snapshot-id</li>按照【快照 ID】进行过滤。
+        /// - snapshot-id按照【快照 ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>disk-id</li>按照【磁盘 ID】进行过滤。
+        /// - disk-id按照【磁盘 ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>snapshot-name</li>按照【快照名称】进行过滤。
+        /// - snapshot-name按照【快照名称】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>instance-id</li>按照【实例 ID 】进行过滤。
+        /// - instance-id按照【实例 ID 】进行过滤。
         /// 类型：String
         /// 必选：否
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 SnapshotIds 和 Filters。

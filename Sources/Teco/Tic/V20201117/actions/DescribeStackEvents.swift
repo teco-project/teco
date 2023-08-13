@@ -25,19 +25,16 @@ extension Tic {
         /// 按照⼀个或者多个事件ID查询
         public let eventIds: [String]?
 
-        /// <li>**VersionId**</li>
+        /// - **VersionId**
         /// 按照【**版本ID**】过滤，VersionId形如 `ver-kg8hn58h`
         /// 类型：string
-        ///
-        /// <li>**StackId**</li>
+        /// - **StackId**
         /// 按照【**资源栈ID**】过滤，StackId形如 `stk-hz5vn3te`
         /// 类型：string
-        ///
-        /// <li>**Type**</li>
+        /// - **Type**
         /// 按照【**事件类型**】过滤，Type 形如 plan, apply, destroy
         /// 类型：string
-        ///
-        /// <li>**Status**</li>
+        /// - **Status**
         /// 按照【**事件状态**】过滤，Status形如 queueing, running, success, failed
         /// 类型：string
         public let filters: [Filter]?

@@ -25,11 +25,11 @@ extension Emr {
         public let instanceId: String
 
         /// 操作类型，当前支持
-        /// <li>StartService：启动服务</li>
-        /// <li>StopService：停止服务</li>
-        /// <li>StartMonitor：退出维护</li>
-        /// <li>StopMonitor：进入维护</li>
-        /// <li>RestartService：重启服务 如果操作类型选择重启服务 StrategyConfig操作策略则是必填项</li>
+        /// - StartService：启动服务
+        /// - StopService：停止服务
+        /// - StartMonitor：退出维护
+        /// - StopMonitor：进入维护
+        /// - RestartService：重启服务 如果操作类型选择重启服务 StrategyConfig操作策略则是必填项
         public let opType: String
 
         /// 操作范围

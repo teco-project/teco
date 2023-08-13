@@ -25,21 +25,16 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常重启失败后选择强制重启实例。取值范围：
-        ///
-        /// <li>TRUE：表示在正常重启失败后进行强制重启
-        ///
-        /// <li>FALSE：表示在正常重启失败后不进行强制重启
+        /// - TRUE：表示在正常重启失败后进行强制重启
+        /// - FALSE：表示在正常重启失败后不进行强制重启
         ///
         /// 默认取值：FALSE。
         public let forceReboot: Bool?
 
         /// 关机类型。取值范围：
-        ///
-        /// <li>SOFT：表示软关机
-        ///
-        /// <li>HARD：表示硬关机
-        ///
-        /// <li>SOFT_FIRST：表示优先软关机，失败再执行硬关机
+        /// - SOFT：表示软关机
+        /// - HARD：表示硬关机
+        /// - SOFT_FIRST：表示优先软关机，失败再执行硬关机
         ///
         /// 默认取值：SOFT。
         public let stopType: String?

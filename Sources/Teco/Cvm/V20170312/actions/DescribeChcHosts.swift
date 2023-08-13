@@ -25,17 +25,17 @@ extension Cvm {
         /// CHC物理服务器实例ID。每次请求的实例的上限为100。参数不支持同时指定`ChcIds`和`Filters`。
         public let chcIds: [String]?
 
-        /// <li>**zone**</li>
+        /// - **zone**
         /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
-        /// <li>**instance-name**</li>
+        /// - **instance-name**
         /// <p style="padding-left: 30px;">按照【**实例名称**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**instance-state**</li>
+        /// - **instance-state**
         /// <p style="padding-left: 30px;">按照【**实例状态**】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**device-type**</li>
+        /// - **device-type**
         /// <p style="padding-left: 30px;">按照【**设备类型**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**vpc-id**</li>
+        /// - **vpc-id**
         /// <p style="padding-left: 30px;">按照【**私有网络唯一ID**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li>**subnet-id**</li>
+        /// - **subnet-id**
         /// <p style="padding-left: 30px;">按照【**私有子网唯一ID**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         public let filters: [Filter]?
 

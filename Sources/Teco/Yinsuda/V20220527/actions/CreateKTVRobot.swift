@@ -28,7 +28,7 @@ extension Yinsuda {
         public let userId: String
 
         /// RTC厂商类型，取值有：
-        /// <li>TRTC</li>
+        /// - TRTC
         public let rtcSystem: String
 
         /// 进房参数。

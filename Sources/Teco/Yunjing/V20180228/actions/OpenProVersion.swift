@@ -22,8 +22,8 @@ extension Yunjing {
     /// OpenProVersion请求参数结构体
     public struct OpenProVersionRequest: TCRequestModel {
         /// 云主机类型。
-        /// <li>CVM：表示虚拟主机</li>
-        /// <li>BM:  表示黑石物理机</li>
+        /// - CVM：表示虚拟主机
+        /// - BM:  表示黑石物理机
         public let machineType: String
 
         /// 机器所属地域。

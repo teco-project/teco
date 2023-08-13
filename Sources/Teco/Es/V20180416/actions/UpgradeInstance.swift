@@ -30,13 +30,19 @@ extension Es {
         /// 是否只做升级检查，默认值为false
         public let checkOnly: Bool?
 
-        /// 目标商业特性版本：<li>oss 开源版</li><li>basic 基础版</li>当前仅在5.6.4升级6.x版本时使用，默认值为basic
+        /// 目标商业特性版本：
+        /// - oss 开源版
+        /// - basic 基础版当前仅在5.6.4升级6.x版本时使用，默认值为basic
         public let licenseType: String?
 
-        /// 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
+        /// 6.8（及以上版本）基础版是否开启xpack security认证
+        /// - 1：不开启
+        /// - 2：开启
         public let basicSecurityType: UInt64?
 
-        /// 升级方式：<li>scale 蓝绿变更</li><li>restart 滚动重启</li>默认值为scale
+        /// 升级方式：
+        /// - scale 蓝绿变更
+        /// - restart 滚动重启默认值为scale
         public let upgradeMode: String?
 
         /// 升级版本前是否对集群进行备份，默认不备份

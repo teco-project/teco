@@ -25,7 +25,7 @@ extension Vod {
         public let taskId: String
 
         /// 操作类型，取值范围：
-        /// <li>Abort：终止任务。只能终止已发起且状态为等待中（WAITING）的任务。</li>
+        /// - Abort：终止任务。只能终止已发起且状态为等待中（WAITING）的任务。
         public let operationType: String
 
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**

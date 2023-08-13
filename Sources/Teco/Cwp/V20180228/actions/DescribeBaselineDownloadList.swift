@@ -22,10 +22,10 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineDownloadList请求参数结构体
     public struct DescribeBaselineDownloadListRequest: TCPaginatedRequest {
-        /// <li>Status - int - 是否必填：否 - 0:导出中 1:已完成</li>
-        /// <li>StartTime - string - 是否必填：否 - 开始时间</li>
-        /// <li>EndTime - string - 是否必填：否 - 结束时间</li>
-        /// <li>TaskName - string - 是否必填：否 - 任务名称</li>
+        /// - Status - int - 是否必填：否 - 0:导出中 1:已完成
+        /// - StartTime - string - 是否必填：否 - 开始时间
+        /// - EndTime - string - 是否必填：否 - 结束时间
+        /// - TaskName - string - 是否必填：否 - 任务名称
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

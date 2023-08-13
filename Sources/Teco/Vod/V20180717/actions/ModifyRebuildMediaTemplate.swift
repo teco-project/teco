@@ -49,13 +49,13 @@ extension Vod {
         public let container: String?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeAudio: Int64?
 
         public init(definition: Int64, subAppId: String? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil) {

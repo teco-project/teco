@@ -24,7 +24,10 @@ extension Keewidb {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
-        /// 操作类型。<ul><li>changeVip：修改实例私有网络。</li><li>changeVpc：修改实例私有网络所属子网。</li><li>changeBaseToVpc：基础网络转为私有网络。</li></ul>
+        /// 操作类型。
+        /// - changeVip：修改实例私有网络。
+        /// - changeVpc：修改实例私有网络所属子网。
+        /// - changeBaseToVpc：基础网络转为私有网络。
         public let operation: String
 
         /// 修改后的 VIP 地址。
@@ -64,7 +67,9 @@ extension Keewidb {
 
     /// ModifyNetworkConfig返回参数结构体
     public struct ModifyNetworkConfigResponse: TCResponseModel {
-        /// 执行状态。<ul><li>true：执行成功。</li><li>false：执行失败。</li></ul>
+        /// 执行状态。
+        /// - true：执行成功。
+        /// - false：执行失败。
         public let status: Bool
 
         /// 修改后的子网 ID。

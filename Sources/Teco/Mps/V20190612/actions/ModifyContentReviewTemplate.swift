@@ -40,8 +40,8 @@ extension Mps {
         public let politicalConfigure: PoliticalConfigureInfoForUpdate?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         /// 注意：此参数尚未支持。
         public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
 

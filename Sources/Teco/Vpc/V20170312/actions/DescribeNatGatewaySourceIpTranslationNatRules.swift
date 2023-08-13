@@ -26,9 +26,9 @@ extension Vpc {
         public let natGatewayId: String
 
         /// 过滤条件:
-        /// <li> resource-id，Subnet的ID或者Cvm ID，如`subnet-0yi4hekt`</li>
-        /// <li> public-ip-address，弹性IP，如`139.199.232.238`</li>
-        /// <li>description，规则描述。</li>
+        /// - resource-id，Subnet的ID或者Cvm ID，如`subnet-0yi4hekt`
+        /// - public-ip-address，弹性IP，如`139.199.232.238`
+        /// - description，规则描述。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

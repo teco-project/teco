@@ -34,8 +34,8 @@ extension Cme {
         public let inputInfo: StreamInputInfo?
 
         /// 主备输入源标识，取值有：
-        /// <li> Main ：主源；</li>
-        /// <li> Backup ：备源。</li>
+        /// - Main ：主源；
+        /// - Backup ：备源。
         public let inputEndpoint: String?
 
         /// 转推输出源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。

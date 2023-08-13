@@ -32,7 +32,7 @@ extension Cynosdb {
         public let offset: Int64?
 
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         public let dbType: String?
 
         /// 备份ID

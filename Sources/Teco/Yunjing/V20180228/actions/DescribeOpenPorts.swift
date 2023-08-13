@@ -35,9 +35,9 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Port - Uint64 - 是否必填：否 - 端口号</li>
-        /// <li>ProcessName - String - 是否必填：否 - 进程名</li>
-        /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
+        /// - Port - Uint64 - 是否必填：否 - 端口号
+        /// - ProcessName - String - 是否必填：否 - 进程名
+        /// - MachineIp - String - 是否必填：否 - 主机内网IP
         public let filters: [Filter]?
 
         public init(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

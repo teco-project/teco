@@ -25,7 +25,7 @@ extension Cwp {
         public let ruleId: UInt64
 
         /// 过滤条件。
-        /// <li>AliasName- String- 主机别名</li>
+        /// - AliasName- String- 主机别名
         public let filters: [Filters]?
 
         public init(ruleId: UInt64, filters: [Filters]? = nil) {

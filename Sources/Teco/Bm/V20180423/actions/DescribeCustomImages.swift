@@ -40,13 +40,11 @@ extension Bm {
         /// 模糊查询过滤，可以查询镜像ID或镜像名
         public let searchKey: String?
 
-        /// <ul>
         /// 镜像状态过滤列表，有效取值为：
-        /// <li>1：制作中</li>
-        /// <li>2：制作失败</li>
-        /// <li>3：正常</li>
-        /// <li>4：删除中</li>
-        /// </ul>
+        /// - 1：制作中
+        /// - 2：制作失败
+        /// - 3：正常
+        /// - 4：删除中
         public let imageStatus: [UInt64]?
 
         public init(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil) {

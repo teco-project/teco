@@ -22,23 +22,23 @@ extension Cwp {
     /// DescribeTags请求参数结构体
     public struct DescribeTagsRequest: TCRequestModel {
         /// 云主机类型。
-        /// <li>CVM：表示云服务器</li>
-        /// <li>BM:  表示黑石物理机</li>
-        /// <li>ECM:  表示边缘计算服务器</li>
-        /// <li>LH:  表示轻量应用服务器</li>
-        /// <li>Other:  表示混合云服务器</li>
+        /// - CVM：表示云服务器
+        /// - BM:  表示黑石物理机
+        /// - ECM:  表示边缘计算服务器
+        /// - LH:  表示轻量应用服务器
+        /// - Other:  表示混合云服务器
         public let machineType: String?
 
         /// 机器所属地域。如：ap-guangzhou
         public let machineRegion: String?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 查询关键字(机器名称/机器IP </li>
-        /// <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装 | SHUTDOWN 已关机）</li>
-        /// <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
-        /// <li>Risk - String 是否必填: 否 - 风险主机( yes ) </li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
-        /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询</li>
+        /// - Keywords - String - 是否必填：否 - 查询关键字(机器名称/机器IP
+        /// - Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装 | SHUTDOWN 已关机）
+        /// - Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）
+        /// - Risk - String 是否必填: 否 - 风险主机( yes )
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
+        /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filters]?
 
         public init(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil) {

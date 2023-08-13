@@ -40,8 +40,8 @@ extension Yunjing {
         public let groups: String
 
         /// 帐号类型。
-        /// <li>ORDINARY：普通帐号</li>
-        /// <li>SUPPER：超级管理员帐号</li>
+        /// - ORDINARY：普通帐号
+        /// - SUPPER：超级管理员帐号
         public let privilege: String
 
         /// 帐号创建时间。
@@ -95,10 +95,10 @@ extension Yunjing {
         public let vulName: String
 
         /// 漏洞危害等级。
-        /// <li>HIGH：高危</li>
-        /// <li>MIDDLE：中危</li>
-        /// <li>LOW：低危</li>
-        /// <li>NOTICE：提示</li>
+        /// - HIGH：高危
+        /// - MIDDLE：中危
+        /// - LOW：低危
+        /// - NOTICE：提示
         public let vulLevel: String
 
         /// 最后扫描时间。
@@ -114,8 +114,8 @@ extension Yunjing {
         public let vulId: UInt64
 
         /// 漏洞状态。
-        /// <li>UN_OPERATED : 待处理</li>
-        /// <li>FIXED : 已修复</li>
+        /// - UN_OPERATED : 待处理
+        /// - FIXED : 已修复
         public let vulStatus: String
 
         enum CodingKeys: String, CodingKey {
@@ -251,9 +251,9 @@ extension Yunjing {
         public let machineIp: String
 
         /// 破解事件状态
-        /// <li>BRUTEATTACK_FAIL_ACCOUNT： 暴力破解事件-失败(存在帐号)  </li>
-        /// <li>BRUTEATTACK_FAIL_NOACCOUNT：暴力破解事件-失败(帐号不存在)</li>
-        /// <li>BRUTEATTACK_SUCCESS：暴力破解事件-成功</li>
+        /// - BRUTEATTACK_FAIL_ACCOUNT： 暴力破解事件-失败(存在帐号)
+        /// - BRUTEATTACK_FAIL_NOACCOUNT：暴力破解事件-失败(帐号不存在)
+        /// - BRUTEATTACK_SUCCESS：暴力破解事件-成功
         public let status: String
 
         /// 用户名称。
@@ -320,9 +320,9 @@ extension Yunjing {
         public let period: UInt64
 
         /// 自动续费标识。取值范围：
-        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
-        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
-        /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
+        /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
         ///
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
@@ -356,8 +356,8 @@ extension Yunjing {
         public let componentVersion: String
 
         /// 组件类型。
-        /// <li>SYSTEM：系统组件</li>
-        /// <li>WEB：Web组件</li>
+        /// - SYSTEM：系统组件
+        /// - WEB：Web组件
         public let componentType: String
 
         /// 组件名称。
@@ -393,8 +393,8 @@ extension Yunjing {
         public let componentName: String
 
         /// 组件类型。
-        /// <li>WEB：Web组件</li>
-        /// <li>SYSTEM：系统组件</li>
+        /// - WEB：Web组件
+        /// - SYSTEM：系统组件
         public let componentType: String
 
         /// 组件描述。
@@ -514,9 +514,9 @@ extension Yunjing {
         public let username: String
 
         /// 帐号变更类型。
-        /// <li>CREATE：表示新增帐号</li>
-        /// <li>MODIFY：表示修改帐号</li>
-        /// <li>DELETE：表示删除帐号</li>
+        /// - CREATE：表示新增帐号
+        /// - MODIFY：表示修改帐号
+        /// - DELETE：表示删除帐号
         public let modifyType: String
 
         /// 变更时间。
@@ -554,9 +554,9 @@ extension Yunjing {
         @TCTimestampEncoding public var lastScanTime: Date
 
         /// 漏洞状态。
-        /// <li>UN_OPERATED ：待处理</li>
-        /// <li>SCANING : 扫描中</li>
-        /// <li>FIXED : 已修复</li>
+        /// - UN_OPERATED ：待处理
+        /// - SCANING : 扫描中
+        /// - FIXED : 已修复
         public let vulStatus: String
 
         /// 云镜客户端唯一标识UUID。
@@ -702,9 +702,9 @@ extension Yunjing {
         public let machineOs: String
 
         /// 主机状态。
-        /// <li>OFFLINE: 离线  </li>
-        /// <li>ONLINE: 在线</li>
-        /// <li>MACHINE_STOPPED: 已关机</li>
+        /// - OFFLINE: 离线
+        /// - ONLINE: 在线
+        /// - MACHINE_STOPPED: 已关机
         public let machineStatus: String
 
         /// 云镜客户端唯一Uuid，若客户端长时间不在线将返回空字符。
@@ -720,16 +720,16 @@ extension Yunjing {
         public let machineIp: String
 
         /// 是否是专业版。
-        /// <li>true： 是</li>
-        /// <li>false：否</li>
+        /// - true： 是
+        /// - false：否
         public let isProVersion: Bool
 
         /// 主机外网IP。
         public let machineWanIp: String
 
         /// 主机状态。
-        /// <li>POSTPAY: 表示后付费，即按量计费  </li>
-        /// <li>PREPAY: 表示预付费，即包年包月</li>
+        /// - POSTPAY: 表示后付费，即按量计费
+        /// - PREPAY: 表示预付费，即包年包月
         public let payMode: String
 
         /// 木马数。
@@ -745,9 +745,9 @@ extension Yunjing {
         public let cyberAttackNum: Int64
 
         /// 风险状态。
-        /// <li>SAFE：安全</li>
-        /// <li>RISK：风险</li>
-        /// <li>UNKNOWN：未知</li>
+        /// - SAFE：安全
+        /// - RISK：风险
+        /// - UNKNOWN：未知
         public let securityStatus: String
 
         /// 入侵事件数
@@ -819,9 +819,9 @@ extension Yunjing {
         public let processName: String
 
         /// 记录状态。
-        /// <li>UN_OPERATED：待处理</li>
-        /// <li>TRUSTED：已信任</li>
-        /// <li>UN_TRUSTED：已取消信任</li>
+        /// - UN_OPERATED：待处理
+        /// - TRUSTED：已信任
+        /// - UN_TRUSTED：已取消信任
         public let status: String
 
         /// 恶意请求域名描述。
@@ -880,8 +880,11 @@ extension Yunjing {
         public let machineIp: String
 
         /// 当前木马状态。
-        /// <li>UN_OPERATED：未处理</li><li>SEGREGATED：已隔离</li><li>TRUSTED：已信任</li>
-        /// <li>SEPARATING：隔离中</li><li>RECOVERING：恢复中</li>
+        /// - UN_OPERATED：未处理
+        /// - SEGREGATED：已隔离
+        /// - TRUSTED：已信任
+        /// - SEPARATING：隔离中
+        /// - RECOVERING：恢复中
         public let status: String
 
         /// 木马所在的路径。
@@ -930,8 +933,8 @@ extension Yunjing {
         public let machineIp: String
 
         /// 登录状态
-        /// <li>NON_LOCAL_LOGIN：异地登录</li>
-        /// <li>NORMAL_LOGIN：正常登录</li>
+        /// - NON_LOCAL_LOGIN：异地登录
+        /// - NORMAL_LOGIN：正常登录
         public let status: String
 
         /// 用户名。
@@ -1189,8 +1192,8 @@ extension Yunjing {
     /// 需要开通专业版机器信息。
     public struct ProVersionMachine: TCInputModel {
         /// 主机类型。
-        /// <li>CVM: 虚拟主机</li>
-        /// <li>BM: 黑石物理机</li>
+        /// - CVM: 虚拟主机
+        /// - BM: 黑石物理机
         public let machineType: String
 
         /// 主机所在地域。
@@ -1241,10 +1244,10 @@ extension Yunjing {
         public let username: String
 
         /// 所属平台。
-        /// <li>WIN32：windows32位</li>
-        /// <li>WIN64：windows64位</li>
-        /// <li>LINUX32：Linux32位</li>
-        /// <li>LINUX64：Linux64位</li>
+        /// - WIN32：windows32位
+        /// - WIN64：windows64位
+        /// - LINUX32：Linux32位
+        /// - LINUX64：Linux64位
         public let platform: String
 
         /// 进程路径。
@@ -1451,21 +1454,21 @@ extension Yunjing {
         @TCTimestampEncoding public var eventTime: Date
 
         /// 安全事件类型。
-        /// <li>MALWARE：木马事件</li>
-        /// <li>NON_LOCAL_LOGIN：异地登录</li>
-        /// <li>BRUTEATTACK_SUCCESS：密码破解成功</li>
-        /// <li>VUL：漏洞</li>
-        /// <li>BASELINE：安全基线</li>
+        /// - MALWARE：木马事件
+        /// - NON_LOCAL_LOGIN：异地登录
+        /// - BRUTEATTACK_SUCCESS：密码破解成功
+        /// - VUL：漏洞
+        /// - BASELINE：安全基线
         public let eventType: String
 
         /// 安全事件消息。
         public let message: String
 
         /// 安全事件等级。
-        /// <li>RISK: 严重</li>
-        /// <li>HIGH: 高危</li>
-        /// <li>NORMAL: 中危</li>
-        /// <li>LOW: 低危</li>
+        /// - RISK: 严重
+        /// - HIGH: 高危
+        /// - NORMAL: 中危
+        /// - LOW: 低危
         public let securityLevel: String
 
         enum CodingKeys: String, CodingKey {
@@ -1678,11 +1681,11 @@ extension Yunjing {
         @TCTimestampEncoding public var findTime: Date
 
         /// 当前木马状态。
-        /// <li>UN_OPERATED：未处理</li>
-        /// <li>SEGREGATED：已隔离</li>
-        /// <li>TRUSTED：已信任</li>
-        /// <li>SEPARATING：隔离中</li>
-        /// <li>RECOVERING：恢复中</li>
+        /// - UN_OPERATED：未处理
+        /// - SEGREGATED：已隔离
+        /// - TRUSTED：已信任
+        /// - SEPARATING：隔离中
+        /// - RECOVERING：恢复中
         public let status: String
 
         enum CodingKeys: String, CodingKey {
@@ -1740,18 +1743,18 @@ extension Yunjing {
         public let vulName: String
 
         /// 漏洞类型。
-        /// <li> WEB : Web漏洞</li>
-        /// <li> SYSTEM :系统组件漏洞</li>
-        /// <li> BASELINE : 安全基线</li>
+        /// - WEB : Web漏洞
+        /// - SYSTEM :系统组件漏洞
+        /// - BASELINE : 安全基线
         public let vulType: String
 
         /// 漏洞描述。
         public let description: String
 
         /// 漏洞状态。
-        /// <li> UN_OPERATED : 待处理</li>
-        /// <li> SCANING : 扫描中</li>
-        /// <li> FIXED : 已修复</li>
+        /// - UN_OPERATED : 待处理
+        /// - SCANING : 扫描中
+        /// - FIXED : 已修复
         public let vulStatus: String
 
         /// 最后扫描时间。

@@ -26,7 +26,7 @@ extension Vpc {
         public let vpcIds: [String]?
 
         /// 过滤条件，参数不支持同时指定VpcIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

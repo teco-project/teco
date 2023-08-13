@@ -29,10 +29,10 @@ extension Cme {
         public let searchScopes: [SearchScope]
 
         /// 媒体类型，可取值有：
-        /// <li>AUDIO：音频；</li>
-        /// <li>VIDEO：视频 ；</li>
-        /// <li>IMAGE：图片；</li>
-        /// <li>VIDEO_EDIT_TEMPLATE：剪辑模板。</li>
+        /// - AUDIO：音频；
+        /// - VIDEO：视频 ；
+        /// - IMAGE：图片；
+        /// - VIDEO_EDIT_TEMPLATE：剪辑模板。
         public let materialTypes: [String]?
 
         /// 搜索文本，模糊匹配媒体名称或描述信息，匹配项越多，匹配度越高，排序越优先。长度限制：15个字符。

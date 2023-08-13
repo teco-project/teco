@@ -22,19 +22,19 @@ import TecoPaginationHelpers
 extension Cls {
     /// DescribeAlarmNotices请求参数结构体
     public struct DescribeAlarmNoticesRequest: TCPaginatedRequest {
-        /// <li> name
+        /// - name
         /// 按照【通知渠道组名称】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li> alarmNoticeId
+        /// - alarmNoticeId
         /// 按照【通知渠道组ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li> uid
+        /// - uid
         /// 按照【接收用户ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li> groupId
+        /// - groupId
         /// 按照【接收用户组ID】进行过滤。
         /// 类型：String
         /// 必选：否

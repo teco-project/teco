@@ -23,14 +23,14 @@ extension Cwp {
     /// DescribeLicenseList请求参数结构体
     public struct DescribeLicenseListRequest: TCPaginatedRequest {
         /// 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
-        /// <li> LicenseStatus 授权状态信息,0 未使用,1 部分使用, 2 已用完, 3 不可用  4 可使用</li>
-        /// <li> BuyTime 购买时间</li>
-        /// <li> LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月</li>
-        /// <li>DeadlineStatus 到期状态 NotExpired 未过期, Expire 已过期(包含已销毁) NearExpiry 即将到期</li>
-        /// <li>ResourceId 资源ID</li>
-        /// <li>Keywords IP筛选</li>
-        /// <li>PayMode 付费模式 0 按量计费 , 1 包年包月</li>
-        /// <li>OrderStatus 订单状态 1 正常 2 隔离 3 销毁</li>
+        /// - LicenseStatus 授权状态信息,0 未使用,1 部分使用, 2 已用完, 3 不可用  4 可使用
+        /// - BuyTime 购买时间
+        /// - LicenseType  授权类型, 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
+        /// - DeadlineStatus 到期状态 NotExpired 未过期, Expire 已过期(包含已销毁) NearExpiry 即将到期
+        /// - ResourceId 资源ID
+        /// - Keywords IP筛选
+        /// - PayMode 付费模式 0 按量计费 , 1 包年包月
+        /// - OrderStatus 订单状态 1 正常 2 隔离 3 销毁
         public let filters: [Filters]?
 
         /// 限制条数,默认10.

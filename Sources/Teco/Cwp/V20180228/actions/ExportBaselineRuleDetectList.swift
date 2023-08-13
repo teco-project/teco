@@ -21,9 +21,9 @@ import TecoCore
 extension Cwp {
     /// ExportBaselineRuleDetectList请求参数结构体
     public struct ExportBaselineRuleDetectListRequest: TCRequestModel {
-        /// <li>RuleName - string - 是否必填：否 - 规则名称</i>
-        /// <li>IsPassed - int - 是否必填：否 - 是否通过</li>
-        /// <li>RiskTier - int - 是否必填：否 - 风险等级</li>
+        /// - RuleName - string - 是否必填：否 - 规则名称</i>
+        /// - IsPassed - int - 是否必填：否 - 是否通过
+        /// - RiskTier - int - 是否必填：否 - 风险等级
         public let filters: [Filter]?
 
         /// 0:过滤的结果导出；1:全部导出

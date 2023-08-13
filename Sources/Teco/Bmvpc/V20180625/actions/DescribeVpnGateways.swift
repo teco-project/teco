@@ -26,10 +26,10 @@ extension Bmvpc {
         public let vpnGatewayIds: [String]?
 
         /// 过滤条件，参数不支持同时指定VpnGatewayIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
-        /// <li>state - String - （过滤条件 VPN状态：creating，available，createfailed，changing，changefailed，deleting，deletefailed。</li>
-        /// <li>zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。</li>
-        /// <li>vpngw-name - String - （过滤条件）vpn网关名称。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。
+        /// - state - String - （过滤条件 VPN状态：creating，available，createfailed，changing，changefailed，deleting，deletefailed。
+        /// - zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。
+        /// - vpngw-name - String - （过滤条件）vpn网关名称。
         public let filters: [Filter]?
 
         /// 偏移量

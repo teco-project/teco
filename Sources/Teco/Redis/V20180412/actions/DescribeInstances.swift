@@ -31,10 +31,17 @@ extension Redis {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String?
 
-        /// 实例列表排序依据，枚举值如下所示：<ul><li>projectId：依据项目ID排序。</li><li>createtime：依据实例创建时间排序。</li><li>instancename：依据实例名称排序。</li><li>type：依据实例类型排序。</li><li>curDeadline：依据实例到期时间排序。</li></ul>
+        /// 实例列表排序依据，枚举值如下所示：
+        /// - projectId：依据项目ID排序。
+        /// - createtime：依据实例创建时间排序。
+        /// - instancename：依据实例名称排序。
+        /// - type：依据实例类型排序。
+        /// - curDeadline：依据实例到期时间排序。
         public let orderBy: String?
 
-        /// 实例排序方式，默认为倒序排序。<ul><li>1：倒序。</li><li>0：顺序。</li></ul>
+        /// 实例排序方式，默认为倒序排序。
+        /// - 1：倒序。
+        /// - 0：顺序。
         public let orderType: Int64?
 
         /// 私有网络 ID 数组。如果不配置该参数或设置数组为空则默认选择基础网络。例如47525。该参数暂时保留，可忽略。请根据 UniqVpcIds 参数格式设置私有网络ID数组。
@@ -61,19 +68,32 @@ extension Redis {
         /// 地域 ID 数组，该参数已经弃用，可通过公共参数Region查询对应地域。
         public let regionIds: [Int64]?
 
-        /// 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
+        /// 实例状态。
+        /// - 0：待初始化。
+        /// - 1：流程中。
+        /// - 2：运行中。
+        /// - -2：已隔离。
+        /// - -3：待删除。
         public let status: [Int64]?
 
-        /// 实例架构版本。<ul><li>1：单机版。</li><li>2：主从版。</li><li>3：集群版。</li></ul>
+        /// 实例架构版本。
+        /// - 1：单机版。
+        /// - 2：主从版。
+        /// - 3：集群版。
         public let typeVersion: Int64?
 
         /// 存储引擎信息。可设置为Redis-2.8、Redis-4.0、Redis-5.0、Redis-6.0 或者 CKV。
         public let engineName: String?
 
-        /// 续费模式。<ul><li>0：手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        /// 续费模式。
+        /// - 0：手动续费。
+        /// - 1：自动续费。
+        /// - 2：到期不再续费。
         public let autoRenew: [Int64]?
 
-        /// 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
+        /// 计费模式。
+        /// - postpaid：按量计费。
+        /// - prepaid：包年包月。
         public let billingMode: String?
 
         /// 实例类型。
@@ -104,13 +124,17 @@ extension Redis {
         /// 根据标签的 Key 筛选资源，该参数不配置或者数组设置为空值，则不根据标签Key进行过滤。
         public let tagKeys: [String]?
 
-        /// 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。<ul><li>local：本地盘版。</li><li>cdc：独享集群版。</li></ul>
+        /// 实例的产品版本。如果该参数不配置或者数组设置为空值，则默认不依据此参数过滤实例。
+        /// - local：本地盘版。
+        /// - cdc：独享集群版。
         public let productVersions: [String]?
 
         /// 批量查询指定的实例 ID，返回结果已 Limit 限制为主。
         public let instanceIds: [String]?
 
-        /// 可用区模式。<ul><li>singleaz：单可用区。</li><li>multiaz：多可用区。</li></ul>
+        /// 可用区模式。
+        /// - singleaz：单可用区。
+        /// - multiaz：多可用区。
         public let azMode: String?
 
         public init(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil) {

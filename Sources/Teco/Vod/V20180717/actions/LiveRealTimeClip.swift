@@ -43,7 +43,7 @@ extension Vod {
         public let procedure: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         /// 仅 IsPersistence 为 1 时有效。
         public let classId: Int64?
 
@@ -60,8 +60,8 @@ extension Vod {
         public let host: String?
 
         /// 剪辑的直播流信息：
-        /// <li>默认剪辑直播原始流。</li>
-        /// <li>当StreamInfo中指定的Type为Transcoding，则剪辑TemplateId对应的直播转码流。</li>
+        /// - 默认剪辑直播原始流。
+        /// - 当StreamInfo中指定的Type为Transcoding，则剪辑TemplateId对应的直播转码流。
         public let streamInfo: LiveRealTimeClipStreamInfo?
 
         /// 系统保留字段，请勿填写。

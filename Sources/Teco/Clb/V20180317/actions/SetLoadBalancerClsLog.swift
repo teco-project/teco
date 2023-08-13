@@ -25,18 +25,18 @@ extension Clb {
         public let loadBalancerId: String
 
         /// 日志服务(CLS)的日志集 ID。
-        /// <li>增加和更新日志主题时可调用 [DescribeLogsets](https://cloud.tencent.com/document/product/614/56454) 接口获取日志集 ID。</li>
-        /// <li>删除日志主题时，此参数填写为null即可。</li>
+        /// - 增加和更新日志主题时可调用 [DescribeLogsets](https://cloud.tencent.com/document/product/614/56454) 接口获取日志集 ID。
+        /// - 删除日志主题时，此参数填写为null即可。
         public let logSetId: String
 
         /// 日志服务(CLS)的日志主题 ID。
-        /// <li>增加和更新日志主题时可调用 [DescribeTopics](https://cloud.tencent.com/document/product/614/58624) 接口获取日志主题 ID。</li>
-        /// <li>删除日志主题时，此参数填写为null即可。</li>
+        /// - 增加和更新日志主题时可调用 [DescribeTopics](https://cloud.tencent.com/document/product/614/58624) 接口获取日志主题 ID。
+        /// - 删除日志主题时，此参数填写为null即可。
         public let logTopicId: String
 
         /// 日志类型：
-        /// <li>ACCESS：访问日志</li>
-        /// <li>HEALTH：健康检查日志</li>
+        /// - ACCESS：访问日志
+        /// - HEALTH：健康检查日志
         /// 默认为ACCESS。
         public let logType: String?
 

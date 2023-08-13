@@ -25,18 +25,18 @@ extension Teo {
         public let zoneId: String
 
         /// 所要购买套餐的类型，取值有：
-        /// <li> sta: 全球内容分发网络（不包括中国大陆）标准版套餐； </li>
-        /// <li> sta_with_bot: 全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；</li>
-        /// <li> sta_cm: 中国大陆内容分发网络标准版套餐； </li>
-        /// <li> sta_cm_with_bot: 中国大陆内容分发网络标准版套餐附带bot管理；</li>
-        /// <li> sta_global ：全球内容分发网络（包括中国大陆）标准版套餐； </li>
-        /// <li> sta_global_with_bot ：全球内容分发网络（包括中国大陆）标准版套餐附带bot管理；</li>
-        /// <li> ent: 全球内容分发网络（不包括中国大陆）企业版套餐； </li>
-        /// <li> ent_with_bot: 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；</li>
-        /// <li> ent_cm: 中国大陆内容分发网络企业版套餐； </li>
-        /// <li> ent_cm_with_bot: 中国大陆内容分发网络企业版套餐附带bot管理。</li>
-        /// <li> ent_global ：全球内容分发网络（包括中国大陆）企业版套餐； </li>
-        /// <li> ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。</li>当前账户可购买套餐类型请以<a href="https://cloud.tencent.com/document/product/1552/80606">DescribeAvailablePlans</a>返回为准。
+        /// - sta: 全球内容分发网络（不包括中国大陆）标准版套餐；
+        /// - sta_with_bot: 全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；
+        /// - sta_cm: 中国大陆内容分发网络标准版套餐；
+        /// - sta_cm_with_bot: 中国大陆内容分发网络标准版套餐附带bot管理；
+        /// - sta_global ：全球内容分发网络（包括中国大陆）标准版套餐；
+        /// - sta_global_with_bot ：全球内容分发网络（包括中国大陆）标准版套餐附带bot管理；
+        /// - ent: 全球内容分发网络（不包括中国大陆）企业版套餐；
+        /// - ent_with_bot: 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；
+        /// - ent_cm: 中国大陆内容分发网络企业版套餐；
+        /// - ent_cm_with_bot: 中国大陆内容分发网络企业版套餐附带bot管理。
+        /// - ent_global ：全球内容分发网络（包括中国大陆）企业版套餐；
+        /// - ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。当前账户可购买套餐类型请以<a href="https://cloud.tencent.com/document/product/1552/80606">DescribeAvailablePlans</a>返回为准。
         public let planType: String
 
         public init(zoneId: String, planType: String) {

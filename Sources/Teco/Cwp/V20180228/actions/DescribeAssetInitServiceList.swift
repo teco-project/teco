@@ -29,11 +29,11 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name- string - 是否必填：否 - 包名</li>
-        /// <li>User- string - 是否必填：否 - 用户</li>
-        /// <li>Status- string - 是否必填：否 - 默认启用状态：0未启用， 1启用 仅linux</li>
-        /// <li>Type- string - 是否必填：否 - 类型：类型 仅windows：
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name- string - 是否必填：否 - 包名
+        /// - User- string - 是否必填：否 - 用户
+        /// - Status- string - 是否必填：否 - 默认启用状态：0未启用， 1启用 仅linux
+        /// - Type- string - 是否必填：否 - 类型：类型 仅windows：
         /// 1:编码器
         /// 2:IE插件
         /// 3:网络提供者
@@ -47,7 +47,7 @@ extension Cwp {
         /// 11:打印监控器
         /// 12:资源管理器
         /// 13:驱动服务
-        /// 14:登录</li>
+        /// 14:登录
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

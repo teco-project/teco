@@ -28,18 +28,18 @@ extension Teo {
         public let originGroupId: String
 
         /// 源站类型，取值有：
-        /// <li>self：自有源站；</li>
-        /// <li>third_party：第三方源站；</li>
-        /// <li>cos：腾讯云COS源站。</li>
+        /// - self：自有源站；
+        /// - third_party：第三方源站；
+        /// - cos：腾讯云COS源站。
         public let originType: String
 
         /// 源站组名称。
         public let originGroupName: String
 
         /// 源站配置类型，当OriginType=self时，取值有：
-        /// <li>area：按区域配置；</li>
-        /// <li>weight： 按权重配置；</li>
-        /// <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
+        /// - area：按区域配置；
+        /// - weight： 按权重配置；
+        /// - proto： 按HTTP协议配置。当OriginType=third_party/cos时放空。
         public let configurationType: String
 
         /// 源站记录信息。

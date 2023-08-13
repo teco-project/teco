@@ -36,12 +36,12 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 查询的统计指标，取值有：
-        /// <li>ddos_attackFlux_protocol：按各协议的攻击流量排行；</li>
-        /// <li>ddos_attackPackageNum_protocol：按各协议的攻击包量排行；</li>
-        /// <li>ddos_attackNum_attackType：按各攻击类型的攻击数量排行；</li>
-        /// <li>ddos_attackNum_sregion：按攻击源地区的攻击数量排行；</li>
-        /// <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
-        /// <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
+        /// - ddos_attackFlux_protocol：按各协议的攻击流量排行；
+        /// - ddos_attackPackageNum_protocol：按各协议的攻击包量排行；
+        /// - ddos_attackNum_attackType：按各攻击类型的攻击数量排行；
+        /// - ddos_attackNum_sregion：按攻击源地区的攻击数量排行；
+        /// - ddos_attackFlux_sip：按攻击源IP的攻击数量排行；
+        /// - ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。
         public let metricName: String
 
         /// 站点ID集合，不填默认选择全部站点。
@@ -51,15 +51,15 @@ extension Teo {
         public let policyIds: [Int64]?
 
         /// 攻击类型，取值有：
-        /// <li>flood：洪泛攻击；</li>
-        /// <li>icmpFlood：icmp洪泛攻击；</li>
-        /// <li>all：所有的攻击类型。</li>不填默认为all，表示查询全部攻击类型。
+        /// - flood：洪泛攻击；
+        /// - icmpFlood：icmp洪泛攻击；
+        /// - all：所有的攻击类型。不填默认为all，表示查询全部攻击类型。
         public let attackType: String?
 
         /// 协议类型，取值有：
-        /// <li>tcp：tcp协议；</li>
-        /// <li>udp：udp协议；</li>
-        /// <li>all：所有的协议类型。</li>不填默认为all，表示查询所有协议。
+        /// - tcp：tcp协议；
+        /// - udp：udp协议；
+        /// - all：所有的协议类型。不填默认为all，表示查询所有协议。
         public let protocolType: String?
 
         /// 端口号。
@@ -69,8 +69,8 @@ extension Teo {
         public let limit: Int64?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据。不填将根据用户所在地智能选择地区。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, attackType: String? = nil, protocolType: String? = nil, port: Int64? = nil, limit: Int64? = nil, area: String? = nil) {

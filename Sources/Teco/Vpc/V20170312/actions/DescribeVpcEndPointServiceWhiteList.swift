@@ -29,8 +29,8 @@ extension Vpc {
         public let limit: UInt64?
 
         /// 过滤条件。
-        /// <li> user-uin String - （过滤条件）用户UIN。</li>
-        /// <li> end-point-service-id String - （过滤条件）终端节点服务ID。</li>
+        /// - user-uin String - （过滤条件）用户UIN。
+        /// - end-point-service-id String - （过滤条件）终端节点服务ID。
         public let filters: [Filter]?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {

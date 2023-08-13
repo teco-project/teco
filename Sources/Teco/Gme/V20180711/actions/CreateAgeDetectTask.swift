@@ -25,8 +25,8 @@ extension Gme {
         public let bizId: Int64
 
         /// 语音检测子任务列表，列表最多支持100个检测子任务。结构体中包含：
-        /// <li>DataId：数据的唯一ID</li>
-        /// <li>Url：数据文件的url，为 urlencode 编码，流式则为拉流地址</li>
+        /// - DataId：数据的唯一ID
+        /// - Url：数据文件的url，为 urlencode 编码，流式则为拉流地址
         public let tasks: [AgeDetectTask]
 
         /// 任务结束时gme后台会自动触发回调
@@ -62,16 +62,15 @@ extension Gme {
     /// 提交年龄语音识别任务
     ///
     /// 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
-    /// </br>
+    ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音文件进行检测，判断是否为未成年人。</li>
-    /// <li>支持批量提交检测子任务。检测子任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音文件进行检测，判断是否为未成年人。
+    /// - 支持批量提交检测子任务。检测子任务列表最多支持100个。
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：10 M</li>
-    /// <li>音频文件时长限制：3分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：10 M
+    /// - 音频文件时长限制：3分钟
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg
     @inlinable
     public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
         self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,16 +79,15 @@ extension Gme {
     /// 提交年龄语音识别任务
     ///
     /// 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
-    /// </br>
+    ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音文件进行检测，判断是否为未成年人。</li>
-    /// <li>支持批量提交检测子任务。检测子任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音文件进行检测，判断是否为未成年人。
+    /// - 支持批量提交检测子任务。检测子任务列表最多支持100个。
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：10 M</li>
-    /// <li>音频文件时长限制：3分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：10 M
+    /// - 音频文件时长限制：3分钟
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg
     @inlinable
     public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
         try await self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -98,16 +96,15 @@ extension Gme {
     /// 提交年龄语音识别任务
     ///
     /// 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
-    /// </br>
+    ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音文件进行检测，判断是否为未成年人。</li>
-    /// <li>支持批量提交检测子任务。检测子任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音文件进行检测，判断是否为未成年人。
+    /// - 支持批量提交检测子任务。检测子任务列表最多支持100个。
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：10 M</li>
-    /// <li>音频文件时长限制：3分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：10 M
+    /// - 音频文件时长限制：3分钟
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg
     @inlinable
     public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
         self.createAgeDetectTask(.init(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)
@@ -116,16 +113,15 @@ extension Gme {
     /// 提交年龄语音识别任务
     ///
     /// 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
-    /// </br>
+    ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音文件进行检测，判断是否为未成年人。</li>
-    /// <li>支持批量提交检测子任务。检测子任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音文件进行检测，判断是否为未成年人。
+    /// - 支持批量提交检测子任务。检测子任务列表最多支持100个。
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：10 M</li>
-    /// <li>音频文件时长限制：3分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：10 M
+    /// - 音频文件时长限制：3分钟
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg
     @inlinable
     public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
         try await self.createAgeDetectTask(.init(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)

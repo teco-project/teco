@@ -28,15 +28,15 @@ extension Emr {
         public let cvmInstanceIds: [String]
 
         /// 销毁节点类型取值范围：
-        ///   <li>MASTER</li>
-        ///   <li>TASK</li>
-        ///   <li>CORE</li>
-        ///   <li>ROUTER</li>
+        /// - MASTER
+        /// - TASK
+        /// - CORE
+        /// - ROUTER
         public let nodeFlag: String
 
         /// 优雅缩容开关
-        ///   <li>true:开启</li>
-        ///   <li>false:不开启</li>
+        /// - true:开启
+        /// - false:不开启
         public let graceDownFlag: Bool?
 
         /// 优雅缩容等待时间,时间范围60到1800  单位秒

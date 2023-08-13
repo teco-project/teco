@@ -29,8 +29,8 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>CVEID- string - 是否必填：否 - CVE编号</li>
-        /// <li>VulName- string - 是否必填：否 - 漏洞名称</li>
+        /// - CVEID- string - 是否必填：否 - CVE编号
+        /// - VulName- string - 是否必填：否 - 漏洞名称
         public let filters: [RunTimeFilters]?
 
         /// 排序方式:DESC,ACS

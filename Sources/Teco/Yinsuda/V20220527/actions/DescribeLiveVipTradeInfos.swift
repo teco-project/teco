@@ -40,11 +40,11 @@ extension Yinsuda {
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         /// 交易流水号集合，匹配集合指定所有流水号 。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let tradeSerialNos: [String]?
 
         /// 用户标识集合，匹配集合指定所有用户标识 。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let userIds: [String]?
 
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。

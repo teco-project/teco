@@ -25,9 +25,9 @@ extension Dcdb {
         public let instanceId: String
 
         /// 升级类型，取值范围:
-        /// <li> ADD: 新增分片 </li>
-        ///  <li> EXPAND: 升级实例中的已有分片 </li>
-        ///  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
+        /// - ADD: 新增分片
+        /// - EXPAND: 升级实例中的已有分片
+        /// - SPLIT: 将已有分片中的数据切分到新增分片上
         public let upgradeType: String
 
         /// 新增分片配置，当UpgradeType为ADD时生效。

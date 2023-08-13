@@ -23,9 +23,9 @@ extension Vpc {
     /// DescribeNetworkAcls请求参数结构体
     public struct DescribeNetworkAclsRequest: TCPaginatedRequest {
         /// 过滤条件，参数不支持同时指定NetworkAclIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678。</li>
-        /// <li>network-acl-id - String - （过滤条件）网络ACL实例ID，形如：acl-12345678。</li>
-        /// <li>network-acl-name - String - （过滤条件）网络ACL实例名称。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678。
+        /// - network-acl-id - String - （过滤条件）网络ACL实例ID，形如：acl-12345678。
+        /// - network-acl-name - String - （过滤条件）网络ACL实例名称。
         public let filters: [Filter]?
 
         /// 网络ACL实例ID数组。形如：[acl-12345678]。每次请求的实例的上限为100。参数不支持同时指定NetworkAclIds和Filters。

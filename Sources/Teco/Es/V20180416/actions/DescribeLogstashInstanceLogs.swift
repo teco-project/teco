@@ -26,9 +26,9 @@ extension Es {
         public let instanceId: String
 
         /// 日志类型，默认值为1
-        /// <li>1, 主日志</li>
-        /// <li>2, 慢日志</li>
-        /// <li>3, GC日志</li>
+        /// - 1, 主日志
+        /// - 2, 慢日志
+        /// - 3, GC日志
         public let logType: UInt64?
 
         /// 搜索词，支持LUCENE语法，如 level:WARN、ip:1.1.1.1、message:test-index等
@@ -47,8 +47,8 @@ extension Es {
         public let limit: UInt64?
 
         /// 时间排序方式，默认值为0
-        /// <li>0, 降序</li>
-        /// <li>1, 升序</li>
+        /// - 0, 降序
+        /// - 1, 升序
         public let orderByType: UInt64?
 
         public init(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil) {

@@ -26,9 +26,9 @@ extension Vpc {
         public let customerGatewayIds: [String]?
 
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定CustomerGatewayIds和Filters。
-        /// <li>customer-gateway-id - String - （过滤条件）用户网关唯一ID形如：`cgw-mgp33pll`。</li>
-        /// <li>customer-gateway-name - String - （过滤条件）用户网关名称形如：`test-cgw`。</li>
-        /// <li>ip-address - String - （过滤条件）公网地址形如：`58.211.1.12`。</li>
+        /// - customer-gateway-id - String - （过滤条件）用户网关唯一ID形如：`cgw-mgp33pll`。
+        /// - customer-gateway-name - String - （过滤条件）用户网关名称形如：`test-cgw`。
+        /// - ip-address - String - （过滤条件）公网地址形如：`58.211.1.12`。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。

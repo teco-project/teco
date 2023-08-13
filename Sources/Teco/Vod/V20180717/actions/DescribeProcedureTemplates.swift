@@ -29,8 +29,8 @@ extension Vod {
         public let names: [String]?
 
         /// 任务流模板类型过滤条件，可选值：
-        /// <li>Preset：系统预置任务流模板；</li>
-        /// <li>Custom：用户自定义任务流模板。</li>
+        /// - Preset：系统预置任务流模板；
+        /// - Custom：用户自定义任务流模板。
         public let type: String?
 
         /// 分页偏移量，默认值：0。

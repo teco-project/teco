@@ -22,8 +22,8 @@ extension Tcss {
     /// CreateVulDefenceHostExportJob请求参数结构体
     public struct CreateVulDefenceHostExportJobRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御</li>
-        /// <li>KeyWords- string - 是否必填：否 - 主机名称/IP。</li>
+        /// - Status- String - 是否必填：否 - 插件状态，正常：SUCCESS，异常：FAIL， NO_DEFENCE:未防御
+        /// - KeyWords- string - 是否必填：否 - 主机名称/IP。
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，最大值为100000

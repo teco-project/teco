@@ -40,7 +40,9 @@ extension Keewidb {
 
     /// ModifyInstanceParams返回参数结构体
     public struct ModifyInstanceParamsResponse: TCResponseModel {
-        /// 修改是否成功。<ul><li>true：修改成功。</li><li>false：修改失败。</li></ul>
+        /// 修改是否成功。
+        /// - true：修改成功。
+        /// - false：修改失败。
         public let changed: Bool
 
         /// 任务 ID。

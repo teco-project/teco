@@ -52,19 +52,19 @@ extension Teo {
         public let showDetail: Bool?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据；</li>
-        /// <li>global：全球数据；</li>不填默认取值为global。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据；
+        /// - global：全球数据；不填默认取值为global。
         public let area: String?
 
         /// 排序字段，取值有：
-        /// <li>MaxBandWidth：带宽峰值；</li>
-        /// <li>AttackStartTime：攻击开始时间。</li>不填默认值为：AttackStartTime。
+        /// - MaxBandWidth：带宽峰值；
+        /// - AttackStartTime：攻击开始时间。不填默认值为：AttackStartTime。
         public let orderBy: String?
 
         /// 排序方式，取值有：
-        /// <li>asc：升序方式；</li>
-        /// <li>desc：降序方式。</li>不填默认值为：desc。
+        /// - asc：升序方式；
+        /// - desc：降序方式。不填默认值为：desc。
         public let orderType: String?
 
         public init(startTime: Date, endTime: Date, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, showDetail: Bool? = nil, area: String? = nil, orderBy: String? = nil, orderType: String? = nil) {

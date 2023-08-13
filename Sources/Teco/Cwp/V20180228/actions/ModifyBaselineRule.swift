@@ -26,7 +26,7 @@ extension Cwp {
         /// 是否过滤全选
         public let selectAll: Int64?
 
-        /// <li>ItemName - string - 是否必填：否 - 项名称</li>
+        /// - ItemName - string - 是否必填：否 - 项名称
         public let filters: [Filter]?
 
         public init(data: BaselineRule, selectAll: Int64? = nil, filters: [Filter]? = nil) {

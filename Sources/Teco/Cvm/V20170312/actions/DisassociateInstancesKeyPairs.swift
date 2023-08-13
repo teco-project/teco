@@ -24,26 +24,20 @@ extension Cvm {
         /// 一个或多个待操作的实例ID，每次请求批量实例的上限为100。
         ///
         /// 可以通过以下方式获取可用的实例ID：
-        ///
-        /// <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。
-        ///
-        /// <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。
+        /// - 通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。
+        /// - 通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。
         public let instanceIds: [String]
 
         /// 密钥对ID列表，每次请求批量密钥对的上限为100。密钥对ID形如：`skey-11112222`。
         ///
         /// 可以通过以下方式获取可用的密钥ID：
-        ///
-        /// <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。
-        ///
-        /// <li>通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。
+        /// - 通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。
+        /// - 通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。
         public let keyIds: [String]
 
         /// 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再解绑密钥。取值范围：
-        ///
-        /// <li>TRUE：表示在正常关机失败后进行强制关机。
-        ///
-        /// <li>FALSE：表示在正常关机失败后不进行强制关机。
+        /// - TRUE：表示在正常关机失败后进行强制关机。
+        /// - FALSE：表示在正常关机失败后不进行强制关机。
         ///
         /// 默认取值：FALSE。
         public let forceStop: Bool?

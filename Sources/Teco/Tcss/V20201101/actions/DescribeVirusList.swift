@@ -29,20 +29,20 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>FileName - String - 是否必填：否 - 文件名称</li>
-        /// <li>FilePath - String - 是否必填：否 - 文件路径</li>
-        /// <li>VirusName - String - 是否必填：否 - 病毒名称</li>
-        /// <li>ContainerName- String - 是否必填：是 - 容器名称</li>
-        /// <li>ContainerId- string - 是否必填：否 - 容器id</li>
-        /// <li>ImageName- string - 是否必填：否 - 镜像名称</li>
-        /// <li>ImageId- string - 是否必填：否 - 镜像id</li>
-        /// <li>IsRealTime- int - 是否必填：否 - 过滤是否实时监控数据</li>
-        /// <li>TaskId- string - 是否必填：否 - 任务ID</li>
-        /// <li>ContainerNetStatus - String -是否必填: 否 -  容器网络状态筛选 NORMAL ISOLATED ISOLATING RESTORING RESTORE_FAILED</li>
-        /// <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
-        /// <li>ContainerStatus - string -是否必填: 否 - 容器状态 RUNNING PAUSED STOPPED CREATED DESTROYED RESTARTING REMOVING</li>
-        /// <li>AutoIsolateMode - string -是否必填: 否 - 隔离方式 MANUAL AUTO</li>
-        /// <li>MD5 - string -是否必填: 否 - md5 </li>
+        /// - FileName - String - 是否必填：否 - 文件名称
+        /// - FilePath - String - 是否必填：否 - 文件路径
+        /// - VirusName - String - 是否必填：否 - 病毒名称
+        /// - ContainerName- String - 是否必填：是 - 容器名称
+        /// - ContainerId- string - 是否必填：否 - 容器id
+        /// - ImageName- string - 是否必填：否 - 镜像名称
+        /// - ImageId- string - 是否必填：否 - 镜像id
+        /// - IsRealTime- int - 是否必填：否 - 过滤是否实时监控数据
+        /// - TaskId- string - 是否必填：否 - 任务ID
+        /// - ContainerNetStatus - String -是否必填: 否 -  容器网络状态筛选 NORMAL ISOLATED ISOLATING RESTORING RESTORE_FAILED
+        /// - TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]
+        /// - ContainerStatus - string -是否必填: 否 - 容器状态 RUNNING PAUSED STOPPED CREATED DESTROYED RESTARTING REMOVING
+        /// - AutoIsolateMode - string -是否必填: 否 - 隔离方式 MANUAL AUTO
+        /// - MD5 - string -是否必填: 否 - md5
         public let filters: [RunTimeFilters]?
 
         /// 排序方式

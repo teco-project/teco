@@ -109,12 +109,9 @@ extension Cls {
         public let name: String
 
         /// 告警模板的类型。可选值：
-        ///
-        /// <li> Trigger - 告警触发
-        ///
-        /// <li> Recovery - 告警恢复
-        ///
-        /// <li> All - 告警触发和告警恢复
+        /// - Trigger - 告警触发
+        /// - Recovery - 告警恢复
+        /// - All - 告警触发和告警恢复
         public let type: String
 
         /// 告警通知模板接收者信息。
@@ -2045,10 +2042,8 @@ extension Cls {
     /// 告警策略中监控任务的执行时间点
     public struct MonitorTime: TCInputModel, TCOutputModel {
         /// 可选值：
-        ///
-        /// <li> Period - 周期执行
-        ///
-        /// <li> Fixed - 定期执行
+        /// - Period - 周期执行
+        /// - Fixed - 定期执行
         public let type: String
 
         /// 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
@@ -2087,10 +2082,8 @@ extension Cls {
     /// 告警通知接收者信息
     public struct NoticeReceiver: TCInputModel, TCOutputModel {
         /// 接受者类型。可选值：
-        ///
-        /// <li> Uin - 用户ID
-        ///
-        /// <li> Group - 用户组ID
+        /// - Uin - 用户ID
+        /// - Group - 用户组ID
         /// 暂不支持其余接收者类型。
         public let receiverType: String
 
@@ -2098,14 +2091,10 @@ extension Cls {
         public let receiverIds: [Int64]
 
         /// 通知接收渠道。
-        ///
-        /// <li> Email - 邮件
-        ///
-        /// <li> Sms - 短信
-        ///
-        /// <li> WeChat - 微信
-        ///
-        /// <li> Phone - 电话
+        /// - Email - 邮件
+        /// - Sms - 短信
+        /// - WeChat - 微信
+        /// - Phone - 电话
         public let receiverChannels: [String]
 
         /// 允许接收信息的开始时间。
@@ -2727,13 +2716,13 @@ extension Cls {
         public let url: String
 
         /// 回调的类型。可选值：
-        /// <li> WeCom
-        /// <li> Http
+        /// - WeCom
+        /// - Http
         public let callbackType: String
 
         /// 回调方法。可选值：
-        /// <li> POST
-        /// <li> PUT
+        /// - POST
+        /// - PUT
         /// 默认值为POST。CallbackType为Http时为必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?

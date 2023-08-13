@@ -70,9 +70,12 @@ extension Vod {
     ///
     /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
     ///
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    /// >
+    /// - 图片文件大小支持：文件 < 5M；
+    /// >
+    /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；
+    /// >
+    /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func processImage(_ input: ProcessImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
         self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,9 +89,12 @@ extension Vod {
     ///
     /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
     ///
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    /// >
+    /// - 图片文件大小支持：文件 < 5M；
+    /// >
+    /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；
+    /// >
+    /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func processImage(_ input: ProcessImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
         try await self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -102,9 +108,12 @@ extension Vod {
     ///
     /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
     ///
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    /// >
+    /// - 图片文件大小支持：文件 < 5M；
+    /// >
+    /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；
+    /// >
+    /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
         self.processImage(.init(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
@@ -118,9 +127,12 @@ extension Vod {
     ///
     /// 1. 智能识别（令人反感的信息、不安全的信息、不适宜的信息）;
     ///
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    /// >
+    /// - 图片文件大小支持：文件 < 5M；
+    /// >
+    /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；
+    /// >
+    /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
         try await self.processImage(.init(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)

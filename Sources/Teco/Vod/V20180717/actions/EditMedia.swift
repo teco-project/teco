@@ -34,8 +34,8 @@ extension Vod {
         public let streamInfos: [EditMediaStreamInfo]?
 
         /// 编辑模板 ID，取值有 10，20，不填代表使用 10 模板。
-        /// <li>10：拼接时，以分辨率最高的输入为基准；</li>
-        /// <li>20：拼接时，以码率最高的输入为基准。</li>
+        /// - 10：拼接时，以分辨率最高的输入为基准；
+        /// - 20：拼接时，以码率最高的输入为基准。
         public let definition: UInt64?
 
         /// [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。

@@ -24,10 +24,14 @@ extension Tmt {
         /// 一段完整的语音对应一个SessionUuid
         public let sessionUuid: String
 
-        /// 音频中的语言类型，支持语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        /// 音频中的语言类型，支持语言列表
+        /// - zh : 中文
+        /// - en : 英文
         public let source: String
 
-        /// 翻译目标语言类型，支持的语言列表<li> zh : 中文 </li> <li> en : 英文 </li>
+        /// 翻译目标语言类型，支持的语言列表
+        /// - zh : 中文
+        /// - en : 英文
         public let target: String
 
         /// pcm : 146   speex : 16779154   mp3 : 83886080

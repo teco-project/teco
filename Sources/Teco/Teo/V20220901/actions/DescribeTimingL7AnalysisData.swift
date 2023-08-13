@@ -36,13 +36,13 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 指标列表，取值有:
-        /// <li>l7Flow_outFlux: Edgeone响应流量；</li>
-        /// <li>l7Flow_inFlux: Edgeone请求流量；</li>
-        /// <li>l7Flow_outBandwidth: Edgeone响应带宽；</li>
-        /// <li>l7Flow_inBandwidth：Edgeone请求带宽；</li>
-        /// <li>l7Flow_request: 访问请求数；</li>
-        /// <li>l7Flow_flux: 访问请求上行+下行流量；</li>
-        /// <li>l7Flow_bandwidth：访问请求上行+下行带宽。</li>
+        /// - l7Flow_outFlux: Edgeone响应流量；
+        /// - l7Flow_inFlux: Edgeone请求流量；
+        /// - l7Flow_outBandwidth: Edgeone响应带宽；
+        /// - l7Flow_inBandwidth：Edgeone请求带宽；
+        /// - l7Flow_request: 访问请求数；
+        /// - l7Flow_flux: 访问请求上行+下行流量；
+        /// - l7Flow_bandwidth：访问请求上行+下行带宽。
         public let metricNames: [String]
 
         /// 站点集合。
@@ -50,20 +50,20 @@ extension Teo {
         public let zoneIds: [String]?
 
         /// 查询时间粒度，取值有：
-        /// <li>min: 1分钟；</li>
-        /// <li>5min: 5分钟；</li>
-        /// <li>hour: 1小时；</li>
-        /// <li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        /// - min: 1分钟；
+        /// - 5min: 5分钟；
+        /// - hour: 1小时；
+        /// - day: 1天。不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
         /// 过滤条件，详细的过滤条件Key值如下：
-        /// <li>country
+        /// - country
         ///
-        /// 按照【**国家/地区**】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。</li>
-        /// <li>province
+        /// 按照【**国家/地区**】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。
+        /// - province
         ///
-        /// 按照【**省份**】进行过滤，此参数只支持服务区域为中国大陆。</li>
-        /// <li>isp
+        /// 按照【**省份**】进行过滤，此参数只支持服务区域为中国大陆。
+        /// - isp
         ///
         /// 按照【**运营商**】进行过滤，此参数只支持服务区域为中国大陆。
         ///
@@ -81,32 +81,32 @@ extension Teo {
         ///
         /// 43：长城宽带；
         ///
-        /// 0：其他运营商。</li>
-        /// <li>domain
+        /// 0：其他运营商。
+        /// - domain
         ///
-        /// 按照【**子域名**】进行过滤，子域名形如： test.example.com。</li>
-        /// <li>url
+        /// 按照【**子域名**】进行过滤，子域名形如： test.example.com。
+        /// - url
         ///
         /// 按照【**URL Path**】进行过滤，URL Path形如：/content或/content/test.jpg。
         ///
         /// 若只填写url参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写url+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
-        /// <li>referer
+        /// 若同时填写url+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// - referer
         ///
         /// 按照【**Referer头信息**】进行过滤, Referer形如：example.com。
         ///
         /// 若只填写referer参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写referer+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
-        /// <li>resourceType
+        /// 若同时填写referer+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// - resourceType
         ///
         /// 按照【**资源类型**】进行过滤，资源类型一般是文件后缀，形如: .jpg, .css。
         ///
         /// 若只填写resourceType参数，则最多可查询近30天的数据；
         ///
-        /// 若同时填写resourceType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
-        /// <li>protocol
+        /// 若同时填写resourceType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。
+        /// - protocol
         ///
         /// 按照【**HTTP协议版本**】进行过滤。
         ///
@@ -120,8 +120,8 @@ extension Teo {
         ///
         /// HTTP/3.0：HTTP 3.0；
         ///
-        /// WebSocket：WebSocket。</li>
-        /// <li>socket
+        /// WebSocket：WebSocket。
+        /// - socket
         ///
         /// 按照【**HTTP协议类型**】进行过滤。
         ///
@@ -131,8 +131,8 @@ extension Teo {
         ///
         /// HTTPS：HTTPS协议；
         ///
-        /// QUIC：QUIC协议。</li>
-        /// <li>statusCode
+        /// QUIC：QUIC协议。
+        /// - statusCode
         ///
         /// 按照【**状态码**】进行过滤。
         ///
@@ -254,8 +254,8 @@ extension Teo {
         ///
         /// 514：514状态码；
         ///
-        /// 544：544状态码。</li>
-        /// <li>browserType
+        /// 544：544状态码。
+        /// - browserType
         ///
         /// 按照【**浏览器类型**】进行过滤。
         ///
@@ -295,8 +295,8 @@ extension Teo {
         ///
         /// TaoBrowser：淘浏览器；
         ///
-        /// UBrowser：UC浏览器。</li>
-        /// <li>deviceType
+        /// UBrowser：UC浏览器。
+        /// - deviceType
         ///
         /// 按照【**设备类型**】进行过滤。
         ///
@@ -316,8 +316,8 @@ extension Teo {
         ///
         /// Other：其他设备类型；
         ///
-        /// Empty：设备类型为空。</li>
-        /// <li>operatingSystemType
+        /// Empty：设备类型为空。
+        /// - operatingSystemType
         ///
         /// 按照【**操作系统类型**】进行过滤。
         ///
@@ -345,8 +345,8 @@ extension Teo {
         ///
         /// Other：其他类型的操作系统；
         ///
-        /// Empty：操作系统为空。</li>
-        /// <li>tlsVersion
+        /// Empty：操作系统为空。
+        /// - tlsVersion
         ///
         /// 按照【**TLS版本**】进行过滤。
         ///
@@ -362,8 +362,8 @@ extension Teo {
         ///
         /// TLS1.2：TLS 1.2；
         ///
-        /// TLS1.3：TLS 1.3。</li>
-        /// <li>ipVersion
+        /// TLS1.3：TLS 1.3。
+        /// - ipVersion
         ///
         /// 按照【**IP版本**】进行过滤。
         ///
@@ -371,19 +371,19 @@ extension Teo {
         ///
         /// 4：Ipv4；
         ///
-        /// 6：Ipv6。</li>
-        /// <li>tagKey
+        /// 6：Ipv6。
+        /// - tagKey
         ///
-        /// 按照【**标签Key**】进行过滤。</li>
-        /// <li>tagValue
+        /// 按照【**标签Key**】进行过滤。
+        /// - tagValue
         ///
-        /// 按照【**标签Value**】进行过滤。</li>
+        /// 按照【**标签Value**】进行过滤。
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据；</li>
-        /// <li>global：全球数据。</li>不填默认取值为global。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据；
+        /// - global：全球数据。不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil) {

@@ -25,15 +25,15 @@ extension Emr {
         public let instanceId: String
 
         /// 节点标识，取值为：
-        /// <li>all：表示获取全部类型节点，cdb信息除外。</li>
-        /// <li>master：表示获取master节点信息。</li>
-        /// <li>core：表示获取core节点信息。</li>
-        /// <li>task：表示获取task节点信息。</li>
-        /// <li>common：表示获取common节点信息。</li>
-        /// <li>router：表示获取router节点信息。</li>
-        /// <li>db：表示获取正常状态的cdb信息。</li>
-        /// <li>recyle：表示获取回收站隔离中的节点信息，包括cdb信息。</li>
-        /// <li>renew：表示获取所有待续费的节点信息，包括cdb信息，自动续费节点不会返回。</li>
+        /// - all：表示获取全部类型节点，cdb信息除外。
+        /// - master：表示获取master节点信息。
+        /// - core：表示获取core节点信息。
+        /// - task：表示获取task节点信息。
+        /// - common：表示获取common节点信息。
+        /// - router：表示获取router节点信息。
+        /// - db：表示获取正常状态的cdb信息。
+        /// - recyle：表示获取回收站隔离中的节点信息，包括cdb信息。
+        /// - renew：表示获取所有待续费的节点信息，包括cdb信息，自动续费节点不会返回。
         /// 注意：现在只支持以上取值，输入其他值会导致错误。
         public let nodeFlag: String
 

@@ -25,8 +25,8 @@ extension Teo {
         public let zoneId: String
 
         /// 别称域名状态，取值有：
-        /// <li> false：开启别称域名；</li>
-        /// <li> true：关闭别称域名。</li>
+        /// - false：开启别称域名；
+        /// - true：关闭别称域名。
         public let paused: Bool
 
         /// 待修改状态的别称域名名称。如果为空，则不执行修改状态操作。

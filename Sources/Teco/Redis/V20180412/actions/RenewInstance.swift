@@ -27,7 +27,9 @@ extension Redis {
         /// 实例 ID。
         public let instanceId: String
 
-        /// 标识是否修改计费模式。<ul><li>当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 **prepaid**。</li><li>当前实例计费模式为包年包月方式，可不设置该参数。</li></ul>
+        /// 标识是否修改计费模式。
+        /// - 当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 **prepaid**。
+        /// - 当前实例计费模式为包年包月方式，可不设置该参数。
         public let modifyPayMode: String?
 
         public init(period: UInt64, instanceId: String, modifyPayMode: String? = nil) {

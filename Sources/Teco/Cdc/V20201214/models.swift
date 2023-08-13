@@ -158,10 +158,8 @@ extension Cdc {
         public let remark: String
 
         /// 实例是否售卖。取值范围：
-        ///
-        /// <li>SELL：表示实例可购买
-        ///
-        /// <li>SOLD_OUT：表示实例已售罄。
+        /// - SELL：表示实例可购买
+        /// - SOLD_OUT：表示实例已售罄。
         public let status: String
 
         enum CodingKeys: String, CodingKey {

@@ -23,9 +23,9 @@ extension Cwp {
     /// DescribeWebPageEventList请求参数结构体
     public struct DescribeWebPageEventListRequest: TCPaginatedRequest {
         /// 过滤条件
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>EventType - String - 是否必填：否 - 事件类型</li>
-        /// <li>EventStatus - String - 是否必填：否 - 事件状态</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - EventType - String - 是否必填：否 - 事件类型
+        /// - EventStatus - String - 是否必填：否 - 事件状态
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

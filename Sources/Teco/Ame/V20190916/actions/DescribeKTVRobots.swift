@@ -26,13 +26,13 @@ extension Ame {
         public let robotIds: [String]?
 
         /// 机器人状态，取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>Destroy：销毁</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - Destroy：销毁
         public let statuses: [String]?
 
         /// 匹配创建时间在此时间段内的机器人。
-        /// <li>包含所指定的头尾时间点。</li>
+        /// - 包含所指定的头尾时间点。
         public let createTime: TimeRange?
 
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。

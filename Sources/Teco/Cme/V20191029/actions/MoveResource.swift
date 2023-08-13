@@ -61,11 +61,11 @@ extension Cme {
     /// 移动资源
     ///
     /// 移动资源，支持跨个人或团队移动媒体以及分类。如果填写了Operator，则需要校验用户对媒体和分类资源的访问以及写权限。
-    /// <li>当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；</li>
-    /// <li>当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。</li>
+    /// - 当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；
+    /// - 当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
-    /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
-    /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    /// - 当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；
+    /// - 当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA
     @inlinable @discardableResult
     public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
         self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -74,11 +74,11 @@ extension Cme {
     /// 移动资源
     ///
     /// 移动资源，支持跨个人或团队移动媒体以及分类。如果填写了Operator，则需要校验用户对媒体和分类资源的访问以及写权限。
-    /// <li>当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；</li>
-    /// <li>当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。</li>
+    /// - 当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；
+    /// - 当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
-    /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
-    /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    /// - 当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；
+    /// - 当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA
     @inlinable @discardableResult
     public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
         try await self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -87,11 +87,11 @@ extension Cme {
     /// 移动资源
     ///
     /// 移动资源，支持跨个人或团队移动媒体以及分类。如果填写了Operator，则需要校验用户对媒体和分类资源的访问以及写权限。
-    /// <li>当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；</li>
-    /// <li>当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。</li>
+    /// - 当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；
+    /// - 当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
-    /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
-    /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    /// - 当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；
+    /// - 当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA
     @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
         self.moveResource(.init(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -100,11 +100,11 @@ extension Cme {
     /// 移动资源
     ///
     /// 移动资源，支持跨个人或团队移动媒体以及分类。如果填写了Operator，则需要校验用户对媒体和分类资源的访问以及写权限。
-    /// <li>当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；</li>
-    /// <li>当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。</li>
+    /// - 当原始资源为媒体时，该接口效果为将该媒体移动到目标分类下面；
+    /// - 当原始资源为分类时，该接口效果为将原始分类移动到目标分类或者是重命名。
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
-    /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
-    /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    /// - 当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；
+    /// - 当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA
     @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
         try await self.moveResource(.init(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)

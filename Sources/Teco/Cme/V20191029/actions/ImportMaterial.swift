@@ -31,8 +31,8 @@ extension Cme {
         public let name: String
 
         /// 导入媒资类型，取值：
-        /// <li>VOD：云点播文件；</li>
-        /// <li>EXTERNAL：媒资绑定。</li>
+        /// - VOD：云点播文件；
+        /// - EXTERNAL：媒资绑定。
         ///
         /// 注意：如果不填默认为云点播文件，如果媒体存储在非腾讯云点播中，都需要使用媒资绑定。另外，导入云点播的文件，使用云点播的子应用 Id 必须与创建多媒体创作引擎平台时使用的云点播子应用一致。
         public let sourceType: String?
@@ -47,7 +47,7 @@ extension Cme {
         public let classPath: String?
 
         /// 媒体预处理任务参数 ID。可取值有：
-        /// <li>10：进行编辑预处理。</li>
+        /// - 10：进行编辑预处理。
         public let preProcessDefinition: Int64?
 
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以向任意团队或者个人导入媒体。如果指定操作者，如果媒体归属为个人，则操作者必须与归属者一致；如果媒体归属为团队，则必须为团队可导入媒体的团队成员(如果没有特殊设置，所有团队成员可导入媒体)。

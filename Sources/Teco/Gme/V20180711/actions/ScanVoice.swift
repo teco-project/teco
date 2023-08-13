@@ -31,8 +31,8 @@ extension Gme {
         public let live: Bool
 
         /// 语音检测任务列表，列表最多支持100个检测任务。结构体中包含：
-        /// <li>DataId：数据的唯一ID</li>
-        /// <li>Url：数据文件的url，为 urlencode 编码，流式则为拉流地址</li>
+        /// - DataId：数据的唯一ID
+        /// - Url：数据文件的url，为 urlencode 编码，流式则为拉流地址
         public let tasks: [Task]
 
         /// 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
@@ -62,8 +62,9 @@ extension Gme {
 
     /// ScanVoice返回参数结构体
     public struct ScanVoiceResponse: TCResponseModel {
-        /// 语音检测返回。Data 字段是 JSON 数组，每一个元素包含：<li>DataId： 请求中对应的 DataId。</li>
-        /// <li>TaskID ：该检测任务的 ID，用于轮询语音检测结果。</li>
+        /// 语音检测返回。Data 字段是 JSON 数组，每一个元素包含：
+        /// - DataId： 请求中对应的 DataId。
+        /// - TaskID ：该检测任务的 ID，用于轮询语音检测结果。
         public let data: [ScanVoiceResult]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -78,29 +79,27 @@ extension Gme {
     /// 提交语音检测任务
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
-    /// </br></br>
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
-    /// </br>
+    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
-    /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
-    /// <li>支持场景输入，包括：谩骂、色情等场景</li>
-    /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
+    /// - 支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
+    /// - 支持场景输入，包括：谩骂、色情等场景</li>
+    /// - 支持批量提交检测任务。检测任务列表最多支持100个。</li>
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：100 M</li>
-    /// <li>音频文件时长限制：30分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：100 M</li>
+    /// - 音频文件时长限制：30分钟</li>
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
+    ///
     /// <h4>**语音流限制说明：**</h4>
-    /// <li>语音流格式支持的类型：.m3u8、.flv</li>
-    /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
-    /// <li>语音流时长限制：4小时</li>
-    /// <li>支持音视频流分离并对音频流进行分析</li>
-    /// </br>
+    /// - 语音流格式支持的类型：.m3u8、.flv</li>
+    /// - 语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
+    /// - 语音流时长限制：4小时</li>
+    /// - 支持音视频流分离并对音频流进行分析</li>
+    ///
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
@@ -127,11 +126,11 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// </br>
+    ///
     /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
-    /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
-    /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 请求参数（query）说明：</li>
+    /// - 如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
+    /// - 在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
+    /// - HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -150,17 +149,12 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// <ul  id="Callback_Signatue">
-    /// 	<li>签名生成说明：</li>
-    /// 	<ul>
-    /// 		<li>使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;</li>
-    /// 		<li>签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);</li>
-    /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
-    /// 	</ul>
-    /// </ul>
-    ///
-    /// <li>回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
+    ///   - 签名生成说明：</li>
+    ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
+    ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
+    ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    /// - 回调示例如下<font color="red">（详细字段说明见结构：
+    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -222,29 +216,27 @@ extension Gme {
     /// 提交语音检测任务
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
-    /// </br></br>
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
-    /// </br>
+    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
-    /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
-    /// <li>支持场景输入，包括：谩骂、色情等场景</li>
-    /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
+    /// - 支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
+    /// - 支持场景输入，包括：谩骂、色情等场景</li>
+    /// - 支持批量提交检测任务。检测任务列表最多支持100个。</li>
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：100 M</li>
-    /// <li>音频文件时长限制：30分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：100 M</li>
+    /// - 音频文件时长限制：30分钟</li>
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
+    ///
     /// <h4>**语音流限制说明：**</h4>
-    /// <li>语音流格式支持的类型：.m3u8、.flv</li>
-    /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
-    /// <li>语音流时长限制：4小时</li>
-    /// <li>支持音视频流分离并对音频流进行分析</li>
-    /// </br>
+    /// - 语音流格式支持的类型：.m3u8、.flv</li>
+    /// - 语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
+    /// - 语音流时长限制：4小时</li>
+    /// - 支持音视频流分离并对音频流进行分析</li>
+    ///
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
@@ -271,11 +263,11 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// </br>
+    ///
     /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
-    /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
-    /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 请求参数（query）说明：</li>
+    /// - 如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
+    /// - 在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
+    /// - HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -294,17 +286,12 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// <ul  id="Callback_Signatue">
-    /// 	<li>签名生成说明：</li>
-    /// 	<ul>
-    /// 		<li>使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;</li>
-    /// 		<li>签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);</li>
-    /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
-    /// 	</ul>
-    /// </ul>
-    ///
-    /// <li>回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
+    ///   - 签名生成说明：</li>
+    ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
+    ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
+    ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    /// - 回调示例如下<font color="red">（详细字段说明见结构：
+    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -366,29 +353,27 @@ extension Gme {
     /// 提交语音检测任务
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
-    /// </br></br>
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
-    /// </br>
+    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
-    /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
-    /// <li>支持场景输入，包括：谩骂、色情等场景</li>
-    /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
+    /// - 支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
+    /// - 支持场景输入，包括：谩骂、色情等场景</li>
+    /// - 支持批量提交检测任务。检测任务列表最多支持100个。</li>
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：100 M</li>
-    /// <li>音频文件时长限制：30分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：100 M</li>
+    /// - 音频文件时长限制：30分钟</li>
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
+    ///
     /// <h4>**语音流限制说明：**</h4>
-    /// <li>语音流格式支持的类型：.m3u8、.flv</li>
-    /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
-    /// <li>语音流时长限制：4小时</li>
-    /// <li>支持音视频流分离并对音频流进行分析</li>
-    /// </br>
+    /// - 语音流格式支持的类型：.m3u8、.flv</li>
+    /// - 语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
+    /// - 语音流时长限制：4小时</li>
+    /// - 支持音视频流分离并对音频流进行分析</li>
+    ///
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
@@ -415,11 +400,11 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// </br>
+    ///
     /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
-    /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
-    /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 请求参数（query）说明：</li>
+    /// - 如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
+    /// - 在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
+    /// - HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -438,17 +423,12 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// <ul  id="Callback_Signatue">
-    /// 	<li>签名生成说明：</li>
-    /// 	<ul>
-    /// 		<li>使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;</li>
-    /// 		<li>签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);</li>
-    /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
-    /// 	</ul>
-    /// </ul>
-    ///
-    /// <li>回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
+    ///   - 签名生成说明：</li>
+    ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
+    ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
+    ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    /// - 回调示例如下<font color="red">（详细字段说明见结构：
+    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
     /// ```
     /// {
     /// 	"Code": 0,
@@ -510,29 +490,27 @@ extension Gme {
     /// 提交语音检测任务
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
-    /// </br></br>
     ///
     /// <h4>**功能试用说明：**</h4>
-    /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
-    /// </br>
+    /// - 打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     ///
     /// <h4>**接口功能说明：**</h4>
-    /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
-    /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
-    /// <li>支持场景输入，包括：谩骂、色情等场景</li>
-    /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
-    /// </br>
+    /// - 支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
+    /// - 支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
+    /// - 支持场景输入，包括：谩骂、色情等场景</li>
+    /// - 支持批量提交检测任务。检测任务列表最多支持100个。</li>
+    ///
     /// <h4>**音频文件限制说明：**</h4>
-    /// <li>音频文件大小限制：100 M</li>
-    /// <li>音频文件时长限制：30分钟</li>
-    /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
-    /// </br>
+    /// - 音频文件大小限制：100 M</li>
+    /// - 音频文件时长限制：30分钟</li>
+    /// - 音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
+    ///
     /// <h4>**语音流限制说明：**</h4>
-    /// <li>语音流格式支持的类型：.m3u8、.flv</li>
-    /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
-    /// <li>语音流时长限制：4小时</li>
-    /// <li>支持音视频流分离并对音频流进行分析</li>
-    /// </br>
+    /// - 语音流格式支持的类型：.m3u8、.flv</li>
+    /// - 语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
+    /// - 语音流时长限制：4小时</li>
+    /// - 支持音视频流分离并对音频流进行分析</li>
+    ///
     /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
@@ -559,11 +537,11 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// </br>
+    ///
     /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
-    /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
-    /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 请求参数（query）说明：</li>
+    /// - 如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
+    /// - 在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
+    /// - HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -582,17 +560,12 @@ extension Gme {
     /// </tr>
     /// </tbody>
     /// </table>
-    /// <ul  id="Callback_Signatue">
-    /// 	<li>签名生成说明：</li>
-    /// 	<ul>
-    /// 		<li>使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;</li>
-    /// 		<li>签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);</li>
-    /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
-    /// 	</ul>
-    /// </ul>
-    ///
-    /// <li>回调示例如下<font color="red">（详细字段说明见结构：
-    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
+    ///   - 签名生成说明：</li>
+    ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
+    ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
+    ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    /// - 回调示例如下<font color="red">（详细字段说明见结构：
+    /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：
     /// ```
     /// {
     /// 	"Code": 0,

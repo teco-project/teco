@@ -28,18 +28,18 @@ extension Mps {
         public let name: String?
 
         /// 转自适应码流格式，取值范围：
-        /// <li>HLS，</li>
-        /// <li>MPEG-DASH。</li>
+        /// - HLS，
+        /// - MPEG-DASH。
         public let format: String?
 
         /// 是否禁止视频低码率转高码率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoBitrate: UInt64?
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoResolution: UInt64?
 
         /// 转自适应码流输入流参数信息，最多输入10路流。

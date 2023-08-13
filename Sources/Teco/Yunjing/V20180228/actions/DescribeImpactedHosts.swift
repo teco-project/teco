@@ -32,7 +32,7 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED：待处理 | FIXED：已修复）</li>
+        /// - Status - String - 是否必填：否 - 状态筛选（UN_OPERATED：待处理 | FIXED：已修复）
         public let filters: [Filter]?
 
         public init(vulId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

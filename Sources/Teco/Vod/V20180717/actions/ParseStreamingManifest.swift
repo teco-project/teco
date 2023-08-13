@@ -25,8 +25,8 @@ extension Vod {
         public let mediaManifestContent: String
 
         /// 视频索引文件格式。默认 m3u8 格式。
-        /// <li>m3u8</li>
-        /// <li>mpd</li>
+        /// - m3u8
+        /// - mpd
         public let manifestType: String?
 
         public init(mediaManifestContent: String, manifestType: String? = nil) {

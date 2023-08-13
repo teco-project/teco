@@ -48,7 +48,7 @@ extension Vod {
         public let storageRegion: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。

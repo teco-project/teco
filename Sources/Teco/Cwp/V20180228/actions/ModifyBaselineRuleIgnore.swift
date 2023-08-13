@@ -42,7 +42,7 @@ extension Cwp {
         /// 是否全选过滤
         public let selectAll: Int64?
 
-        /// <li>ItemName - string - 是否必填：否 - 项名称</li>
+        /// - ItemName - string - 是否必填：否 - 项名称
         public let filters: [Filter]?
 
         public init(ruleName: String, assetType: Int64, ruleId: Int64? = nil, itemIds: [Int64]? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, selectAll: Int64? = nil, filters: [Filter]? = nil) {

@@ -32,13 +32,13 @@ extension Cynosdb {
         public let offset: Int64?
 
         /// 排序字段，取值范围：
-        /// <li> CREATETIME：创建时间</li>
-        /// <li> PERIODENDTIME：过期时间</li>
+        /// - CREATETIME：创建时间
+        /// - PERIODENDTIME：过期时间
         public let orderBy: String?
 
         /// 排序类型，取值范围：
-        /// <li> ASC：升序排序 </li>
-        /// <li> DESC：降序排序 </li>
+        /// - ASC：升序排序
+        /// - DESC：降序排序
         public let orderByType: String?
 
         /// 搜索条件，若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。

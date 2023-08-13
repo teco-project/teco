@@ -462,8 +462,8 @@ extension Ie {
     /// 动图参数
     public struct DynamicImageInfo: TCInputModel {
         /// 画面质量，范围：1~100。
-        /// <li>对于webp格式，默认：75</li>
-        /// <li>对于gif格式，小于10为低质量，大于50为高质量，其它为普通。默认：低质量。</li>
+        /// - 对于webp格式，默认：75
+        /// - 对于gif格式，小于10为低质量，大于50为高质量，其它为普通。默认：低质量。
         public let quality: UInt64?
 
         public init(quality: UInt64? = nil) {
@@ -869,9 +869,9 @@ extension Ie {
         public let outForm: MediaCuttingOutForm
 
         /// 列表文件形式，存储到用户存储服务中，可选值：
-        /// <li>NoListFile：不存储结果列表; </li>
-        /// <li>UseSaveInfo：默认，结果列表和结果存储同一位置（即SaveInfoSet 的第一个存储位置）；</li>
-        /// <li>SaveInfoSet 存储的Id：存储在指定的存储位置。</li>
+        /// - NoListFile：不存储结果列表;
+        /// - UseSaveInfo：默认，结果列表和结果存储同一位置（即SaveInfoSet 的第一个存储位置）；
+        /// - SaveInfoSet 存储的Id：存储在指定的存储位置。
         public let resultListSaveType: String?
 
         /// 水印信息，最多支持 10 个水印。
@@ -1024,8 +1024,8 @@ extension Ie {
     /// 媒体剪切水印信息。
     public struct MediaCuttingWatermark: TCInputModel {
         /// 水印类型，可选值：
-        /// <li>Image：图像水印；</li>
-        /// <li>Text：文字水印。</li>
+        /// - Image：图像水印；
+        /// - Text：文字水印。
         public let type: String
 
         /// 图像水印信息，当 Type=Image 时必选。
@@ -1072,11 +1072,11 @@ extension Ie {
         public let height: UInt64?
 
         /// 指定坐标原点，可选值：
-        /// <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
-        /// <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
-        /// <li>LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置</li>
-        /// <li>RightBottom：PosXY 表示水印右下点到图片右下点的相对位置</li>
-        /// <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
+        /// - LeftTop：PosXY 表示水印左上点到图片左上点的相对位置
+        /// - RightTop：PosXY 表示水印右上点到图片右上点的相对位置
+        /// - LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置
+        /// - RightBottom：PosXY 表示水印右下点到图片右下点的相对位置
+        /// - Center：PosXY 表示水印中心点到图片中心点的相对位置
         /// 默认：LeftTop。
         public let posOriginType: String?
 
@@ -1120,18 +1120,18 @@ extension Ie {
         public let fontAlpha: UInt64?
 
         /// 指定坐标原点，可选值：
-        /// <li>LeftTop：PosXY 表示水印左上点到图片左上点的相对位置</li>
-        /// <li>RightTop：PosXY 表示水印右上点到图片右上点的相对位置</li>
-        /// <li>LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置</li>
-        /// <li>RightBottom：PosXY 表示水印右下点到图片右下点的相对位置</li>
-        /// <li>Center：PosXY 表示水印中心点到图片中心点的相对位置</li>
+        /// - LeftTop：PosXY 表示水印左上点到图片左上点的相对位置
+        /// - RightTop：PosXY 表示水印右上点到图片右上点的相对位置
+        /// - LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置
+        /// - RightBottom：PosXY 表示水印右下点到图片右下点的相对位置
+        /// - Center：PosXY 表示水印中心点到图片中心点的相对位置
         /// 默认：LeftTop。
         public let posOriginType: String?
 
         /// 字体，可选值：
-        /// <li>SimHei</li>
-        /// <li>SimKai</li>
-        /// <li>Arial</li>
+        /// - SimHei
+        /// - SimKai
+        /// - Arial
         /// 默认 SimHei。
         public let font: String?
 

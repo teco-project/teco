@@ -28,15 +28,15 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 播放的音视频类型，可选值：
-        /// <li>AdaptiveDynamicStream：自适应码流输出；</li>
-        /// <li>Transcode：转码输出；</li>
-        /// <li>Original：原始音视频。</li>
+        /// - AdaptiveDynamicStream：自适应码流输出；
+        /// - Transcode：转码输出；
+        /// - Original：原始音视频。
         /// 默认为 AdaptiveDynamicStream。
         public let audioVideoType: String?
 
         /// 播放 DRM 保护的自适应码流开关：
-        /// <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
-        /// <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
+        /// - ON：开启，表示仅播放 DRM  保护的自适应码流输出；
+        /// - OFF：关闭，表示播放未加密的自适应码流输出。
         /// 默认为 OFF。
         /// 当 AudioVideoType 为 AdaptiveDynamicStream 时，此参数有效。
         public let drmSwitch: String?
@@ -60,21 +60,21 @@ extension Vod {
         public let imageSpriteDefinition: UInt64?
 
         /// 播放器对于不同分辨率的子流展示名字，不填或者填空数组则使用默认配置：
-        /// <li>MinEdgeLength：240，Name：流畅；</li>
-        /// <li>MinEdgeLength：480，Name：标清；</li>
-        /// <li>MinEdgeLength：720，Name：高清；</li>
-        /// <li>MinEdgeLength：1080，Name：全高清；</li>
-        /// <li>MinEdgeLength：1440，Name：2K；</li>
-        /// <li>MinEdgeLength：2160，Name：4K；</li>
-        /// <li>MinEdgeLength：4320，Name：8K。</li>
+        /// - MinEdgeLength：240，Name：流畅；
+        /// - MinEdgeLength：480，Name：标清；
+        /// - MinEdgeLength：720，Name：高清；
+        /// - MinEdgeLength：1080，Name：全高清；
+        /// - MinEdgeLength：1440，Name：2K；
+        /// - MinEdgeLength：2160，Name：4K；
+        /// - MinEdgeLength：4320，Name：8K。
         public let resolutionNames: [ResolutionNameInfo]?
 
         /// 播放时使用的域名。不填或者填 Default，表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的域名。
         public let domain: String?
 
         /// 播放时使用的 Scheme。不填或者填 Default，表示使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme。其他可选值：
-        /// <li>HTTP；</li>
-        /// <li>HTTPS。</li>
+        /// - HTTP；
+        /// - HTTPS。
         public let scheme: String?
 
         /// 模板描述信息，长度限制：256 个字符。

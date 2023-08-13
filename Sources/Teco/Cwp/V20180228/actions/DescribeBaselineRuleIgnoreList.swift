@@ -22,8 +22,8 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineRuleIgnoreList请求参数结构体
     public struct DescribeBaselineRuleIgnoreListRequest: TCPaginatedRequest {
-        /// <li>RuleName - String - 是否必填：否 - 规则名称</li>
-        /// <li>ItemId- int - 是否必填：否 - 检测项Id</li>
+        /// - RuleName - String - 是否必填：否 - 规则名称
+        /// - ItemId- int - 是否必填：否 - 检测项Id
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

@@ -22,14 +22,14 @@ extension Vpc {
     /// CreateBandwidthPackage请求参数结构体
     public struct CreateBandwidthPackageRequest: TCRequestModel {
         /// 带宽包类型, 默认值: BGP, 可选值:
-        /// <li>BGP: 普通BGP共享带宽包</li>
-        /// <li>HIGH_QUALITY_BGP: 精品BGP共享带宽包</li>
+        /// - BGP: 普通BGP共享带宽包
+        /// - HIGH_QUALITY_BGP: 精品BGP共享带宽包
         public let networkType: String?
 
         /// 带宽包计费类型, 默认为: TOP5_POSTPAID_BY_MONTH, 可选值:
-        /// <li>TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费</li>
-        /// <li>PERCENT95_POSTPAID_BY_MONTH: 按月后付费月95计费</li>
-        /// <li>FIXED_PREPAID_BY_MONTH: 包月预付费计费</li>
+        /// - TOP5_POSTPAID_BY_MONTH: 按月后付费TOP5计费
+        /// - PERCENT95_POSTPAID_BY_MONTH: 按月后付费月95计费
+        /// - FIXED_PREPAID_BY_MONTH: 包月预付费计费
         public let chargeType: String?
 
         /// 带宽包名称。

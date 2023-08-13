@@ -30,7 +30,9 @@ extension Vpc {
         /// 终端节点服务名称。
         public let endPointServiceName: String?
 
-        /// 是否自动接受终端节点的连接请求。<ui><li>true：自动接受<li>false：不自动接受</ul>
+        /// 是否自动接受终端节点的连接请求。<ui>
+        /// - true：自动接受
+        /// - false：不自动接受</ul>
         public let autoAcceptFlag: Bool?
 
         /// 后端服务的ID，比如lb-xxx。

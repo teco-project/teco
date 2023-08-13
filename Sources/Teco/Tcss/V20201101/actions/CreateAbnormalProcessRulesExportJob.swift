@@ -22,8 +22,8 @@ extension Tcss {
     /// CreateAbnormalProcessRulesExportJob请求参数结构体
     public struct CreateAbnormalProcessRulesExportJobRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>RuleType - string  - 是否必填: 否 -规则类型</li>
-        /// <li>Status - string  - 是否必填: 否 -状态</li>
+        /// - RuleType - string  - 是否必填: 否 -规则类型
+        /// - Status - string  - 是否必填: 否 -状态
         public let filters: [RunTimeFilters]?
 
         /// 排序方式

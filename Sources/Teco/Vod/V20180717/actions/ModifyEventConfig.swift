@@ -22,8 +22,8 @@ extension Vod {
     /// ModifyEventConfig请求参数结构体
     public struct ModifyEventConfigRequest: TCRequestModel {
         /// 接收事件通知的方式。
-        /// <li>PUSH：[HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)；</li>
-        /// <li>PULL：[基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779)。</li>
+        /// - PUSH：[HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)；
+        /// - PULL：[基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779)。
         public let mode: String?
 
         /// 采用 [HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 接收方式时，用于接收 3.0 格式回调的地址。

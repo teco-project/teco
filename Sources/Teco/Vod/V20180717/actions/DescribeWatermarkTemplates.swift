@@ -26,9 +26,9 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 水印类型过滤条件，可选值：
-        /// <li>image：图片水印；</li>
-        /// <li>text：文字水印；</li>
-        /// <li>svg：SVG 水印。</li>
+        /// - image：图片水印；
+        /// - text：文字水印；
+        /// - svg：SVG 水印。
         public let type: String?
 
         /// 分页偏移量，默认值：0。
@@ -38,8 +38,8 @@ extension Vod {
         public let definitions: [Int64]?
 
         /// 返回记录条数
-        /// <li>默认值：10；</li>
-        /// <li>最大值：100。</li>
+        /// - 默认值：10；
+        /// - 最大值：100。
         public let limit: UInt64?
 
         public init(subAppId: UInt64? = nil, type: String? = nil, offset: UInt64? = nil, definitions: [Int64]? = nil, limit: UInt64? = nil) {

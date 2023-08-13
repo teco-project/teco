@@ -23,8 +23,9 @@ extension Vpc {
     /// DescribeTenantCcns请求参数结构体
     public struct DescribeTenantCcnsRequest: TCPaginatedRequest {
         /// 过滤条件，目前`value`值个数只支持一个，允许可支持的字段有：
-        /// <li>`ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`</li>
-        /// <li>`user-account-id` 用户账号ID，值形如：`["12345678"]`</li><li>`is-security-lock` 是否锁定，值形如：`["true"]`</li>
+        /// - `ccn-ids` 云联网ID数组，值形如：`["ccn-12345678"]`
+        /// - `user-account-id` 用户账号ID，值形如：`["12345678"]`
+        /// - `is-security-lock` 是否锁定，值形如：`["true"]`
         public let filters: [Filter]?
 
         /// 偏移量，默认0。

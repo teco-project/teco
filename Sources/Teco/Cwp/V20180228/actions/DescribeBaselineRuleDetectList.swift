@@ -22,12 +22,12 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineRuleDetectList请求参数结构体
     public struct DescribeBaselineRuleDetectListRequest: TCPaginatedRequest {
-        /// <li>PolicyId - int64 - 是否必填：否 - 策略Id</li>
-        /// <li>ItemId - int64 - 是否必填：否 - 策略Id</li>
-        /// <li>RuleName - string - 是否必填：否 - 规则名称</li>
-        /// <li>DetectStatus - int - 是否必填：否 - 检测状态</li>
-        /// <li>StartTime - string - 是否必填：否 - 开时时间</li>
-        /// <li>EndTime - string - 是否必填：否 - 结束时间</li>
+        /// - PolicyId - int64 - 是否必填：否 - 策略Id
+        /// - ItemId - int64 - 是否必填：否 - 策略Id
+        /// - RuleName - string - 是否必填：否 - 规则名称
+        /// - DetectStatus - int - 是否必填：否 - 检测状态
+        /// - StartTime - string - 是否必填：否 - 开时时间
+        /// - EndTime - string - 是否必填：否 - 结束时间
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

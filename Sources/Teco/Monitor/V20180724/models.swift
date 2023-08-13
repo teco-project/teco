@@ -3624,10 +3624,9 @@ extension Monitor {
         public let instanceName: String
 
         /// 实例计费模式。取值范围：
-        /// <ul>
-        /// <li>2：包年包月</li>
-        /// <li>3：按量</li>
-        /// </ul>
+        ///
+        /// - 2：包年包月
+        /// - 3：按量
         public let instanceChargeType: Int64
 
         /// 地域 ID
@@ -3647,16 +3646,15 @@ extension Monitor {
         public let dataRetentionTime: Int64?
 
         /// 实例业务状态。取值范围：
-        /// <ul>
-        /// <li>1：正在创建</li>
-        /// <li>2：运行中</li>
-        /// <li>3：异常</li>
-        /// <li>4：重建中</li>
-        /// <li>5：销毁中</li>
-        /// <li>6：已停服</li>
-        /// <li>8：欠费停服中</li>
-        /// <li>9：欠费已停服</li>
-        /// </ul>
+        ///
+        /// - 1：正在创建
+        /// - 2：运行中
+        /// - 3：异常
+        /// - 4：重建中
+        /// - 5：销毁中
+        /// - 6：已停服
+        /// - 8：欠费停服中
+        /// - 9：欠费已停服
         public let instanceStatus: Int64
 
         /// Grafana 面板 URL
@@ -3667,8 +3665,8 @@ extension Monitor {
         public let createdAt: String
 
         /// 是否开启 Grafana
-        /// <li>0：不开启</li>
-        /// <li>1：开启</li>
+        /// - 0：不开启
+        /// - 1：开启
         public let enableGrafana: Int64
 
         /// 实例IPV4地址
@@ -3684,13 +3682,13 @@ extension Monitor {
         public let expireTime: String?
 
         /// 计费状态
-        /// <ul>
-        /// <li>1：正常</li>
-        /// <li>2：过期</li>
-        /// <li>3：销毁</li>
-        /// <li>4：分配中</li>
-        /// <li>5：分配失败</li>
-        /// </ul>
+        ///
+        /// - 1：正常
+        /// - 2：过期
+        /// - 3：销毁
+        /// - 4：分配中
+        /// - 5：分配失败
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeStatus: Int64?
 
@@ -3699,20 +3697,20 @@ extension Monitor {
         public let specName: String?
 
         /// 自动续费标记
-        /// <ul>
-        /// <li>0：不自动续费</li>
-        /// <li>1：开启自动续费</li>
-        /// <li>2：禁止自动续费</li>
-        /// <li>-1：无效</ii>
-        /// </ul>
+        ///
+        /// - 0：不自动续费
+        /// - 1：开启自动续费
+        /// - 2：禁止自动续费
+        /// - -1：无效</ii>
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlag: Int64?
 
         /// 是否快过期
-        /// <ul>
-        /// <li>0：否</li>
-        /// <li>1：快过期</li>
-        /// </ul>
+        ///
+        /// - 0：否
+        /// - 1：快过期
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNearExpire: Int64?
 
@@ -3733,15 +3731,15 @@ extension Monitor {
         public let proxyAddress: String?
 
         /// Grafana 运行状态
-        /// <ul>
-        /// <li>1：正在创建</li>
-        /// <li>2：运行中</li>
-        /// <li>3：异常</li>
-        /// <li>4：重启中</li>
-        /// <li>5：销毁中</li>
-        /// <li>6：已停机</li>
-        /// <li>7：已删除</li>
-        /// </ul>
+        ///
+        /// - 1：正在创建
+        /// - 2：运行中
+        /// - 3：异常
+        /// - 4：重启中
+        /// - 5：销毁中
+        /// - 6：已停机
+        /// - 7：已删除
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let grafanaStatus: Int64?
 
@@ -4083,10 +4081,10 @@ extension Monitor {
         public let receivers: [String]?
 
         /// 规则运行健康状态，取值如下：
-        /// <li>unknown 未知状态</li>
-        /// <li>pending 加载中</li>
-        /// <li>ok 运行正常</li>
-        /// <li>err 运行错误</li>
+        /// - unknown 未知状态
+        /// - pending 加载中
+        /// - ok 运行正常
+        /// - err 运行错误
         public let health: String
 
         /// 规则创建时间

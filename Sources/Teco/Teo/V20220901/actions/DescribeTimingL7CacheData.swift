@@ -36,37 +36,37 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 查询的指标，取值有：
-        /// <li>l7Cache_outFlux：响应流量；</li>
-        /// <li>l7Cache_request：响应请求数；</li>
-        /// <li> l7Cache_outBandwidth：响应带宽。</li>
+        /// - l7Cache_outFlux：响应流量；
+        /// - l7Cache_request：响应请求数；
+        /// - l7Cache_outBandwidth：响应带宽。
         public let metricNames: [String]
 
         /// 站点集合，不填默认选择全部站点。
         public let zoneIds: [String]?
 
         /// 过滤条件，详细的过滤条件如下：
-        /// <li>domain
+        /// - domain
         ///
         /// 按照【**子域名**】进行过滤，子域名形如： test.example.com。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
-        /// <li>url
+        /// 必选：否
+        /// - url
         ///
         /// 按照【**URL**】进行过滤，此参数只支持30天的时间范围，URL形如：/content。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
-        /// <li>resourceType
+        /// 必选：否
+        /// - resourceType
         ///
         /// 按照【**资源类型**】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
-        /// <li>cacheType
+        /// 必选：否
+        /// - cacheType
         ///
         /// 按照【**缓存类型**】进行过滤。
         ///
@@ -80,8 +80,8 @@ extension Teo {
         ///
         /// dynamic：资源不可缓存；
         ///
-        /// miss：未命中缓存。</li>
-        /// <li>statusCode
+        /// miss：未命中缓存。
+        /// - statusCode
         ///
         /// 按照【**状态码**】进行过滤，此参数只支持30天的时间范围。
         ///
@@ -203,34 +203,34 @@ extension Teo {
         ///
         /// 514：514状态码；
         ///
-        /// 544：544状态码。</li>
-        /// <li>tagKey
+        /// 544：544状态码。
+        /// - tagKey
         ///
         /// 按照【**标签Key**】进行过滤。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
-        /// <li>tagValue
+        /// 必选：否
+        /// - tagValue
         ///
         /// 按照【**标签Value**】进行过滤。
         ///
         /// 类型：String
         ///
-        /// 必选：否</li>
+        /// 必选：否
         public let filters: [QueryCondition]?
 
         /// 查询时间粒度，可选的值有：
-        /// <li>min：1分钟的时间粒度；</li>
-        /// <li>5min：5分钟的时间粒度；</li>
-        /// <li>hour：1小时的时间粒度；</li>
-        /// <li>day：1天的时间粒度。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
+        /// - min：1分钟的时间粒度；
+        /// - 5min：5分钟的时间粒度；
+        /// - hour：1小时的时间粒度；
+        /// - day：1天的时间粒度。不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
         public let interval: String?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据；</li>
-        /// <li>global：全球数据。</li>不填默认取值为global。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据；
+        /// - global：全球数据。不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil) {

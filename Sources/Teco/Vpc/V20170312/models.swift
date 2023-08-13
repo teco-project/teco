@@ -124,13 +124,13 @@ extension Vpc {
         /// 弹性公网IP的网络计费模式。注意，传统账户类型账户的弹性公网IP没有网络计费模式属性，值为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 包括：
-        /// <li>**BANDWIDTH_PREPAID_BY_MONTH**</li>
+        /// - **BANDWIDTH_PREPAID_BY_MONTH**
         /// <p style="padding-left: 30px;">表示包月带宽预付费。</p>
-        /// <li>**TRAFFIC_POSTPAID_BY_HOUR**</li>
+        /// - **TRAFFIC_POSTPAID_BY_HOUR**
         /// <p style="padding-left: 30px;">表示按小时流量后付费。</p>
-        /// <li>**BANDWIDTH_POSTPAID_BY_HOUR**</li>
+        /// - **BANDWIDTH_POSTPAID_BY_HOUR**
         /// <p style="padding-left: 30px;">表示按小时带宽后付费。</p>
-        /// <li>**BANDWIDTH_PACKAGE**</li>
+        /// - **BANDWIDTH_PACKAGE**
         /// <p style="padding-left: 30px;">表示共享带宽包。</p>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
@@ -535,9 +535,9 @@ extension Vpc {
         public let ccnId: String
 
         /// 关联实例类型：
-        /// <li>`VPC`：私有网络</li>
-        /// <li>`DIRECTCONNECT`：专线网关</li>
-        /// <li>`BMVPC`：黑石私有网络</li>
+        /// - `VPC`：私有网络
+        /// - `DIRECTCONNECT`：专线网关
+        /// - `BMVPC`：黑石私有网络
         public let instanceType: String
 
         /// 关联实例ID。
@@ -556,15 +556,15 @@ extension Vpc {
         public let cidrBlock: [String]
 
         /// 关联实例状态：
-        /// <li>`PENDING`：申请中</li>
-        /// <li>`ACTIVE`：已连接</li>
-        /// <li>`EXPIRED`：已过期</li>
-        /// <li>`REJECTED`：已拒绝</li>
-        /// <li>`DELETED`：已删除</li>
-        /// <li>`FAILED`：失败的（2小时后将异步强制解关联）</li>
-        /// <li>`ATTACHING`：关联中</li>
-        /// <li>`DETACHING`：解关联中</li>
-        /// <li>`DETACHFAILED`：解关联失败（2小时后将异步强制解关联）</li>
+        /// - `PENDING`：申请中
+        /// - `ACTIVE`：已连接
+        /// - `EXPIRED`：已过期
+        /// - `REJECTED`：已拒绝
+        /// - `DELETED`：已删除
+        /// - `FAILED`：失败的（2小时后将异步强制解关联）
+        /// - `ATTACHING`：关联中
+        /// - `DETACHING`：解关联中
+        /// - `DETACHFAILED`：解关联失败（2小时后将异步强制解关联）
         public let state: String
 
         /// 关联时间。
@@ -752,10 +752,10 @@ extension Vpc {
         public let instanceRegion: String
 
         /// 关联实例类型，可选值：
-        /// <li>`VPC`：私有网络</li>
-        /// <li>`DIRECTCONNECT`：专线网关</li>
-        /// <li>`BMVPC`：黑石私有网络</li>
-        /// <li>`VPNGW`：VPNGW类型</li>
+        /// - `VPC`：私有网络
+        /// - `DIRECTCONNECT`：专线网关
+        /// - `BMVPC`：黑石私有网络
+        /// - `VPNGW`：VPNGW类型
         public let instanceType: String?
 
         /// 备注
@@ -1273,8 +1273,8 @@ extension Vpc {
         public let instanceId: String
 
         /// 状态：
-        /// <li>`AVAILABLE`：运行中</li>
-        /// <li>`UNBIND`：未绑定</li>
+        /// - `AVAILABLE`：运行中
+        /// - `UNBIND`：未绑定
         public let state: String
 
         /// 创建时间。
@@ -1309,18 +1309,18 @@ extension Vpc {
         public let vpcId: String
 
         /// 关联网络类型：
-        /// <li>`VPC` - 私有网络</li>
-        /// <li>`CCN` - 云联网</li>
+        /// - `VPC` - 私有网络
+        /// - `CCN` - 云联网
         public let networkType: String
 
         /// 关联网络实例`ID`：
-        /// <li>`NetworkType`为`VPC`时，这里为私有网络实例`ID`</li>
-        /// <li>`NetworkType`为`CCN`时，这里为云联网实例`ID`</li>
+        /// - `NetworkType`为`VPC`时，这里为私有网络实例`ID`
+        /// - `NetworkType`为`CCN`时，这里为云联网实例`ID`
         public let networkInstanceId: String
 
         /// 网关类型：
-        /// <li>NORMAL - 标准型，注：云联网只支持标准型</li>
-        /// <li>NAT - NAT型</li>
+        /// - NORMAL - 标准型，注：云联网只支持标准型
+        /// - NAT - NAT型
         /// NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
         public let gatewayType: String
 
@@ -1337,8 +1337,8 @@ extension Vpc {
         public let ccnId: String
 
         /// 云联网路由学习类型：
-        /// <li>`BGP` - 自动学习。</li>
-        /// <li>`STATIC` - 静态，即用户配置。</li>
+        /// - `BGP` - 自动学习。
+        /// - `STATIC` - 静态，即用户配置。
         public let ccnRouteType: String
 
         /// 是否启用BGP。
@@ -1384,9 +1384,9 @@ extension Vpc {
         public let newAfc: UInt64?
 
         /// 专线网关接入网络类型：
-        /// <li>`VXLAN` - VXLAN类型。</li>
-        /// <li>`MPLS` - MPLS类型。</li>
-        /// <li>`Hybrid` - Hybrid类型。</li>
+        /// - `VXLAN` - VXLAN类型。
+        /// - `MPLS` - MPLS类型。
+        /// - `Hybrid` - Hybrid类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessNetworkType: String?
 
@@ -1773,8 +1773,8 @@ extension Vpc {
         public let addressIp: String
 
         /// 状态：
-        /// <li>`AVAILABLE`：运行中</li>
-        /// <li>`UNBIND`：未绑定</li>
+        /// - `AVAILABLE`：运行中
+        /// - `UNBIND`：未绑定
         public let state: String
 
         /// 创建时间。
@@ -2196,10 +2196,10 @@ extension Vpc {
         public let isWanIpBlocked: Bool?
 
         /// `IPv6`地址状态：
-        /// <li>`PENDING`：生产中</li>
-        /// <li>`MIGRATING`：迁移中</li>
-        /// <li>`DELETING`：删除中</li>
-        /// <li>`AVAILABLE`：可用的</li>
+        /// - `PENDING`：生产中
+        /// - `MIGRATING`：迁移中
+        /// - `DELETING`：删除中
+        /// - `AVAILABLE`：可用的
         public let state: String?
 
         public init(address: String, primary: Bool? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
@@ -2837,11 +2837,11 @@ extension Vpc {
         public let macAddress: String?
 
         /// 弹性网卡状态：
-        /// <li>`PENDING`：创建中</li>
-        /// <li>`AVAILABLE`：可用的</li>
-        /// <li>`ATTACHING`：绑定中</li>
-        /// <li>`DETACHING`：解绑中</li>
-        /// <li>`DELETING`：删除中</li>
+        /// - `PENDING`：创建中
+        /// - `AVAILABLE`：可用的
+        /// - `ATTACHING`：绑定中
+        /// - `DETACHING`：解绑中
+        /// - `DELETING`：删除中
         public let state: String?
 
         /// 内网IP信息。
@@ -2883,10 +2883,10 @@ extension Vpc {
         public let resourceId: String?
 
         /// 服务质量级别：
-        /// <li>`DEFAULT`：默认</li>
-        /// <li>`PT`：云金</li>
-        /// <li>`AU`：云银</li>
-        /// <li>`AG`：云铜</li>
+        /// - `DEFAULT`：默认
+        /// - `PT`：云金
+        /// - `AU`：云银
+        /// - `AG`：云铜
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qosLevel: String?
 
@@ -3057,12 +3057,9 @@ extension Vpc {
     /// 描述配额信息
     public struct Quota: TCOutputModel {
         /// 配额名称，取值范围：
-        ///
-        /// <li>`TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；
-        ///
-        /// <li>`DAILY_EIP_APPLY`：用户当前地域下今日申购次数；
-        ///
-        /// <li>`DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
+        /// - `TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；
+        /// - `DAILY_EIP_APPLY`：用户当前地域下今日申购次数；
+        /// - `DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。
         public let quotaId: String?
 
         /// 当前数量

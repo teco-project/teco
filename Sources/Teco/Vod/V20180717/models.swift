@@ -140,8 +140,8 @@ extension Vod {
     /// 视频画面低光、过曝检测的控制参数。
     public struct AbnormalLightingConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面低光、过曝检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -156,8 +156,8 @@ extension Vod {
     /// 视频画面低光、过曝检测的控制参数。
     public struct AbnormalLightingConfigureInfoForUpdate: TCInputModel {
         /// 视频画面低光、过曝检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -172,13 +172,13 @@ extension Vod {
     /// 域名的地区加速信息
     public struct AccelerateAreaInfo: TCOutputModel {
         /// 加速地区，可选值：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland：中国境外。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland：中国境外。
         public let area: String
 
         /// 腾讯禁用原因，可选值：
-        /// <li>ForLegalReasons：因法律原因导致关闭加速；</li>
-        /// <li>ForOverdueBills：因欠费停服导致关闭加速。</li>
+        /// - ForLegalReasons：因法律原因导致关闭加速；
+        /// - ForOverdueBills：因欠费停服导致关闭加速。
         public let tencentDisableReason: String
 
         /// 加速域名对应的 CNAME 域名。
@@ -197,8 +197,8 @@ extension Vod {
         public let definition: Int64
 
         /// 打包格式，取值范围：
-        /// <li>HLS；</li>
-        /// <li>DASH。</li>
+        /// - HLS；
+        /// - DASH。
         public let package: String
 
         /// 加密类型。
@@ -208,15 +208,15 @@ extension Vod {
         public let url: String
 
         /// 媒体文件大小，单位：字节。
-        /// <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和；</li>
-        /// <li>当媒体文件为 DASH 时，大小是 mpd 和分片文件大小的总和；</li>
-        /// <li>_注意_：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。</li>
+        /// - 当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和；
+        /// - 当媒体文件为 DASH 时，大小是 mpd 和分片文件大小的总和；
+        /// - _注意_：在 2022-01-10T16:00:00Z 前处理生成的自适应码流文件此字段为0。
         public let size: Int64?
 
         /// 数字水印类型。可选值：
-        /// <li>Trace 表示经过溯源水印处理；</li>
-        /// <li>CopyRight 表示经过版权水印处理；</li>
-        /// <li>None 表示没有经过数字水印处理。</li>
+        /// - Trace 表示经过溯源水印处理；
+        /// - CopyRight 表示经过版权水印处理；
+        /// - None 表示没有经过数字水印处理。
         public let digitalWatermarkType: String?
 
         /// 子流信息列表。
@@ -288,8 +288,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 转自适应码流模板名称。
@@ -299,19 +299,19 @@ extension Vod {
         public let comment: String
 
         /// 自适应转码格式，取值范围：
-        /// <li>HLS。</li>
+        /// - HLS。
         public let format: String
 
         /// DRM 类型，取值范围：
-        /// <li>SimpleAES</li>
-        /// <li>Widevine</li>
-        /// <li>FairPlay</li>
+        /// - SimpleAES
+        /// - Widevine
+        /// - FairPlay
         /// 如果取值为空字符串，代表不对视频做 DRM 保护。
         public let drmType: String
 
         /// DRM 的密钥提供商，取值范围：
-        /// <li>SDMC：华曦达；</li>
-        /// <li>VOD：云点播。</li>
+        /// - SDMC：华曦达；
+        /// - VOD：云点播。
         /// 默认值为 VOD 。
         public let drmKeyProvider: String
 
@@ -319,13 +319,13 @@ extension Vod {
         public let streamInfos: [AdaptiveStreamTemplate]
 
         /// 是否禁止视频低码率转高码率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoBitrate: UInt64
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoResolution: UInt64
 
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -363,13 +363,13 @@ extension Vod {
         public let audio: AudioTemplateInfo
 
         /// 是否移除音频流，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let removeAudio: UInt64?
 
         /// 是否移除视频流，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let removeVideo: UInt64?
 
         /// 极速高清转码参数。
@@ -396,11 +396,11 @@ extension Vod {
     /// 智能分析结果
     public struct AiAnalysisResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Classification：智能分类</li>
-        /// <li>Cover：智能封面</li>
-        /// <li>Tag：智能标签</li>
-        /// <li>FrameTag：智能按帧标签</li>
-        /// <li>Highlight：智能精彩集锦</li>
+        /// - Classification：智能分类
+        /// - Cover：智能封面
+        /// - Tag：智能标签
+        /// - FrameTag：智能按帧标签
+        /// - Highlight：智能精彩集锦
         public let type: String
 
         /// 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
@@ -810,16 +810,16 @@ extension Vod {
     /// 音视频审核结果
     public struct AiContentReviewResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Porn：图片鉴别是否涉及令人反感的信息</li>
-        /// <li>Terrorism：图片鉴别是否涉及令人不安全的信息</li>
-        /// <li>Political：图片鉴别是否涉及令人不适宜的信息</li>
-        /// <li>Porn.Asr：Asr 文字（ 音频中的文字）鉴别是否涉及令人反感的信息</li>
-        /// <li>Porn.Ocr：Ocr 文字鉴别是否涉及令人反感的信息</li>
-        /// <li>Political.Asr：Asr 文字（ 音频中的文字）鉴别是否涉及令人不适宜的信息</li>
-        /// <li>Political.Ocr：Ocr 文字鉴别是否涉及令人不适宜的信息</li>
-        /// <li>Terrorism.Ocr：Ocr 文字鉴别是否涉及令人不安全的信息</li>
-        /// <li>Prohibited.Asr：Asr 文字（ 音频中的文字）鉴违禁</li>
-        /// <li>Prohibited.Ocr：Ocr 文字鉴违禁</li>
+        /// - Porn：图片鉴别是否涉及令人反感的信息
+        /// - Terrorism：图片鉴别是否涉及令人不安全的信息
+        /// - Political：图片鉴别是否涉及令人不适宜的信息
+        /// - Porn.Asr：Asr 文字（ 音频中的文字）鉴别是否涉及令人反感的信息
+        /// - Porn.Ocr：Ocr 文字鉴别是否涉及令人反感的信息
+        /// - Political.Asr：Asr 文字（ 音频中的文字）鉴别是否涉及令人不适宜的信息
+        /// - Political.Ocr：Ocr 文字鉴别是否涉及令人不适宜的信息
+        /// - Terrorism.Ocr：Ocr 文字鉴别是否涉及令人不安全的信息
+        /// - Prohibited.Asr：Asr 文字（ 音频中的文字）鉴违禁
+        /// - Prohibited.Ocr：Ocr 文字鉴违禁
         public let type: String
 
         /// 视频音视频审核任务（画面涉及令人反感的信息）的查询结果，当任务类型为 Porn 时有效。
@@ -894,13 +894,13 @@ extension Vod {
     /// 智能识别结果。
     public struct AiRecognitionResult: TCOutputModel {
         /// 任务的类型，取值范围：
-        /// <li>FaceRecognition：人脸识别，</li>
-        /// <li>AsrWordsRecognition：语音关键词识别，</li>
-        /// <li>OcrWordsRecognition：文本关键词识别，</li>
-        /// <li>AsrFullTextRecognition：语音全文识别，</li>
-        /// <li>OcrFullTextRecognition：文本全文识别，</li>
-        /// <li>HeadTailRecognition：视频片头片尾识别，</li>
-        /// <li>ObjectRecognition：物体识别。</li>
+        /// - FaceRecognition：人脸识别，
+        /// - AsrWordsRecognition：语音关键词识别，
+        /// - OcrWordsRecognition：文本关键词识别，
+        /// - AsrFullTextRecognition：语音全文识别，
+        /// - OcrFullTextRecognition：文本全文识别，
+        /// - HeadTailRecognition：视频片头片尾识别，
+        /// - ObjectRecognition：物体识别。
         public let type: String
 
         /// 视频片头片尾识别结果，当 Type 为
@@ -1039,8 +1039,8 @@ extension Vod {
     /// 字幕信息。
     public struct AiRecognitionTaskAsrFullTextResultOutputSubtitleItem: TCOutputModel {
         /// 字幕文件格式，取值范围：
-        /// <li>vtt：WebVTT 字幕文件；</li>
-        /// <li>srt：SRT 字幕文件。</li>
+        /// - vtt：WebVTT 字幕文件；
+        /// - srt：SRT 字幕文件。
         public let format: String
 
         /// 字幕文件 Url。
@@ -1237,8 +1237,8 @@ extension Vod {
         public let id: String
 
         /// 人物库类型，表示识别出的人物来自哪个人物库：
-        /// <li>Default：默认人物库；</li>
-        /// <li>UserDefine：用户自定义人物库。</li>
+        /// - Default：默认人物库；
+        /// - UserDefine：用户自定义人物库。
         public let type: String
 
         /// 人物名称。
@@ -1832,9 +1832,9 @@ extension Vod {
         public let confidence: Float
 
         /// Asr 文字涉及令人不适宜的信息、违规结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表。
@@ -1872,9 +1872,9 @@ extension Vod {
         public let confidence: Float
 
         /// Ocr 文字涉及令人不适宜的信息、违规结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉及令人不适宜的信息、违规嫌疑的视频片段列表。
@@ -1912,16 +1912,16 @@ extension Vod {
         public let confidence: Float
 
         /// 涉及令人不适宜信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频涉及令人不适宜信息的结果标签。音视频审核模板[画面鉴政任务控制参数](https://cloud.tencent.com/document/api/266/31773#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
-        /// <li>violation_photo：违规图标。</li>
+        /// - violation_photo：违规图标。
         /// 其他（即 politician/entertainment/sport/entrepreneur/scholar/celebrity/military）：
-        /// <li>politician：相关人物。</li>
+        /// - politician：相关人物。
         public let label: String
 
         /// 有涉及令人不适宜信息嫌疑的视频片段列表。
@@ -1960,9 +1960,9 @@ extension Vod {
         public let confidence: Float
 
         /// Asr 文字涉及令人反感的信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字有涉及令人反感的信息的嫌疑的视频片段列表。
@@ -2000,9 +2000,9 @@ extension Vod {
         public let confidence: Float
 
         /// Ocr 文字涉及令人反感的信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉及令人反感的信息的嫌疑的视频片段列表。
@@ -2044,16 +2044,16 @@ extension Vod {
         public let confidence: Float
 
         /// 鉴别涉及令人反感的信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频鉴别涉及令人反感的信息的结果标签，取值范围：
-        /// <li>porn：色情。</li>
-        /// <li>sexy：性感。</li>
-        /// <li>vulgar：低俗。</li>
-        /// <li>intimacy：亲密行为。</li>
+        /// - porn：色情。
+        /// - sexy：性感。
+        /// - vulgar：低俗。
+        /// - intimacy：亲密行为。
         public let label: String
 
         /// 有涉及令人反感的信息的嫌疑的视频片段列表。
@@ -2092,9 +2092,9 @@ extension Vod {
         public let confidence: Float
 
         /// Asr 文字涉违禁结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字有涉违禁嫌疑的视频片段列表。
@@ -2132,9 +2132,9 @@ extension Vod {
         public let confidence: Float
 
         /// Ocr 文字涉违禁结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉违禁嫌疑的视频片段列表。
@@ -2521,9 +2521,9 @@ extension Vod {
         public let confidence: Float
 
         /// Ocr 文字有涉及令人不安全信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉及令人不安全信息嫌疑的视频片段列表。
@@ -2561,21 +2561,21 @@ extension Vod {
         public let confidence: Float
 
         /// 暴恐结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频暴恐结果标签，取值范围：
-        /// <li>guns：武器枪支。</li>
-        /// <li>crowd：人群聚集。</li>
-        /// <li>police：警察部队。</li>
-        /// <li>bloody：血腥画面。</li>
-        /// <li>banners：暴恐旗帜。</li>
-        /// <li>militant：武装分子。</li>
-        /// <li>explosion：爆炸火灾。</li>
-        /// <li>terrorists：暴恐人物。</li>
-        /// <li>scenario：暴恐画面。</li>
+        /// - guns：武器枪支。
+        /// - crowd：人群聚集。
+        /// - police：警察部队。
+        /// - bloody：血腥画面。
+        /// - banners：暴恐旗帜。
+        /// - militant：武装分子。
+        /// - explosion：爆炸火灾。
+        /// - terrorists：暴恐人物。
+        /// - scenario：暴恐画面。
         public let label: String
 
         /// 有暴恐嫌疑的视频片段列表。
@@ -2621,8 +2621,8 @@ extension Vod {
         public let faceIds: [String]?
 
         /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合，仅支持 jpeg、png 图片格式。
-        /// <li>当 Type为add 或 reset 时，该字段必填；</li>
-        /// <li>数组长度限制：5 张图片。</li>
+        /// - 当 Type为add 或 reset 时，该字段必填；
+        /// - 数组长度限制：5 张图片。
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
 
@@ -2645,8 +2645,8 @@ extension Vod {
         public let index: UInt64
 
         /// 错误码，取值：
-        /// <li>0：成功；</li>
-        /// <li>其他：失败。</li>
+        /// - 0：成功；
+        /// - 其他：失败。
         public let errCode: Int64
 
         /// 错误描述。
@@ -2748,8 +2748,8 @@ extension Vod {
         public let keyword: String
 
         /// 关键词标签
-        /// <li>数组长度限制：20 个标签；</li>
-        /// <li>单个标签长度限制：128 个字符。</li>
+        /// - 数组长度限制：20 个标签；
+        /// - 单个标签长度限制：128 个字符。
         public let tags: [String]?
 
         public init(keyword: String, tags: [String]? = nil) {
@@ -2769,15 +2769,15 @@ extension Vod {
         public let definition: UInt64
 
         /// 动图在视频中的起始时间偏移，单位为秒。
-        /// <li>不填或填0，表示从视频的起始位置开始；</li>
-        /// <li>当数值大于0时（假设为 n），表示从视频的第 n 秒位置开始；</li>
-        /// <li>当数值小于0时（假设为 -n），表示从视频结束 n 秒前的位置开始。</li>
+        /// - 不填或填0，表示从视频的起始位置开始；
+        /// - 当数值大于0时（假设为 n），表示从视频的第 n 秒位置开始；
+        /// - 当数值小于0时（假设为 -n），表示从视频结束 n 秒前的位置开始。
         public let startTimeOffset: Float
 
         /// 动图在视频中的终止时间偏移，单位为秒。
-        /// <li>不填或填0，表示持续到视频的末尾终止；</li>
-        /// <li>当数值大于0时（假设为 n），表示持续到视频第 n 秒时终止；</li>
-        /// <li>当数值小于0时（假设为 -n），表示持续到视频结束 n 秒前终止。</li>
+        /// - 不填或填0，表示持续到视频的末尾终止；
+        /// - 当数值大于0时（假设为 n），表示持续到视频第 n 秒时终止；
+        /// - 当数值小于0时（假设为 -n），表示持续到视频结束 n 秒前终止。
         public let endTimeOffset: Float
 
         public init(definition: UInt64, startTimeOffset: Float, endTimeOffset: Float) {
@@ -2799,8 +2799,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 转动图模板名称。
@@ -2810,24 +2810,24 @@ extension Vod {
         public let comment: String
 
         /// 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 动图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -2865,13 +2865,13 @@ extension Vod {
     /// 去伪影（毛刺）控制信息
     public struct ArtifactRepairInfo: TCInputModel, TCOutputModel {
         /// 去伪影（毛刺）控制开关，可选值：
-        /// <li>ON：开启去伪影（毛刺）；</li>
-        /// <li>OFF：关闭去伪影（毛刺）。</li>
+        /// - ON：开启去伪影（毛刺）；
+        /// - OFF：关闭去伪影（毛刺）。
         public let `switch`: String
 
         /// 去伪影（毛刺）类型，仅当去伪影（毛刺）控制开关为 ON 时有效，可选值：
-        /// <li>weak：轻去伪影（毛刺）；</li>
-        /// <li>strong：强去伪影（毛刺）。</li>
+        /// - weak：轻去伪影（毛刺）；
+        /// - strong：强去伪影（毛刺）。
         /// 默认值：weak。
         public let type: String?
 
@@ -2889,26 +2889,26 @@ extension Vod {
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音全文识别任务开关，可选值：
-        /// <li>ON：开启智能语音全文识别任务；</li>
-        /// <li>OFF：关闭智能语音全文识别任务。</li>
+        /// - ON：开启智能语音全文识别任务；
+        /// - OFF：关闭智能语音全文识别任务。
         public let `switch`: String
 
         /// 生成的字幕文件格式列表，不填或者填空数组表示不生成字幕文件，可选值：
-        /// <li>vtt：生成 WebVTT 字幕文件；</li>
-        /// <li>srt：生成 SRT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件；
+        /// - srt：生成 SRT 字幕文件。
         public let subtitleFormats: [String]?
 
         /// 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
-        /// <li>vtt：生成 WebVTT 字幕文件；</li>
-        /// <li>srt：生成 SRT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件；
+        /// - srt：生成 SRT 字幕文件。
         /// _注意：此字段已废弃，建议使用 SubtitleFormats。_
         public let subtitleFormat: String?
 
         /// 媒体源语言，取值范围：
-        /// <li>zh：中文普通话；</li>
-        /// <li>en：英语；</li>
-        /// <li>ja：日语；</li>
-        /// <li>zh-ca：粤语。</li>
+        /// - zh：中文普通话；
+        /// - en：英语；
+        /// - ja：日语；
+        /// - zh-ca：粤语。
         /// _注意：_ 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
         public let srcLanguage: String?
 
@@ -2930,24 +2930,24 @@ extension Vod {
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 语音全文识别任务开关，可选值：
-        /// <li>ON：开启智能语音全文识别任务；</li>
-        /// <li>OFF：关闭智能语音全文识别任务。</li>
+        /// - ON：开启智能语音全文识别任务；
+        /// - OFF：关闭智能语音全文识别任务。
         public let `switch`: String?
 
         /// 字幕格式列表操作信息。
         public let subtitleFormatsOperation: SubtitleFormatsOperation?
 
         /// 生成的字幕文件格式，_填空字符串_表示不生成字幕文件，可选值：
-        /// <li>vtt：生成 WebVTT 字幕文件；</li>
-        /// <li>srt：生成 SRT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件；
+        /// - srt：生成 SRT 字幕文件。
         /// _注意：此字段已废弃，建议使用 SubtitleFormatsOperation。_
         public let subtitleFormat: String?
 
         /// 媒体源语言，取值范围：
-        /// <li>zh：中文普通话；</li>
-        /// <li>en：英语；</li>
-        /// <li>ja：日语；</li>
-        /// <li>zh-ca：粤语。</li>
+        /// - zh：中文普通话；
+        /// - en：英语；
+        /// - ja：日语；
+        /// - zh-ca：粤语。
         public let srcLanguage: String?
 
         public init(switch: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil, srcLanguage: String? = nil) {
@@ -2968,8 +2968,8 @@ extension Vod {
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音关键词识别任务开关，可选值：
-        /// <li>ON：开启语音关键词识别任务；</li>
-        /// <li>OFF：关闭语音关键词识别任务。</li>
+        /// - ON：开启语音关键词识别任务；
+        /// - OFF：关闭语音关键词识别任务。
         public let `switch`: String
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -2990,8 +2990,8 @@ extension Vod {
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfoForUpdate: TCInputModel {
         /// 语音关键词识别任务开关，可选值：
-        /// <li>ON：开启语音关键词识别任务；</li>
-        /// <li>OFF：关闭语音关键词识别任务。</li>
+        /// - ON：开启语音关键词识别任务；
+        /// - OFF：关闭语音关键词识别任务。
         public let `switch`: String?
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -3012,14 +3012,14 @@ extension Vod {
     /// 音频降噪控制信息
     public struct AudioDenoiseInfo: TCInputModel, TCOutputModel {
         /// 音频降噪控制开关，可选值：
-        /// <li>ON：开启音频降噪；</li>
-        /// <li>OFF：关闭音频降噪。</li>
+        /// - ON：开启音频降噪；
+        /// - OFF：关闭音频降噪。
         public let `switch`: String
 
         /// 音频降噪类型，仅当音频降噪控制开关为 ON 时有效，可选值：
-        /// <li>weak：轻音频降噪；</li>
-        /// <li>normal：正常音频降噪；</li>
-        /// <li>strong：强音频降噪。</li>
+        /// - weak：轻音频降噪；
+        /// - normal：正常音频降噪；
+        /// - strong：强音频降噪。
         /// 默认值：weak。
         public let type: String?
 
@@ -3038,23 +3038,23 @@ extension Vod {
     public struct AudioTemplateInfo: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
-        /// <li>libmp3lame。</li>
+        /// - libmp3lame。
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        /// <li>flac。</li>
+        /// - flac。
         /// 当外层参数 Container 为 m4a 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame；</li>
-        /// <li>ac3。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame；
+        /// - ac3。
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        /// <li>libfdk_aac：更适合 mp4；</li>
-        /// <li>libmp3lame：更适合 flv；</li>
-        /// <li>mp2。</li>
+        /// - libfdk_aac：更适合 mp4；
+        /// - libmp3lame：更适合 flv；
+        /// - mp2。
         /// 当外层参数 Container 为 hls 时，可选值为：
-        /// <li>libfdk_aac。</li>
+        /// - libfdk_aac。
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
-        /// <li>libfdk_aac。</li>
+        /// - libfdk_aac。
         /// 当外层参数 Container 为 wav 时，可选值为：
-        /// <li>pcm16。</li>
+        /// - pcm16。
         public let codec: String
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
@@ -3062,17 +3062,17 @@ extension Vod {
         public let bitrate: UInt64
 
         /// 音频流的采样率，可选值：
-        /// <li>16000，仅当 Codec 为 pcm16 时可选。</li>
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 16000，仅当 Codec 为 pcm16 时可选。
+        /// - 32000
+        /// - 44100
+        /// - 48000
         /// 单位：Hz。
         public let sampleRate: UInt64
 
         /// 音频通道方式，可选值：
-        /// <li>1：单通道</li>
-        /// <li>2：双通道</li>
-        /// <li>6：立体声</li>
+        /// - 1：单通道
+        /// - 2：双通道
+        /// - 6：立体声
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
         public let audioChannel: Int64?
@@ -3096,40 +3096,40 @@ extension Vod {
     public struct AudioTemplateInfoForUpdate: TCInputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
-        /// <li>libmp3lame。</li>
+        /// - libmp3lame。
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        /// <li>flac。</li>
+        /// - flac。
         /// 当外层参数 Container 为 m4a 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame；</li>
-        /// <li>ac3。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame；
+        /// - ac3。
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        /// <li>libfdk_aac：更适合 mp4；</li>
-        /// <li>libmp3lame：更适合 flv；</li>
-        /// <li>mp2。</li>
+        /// - libfdk_aac：更适合 mp4；
+        /// - libmp3lame：更适合 flv；
+        /// - mp2。
         /// 当外层参数 Container 为 hls 时，可选值为：
-        /// <li>libfdk_aac。</li>
+        /// - libfdk_aac。
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
-        /// <li>libfdk_aac。</li>
+        /// - libfdk_aac。
         /// 当外层参数 Container 为 wav 时，可选值为：
-        /// <li>pcm16。</li>
+        /// - pcm16。
         public let codec: String?
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         public let bitrate: UInt64?
 
         /// 音频流的采样率，可选值：
-        /// <li>16000，仅当 Codec 为 pcm16 时可选。</li>
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 16000，仅当 Codec 为 pcm16 时可选。
+        /// - 32000
+        /// - 44100
+        /// - 48000
         /// 单位：Hz。
         public let sampleRate: UInt64?
 
         /// 音频通道方式，可选值：
-        /// <li>1：单通道</li>
-        /// <li>2：双通道</li>
-        /// <li>6：立体声</li>
+        /// - 1：单通道
+        /// - 2：双通道
+        /// - 6：立体声
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         public let audioChannel: Int64?
 
@@ -3151,8 +3151,8 @@ extension Vod {
     /// 音频轨道上的音频片段信息。
     public struct AudioTrackItem: TCInputModel, TCOutputModel {
         /// 音频片段的媒体素材来源，可以是：
-        /// <li>点播的媒体文件 ID；</li>
-        /// <li>其他媒体文件的下载 URL。</li>
+        /// - 点播的媒体文件 ID；
+        /// - 其他媒体文件的下载 URL。
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -3163,8 +3163,8 @@ extension Vod {
         public let duration: Float?
 
         /// 音频片段目标时长，单位为秒。
-        /// <li>当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；</li>
-        /// <li>当 TargetDuration 取大于0的值时，将对音频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。</li>
+        /// - 当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；
+        /// - 当 TargetDuration 取大于0的值时，将对音频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。
         public let targetDuration: Float?
 
         /// 对音频片段进行的操作，如音量调节等。
@@ -3190,7 +3190,7 @@ extension Vod {
     /// 音频操作
     public struct AudioTransform: TCInputModel, TCOutputModel {
         /// 音频操作类型，取值有：
-        /// <li>Volume：音量调节。</li>
+        /// - Volume：音量调节。
         public let type: String
 
         /// 音量调节参数， 当 Type = Volume 时有效。
@@ -3211,15 +3211,15 @@ extension Vod {
     /// 音频增益调节参数
     public struct AudioVolumeParam: TCInputModel, TCOutputModel {
         /// 是否静音，取值范围0或1。
-        /// <li>0表示不静音。</li>
-        /// <li>1表示静音。</li>
+        /// - 0表示不静音。
+        /// - 1表示静音。
         /// 默认是0。
         public let mute: Int64?
 
         /// 音频增益，取值范围0~10。
-        /// <li>大于1表示增加音量。</li>
-        /// <li>小于1表示降低音量。</li>
-        /// <li>0和1：表示不改变。</li>
+        /// - 大于1表示增加音量。
+        /// - 小于1表示降低音量。
+        /// - 0和1：表示不改变。
         /// 默认是0。
         public let gain: Float?
 
@@ -3237,8 +3237,8 @@ extension Vod {
     /// 视频画面黑边、白边、黑屏、白屏检测的控制参数。
     public struct BlackWhiteEdgeConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面黑边、白边、黑屏、白屏检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3253,8 +3253,8 @@ extension Vod {
     /// 视频画面黑边、白边、黑屏、白屏检测的控制参数。
     public struct BlackWhiteEdgeConfigureInfoForUpdate: TCInputModel {
         /// 视频画面黑边、白边、黑屏、白屏检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3269,8 +3269,8 @@ extension Vod {
     /// 视频画面模糊检测的控制参数。
     public struct BlurConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面模糊检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3285,8 +3285,8 @@ extension Vod {
     /// 视频画面模糊检测的控制参数。
     public struct BlurConfigureInfoForUpdate: TCInputModel {
         /// 视频画面模糊检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3301,8 +3301,8 @@ extension Vod {
     /// 画布信息。制作视频时，如果源素材（视频或者图片）不能填满输出的视频窗口，将用设置的画布进行背景绘制。
     public struct Canvas: TCInputModel, TCOutputModel {
         /// 背景颜色，取值有：
-        /// <li>Black：黑色背景</li>
-        /// <li>White：白色背景</li>
+        /// - Black：黑色背景
+        /// - White：白色背景
         /// 默认值：Black。
         public let color: String?
 
@@ -3357,8 +3357,8 @@ extension Vod {
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能分类任务开关，可选值：
-        /// <li>ON：开启智能分类任务；</li>
-        /// <li>OFF：关闭智能分类任务。</li>
+        /// - ON：开启智能分类任务；
+        /// - OFF：关闭智能分类任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3373,8 +3373,8 @@ extension Vod {
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfoForUpdate: TCInputModel {
         /// 智能分类任务开关，可选值：
-        /// <li>ON：开启智能分类任务；</li>
-        /// <li>OFF：关闭智能分类任务。</li>
+        /// - ON：开启智能分类任务；
+        /// - OFF：关闭智能分类任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3389,8 +3389,8 @@ extension Vod {
     /// 视频裁剪结果文件信息（2017 版）
     public struct ClipFileInfo2017: TCOutputModel {
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误描述。
@@ -3435,14 +3435,14 @@ extension Vod {
     /// 色彩增强控制参数
     public struct ColorEnhanceInfo: TCInputModel, TCOutputModel {
         /// 色彩增强控制开关，可选值：
-        /// <li>ON：开启综合增强；</li>
-        /// <li>OFF：关闭综合增强。</li>
+        /// - ON：开启综合增强；
+        /// - OFF：关闭综合增强。
         public let `switch`: String
 
         /// 色彩增强类型，仅当色彩增强控制开关为 ON 时有效，可选值：
-        /// <li>weak：轻色彩增强；</li>
-        /// <li>normal：正常色彩增强；</li>
-        /// <li>strong：强色彩增强。</li>
+        /// - weak：轻色彩增强；
+        /// - normal：正常色彩增强；
+        /// - strong：强色彩增强。
         /// 默认值：weak。
         public let type: String?
 
@@ -3466,7 +3466,7 @@ extension Vod {
         public let description: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -3484,14 +3484,14 @@ extension Vod {
         public let audioStream: OutputAudioStream?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值：0。
         public let removeAudio: Int64?
 
@@ -3526,13 +3526,13 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -3607,7 +3607,7 @@ extension Vod {
         public let mediaName: String
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -3626,8 +3626,8 @@ extension Vod {
     /// 视频拼接源文件信息（2017 版）
     public struct ConcatFileInfo2017: TCOutputModel {
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -3671,9 +3671,9 @@ extension Vod {
         public let confidence: Float
 
         /// Ocr 文字鉴别的结果建议，取值范围：
-        /// <li>pass；</li>
-        /// <li>review；</li>
-        /// <li>block。</li>
+        /// - pass；
+        /// - review；
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字鉴别的嫌疑关键词列表。
@@ -3693,12 +3693,12 @@ extension Vod {
     /// 图片智能内容识别任务结果
     public struct ContentReviewResult: TCOutputModel {
         /// 结果类型，取值范围：
-        /// <li>Porn.Image：图片画面中的鉴别令人反感的信息结果；</li>
-        /// <li>Terrorism.Image：图片画面中的鉴别令人不安全的信息结果；</li>
-        /// <li>Political.Image：图片画面中的鉴别令人不适宜信息结果；</li>
-        /// <li>Porn.Ocr：图片 OCR 文字中的鉴别令人反感的信息结果；</li>
-        /// <li>Terrorism.Ocr：图片 OCR 文字中的鉴别令人不安全的信息结果；</li>
-        /// <li>Political.Ocr：图片 OCR 文字中的鉴别令人不适宜信息结果。</li>
+        /// - Porn.Image：图片画面中的鉴别令人反感的信息结果；
+        /// - Terrorism.Image：图片画面中的鉴别令人不安全的信息结果；
+        /// - Political.Image：图片画面中的鉴别令人不适宜信息结果；
+        /// - Porn.Ocr：图片 OCR 文字中的鉴别令人反感的信息结果；
+        /// - Terrorism.Ocr：图片 OCR 文字中的鉴别令人不安全的信息结果；
+        /// - Political.Ocr：图片 OCR 文字中的鉴别令人不适宜信息结果。
         public let type: String
 
         /// 图片画面中的鉴别令人反感的信息结果，当 Type 为 Porn.Image 时有效。
@@ -3760,8 +3760,8 @@ extension Vod {
         public let politicalConfigure: PoliticalConfigureInfo?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
@@ -3770,8 +3770,8 @@ extension Vod {
         public let userDefineConfigure: UserDefineConfigureInfo?
 
         /// 音视频审核结果是否进入音视频审核墙（对音视频审核结果进行人工复核）的开关。
-        /// <li>ON：是；</li>
-        /// <li>OFF：否。</li>
+        /// - ON：是；
+        /// - OFF：否。
         public let reviewWallSwitch: String
 
         /// 截帧间隔，单位为秒。当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
@@ -3819,13 +3819,13 @@ extension Vod {
         public let definition: UInt64
 
         /// 截图方式。包含：
-        /// <li>Time：依照时间点截图</li>
-        /// <li>Percent：依照百分比截图</li>
+        /// - Time：依照时间点截图
+        /// - Percent：依照百分比截图
         public let positionType: String
 
         /// 截图位置：
-        /// <li>对于依照时间点截图，该值表示指定视频第几秒的截图作为封面</li>
-        /// <li>对于依照百分比截图，该值表示使用视频百分之多少的截图作为封面</li>
+        /// - 对于依照时间点截图，该值表示指定视频第几秒的截图作为封面
+        /// - 对于依照百分比截图，该值表示使用视频百分之多少的截图作为封面
         public let positionValue: Float
 
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
@@ -3859,8 +3859,8 @@ extension Vod {
     /// 智能封面任务控制参数
     public struct CoverConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能封面任务开关，可选值：
-        /// <li>ON：开启智能封面任务；</li>
-        /// <li>OFF：关闭智能封面任务。</li>
+        /// - ON：开启智能封面任务；
+        /// - OFF：关闭智能封面任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3875,8 +3875,8 @@ extension Vod {
     /// 智能封面任务控制参数
     public struct CoverConfigureInfoForUpdate: TCInputModel {
         /// 智能封面任务开关，可选值：
-        /// <li>ON：开启智能封面任务；</li>
-        /// <li>OFF：关闭智能封面任务。</li>
+        /// - ON：开启智能封面任务；
+        /// - OFF：关闭智能封面任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3891,8 +3891,8 @@ extension Vod {
     /// 视频画面花屏检测的控制参数。
     public struct CrashScreenConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面花屏检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3907,8 +3907,8 @@ extension Vod {
     /// 视频画面花屏检测的控制参数。
     public struct CrashScreenConfigureInfoForUpdate: TCInputModel {
         /// 视频画面花屏检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -3926,8 +3926,8 @@ extension Vod {
         public let taskId: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -3991,9 +3991,9 @@ extension Vod {
         public let status: String
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
@@ -4056,9 +4056,9 @@ extension Vod {
         public let accelerateAreaInfos: [AccelerateAreaInfo]?
 
         /// 部署状态，取值有：
-        /// <li>Online：上线；</li>
-        /// <li>Deploying：部署中；</li>
-        /// <li>Locked: 锁定中，出现该状态时，无法对该域名进行部署变更。</li>
+        /// - Online：上线；
+        /// - Deploying：部署中；
+        /// - Locked: 锁定中，出现该状态时，无法对该域名进行部署变更。
         public let deployStatus: String
 
         /// HTTPS 配置信息。
@@ -4074,7 +4074,7 @@ extension Vod {
         public let refererAuthPolicy: RefererAuthPolicy?
 
         /// 域名添加到腾讯云点播系统中的时间。
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         public let createTime: String
 
         /// 域名 QUIC 配置信息。
@@ -4096,7 +4096,7 @@ extension Vod {
     /// 域名 HTTPS 配置信息
     public struct DomainHTTPSConfig: TCInputModel, TCOutputModel {
         /// 证书过期时间。
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         public let certExpireTime: String
 
         public init(certExpireTime: String) {
@@ -4111,8 +4111,8 @@ extension Vod {
     /// 域名 QUIC 配置信息
     public struct DomainQUICConfig: TCInputModel, TCOutputModel {
         /// QUIC 配置状态，可选值：
-        /// <li>Enabled: 启用；</li>
-        /// <li>Disabled: 禁用。</li>
+        /// - Enabled: 启用；
+        /// - Disabled: 禁用。
         public let status: String
 
         public init(status: String) {
@@ -4175,13 +4175,13 @@ extension Vod {
     /// 画面动态范围信息。
     public struct DynamicRangeInfo: TCOutputModel {
         /// 画面动态范围信息。可取值：
-        /// <li>SDR：Standard Dynamic Range 标准动态范围；</li>
-        /// <li>HDR：High Dynamic Range 高动态范围。</li>
+        /// - SDR：Standard Dynamic Range 标准动态范围；
+        /// - HDR：High Dynamic Range 高动态范围。
         public let type: String?
 
         /// 高动态范围类型，当 Type 为 HDR 时有效。目前支持的可取值：
-        /// <li>hdr10：表示 hdr10 标准；</li>
-        /// <li>hlg：表示 hlg 标准。</li>
+        /// - hdr10：表示 hdr10 标准；
+        /// - hlg：表示 hlg 标准。
         public let hdrType: String?
 
         enum CodingKeys: String, CodingKey {
@@ -4223,7 +4223,7 @@ extension Vod {
         public let type: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -4280,7 +4280,9 @@ extension Vod {
 
     /// 视频编辑极速高清参数配置。
     public struct EditMediaTEHDConfig: TCInputModel, TCOutputModel {
-        /// 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
+        /// 极速高清类型，可选值：
+        /// - TEHD-100 表示极速高清-100;
+        /// - OFF 表示关闭极速高清。不填表示 OFF。
         public let type: String
 
         public init(type: String) {
@@ -4298,14 +4300,14 @@ extension Vod {
         public let taskId: String?
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String?
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64?
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
@@ -4390,7 +4392,7 @@ extension Vod {
         public let mediaName: String
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -4409,24 +4411,24 @@ extension Vod {
     /// 视频流配置信息
     public struct EditMediaVideoStream: TCInputModel {
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率取基准分辨率；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率取基准分辨率；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率取基准分辨率；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率取基准分辨率；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64?
 
@@ -4470,28 +4472,28 @@ extension Vod {
         public let eventHandle: String
 
         /// **支持事件类型：**
-        /// <li>NewFileUpload：视频上传完成；</li>
-        /// <li>ProcedureStateChanged：任务流状态变更；</li>
-        /// <li>FileDeleted：视频删除完成；</li>
-        /// <li>RestoreMediaComplete：视频取回完成；</li>
-        /// <li>PullComplete：视频转拉完成；</li>
-        /// <li>EditMediaComplete：视频编辑完成；</li>
-        /// <li>SplitMediaComplete：视频拆分完成；</li>
-        /// <li>ComposeMediaComplete：制作媒体文件完成；</li>
-        /// <li>WechatMiniProgramPublishComplete：微信小程序发布完成。</li>
-        /// <li>RemoveWatermark：智能去除水印完成。</li>
-        /// <li>RebuildMediaComplete：音画质重生完成事件。</li>
-        /// <li>ReviewAudioVideoComplete：音视频审核完成；</li>
-        /// <li>ExtractTraceWatermarkComplete：提取溯源水印完成；</li>
-        /// <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
-        /// <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
-        /// <li>QualityInspectComplete：音画质检测完成。</li>
+        /// - NewFileUpload：视频上传完成；
+        /// - ProcedureStateChanged：任务流状态变更；
+        /// - FileDeleted：视频删除完成；
+        /// - RestoreMediaComplete：视频取回完成；
+        /// - PullComplete：视频转拉完成；
+        /// - EditMediaComplete：视频编辑完成；
+        /// - SplitMediaComplete：视频拆分完成；
+        /// - ComposeMediaComplete：制作媒体文件完成；
+        /// - WechatMiniProgramPublishComplete：微信小程序发布完成。
+        /// - RemoveWatermark：智能去除水印完成。
+        /// - RebuildMediaComplete：音画质重生完成事件。
+        /// - ReviewAudioVideoComplete：音视频审核完成；
+        /// - ExtractTraceWatermarkComplete：提取溯源水印完成；
+        /// - ExtractCopyRightWatermarkComplete：提取版权水印完成；
+        /// - DescribeFileAttributesComplete：获取文件属性完成；
+        /// - QualityInspectComplete：音画质检测完成。
         /// **兼容 2017 版的事件类型：**
-        /// <li>TranscodeComplete：视频转码完成；</li>
-        /// <li>ConcatComplete：视频拼接完成；</li>
-        /// <li>ClipComplete：视频剪辑完成；</li>
-        /// <li>CreateImageSpriteComplete：视频截取雪碧图完成；</li>
-        /// <li>CreateSnapshotByTimeOffsetComplete：视频按时间点截图完成。</li>
+        /// - TranscodeComplete：视频转码完成；
+        /// - ConcatComplete：视频拼接完成；
+        /// - ClipComplete：视频剪辑完成；
+        /// - CreateImageSpriteComplete：视频截取雪碧图完成；
+        /// - CreateSnapshotByTimeOffsetComplete：视频按时间点截图完成。
         public let eventType: String
 
         /// 视频上传完成事件，当事件类型为 NewFileUpload 时有效。
@@ -4621,14 +4623,14 @@ extension Vod {
         public let taskId: String?
 
         /// 任务状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String?
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64?
 
         /// 错误信息。
@@ -4690,14 +4692,14 @@ extension Vod {
         public let taskId: String
 
         /// 任务状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64
 
         /// 错误信息。
@@ -4762,17 +4764,17 @@ extension Vod {
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfo: TCInputModel, TCOutputModel {
         /// 人脸识别任务开关，可选值：
-        /// <li>ON：开启智能人脸识别任务；</li>
-        /// <li>OFF：关闭智能人脸识别任务。</li>
+        /// - ON：开启智能人脸识别任务；
+        /// - OFF：关闭智能人脸识别任务。
         public let `switch`: String
 
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。默认 95 分。取值范围：0 - 100。
         public let score: Float?
 
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        /// <li>entertainment：娱乐明星；</li>
-        /// <li>sport：体育明星；</li>
-        /// <li>politician：相关人物。</li>
+        /// - entertainment：娱乐明星；
+        /// - sport：体育明星；
+        /// - politician：相关人物。
         public let defaultLibraryLabelSet: [String]?
 
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
@@ -4780,9 +4782,9 @@ extension Vod {
         public let userDefineLibraryLabelSet: [String]?
 
         /// 人物库选择，可选值：
-        /// <li>Default：使用默认人物库；</li>
-        /// <li>UserDefine：使用用户自定义人物库。</li>
-        /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
+        /// - Default：使用默认人物库；
+        /// - UserDefine：使用用户自定义人物库。
+        /// - All：同时使用默认人物库和用户自定义人物库。
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
 
@@ -4806,17 +4808,17 @@ extension Vod {
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfoForUpdate: TCInputModel {
         /// 人脸识别任务开关，可选值：
-        /// <li>ON：开启智能人脸识别任务；</li>
-        /// <li>OFF：关闭智能人脸识别任务。</li>
+        /// - ON：开启智能人脸识别任务；
+        /// - OFF：关闭智能人脸识别任务。
         public let `switch`: String?
 
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。取值范围：0-100。
         public let score: Float?
 
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        /// <li>entertainment：娱乐明星；</li>
-        /// <li>sport：体育明星；</li>
-        /// <li>politician：相关人物。</li>
+        /// - entertainment：娱乐明星；
+        /// - sport：体育明星；
+        /// - politician：相关人物。
         public let defaultLibraryLabelSet: [String]?
 
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
@@ -4824,9 +4826,9 @@ extension Vod {
         public let userDefineLibraryLabelSet: [String]?
 
         /// 人物库选择，可选值：
-        /// <li>Default：使用默认人物库；</li>
-        /// <li>UserDefine：使用用户自定义人物库。</li>
-        /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
+        /// - Default：使用默认人物库；
+        /// - UserDefine：使用用户自定义人物库。
+        /// - All：同时使用默认人物库和用户自定义人物库。
         public let faceLibrary: String?
 
         public init(switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
@@ -4849,8 +4851,8 @@ extension Vod {
     /// 人脸增强控制
     public struct FaceEnhanceInfo: TCInputModel, TCOutputModel {
         /// 人脸增强控制开关，可选值：
-        /// <li>ON：开启人脸增强；</li>
-        /// <li>OFF：关闭人脸增强。</li>
+        /// - ON：开启人脸增强；
+        /// - OFF：关闭人脸增强。
         public let `switch`: String
 
         /// 人脸增强强度，仅当人脸增强控制开关为 ON 时有效，取值范围：0.0~1.0。
@@ -4947,8 +4949,8 @@ extension Vod {
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能按帧标签任务开关，可选值：
-        /// <li>ON：开启智能按帧标签任务；</li>
-        /// <li>OFF：关闭智能按帧标签任务。</li>
+        /// - ON：开启智能按帧标签任务；
+        /// - OFF：关闭智能按帧标签任务。
         public let `switch`: String
 
         /// 截帧间隔，单位为秒，当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
@@ -4968,8 +4970,8 @@ extension Vod {
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfoForUpdate: TCInputModel {
         /// 智能按帧标签任务开关，可选值：
-        /// <li>ON：开启智能按帧标签任务；</li>
-        /// <li>OFF：关闭智能按帧标签任务。</li>
+        /// - ON：开启智能按帧标签任务；
+        /// - OFF：关闭智能按帧标签任务。
         public let `switch`: String?
 
         /// 截帧间隔，单位为秒，最小值为 0.5 秒。
@@ -4989,17 +4991,17 @@ extension Vod {
     /// 高动态范围类型控制参数。
     public struct HDRInfo: TCInputModel, TCOutputModel {
         /// 高动态范围类型控制开关，可选值：
-        /// <li>ON：开启高动态范围类型转换；</li>
-        /// <li>OFF：关闭高动态范围类型转换。</li>
+        /// - ON：开启高动态范围类型转换；
+        /// - OFF：关闭高动态范围类型转换。
         public let `switch`: String
 
         /// 高动态范围类型，可选值：
-        /// <li>hdr10：表示 hdr10 标准；</li>
-        /// <li>hlg：表示 hlg 标准。</li>
+        /// - hdr10：表示 hdr10 标准；
+        /// - hlg：表示 hlg 标准。
         ///
         /// 注意：
-        /// <li> 仅当高动态范围类型控制开关为 ON 时有效；</li>
-        /// <li>当画质重生目标参数中指定视频输出参数的视频流编码格式 Codec 为 libx265 时有效。</li>
+        /// - 仅当高动态范围类型控制开关为 ON 时有效；
+        /// - 当画质重生目标参数中指定视频输出参数的视频流编码格式 Codec 为 libx265 时有效。
         public let type: String?
 
         public init(switch: String, type: String? = nil) {
@@ -5016,8 +5018,8 @@ extension Vod {
     /// 视频片头片尾识别任务控制参数
     public struct HeadTailConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频片头片尾识别任务开关，可选值：
-        /// <li>ON：开启智能视频片头片尾识别任务；</li>
-        /// <li>OFF：关闭智能视频片头片尾识别任务。</li>
+        /// - ON：开启智能视频片头片尾识别任务；
+        /// - OFF：关闭智能视频片头片尾识别任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -5032,8 +5034,8 @@ extension Vod {
     /// 视频片头片尾识别任务控制参数
     public struct HeadTailConfigureInfoForUpdate: TCInputModel {
         /// 视频片头片尾识别任务开关，可选值：
-        /// <li>ON：开启智能视频片头片尾识别任务；</li>
-        /// <li>OFF：关闭智能视频片头片尾识别任务。</li>
+        /// - ON：开启智能视频片头片尾识别任务；
+        /// - OFF：关闭智能视频片头片尾识别任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -5077,10 +5079,10 @@ extension Vod {
         public let tailCandidateSet: [String]
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li> gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；</li>
-        /// <li> white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；</li>
-        /// <li> black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// 默认值：stretch 。
         public let fillType: String
 
@@ -5123,8 +5125,8 @@ extension Vod {
     /// 智能精彩片段任务控制参数
     public struct HighlightsConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能精彩片段任务开关，可选值：
-        /// <li>ON：开启智能精彩片段任务；</li>
-        /// <li>OFF：关闭智能精彩片段任务。</li>
+        /// - ON：开启智能精彩片段任务；
+        /// - OFF：关闭智能精彩片段任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -5139,8 +5141,8 @@ extension Vod {
     /// 智能精彩片段任务控制参数
     public struct HighlightsConfigureInfoForUpdate: TCInputModel {
         /// 智能精彩片段任务开关，可选值：
-        /// <li>ON：开启智能精彩片段任务；</li>
-        /// <li>OFF：关闭智能精彩片段任务。</li>
+        /// - ON：开启智能精彩片段任务；
+        /// - OFF：关闭智能精彩片段任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -5155,7 +5157,7 @@ extension Vod {
     /// 图片模糊处理。
     public struct ImageBlur: TCInputModel {
         /// 图片模糊的操作类型。可选模式有：
-        /// <li>Gaussian : 高斯模糊。</li>
+        /// - Gaussian : 高斯模糊。
         public let type: String
 
         /// 模糊半径，取值范围为1 - 50。当 Type 取值为 Gaussian 时此字段有效。
@@ -5180,8 +5182,8 @@ extension Vod {
     /// 图片中心裁剪处理。
     public struct ImageCenterCut: TCInputModel {
         /// 图片的裁剪模式，可选 Circle 和 Rectangle。
-        /// <li>Circle ： 内切圆裁剪，输出图片半径为 Radius。</li>
-        /// <li>Rectangle ： 矩形裁剪，输出图片宽为 Width ， 高为 Height。</li>
+        /// - Circle ： 内切圆裁剪，输出图片半径为 Radius。
+        /// - Rectangle ： 矩形裁剪，输出图片宽为 Width ， 高为 Height。
         public let type: String
 
         /// 输出图片的宽度，单位为像素，当 Type 取值为 Rectangle 时有效。
@@ -5211,7 +5213,7 @@ extension Vod {
     /// 图片智能内容识别任务输入
     public struct ImageContentReviewInput: TCInputModel {
         /// 图片智能内容审核模板 ID。当前只支持：
-        /// <li>10：所有审核类型均打开。</li>
+        /// - 10：所有审核类型均打开。
         public let definition: UInt64
 
         public init(definition: UInt64) {
@@ -5226,9 +5228,9 @@ extension Vod {
     /// 单个图片处理操作。
     public struct ImageOperation: TCInputModel, TCOutputModel {
         /// 图片处理类型。可选类型有：
-        /// <li>Scale : 图片缩略处理；</li>
-        /// <li>CenterCut : 图片裁剪处理；</li>
-        /// <li>Blur : 图片模糊处理。</li>
+        /// - Scale : 图片缩略处理；
+        /// - CenterCut : 图片裁剪处理；
+        /// - Blur : 图片模糊处理。
         public let type: String
 
         /// 图片缩略处理，仅当 Type 为 Scale 时有效。
@@ -5261,8 +5263,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 图片处理模板名称。
@@ -5272,7 +5274,7 @@ extension Vod {
         public let comment: String
 
         /// 图片处理操作数组，操作将以数组顺序执行。
-        /// <li>长度限制：3。</li>
+        /// - 长度限制：3。
         public let operations: [ImageOperation]
 
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -5305,11 +5307,11 @@ extension Vod {
     /// 图片缩放处理。
     public struct ImageScale: TCInputModel {
         /// 图片缩放的操作类型。可选模式有：
-        /// <li>WidthFirst : 指定图片的宽为 Width ，高度等比缩放。</li>
-        /// <li>HeightFirst : 指定图片的高为 Height ，宽度等比缩放。</li>
-        /// <li>LongEdgeFirst : 指定图片的长边为 LongEdge ，短边等比缩放。</li>
-        /// <li>ShortEdgeFirst : 指定图片的短边为 ShortEdge ，长边等比缩放。</li>
-        /// <li>Force : 忽略原图宽高比例，指定图片宽度为 Width，高度为 Height ，强行缩放图片，可能导致目标图片变形。</li>
+        /// - WidthFirst : 指定图片的宽为 Width ，高度等比缩放。
+        /// - HeightFirst : 指定图片的高为 Height ，宽度等比缩放。
+        /// - LongEdgeFirst : 指定图片的长边为 LongEdge ，短边等比缩放。
+        /// - ShortEdgeFirst : 指定图片的短边为 ShortEdge ，长边等比缩放。
+        /// - Force : 忽略原图宽高比例，指定图片宽度为 Width，高度为 Height ，强行缩放图片，可能导致目标图片变形。
         public let type: String
 
         /// 输出图片的高度，单位为像素。当 Type 取值为 HeightFirst 或 Force 时此字段有效。
@@ -5361,32 +5363,32 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 雪碧图模板名称。
         public let name: String
 
         /// 雪碧图中小图的宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 雪碧图中小图的高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -5409,8 +5411,8 @@ extension Vod {
         public let updateTime: String
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// 默认值：black 。
         public let fillType: String
 
@@ -5442,16 +5444,16 @@ extension Vod {
     /// 图像旋转、翻转等操作
     public struct ImageTransform: TCInputModel, TCOutputModel {
         /// 类型，取值有：
-        /// <li> Rotate：图像旋转。</li>
-        /// <li> Flip：图像翻转。</li>
+        /// - Rotate：图像旋转。
+        /// - Flip：图像翻转。
         public let type: String
 
         /// 图像以中心点为原点进行旋转的角度，取值范围0~360。当 Type = Rotate 时有效。
         public let rotateAngle: Float?
 
         /// 图像翻转动作，取值有：
-        /// <li>Horizental：水平翻转，即左右镜像。</li>
-        /// <li>Vertical：垂直翻转，即上下镜像。</li>
+        /// - Horizental：水平翻转，即左右镜像。
+        /// - Vertical：垂直翻转，即上下镜像。
         /// 当 Type = Flip 时有效。
         public let flip: String?
 
@@ -5474,26 +5476,26 @@ extension Vod {
         public let imageContent: String
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束（默认值）。
         public let repeatType: String?
 
         /// 图片透明度，取值范围：[0, 100]
-        /// <li>0：完全不透明</li>
-        /// <li>100：完全透明</li>
+        /// - 0：完全不透明
+        /// - 100：完全透明
         /// 默认值：0。
         public let transparency: Int64?
 
@@ -5520,24 +5522,24 @@ extension Vod {
         public let imageContent: String?
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
         public let height: String?
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束。
         public let repeatType: String?
 
         /// 图片透明度，取值范围：[0, 100]
-        /// <li>0：完全不透明</li>
-        /// <li>100：完全透明。</li>
+        /// - 0：完全不透明
+        /// - 100：完全透明。
         public let transparency: Int64?
 
         public init(imageContent: String? = nil, width: String? = nil, height: String? = nil, repeatType: String? = nil, transparency: Int64? = nil) {
@@ -5563,25 +5565,25 @@ extension Vod {
         public let imageUrl: String
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。
         public let width: String
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；
         /// 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         public let height: String
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束。
         public let repeatType: String
 
         /// 图片透明度，取值范围：[0, 100]
-        /// <li>0：完全不透明</li>
-        /// <li>100：完全透明。</li>
+        /// - 0：完全不透明
+        /// - 100：完全透明。
         public let transparency: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -5596,8 +5598,8 @@ extension Vod {
     /// 视频画面抖动重影检测的控制参数。
     public struct JitterConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面抖动重影检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -5612,8 +5614,8 @@ extension Vod {
     /// 视频画面抖动重影检测的控制参数。
     public struct JitterConfigureInfoForUpdate: TCInputModel {
         /// 视频画面抖动重影检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -5656,8 +5658,8 @@ extension Vod {
     /// 直播即时剪辑流信息
     public struct LiveRealTimeClipStreamInfo: TCInputModel {
         /// 直播流类型，可选值：
-        /// <li>Original（原始流，**默认值**）。</li>
-        /// <li>Transcoding（转码流）。</li>
+        /// - Original（原始流，**默认值**）。
+        /// - Transcoding（转码流）。
         public let type: String?
 
         /// 直播转码模板ID。
@@ -5678,12 +5680,12 @@ extension Vod {
     /// 低光照增强控制
     public struct LowLightEnhanceInfo: TCInputModel, TCOutputModel {
         /// 低光照增强控制开关，可选值：
-        /// <li>ON：开启低光照增强；</li>
-        /// <li>OFF：关闭低光照增强。</li>
+        /// - ON：开启低光照增强；
+        /// - OFF：关闭低光照增强。
         public let `switch`: String
 
         /// 低光照增强类型，仅当低光照增强控制开关为 ON 时有效，可选值：
-        /// <li>normal：正常低光照增强；</li>
+        /// - normal：正常低光照增强；
         /// 默认值：normal。
         public let type: String?
 
@@ -5936,9 +5938,9 @@ extension Vod {
         public let vid: String
 
         /// 文件类型：
-        /// <li>Video: 视频文件</li>
-        /// <li>Audio: 音频文件</li>
-        /// <li>Image: 图片文件</li>
+        /// - Video: 视频文件
+        /// - Audio: 音频文件
+        /// - Image: 图片文件
         public let category: String
 
         /// 文件状态：Normal：正常，Forbidden：封禁。
@@ -5947,10 +5949,10 @@ extension Vod {
         public let status: String
 
         /// 媒体文件的存储类别：
-        /// <li> STANDARD：标准存储。</li>
-        /// <li> STANDARD_IA：低频存储。</li>
-        /// <li> ARCHIVE：归档存储。</li>
-        /// <li> DEEP_ARCHIVE：深度归档存储。</li>
+        /// - STANDARD：标准存储。
+        /// - STANDARD_IA：低频存储。
+        /// - ARCHIVE：归档存储。
+        /// - DEEP_ARCHIVE：深度归档存储。
         public let storageClass: String
 
         enum CodingKeys: String, CodingKey {
@@ -6017,9 +6019,9 @@ extension Vod {
         public let confidence: Float
 
         /// 嫌疑片段音视频审核的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑关键词列表。
@@ -6046,9 +6048,9 @@ extension Vod {
         public let confidence: Float
 
         /// 嫌疑片段音视频审核的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑关键词列表。
@@ -6088,9 +6090,9 @@ extension Vod {
         public let confidence: Float
 
         /// 嫌疑片段涉及令人不适宜的信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 涉及令人不适宜的信息、违规图标名字。
@@ -6098,28 +6100,28 @@ extension Vod {
 
         /// 嫌疑片段涉及令人不适宜的信息的结果标签。音视频审核模板[画面涉及令人不适宜的信息的任务控制参数](https://cloud.tencent.com/document/api/266/31773#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
-        /// <li>violation_photo：违规图标。</li>
+        /// - violation_photo：违规图标。
         /// politician：
-        /// <li>nation_politician：国家领导人；</li>
-        /// <li>province_politician: 省部级领导人；</li>
-        /// <li>bureau_politician：厅局级领导人；</li>
-        /// <li>county_politician：县处级领导人；</li>
-        /// <li>rural_politician：乡科级领导人；</li>
-        /// <li>sensitive_politician：违规相关人物；</li>
-        /// <li>foreign_politician：国外领导人。</li>
+        /// - nation_politician：国家领导人；
+        /// - province_politician: 省部级领导人；
+        /// - bureau_politician：厅局级领导人；
+        /// - county_politician：县处级领导人；
+        /// - rural_politician：乡科级领导人；
+        /// - sensitive_politician：违规相关人物；
+        /// - foreign_politician：国外领导人。
         /// entertainment：
-        /// <li>sensitive_entertainment：违规娱乐人物。</li>
+        /// - sensitive_entertainment：违规娱乐人物。
         /// sport：
-        /// <li>sensitive_sport：违规体育人物。</li>
+        /// - sensitive_sport：违规体育人物。
         /// entrepreneur：
-        /// <li>sensitive_entrepreneur：违规商业人物。</li>
+        /// - sensitive_entrepreneur：违规商业人物。
         /// scholar：
-        /// <li>sensitive_scholar：违规教育学者。</li>
+        /// - sensitive_scholar：违规教育学者。
         /// celebrity：
-        /// <li>sensitive_celebrity：违规知名人物；</li>
-        /// <li>historical_celebrity：历史知名人物。</li>
+        /// - sensitive_celebrity：违规知名人物；
+        /// - historical_celebrity：历史知名人物。
         /// military：
-        /// <li>sensitive_military：违规相关人物。</li>
+        /// - sensitive_military：违规相关人物。
         public let label: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -6164,9 +6166,9 @@ extension Vod {
         public let label: String
 
         /// 嫌疑片段鉴别涉及令人反感的信息的结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -6194,13 +6196,14 @@ extension Vod {
     /// 指定删除点播视频时的删除内容
     public struct MediaDeleteItem: TCInputModel, TCOutputModel {
         /// 所指定的删除部分。如果未填写该字段则参数无效。可选值有：
-        /// <li>OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）；</li>
-        /// <li>TranscodeFiles（删除转码文件）；</li>
-        /// <li>AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；</li>
-        /// <li>WechatPublishFiles（删除微信发布文件）；</li>
-        /// <li>WechatMiniProgramPublishFiles（删除微信小程序发布文件）。</li>
-        /// _注意：_ <li>取值为OriginalFiles时，文件上传时携带的封面文件会被删除；</li>
-        /// <li>取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。</li>
+        /// - OriginalFiles（删除原文件，删除后无法发起转码、微信发布等任何视频处理操作）；
+        /// - TranscodeFiles（删除转码文件）；
+        /// - AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；
+        /// - WechatPublishFiles（删除微信发布文件）；
+        /// - WechatMiniProgramPublishFiles（删除微信小程序发布文件）。
+        /// _注意：_
+        /// - 取值为OriginalFiles时，文件上传时携带的封面文件会被删除；
+        /// - 取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。
         public let type: String
 
         /// 删除由Type参数指定的种类下的视频模板号，模板定义参见[转码模板](https://cloud.tencent.com/document/product/266/33478#.3Cspan-id-.3D-.22zm.22-.3E.3C.2Fspan.3E.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
@@ -6417,7 +6420,7 @@ extension Vod {
         public let audioDuration: Float
 
         /// 媒体文件的 Md5 值。
-        /// <li>_注意_：如需要获取媒体文件的 Md5，调用 DescribeFileAttributes 接口，待任务执行完成后获取。</li>
+        /// - _注意_：如需要获取媒体文件的 Md5，调用 DescribeFileAttributes 接口，待任务执行完成后获取。
         public let md5: String
 
         enum CodingKeys: String, CodingKey {
@@ -6439,19 +6442,19 @@ extension Vod {
     /// 小程序音视频审核概要元信息
     public struct MediaMiniProgramReviewElem: TCOutputModel {
         /// 音视频审核类型。
-        /// <li>Porn：画面涉及令人反感的信息，</li>
-        /// <li>Porn.Ocr：文字涉及令人反感的信息，</li>
-        /// <li>Porn.Asr：声音涉及令人反感的信息，</li>
-        /// <li>Terrorism：画面涉及令人不安全的信息，</li>
-        /// <li>Political：画面涉及令人不适宜的信息，</li>
-        /// <li>Political.Ocr：文字涉及令人不适宜的信息，</li>
-        /// <li>Political.Asr：声音涉及令人不适宜的信息。</li>
+        /// - Porn：画面涉及令人反感的信息，
+        /// - Porn.Ocr：文字涉及令人反感的信息，
+        /// - Porn.Asr：声音涉及令人反感的信息，
+        /// - Terrorism：画面涉及令人不安全的信息，
+        /// - Political：画面涉及令人不适宜的信息，
+        /// - Political.Ocr：文字涉及令人不适宜的信息，
+        /// - Political.Asr：声音涉及令人不适宜的信息。
         public let type: String
 
         /// 音视频审核意见。
-        /// <li>pass：确认正常，</li>
-        /// <li>block：确认违规，</li>
-        /// <li>review：疑似违规。</li>
+        /// - pass：确认正常，
+        /// - block：确认违规，
+        /// - review：疑似违规。
         public let suggestion: String
 
         /// 音视频审核结果置信度。取值 0~100。
@@ -6486,8 +6489,8 @@ extension Vod {
         public let url: String
 
         /// 小程序视频发布状态：
-        /// <li>Pass：成功。</li>
-        /// <li>Rejected：未通过。</li>
+        /// - Pass：成功。
+        /// - Rejected：未通过。
         public let reviewResult: String
 
         /// 小程序音视频审核元素。
@@ -6743,13 +6746,13 @@ extension Vod {
     /// 任务查询结果类型
     public struct MediaProcessTaskResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Transcode：转码</li>
-        /// <li>AnimatedGraphics：转动图</li>
-        /// <li>SnapshotByTimeOffset：时间点截图</li>
-        /// <li>SampleSnapshot：采样截图</li>
-        /// <li>ImageSprites：雪碧图</li>
-        /// <li>CoverBySnapshot：截图做封面</li>
-        /// <li>AdaptiveDynamicStreaming：自适应码流</li>
+        /// - Transcode：转码
+        /// - AnimatedGraphics：转动图
+        /// - SnapshotByTimeOffset：时间点截图
+        /// - SampleSnapshot：采样截图
+        /// - ImageSprites：雪碧图
+        /// - CoverBySnapshot：截图做封面
+        /// - AdaptiveDynamicStreaming：自适应码流
         public let type: String
 
         /// 视频转码任务的查询结果，当任务类型为 Transcode 时有效。
@@ -6937,13 +6940,13 @@ extension Vod {
         public let definition: Int64
 
         /// 采样方式，取值范围：
-        /// <li>Percent：根据百分比间隔采样。</li>
-        /// <li>Time：根据时间间隔采样。</li>
+        /// - Percent：根据百分比间隔采样。
+        /// - Time：根据时间间隔采样。
         public let sampleType: String
 
         /// 采样间隔
-        /// <li>当 SampleType 为 Percent 时，该值表示多少百分比一张图。</li>
-        /// <li>当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。</li>
+        /// - 当 SampleType 为 Percent 时，该值表示多少百分比一张图。
+        /// - 当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。
         public let interval: Int64
 
         /// 生成的截图 url 列表。
@@ -7006,11 +7009,11 @@ extension Vod {
     /// 来源文件信息
     public struct MediaSourceData: TCOutputModel {
         /// 媒体文件的来源类别：
-        /// <li>Record：来自录制。如直播录制、直播时移录制等。</li>
-        /// <li>Upload：来自上传。如拉取上传、服务端上传、客户端 UGC 上传等。</li>
-        /// <li>VideoProcessing：来自视频处理。如视频拼接、视频剪辑等。</li>
-        /// <li>WebPageRecord：来自全景录制。</li>
-        /// <li>Unknown：未知来源。</li>
+        /// - Record：来自录制。如直播录制、直播时移录制等。
+        /// - Upload：来自上传。如拉取上传、服务端上传、客户端 UGC 上传等。
+        /// - VideoProcessing：来自视频处理。如视频拼接、视频剪辑等。
+        /// - WebPageRecord：来自全景录制。
+        /// - Unknown：未知来源。
         public let sourceType: String
 
         /// 用户创建文件时透传的字段
@@ -7030,8 +7033,8 @@ extension Vod {
     /// 转自适应码流子流信息。
     public struct MediaSubStreamInfoItem: TCOutputModel {
         /// 子流类型，取值范围：
-        /// <li>audio：纯音频；</li>
-        /// <li>video：视频（可能包含音频流）。</li>
+        /// - audio：纯音频；
+        /// - video：视频（可能包含音频流）。
         public let type: String?
 
         /// 当子流为视频流时，视频画面宽度，单位：px。
@@ -7068,14 +7071,14 @@ extension Vod {
         public let name: String
 
         /// 字幕语言。常见的取值如下：
-        /// <li>cn：中文</li>
-        /// <li>ja：日文</li>
-        /// <li>en-US：英文</li>
+        /// - cn：中文
+        /// - ja：日文
+        /// - en-US：英文
         /// 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         public let language: String
 
         /// 字幕格式。取值范围如下：
-        /// <li>vtt</li>
+        /// - vtt
         public let format: String
 
         /// 字幕内容，进行 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。
@@ -7110,14 +7113,14 @@ extension Vod {
         public let name: String
 
         /// 字幕语言。常见的取值如下：
-        /// <li>cn：中文</li>
-        /// <li>ja：日文</li>
-        /// <li>en-US：英文</li>
+        /// - cn：中文
+        /// - ja：日文
+        /// - en-US：英文
         /// 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         public let language: String
 
         /// 字幕格式。取值范围如下：
-        /// <li>vtt</li>
+        /// - vtt
         public let format: String
 
         /// 字幕 URL。
@@ -7135,11 +7138,18 @@ extension Vod {
     /// 轨道信息
     public struct MediaTrack: TCInputModel, TCOutputModel {
         /// 轨道类型，取值有：
-        /// <ul>
-        /// <li>Video ：视频轨道。视频轨道由以下 Item 组成：<ul><li>VideoTrackItem</li><li>MediaTransitionItem</li> <li>EmptyTrackItem</li></ul> </li>
-        /// <li>Audio ：音频轨道。音频轨道由以下 Item 组成：<ul><li>AudioTrackItem</li><li>MediaTransitionItem</li><li>EmptyTrackItem</li></ul></li>
-        /// <li>Sticker ：贴图轨道。贴图轨道以下 Item 组成：<ul><li> StickerTrackItem</li><li>EmptyTrackItem</li></ul></li>
-        /// </ul>
+        ///
+        /// - Video ：视频轨道。视频轨道由以下 Item 组成：
+        ///   - VideoTrackItem
+        ///   - MediaTransitionItem
+        ///   - EmptyTrackItem </li>
+        /// - Audio ：音频轨道。音频轨道由以下 Item 组成：
+        ///   - AudioTrackItem
+        ///   - MediaTransitionItem
+        ///   - EmptyTrackItem</li>
+        /// - Sticker ：贴图轨道。贴图轨道以下 Item 组成：
+        ///   - StickerTrackItem
+        ///   - EmptyTrackItem
         public let type: String
 
         /// 轨道上的媒体片段列表。
@@ -7159,11 +7169,11 @@ extension Vod {
     /// 媒体轨道的片段信息
     public struct MediaTrackItem: TCInputModel, TCOutputModel {
         /// 片段类型。取值有：
-        /// <li>Video：视频片段。</li>
-        /// <li>Audio：音频片段。</li>
-        /// <li>Sticker：贴图片段。</li>
-        /// <li>Transition：转场。</li>
-        /// <li>Empty：空白片段。</li>
+        /// - Video：视频片段。
+        /// - Audio：音频片段。
+        /// - Sticker：贴图片段。
+        /// - Transition：转场。
+        /// - Empty：空白片段。
         public let type: String
 
         /// 视频片段，当 Type = Video 时有效。
@@ -7182,8 +7192,9 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transitionItem: MediaTransitionItem?
 
-        /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
-        /// <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
+        /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。
+        /// - 如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
+        /// - 使用 EmptyTrackItem 进行占位，来定位某个Item。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let emptyItem: EmptyTrackItem?
 
@@ -7235,7 +7246,7 @@ extension Vod {
         public let width: Int64
 
         /// 媒体文件总大小，单位：字节。
-        /// <li>当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。</li>
+        /// - 当媒体文件为 HLS 时，大小是 m3u8 和 ts 文件大小的总和。
         public let size: Int64
 
         /// 视频时长，单位：秒。
@@ -7254,9 +7265,9 @@ extension Vod {
         public let audioStreamSet: [MediaAudioStreamItem]
 
         /// 数字水印类型。可选值：
-        /// <li>Trace 表示经过溯源水印处理；</li>
-        /// <li>CopyRight 表示经过版权水印处理；</li>
-        /// <li>None 表示没有经过数字水印处理。</li>
+        /// - Trace 表示经过溯源水印处理；
+        /// - CopyRight 表示经过版权水印处理；
+        /// - None 表示没有经过数字水印处理。
         public let digitalWatermarkType: String
 
         /// 版权信息。
@@ -7319,7 +7330,7 @@ extension Vod {
         public let codecTag: String?
 
         /// 画面动态范围信息。
-        /// <li>_注意_：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。</li>
+        /// - _注意_：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。
         public let dynamicRangeInfo: DynamicRangeInfo
 
         enum CodingKeys: String, CodingKey {
@@ -7336,8 +7347,8 @@ extension Vod {
     /// 视频画面马赛克检测的控制参数。
     public struct MosaicConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面马赛克检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -7352,8 +7363,8 @@ extension Vod {
     /// 视频画面马赛克检测的控制参数。
     public struct MosaicConfigureInfoForUpdate: TCInputModel {
         /// 视频画面马赛克检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -7368,44 +7379,44 @@ extension Vod {
     /// 视频处理任务中的马赛克参数类型
     public struct MosaicInput: TCInputModel, TCOutputModel {
         /// 原点位置，目前仅支持：
-        /// <li>TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。</li>
+        /// - TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
         /// 默认值：0px。
         public let yPos: String?
 
         /// 马赛克的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。
         /// 默认值：10%。
         public let width: String?
 
         /// 马赛克的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。
         /// 默认值：10%。
         public let height: String?
 
         /// 马赛克的起始时间偏移，单位：秒。不填或填0，表示马赛克从画面出现时开始显现。
-        /// <li>不填或填0，表示马赛克从画面开始就出现；</li>
-        /// <li>当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；</li>
-        /// <li>当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。</li>
+        /// - 不填或填0，表示马赛克从画面开始就出现；
+        /// - 当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；
+        /// - 当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。
         public let startTimeOffset: Float?
 
         /// 马赛克的结束时间偏移，单位：秒。
-        /// <li>不填或填0，表示马赛克持续到画面结束；</li>
-        /// <li>当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；</li>
-        /// <li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
+        /// - 不填或填0，表示马赛克持续到画面结束；
+        /// - 当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；
+        /// - 当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。
         public let endTimeOffset: Float?
 
         public init(coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
@@ -7432,8 +7443,8 @@ extension Vod {
     /// 视频画面噪点检测的控制参数。
     public struct NoiseConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面噪点检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -7448,8 +7459,8 @@ extension Vod {
     /// 视频画面噪点检测的控制参数。
     public struct NoiseConfigureInfoForUpdate: TCInputModel {
         /// 视频画面噪点检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -7464,14 +7475,14 @@ extension Vod {
     /// 物体识别任务控制参数
     public struct ObjectConfigureInfo: TCInputModel, TCOutputModel {
         /// 物体识别任务开关，可选值：
-        /// <li>ON：开启智能物体识别任务；</li>
-        /// <li>OFF：关闭智能物体识别任务。</li>
+        /// - ON：开启智能物体识别任务；
+        /// - OFF：关闭智能物体识别任务。
         public let `switch`: String
 
         /// 物体库选择，可选值：
-        /// <li>Default：使用默认物体库；</li>
-        /// <li>UserDefine：使用用户自定义物体库。</li>
-        /// <li>All：同时使用默认物体库和用户自定义物体库。</li>
+        /// - Default：使用默认物体库；
+        /// - UserDefine：使用用户自定义物体库。
+        /// - All：同时使用默认物体库和用户自定义物体库。
         /// 默认值： All，同时使用默认物体库和用户自定义物体库。
         public let objectLibrary: String?
 
@@ -7489,14 +7500,14 @@ extension Vod {
     /// 物体识别任务控制参数
     public struct ObjectConfigureInfoForUpdate: TCInputModel {
         /// 物体识别任务开关，可选值：
-        /// <li>ON：开启智能物体识别任务；</li>
-        /// <li>OFF：关闭智能物体识别任务。</li>
+        /// - ON：开启智能物体识别任务；
+        /// - OFF：关闭智能物体识别任务。
         public let `switch`: String?
 
         /// 物体库选择，可选值：
-        /// <li>Default：使用默认物体库；</li>
-        /// <li>UserDefine：使用用户自定义物体库。</li>
-        /// <li>All：同时使用默认物体库和用户自定义物体库。</li>
+        /// - Default：使用默认物体库；
+        /// - UserDefine：使用用户自定义物体库。
+        /// - All：同时使用默认物体库和用户自定义物体库。
         public let objectLibrary: String?
 
         public init(switch: String? = nil, objectLibrary: String? = nil) {
@@ -7513,8 +7524,8 @@ extension Vod {
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本全文识别任务开关，可选值：
-        /// <li>ON：开启智能文本全文识别任务；</li>
-        /// <li>OFF：关闭智能文本全文识别任务。</li>
+        /// - ON：开启智能文本全文识别任务；
+        /// - OFF：关闭智能文本全文识别任务。
         public let `switch`: String
 
         public init(switch: String = "OFF") {
@@ -7529,8 +7540,8 @@ extension Vod {
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 文本全文识别任务开关，可选值：
-        /// <li>ON：开启智能文本全文识别任务；</li>
-        /// <li>OFF：关闭智能文本全文识别任务。</li>
+        /// - ON：开启智能文本全文识别任务；
+        /// - OFF：关闭智能文本全文识别任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -7545,8 +7556,8 @@ extension Vod {
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本关键词识别任务开关，可选值：
-        /// <li>ON：开启文本关键词识别任务；</li>
-        /// <li>OFF：关闭文本关键词识别任务。</li>
+        /// - ON：开启文本关键词识别任务；
+        /// - OFF：关闭文本关键词识别任务。
         public let `switch`: String
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -7567,8 +7578,8 @@ extension Vod {
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfoForUpdate: TCInputModel {
         /// 文本关键词识别任务开关，可选值：
-        /// <li>ON：开启文本关键词识别任务；</li>
-        /// <li>OFF：关闭文本关键词识别任务。</li>
+        /// - ON：开启文本关键词识别任务；
+        /// - OFF：关闭文本关键词识别任务。
         public let `switch`: String?
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -7589,22 +7600,22 @@ extension Vod {
     /// 输出的音频流信息
     public struct OutputAudioStream: TCInputModel, TCOutputModel {
         /// 音频流的编码格式，可选值：
-        /// <li>libfdk_aac：适合 mp4 文件。</li>
+        /// - libfdk_aac：适合 mp4 文件。
         /// 默认值：libfdk_aac。
         public let codec: String?
 
         /// 音频流的采样率，可选值：
-        /// <li>16000</li>
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 16000
+        /// - 32000
+        /// - 44100
+        /// - 48000
         /// 单位：Hz。
         /// 默认值：16000。
         public let sampleRate: Int64?
 
         /// 音频声道数，可选值：
-        /// <li>1：单声道 。</li>
-        /// <li>2：双声道</li>
+        /// - 1：单声道 。
+        /// - 2：双声道
         /// 默认值：2。
         public let audioChannel: Int64?
 
@@ -7624,7 +7635,7 @@ extension Vod {
     /// 输出的视频流信息
     public struct OutputVideoStream: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码 </li>
+        /// - libx264：H.264 编码
         /// 默认值：libx264。
         public let codec: String?
 
@@ -7649,16 +7660,16 @@ extension Vod {
         public let date: String
 
         /// 播放统计文件的 URL 地址。播放统计文件内容为：
-        /// <li> date：播放日期。</li>
-        /// <li> file_id：视频文件 ID。</li>
-        /// <li> ip_count：去重后的客户端 IP 数。</li>
-        /// <li> flux：播放流量，单位：字节。</li>
-        /// <li> play_times：总的播放次数。</li>
-        /// <li> pc_play_times：PC 端播放次数。</li>
-        /// <li> mobile_play_times：移动端播放次数。</li>
-        /// <li> iphone_play_times：iPhone 端播放次数。</li>
-        /// <li> android_play_times：Android 端播放次数。</li>
-        /// <li> host_name	域名。</li>
+        /// - date：播放日期。
+        /// - file_id：视频文件 ID。
+        /// - ip_count：去重后的客户端 IP 数。
+        /// - flux：播放流量，单位：字节。
+        /// - play_times：总的播放次数。
+        /// - pc_play_times：PC 端播放次数。
+        /// - mobile_play_times：移动端播放次数。
+        /// - iphone_play_times：iPhone 端播放次数。
+        /// - android_play_times：Android 端播放次数。
+        /// - host_name	域名。
         public let url: String
 
         enum CodingKeys: String, CodingKey {
@@ -7670,8 +7681,8 @@ extension Vod {
     /// 播放统计信息。
     public struct PlayStatInfo: TCOutputModel {
         /// 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
-        /// <li>表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。</li>
-        /// <li>表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。</li>
+        /// - 表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。
+        /// - 表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。
         public let time: String
 
         /// 媒体文件ID。
@@ -7697,19 +7708,19 @@ extension Vod {
         public let name: String
 
         /// 播放器配置类型，取值范围：
-        /// <li>Preset：系统预置配置；</li>
-        /// <li>Custom：用户自定义配置。</li>
+        /// - Preset：系统预置配置；
+        /// - Custom：用户自定义配置。
         public let type: String
 
         /// 播放的音视频类型，可选值有：
-        /// <li>AdaptiveDynamicStream：自适应码流输出；</li>
-        /// <li>Transcode：转码输出；</li>
-        /// <li>Original：原始音视频。</li>
+        /// - AdaptiveDynamicStream：自适应码流输出；
+        /// - Transcode：转码输出；
+        /// - Original：原始音视频。
         public let audioVideoType: String
 
         /// 播放 DRM 保护的自适应码流开关：
-        /// <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
-        /// <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
+        /// - ON：开启，表示仅播放 DRM  保护的自适应码流输出；
+        /// - OFF：关闭，表示播放未加密的自适应码流输出。
         public let drmSwitch: String
 
         /// 允许输出的未加密的自适应码流模板 ID。
@@ -7738,9 +7749,9 @@ extension Vod {
         public let domain: String
 
         /// 播放时使用的 Scheme。取值范围：
-        /// <li>Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；</li>
-        /// <li>HTTP；</li>
-        /// <li>HTTPS。</li>
+        /// - Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；
+        /// - HTTP；
+        /// - HTTPS。
         public let scheme: String
 
         /// 模板描述信息。
@@ -7767,8 +7778,8 @@ extension Vod {
     /// 语音鉴别涉及令人不适宜的信息的任务控制参数
     public struct PoliticalAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启语音鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭语音鉴别的涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启语音鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭语音鉴别的涉及令人不适宜的信息的任务。
         public let `switch`: String
 
         /// 判定需人工复核是否违规的分数阈值，当音视频审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
@@ -7793,8 +7804,8 @@ extension Vod {
     /// 语音鉴别涉及令人不适宜的信息的任务控制参数。
     public struct PoliticalAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启语音鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭语音鉴别涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启语音鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭语音鉴别涉及令人不适宜的信息的任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当音视频审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7873,9 +7884,9 @@ extension Vod {
         public let confidence: Float
 
         /// 鉴别涉及令人不适宜信息的结果建议，取值范围：
-        /// <li>pass；</li>
-        /// <li>review；</li>
-        /// <li>block。</li>
+        /// - pass；
+        /// - review；
+        /// - block。
         public let suggestion: String
 
         /// 涉及令人不适宜的信息、违规图标名字。
@@ -7895,19 +7906,19 @@ extension Vod {
     /// 画面鉴别涉及令人不适宜的信息的任务控制参数
     public struct PoliticalImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人不适宜的信息的任务。
         public let `switch`: String
 
         /// 画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>violation_photo：违规图标；</li>
-        /// <li>politician：相关人物；</li>
-        /// <li>entertainment：娱乐人物；</li>
-        /// <li>sport：体育人物；</li>
-        /// <li>entrepreneur：商业人物；</li>
-        /// <li>scholar：教育学者；</li>
-        /// <li>celebrity：知名人物；</li>
-        /// <li>military：相关人物。</li>
+        /// - violation_photo：违规图标；
+        /// - politician：相关人物；
+        /// - entertainment：娱乐人物；
+        /// - sport：体育人物；
+        /// - entrepreneur：商业人物；
+        /// - scholar：教育学者；
+        /// - celebrity：知名人物；
+        /// - military：相关人物。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
@@ -7934,19 +7945,19 @@ extension Vod {
     /// 画面鉴别涉及令人不适宜的信息的任务控制参数。
     public struct PoliticalImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人不适宜的信息的任务。
         public let `switch`: String?
 
         /// 画面鉴别涉及令人不适宜的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>violation_photo：违规图标；</li>
-        /// <li>politician：相关人物；</li>
-        /// <li>entertainment：娱乐人物；</li>
-        /// <li>sport：体育人物；</li>
-        /// <li>entrepreneur：商业人物；</li>
-        /// <li>scholar：教育学者；</li>
-        /// <li>celebrity：知名人物；</li>
-        /// <li>military：相关人物。</li>
+        /// - violation_photo：违规图标；
+        /// - politician：相关人物；
+        /// - entertainment：娱乐人物；
+        /// - sport：体育人物；
+        /// - entrepreneur：商业人物；
+        /// - scholar：教育学者；
+        /// - celebrity：知名人物；
+        /// - military：相关人物。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7973,8 +7984,8 @@ extension Vod {
     /// 文本鉴别涉及令人不适宜的信息的任务控制参数
     public struct PoliticalOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人不适宜的信息的任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7999,8 +8010,8 @@ extension Vod {
     /// 文本鉴别涉及令人不适宜的信息的任务控制参数。
     public struct PoliticalOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本鉴别涉及令人不适宜的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人不适宜的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人不适宜的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人不适宜的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人不适宜的信息的任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -8025,8 +8036,8 @@ extension Vod {
     /// 语音鉴别涉及令人反感的信息的任务控制参数
     public struct PornAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启语音鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭语音鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启语音鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭语音鉴别涉及令人反感的信息的任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8051,8 +8062,8 @@ extension Vod {
     /// 语音鉴别涉及令人反感的信息的任务控制参数。
     public struct PornAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启语音鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭语音鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启语音鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭语音鉴别涉及令人反感的信息的任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -8131,16 +8142,16 @@ extension Vod {
         public let confidence: Float
 
         /// 鉴别涉及令人反感的信息的结果建议，取值范围：
-        /// <li>pass；</li>
-        /// <li>review；</li>
-        /// <li>block。</li>
+        /// - pass；
+        /// - review；
+        /// - block。
         public let suggestion: String
 
         /// 鉴别涉及令人反感的信息的结果标签，取值范围：
-        /// <li>porn：色情；</li>
-        /// <li>sexy：性感；</li>
-        /// <li>vulgar：低俗；</li>
-        /// <li>intimacy：亲密行为。</li>
+        /// - porn：色情；
+        /// - sexy：性感；
+        /// - vulgar：低俗；
+        /// - intimacy：亲密行为。
         public let label: String
 
         enum CodingKeys: String, CodingKey {
@@ -8153,15 +8164,15 @@ extension Vod {
     /// 画面鉴别涉及令人反感的信息的任务控制参数
     public struct PornImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人反感的信息的任务。
         public let `switch`: String
 
         /// 画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>porn：色情；</li>
-        /// <li>vulgar：低俗；</li>
-        /// <li>intimacy：亲密行为；</li>
-        /// <li>sexy：性感。</li>
+        /// - porn：色情；
+        /// - vulgar：低俗；
+        /// - intimacy：亲密行为；
+        /// - sexy：性感。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
@@ -8188,15 +8199,15 @@ extension Vod {
     /// 画面鉴别涉及令人反感的信息的任务控制参数。
     public struct PornImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人反感的信息的任务。
         public let `switch`: String?
 
         /// 画面鉴别涉及令人反感的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>porn：色情；</li>
-        /// <li>vulgar：低俗；</li>
-        /// <li>intimacy：亲密行为；</li>
-        /// <li>sexy：性感。</li>
+        /// - porn：色情；
+        /// - vulgar：低俗；
+        /// - intimacy：亲密行为；
+        /// - sexy：性感。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -8223,8 +8234,8 @@ extension Vod {
     /// 文本鉴别涉及令人反感的信息的任务控制参数
     public struct PornOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人反感的信息的任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8249,8 +8260,8 @@ extension Vod {
     /// 文本鉴别涉及令人反感的信息的任务控制参数。
     public struct PornOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本鉴别涉及令人反感的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人反感的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人反感的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人反感的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人反感的信息的任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -8278,8 +8289,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 审核的内容，可选值：
-        /// <li>Media：原始音视频；</li>
-        /// <li>Cover：封面。</li>
+        /// - Media：原始音视频；
+        /// - Cover：封面。
         /// 不填或填空数组时，默认为审核 Media。
         public let reviewContents: [String]?
 
@@ -8300,8 +8311,8 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 已弃用，请使用各个具体任务的 ErrCode。
@@ -8311,18 +8322,18 @@ extension Vod {
         public let message: String
 
         /// 媒体文件 ID
-        /// <li>若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 FileId；</li>
-        /// <li>若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Id。</li>
+        /// - 若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 FileId；
+        /// - 若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Id。
         public let fileId: String
 
         /// 媒体文件名称
-        /// <li>若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 BasicInfo.Name；</li>
-        /// <li>若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Name。</li>
+        /// - 若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 BasicInfo.Name；
+        /// - 若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Name。
         public let fileName: String
 
         /// 媒体文件地址
-        /// <li>若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 BasicInfo.MediaUrl；</li>
-        /// <li>若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Url。</li>
+        /// - 若流程由 [ProcessMedia](https://cloud.tencent.com/document/product/266/33427) 发起，该字段表示 [MediaInfo](https://cloud.tencent.com/document/product/266/31773#MediaInfo) 的 BasicInfo.MediaUrl；
+        /// - 若流程由 [ProcessMediaByUrl](https://cloud.tencent.com/document/product/266/33426) 发起，该字段表示 [MediaInputInfo](https://cloud.tencent.com/document/product/266/31773#MediaInputInfo) 的 Url。
         public let fileUrl: String
 
         /// 原始音视频的元信息。
@@ -8345,9 +8356,9 @@ extension Vod {
         public let tasksPriority: Int64
 
         /// 任务流状态变更通知模式。
-        /// <li>Finish：只有当任务流全部执行完毕时，才发起一次事件通知；</li>
-        /// <li>Change：只要任务流中每个子任务的状态发生变化，都进行事件通知；</li>
-        /// <li>None：不接受该任务流回调。</li>
+        /// - Finish：只有当任务流全部执行完毕时，才发起一次事件通知；
+        /// - Change：只要任务流中每个子任务的状态发生变化，都进行事件通知；
+        /// - None：不接受该任务流回调。
         public let tasksNotifyMode: String
 
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
@@ -8357,11 +8368,11 @@ extension Vod {
         public let sessionId: String
 
         /// 操作者。取值范围：
-        /// <li>System: 表示系统触发。</li>
+        /// - System: 表示系统触发。
         public let `operator`: String
 
         /// 操作类型。取值范围：
-        /// <li>TSC: 表示使用极速高清进行智能降码。</li>
+        /// - TSC: 表示使用极速高清进行智能降码。
         public let operationType: String
 
         enum CodingKeys: String, CodingKey {
@@ -8392,8 +8403,8 @@ extension Vod {
         public let name: String?
 
         /// 任务流模板类型，取值范围：
-        /// <li>Preset：系统预置任务流模板；</li>
-        /// <li>Custom：用户自定义任务流模板。</li>
+        /// - Preset：系统预置任务流模板；
+        /// - Custom：用户自定义任务流模板。
         public let type: String?
 
         /// 模板描述信息，长度限制：256 个字符。
@@ -8448,9 +8459,9 @@ extension Vod {
     /// 预付费商品实例
     public struct ProductInstance: TCOutputModel {
         /// 预付费商品实例类型，取值有：
-        /// <li>StarterPackage：点播新手包。</li>
-        /// <li>MiniProgramPlugin：点播小程序插件。</li>
-        /// <li>ResourcePackage：点播资源包。</li>
+        /// - StarterPackage：点播新手包。
+        /// - MiniProgramPlugin：点播小程序插件。
+        /// - ResourcePackage：点播资源包。
         public let productType: String
 
         /// 资源包实例起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
@@ -8466,28 +8477,28 @@ extension Vod {
         public let lastConsumeDate: String
 
         /// 资源包绑定 License 状态，取值有：
-        /// <li>0：未绑定。</li>
-        /// <li>1：已绑定。</li>
+        /// - 0：未绑定。
+        /// - 1：已绑定。
         public let bindStatus: Int64
 
         /// 预付费资源包实例中包含的资源包列表。
         public let productInstanceResourceSet: [ProductInstanceRecource]
 
         /// 资源包实例的状态，取值有：
-        /// <li>Effective：生效，可用于计费抵扣。</li>
-        /// <li>Isolated：隔离，不可用于计费抵扣。</li>
+        /// - Effective：生效，可用于计费抵扣。
+        /// - Isolated：隔离，不可用于计费抵扣。
         public let productInstanceStatus: String
 
         /// 资源包实例的可退还状态，取值有：
-        /// <li>FullRefund：可全额退款。</li>
-        /// <li>Denied：不可退款。</li>
+        /// - FullRefund：可全额退款。
+        /// - Denied：不可退款。
         public let refundStatus: String
 
         /// 自动续费状态，取值有：
-        /// <li>Never：不自动续费。</li>
-        /// <li>Expire：到期自动续费。</li>
-        /// <li>ExpireOrUseOut：到期或用完自动续费。</li>
-        /// <li>NotSupport：不支持。</li>
+        /// - Never：不自动续费。
+        /// - Expire：到期自动续费。
+        /// - ExpireOrUseOut：到期或用完自动续费。
+        /// - NotSupport：不支持。
         public let renewStatus: String
 
         enum CodingKeys: String, CodingKey {
@@ -8507,27 +8518,27 @@ extension Vod {
     /// 资源包中包含的资源。
     public struct ProductInstanceRecource: TCOutputModel {
         /// 资源类型。
-        /// <li>Storage：存储资源包。</li>
-        /// <li>Traffic：流量资源包。</li>
-        /// <li>Transcode：普通转码资源包。</li>
-        /// <li>TESHD：极速高清转码资源包。</li>
-        /// <li>Review：音视频审核转码资源包。</li>
+        /// - Storage：存储资源包。
+        /// - Traffic：流量资源包。
+        /// - Transcode：普通转码资源包。
+        /// - TESHD：极速高清转码资源包。
+        /// - Review：音视频审核转码资源包。
         public let resourceType: String
 
         /// 资源包额度。
-        /// <li>音视频存储资源包，单位为字节。</li>
-        /// <li>音视频转码资源包，单位为秒。</li>
-        /// <li>音视频审核资源包，单位为秒。</li>
-        /// <li>音视频极速高清资源包，单位为秒。</li>
-        /// <li>音视频加速资源包，单位为字节。</li>
+        /// - 音视频存储资源包，单位为字节。
+        /// - 音视频转码资源包，单位为秒。
+        /// - 音视频审核资源包，单位为秒。
+        /// - 音视频极速高清资源包，单位为秒。
+        /// - 音视频加速资源包，单位为字节。
         public let amount: Int64
 
         /// 资源包余量。
-        /// <li>音视频存储资源包，单位为字节。</li>
-        /// <li>音视频转码资源包，单位为秒。</li>
-        /// <li>音视频审核资源包，单位为秒。</li>
-        /// <li>音视频极速高清资源包，单位为秒。</li>
-        /// <li>音视频加速资源包，单位为字节。</li>
+        /// - 音视频存储资源包，单位为字节。
+        /// - 音视频转码资源包，单位为秒。
+        /// - 音视频审核资源包，单位为秒。
+        /// - 音视频极速高清资源包，单位为秒。
+        /// - 音视频加速资源包，单位为字节。
         public let left: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -8540,8 +8551,8 @@ extension Vod {
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音违禁任务开关，可选值：
-        /// <li>ON：开启语音违禁任务；</li>
-        /// <li>OFF：关闭语音违禁任务。</li>
+        /// - ON：开启语音违禁任务；
+        /// - OFF：关闭语音违禁任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8566,8 +8577,8 @@ extension Vod {
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音违禁任务开关，可选值：
-        /// <li>ON：开启语音违禁任务；</li>
-        /// <li>OFF：关闭语音违禁任务。</li>
+        /// - ON：开启语音违禁任务；
+        /// - OFF：关闭语音违禁任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8632,8 +8643,8 @@ extension Vod {
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本违禁任务开关，可选值：
-        /// <li>ON：开启文本违禁任务；</li>
-        /// <li>OFF：关闭文本违禁任务。</li>
+        /// - ON：开启文本违禁任务；
+        /// - OFF：关闭文本违禁任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8658,8 +8669,8 @@ extension Vod {
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本违禁任务开关，可选值：
-        /// <li>ON：开启文本违禁任务；</li>
-        /// <li>OFF：关闭文本违禁任务。</li>
+        /// - ON：开启文本违禁任务；
+        /// - OFF：关闭文本违禁任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -8687,14 +8698,14 @@ extension Vod {
         public let taskId: String?
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String?
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64?
 
         /// 错误信息。
@@ -8748,8 +8759,8 @@ extension Vod {
     /// 视频画面二维码检测的控制参数。
     public struct QRCodeConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面二维码检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -8764,8 +8775,8 @@ extension Vod {
     /// 视频画面二维码检测的控制参数。
     public struct QRCodeConfigureInfoForUpdate: TCInputModel {
         /// 视频画面二维码检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -8780,8 +8791,8 @@ extension Vod {
     /// 视频画面质量评价的控制参数。
     public struct QualityEvaluationConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频画面质量评价检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         /// 视频画面质量评价过滤阈值，结果只返回低于该值的时间段，默认值为 60。
@@ -8801,8 +8812,8 @@ extension Vod {
     /// 视频画面质量评价的控制参数。
     public struct QualityEvaluationConfigureInfoForUpdate: TCInputModel {
         /// 视频画面质量评价开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         /// 视频画面质量评价过滤阈值，结果只返回低于该值的时间段。
@@ -8829,19 +8840,19 @@ extension Vod {
 
         /// 检测出异常的区域坐标。数组包含 4 个元素 [x1,y1,x2,y2]，依次表示区域左上点、右下点的横纵坐标。
         /// _注意：_ 仅当 Type 取值为下列之一时，本字段取值有效：
-        /// <li>BlackWhiteEdge：黑白边；</li>
-        /// <li>Mosaic：马赛克；</li>
-        /// <li>QRCode：二维码；</li>
-        /// <li>AppletCode：小程序码；</li>
-        /// <li>BarCode：条形码。</li>
+        /// - BlackWhiteEdge：黑白边；
+        /// - Mosaic：马赛克；
+        /// - QRCode：二维码；
+        /// - AppletCode：小程序码；
+        /// - BarCode：条形码。
         public let areaCoordSet: [Int64]
 
         /// 置信度，取值范围：[0, 100]。
         /// _注意：_ 仅当 Type 取值为下列之一时，本字段取值有效：
-        /// <li>Mosaic：马赛克；</li>
-        /// <li>QRCode：二维码；</li>
-        /// <li>AppletCode：小程序码；</li>
-        /// <li>BarCode：条形码。</li>
+        /// - Mosaic：马赛克；
+        /// - QRCode：二维码；
+        /// - AppletCode：小程序码；
+        /// - BarCode：条形码。
         public let confidence: UInt64
 
         enum CodingKeys: String, CodingKey {
@@ -8855,22 +8866,22 @@ extension Vod {
     /// 音画质检测异常结果信息。
     public struct QualityInspectResultItem: TCOutputModel {
         /// 异常类型，取值范围：
-        /// <li>Jitter：抖动；</li>
-        /// <li>Blur：模糊；</li>
-        /// <li>LowLighting：低光照；</li>
-        /// <li>HighLighting：过曝；</li>
-        /// <li>CrashScreen：花屏；</li>
-        /// <li>BlackWhiteEdge：黑白边；</li>
-        /// <li>SolidColorScreen：纯色屏；</li>
-        /// <li>Noise：噪点；</li>
-        /// <li>Mosaic：马赛克；</li>
-        /// <li>QRCode：二维码；</li>
-        /// <li>AppletCode：小程序码；</li>
-        /// <li>BarCode：条形码；</li>
-        /// <li>LowVoice：低音；</li>
-        /// <li>HighVoice：爆音；</li>
-        /// <li>NoVoice：静音；</li>
-        /// <li>LowEvaluation：无参考打分低于阈值。</li>
+        /// - Jitter：抖动；
+        /// - Blur：模糊；
+        /// - LowLighting：低光照；
+        /// - HighLighting：过曝；
+        /// - CrashScreen：花屏；
+        /// - BlackWhiteEdge：黑白边；
+        /// - SolidColorScreen：纯色屏；
+        /// - Noise：噪点；
+        /// - Mosaic：马赛克；
+        /// - QRCode：二维码；
+        /// - AppletCode：小程序码；
+        /// - BarCode：条形码；
+        /// - LowVoice：低音；
+        /// - HighVoice：爆音；
+        /// - NoVoice：静音；
+        /// - LowEvaluation：无参考打分低于阈值。
         public let type: String?
 
         /// 异常片段列表。
@@ -8897,8 +8908,8 @@ extension Vod {
         public let taskId: String?
 
         /// 任务状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String?
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
@@ -8955,13 +8966,13 @@ extension Vod {
     /// 音画质检测任务的输出。
     public struct QualityInspectTaskOutput: TCOutputModel {
         /// 媒体文件是否无音频轨，取值范围：
-        /// <li>0：否，即有音频轨；</li>
-        /// <li>1：是，即无音频轨。</li>
+        /// - 0：否，即有音频轨；
+        /// - 1：是，即无音频轨。
         public let noAudio: Int64?
 
         /// 媒体文件是否无视频轨，取值范围：
-        /// <li>0：否，即有视频轨；</li>
-        /// <li>1：是，即无视频轨。</li>
+        /// - 0：否，即有视频轨；
+        /// - 1：是，即无视频轨。
         public let noVideo: Int64?
 
         /// 视频画面质量评分，取值范围：[0, 100]。
@@ -8984,8 +8995,8 @@ extension Vod {
         public let definition: Int64?
 
         /// 模板类型，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         /// 模板名称。
@@ -9085,7 +9096,7 @@ extension Vod {
         public let mediaName: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -9108,19 +9119,19 @@ extension Vod {
     public struct RebuildMediaTargetAudioStream: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
-        /// <li>libmp3lame。</li>
+        /// - libmp3lame。
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        /// <li>flac。</li>
+        /// - flac。
         /// 当外层参数 Container 为 m4a 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame；</li>
-        /// <li>ac3。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame；
+        /// - ac3。
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        /// <li>libfdk_aac：更适合 mp4；</li>
-        /// <li>libmp3lame：更适合 flv；</li>
-        /// <li>mp2。</li>
+        /// - libfdk_aac：更适合 mp4；
+        /// - libmp3lame：更适合 flv；
+        /// - mp2。
         /// 当外层参数 Container 为 hls 时，可选值为：
-        /// <li>libfdk_aac。</li>
+        /// - libfdk_aac。
         public let codec: String?
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
@@ -9128,17 +9139,17 @@ extension Vod {
         public let bitrate: Int64?
 
         /// 音频流的采样率，可选值：
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 32000
+        /// - 44100
+        /// - 48000
         ///
         /// 单位：Hz。
         public let sampleRate: Int64?
 
         /// 音频通道方式，可选值：
-        /// <li>1：单通道</li>
-        /// <li>2：双通道</li>
-        /// <li>6：立体声</li>
+        /// - 1：单通道
+        /// - 2：双通道
+        /// - 6：立体声
         ///
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
@@ -9168,7 +9179,7 @@ extension Vod {
         public let description: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -9184,15 +9195,15 @@ extension Vod {
         public let audioStream: RebuildMediaTargetAudioStream?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         ///
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         ///
         /// 默认值：0。
         public let removeAudio: Int64?
@@ -9225,9 +9236,9 @@ extension Vod {
     /// 画质重生输出的视频信息
     public struct RebuildMediaTargetVideoStream: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码；</li>
-        /// <li>libx265：H.265 编码；</li>
-        /// <li>av1：AOMedia Video 1 编码。</li>
+        /// - libx264：H.264 编码；
+        /// - libx265：H.265 编码；
+        /// - av1：AOMedia Video 1 编码。
         /// 默认视频流的编码格式为 H.264 编码。
         public let codec: String?
 
@@ -9239,33 +9250,33 @@ extension Vod {
         public let fps: Int64?
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         ///
         /// 默认值：open。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         ///
         /// 默认值：0。
         public let width: Int64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         ///
         /// 默认值：0。
         public let height: Int64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li>stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         ///
         /// 默认值：stretch 。
         public let fillType: String?
@@ -9303,14 +9314,14 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64
 
         /// 错误信息。
@@ -9444,7 +9455,7 @@ extension Vod {
         public let mediaName: String
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -9466,8 +9477,8 @@ extension Vod {
         public let definition: Int64?
 
         /// 模板类型，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         /// 音画质重生模板名称。
@@ -9496,14 +9507,14 @@ extension Vod {
         public let container: String?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值 0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值 0。
         public let removeAudio: Int64?
 
@@ -9634,8 +9645,8 @@ extension Vod {
     /// 降码率任务结果
     public struct ReduceMediaBitrateMediaProcessTaskResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Transcode：转码</li>
-        /// <li>AdaptiveDynamicStreaming：自适应码流</li>
+        /// - Transcode：转码
+        /// - AdaptiveDynamicStreaming：自适应码流
         public let type: String
 
         /// 降码率任务中视频转码任务的查询结果，当任务类型为 Transcode 时有效。
@@ -9659,8 +9670,8 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 媒体文件 ID。
@@ -9683,8 +9694,8 @@ extension Vod {
         public let tasksPriority: Int64
 
         /// 任务流状态变更通知模式。
-        /// <li>Finish：只有当任务流全部执行完毕时，才发起一次事件通知；</li>
-        /// <li>None：不接受该任务流回调。</li>
+        /// - Finish：只有当任务流全部执行完毕时，才发起一次事件通知；
+        /// - None：不接受该任务流回调。
         public let tasksNotifyMode: String
 
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
@@ -9750,13 +9761,13 @@ extension Vod {
     /// Referer 防盗链配置
     public struct RefererAuthPolicy: TCInputModel, TCOutputModel {
         /// [Referer 防盗链](https://cloud.tencent.com/document/product/266/14046)设置状态，可选值：
-        /// <li>Enabled: 启用；</li>
-        /// <li>Disabled: 禁用。</li>
+        /// - Enabled: 启用；
+        /// - Disabled: 禁用。
         public let status: String
 
         /// Referer 校验类型，可选值：
-        /// <li>Black：黑名单方式校验。HTTP 请求携带了 Referers 列表中的某个 Referer 将被拒绝访问。</li>
-        /// <li>White：白名单方式校验。HTTP 请求携带了 Referers 列表中的 Referer 时才允许访问。</li>
+        /// - Black：黑名单方式校验。HTTP 请求携带了 Referers 列表中的某个 Referer 将被拒绝访问。
+        /// - White：白名单方式校验。HTTP 请求携带了 Referers 列表中的 Referer 时才允许访问。
         /// 当 Status 取值为 Enabled 时，AuthType 必须赋值。
         public let authType: String?
 
@@ -9764,8 +9775,8 @@ extension Vod {
         public let referers: [String]?
 
         /// 是否允许空 Referer 访问本域名，可选值：
-        /// <li>Yes： 是。</li>
-        /// <li>No： 否。</li>
+        /// - Yes： 是。
+        /// - No： 否。
         /// 当 Status 取值为 Enabled 时，BlankRefererAllowed 必须赋值。
         public let blankRefererAllowed: String?
 
@@ -9826,17 +9837,17 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
         public let errCodeExt: String
 
         /// 错误码，0 表示成功，其他值表示失败：
-        /// <li>40000：输入参数不合法，请检查输入参数；</li>
-        /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
-        /// <li>70000：内部服务错误，建议重试。</li>
+        /// - 40000：输入参数不合法，请检查输入参数；
+        /// - 60000：源文件错误（如视频数据损坏），请确认源文件是否正常；
+        /// - 70000：内部服务错误，建议重试。
         public let errCode: Int64
 
         /// 错误信息。
@@ -9872,14 +9883,14 @@ extension Vod {
     /// 画质修复控制参数
     public struct RepairInfo: TCInputModel, TCOutputModel {
         /// 画质修复控制开关，可选值：
-        /// <li>ON：开启画质修复；</li>
-        /// <li>OFF：关闭画质修复。</li>
+        /// - ON：开启画质修复；
+        /// - OFF：关闭画质修复。
         public let `switch`: String
 
         /// 画质修复类型，仅当画质修复控制开关为 ON 时有效，可选值：
-        /// <li>weak：轻画质修复；</li>
-        /// <li>normal：正常画质修复；</li>
-        /// <li>strong：强画质修复。</li>
+        /// - weak：轻画质修复；
+        /// - normal：正常画质修复；
+        /// - strong：强画质修复。
         /// 默认值：weak。
         public let type: String?
 
@@ -9944,9 +9955,9 @@ extension Vod {
         public let targetStorageClass: String
 
         /// 取回模式，取值：
-        /// <li>Expedited：极速模式</li>
-        /// <li>Standard：标准模式</li>
-        /// <li>Bulk：批量模式</li>
+        /// - Expedited：极速模式
+        /// - Standard：标准模式
+        /// - Bulk：批量模式
         public let restoreTier: String
 
         /// 临时取回副本有效期，单位：天。对于永久取回，取值为0。
@@ -9981,28 +9992,28 @@ extension Vod {
         public let confidence: Float
 
         /// 嫌疑片段鉴别涉及违规信息的结果建议，取值范围：
-        /// <li>review：疑似违规，建议复审；</li>
-        /// <li>block：确认违规，建议封禁。</li>
+        /// - review：疑似违规，建议复审；
+        /// - block：确认违规，建议封禁。
         public let suggestion: String
 
         /// 嫌疑片段最可能的违规的标签，取值范围：
-        /// <li>Porn：色情；</li>
-        /// <li>Terror：暴力；</li>
-        /// <li>Polity：不适宜的信息；</li>
-        /// <li>Ad：广告；</li>
-        /// <li>Illegal：违法；</li>
-        /// <li>Abuse：谩骂；</li>
-        /// <li>Moan：娇喘。</li>
+        /// - Porn：色情；
+        /// - Terror：暴力；
+        /// - Polity：不适宜的信息；
+        /// - Ad：广告；
+        /// - Illegal：违法；
+        /// - Abuse：谩骂；
+        /// - Moan：娇喘。
         public let label: String
 
         /// 违规子标签。
         public let subLabel: String
 
         /// 嫌疑片段违禁的形式，取值范围：
-        /// <li>Image：画面上的人物或图标；</li>
-        /// <li>OCR：画面上的文字；</li>
-        /// <li>ASR：语音中的文字；</li>
-        /// <li>Voice：声音。</li>
+        /// - Image：画面上的人物或图标；
+        /// - OCR：画面上的文字；
+        /// - ASR：语音中的文字；
+        /// - Voice：声音。
         public let form: String
 
         /// 当 Form 为 Image 或 OCR 时有效，表示嫌疑人物、图标或文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
@@ -10043,8 +10054,8 @@ extension Vod {
         public let taskId: String
 
         /// 任务状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
@@ -10088,8 +10099,8 @@ extension Vod {
         public let definition: UInt64?
 
         /// 审核的内容，可选值：
-        /// <li>Media：原始音视频；</li>
-        /// <li>Cover：封面。</li>
+        /// - Media：原始音视频；
+        /// - Cover：封面。
         public let reviewContents: [String]?
 
         enum CodingKeys: String, CodingKey {
@@ -10102,26 +10113,26 @@ extension Vod {
     /// 音视频审核任务的输出。
     public struct ReviewAudioVideoTaskOutput: TCOutputModel {
         /// 音视频内容审核的结果建议，取值范围：
-        /// <li>pass：建议通过；</li>
-        /// <li>review：建议复审；</li>
-        /// <li>block：建议封禁。</li>
+        /// - pass：建议通过；
+        /// - review：建议复审；
+        /// - block：建议封禁。
         public let suggestion: String
 
         /// 当 Suggestion 为 review 或 block 时有效，表示音视频最可能的违规的标签，取值范围：
-        /// <li>Porn：色情；</li>
-        /// <li>Terror：暴力；</li>
-        /// <li>Polity：不适宜的信息；</li>
-        /// <li>Ad：广告；</li>
-        /// <li>Illegal：违法；</li>
-        /// <li>Abuse：谩骂；</li>
-        /// <li>Moan：娇喘。</li>
+        /// - Porn：色情；
+        /// - Terror：暴力；
+        /// - Polity：不适宜的信息；
+        /// - Ad：广告；
+        /// - Illegal：违法；
+        /// - Abuse：谩骂；
+        /// - Moan：娇喘。
         public let label: String
 
         /// 当 Suggestion 为 review 或 block 时有效，表示音视频最可能的违禁的形式，取值范围：
-        /// <li>Image：画面上的人物或图标；</li>
-        /// <li>OCR：画面上的文字；</li>
-        /// <li>ASR：语音中的文字；</li>
-        /// <li>Voice：声音。</li>
+        /// - Image：画面上的人物或图标；
+        /// - OCR：画面上的文字；
+        /// - ASR：语音中的文字；
+        /// - Voice：声音。
         public let form: String
 
         /// 有违规信息的嫌疑的视频片段列表。
@@ -10152,23 +10163,23 @@ extension Vod {
     /// 图片审核结果。
     public struct ReviewImageResult: TCOutputModel {
         /// 图片审核的结果建议，取值范围：
-        /// <li>pass：建议通过；</li>
-        /// <li>review：建议复审；</li>
-        /// <li>block：建议封禁。</li>
+        /// - pass：建议通过；
+        /// - review：建议复审；
+        /// - block：建议封禁。
         public let suggestion: String?
 
         /// 当 Suggestion 为 review 或 block 时有效，表示最可能的违规的标签，取值范围：
-        /// <li>Porn：色情；</li>
-        /// <li>Terror：暴力；</li>
-        /// <li>Polity：不适宜的信息；</li>
-        /// <li>Ad：广告；</li>
-        /// <li>Illegal：违法；</li>
-        /// <li>Abuse：谩骂。</li>
+        /// - Porn：色情；
+        /// - Terror：暴力；
+        /// - Polity：不适宜的信息；
+        /// - Ad：广告；
+        /// - Illegal：违法；
+        /// - Abuse：谩骂。
         public let label: String?
 
         /// 当 Suggestion 为 review 或 block 时有效，表示最可能的违禁的形式，取值范围：
-        /// <li>Image：画面上的人物或图标；</li>
-        /// <li>OCR：画面上的文字。</li>
+        /// - Image：画面上的人物或图标；
+        /// - OCR：画面上的文字。
         public let form: String?
 
         /// 有违规信息的嫌疑的视频片段列表。
@@ -10197,25 +10208,25 @@ extension Vod {
         public let confidence: Float?
 
         /// 嫌疑片段鉴别涉及违规信息的结果建议，取值范围：
-        /// <li>review：疑似违规，建议复审；</li>
-        /// <li>block：确认违规，建议封禁。</li>
+        /// - review：疑似违规，建议复审；
+        /// - block：确认违规，建议封禁。
         public let suggestion: String?
 
         /// 嫌疑片段最可能的违规的标签，取值范围：
-        /// <li>Porn：色情；</li>
-        /// <li>Terror：暴力；</li>
-        /// <li>Polity：不适宜的信息；</li>
-        /// <li>Ad：广告；</li>
-        /// <li>Illegal：违法；</li>
-        /// <li>Abuse：谩骂。</li>
+        /// - Porn：色情；
+        /// - Terror：暴力；
+        /// - Polity：不适宜的信息；
+        /// - Ad：广告；
+        /// - Illegal：违法；
+        /// - Abuse：谩骂。
         public let label: String?
 
         /// 违规子标签。
         public let subLabel: String?
 
         /// 嫌疑片段违禁的形式，取值范围：
-        /// <li>Image：画面上的人物或图标；</li>
-        /// <li>OCR：画面上的文字。</li>
+        /// - Image：画面上的人物或图标；
+        /// - OCR：画面上的文字。
         public let form: String?
 
         /// 嫌疑人物、图标或文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
@@ -10245,25 +10256,25 @@ extension Vod {
         public let definition: UInt64?
 
         /// 审核的结果建议，取值范围：
-        /// <li>pass：建议通过；</li>
-        /// <li>review：建议复审；</li>
-        /// <li>block：建议封禁。</li>
+        /// - pass：建议通过；
+        /// - review：建议复审；
+        /// - block：建议封禁。
         public let suggestion: String?
 
         /// 审核类型，当 Suggestion 为 review 或 block 时有效，格式为：Form.Label。
         /// Form 表示违禁的形式，取值范围：
-        /// <li>Image：画面上的人物或图标；</li>
-        /// <li>OCR：画面上的文字；</li>
-        /// <li>ASR：语音中的文字；</li>
-        /// <li>Voice：声音。</li>
+        /// - Image：画面上的人物或图标；
+        /// - OCR：画面上的文字；
+        /// - ASR：语音中的文字；
+        /// - Voice：声音。
         /// Label 表示违禁的标签，取值范围：
-        /// <li>Porn：色情；</li>
-        /// <li>Terror：暴力；</li>
-        /// <li>Polity：不适宜的信息；</li>
-        /// <li>Ad：广告；</li>
-        /// <li>Illegal：违法；</li>
-        /// <li>Abuse：谩骂；</li>
-        /// <li>Moan：娇喘。</li>
+        /// - Porn：色情；
+        /// - Terror：暴力；
+        /// - Polity：不适宜的信息；
+        /// - Ad：广告；
+        /// - Illegal：违法；
+        /// - Abuse：谩骂；
+        /// - Moan：娇喘。
         public let typeSet: [String]?
 
         /// 审核时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -10289,8 +10300,8 @@ extension Vod {
         public let comment: String
 
         /// 模板类型，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 需要返回的违规标签列表。
@@ -10331,14 +10342,14 @@ extension Vod {
         public let desc: String
 
         /// 播放状态，可选值：
-        /// <li>Enabled：启动状态；</li>
-        /// <li>Disabled：停止状态。</li>
+        /// - Enabled：启动状态；
+        /// - Disabled：停止状态。
         /// 默认值：Enabled。
         public let status: String?
 
         /// 播放模式，可选值：
-        /// <li>Loop：循环播放播单；</li>
-        /// <li>Linear：单次播放，播单播放完停止播放。</li>
+        /// - Loop：循环播放播单；
+        /// - Linear：单次播放，播单播放完停止播放。
         /// 默认值：Loop。
         public let playBackMode: String?
 
@@ -10363,8 +10374,8 @@ extension Vod {
         public let fileId: String
 
         /// 播放的音视频类型，可选值：
-        /// <li>Transcode：转码输出；转码输出会有多个模版，必须指定 Definition 字段</li>
-        /// <li>Original：原始音视频。</li>
+        /// - Transcode：转码输出；转码输出会有多个模版，必须指定 Definition 字段
+        /// - Original：原始音视频。
         /// Type 对应的格式必须为 HLS 格式。
         public let audioVideoType: String
 
@@ -10438,8 +10449,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 采样截图模板名称。
@@ -10449,24 +10460,24 @@ extension Vod {
         public let comment: String
 
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -10486,10 +10497,10 @@ extension Vod {
         public let updateTime: String
 
         /// 填充方式，当截图配置宽高参数与原始视频的宽高比不一致时，对截图的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
         /// 默认值：black 。
         public let fillType: String
 
@@ -10513,8 +10524,8 @@ extension Vod {
     /// 去划痕控制信息
     public struct ScratchRepairInfo: TCInputModel, TCOutputModel {
         /// 去划痕控制开关，可选值：
-        /// <li>ON：开启去划痕；</li>
-        /// <li>OFF：关闭去划痕。</li>
+        /// - ON：开启去划痕；
+        /// - OFF：关闭去划痕。
         public let `switch`: String
 
         /// 去划痕强度，仅当去划痕控制开关为 ON 时有效，取值范围：0.0~1.0。
@@ -10522,7 +10533,7 @@ extension Vod {
         public let intensity: Float?
 
         /// 去划痕类型，仅当去划痕控制开关为 ON 时有效，可选值：
-        /// <li>normal：正常去划痕；</li>
+        /// - normal：正常去划痕；
         /// 默认值：normal。
         public let type: String?
 
@@ -10542,8 +10553,8 @@ extension Vod {
     /// 视频拆条任务识别控制参数
     public struct SegmentConfigureInfo: TCInputModel, TCOutputModel {
         /// 视频拆条识别任务开关，可选值：
-        /// <li>ON：开启智能视频拆条识别任务；</li>
-        /// <li>OFF：关闭智能视频拆条识别任务。</li>
+        /// - ON：开启智能视频拆条识别任务；
+        /// - OFF：关闭智能视频拆条识别任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -10558,8 +10569,8 @@ extension Vod {
     /// 视频拆条识别任务控制参数
     public struct SegmentConfigureInfoForUpdate: TCInputModel {
         /// 视频拆条识别任务开关，可选值：
-        /// <li>ON：开启智能视频拆条识别任务；</li>
-        /// <li>OFF：关闭智能视频拆条识别任务。</li>
+        /// - ON：开启智能视频拆条识别任务；
+        /// - OFF：关闭智能视频拆条识别任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -10574,8 +10585,8 @@ extension Vod {
     /// 细节增强控制
     public struct SharpEnhanceInfo: TCInputModel, TCOutputModel {
         /// 细节增强控制开关，可选值：
-        /// <li>ON：开启细节增强；</li>
-        /// <li>OFF：关闭细节增强。</li>
+        /// - ON：开启细节增强；
+        /// - OFF：关闭细节增强。
         public let `switch`: String
 
         /// 细节增强强度，仅当细节增强控制开关为 ON 时有效，取值范围：0.0~1.0。
@@ -10610,8 +10621,8 @@ extension Vod {
     /// 截图输出信息（2017 版）
     public struct SnapshotByTimeOffset2017: TCOutputModel {
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 截图的具体时间点，单位：毫秒。
@@ -10655,8 +10666,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 截图时间点列表，时间点支持 s、% 两种格式：
-        /// <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
-        /// <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
+        /// - 当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        /// - 当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。
         public let extTimeOffsetSet: [String]?
 
         /// 截图时间点列表，单位为_毫秒_。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
@@ -10686,8 +10697,8 @@ extension Vod {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 指定时间点截图模板名称。
@@ -10697,24 +10708,24 @@ extension Vod {
         public let comment: String
 
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -10728,10 +10739,10 @@ extension Vod {
         public let updateTime: String
 
         /// 填充方式，当截图配置宽高参数与原始视频的宽高比不一致时，对截图的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
         /// 默认值：black 。
         public let fillType: String
 
@@ -10792,7 +10803,7 @@ extension Vod {
         public let type: String?
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
-        /// <li>默认值：0，表示其他分类。</li>
+        /// - 默认值：0，表示其他分类。
         public let classId: Int64?
 
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -10819,8 +10830,8 @@ extension Vod {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
@@ -10860,15 +10871,15 @@ extension Vod {
     /// 视频拆条任务配置信息。
     public struct SplitMediaTaskConfig: TCInputModel {
         /// 视频拆条起始的偏移时间，单位：秒。
-        /// <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        /// - 不填或填0，表示转码后的视频从原始视频的起始位置开始；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。
         public let startTimeOffset: Float?
 
         /// 视频拆条结束的偏移时间，单位：秒。
-        /// <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        /// - 不填或填0，表示转码后的视频持续到原始视频的末尾终止；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。
         public let endTimeOffset: Float?
 
         /// [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。
@@ -10898,15 +10909,15 @@ extension Vod {
         public let fileId: String
 
         /// 视频拆条起始的偏移时间，单位：秒。
-        /// <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        /// - 不填或填0，表示转码后的视频从原始视频的起始位置开始；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。
         public let startTimeOffset: Float
 
         /// 视频拆条结束的偏移时间，单位：秒。
-        /// <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        /// - 不填或填0，表示转码后的视频持续到原始视频的末尾终止；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。
         public let endTimeOffset: Float
 
         /// [任务流模板](/document/product/266/11700#.E4.BB.BB.E5.8A.A1.E6.B5.81.E6.A8.A1.E6.9D.BF)名字，如果要对生成的新视频执行任务流时填写。
@@ -10950,17 +10961,17 @@ extension Vod {
     /// 统计数据
     public struct StatDataItem: TCOutputModel {
         /// 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
-        /// <li>表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。</li>
-        /// <li>表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。</li>
+        /// - 表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。
+        /// - 表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。
         public let time: String
 
         /// 数据大小。
-        /// <li>存储空间的数据，单位是字节。</li>
-        /// <li>转码时长的数据，单位是秒。</li>
-        /// <li>流量数据，单位是字节。</li>
-        /// <li>带宽数据，单位是比特每秒。</li>
-        /// <li>直播剪辑数据，单位是秒。</li>
-        /// <li>轮播数据，单位是秒。</li>
+        /// - 存储空间的数据，单位是字节。
+        /// - 转码时长的数据，单位是秒。
+        /// - 流量数据，单位是字节。
+        /// - 带宽数据，单位是比特每秒。
+        /// - 直播剪辑数据，单位是秒。
+        /// - 轮播数据，单位是秒。
         public let value: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -10972,8 +10983,8 @@ extension Vod {
     /// 贴图轨上的贴图信息。
     public struct StickerTrackItem: TCInputModel, TCOutputModel {
         /// 贴图片段的媒体素材来源，可以是：
-        /// <li>点播的媒体文件 ID；</li>
-        /// <li>其他媒体文件的下载 URL。</li>
+        /// - 点播的媒体文件 ID；
+        /// - 其他媒体文件的下载 URL。
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -10984,35 +10995,36 @@ extension Vod {
         public let startTime: Float?
 
         /// 原点位置，取值有：
-        /// <li>Center：坐标原点为中心位置，如画布中心。</li>
+        /// - Center：坐标原点为中心位置，如画布中心。
         /// 默认值：Center。
         public let coordinateOrigin: String?
 
         /// 贴图原点距离画布原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示贴图 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。</li><li>当字符串以 px 结尾，表示贴图 XPos 单位为像素，如 100px 表示 XPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示贴图 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示贴图 XPos 单位为像素，如 100px 表示 XPos 为 100 像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 贴图原点距离画布原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示贴图 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示贴图 YPos 单位为像素，如 100px 表示 YPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示贴图 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示贴图 YPos 单位为像素，如 100px 表示 YPos 为 100 像素。
         /// 默认值：0px。
         public let yPos: String?
 
         /// 贴图的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示贴图 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示贴图 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取贴图素材本身的 Width、Height。</li>
-        /// <li>当 Width 为空0，Height 非空，则 Width 按比例缩放</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示贴图 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示贴图 Width 单位为像素，如 100px 表示 Width 为 100 像素。
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取贴图素材本身的 Width、Height。
+        /// - 当 Width 为空0，Height 非空，则 Width 按比例缩放
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let width: String?
 
         /// 贴图的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示贴图 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示贴图 Height 单位为像素，如 100px 表示 Hieght 为 100 像素。</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取贴图素材本身的 Width、Height。</li>
-        /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示贴图 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示贴图 Height 单位为像素，如 100px 表示 Hieght 为 100 像素。
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取贴图素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按比例缩放
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let height: String?
 
         /// 对贴图进行的操作，如图像旋转等。
@@ -11052,16 +11064,16 @@ extension Vod {
         public let description: String
 
         /// 状态，是否开通，取值有：
-        /// <li>opened：已经开通。</li>
-        /// <li>unopened：未开通。</li>
+        /// - opened：已经开通。
+        /// - unopened：未开通。
         public let status: String
 
         /// 是否默认的存储地域，true：是；false：否。
         public let isDefault: Bool
 
         /// 存储区域，取值有：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland：中国境外。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland：中国境外。
         public let area: String
 
         enum CodingKeys: String, CodingKey {
@@ -11076,8 +11088,8 @@ extension Vod {
     /// 云点播存储用量的分区统计数据
     public struct StorageStatData: TCOutputModel {
         /// 点播存储的计费区域，可能值：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland：中国境外。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland：中国境外。
         public let area: String
 
         /// 当前总存储量，单位是字节。
@@ -11120,10 +11132,10 @@ extension Vod {
         public let createTime: String
 
         /// 子应用状态，有效值：
-        /// <li>On：启用；</li>
-        /// <li>Off：停用。</li>
-        /// <li>Destroying：销毁中。</li>
-        /// <li>Destroyed：销毁完成。</li>
+        /// - On：启用；
+        /// - Off：停用。
+        /// - Destroying：销毁中。
+        /// - Destroyed：销毁完成。
         public let status: String
 
         /// 子应用名称（该字段已不推荐使用，建议使用新的子应用名称字段 SubAppIdName）。
@@ -11142,14 +11154,14 @@ extension Vod {
     /// 字幕格式列表操作。
     public struct SubtitleFormatsOperation: TCInputModel {
         /// 操作类型，取值范围：
-        /// <li>add：添加 Formats 指定的格式列表；</li>
-        /// <li>delete：删除 Formats 指定的格式列表；<l/i>
-        /// <li>reset：将已配置的格式列表重置为  Formats 指定的格式列表。</li>
+        /// - add：添加 Formats 指定的格式列表；
+        /// - delete：删除 Formats 指定的格式列表；
+        /// - reset：将已配置的格式列表重置为  Formats 指定的格式列表。
         public let type: String
 
         /// 字幕格式列表，取值范围：
-        /// <li>vtt：生成 WebVTT 字幕文件；</li>
-        /// <li>srt：生成 SRT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件；
+        /// - srt：生成 SRT 字幕文件。
         public let formats: [String]
 
         public init(type: String, formats: [String]) {
@@ -11166,14 +11178,14 @@ extension Vod {
     /// 画面超分控制参数
     public struct SuperResolutionInfo: TCInputModel, TCOutputModel {
         /// 画面超分控制开关，可选值：
-        /// <li>ON：开启画面超分；</li>
-        /// <li>OFF：关闭画面超分。</li>
+        /// - ON：开启画面超分；
+        /// - OFF：关闭画面超分。
         /// 当开启画面超分时，默认2倍超分。
         public let `switch`: String
 
         /// 画面超分类型，仅当画面超分控制开关为 ON 时有效，可选值：
-        /// <li>lq：针对低清晰度有较多噪声视频的超分；</li>
-        /// <li>hq：针对高清晰度视频超分。</li>
+        /// - lq：针对低清晰度有较多噪声视频的超分；
+        /// - hq：针对高清晰度视频超分。
         /// 默认值：lq。
         public let type: String?
 
@@ -11197,24 +11209,24 @@ extension Vod {
     /// SVG水印模板输入参数
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 W%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
+        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 W%。
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 H%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
+        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 H%。
         /// 默认值为 0px。
         public let height: String?
 
@@ -11232,24 +11244,24 @@ extension Vod {
     /// SVG水印模板输入参数
     public struct SvgWatermarkInputForUpdate: TCInputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 W%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
+        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 W%。
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 H%。
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
+        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 H%。
         /// 默认值为 0px。
         public let height: String?
 
@@ -11276,7 +11288,9 @@ extension Vod {
 
     /// 极速高清参数配置。
     public struct TEHDConfig: TCInputModel, TCOutputModel {
-        /// 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示 OFF。
+        /// 极速高清类型，可选值：
+        /// - TEHD-100 表示极速高清-100;
+        /// - OFF 表示关闭极速高清。不填表示 OFF。
         public let type: String
 
         /// 视频码率上限，当 Type 指定了极速高清类型时有效。
@@ -11296,7 +11310,9 @@ extension Vod {
 
     /// 极速高清参数配置。
     public struct TEHDConfigForUpdate: TCInputModel {
-        /// 极速高清类型，可选值：<li>TEHD-100 表示极速高清-100;</li> <li>OFF 表示关闭极速高清。</li>不填表示不修改。
+        /// 极速高清类型，可选值：
+        /// - TEHD-100 表示极速高清-100;
+        /// - OFF 表示关闭极速高清。不填表示不修改。
         public let type: String?
 
         /// 视频码率上限，不填代表不修改。
@@ -11316,8 +11332,8 @@ extension Vod {
     /// 智能标签任务控制参数
     public struct TagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能标签任务开关，可选值：
-        /// <li>ON：开启智能标签任务；</li>
-        /// <li>OFF：关闭智能标签任务。</li>
+        /// - ON：开启智能标签任务；
+        /// - OFF：关闭智能标签任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -11332,8 +11348,8 @@ extension Vod {
     /// 智能标签任务控制参数
     public struct TagConfigureInfoForUpdate: TCInputModel {
         /// 智能标签任务开关，可选值：
-        /// <li>ON：开启智能标签任务；</li>
-        /// <li>OFF：关闭智能标签任务。</li>
+        /// - ON：开启智能标签任务；
+        /// - OFF：关闭智能标签任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -11371,17 +11387,17 @@ extension Vod {
         public let fileId: String
 
         /// 任务类型，取值：
-        /// <li>Procedure：视频处理任务；</li>
-        /// <li>EditMedia：视频编辑任务；</li>
-        /// <li>ReduceMediaBitrate：降码率任务；</li>
-        /// <li>WechatDistribute：微信发布任务；</li>
-        /// <li>ReviewAudioVideo：音视频审核任务。</li>
+        /// - Procedure：视频处理任务；
+        /// - EditMedia：视频编辑任务；
+        /// - ReduceMediaBitrate：降码率任务；
+        /// - WechatDistribute：微信发布任务；
+        /// - ReviewAudioVideo：音视频审核任务。
         /// 兼容 2017 版的任务类型：
-        /// <li>Transcode：视频转码任务；</li>
-        /// <li>SnapshotByTimeOffset：视频截图任务；</li>
-        /// <li>Concat：视频拼接任务；</li>
-        /// <li>Clip：视频剪辑任务；</li>
-        /// <li>ImageSprites：截取雪碧图任务。</li>
+        /// - Transcode：视频转码任务；
+        /// - SnapshotByTimeOffset：视频截图任务；
+        /// - Concat：视频拼接任务；
+        /// - Clip：视频剪辑任务；
+        /// - ImageSprites：截取雪碧图任务。
         public let taskType: String
 
         /// 任务创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -11415,18 +11431,18 @@ extension Vod {
     /// 视频处理任务统计数据。
     public struct TaskStatData: TCOutputModel {
         /// 任务类型。
-        /// <li> Transcoding: 普通转码</li>
-        /// <li> Transcoding-TESHD: 极速高清转码</li>
-        /// <li> Editing: 视频编辑</li>
-        /// <li> Editing-TESHD: 极速高清视频编辑</li>
-        /// <li> AdaptiveBitrateStreaming: 自适应码流</li>
-        /// <li> ContentAudit: 内容审核</li>
-        /// <li> ContentRecognition: 内容识别</li>
-        /// <li> RemoveWatermark: 去水印</li>
-        /// <li> ExtractTraceWatermark: 提取水印</li>
-        /// <li> AddTraceWatermark: 添加水印</li>
-        /// <li> RebuildMedia: 音画质重生</li>
-        /// <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
+        /// - Transcoding: 普通转码
+        /// - Transcoding-TESHD: 极速高清转码
+        /// - Editing: 视频编辑
+        /// - Editing-TESHD: 极速高清视频编辑
+        /// - AdaptiveBitrateStreaming: 自适应码流
+        /// - ContentAudit: 内容审核
+        /// - ContentRecognition: 内容识别
+        /// - RemoveWatermark: 去水印
+        /// - ExtractTraceWatermark: 提取水印
+        /// - AddTraceWatermark: 添加水印
+        /// - RebuildMedia: 音画质重生
+        /// - Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）
         public let taskType: String
 
         /// 任务数统计数据概览，用量单位为秒。
@@ -11434,57 +11450,57 @@ extension Vod {
 
         /// 不同规格任务统计数据详情。
         /// 转码规格：
-        /// <li>Remuxing: 转封装</li>
-        /// <li>Audio: 音频转码</li>
-        /// <li>Standard.H264.SD: H.264编码方式标清转码</li>
-        /// <li>Standard.H264.HD: H.264编码方式高清转码</li>
-        /// <li>Standard.H264.FHD: H.264编码方式全高清转码</li>
-        /// <li>Standard.H264.2K: H.264编码方式2K转码</li>
-        /// <li>Standard.H264.4K: H.264编码方式4K转码</li>
-        /// <li>Standard.H265.SD: H.265编码方式标清转码</li>
-        /// <li>Standard.H265.HD: H.265编码方式高清转码</li>
-        /// <li>Standard.H265.FHD: H.265编码方式全高清转码</li>
-        /// <li>Standard.H265.2K: H.265编码方式2K转码</li>
-        /// <li>Standard.H265.4K: H.265编码方式4K转码</li>
-        /// <li>TESHD-10.H264.SD: H.264编码方式标清极速高清转码</li>
-        /// <li>TESHD-10.H264.HD: H.264编码方式高清极速高清转码</li>
-        /// <li>TESHD-10.H264.FHD: H.264编码方式全高清极速高清转码</li>
-        /// <li>TESHD-10.H264.2K: H.264编码方式2K极速高清转码</li>
-        /// <li>TESHD-10.H264.4K: H.264编码方式4K极速高清转码</li>
-        /// <li>TESHD-10.H265.SD: H.265编码方式标清极速高清转码</li>
-        /// <li>TESHD-10.H265.HD: H.265编码方式高清极速高清转码</li>
-        /// <li>TESHD-10.H265.FHD: H.265编码方式全高清极速高清转码</li>
-        /// <li>TESHD-10.H265.2K: H.265编码方式2K极速高清转码</li>
-        /// <li>TESHD-10.H265.4K: H.265编码方式4K极速高清转码</li>
-        /// <li>Edit.Audio: 音频编辑</li>
-        /// <li>Edit.H264.SD: H.264编码方式标清视频编辑</li>
-        /// <li>Edit.H264.HD: H.264编码方式高清视频编辑</li>
-        /// <li>Edit.H264.FHD: H.264编码方式全高清视频编辑</li>
-        /// <li>Edit.H264.2K: H.264编码方式2K视频编辑</li>
-        /// <li>Edit.H264.4K: H.264编码方式4K视频编辑</li>
-        /// <li>Edit.H265.SD: H.265编码方式标清视频编辑</li>
-        /// <li>Edit.H265.HD: H.265编码方式高清视频编辑</li>
-        /// <li>Edit.H265.FHD: H.265编码方式全高清视频编辑</li>
-        /// <li>Edit.H265.2K: H.265编码方式2K视频编辑</li>
-        /// <li>Edit.H265.4K: H.265编码方式4K视频编辑</li>
-        /// <li>Edit.TESHD-10.H264.SD: H.264编码方式标清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H264.HD: H.264编码方式高清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H264.FHD: H.264编码方式全高清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H264.2K: H.264编码方式2K极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H264.4K: H.264编码方式4K极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H265.SD: H.265编码方式标清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H265.HD: H.265编码方式高清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H265.FHD: H.265编码方式全高清极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H265.2K: H.265编码方式2K极速高清视频编辑</li>
-        /// <li>Edit.TESHD-10.H265.4K: H.265编码方式4K极速高清视频编辑</li>
+        /// - Remuxing: 转封装
+        /// - Audio: 音频转码
+        /// - Standard.H264.SD: H.264编码方式标清转码
+        /// - Standard.H264.HD: H.264编码方式高清转码
+        /// - Standard.H264.FHD: H.264编码方式全高清转码
+        /// - Standard.H264.2K: H.264编码方式2K转码
+        /// - Standard.H264.4K: H.264编码方式4K转码
+        /// - Standard.H265.SD: H.265编码方式标清转码
+        /// - Standard.H265.HD: H.265编码方式高清转码
+        /// - Standard.H265.FHD: H.265编码方式全高清转码
+        /// - Standard.H265.2K: H.265编码方式2K转码
+        /// - Standard.H265.4K: H.265编码方式4K转码
+        /// - TESHD-10.H264.SD: H.264编码方式标清极速高清转码
+        /// - TESHD-10.H264.HD: H.264编码方式高清极速高清转码
+        /// - TESHD-10.H264.FHD: H.264编码方式全高清极速高清转码
+        /// - TESHD-10.H264.2K: H.264编码方式2K极速高清转码
+        /// - TESHD-10.H264.4K: H.264编码方式4K极速高清转码
+        /// - TESHD-10.H265.SD: H.265编码方式标清极速高清转码
+        /// - TESHD-10.H265.HD: H.265编码方式高清极速高清转码
+        /// - TESHD-10.H265.FHD: H.265编码方式全高清极速高清转码
+        /// - TESHD-10.H265.2K: H.265编码方式2K极速高清转码
+        /// - TESHD-10.H265.4K: H.265编码方式4K极速高清转码
+        /// - Edit.Audio: 音频编辑
+        /// - Edit.H264.SD: H.264编码方式标清视频编辑
+        /// - Edit.H264.HD: H.264编码方式高清视频编辑
+        /// - Edit.H264.FHD: H.264编码方式全高清视频编辑
+        /// - Edit.H264.2K: H.264编码方式2K视频编辑
+        /// - Edit.H264.4K: H.264编码方式4K视频编辑
+        /// - Edit.H265.SD: H.265编码方式标清视频编辑
+        /// - Edit.H265.HD: H.265编码方式高清视频编辑
+        /// - Edit.H265.FHD: H.265编码方式全高清视频编辑
+        /// - Edit.H265.2K: H.265编码方式2K视频编辑
+        /// - Edit.H265.4K: H.265编码方式4K视频编辑
+        /// - Edit.TESHD-10.H264.SD: H.264编码方式标清极速高清视频编辑
+        /// - Edit.TESHD-10.H264.HD: H.264编码方式高清极速高清视频编辑
+        /// - Edit.TESHD-10.H264.FHD: H.264编码方式全高清极速高清视频编辑
+        /// - Edit.TESHD-10.H264.2K: H.264编码方式2K极速高清视频编辑
+        /// - Edit.TESHD-10.H264.4K: H.264编码方式4K极速高清视频编辑
+        /// - Edit.TESHD-10.H265.SD: H.265编码方式标清极速高清视频编辑
+        /// - Edit.TESHD-10.H265.HD: H.265编码方式高清极速高清视频编辑
+        /// - Edit.TESHD-10.H265.FHD: H.265编码方式全高清极速高清视频编辑
+        /// - Edit.TESHD-10.H265.2K: H.265编码方式2K极速高清视频编辑
+        /// - Edit.TESHD-10.H265.4K: H.265编码方式4K极速高清视频编辑
         /// 去水印、音画质重生规格：
-        /// <li>480P: 短边 ≤ 480px</li>
-        /// <li>720P: 短边 ≤ 720px</li>
-        /// <li>1080P: 短边 ≤ 1080px</li>
-        /// <li>2K: 短边 ≤ 1440px</li>
-        /// <li>4K: 短边 ≤ 2160px</li>
-        /// <li>8K: 短边 ≤ 4320px</li>
-        /// <li>Audio: 音频</li>
+        /// - 480P: 短边 ≤ 480px
+        /// - 720P: 短边 ≤ 720px
+        /// - 1080P: 短边 ≤ 1080px
+        /// - 2K: 短边 ≤ 1440px
+        /// - 4K: 短边 ≤ 2160px
+        /// - 8K: 短边 ≤ 4320px
+        /// - Audio: 音频
         public let details: [SpecificationDataItem]
 
         enum CodingKeys: String, CodingKey {
@@ -11575,19 +11591,19 @@ extension Vod {
         public let confidence: Float
 
         /// 鉴别涉及令人不安全的信息的结果建议，取值范围：
-        /// <li>pass；</li>
-        /// <li>review；</li>
-        /// <li>block。</li>
+        /// - pass；
+        /// - review；
+        /// - block。
         public let suggestion: String
 
         /// 鉴别涉及令人不安全的信息的结果标签，取值范围：
-        /// <li>guns：武器枪支；</li>
-        /// <li>crowd：人群聚集；</li>
-        /// <li>police：警察部队；</li>
-        /// <li>bloody：血腥画面；</li>
-        /// <li>banners：暴恐旗帜；</li>
-        /// <li>explosion：爆炸火灾；</li>
-        /// <li>scenario：暴恐画面。</li>
+        /// - guns：武器枪支；
+        /// - crowd：人群聚集；
+        /// - police：警察部队；
+        /// - bloody：血腥画面；
+        /// - banners：暴恐旗帜；
+        /// - explosion：爆炸火灾；
+        /// - scenario：暴恐画面。
         public let label: String
 
         enum CodingKeys: String, CodingKey {
@@ -11600,20 +11616,20 @@ extension Vod {
     /// 画面鉴别涉及令人不安全的信息的任务控制参数
     public struct TerrorismImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面鉴别涉及令人不安全的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人不安全的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人不安全的信息的任务。
         public let `switch`: String
 
         /// 画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>guns：武器枪支；</li>
-        /// <li>crowd：人群聚集；</li>
-        /// <li>bloody：血腥画面；</li>
-        /// <li>police：警察部队；</li>
-        /// <li>banners：暴恐旗帜；</li>
-        /// <li>militant：武装分子；</li>
-        /// <li>explosion：爆炸火灾；</li>
-        /// <li>terrorists：暴恐人物；</li>
-        /// <li>scenario：暴恐画面。</li>
+        /// - guns：武器枪支；
+        /// - crowd：人群聚集；
+        /// - bloody：血腥画面；
+        /// - police：警察部队；
+        /// - banners：暴恐旗帜；
+        /// - militant：武装分子；
+        /// - explosion：爆炸火灾；
+        /// - terrorists：暴恐人物；
+        /// - scenario：暴恐画面。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
@@ -11640,20 +11656,20 @@ extension Vod {
     /// 画面鉴别涉及令人不安全的信息的任务控制参数。
     public struct TerrorismImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人不安全的信息的任务开关，可选值：
-        /// <li>ON：开启画面鉴别涉及令人不安全的信息的任务；</li>
-        /// <li>OFF：关闭画面鉴别涉及令人不安全的信息的任务。</li>
+        /// - ON：开启画面鉴别涉及令人不安全的信息的任务；
+        /// - OFF：关闭画面鉴别涉及令人不安全的信息的任务。
         public let `switch`: String?
 
         /// 画面鉴别涉及令人不安全的信息的过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>guns：武器枪支；</li>
-        /// <li>crowd：人群聚集；</li>
-        /// <li>bloody：血腥画面；</li>
-        /// <li>police：警察部队；</li>
-        /// <li>banners：暴恐旗帜；</li>
-        /// <li>militant：武装分子；</li>
-        /// <li>explosion：爆炸火灾；</li>
-        /// <li>terrorists：暴恐人物；</li>
-        /// <li>scenario：暴恐画面。</li>
+        /// - guns：武器枪支；
+        /// - crowd：人群聚集；
+        /// - bloody：血腥画面；
+        /// - police：警察部队；
+        /// - banners：暴恐旗帜；
+        /// - militant：武装分子；
+        /// - explosion：爆炸火灾；
+        /// - terrorists：暴恐人物；
+        /// - scenario：暴恐画面。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -11680,8 +11696,8 @@ extension Vod {
     /// 文本鉴别涉及令人不安全的信息的任务控制参数
     public struct TerrorismOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本鉴别涉及令人不安全的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人不安全的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人不安全的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人不安全的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人不安全的信息的任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -11706,8 +11722,8 @@ extension Vod {
     /// 文本鉴别涉及令人不安全的信息的任务控制参数
     public struct TerrorismOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本鉴别涉及令人不安全的信息的任务开关，可选值：
-        /// <li>ON：开启文本鉴别涉及令人不安全的信息的任务；</li>
-        /// <li>OFF：关闭文本鉴别涉及令人不安全的信息的任务。</li>
+        /// - ON：开启文本鉴别涉及令人不安全的信息的任务；
+        /// - OFF：关闭文本鉴别涉及令人不安全的信息的任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -11732,8 +11748,8 @@ extension Vod {
     /// 文字水印模板
     public struct TextWatermarkTemplateInput: TCInputModel, TCOutputModel {
         /// 字体类型，目前可以支持两种：
-        /// <li>simkai.ttf：可以支持中文和英文；</li>
-        /// <li>arial.ttf：仅支持英文。</li>
+        /// - simkai.ttf：可以支持中文和英文；
+        /// - arial.ttf：仅支持英文。
         public let fontType: String
 
         /// 字体大小，格式：Npx，N 为数值。
@@ -11743,8 +11759,8 @@ extension Vod {
         public let fontColor: String
 
         /// 文字透明度，取值范围：(0, 1]
-        /// <li>0：完全透明</li>
-        /// <li>1：完全不透明</li>
+        /// - 0：完全透明
+        /// - 1：完全不透明
         /// 默认值：1。
         public let fontAlpha: Float
 
@@ -11766,8 +11782,8 @@ extension Vod {
     /// 文字水印模板
     public struct TextWatermarkTemplateInputForUpdate: TCInputModel {
         /// 字体类型，目前可以支持两种：
-        /// <li>simkai.ttf：可以支持中文和英文；</li>
-        /// <li>arial.ttf：仅支持英文。</li>
+        /// - simkai.ttf：可以支持中文和英文；
+        /// - arial.ttf：仅支持英文。
         public let fontType: String?
 
         /// 字体大小，格式：Npx，N 为数值。
@@ -11777,8 +11793,8 @@ extension Vod {
         public let fontColor: String?
 
         /// 文字透明度，取值范围：(0, 1]
-        /// <li>0：完全透明</li>
-        /// <li>1：完全不透明</li>
+        /// - 0：完全透明
+        /// - 1：完全不透明
         public let fontAlpha: Float?
 
         public init(fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
@@ -11798,12 +11814,12 @@ extension Vod {
 
     /// 用于描述一个时间段的通用数据类型。
     public struct TimeRange: TCInputModel {
-        /// <li>大于等于此时间（起始时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
+        /// - 大于等于此时间（起始时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let after: String?
 
-        /// <li>小于此时间（结束时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
+        /// - 小于此时间（结束时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let before: String?
 
         public init(after: String? = nil, before: String? = nil) {
@@ -11820,8 +11836,8 @@ extension Vod {
     /// 溯源水印参数
     public struct TraceWatermarkInput: TCInputModel, TCOutputModel {
         /// 溯源水印任务开关，此字段必填，可选值：
-        /// <li>ON：开启溯源水印；</li>
-        /// <li>OFF：关闭溯源水印。</li>
+        /// - ON：开启溯源水印；
+        /// - OFF：关闭溯源水印。
         public let `switch`: String?
 
         /// 该字段已废弃，请勿使用。
@@ -11870,8 +11886,8 @@ extension Vod {
         public let taskId: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -11925,15 +11941,15 @@ extension Vod {
         public let headTailSet: [HeadTailTaskInput]?
 
         /// 转码后的视频的起始时间偏移，单位：秒。
-        /// <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        /// - 不填或填0，表示转码后的视频从原始视频的起始位置开始；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。
         public let startTimeOffset: Float?
 
         /// 转码后视频的终止时间偏移，单位：秒。
-        /// <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        /// - 不填或填0，表示转码后的视频持续到原始视频的末尾终止；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。
         public let endTimeOffset: Float?
 
         public init(definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, copyRightWatermark: CopyRightWatermarkInput? = nil, mosaicSet: [MosaicInput]? = nil, headTailSet: [HeadTailTaskInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
@@ -11974,18 +11990,18 @@ extension Vod {
         public let comment: String
 
         /// 模板类型，取值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 是否去除视频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeVideo: Int64
 
         /// 是否去除音频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeAudio: Int64
 
         /// 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
@@ -12001,8 +12017,8 @@ extension Vod {
         public let tehdConfig: TEHDConfig?
 
         /// 封装格式过滤条件，可选值：
-        /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
-        /// <li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
+        /// - Video：视频格式，可以同时包含视频流和音频流的封装格式；
+        /// - PureAudio：纯音频格式，只能包含音频流的封装格式板。
         public let containerType: String
 
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -12035,52 +12051,47 @@ extension Vod {
     /// 转场操作
     public struct TransitionOpertion: TCInputModel, TCOutputModel {
         /// 转场类型，取值有：
-        /// <ul>
-        /// <li>图像的转场操作，用于两个视频片段图像间的转场处理：
-        /// <ul>
-        /// <li>ImageFadeInFadeOut：图像淡入淡出。 </li>
-        /// <li>BowTieHorizontal：水平蝴蝶结。 </li>
-        /// <li>BowTieVertical：垂直蝴蝶结。 </li>
-        /// <li>ButterflyWaveScrawler：晃动。 </li>
-        /// <li>Cannabisleaf：枫叶。 </li>
-        /// <li>Circle：弧形收放。 </li>
-        /// <li>CircleCrop：圆环聚拢。 </li>
-        /// <li>Circleopen：椭圆聚拢。 </li>
-        /// <li>Crosswarp：横向翘曲。 </li>
-        /// <li>Cube：立方体。 </li>
-        /// <li>DoomScreenTransition：幕布。 </li>
-        /// <li>Doorway：门廊。 </li>
-        /// <li>Dreamy：波浪。 </li>
-        /// <li>DreamyZoom：水平聚拢。 </li>
-        /// <li>FilmBurn：火烧云。 </li>
-        /// <li>GlitchMemories：抖动。 </li>
-        /// <li>Heart：心形。 </li>
-        /// <li>InvertedPageCurl：翻页。 </li>
-        /// <li>Luma：腐蚀。 </li>
-        /// <li>Mosaic：九宫格。 </li>
-        /// <li>Pinwheel：风车。 </li>
-        /// <li>PolarFunction：椭圆扩散。 </li>
-        /// <li>PolkaDotsCurtain：弧形扩散。 </li>
-        /// <li>Radial：雷达扫描 </li>
-        /// <li>RotateScaleFade：上下收放。 </li>
-        /// <li>Squeeze：上下聚拢。 </li>
-        /// <li>Swap：放大切换。 </li>
-        /// <li>Swirl：螺旋。 </li>
-        /// <li>UndulatingBurnOutSwirl：水流蔓延。 </li>
-        /// <li>Windowblinds：百叶窗。 </li>
-        /// <li>WipeDown：向下收起。 </li>
-        /// <li>WipeLeft：向左收起。 </li>
-        /// <li>WipeRight：向右收起。 </li>
-        /// <li>WipeUp：向上收起。 </li>
-        /// <li>ZoomInCircles：水波纹。 </li>
-        /// </ul>
+        ///
+        /// - 图像的转场操作，用于两个视频片段图像间的转场处理：
+        ///   - ImageFadeInFadeOut：图像淡入淡出。
+        ///   - BowTieHorizontal：水平蝴蝶结。
+        ///   - BowTieVertical：垂直蝴蝶结。
+        ///   - ButterflyWaveScrawler：晃动。
+        ///   - Cannabisleaf：枫叶。
+        ///   - Circle：弧形收放。
+        ///   - CircleCrop：圆环聚拢。
+        ///   - Circleopen：椭圆聚拢。
+        ///   - Crosswarp：横向翘曲。
+        ///   - Cube：立方体。
+        ///   - DoomScreenTransition：幕布。
+        ///   - Doorway：门廊。
+        ///   - Dreamy：波浪。
+        ///   - DreamyZoom：水平聚拢。
+        ///   - FilmBurn：火烧云。
+        ///   - GlitchMemories：抖动。
+        ///   - Heart：心形。
+        ///   - InvertedPageCurl：翻页。
+        ///   - Luma：腐蚀。
+        ///   - Mosaic：九宫格。
+        ///   - Pinwheel：风车。
+        ///   - PolarFunction：椭圆扩散。
+        ///   - PolkaDotsCurtain：弧形扩散。
+        ///   - Radial：雷达扫描
+        ///   - RotateScaleFade：上下收放。
+        ///   - Squeeze：上下聚拢。
+        ///   - Swap：放大切换。
+        ///   - Swirl：螺旋。
+        ///   - UndulatingBurnOutSwirl：水流蔓延。
+        ///   - Windowblinds：百叶窗。
+        ///   - WipeDown：向下收起。
+        ///   - WipeLeft：向左收起。
+        ///   - WipeRight：向右收起。
+        ///   - WipeUp：向上收起。
+        ///   - ZoomInCircles：水波纹。
+        ///
         /// </li>
-        /// <li>音频的转场操作，用于两个音频片段间的转场处理：
-        /// <ul>
-        /// <li>AudioFadeInFadeOut：声音淡入淡出。 </li>
-        /// </ul>
-        /// </li>
-        /// </ul>
+        /// - 音频的转场操作，用于两个音频片段间的转场处理：
+        ///   - AudioFadeInFadeOut：声音淡入淡出。
         public let type: String
 
         public init(type: String) {
@@ -12117,8 +12128,8 @@ extension Vod {
     /// 基于签名的 Key 防盗链信息
     public struct UrlSignatureAuthPolicy: TCInputModel, TCOutputModel {
         /// [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)设置状态，可选值：
-        /// <li>Enabled: 启用。</li>
-        /// <li>Disabled: 禁用。</li>
+        /// - Enabled: 启用。
+        /// - Disabled: 禁用。
         public let status: String
 
         /// [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)中用于生成签名的密钥。
@@ -12139,8 +12150,8 @@ extension Vod {
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定语音审核任务开关，可选值：
-        /// <li>ON：开启自定义语音审核任务；</li>
-        /// <li>OFF：关闭自定义语音审核任务。</li>
+        /// - ON：开启自定义语音审核任务；
+        /// - OFF：关闭自定义语音审核任务。
         public let `switch`: String
 
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
@@ -12171,8 +12182,8 @@ extension Vod {
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定语音审核任务开关，可选值：
-        /// <li>ON：开启自定义语音审核任务；</li>
-        /// <li>OFF：关闭自定义语音审核任务。</li>
+        /// - ON：开启自定义语音审核任务；
+        /// - OFF：关闭自定义语音审核任务。
         public let `switch`: String?
 
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
@@ -12254,8 +12265,8 @@ extension Vod {
     /// 用户自定义人物音视频审核任务控制参数
     public struct UserDefineFaceReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定义人物音视频审核任务开关，可选值：
-        /// <li>ON：开启自定义人物音视频审核任务；</li>
-        /// <li>OFF：关闭自定义人物音视频审核任务。</li>
+        /// - ON：开启自定义人物音视频审核任务；
+        /// - OFF：关闭自定义人物音视频审核任务。
         public let `switch`: String
 
         /// 用户自定义人物过滤标签，音视频审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
@@ -12286,8 +12297,8 @@ extension Vod {
     /// 用户自定义人物音视频审核任务控制参数。
     public struct UserDefineFaceReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定义人物音视频审核任务开关，可选值：
-        /// <li>ON：开启自定义人物音视频审核任务；</li>
-        /// <li>OFF：关闭自定义人物音视频审核任务。</li>
+        /// - ON：开启自定义人物音视频审核任务；
+        /// - OFF：关闭自定义人物音视频审核任务。
         public let `switch`: String?
 
         /// 用户自定义人物过滤标签，音视频审核结果包含选择的标签则返回结果，如果过滤标签为空，则音视频审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
@@ -12318,8 +12329,8 @@ extension Vod {
     /// 用户自定义文本音视频审核任务控制参数
     public struct UserDefineOcrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定文本音视频审核任务开关，可选值：
-        /// <li>ON：开启自定义文本音视频审核任务；</li>
-        /// <li>OFF：关闭自定义文本音视频审核任务。</li>
+        /// - ON：开启自定义文本音视频审核任务；
+        /// - OFF：关闭自定义文本音视频审核任务。
         public let `switch`: String
 
         /// 用户自定义文本过滤标签，音视频审核结果包含选择的标签则返回结果，如果过滤标签为空，则音视频审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
@@ -12350,8 +12361,8 @@ extension Vod {
     /// 用户自定义文本音视频审核任务控制参数。
     public struct UserDefineOcrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定文本音视频审核任务开关，可选值：
-        /// <li>ON：开启自定义文本音视频审核任务；</li>
-        /// <li>OFF：关闭自定义文本音视频审核任务。</li>
+        /// - ON：开启自定义文本音视频审核任务；
+        /// - OFF：关闭自定义文本音视频审核任务。
         public let `switch`: String?
 
         /// 用户自定义文本过滤标签，音视频审核结果包含选择的标签则返回结果，如果过滤标签为空，则音视频审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
@@ -12382,13 +12393,13 @@ extension Vod {
     /// 视频降噪控制参数
     public struct VideoDenoiseInfo: TCInputModel, TCOutputModel {
         /// 视频降噪控制开关，可选值：
-        /// <li>ON：开启视频降噪；</li>
-        /// <li>OFF：关闭视频降噪。</li>
+        /// - ON：开启视频降噪；
+        /// - OFF：关闭视频降噪。
         public let `switch`: String
 
         /// 视频降噪类型，仅当视频降噪控制开关为 ON 时有效，可选值：
-        /// <li>weak：轻视频降噪；</li>
-        /// <li>strong：强视频降噪。</li>
+        /// - weak：轻视频降噪；
+        /// - strong：强视频降噪。
         /// 默认值：weak。
         public let type: String?
 
@@ -12406,8 +12417,8 @@ extension Vod {
     /// 智能插帧控制参数
     public struct VideoFrameInterpolationInfo: TCInputModel, TCOutputModel {
         /// 智能插帧控制开关，可选值：
-        /// <li>ON：开启智能插帧；</li>
-        /// <li>OFF：关闭智能插帧。</li>
+        /// - ON：开启智能插帧；
+        /// - OFF：关闭智能插帧。
         public let `switch`: String
 
         /// 智能插帧帧率，帧率范围为 (0, 100]，仅当智能插帧控制开关为 ON 时有效。默认跟源文件帧率一致。
@@ -12427,13 +12438,13 @@ extension Vod {
     /// 视频流配置参数
     public struct VideoTemplateInfo: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码；</li>
-        /// <li>libx265：H.265 编码；</li>
-        /// <li>av1：AOMedia Video 1 编码；</li>
-        /// <li>H.266：H.266 编码。</li>
+        /// - libx264：H.264 编码；
+        /// - libx265：H.265 编码；
+        /// - av1：AOMedia Video 1 编码；
+        /// - H.266：H.266 编码。
         /// _注意：_
-        /// <li> av1，H.266 编码容器目前只支持 mp4 ；</li>
-        /// <li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
+        /// - av1，H.266 编码容器目前只支持 mp4 ；
+        /// - H.266 目前只支持恒定 CRF 码率控制方式。
         public let codec: String
 
         /// 视频帧率，取值范围：[0, 100]，单位：Hz。
@@ -12445,41 +12456,41 @@ extension Vod {
         public let bitrate: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
         /// 默认值：black 。
         public let fillType: String?
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]。
         ///
         /// _注意：_
-        /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
-        /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
-        /// <li>如果没有特殊需求，不建议指定该参数。</li>
+        /// - 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；
+        /// - 当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；
+        /// - 如果没有特殊需求，不建议指定该参数。
         public let vcrf: UInt64?
 
         /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
@@ -12487,14 +12498,14 @@ extension Vod {
         public let gop: UInt64?
 
         /// 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
-        /// <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
-        /// <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
+        /// - ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。
+        /// - OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。
         /// 默认值：OFF。
         public let preserveHDRSwitch: String?
 
         /// 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
-        /// <li>hvc1 表示 hvc1 标签；</li>
-        /// <li>hev1 表示 hev1 标签。 </li>
+        /// - hvc1 表示 hvc1 标签；
+        /// - hev1 表示 hev1 标签。
         /// 默认值：hvc1。
         public let codecTag: String?
 
@@ -12530,13 +12541,13 @@ extension Vod {
     /// 视频流配置参数
     public struct VideoTemplateInfoForUpdate: TCInputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码；</li>
-        /// <li>libx265：H.265 编码；</li>
-        /// <li>av1：AOMedia Video 1 编码；</li>
-        /// <li>H.266：H.266 编码。</li>
+        /// - libx264：H.264 编码；
+        /// - libx265：H.265 编码；
+        /// - av1：AOMedia Video 1 编码；
+        /// - H.266：H.266 编码。
         /// _注意：_
-        /// <li> av1，H.266 编码容器目前只支持 mp4 ；</li>
-        /// <li> H.266 目前只支持恒定 CRF 码率控制方式。 </li>
+        /// - av1，H.266 编码容器目前只支持 mp4 ；
+        /// - H.266 目前只支持恒定 CRF 码率控制方式。
         public let codec: String?
 
         /// 视频帧率，取值范围：[0, 100]，单位：Hz。
@@ -12548,33 +12559,33 @@ extension Vod {
         public let bitrate: UInt64?
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         public let width: UInt64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 8192]，单位：px。
         public let height: UInt64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
         public let fillType: String?
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]，填 0 表示禁用该参数。
         ///
         /// _注意：_
-        /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
-        /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
-        /// <li>如果没有特殊需求，不建议指定该参数。</li>
+        /// - 如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；
+        /// - 当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；
+        /// - 如果没有特殊需求，不建议指定该参数。
         public let vcrf: UInt64?
 
         /// 关键帧 I 帧之间的间隔，取值范围：0 和 [1, 100000]，单位：帧数。
@@ -12582,13 +12593,13 @@ extension Vod {
         public let gop: UInt64?
 
         /// 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
-        /// <li>ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。</li>
-        /// <li>OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。</li>
+        /// - ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。
+        /// - OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。
         public let preserveHDRSwitch: String?
 
         /// 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
-        /// <li>hvc1 表示 hvc1 标签；</li>
-        /// <li>hev1 表示 hev1 标签。 </li>
+        /// - hvc1 表示 hvc1 标签；
+        /// - hev1 表示 hev1 标签。
         /// 默认值：hvc1。
         public let codecTag: String?
 
@@ -12624,8 +12635,8 @@ extension Vod {
     /// 视频轨的视频片段信息。
     public struct VideoTrackItem: TCInputModel, TCOutputModel {
         /// 视频片段的媒体素材来源，可以是：
-        /// <li>点播的媒体文件 ID；</li>
-        /// <li>其他媒体文件的下载 URL。</li>
+        /// - 点播的媒体文件 ID；
+        /// - 其他媒体文件的下载 URL。
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -12636,41 +12647,41 @@ extension Vod {
         public let duration: Float?
 
         /// 视频片段目标时长，单位为秒。
-        /// <li>当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；</li>
-        /// <li>当 TargetDuration 取大于0的值时，将对视频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。</li>
+        /// - 当 TargetDuration 不填或填0时，表示目标时长和 Duration 一致；
+        /// - 当 TargetDuration 取大于0的值时，将对视频片段做快进或慢放等处理，使得输出片段的时长等于 TargetDuration。
         public let targetDuration: Float?
 
         /// 视频原点位置，取值有：
-        /// <li>Center：坐标原点为中心位置，如画布中心。</li>
+        /// - Center：坐标原点为中心位置，如画布中心。
         /// 默认值 ：Center。
         public let coordinateOrigin: String?
 
         /// 视频片段原点距离画布原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。
+        /// - 当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 视频片段原点距离画布原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。
         /// 默认值：0px。
         public let yPos: String?
 
         /// 视频片段的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素。</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height。</li>
-        /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%。
+        /// - 当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素。
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按比例缩放
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let width: String?
 
         /// 视频片段的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；
-        /// </li><li>当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素。</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height。</li>
-        /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；
+        /// - 当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素。
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取视频素材本身的 Width、Height。
+        /// - 当 Width 为空，Height 非空，则 Width 按比例缩放
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let height: String?
 
         /// 对音频进行操作，如静音等。
@@ -12711,8 +12722,8 @@ extension Vod {
     /// 音频（静音、低音、爆音）检测的控制参数。
     public struct VoiceConfigureInfo: TCInputModel, TCOutputModel {
         /// 音频（静音、低音、爆音）检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -12727,8 +12738,8 @@ extension Vod {
     /// 音频（静音、低音、爆音）检测的控制参数。
     public struct VoiceConfigureInfoForUpdate: TCInputModel {
         /// 音频（静音、低音、爆音）检测开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -12779,15 +12790,15 @@ extension Vod {
         public let svgContent: String?
 
         /// 水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。
-        /// <li>不填或填0，表示水印从画面开始就出现；</li>
-        /// <li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li>
-        /// <li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>
+        /// - 不填或填0，表示水印从画面开始就出现；
+        /// - 当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；
+        /// - 当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。
         public let startTimeOffset: Float?
 
         /// 水印的结束时间偏移，单位：秒。
-        /// <li>不填或填0，表示水印持续到画面结束；</li>
-        /// <li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li>
-        /// <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
+        /// - 不填或填0，表示水印持续到画面结束；
+        /// - 当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；
+        /// - 当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。
         public let endTimeOffset: Float?
 
         public init(definition: UInt64, textContent: String? = nil, svgContent: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
@@ -12813,8 +12824,8 @@ extension Vod {
         public let definition: Int64
 
         /// 水印类型，取值：
-        /// <li>image：图片水印；</li>
-        /// <li>text：文字水印。</li>
+        /// - image：图片水印；
+        /// - text：文字水印。
         public let type: String
 
         /// 水印模板名称。
@@ -12824,13 +12835,13 @@ extension Vod {
         public let comment: String
 
         /// 水印图片原点距离视频图像原点的水平位置。
-        /// <li>当字符串以 % 结尾，表示水印 Left 为视频宽度指定百分比的位置，如 10% 表示 Left 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Left 为视频宽度指定像素的位置，如 100px 表示 Left 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Left 为视频宽度指定百分比的位置，如 10% 表示 Left 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Left 为视频宽度指定像素的位置，如 100px 表示 Left 为 100 像素。
         public let xPos: String
 
         /// 水印图片原点距离视频图像原点的垂直位置。
-        /// <li>当字符串以 % 结尾，表示水印 Top 为视频高度指定百分比的位置，如 10% 表示 Top 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Top 为视频高度指定像素的位置，如 100px 表示 Top 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Top 为视频高度指定百分比的位置，如 10% 表示 Top 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Top 为视频高度指定像素的位置，如 100px 表示 Top 为 100 像素。
         public let yPos: String
 
         /// 图片水印模板，仅当 Type 为 image，该字段有效。
@@ -12852,10 +12863,10 @@ extension Vod {
         public let updateTime: String
 
         /// 原点位置，可选值：
-        /// <li>topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
-        /// <li>topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
-        /// <li>bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
-        /// <li>bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；</li>
+        /// - topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；
+        /// - topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；
+        /// - bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；
+        /// - bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；
         public let coordinateOrigin: String
 
         enum CodingKeys: String, CodingKey {
@@ -12886,8 +12897,8 @@ extension Vod {
         public let status: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -12900,9 +12911,9 @@ extension Vod {
         public let sourceDefinition: UInt64
 
         /// 微信小程序视频发布状态，取值：
-        /// <li>Pass：发布成功；</li>
-        /// <li>Failed：发布失败；</li>
-        /// <li>Rejected：音视频审核未通过。</li>
+        /// - Pass：发布成功；
+        /// - Failed：发布失败；
+        /// - Rejected：音视频审核未通过。
         public let publishResult: String
 
         enum CodingKeys: String, CodingKey {
@@ -12942,8 +12953,8 @@ extension Vod {
         public let status: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -12959,10 +12970,10 @@ extension Vod {
         public let sourceDefinition: UInt64
 
         /// 微信发布状态，取值：
-        /// <li>FAIL：失败；</li>
-        /// <li>SUCCESS：成功；</li>
-        /// <li>AUDITNOTPASS：审核未通过；</li>
-        /// <li>NOTTRIGGERED：尚未发起微信发布。</li>
+        /// - FAIL：失败；
+        /// - SUCCESS：成功；
+        /// - AUDITNOTPASS：审核未通过；
+        /// - NOTTRIGGERED：尚未发起微信发布。
         public let wechatStatus: String
 
         /// 微信 Vid。

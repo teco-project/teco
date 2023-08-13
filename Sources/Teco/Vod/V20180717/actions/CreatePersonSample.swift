@@ -41,8 +41,8 @@ extension Vod {
         public let faceContents: [String]?
 
         /// 素材标签
-        /// <li>数组长度限制：20 个标签；</li>
-        /// <li>单个标签长度限制：128 个字符。</li>
+        /// - 数组长度限制：20 个标签；
+        /// - 单个标签长度限制：128 个字符。
         public let tags: [String]?
 
         public init(name: String, usages: [String], subAppId: UInt64? = nil, description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil) {

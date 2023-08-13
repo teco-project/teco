@@ -24,44 +24,44 @@ extension Bsca {
 
         /// AccessVector 攻击途径。
         /// 取值范围：
-        /// <li>NETWORK 远程</li>
-        /// <li>ADJACENT_NETWORK 近邻</li>
-        /// <li>LOCAL 本地</li>
+        /// - NETWORK 远程
+        /// - ADJACENT_NETWORK 近邻
+        /// - LOCAL 本地
         public let accessVector: String
 
         /// AccessComplexity 攻击复杂度。
         /// 取值范围：
-        /// <li>HIGH 高</li>
-        /// <li>MEDIUM 中</li>
-        /// <li>LOW 低</li>
+        /// - HIGH 高
+        /// - MEDIUM 中
+        /// - LOW 低
         public let accessComplexity: String
 
         /// Authentication 身份验证。
         /// 取值范围：
-        /// <li>MULTIPLE 多系统认证</li>
-        /// <li>SINGLE 单系统认证</li>
-        /// <li>NONE 无</li>
+        /// - MULTIPLE 多系统认证
+        /// - SINGLE 单系统认证
+        /// - NONE 无
         public let authentication: String
 
         /// ConfidentialityImpact 机密性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>PARTIAL 部分</li>
-        /// <li>COMPLETE 完整</li>
+        /// - NONE 无
+        /// - PARTIAL 部分
+        /// - COMPLETE 完整
         public let conImpact: String
 
         /// IntegrityImpact 完整性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>PARTIAL 部分</li>
-        /// <li>COMPLETE 完整</li>
+        /// - NONE 无
+        /// - PARTIAL 部分
+        /// - COMPLETE 完整
         public let integrityImpact: String
 
         /// AvailabilityImpact 可用性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>PARTIAL 部分</li>
-        /// <li>COMPLETE 完整</li>
+        /// - NONE 无
+        /// - PARTIAL 部分
+        /// - COMPLETE 完整
         public let availabilityImpact: String
 
         enum CodingKeys: String, CodingKey {
@@ -82,56 +82,56 @@ extension Bsca {
 
         /// AttackVector 攻击途径。
         /// 取值范围：
-        /// <li>NETWORK 远程</li>
-        /// <li>ADJACENT_NETWORK 近邻</li>
-        /// <li>LOCAL 本地</li>
-        /// <li>PHYSICAL 物理</li>
+        /// - NETWORK 远程
+        /// - ADJACENT_NETWORK 近邻
+        /// - LOCAL 本地
+        /// - PHYSICAL 物理
         public let attackVector: String
 
         /// AttackComplexity 攻击复杂度。
         /// 取值范围：
-        /// <li>HIGH 高</li>
-        /// <li>LOW 低</li>
+        /// - HIGH 高
+        /// - LOW 低
         public let attackComplexity: String
 
         /// PrivilegesRequired 触发特权。
         /// 取值范围：
-        /// <li>HIGH 高</li>
-        /// <li>LOW 低</li>
-        /// <li>NONE 无</li>
+        /// - HIGH 高
+        /// - LOW 低
+        /// - NONE 无
         public let privilegesRequired: String
 
         /// UserInteraction 交互必要性。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>REQUIRED 需要</li>
+        /// - NONE 无
+        /// - REQUIRED 需要
         public let userInteraction: String
 
         /// Scope 绕过安全边界。
         /// 取值范围：
-        /// <li>UNCHANGED 否</li>
-        /// <li>CHANGED 能</li>
+        /// - UNCHANGED 否
+        /// - CHANGED 能
         public let scope: String
 
         /// ConfidentialityImpact 机密性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>LOW 低</li>
-        /// <li>HIGH 高</li>
+        /// - NONE 无
+        /// - LOW 低
+        /// - HIGH 高
         public let conImpact: String
 
         /// IntegrityImpact 完整性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>LOW 低</li>
-        /// <li>HIGH 高</li>
+        /// - NONE 无
+        /// - LOW 低
+        /// - HIGH 高
         public let integrityImpact: String
 
         /// AvailabilityImpact 可用性影响。
         /// 取值范围：
-        /// <li>NONE 无</li>
-        /// <li>LOW 低</li>
-        /// <li>HIGH 高</li>
+        /// - NONE 无
+        /// - LOW 低
+        /// - HIGH 高
         public let availabilityImpact: String
 
         enum CodingKeys: String, CodingKey {
@@ -198,10 +198,10 @@ extension Bsca {
         public let affectedComponent: String
 
         /// 漏洞在该产品中的风险等级
-        /// <li>Critical</li>
-        /// <li>High</li>
-        /// <li>Medium</li>
-        /// <li>Low</li>
+        /// - Critical
+        /// - High
+        /// - Medium
+        /// - Low
         public let riskLevel: String
 
         enum CodingKeys: String, CodingKey {
@@ -279,10 +279,10 @@ extension Bsca {
         public let name: String
 
         /// License风险等级
-        /// <li>NotDefined</li>
-        /// <li>LowRisk</li>
-        /// <li>MediumRisk</li>
-        /// <li>HighRisk</li>
+        /// - NotDefined
+        /// - LowRisk
+        /// - MediumRisk
+        /// - HighRisk
         public let risk: String
 
         /// 许可证来源URL
@@ -457,10 +457,10 @@ extension Bsca {
         public let isSuggest: Bool
 
         /// 漏洞风险等级
-        /// <li>Critical</li>
-        /// <li>High</li>
-        /// <li>Medium</li>
-        /// <li>Low</li>
+        /// - Critical
+        /// - High
+        /// - Medium
+        /// - Low
         public let severity: String
 
         enum CodingKeys: String, CodingKey {

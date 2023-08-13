@@ -24,17 +24,17 @@ extension Monitor {
         /// Prometheus 实例 ID
         public let instanceId: String
 
-        /// <li>类型为TKE：对应集成的腾讯云容器服务集群 ID</li>
+        /// - 类型为TKE：对应集成的腾讯云容器服务集群 ID
         public let kubeClusterId: String
 
         /// 用户 Kubernetes 集群类型：
-        /// <li> 1 = 容器服务集群(TKE) </li>
+        /// - 1 = 容器服务集群(TKE)
         public let kubeType: Int64
 
         /// 服务发现类型，取值如下：
-        /// <li> 1 = ServiceMonitor</li>
-        /// <li> 2 = PodMonitor</li>
-        /// <li> 3 = JobMonitor</li>
+        /// - 1 = ServiceMonitor
+        /// - 2 = PodMonitor
+        /// - 3 = JobMonitor
         public let type: Int64
 
         /// 服务发现配置信息

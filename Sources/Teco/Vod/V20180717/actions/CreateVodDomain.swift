@@ -28,9 +28,9 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 需要开启 CDN 加速的区域：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland: 中国境外。</li>
-        /// <li>Global: 全球范围。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland: 中国境外。
+        /// - Global: 全球范围。
         /// 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         public let accelerateArea: String?
 

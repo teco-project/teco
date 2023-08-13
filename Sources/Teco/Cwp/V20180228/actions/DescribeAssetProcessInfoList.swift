@@ -26,24 +26,24 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name - String - 是否必填：否 - 进程名</li>
-        /// <li>User - String - 是否必填：否 - 进程用户</li>
-        /// <li>Group - String - 是否必填：否 - 进程用户组</li>
-        /// <li>Pid - uint64 - 是否必填：否 - 进程ID</li>
-        /// <li>Ppid - uint64 - 是否必填：否 - 父进程ID</li>
-        /// <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
-        /// <li>Status - string - 是否必填：否 - 进程状态：
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name - String - 是否必填：否 - 进程名
+        /// - User - String - 是否必填：否 - 进程用户
+        /// - Group - String - 是否必填：否 - 进程用户组
+        /// - Pid - uint64 - 是否必填：否 - 进程ID
+        /// - Ppid - uint64 - 是否必填：否 - 父进程ID
+        /// - OsType - uint64 - 是否必填：否 - windows/linux
+        /// - Status - string - 是否必填：否 - 进程状态：
         /// 1:R 可执行
         /// 2:S 可中断
         /// 3:D 不可中断
         /// 4:T 暂停状态或跟踪状态
         /// 5:Z 僵尸状态
-        /// 6:X 将被销毁</li>
-        /// <li>RunTimeStart - String - 是否必填：否 - 运行开始时间</li>
-        /// <li>RunTimeEnd - String - 是否必填：否 - 运行结束时间</li>
-        /// <li>InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// 6:X 将被销毁
+        /// - RunTimeStart - String - 是否必填：否 - 运行开始时间
+        /// - RunTimeEnd - String - 是否必填：否 - 运行结束时间
+        /// - InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?
 
         /// 需要返回的数量，默认为10，最大值为100

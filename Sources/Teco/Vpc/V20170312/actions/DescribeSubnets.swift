@@ -25,19 +25,19 @@ extension Vpc {
         public let subnetIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SubnetIds和Filters。
-        /// <li>subnet-id - String - （过滤条件）Subnet实例名称。</li>
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
-        /// <li>cidr-block - String - （过滤条件）子网网段，形如: 192.168.1.0 。</li>
-        /// <li>is-default - Boolean - （过滤条件）是否是默认子网。</li>
-        /// <li>is-remote-vpc-snat - Boolean - （过滤条件）是否为VPC SNAT地址池子网。</li>
-        /// <li>subnet-name - String - （过滤条件）子网名称。</li>
-        /// <li>zone - String - （过滤条件）可用区。</li>
-        /// <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
-        /// <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
-        /// <li>cdc-id - String - 是否必填：否 - （过滤条件）按照cdc信息进行过滤。过滤出来制定cdc下的子网。</li>
-        /// <li>is-cdc-subnet - String - 是否必填：否 - （过滤条件）按照是否是cdc子网进行过滤。取值：“0”-非cdc子网，“1”--cdc子网</li>
-        /// <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
-        /// <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 。</li>
+        /// - subnet-id - String - （过滤条件）Subnet实例名称。
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
+        /// - cidr-block - String - （过滤条件）子网网段，形如: 192.168.1.0 。
+        /// - is-default - Boolean - （过滤条件）是否是默认子网。
+        /// - is-remote-vpc-snat - Boolean - （过滤条件）是否为VPC SNAT地址池子网。
+        /// - subnet-name - String - （过滤条件）子网名称。
+        /// - zone - String - （过滤条件）可用区。
+        /// - tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。
+        /// - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。
+        /// - cdc-id - String - 是否必填：否 - （过滤条件）按照cdc信息进行过滤。过滤出来制定cdc下的子网。
+        /// - is-cdc-subnet - String - 是否必填：否 - （过滤条件）按照是否是cdc子网进行过滤。取值：“0”-非cdc子网，“1”--cdc子网
+        /// - ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。
+        /// - isp-type  - String - （过滤条件）运营商类型，形如: BGP 。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

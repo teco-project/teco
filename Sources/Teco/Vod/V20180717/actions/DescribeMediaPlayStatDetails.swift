@@ -34,8 +34,8 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 统计时间粒度，有效值：
-        /// <li>Hour：以小时为粒度。</li>
-        /// <li>Day：以天为粒度。</li>
+        /// - Hour：以小时为粒度。
+        /// - Day：以天为粒度。
         /// 默认按时间跨度决定，小于1天以小时为粒度，大于等于1天则以天为粒度。
         public let interval: String?
 

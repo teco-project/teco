@@ -46,24 +46,24 @@ extension Cme {
     /// DescribeTaskDetail返回参数结构体
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务状态，取值有：
-        /// <li>PROCESSING：处理中：</li>
-        /// <li>SUCCESS：成功；</li>
-        /// <li>FAIL：失败。</li>
+        /// - PROCESSING：处理中：
+        /// - SUCCESS：成功；
+        /// - FAIL：失败。
         public let status: String
 
         /// 任务进度，取值为：0~100。
         public let progress: UInt64
 
         /// 错误码。
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: UInt64
 
         /// 错误信息。
         public let errMsg: String
 
         /// 任务类型，取值有：
-        /// <li>VIDEO_EDIT_PROJECT_EXPORT：视频编辑项目导出。</li>
+        /// - VIDEO_EDIT_PROJECT_EXPORT：视频编辑项目导出。
         public let taskType: String
 
         /// 导出项目输出信息。仅当 TaskType 为 VIDEO_EDIT_PROJECT_EXPORT 时有效。
@@ -91,8 +91,8 @@ extension Cme {
     /// 获取任务详情
     ///
     /// 获取任务详情信息，包含下面几个部分：
-    /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
-    /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
+    /// - 任务基础信息：包括任务状态、错误信息、创建时间等；
+    /// - 导出项目输出信息：包括输出的素材 Id 等。
     @inlinable
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -101,8 +101,8 @@ extension Cme {
     /// 获取任务详情
     ///
     /// 获取任务详情信息，包含下面几个部分：
-    /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
-    /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
+    /// - 任务基础信息：包括任务状态、错误信息、创建时间等；
+    /// - 导出项目输出信息：包括输出的素材 Id 等。
     @inlinable
     public func describeTaskDetail(_ input: DescribeTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -111,8 +111,8 @@ extension Cme {
     /// 获取任务详情
     ///
     /// 获取任务详情信息，包含下面几个部分：
-    /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
-    /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
+    /// - 任务基础信息：包括任务状态、错误信息、创建时间等；
+    /// - 导出项目输出信息：包括输出的素材 Id 等。
     @inlinable
     public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
         self.describeTaskDetail(.init(platform: platform, taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -121,8 +121,8 @@ extension Cme {
     /// 获取任务详情
     ///
     /// 获取任务详情信息，包含下面几个部分：
-    /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
-    /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
+    /// - 任务基础信息：包括任务状态、错误信息、创建时间等；
+    /// - 导出项目输出信息：包括输出的素材 Id 等。
     @inlinable
     public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
         try await self.describeTaskDetail(.init(platform: platform, taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)

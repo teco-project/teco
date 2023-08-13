@@ -25,8 +25,7 @@ extension Thpc {
         public let clusterId: String
 
         /// 队列名称。
-        ///
-        /// <li>最多支持32个字符。
+        /// - 最多支持32个字符。
         public let queueName: String
 
         public init(clusterId: String, queueName: String) {

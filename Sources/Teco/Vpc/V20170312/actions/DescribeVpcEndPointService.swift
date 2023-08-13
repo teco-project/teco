@@ -23,10 +23,10 @@ extension Vpc {
     /// DescribeVpcEndPointService请求参数结构体
     public struct DescribeVpcEndPointServiceRequest: TCPaginatedRequest {
         /// 过滤条件。不支持同时传入参数 EndPointServiceIds and Filters。
-        /// <li> service-id - String - （过滤条件）终端节点服务唯一ID。</li>
-        /// <li>service-name - String - （过滤条件）终端节点实例名称。</li>
-        /// <li>service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。</li>
-        /// <li>service-type - String - （过滤条件）后端PAAS服务类型，CLB,CDB,CRS，不填默认查询类型为CLB。</li>
+        /// - service-id - String - （过滤条件）终端节点服务唯一ID。
+        /// - service-name - String - （过滤条件）终端节点实例名称。
+        /// - service-instance-id - String - （过滤条件）后端服务的唯一ID，比如lb-xxx。
+        /// - service-type - String - （过滤条件）后端PAAS服务类型，CLB,CDB,CRS，不填默认查询类型为CLB。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。
@@ -38,7 +38,8 @@ extension Vpc {
         /// 终端节点服务ID。不支持同时传入参数 EndPointServiceIds and Filters。
         public let endPointServiceIds: [String]?
 
-        /// <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。</li>
+        /// - 不支持同时传入参数 Filters 。
+        /// - 列出授权给当前账号的的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，那些终端节点服务授权了该账户。
         public let isListAuthorizedEndPointService: Bool?
 
         public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil, isListAuthorizedEndPointService: Bool? = nil) {

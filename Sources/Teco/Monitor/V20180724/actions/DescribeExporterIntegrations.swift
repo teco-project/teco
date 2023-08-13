@@ -25,9 +25,9 @@ extension Monitor {
         public let instanceId: String
 
         /// Kubernetes 集群类型，取值如下：
-        /// <li> 1= 容器集群(TKE) </li>
-        /// <li> 2=弹性集群<EKS> </li>
-        /// <li> 3= Prometheus管理的弹性集群<MEKS> </li>
+        /// - 1= 容器集群(TKE)
+        /// - 2=弹性集群<EKS>
+        /// - 3= Prometheus管理的弹性集群<MEKS>
         public let kubeType: Int64?
 
         /// 集群 ID

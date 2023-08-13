@@ -23,21 +23,21 @@ extension Cwp {
     /// DescribeAssetMachineList请求参数结构体
     public struct DescribeAssetMachineListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>OsType - String - 是否必填：否 - windows或linux</li>
-        /// <li>CpuLoad - Int - 是否必填：否 -
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - OsType - String - 是否必填：否 - windows或linux
+        /// - CpuLoad - Int - 是否必填：否 -
         /// 0: 未知  1: 低负载
-        /// 2: 中负载  3: 高负载</li>
-        /// <li>DiskLoad - Int - 是否必填：否 -
+        /// 2: 中负载  3: 高负载
+        /// - DiskLoad - Int - 是否必填：否 -
         /// 0: 0%或未知  1: 0%～20%
         /// 2: 20%～50%  3: 50%～80%
-        /// 4: 80%～100%</li>
-        /// <li>MemLoad - Int - 是否必填：否 -
+        /// 4: 80%～100%
+        /// - MemLoad - Int - 是否必填：否 -
         /// 0: 0%或未知  1: 0%～20%
         /// 2: 20%～50%  3: 50%～80%
-        /// 4: 80%～100%</li>
-        /// <li>Quuid：主机Quuid</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// 4: 80%～100%
+        /// - Quuid：主机Quuid
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?
 
         /// 需要返回的数量，默认为10，最大值为100

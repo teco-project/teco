@@ -26,118 +26,118 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 文件 ID 集合，匹配集合中的任意元素。
-        /// <li>数组长度限制：10。</li>
-        /// <li>单个 ID 长度限制：40个字符。</li>
+        /// - 数组长度限制：10。
+        /// - 单个 ID 长度限制：40个字符。
         public let fileIds: [String]?
 
         /// 文件名集合，模糊匹配媒体文件的文件名，匹配度越高，排序越优先。
-        /// <li>单个文件名长度限制：100个字符。</li>
-        /// <li>数组长度限制：10。</li>
+        /// - 单个文件名长度限制：100个字符。
+        /// - 数组长度限制：10。
         public let names: [String]?
 
         /// 文件名前缀，前缀匹配媒体文件的文件名。
-        /// <li>单个文件名前缀长度限制：100个字符。</li>
-        /// <li>数组长度限制：10。</li>
+        /// - 单个文件名前缀长度限制：100个字符。
+        /// - 数组长度限制：10。
         public let namePrefixes: [String]?
 
         /// 文件描述集合，模糊匹配媒体文件的描述，匹配度越高，排序越优先。
-        /// <li>单个描述长度限制：100个字符。</li>
-        /// <li>数组长度限制：10。</li>
+        /// - 单个描述长度限制：100个字符。
+        /// - 数组长度限制：10。
         public let descriptions: [String]?
 
         /// 分类 ID 集合，匹配集合指定 ID 的分类及其所有子类。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let classIds: [Int64]?
 
         /// 标签集合，匹配集合中任意元素。
-        /// <li>单个标签长度限制：32个字符。</li>
-        /// <li>数组长度限制：16。</li>
+        /// - 单个标签长度限制：32个字符。
+        /// - 数组长度限制：16。
         public let tags: [String]?
 
         /// 文件类型。匹配集合中的任意元素：
-        /// <li>Video: 视频文件</li>
-        /// <li>Audio: 音频文件</li>
-        /// <li>Image: 图片文件</li>
+        /// - Video: 视频文件
+        /// - Audio: 音频文件
+        /// - Image: 图片文件
         public let categories: [String]?
 
         /// 媒体文件来源集合，来源取值参见 [SourceType](https://cloud.tencent.com/document/product/266/31773#MediaSourceData)。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let sourceTypes: [String]?
 
         /// 推流直播码集合。匹配集合中的任意元素。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let streamIds: [String]?
 
         /// 匹配创建时间在此时间段内的文件。
-        /// <li>包含所指定的头尾时间点。</li>
+        /// - 包含所指定的头尾时间点。
         public let createTime: TimeRange?
 
         /// 匹配过期时间在此时间段内的文件，无法检索到已过期文件。
-        /// <li>包含所指定的头尾时间点。</li>
+        /// - 包含所指定的头尾时间点。
         public let expireTime: TimeRange?
 
         /// 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
-        /// <li>单个存储地区长度限制：20个字符。</li>
-        /// <li>数组长度限制：20。</li>
+        /// - 单个存储地区长度限制：20个字符。
+        /// - 数组长度限制：20。
         public let storageRegions: [String]?
 
         /// 存储类型数组。可选值有：
-        /// <li> STANDARD：标准存储。</li>
-        /// <li> STANDARD_IA：低频存储。</li>
-        /// <li> ARCHIVE：归档存储。</li>
-        /// <li> DEEP_ARCHIVE：深度归档存储。</li>
+        /// - STANDARD：标准存储。
+        /// - STANDARD_IA：低频存储。
+        /// - ARCHIVE：归档存储。
+        /// - DEEP_ARCHIVE：深度归档存储。
         public let storageClasses: [String]?
 
         /// 媒体文件封装格式集合，匹配集合中任意元素。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let mediaTypes: [String]?
 
         /// 媒体文件状态，匹配集合中任意元素。
-        /// <li> Normal：正常；</li>
-        /// <li> SystemForbidden：平台封禁；</li>
-        /// <li> Forbidden：主动封禁。</li>
+        /// - Normal：正常；
+        /// - SystemForbidden：平台封禁；
+        /// - Forbidden：主动封禁。
         public let status: [String]?
 
         /// 媒体文件审核结果，匹配集合中任意元素。
-        /// <li> pass：审核通过；</li>
-        /// <li> review：疑似违规，建议复审；</li>
-        /// <li> block：确认违规，建议封禁；</li>
-        /// <li> notModerated：未审核。</li>
+        /// - pass：审核通过；
+        /// - review：疑似违规，建议复审；
+        /// - block：确认违规，建议封禁；
+        /// - notModerated：未审核。
         public let reviewResults: [String]?
 
         /// TRTC 应用 ID 集合。匹配集合中的任意元素。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let trtcSdkAppIds: [UInt64]?
 
         /// TRTC 房间 ID 集合。匹配集合中的任意元素。
-        /// <li>单个房间 ID 长度限制：64个字符；</li>
-        /// <li>数组长度限制：10。</li>
+        /// - 单个房间 ID 长度限制：64个字符；
+        /// - 数组长度限制：10。
         public let trtcRoomIds: [String]?
 
         /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
-        /// <li>basicInfo（视频基础信息）。</li>
-        /// <li>metaData（视频元信息）。</li>
-        /// <li>transcodeInfo（视频转码结果信息）。</li>
-        /// <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
-        /// <li>imageSpriteInfo（视频雪碧图信息）。</li>
-        /// <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
-        /// <li>sampleSnapshotInfo（采样截图信息）。</li>
-        /// <li>keyFrameDescInfo（打点信息）。</li>
-        /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
-        /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
+        /// - basicInfo（视频基础信息）。
+        /// - metaData（视频元信息）。
+        /// - transcodeInfo（视频转码结果信息）。
+        /// - animatedGraphicsInfo（视频转动图结果信息）。
+        /// - imageSpriteInfo（视频雪碧图信息）。
+        /// - snapshotByTimeOffsetInfo（视频指定时间点截图信息）。
+        /// - sampleSnapshotInfo（采样截图信息）。
+        /// - keyFrameDescInfo（打点信息）。
+        /// - adaptiveDynamicStreamingInfo（转自适应码流信息）。
+        /// - miniProgramReviewInfo（小程序审核信息）。
         public let filters: [String]?
 
         /// 排序方式。
-        /// <li>Sort.Field 可选 CreateTime 。</li>
-        /// <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+        /// - Sort.Field 可选 CreateTime 。
+        /// - 当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。
         public let sort: SortBy?
 
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
-        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li>
+        /// - 取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）
         public let offset: UInt64?
 
         /// 分页返回的记录条数，默认值：10。将返回第 Offset 到第 Offset+Limit-1 条。
-        /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li>
+        /// - 取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）
         public let limit: UInt64?
 
         /// （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）
@@ -154,16 +154,16 @@ extension Vod {
 
         /// （不推荐：应使用 CreateTime 替代）
         /// 创建时间的开始时间。
-        /// <li>大于等于开始时间。</li>
-        /// <li>当 CreateTime.After 也存在时，将优先使用 CreateTime.After。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
+        /// - 大于等于开始时间。
+        /// - 当 CreateTime.After 也存在时，将优先使用 CreateTime.After。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String?
 
         /// （不推荐：应使用 CreateTime 替代）
         /// 创建时间的结束时间。
-        /// <li>小于结束时间。</li>
-        /// <li>当 CreateTime.Before 也存在时，将优先使用 CreateTime.Before。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
+        /// - 小于结束时间。
+        /// - 当 CreateTime.Before 也存在时，将优先使用 CreateTime.Before。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
 
         /// 该字段已无效。
@@ -250,7 +250,7 @@ extension Vod {
     /// SearchMedia返回参数结构体
     public struct SearchMediaResponse: TCPaginatedResponse {
         /// 符合搜索条件的记录总数。
-        /// <li>最大值：5000。当命中记录数超过5000时，该字段将返回 5000，而非实际命中总数。</li>
+        /// - 最大值：5000。当命中记录数超过5000时，该字段将返回 5000，而非实际命中总数。
         public let totalCount: UInt64
 
         /// 媒体文件信息列表。

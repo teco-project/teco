@@ -41,7 +41,21 @@ extension Tmt {
     /// LanguageDetect返回参数结构体
     public struct LanguageDetectResponse: TCResponseModel {
         /// 识别出的语言种类，参考语言列表
-        /// <li> zh : 中文 </li> <li> en : 英文 </li><li> jp : 日语 </li> <li> kr : 韩语 </li><li> de : 德语 </li><li> fr : 法语 </li><li> es : 西班牙文 </li> <li> it : 意大利文 </li><li> tr : 土耳其文 </li><li> ru : 俄文 </li><li> pt : 葡萄牙文 </li><li> vi : 越南文 </li><li> id : 印度尼西亚文 </li><li> ms : 马来西亚文 </li><li> th : 泰文 </li>
+        /// - zh : 中文
+        /// - en : 英文
+        /// - jp : 日语
+        /// - kr : 韩语
+        /// - de : 德语
+        /// - fr : 法语
+        /// - es : 西班牙文
+        /// - it : 意大利文
+        /// - tr : 土耳其文
+        /// - ru : 俄文
+        /// - pt : 葡萄牙文
+        /// - vi : 越南文
+        /// - id : 印度尼西亚文
+        /// - ms : 马来西亚文
+        /// - th : 泰文
         public let lang: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

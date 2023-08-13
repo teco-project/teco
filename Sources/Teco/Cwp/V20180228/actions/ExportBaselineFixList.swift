@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// ExportBaselineFixList请求参数结构体
     public struct ExportBaselineFixListRequest: TCRequestModel {
-        /// <li>ItemName - String - 是否必填：否 - 项名称</li>
+        /// - ItemName - String - 是否必填：否 - 项名称
         public let filters: [Filter]?
 
         /// 0:过滤的结果导出；1:全部导出

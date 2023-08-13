@@ -25,13 +25,13 @@ extension Postgres {
         public let dbInstanceIdSet: [String]
 
         /// 购买时长，单位：月。
-        /// <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
-        /// <li>后付费：只支持1
+        /// - 预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        /// - 后付费：只支持1
         public let period: Int64?
 
         /// 是否使用代金券：
-        /// <li>true：使用
-        /// <li>false：不使用
+        /// - true：使用
+        /// - false：不使用
         /// 默认值：false
         public let autoVoucher: Bool?
 

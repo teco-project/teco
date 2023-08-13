@@ -31,10 +31,8 @@ extension As {
         public let forwardLoadBalancers: [ForwardLoadBalancer]?
 
         /// 负载均衡器校验策略，取值包括 ALL 和 DIFF，默认取值为 ALL。
-        ///
-        /// <li> ALL，所有负载均衡器都合法则通过校验，否则校验报错。
-        ///
-        /// <li> DIFF，仅校验负载均衡器参数中实际变化的部分，如果合法则通过校验，否则校验报错。
+        /// - ALL，所有负载均衡器都合法则通过校验，否则校验报错。
+        /// - DIFF，仅校验负载均衡器参数中实际变化的部分，如果合法则通过校验，否则校验报错。
         public let loadBalancersCheckPolicy: String?
 
         public init(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, loadBalancersCheckPolicy: String? = nil) {

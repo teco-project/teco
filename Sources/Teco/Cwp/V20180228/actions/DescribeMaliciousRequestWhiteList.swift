@@ -29,8 +29,7 @@ extension Cwp {
         public let offset: UInt64
 
         /// 过滤条件。
-        ///
-        /// <li>Domain  - String - 基线名称</li>
+        /// - Domain  - String - 基线名称
         public let filters: [Filters]?
 
         public init(limit: UInt64, offset: UInt64, filters: [Filters]? = nil) {

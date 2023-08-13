@@ -36,8 +36,8 @@ extension Cvm {
         public let clientToken: String?
 
         /// 预留实例显示名称。
-        ///
-        /// <li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
+        /// - 不指定实例显示名称则默认显示‘未命名’。
+        /// - 最多支持60个字符（包含模式串）。
         public let reservedInstanceName: String?
 
         public init(instanceCount: Int64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil) {

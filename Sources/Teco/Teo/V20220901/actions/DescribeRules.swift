@@ -25,13 +25,13 @@ extension Teo {
         public let zoneId: String
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>rule-id
+        /// - rule-id
         ///
         /// 按照【**规则ID**】进行过滤。
         ///
         /// 类型：string
         ///
-        /// 必选：否</li>
+        /// 必选：否
         public let filters: [Filter]?
 
         public init(zoneId: String, filters: [Filter]? = nil) {

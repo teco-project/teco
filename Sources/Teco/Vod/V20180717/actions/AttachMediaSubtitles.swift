@@ -25,8 +25,8 @@ extension Vod {
         public let fileId: String
 
         /// 操作。取值如下：
-        /// <li>Attach：关联字幕。</li>
-        /// <li>Detach：解除关联字幕。</li>
+        /// - Attach：关联字幕。
+        /// - Detach：解除关联字幕。
         public let operation: String
 
         /// [转自适应码流模板号](https://cloud.tencent.com/document/product/266/34071#zsy)。

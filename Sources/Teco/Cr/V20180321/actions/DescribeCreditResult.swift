@@ -65,7 +65,17 @@ extension Cr {
 
     /// DescribeCreditResult返回参数结构体
     public struct DescribeCreditResultResponse: TCResponseModel {
-        /// <p>呼叫结果，取值范围：</p><ul style="margin-bottom:0px;"><li>NON：接通</li><li>DBU：号码忙</li><li>DRF：不在服务区</li><li>ANA：欠费未接听</li><li>REJ：拒接</li><li>SHU：关机</li><li>NAN：空号</li><li>HAL：停机</li><li>DAD：未接听</li><li>EXE：其他异常</li></ul>
+        /// <p>呼叫结果，取值范围：</p>
+        /// - NON：接通
+        /// - DBU：号码忙
+        /// - DRF：不在服务区
+        /// - ANA：欠费未接听
+        /// - REJ：拒接
+        /// - SHU：关机
+        /// - NAN：空号
+        /// - HAL：停机
+        /// - DAD：未接听
+        /// - EXE：其他异常
         public let resultCode: String
 
         /// 客户标识代码，多个标识码以英文逗号分隔，ResultCode为NON时才有。

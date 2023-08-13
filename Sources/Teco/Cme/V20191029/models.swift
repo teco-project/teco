@@ -29,8 +29,8 @@ extension Cme {
         public let nick: String
 
         /// 账号状态，取值：
-        /// <li>Normal：有效；</li>
-        /// <li>Stopped：无效。</li>
+        /// - Normal：有效；
+        /// - Stopped：无效。
         public let status: String
 
         enum CodingKeys: String, CodingKey {
@@ -50,8 +50,8 @@ extension Cme {
         public let remark: String?
 
         /// 团队成员角色，不填则默认添加普通成员。可选值：
-        /// <li>Admin：团队管理员；</li>
-        /// <li>Member：普通成员。</li>
+        /// - Admin：团队管理员；
+        /// - Member：普通成员。
         public let role: String?
 
         public init(memberId: String, remark: String? = nil, role: String? = nil) {
@@ -119,23 +119,21 @@ extension Cme {
     /// 音频轨道上的音频片段信息。
     public struct AudioTrackItem: TCInputModel {
         /// 音频媒体来源类型，取值有：
-        /// <ul>
-        /// <li>VOD ：素材来源于云点播文件 ；</li>
-        /// <li>CME ：视频来源于制作云媒体文件 ；</li>
-        /// <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
-        /// </ul>
+        ///
+        /// - VOD ：素材来源于云点播文件 ；
+        /// - CME ：视频来源于制作云媒体文件 ；
+        /// - EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。
         public let sourceType: String
 
         /// 音频媒体，可取值为：
-        /// <ul>
-        /// <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
-        /// <li>当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；</li>
-        /// <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp3`)，参数填写规则请参见注意事项。</li>
-        /// </ul>
+        ///
+        /// - 当 SourceType 为 VOD 时，参数填云点播 FileId ；
+        /// - 当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；
+        /// - 当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp3`)，参数填写规则请参见注意事项。
         ///
         /// 注意：
-        /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp3`)，参数为：`1000000:www.example.com/a.mp3`。</li>
-        /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp3`)，参数为：`1000001:www.example.com/b.mp3`。</li>
+        /// - 当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp3`)，参数为：`1000000:www.example.com/a.mp3`。
+        /// - 当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp3`)，参数为：`1000001:www.example.com/b.mp3`。
         public let sourceMedia: String
 
         /// 音频片段取自媒体文件的起始时间，单位为秒。0 表示从媒体开始位置截取。默认为0。
@@ -165,10 +163,10 @@ extension Cme {
         public let authorizee: Entity
 
         /// 详细授权值。 取值有：
-        /// <li>R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中。</li>
-        /// <li>X：可用，可以使用该素材（将其添加到 Project），但不能将其复制到自己的媒资库中，意味着被授权者无法将该资源进一步扩散给其他个人或团队。</li>
-        /// <li>C：可复制，既可以使用该素材（将其添加到 Project），也可以将其复制到自己的媒资库中。</li>
-        /// <li>W：可修改、删除媒资。</li>
+        /// - R：可读，可以浏览素材，但不能使用该素材（将其添加到 Project），或复制到自己的媒资库中。
+        /// - X：可用，可以使用该素材（将其添加到 Project），但不能将其复制到自己的媒资库中，意味着被授权者无法将该资源进一步扩散给其他个人或团队。
+        /// - C：可复制，既可以使用该素材（将其添加到 Project），也可以将其复制到自己的媒资库中。
+        /// - W：可修改、删除媒资。
         public let permissionSet: [String]
 
         enum CodingKeys: String, CodingKey {
@@ -180,8 +178,8 @@ extension Cme {
     /// 授权者
     public struct Authorizer: TCInputModel, TCOutputModel {
         /// 授权者类型，取值有：
-        /// <li>PERSON：个人。</li>
-        /// <li>TEAM：团队。</li>
+        /// - PERSON：个人。
+        /// - TEAM：团队。
         public let type: String
 
         /// Id，当 Type=PERSON，取值为用户 Id。当Type=TEAM，取值为团队 ID。
@@ -347,8 +345,8 @@ extension Cme {
     /// 用于描述资源的归属，归属者为个人或者团队。
     public struct Entity: TCInputModel, TCOutputModel {
         /// 类型，取值有：
-        /// <li>PERSON：个人。</li>
-        /// <li>TEAM：团队。</li>
+        /// - PERSON：个人。
+        /// - TEAM：团队。
         public let type: String
 
         /// Id，当 Type=PERSON，取值为用户 Id，当 Type=TEAM，取值为团队 Id。
@@ -368,19 +366,19 @@ extension Cme {
     /// 回调事件内容。
     public struct EventContent: TCOutputModel {
         /// 事件类型，可取值有：
-        /// <li>Storage.NewFileCreated：新文件产生事件；</li>
-        /// <li>Project.StreamConnect.StatusChanged：云转推项目状态变更事件；</li>
-        /// <li>Project.Switcher.StatusChanged：导播台项目状态变更事件；</li>
-        /// <li>Material.Imported：媒体导入事件；</li>
-        /// <li>Material.Added：媒体添加事件；</li>
-        /// <li>Material.Moved：媒体移动事件；</li>
-        /// <li>Material.Modified：媒体变更事件；</li>
-        /// <li>Material.Deleted：媒体删除事件；</li>
-        /// <li>Class.Created：分类新增事件；</li>
-        /// <li>Class.Moved：分类移动事件；</li>
-        /// <li>Class.Deleted：分类删除事件；</li>
-        /// <li>Task.VideoExportCompleted：视频导出完成事件； </li>
-        /// <li>Project.MediaCast.StatusChanged：点播转直播项目状态变更事件。 </li>
+        /// - Storage.NewFileCreated：新文件产生事件；
+        /// - Project.StreamConnect.StatusChanged：云转推项目状态变更事件；
+        /// - Project.Switcher.StatusChanged：导播台项目状态变更事件；
+        /// - Material.Imported：媒体导入事件；
+        /// - Material.Added：媒体添加事件；
+        /// - Material.Moved：媒体移动事件；
+        /// - Material.Modified：媒体变更事件；
+        /// - Material.Deleted：媒体删除事件；
+        /// - Class.Created：分类新增事件；
+        /// - Class.Moved：分类移动事件；
+        /// - Class.Deleted：分类删除事件；
+        /// - Task.VideoExportCompleted：视频导出完成事件；
+        /// - Project.MediaCast.StatusChanged：点播转直播项目状态变更事件。
         public let eventType: String
 
         /// 操作者，表示触发事件的操作者。如果是 `cmeid_system` 表示平台管理员操作。
@@ -554,9 +552,9 @@ extension Cme {
         public let memberCount: UInt64
 
         /// 成员在团队中的角色，取值有：
-        /// <li>Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；</li>
-        /// <li>Admin：团队管理员；</li>
-        /// <li>Member：普通成员。</li>
+        /// - Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；
+        /// - Admin：团队管理员；
+        /// - Member：普通成员。
         public let role: String
 
         enum CodingKeys: String, CodingKey {
@@ -584,13 +582,14 @@ extension Cme {
     /// 链接类型的素材信息
     public struct LinkMaterial: TCOutputModel {
         /// 链接类型取值:
-        /// <li>CLASS: 分类链接;</li>
-        /// <li> MATERIAL：素材链接。</li>
+        /// - CLASS: 分类链接;
+        /// - MATERIAL：素材链接。
         public let linkType: String
 
         /// 链接状态取值：
-        /// <li> Normal：正常 ；</li>
-        /// <li>NotFound：链接目标不存在；</li> <li>Forbidden：无权限。</li>
+        /// - Normal：正常 ；
+        /// - NotFound：链接目标不存在；
+        /// - Forbidden：无权限。
         public let linkStatus: String
 
         /// 素材链接详细信息，当LinkType="MATERIAL"时有值。
@@ -673,8 +672,8 @@ extension Cme {
         public let userId: String
 
         /// 用户登录状态。
-        /// <li>Online：在线；</li>
-        /// <li>Offline：离线。</li>
+        /// - Online：在线；
+        /// - Offline：离线。
         public let status: String
 
         enum CodingKeys: String, CodingKey {
@@ -707,11 +706,11 @@ extension Cme {
         public let materialId: String
 
         /// 媒体类型，取值为：
-        /// <li> AUDIO :音频;</li>
-        /// <li> VIDEO :视频;</li>
-        /// <li> IMAGE :图片;</li>
-        /// <li> LINK  :链接.</li>
-        /// <li> OTHER : 其他.</li>
+        /// - AUDIO :音频;
+        /// - VIDEO :视频;
+        /// - IMAGE :图片;
+        /// - LINK  :链接.
+        /// - OTHER : 其他.
         public let materialType: String
 
         /// 媒体归属实体。
@@ -877,9 +876,9 @@ extension Cme {
     /// 素材的状态，目前仅包含素材编辑可用状态。
     public struct MaterialStatus: TCOutputModel {
         /// 素材编辑可用状态，取值有：
-        /// <li>NORMAL：正常，可直接用于编辑；</li>
-        /// <li>ABNORMAL : 异常，不可用于编辑；</li>
-        /// <li>PROCESSING：处理中，暂不可用于编辑。</li>
+        /// - NORMAL：正常，可直接用于编辑；
+        /// - ABNORMAL : 异常，不可用于编辑；
+        /// - PROCESSING：处理中，暂不可用于编辑。
         public let editorUsableStatus: String
 
         enum CodingKeys: String, CodingKey {
@@ -890,7 +889,7 @@ extension Cme {
     /// 素材标签信息
     public struct MaterialTagInfo: TCInputModel, TCOutputModel {
         /// 标签类型，取值为：
-        /// <li>PRESET：预置标签；</li>
+        /// - PRESET：预置标签；
         public let type: String
 
         /// 标签 Id 。当标签类型为 PRESET 时，标签 Id 为预置标签 Id 。
@@ -942,8 +941,8 @@ extension Cme {
         public let destinationInfo: MediaCastDestinationInfo
 
         /// 输出源断流原因，取值有：
-        /// <li>SystemError：系统错误；</li>
-        /// <li>Unknown：未知错误。</li>
+        /// - SystemError：系统错误；
+        /// - Unknown：未知错误。
         public let reason: String
 
         enum CodingKeys: String, CodingKey {
@@ -961,9 +960,9 @@ extension Cme {
         public let pushUrl: String
 
         /// 输出源的状态。取值有：
-        /// <li> Working ：运行中；</li>
-        /// <li> Stopped：停止输出；</li>
-        /// <li> Failed：输出失败。</li>
+        /// - Working ：运行中；
+        /// - Stopped：停止输出；
+        /// - Failed：输出失败。
         public let status: String
 
         enum CodingKeys: String, CodingKey {
@@ -990,8 +989,8 @@ extension Cme {
     /// 点播转直播播放信息。
     public struct MediaCastPlayInfo: TCOutputModel {
         /// 点播转直播项目运行状态，取值有：
-        /// <li> Working : 运行中；</li>
-        /// <li> Idle: 空闲状态。</li>
+        /// - Working : 运行中；
+        /// - Idle: 空闲状态。
         public let status: String
 
         /// 当前播放的输入源 Id。
@@ -1046,8 +1045,8 @@ extension Cme {
     /// 点播转直播项目信息。
     public struct MediaCastProjectInfo: TCOutputModel {
         /// 点播转直播项目状态，取值有：
-        /// <li>Working ：运行中；</li>
-        /// <li>Idle ：空闲。</li>
+        /// - Working ：运行中；
+        /// - Idle ：空闲。
         public let status: String
 
         /// 输入源列表。
@@ -1119,9 +1118,9 @@ extension Cme {
         public let id: String?
 
         /// 输入源的媒体类型，取值有：
-        /// <li>CME：多媒体创作引擎的媒体文件；</li>
-        /// <li>VOD：云点播的媒资文件。</li>
-        /// <li>EXTERNAL：非多媒体创建引擎或者云点播的媒资文件。</li>
+        /// - CME：多媒体创作引擎的媒体文件；
+        /// - VOD：云点播的媒资文件。
+        /// - EXTERNAL：非多媒体创建引擎或者云点播的媒资文件。
         public let type: String?
 
         /// 云点播媒体文件 ID。当 Type = VOD 时必填。
@@ -1166,8 +1165,8 @@ extension Cme {
         public let sourceInfo: MediaCastSourceInfo
 
         /// 输入源断开原因。取值有：
-        /// <li>SystemError：系统错误；</li>
-        /// <li>Unknown：未知错误。</li>
+        /// - SystemError：系统错误；
+        /// - Unknown：未知错误。
         public let reason: String
 
         enum CodingKeys: String, CodingKey {
@@ -1276,7 +1275,7 @@ extension Cme {
     /// 媒体处理视频合成任务的预处理操作。
     public struct MediaPreprocessOperation: TCInputModel {
         /// 预处理操作的类型，取值范围：
-        /// <li>ImageTextMask：图片文字遮罩。</li>
+        /// - ImageTextMask：图片文字遮罩。
         public let type: String
 
         /// 预处理操作参数。
@@ -1297,8 +1296,8 @@ extension Cme {
     /// 媒体替换信息。
     public struct MediaReplacementInfo: TCInputModel {
         /// 替换的媒体类型，取值有：
-        /// <li>CMEMaterialId：替换的媒体类型为媒体 ID；</li>
-        /// <li>ImageUrl：替换的媒体类型为图片 URL；</li>
+        /// - CMEMaterialId：替换的媒体类型为媒体 ID；
+        /// - ImageUrl：替换的媒体类型为图片 URL；
         ///
         /// 注：默认为 CMEMaterialId 。
         public let mediaType: String?
@@ -1339,10 +1338,14 @@ extension Cme {
     /// 轨道信息
     public struct MediaTrack: TCInputModel {
         /// 轨道类型，取值有：
-        /// <ul>
-        /// <li>Video ：视频轨道。视频轨道由以下 Item 组成：<ul><li>VideoTrackItem</li><li>EmptyTrackItem</li><li>MediaTransitionItem</li></ul> </li>
-        /// <li>Audio ：音频轨道。音频轨道由以下 Item 组成：<ul><li>AudioTrackItem</li><li>EmptyTrackItem</li></ul> </li>
-        /// </ul>
+        ///
+        /// - Video ：视频轨道。视频轨道由以下 Item 组成：
+        ///   - VideoTrackItem
+        ///   - EmptyTrackItem
+        ///   - MediaTransitionItem </li>
+        /// - Audio ：音频轨道。音频轨道由以下 Item 组成：
+        ///   - AudioTrackItem
+        ///   - EmptyTrackItem
         public let type: String
 
         /// 轨道上的媒体片段列表。
@@ -1362,10 +1365,10 @@ extension Cme {
     /// 媒体轨道的片段信息
     public struct MediaTrackItem: TCInputModel {
         /// 片段类型。取值有：
-        /// <li>Video：视频片段；</li>
-        /// <li>Audio：音频片段；</li>
-        /// <li>Empty：空白片段；</li>
-        /// <li>Transition：转场。</li>
+        /// - Video：视频片段；
+        /// - Audio：音频片段；
+        /// - Empty：空白片段；
+        /// - Transition：转场。
         public let type: String
 
         /// 视频片段，当 Type = Video 时有效。
@@ -1374,8 +1377,9 @@ extension Cme {
         /// 音频片段，当 Type = Audio 时有效。
         public let audioItem: AudioTrackItem?
 
-        /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
-        /// <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
+        /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。
+        /// - 如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
+        /// - 使用 EmptyTrackItem 进行占位，来定位某个Item。
         public let emptyItem: EmptyTrackItem?
 
         /// 转场，当 Type = Transition 时有效。
@@ -1475,9 +1479,9 @@ extension Cme {
         public let licenseId: String
 
         /// 平台状态，可取值为：
-        /// <li>Normal：正常，可使用。；</li>
-        /// <li>Stopped：已停用，暂无法使用；</li>
-        /// <li>Expired：已过期，需要重新购买会员包。</li>
+        /// - Normal：正常，可使用。；
+        /// - Stopped：已停用，暂无法使用；
+        /// - Expired：已过期，需要重新购买会员包。
         public let status: String
 
         /// 创建时间，格式按照 ISO 8601 标准表示。
@@ -1533,11 +1537,11 @@ extension Cme {
         public let aspectRatio: String
 
         /// 项目类别，取值有：
-        /// <li>VIDEO_EDIT：视频编辑。</li>
-        /// <li>SWITCHER：导播台。</li>
-        /// <li>VIDEO_SEGMENTATION：视频拆条。</li>
-        /// <li>STREAM_CONNECT：云转推。</li>
-        /// <li>RECORD_REPLAY：录制回放。</li>
+        /// - VIDEO_EDIT：视频编辑。
+        /// - SWITCHER：导播台。
+        /// - VIDEO_SEGMENTATION：视频拆条。
+        /// - STREAM_CONNECT：云转推。
+        /// - RECORD_REPLAY：录制回放。
         public let category: String
 
         /// 归属者。
@@ -1580,10 +1584,10 @@ extension Cme {
         public let projectId: String
 
         /// 项目状态，取值有：
-        /// <li>Started：点播转直播开始；</li>
-        /// <li>Stopped：点播转直播结束；</li>
-        /// <li>SourceInterrupted：点播转直播输入断流；</li>
-        /// <li>DestinationInterrupted：点播转直播输出断流。</li>
+        /// - Started：点播转直播开始；
+        /// - Stopped：点播转直播结束；
+        /// - SourceInterrupted：点播转直播输入断流；
+        /// - DestinationInterrupted：点播转直播输出断流。
         public let status: String
 
         /// 点播转直播输入断流信息，仅当 Status 取值 SourceInterrupted 时有效。
@@ -1606,10 +1610,10 @@ extension Cme {
         public let projectId: String
 
         /// 项目状态，取值有：
-        /// <li>Working：云转推推流开始；</li>
-        /// <li>Stopped：云转推推流结束；</li>
-        /// <li>InputInterrupted：云转推输入断流；</li>
-        /// <li>OutputInterrupted：云转推输出断流。</li>
+        /// - Working：云转推推流开始；
+        /// - Stopped：云转推推流结束；
+        /// - InputInterrupted：云转推输入断流；
+        /// - OutputInterrupted：云转推输出断流。
         public let status: String
 
         /// 云转推输入断流信息，仅当 Status 取值 InputInterrupted 时有效。
@@ -1634,12 +1638,12 @@ extension Cme {
         public let projectId: String
 
         /// 导播台项目状态，可取值有：
-        /// <li>Started：导播台启动；</li>
-        /// <li>Stopped：导播台停止；</li>
-        /// <li>PvwStarted：导播台 PVW 开启；</li>
-        /// <li>PgmStarted：导播台 PGM 开启，输出推流开始；</li>
-        /// <li>PvwStopped：导播台 PVW 停止；</li>
-        /// <li>PgmStopped：导播台 PGM 停止，输出推流结束。</li>
+        /// - Started：导播台启动；
+        /// - Stopped：导播台停止；
+        /// - PvwStarted：导播台 PVW 开启；
+        /// - PgmStarted：导播台 PGM 开启，输出推流开始；
+        /// - PvwStopped：导播台 PVW 停止；
+        /// - PgmStopped：导播台 PGM 停止，输出推流结束。
         public let status: String
 
         enum CodingKeys: String, CodingKey {
@@ -1680,8 +1684,8 @@ extension Cme {
     /// 用于描述资源
     public struct Resource: TCInputModel, TCOutputModel {
         /// 类型，取值有：
-        /// <li>MATERIAL：素材。</li>
-        /// <li>CLASS：分类。</li>
+        /// - MATERIAL：素材。
+        /// - CLASS：分类。
         public let type: String
 
         /// 资源 Id，当 Type 为 MATERIAL 时，取值为素材 Id；当 Type 为 CLASS 时，取值为分类路径 ClassPath。
@@ -1761,10 +1765,10 @@ extension Cme {
         public let id: Int64
 
         /// 卡槽类型，可取值有：
-        /// <li> AUDIO：音频卡槽，可替换素材类型为 AUDIO 的音频素材;</li>
-        /// <li> VIDEO：视频卡槽，可替换素材类型为 VIDEO 的视频素材;</li>
-        /// <li> IMAGE：图片卡槽，可替换素材类型为 IMAGE 的图片素材;</li>
-        /// <li> TEXT：文本卡槽，可替换文本内容。</li>
+        /// - AUDIO：音频卡槽，可替换素材类型为 AUDIO 的音频素材;
+        /// - VIDEO：视频卡槽，可替换素材类型为 VIDEO 的视频素材;
+        /// - IMAGE：图片卡槽，可替换素材类型为 IMAGE 的图片素材;
+        /// - TEXT：文本卡槽，可替换文本内容。
         public let type: String
 
         /// 默认素材ID。当卡槽类型为 AUDIO，VIDEO，或 IMAGE 中的一种时有效。
@@ -1792,10 +1796,10 @@ extension Cme {
         public let id: Int64
 
         /// 替换类型，可取值有：
-        /// <li> AUDIO ：音频；</li>
-        /// <li> VIDEO ：视频；</li>
-        /// <li> IMAGE ：图片；</li>
-        /// <li> TEXT ：文本。</li>
+        /// - AUDIO ：音频；
+        /// - VIDEO ：视频；
+        /// - IMAGE ：图片；
+        /// - TEXT ：文本。
         /// 注意：这里必须保证替换的素材类型与模板轨道数据的素材类型一致。如果替换的类型为Text,，则必须保证模板轨道数据中相应卡槽的位置标记的是文本。
         public let replacementType: String
 
@@ -1851,11 +1855,11 @@ extension Cme {
         public let `operator`: String
 
         /// 操作类型，可取值有：
-        /// <li>Upload：本地上传；</li>
-        /// <li>PullUpload：拉取上传；</li>
-        /// <li>VideoEdit：视频剪辑；</li>
-        /// <li>LiveStreamClip：直播流剪辑；</li>
-        /// <li>LiveStreamRecord：直播流录制。</li>
+        /// - Upload：本地上传；
+        /// - PullUpload：拉取上传；
+        /// - VideoEdit：视频剪辑；
+        /// - LiveStreamClip：直播流剪辑；
+        /// - LiveStreamRecord：直播流录制。
         public let operationType: String
 
         /// 媒体归属。
@@ -1885,8 +1889,8 @@ extension Cme {
     /// 云转推输入断流信息。
     public struct StreamConnectInputInterruptInfo: TCOutputModel {
         /// 云转推输入源标识，取值有：
-        /// <li>Main：主源；</li>
-        /// <li>Backup：备源。</li>
+        /// - Main：主源；
+        /// - Backup：备源。
         public let endPoint: String
 
         enum CodingKeys: String, CodingKey {
@@ -1903,7 +1907,7 @@ extension Cme {
         public let name: String?
 
         /// 云转推输出源类型，取值：
-        /// <li>URL ：URL类型</li>
+        /// - URL ：URL类型
         /// 不填默认为URL类型。
         public let type: String?
 
@@ -1932,8 +1936,8 @@ extension Cme {
         public let streamConnectOutput: StreamConnectOutput?
 
         /// 输出流状态：
-        /// <li>On ：开；</li>
-        /// <li>Off ：关 。</li>
+        /// - On ：开；
+        /// - Off ：关 。
         public let pushSwitch: String
 
         enum CodingKeys: String, CodingKey {
@@ -1963,13 +1967,13 @@ extension Cme {
     /// 云转推项目信息，包含输入源、输出源、当前转推开始时间等信息。
     public struct StreamConnectProjectInfo: TCOutputModel {
         /// 转推项目状态，取值有：
-        /// <li>Working ：转推中；</li>
-        /// <li>Idle ：空闲中。</li>
+        /// - Working ：转推中；
+        /// - Idle ：空闲中。
         public let status: String
 
         /// 当前转推输入源，取值有：
-        /// <li>Main ：主输入源；</li>
-        /// <li>Backup ：备输入源。</li>
+        /// - Main ：主输入源；
+        /// - Backup ：备输入源。
         public let currentInputEndpoint: String
 
         /// 当前转推开始时间， 采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。仅 Status 取值 Working 时有效。
@@ -2031,9 +2035,9 @@ extension Cme {
     /// 输入流信息。
     public struct StreamInputInfo: TCInputModel, TCOutputModel {
         /// 流输入类型，取值：
-        /// <li>VodPull ： 点播拉流；</li>
-        /// <li>LivePull ：直播拉流；</li>
-        /// <li>RtmpPush ： 直播推流。</li>
+        /// - VodPull ： 点播拉流；
+        /// - LivePull ：直播拉流；
+        /// - RtmpPush ： 直播推流。
         public let inputType: String
 
         /// 点播拉流信息，当 InputType = VodPull 时必填。
@@ -2066,9 +2070,9 @@ extension Cme {
     /// 导播台主监输出配置信息
     public struct SwitcherPgmOutputConfig: TCInputModel, TCOutputModel {
         /// 导播台输出模板 ID，可取值：
-        /// <li>10001：分辨率为1080 P；</li>
-        /// <li>10002：分辨率为720 P；</li>
-        /// <li>10003：分辨率为480 P。</li>
+        /// - 10001：分辨率为1080 P；
+        /// - 10002：分辨率为720 P；
+        /// - 10003：分辨率为480 P。
         public let templateId: Int64?
 
         /// 导播台输出宽，单位：像素。
@@ -2125,21 +2129,21 @@ extension Cme {
         public let taskId: String
 
         /// 任务类型，取值有：
-        /// <li>VIDEO_EDIT_PROJECT_EXPORT：项目导出。</li>
+        /// - VIDEO_EDIT_PROJECT_EXPORT：项目导出。
         public let taskType: String
 
         /// 任务状态，取值有：
-        /// <li>PROCESSING：处理中：</li>
-        /// <li>SUCCESS：成功；</li>
-        /// <li>FAIL：失败。</li>
+        /// - PROCESSING：处理中：
+        /// - SUCCESS：成功；
+        /// - FAIL：失败。
         public let status: String
 
         /// 任务进度，取值为：0~100。
         public let progress: UInt64
 
         /// 错误码。
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -2194,9 +2198,9 @@ extension Cme {
         public let remark: String?
 
         /// 团队成员角色，取值：
-        /// <li>Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；</li>
-        /// <li>Admin：团队管理员；</li>
-        /// <li>Member：普通成员。</li>
+        /// - Owner：团队所有者，添加团队成员及修改团队成员解决时不能填此角色；
+        /// - Admin：团队管理员；
+        /// - Member：普通成员。
         public let role: String?
 
         public init(memberId: String, remark: String? = nil, role: String? = nil) {
@@ -2316,16 +2320,19 @@ extension Cme {
     /// 视频编辑项目输入参数
     public struct VideoEditProjectInput: TCInputModel {
         /// 画布宽高比，取值有：
-        /// <li>16:9；</li>
-        /// <li>9:16；</li>
-        /// <li>2:1。</li>
+        /// - 16:9；
+        /// - 9:16；
+        /// - 2:1。
         /// 默认值 16:9 。
         public let aspectRatio: String?
 
         /// 视频编辑模板媒体 ID ，通过模板媒体导入项目轨道数据时填写。
         public let videoEditTemplateId: String?
 
-        /// 输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频，每一种类型的轨道最多支持10个。</li>
+        /// 输入的媒体轨道列表，包括视频、音频，等媒体组成的多个轨道信息。其中：
+        /// - 输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；
+        /// - 时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；
+        /// - 视频、音频，每一种类型的轨道最多支持10个。
         /// 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
         public let initTracks: [MediaTrack]?
 
@@ -2396,19 +2403,19 @@ extension Cme {
         public let name: String
 
         /// 封装格式，可选值：
-        /// <li>mp4 ；</li>
-        /// <li>mov 。</li>
+        /// - mp4 ；
+        /// - mov 。
         public let container: String
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 默认值：0。
         public let removeVideo: Int64
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 默认值：0。
         public let removeAudio: Int64
 
@@ -2442,8 +2449,8 @@ extension Cme {
         public let bitrate: UInt64?
 
         /// 音频声道数，可选值：
-        /// <li>1：单声道；</li>
-        /// <li>2：双声道。</li>
+        /// - 1：单声道；
+        /// - 2：双声道。
         /// 默认值：2。
         public let channels: UInt64?
 
@@ -2473,8 +2480,8 @@ extension Cme {
         public let bitrate: String?
 
         /// 音频声道数，可选值：
-        /// <li>1：单声道；</li>
-        /// <li>2：双声道。</li>
+        /// - 1：单声道；
+        /// - 2：双声道。
         /// 不填则不修改。
         public let channels: UInt64?
 
@@ -2498,17 +2505,17 @@ extension Cme {
     /// 视频编码配置中的视频设置信息
     public struct VideoEncodingPresetVideoSetting: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>H264：H.264 编码。</li>
+        /// - H264：H.264 编码。
         public let codec: String?
 
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
         /// 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
         /// 例：如果项目的宽高比是 16：9 ：
-        /// <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
-        /// <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720。</li>
+        /// - 短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。
+        /// - 短边尺寸为 720，则导出视频的分辨率为 1280 * 720。
         /// 如果项目的宽高比是 9：16 ：
-        /// <li>短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。</li>
-        /// <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
+        /// - 短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。
+        /// - 短边尺寸为 720，则导出视频的分辨率为 720 * 1280。
         /// 默认值：1080。
         public let shortEdge: UInt64?
 
@@ -2534,11 +2541,11 @@ extension Cme {
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
         /// 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
         /// 例：如果项目的宽高比是 16：9 ：
-        /// <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
-        /// <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720。</li>
+        /// - 短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。
+        /// - 短边尺寸为 720，则导出视频的分辨率为 1280 * 720。
         /// 如果项目的宽高比是 9：16 ：
-        /// <li>短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。</li>
-        /// <li>短边尺寸为 720，则导出视频的分辨率为 720 * 1280。</li>
+        /// - 短边尺寸为 1080，则导出视频的分辨率为 1080 * 1920。
+        /// - 短边尺寸为 720，则导出视频的分辨率为 720 * 1280。
         /// 不填则不修改。
         public let shortEdge: UInt64?
 
@@ -2569,13 +2576,13 @@ extension Cme {
         public let taskId: String
 
         /// 任务状态，取值有：
-        /// <li>SUCCESS：成功；</li>
-        /// <li>FAIL：失败。</li>
+        /// - SUCCESS：成功；
+        /// - FAIL：失败。
         public let status: String
 
         /// 错误码，取值有：
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -2597,16 +2604,16 @@ extension Cme {
     /// 视频导出扩展参数
     public struct VideoExportExtensionArgs: TCInputModel {
         /// 封装格式，可选值：
-        /// <li>mp4 </li>
-        /// <li>mov </li>
+        /// - mp4
+        /// - mov
         /// 不填则使用视频导出编码配置。
         public let container: String?
 
         /// 视频短边尺寸，取值范围： [128, 4096]，单位：px。
         /// 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
         /// 例如：项目的宽高比是 16：9 ：
-        /// <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
-        /// <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720</li>
+        /// - 短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。
+        /// - 短边尺寸为 720，则导出视频的分辨率为 1280 * 720
         /// 不填则使用视频导出编码配置。
         public let shortEdge: UInt64?
 
@@ -2618,14 +2625,14 @@ extension Cme {
         public let frameRate: Float?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 不填则使用视频导出编码配置。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 不填则使用视频导出编码配置。
         public let removeAudio: Int64?
 
@@ -2700,19 +2707,19 @@ extension Cme {
     /// 视频拆条项目的输入信息。
     public struct VideoSegmentationProjectInput: TCInputModel {
         /// 画布宽高比，取值有：
-        /// <li>16:9；</li>
-        /// <li>9:16；</li>
-        /// <li>2:1。</li>
+        /// - 16:9；
+        /// - 9:16；
+        /// - 2:1。
         /// 默认值 16:9 。
         public let aspectRatio: String?
 
         /// 视频拆条处理模型，不填则默认为手工分割视频。取值 ：
-        /// <li>AI.GameHighlights.PUBG：和平精英集锦 ;</li>
-        /// <li>AI.GameHighlights.Honor OfKings：王者荣耀集锦 ;</li>
-        /// <li>AI.SportHighlights.Football：足球集锦 </li>
-        /// <li>AI.SportHighlights.Basketball：篮球集锦 ；</li>
-        /// <li>AI.PersonSegmentation：人物集锦  ;</li>
-        /// <li>AI.NewsSegmentation：新闻拆条。</li>
+        /// - AI.GameHighlights.PUBG：和平精英集锦 ;
+        /// - AI.GameHighlights.Honor OfKings：王者荣耀集锦 ;
+        /// - AI.SportHighlights.Football：足球集锦
+        /// - AI.SportHighlights.Basketball：篮球集锦 ；
+        /// - AI.PersonSegmentation：人物集锦  ;
+        /// - AI.NewsSegmentation：新闻拆条。
         public let processModel: String?
 
         public init(aspectRatio: String? = nil, processModel: String? = nil) {
@@ -2755,23 +2762,21 @@ extension Cme {
     /// 视频轨的视频片段信息。
     public struct VideoTrackItem: TCInputModel {
         /// 视频媒体来源类型，取值有：
-        /// <ul>
-        /// <li>VOD ：媒体来源于云点播文件 。</li>
-        /// <li>CME ：视频来源制作云媒体文件。</li>
-        /// <li>EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。</li>
-        /// </ul>
+        ///
+        /// - VOD ：媒体来源于云点播文件 。
+        /// - CME ：视频来源制作云媒体文件。
+        /// - EXTERNAL ：视频来源于媒资绑定，如果媒体不是存储在腾讯云点播中或者云创中，都需要使用媒资绑定。
         public let sourceType: String
 
         /// 视频媒体，可取值为：
-        /// <ul>
-        /// <li>当 SourceType 为 VOD 时，参数填云点播 FileId ；</li>
-        /// <li>当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；</li>
-        /// <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp4`)，参数填写规则请参见注意事项。</li>
-        /// </ul>
+        ///
+        /// - 当 SourceType 为 VOD 时，参数填云点播 FileId ；
+        /// - 当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；
+        /// - 当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp4`)，参数填写规则请参见注意事项。
         ///
         /// 注意：
-        /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp4`)，参数为：`1000000:www.example.com/a.mp4`。</li>
-        /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp4`)，参数为：`1000001:www.example.com/b.mp4`。</li>
+        /// - 当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp4`)，参数为：`1000000:www.example.com/a.mp4`。
+        /// - 当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp4`)，参数为：`1000001:www.example.com/b.mp4`。
         public let sourceMedia: String
 
         /// 视频片段取自媒体文件的起始时间，单位为秒。默认为0。
@@ -2781,36 +2786,36 @@ extension Cme {
         public let duration: Float?
 
         /// 视频片段原点距离画布原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。
+        /// - 当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 视频片段原点距离画布原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
+        /// - 当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。
         /// 默认值：0px。
         public let yPos: String?
 
         /// 视频原点位置，取值有：
-        /// <li>Center：坐标原点为中心位置，如画布中心。</li>
+        /// - Center：坐标原点为中心位置，如画布中心。
         /// 默认值 ：Center。
         public let coordinateOrigin: String?
 
         /// 视频片段的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素；</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取视频媒体文件本身的 Width、Height；</li>
-        /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 Height 为画布高度的百分比大小，如 10% 表示 Height 为画布高度的 10%；
+        /// - 当字符串以 px 结尾，表示视频片段 Height 单位为像素，如 100px 表示 Height 为100像素；
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取视频媒体文件本身的 Width、Height；
+        /// - 当 Width 为空，Height 非空，则 Width 按比例缩放；
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let height: String?
 
         /// 视频片段的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素；</li>
-        /// <li>当 Width、Height 均为空，则 Width 和 Height 取视频媒体文件本身的 Width、Height；</li>
-        /// <li>当 Width 为空，Height 非空，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
+        /// - 当字符串以 % 结尾，表示视频片段 Width 为画布宽度的百分比大小，如 10% 表示 Width 为画布宽度的 10%；
+        /// - 当字符串以 px 结尾，表示视频片段 Width 单位为像素，如 100px 表示 Width 为100像素；
+        /// - 当 Width、Height 均为空，则 Width 和 Height 取视频媒体文件本身的 Width、Height；
+        /// - 当 Width 为空，Height 非空，则 Width 按比例缩放；
+        /// - 当 Width 非空，Height 为空，则 Height 按比例缩放。
         public let width: String?
 
         public init(sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, xPos: String? = nil, yPos: String? = nil, coordinateOrigin: String? = nil, height: String? = nil, width: String? = nil) {
@@ -2844,9 +2849,9 @@ extension Cme {
         public let inputUrls: [String]
 
         /// 播放次数，取值有：
-        /// <li>-1 : 循环播放，直到转推结束；</li>
-        /// <li>0 : 不循环；</li>
-        /// <li>大于0 : 具体循环次数，次数和时间以先结束的为准。</li>
+        /// - -1 : 循环播放，直到转推结束；
+        /// - 0 : 不循环；
+        /// - 大于0 : 具体循环次数，次数和时间以先结束的为准。
         /// 默认不循环。
         public let loopTimes: Int64?
 
@@ -2884,8 +2889,8 @@ extension Cme {
         public let description: String?
 
         /// 微博可见性，可取值为：
-        /// <li>Public：公开，所有人可见；</li>
-        /// <li>Private：私有，仅自己可见。</li>
+        /// - Public：公开，所有人可见；
+        /// - Private：私有，仅自己可见。
         ///
         /// 默认为 Public，所有人可见。
         public let visible: String?

@@ -94,13 +94,13 @@ extension Tcb {
         public let domain: String
 
         /// 域名类型。包含以下取值：
-        /// <li>SYSTEM</li>
-        /// <li>USER</li>
+        /// - SYSTEM
+        /// - USER
         public let type: String
 
         /// 状态。包含以下取值：
-        /// <li>ENABLE</li>
-        /// <li>DISABLE</li>
+        /// - ENABLE
+        /// - DISABLE
         public let status: String
 
         /// 创建时间
@@ -1432,10 +1432,10 @@ extension Tcb {
         public let instanceId: String
 
         /// 状态。包含以下取值：
-        /// <li>INITIALIZING：资源初始化中</li>
-        /// <li>RUNNING：运行中，可正常使用的状态</li>
-        /// <li>UNUSABLE：禁用，不可用</li>
-        /// <li>OVERDUE：资源过期</li>
+        /// - INITIALIZING：资源初始化中
+        /// - RUNNING：运行中，可正常使用的状态
+        /// - UNUSABLE：禁用，不可用
+        /// - OVERDUE：资源过期
         public let status: String
 
         /// 所属地域。
@@ -1531,14 +1531,14 @@ extension Tcb {
         public let isAutoRenew: Bool
 
         /// 状态。包含以下取值：
-        /// <li> 空字符串：初始化中</li>
-        /// <li> NORMAL：正常</li>
-        /// <li> ISOLATE：隔离</li>
+        /// - 空字符串：初始化中
+        /// - NORMAL：正常
+        /// - ISOLATE：隔离
         public let status: String
 
         /// 支付方式。包含以下取值：
-        /// <li> PREPAYMENT：预付费</li>
-        /// <li> POSTPAID：后付费</li>
+        /// - PREPAYMENT：预付费
+        /// - POSTPAID：后付费
         public let payMode: String
 
         /// 隔离时间，最近一次隔离的时间
@@ -1557,8 +1557,8 @@ extension Tcb {
         public let isAlwaysFree: Bool
 
         /// 付费渠道。
-        /// <li> miniapp：小程序</li>
-        /// <li> qcloud：腾讯云</li>
+        /// - miniapp：小程序
+        /// - qcloud：腾讯云
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentChannel: String?
 
@@ -1603,8 +1603,8 @@ extension Tcb {
         public let envId: String
 
         /// 环境来源。包含以下取值：
-        /// <li>miniapp：微信小程序</li>
-        /// <li>qcloud ：腾讯云</li>
+        /// - miniapp：微信小程序
+        /// - qcloud ：腾讯云
         public let source: String
 
         /// 环境别名，要以a-z开头，不能包含 a-zA-z0-9- 以外的字符
@@ -1623,8 +1623,8 @@ extension Tcb {
         @TCTimestampEncoding public var updateTime: Date
 
         /// 环境状态。包含以下取值：
-        /// <li>NORMAL：正常可用</li>
-        /// <li>UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中</li>
+        /// - NORMAL：正常可用
+        /// - UNAVAILABLE：服务不可用，可能是尚未初始化或者初始化过程中
         public let status: String
 
         /// 数据库列表
@@ -1661,8 +1661,8 @@ extension Tcb {
         public let envChannel: String?
 
         /// 支付方式。包含以下取值：
-        /// <li> prepayment：预付费</li>
-        /// <li> postpaid：后付费</li>
+        /// - prepayment：预付费
+        /// - postpaid：后付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payMode: String?
 
@@ -1734,9 +1734,9 @@ extension Tcb {
     /// 扩展文件
     public struct ExtensionFile: TCInputModel {
         /// 文件类型。枚举值
-        /// <li>FUNCTION：函数代码</li>
-        /// <li>STATIC：静态托管代码</li>
-        /// <li>SMS：短信文件</li>
+        /// - FUNCTION：函数代码
+        /// - STATIC：静态托管代码
+        /// - SMS：短信文件
         public let fileType: String
 
         /// 文件名，长度不超过24
@@ -1778,10 +1778,10 @@ extension Tcb {
     /// 后付费资源免费量信息
     public struct FreequotaInfo: TCOutputModel {
         /// 资源类型
-        /// <li>COS</li>
-        /// <li>CDN</li>
-        /// <li>FLEXDB</li>
-        /// <li>SCF</li>
+        /// - COS
+        /// - CDN
+        /// - FLEXDB
+        /// - SCF
         public let resourceType: String
 
         /// 资源指标名称
@@ -1794,14 +1794,14 @@ extension Tcb {
         public let metricUnit: String
 
         /// 免费量抵扣周期
-        /// <li>sum-month:以月为单位抵扣</li>
-        /// <li>sum-day:以天为单位抵扣</li>
-        /// <li>totalize:总容量抵扣</li>
+        /// - sum-month:以月为单位抵扣
+        /// - sum-day:以天为单位抵扣
+        /// - totalize:总容量抵扣
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deductType: String?
 
         /// 免费量类型
-        /// <li>basic:通用量抵扣</li>
+        /// - basic:通用量抵扣
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freeQuotaType: String?
 
@@ -2223,20 +2223,20 @@ extension Tcb {
         public let packageId: String
 
         /// 订单类型
-        /// <li>1 购买</li>
-        /// <li>2 续费</li>
-        /// <li>3 变配</li>
+        /// - 1 购买
+        /// - 2 续费
+        /// - 3 变配
         public let tranType: String
 
         /// 订单状态。
-        /// <li>1未支付</li>
-        /// <li>2 支付中</li>
-        /// <li>3 发货中</li>
-        /// <li>4 发货成功</li>
-        /// <li>5 发货失败</li>
-        /// <li>6 已退款</li>
-        /// <li>7 已取消</li>
-        /// <li>100 已删除</li>
+        /// - 1未支付
+        /// - 2 支付中
+        /// - 3 发货中
+        /// - 4 发货成功
+        /// - 5 发货失败
+        /// - 6 已退款
+        /// - 7 已取消
+        /// - 100 已删除
         public let tranStatus: String
 
         /// 订单更新时间
@@ -2246,8 +2246,8 @@ extension Tcb {
         public let createTime: String
 
         /// 付费模式.
-        /// <li>prepayment 预付费</li>
-        /// <li>postpaid 后付费</li>
+        /// - prepayment 预付费
+        /// - postpaid 后付费
         public let payMode: String
 
         /// 订单绑定的扩展ID
@@ -2259,8 +2259,8 @@ extension Tcb {
         public let resourceReady: String?
 
         /// 安装标记。建议使用方统一转大小写之后再判断。
-        /// <li>QuickStart：快速启动来源</li>
-        /// <li>Activity：活动来源</li>
+        /// - QuickStart：快速启动来源
+        /// - Activity：活动来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flag: String?
 
@@ -2285,10 +2285,10 @@ extension Tcb {
     /// 后付费免费额度
     public struct PackageFreeQuotaInfo: TCOutputModel {
         /// 资源类型
-        /// <li>COS</li>
-        /// <li>CDN</li>
-        /// <li>FLEXDB</li>
-        /// <li>SCF</li>
+        /// - COS
+        /// - CDN
+        /// - FLEXDB
+        /// - SCF
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
 
@@ -2305,14 +2305,14 @@ extension Tcb {
         public let metricUnit: String?
 
         /// 免费量抵扣周期
-        /// <li>sum-month:以月为单位抵扣</li>
-        /// <li>sum-day:以天为单位抵扣</li>
-        /// <li>totalize:总容量抵扣</li>
+        /// - sum-month:以月为单位抵扣
+        /// - sum-day:以天为单位抵扣
+        /// - totalize:总容量抵扣
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deductType: String?
 
         /// 免费量类型
-        /// <li>basic:通用量抵扣</li>
+        /// - basic:通用量抵扣
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freeQuotaType: String?
 

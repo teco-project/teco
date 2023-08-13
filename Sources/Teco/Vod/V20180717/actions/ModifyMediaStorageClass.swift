@@ -25,10 +25,10 @@ extension Vod {
         public let fileIds: [String]
 
         /// 目标存储类型。可选值有：
-        /// <li> STANDARD：标准存储。</li>
-        /// <li> STANDARD_IA：低频存储。</li>
-        /// <li> ARCHIVE：归档存储。</li>
-        /// <li> DEEP_ARCHIVE：深度归档存储。</li>
+        /// - STANDARD：标准存储。
+        /// - STANDARD_IA：低频存储。
+        /// - ARCHIVE：归档存储。
+        /// - DEEP_ARCHIVE：深度归档存储。
         public let storageClass: String
 
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
@@ -36,12 +36,12 @@ extension Vod {
 
         /// 取回模式。当文件的存储类型从归档或深度归档转换为标准存储时，需要指定取回（也称为解冻）操作的模式，具体说明请参考[数据取回及取回模式](https://cloud.tencent.com/document/product/266/56196#retake)。
         /// 当媒体文件目前的存储类型为归档存储时，有以下取值：
-        /// <li>Expedited：极速模式。</li>
-        /// <li>Standard：标准模式。</li>
-        /// <li>Bulk：批量模式。</li>
+        /// - Expedited：极速模式。
+        /// - Standard：标准模式。
+        /// - Bulk：批量模式。
         /// 当媒体文件目前的存储类型为深度归档存储时，有以下取值：
-        /// <li>Standard：标准模式。</li>
-        /// <li>Bulk：批量模式。</li>
+        /// - Standard：标准模式。
+        /// - Bulk：批量模式。
         public let restoreTier: String?
 
         public init(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil) {
@@ -73,17 +73,17 @@ extension Vod {
     ///
     /// 修改媒体文件的存储类型。
     /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
-    /// <li>低频存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 低频存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 标准存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     @inlinable @discardableResult
     public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
         self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -93,17 +93,17 @@ extension Vod {
     ///
     /// 修改媒体文件的存储类型。
     /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
-    /// <li>低频存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 低频存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 标准存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     @inlinable @discardableResult
     public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
         try await self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -113,17 +113,17 @@ extension Vod {
     ///
     /// 修改媒体文件的存储类型。
     /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
-    /// <li>低频存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 低频存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 标准存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
         self.modifyMediaStorageClass(.init(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
@@ -133,17 +133,17 @@ extension Vod {
     ///
     /// 修改媒体文件的存储类型。
     /// 当媒体文件的存储类型为标准存储时，可以修改为以下类型：
-    /// <li>低频存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 低频存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为低频存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
-    /// <li>归档存储</li>
-    /// <li>深度归档存储</li>
+    /// - 标准存储
+    /// - 归档存储
+    /// - 深度归档存储
     /// 当媒体文件的当前存储类型为归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
-    /// <li>标准存储</li>
+    /// - 标准存储
     @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
         try await self.modifyMediaStorageClass(.init(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)

@@ -48,8 +48,8 @@ extension Yunjing {
         public let machineName: String
 
         /// 在线状态。
-        /// <li>ONLINE： 在线</li>
-        /// <li>OFFLINE：离线</li>
+        /// - ONLINE： 在线
+        /// - OFFLINE：离线
         public let machineStatus: String
 
         /// CVM或BM主机唯一标识。
@@ -65,24 +65,24 @@ extension Yunjing {
         public let uuid: String
 
         /// 是否开通专业版。
-        /// <li>true：是</li>
-        /// <li>false：否</li>
+        /// - true：是
+        /// - false：否
         public let isProVersion: Bool
 
         /// 专业版开通时间。
         public let proVersionOpenDate: String
 
         /// 云主机类型。
-        /// <li>CVM: 虚拟主机</li>
-        /// <li>BM: 黑石物理机</li>
+        /// - CVM: 虚拟主机
+        /// - BM: 黑石物理机
         public let machineType: String
 
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai
         public let machineRegion: String
 
         /// 主机状态。
-        /// <li>POSTPAY: 表示后付费，即按量计费  </li>
-        /// <li>PREPAY: 表示预付费，即包年包月</li>
+        /// - POSTPAY: 表示后付费，即按量计费
+        /// - PREPAY: 表示预付费，即包年包月
         public let payMode: String
 
         /// 免费木马剩余检测数量。

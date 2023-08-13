@@ -22,11 +22,11 @@ extension Cwp {
     /// ExportBaselineList请求参数结构体
     public struct ExportBaselineListRequest: TCRequestModel {
         /// 过滤条件：
-        /// <li>StrategyId- Uint64 - 基线策略id</li>
-        /// <li>Status - Uint64 - 事件状态：0-未通过，1-忽略，3-通过，5-检测中</li>
-        /// <li>BaselineName  - String - 基线名称</li>
-        /// <li>AliasName- String - 服务器名称/服务器ip</li>
-        /// <li>Uuid- String - 主机uuid</li>
+        /// - StrategyId- Uint64 - 基线策略id
+        /// - Status - Uint64 - 事件状态：0-未通过，1-忽略，3-通过，5-检测中
+        /// - BaselineName  - String - 基线名称
+        /// - AliasName- String - 服务器名称/服务器ip
+        /// - Uuid- String - 主机uuid
         public let filters: [Filters]?
 
         /// 已废弃

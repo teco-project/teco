@@ -29,7 +29,7 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords- String - 是否必填：否 - 镜像名、镜像id 称筛选，</li>
+        /// - Keywords- String - 是否必填：否 - 镜像名、镜像id 称筛选，
         public let filters: [AssetFilters]?
 
         /// 排序字段

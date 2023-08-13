@@ -32,9 +32,9 @@ extension Cwp {
         public let type: UInt64?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name- string - 是否必填：否 - 环境变量名</li>
-        /// <li>Type- int - 是否必填：否 - 类型：0用户变量，1系统变量</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name- string - 是否必填：否 - 环境变量名
+        /// - Type- int - 是否必填：否 - 类型：0用户变量，1系统变量
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

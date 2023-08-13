@@ -23,8 +23,8 @@ extension Yunjing {
     /// DescribeMachines请求参数结构体
     public struct DescribeMachinesRequest: TCPaginatedRequest {
         /// 云主机类型。
-        /// <li>CVM：表示虚拟主机</li>
-        /// <li>BM:  表示黑石物理机</li>
+        /// - CVM：表示虚拟主机
+        /// - BM:  表示黑石物理机
         public let machineType: String
 
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai
@@ -37,9 +37,9 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
-        /// <li>Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装）</li>
-        /// <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）</li>
+        /// - Keywords - String - 是否必填：否 - 查询关键字
+        /// - Status - String - 是否必填：否 - 客户端在线状态（OFFLINE: 离线 | ONLINE: 在线 | UNINSTALLED：未安装）
+        /// - Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）
         /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filter]?
 

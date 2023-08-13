@@ -31,7 +31,13 @@ extension Tts {
         /// 音量大小，范围[0，10]，对应音量大小。默认为0，代表正常音量，值越大音量越高。
         public let volume: Float?
 
-        /// 语速，范围：[-2，6]，分别对应不同语速：<li>-2代表0.6倍</li><li>-1代表0.8倍</li><li>0代表1.0倍（默认）</li><li>1代表1.2倍</li><li>2代表1.5倍</li><li>6代表2.5倍</li>如果需要更细化的语速，可以保留小数点后 2 位，例如0.5 1.1 1.8等。
+        /// 语速，范围：[-2，6]，分别对应不同语速：
+        /// - -2代表0.6倍
+        /// - -1代表0.8倍
+        /// - 0代表1.0倍（默认）
+        /// - 1代表1.2倍
+        /// - 2代表1.5倍
+        /// - 6代表2.5倍如果需要更细化的语速，可以保留小数点后 2 位，例如0.5 1.1 1.8等。
         ///
         /// 参数值与实际语速转换，可参考[代码示例](https://sdk-1300466766.cos.ap-shanghai.myqcloud.com/sample/speed_sample.tar.gz)
         public let speed: Float?
@@ -45,13 +51,16 @@ extension Tts {
         /// 音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见[购买指南](https://cloud.tencent.com/document/product/1073/34112)。完整的音色 ID 列表请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)。
         public let voiceType: Int64?
 
-        /// 主语言类型：<li>1-中文（默认）</li><li>2-英文</li><li>3-日文</li>
+        /// 主语言类型：
+        /// - 1-中文（默认）
+        /// - 2-英文
+        /// - 3-日文
         public let primaryLanguage: Int64?
 
         /// 音频采样率：
-        /// <li>24000：24k（部分音色支持，请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)）</li>
-        /// <li>16000：16k（默认）</li>
-        /// <li>8000：8k</li>
+        /// - 24000：24k（部分音色支持，请参见[音色列表](https://cloud.tencent.com/document/product/1073/92668)）
+        /// - 16000：16k（默认）
+        /// - 8000：8k
         public let sampleRate: UInt64?
 
         /// 返回音频格式，可取值：wav（默认），mp3，pcm

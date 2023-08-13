@@ -26,7 +26,7 @@ extension Teo {
         public let zoneIds: [String]?
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>need-update
+        /// - need-update
         ///
         /// 按照【**站点是否需要更新源站防护IP白名单**】进行过滤。
         ///
@@ -39,9 +39,7 @@ extension Teo {
         /// true：需要更新
         ///
         /// false：无需更新
-        ///
-        /// </li>
-        /// <li>plan-support
+        /// - plan-support
         ///
         /// 按照【**站点套餐是否支持源站防护**】进行过滤。
         ///
@@ -54,8 +52,6 @@ extension Teo {
         /// true：支持
         ///
         /// false：不支持
-        ///
-        /// </li>
         public let filters: [Filter]?
 
         /// 分页查询偏移量，默认为0。

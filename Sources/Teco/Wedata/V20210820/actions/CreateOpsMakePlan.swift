@@ -40,9 +40,9 @@ extension Wedata {
         public let checkParent: Bool?
 
         /// 补录检查父任务类型。取值范围：
-        /// <li> NONE: 全部不检查 </li>
-        /// <li> ALL: 检查全部上游父任务 </li>
-        /// <li> MAKE_SCOPE: 只在（当前补录计划）选中任务中检查 </li>
+        /// - NONE: 全部不检查
+        /// - ALL: 检查全部上游父任务
+        /// - MAKE_SCOPE: 只在（当前补录计划）选中任务中检查
         public let checkParentType: String?
 
         /// 项目名称

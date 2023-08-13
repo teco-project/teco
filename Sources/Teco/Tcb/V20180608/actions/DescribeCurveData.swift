@@ -24,31 +24,31 @@ extension Tcb {
         /// 环境ID
         public let envId: String
 
-        /// <li> 指标名: </li>
-        /// <li> StorageRead: 存储读请求次数 </li>
-        /// <li> StorageWrite: 存储写请求次数 </li>
-        /// <li> StorageCdnOriginFlux: CDN回源流量, 单位字节 </li>
-        /// <li> CDNFlux: CDN回源流量, 单位字节 </li>
-        /// <li> FunctionInvocation: 云函数调用次数 </li>
-        /// <li> FunctionGBs: 云函数资源使用量, 单位Mb*Ms </li>
-        /// <li> FunctionFlux: 云函数流量, 单位千字节(KB) </li>
-        /// <li> FunctionError: 云函数调用错误次数 </li>
-        /// <li> FunctionDuration: 云函数运行时间, 单位毫秒 </li>
-        /// <li> DbRead: 数据库读请求数 </li>
-        /// <li> DbWrite: 数据库写请求数 </li>
-        /// <li> DbCostTime10ms: 数据库耗时在10ms~50ms请求数 </li>
-        /// <li> DbCostTime50ms: 数据库耗时在50ms~100ms请求数 </li>
-        /// <li> DbCostTime100ms: 数据库耗时在100ms以上请求数 </li>
-        /// <li> TkeCpuRatio: 容器CPU占用率 </li>
-        /// <li> TkeMemRatio: 容器内存占用率 </li>
-        /// <li> TkeCpuUsed: 容器CPU使用量 </li>
-        /// <li> TkeMemUsed: 容器内存使用量 </li>
-        /// <li> TkeInvokeNum: 调用量 </li>
-        /// <li> FunctionConcurrentExecutions: 云函数并发执行个数</li>
-        /// <li> FunctionIdleProvisioned: 云函数预置并发闲置量 </li>
-        /// <li> FunctionConcurrencyMemoryMB: 云函数并发执行内存量 </li>
-        /// <li> FunctionThrottle: 云函数受限次数 </li>
-        /// <li> FunctionProvisionedConcurrency: 云函数预置并发 </li>
+        /// - 指标名:
+        /// - StorageRead: 存储读请求次数
+        /// - StorageWrite: 存储写请求次数
+        /// - StorageCdnOriginFlux: CDN回源流量, 单位字节
+        /// - CDNFlux: CDN回源流量, 单位字节
+        /// - FunctionInvocation: 云函数调用次数
+        /// - FunctionGBs: 云函数资源使用量, 单位Mb*Ms
+        /// - FunctionFlux: 云函数流量, 单位千字节(KB)
+        /// - FunctionError: 云函数调用错误次数
+        /// - FunctionDuration: 云函数运行时间, 单位毫秒
+        /// - DbRead: 数据库读请求数
+        /// - DbWrite: 数据库写请求数
+        /// - DbCostTime10ms: 数据库耗时在10ms~50ms请求数
+        /// - DbCostTime50ms: 数据库耗时在50ms~100ms请求数
+        /// - DbCostTime100ms: 数据库耗时在100ms以上请求数
+        /// - TkeCpuRatio: 容器CPU占用率
+        /// - TkeMemRatio: 容器内存占用率
+        /// - TkeCpuUsed: 容器CPU使用量
+        /// - TkeMemUsed: 容器内存使用量
+        /// - TkeInvokeNum: 调用量
+        /// - FunctionConcurrentExecutions: 云函数并发执行个数
+        /// - FunctionIdleProvisioned: 云函数预置并发闲置量
+        /// - FunctionConcurrencyMemoryMB: 云函数并发执行内存量
+        /// - FunctionThrottle: 云函数受限次数
+        /// - FunctionProvisionedConcurrency: 云函数预置并发
         public let metricName: String
 
         /// 开始时间，如2018-08-24 10:50:00, 开始时间需要早于结束时间至少五分钟(原因是因为目前统计粒度最小是5分钟).

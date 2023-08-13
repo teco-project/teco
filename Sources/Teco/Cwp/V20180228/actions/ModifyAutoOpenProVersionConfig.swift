@@ -22,8 +22,8 @@ extension Cwp {
     /// ModifyAutoOpenProVersionConfig请求参数结构体
     public struct ModifyAutoOpenProVersionConfigRequest: TCRequestModel {
         /// 设置自动开通状态。
-        /// <li>CLOSE：关闭</li>
-        /// <li>OPEN：打开</li>
+        /// - CLOSE：关闭
+        /// - OPEN：打开
         public let status: String
 
         /// 自动加购/扩容授权开关,默认 1, 0关闭, 1开启

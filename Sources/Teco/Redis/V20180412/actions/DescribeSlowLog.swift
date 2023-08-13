@@ -40,7 +40,9 @@ extension Redis {
         /// 慢查询条数的偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: Int64?
 
-        /// 节点所属角色。<ul><li>master：主节点。</li><li>slave：从节点。</li></ul>
+        /// 节点所属角色。
+        /// - master：主节点。
+        /// - slave：从节点。
         public let role: String?
 
         public init(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, role: String? = nil) {

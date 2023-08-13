@@ -26,10 +26,10 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name - String - 是否必填：否 - 应用名</li>
-        /// <li>Domain - String - 是否必填：否 - 站点域名</li>
-        /// <li>Type - int - 是否必填：否 - 服务类型：
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name - String - 是否必填：否 - 应用名
+        /// - Domain - String - 是否必填：否 - 站点域名
+        /// - Type - int - 是否必填：否 - 服务类型：
         /// 0：全部
         /// 1:Tomcat
         /// 2:Apache
@@ -39,9 +39,9 @@ extension Cwp {
         /// 6:JBoss
         /// 7:Jetty
         /// 8:IHS
-        /// 9:Tengine</li>
-        /// <li>OsType - String - 是否必填：否 - windows/linux</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// 9:Tengine
+        /// - OsType - String - 是否必填：否 - windows/linux
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

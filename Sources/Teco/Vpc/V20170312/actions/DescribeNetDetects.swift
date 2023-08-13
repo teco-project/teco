@@ -26,10 +26,10 @@ extension Vpc {
         public let netDetectIds: [String]?
 
         /// 过滤条件，参数不支持同时指定NetDetectIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678</li>
-        /// <li>net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678</li>
-        /// <li>subnet-id - String - （过滤条件）子网实例ID，形如：subnet-12345678</li>
-        /// <li>net-detect-name - String - （过滤条件）网络探测名称</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-12345678
+        /// - net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678
+        /// - subnet-id - String - （过滤条件）子网实例ID，形如：subnet-12345678
+        /// - net-detect-name - String - （过滤条件）网络探测名称
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

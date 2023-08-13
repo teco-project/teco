@@ -23,21 +23,21 @@ extension Ame {
     /// DescribeKTVSingers请求参数结构体
     public struct DescribeKTVSingersRequest: TCPaginatedRequest {
         /// 歌手id集合，精确匹配歌手id
-        /// <li> 数组长度限制10</li>
+        /// - 数组长度限制10
         public let singerIds: [String]?
 
         /// 歌手性别集合，不传为全部，精确匹配歌手性别类型，
-        /// <li>数组长度限制1</li>
-        /// <li>取值范围：直播互动曲库歌手分类信息接口，返回性别分类信息列表中，分类英文名</li>
+        /// - 数组长度限制1
+        /// - 取值范围：直播互动曲库歌手分类信息接口，返回性别分类信息列表中，分类英文名
         public let genders: [String]?
 
         /// 歌手区域集合，不传为全部，精确匹配歌手区域
-        /// <li>数组长度限制10</li>
-        /// <li>取值范围：直播互动曲库歌手分类信息接口，返回的区域分类信息列表中，分类英文名</li>
+        /// - 数组长度限制10
+        /// - 取值范围：直播互动曲库歌手分类信息接口，返回的区域分类信息列表中，分类英文名
         public let areas: [String]?
 
         /// 排序方式。默认按照播放数倒序
-        /// <li> Sort.Field 可选 PlayCount。</li>
+        /// - Sort.Field 可选 PlayCount。
         public let sort: SortBy?
 
         /// 分页偏移量，默认值：0。

@@ -25,8 +25,8 @@ extension Emr {
         public let instanceId: String
 
         /// 取值范围：
-        /// <li>fair:代表公平调度标识</li>
-        /// <li>capacity:代表容量调度标识</li>
+        /// - fair:代表公平调度标识
+        /// - capacity:代表容量调度标识
         public let key: String
 
         public init(instanceId: String, key: String) {

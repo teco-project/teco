@@ -22,9 +22,9 @@ extension Vpc {
     /// DescribeServiceTemplates请求参数结构体
     public struct DescribeServiceTemplatesRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>service-template-name - 协议端口模板名称。</li>
-        /// <li>service-template-id - 协议端口模板实例ID，例如：ppm-e6dy460g。</li>
-        /// <li>service-port- 协议端口。</li>
+        /// - service-template-name - 协议端口模板名称。
+        /// - service-template-id - 协议端口模板实例ID，例如：ppm-e6dy460g。
+        /// - service-port- 协议端口。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

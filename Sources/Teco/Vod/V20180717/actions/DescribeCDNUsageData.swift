@@ -28,8 +28,8 @@ extension Vod {
         public let endTime: String
 
         /// CDN 统计数据类型，有效值：
-        /// <li>Flux：流量，单位为 byte。</li>
-        /// <li>Bandwidth：带宽，单位为 bps。</li>
+        /// - Flux：流量，单位为 byte。
+        /// - Bandwidth：带宽，单位为 bps。
         public let dataType: String
 
         /// <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
@@ -37,9 +37,9 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 用量数据的时间粒度，单位：分钟，取值有：
-        /// <li>5：5 分钟粒度，返回指定查询时间内5分钟粒度的明细数据。</li>
-        /// <li>60：小时粒度，返回指定查询时间内1小时粒度的数据。</li>
-        /// <li>1440：天粒度，返回指定查询时间内1天粒度的数据。</li>
+        /// - 5：5 分钟粒度，返回指定查询时间内5分钟粒度的明细数据。
+        /// - 60：小时粒度，返回指定查询时间内1小时粒度的数据。
+        /// - 1440：天粒度，返回指定查询时间内1天粒度的数据。
         /// 默认值为1440，返回天粒度的数据。
         public let dataInterval: UInt64?
 

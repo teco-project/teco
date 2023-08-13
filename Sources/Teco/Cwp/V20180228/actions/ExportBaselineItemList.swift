@@ -21,17 +21,17 @@ import TecoCore
 extension Cwp {
     /// ExportBaselineItemList请求参数结构体
     public struct ExportBaselineItemListRequest: TCRequestModel {
-        /// <li>PolicyId - int64 - 是否必填：否 - 策略Id</li>
-        /// <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
-        /// <li>HostId - string - 是否必填：否 - 主机Id</li>
-        /// <li>HostName - string - 是否必填：否 - 主机名</li>
-        /// <li>HostIp - string - 是否必填：否 - 主机IP</li>
-        /// <li>ItemId - String - 是否必填：否 - 检测项Id</li>
-        /// <li>ItemName - String - 是否必填：否 - 项名称</li>
-        /// <li>DetectStatus - int - 是否必填：否 - 检测状态[0:未通过|3:通过|5:检测中]</li>
-        /// <li>Level - int - 是否必填：否 - 风险等级</li>
-        /// <li>StartTime - string - 是否必填：否 - 开时时间</li>
-        /// <li>EndTime - string - 是否必填：否 - 结束时间</li>
+        /// - PolicyId - int64 - 是否必填：否 - 策略Id
+        /// - RuleId - int64 - 是否必填：否 - 规则Id
+        /// - HostId - string - 是否必填：否 - 主机Id
+        /// - HostName - string - 是否必填：否 - 主机名
+        /// - HostIp - string - 是否必填：否 - 主机IP
+        /// - ItemId - String - 是否必填：否 - 检测项Id
+        /// - ItemName - String - 是否必填：否 - 项名称
+        /// - DetectStatus - int - 是否必填：否 - 检测状态[0:未通过|3:通过|5:检测中]
+        /// - Level - int - 是否必填：否 - 风险等级
+        /// - StartTime - string - 是否必填：否 - 开时时间
+        /// - EndTime - string - 是否必填：否 - 结束时间
         public let filters: [Filter]?
 
         /// 0:过滤的结果导出；1:全部导出

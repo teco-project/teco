@@ -37,8 +37,8 @@ extension Cat {
         public let parameters: String
 
         /// 任务分类
-        /// <li>1 = PC</li>
-        /// <li> 2 = Mobile </li>
+        /// - 1 = PC
+        /// - 2 = Mobile
         public let taskCategory: Int64
 
         /// 定时任务cron表达式

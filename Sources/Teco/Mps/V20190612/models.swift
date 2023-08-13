@@ -126,8 +126,8 @@ extension Mps {
     /// 动作识别参数配置
     public struct ActionConfigInfo: TCInputModel, TCOutputModel {
         /// 动作识别任务开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -142,17 +142,17 @@ extension Mps {
     /// 编排原子任务
     public struct Activity: TCInputModel, TCOutputModel {
         /// 原子任务类型：
-        /// <li>input: 起始节点</li>
-        /// <li>output：终止节点</li>
-        /// <li>action-trans：转码</li>
-        /// <li>action-samplesnapshot：采样截图</li>
-        /// <li>action-AIAnalysis: 分析</li>
-        /// <li>action-AIRecognition：识别</li>
-        /// <li>action-aiReview：审核</li>
-        /// <li>action-animated-graphics：转动图</li>
-        /// <li>action-image-sprite：雪碧图</li>
-        /// <li>action-snapshotByTimeOffset: 时间点截图</li>
-        /// <li>action-adaptive-substream：自适应码流</li>
+        /// - input: 起始节点
+        /// - output：终止节点
+        /// - action-trans：转码
+        /// - action-samplesnapshot：采样截图
+        /// - action-AIAnalysis: 分析
+        /// - action-AIRecognition：识别
+        /// - action-aiReview：审核
+        /// - action-animated-graphics：转动图
+        /// - action-image-sprite：雪碧图
+        /// - action-snapshotByTimeOffset: 时间点截图
+        /// - action-adaptive-substream：自适应码流
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activityType: String?
 
@@ -294,15 +294,15 @@ extension Mps {
     /// 编排任务输出
     public struct ActivityResult: TCOutputModel {
         /// 原子任务类型。
-        /// <li>Transcode：转码。</li>
-        /// <li>SampleSnapshot：采样截图。</li>
-        /// <li>AnimatedGraphics：转动图。</li>
-        /// <li>SnapshotByTimeOffset：时间点截图。</li>
-        /// <li>ImageSprites：雪碧图。</li>
-        /// <li>AdaptiveDynamicStreaming：自适应码流。</li>
-        /// <li>AiContentReview：内容审核。</li>
-        /// <li>AIRecognition：智能识别。</li>
-        /// <li>AIAnalysis：智能分析。</li>
+        /// - Transcode：转码。
+        /// - SampleSnapshot：采样截图。
+        /// - AnimatedGraphics：转动图。
+        /// - SnapshotByTimeOffset：时间点截图。
+        /// - ImageSprites：雪碧图。
+        /// - AdaptiveDynamicStreaming：自适应码流。
+        /// - AiContentReview：内容审核。
+        /// - AIRecognition：智能识别。
+        /// - AIAnalysis：智能分析。
         public let activityType: String
 
         /// 原子任务输出。
@@ -382,8 +382,8 @@ extension Mps {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 转自适应码流模板名称。
@@ -393,21 +393,21 @@ extension Mps {
         public let comment: String
 
         /// 转自适应码流格式，取值范围：
-        /// <li>HLS，</li>
-        /// <li>MPEG-DASH。</li>
+        /// - HLS，
+        /// - MPEG-DASH。
         public let format: String
 
         /// 转自适应码流输入流参数信息，最多输入10路流。
         public let streamInfos: [AdaptiveStreamTemplate]
 
         /// 是否禁止视频低码率转高码率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoBitrate: UInt64
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let disableHigherVideoResolution: UInt64
 
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -439,13 +439,13 @@ extension Mps {
         public let audio: AudioTemplateInfo
 
         /// 是否移除音频流，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let removeAudio: UInt64?
 
         /// 是否移除视频流，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
         public let removeVideo: UInt64?
 
         public init(video: VideoTemplateInfo, audio: AudioTemplateInfo, removeAudio: UInt64? = nil, removeVideo: UInt64? = nil) {
@@ -466,11 +466,11 @@ extension Mps {
     /// 智能分析结果
     public struct AiAnalysisResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Classification：智能分类</li>
-        /// <li>Cover：智能封面</li>
-        /// <li>Tag：智能标签</li>
-        /// <li>FrameTag：智能按帧标签</li>
-        /// <li>Highlight：智能精彩集锦</li>
+        /// - Classification：智能分类
+        /// - Cover：智能封面
+        /// - Tag：智能标签
+        /// - FrameTag：智能按帧标签
+        /// - Highlight：智能精彩集锦
         public let type: String
 
         /// 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
@@ -786,16 +786,16 @@ extension Mps {
     /// 内容审核结果
     public struct AiContentReviewResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Porn：图片鉴黄</li>
-        /// <li>Terrorism：图片敏感</li>
-        /// <li>Political：图片敏感</li>
-        /// <li>Porn.Asr：Asr 文字鉴黄</li>
-        /// <li>Porn.Ocr：Ocr 文字鉴黄</li>
-        /// <li>Political.Asr：Asr 文字敏感</li>
-        /// <li>Political.Ocr：Ocr 文字敏感</li>
-        /// <li>Terrorism.Ocr：Ocr 文字敏感</li>
-        /// <li>Prohibited.Asr：Asr 文字鉴违禁</li>
-        /// <li>Prohibited.Ocr：Ocr 文字鉴违禁</li>
+        /// - Porn：图片鉴黄
+        /// - Terrorism：图片敏感
+        /// - Political：图片敏感
+        /// - Porn.Asr：Asr 文字鉴黄
+        /// - Porn.Ocr：Ocr 文字鉴黄
+        /// - Political.Asr：Asr 文字敏感
+        /// - Political.Ocr：Ocr 文字敏感
+        /// - Terrorism.Ocr：Ocr 文字敏感
+        /// - Prohibited.Asr：Asr 文字鉴违禁
+        /// - Prohibited.Ocr：Ocr 文字鉴违禁
         public let type: String
 
         /// 采样频率，即对视频每秒截取进行审核的帧数。
@@ -899,12 +899,12 @@ extension Mps {
     /// 智能识别结果。
     public struct AiRecognitionResult: TCOutputModel {
         /// 任务的类型，取值范围：
-        /// <li>FaceRecognition：人脸识别，</li>
-        /// <li>AsrWordsRecognition：语音关键词识别，</li>
-        /// <li>OcrWordsRecognition：文本关键词识别，</li>
-        /// <li>AsrFullTextRecognition：语音全文识别，</li>
-        /// <li>OcrFullTextRecognition：文本全文识别。</li>
-        /// <li>TransTextRecognition：语音翻译。</li>
+        /// - FaceRecognition：人脸识别，
+        /// - AsrWordsRecognition：语音关键词识别，
+        /// - OcrWordsRecognition：文本关键词识别，
+        /// - AsrFullTextRecognition：语音全文识别，
+        /// - OcrFullTextRecognition：文本全文识别。
+        /// - TransTextRecognition：语音翻译。
         public let type: String
 
         /// 人脸识别结果，当 Type 为
@@ -1160,8 +1160,8 @@ extension Mps {
         public let id: String
 
         /// 人物库类型，表示识别出的人物来自哪个人物库：
-        /// <li>Default：默认人物库；</li>
-        /// <li>UserDefine：用户自定义人物库。</li>
+        /// - Default：默认人物库；
+        /// - UserDefine：用户自定义人物库。
         public let type: String
 
         /// 人物名称。
@@ -1171,8 +1171,8 @@ extension Mps {
         public let segmentSet: [AiRecognitionTaskFaceSegmentItem]
 
         /// 人物性别：
-        /// <li>Male：男性；</li>
-        /// <li>Female：女性。</li>
+        /// - Male：男性；
+        /// - Female：女性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gender: String?
 
@@ -1197,14 +1197,14 @@ extension Mps {
         public let placeOfBirth: String?
 
         /// 人物类型：
-        /// <li>Politician：官员；</li>
-        /// <li>Artist：艺人。</li>
+        /// - Politician：官员；
+        /// - Artist：艺人。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let personType: String?
 
         /// 敏感度标注：
-        /// <li>Normal：正常；</li>
-        /// <li>Sensitive：敏感。</li>
+        /// - Normal：正常；
+        /// - Sensitive：敏感。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
@@ -1550,9 +1550,9 @@ extension Mps {
         public let confidence: Float
 
         /// Asr 文字敏感结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字敏感嫌疑的视频片段列表。
@@ -1581,9 +1581,9 @@ extension Mps {
         public let confidence: Float
 
         /// Ocr 文字敏感结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有敏感嫌疑的视频片段列表。
@@ -1612,16 +1612,16 @@ extension Mps {
         public let confidence: Float
 
         /// 涉敏结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#AiReviewPoliticalTaskOutput)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
-        /// <li>violation_photo：违规图标。</li>
+        /// - violation_photo：违规图标。
         /// 其他（即 politician/entertainment/sport/entrepreneur/scholar/celebrity/military）：
-        /// <li>politician：涉敏人物。</li>
+        /// - politician：涉敏人物。
         public let label: String
 
         /// 有涉敏嫌疑的视频片段列表。
@@ -1651,9 +1651,9 @@ extension Mps {
         public let confidence: Float
 
         /// Asr 文字涉黄结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字有涉黄嫌疑的视频片段列表。
@@ -1682,9 +1682,9 @@ extension Mps {
         public let confidence: Float
 
         /// Ocr 文字涉黄结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉黄嫌疑的视频片段列表。
@@ -1717,16 +1717,16 @@ extension Mps {
         public let confidence: Float
 
         /// 鉴黄结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频鉴黄结果标签，取值范围：
-        /// <li>porn：色情。</li>
-        /// <li>sexy：性感。</li>
-        /// <li>vulgar：低俗。</li>
-        /// <li>intimacy：亲密行为。</li>
+        /// - porn：色情。
+        /// - sexy：性感。
+        /// - vulgar：低俗。
+        /// - intimacy：亲密行为。
         public let label: String
 
         /// 有涉黄嫌疑的视频片段列表。
@@ -1756,9 +1756,9 @@ extension Mps {
         public let confidence: Float
 
         /// Asr 文字涉违禁结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Asr 文字有涉违禁嫌疑的视频片段列表。
@@ -1787,9 +1787,9 @@ extension Mps {
         public let confidence: Float
 
         /// Ocr 文字涉违禁结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉违禁嫌疑的视频片段列表。
@@ -2128,9 +2128,9 @@ extension Mps {
         public let confidence: Float
 
         /// Ocr 文字涉敏结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// Ocr 文字有涉敏嫌疑的视频片段列表。
@@ -2159,21 +2159,21 @@ extension Mps {
         public let confidence: Float
 
         /// 涉敏结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 视频涉敏结果标签，取值范围：
-        /// <li>guns：武器枪支。</li>
-        /// <li>crowd：人群聚集。</li>
-        /// <li>police：警察部队。</li>
-        /// <li>bloody：血腥画面。</li>
-        /// <li>banners：涉敏旗帜。</li>
-        /// <li>militant：武装分子。</li>
-        /// <li>explosion：爆炸火灾。</li>
-        /// <li>terrorists：涉敏人物。</li>
-        /// <li>scenario：涉敏画面。</li>
+        /// - guns：武器枪支。
+        /// - crowd：人群聚集。
+        /// - police：警察部队。
+        /// - bloody：血腥画面。
+        /// - banners：涉敏旗帜。
+        /// - militant：武装分子。
+        /// - explosion：爆炸火灾。
+        /// - terrorists：涉敏人物。
+        /// - scenario：涉敏画面。
         public let label: String
 
         /// 有涉敏嫌疑的视频片段列表。
@@ -2210,8 +2210,8 @@ extension Mps {
         public let faceIds: [String]?
 
         /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合。
-        /// <li>当 Type为add 或 reset 时，该字段必填；</li>
-        /// <li>数组长度限制：5 张图片。</li>
+        /// - 当 Type为add 或 reset 时，该字段必填；
+        /// - 数组长度限制：5 张图片。
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
 
@@ -2234,8 +2234,8 @@ extension Mps {
         public let index: UInt64
 
         /// 错误码，取值：
-        /// <li>0：成功；</li>
-        /// <li>其他：失败。</li>
+        /// - 0：成功；
+        /// - 其他：失败。
         public let errCode: Int64
 
         /// 错误描述。
@@ -2337,8 +2337,8 @@ extension Mps {
         public let keyword: String
 
         /// 关键词标签
-        /// <li>数组长度限制：20 个标签；</li>
-        /// <li>单个标签长度限制：128 个字符。</li>
+        /// - 数组长度限制：20 个标签；
+        /// - 单个标签长度限制：128 个字符。
         public let tags: [String]?
 
         public init(keyword: String, tags: [String]? = nil) {
@@ -2393,8 +2393,8 @@ extension Mps {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 转动图模板名称。
@@ -2404,24 +2404,24 @@ extension Mps {
         public let comment: String
 
         /// 动图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 动图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -2459,14 +2459,14 @@ extension Mps {
     /// 去伪影（毛刺）配置
     public struct ArtifactRepairConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>weak</li>
-        /// <li>strong</li>
+        /// - weak
+        /// - strong
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -2485,12 +2485,12 @@ extension Mps {
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音全文识别任务开关，可选值：
-        /// <li>ON：开启智能语音全文识别任务；</li>
-        /// <li>OFF：关闭智能语音全文识别任务。</li>
+        /// - ON：开启智能语音全文识别任务；
+        /// - OFF：关闭智能语音全文识别任务。
         public let `switch`: String
 
         /// 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
-        /// <li>vtt：生成 WebVTT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件。
         public let subtitleFormat: String?
 
         /// 视频源语言。
@@ -2512,12 +2512,12 @@ extension Mps {
     /// 语音全文识别任务控制参数
     public struct AsrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 语音全文识别任务开关，可选值：
-        /// <li>ON：开启智能语音全文识别任务；</li>
-        /// <li>OFF：关闭智能语音全文识别任务。</li>
+        /// - ON：开启智能语音全文识别任务；
+        /// - OFF：关闭智能语音全文识别任务。
         public let `switch`: String?
 
         /// 生成的字幕文件格式，填空字符串表示不生成字幕文件，可选值：
-        /// <li>vtt：生成 WebVTT 字幕文件。</li>
+        /// - vtt：生成 WebVTT 字幕文件。
         public let subtitleFormat: String?
 
         /// 视频源语言。
@@ -2539,8 +2539,8 @@ extension Mps {
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音关键词识别任务开关，可选值：
-        /// <li>ON：开启语音关键词识别任务；</li>
-        /// <li>OFF：关闭语音关键词识别任务。</li>
+        /// - ON：开启语音关键词识别任务；
+        /// - OFF：关闭语音关键词识别任务。
         public let `switch`: String
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -2561,8 +2561,8 @@ extension Mps {
     /// 语音关键词识别控制参数。
     public struct AsrWordsConfigureInfoForUpdate: TCInputModel {
         /// 语音关键词识别任务开关，可选值：
-        /// <li>ON：开启语音关键词识别任务；</li>
-        /// <li>OFF：关闭语音关键词识别任务。</li>
+        /// - ON：开启语音关键词识别任务；
+        /// - OFF：关闭语音关键词识别任务。
         public let `switch`: String?
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -2584,19 +2584,19 @@ extension Mps {
     public struct AudioTemplateInfo: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
-        /// <li>libmp3lame。</li>
+        /// - libmp3lame。
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        /// <li>flac。</li>
+        /// - flac。
         /// 当外层参数 Container 为 m4a 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame；</li>
-        /// <li>ac3。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame；
+        /// - ac3。
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        /// <li>libfdk_aac：更适合 mp4；</li>
-        /// <li>libmp3lame：更适合 flv。</li>
+        /// - libfdk_aac：更适合 mp4；
+        /// - libmp3lame：更适合 flv。
         /// 当外层参数 Container 为 hls 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame。
         public let codec: String
 
         /// 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。
@@ -2604,16 +2604,16 @@ extension Mps {
         public let bitrate: UInt64
 
         /// 音频流的采样率，可选值：
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 32000
+        /// - 44100
+        /// - 48000
         /// 单位：Hz。
         public let sampleRate: UInt64
 
         /// 音频通道方式，可选值：
-        /// <li>1：单通道</li>
-        /// <li>2：双通道</li>
-        /// <li>6：立体声</li>
+        /// - 1：单通道
+        /// - 2：双通道
+        /// - 6：立体声
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
         public let audioChannel: Int64?
@@ -2637,20 +2637,20 @@ extension Mps {
     public struct AudioTemplateInfoForUpdate: TCInputModel, TCOutputModel {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
-        /// <li>libmp3lame。</li>
+        /// - libmp3lame。
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
-        /// <li>flac。</li>
+        /// - flac。
         /// 当外层参数 Container 为 m4a 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame；</li>
-        /// <li>ac3。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame；
+        /// - ac3。
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
-        /// <li>libfdk_aac：更适合 mp4；</li>
-        /// <li>libmp3lame：更适合 flv；</li>
-        /// <li>mp2。</li>
+        /// - libfdk_aac：更适合 mp4；
+        /// - libmp3lame：更适合 flv；
+        /// - mp2。
         /// 当外层参数 Container 为 hls 时，可选值为：
-        /// <li>libfdk_aac；</li>
-        /// <li>libmp3lame。</li>
+        /// - libfdk_aac；
+        /// - libmp3lame。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
 
@@ -2659,17 +2659,17 @@ extension Mps {
         public let bitrate: UInt64?
 
         /// 音频流的采样率，可选值：
-        /// <li>32000</li>
-        /// <li>44100</li>
-        /// <li>48000</li>
+        /// - 32000
+        /// - 44100
+        /// - 48000
         /// 单位：Hz。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleRate: UInt64?
 
         /// 音频通道方式，可选值：
-        /// <li>1：单通道</li>
-        /// <li>2：双通道</li>
-        /// <li>6：立体声</li>
+        /// - 1：单通道
+        /// - 2：双通道
+        /// - 6：立体声
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioChannel: Int64?
@@ -2777,8 +2777,8 @@ extension Mps {
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能分类任务开关，可选值：
-        /// <li>ON：开启智能分类任务；</li>
-        /// <li>OFF：关闭智能分类任务。</li>
+        /// - ON：开启智能分类任务；
+        /// - OFF：关闭智能分类任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2793,8 +2793,8 @@ extension Mps {
     /// 智能分类任务控制参数
     public struct ClassificationConfigureInfoForUpdate: TCInputModel {
         /// 智能分类任务开关，可选值：
-        /// <li>ON：开启智能分类任务；</li>
-        /// <li>OFF：关闭智能分类任务。</li>
+        /// - ON：开启智能分类任务；
+        /// - OFF：关闭智能分类任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -2809,15 +2809,15 @@ extension Mps {
     /// 色彩增强配置
     public struct ColorEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>weak</li>
-        /// <li>normal</li>
-        /// <li>strong</li>
+        /// - weak
+        /// - normal
+        /// - strong
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -2857,8 +2857,8 @@ extension Mps {
         public let politicalConfigure: PoliticalConfigureInfo?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
@@ -2968,8 +2968,8 @@ extension Mps {
     /// 智能封面任务控制参数
     public struct CoverConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能封面任务开关，可选值：
-        /// <li>ON：开启智能封面任务；</li>
-        /// <li>OFF：关闭智能封面任务。</li>
+        /// - ON：开启智能封面任务；
+        /// - OFF：关闭智能封面任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2984,8 +2984,8 @@ extension Mps {
     /// 智能封面任务控制参数
     public struct CoverConfigureInfoForUpdate: TCInputModel {
         /// 智能封面任务开关，可选值：
-        /// <li>ON：开启智能封面任务；</li>
-        /// <li>OFF：关闭智能封面任务。</li>
+        /// - ON：开启智能封面任务；
+        /// - OFF：关闭智能封面任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -4018,13 +4018,13 @@ extension Mps {
         public let taskId: String
 
         /// 任务状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码
-        /// <li>0：成功；</li>
-        /// <li>其他值：失败。</li>
+        /// - 0：成功；
+        /// - 其他值：失败。
         public let errCode: Int64
 
         /// 错误信息。
@@ -4094,8 +4094,8 @@ extension Mps {
     /// 表情识别参数配置
     public struct ExpressionConfigInfo: TCInputModel, TCOutputModel {
         /// 表情识别任务开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -4110,17 +4110,17 @@ extension Mps {
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfo: TCInputModel, TCOutputModel {
         /// 人脸识别任务开关，可选值：
-        /// <li>ON：开启智能人脸识别任务；</li>
-        /// <li>OFF：关闭智能人脸识别任务。</li>
+        /// - ON：开启智能人脸识别任务；
+        /// - OFF：关闭智能人脸识别任务。
         public let `switch`: String
 
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。默认 95 分。取值范围：0 - 100。
         public let score: Float?
 
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        /// <li>entertainment：娱乐明星；</li>
-        /// <li>sport：体育明星；</li>
-        /// <li>politician：敏感人物。</li>
+        /// - entertainment：娱乐明星；
+        /// - sport：体育明星；
+        /// - politician：敏感人物。
         public let defaultLibraryLabelSet: [String]?
 
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
@@ -4128,9 +4128,9 @@ extension Mps {
         public let userDefineLibraryLabelSet: [String]?
 
         /// 人物库选择，可选值：
-        /// <li>Default：使用默认人物库；</li>
-        /// <li>UserDefine：使用用户自定义人物库。</li>
-        /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
+        /// - Default：使用默认人物库；
+        /// - UserDefine：使用用户自定义人物库。
+        /// - All：同时使用默认人物库和用户自定义人物库。
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
 
@@ -4154,17 +4154,17 @@ extension Mps {
     /// 人脸识别任务控制参数
     public struct FaceConfigureInfoForUpdate: TCInputModel {
         /// 人脸识别任务开关，可选值：
-        /// <li>ON：开启智能人脸识别任务；</li>
-        /// <li>OFF：关闭智能人脸识别任务。</li>
+        /// - ON：开启智能人脸识别任务；
+        /// - OFF：关闭智能人脸识别任务。
         public let `switch`: String?
 
         /// 人脸识别过滤分数，当识别结果达到该分数以上，返回识别结果。取值范围：0-100。
         public let score: Float?
 
         /// 默认人物过滤标签，指定需要返回的默认人物的标签。如果未填或者为空，则全部默认人物结果都返回。标签可选值：
-        /// <li>entertainment：娱乐明星；</li>
-        /// <li>sport：体育明星；</li>
-        /// <li>politician：敏感人物。</li>
+        /// - entertainment：娱乐明星；
+        /// - sport：体育明星；
+        /// - politician：敏感人物。
         public let defaultLibraryLabelSet: [String]?
 
         /// 用户自定义人物过滤标签，指定需要返回的用户自定义人物的标签。如果未填或者为空，则全部自定义人物结果都返回。
@@ -4172,9 +4172,9 @@ extension Mps {
         public let userDefineLibraryLabelSet: [String]?
 
         /// 人物库选择，可选值：
-        /// <li>Default：使用默认人物库；</li>
-        /// <li>UserDefine：使用用户自定义人物库。</li>
-        /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
+        /// - Default：使用默认人物库；
+        /// - UserDefine：使用用户自定义人物库。
+        /// - All：同时使用默认人物库和用户自定义人物库。
         public let faceLibrary: String?
 
         public init(switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
@@ -4197,8 +4197,8 @@ extension Mps {
     /// 人脸增强配置
     public struct FaceEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -4592,8 +4592,8 @@ extension Mps {
     /// 插帧帧率配置
     public struct FrameRateConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -4617,8 +4617,8 @@ extension Mps {
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能按帧标签任务开关，可选值：
-        /// <li>ON：开启智能按帧标签任务；</li>
-        /// <li>OFF：关闭智能按帧标签任务。</li>
+        /// - ON：开启智能按帧标签任务；
+        /// - OFF：关闭智能按帧标签任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -4633,8 +4633,8 @@ extension Mps {
     /// 智能按帧标签任务控制参数
     public struct FrameTagConfigureInfoForUpdate: TCInputModel {
         /// 智能按帧标签任务开关，可选值：
-        /// <li>ON：开启智能按帧标签任务；</li>
-        /// <li>OFF：关闭智能按帧标签任务。</li>
+        /// - ON：开启智能按帧标签任务；
+        /// - OFF：关闭智能按帧标签任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -4663,14 +4663,14 @@ extension Mps {
     /// HDR配置
     public struct HdrConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>HDR10</li>
-        /// <li>HLG</li>
+        /// - HDR10
+        /// - HLG
         /// 默认值：HDR10。
         /// 注意：video的编码方式需要为libx265；
         /// 注意：视频编码位深为10。
@@ -4728,15 +4728,15 @@ extension Mps {
     /// 综合增强配置
     public struct ImageQualityEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>weak</li>
-        /// <li>normal</li>
-        /// <li>strong</li>
+        /// - weak
+        /// - normal
+        /// - strong
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -4794,32 +4794,32 @@ extension Mps {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 雪碧图模板名称。
         public let name: String
 
         /// 雪碧图中小图的宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 雪碧图中小图的高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -4842,8 +4842,8 @@ extension Mps {
         public let updateTime: String
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// 默认值：black 。
         public let fillType: String
 
@@ -4878,21 +4878,21 @@ extension Mps {
         public let imageContent: String
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束（默认值）。
         public let repeatType: String?
 
         public init(imageContent: String, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
@@ -4916,20 +4916,20 @@ extension Mps {
         public let imageContent: String?
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束。
         public let repeatType: String?
 
         public init(imageContent: String? = nil, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
@@ -4953,20 +4953,20 @@ extension Mps {
         public let imageUrl: String
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。
         public let width: String
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；
         /// 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         public let height: String
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束。
         public let repeatType: String
 
         enum CodingKeys: String, CodingKey {
@@ -5005,7 +5005,7 @@ extension Mps {
     /// 直播流 AI 分析结果
     public struct LiveStreamAiAnalysisResultItem: TCOutputModel {
         /// 结果的类型，取值范围：
-        /// <li>SegmentRecognition：拆条。</li>
+        /// - SegmentRecognition：拆条。
         public let type: String
 
         /// 拆条结果，当 Type 为
@@ -5048,12 +5048,12 @@ extension Mps {
     /// 直播流 AI 识别结果
     public struct LiveStreamAiRecognitionResultItem: TCOutputModel {
         /// 结果的类型，取值范围：
-        /// <li>FaceRecognition：人脸识别，</li>
-        /// <li>AsrWordsRecognition：语音关键词识别，</li>
-        /// <li>OcrWordsRecognition：文本关键词识别，</li>
-        /// <li>AsrFullTextRecognition：语音全文识别，</li>
-        /// <li>OcrFullTextRecognition：文本全文识别。</li>
-        /// <li>TransTextRecognition：语音翻译。</li>
+        /// - FaceRecognition：人脸识别，
+        /// - AsrWordsRecognition：语音关键词识别，
+        /// - OcrWordsRecognition：文本关键词识别，
+        /// - AsrFullTextRecognition：语音全文识别，
+        /// - OcrFullTextRecognition：文本全文识别。
+        /// - TransTextRecognition：语音翻译。
         public let type: String
 
         /// 人脸识别结果，当 Type 为
@@ -5102,14 +5102,14 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段鉴黄结果建议，取值范围：
-        /// <li>pass</li>
-        /// <li>review</li>
-        /// <li>block</li>
+        /// - pass
+        /// - review
+        /// - block
         public let suggestion: String
 
         /// 视频敏感结果标签，取值范围：
-        /// <li>politician：敏感人物。</li>
-        /// <li>violation_photo：违规图标。</li>
+        /// - politician：敏感人物。
+        /// - violation_photo：违规图标。
         public let label: String
 
         /// 敏感人物、违规图标名字。
@@ -5150,16 +5150,16 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段鉴黄结果建议，取值范围：
-        /// <li>pass</li>
-        /// <li>review</li>
-        /// <li>block</li>
+        /// - pass
+        /// - review
+        /// - block
         public let suggestion: String
 
         /// 视频鉴黄结果标签，取值范围：
-        /// <li>porn：色情。</li>
-        /// <li>sexy：性感。</li>
-        /// <li>vulgar：低俗。</li>
-        /// <li>intimacy：亲密行为。</li>
+        /// - porn：色情。
+        /// - sexy：性感。
+        /// - vulgar：低俗。
+        /// - intimacy：亲密行为。
         public let label: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -5192,20 +5192,20 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段涉敏结果建议，取值范围：
-        /// <li>pass</li>
-        /// <li>review</li>
-        /// <li>block</li>
+        /// - pass
+        /// - review
+        /// - block
         public let suggestion: String
 
         /// 视频涉敏结果标签，取值范围：
-        /// <li>guns：武器枪支。</li>
-        /// <li>crowd：人群聚集。</li>
-        /// <li>police：警察部队。</li>
-        /// <li>bloody：血腥画面。</li>
-        /// <li>banners：涉敏旗帜。</li>
-        /// <li>militant：武装分子。</li>
-        /// <li>explosion：爆炸火灾。</li>
-        /// <li>terrorists：涉敏人物。</li>
+        /// - guns：武器枪支。
+        /// - crowd：人群聚集。
+        /// - police：警察部队。
+        /// - bloody：血腥画面。
+        /// - banners：涉敏旗帜。
+        /// - militant：武装分子。
+        /// - explosion：爆炸火灾。
+        /// - terrorists：涉敏人物。
         public let label: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -5239,10 +5239,10 @@ extension Mps {
     /// 直播流 AI 审核结果
     public struct LiveStreamAiReviewResultItem: TCOutputModel {
         /// 审核结果的类型，可以取的值有：
-        /// <li>ImagePorn：图片鉴黄</li>
-        /// <li>ImageTerrorism：图片涉敏</li>
-        /// <li>ImagePolitical：图片涉敏</li>
-        /// <li>VoicePorn：声音违规</li>
+        /// - ImagePorn：图片鉴黄
+        /// - ImageTerrorism：图片涉敏
+        /// - ImagePolitical：图片涉敏
+        /// - VoicePorn：声音违规
         public let type: String
 
         /// 图片鉴黄的结果，当 Type 为 ImagePorn 时有效。
@@ -5278,13 +5278,13 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段鉴黄结果建议，取值范围：
-        /// <li>pass</li>
-        /// <li>review</li>
-        /// <li>block</li>
+        /// - pass
+        /// - review
+        /// - block
         public let suggestion: String
 
         /// 视频鉴黄结果标签，取值范围：
-        /// <li>sexual_moan：呻吟。</li>
+        /// - sexual_moan：呻吟。
         public let label: String
 
         enum CodingKeys: String, CodingKey {
@@ -5364,7 +5364,8 @@ extension Mps {
         public let name: String
 
         /// 人物库类型，表示识别出的人物来自哪个人物库：
-        /// <li>Default：默认人物库；</li><li>UserDefine：用户自定义人物库。</li>
+        /// - Default：默认人物库；
+        /// - UserDefine：用户自定义人物库。
         public let type: String
 
         /// 识别片段起始的 PTS 时间，单位：秒。
@@ -5445,8 +5446,8 @@ extension Mps {
     /// 直播流处理错误信息
     public struct LiveStreamProcessErrorInfo: TCOutputModel {
         /// 错误码：
-        /// <li>0表示没有错误；</li>
-        /// <li>非0表示错误，请参考 Message 错误信息。</li>
+        /// - 0表示没有错误；
+        /// - 非0表示错误，请参考 Message 错误信息。
         public let errCode: Int64
 
         /// 错误信息。
@@ -5464,8 +5465,8 @@ extension Mps {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 错误码，0 表示成功，其他值表示失败。
@@ -5571,13 +5572,13 @@ extension Mps {
     /// 低光照增强配置
     public struct LowLightEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>normal</li>
+        /// - normal
         /// 默认值：normal。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -5793,9 +5794,9 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段审核结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑关键词列表。
@@ -5822,9 +5823,9 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段审核结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑关键词列表。
@@ -5864,9 +5865,9 @@ extension Mps {
         public let confidence: Float
 
         /// 嫌疑片段涉敏结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 涉敏人物、违规图标名字。
@@ -5874,28 +5875,28 @@ extension Mps {
 
         /// 嫌疑片段涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
-        /// <li>violation_photo：违规图标。</li>
+        /// - violation_photo：违规图标。
         /// politician：
-        /// <li>nation_politician：国家领导人；</li>
-        /// <li>province_politician: 省部级领导人；</li>
-        /// <li>bureau_politician：厅局级领导人；</li>
-        /// <li>county_politician：县处级领导人；</li>
-        /// <li>rural_politician：乡科级领导人；</li>
-        /// <li>sensitive_politician：涉敏人物；</li>
-        /// <li>foreign_politician：国外领导人。</li>
+        /// - nation_politician：国家领导人；
+        /// - province_politician: 省部级领导人；
+        /// - bureau_politician：厅局级领导人；
+        /// - county_politician：县处级领导人；
+        /// - rural_politician：乡科级领导人；
+        /// - sensitive_politician：涉敏人物；
+        /// - foreign_politician：国外领导人。
         /// entertainment：
-        /// <li>sensitive_entertainment：敏感娱乐人物。</li>
+        /// - sensitive_entertainment：敏感娱乐人物。
         /// sport：
-        /// <li>sensitive_sport：敏感体育人物。</li>
+        /// - sensitive_sport：敏感体育人物。
         /// entrepreneur：
-        /// <li>sensitive_entrepreneur：敏感商业人物。</li>
+        /// - sensitive_entrepreneur：敏感商业人物。
         /// scholar：
-        /// <li>sensitive_scholar：敏感教育学者。</li>
+        /// - sensitive_scholar：敏感教育学者。
         /// celebrity：
-        /// <li>sensitive_celebrity：敏感知名人物；</li>
-        /// <li>historical_celebrity：历史知名人物。</li>
+        /// - sensitive_celebrity：敏感知名人物；
+        /// - historical_celebrity：历史知名人物。
         /// military：
-        /// <li>sensitive_military：敏感军事人物。</li>
+        /// - sensitive_military：敏感军事人物。
         public let label: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -5936,9 +5937,9 @@ extension Mps {
         public let label: String
 
         /// 嫌疑片段鉴黄结果建议，取值范围：
-        /// <li>pass。</li>
-        /// <li>review。</li>
-        /// <li>block。</li>
+        /// - pass。
+        /// - review。
+        /// - block。
         public let suggestion: String
 
         /// 嫌疑图片 URL （图片不会永久存储，到达
@@ -5996,9 +5997,9 @@ extension Mps {
     /// 媒体处理的输入对象信息。
     public struct MediaInputInfo: TCInputModel, TCOutputModel {
         /// 输入来源对象的类型，支持：
-        /// <li> COS：COS源</li>
-        /// <li> URL：URL源</li>
-        /// <li> AWS-S3：AWS 源，目前只支持转码任务 </li>
+        /// - COS：COS源
+        /// - URL：URL源
+        /// - AWS-S3：AWS 源，目前只支持转码任务
         public let type: String
 
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
@@ -6242,13 +6243,13 @@ extension Mps {
     /// 任务查询结果类型
     public struct MediaProcessTaskResult: TCOutputModel {
         /// 任务的类型，可以取的值有：
-        /// <li>Transcode：转码</li>
-        /// <li>AnimatedGraphics：转动图</li>
-        /// <li>SnapshotByTimeOffset：时间点截图</li>
-        /// <li>SampleSnapshot：采样截图</li>
-        /// <li>ImageSprites：雪碧图</li>
-        /// <li>CoverBySnapshot：截图做封面</li>
-        /// <li>AdaptiveDynamicStreaming：自适应码流</li>
+        /// - Transcode：转码
+        /// - AnimatedGraphics：转动图
+        /// - SnapshotByTimeOffset：时间点截图
+        /// - SampleSnapshot：采样截图
+        /// - ImageSprites：雪碧图
+        /// - CoverBySnapshot：截图做封面
+        /// - AdaptiveDynamicStreaming：自适应码流
         public let type: String
 
         /// 视频转码任务的查询结果，当任务类型为 Transcode 时有效。
@@ -6410,13 +6411,13 @@ extension Mps {
         public let definition: Int64
 
         /// 采样方式，取值范围：
-        /// <li>Percent：根据百分比间隔采样。</li>
-        /// <li>Time：根据时间间隔采样。</li>
+        /// - Percent：根据百分比间隔采样。
+        /// - Time：根据时间间隔采样。
         public let sampleType: String
 
         /// 采样间隔
-        /// <li>当 SampleType 为 Percent 时，该值表示多少百分比一张图。</li>
-        /// <li>当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。</li>
+        /// - 当 SampleType 为 Percent 时，该值表示多少百分比一张图。
+        /// - 当 SampleType 为 Time 时，该值表示多少时间间隔一张图，单位秒， 第一张图均为视频首帧。
         public let interval: Int64
 
         /// 截图后文件的存储位置。
@@ -6709,44 +6710,44 @@ extension Mps {
     /// 媒体处理任务中的马赛克参数类型
     public struct MosaicInput: TCInputModel, TCOutputModel {
         /// 原点位置，目前仅支持：
-        /// <li>TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。</li>
+        /// - TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
         /// 默认值：0px。
         public let yPos: String?
 
         /// 马赛克的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。
         /// 默认值：10%。
         public let width: String?
 
         /// 马赛克的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。
         /// 默认值：10%。
         public let height: String?
 
         /// 马赛克的起始时间偏移，单位：秒。不填或填0，表示马赛克从画面出现时开始显现。
-        /// <li>不填或填0，表示马赛克从画面开始就出现；</li>
-        /// <li>当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；</li>
-        /// <li>当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。</li>
+        /// - 不填或填0，表示马赛克从画面开始就出现；
+        /// - 当数值大于0时（假设为 n），表示马赛克从画面开始的第 n 秒出现；
+        /// - 当数值小于0时（假设为 -n），表示马赛克从离画面结束 n 秒前开始出现。
         public let startTimeOffset: Float?
 
         /// 马赛克的结束时间偏移，单位：秒。
-        /// <li>不填或填0，表示马赛克持续到画面结束；</li>
-        /// <li>当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；</li>
-        /// <li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
+        /// - 不填或填0，表示马赛克持续到画面结束；
+        /// - 当数值大于0时（假设为 n），表示马赛克持续到第 n 秒时消失；
+        /// - 当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。
         public let endTimeOffset: Float?
 
         public init(coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
@@ -6802,8 +6803,8 @@ extension Mps {
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本全文识别任务开关，可选值：
-        /// <li>ON：开启智能文本全文识别任务；</li>
-        /// <li>OFF：关闭智能文本全文识别任务。</li>
+        /// - ON：开启智能文本全文识别任务；
+        /// - OFF：关闭智能文本全文识别任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -6818,8 +6819,8 @@ extension Mps {
     /// 文本全文本识别任务控制参数
     public struct OcrFullTextConfigureInfoForUpdate: TCInputModel {
         /// 文本全文识别任务开关，可选值：
-        /// <li>ON：开启智能文本全文识别任务；</li>
-        /// <li>OFF：关闭智能文本全文识别任务。</li>
+        /// - ON：开启智能文本全文识别任务；
+        /// - OFF：关闭智能文本全文识别任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -6834,8 +6835,8 @@ extension Mps {
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfo: TCInputModel, TCOutputModel {
         /// 文本关键词识别任务开关，可选值：
-        /// <li>ON：开启文本关键词识别任务；</li>
-        /// <li>OFF：关闭文本关键词识别任务。</li>
+        /// - ON：开启文本关键词识别任务；
+        /// - OFF：关闭文本关键词识别任务。
         public let `switch`: String
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -6856,8 +6857,8 @@ extension Mps {
     /// 文本关键词识别控制参数。
     public struct OcrWordsConfigureInfoForUpdate: TCInputModel {
         /// 文本关键词识别任务开关，可选值：
-        /// <li>ON：开启文本关键词识别任务；</li>
-        /// <li>OFF：关闭文本关键词识别任务。</li>
+        /// - ON：开启文本关键词识别任务；
+        /// - OFF：关闭文本关键词识别任务。
         public let `switch`: String?
 
         /// 关键词过滤标签，指定需要返回的关键词的标签。如果未填或者为空，则全部结果都返回。
@@ -6910,13 +6911,13 @@ extension Mps {
         public let container: String?
 
         /// 是否去除视频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeVideo: UInt64?
 
         /// 是否去除音频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeAudio: UInt64?
 
         /// 视频流配置参数。
@@ -6969,8 +6970,8 @@ extension Mps {
     /// 语音涉敏任务控制参数
     public struct PoliticalAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音涉敏任务开关，可选值：
-        /// <li>ON：开启语音涉敏任务；</li>
-        /// <li>OFF：关闭语音涉敏任务。</li>
+        /// - ON：开启语音涉敏任务；
+        /// - OFF：关闭语音涉敏任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -6995,8 +6996,8 @@ extension Mps {
     /// 语音涉敏任务控制参数。
     public struct PoliticalAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音涉敏任务开关，可选值：
-        /// <li>ON：开启语音涉敏任务；</li>
-        /// <li>OFF：关闭语音涉敏任务。</li>
+        /// - ON：开启语音涉敏任务；
+        /// - OFF：关闭语音涉敏任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7069,19 +7070,19 @@ extension Mps {
     /// 画面涉敏任务控制参数
     public struct PoliticalImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面涉敏任务开关，可选值：
-        /// <li>ON：开启画面涉敏任务；</li>
-        /// <li>OFF：关闭画面涉敏任务。</li>
+        /// - ON：开启画面涉敏任务；
+        /// - OFF：关闭画面涉敏任务。
         public let `switch`: String
 
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>violation_photo：违规图标；</li>
-        /// <li>politician：涉敏人物；</li>
-        /// <li>entertainment：娱乐人物；</li>
-        /// <li>sport：体育人物；</li>
-        /// <li>entrepreneur：商业人物；</li>
-        /// <li>scholar：教育学者；</li>
-        /// <li>celebrity：知名人物；</li>
-        /// <li>military：军事人物。</li>
+        /// - violation_photo：违规图标；
+        /// - politician：涉敏人物；
+        /// - entertainment：娱乐人物；
+        /// - sport：体育人物；
+        /// - entrepreneur：商业人物；
+        /// - scholar：教育学者；
+        /// - celebrity：知名人物；
+        /// - military：军事人物。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 97 分。取值范围：0~100。
@@ -7108,19 +7109,19 @@ extension Mps {
     /// 画面涉敏任务控制参数。
     public struct PoliticalImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面涉敏任务开关，可选值：
-        /// <li>ON：开启画面涉敏任务；</li>
-        /// <li>OFF：关闭画面涉敏任务。</li>
+        /// - ON：开启画面涉敏任务；
+        /// - OFF：关闭画面涉敏任务。
         public let `switch`: String?
 
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>violation_photo：违规图标；</li>
-        /// <li>politician：涉敏人物；</li>
-        /// <li>entertainment：娱乐人物；</li>
-        /// <li>sport：体育人物；</li>
-        /// <li>entrepreneur：商业人物；</li>
-        /// <li>scholar：教育学者；</li>
-        /// <li>celebrity：知名人物；</li>
-        /// <li>military：军事人物。</li>
+        /// - violation_photo：违规图标；
+        /// - politician：涉敏人物；
+        /// - entertainment：娱乐人物；
+        /// - sport：体育人物；
+        /// - entrepreneur：商业人物；
+        /// - scholar：教育学者；
+        /// - celebrity：知名人物；
+        /// - military：军事人物。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7147,8 +7148,8 @@ extension Mps {
     /// 文本涉敏任务控制参数
     public struct PoliticalOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本涉敏任务开关，可选值：
-        /// <li>ON：开启文本涉敏任务；</li>
-        /// <li>OFF：关闭文本涉敏任务。</li>
+        /// - ON：开启文本涉敏任务；
+        /// - OFF：关闭文本涉敏任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7173,8 +7174,8 @@ extension Mps {
     /// 文本涉敏任务控制参数。
     public struct PoliticalOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本涉敏任务开关，可选值：
-        /// <li>ON：开启文本涉敏任务；</li>
-        /// <li>OFF：关闭文本涉敏任务。</li>
+        /// - ON：开启文本涉敏任务；
+        /// - OFF：关闭文本涉敏任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7199,8 +7200,8 @@ extension Mps {
     /// 语音鉴黄任务控制参数
     public struct PornAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音鉴黄任务开关，可选值：
-        /// <li>ON：开启语音鉴黄任务；</li>
-        /// <li>OFF：关闭语音鉴黄任务。</li>
+        /// - ON：开启语音鉴黄任务；
+        /// - OFF：关闭语音鉴黄任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7225,8 +7226,8 @@ extension Mps {
     /// 语音鉴黄任务控制参数。
     public struct PornAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音鉴黄任务开关，可选值：
-        /// <li>ON：开启语音鉴黄任务；</li>
-        /// <li>OFF：关闭语音鉴黄任务。</li>
+        /// - ON：开启语音鉴黄任务；
+        /// - OFF：关闭语音鉴黄任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7299,15 +7300,15 @@ extension Mps {
     /// 画面鉴黄任务控制参数
     public struct PornImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面鉴黄任务开关，可选值：
-        /// <li>ON：开启画面鉴黄任务；</li>
-        /// <li>OFF：关闭画面鉴黄任务。</li>
+        /// - ON：开启画面鉴黄任务；
+        /// - OFF：关闭画面鉴黄任务。
         public let `switch`: String
 
         /// 画面鉴黄过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>porn：色情；</li>
-        /// <li>vulgar：低俗；</li>
-        /// <li>intimacy：亲密行为；</li>
-        /// <li>sexy：性感。</li>
+        /// - porn：色情；
+        /// - vulgar：低俗；
+        /// - intimacy：亲密行为；
+        /// - sexy：性感。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
@@ -7334,15 +7335,15 @@ extension Mps {
     /// 画面鉴黄任务控制参数。
     public struct PornImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面鉴黄任务开关，可选值：
-        /// <li>ON：开启画面鉴黄任务；</li>
-        /// <li>OFF：关闭画面鉴黄任务。</li>
+        /// - ON：开启画面鉴黄任务；
+        /// - OFF：关闭画面鉴黄任务。
         public let `switch`: String?
 
         /// 画面鉴黄过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>porn：色情；</li>
-        /// <li>vulgar：低俗；</li>
-        /// <li>intimacy：亲密行为；</li>
-        /// <li>sexy：性感。</li>
+        /// - porn：色情；
+        /// - vulgar：低俗；
+        /// - intimacy：亲密行为；
+        /// - sexy：性感。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7369,8 +7370,8 @@ extension Mps {
     /// 文本鉴黄任务控制参数
     public struct PornOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本鉴黄任务开关，可选值：
-        /// <li>ON：开启文本鉴黄任务；</li>
-        /// <li>OFF：关闭文本鉴黄任务。</li>
+        /// - ON：开启文本鉴黄任务；
+        /// - OFF：关闭文本鉴黄任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7395,8 +7396,8 @@ extension Mps {
     /// 文本鉴黄任务控制参数。
     public struct PornOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本鉴黄任务开关，可选值：
-        /// <li>ON：开启文本鉴黄任务；</li>
-        /// <li>OFF：关闭文本鉴黄任务。</li>
+        /// - ON：开启文本鉴黄任务；
+        /// - OFF：关闭文本鉴黄任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -7421,8 +7422,8 @@ extension Mps {
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 语音违禁任务开关，可选值：
-        /// <li>ON：开启语音违禁任务；</li>
-        /// <li>OFF：关闭语音违禁任务。</li>
+        /// - ON：开启语音违禁任务；
+        /// - OFF：关闭语音违禁任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7447,8 +7448,8 @@ extension Mps {
     /// 语音违禁任务控制参数
     public struct ProhibitedAsrReviewTemplateInfoForUpdate: TCInputModel {
         /// 语音违禁任务开关，可选值：
-        /// <li>ON：开启语音违禁任务；</li>
-        /// <li>OFF：关闭语音违禁任务。</li>
+        /// - ON：开启语音违禁任务；
+        /// - OFF：关闭语音违禁任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7513,8 +7514,8 @@ extension Mps {
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本违禁任务开关，可选值：
-        /// <li>ON：开启文本违禁任务；</li>
-        /// <li>OFF：关闭文本违禁任务。</li>
+        /// - ON：开启文本违禁任务；
+        /// - OFF：关闭文本违禁任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7539,8 +7540,8 @@ extension Mps {
     /// 文本违禁任务控制参数
     public struct ProhibitedOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本违禁任务开关，可选值：
-        /// <li>ON：开启文本违禁任务；</li>
-        /// <li>OFF：关闭文本违禁任务。</li>
+        /// - ON：开启文本违禁任务；
+        /// - OFF：关闭文本违禁任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -7709,21 +7710,21 @@ extension Mps {
         public let imageContent: MediaInputInfo
 
         /// 水印的宽度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
         /// 水印重复类型。使用场景：水印为动态图像。取值范围：
-        /// <li>once：动态水印播放完后，不再出现；</li>
-        /// <li>repeat_last_frame：水印播放完后，停留在最后一帧；</li>
-        /// <li>repeat：水印循环播放，直到视频结束（默认值）。</li>
+        /// - once：动态水印播放完后，不再出现；
+        /// - repeat_last_frame：水印播放完后，停留在最后一帧；
+        /// - repeat：水印循环播放，直到视频结束（默认值）。
         public let repeatType: String?
 
         public init(imageContent: MediaInputInfo, width: String? = nil, height: String? = nil, repeatType: String? = nil) {
@@ -7747,14 +7748,14 @@ extension Mps {
         public let container: String
 
         /// 是否去除视频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         /// 默认值：0。
         public let removeAudio: Int64?
 
@@ -7789,23 +7790,23 @@ extension Mps {
     /// 自定义水印规格参数。
     public struct RawWatermarkParameter: TCInputModel, TCOutputModel {
         /// 水印类型，可选值：
-        /// <li>image：图片水印。</li>
+        /// - image：图片水印。
         public let type: String
 
         /// 原点位置，目前仅支持：
-        /// <li>TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角。</li>
+        /// - TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角。
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
         /// 默认值：0px。
         public let yPos: String?
 
@@ -8025,8 +8026,8 @@ extension Mps {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 采样截图模板名称。
@@ -8036,24 +8037,24 @@ extension Mps {
         public let comment: String
 
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -8073,10 +8074,10 @@ extension Mps {
         public let updateTime: String
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
         /// 默认值：black 。
         public let fillType: String
 
@@ -8257,8 +8258,8 @@ extension Mps {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
@@ -8350,8 +8351,8 @@ extension Mps {
     /// 去划痕配置
     public struct ScratchRepairConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -8397,8 +8398,8 @@ extension Mps {
     /// 细节增强配置
     public struct SharpEnhanceConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -8424,8 +8425,8 @@ extension Mps {
         public let definition: UInt64
 
         /// 截图时间点列表，时间点支持 s、% 两种格式：
-        /// <li>当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；</li>
-        /// <li>当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。</li>
+        /// - 当字符串以 s 结尾，表示时间点单位为秒，如 3.5s 表示时间点为第3.5秒；
+        /// - 当字符串以 % 结尾，表示时间点为视频时长的百分比大小，如10%表示时间点为视频前第10%的时间。
         public let extTimeOffsetSet: [String]?
 
         /// 截图时间点列表，单位为_秒_。此参数已不再建议使用，建议您使用 ExtTimeOffsetSet 参数。
@@ -8472,8 +8473,8 @@ extension Mps {
         public let definition: UInt64
 
         /// 模板类型，取值范围：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 时间点截图模板名称。
@@ -8483,24 +8484,24 @@ extension Mps {
         public let comment: String
 
         /// 截图宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64
 
         /// 截图高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -8514,10 +8515,10 @@ extension Mps {
         public let updateTime: String
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>black：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>black：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - black：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - black：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
         /// 默认值：black 。
         public let fillType: String
 
@@ -8557,10 +8558,10 @@ extension Mps {
         public let streamIndex: Int64?
 
         /// 字体类型，
-        /// <li>hei.ttf：黑体</li>
-        /// <li>song.ttf：宋体</li>
-        /// <li>simkai.ttf：楷体</li>
-        /// <li>arial.ttf：仅支持英文</li>
+        /// - hei.ttf：黑体
+        /// - song.ttf：宋体
+        /// - simkai.ttf：楷体
+        /// - arial.ttf：仅支持英文
         /// 默认hei.ttf
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontType: String?
@@ -8574,8 +8575,8 @@ extension Mps {
         public let fontColor: String?
 
         /// 文字透明度，取值范围：(0, 1]
-        /// <li>0：完全透明</li>
-        /// <li>1：完全不透明</li>
+        /// - 0：完全透明
+        /// - 1：完全不透明
         /// 默认值：1。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontAlpha: Float?
@@ -8602,20 +8603,20 @@ extension Mps {
     /// 超分配置
     public struct SuperResolutionConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>lq：针对低清晰度有较多噪声视频的超分；</li>
-        /// <li>hq：针对高清晰度视频超分。</li>
+        /// - lq：针对低清晰度有较多噪声视频的超分；
+        /// - hq：针对高清晰度视频超分。
         /// 默认值：lq。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         /// 超分倍数，可选值：
-        /// <li>2：目前只支持 2 倍超分。</li>
+        /// - 2：目前只支持 2 倍超分。
         /// 默认值：2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
@@ -8636,24 +8637,24 @@ extension Mps {
     /// SVG水印模板输入参数
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 W%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
+        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 W%。
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 H%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
+        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 H%。
         /// 默认值为 0px。
         public let height: String?
 
@@ -8671,24 +8672,24 @@ extension Mps {
     /// SVG水印模板输入参数
     public struct SvgWatermarkInputForUpdate: TCInputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 W%。</li>
+        /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
+        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 W%。
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，%，W%，H%，S%，L% 六种格式：
-        /// <li>当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；</li>
-        /// <li>当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；</li>
-        /// <li>当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；</li>
-        /// <li>当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；</li>
-        /// <li>当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；</li>
-        /// <li>当字符串以 % 结尾时，含义同 H%。
+        /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
+        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
+        /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
+        /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
+        /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
+        /// - 当字符串以 % 结尾时，含义同 H%。
         /// 默认值为 0px。
         public let height: String?
 
@@ -8706,8 +8707,8 @@ extension Mps {
     /// 极速高清参数配置。
     public struct TEHDConfig: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
-        /// <li>TEHD-100：极速高清-100（视频极速高清）。</li>
-        /// <li>TEHD-200：极速高清-200（音频极速高清）。</li>
+        /// - TEHD-100：极速高清-100（视频极速高清）。
+        /// - TEHD-200：极速高清-200（音频极速高清）。
         /// 不填代表不启用极速高清。
         public let type: String
 
@@ -8729,8 +8730,8 @@ extension Mps {
     /// 极速高清参数配置。
     public struct TEHDConfigForUpdate: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
-        /// <li>TEHD-100：极速高清-100（视频极速高清）。</li>
-        /// <li>TEHD-200：极速高清-200（音频极速高清）。</li>
+        /// - TEHD-100：极速高清-100（视频极速高清）。
+        /// - TEHD-200：极速高清-200（音频极速高清）。
         /// 不填代表不修改。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -8753,8 +8754,8 @@ extension Mps {
     /// 智能标签任务控制参数
     public struct TagConfigureInfo: TCInputModel, TCOutputModel {
         /// 智能标签任务开关，可选值：
-        /// <li>ON：开启智能标签任务；</li>
-        /// <li>OFF：关闭智能标签任务。</li>
+        /// - ON：开启智能标签任务；
+        /// - OFF：关闭智能标签任务。
         public let `switch`: String
 
         public init(switch: String) {
@@ -8769,8 +8770,8 @@ extension Mps {
     /// 智能标签任务控制参数
     public struct TagConfigureInfoForUpdate: TCInputModel {
         /// 智能标签任务开关，可选值：
-        /// <li>ON：开启智能标签任务；</li>
-        /// <li>OFF：关闭智能标签任务。</li>
+        /// - ON：开启智能标签任务；
+        /// - OFF：关闭智能标签任务。
         public let `switch`: String?
 
         public init(switch: String? = nil) {
@@ -8800,11 +8801,11 @@ extension Mps {
         public let notifyMode: String?
 
         /// 通知类型，可选值：
-        /// <li>CMQ：已下线，建议切换到TDMQ-CMQ</li>
-        /// <li>TDMQ-CMQ：消息队列</li>
-        /// <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
-        /// <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
-        /// <li>AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域</li>
+        /// - CMQ：已下线，建议切换到TDMQ-CMQ
+        /// - TDMQ-CMQ：消息队列
+        /// - URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数
+        /// - SCF：不推荐使用，需要在控制台额外配置SCF
+        /// - AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域
         /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
         public let notifyType: String?
 
@@ -8842,8 +8843,8 @@ extension Mps {
     /// 媒体处理输出对象信息。
     public struct TaskOutputStorage: TCInputModel, TCOutputModel {
         /// 媒体处理输出对象存储位置的类型，支持：
-        /// <li>COS：COS存储</li>
-        /// <li>AWS-S3：AWS 存储，只适用于AWS任务，且要求同区域</li>
+        /// - COS：COS存储
+        /// - AWS-S3：AWS 存储，只适用于AWS任务，且要求同区域
         public let type: String
 
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 输出位置。
@@ -8873,9 +8874,9 @@ extension Mps {
         public let taskId: String
 
         /// 任务类型，包含：
-        /// <li> WorkflowTask：工作流处理任务；</li>
-        /// <li> EditMediaTask：视频编辑任务；</li>
-        /// <li> LiveProcessTask：直播处理任务。</li>
+        /// - WorkflowTask：工作流处理任务；
+        /// - EditMediaTask：视频编辑任务；
+        /// - LiveProcessTask：直播处理任务。
         public let taskType: String
 
         /// 任务创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
@@ -8936,20 +8937,20 @@ extension Mps {
     /// 画面涉敏任务控制参数
     public struct TerrorismImgReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 画面涉敏任务开关，可选值：
-        /// <li>ON：开启画面涉敏任务；</li>
-        /// <li>OFF：关闭画面涉敏任务。</li>
+        /// - ON：开启画面涉敏任务；
+        /// - OFF：关闭画面涉敏任务。
         public let `switch`: String
 
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>guns：武器枪支；</li>
-        /// <li>crowd：人群聚集；</li>
-        /// <li>bloody：血腥画面；</li>
-        /// <li>police：警察部队；</li>
-        /// <li>banners：涉敏旗帜；</li>
-        /// <li>militant：武装分子；</li>
-        /// <li>explosion：爆炸火灾；</li>
-        /// <li>terrorists：涉敏人物；</li>
-        /// <li>scenario：涉敏画面。</li>
+        /// - guns：武器枪支；
+        /// - crowd：人群聚集；
+        /// - bloody：血腥画面；
+        /// - police：警察部队；
+        /// - banners：涉敏旗帜；
+        /// - militant：武装分子；
+        /// - explosion：爆炸火灾；
+        /// - terrorists：涉敏人物；
+        /// - scenario：涉敏画面。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 90 分。取值范围：0~100。
@@ -8976,20 +8977,20 @@ extension Mps {
     /// 画面涉敏任务控制参数。
     public struct TerrorismImgReviewTemplateInfoForUpdate: TCInputModel {
         /// 画面涉敏任务开关，可选值：
-        /// <li>ON：开启画面涉敏任务；</li>
-        /// <li>OFF：关闭画面涉敏任务。</li>
+        /// - ON：开启画面涉敏任务；
+        /// - OFF：关闭画面涉敏任务。
         public let `switch`: String?
 
         /// 画面涉敏过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回，可选值为：
-        /// <li>guns：武器枪支；</li>
-        /// <li>crowd：人群聚集；</li>
-        /// <li>bloody：血腥画面；</li>
-        /// <li>police：警察部队；</li>
-        /// <li>banners：涉敏旗帜；</li>
-        /// <li>militant：武装分子；</li>
-        /// <li>explosion：爆炸火灾；</li>
-        /// <li>terrorists：涉敏人物；</li>
-        /// <li>scenario：涉敏画面。</li>
+        /// - guns：武器枪支；
+        /// - crowd：人群聚集；
+        /// - bloody：血腥画面；
+        /// - police：警察部队；
+        /// - banners：涉敏旗帜；
+        /// - militant：武装分子；
+        /// - explosion：爆炸火灾；
+        /// - terrorists：涉敏人物；
+        /// - scenario：涉敏画面。
         public let labelSet: [String]?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规。取值范围：0~100。
@@ -9016,8 +9017,8 @@ extension Mps {
     /// 文本涉敏任务控制参数
     public struct TerrorismOcrReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 文本涉敏任务开关，可选值：
-        /// <li>ON：开启文本涉敏任务；</li>
-        /// <li>OFF：关闭文本涉敏任务。</li>
+        /// - ON：开启文本涉敏任务；
+        /// - OFF：关闭文本涉敏任务。
         public let `switch`: String
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -9042,8 +9043,8 @@ extension Mps {
     /// 文本涉敏任务控制参数
     public struct TerrorismOcrReviewTemplateInfoForUpdate: TCInputModel {
         /// 文本涉敏任务开关，可选值：
-        /// <li>ON：开启文本涉敏任务；</li>
-        /// <li>OFF：关闭文本涉敏任务。</li>
+        /// - ON：开启文本涉敏任务；
+        /// - OFF：关闭文本涉敏任务。
         public let `switch`: String?
 
         /// 判定涉嫌违规的分数阈值，当智能审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
@@ -9068,8 +9069,8 @@ extension Mps {
     /// 文字水印模板
     public struct TextWatermarkTemplateInput: TCInputModel, TCOutputModel {
         /// 字体类型，目前可以支持两种：
-        /// <li>simkai.ttf：可以支持中文和英文；</li>
-        /// <li>arial.ttf：仅支持英文。</li>
+        /// - simkai.ttf：可以支持中文和英文；
+        /// - arial.ttf：仅支持英文。
         public let fontType: String
 
         /// 字体大小，格式：Npx，N 为数值。
@@ -9079,8 +9080,8 @@ extension Mps {
         public let fontColor: String
 
         /// 文字透明度，取值范围：(0, 1]
-        /// <li>0：完全透明</li>
-        /// <li>1：完全不透明</li>
+        /// - 0：完全透明
+        /// - 1：完全不透明
         /// 默认值：1。
         public let fontAlpha: Float
 
@@ -9102,8 +9103,8 @@ extension Mps {
     /// 文字水印模板
     public struct TextWatermarkTemplateInputForUpdate: TCInputModel {
         /// 字体类型，目前可以支持两种：
-        /// <li>simkai.ttf：可以支持中文和英文；</li>
-        /// <li>arial.ttf：仅支持英文。</li>
+        /// - simkai.ttf：可以支持中文和英文；
+        /// - arial.ttf：仅支持英文。
         public let fontType: String?
 
         /// 字体大小，格式：Npx，N 为数值。
@@ -9113,8 +9114,8 @@ extension Mps {
         public let fontColor: String?
 
         /// 文字透明度，取值范围：(0, 1]
-        /// <li>0：完全透明</li>
-        /// <li>1：完全不透明</li>
+        /// - 0：完全透明
+        /// - 1：完全不透明
         public let fontAlpha: Float?
 
         public init(fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
@@ -9156,15 +9157,15 @@ extension Mps {
         public let mosaicSet: [MosaicInput]?
 
         /// 转码后的视频的起始时间偏移，单位：秒。
-        /// <li>不填或填0，表示转码后的视频从原始视频的起始位置开始；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。</li>
+        /// - 不填或填0，表示转码后的视频从原始视频的起始位置开始；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频从原始视频的第 n 秒位置开始；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频从原始视频结束 n 秒前的位置开始。
         public let startTimeOffset: Float?
 
         /// 转码后视频的终止时间偏移，单位：秒。
-        /// <li>不填或填0，表示转码后的视频持续到原始视频的末尾终止；</li>
-        /// <li>当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；</li>
-        /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
+        /// - 不填或填0，表示转码后的视频持续到原始视频的末尾终止；
+        /// - 当数值大于0时（假设为 n），表示转码后的视频持续到原始视频第 n 秒时终止；
+        /// - 当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。
         public let endTimeOffset: Float?
 
         /// 转码后文件的目标存储，不填则继承上层的 OutputStorage 值。
@@ -9231,18 +9232,18 @@ extension Mps {
         public let comment: String
 
         /// 模板类型，取值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String
 
         /// 是否去除视频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeVideo: Int64
 
         /// 是否去除音频数据，取值：
-        /// <li>0：保留；</li>
-        /// <li>1：去除。</li>
+        /// - 0：保留；
+        /// - 1：去除。
         public let removeAudio: Int64
 
         /// 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
@@ -9256,8 +9257,8 @@ extension Mps {
         public let tehdConfig: TEHDConfig?
 
         /// 封装格式过滤条件，可选值：
-        /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
-        /// <li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
+        /// - Video：视频格式，可以同时包含视频流和音频流的封装格式；
+        /// - PureAudio：纯音频格式，只能包含音频流的封装格式板。
         public let containerType: String
 
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
@@ -9291,8 +9292,8 @@ extension Mps {
     /// 语音翻译任务控制参数
     public struct TranslateConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音翻译任务开关，可选值：
-        /// <li>ON：开启智能语音翻译任务；</li>
-        /// <li>OFF：关闭智能语音翻译任务。</li>
+        /// - ON：开启智能语音翻译任务；
+        /// - OFF：关闭智能语音翻译任务。
         public let `switch`: String
 
         /// 视频源语言。
@@ -9317,8 +9318,8 @@ extension Mps {
     /// 语音翻译任务控制参数
     public struct TranslateConfigureInfoForUpdate: TCInputModel {
         /// 语音翻译任务开关，可选值：
-        /// <li>ON：开启智能语音翻译任务；</li>
-        /// <li>OFF：关闭智能语音翻译任务。</li>
+        /// - ON：开启智能语音翻译任务；
+        /// - OFF：关闭智能语音翻译任务。
         public let `switch`: String?
 
         /// 视频源语言。
@@ -9357,8 +9358,8 @@ extension Mps {
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定语音审核任务开关，可选值：
-        /// <li>ON：开启自定义语音审核任务；</li>
-        /// <li>OFF：关闭自定义语音审核任务。</li>
+        /// - ON：开启自定义语音审核任务；
+        /// - OFF：关闭自定义语音审核任务。
         public let `switch`: String
 
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
@@ -9389,8 +9390,8 @@ extension Mps {
     /// 用户自定义语音审核任务控制参数
     public struct UserDefineAsrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定语音审核任务开关，可选值：
-        /// <li>ON：开启自定义语音审核任务；</li>
-        /// <li>OFF：关闭自定义语音审核任务。</li>
+        /// - ON：开启自定义语音审核任务；
+        /// - OFF：关闭自定义语音审核任务。
         public let `switch`: String?
 
         /// 用户自定义语音过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义语音关键词素材时需要添加对应标签。
@@ -9469,8 +9470,8 @@ extension Mps {
     /// 用户自定义人物审核任务控制参数
     public struct UserDefineFaceReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定义人物审核任务开关，可选值：
-        /// <li>ON：开启自定义人物审核任务；</li>
-        /// <li>OFF：关闭自定义人物审核任务。</li>
+        /// - ON：开启自定义人物审核任务；
+        /// - OFF：关闭自定义人物审核任务。
         public let `switch`: String
 
         /// 用户自定义人物过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
@@ -9501,8 +9502,8 @@ extension Mps {
     /// 用户自定义人物审核任务控制参数。
     public struct UserDefineFaceReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定义人物审核任务开关，可选值：
-        /// <li>ON：开启自定义人物审核任务；</li>
-        /// <li>OFF：关闭自定义人物审核任务。</li>
+        /// - ON：开启自定义人物审核任务；
+        /// - OFF：关闭自定义人物审核任务。
         public let `switch`: String?
 
         /// 用户自定义人物过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义人物库的时，需要添加对应人物标签。
@@ -9533,8 +9534,8 @@ extension Mps {
     /// 用户自定义文本审核任务控制参数
     public struct UserDefineOcrTextReviewTemplateInfo: TCInputModel, TCOutputModel {
         /// 用户自定文本审核任务开关，可选值：
-        /// <li>ON：开启自定义文本审核任务；</li>
-        /// <li>OFF：关闭自定义文本审核任务。</li>
+        /// - ON：开启自定义文本审核任务；
+        /// - OFF：关闭自定义文本审核任务。
         public let `switch`: String
 
         /// 用户自定义文本过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
@@ -9565,8 +9566,8 @@ extension Mps {
     /// 用户自定义文本审核任务控制参数。
     public struct UserDefineOcrTextReviewTemplateInfoForUpdate: TCInputModel {
         /// 用户自定文本审核任务开关，可选值：
-        /// <li>ON：开启自定义文本审核任务；</li>
-        /// <li>OFF：关闭自定义文本审核任务。</li>
+        /// - ON：开启自定义文本审核任务；
+        /// - OFF：关闭自定义文本审核任务。
         public let `switch`: String?
 
         /// 用户自定义文本过滤标签，审核结果包含选择的标签则返回结果，如果过滤标签为空，则审核结果全部返回。如果要使用标签过滤功能，添加自定义文本关键词素材时需要添加对应标签。
@@ -9597,14 +9598,14 @@ extension Mps {
     /// 视频降噪配置
     public struct VideoDenoiseConfig: TCInputModel, TCOutputModel {
         /// 能力配置开关，可选值：
-        /// <li>ON：开启；</li>
-        /// <li>OFF：关闭。</li>
+        /// - ON：开启；
+        /// - OFF：关闭。
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
-        /// <li>weak</li>
-        /// <li>strong</li>
+        /// - weak
+        /// - strong
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -9698,9 +9699,9 @@ extension Mps {
     /// 视频流配置参数
     public struct VideoTemplateInfo: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码</li>
-        /// <li>libx265：H.265 编码</li>
-        /// <li>av1：AOMedia Video 1 编码</li>
+        /// - libx264：H.264 编码
+        /// - libx265：H.265 编码
+        /// - av1：AOMedia Video 1 编码
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         public let codec: String
@@ -9715,25 +9716,25 @@ extension Mps {
         public let bitrate: UInt64
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 默认值：open。
         /// 注意：自适应模式时，Width不能小于Height。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let width: UInt64?
 
         /// 视频流高度（或短边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 默认值：0。
         public let height: UInt64?
 
@@ -9742,10 +9743,10 @@ extension Mps {
         public let gop: UInt64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
         /// 默认值：black 。
         /// 注意：自适应码流只支持 stretch、black。
         public let fillType: String?
@@ -9783,9 +9784,9 @@ extension Mps {
     /// 视频流配置参数
     public struct VideoTemplateInfoForUpdate: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
-        /// <li>libx264：H.264 编码</li>
-        /// <li>libx265：H.265 编码</li>
-        /// <li>av1：AOMedia Video 1 编码</li>
+        /// - libx264：H.264 编码
+        /// - libx265：H.265 编码
+        /// - av1：AOMedia Video 1 编码
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -9802,17 +9803,17 @@ extension Mps {
         public let bitrate: UInt64?
 
         /// 分辨率自适应，可选值：
-        /// <li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li>
-        /// <li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>
+        /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
+        /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
         /// 注意：自适应模式时，Width不能小于Height。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resolutionAdaptive: String?
 
         /// 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 4096]，单位：px。
-        /// <li>当 Width、Height 均为 0，则分辨率同源；</li>
-        /// <li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li>
-        /// <li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li>
-        /// <li>当 Width、Height 均非 0，则分辨率按用户指定。</li>
+        /// - 当 Width、Height 均为 0，则分辨率同源；
+        /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
+        /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
+        /// - 当 Width、Height 均非 0，则分辨率按用户指定。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: UInt64?
 
@@ -9825,10 +9826,10 @@ extension Mps {
         public let gop: UInt64?
 
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
-        /// <li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；</li>
-        /// <li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li>
-        /// <li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li>
-        /// <li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>
+        /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
+        /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
+        /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fillType: String?
 
@@ -9838,8 +9839,8 @@ extension Mps {
         public let vcrf: UInt64?
 
         /// 内容自适应编码。可选值：
-        /// <li>0：不开启</li>
-        /// <li>1：开启</li>
+        /// - 0：不开启
+        /// - 1：开启
         /// 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentAdaptStream: UInt64?
@@ -9890,15 +9891,15 @@ extension Mps {
         public let svgContent: String?
 
         /// 水印的起始时间偏移，单位：秒。不填或填0，表示水印从画面出现时开始显现。
-        /// <li>不填或填0，表示水印从画面开始就出现；</li>
-        /// <li>当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；</li>
-        /// <li>当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。</li>
+        /// - 不填或填0，表示水印从画面开始就出现；
+        /// - 当数值大于0时（假设为 n），表示水印从画面开始的第 n 秒出现；
+        /// - 当数值小于0时（假设为 -n），表示水印从离画面结束 n 秒前开始出现。
         public let startTimeOffset: Float?
 
         /// 水印的结束时间偏移，单位：秒。
-        /// <li>不填或填0，表示水印持续到画面结束；</li>
-        /// <li>当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；</li>
-        /// <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
+        /// - 不填或填0，表示水印持续到画面结束；
+        /// - 当数值大于0时（假设为 n），表示水印持续到第 n 秒时消失；
+        /// - 当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。
         public let endTimeOffset: Float?
 
         public init(definition: UInt64, rawParameter: RawWatermarkParameter? = nil, textContent: String? = nil, svgContent: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
@@ -9926,8 +9927,8 @@ extension Mps {
         public let definition: Int64
 
         /// 水印类型，取值：
-        /// <li>image：图片水印；</li>
-        /// <li>text：文字水印。</li>
+        /// - image：图片水印；
+        /// - text：文字水印。
         public let type: String
 
         /// 水印模板名称。
@@ -9937,13 +9938,13 @@ extension Mps {
         public let comment: String
 
         /// 水印图片原点距离视频图像原点的水平位置。
-        /// <li>当字符串以 % 结尾，表示水印 Left 为视频宽度指定百分比的位置，如 10% 表示 Left 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Left 为视频宽度指定像素的位置，如 100px 表示 Left 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Left 为视频宽度指定百分比的位置，如 10% 表示 Left 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Left 为视频宽度指定像素的位置，如 100px 表示 Left 为 100 像素。
         public let xPos: String
 
         /// 水印图片原点距离视频图像原点的垂直位置。
-        /// <li>当字符串以 % 结尾，表示水印 Top 为视频高度指定百分比的位置，如 10% 表示 Top 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 Top 为视频高度指定像素的位置，如 100px 表示 Top 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 Top 为视频高度指定百分比的位置，如 10% 表示 Top 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 Top 为视频高度指定像素的位置，如 100px 表示 Top 为 100 像素。
         public let yPos: String
 
         /// 图片水印模板，仅当 Type 为 image，该字段有效。
@@ -9965,10 +9966,10 @@ extension Mps {
         public let updateTime: String
 
         /// 原点位置，可选值：
-        /// <li>topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
-        /// <li>topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
-        /// <li>bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
-        /// <li>bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；</li>
+        /// - topLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；
+        /// - topRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；
+        /// - bottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；
+        /// - bottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下。；
         public let coordinateOrigin: String
 
         enum CodingKeys: String, CodingKey {
@@ -9996,8 +9997,8 @@ extension Mps {
         public let workflowName: String
 
         /// 工作流状态，取值范围：
-        /// <li>Enabled：已启用，</li>
-        /// <li>Disabled：已禁用。</li>
+        /// - Enabled：已启用，
+        /// - Disabled：已禁用。
         public let status: String
 
         /// 工作流绑定的输入规则，当上传视频命中该规则到该对象时即触发工作流。
@@ -10063,8 +10064,8 @@ extension Mps {
         public let taskId: String
 
         /// 任务流状态，取值：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
@@ -10115,8 +10116,8 @@ extension Mps {
     /// 输入规则，当上传视频命中该规则时，即触发工作流。
     public struct WorkflowTrigger: TCInputModel, TCOutputModel {
         /// 触发器的类型，可选值：
-        /// <li>CosFileUpload：COS触发</li>
-        /// <li>AwsS3FileUpload：AWS触发，目前只支持转码任务。只有编排支持，工作流不支持。  </li>
+        /// - CosFileUpload：COS触发
+        /// - AwsS3FileUpload：AWS触发，目前只支持转码任务。只有编排支持，工作流不支持。
         public let type: String
 
         /// 当 Type 为 CosFileUpload 时必填且有效，为 COS 触发规则。

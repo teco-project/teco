@@ -23,9 +23,9 @@ extension Tcss {
     /// DescribeSupportDefenceVul请求参数结构体
     public struct DescribeSupportDefenceVulRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
-        /// <li>CVEID- string - 是否必填：否 - CVE编号</li>
-        /// <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        /// - Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低
+        /// - CVEID- string - 是否必填：否 - CVE编号
+        /// - Name- string -是否必填: 否 - 漏洞名称
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

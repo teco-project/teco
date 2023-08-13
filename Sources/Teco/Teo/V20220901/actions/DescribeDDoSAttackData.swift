@@ -36,10 +36,10 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 统计指标列表，取值有：
-        /// <li>ddos_attackMaxBandwidth：攻击带宽峰值；</li>
-        /// <li>ddos_attackMaxPackageRate：攻击包速率峰值 ；</li>
-        /// <li>ddos_attackBandwidth：攻击带宽曲线；</li>
-        /// <li>ddos_attackPackageRate：攻击包速率曲线。</li>
+        /// - ddos_attackMaxBandwidth：攻击带宽峰值；
+        /// - ddos_attackMaxPackageRate：攻击包速率峰值 ；
+        /// - ddos_attackBandwidth：攻击带宽曲线；
+        /// - ddos_attackPackageRate：攻击包速率曲线。
         public let metricNames: [String]
 
         /// 站点集合，不填默认选择全部站点。
@@ -49,16 +49,16 @@ extension Teo {
         public let policyIds: [Int64]?
 
         /// 查询时间粒度，取值有：
-        /// <li>min：1分钟；</li>
-        /// <li>5min：5分钟；</li>
-        /// <li>hour：1小时；</li>
-        /// <li>day：1天。</li>不填将根据开始时间与结束时间的间隔自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        /// - min：1分钟；
+        /// - 5min：5分钟；
+        /// - hour：1小时；
+        /// - day：1天。不填将根据开始时间与结束时间的间隔自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据；</li>
-        /// <li>global：全球数据。</li>不填默认取值为global。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据；
+        /// - global：全球数据。不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil) {

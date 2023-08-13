@@ -28,14 +28,14 @@ extension Vod {
         public let subAppId: UInt64?
 
         /// 播放的音视频类型，可选值：
-        /// <li>AdaptiveDynamicStream：自适应码流输出；</li>
-        /// <li>Transcode：转码输出；</li>
-        /// <li>Original：原始音视频。</li>
+        /// - AdaptiveDynamicStream：自适应码流输出；
+        /// - Transcode：转码输出；
+        /// - Original：原始音视频。
         public let audioVideoType: String?
 
         /// 播放 DRM 保护的自适应码流开关：
-        /// <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
-        /// <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
+        /// - ON：开启，表示仅播放 DRM  保护的自适应码流输出；
+        /// - OFF：关闭，表示播放未加密的自适应码流输出。
         public let drmSwitch: String?
 
         /// 允许输出的未加密的自适应码流模板 ID。
@@ -57,9 +57,9 @@ extension Vod {
         public let domain: String?
 
         /// 播放时使用的 Scheme。取值范围：
-        /// <li>Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；</li>
-        /// <li>HTTP；</li>
-        /// <li>HTTPS。</li>
+        /// - Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；
+        /// - HTTP；
+        /// - HTTPS。
         public let scheme: String?
 
         /// 模板描述信息，长度限制：256 个字符。

@@ -35,7 +35,12 @@ extension Keewidb {
 
     /// DescribeTaskInfo返回参数结构体
     public struct DescribeTaskInfoResponse: TCResponseModel {
-        /// 任务状态。<ul><li>preparing：待执行。</li><li>running：执行中。</li><li>succeed：成功。</li><li>failed：失败。</li><li>error：执行出错。</li></ul>
+        /// 任务状态。
+        /// - preparing：待执行。
+        /// - running：执行中。
+        /// - succeed：成功。
+        /// - failed：失败。
+        /// - error：执行出错。
         public let status: String
 
         /// 任务开始时间。

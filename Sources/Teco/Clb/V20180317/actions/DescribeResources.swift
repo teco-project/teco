@@ -29,8 +29,8 @@ extension Clb {
         public let offset: UInt64?
 
         /// 查询可用区资源列表条件，详细的过滤条件如下：
-        /// <li> zone - String - 是否必填：否 - （过滤条件）按照 可用区 过滤，如："ap-guangzhou-1"（广州一区）。</li>
-        /// <li> isp -- String - 是否必填：否 - （过滤条件）按照 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC"。</li>
+        /// - zone - String - 是否必填：否 - （过滤条件）按照 可用区 过滤，如："ap-guangzhou-1"（广州一区）。
+        /// - isp -- String - 是否必填：否 - （过滤条件）按照 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC"。
         public let filters: [Filter]?
 
         public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

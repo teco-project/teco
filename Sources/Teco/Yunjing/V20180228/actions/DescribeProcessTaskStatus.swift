@@ -36,10 +36,10 @@ extension Yunjing {
     /// DescribeProcessTaskStatus返回参数结构体
     public struct DescribeProcessTaskStatusResponse: TCResponseModel {
         /// 任务状态。
-        /// <li>COMPLETE：完成（此时可以调用DescribeProcesses接口获取实时进程列表）</li>
-        /// <li>AGENT_OFFLINE：云镜客户端离线</li>
-        /// <li>COLLECTING：进程获取中</li>
-        /// <li>FAILED：进程获取失败</li>
+        /// - COMPLETE：完成（此时可以调用DescribeProcesses接口获取实时进程列表）
+        /// - AGENT_OFFLINE：云镜客户端离线
+        /// - COLLECTING：进程获取中
+        /// - FAILED：进程获取失败
         public let status: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

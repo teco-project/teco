@@ -37,10 +37,16 @@ extension Es {
         /// 分页大小，默认值20
         public let limit: UInt64?
 
-        /// 排序字段<li>1：实例ID</li><li>2：实例名称</li><li>3：可用区</li><li>4：创建时间</li>若orderKey未传递则按创建时间降序排序
+        /// 排序字段
+        /// - 1：实例ID
+        /// - 2：实例名称
+        /// - 3：可用区
+        /// - 4：创建时间若orderKey未传递则按创建时间降序排序
         public let orderByKey: UInt64?
 
-        /// 排序方式<li>0：升序</li><li>1：降序</li>若传递了orderByKey未传递orderByType, 则默认升序
+        /// 排序方式
+        /// - 0：升序
+        /// - 1：降序若传递了orderByKey未传递orderByType, 则默认升序
         public let orderByType: UInt64?
 
         /// VpcId 筛选项

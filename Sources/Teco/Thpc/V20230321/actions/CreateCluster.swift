@@ -37,10 +37,8 @@ extension Thpc {
         public let computeNodeCount: Int64?
 
         /// 调度器类型。默认取值：SLURM。
-        ///
-        /// <li>SGE：SGE调度器。
-        ///
-        /// <li>SLURM：SLURM调度器。
+        /// - SGE：SGE调度器。
+        /// - SLURM：SLURM调度器。
         public let schedulerType: String?
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。目前支持部分公有镜像和自定义镜像。
@@ -66,7 +64,7 @@ extension Thpc {
         public let dryRun: Bool?
 
         /// 域名字服务类型。默认取值：NIS。
-        /// <li>NIS：NIS域名字服务。
+        /// - NIS：NIS域名字服务。
         public let accountType: String?
 
         /// 集群显示名称。
@@ -85,10 +83,8 @@ extension Thpc {
         public let tags: [Tag]?
 
         /// 弹性伸缩类型。默认值：THPC_AS
-        ///
-        /// <li>THPC_AS：集群自动扩缩容由THPC产品内部实现。
-        ///
-        /// <li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
+        /// - THPC_AS：集群自动扩缩容由THPC产品内部实现。
+        /// - AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
         public let autoScalingType: String?
 
         /// 节点初始化脚本信息列表。

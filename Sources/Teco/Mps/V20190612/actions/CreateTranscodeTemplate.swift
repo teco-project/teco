@@ -31,14 +31,14 @@ extension Mps {
         public let comment: String?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         /// 默认值：0。
         public let removeAudio: Int64?
 

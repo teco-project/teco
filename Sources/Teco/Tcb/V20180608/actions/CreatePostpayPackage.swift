@@ -28,16 +28,16 @@ extension Tcb {
         public let wxAppId: String?
 
         /// 付费来源
-        /// <li>miniapp</li>
-        /// <li>qcloud</li>
+        /// - miniapp
+        /// - qcloud
         public let source: String?
 
         /// 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，表示不享受免费额度。
         public let freeQuota: String?
 
         /// 环境创建来源，取值：
-        /// <li>miniapp</li>
-        /// <li>qcloud</li>
+        /// - miniapp
+        /// - qcloud
         /// 用法同CreateEnv接口的Source参数
         /// 和 Channel 参数同时传，或者同时不传；EnvId 为空时必传。
         public let envSource: String?
@@ -54,8 +54,8 @@ extension Tcb {
         public let extensionId: String?
 
         /// 订单标记。建议使用方统一转大小写之后再判断。
-        /// <li>QuickStart：快速启动来源</li>
-        /// <li>Activity：活动来源</li>
+        /// - QuickStart：快速启动来源
+        /// - Activity：活动来源
         public let flag: String?
 
         /// 环境别名，无字符类型限制

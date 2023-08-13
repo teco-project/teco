@@ -22,34 +22,34 @@ extension Emr {
     /// InquiryPriceCreateInstance请求参数结构体
     public struct InquiryPriceCreateInstanceRequest: TCRequestModel {
         /// 购买实例的时间单位。取值范围：
-        /// <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        /// <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        /// - s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。
+        /// - m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。
         public let timeUnit: String
 
         /// 购买实例的时长。结合TimeUnit一起使用。
-        /// <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        /// <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        /// - TimeUnit为s时，该参数只能填写3600，表示按量计费实例。
+        /// - TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月
         public let timeSpan: UInt64
 
         /// 货币种类。取值范围：
-        /// <li>CNY：表示人民币。</li>
+        /// - CNY：表示人民币。
         public let currency: String
 
         /// 实例计费模式。取值范围：
-        /// <li>0：表示按量计费。</li>
-        /// <li>1：表示包年包月。</li>
+        /// - 0：表示按量计费。
+        /// - 1：表示包年包月。
         public let payMode: UInt64
 
         /// 是否开启节点高可用。取值范围：
-        /// <li>0：表示不开启节点高可用。</li>
-        /// <li>1：表示开启节点高可用。</li>
+        /// - 0：表示不开启节点高可用。
+        /// - 1：表示开启节点高可用。
         public let supportHA: UInt64
 
         /// 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）需要选择不同的必选组件：
-        /// <li>ProductId为1的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9</li>
-        /// <li>ProductId为2的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9</li>
-        /// <li>ProductId为4的时候，必选组件包括：hadoop-2.8.4、knox-1.2.0、zookeeper-3.4.9</li>
-        /// <li>ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9</li>
+        /// - ProductId为1的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9
+        /// - ProductId为2的时候，必选组件包括：hadoop-2.7.3、knox-1.2.0、zookeeper-3.4.9
+        /// - ProductId为4的时候，必选组件包括：hadoop-2.8.4、knox-1.2.0、zookeeper-3.4.9
+        /// - ProductId为7的时候，必选组件包括：hadoop-3.1.2、knox-1.2.0、zookeeper-3.4.9
         public let software: [String]
 
         /// 询价的节点规格。
@@ -62,9 +62,9 @@ extension Emr {
         public let vpcSettings: VPCSettings?
 
         /// hive共享元数据库类型。取值范围：
-        /// <li>EMR_NEW_META：表示集群默认创建</li>
-        /// <li>EMR_EXIT_METE：表示集群使用指定EMR-MetaDB。</li>
-        /// <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        /// - EMR_NEW_META：表示集群默认创建
+        /// - EMR_EXIT_METE：表示集群使用指定EMR-MetaDB。
+        /// - USER_CUSTOM_META：表示集群使用自定义MetaDB。
         public let metaType: String?
 
         /// EMR-MetaDB实例
@@ -74,10 +74,10 @@ extension Emr {
         public let metaDBInfo: CustomMetaInfo?
 
         /// 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
-        /// <li>1：表示EMR-V1.3.1。</li>
-        /// <li>2：表示EMR-V2.0.1。</li>
-        /// <li>4：表示EMR-V2.1.0。</li>
-        /// <li>7：表示EMR-V3.0.0。</li>
+        /// - 1：表示EMR-V1.3.1。
+        /// - 2：表示EMR-V2.0.1。
+        /// - 4：表示EMR-V2.1.0。
+        /// - 7：表示EMR-V3.0.0。
         public let productId: UInt64?
 
         /// 场景化取值：
@@ -148,8 +148,8 @@ extension Emr {
         public let discountCost: Float?
 
         /// 购买实例的时间单位。取值范围：
-        /// <li>s：表示秒。</li>
-        /// <li>m：表示月份。</li>
+        /// - s：表示秒。
+        /// - m：表示月份。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
 

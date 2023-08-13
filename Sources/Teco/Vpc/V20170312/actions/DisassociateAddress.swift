@@ -25,18 +25,14 @@ extension Vpc {
         public let addressId: String
 
         /// 表示解绑 EIP 之后是否分配普通公网 IP。取值范围：
-        ///
-        /// <li>TRUE：表示解绑 EIP 之后分配普通公网 IP。
-        ///
-        /// <li>FALSE：表示解绑 EIP 之后不分配普通公网 IP。
+        /// - TRUE：表示解绑 EIP 之后分配普通公网 IP。
+        /// - FALSE：表示解绑 EIP 之后不分配普通公网 IP。
         ///
         /// 默认取值：FALSE。
         ///
         /// 只有满足以下条件时才能指定该参数：
-        ///
-        /// <li> 只有在解绑主网卡的主内网 IP 上的 EIP 时才能指定该参数。
-        ///
-        /// <li>解绑 EIP 后重新分配普通公网 IP 操作一个账号每天最多操作 10 次；详情可通过 [DescribeAddressQuota](https://cloud.tencent.com/document/api/213/1378) 接口获取。
+        /// - 只有在解绑主网卡的主内网 IP 上的 EIP 时才能指定该参数。
+        /// - 解绑 EIP 后重新分配普通公网 IP 操作一个账号每天最多操作 10 次；详情可通过 [DescribeAddressQuota](https://cloud.tencent.com/document/api/213/1378) 接口获取。
         public let reallocateNormalPublicIp: Bool?
 
         public init(addressId: String, reallocateNormalPublicIp: Bool? = nil) {

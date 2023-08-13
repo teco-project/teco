@@ -28,23 +28,23 @@ extension Yunjing {
     /// DescribeAlarmAttribute返回参数结构体
     public struct DescribeAlarmAttributeResponse: TCResponseModel {
         /// 防护软件离线告警状态：
-        /// <li>OPEN：告警已开启</li>
-        /// <li>CLOSE： 告警已关闭</li>
+        /// - OPEN：告警已开启
+        /// - CLOSE： 告警已关闭
         public let offline: String
 
         /// 发现木马告警状态：
-        /// <li>OPEN：告警已开启</li>
-        /// <li>CLOSE： 告警已关闭</li>
+        /// - OPEN：告警已开启
+        /// - CLOSE： 告警已关闭
         public let malware: String
 
         /// 发现异地登录告警状态：
-        /// <li>OPEN：告警已开启</li>
-        /// <li>CLOSE： 告警已关闭</li>
+        /// - OPEN：告警已开启
+        /// - CLOSE： 告警已关闭
         public let nonlocalLogin: String
 
         /// 被暴力破解成功告警状态：
-        /// <li>OPEN：告警已开启</li>
-        /// <li>CLOSE： 告警已关闭</li>
+        /// - OPEN：告警已开启
+        /// - CLOSE： 告警已关闭
         public let crackSuccess: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

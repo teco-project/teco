@@ -22,9 +22,9 @@ extension Vod {
     /// CreateWatermarkTemplate请求参数结构体
     public struct CreateWatermarkTemplateRequest: TCRequestModel {
         /// 水印类型，可选值：
-        /// <li>image：图片水印；</li>
-        /// <li>text：文字水印；</li>
-        /// <li>svg：SVG 水印。</li>
+        /// - image：图片水印；
+        /// - text：文字水印；
+        /// - svg：SVG 水印。
         public let type: String
 
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
@@ -37,22 +37,22 @@ extension Vod {
         public let comment: String?
 
         /// 原点位置，可选值：
-        /// <li>TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；</li>
-        /// <li>TopRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；</li>
-        /// <li>BottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；</li>
-        /// <li>BottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下角。</li>
+        /// - TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角；
+        /// - TopRight：表示坐标原点位于视频图像的右上角，水印原点为图片或文字的右上角；
+        /// - BottomLeft：表示坐标原点位于视频图像的左下角，水印原点为图片或文字的左下角；
+        /// - BottomRight：表示坐标原点位于视频图像的右下角，水印原点为图片或文字的右下角。
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
         /// 默认值：0px。
         public let xPos: String?
 
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
-        /// <li>当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；</li>
-        /// <li>当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。</li>
+        /// - 当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
+        /// - 当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
         /// 默认值：0px。
         public let yPos: String?
 

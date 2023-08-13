@@ -22,9 +22,9 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineRuleList请求参数结构体
     public struct DescribeBaselineRuleListRequest: TCPaginatedRequest {
-        /// <li>RuleName - String - 是否必填：否 - 规则名称</li>
-        /// <li>CategoryId - int64 - 是否必填：否 自定义筛选为-1 - 规则分类</li>
-        /// <li>RuleType - int - 是否必填：否 0:系统 1:自定义 - 规则类型</li>
+        /// - RuleName - String - 是否必填：否 - 规则名称
+        /// - CategoryId - int64 - 是否必填：否 自定义筛选为-1 - 规则分类
+        /// - RuleType - int - 是否必填：否 0:系统 1:自定义 - 规则类型
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

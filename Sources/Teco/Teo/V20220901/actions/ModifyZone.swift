@@ -25,8 +25,8 @@ extension Teo {
         public let zoneId: String
 
         /// 站点接入方式，取值有：
-        /// <li> full：NS 接入；</li>
-        /// <li> partial：CNAME 接入，如果站点当前是无域名接入，仅支持切换到CNAME接入。</li>不填写保持原有配置。
+        /// - full：NS 接入；
+        /// - partial：CNAME 接入，如果站点当前是无域名接入，仅支持切换到CNAME接入。不填写保持原有配置。
         public let type: String?
 
         /// 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。当站点是无域名接入方式时不允许传此参数。
@@ -36,9 +36,9 @@ extension Teo {
         public let aliasZoneName: String?
 
         /// 站点接入地域，取值有：
-        /// <li> global：全球；</li>
-        /// <li> mainland：中国大陆；</li>
-        /// <li> overseas：境外区域。</li>当站点是无域名接入方式时，不允许传此参数。
+        /// - global：全球；
+        /// - mainland：中国大陆；
+        /// - overseas：境外区域。当站点是无域名接入方式时，不允许传此参数。
         public let area: String?
 
         /// 站点名称。仅当站点由无域名接入方式切换到CNAME接入方式的场景下有效。

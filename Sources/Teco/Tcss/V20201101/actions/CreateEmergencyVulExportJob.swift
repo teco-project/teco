@@ -28,17 +28,17 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低</li>
-        /// <li>Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。</li>
-        /// <li>CanBeFixed- string - 是否必填：否 - 是否可修复true,false。</li>
-        /// <li>CVEID- string - 是否必填：否 - CVE编号</li>
-        /// <li>ImageID- string - 是否必填：否 - 镜像ID</li>
-        /// <li>ImageName- String -是否必填: 否 - 镜像名称</li>
-        /// <li>ContainerID- string -是否必填: 否 - 容器ID</li>
-        /// <li>ContainerName- string -是否必填: 否 - 容器名称</li>
-        /// <li>ComponentName- string -是否必填: 否 - 组件名称</li>
-        /// <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
-        /// <li>Name- string -是否必填: 否 - 漏洞名称</li>
+        /// - Level- String - 是否必填：否 - 威胁等级，CRITICAL:严重 HIGH:高/MIDDLE:中/LOW:低
+        /// - Tags- string - 是否必填：否 - 漏洞标签，POC，EXP。
+        /// - CanBeFixed- string - 是否必填：否 - 是否可修复true,false。
+        /// - CVEID- string - 是否必填：否 - CVE编号
+        /// - ImageID- string - 是否必填：否 - 镜像ID
+        /// - ImageName- String -是否必填: 否 - 镜像名称
+        /// - ContainerID- string -是否必填: 否 - 容器ID
+        /// - ContainerName- string -是否必填: 否 - 容器名称
+        /// - ComponentName- string -是否必填: 否 - 组件名称
+        /// - ComponentVersion- string -是否必填: 否 - 组件版本
+        /// - Name- string -是否必填: 否 - 漏洞名称
         public let filters: [RunTimeFilters]?
 
         /// 排序方式

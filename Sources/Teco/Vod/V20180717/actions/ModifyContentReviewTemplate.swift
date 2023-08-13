@@ -43,8 +43,8 @@ extension Vod {
         public let politicalConfigure: PoliticalConfigureInfoForUpdate?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
 
         /// 用户自定义内容审核控制参数。
@@ -54,8 +54,8 @@ extension Vod {
         public let screenshotInterval: Float?
 
         /// 审核结果是否进入审核墙（对审核结果进行人工识别）的开关。
-        /// <li>ON：是；</li>
-        /// <li>OFF：否。</li>
+        /// - ON：是；
+        /// - OFF：否。
         public let reviewWallSwitch: String?
 
         public init(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil) {

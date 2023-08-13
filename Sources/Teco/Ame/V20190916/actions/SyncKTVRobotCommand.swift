@@ -25,18 +25,18 @@ extension Ame {
         public let robotId: String
 
         /// 指令，取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>SwitchPrevious：上一首</li>
-        /// <li>SwitchNext：下一首</li>
-        /// <li>SetPlayMode：设置播放模式</li>
-        /// <li>Seek：调整播放进度</li>
-        /// <li>SetPlaylist：歌单变更</li>
-        /// <li>SetAudioParam：音频参数变更</li>
-        /// <li>SendMessage：发送自定义消息</li>
-        /// <li>SetDestroyMode：设置销毁模式</li>
-        /// <li>~~SetVolume：设置音量~~（已废弃，请采用 SetRealVolume）</li>
-        /// <li>SetRealVolume：设置真实音量</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - SwitchPrevious：上一首
+        /// - SwitchNext：下一首
+        /// - SetPlayMode：设置播放模式
+        /// - Seek：调整播放进度
+        /// - SetPlaylist：歌单变更
+        /// - SetAudioParam：音频参数变更
+        /// - SendMessage：发送自定义消息
+        /// - SetDestroyMode：设置销毁模式
+        /// - ~~SetVolume：设置音量~~（已废弃，请采用 SetRealVolume）
+        /// - SetRealVolume：设置真实音量
         public let command: String
 
         /// 播放参数。

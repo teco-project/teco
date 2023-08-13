@@ -31,7 +31,7 @@ extension Vod {
         public let startTime: String?
 
         /// 轮播列表。
-        /// <li>数组长度限制：100。</li>
+        /// - 数组长度限制：100。
         public let roundPlaylist: [RoundPlayListItemInfo]?
 
         /// 轮播播单名称，长度限制：64 个字符。
@@ -41,12 +41,12 @@ extension Vod {
         public let desc: String?
 
         /// 播放状态，可选值：
-        /// <li>Disabled：结束播放，结束后轮播任务不能再次启动。</li>
+        /// - Disabled：结束播放，结束后轮播任务不能再次启动。
         public let status: String?
 
         /// 播放模式，可选值：
-        /// <li>Loop：循环播放播单；</li>
-        /// <li>Linear：单次播放，播单播放完停止播放。</li>
+        /// - Loop：循环播放播单；
+        /// - Linear：单次播放，播单播放完停止播放。
         public let playBackMode: String?
 
         public init(roundPlayId: String, subAppId: UInt64? = nil, startTime: String? = nil, roundPlaylist: [RoundPlayListItemInfo]? = nil, name: String? = nil, desc: String? = nil, status: String? = nil, playBackMode: String? = nil) {

@@ -29,7 +29,7 @@ extension Cynosdb {
         public let accountNames: [String]?
 
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         /// 该参数已废用
         public let dbType: String?
 

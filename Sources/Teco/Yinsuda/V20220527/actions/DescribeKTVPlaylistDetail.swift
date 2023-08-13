@@ -38,17 +38,18 @@ extension Yinsuda {
         public let limit: Int64?
 
         /// 权益过滤，取值有：
-        /// <li>Play：可播；</li>
-        /// <li>Sing：可唱。</li>
+        /// - Play：可播；
+        /// - Sing：可唱。
         public let rightFilters: [String]?
 
         /// 播放场景。默认为Chat
-        /// <li>Live：直播</li><li>Chat：语聊</li>
+        /// - Live：直播
+        /// - Chat：语聊
         public let playScene: String?
 
         /// 物料过滤，取值有：
-        /// <li>Lyrics：含有歌词；</li>
-        /// <li>Midi：含有音高线。</li>
+        /// - Lyrics：含有歌词；
+        /// - Midi：含有音高线。
         public let materialFilters: [String]?
 
         public init(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, playScene: String? = nil, materialFilters: [String]? = nil) {

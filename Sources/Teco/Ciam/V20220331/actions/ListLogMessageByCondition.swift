@@ -31,8 +31,7 @@ extension Ciam {
         public let startTime: Int64
 
         /// Key可选值为events
-        ///
-        /// <li> **events** </li>	Values为["SIGNUP", "USER_UPDATE", "USER_DELETE", "USER_CREATE", "ACCOUNT_LINKING"] 中的一个或多个
+        /// - **events** 	Values为["SIGNUP", "USER_UPDATE", "USER_DELETE", "USER_CREATE", "ACCOUNT_LINKING"] 中的一个或多个
         public let filters: [Filter]?
 
         public init(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil) {

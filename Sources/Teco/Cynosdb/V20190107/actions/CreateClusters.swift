@@ -31,11 +31,11 @@ extension Cynosdb {
         public let subnetId: String
 
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         public let dbType: String
 
         /// 数据库版本，取值范围:
-        /// <li> MYSQL可选值：5.7，8.0 </li>
+        /// - MYSQL可选值：5.7，8.0
         public let dbVersion: String
 
         /// 所属项目ID
@@ -117,8 +117,8 @@ extension Cynosdb {
 
         /// Db类型
         /// 当DbType为MYSQL时可选(默认NORMAL)：
-        /// <li>NORMAL</li>
-        /// <li>SERVERLESS</li>
+        /// - NORMAL
+        /// - SERVERLESS
         public let dbMode: String?
 
         /// 当DbMode为SEVERLESS时必填
@@ -130,8 +130,8 @@ extension Cynosdb {
         public let maxCpu: Float?
 
         /// 当DbMode为SEVERLESS时，指定集群是否自动暂停，可选范围
-        /// <li>yes</li>
-        /// <li>no</li>
+        /// - yes
+        /// - no
         /// 默认值:yes
         public let autoPause: String?
 

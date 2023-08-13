@@ -31,8 +31,8 @@ extension Teo {
         public let serverCertInfo: [ServerCertInfo]?
 
         /// 托管类型，取值有：
-        /// <li>apply：托管EO；</li>
-        /// <li>none：不托管EO；</li>不填，默认取值为none。
+        /// - apply：托管EO；
+        /// - none：不托管EO；不填，默认取值为none。
         public let applyType: String?
 
         public init(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil) {

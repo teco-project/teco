@@ -28,8 +28,8 @@ extension Monitor {
         public let agentIds: [String]
 
         /// 要更新的状态
-        /// <li> 1= 开启 </li>
-        /// <li> 2= 关闭 </li>
+        /// - 1= 开启
+        /// - 2= 关闭
         public let status: Int64
 
         public init(instanceId: String, agentIds: [String], status: Int64) {

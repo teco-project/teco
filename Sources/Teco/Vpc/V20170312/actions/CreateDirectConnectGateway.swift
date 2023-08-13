@@ -25,17 +25,17 @@ extension Vpc {
         public let directConnectGatewayName: String
 
         /// 关联网络类型，可选值：
-        /// <li>VPC - 私有网络</li>
-        /// <li>CCN - 云联网</li>
+        /// - VPC - 私有网络
+        /// - CCN - 云联网
         public let networkType: String
 
-        /// <li>NetworkType 为 VPC 时，这里传值为私有网络实例ID</li>
-        /// <li>NetworkType 为 CCN 时，这里传值为云联网实例ID</li>
+        /// - NetworkType 为 VPC 时，这里传值为私有网络实例ID
+        /// - NetworkType 为 CCN 时，这里传值为云联网实例ID
         public let networkInstanceId: String
 
         /// 网关类型，可选值：
-        /// <li>NORMAL - （默认）标准型，注：云联网只支持标准型</li>
-        /// <li>NAT - NAT型</li>NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
+        /// - NORMAL - （默认）标准型，注：云联网只支持标准型
+        /// - NAT - NAT型NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
         public let gatewayType: String?
 
         /// 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持`ModeType`。

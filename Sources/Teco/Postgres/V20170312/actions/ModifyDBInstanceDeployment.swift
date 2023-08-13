@@ -29,9 +29,9 @@ extension Postgres {
         public let dbNodeSet: [DBNode]
 
         /// 指定实例配置完成变更后的切换时间。
-        /// <li>0：立即切换
-        /// <li>1：指定时间切换
-        /// <li>2：维护时间窗口内切换
+        /// - 0：立即切换
+        /// - 1：指定时间切换
+        /// - 2：维护时间窗口内切换
         /// 默认值：0
         public let switchTag: Int64
 

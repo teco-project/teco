@@ -23,7 +23,7 @@ extension Vod {
     /// DescribeVodDomains请求参数结构体
     public struct DescribeVodDomainsRequest: TCPaginatedRequest {
         /// 域名列表。当该字段不填时，则默认列出所有域名信息。本字段限制如下：
-        /// <li>域名个数度最大为 20。</li>
+        /// - 域名个数度最大为 20。
         public let domains: [String]?
 
         /// 分页拉取的最大返回结果数。默认值：20。

@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineWeakPasswordList请求参数结构体
     public struct DescribeBaselineWeakPasswordListRequest: TCPaginatedRequest {
-        /// <li>WeakPassword - string - 是否必填：否 - 弱口令</li>
+        /// - WeakPassword - string - 是否必填：否 - 弱口令
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

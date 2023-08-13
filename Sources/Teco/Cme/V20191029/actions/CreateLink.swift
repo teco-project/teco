@@ -25,8 +25,8 @@ extension Cme {
         public let platform: String
 
         /// 链接类型，可取值有:
-        /// <li>CLASS: 分类链接；</li>
-        /// <li> MATERIAL：媒体文件链接。</li>
+        /// - CLASS: 分类链接；
+        /// - MATERIAL：媒体文件链接。
         public let type: String
 
         /// 链接名称，不能超过30个字符。
@@ -36,8 +36,8 @@ extension Cme {
         public let owner: Entity
 
         /// 目标资源Id。可取值有：
-        /// <li>当 Type 为 MATERIAL 时填媒体 ID；</li>
-        /// <li>当 Type 为 CLASS 时填写分类路径。</li>
+        /// - 当 Type 为 MATERIAL 时填媒体 ID；
+        /// - 当 Type 为 CLASS 时填写分类路径。
         public let destinationId: String
 
         /// 目标资源归属者。

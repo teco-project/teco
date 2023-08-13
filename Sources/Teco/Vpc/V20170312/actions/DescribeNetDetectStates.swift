@@ -26,7 +26,7 @@ extension Vpc {
         public let netDetectIds: [String]?
 
         /// 过滤条件，参数不支持同时指定NetDetectIds和Filters。
-        /// <li>net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678。</li>
+        /// - net-detect-id - String - （过滤条件）网络探测实例ID，形如：netd-12345678。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。
