@@ -62,7 +62,8 @@ extension Live {
     /// 创建直播时移规则
     ///
     /// 创建直播时移规则，需要先调用[CreateLiveTimeShiftTemplate](/document/product/267/86169)接口创建直播时移模板，将返回的模板id绑定到流使用。
-    /// <br>直播时移相关文档：[直播时移](/document/product/267/86134)。
+    ///
+    /// 直播时移相关文档：[直播时移](/document/product/267/86134)。
     @inlinable @discardableResult
     public func createLiveTimeShiftRule(_ input: CreateLiveTimeShiftRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTimeShiftRuleResponse> {
         self.client.execute(action: "CreateLiveTimeShiftRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,7 +72,8 @@ extension Live {
     /// 创建直播时移规则
     ///
     /// 创建直播时移规则，需要先调用[CreateLiveTimeShiftTemplate](/document/product/267/86169)接口创建直播时移模板，将返回的模板id绑定到流使用。
-    /// <br>直播时移相关文档：[直播时移](/document/product/267/86134)。
+    ///
+    /// 直播时移相关文档：[直播时移](/document/product/267/86134)。
     @inlinable @discardableResult
     public func createLiveTimeShiftRule(_ input: CreateLiveTimeShiftRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTimeShiftRuleResponse {
         try await self.client.execute(action: "CreateLiveTimeShiftRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,7 +82,8 @@ extension Live {
     /// 创建直播时移规则
     ///
     /// 创建直播时移规则，需要先调用[CreateLiveTimeShiftTemplate](/document/product/267/86169)接口创建直播时移模板，将返回的模板id绑定到流使用。
-    /// <br>直播时移相关文档：[直播时移](/document/product/267/86134)。
+    ///
+    /// 直播时移相关文档：[直播时移](/document/product/267/86134)。
     @inlinable @discardableResult
     public func createLiveTimeShiftRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTimeShiftRuleResponse> {
         self.createLiveTimeShiftRule(.init(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
@@ -89,7 +92,8 @@ extension Live {
     /// 创建直播时移规则
     ///
     /// 创建直播时移规则，需要先调用[CreateLiveTimeShiftTemplate](/document/product/267/86169)接口创建直播时移模板，将返回的模板id绑定到流使用。
-    /// <br>直播时移相关文档：[直播时移](/document/product/267/86134)。
+    ///
+    /// 直播时移相关文档：[直播时移](/document/product/267/86134)。
     @inlinable @discardableResult
     public func createLiveTimeShiftRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTimeShiftRuleResponse {
         try await self.createLiveTimeShiftRule(.init(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)

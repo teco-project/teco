@@ -66,7 +66,6 @@ extension Ivld {
     /// - 长时间（5 秒）未回包应答。
     /// - 应答 HTTP STATUS 不为200。
     ///
-    ///
     /// #### 回调接口协议
     ///
     /// ##### 分析任务完成消息回调
@@ -76,7 +75,6 @@ extension Ivld {
     /// | TaskId | 是 | String | 任务ID |
     /// | TaskStatus | 是 | [TaskStatus](/document/product/1509/65063#TaskInfo) | 任务执行状态 |
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    ///
     ///
     /// ##### 导入媒资完成消息回调
     /// | 参数名称 | 必选 | 类型 | 描述 |
@@ -108,7 +106,6 @@ extension Ivld {
     /// - 长时间（5 秒）未回包应答。
     /// - 应答 HTTP STATUS 不为200。
     ///
-    ///
     /// #### 回调接口协议
     ///
     /// ##### 分析任务完成消息回调
@@ -118,7 +115,6 @@ extension Ivld {
     /// | TaskId | 是 | String | 任务ID |
     /// | TaskStatus | 是 | [TaskStatus](/document/product/1509/65063#TaskInfo) | 任务执行状态 |
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    ///
     ///
     /// ##### 导入媒资完成消息回调
     /// | 参数名称 | 必选 | 类型 | 描述 |
@@ -150,7 +146,6 @@ extension Ivld {
     /// - 长时间（5 秒）未回包应答。
     /// - 应答 HTTP STATUS 不为200。
     ///
-    ///
     /// #### 回调接口协议
     ///
     /// ##### 分析任务完成消息回调
@@ -160,7 +155,6 @@ extension Ivld {
     /// | TaskId | 是 | String | 任务ID |
     /// | TaskStatus | 是 | [TaskStatus](/document/product/1509/65063#TaskInfo) | 任务执行状态 |
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    ///
     ///
     /// ##### 导入媒资完成消息回调
     /// | 参数名称 | 必选 | 类型 | 描述 |
@@ -192,7 +186,6 @@ extension Ivld {
     /// - 长时间（5 秒）未回包应答。
     /// - 应答 HTTP STATUS 不为200。
     ///
-    ///
     /// #### 回调接口协议
     ///
     /// ##### 分析任务完成消息回调
@@ -202,7 +195,6 @@ extension Ivld {
     /// | TaskId | 是 | String | 任务ID |
     /// | TaskStatus | 是 | [TaskStatus](/document/product/1509/65063#TaskInfo) | 任务执行状态 |
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    ///
     ///
     /// ##### 导入媒资完成消息回调
     /// | 参数名称 | 必选 | 类型 | 描述 |

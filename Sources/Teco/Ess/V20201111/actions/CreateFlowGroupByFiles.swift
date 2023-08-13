@@ -75,7 +75,8 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。<br/>
+    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    ///
     /// PDF资源Id 通过上传文件接口获取
     /// 此接口合同组中的子合同必须都是文件发起的合同
     @inlinable
@@ -85,7 +86,8 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。<br/>
+    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    ///
     /// PDF资源Id 通过上传文件接口获取
     /// 此接口合同组中的子合同必须都是文件发起的合同
     @inlinable
@@ -95,7 +97,8 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。<br/>
+    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    ///
     /// PDF资源Id 通过上传文件接口获取
     /// 此接口合同组中的子合同必须都是文件发起的合同
     @inlinable
@@ -105,7 +108,8 @@ extension Ess {
 
     /// 通过多文件创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。<br/>
+    /// 此接口（CreateFlowGroupByFiles）通过多文件创建合同组签署流程。
+    ///
     /// PDF资源Id 通过上传文件接口获取
     /// 此接口合同组中的子合同必须都是文件发起的合同
     @inlinable

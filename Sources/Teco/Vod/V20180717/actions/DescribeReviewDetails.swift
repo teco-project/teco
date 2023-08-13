@@ -67,7 +67,7 @@ extension Vod {
 
     /// 查询内容智能识别详情
     ///
-    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// **本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代**
     ///
     /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
     ///
@@ -80,7 +80,7 @@ extension Vod {
 
     /// 查询内容智能识别详情
     ///
-    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// **本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代**
     ///
     /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
     ///
@@ -93,7 +93,7 @@ extension Vod {
 
     /// 查询内容智能识别详情
     ///
-    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// **本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代**
     ///
     /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
     ///
@@ -106,7 +106,7 @@ extension Vod {
 
     /// 查询内容智能识别详情
     ///
-    /// <b>本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代</b>
+    /// **本接口已不推荐使用，用 [DescribeMediaProcessUsageData](/document/product/266/41464) 替代**
     ///
     /// 该接口返回查询时间范围内每天使用的视频内容智能识别时长数据，单位： 秒。
     ///

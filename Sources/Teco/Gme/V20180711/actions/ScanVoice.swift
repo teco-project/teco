@@ -80,28 +80,28 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
     ///
-    /// <h4><b>功能试用说明：</b></h4>
+    /// <h4>**功能试用说明：**</h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
     ///
-    /// <h4><b>接口功能说明：</b></h4>
+    /// <h4>**接口功能说明：**</h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
     /// <li>支持场景输入，包括：谩骂、色情等场景</li>
     /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
     /// </br>
-    /// <h4><b>音频文件限制说明：</b></h4>
+    /// <h4>**音频文件限制说明：**</h4>
     /// <li>音频文件大小限制：100 M</li>
     /// <li>音频文件时长限制：30分钟</li>
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
-    /// <h4><b>语音流限制说明：</b></h4>
+    /// <h4>**语音流限制说明：**</h4>
     /// <li>语音流格式支持的类型：.m3u8、.flv</li>
     /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
     /// <li>语音流时长限制：4小时</li>
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
-    /// <h4 id="Label_Value"><b>Scenes 与 Label 参数说明：</b></h4>
+    /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
@@ -128,7 +128,7 @@ extension Gme {
     /// </tbody>
     /// </table>
     /// </br>
-    /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
+    /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
     /// <li>HTTP 请求参数（query）说明：</li>
@@ -223,28 +223,28 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
     ///
-    /// <h4><b>功能试用说明：</b></h4>
+    /// <h4>**功能试用说明：**</h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
     ///
-    /// <h4><b>接口功能说明：</b></h4>
+    /// <h4>**接口功能说明：**</h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
     /// <li>支持场景输入，包括：谩骂、色情等场景</li>
     /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
     /// </br>
-    /// <h4><b>音频文件限制说明：</b></h4>
+    /// <h4>**音频文件限制说明：**</h4>
     /// <li>音频文件大小限制：100 M</li>
     /// <li>音频文件时长限制：30分钟</li>
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
-    /// <h4><b>语音流限制说明：</b></h4>
+    /// <h4>**语音流限制说明：**</h4>
     /// <li>语音流格式支持的类型：.m3u8、.flv</li>
     /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
     /// <li>语音流时长限制：4小时</li>
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
-    /// <h4 id="Label_Value"><b>Scenes 与 Label 参数说明：</b></h4>
+    /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
@@ -271,7 +271,7 @@ extension Gme {
     /// </tbody>
     /// </table>
     /// </br>
-    /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
+    /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
     /// <li>HTTP 请求参数（query）说明：</li>
@@ -366,28 +366,28 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
     ///
-    /// <h4><b>功能试用说明：</b></h4>
+    /// <h4>**功能试用说明：**</h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
     ///
-    /// <h4><b>接口功能说明：</b></h4>
+    /// <h4>**接口功能说明：**</h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
     /// <li>支持场景输入，包括：谩骂、色情等场景</li>
     /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
     /// </br>
-    /// <h4><b>音频文件限制说明：</b></h4>
+    /// <h4>**音频文件限制说明：**</h4>
     /// <li>音频文件大小限制：100 M</li>
     /// <li>音频文件时长限制：30分钟</li>
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
-    /// <h4><b>语音流限制说明：</b></h4>
+    /// <h4>**语音流限制说明：**</h4>
     /// <li>语音流格式支持的类型：.m3u8、.flv</li>
     /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
     /// <li>语音流时长限制：4小时</li>
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
-    /// <h4 id="Label_Value"><b>Scenes 与 Label 参数说明：</b></h4>
+    /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
@@ -414,7 +414,7 @@ extension Gme {
     /// </tbody>
     /// </table>
     /// </br>
-    /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
+    /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
     /// <li>HTTP 请求参数（query）说明：</li>
@@ -509,28 +509,28 @@ extension Gme {
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
     ///
-    /// <h4><b>功能试用说明：</b></h4>
+    /// <h4>**功能试用说明：**</h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
     ///
-    /// <h4><b>接口功能说明：</b></h4>
+    /// <h4>**接口功能说明：**</h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
     /// <li>支持场景输入，包括：谩骂、色情等场景</li>
     /// <li>支持批量提交检测任务。检测任务列表最多支持100个。</li>
     /// </br>
-    /// <h4><b>音频文件限制说明：</b></h4>
+    /// <h4>**音频文件限制说明：**</h4>
     /// <li>音频文件大小限制：100 M</li>
     /// <li>音频文件时长限制：30分钟</li>
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
-    /// <h4><b>语音流限制说明：</b></h4>
+    /// <h4>**语音流限制说明：**</h4>
     /// <li>语音流格式支持的类型：.m3u8、.flv</li>
     /// <li>语音流支持的传输协议：RTMP、HTTP、HTTPS</li>
     /// <li>语音流时长限制：4小时</li>
     /// <li>支持音视频流分离并对音频流进行分析</li>
     /// </br>
-    /// <h4 id="Label_Value"><b>Scenes 与 Label 参数说明：</b></h4>
+    /// <h4 id="Label_Value">**Scenes 与 Label 参数说明：**</h4>
     /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，<font color="red">目前要求您设置 Scenes 参数值为：["default"]</font>；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
     /// <table>
     /// <thread>
@@ -557,7 +557,7 @@ extension Gme {
     /// </tbody>
     /// </table>
     /// </br>
-    /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
+    /// <h4 id="Callback_Declare">**回调相关说明：**</h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
     /// <li>HTTP 请求参数（query）说明：</li>

@@ -43,7 +43,8 @@ extension Asr {
     /// 语音流异步识别任务列表
     ///
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
-    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
         self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -52,7 +53,8 @@ extension Asr {
     /// 语音流异步识别任务列表
     ///
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
-    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
         try await self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,7 +63,8 @@ extension Asr {
     /// 语音流异步识别任务列表
     ///
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
-    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
         self.describeAsyncRecognitionTasks(.init(), region: region, logger: logger, on: eventLoop)
@@ -70,7 +73,8 @@ extension Asr {
     /// 语音流异步识别任务列表
     ///
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
-    /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
         try await self.describeAsyncRecognitionTasks(.init(), region: region, logger: logger, on: eventLoop)

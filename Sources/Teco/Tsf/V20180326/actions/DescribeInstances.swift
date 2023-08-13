@@ -78,56 +78,42 @@ extension Tsf {
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable
     public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable
     public func describeInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
         self.describeInstances(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable
     public func describeInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
         try await self.describeInstances(.init(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [InstanceEnrichedInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     @inlinable @discardableResult
     public func describeInstancesPaginated(_ input: DescribeInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeInstances, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 查询机器列表
-    ///
-    /// 无
     ///
     /// - Returns: `AsyncSequence`s of ``InstanceEnrichedInfo`` and ``DescribeInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

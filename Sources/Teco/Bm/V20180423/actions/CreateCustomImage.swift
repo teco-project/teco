@@ -63,7 +63,8 @@ extension Bm {
 
     /// 创建自定义镜像
     ///
-    /// 创建自定义镜像<br>
+    /// 创建自定义镜像
+    ///
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(_ input: CreateCustomImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomImageResponse> {
@@ -72,7 +73,8 @@ extension Bm {
 
     /// 创建自定义镜像
     ///
-    /// 创建自定义镜像<br>
+    /// 创建自定义镜像
+    ///
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(_ input: CreateCustomImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {
@@ -81,7 +83,8 @@ extension Bm {
 
     /// 创建自定义镜像
     ///
-    /// 创建自定义镜像<br>
+    /// 创建自定义镜像
+    ///
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomImageResponse> {
@@ -90,7 +93,8 @@ extension Bm {
 
     /// 创建自定义镜像
     ///
-    /// 创建自定义镜像<br>
+    /// 创建自定义镜像
+    ///
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {

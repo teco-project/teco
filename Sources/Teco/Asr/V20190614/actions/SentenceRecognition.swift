@@ -201,7 +201,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @inlinable
     public func sentenceRecognition(_ input: SentenceRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceRecognitionResponse> {
         self.client.execute(action: "SentenceRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -209,7 +221,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @inlinable
     public func sentenceRecognition(_ input: SentenceRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {
         try await self.client.execute(action: "SentenceRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -217,7 +241,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @inlinable
     public func sentenceRecognition(engSerViceType: String, sourceType: UInt64, voiceFormat: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, wordInfo: Int64? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, reinforceHotword: Int64? = nil, hotwordList: String? = nil, inputSampleRate: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceRecognitionResponse> {
         self.sentenceRecognition(.init(engSerViceType: engSerViceType, sourceType: sourceType, voiceFormat: voiceFormat, url: url, data: data, dataLen: dataLen, wordInfo: wordInfo, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, hotwordId: hotwordId, customizationId: customizationId, reinforceHotword: reinforceHotword, hotwordList: hotwordList, inputSampleRate: inputSampleRate), region: region, logger: logger, on: eventLoop)
@@ -225,7 +261,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @available(*, deprecated, renamed: "sentenceRecognition(engSerViceType:sourceType:voiceFormat:url:data:dataLen:wordInfo:filterDirty:filterModal:filterPunc:convertNumMode:hotwordId:customizationId:reinforceHotword:hotwordList:inputSampleRate:region:logger:on:)", message: "'projectId', 'subServiceType' and 'usrAudioKey' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func sentenceRecognition(engSerViceType: String, sourceType: UInt64, voiceFormat: String, projectId: UInt64? = nil, subServiceType: UInt64? = nil, url: String? = nil, usrAudioKey: String? = nil, data: String? = nil, dataLen: Int64? = nil, wordInfo: Int64? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, reinforceHotword: Int64? = nil, hotwordList: String? = nil, inputSampleRate: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceRecognitionResponse> {
@@ -234,7 +282,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @inlinable
     public func sentenceRecognition(engSerViceType: String, sourceType: UInt64, voiceFormat: String, url: String? = nil, data: String? = nil, dataLen: Int64? = nil, wordInfo: Int64? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, reinforceHotword: Int64? = nil, hotwordList: String? = nil, inputSampleRate: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {
         try await self.sentenceRecognition(.init(engSerViceType: engSerViceType, sourceType: sourceType, voiceFormat: voiceFormat, url: url, data: data, dataLen: dataLen, wordInfo: wordInfo, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, hotwordId: hotwordId, customizationId: customizationId, reinforceHotword: reinforceHotword, hotwordList: hotwordList, inputSampleRate: inputSampleRate), region: region, logger: logger, on: eventLoop)
@@ -242,7 +302,19 @@ extension Asr {
 
     /// 一句话识别
     ///
-    /// 本接口用于对60秒之内的短音频文件进行识别。<br>•   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。<br>•   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。<br>•   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。<br>•   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"<br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。<br>•   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
+    /// 本接口用于对60秒之内的短音频文件进行识别。
+    ///
+    /// •   支持中文普通话、英语、粤语、日语、越南语、马来语、印度尼西亚语、菲律宾语、泰语、葡萄牙语、土耳其语、阿拉伯语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
+    ///
+    /// •   支持本地语音文件上传和语音URL上传两种请求方式，音频时长不能超过60s，音频文件大小不能超过3MB。
+    ///
+    /// •   音频格式支持wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。
+    ///
+    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    ///
+    /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// •   默认接口请求频率限制：30次/秒，如您有提高请求频率限制的需求，请[前往购买](https://buy.cloud.tencent.com/asr)。
     @available(*, deprecated, renamed: "sentenceRecognition(engSerViceType:sourceType:voiceFormat:url:data:dataLen:wordInfo:filterDirty:filterModal:filterPunc:convertNumMode:hotwordId:customizationId:reinforceHotword:hotwordList:inputSampleRate:region:logger:on:)", message: "'projectId', 'subServiceType' and 'usrAudioKey' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func sentenceRecognition(engSerViceType: String, sourceType: UInt64, voiceFormat: String, projectId: UInt64? = nil, subServiceType: UInt64? = nil, url: String? = nil, usrAudioKey: String? = nil, data: String? = nil, dataLen: Int64? = nil, wordInfo: Int64? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, reinforceHotword: Int64? = nil, hotwordList: String? = nil, inputSampleRate: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceRecognitionResponse {

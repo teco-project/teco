@@ -103,7 +103,8 @@ extension Live {
     /// 直播创建录制模板
     ///
     /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    ///
+    /// 录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable
     public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordTemplateResponse> {
         self.client.execute(action: "CreateLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -112,7 +113,8 @@ extension Live {
     /// 直播创建录制模板
     ///
     /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    ///
+    /// 录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable
     public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
         try await self.client.execute(action: "CreateLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -121,7 +123,8 @@ extension Live {
     /// 直播创建录制模板
     ///
     /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    ///
+    /// 录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable
     public func createLiveRecordTemplate(templateName: String, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, isDelayLive: Int64? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordTemplateResponse> {
         self.createLiveRecordTemplate(.init(templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, isDelayLive: isDelayLive, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), region: region, logger: logger, on: eventLoop)
@@ -130,7 +133,8 @@ extension Live {
     /// 直播创建录制模板
     ///
     /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    ///
+    /// 录制相关文档：[直播录制](/document/product/267/32739)。
     @inlinable
     public func createLiveRecordTemplate(templateName: String, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, isDelayLive: Int64? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
         try await self.createLiveRecordTemplate(.init(templateName: templateName, description: description, flvParam: flvParam, hlsParam: hlsParam, mp4Param: mp4Param, aacParam: aacParam, isDelayLive: isDelayLive, hlsSpecialParam: hlsSpecialParam, mp3Param: mp3Param, removeWatermark: removeWatermark, flvSpecialParam: flvSpecialParam), region: region, logger: logger, on: eventLoop)

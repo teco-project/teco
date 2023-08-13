@@ -57,7 +57,6 @@ extension Lighthouse {
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
     ///
-    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
     ///
     /// 在 FirewallRules 参数中：
@@ -74,7 +73,6 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
-    ///
     ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
     ///
@@ -93,7 +91,6 @@ extension Lighthouse {
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
     ///
-    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
     ///
     /// 在 FirewallRules 参数中：
@@ -110,7 +107,6 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
-    ///
     ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
     ///

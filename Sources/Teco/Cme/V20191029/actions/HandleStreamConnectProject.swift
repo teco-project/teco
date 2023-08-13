@@ -91,7 +91,7 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。</font>
     ///
     /// ### 操作类型<a id="Operation"></a>
     /// - `AddInput`（添加输入源），包括：
@@ -115,7 +115,7 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。</font>
     ///
     /// ### 操作类型<a id="Operation"></a>
     /// - `AddInput`（添加输入源），包括：
@@ -139,7 +139,7 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。</font>
     ///
     /// ### 操作类型<a id="Operation"></a>
     /// - `AddInput`（添加输入源），包括：
@@ -163,7 +163,7 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。</font>
     ///
     /// ### 操作类型<a id="Operation"></a>
     /// - `AddInput`（添加输入源），包括：

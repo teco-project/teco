@@ -107,56 +107,42 @@ extension Tsf {
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable
     public func describePkgs(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePkgsResponse> {
         self.client.execute(action: "DescribePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable
     public func describePkgs(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
         try await self.client.execute(action: "DescribePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable
     public func describePkgs(applicationId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, packageTypeList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePkgsResponse> {
         self.describePkgs(.init(applicationId: applicationId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, repositoryType: repositoryType, repositoryId: repositoryId, packageTypeList: packageTypeList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable
     public func describePkgs(applicationId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, packageTypeList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
         try await self.describePkgs(.init(applicationId: applicationId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, repositoryType: repositoryType, repositoryId: repositoryId, packageTypeList: packageTypeList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable
     public func describePkgsPaginated(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PkgInfo])> {
         self.client.paginate(input: input, region: region, command: self.describePkgs, logger: logger, on: eventLoop)
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     @inlinable @discardableResult
     public func describePkgsPaginated(_ input: DescribePkgsRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePkgsResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePkgs, callback: onResponse, logger: logger, on: eventLoop)
     }
 
     /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
     ///
     /// - Returns: `AsyncSequence`s of ``PkgInfo`` and ``DescribePkgsResponse`` that can be iterated over asynchronously on demand.
     @inlinable

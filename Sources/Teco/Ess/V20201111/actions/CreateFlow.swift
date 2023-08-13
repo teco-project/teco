@@ -157,10 +157,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(_ input: CreateFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
         self.client.execute(action: "CreateFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -168,10 +171,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(_ input: CreateFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowResponse {
         try await self.client.execute(action: "CreateFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -179,10 +185,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, deadLine: Int64? = nil, remindedOn: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
         self.createFlow(.init(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, deadLine: deadLine, remindedOn: remindedOn, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, agent: agent, ccInfos: ccInfos, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
@@ -190,10 +199,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @available(*, deprecated, renamed: "createFlow(operator:flowName:approvers:flowType:clientToken:deadLine:remindedOn:userData:flowDescription:unordered:customShowMap:needSignReview:agent:ccInfos:autoSignScene:region:logger:on:)", message: "'relatedFlowId' and 'callbackUrl' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, deadLine: Int64? = nil, remindedOn: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, autoSignScene: String? = nil, relatedFlowId: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
@@ -202,10 +214,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, deadLine: Int64? = nil, remindedOn: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, autoSignScene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowResponse {
         try await self.createFlow(.init(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, deadLine: deadLine, remindedOn: remindedOn, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, agent: agent, ccInfos: ccInfos, autoSignScene: autoSignScene), region: region, logger: logger, on: eventLoop)
@@ -213,10 +228,13 @@ extension Ess {
 
     /// 模板发起合同-创建签署流程
     ///
-    /// 通过模板创建签署流程<br/>
-    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。<br/>
-    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。<br/>
-    /// 配合“创建电子文档”接口和“发起流程”接口使用。<br/>
+    /// 通过模板创建签署流程
+    ///
+    /// 适用场景：在标准制式的合同场景中，可通过提前预制好模板文件，每次调用模板文件的id，补充合同内容信息及签署信息生成电子合同。
+    ///
+    /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。
+    ///
+    /// 配合“创建电子文档”接口和“发起流程”接口使用。
     @available(*, deprecated, renamed: "createFlow(operator:flowName:approvers:flowType:clientToken:deadLine:remindedOn:userData:flowDescription:unordered:customShowMap:needSignReview:agent:ccInfos:autoSignScene:region:logger:on:)", message: "'relatedFlowId' and 'callbackUrl' are deprecated. Setting these parameters has no effect.")
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, deadLine: Int64? = nil, remindedOn: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, autoSignScene: String? = nil, relatedFlowId: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowResponse {

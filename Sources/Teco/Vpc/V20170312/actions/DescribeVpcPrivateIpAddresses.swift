@@ -54,7 +54,8 @@ extension Vpc {
 
     /// 查询VPC内网IP信息
     ///
-    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。
+    ///
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
@@ -63,7 +64,8 @@ extension Vpc {
 
     /// 查询VPC内网IP信息
     ///
-    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。
+    ///
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
@@ -72,7 +74,8 @@ extension Vpc {
 
     /// 查询VPC内网IP信息
     ///
-    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。
+    ///
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
@@ -81,7 +84,8 @@ extension Vpc {
 
     /// 查询VPC内网IP信息
     ///
-    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
+    /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。
+    ///
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
     public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {

@@ -59,7 +59,8 @@ extension Vpc {
 
     /// 分配IPv6地址
     ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
     /// * 可以指定`IPv6`地址申请，地址类型不能为主`IP`，`IPv6`地址暂时只支持作为辅助`IP`。
@@ -72,7 +73,8 @@ extension Vpc {
 
     /// 分配IPv6地址
     ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
     /// * 可以指定`IPv6`地址申请，地址类型不能为主`IP`，`IPv6`地址暂时只支持作为辅助`IP`。
@@ -85,7 +87,8 @@ extension Vpc {
 
     /// 分配IPv6地址
     ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
     /// * 可以指定`IPv6`地址申请，地址类型不能为主`IP`，`IPv6`地址暂时只支持作为辅助`IP`。
@@ -98,7 +101,8 @@ extension Vpc {
 
     /// 分配IPv6地址
     ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。<br />
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
     /// * 可以指定`IPv6`地址申请，地址类型不能为主`IP`，`IPv6`地址暂时只支持作为辅助`IP`。

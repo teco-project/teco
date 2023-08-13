@@ -45,7 +45,8 @@ extension Vpc {
 
     /// 删除HAVIP
     ///
-    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(_ input: DeleteHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
@@ -54,7 +55,8 @@ extension Vpc {
 
     /// 删除HAVIP
     ///
-    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(_ input: DeleteHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
@@ -63,7 +65,8 @@ extension Vpc {
 
     /// 删除HAVIP
     ///
-    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
@@ -72,7 +75,8 @@ extension Vpc {
 
     /// 删除HAVIP
     ///
-    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。<br />
+    /// 本接口（DeleteHaVip）用于删除高可用虚拟IP（HAVIP）。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {

@@ -50,7 +50,8 @@ extension Vpc {
 
     /// 释放IPv6地址
     ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
@@ -59,7 +60,8 @@ extension Vpc {
 
     /// 释放IPv6地址
     ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
@@ -68,7 +70,8 @@ extension Vpc {
 
     /// 释放IPv6地址
     ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
@@ -77,7 +80,8 @@ extension Vpc {
 
     /// 释放IPv6地址
     ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。
+    ///
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
