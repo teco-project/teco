@@ -113,8 +113,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/32800)的升级，具体在于：
     ///
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
@@ -142,8 +140,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/32800)的升级，具体在于：
     ///
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
@@ -171,8 +167,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/32800)的升级，具体在于：
     ///
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
@@ -200,8 +194,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/32800)的升级，具体在于：
     ///
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；

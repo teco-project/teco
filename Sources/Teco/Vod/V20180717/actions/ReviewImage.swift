@@ -67,12 +67,8 @@ extension Vod {
     /// 图片审核
     ///
     /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    ///
-    /// >
     /// - 图片文件大小支持：文件 < 5M；
-    /// >
     /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；
-    /// >
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func reviewImage(_ input: ReviewImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
@@ -82,12 +78,8 @@ extension Vod {
     /// 图片审核
     ///
     /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    ///
-    /// >
     /// - 图片文件大小支持：文件 < 5M；
-    /// >
     /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；
-    /// >
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func reviewImage(_ input: ReviewImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
@@ -97,12 +89,8 @@ extension Vod {
     /// 图片审核
     ///
     /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    ///
-    /// >
     /// - 图片文件大小支持：文件 < 5M；
-    /// >
     /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；
-    /// >
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
@@ -112,12 +100,8 @@ extension Vod {
     /// 图片审核
     ///
     /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    ///
-    /// >
     /// - 图片文件大小支持：文件 < 5M；
-    /// >
     /// - 图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；
-    /// >
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。
     @inlinable
     public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {

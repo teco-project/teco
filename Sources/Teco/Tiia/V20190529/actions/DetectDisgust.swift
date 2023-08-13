@@ -69,7 +69,6 @@ extension Tiia {
     /// 输入一张图片，返回AI针对一张图片是否是恶心的一系列判断值。
     ///
     /// 通过恶心图片识别, 可以判断一张图片是否令人恶心, 同时给出它属于的潜在类别, 让您能够过滤掉使人不愉快的图片。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectDisgust(_ input: DetectDisgustRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectDisgustResponse> {
@@ -81,7 +80,6 @@ extension Tiia {
     /// 输入一张图片，返回AI针对一张图片是否是恶心的一系列判断值。
     ///
     /// 通过恶心图片识别, 可以判断一张图片是否令人恶心, 同时给出它属于的潜在类别, 让您能够过滤掉使人不愉快的图片。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectDisgust(_ input: DetectDisgustRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectDisgustResponse {
@@ -93,7 +91,6 @@ extension Tiia {
     /// 输入一张图片，返回AI针对一张图片是否是恶心的一系列判断值。
     ///
     /// 通过恶心图片识别, 可以判断一张图片是否令人恶心, 同时给出它属于的潜在类别, 让您能够过滤掉使人不愉快的图片。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectDisgust(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectDisgustResponse> {
@@ -105,7 +102,6 @@ extension Tiia {
     /// 输入一张图片，返回AI针对一张图片是否是恶心的一系列判断值。
     ///
     /// 通过恶心图片识别, 可以判断一张图片是否令人恶心, 同时给出它属于的潜在类别, 让您能够过滤掉使人不愉快的图片。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectDisgust(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectDisgustResponse {

@@ -162,8 +162,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
@@ -173,8 +171,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
@@ -184,8 +180,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
@@ -195,8 +189,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
@@ -206,8 +198,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImagePaginated(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [ImageInfo])> {
@@ -217,8 +207,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func searchImagePaginated(_ input: SearchImageRequest, region: TCRegion? = nil, onResponse: @escaping (SearchImageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -228,8 +216,6 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     ///
     /// - Returns: `AsyncSequence`s of ``ImageInfo`` and ``SearchImageResponse`` that can be iterated over asynchronously on demand.

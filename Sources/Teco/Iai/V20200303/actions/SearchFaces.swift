@@ -130,11 +130,7 @@ extension Iai {
     /// 与[人员搜索](https://cloud.tencent.com/document/product/867/44992)及[人员搜索按库返回](https://cloud.tencent.com/document/product/867/44991)接口不同的是，本接口将该人员（Person）下的每个人脸（Face）都作为单独个体进行验证，而人员搜索及人员搜索按库返回接口 会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使搜索更加准确。
     ///
     /// 本接口需与[人员库管理相关接口](https://cloud.tencent.com/document/product/867/45015)结合使用。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    ///
-    /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFaces(_ input: SearchFacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
@@ -152,11 +148,7 @@ extension Iai {
     /// 与[人员搜索](https://cloud.tencent.com/document/product/867/44992)及[人员搜索按库返回](https://cloud.tencent.com/document/product/867/44991)接口不同的是，本接口将该人员（Person）下的每个人脸（Face）都作为单独个体进行验证，而人员搜索及人员搜索按库返回接口 会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使搜索更加准确。
     ///
     /// 本接口需与[人员库管理相关接口](https://cloud.tencent.com/document/product/867/45015)结合使用。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    ///
-    /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFaces(_ input: SearchFacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
@@ -174,11 +166,7 @@ extension Iai {
     /// 与[人员搜索](https://cloud.tencent.com/document/product/867/44992)及[人员搜索按库返回](https://cloud.tencent.com/document/product/867/44991)接口不同的是，本接口将该人员（Person）下的每个人脸（Face）都作为单独个体进行验证，而人员搜索及人员搜索按库返回接口 会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使搜索更加准确。
     ///
     /// 本接口需与[人员库管理相关接口](https://cloud.tencent.com/document/product/867/45015)结合使用。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    ///
-    /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
@@ -196,11 +184,7 @@ extension Iai {
     /// 与[人员搜索](https://cloud.tencent.com/document/product/867/44992)及[人员搜索按库返回](https://cloud.tencent.com/document/product/867/44991)接口不同的是，本接口将该人员（Person）下的每个人脸（Face）都作为单独个体进行验证，而人员搜索及人员搜索按库返回接口 会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使搜索更加准确。
     ///
     /// 本接口需与[人员库管理相关接口](https://cloud.tencent.com/document/product/867/45015)结合使用。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    ///
-    /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {

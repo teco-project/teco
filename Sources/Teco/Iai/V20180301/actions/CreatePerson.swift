@@ -130,8 +130,6 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
@@ -141,8 +139,6 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
@@ -152,8 +148,6 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
@@ -163,8 +157,6 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createPerson(groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {

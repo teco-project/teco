@@ -113,14 +113,10 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/44989)的升级，具体在于：
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
     /// 2.本接口支持更多属性细项数，也会持续增加更多功能。
     /// 请您使用本接口完成相应的人脸检测与属性分析需求。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(_ input: DetectFaceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceAttributesResponse> {
@@ -140,14 +136,10 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/44989)的升级，具体在于：
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
     /// 2.本接口支持更多属性细项数，也会持续增加更多功能。
     /// 请您使用本接口完成相应的人脸检测与属性分析需求。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(_ input: DetectFaceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceAttributesResponse {
@@ -167,14 +159,10 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/44989)的升级，具体在于：
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
     /// 2.本接口支持更多属性细项数，也会持续增加更多功能。
     /// 请您使用本接口完成相应的人脸检测与属性分析需求。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceAttributesResponse> {
@@ -194,14 +182,10 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/32806)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） [人脸融合](https://cloud.tencent.com/product/facefusion)：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 本接口是[人脸检测与分析](https://cloud.tencent.com/document/product/867/44989)的升级，具体在于：
     /// 1.本接口可以指定需要计算返回的人脸属性，避免无效计算，降低耗时；
     /// 2.本接口支持更多属性细项数，也会持续增加更多功能。
     /// 请您使用本接口完成相应的人脸检测与属性分析需求。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceAttributesResponse {

@@ -108,8 +108,6 @@ extension Tiia {
     /// 在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。</td>
     ///     </tr>
     /// </table>
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -147,8 +145,6 @@ extension Tiia {
     /// 在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。</td>
     ///     </tr>
     /// </table>
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
@@ -186,8 +182,6 @@ extension Tiia {
     /// 在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。</td>
     ///     </tr>
     /// </table>
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -225,8 +219,6 @@ extension Tiia {
     /// 在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。</td>
     ///     </tr>
     /// </table>
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func createGroup(groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {

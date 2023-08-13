@@ -124,8 +124,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
@@ -135,8 +133,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
@@ -146,8 +142,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
@@ -157,8 +151,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {

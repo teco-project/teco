@@ -130,8 +130,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/44983)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） 人脸融合：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFace(_ input: DetectFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
@@ -151,8 +149,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/44983)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） 人脸融合：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFace(_ input: DetectFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {
@@ -172,8 +168,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/44983)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） 人脸融合：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
@@ -193,8 +187,6 @@ extension Iai {
     /// 3） [人脸验证](https://cloud.tencent.com/document/product/867/44983)：保证人脸信息的质量，避免明明是本人却认证不通过的情况。
     ///
     /// 4） 人脸融合：保证上传的人脸质量，人脸融合的效果更好。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {

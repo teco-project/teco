@@ -59,7 +59,6 @@ extension Iai {
     /// 复制人员
     ///
     /// 将已存在于某人员库的人员复制到其他人员库，该人员的描述信息不会被复制。单个人员最多只能同时存在100个人员库中。
-    /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(_ input: CopyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
@@ -69,7 +68,6 @@ extension Iai {
     /// 复制人员
     ///
     /// 将已存在于某人员库的人员复制到其他人员库，该人员的描述信息不会被复制。单个人员最多只能同时存在100个人员库中。
-    /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(_ input: CopyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
@@ -79,7 +77,6 @@ extension Iai {
     /// 复制人员
     ///
     /// 将已存在于某人员库的人员复制到其他人员库，该人员的描述信息不会被复制。单个人员最多只能同时存在100个人员库中。
-    /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
@@ -89,7 +86,6 @@ extension Iai {
     /// 复制人员
     ///
     /// 将已存在于某人员库的人员复制到其他人员库，该人员的描述信息不会被复制。单个人员最多只能同时存在100个人员库中。
-    /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
     public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {

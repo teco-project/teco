@@ -56,8 +56,6 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
@@ -67,8 +65,6 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
@@ -78,8 +74,6 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
@@ -89,8 +83,6 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
