@@ -161,7 +161,9 @@ extension Gme {
     ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
-    /// <pre><code>{
+    /// <pre>
+    /// ```
+    /// {
     /// 	"Code": 0,
     /// 	"DataId": "1400000000_test_data_id",
     /// 	"ScanFinishTime": 1566720906,
@@ -212,7 +214,8 @@ extension Gme {
     /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
-    /// </code></pre>
+    /// ```
+    /// </pre>
     @inlinable
     public func scanVoice(_ input: ScanVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
         self.client.execute(action: "ScanVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -304,7 +307,9 @@ extension Gme {
     ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
-    /// <pre><code>{
+    /// <pre>
+    /// ```
+    /// {
     /// 	"Code": 0,
     /// 	"DataId": "1400000000_test_data_id",
     /// 	"ScanFinishTime": 1566720906,
@@ -355,7 +360,8 @@ extension Gme {
     /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
-    /// </code></pre>
+    /// ```
+    /// </pre>
     @inlinable
     public func scanVoice(_ input: ScanVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
         try await self.client.execute(action: "ScanVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -447,7 +453,9 @@ extension Gme {
     ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
-    /// <pre><code>{
+    /// <pre>
+    /// ```
+    /// {
     /// 	"Code": 0,
     /// 	"DataId": "1400000000_test_data_id",
     /// 	"ScanFinishTime": 1566720906,
@@ -498,7 +506,8 @@ extension Gme {
     /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
-    /// </code></pre>
+    /// ```
+    /// </pre>
     @inlinable
     public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
         self.scanVoice(.init(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), region: region, logger: logger, on: eventLoop)
@@ -590,7 +599,9 @@ extension Gme {
     ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
-    /// <pre><code>{
+    /// <pre>
+    /// ```
+    /// {
     /// 	"Code": 0,
     /// 	"DataId": "1400000000_test_data_id",
     /// 	"ScanFinishTime": 1566720906,
@@ -641,7 +652,8 @@ extension Gme {
     /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
-    /// </code></pre>
+    /// ```
+    /// </pre>
     @inlinable
     public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
         try await self.scanVoice(.init(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), region: region, logger: logger, on: eventLoop)
