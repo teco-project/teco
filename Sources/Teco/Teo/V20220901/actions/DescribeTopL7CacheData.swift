@@ -51,28 +51,28 @@ extension Teo {
         /// 过滤条件，详细的过滤条件如下：
         /// <li>domain
         ///
-        /// 按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。
+        /// 按照【**子域名**】进行过滤，子域名形如： test.example.com。
         ///
         /// 类型：String
         ///
         /// 必选：否</li>
         /// <li>url
         ///
-        /// 按照【<strong>URL</strong>】进行过滤，此参数只支持30天的时间范围，URL形如：/content。
+        /// 按照【**URL**】进行过滤，此参数只支持30天的时间范围，URL形如：/content。
         ///
         /// 类型：String
         ///
         /// 必选：否</li>
         /// <li>resourceType
         ///
-        /// 按照【<strong>资源类型</strong>】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。
+        /// 按照【**资源类型**】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。
         ///
         /// 类型：String
         ///
         /// 必选：否</li>
         /// <li>cacheType
         ///
-        /// 按照【<strong>缓存类型</strong>】进行过滤。
+        /// 按照【**缓存类型**】进行过滤。
         ///
         /// 类型：String
         ///
@@ -87,7 +87,7 @@ extension Teo {
         /// miss：未命中缓存。</li>
         /// <li>statusCode
         ///
-        /// 按照【<strong>状态码</strong>】进行过滤，此参数只支持30天的时间范围。
+        /// 按照【**状态码**】进行过滤，此参数只支持30天的时间范围。
         ///
         /// 类型：String
         ///
@@ -210,14 +210,14 @@ extension Teo {
         /// 544：544状态码。</li>
         /// <li>tagKey
         ///
-        /// 按照【<strong>标签Key</strong>】进行过滤。
+        /// 按照【**标签Key**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否</li>
         /// <li>tagValue
         ///
-        /// 按照【<strong>标签Value</strong>】进行过滤。
+        /// 按照【**标签Value**】进行过滤。
         ///
         /// 类型：String
         ///

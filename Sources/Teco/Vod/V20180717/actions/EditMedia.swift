@@ -24,7 +24,7 @@ extension Vod {
         /// 输入视频的类型，可以取的值为  File，Stream 两种。
         public let inputType: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 输入的视频文件信息，当 InputType 为 File 时必填。

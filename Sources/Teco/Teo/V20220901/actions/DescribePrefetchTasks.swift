@@ -45,7 +45,7 @@ extension Teo {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>zone-id
         ///
-        /// 按照【<strong>站点 ID</strong>】进行过滤。zone-id形如：zone-1379afjk91u32h，暂不支持多值。
+        /// 按照【**站点 ID**】进行过滤。zone-id形如：zone-1379afjk91u32h，暂不支持多值。
         ///
         /// 类型：String
         ///
@@ -53,7 +53,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持。</li><li>job-id
         ///
-        /// 按照【<strong>任务ID</strong>】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。
+        /// 按照【**任务ID**】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。
         ///
         /// 类型：String
         ///
@@ -61,7 +61,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持。</li><li>target
         ///
-        /// 按照【<strong>目标资源信息</strong>】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。
+        /// 按照【**目标资源信息**】进行过滤。target形如：http://www.qq.com/1.txt，暂不支持多值。
         ///
         /// 类型：String
         ///
@@ -69,7 +69,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持。</li><li>domains
         ///
-        /// 按照【<strong>域名</strong>】进行过滤。domains形如：www.qq.com。
+        /// 按照【**域名**】进行过滤。domains形如：www.qq.com。
         ///
         /// 类型：String
         ///
@@ -77,7 +77,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持。</li><li>statuses
         ///
-        /// 按照【<strong>任务状态</strong>】进行过滤。
+        /// 按照【**任务状态**】进行过滤。
         ///
         /// 必选：否
         ///

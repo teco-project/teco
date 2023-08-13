@@ -24,8 +24,8 @@ extension Cvm {
         /// 一个或多个待查询的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
         public let instanceIds: [String]
 
-        /// <li><strong>status</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>配置规格状态</strong>】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        /// <li>**status**</li>
+        /// <p style="padding-left: 30px;">按照【**配置规格状态**】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为2。
         public let filters: [Filter]?
 

@@ -59,13 +59,13 @@ extension Teo {
         /// 过滤条件，详细的过滤条件Key值如下：
         /// <li>country
         ///
-        /// 按照【<strong>国家/地区</strong>】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。</li>
+        /// 按照【**国家/地区**】进行过滤，国家/地区遵循<a href="https://zh.wikipedia.org/wiki/ISO_3166-1">ISO 3166</a>规范。</li>
         /// <li>province
         ///
-        /// 按照【<strong>省份</strong>】进行过滤，此参数只支持服务区域为中国大陆。</li>
+        /// 按照【**省份**】进行过滤，此参数只支持服务区域为中国大陆。</li>
         /// <li>isp
         ///
-        /// 按照【<strong>运营商</strong>】进行过滤，此参数只支持服务区域为中国大陆。
+        /// 按照【**运营商**】进行过滤，此参数只支持服务区域为中国大陆。
         ///
         /// 对应的Value可选项如下：
         ///
@@ -84,31 +84,31 @@ extension Teo {
         /// 0：其他运营商。</li>
         /// <li>domain
         ///
-        /// 按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。</li>
+        /// 按照【**子域名**】进行过滤，子域名形如： test.example.com。</li>
         /// <li>url
         ///
-        /// 按照【<strong>URL Path</strong>】进行过滤，URL Path形如：/content或/content/test.jpg。
+        /// 按照【**URL Path**】进行过滤，URL Path形如：/content或/content/test.jpg。
         ///
         /// 若只填写url参数，则最多可查询近30天的数据；
         ///
         /// 若同时填写url+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
         /// <li>referer
         ///
-        /// 按照【<strong>Referer头信息</strong>】进行过滤, Referer形如：example.com。
+        /// 按照【**Referer头信息**】进行过滤, Referer形如：example.com。
         ///
         /// 若只填写referer参数，则最多可查询近30天的数据；
         ///
         /// 若同时填写referer+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
         /// <li>resourceType
         ///
-        /// 按照【<strong>资源类型</strong>】进行过滤，资源类型一般是文件后缀，形如: .jpg, .css。
+        /// 按照【**资源类型**】进行过滤，资源类型一般是文件后缀，形如: .jpg, .css。
         ///
         /// 若只填写resourceType参数，则最多可查询近30天的数据；
         ///
         /// 若同时填写resourceType+Zonelds参数，则支持的查询数据范围为套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>与30天两者中的较小值。</li>
         /// <li>protocol
         ///
-        /// 按照【<strong>HTTP协议版本</strong>】进行过滤。
+        /// 按照【**HTTP协议版本**】进行过滤。
         ///
         /// 对应的Value可选项如下：
         ///
@@ -123,7 +123,7 @@ extension Teo {
         /// WebSocket：WebSocket。</li>
         /// <li>socket
         ///
-        /// 按照【<strong>HTTP协议类型</strong>】进行过滤。
+        /// 按照【**HTTP协议类型**】进行过滤。
         ///
         /// 对应的Value可选项如下：
         ///
@@ -134,7 +134,7 @@ extension Teo {
         /// QUIC：QUIC协议。</li>
         /// <li>statusCode
         ///
-        /// 按照【<strong>状态码</strong>】进行过滤。
+        /// 按照【**状态码**】进行过滤。
         ///
         /// 若只填写statusCode参数，则最多可查询近30天的数据；
         ///
@@ -257,7 +257,7 @@ extension Teo {
         /// 544：544状态码。</li>
         /// <li>browserType
         ///
-        /// 按照【<strong>浏览器类型</strong>】进行过滤。
+        /// 按照【**浏览器类型**】进行过滤。
         ///
         /// 若只填写browserType参数，则最多可查询近30天的数据；
         ///
@@ -298,7 +298,7 @@ extension Teo {
         /// UBrowser：UC浏览器。</li>
         /// <li>deviceType
         ///
-        /// 按照【<strong>设备类型</strong>】进行过滤。
+        /// 按照【**设备类型**】进行过滤。
         ///
         /// 若只填写deviceType参数，则最多可查询近30天的数据；
         ///
@@ -319,7 +319,7 @@ extension Teo {
         /// Empty：设备类型为空。</li>
         /// <li>operatingSystemType
         ///
-        /// 按照【<strong>操作系统类型</strong>】进行过滤。
+        /// 按照【**操作系统类型**】进行过滤。
         ///
         /// 若只填写operatingSystemType参数，则最多可查询近30天的数据；
         ///
@@ -348,7 +348,7 @@ extension Teo {
         /// Empty：操作系统为空。</li>
         /// <li>tlsVersion
         ///
-        /// 按照【<strong>TLS版本</strong>】进行过滤。
+        /// 按照【**TLS版本**】进行过滤。
         ///
         /// 若只填写tlsVersion参数，则最多可查询近30天的数据；
         ///
@@ -365,7 +365,7 @@ extension Teo {
         /// TLS1.3：TLS 1.3。</li>
         /// <li>ipVersion
         ///
-        /// 按照【<strong>IP版本</strong>】进行过滤。
+        /// 按照【**IP版本**】进行过滤。
         ///
         /// 对应Value的可选项如下：
         ///
@@ -374,10 +374,10 @@ extension Teo {
         /// 6：Ipv6。</li>
         /// <li>tagKey
         ///
-        /// 按照【<strong>标签Key</strong>】进行过滤。</li>
+        /// 按照【**标签Key**】进行过滤。</li>
         /// <li>tagValue
         ///
-        /// 按照【<strong>标签Value</strong>】进行过滤。</li>
+        /// 按照【**标签Value**】进行过滤。</li>
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：

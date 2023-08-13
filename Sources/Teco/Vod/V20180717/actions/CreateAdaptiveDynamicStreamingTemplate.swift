@@ -30,7 +30,7 @@ extension Vod {
         /// 注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。
         public let streamInfos: [AdaptiveStreamTemplate]
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 模板名称，长度限制：64 个字符。

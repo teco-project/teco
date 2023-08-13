@@ -124,13 +124,13 @@ extension Vpc {
         /// 弹性公网IP的网络计费模式。注意，传统账户类型账户的弹性公网IP没有网络计费模式属性，值为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 包括：
-        /// <li><strong>BANDWIDTH_PREPAID_BY_MONTH</strong></li>
+        /// <li>**BANDWIDTH_PREPAID_BY_MONTH**</li>
         /// <p style="padding-left: 30px;">表示包月带宽预付费。</p>
-        /// <li><strong>TRAFFIC_POSTPAID_BY_HOUR</strong></li>
+        /// <li>**TRAFFIC_POSTPAID_BY_HOUR**</li>
         /// <p style="padding-left: 30px;">表示按小时流量后付费。</p>
-        /// <li><strong>BANDWIDTH_POSTPAID_BY_HOUR</strong></li>
+        /// <li>**BANDWIDTH_POSTPAID_BY_HOUR**</li>
         /// <p style="padding-left: 30px;">表示按小时带宽后付费。</p>
-        /// <li><strong>BANDWIDTH_PACKAGE</strong></li>
+        /// <li>**BANDWIDTH_PACKAGE**</li>
         /// <p style="padding-left: 30px;">表示共享带宽包。</p>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?

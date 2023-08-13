@@ -33,7 +33,7 @@ extension Keewidb {
         /// 实例新的项目 ID。
         public let projectId: Int64?
 
-        /// 包年包月计费的续费模式。<b>InstanceIds</b>数组和<b>AutoRenews</b>数组中的修改值对应。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        /// 包年包月计费的续费模式。**InstanceIds**数组和**AutoRenews**数组中的修改值对应。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
         public let autoRenews: [Int64]?
 
         public init(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil) {

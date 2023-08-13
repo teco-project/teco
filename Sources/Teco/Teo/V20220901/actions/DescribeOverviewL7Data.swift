@@ -70,7 +70,7 @@ extension Teo {
         /// 过滤条件，详细的过滤条件Key值如下：
         /// <li>socket
         ///
-        /// 按照【<strong>HTTP协议类型</strong>】进行过滤。
+        /// 按照【**HTTP协议类型**】进行过滤。
         ///
         /// 对应的Value可选项如下：
         ///
@@ -81,10 +81,10 @@ extension Teo {
         /// QUIC：QUIC协议。</li>
         /// <li>tagKey
         ///
-        /// 按照【<strong>标签Key</strong>】进行过滤。</li>
+        /// 按照【**标签Key**】进行过滤。</li>
         /// <li>tagValue
         ///
-        /// 按照【<strong>标签Value</strong>】进行过滤。</li>
+        /// 按照【**标签Value**】进行过滤。</li>
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：

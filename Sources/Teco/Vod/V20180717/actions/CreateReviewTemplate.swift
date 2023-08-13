@@ -31,7 +31,7 @@ extension Vod {
         /// <li>Moan：娇喘。</li>
         public let labels: [String]
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: String?
 
         /// 审核模板名称，长度限制：64 个字符。

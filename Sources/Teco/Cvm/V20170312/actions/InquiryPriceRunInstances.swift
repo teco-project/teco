@@ -22,7 +22,7 @@ extension Cvm {
     /// InquiryPriceRunInstances请求参数结构体
     public struct InquiryPriceRunInstancesRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        ///  <b>注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。</b>
+        ///  **注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。**
         public let placement: Placement
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：
@@ -32,7 +32,7 @@ extension Cvm {
         /// 可通过以下方式获取可用的镜像ID：
         ///
         /// <li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
-        ///  <b>注：如果您不指定LaunchTemplate参数，则ImageId为必选参数。若同时传递ImageId和LaunchTemplate，则默认覆盖LaunchTemplate中对应的ImageId的值。</b>
+        ///  **注：如果您不指定LaunchTemplate参数，则ImageId为必选参数。若同时传递ImageId和LaunchTemplate，则默认覆盖LaunchTemplate中对应的ImageId的值。**
         public let imageId: String
 
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。

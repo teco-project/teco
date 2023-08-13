@@ -59,7 +59,7 @@ extension Irp {
         ///
         /// ● image -纯图片
         ///
-        /// （如当前类型不满足，请登录控制台进入对应项目，在<b>物料管理->物料类型管理</b>中添加）
+        /// （如当前类型不满足，请登录控制台进入对应项目，在**物料管理->物料类型管理**中添加）
         public let itemType: String
 
         /// 内容状态：
@@ -69,73 +69,73 @@ extension Irp {
         /// 需要下架内容时，把Status的值修改为2即可
         public let status: UInt64
 
-        /// 内容生成时间，秒级时间戳（1639624786），需大于0，<b>用作特征和物料管理</b>
+        /// 内容生成时间，秒级时间戳（1639624786），需大于0，**用作特征和物料管理**
         public let publishTimestamp: Int64
 
-        /// 内容过期时间，秒级时间戳（1639624786），如未填，则默认PublishTimestamp往后延一年，用作特征，过期则不会被推荐，<b>强烈建议</b>
+        /// 内容过期时间，秒级时间戳（1639624786），如未填，则默认PublishTimestamp往后延一年，用作特征，过期则不会被推荐，**强烈建议**
         public let expireTimestamp: Int64?
 
-        /// 类目层级数，例如3级类目，则填3，和CategoryPath字段的类数据匹配，<b>强烈建议</b>
+        /// 类目层级数，例如3级类目，则填3，和CategoryPath字段的类数据匹配，**强烈建议**
         public let categoryLevel: Int64?
 
-        /// 类目路径，一级二级三级等依次用英文冒号联接，和CategoryLevel字段值匹配，如体育：“足球:巴塞罗那”。<b>用于物料池管理，强烈建议</b>
+        /// 类目路径，一级二级三级等依次用英文冒号联接，和CategoryLevel字段值匹配，如体育：“足球:巴塞罗那”。**用于物料池管理，强烈建议**
         public let categoryPath: String?
 
-        /// 内容标签，多个标签用英文冒号联接，<b>用作特征，强烈建议</b>
+        /// 内容标签，多个标签用英文冒号联接，**用作特征，强烈建议**
         public let tags: String?
 
-        /// 作者名，需保证作者名唯一，若有重名需要加编号区分。<b>用于召回过滤、规则打散，强烈建议</b>
+        /// 作者名，需保证作者名唯一，若有重名需要加编号区分。**用于召回过滤、规则打散，强烈建议**
         public let author: String?
 
-        /// 内容来源类型，客户自定义，<b>用于物料池管理</b>
+        /// 内容来源类型，客户自定义，**用于物料池管理**
         public let sourceId: String?
 
-        /// 内容标题，<b>主要用于语义分析</b>
+        /// 内容标题，**主要用于语义分析**
         public let title: String?
 
-        /// 正文关键片段，建议控制在500字符以内，<b>主要用于语义分析</b>
+        /// 正文关键片段，建议控制在500字符以内，**主要用于语义分析**
         public let content: String?
 
-        /// 正文详情，主要用于语义分析，当内容过大时建议用ContentUrl传递，<b>与Content可二选一</b>
+        /// 正文详情，主要用于语义分析，当内容过大时建议用ContentUrl传递，**与Content可二选一**
         public let contentUrl: String?
 
-        /// 视频时长，时间秒，大于等于0，小于 3600 * 10。<b>视频内容必填，其它内容非必填，用作特征</b>
+        /// 视频时长，时间秒，大于等于0，小于 3600 * 10。**视频内容必填，其它内容非必填，用作特征**
         public let videoDuration: Int64?
 
-        /// 国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，<b>用作特征</b>
+        /// 国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，<b>用作特征</b>
+        /// 省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，<b>用作特征</b>
+        /// 城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
-        /// 作者粉丝数，<b>用作特征</b>
+        /// 作者粉丝数，**用作特征**
         public let authorFans: Int64?
 
-        /// 作者评级，<b>用作特征</b>
+        /// 作者评级，**用作特征**
         public let authorLevel: String?
 
-        /// 内容累计收藏次数，<b>用作特征</b>
+        /// 内容累计收藏次数，**用作特征**
         public let collectCnt: Int64?
 
-        /// 内容累积点赞次数，<b>用作特征</b>
+        /// 内容累积点赞次数，**用作特征**
         public let praiseCnt: Int64?
 
-        /// 内容累计评论次数，<b>用作特征</b>
+        /// 内容累计评论次数，**用作特征**
         public let commentCnt: Int64?
 
-        /// 内容累计分享次数，<b>用作特征</b>
+        /// 内容累计分享次数，**用作特征**
         public let shareCnt: Int64?
 
-        /// 内容累积打赏数，<b>用作特征</b>
+        /// 内容累积打赏数，**用作特征**
         public let rewardCnt: Int64?
 
-        /// 内容质量评分，<b>用作特征</b>
+        /// 内容质量评分，**用作特征**
         public let score: Float?
 
-        /// json字符串，<b>用于物料池管理的自定义扩展</b>，需要base64加密
+        /// json字符串，**用于物料池管理的自定义扩展**，需要base64加密
         public let `extension`: String?
 
         public init(itemId: String, itemType: String, status: UInt64, publishTimestamp: Int64, expireTimestamp: Int64? = nil, categoryLevel: Int64? = nil, categoryPath: String? = nil, tags: String? = nil, author: String? = nil, sourceId: String? = nil, title: String? = nil, content: String? = nil, contentUrl: String? = nil, videoDuration: Int64? = nil, country: String? = nil, province: String? = nil, city: String? = nil, authorFans: Int64? = nil, authorLevel: String? = nil, collectCnt: Int64? = nil, praiseCnt: Int64? = nil, commentCnt: Int64? = nil, shareCnt: Int64? = nil, rewardCnt: Int64? = nil, score: Float? = nil, extension: String? = nil) {
@@ -207,23 +207,23 @@ extension Irp {
 
         /// 行为类型：
         ///
-        /// ● expose - 曝光，<b>必须</b>
+        /// ● expose - 曝光，**必须**
         ///
-        /// ● click - 点击，<b>必须</b>
+        /// ● click - 点击，**必须**
         ///
-        /// ● stay - 详情页停留时长，<b>强烈建议</b>
+        /// ● stay - 详情页停留时长，**强烈建议**
         ///
-        /// ● videoover - 视频播放时长，<b>强烈建议</b>
+        /// ● videoover - 视频播放时长，**强烈建议**
         ///
-        /// ●  like - 点赞&喜欢，<b>正效果</b>
+        /// ●  like - 点赞&喜欢，**正效果**
         ///
-        /// ● collect - 收藏，<b>正效果</b>
+        /// ● collect - 收藏，**正效果**
         ///
-        /// ●  share - 转发&分享，<b>正效果</b>
+        /// ●  share - 转发&分享，**正效果**
         ///
-        /// ● reward - 打赏，<b>正效果</b>
+        /// ● reward - 打赏，**正效果**
         ///
-        /// ● unlike - 踩&不喜欢，<b>负效果</b>
+        /// ● unlike - 踩&不喜欢，**负效果**
         ///
         /// ●  comment - 评论
         ///
@@ -263,13 +263,13 @@ extension Irp {
         /// 注意：如果和推荐结果中的ItemTraceId不同，会影响行为特征归因，影响推荐算法效果
         public let itemTraceId: String
 
-        /// 内容类型，跟内容上报类型一致，用于效果分析，不做内容校验，<b>强烈建议</b>
+        /// 内容类型，跟内容上报类型一致，用于效果分析，不做内容校验，**强烈建议**
         public let itemType: String?
 
-        /// 相关推荐场景点击进入详情页的内容id，该字段用来注明行为发生于哪个内容的详情页推荐中，<b>相关推荐场景强烈建议</b>
+        /// 相关推荐场景点击进入详情页的内容id，该字段用来注明行为发生于哪个内容的详情页推荐中，**相关推荐场景强烈建议**
         public let referrerItemId: String?
 
-        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，<b>用于构建用户画像信息</b>
+        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，**用于构建用户画像信息**
         public let userIdList: [UserIdInfo]?
 
         /// 算法来源：
@@ -280,37 +280,37 @@ extension Irp {
         ///
         /// ● other 其他算法
         ///
-        /// 默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
+        /// 默认为tencent，区分行为来源于哪个算法，**用于Poc阶段的效果对比验证**
         public let source: String?
 
-        /// 行为发生时的国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，<b>用作特征</b>
+        /// 行为发生时的国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 行为发生时的省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，<b>用作特征</b>
+        /// 行为发生时的省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 行为发生时的城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，<b>用作特征</b>
+        /// 行为发生时的城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
-        /// 行为发生时的客户端ip，<b>用作特征</b>
+        /// 行为发生时的客户端ip，**用作特征**
         public let ip: String?
 
-        /// 行为发生时的客户端网络类型，<b>用作特征</b>
+        /// 行为发生时的客户端网络类型，**用作特征**
         public let network: String?
 
-        /// 行为发生时的客户端平台，ios/android/h5，<b>用作特征</b>
+        /// 行为发生时的客户端平台，ios/android/h5，**用作特征**
         public let platform: String?
 
-        /// 行为发生时的客户端app版本，<b>用作特征</b>
+        /// 行为发生时的客户端app版本，**用作特征**
         public let appVersion: String?
 
-        /// 行为发生时的操作系统版本，<b>用作特征</b>
+        /// 行为发生时的操作系统版本，**用作特征**
         public let osVersion: String?
 
-        /// 行为发生时的机型，<b>用作特征</b>
+        /// 行为发生时的机型，**用作特征**
         public let deviceModel: String?
 
-        /// json字符串，<b>用于行为数据的扩展</b>，需要base64加密
+        /// json字符串，**用于行为数据的扩展**，需要base64加密
         public let `extension`: String?
 
         public init(userId: String, itemId: String, behaviorType: String, behaviorValue: String, behaviorTimestamp: Int64, sceneId: String, itemTraceId: String, itemType: String? = nil, referrerItemId: String? = nil, userIdList: [UserIdInfo]? = nil, source: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, ip: String? = nil, network: String? = nil, platform: String? = nil, appVersion: String? = nil, osVersion: String? = nil, deviceModel: String? = nil, extension: String? = nil) {
@@ -367,13 +367,13 @@ extension Irp {
         /// 用户唯一ID，客户自定义用户ID，作为一个用户的唯一标识
         public let userId: String
 
-        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，<b>用于构建用户画像信息</b>
+        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，**用于构建用户画像信息**
         public let userIdList: [UserIdInfo]?
 
-        /// 用户标签，多个标签用英文冒号联接，<b>用作特征，强烈建议</b>
+        /// 用户标签，多个标签用英文冒号联接，**用作特征，强烈建议**
         public let tags: String?
 
-        /// 过滤列表，<b>会在推荐结果里过滤掉这类内容</b>
+        /// 过滤列表，**会在推荐结果里过滤掉这类内容**
         public let dislikeInfoList: [DislikeInfo]?
 
         /// 用户年龄
@@ -476,23 +476,23 @@ extension Irp {
 
         /// 行为类型：
         ///
-        /// ● expose - 曝光，<b>必须</b>
+        /// ● expose - 曝光，**必须**
         ///
-        /// ● click - 点击，<b>必须</b>
+        /// ● click - 点击，**必须**
         ///
-        /// ● stay - 详情页停留时长，<b>强烈建议</b>
+        /// ● stay - 详情页停留时长，**强烈建议**
         ///
-        /// ● videoover - 视频播放时长，<b>强烈建议</b>
+        /// ● videoover - 视频播放时长，**强烈建议**
         ///
-        /// ●  like - 点赞&喜欢，<b>正效果</b>
+        /// ●  like - 点赞&喜欢，**正效果**
         ///
-        /// ● collect - 收藏，<b>正效果</b>
+        /// ● collect - 收藏，**正效果**
         ///
-        /// ●  share - 转发&分享，<b>正效果</b>
+        /// ●  share - 转发&分享，**正效果**
         ///
-        /// ● reward - 打赏，<b>正效果</b>
+        /// ● reward - 打赏，**正效果**
         ///
-        /// ● unlike - 踩&不喜欢，<b>负效果</b>
+        /// ● unlike - 踩&不喜欢，**负效果**
         ///
         /// ●  comment - 评论
         ///
@@ -548,41 +548,41 @@ extension Irp {
         ///
         /// ● other 其他算法
         ///
-        /// 默认为tencent，区分行为来源于哪个算法，<b>用于Poc阶段的效果对比验证</b>
+        /// 默认为tencent，区分行为来源于哪个算法，**用于Poc阶段的效果对比验证**
         public let source: String
 
         /// 标识行为发生在app内哪个页面，取值客户自定，可以是明文或id，建议传明文便于理解、分析，如首页，发现页，用户中心等
-        /// <b>用作上下文特征，刻画不同场景用户行为分布的差异</b>
+        /// **用作上下文特征，刻画不同场景用户行为分布的差异**
         public let page: String?
 
         /// 标识行为发生在页面的哪一区块，取值客户自定，可以是明文或id，建议传明文便于理解、分析，如横幅、广告位、猜你喜欢等
-        /// <b>用作上下文特征，刻画不同模块用户行为分布的差异</b>
+        /// **用作上下文特征，刻画不同模块用户行为分布的差异**
         public let module: String?
 
         /// 推荐追踪ID，使用推荐结果中返回的GoodsTraceId填入。
-        /// 注意：如果和推荐结果中的GoodsTraceId不同，会影响行为特征归因，影响推荐算法效果。<b>强烈建议</b>
+        /// 注意：如果和推荐结果中的GoodsTraceId不同，会影响行为特征归因，影响推荐算法效果。**强烈建议**
         public let goodsTraceId: String?
 
-        /// 相关推荐场景点击进入详情页的内容id，该字段用来注明行为发生于哪个内容的详情页推荐中，<b>相关推荐场景强烈建议</b>
+        /// 相关推荐场景点击进入详情页的内容id，该字段用来注明行为发生于哪个内容的详情页推荐中，**相关推荐场景强烈建议**
         public let referrerGoodsId: String?
 
-        /// 订单商品购买个数，当behaviorType=order，buy或addcart时有值，<b>用作特征</b>
+        /// 订单商品购买个数，当behaviorType=order，buy或addcart时有值，**用作特征**
         public let orderGoodsCnt: Int64?
 
-        /// 订单总金额，当behaviorType=order或buy时有值（单位：元，统一货币体系，如统一为RMB，美元等），<b>用作特征</b>
+        /// 订单总金额，当behaviorType=order或buy时有值（单位：元，统一货币体系，如统一为RMB，美元等），**用作特征**
         public let orderAmount: Float?
 
-        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，<b>用于构建用户画像信息</b>
+        /// 用户设备ID数组，可传入用户的多个类型ID，详见UserIdInfo结构体，建议补齐，**用于构建用户画像信息**
         public let userIdList: [StrUserIdInfo]?
 
-        /// 行为发生时用户基础特征信息，<b>用作特征</b>
+        /// 行为发生时用户基础特征信息，**用作特征**
         public let userPortraitInfo: UserPortraitInfo?
 
         /// 标识行为发生在模块内的具体位置，如1、2、...
-        /// <b>用作上下文特征，刻画不同位置用户行为分布的差异</b>
+        /// **用作上下文特征，刻画不同位置用户行为分布的差异**
         public let position: Int64?
 
-        /// json字符串，<b>用于行为数据的扩展</b>
+        /// json字符串，**用于行为数据的扩展**
         public let `extension`: String?
 
         public init(userId: String, goodsId: String, behaviorType: String, behaviorValue: String, behaviorTimestamp: Int64, sceneId: String, source: String, page: String? = nil, module: String? = nil, goodsTraceId: String? = nil, referrerGoodsId: String? = nil, orderGoodsCnt: Int64? = nil, orderAmount: Float? = nil, userIdList: [StrUserIdInfo]? = nil, userPortraitInfo: UserPortraitInfo? = nil, position: Int64? = nil, extension: String? = nil) {
@@ -655,85 +655,85 @@ extension Irp {
         /// 需要下架内容时，把Status的值修改为2即可
         public let status: UInt64
 
-        /// 商品生成时间，秒级时间戳（1639624786），需大于0，<b>用作特征和物料管理</b>
+        /// 商品生成时间，秒级时间戳（1639624786），需大于0，**用作特征和物料管理**
         public let publishTimestamp: Int64
 
-        /// 商品过期时间，秒级时间戳（1639624786），如未填，则默认PublishTimestamp往后延一年，<b>用作特征</b>，过期则不会被推荐，<b>强烈建议</b>
+        /// 商品过期时间，秒级时间戳（1639624786），如未填，则默认PublishTimestamp往后延一年，**用作特征**，过期则不会被推荐，**强烈建议**
         public let expireTimestamp: Int64?
 
-        /// spu((Standard Product Unit))维度id，商品聚合信息的最小单位，<b>强烈建议</b>
+        /// spu((Standard Product Unit))维度id，商品聚合信息的最小单位，**强烈建议**
         public let spuId: String?
 
-        /// 类目层级数，例如3级类目，则填3，和CategoryPath字段的类数据匹配，<b>强烈建议</b>
+        /// 类目层级数，例如3级类目，则填3，和CategoryPath字段的类数据匹配，**强烈建议**
         public let categoryLevel: Int64?
 
-        /// 类目路径，一级二级三级等依次用英文冒号联接，和CategoryLevel字段值匹配，如体育：“女装:裙子:半身裙”。<b>用于物料池管理，强烈建议</b>
+        /// 类目路径，一级二级三级等依次用英文冒号联接，和CategoryLevel字段值匹配，如体育：“女装:裙子:半身裙”。**用于物料池管理，强烈建议**
         public let categoryPath: String?
 
-        /// 商品标题，<b>主要用于语义分析</b>，<b>强烈建议</b>
+        /// 商品标题，**主要用于语义分析**，**强烈建议**
         public let title: String?
 
-        /// 商品标签，多个标签用英文冒号联接，<b>用作特征，强烈建议</b>
+        /// 商品标签，多个标签用英文冒号联接，**用作特征，强烈建议**
         public let tags: String?
 
-        /// 商品对应的品牌，取值用户自定义，可以是品牌id或品牌明文，<b>用作特征以及打散/过滤规则，强烈建议</b>
+        /// 商品对应的品牌，取值用户自定义，可以是品牌id或品牌明文，**用作特征以及打散/过滤规则，强烈建议**
         public let brand: String?
 
-        /// 商品所属店铺ID，取值客户自定义，<b>用作特征，强烈建议</b>
+        /// 商品所属店铺ID，取值客户自定义，**用作特征，强烈建议**
         public let shopId: String?
 
-        /// 商品原始价格（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征，强烈建议</b>
+        /// 商品原始价格（单位：元，统一货币体系，如统一为RMB或美元等），**用作特征，强烈建议**
         public let orgPrice: Float?
 
-        /// 商品当前价格（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征，强烈建议</b>
+        /// 商品当前价格（单位：元，统一货币体系，如统一为RMB或美元等），**用作特征，强烈建议**
         public let curPrice: Float?
 
-        /// 商品来源类型，客户自定义，<b>用于物料池管理</b>
+        /// 商品来源类型，客户自定义，**用于物料池管理**
         public let sourceId: String?
 
-        /// 商品正文关键片段，建议控制在500字符以内，<b>主要用于语义分析</b>
+        /// 商品正文关键片段，建议控制在500字符以内，**主要用于语义分析**
         public let content: String?
 
-        /// 商品正文详情，主要用于语义分析，当内容过大时建议用ContentUrl传递，<b>与Content可二选一</b>
+        /// 商品正文详情，主要用于语义分析，当内容过大时建议用ContentUrl传递，**与Content可二选一**
         public let contentUrl: String?
 
-        /// 商品封面url，不超过10个，<b>用作特征</b>
+        /// 商品封面url，不超过10个，**用作特征**
         public let picUrlList: [String]?
 
-        /// 卖家所在国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，<b>用作特征</b>
+        /// 卖家所在国家，ISO 3166-1 alpha-2编码，参考<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1 alpha-2</a>，中国：“CN”，**用作特征**
         public let country: String?
 
-        /// 卖家所在省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，<b>用作特征</b>
+        /// 卖家所在省份，ISO 3166-2行政区编码，如中国参考<a href="https://zh.wikipedia.org/wiki/ISO_3166-2:CN" target="_blank">ISO_3166-2:CN</a>，广东省：“CN-GD”，**用作特征**
         public let province: String?
 
-        /// 卖家所在城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，<b>用作特征</b>
+        /// 卖家所在城市地区，统一用国家最新标准地区行政编码，如：<a href="https://www.mca.gov.cn/article/sj/xzqh/2020/" target="_blank">2020年行政区编码</a>，其他国家统一用国际公认城市简称或者城市编码，**用作特征**
         public let city: String?
 
-        /// 商品是否包邮；1:包邮；2:不包邮；3:满足条件包邮，<b>用作特征</b>
+        /// 商品是否包邮；1:包邮；2:不包邮；3:满足条件包邮，**用作特征**
         public let freeShipping: Int64?
 
-        /// 商品邮费（单位：元，统一货币体系，如统一为RMB或美元等），<b>用作特征</b>
+        /// 商品邮费（单位：元，统一货币体系，如统一为RMB或美元等），**用作特征**
         public let shippingPrice: Float?
 
-        /// 商品累计好评次数，<b>用作特征</b>
+        /// 商品累计好评次数，**用作特征**
         public let praiseCnt: Int64?
 
-        /// 商品累计评论次数，<b>用作特征</b>
+        /// 商品累计评论次数，**用作特征**
         public let commentCnt: Int64?
 
-        /// 商品累计分享次数，<b>用作特征</b>
+        /// 商品累计分享次数，**用作特征**
         public let shareCnt: Int64?
 
-        /// 商品累计收藏次数，<b>用作特征</b>
+        /// 商品累计收藏次数，**用作特征**
         public let collectCnt: Int64?
 
-        /// 商品累积成交次数，<b>用作特征</b>
+        /// 商品累积成交次数，**用作特征**
         public let orderCnt: Int64?
 
-        /// 商品平均客户评分，取值范围用户自定，<b>用作特征</b>
+        /// 商品平均客户评分，取值范围用户自定，**用作特征**
         public let score: Float?
 
-        /// json字符串，<b>用于物料池管理的自定义扩展</b>
+        /// json字符串，**用于物料池管理的自定义扩展**
         public let `extension`: String?
 
         public init(goodsId: String, goodsType: String, status: UInt64, publishTimestamp: Int64, expireTimestamp: Int64? = nil, spuId: String? = nil, categoryLevel: Int64? = nil, categoryPath: String? = nil, title: String? = nil, tags: String? = nil, brand: String? = nil, shopId: String? = nil, orgPrice: Float? = nil, curPrice: Float? = nil, sourceId: String? = nil, content: String? = nil, contentUrl: String? = nil, picUrlList: [String]? = nil, country: String? = nil, province: String? = nil, city: String? = nil, freeShipping: Int64? = nil, shippingPrice: Float? = nil, praiseCnt: Int64? = nil, commentCnt: Int64? = nil, shareCnt: Int64? = nil, collectCnt: Int64? = nil, orderCnt: Int64? = nil, score: Float? = nil, extension: String? = nil) {

@@ -22,15 +22,15 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribeWordSamples请求参数结构体
     public struct DescribeWordSamplesRequest: TCPaginatedRequest {
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
-        /// <b>关键词应用场景过滤条件，可选值：</b>
+        /// **关键词应用场景过滤条件，可选值：**
         /// 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         /// 2. Recognition.Asr：通过音频识别技术，进行内容识别；
         /// 3. Review.Ocr：通过光学字符识别技术，进行不适宜的内容识别；
         /// 4. Review.Asr：通过音频识别技术，进行不适宜的内容识别；
-        /// <b>可合并简写为：</b>
+        /// **可合并简写为：**
         /// 5. Recognition：通过光学字符识别技术、音频识别技术，进行内容识别，等价于 1+2；
         /// 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜的内容识别，等价于 3+4；
         /// 可多选，元素间关系为 or，即关键词的应用场景包含该字段集合中任意元素的记录，均符合该条件。

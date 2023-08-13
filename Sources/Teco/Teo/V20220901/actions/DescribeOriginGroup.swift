@@ -31,7 +31,7 @@ extension Teo {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>zone-id
         ///
-        /// 按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-20hzkd4rdmy0
+        /// 按照【**站点ID**】进行过滤。站点ID形如：zone-20hzkd4rdmy0
         ///
         /// 类型：String
         ///
@@ -39,7 +39,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持</li><li>origin-group-id
         ///
-        /// 按照【<strong>源站组ID</strong>】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a
+        /// 按照【**源站组ID**】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a
         ///
         /// 类型：String
         ///
@@ -47,7 +47,7 @@ extension Teo {
         ///
         /// 模糊查询：不支持</li><li>origin-group-name
         ///
-        /// 按照【<strong>源站组名称</strong>】进行过滤
+        /// 按照【**源站组名称**】进行过滤
         ///
         /// 类型：String
         ///

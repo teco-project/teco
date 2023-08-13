@@ -28,7 +28,7 @@ extension Teo {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>need-update
         ///
-        /// 按照【<strong>站点是否需要更新源站防护IP白名单</strong>】进行过滤。
+        /// 按照【**站点是否需要更新源站防护IP白名单**】进行过滤。
         ///
         /// 类型：String
         ///
@@ -43,7 +43,7 @@ extension Teo {
         /// </li>
         /// <li>plan-support
         ///
-        /// 按照【<strong>站点套餐是否支持源站防护</strong>】进行过滤。
+        /// 按照【**站点套餐是否支持源站防护**】进行过滤。
         ///
         /// 类型：String
         ///

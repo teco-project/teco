@@ -61,10 +61,10 @@ extension Teo {
         /// 过滤条件，详细的过滤条件Key值如下：
         /// <li>ruleId
         ///
-        /// 按照【<strong>转发规则ID</strong>】进行过滤。</li>
+        /// 按照【**转发规则ID**】进行过滤。</li>
         /// <li>proxyId
         ///
-        /// 按照【<strong>四层代理实例ID</strong>】进行过滤。</li>
+        /// 按照【**四层代理实例ID**】进行过滤。</li>
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：

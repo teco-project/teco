@@ -37,7 +37,7 @@ extension Vod {
         /// 雪碧图中小图的列数。
         public let columnCount: UInt64
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 雪碧图模板名称，长度限制：64 个字符。

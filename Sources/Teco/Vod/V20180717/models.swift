@@ -4469,7 +4469,7 @@ extension Vod {
         /// 事件句柄，调用方必须调用 ConfirmEvents 来确认消息已经收到，确认有效时间 30 秒。失效后，事件可重新被获取。
         public let eventHandle: String
 
-        /// <b>支持事件类型：</b>
+        /// **支持事件类型：**
         /// <li>NewFileUpload：视频上传完成；</li>
         /// <li>ProcedureStateChanged：任务流状态变更；</li>
         /// <li>FileDeleted：视频删除完成；</li>
@@ -4486,7 +4486,7 @@ extension Vod {
         /// <li>ExtractCopyRightWatermarkComplete：提取版权水印完成；</li>
         /// <li>DescribeFileAttributesComplete：获取文件属性完成；</li>
         /// <li>QualityInspectComplete：音画质检测完成。</li>
-        /// <b>兼容 2017 版的事件类型：</b>
+        /// **兼容 2017 版的事件类型：**
         /// <li>TranscodeComplete：视频转码完成；</li>
         /// <li>ConcatComplete：视频拼接完成；</li>
         /// <li>ClipComplete：视频剪辑完成；</li>
@@ -5656,12 +5656,12 @@ extension Vod {
     /// 直播即时剪辑流信息
     public struct LiveRealTimeClipStreamInfo: TCInputModel {
         /// 直播流类型，可选值：
-        /// <li>Original（原始流，<b>默认值</b>）。</li>
+        /// <li>Original（原始流，**默认值**）。</li>
         /// <li>Transcoding（转码流）。</li>
         public let type: String?
 
         /// 直播转码模板ID。
-        /// <b>当Type值为"Transcoding"时，必须填写。</b>
+        /// **当Type值为"Transcoding"时，必须填写。**
         public let templateId: UInt64?
 
         public init(type: String? = nil, templateId: UInt64? = nil) {

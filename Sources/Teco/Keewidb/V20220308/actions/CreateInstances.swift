@@ -49,13 +49,13 @@ extension Keewidb {
         public let replicasNum: Int64
 
         /// 实例内存容量，单位：GB。
-        /// KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        /// KeeWiDB 内存容量**MachineMemory**与持久内存容量**MemSize**为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let machineMemory: Int64
 
-        /// 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        /// 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数**ZoneId**和**ZoneName**至少配置其中一个。</li></u>
         public let zoneId: UInt64?
 
-        /// 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        /// 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数**ZoneId**和**ZoneName**至少配置其中一个。</li></u>
         public let zoneName: String?
 
         /// 创建实例的名称。
@@ -65,7 +65,7 @@ extension Keewidb {
         /// 指明创建的实例是否需要支持免密访问。<ul><li>true：免密实例。</li><li>false：非免密实例，默认为非免密实例。此时，需要设置访问密码。</li></ul>
         public let noAuth: Bool?
 
-        /// 实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li>
+        /// 实例访问密码。<ul><li>当参数**NoAuth**为**true**时，Password为无需设置，否则Password为必填参数。</li>
         /// <li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul>
         public let password: String?
 
@@ -82,7 +82,7 @@ extension Keewidb {
         public let resourceTags: [ResourceTag]?
 
         /// 混合存储版，单分片持久化内存容量，单位：GB。
-        /// KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        /// KeeWiDB 内存容量**MachineMemory**与持久内存容量**MemSize**为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let memSize: Int64?
 
         /// 每个分片硬盘的容量。单位：GB。

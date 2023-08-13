@@ -34,13 +34,13 @@ extension Teo {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// <li>target-name
         ///
-        /// 按照【<strong>目标域名名称</strong>】进行过滤。
+        /// 按照【**目标域名名称**】进行过滤。
         ///
         /// 类型：String
         ///
         /// 必选：否</li><li>alias-name
         ///
-        /// 按照【<strong>别称域名名称</strong>】进行过滤。
+        /// 按照【**别称域名名称**】进行过滤。
         ///
         /// 类型：String
         ///
