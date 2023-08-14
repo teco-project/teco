@@ -50,13 +50,15 @@ extension Cr {
 
     /// DescribeTaskStatus返回参数结构体
     public struct DescribeTaskStatusResponse: TCResponseModel {
-        /// <p>任务结果：</p>
+        /// 任务结果：
+        ///
         /// - 处理中："Uploading Data."
         /// - 上传成功："File Uploading Task Success."
         /// - 上传失败：具体失败原因
         public let taskResult: String
 
-        /// <p>任务类型：</p>
+        /// 任务类型：
+        ///
         /// - 到期/逾期提醒数据上传：002
         /// - 到期/逾期提醒停拨数据上传：003
         /// - 回访数据上传：004

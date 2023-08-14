@@ -65,7 +65,8 @@ extension Cr {
 
     /// DescribeCreditResult返回参数结构体
     public struct DescribeCreditResultResponse: TCResponseModel {
-        /// <p>呼叫结果，取值范围：</p>
+        /// 呼叫结果，取值范围：
+        ///
         /// - NON：接通
         /// - DBU：号码忙
         /// - DRF：不在服务区

@@ -89,7 +89,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderListResponse> {
@@ -98,7 +99,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderListResponse {
@@ -107,7 +109,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderListResponse> {
@@ -116,7 +119,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderListResponse {
@@ -125,7 +129,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderListPaginated(_ input: DescribeFolderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Folder])> {
@@ -134,7 +139,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     @inlinable @discardableResult
     public func describeFolderListPaginated(_ input: DescribeFolderListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFolderListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -143,7 +149,8 @@ extension Wedata {
 
     /// 拉取文件夹目录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹目录
     ///
     /// - Returns: `AsyncSequence`s of ``Folder`` and ``DescribeFolderListResponse`` that can be iterated over asynchronously on demand.

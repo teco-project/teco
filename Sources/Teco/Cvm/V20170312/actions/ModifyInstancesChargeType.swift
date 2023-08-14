@@ -25,6 +25,7 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月。
         /// - POSTPAID_BY_HOUR：后付费，即按量付费。
         public let instanceChargeType: String
@@ -33,6 +34,7 @@ extension Cvm {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 是否同时切换弹性数据云盘计费模式。取值范围：
+        ///
         /// - TRUE：表示切换弹性数据云盘计费模式
         /// - FALSE：表示不切换弹性数据云盘计费模式
         ///

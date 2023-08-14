@@ -31,6 +31,7 @@ extension Ciam {
         public let secondaryUserId: String
 
         /// 融合属性
+        ///
         /// - **PHONENUMBER** 	  手机号码
         /// - **EMAIL**   邮箱
         public let userLinkedOnAttribute: String

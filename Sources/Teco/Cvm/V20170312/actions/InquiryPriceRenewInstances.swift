@@ -28,6 +28,7 @@ extension Cvm {
         public let instanceChargePrepaid: InstanceChargePrepaid
 
         /// 试运行，测试使用，不执行具体逻辑。取值范围：
+        ///
         /// - TRUE：跳过执行逻辑
         /// - FALSE：执行逻辑
         ///
@@ -35,6 +36,7 @@ extension Cvm {
         public let dryRun: Bool?
 
         /// 是否续费弹性数据盘。取值范围：
+        ///
         /// - TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘
         /// - FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘
         ///

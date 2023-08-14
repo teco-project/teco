@@ -31,6 +31,7 @@ extension Ciam {
         public let startTime: Int64
 
         /// Key可选值为events
+        ///
         /// - **events** 	Values为["SIGNUP", "USER_UPDATE", "USER_DELETE", "USER_CREATE", "ACCOUNT_LINKING"] 中的一个或多个
         public let filters: [Filter]?
 

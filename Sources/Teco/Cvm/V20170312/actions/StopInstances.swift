@@ -25,6 +25,7 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常关闭失败后选择强制关闭实例。取值范围：
+        ///
         /// - TRUE：表示在正常关闭失败后进行强制关闭
         /// - FALSE：表示在正常关闭失败后不进行强制关闭
         ///
@@ -32,6 +33,7 @@ extension Cvm {
         public let forceStop: Bool?
 
         /// 实例的关闭模式。取值范围：
+        ///
         /// - SOFT_FIRST：表示在正常关闭失败后进行强制关闭
         /// - HARD：直接强制关闭
         /// - SOFT：仅软关机
@@ -41,6 +43,7 @@ extension Cvm {
 
         /// 按量计费实例关机收费模式。
         /// 取值范围：
+        ///
         /// - KEEP_CHARGING：关机继续收费
         /// - STOP_CHARGING：关机停止收费
         ///

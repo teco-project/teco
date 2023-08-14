@@ -31,6 +31,7 @@ extension Ecm {
         public let deleteWithInstance: Bool?
 
         /// 可选参数，用于控制云盘挂载时使用的挂载模式，目前仅对黑石裸金属机型有效。取值范围：
+        ///
         /// - PF
         /// - VF
         public let attachMode: String?

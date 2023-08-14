@@ -3109,6 +3109,7 @@ extension Tke {
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel, TCOutputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
         /// - Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
         /// - Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
         ///
@@ -3121,6 +3122,7 @@ extension Tke {
         public let keyIds: [String]?
 
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        ///
         /// - TRUE：表示保持镜像的登录设置
         /// - FALSE：表示不保持镜像的登录设置
         ///
@@ -4990,6 +4992,7 @@ extension Tke {
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启云自动化助手。取值范围：
+        ///
         /// - TRUE：表示开启云自动化助手服务
         /// - FALSE：表示不开启云自动化助手服务
         ///
@@ -5032,6 +5035,7 @@ extension Tke {
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
         /// - TRUE：表示开启云监控服务
         /// - FALSE：表示不开启云监控服务
         ///
@@ -5050,6 +5054,7 @@ extension Tke {
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
         /// - TRUE：表示开启云安全服务
         /// - FALSE：表示不开启云安全服务
         ///

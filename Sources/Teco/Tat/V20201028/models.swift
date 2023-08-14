@@ -525,6 +525,7 @@ extension Tat {
     /// 周期执行器设置。
     public struct ScheduleSettings: TCInputModel, TCOutputModel {
         /// 执行策略：
+        ///
         /// - ONCE：单次执行
         /// - RECURRENCE：周期执行
         public let policy: String

@@ -22,16 +22,19 @@ extension Cvm {
     /// SyncImages请求参数结构体
     public struct SyncImagesRequest: TCRequestModel {
         /// 镜像ID列表 ，镜像ID可以通过如下方式获取：
+        ///
         /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
         /// - 通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
         ///
         /// 镜像ID必须满足限制：
+        ///
         /// - 镜像ID对应的镜像状态必须为`NORMAL`。
         ///
         /// 镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
         public let imageIds: [String]
 
         /// 目的同步地域列表，必须满足如下限制：
+        ///
         /// - 必须是一个合法的Region。
         /// - 如果是自定义镜像，则目标同步地域不能为源地域。
         /// - 如果是共享镜像，则目的同步地域仅支持源地域，表示将共享镜像复制为源地域的自定义镜像。

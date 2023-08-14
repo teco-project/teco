@@ -54,7 +54,8 @@ extension Wedata {
 
     /// 实例批量置成功【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(_ input: ForceSucInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForceSucInstancesResponse> {
@@ -63,7 +64,8 @@ extension Wedata {
 
     /// 实例批量置成功【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(_ input: ForceSucInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
@@ -72,7 +74,8 @@ extension Wedata {
 
     /// 实例批量置成功【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForceSucInstancesResponse> {
@@ -81,7 +84,8 @@ extension Wedata {
 
     /// 实例批量置成功【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量置成功
     @inlinable
     public func forceSucInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {

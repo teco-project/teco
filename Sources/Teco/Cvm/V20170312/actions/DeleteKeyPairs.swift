@@ -24,6 +24,7 @@ extension Cvm {
         /// 一个或多个待操作的密钥对ID。每次请求批量密钥对的上限为100。
         ///
         /// 可以通过以下方式获取可用的密钥ID：
+        ///
         /// - 通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥ID。
         /// - 通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699) ，取返回信息中的 `KeyId` 获取密钥对ID。
         public let keyIds: [String]

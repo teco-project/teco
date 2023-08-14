@@ -25,11 +25,13 @@ extension Ciam {
         public let userStoreId: String
 
         /// 导出的数据类型
+        ///
         /// - **NDJSON**   New-line Delimited JSON
         /// - **CSV**   Comma-Separated Values
         public let format: String?
 
         /// Key可选值为condition、userGroupId
+        ///
         /// - **condition** 	Values = 查询条件，用户ID，用户名称，手机或邮箱
         /// - **userGroupId** 	Values = 用户组ID
         public let filters: [Filter]?

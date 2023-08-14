@@ -125,13 +125,21 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 包括：
         /// - **BANDWIDTH_PREPAID_BY_MONTH**
-        /// <p style="padding-left: 30px;">表示包月带宽预付费。</p>
+        ///
+        /// 表示包月带宽预付费。
+        ///
         /// - **TRAFFIC_POSTPAID_BY_HOUR**
-        /// <p style="padding-left: 30px;">表示按小时流量后付费。</p>
+        ///
+        /// 表示按小时流量后付费。
+        ///
         /// - **BANDWIDTH_POSTPAID_BY_HOUR**
-        /// <p style="padding-left: 30px;">表示按小时带宽后付费。</p>
+        ///
+        /// 表示按小时带宽后付费。
+        ///
         /// - **BANDWIDTH_PACKAGE**
-        /// <p style="padding-left: 30px;">表示共享带宽包。</p>
+        ///
+        /// 表示共享带宽包。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
 
@@ -3057,6 +3065,7 @@ extension Vpc {
     /// 描述配额信息
     public struct Quota: TCOutputModel {
         /// 配额名称，取值范围：
+        ///
         /// - `TOTAL_EIP_QUOTA`：用户当前地域下EIP的配额数；
         /// - `DAILY_EIP_APPLY`：用户当前地域下今日申购次数；
         /// - `DAILY_PUBLIC_IP_ASSIGN`：用户当前地域下，重新分配公网 IP次数。

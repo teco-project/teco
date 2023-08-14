@@ -26,17 +26,54 @@ extension Cvm {
         public let chcIds: [String]?
 
         /// - **zone**
-        /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)</p>
+        ///
+        /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
         /// - **instance-name**
-        /// <p style="padding-left: 30px;">按照【**实例名称**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**实例名称**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// - **instance-state**
-        /// <p style="padding-left: 30px;">按照【**实例状态**】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**实例状态**】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// - **device-type**
-        /// <p style="padding-left: 30px;">按照【**设备类型**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**设备类型**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// - **vpc-id**
-        /// <p style="padding-left: 30px;">按照【**私有网络唯一ID**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**私有网络唯一ID**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// - **subnet-id**
-        /// <p style="padding-left: 30px;">按照【**私有子网唯一ID**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**私有子网唯一ID**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。

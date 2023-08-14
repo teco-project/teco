@@ -26,6 +26,7 @@ extension Cbs {
         public let snapshotIds: [String]?
 
         /// 过滤条件。参数不支持同时指定`SnapshotIds`和`Filters`。
+        ///
         /// - snapshot-id - Array of String - 是否必填：否 -（过滤条件）按照快照的ID过滤。快照ID形如：`snap-11112222`。
         /// - snapshot-name - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。
         /// - snapshot-state - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。 (NORMAL：正常 | CREATING：创建中 | ROLLBACKING：回滚中。)
@@ -42,6 +43,7 @@ extension Cbs {
         public let limit: UInt64?
 
         /// 快照列表排序的依据字段。取值范围：
+        ///
         /// - CREATE_TIME：依据快照的创建时间排序
         ///
         /// 默认按创建时间排序。
@@ -51,6 +53,7 @@ extension Cbs {
         public let offset: UInt64?
 
         /// 输出云盘列表的排列顺序。取值范围：
+        ///
         /// - ASC：升序排列
         /// - DESC：降序排列。
         public let order: String?

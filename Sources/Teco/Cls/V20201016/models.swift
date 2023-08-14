@@ -109,6 +109,7 @@ extension Cls {
         public let name: String
 
         /// 告警模板的类型。可选值：
+        ///
         /// - Trigger - 告警触发
         /// - Recovery - 告警恢复
         /// - All - 告警触发和告警恢复
@@ -2042,6 +2043,7 @@ extension Cls {
     /// 告警策略中监控任务的执行时间点
     public struct MonitorTime: TCInputModel, TCOutputModel {
         /// 可选值：
+        ///
         /// - Period - 周期执行
         /// - Fixed - 定期执行
         public let type: String
@@ -2082,6 +2084,7 @@ extension Cls {
     /// 告警通知接收者信息
     public struct NoticeReceiver: TCInputModel, TCOutputModel {
         /// 接受者类型。可选值：
+        ///
         /// - Uin - 用户ID
         /// - Group - 用户组ID
         /// 暂不支持其余接收者类型。
@@ -2091,6 +2094,7 @@ extension Cls {
         public let receiverIds: [Int64]
 
         /// 通知接收渠道。
+        ///
         /// - Email - 邮件
         /// - Sms - 短信
         /// - WeChat - 微信

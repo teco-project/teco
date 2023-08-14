@@ -26,6 +26,7 @@ extension Tat {
         public let instanceIds: [String]?
 
         /// 过滤条件。
+        ///
         /// - agent-status - String - 是否必填：否 -（过滤条件）按照agent状态过滤，取值：Online 在线，Offline 离线。
         /// - environment - String - 是否必填：否 -（过滤条件）按照agent运行环境查询，取值：Linux。
         /// - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。

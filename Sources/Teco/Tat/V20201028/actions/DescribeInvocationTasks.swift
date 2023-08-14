@@ -26,6 +26,7 @@ extension Tat {
         public let invocationTaskIds: [String]?
 
         /// 过滤条件。
+        ///
         /// - invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。
         /// - invocation-task-id - String - 是否必填：否 -（过滤条件）按照执行任务ID过滤。
         /// - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。
@@ -41,6 +42,7 @@ extension Tat {
         public let offset: UInt64?
 
         /// 是否隐藏输出，取值范围：
+        ///
         /// - True：隐藏输出
         /// - False：不隐藏
         ///

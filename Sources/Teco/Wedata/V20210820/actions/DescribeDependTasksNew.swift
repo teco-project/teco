@@ -69,7 +69,8 @@ extension Wedata {
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
@@ -78,7 +79,8 @@ extension Wedata {
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
@@ -87,7 +89,8 @@ extension Wedata {
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
@@ -96,7 +99,8 @@ extension Wedata {
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据层级查找上/下游任务节点
     @inlinable
     public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {

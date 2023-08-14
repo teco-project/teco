@@ -25,12 +25,14 @@ extension As {
         public let launchConfigurationName: String
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：
+        ///
         /// - 公共镜像
         /// - 自定义镜像
         /// - 共享镜像
         /// - 服务市场镜像
         ///
         /// 可通过以下方式获取可用的镜像ID：
+        ///
         /// - `公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。
         /// - 通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。
         public let imageId: String
@@ -65,6 +67,7 @@ extension As {
         public let userData: String?
 
         /// 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
+        ///
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - SPOTPAID：竞价付费
         /// - PREPAID：预付费，即包年包月
@@ -81,6 +84,7 @@ extension As {
         public let camRoleName: String?
 
         /// 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
+        ///
         /// - ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
         /// - ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
         ///
@@ -105,6 +109,7 @@ extension As {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 云盘类型选择策略，默认取值 ORIGINAL，取值范围：
+        ///
         /// - ORIGINAL：使用设置的云盘类型
         /// - AUTOMATIC：自动选择当前可用的云盘类型
         public let diskTypePolicy: String?

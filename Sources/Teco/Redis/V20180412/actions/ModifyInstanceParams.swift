@@ -41,6 +41,7 @@ extension Redis {
     /// ModifyInstanceParams返回参数结构体
     public struct ModifyInstanceParamsResponse: TCResponseModel {
         /// 说明修改参数配置是否成功。
+        ///
         /// - true：指修改成功；
         /// - false：指修改失败。
         public let changed: Bool

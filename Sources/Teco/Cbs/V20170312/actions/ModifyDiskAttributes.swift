@@ -37,6 +37,7 @@ extension Cbs {
         public let deleteWithInstance: Bool?
 
         /// 变更云盘类型时，可传入该参数，表示变更的目标类型，取值范围：
+        ///
         /// - CLOUD_PREMIUM：表示高性能云硬盘
         /// - CLOUD_SSD：表示SSD云硬盘。
         ///

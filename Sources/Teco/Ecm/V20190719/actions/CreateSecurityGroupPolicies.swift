@@ -50,8 +50,9 @@ extension Ecm {
 
     /// 安全组添加规则
     ///
-    /// <p>本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。</p>
-    /// <p>在 SecurityGroupPolicySet 参数中：</p>
+    /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
+    ///
+    /// 在 SecurityGroupPolicySet 参数中：
     ///
     /// - Version 安全组规则版本号，用户每次更新安全规则版本会自动加1，防止您更新的路由规则已过期，不填不考虑冲突。</li>
     /// - 在创建出站和入站规则（Egress 和 Ingress）时：
@@ -63,7 +64,7 @@ extension Ecm {
     ///   - CidrBlock, SecurityGroupId, AddressTemplate 是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。
     ///   - 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     ///
-    /// <p>默认接口请求频率限制：20次/秒。</p>
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,8 +72,9 @@ extension Ecm {
 
     /// 安全组添加规则
     ///
-    /// <p>本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。</p>
-    /// <p>在 SecurityGroupPolicySet 参数中：</p>
+    /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
+    ///
+    /// 在 SecurityGroupPolicySet 参数中：
     ///
     /// - Version 安全组规则版本号，用户每次更新安全规则版本会自动加1，防止您更新的路由规则已过期，不填不考虑冲突。</li>
     /// - 在创建出站和入站规则（Egress 和 Ingress）时：
@@ -84,7 +86,7 @@ extension Ecm {
     ///   - CidrBlock, SecurityGroupId, AddressTemplate 是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。
     ///   - 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     ///
-    /// <p>默认接口请求频率限制：20次/秒。</p>
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -92,8 +94,9 @@ extension Ecm {
 
     /// 安全组添加规则
     ///
-    /// <p>本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。</p>
-    /// <p>在 SecurityGroupPolicySet 参数中：</p>
+    /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
+    ///
+    /// 在 SecurityGroupPolicySet 参数中：
     ///
     /// - Version 安全组规则版本号，用户每次更新安全规则版本会自动加1，防止您更新的路由规则已过期，不填不考虑冲突。</li>
     /// - 在创建出站和入站规则（Egress 和 Ingress）时：
@@ -105,7 +108,7 @@ extension Ecm {
     ///   - CidrBlock, SecurityGroupId, AddressTemplate 是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。
     ///   - 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     ///
-    /// <p>默认接口请求频率限制：20次/秒。</p>
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.createSecurityGroupPolicies(.init(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
@@ -113,8 +116,9 @@ extension Ecm {
 
     /// 安全组添加规则
     ///
-    /// <p>本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。</p>
-    /// <p>在 SecurityGroupPolicySet 参数中：</p>
+    /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
+    ///
+    /// 在 SecurityGroupPolicySet 参数中：
     ///
     /// - Version 安全组规则版本号，用户每次更新安全规则版本会自动加1，防止您更新的路由规则已过期，不填不考虑冲突。</li>
     /// - 在创建出站和入站规则（Egress 和 Ingress）时：
@@ -126,7 +130,7 @@ extension Ecm {
     ///   - CidrBlock, SecurityGroupId, AddressTemplate 是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。
     ///   - 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     ///
-    /// <p>默认接口请求频率限制：20次/秒。</p>
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.createSecurityGroupPolicies(.init(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)

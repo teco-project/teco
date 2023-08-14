@@ -59,7 +59,8 @@ extension Wedata {
 
     /// 批量修改任务责任人【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
@@ -68,7 +69,8 @@ extension Wedata {
 
     /// 批量修改任务责任人【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
@@ -77,7 +79,8 @@ extension Wedata {
 
     /// 批量修改任务责任人【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
@@ -86,7 +89,8 @@ extension Wedata {
 
     /// 批量修改任务责任人【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {

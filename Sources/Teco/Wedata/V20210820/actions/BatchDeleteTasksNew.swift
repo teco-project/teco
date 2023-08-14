@@ -66,7 +66,8 @@ extension Wedata {
 
     /// 批量删除任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(_ input: BatchDeleteTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteTasksNewResponse> {
@@ -75,7 +76,8 @@ extension Wedata {
 
     /// 批量删除任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(_ input: BatchDeleteTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteTasksNewResponse {
@@ -84,7 +86,8 @@ extension Wedata {
 
     /// 批量删除任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(taskIdList: [String], deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteTasksNewResponse> {
@@ -93,7 +96,8 @@ extension Wedata {
 
     /// 批量删除任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(taskIdList: [String], deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteTasksNewResponse {

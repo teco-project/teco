@@ -22,11 +22,13 @@ extension Cbs {
     /// InquiryPriceCreateDisks请求参数结构体
     public struct InquiryPriceCreateDisksRequest: TCRequestModel {
         /// 云硬盘计费类型。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         public let diskChargeType: String
 
         /// 硬盘介质类型。取值范围：
+        ///
         /// - CLOUD_BASIC：表示普通云硬盘
         /// - CLOUD_PREMIUM：表示高性能云硬盘
         /// - CLOUD_SSD：表示SSD云硬盘

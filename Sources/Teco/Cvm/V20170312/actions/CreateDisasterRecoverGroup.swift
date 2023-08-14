@@ -27,6 +27,7 @@ extension Cvm {
         public let name: String
 
         /// 分散置放群组类型，取值范围：
+        ///
         /// - HOST：物理机
         /// - SW：交换机
         /// - RACK：机架
@@ -56,6 +57,7 @@ extension Cvm {
         public let disasterRecoverGroupId: String
 
         /// 分散置放群组类型，取值范围：
+        ///
         /// - HOST：物理机
         /// - SW：交换机
         /// - RACK：机架

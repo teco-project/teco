@@ -28,6 +28,7 @@ extension Ciam {
         public let userId: String
 
         /// 返回信息是否为原文
+        ///
         /// - **false** 	默认，返回信息为脱敏信息
         /// - **true** 	返回用户信息原文
         public let original: Bool?

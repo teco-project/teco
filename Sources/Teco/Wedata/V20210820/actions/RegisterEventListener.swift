@@ -70,7 +70,8 @@ extension Wedata {
 
     /// 注册事件监听器【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(_ input: RegisterEventListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
@@ -79,7 +80,8 @@ extension Wedata {
 
     /// 注册事件监听器【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(_ input: RegisterEventListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
@@ -88,7 +90,8 @@ extension Wedata {
 
     /// 注册事件监听器【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
@@ -97,7 +100,8 @@ extension Wedata {
 
     /// 注册事件监听器【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件监听器
     @inlinable
     public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {

@@ -106,7 +106,8 @@ extension Gme {
     ///
     /// #### **Scenes 与 Label 参数说明：**
     ///
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// 提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。
+    ///
     /// <table>
     /// <thread>
     /// <tr>
@@ -120,13 +121,21 @@ extension Gme {
     /// <td>语音检测</td>
     /// <td>语音检测的检测类型</td>
     /// <td>
-    /// <p>normal:正常文本</p>
-    /// <p>porn:色情</p>
-    /// <p>abuse:谩骂</p>
-    /// <p>ad :广告</p>
-    /// <p>illegal :违法</p>
-    /// <p>moan :呻吟</p>
-    /// <p>customized:自定义词库</p>
+    ///
+    /// normal:正常文本
+    ///
+    /// porn:色情
+    ///
+    /// abuse:谩骂
+    ///
+    /// ad :广告
+    ///
+    /// illegal :违法
+    ///
+    /// moan :呻吟
+    ///
+    /// customized:自定义词库
+    ///
     /// </td>
     /// </tr>
     /// </tbody>
@@ -159,6 +168,7 @@ extension Gme {
     ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    ///
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
     /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
@@ -249,7 +259,8 @@ extension Gme {
     ///
     /// #### **Scenes 与 Label 参数说明：**
     ///
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// 提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。
+    ///
     /// <table>
     /// <thread>
     /// <tr>
@@ -263,13 +274,21 @@ extension Gme {
     /// <td>语音检测</td>
     /// <td>语音检测的检测类型</td>
     /// <td>
-    /// <p>normal:正常文本</p>
-    /// <p>porn:色情</p>
-    /// <p>abuse:谩骂</p>
-    /// <p>ad :广告</p>
-    /// <p>illegal :违法</p>
-    /// <p>moan :呻吟</p>
-    /// <p>customized:自定义词库</p>
+    ///
+    /// normal:正常文本
+    ///
+    /// porn:色情
+    ///
+    /// abuse:谩骂
+    ///
+    /// ad :广告
+    ///
+    /// illegal :违法
+    ///
+    /// moan :呻吟
+    ///
+    /// customized:自定义词库
+    ///
     /// </td>
     /// </tr>
     /// </tbody>
@@ -302,6 +321,7 @@ extension Gme {
     ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    ///
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
     /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
@@ -392,7 +412,8 @@ extension Gme {
     ///
     /// #### **Scenes 与 Label 参数说明：**
     ///
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// 提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。
+    ///
     /// <table>
     /// <thread>
     /// <tr>
@@ -406,13 +427,21 @@ extension Gme {
     /// <td>语音检测</td>
     /// <td>语音检测的检测类型</td>
     /// <td>
-    /// <p>normal:正常文本</p>
-    /// <p>porn:色情</p>
-    /// <p>abuse:谩骂</p>
-    /// <p>ad :广告</p>
-    /// <p>illegal :违法</p>
-    /// <p>moan :呻吟</p>
-    /// <p>customized:自定义词库</p>
+    ///
+    /// normal:正常文本
+    ///
+    /// porn:色情
+    ///
+    /// abuse:谩骂
+    ///
+    /// ad :广告
+    ///
+    /// illegal :违法
+    ///
+    /// moan :呻吟
+    ///
+    /// customized:自定义词库
+    ///
     /// </td>
     /// </tr>
     /// </tbody>
@@ -445,6 +474,7 @@ extension Gme {
     ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    ///
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
     /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```
@@ -535,7 +565,8 @@ extension Gme {
     ///
     /// #### **Scenes 与 Label 参数说明：**
     ///
-    /// <p>提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。</p>
+    /// 提交语音检测任务时，需要指定 Scenes 场景参数，_目前要求您设置 Scenes 参数值为：["default"]_；而在检测结果中，则包含请求时指定的场景，以及对应类型的检测结果。
+    ///
     /// <table>
     /// <thread>
     /// <tr>
@@ -549,13 +580,21 @@ extension Gme {
     /// <td>语音检测</td>
     /// <td>语音检测的检测类型</td>
     /// <td>
-    /// <p>normal:正常文本</p>
-    /// <p>porn:色情</p>
-    /// <p>abuse:谩骂</p>
-    /// <p>ad :广告</p>
-    /// <p>illegal :违法</p>
-    /// <p>moan :呻吟</p>
-    /// <p>customized:自定义词库</p>
+    ///
+    /// normal:正常文本
+    ///
+    /// porn:色情
+    ///
+    /// abuse:谩骂
+    ///
+    /// ad :广告
+    ///
+    /// illegal :违法
+    ///
+    /// moan :呻吟
+    ///
+    /// customized:自定义词库
+    ///
     /// </td>
     /// </tr>
     /// </tbody>
@@ -588,6 +627,7 @@ extension Gme {
     ///     - 使用 HMAC-SH1 算法, 最终结果做 BASE64 编码;
     ///     - 签名原文串为 POST+body 的整个json内容(长度以 Content-Length 为准);
     ///     - 签名key为应用的 SecretKey，可以通过控制台查看。
+    ///
     /// - 回调示例如下<font color="red">（详细字段说明见结构：
     /// [DescribeScanResult](https://cloud.tencent.com/document/api/607/35375#DescribeScanResult)）</font>：
     /// ```

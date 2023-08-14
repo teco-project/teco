@@ -28,12 +28,15 @@ extension Tic {
         /// - **VersionId**
         /// 按照【**版本ID**】过滤，VersionId形如 `ver-kg8hn58h`
         /// 类型：string
+        ///
         /// - **StackId**
         /// 按照【**资源栈ID**】过滤，StackId形如 `stk-hz5vn3te`
         /// 类型：string
+        ///
         /// - **Type**
         /// 按照【**事件类型**】过滤，Type 形如 plan, apply, destroy
         /// 类型：string
+        ///
         /// - **Status**
         /// 按照【**事件状态**】过滤，Status形如 queueing, running, success, failed
         /// 类型：string

@@ -32,7 +32,12 @@ extension Oceanus {
         public let limit: Int64?
 
         /// - **ResourceName**
-        /// <p style="padding-left: 30px;">按照资源名字过滤，支持模糊过滤。传入的过滤名字不超过5个</p><p style="padding-left: 30px;">类型: String</p><p style="padding-left: 30px;">必选: 否</p>
+        ///
+        /// 按照资源名字过滤，支持模糊过滤。传入的过滤名字不超过5个
+        ///
+        /// 类型: String
+        ///
+        /// 必选: 否
         public let filters: [Filter]?
 
         /// 工作空间 SerialId

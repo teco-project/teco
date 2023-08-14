@@ -28,12 +28,14 @@ extension Cls {
         /// 类型：String
         ///
         /// 必选：否
+        ///
         /// - taskId
         ///
         /// 按照【加工任务id】进行过滤。
         /// 类型：String
         ///
         /// 必选：否
+        ///
         /// - srctopicId
         ///
         /// 按照【源topicId】进行过滤。

@@ -55,6 +55,7 @@ extension As {
         public let subnetIds: [String]?
 
         /// 销毁策略，目前长度上限为1。取值包括 OLDEST_INSTANCE 和 NEWEST_INSTANCE，默认取值为 OLDEST_INSTANCE。
+        ///
         /// - OLDEST_INSTANCE 优先销毁伸缩组中最旧的实例。
         /// - NEWEST_INSTANCE，优先销毁伸缩组中最新的实例。
         public let terminationPolicies: [String]?
@@ -63,12 +64,14 @@ extension As {
         public let zones: [String]?
 
         /// 重试策略，取值包括 IMMEDIATE_RETRY、 INCREMENTAL_INTERVALS、NO_RETRY，默认取值为 IMMEDIATE_RETRY。部分成功的伸缩活动判定为一次失败活动。
+        ///
         /// - IMMEDIATE_RETRY，立即重试，在较短时间内快速重试，连续失败超过一定次数（5次）后不再重试。
         /// - INCREMENTAL_INTERVALS，间隔递增重试，随着连续失败次数的增加，重试间隔逐渐增大，重试间隔从秒级到1天不等。
         /// - NO_RETRY，不进行重试，直到再次收到用户调用或者告警信息后才会重试。
         public let retryPolicy: String?
 
         /// 可用区校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
+        ///
         /// - ALL，所有可用区（Zone）或子网（SubnetId）都可用则通过校验，否则校验报错。
         /// - ANY，存在任何一个可用区（Zone）或子网（SubnetId）可用则通过校验，否则校验报错。
         ///
@@ -86,16 +89,19 @@ extension As {
         public let ipv6AddressCount: Int64?
 
         /// 多可用区/子网策略，取值包括 PRIORITY 和 EQUALITY，默认为 PRIORITY。
+        ///
         /// - PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
         /// - EQUALITY：扩容出的实例会打散到多个可用区/子网，保证扩容后的各个可用区/子网实例数相对均衡。
         ///
         /// 与本策略相关的注意点：
+        ///
         /// - 当伸缩组为基础网络时，本策略适用于多可用区；当伸缩组为VPC网络时，本策略适用于多子网，此时不再考虑可用区因素，例如四个子网ABCD，其中ABC处于可用区1，D处于可用区2，此时考虑子网ABCD进行排序，而不考虑可用区1、2。
         /// - 本策略适用于多可用区/子网，不适用于启动配置的多机型。多机型按照优先级策略进行选择。
         /// - 按照 PRIORITY 策略创建实例时，先保证多机型的策略，后保证多可用区/子网的策略。例如多机型A、B，多子网1、2、3，会按照A1、A2、A3、B1、B2、B3 进行尝试，如果A1售罄，会尝试A2（而非B1）。
         public let multiZoneSubnetPolicy: String?
 
         /// 伸缩组实例健康检查类型，取值如下：
+        ///
         /// - CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)
         /// - CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)
         ///
@@ -108,6 +114,7 @@ extension As {
         public let loadBalancerHealthCheckGracePeriod: UInt64?
 
         /// 实例分配策略，取值包括 LAUNCH_CONFIGURATION 和 SPOT_MIXED，默认取 LAUNCH_CONFIGURATION。
+        ///
         /// - LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
         /// - SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
         public let instanceAllocationPolicy: String?
@@ -117,6 +124,7 @@ extension As {
         public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy?
 
         /// 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
+        ///
         /// - TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
         /// - FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
         ///

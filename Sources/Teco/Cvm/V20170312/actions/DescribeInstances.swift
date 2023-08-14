@@ -25,28 +25,169 @@ extension Cvm {
         /// 按照一个或者多个实例ID查询。实例ID例如：`ins-xxxxxxxx`。（此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的`ids.N`一节）。每次请求的实例的上限为100。参数不支持同时指定`InstanceIds`和`Filters`。
         public let instanceIds: [String]?
 
-        /// - **zone** <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区例如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)</p>
-        /// - **project-id** <p style="padding-left: 30px;">按照【**项目ID**】进行过滤，可通过调用[DescribeProjects](https://cloud.tencent.com/document/api/651/78725)查询已创建的项目列表或登录[控制台](https://console.cloud.tencent.com/cvm/index)进行查看；也可以调用[AddProject](https://cloud.tencent.com/document/api/651/81952)创建新的项目。项目ID例如：1002189。</p><p style="padding-left: 30px;">类型：Integer</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **host-id** <p style="padding-left: 30px;">按照【**[CDH](https://cloud.tencent.com/document/product/416) ID**】进行过滤。[CDH](https://cloud.tencent.com/document/product/416) ID例如：host-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **dedicated-cluster-id** <p style="padding-left: 30px;">按照【**[CDC](https://cloud.tencent.com/document/product/1346) ID**】进行过滤。[CDC](https://cloud.tencent.com/document/product/1346) ID例如：cluster-xxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **vpc-id** <p style="padding-left: 30px;">按照【**VPC ID**】进行过滤。VPC ID例如：vpc-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **subnet-id** <p style="padding-left: 30px;">按照【**子网ID**】进行过滤。子网ID例如：subnet-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **instance-id** <p style="padding-left: 30px;">按照【**实例ID**】进行过滤。实例ID例如：ins-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **uuid** <p style="padding-left: 30px;">按照【**实例UUID**】进行过滤。实例UUID例如：xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **security-group-id** <p style="padding-left: 30px;">按照【**安全组ID**】进行过滤。安全组ID例如: sg-8jlk3f3r。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **instance-name** <p style="padding-left: 30px;">按照【**实例名称**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **instance-charge-type** <p style="padding-left: 30px;">按照【**实例计费模式**】进行过滤。(PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费 | CDHPAID：表示[CDH](https://cloud.tencent.com/document/product/416)付费，即只对[CDH](https://cloud.tencent.com/document/product/416)计费，不对[CDH](https://cloud.tencent.com/document/product/416)上的实例计费。)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **instance-state** <p style="padding-left: 30px;">按照【**实例状态**】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **private-ip-address** <p style="padding-left: 30px;">按照【**实例主网卡的内网IP**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **public-ip-address** <p style="padding-left: 30px;">按照【**实例主网卡的公网IP**】进行过滤，包含实例创建时自动分配的IP和实例创建后手动绑定的弹性IP。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **ipv6-address** <p style="padding-left: 30px;">按照【**实例的IPv6地址**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **tag-key** <p style="padding-left: 30px;">按照【**标签键**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **tag-value** <p style="padding-left: 30px;">按照【**标签值**】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **tag:tag-key** <p style="padding-left: 30px;">按照【**标签键值对**】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **creation-start-time** <p style="padding-left: 30px;">按照【**实例创建起始时间**】进行过滤。例如：2023-06-01 00:00:00。
-        /// </p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// - **creation-end-time** <p style="padding-left: 30px;">按照【**实例创建截止时间**】进行过滤。例如：2023-06-01 00:00:00。
-        /// </p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p> 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
+        /// - **zone**
+        ///
+        /// 按照【**可用区**】进行过滤。可用区例如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
+        /// - **project-id**
+        ///
+        /// 按照【**项目ID**】进行过滤，可通过调用[DescribeProjects](https://cloud.tencent.com/document/api/651/78725)查询已创建的项目列表或登录[控制台](https://console.cloud.tencent.com/cvm/index)进行查看；也可以调用[AddProject](https://cloud.tencent.com/document/api/651/81952)创建新的项目。项目ID例如：1002189。
+        ///
+        /// 类型：Integer
+        ///
+        /// 必选：否
+        ///
+        /// - **host-id**
+        ///
+        /// 按照【**[CDH](https://cloud.tencent.com/document/product/416) ID**】进行过滤。[CDH](https://cloud.tencent.com/document/product/416) ID例如：host-xxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **dedicated-cluster-id**
+        ///
+        /// 按照【**[CDC](https://cloud.tencent.com/document/product/1346) ID**】进行过滤。[CDC](https://cloud.tencent.com/document/product/1346) ID例如：cluster-xxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **vpc-id**
+        ///
+        /// 按照【**VPC ID**】进行过滤。VPC ID例如：vpc-xxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **subnet-id**
+        ///
+        /// 按照【**子网ID**】进行过滤。子网ID例如：subnet-xxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **instance-id**
+        ///
+        /// 按照【**实例ID**】进行过滤。实例ID例如：ins-xxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **uuid**
+        ///
+        /// 按照【**实例UUID**】进行过滤。实例UUID例如：xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **security-group-id**
+        ///
+        /// 按照【**安全组ID**】进行过滤。安全组ID例如: sg-8jlk3f3r。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **instance-name**
+        ///
+        /// 按照【**实例名称**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **instance-charge-type**
+        ///
+        /// 按照【**实例计费模式**】进行过滤。(PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费 | CDHPAID：表示[CDH](https://cloud.tencent.com/document/product/416)付费，即只对[CDH](https://cloud.tencent.com/document/product/416)计费，不对[CDH](https://cloud.tencent.com/document/product/416)上的实例计费。)
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **instance-state**
+        ///
+        /// 按照【**实例状态**】进行过滤。状态类型详见[实例状态表](https://cloud.tencent.com/document/api/213/15753#InstanceStatus)
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **private-ip-address**
+        ///
+        /// 按照【**实例主网卡的内网IP**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **public-ip-address**
+        ///
+        /// 按照【**实例主网卡的公网IP**】进行过滤，包含实例创建时自动分配的IP和实例创建后手动绑定的弹性IP。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **ipv6-address**
+        ///
+        /// 按照【**实例的IPv6地址**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag-key**
+        ///
+        /// 按照【**标签键**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag-value**
+        ///
+        /// 按照【**标签值**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag:tag-key**
+        ///
+        /// 按照【**标签键值对**】进行过滤。tag-key使用具体的标签键进行替换。使用请参考示例2。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **creation-start-time**
+        ///
+        /// 按照【**实例创建起始时间**】进行过滤。例如：2023-06-01 00:00:00。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **creation-end-time**
+        ///
+        /// 按照【**实例创建截止时间**】进行过滤。例如：2023-06-01 00:00:00。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        ///  每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。

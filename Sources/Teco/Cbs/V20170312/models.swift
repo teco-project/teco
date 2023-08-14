@@ -103,6 +103,7 @@ extension Cbs {
         public let isActivated: Bool?
 
         /// 定期快照策略的状态。取值范围：
+        ///
         /// - NORMAL：正常
         /// - ISOLATED：已隔离。
         public let autoSnapshotPolicyState: String?
@@ -195,6 +196,7 @@ extension Cbs {
         public let cageId: String?
 
         /// 独享集群状态。取值范围：
+        ///
         /// - NORMAL：正常；
         /// - CLOSED：关闭，此时将不可使用该独享集群创建新的云硬盘；
         /// - FAULT：独享集群状态异常，此时独享集群将不可操作，腾讯云运维团队将会及时修复该集群；
@@ -216,6 +218,7 @@ extension Cbs {
         public let cdcId: String
 
         /// 独享集群类型。取值范围：
+        ///
         /// - CLOUD_BASIC：表示普通云硬盘集群
         /// - CLOUD_PREMIUM：表示高性能云硬盘集群
         /// - CLOUD_SSD：SSD表示SSD云硬盘集群。
@@ -327,12 +330,14 @@ extension Cbs {
     /// 描述了云硬盘的详细信息
     public struct Disk: TCOutputModel {
         /// 云盘是否与挂载的实例一起销毁。
+        ///
         /// - true:销毁实例时会同时销毁云盘，只支持按小时后付费云盘。
         /// - false：销毁实例时不销毁云盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
 
         /// 自动续费标识。取值范围：
+        ///
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
@@ -340,6 +345,7 @@ extension Cbs {
         public let renewFlag: String?
 
         /// 硬盘介质类型。取值范围：
+        ///
         /// - CLOUD_BASIC：表示普通云硬盘
         /// - CLOUD_PREMIUM：表示高性能云硬盘
         /// - CLOUD_BSSD：表示通用型SSD云硬盘
@@ -349,6 +355,7 @@ extension Cbs {
         public let diskType: String?
 
         /// 云盘状态。取值范围：
+        ///
         /// - UNATTACHED：未挂载
         /// - ATTACHING：挂载中
         /// - ATTACHED：已挂载
@@ -363,12 +370,14 @@ extension Cbs {
         public let snapshotCount: Int64
 
         /// 云盘已挂载到子机，且子机与云盘都是包年包月。
+        ///
         /// - true：子机设置了自动续费标识，但云盘未设置
         /// - false：云盘自动续费标识正常。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlagError: Bool?
 
         /// 云盘是否处于快照回滚状态。取值范围：
+        ///
         /// - false:表示不处于快照回滚状态
         /// - true:表示处于快照回滚状态。
         public let rollbacking: Bool?
@@ -377,6 +386,7 @@ extension Cbs {
         public let instanceIdList: [String]
 
         /// 云盘是否为加密盘。取值范围：
+        ///
         /// - false:表示非加密盘
         /// - true:表示加密盘。
         public let encrypt: Bool?
@@ -395,6 +405,7 @@ extension Cbs {
         public let instanceId: String?
 
         /// 云盘的挂载类型。取值范围：
+        ///
         /// - PF: PF挂载
         /// - VF: VF挂载
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -409,6 +420,7 @@ extension Cbs {
         public let throughputPerformance: UInt64?
 
         /// 云盘是否处于类型变更中。取值范围：
+        ///
         /// - false:表示云盘不处于类型变更中
         /// - true:表示云盘已发起类型变更，正处于迁移中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -424,6 +436,7 @@ extension Cbs {
         public let placement: Placement?
 
         /// 判断预付费的云盘是否支持主动退还。
+        ///
         /// - true:支持主动退还
         /// - false:不支持主动退还。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -436,6 +449,7 @@ extension Cbs {
         @TCTimestampEncoding public var deadlineTime: Date?
 
         /// 云盘是否挂载到云主机上。取值范围：
+        ///
         /// - false:表示未挂载
         /// - true:表示已挂载。
         public let attached: Bool?
@@ -448,11 +462,13 @@ extension Cbs {
         public let migratePercent: UInt64?
 
         /// 云硬盘类型。取值范围：
+        ///
         /// - SYSTEM_DISK：系统盘
         /// - DATA_DISK：数据盘。
         public let diskUsage: String?
 
         /// 付费模式。取值范围：
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：后付费，即按量计费。
         public let diskChargeType: String?
@@ -461,11 +477,13 @@ extension Cbs {
         public let portable: Bool?
 
         /// 云盘是否具备创建快照的能力。取值范围：
+        ///
         /// - false表示不具备
         /// - true表示具备。
         public let snapshotAbility: Bool?
 
         /// 在云盘已挂载到实例，且实例与云盘都是包年包月的条件下，此字段才有意义。
+        ///
         /// - true:云盘到期时间早于实例。
         /// - false：云盘到期时间晚于实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -479,6 +497,7 @@ extension Cbs {
         public let differDaysOfDeadline: Int64?
 
         /// 预付费云盘在不支持主动退还的情况下，该参数表明不支持主动退还的具体原因。取值范围：
+        ///
         /// - 1：云硬盘已经退还
         /// - 2：云硬盘已过期
         /// - 3：云盘不支持退还
@@ -505,6 +524,7 @@ extension Cbs {
         public let diskBackupCount: UInt64
 
         /// 云硬盘挂载实例的类型。取值范围：
+        ///
         /// - CVM
         /// - EKS
         public let instanceType: String
@@ -579,6 +599,7 @@ extension Cbs {
         public let diskSize: UInt64
 
         /// 云硬盘类型。取值范围：
+        ///
         /// - SYSTEM_DISK：系统盘
         /// - DATA_DISK：数据盘。
         public let diskUsage: String
@@ -587,6 +608,7 @@ extension Cbs {
         public let diskBackupName: String
 
         /// 云硬盘备份点状态。取值范围：
+        ///
         /// - NORMAL：正常
         /// - CREATING：创建中
         /// - ROLLBACKING：回滚中
@@ -602,6 +624,7 @@ extension Cbs {
         @TCTimestampISO8601Encoding public var createTime: Date
 
         /// 云盘是否为加密盘。取值范围：
+        ///
         /// - false:表示非加密盘
         /// - true:表示加密盘。
         public let encrypt: Bool
@@ -625,6 +648,7 @@ extension Cbs {
         public let period: UInt64
 
         /// 自动续费标识。取值范围：
+        ///
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
@@ -657,6 +681,7 @@ extension Cbs {
         public let available: Bool?
 
         /// 付费模式。取值范围：
+        ///
         /// - PREPAID：表示预付费，即包年包月
         /// - POSTPAID_BY_HOUR：表示后付费，即按量计费。
         public let diskChargeType: String?
@@ -669,6 +694,7 @@ extension Cbs {
         public let instanceFamily: String?
 
         /// 云盘介质类型。取值范围：
+        ///
         /// - CLOUD_BASIC：表示普通云硬盘
         /// - CLOUD_PREMIUM：表示高性能云硬盘
         /// - CLOUD_SSD：SSD表示SSD云硬盘。
@@ -687,6 +713,7 @@ extension Cbs {
         public let deviceClass: String?
 
         /// 云盘类型。取值范围：
+        ///
         /// - SYSTEM_DISK：表示系统盘
         /// - DATA_DISK：表示数据盘。
         public let diskUsage: String?
@@ -834,6 +861,7 @@ extension Cbs {
         public let discountPrice: Float?
 
         /// 后付费云盘的计价单元，取值范围：
+        ///
         /// - HOUR：表示后付费云盘的计价单元是按小时计算。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
@@ -919,6 +947,7 @@ extension Cbs {
         public let unitPriceDiscountHigh: String?
 
         /// 后付费云盘的计价单元，取值范围：
+        ///
         /// - HOUR：表示后付费云盘的计价单元是按小时计算。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
@@ -959,11 +988,13 @@ extension Cbs {
         public let placement: Placement?
 
         /// 是否为跨地域复制的快照。取值范围：
+        ///
         /// - true：表示为跨地域复制的快照。
         /// - false:本地域的快照。
         public let copyFromRemote: Bool
 
         /// 快照的状态。取值范围：
+        ///
         /// - NORMAL：正常
         /// - CREATING：创建中
         /// - ROLLBACKING：回滚中
@@ -973,6 +1004,7 @@ extension Cbs {
         public let snapshotState: String?
 
         /// 是否为永久快照。取值范围：
+        ///
         /// - true：永久快照
         /// - false：非永久快照。
         public let isPermanent: Bool?
@@ -1008,6 +1040,7 @@ extension Cbs {
         public let copyingToRegions: [String]
 
         /// 是否为加密盘创建的快照。取值范围：
+        ///
         /// - true：该快照为加密盘创建的
         /// - false:非加密盘创建的快照。
         public let encrypt: Bool?
@@ -1022,6 +1055,7 @@ extension Cbs {
         public let imageCount: UInt64
 
         /// 创建此快照的云硬盘类型。取值范围：
+        ///
         /// - SYSTEM_DISK：系统盘
         /// - DATA_DISK：数据盘。
         public let diskUsage: String?

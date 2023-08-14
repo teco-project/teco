@@ -25,12 +25,14 @@ extension Cvm {
         public let instanceId: String
 
         /// 指定有效的[镜像](/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：
+        ///
         /// - 公共镜像
         /// - 自定义镜像
         /// - 共享镜像
         /// - 服务市场镜像
         ///
         /// 可通过以下方式获取可用的镜像ID：
+        ///
         /// - `公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。
         /// - 通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。
         public let imageId: String?

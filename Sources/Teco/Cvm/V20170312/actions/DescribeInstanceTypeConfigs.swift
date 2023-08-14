@@ -22,11 +22,31 @@ extension Cvm {
     /// DescribeInstanceTypeConfigs请求参数结构体
     public struct DescribeInstanceTypeConfigsRequest: TCRequestModel {
         /// - **zone**
-        /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)</p>
+        ///
+        /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
         /// - **instance-family**
-        /// <p style="padding-left: 30px;">按照【**实例机型系列**】进行过滤。实例机型系列形如：S1、I1、M1等。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**实例机型系列**】进行过滤。实例机型系列形如：S1、I1、M1等。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// - **instance-type**
-        /// <p style="padding-left: 30px;">按照【**实例类型**】进行过滤。实例类型形如：S5.12XLARGE128、S5.12XLARGE96等。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**实例类型**】进行过滤。实例类型形如：S5.12XLARGE128、S5.12XLARGE96等。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为1。
         public let filters: [Filter]?
 

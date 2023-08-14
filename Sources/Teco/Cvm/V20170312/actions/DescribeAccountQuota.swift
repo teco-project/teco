@@ -22,9 +22,24 @@ extension Cvm {
     /// DescribeAccountQuota请求参数结构体
     public struct DescribeAccountQuotaRequest: TCRequestModel {
         /// - **zone**
-        /// <p style="padding-left: 30px;">按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)</p>
+        ///
+        /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
         /// - **quota-type**
-        /// <p style="padding-left: 30px;">按照【**配额类型**】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
+        ///
+        /// 按照【**配额类型**】进行过滤。配额类型形如：PostPaidQuotaSet。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet
         public let filters: [Filter]?
 
         public init(filters: [Filter]? = nil) {

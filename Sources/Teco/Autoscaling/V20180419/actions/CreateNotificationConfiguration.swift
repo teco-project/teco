@@ -37,6 +37,7 @@ extension As {
         public let notificationUserGroupIds: [String]?
 
         /// 通知接收端类型，取值如下
+        ///
         /// - USER_GROUP：用户组
         /// - CMQ_QUEUE：CMQ 队列
         /// - CMQ_TOPIC：CMQ 主题

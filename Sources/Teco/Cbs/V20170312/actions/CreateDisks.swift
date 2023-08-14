@@ -25,6 +25,7 @@ extension Cbs {
         public let placement: Placement
 
         /// 云硬盘计费类型。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - CDCPAID：独享集群付费
@@ -33,6 +34,7 @@ extension Cbs {
         public let diskChargeType: String
 
         /// 硬盘介质类型。取值范围：
+        ///
         /// - CLOUD_BASIC：表示普通云硬盘
         /// - CLOUD_PREMIUM：表示高性能云硬盘
         /// - CLOUD_BSSD：表示通用型SSD云硬盘
@@ -59,6 +61,7 @@ extension Cbs {
         public let throughputPerformance: UInt64?
 
         /// 云硬盘大小，单位为GB。
+        ///
         /// - 如果传入`SnapshotId`则可不传`DiskSize`，此时新建云盘的大小为快照大小
         /// - 如果传入`SnapshotId`同时传入`DiskSize`，则云盘大小必须大于或等于快照大小
         /// - 云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。

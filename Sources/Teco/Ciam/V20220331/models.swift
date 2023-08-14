@@ -293,6 +293,7 @@ extension Ciam {
         public let id: String
 
         /// 任务状态
+        ///
         /// - **PENDING**   待执行
         /// - **PROCESSING**   执行中
         /// - **COMPLETED**   完成
@@ -300,6 +301,7 @@ extension Ciam {
         public let status: String
 
         /// 任务类型
+        ///
         /// - **IMPORT_USER**   用户导入
         /// - **EXPORT_USER**   用户导出
         public let type: String
@@ -308,6 +310,7 @@ extension Ciam {
         public let createdDate: Int64
 
         /// 任务的数据类型
+        ///
         /// - **NDJSON**   New-line Delimited JSON
         /// - **CSV**   Comma-Separated Values
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -363,6 +366,7 @@ extension Ciam {
         public let description: String?
 
         /// 事件参与者
+        ///
         /// - **TENANT**   租户
         /// - **USER**   用户
         /// 注意：此字段可能返回 null，表示取不到有效值。

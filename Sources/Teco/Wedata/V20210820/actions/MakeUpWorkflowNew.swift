@@ -64,7 +64,8 @@ extension Wedata {
 
     /// 工作流任务补录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(_ input: MakeUpWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpWorkflowNewResponse> {
@@ -73,7 +74,8 @@ extension Wedata {
 
     /// 工作流任务补录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(_ input: MakeUpWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpWorkflowNewResponse {
@@ -82,7 +84,8 @@ extension Wedata {
 
     /// 工作流任务补录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpWorkflowNewResponse> {
@@ -91,7 +94,8 @@ extension Wedata {
 
     /// 工作流任务补录【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpWorkflowNewResponse {

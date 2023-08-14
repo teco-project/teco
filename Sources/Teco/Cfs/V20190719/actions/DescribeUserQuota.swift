@@ -26,6 +26,7 @@ extension Cfs {
         public let fileSystemId: String
 
         /// 过滤条件。
+        ///
         /// - UserType - Array of String - 是否必填：否 -（过滤条件）按配额类型过滤。(Uid| Gid )
         /// - UserId - Array of String - 是否必填：否 -（过滤条件）按UID/GID过滤。
         public let filters: [Filter]?

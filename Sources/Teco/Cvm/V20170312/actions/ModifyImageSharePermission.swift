@@ -22,6 +22,7 @@ extension Cvm {
     /// ModifyImageSharePermission请求参数结构体
     public struct ModifyImageSharePermissionRequest: TCRequestModel {
         /// 镜像ID，形如`img-gvbnzy6f`。镜像Id可以通过如下方式获取：
+        ///
         /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
         /// - 通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
         ///

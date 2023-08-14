@@ -92,6 +92,7 @@ extension Cvm {
         public let period: UInt64
 
         /// 自动续费标识。取值范围：
+        ///
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
@@ -259,6 +260,7 @@ extension Cvm {
         public let diskSize: Int64
 
         /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
         /// - LOCAL_BASIC：本地硬盘
         /// - LOCAL_SSD：本地SSD硬盘
         /// - LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定
@@ -351,6 +353,7 @@ extension Cvm {
         public let name: String
 
         /// 分散置放群组类型，取值范围：
+        ///
         /// - HOST：物理机
         /// - SW：交换机
         /// - RACK：机架
@@ -441,6 +444,7 @@ extension Cvm {
         public let releaseAddress: Bool?
 
         /// 不支持的网络类型，取值范围：
+        ///
         /// - BASIC：基础网络
         /// - VPC1.0：私有网络VPC1.0
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -812,6 +816,7 @@ extension Cvm {
         public let memory: Int64?
 
         /// 实例业务状态。取值范围：
+        ///
         /// - NORMAL：表示正常状态的实例
         /// - EXPIRED：表示过期的实例
         /// - PROTECTIVELY_ISOLATED：表示被安全隔离的实例。
@@ -821,6 +826,7 @@ extension Cvm {
         public let instanceName: String?
 
         /// 实例计费模式。取值范围：
+        ///
         /// - `PREPAID`：表示预付费，即包年包月
         /// - `POSTPAID_BY_HOUR`：表示后付费，即按量计费
         /// - `CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
@@ -850,6 +856,7 @@ extension Cvm {
         public let imageId: String?
 
         /// 自动续费标识。取值范围：
+        ///
         /// - `NOTIFY_AND_MANUAL_RENEW`：表示通知即将过期，但不自动续费
         /// - `NOTIFY_AND_AUTO_RENEW`：表示通知即将过期，而且自动续费
         /// - `DISABLE_NOTIFY_AND_MANUAL_RENEW`：表示不通知即将过期，也不自动续费。
@@ -878,6 +885,7 @@ extension Cvm {
         public let loginSettings: LoginSettings
 
         /// 实例状态。取值范围：
+        ///
         /// - PENDING：表示创建中
         /// - LAUNCH_FAILED：表示创建失败
         /// - RUNNING：表示运行中
@@ -894,6 +902,7 @@ extension Cvm {
 
         /// 实例的关机计费模式。
         /// 取值范围：
+        ///
         /// - KEEP_CHARGING：关机继续收费
         /// - STOP_CHARGING：关机停止收费
         /// - NOT_APPLICABLE：实例处于非关机状态或者不适用关机停止计费的条件
@@ -907,6 +916,7 @@ extension Cvm {
         public let latestOperation: String?
 
         /// 实例的最新操作状态。取值范围：
+        ///
         /// - SUCCESS：表示操作成功
         /// - OPERATING：表示操作执行中
         /// - FAILED：表示操作失败
@@ -942,6 +952,7 @@ extension Cvm {
         public let dedicatedClusterId: String?
 
         /// 实例隔离类型。取值范围：
+        ///
         /// - ARREAR：表示欠费隔离
         /// - EXPIRE：表示到期隔离
         /// - MANMADE：表示主动退还隔离
@@ -958,6 +969,7 @@ extension Cvm {
         public let licenseType: String?
 
         /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
+        ///
         /// - TRUE：表示开启实例保护，不允许通过api接口删除实例
         /// - FALSE：表示关闭实例保护，允许通过api接口删除实例
         ///
@@ -1026,6 +1038,7 @@ extension Cvm {
         public let period: Int64?
 
         /// 自动续费标识。取值范围：
+        ///
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
@@ -1108,6 +1121,7 @@ extension Cvm {
         public let instanceId: String?
 
         /// 实例状态。取值范围：
+        ///
         /// - PENDING：表示创建中
         /// - LAUNCH_FAILED：表示创建失败
         /// - RUNNING：表示运行中
@@ -1191,6 +1205,7 @@ extension Cvm {
         public let instanceType: String
 
         /// 实例计费模式。取值范围：
+        ///
         /// - PREPAID：表示预付费，即包年包月
         /// - POSTPAID_BY_HOUR：表示后付费，即按量计费
         /// - CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
@@ -1220,6 +1235,7 @@ extension Cvm {
         public let localDiskTypeList: [LocalDiskType]
 
         /// 实例是否售卖。取值范围：
+        ///
         /// - SELL：表示实例可购买
         /// - SOLD_OUT：表示实例已售罄。
         public let status: String
@@ -1287,6 +1303,7 @@ extension Cvm {
     /// 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费类型。取值范围：
+        ///
         /// - BANDWIDTH_PREPAID：预付费按带宽结算
         /// - TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
         /// - BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
@@ -1299,6 +1316,7 @@ extension Cvm {
         public let internetMaxBandwidthOut: Int64?
 
         /// 是否分配公网IP。取值范围：
+        ///
         /// - TRUE：表示分配公网IP
         /// - FALSE：表示不分配公网IP
         ///
@@ -1369,11 +1387,13 @@ extension Cvm {
     /// 描述了单项的价格信息
     public struct ItemPrice: TCOutputModel {
         /// 后续合计费用的原价，后付费模式使用，单位：元。
+        ///
         /// - 如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
 
         /// 后续计价单元，后付费模式使用，可取值范围：
+        ///
         /// - HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：
         /// - GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1392,6 +1412,7 @@ extension Cvm {
         public let discount: Float?
 
         /// 后续合计费用的折扣价，后付费模式使用，单位：元
+        ///
         /// - 如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
@@ -1604,6 +1625,7 @@ extension Cvm {
         public let instanceName: String?
 
         /// 实例计费模式。取值范围：
+        ///
         /// - `PREPAID`：表示预付费，即包年包月
         /// - `POSTPAID_BY_HOUR`：表示后付费，即按量计费
         /// - `CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
@@ -1778,6 +1800,7 @@ extension Cvm {
         public let maxSize: Int64
 
         /// 购买时本地盘是否为必选。取值范围：
+        ///
         /// - REQUIRED：表示必选
         /// - OPTIONAL：表示可选。
         public let required: String
@@ -1794,6 +1817,7 @@ extension Cvm {
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel, TCOutputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
         /// - Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
         /// - Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
         ///
@@ -1806,6 +1830,7 @@ extension Cvm {
         public let keyIds: [String]?
 
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
+        ///
         /// - TRUE：表示保持镜像的登录设置
         /// - FALSE：表示不保持镜像的登录设置
         ///
@@ -1829,6 +1854,7 @@ extension Cvm {
     /// 描述了单台实例操作次数限制
     public struct OperationCountLimit: TCOutputModel {
         /// 实例操作。取值范围：
+        ///
         /// - `INSTANCE_DEGRADE`：降配操作
         /// - `INTERNET_CHARGE_TYPE_CHANGE`：修改网络带宽计费模式
         public let operation: String
@@ -2439,6 +2465,7 @@ extension Cvm {
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启云自动化助手。取值范围：
+        ///
         /// - TRUE：表示开启云自动化助手服务
         /// - FALSE：表示不开启云自动化助手服务
         ///
@@ -2457,6 +2484,7 @@ extension Cvm {
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：
+        ///
         /// - TRUE：表示开启云监控服务
         /// - FALSE：表示不开启云监控服务
         ///
@@ -2475,6 +2503,7 @@ extension Cvm {
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：
+        ///
         /// - TRUE：表示开启云安全服务
         /// - FALSE：表示不开启云安全服务
         ///
@@ -2612,6 +2641,7 @@ extension Cvm {
     /// 描述了操作系统所在块设备即系统盘的信息
     public struct SystemDisk: TCInputModel, TCOutputModel {
         /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
         /// - LOCAL_BASIC：本地硬盘
         /// - LOCAL_SSD：本地SSD硬盘
         /// - CLOUD_BASIC：普通云硬盘
@@ -2697,6 +2727,7 @@ extension Cvm {
         public let subnetId: String
 
         /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：
+        ///
         /// - TRUE：表示用作公网网关
         /// - FALSE：表示不作为公网网关
         ///

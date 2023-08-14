@@ -36,6 +36,7 @@ extension Cvm {
         public let clientToken: String?
 
         /// 预留实例显示名称。
+        ///
         /// - 不指定实例显示名称则默认显示‘未命名’。
         /// - 最多支持60个字符（包含模式串）。
         public let reservedInstanceName: String?

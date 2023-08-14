@@ -37,6 +37,7 @@ extension Thpc {
         public let computeNodeCount: Int64?
 
         /// 调度器类型。
+        ///
         /// - SGE：SGE调度器。
         /// - SLURM：SLURM调度器。
         public let schedulerType: String?

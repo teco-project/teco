@@ -95,7 +95,8 @@ extension Wedata {
 
     /// 注册事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件
     @inlinable
     public func registerEvent(_ input: RegisterEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
@@ -104,7 +105,8 @@ extension Wedata {
 
     /// 注册事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件
     @inlinable
     public func registerEvent(_ input: RegisterEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
@@ -113,7 +115,8 @@ extension Wedata {
 
     /// 注册事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件
     @inlinable
     public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
@@ -122,7 +125,8 @@ extension Wedata {
 
     /// 注册事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 注册事件
     @inlinable
     public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {

@@ -54,7 +54,8 @@ extension Wedata {
 
     /// 批量冻结任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量冻结任务
     @inlinable
     public func freezeTasks(_ input: FreezeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
@@ -63,7 +64,8 @@ extension Wedata {
 
     /// 批量冻结任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量冻结任务
     @inlinable
     public func freezeTasks(_ input: FreezeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
@@ -72,7 +74,8 @@ extension Wedata {
 
     /// 批量冻结任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量冻结任务
     @inlinable
     public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
@@ -81,7 +84,8 @@ extension Wedata {
 
     /// 批量冻结任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 批量冻结任务
     @inlinable
     public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {

@@ -54,7 +54,8 @@ extension Wedata {
 
     /// 删除文件夹【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除文件夹
     @inlinable
     public func deleteFolder(_ input: DeleteFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
@@ -63,7 +64,8 @@ extension Wedata {
 
     /// 删除文件夹【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除文件夹
     @inlinable
     public func deleteFolder(_ input: DeleteFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {
@@ -72,7 +74,8 @@ extension Wedata {
 
     /// 删除文件夹【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除文件夹
     @inlinable
     public func deleteFolder(projectId: String, folderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
@@ -81,7 +84,8 @@ extension Wedata {
 
     /// 删除文件夹【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除文件夹
     @inlinable
     public func deleteFolder(projectId: String, folderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {

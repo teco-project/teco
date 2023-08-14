@@ -2993,14 +2993,12 @@ extension Wedata {
         /// 事件状态.取值范围:
         ///
         /// - new:表示新建
-        ///
         /// - processing:表示处理中
         public let eventStatus: String
 
         /// 事件类别/(基线or任务).取值范围:
         ///
         /// - baseline: 表示基线
-        ///
         /// - task: 表示任务
         public let eventType: String
 

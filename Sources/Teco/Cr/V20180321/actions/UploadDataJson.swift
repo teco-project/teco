@@ -30,7 +30,8 @@ extension Cr {
         /// 报文信息
         public let data: String
 
-        /// <p>上传类型，不填默认到期/逾期提醒数据，取值范围：</p>
+        /// 上传类型，不填默认到期/逾期提醒数据，取值范围：
+        ///
         /// - data：到期/逾期提醒数据
         /// - repay：到期/逾期提醒停拨数据
         public let uploadModel: String?

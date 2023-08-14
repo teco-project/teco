@@ -28,6 +28,7 @@ extension Cvm {
         public let hostChargePrepaid: ChargePrepaid
 
         /// 试运行，测试使用，不执行具体逻辑。取值范围：
+        ///
         /// - TRUE：跳过执行逻辑
         /// - FALSE：执行逻辑
         ///

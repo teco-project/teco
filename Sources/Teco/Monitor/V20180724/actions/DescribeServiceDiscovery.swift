@@ -62,8 +62,9 @@ extension Monitor {
     /// 列出服务发现列表
     ///
     /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func describeServiceDiscovery(_ input: DescribeServiceDiscoveryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceDiscoveryResponse> {
         self.client.execute(action: "DescribeServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,8 +73,9 @@ extension Monitor {
     /// 列出服务发现列表
     ///
     /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func describeServiceDiscovery(_ input: DescribeServiceDiscoveryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceDiscoveryResponse {
         try await self.client.execute(action: "DescribeServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -82,8 +84,9 @@ extension Monitor {
     /// 列出服务发现列表
     ///
     /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceDiscoveryResponse> {
         self.describeServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), region: region, logger: logger, on: eventLoop)
@@ -92,8 +95,9 @@ extension Monitor {
     /// 列出服务发现列表
     ///
     /// 列出在腾讯云容器服务下创建的 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceDiscoveryResponse {
         try await self.describeServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), region: region, logger: logger, on: eventLoop)

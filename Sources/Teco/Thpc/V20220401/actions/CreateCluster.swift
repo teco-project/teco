@@ -37,6 +37,7 @@ extension Thpc {
         public let computeNodeCount: Int64?
 
         /// 调度器类型。默认取值：SLURM。
+        ///
         /// - SGE：SGE调度器。
         /// - SLURM：SLURM调度器。
         public let schedulerType: String?
@@ -83,6 +84,7 @@ extension Thpc {
         public let tags: [Tag]?
 
         /// 弹性伸缩类型。
+        ///
         /// - AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
         /// - THPC_AS：集群自动扩缩容由THPC产品内部实现。
         public let autoScalingType: String?

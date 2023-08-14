@@ -30,7 +30,6 @@ extension Wedata {
         /// 是否告警.取值范围
         ///
         /// - yes : 表示告警
-        ///
         /// - no : 表示不告警
         public let data: [String]
 

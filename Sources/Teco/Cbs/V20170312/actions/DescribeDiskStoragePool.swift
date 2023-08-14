@@ -28,6 +28,7 @@ extension Cbs {
         public let cdcIds: [String]?
 
         /// 过滤条件。参数不支持同时指定`CdcIds`和`Filters`。
+        ///
         /// - cdc-id - Array of String - 是否必填：否 -（过滤条件）按独享集群ID过滤。
         /// - zone - Array of String - 是否必填：否 -（过滤条件）按独享集群所在[可用区](/document/product/213/15753#ZoneInfo)过滤。
         /// - cage-id - Array of String - 是否必填：否 -（过滤条件）按独享集群所在围笼的ID过滤。

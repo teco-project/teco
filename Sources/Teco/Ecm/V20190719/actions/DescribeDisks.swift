@@ -23,6 +23,7 @@ extension Ecm {
     /// DescribeDisks请求参数结构体
     public struct DescribeDisksRequest: TCPaginatedRequest {
         /// 过滤条件。参数不支持同时指定`DiskIds`和`Filters`。
+        ///
         /// - disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)
         /// - disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)
         /// - portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)
@@ -44,6 +45,7 @@ extension Ecm {
         public let limit: UInt64?
 
         /// 云盘列表排序的依据字段。取值范围：
+        ///
         /// - CREATE_TIME：依据云盘的创建时间排序
         /// - DEADLINE：依据云盘的到期时间排序
         ///
@@ -60,6 +62,7 @@ extension Ecm {
         public let diskIds: [String]?
 
         /// 输出云盘列表的排列顺序。取值范围：
+        ///
         /// - ASC：升序排列
         /// - DESC：降序排列。
         public let order: String?

@@ -26,18 +26,21 @@ extension Cvm {
         public let placement: Placement
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：
+        ///
         /// - 公共镜像
         /// - 自定义镜像
         /// - 共享镜像
         /// - 服务市场镜像
         ///
         /// 可通过以下方式获取可用的镜像ID：
+        ///
         /// - `公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。
         /// - 通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。
         ///  **注：如果您不指定LaunchTemplate参数，则ImageId为必选参数。若同时传递ImageId和LaunchTemplate，则默认覆盖LaunchTemplate中对应的ImageId的值。**
         public let imageId: String
 
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - SPOTPAID：竞价付费
@@ -67,6 +70,7 @@ extension Cvm {
         public let instanceCount: Int64?
 
         /// 实例显示名称。
+        ///
         /// - 不指定实例显示名称则默认显示‘未命名’。
         /// - 购买多台实例，如果指定模式串`{R:x}`，表示生成数字`[x, x+n-1]`，其中`n`表示购买实例的数量，例如`server_{R:3}`，购买1台时，实例显示名称为`server_3`；购买2台时，实例显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。
         /// - 购买多台实例，如果不指定模式串，则在实例显示名称添加后缀`1、2...n`，其中`n`表示购买实例的数量，例如`server_`，购买2台时，实例显示名称分别为`server_1`，`server_2`。
@@ -88,6 +92,7 @@ extension Cvm {
         public let clientToken: String?
 
         /// 云服务器的主机名。
+        ///
         /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
         /// - Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
         /// - 其他类型（Linux 等）实例：主机名字符长度为[2, 30]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。

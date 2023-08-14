@@ -25,7 +25,13 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// - **status**
-        /// <p style="padding-left: 30px;">按照【**配置规格状态**】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        ///
+        /// 按照【**配置规格状态**】进行过滤。配置规格状态形如：SELL、UNAVAILABLE。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为2。
         public let filters: [Filter]?
 

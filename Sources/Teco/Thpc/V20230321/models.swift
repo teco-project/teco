@@ -98,6 +98,7 @@ extension Thpc {
         public let activityId: String
 
         /// 集群活动类型。取值范围：
+        ///
         /// - CreateAndAddNodes：创建实例并添加进集群
         /// - RemoveNodesFromCluster：从集群移除实例
         /// - TerminateNodes：销毁实例
@@ -106,6 +107,7 @@ extension Thpc {
         public let activityType: String
 
         /// 集群活动状态。取值范围：
+        ///
         /// - PENDING：等待运行
         /// - RUNNING：运行中
         /// - SUCCESSFUL：活动成功
@@ -165,6 +167,7 @@ extension Thpc {
         public let clusterId: String
 
         /// 集群状态。取值范围：
+        ///
         /// - PENDING：创建中
         /// - INITING：初始化中
         /// - INIT_FAILED：初始化失败
@@ -206,6 +209,7 @@ extension Thpc {
         public let loginNodeCount: Int64
 
         /// 弹性伸缩类型。
+        ///
         /// - THPC_AS：集群自动扩缩容由THPC产品内部实现。
         /// - AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。
         public let autoScalingType: String
@@ -234,6 +238,7 @@ extension Thpc {
     /// 计算节点信息。
     public struct ComputeNode: TCInputModel {
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - SPOTPAID：竞价付费
@@ -245,6 +250,7 @@ extension Thpc {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
+        ///
         /// - 具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
@@ -258,6 +264,7 @@ extension Thpc {
         public let internetAccessible: InternetAccessible?
 
         /// 节点显示名称。
+        ///
         /// -
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
@@ -307,6 +314,7 @@ extension Thpc {
         public let diskSize: Int64?
 
         /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：
+        ///
         /// - LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定
         /// - LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定
         /// - CLOUD_BASIC：普通云硬盘
@@ -335,6 +343,7 @@ extension Thpc {
         public let placement: Placement
 
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - SPOTPAID：竞价付费
@@ -346,6 +355,7 @@ extension Thpc {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
+        ///
         /// - 具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
@@ -578,6 +588,7 @@ extension Thpc {
     /// 登录节点信息。
     public struct LoginNode: TCInputModel {
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         /// - SPOTPAID：竞价付费
@@ -589,6 +600,7 @@ extension Thpc {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
+        ///
         /// - 具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
@@ -602,6 +614,7 @@ extension Thpc {
         public let internetAccessible: InternetAccessible?
 
         /// 节点显示名称。
+        ///
         /// -
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
@@ -646,6 +659,7 @@ extension Thpc {
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
+        ///
         /// - Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
         /// - Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。
         ///
@@ -664,6 +678,7 @@ extension Thpc {
     /// 管控节点信息
     public struct ManagerNode: TCInputModel {
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        ///
         /// - PREPAID：预付费，即包年包月
         /// - POSTPAID_BY_HOUR：按小时后付费
         ///
@@ -674,6 +689,7 @@ extension Thpc {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
+        ///
         /// - 对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
@@ -687,6 +703,7 @@ extension Thpc {
         public let internetAccessible: InternetAccessible?
 
         /// 节点显示名称。
+        ///
         /// - 不指定节点显示名称则默认显示‘未命名’。
         /// - 购买多个节点，如果指定模式串`{R:x}`，表示生成数字[`[x, x+n-1]`，其中`n`表示购买节点的数量，例如`server_{R:3}`，购买1个时，节点显示名称为`server_3`；购买2个时，节点显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。
         /// 购买多个节点，如果不指定模式串，则在节点显示名称添加后缀`1、2...n`，其中`n`表示购买节点的数量，例如`server_`，购买2个时，节点显示名称分别为`server_1`，`server_2`。
@@ -738,6 +755,7 @@ extension Thpc {
         public let nodeInstanceId: String?
 
         /// 节点活动状态。取值范围：
+        ///
         /// - RUNNING：运行中
         /// - SUCCESSFUL：活动成功
         /// - FAILED：活动失败
@@ -770,6 +788,7 @@ extension Thpc {
         public let zone: String?
 
         /// 节点状态。
+        ///
         /// - SUBMITTED：已完成提交。
         /// - CREATING：创建中。
         /// - CREATED：完成创建。
@@ -789,6 +808,7 @@ extension Thpc {
         public let queueName: String?
 
         /// 节点角色。
+        ///
         /// - Manager：管控节点。
         /// - Compute：计算节点。
         /// - Login：登录节点。
@@ -797,6 +817,7 @@ extension Thpc {
         public let nodeRole: String?
 
         /// 节点类型。
+        ///
         /// - STATIC：静态节点。
         /// - DYNAMIC：弹性节点。
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -26,6 +26,7 @@ extension Tat {
         public let invocationIds: [String]?
 
         /// 过滤条件。
+        ///
         /// - invocation-id - String - 是否必填：否 -（过滤条件）按照执行活动ID过滤。
         /// - command-id - String - 是否必填：否 -（过滤条件）按照命令ID过滤。
         /// - command-created-by - String - 是否必填：否 -（过滤条件）按照执行的命令类型过滤，取值为 TAT 或 USER，TAT 代表公共命令，USER 代表由用户创建的命令。

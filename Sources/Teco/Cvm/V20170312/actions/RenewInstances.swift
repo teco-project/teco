@@ -29,6 +29,7 @@ extension Cvm {
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 是否续费弹性数据盘。取值范围：
+        ///
         /// - TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘
         /// - FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘
         ///
