@@ -1342,7 +1342,7 @@ extension Cme {
         /// - Video ：视频轨道。视频轨道由以下 Item 组成：
         ///   - VideoTrackItem
         ///   - EmptyTrackItem
-        ///   - MediaTransitionItem </li>
+        ///   - MediaTransitionItem
         /// - Audio ：音频轨道。音频轨道由以下 Item 组成：
         ///   - AudioTrackItem
         ///   - EmptyTrackItem

@@ -57,9 +57,9 @@ extension Vpc {
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
     ///
-    /// - 该接口不支持自定义索引 PolicyIndex。</li>
+    /// - 该接口不支持自定义索引 PolicyIndex。
     /// - 在 SecurityGroupPolicySet 参数中：
-    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。</li>
+    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。
     ///   - 如果指定 SecurityGroupPolicySet.Version 不为0, 在添加出站和入站规则（Egress 和 Ingress）时：
     ///     - Protocol 字段支持输入 TCP, UDP, ICMP, ICMPV6, GRE, ALL。
     ///     - CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。(展开)在基础网络中，如果 CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IP，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。
@@ -77,9 +77,9 @@ extension Vpc {
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
     ///
-    /// - 该接口不支持自定义索引 PolicyIndex。</li>
+    /// - 该接口不支持自定义索引 PolicyIndex。
     /// - 在 SecurityGroupPolicySet 参数中：
-    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。</li>
+    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。
     ///   - 如果指定 SecurityGroupPolicySet.Version 不为0, 在添加出站和入站规则（Egress 和 Ingress）时：
     ///     - Protocol 字段支持输入 TCP, UDP, ICMP, ICMPV6, GRE, ALL。
     ///     - CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。(展开)在基础网络中，如果 CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IP，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。
@@ -97,9 +97,9 @@ extension Vpc {
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
     ///
-    /// - 该接口不支持自定义索引 PolicyIndex。</li>
+    /// - 该接口不支持自定义索引 PolicyIndex。
     /// - 在 SecurityGroupPolicySet 参数中：
-    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。</li>
+    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。
     ///   - 如果指定 SecurityGroupPolicySet.Version 不为0, 在添加出站和入站规则（Egress 和 Ingress）时：
     ///     - Protocol 字段支持输入 TCP, UDP, ICMP, ICMPV6, GRE, ALL。
     ///     - CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。(展开)在基础网络中，如果 CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IP，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。
@@ -117,9 +117,9 @@ extension Vpc {
     ///
     /// 本接口（ModifySecurityGroupPolicies）用于重置安全组出站和入站规则（SecurityGroupPolicy）。
     ///
-    /// - 该接口不支持自定义索引 PolicyIndex。</li>
+    /// - 该接口不支持自定义索引 PolicyIndex。
     /// - 在 SecurityGroupPolicySet 参数中：
-    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。</li>
+    ///   - 如果指定 SecurityGroupPolicySet.Version 为0, 表示清空所有规则，并忽略 Egress 和 Ingress。
     ///   - 如果指定 SecurityGroupPolicySet.Version 不为0, 在添加出站和入站规则（Egress 和 Ingress）时：
     ///     - Protocol 字段支持输入 TCP, UDP, ICMP, ICMPV6, GRE, ALL。
     ///     - CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。(展开)在基础网络中，如果 CidrBlock 包含您的账户内的云服务器之外的设备在腾讯云的内网 IP，并不代表此规则允许您访问这些设备，租户之间网络隔离规则优先于安全组中的内网规则。

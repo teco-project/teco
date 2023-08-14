@@ -7142,11 +7142,11 @@ extension Vod {
         /// - Video ：视频轨道。视频轨道由以下 Item 组成：
         ///   - VideoTrackItem
         ///   - MediaTransitionItem
-        ///   - EmptyTrackItem </li>
+        ///   - EmptyTrackItem
         /// - Audio ：音频轨道。音频轨道由以下 Item 组成：
         ///   - AudioTrackItem
         ///   - MediaTransitionItem
-        ///   - EmptyTrackItem</li>
+        ///   - EmptyTrackItem
         /// - Sticker ：贴图轨道。贴图轨道以下 Item 组成：
         ///   - StickerTrackItem
         ///   - EmptyTrackItem
@@ -12089,7 +12089,6 @@ extension Vod {
         ///   - WipeUp：向上收起。
         ///   - ZoomInCircles：水波纹。
         ///
-        /// </li>
         /// - 音频的转场操作，用于两个音频片段间的转场处理：
         ///   - AudioFadeInFadeOut：声音淡入淡出。
         public let type: String

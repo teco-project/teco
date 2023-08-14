@@ -74,7 +74,7 @@ extension Keewidb {
         public let noAuth: Bool?
 
         /// 实例访问密码。
-        /// - 当参数**NoAuth**为**true**时，Password为无需设置，否则Password为必填参数。</li>
+        /// - 当参数**NoAuth**为**true**时，Password为无需设置，否则Password为必填参数。
         /// - 密码复杂度要求：
         ///   - 8-30个字符。
         ///   - 至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种。

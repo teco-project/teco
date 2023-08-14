@@ -40,7 +40,7 @@ extension Mongodb {
         public let volume: Int64
 
         /// 实例版本信息。
-        /// - 具体支持的版本，请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。</li>
+        /// - 具体支持的版本，请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。
         /// - 版本信息与版本号对应关系如下：
         ///   - MONGO_3_WT：MongoDB 3.2 WiredTiger存储引擎版本。
         ///   - MONGO_3_ROCKS：MongoDB 3.2 RocksDB存储引擎版本。
