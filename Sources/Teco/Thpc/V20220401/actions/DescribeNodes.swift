@@ -33,19 +33,23 @@ extension Thpc {
         ///
         /// 必选：否
         ///
-        /// - **node-role** <p style="padding-left: 30px;">按照【**节点角色**】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）
+        /// - **node-role**
+        ///
+        /// 按照【**节点角色**】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）
         ///
         /// 类型：String
         ///
         /// 必选：否
         ///
-        /// - **node-type** <p style="padding-left: 30px;">按照【**节点类型**】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)
+        /// - **node-type**
+        ///
+        /// 按照【**节点类型**】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)
         ///
         /// 类型：String
         ///
         /// 必选：否
         ///
-        /// <p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
+        /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。

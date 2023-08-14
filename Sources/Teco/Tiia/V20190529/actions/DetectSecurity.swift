@@ -92,7 +92,7 @@ extension Tiia {
     /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
     /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
     /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(_ input: DetectSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectSecurityResponse> {
         self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -113,7 +113,7 @@ extension Tiia {
     /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
     /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
     /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(_ input: DetectSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectSecurityResponse {
         try await self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -134,7 +134,7 @@ extension Tiia {
     /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
     /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
     /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectSecurityResponse> {
         self.detectSecurity(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)
@@ -155,7 +155,7 @@ extension Tiia {
     /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
     /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
     /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectSecurityResponse {
         try await self.detectSecurity(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)

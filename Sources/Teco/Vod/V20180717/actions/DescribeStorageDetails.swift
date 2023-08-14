@@ -27,8 +27,7 @@ extension Vod {
         /// 结束时间，需大于开始日期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
         public let endTime: String
 
-        /// <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        /// 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。</b>
+        /// **点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。 当该字段为1时，表示以管理员身份查询所有子应用（含主应用）的用量合计。**
         public let subAppId: UInt64?
 
         /// 统计时间粒度，有效值：
