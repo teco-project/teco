@@ -117,7 +117,7 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metaData: MediaMetaData?
 
-        /// <span id="p_segmentset">剪辑后的视频片段信息。</span>
+        /// 剪辑后的视频片段信息。
         public let segmentSet: [LiveRealTimeClipMediaSegmentInfo]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
