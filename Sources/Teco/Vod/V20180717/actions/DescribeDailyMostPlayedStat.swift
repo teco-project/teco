@@ -30,6 +30,7 @@ extension Vod {
         /// Top 数据的统计指标，取值有：
         /// - Traffic：播放流量，按播放流量统计 Top100 的数据。
         /// - PlayTimes：播放次数，按播放次数统计播放 Top100 的数据。
+        ///
         /// 默认值为Traffic。
         public let metric: String?
 

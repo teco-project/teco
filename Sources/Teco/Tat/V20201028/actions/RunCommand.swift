@@ -47,6 +47,7 @@ extension Tat {
         /// 是否保存命令，取值范围：
         /// - True：保存
         /// - False：不保存
+        ///
         /// 默认为 False。
         public let saveCommand: Bool?
 

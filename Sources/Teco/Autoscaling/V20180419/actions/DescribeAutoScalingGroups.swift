@@ -33,6 +33,7 @@ extension As {
         /// - tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
         /// - tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。
         /// - tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingGroupIds`和`Filters`。
         public let filters: [Filter]?
 

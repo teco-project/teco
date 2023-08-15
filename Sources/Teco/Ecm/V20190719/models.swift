@@ -313,6 +313,7 @@ extension Ecm {
         ///
         /// - true:销毁实例时会同时销毁云盘，只支持按小时后付费云盘。
         /// - false：销毁实例时不销毁云盘。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
 
@@ -321,6 +322,7 @@ extension Ecm {
         /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: String?
 
@@ -352,6 +354,7 @@ extension Ecm {
         ///
         /// - true：子机设置了自动续费标识，但云盘未设置
         /// - false：云盘自动续费标识正常。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoRenewFlagError: Bool?
 
@@ -395,6 +398,7 @@ extension Ecm {
         ///
         /// - false:表示云盘不处于类型变更中
         /// - true:表示云盘已发起类型变更，正处于迁移中。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let migrating: Bool?
 
@@ -411,6 +415,7 @@ extension Ecm {
         ///
         /// - true:支持主动退还
         /// - false:不支持主动退还。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isReturnable: Bool?
 
@@ -452,6 +457,7 @@ extension Ecm {
         ///
         /// - true:云盘到期时间早于实例。
         /// - false：云盘到期时间晚于实例。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deadlineError: Bool?
 
@@ -468,6 +474,7 @@ extension Ecm {
         /// - 2：云硬盘已过期
         /// - 3：云盘不支持退还
         /// - 8：超过可退还数量的限制。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnFailCode: Int64?
 
@@ -490,6 +497,7 @@ extension Ecm {
         ///
         /// - PF: PF挂载
         /// - VF: VF挂载
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attachMode: String?
 

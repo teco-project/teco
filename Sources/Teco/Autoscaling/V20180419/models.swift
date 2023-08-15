@@ -415,6 +415,7 @@ extension As {
         ///
         /// - TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
         /// - FALSE：子机销毁时，保留数据盘
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
 
@@ -422,6 +423,7 @@ extension As {
         ///
         /// - TRUE：加密
         /// - FALSE：不加密
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
 
@@ -614,6 +616,7 @@ extension As {
         /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
         /// - 不支持 Windows 实例。
         /// - 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
 
@@ -621,6 +624,7 @@ extension As {
         ///
         /// - ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
         /// - UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNameStyle: String?
 
@@ -641,6 +645,7 @@ extension As {
         ///
         /// - IPv6对标准账户类型支持TRAFFIC_POSTPAID_BY_HOUR。
         /// - IPv6对传统账户类型支持BANDWIDTH_PACKAGE。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
 
@@ -1383,6 +1388,7 @@ extension As {
         ///
         /// - TRUE：表示开启自动化助手服务
         /// - FALSE：表示不开启自动化助手服务
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
 
@@ -1474,6 +1480,7 @@ extension As {
         /// - ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽
         /// - ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽
         /// - ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let predefinedMetricType: String?
 
@@ -1484,6 +1491,7 @@ extension As {
         /// - ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps
         /// - ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps
         /// - ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetValue: UInt64?
 
@@ -1495,6 +1503,7 @@ extension As {
         ///
         /// - true：目标追踪策略仅触发扩容
         /// - false：目标追踪策略触发扩容和缩容
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disableScaleIn: Bool?
 
@@ -1647,6 +1656,7 @@ extension As {
         ///
         /// - COST_OPTIMIZED，成本优化策略。对于启动配置内的所有机型，按照各机型在各可用区的每核单价由小到大依次尝试。优先尝试购买每核单价最便宜的，如果购买失败则尝试购买次便宜的，以此类推。
         /// - CAPACITY_OPTIMIZED，容量优化策略。对于启动配置内的所有机型，按照各机型在各可用区的库存情况由大到小依次尝试。优先尝试购买剩余库存最大的机型，这样可尽量降低竞价实例被动回收的发生概率。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spotAllocationStrategy: String?
 

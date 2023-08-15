@@ -31,6 +31,7 @@ extension Monitor {
         /// - 1=RuleDeleted
         /// - 2=RuleEnabled
         /// - 3=RuleDisabled
+        ///
         /// 默认状态码为 2 启用。
         public let ruleState: Int64
 

@@ -33,6 +33,7 @@ extension Postgres {
         /// 是否自动使用代金券：
         /// - 0：否
         /// - 1：是
+        ///
         /// 默认值：0
         public let autoVoucher: UInt64?
 
@@ -46,6 +47,7 @@ extension Postgres {
         /// - 0：立即切换
         /// - 1：指定时间切换
         /// - 2：维护时间窗口内切换
+        ///
         /// 默认值：0
         public let switchTag: UInt64?
 

@@ -35,7 +35,8 @@ extension Vpc {
 
         /// 网关类型，可选值：
         /// - NORMAL - （默认）标准型，注：云联网只支持标准型
-        /// - NAT - NAT型NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
+        /// - NAT - NAT型
+        /// NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
         public let gatewayType: String?
 
         /// 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持`ModeType`。

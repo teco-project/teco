@@ -37,6 +37,7 @@ extension Clb {
         /// 日志类型：
         /// - ACCESS：访问日志
         /// - HEALTH：健康检查日志
+        ///
         /// 默认为ACCESS。
         public let logType: String?
 

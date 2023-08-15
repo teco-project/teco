@@ -32,7 +32,8 @@ extension Teo {
 
         /// 源站类型，取值有：
         /// - custom：手动添加；
-        /// - origins：源站组。不填保持原有值。
+        /// - origins：源站组。
+        /// 不填保持原有值。
         public let originType: String
 
         /// 端口，支持格式：
@@ -42,7 +43,8 @@ extension Teo {
 
         /// 协议，取值有：
         /// - TCP：TCP协议；
-        /// - UDP：UDP协议。不填保持原有值。
+        /// - UDP：UDP协议。
+        /// 不填保持原有值。
         public let proto: String?
 
         /// 源站信息：
@@ -56,12 +58,14 @@ extension Teo {
         /// - TOA：TOA（仅Proto=TCP时可选）；
         /// - PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；
         /// - PPV2：Proxy Protocol传递，协议版本V2；
-        /// - OFF：不传递。不填保持原有值。
+        /// - OFF：不传递。
+        /// 不填保持原有值。
         public let forwardClientIp: String?
 
         /// 是否开启会话保持，取值有：
         /// - true：开启；
-        /// - false：关闭。不填为false。
+        /// - false：关闭。
+        /// 不填为false。
         public let sessionPersist: Bool?
 
         /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。

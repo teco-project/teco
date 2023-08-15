@@ -32,6 +32,7 @@ extension Postgres {
         /// 是否使用代金券：
         /// - true：使用
         /// - false：不使用
+        ///
         /// 默认值：false
         public let autoVoucher: Bool?
 

@@ -32,6 +32,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64?
 
@@ -40,12 +41,14 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64?
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String?
 

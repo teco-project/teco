@@ -30,6 +30,7 @@ extension Cynosdb {
 
         /// 数据库类型，取值范围:
         /// - MYSQL
+        ///
         /// 该参数已废用
         public let dbType: String?
 

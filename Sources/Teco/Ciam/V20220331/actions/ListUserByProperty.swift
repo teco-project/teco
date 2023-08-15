@@ -26,8 +26,10 @@ extension Ciam {
 
         /// 查询的属性
         ///
-        /// - **phoneNumber** 	  手机号码
-        /// - **email**   邮箱
+        /// - **phoneNumber**
+        /// 	  手机号码
+        /// - **email**
+        ///   邮箱
         public let propertyCode: String
 
         /// 属性值

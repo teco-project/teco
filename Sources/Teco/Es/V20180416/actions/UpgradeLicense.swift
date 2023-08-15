@@ -27,12 +27,14 @@ extension Es {
         /// License类型
         /// - oss：开源版
         /// - basic：基础版
-        /// - platinum：白金版默认值platinum
+        /// - platinum：白金版
+        /// 默认值platinum
         public let licenseType: String
 
         /// 是否自动使用代金券
         /// - 0：不自动使用
-        /// - 1：自动使用默认值0
+        /// - 1：自动使用
+        /// 默认值0
         public let autoVoucher: Int64?
 
         /// 代金券ID列表（目前仅支持指定一张代金券）
@@ -45,7 +47,8 @@ extension Es {
 
         /// 是否强制重启
         /// - true强制重启
-        /// - false不强制重启 默认值false
+        /// - false不强制重启
+        ///  默认值false
         public let forceRestart: Bool?
 
         public init(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil) {

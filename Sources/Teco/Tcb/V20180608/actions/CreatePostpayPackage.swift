@@ -38,6 +38,7 @@ extension Tcb {
         /// 环境创建来源，取值：
         /// - miniapp
         /// - qcloud
+        ///
         /// 用法同CreateEnv接口的Source参数
         /// 和 Channel 参数同时传，或者同时不传；EnvId 为空时必传。
         public let envSource: String?

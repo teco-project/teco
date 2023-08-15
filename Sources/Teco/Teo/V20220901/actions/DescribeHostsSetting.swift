@@ -33,12 +33,9 @@ extension Teo {
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// - host
-        ///
-        /// 按照【**域名**】进行过滤。
-        ///
-        /// 类型：string
-        ///
-        /// 必选：否
+        ///   按照【**域名**】进行过滤。
+        ///   类型：string
+        ///   必选：否
         public let filters: [Filter]?
 
         public init(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {

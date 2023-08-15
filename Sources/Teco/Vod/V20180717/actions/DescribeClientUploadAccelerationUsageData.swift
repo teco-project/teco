@@ -33,6 +33,7 @@ extension Vod {
         /// 客户端上传加速类型，取值有：
         /// - AccelerationWithHTTP：HTTP 传输方式的上传加速。
         /// - AccelerationWithQUIC：QUIC 传输方式的上传加速。
+        ///
         /// 默认查询所有加速类型的用量 。
         public let type: String?
 

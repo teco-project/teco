@@ -34,12 +34,13 @@ extension Cwp {
         /// - Ppid - uint64 - 是否必填：否 - 父进程ID
         /// - OsType - uint64 - 是否必填：否 - windows/linux
         /// - Status - string - 是否必填：否 - 进程状态：
-        /// 1:R 可执行
-        /// 2:S 可中断
-        /// 3:D 不可中断
-        /// 4:T 暂停状态或跟踪状态
-        /// 5:Z 僵尸状态
-        /// 6:X 将被销毁
+        ///   1:R 可执行
+        ///   2:S 可中断
+        ///   3:D 不可中断
+        ///   4:T 暂停状态或跟踪状态
+        ///   5:Z 僵尸状态
+        ///   6:X 将被销毁
+        ///
         /// - RunTimeStart - String - 是否必填：否 - 运行开始时间
         /// - RunTimeEnd - String - 是否必填：否 - 运行结束时间
         /// - InstallByPackage - uint64 - 是否必填：否 - 是否包安装：0否，1是

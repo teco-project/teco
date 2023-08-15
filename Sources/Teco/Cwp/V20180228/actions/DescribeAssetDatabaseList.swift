@@ -31,17 +31,18 @@ extension Cwp {
         /// - Ip - String - 是否必填：否 - 绑定IP
         /// - Port - Int - 是否必填：否 - 端口
         /// - Name - Int - 是否必填：否 - 数据库名称
-        /// 0:全部
-        /// 1:MySQL
-        /// 2:Redis
-        /// 3:Oracle
-        /// 4:MongoDB
-        /// 5:MemCache
-        /// 6:PostgreSQL
-        /// 7:HBase
-        /// 8:DB2
-        /// 9:Sybase
-        /// 10:TiDB
+        ///   0:全部
+        ///   1:MySQL
+        ///   2:Redis
+        ///   3:Oracle
+        ///   4:MongoDB
+        ///   5:MemCache
+        ///   6:PostgreSQL
+        ///   7:HBase
+        ///   8:DB2
+        ///   9:Sybase
+        ///   10:TiDB
+        ///
         /// - Proto - String - 是否必填：否 - 协议：1:TCP, 2:UDP, 3:未知
         /// - OsType - String - 是否必填：否 - 操作系统: linux/windows
         /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )

@@ -41,7 +41,8 @@ extension Es {
 
         /// 计费类型
         /// - PREPAID：预付费，即包年包月
-        /// - POSTPAID_BY_HOUR：按小时后付费默认值POSTPAID_BY_HOUR
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// 默认值POSTPAID_BY_HOUR
         public let chargeType: String?
 
         /// 包年包月购买时长（单位由参数TimeUnit决定）
@@ -52,7 +53,8 @@ extension Es {
 
         /// 是否自动使用代金券
         /// - 0：不自动使用
-        /// - 1：自动使用默认值0
+        /// - 1：自动使用
+        /// 默认值0
         public let autoVoucher: Int64?
 
         /// 代金券ID列表（目前仅支持指定一张代金券）
@@ -60,7 +62,8 @@ extension Es {
 
         /// 自动续费标识
         /// - RENEW_FLAG_AUTO：自动续费
-        /// - RENEW_FLAG_MANUAL：不自动续费，用户手动续费ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
+        /// - RENEW_FLAG_MANUAL：不自动续费，用户手动续费
+        /// ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
         public let renewFlag: String?
 
         /// 节点规格
@@ -75,7 +78,8 @@ extension Es {
 
         /// 节点磁盘类型
         /// - CLOUD_SSD：SSD云硬盘
-        /// - CLOUD_PREMIUM：高硬能云硬盘默认值CLOUD_SSD
+        /// - CLOUD_PREMIUM：高硬能云硬盘
+        /// 默认值CLOUD_SSD
         public let diskType: String?
 
         /// 节点磁盘容量（单位GB）
@@ -83,7 +87,8 @@ extension Es {
 
         /// License类型
         /// - oss：开源版
-        /// - xpack：xpack版默认值xpack
+        /// - xpack：xpack版
+        /// 默认值xpack
         public let licenseType: String?
 
         /// 标签信息列表

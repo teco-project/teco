@@ -4238,6 +4238,7 @@ extension Cwp {
         /// 文件威胁行为
         /// - read 读取文件
         /// - write 修改文件
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileAction: String?
 

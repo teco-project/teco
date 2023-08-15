@@ -1559,6 +1559,7 @@ extension Tcb {
         /// 付费渠道。
         /// - miniapp：小程序
         /// - qcloud：腾讯云
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentChannel: String?
 
@@ -1663,6 +1664,7 @@ extension Tcb {
         /// 支付方式。包含以下取值：
         /// - prepayment：预付费
         /// - postpaid：后付费
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payMode: String?
 
@@ -1797,11 +1799,13 @@ extension Tcb {
         /// - sum-month:以月为单位抵扣
         /// - sum-day:以天为单位抵扣
         /// - totalize:总容量抵扣
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deductType: String?
 
         /// 免费量类型
         /// - basic:通用量抵扣
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freeQuotaType: String?
 
@@ -2261,6 +2265,7 @@ extension Tcb {
         /// 安装标记。建议使用方统一转大小写之后再判断。
         /// - QuickStart：快速启动来源
         /// - Activity：活动来源
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flag: String?
 
@@ -2289,6 +2294,7 @@ extension Tcb {
         /// - CDN
         /// - FLEXDB
         /// - SCF
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
 
@@ -2308,11 +2314,13 @@ extension Tcb {
         /// - sum-month:以月为单位抵扣
         /// - sum-day:以天为单位抵扣
         /// - totalize:总容量抵扣
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deductType: String?
 
         /// 免费量类型
         /// - basic:通用量抵扣
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freeQuotaType: String?
 

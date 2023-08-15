@@ -2087,6 +2087,7 @@ extension Cls {
         ///
         /// - Uin - 用户ID
         /// - Group - 用户组ID
+        ///
         /// 暂不支持其余接收者类型。
         public let receiverType: String
 
@@ -2727,6 +2728,7 @@ extension Cls {
         /// 回调方法。可选值：
         /// - POST
         /// - PUT
+        ///
         /// 默认值为POST。CallbackType为Http时为必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?

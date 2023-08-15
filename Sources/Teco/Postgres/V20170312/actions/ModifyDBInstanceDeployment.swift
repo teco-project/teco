@@ -32,6 +32,7 @@ extension Postgres {
         /// - 0：立即切换
         /// - 1：指定时间切换
         /// - 2：维护时间窗口内切换
+        ///
         /// 默认值：0
         public let switchTag: Int64
 

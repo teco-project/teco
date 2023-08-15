@@ -29,7 +29,8 @@ extension Teo {
 
         /// 是否强制删除。当域名存在关联资源（如马甲域名、流量调度功能）时，是否强制删除该域名，取值有：
         /// - true：删除该域名及所有关联资源；
-        /// - false：当该加速域名存在关联资源时，不允许删除。不填写，默认值为：false。
+        /// - false：当该加速域名存在关联资源时，不允许删除。
+        /// 不填写，默认值为：false。
         public let force: Bool?
 
         public init(zoneId: String, domainNames: [String], force: Bool? = nil) {

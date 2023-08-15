@@ -51,12 +51,14 @@ extension Teo {
         /// - TOA：TOA（仅Proto=TCP时可选）；
         /// - PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；
         /// - PPV2：Proxy Protocol传递，协议版本V2；
-        /// - OFF：不传递。默认值：OFF。
+        /// - OFF：不传递。
+        /// 默认值：OFF。
         public let forwardClientIp: String?
 
         /// 是否开启会话保持，取值有：
         /// - true：开启；
-        /// - false：关闭。默认值：false。
+        /// - false：关闭。
+        /// 默认值：false。
         public let sessionPersist: Bool?
 
         /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。

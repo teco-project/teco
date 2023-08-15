@@ -72,6 +72,7 @@ extension Emr {
 
         /// 实例续费的时间单位。取值范围：
         /// - m：表示月份。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
 

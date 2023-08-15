@@ -29,7 +29,8 @@ extension Vpc {
         /// - 已开通静态单线IP白名单的用户，可选值：
         ///   - CMCC：中国移动
         ///   - CTCC：中国电信
-        ///   - CUCC：中国联通注意：仅部分地域支持静态单线IP。
+        ///   - CUCC：中国联通
+        ///   注意：仅部分地域支持静态单线IP。
         public let internetServiceProvider: String?
 
         /// EIP计费方式。
@@ -38,7 +39,9 @@ extension Vpc {
         ///   - BANDWIDTH_PACKAGE：[共享带宽包](https://cloud.tencent.com/document/product/684/15255)付费（需额外开通共享带宽包白名单）
         ///   - BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
         ///   - BANDWIDTH_PREPAID_BY_MONTH：包月按带宽预付费
-        ///   - TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费默认值：TRAFFIC_POSTPAID_BY_HOUR。
+        ///   - TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
+        ///   默认值：TRAFFIC_POSTPAID_BY_HOUR。
+        ///
         /// - 未开通标准账户类型白名单的用户，EIP计费方式与其绑定的实例的计费方式一致，无需传递此参数。
         public let internetChargeType: String?
 
@@ -48,7 +51,9 @@ extension Vpc {
         ///   - BANDWIDTH_PACKAGE：1 Mbps 至 2000 Mbps
         ///   - BANDWIDTH_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps
         ///   - BANDWIDTH_PREPAID_BY_MONTH：1 Mbps 至 200 Mbps
-        ///   - TRAFFIC_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps默认值：1 Mbps。
+        ///   - TRAFFIC_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps
+        ///   默认值：1 Mbps。
+        ///
         /// - 未开通标准账户类型白名单的用户，EIP出带宽上限取决于与其绑定的实例的公网出带宽上限，无需传递此参数。
         public let internetMaxBandwidthOut: Int64?
 
@@ -58,14 +63,16 @@ extension Vpc {
         /// EIP类型。默认值：EIP。
         ///
         /// - 已开通Anycast公网加速白名单的用户，可选值：
-        ///   - AnycastEIP：加速IP，可参见 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)注意：仅部分地域支持加速IP。
+        ///   - AnycastEIP：加速IP，可参见 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)
+        ///   注意：仅部分地域支持加速IP。
         ///
         /// - 已开通精品IP白名单的用户，可选值：
-        ///   - HighQualityEIP：精品IP注意：仅部分地域支持精品IP。
-        /// </ul>
-        /// <ul style="margin:0">
+        ///   - HighQualityEIP：精品IP
+        ///   注意：仅部分地域支持精品IP。
+        ///
         /// - 已开高防IP白名单的用户，可选值：
-        ///   - AntiDDoSEIP：高防IP注意：仅部分地域支持高防IP。</ul>
+        ///   - AntiDDoSEIP：高防IP
+        ///   注意：仅部分地域支持高防IP。
         public let addressType: String?
 
         /// Anycast发布域。
@@ -74,7 +81,8 @@ extension Vpc {
         ///   - ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）
         ///   - ANYCAST_ZONE_OVERSEAS：境外发布域
         ///   - **[已废弃]** ANYCAST_ZONE_A：发布域A（已更新为全球发布域）
-        ///   - **[已废弃]** ANYCAST_ZONE_B：发布域B（已更新为全球发布域）默认值：ANYCAST_ZONE_OVERSEAS。
+        ///   - **[已废弃]** ANYCAST_ZONE_B：发布域B（已更新为全球发布域）
+        ///   默认值：ANYCAST_ZONE_OVERSEAS。
         public let anycastZone: String?
 
         /// **[已废弃]** AnycastEIP不再区分是否负载均衡。原参数说明如下：
@@ -82,7 +90,8 @@ extension Vpc {
         ///
         /// - 已开通Anycast公网加速白名单的用户，可选值：
         ///   - TRUE：AnycastEIP可绑定对象为负载均衡
-        ///   - FALSE：AnycastEIP可绑定对象为云服务器、NAT网关、高可用虚拟IP等默认值：FALSE。
+        ///   - FALSE：AnycastEIP可绑定对象为云服务器、NAT网关、高可用虚拟IP等
+        ///   默认值：FALSE。
         public let applicableForCLB: Bool?
 
         /// 需要关联的标签列表。

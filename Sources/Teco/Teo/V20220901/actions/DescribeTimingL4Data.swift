@@ -55,22 +55,23 @@ extension Teo {
         /// - min: 1分钟 ；
         /// - 5min: 5分钟 ；
         /// - hour: 1小时 ；
-        /// - day: 1天 。不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        /// - day: 1天 。
+        /// 不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
         /// 过滤条件，详细的过滤条件Key值如下：
         /// - ruleId
+        ///   按照【**转发规则ID**】进行过滤。
         ///
-        /// 按照【**转发规则ID**】进行过滤。
         /// - proxyId
-        ///
-        /// 按照【**四层代理实例ID**】进行过滤。
+        ///   按照【**四层代理实例ID**】进行过滤。
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：
         /// - overseas：全球（除中国大陆地区）数据；
         /// - mainland：中国大陆地区数据；
-        /// - global：全球数据。不填默认取值为global。
+        /// - global：全球数据。
+        /// 不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, proxyIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil) {

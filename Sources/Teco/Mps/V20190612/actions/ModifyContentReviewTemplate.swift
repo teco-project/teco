@@ -42,6 +42,7 @@ extension Mps {
         /// 违禁控制参数。违禁内容包括：
         /// - 谩骂；
         /// - 涉毒违法。
+        ///
         /// 注意：此参数尚未支持。
         public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
 

@@ -40,6 +40,7 @@ extension Vod {
         /// 播放模式，可选值：
         /// - Loop：循环播放播单；
         /// - Linear：单次播放，播单播放完停止播放。
+        ///
         /// 默认值：Loop。
         public let playBackMode: String?
 

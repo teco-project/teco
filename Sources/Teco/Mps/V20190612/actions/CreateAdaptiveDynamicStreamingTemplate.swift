@@ -36,12 +36,14 @@ extension Mps {
         /// 是否禁止视频低码率转高码率，取值范围：
         /// - 0：否，
         /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoBitrate: UInt64?
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
         /// - 0：否，
         /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoResolution: UInt64?
 

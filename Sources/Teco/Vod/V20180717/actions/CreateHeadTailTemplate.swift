@@ -41,6 +41,7 @@ extension Vod {
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        ///
         /// 默认值：stretch 。
         public let fillType: String?
 

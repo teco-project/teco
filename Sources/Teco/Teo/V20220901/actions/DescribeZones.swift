@@ -30,40 +30,26 @@ extension Teo {
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// - zone-name
-        ///
-        /// 按照【**站点名称**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
+        ///   按照【**站点名称**】进行过滤。
+        ///   类型：String
+        ///   必选：否
         /// - zone-id
-        ///
-        /// 按照【**站点ID**】进行过滤。站点ID形如：zone-xxx。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
+        ///   按照【**站点ID**】进行过滤。站点ID形如：zone-xxx。
+        ///   类型：String
+        ///   必选：否
         /// - status
-        ///
-        /// 按照【**站点状态**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
+        ///   按照【**站点状态**】进行过滤。
+        ///   类型：String
+        ///   必选：否
         /// - tag-key
-        ///
-        /// 按照【**标签键**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
+        ///   按照【**标签键**】进行过滤。
+        ///   类型：String
+        ///   必选：否
         /// - tag-value
-        ///
-        /// 按照【**标签值**】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否模糊查询时仅支持过滤字段名为zone-name。
+        ///   按照【**标签值**】进行过滤。
+        ///   类型：String
+        ///   必选：否
+        /// 模糊查询时仅支持过滤字段名为zone-name。
         public let filters: [AdvancedFilter]?
 
         /// 排序字段，取值有：
@@ -72,12 +58,14 @@ extension Teo {
         /// - create-time：创建时间；
         /// - zone-name：站点名称；
         /// - use-time：最近使用时间；
-        /// - active-status：生效状态。不填写使用默认值create-time。
+        /// - active-status：生效状态。
+        /// 不填写使用默认值create-time。
         public let order: String?
 
         /// 排序方向，取值有：
         /// - asc：从小到大排序；
-        /// - desc：从大到小排序。不填写使用默认值desc。
+        /// - desc：从大到小排序。
+        /// 不填写使用默认值desc。
         public let direction: String?
 
         public init(offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, order: String? = nil, direction: String? = nil) {

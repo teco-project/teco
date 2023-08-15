@@ -34,6 +34,7 @@ extension Emr {
         /// - db：表示获取正常状态的cdb信息。
         /// - recyle：表示获取回收站隔离中的节点信息，包括cdb信息。
         /// - renew：表示获取所有待续费的节点信息，包括cdb信息，自动续费节点不会返回。
+        ///
         /// 注意：现在只支持以上取值，输入其他值会导致错误。
         public let nodeFlag: String
 

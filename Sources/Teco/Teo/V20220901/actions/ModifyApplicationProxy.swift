@@ -37,7 +37,8 @@ extension Teo {
 
         /// 四层代理模式，取值有：
         /// - hostname：表示子域名模式；
-        /// - instance：表示实例模式。不填写保持原有配置。
+        /// - instance：表示实例模式。
+        /// 不填写保持原有配置。
         public let proxyType: String?
 
         /// Ipv6 访问配置，不填写保持原有配置。

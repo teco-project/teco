@@ -30,32 +30,20 @@ extension Teo {
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// - zone-id
-        ///
-        /// 按照【**站点ID**】进行过滤。站点ID形如：zone-20hzkd4rdmy0
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
+        ///   按照【**站点ID**】进行过滤。站点ID形如：zone-20hzkd4rdmy0
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
         /// - origin-group-id
-        ///
-        /// 按照【**源站组ID**】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
+        ///   按照【**源站组ID**】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
         /// - origin-group-name
-        ///
-        /// 按照【**源站组名称**】进行过滤
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称
+        ///   按照【**源站组名称**】进行过滤
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称
         public let filters: [AdvancedFilter]?
 
         public init(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil) {

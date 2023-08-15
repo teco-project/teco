@@ -36,7 +36,8 @@ extension Teo {
         /// 源站配置类型，当OriginType=self时，取值有：
         /// - area：按区域配置；
         /// - weight： 按权重配置；
-        /// - proto： 按HTTP协议配置。当OriginType=third_party/cos时放空。
+        /// - proto： 按HTTP协议配置。
+        /// 当OriginType=third_party/cos时放空。
         public let configurationType: String
 
         /// 源站记录信息。

@@ -41,12 +41,14 @@ extension Es {
         /// - 1：实例ID
         /// - 2：实例名称
         /// - 3：可用区
-        /// - 4：创建时间若orderKey未传递则按创建时间降序排序
+        /// - 4：创建时间
+        /// 若orderKey未传递则按创建时间降序排序
         public let orderByKey: UInt64?
 
         /// 排序方式
         /// - 0：升序
-        /// - 1：降序若传递了orderByKey未传递orderByType, 则默认升序
+        /// - 1：降序
+        /// 若传递了orderByKey未传递orderByType, 则默认升序
         public let orderByType: UInt64?
 
         /// VpcId 筛选项

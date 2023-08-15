@@ -32,16 +32,17 @@ extension Cwp {
         /// - Port - uint64 - 是否必填：否 - 站点端口
         /// - Proto - uint64 - 是否必填：否 - 站点协议：1:HTTP,2:HTTPS
         /// - ServiceType - uint64 - 是否必填：否 - 服务类型：
-        /// 1:Tomcat
-        /// 2：Apache
-        /// 3:Nginx
-        /// 4:WebLogic
-        /// 5:Websphere
-        /// 6:JBoss
-        /// 7:WildFly
-        /// 8:Jetty
-        /// 9:IHS
-        /// 10:Tengine
+        ///   1:Tomcat
+        ///   2：Apache
+        ///   3:Nginx
+        ///   4:WebLogic
+        ///   5:Websphere
+        ///   6:JBoss
+        ///   7:WildFly
+        ///   8:Jetty
+        ///   9:IHS
+        ///   10:Tengine
+        ///
         /// - OsType - String - 是否必填：否 - windows/linux
         /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?

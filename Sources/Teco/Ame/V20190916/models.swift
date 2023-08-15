@@ -898,7 +898,8 @@ extension Ame {
         /// 销毁模式，取值有：
         /// - Auto：房间没人时自动销毁
         /// - Expire：房间没人时过期自动销毁
-        /// - Never：不自动销毁，需手动销毁默认为：Auto。
+        /// - Never：不自动销毁，需手动销毁
+        /// 默认为：Auto。
         public let destroyMode: String
 
         /// 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
@@ -1150,6 +1151,7 @@ extension Ame {
         /// TRTC房间号的类型：
         /// - Integer：数字类型
         /// - String：字符串类型
+        ///
         /// 默认为：Integer 。
         public let roomIdType: String?
 

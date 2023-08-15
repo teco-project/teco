@@ -306,12 +306,14 @@ extension Vod {
         /// - SimpleAES
         /// - Widevine
         /// - FairPlay
+        ///
         /// 如果取值为空字符串，代表不对视频做 DRM 保护。
         public let drmType: String
 
         /// DRM 的密钥提供商，取值范围：
         /// - SDMC：华曦达；
         /// - VOD：云点播。
+        ///
         /// 默认值为 VOD 。
         public let drmKeyProvider: String
 
@@ -1920,6 +1922,7 @@ extension Vod {
         /// 视频涉及令人不适宜信息的结果标签。音视频审核模板[画面鉴政任务控制参数](https://cloud.tencent.com/document/api/266/31773#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// - violation_photo：违规图标。
+        ///
         /// 其他（即 politician/entertainment/sport/entrepreneur/scholar/celebrity/military）：
         /// - politician：相关人物。
         public let label: String
@@ -2623,6 +2626,7 @@ extension Vod {
         /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合，仅支持 jpeg、png 图片格式。
         /// - 当 Type为add 或 reset 时，该字段必填；
         /// - 数组长度限制：5 张图片。
+        ///
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
 
@@ -2814,6 +2818,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -2822,12 +2827,14 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -2872,6 +2879,7 @@ extension Vod {
         /// 去伪影（毛刺）类型，仅当去伪影（毛刺）控制开关为 ON 时有效，可选值：
         /// - weak：轻去伪影（毛刺）；
         /// - strong：强去伪影（毛刺）。
+        ///
         /// 默认值：weak。
         public let type: String?
 
@@ -2901,6 +2909,7 @@ extension Vod {
         /// 生成的字幕文件格式，不填或者填空字符串表示不生成字幕文件，可选值：
         /// - vtt：生成 WebVTT 字幕文件；
         /// - srt：生成 SRT 字幕文件。
+        ///
         /// _注意：此字段已废弃，建议使用 SubtitleFormats。_
         public let subtitleFormat: String?
 
@@ -2909,6 +2918,7 @@ extension Vod {
         /// - en：英语；
         /// - ja：日语；
         /// - zh-ca：粤语。
+        ///
         /// _注意：_ 填空字符串，或者不填该参数，则自动识别（效果较难保证，推荐填写原始媒体对应的语言，以提高识别的准确率）。
         public let srcLanguage: String?
 
@@ -2940,6 +2950,7 @@ extension Vod {
         /// 生成的字幕文件格式，_填空字符串_表示不生成字幕文件，可选值：
         /// - vtt：生成 WebVTT 字幕文件；
         /// - srt：生成 SRT 字幕文件。
+        ///
         /// _注意：此字段已废弃，建议使用 SubtitleFormatsOperation。_
         public let subtitleFormat: String?
 
@@ -3020,6 +3031,7 @@ extension Vod {
         /// - weak：轻音频降噪；
         /// - normal：正常音频降噪；
         /// - strong：强音频降噪。
+        ///
         /// 默认值：weak。
         public let type: String?
 
@@ -3039,20 +3051,26 @@ extension Vod {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// - libmp3lame。
+        ///
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         /// - flac。
+        ///
         /// 当外层参数 Container 为 m4a 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame；
         /// - ac3。
+        ///
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         /// - libfdk_aac：更适合 mp4；
         /// - libmp3lame：更适合 flv；
         /// - mp2。
+        ///
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// - libfdk_aac。
+        ///
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         /// - libfdk_aac。
+        ///
         /// 当外层参数 Container 为 wav 时，可选值为：
         /// - pcm16。
         public let codec: String
@@ -3066,6 +3084,7 @@ extension Vod {
         /// - 32000
         /// - 44100
         /// - 48000
+        ///
         /// 单位：Hz。
         public let sampleRate: UInt64
 
@@ -3073,6 +3092,7 @@ extension Vod {
         /// - 1：单通道
         /// - 2：双通道
         /// - 6：立体声
+        ///
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
         public let audioChannel: Int64?
@@ -3097,20 +3117,26 @@ extension Vod {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// - libmp3lame。
+        ///
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         /// - flac。
+        ///
         /// 当外层参数 Container 为 m4a 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame；
         /// - ac3。
+        ///
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         /// - libfdk_aac：更适合 mp4；
         /// - libmp3lame：更适合 flv；
         /// - mp2。
+        ///
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// - libfdk_aac。
+        ///
         /// 当外层参数 Format 为 HLS 或 MPEG-DASH 时，可选值为：
         /// - libfdk_aac。
+        ///
         /// 当外层参数 Container 为 wav 时，可选值为：
         /// - pcm16。
         public let codec: String?
@@ -3123,6 +3149,7 @@ extension Vod {
         /// - 32000
         /// - 44100
         /// - 48000
+        ///
         /// 单位：Hz。
         public let sampleRate: UInt64?
 
@@ -3130,6 +3157,7 @@ extension Vod {
         /// - 1：单通道
         /// - 2：双通道
         /// - 6：立体声
+        ///
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         public let audioChannel: Int64?
 
@@ -3153,6 +3181,7 @@ extension Vod {
         /// 音频片段的媒体素材来源，可以是：
         /// - 点播的媒体文件 ID；
         /// - 其他媒体文件的下载 URL。
+        ///
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -3213,6 +3242,7 @@ extension Vod {
         /// 是否静音，取值范围0或1。
         /// - 0表示不静音。
         /// - 1表示静音。
+        ///
         /// 默认是0。
         public let mute: Int64?
 
@@ -3220,6 +3250,7 @@ extension Vod {
         /// - 大于1表示增加音量。
         /// - 小于1表示降低音量。
         /// - 0和1：表示不改变。
+        ///
         /// 默认是0。
         public let gain: Float?
 
@@ -3303,6 +3334,7 @@ extension Vod {
         /// 背景颜色，取值有：
         /// - Black：黑色背景
         /// - White：白色背景
+        ///
         /// 默认值：Black。
         public let color: String?
 
@@ -3443,6 +3475,7 @@ extension Vod {
         /// - weak：轻色彩增强；
         /// - normal：正常色彩增强；
         /// - strong：强色彩增强。
+        ///
         /// 默认值：weak。
         public let type: String?
 
@@ -3486,12 +3519,14 @@ extension Vod {
         /// 是否去除视频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值：0。
         public let removeAudio: Int64?
 
@@ -3762,6 +3797,7 @@ extension Vod {
         /// 违禁控制参数。违禁内容包括：
         /// - 谩骂；
         /// - 涉毒违法。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
@@ -4282,7 +4318,8 @@ extension Vod {
     public struct EditMediaTEHDConfig: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
         /// - TEHD-100 表示极速高清-100;
-        /// - OFF 表示关闭极速高清。不填表示 OFF。
+        /// - OFF 表示关闭极速高清。
+        /// 不填表示 OFF。
         public let type: String
 
         public init(type: String) {
@@ -4413,6 +4450,7 @@ extension Vod {
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String?
 
@@ -4421,6 +4459,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64?
 
@@ -4429,6 +4468,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按基准分辨率比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按基准分辨率比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64?
 
@@ -4488,6 +4528,7 @@ extension Vod {
         /// - ExtractCopyRightWatermarkComplete：提取版权水印完成；
         /// - DescribeFileAttributesComplete：获取文件属性完成；
         /// - QualityInspectComplete：音画质检测完成。
+        ///
         /// **兼容 2017 版的事件类型：**
         /// - TranscodeComplete：视频转码完成；
         /// - ConcatComplete：视频拼接完成；
@@ -4785,6 +4826,7 @@ extension Vod {
         /// - Default：使用默认人物库；
         /// - UserDefine：使用用户自定义人物库。
         /// - All：同时使用默认人物库和用户自定义人物库。
+        ///
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
 
@@ -5083,6 +5125,7 @@ extension Vod {
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊；
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充；
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        ///
         /// 默认值：stretch 。
         public let fillType: String
 
@@ -5375,6 +5418,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -5383,12 +5427,14 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -5413,6 +5459,7 @@ extension Vod {
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -5454,6 +5501,7 @@ extension Vod {
         /// 图像翻转动作，取值有：
         /// - Horizental：水平翻转，即左右镜像。
         /// - Vertical：垂直翻转，即上下镜像。
+        ///
         /// 当 Type = Flip 时有效。
         public let flip: String?
 
@@ -5478,12 +5526,14 @@ extension Vod {
         /// 水印的宽度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
+        ///
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
+        ///
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
@@ -5496,6 +5546,7 @@ extension Vod {
         /// 图片透明度，取值范围：[0, 100]
         /// - 0：完全不透明
         /// - 100：完全透明
+        ///
         /// 默认值：0。
         public let transparency: Int64?
 
@@ -5572,6 +5623,7 @@ extension Vod {
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；
+        ///
         /// 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         public let height: String
 
@@ -5686,6 +5738,7 @@ extension Vod {
 
         /// 低光照增强类型，仅当低光照增强控制开关为 ON 时有效，可选值：
         /// - normal：正常低光照增强；
+        ///
         /// 默认值：normal。
         public let type: String?
 
@@ -6101,6 +6154,7 @@ extension Vod {
         /// 嫌疑片段涉及令人不适宜的信息的结果标签。音视频审核模板[画面涉及令人不适宜的信息的任务控制参数](https://cloud.tencent.com/document/api/266/31773#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// - violation_photo：违规图标。
+        ///
         /// politician：
         /// - nation_politician：国家领导人；
         /// - province_politician: 省部级领导人；
@@ -6109,17 +6163,23 @@ extension Vod {
         /// - rural_politician：乡科级领导人；
         /// - sensitive_politician：违规相关人物；
         /// - foreign_politician：国外领导人。
+        ///
         /// entertainment：
         /// - sensitive_entertainment：违规娱乐人物。
+        ///
         /// sport：
         /// - sensitive_sport：违规体育人物。
+        ///
         /// entrepreneur：
         /// - sensitive_entrepreneur：违规商业人物。
+        ///
         /// scholar：
         /// - sensitive_scholar：违规教育学者。
+        ///
         /// celebrity：
         /// - sensitive_celebrity：违规知名人物；
         /// - historical_celebrity：历史知名人物。
+        ///
         /// military：
         /// - sensitive_military：违规相关人物。
         public let label: String
@@ -6201,6 +6261,7 @@ extension Vod {
         /// - AdaptiveDynamicStreamingFiles（删除转自适应码流文件）；
         /// - WechatPublishFiles（删除微信发布文件）；
         /// - WechatMiniProgramPublishFiles（删除微信小程序发布文件）。
+        ///
         /// _注意：_
         /// - 取值为OriginalFiles时，文件上传时携带的封面文件会被删除；
         /// - 取值为TranscodeFiles时，媒体处理产生的封面文件会被删除。
@@ -7074,6 +7135,7 @@ extension Vod {
         /// - cn：中文
         /// - ja：日文
         /// - en-US：英文
+        ///
         /// 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         public let language: String
 
@@ -7116,6 +7178,7 @@ extension Vod {
         /// - cn：中文
         /// - ja：日文
         /// - en-US：英文
+        ///
         /// 其他取值参考 [RFC5646](https://tools.ietf.org/html/rfc5646)
         public let language: String
 
@@ -7143,10 +7206,12 @@ extension Vod {
         ///   - VideoTrackItem
         ///   - MediaTransitionItem
         ///   - EmptyTrackItem
+        ///
         /// - Audio ：音频轨道。音频轨道由以下 Item 组成：
         ///   - AudioTrackItem
         ///   - MediaTransitionItem
         ///   - EmptyTrackItem
+        ///
         /// - Sticker ：贴图轨道。贴图轨道以下 Item 组成：
         ///   - StickerTrackItem
         ///   - EmptyTrackItem
@@ -7195,6 +7260,7 @@ extension Vod {
         /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。
         /// - 如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。
         /// - 使用 EmptyTrackItem 进行占位，来定位某个Item。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let emptyItem: EmptyTrackItem?
 
@@ -7380,30 +7446,35 @@ extension Vod {
     public struct MosaicInput: TCInputModel, TCOutputModel {
         /// 原点位置，目前仅支持：
         /// - TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。
+        ///
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let xPos: String?
 
         /// 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let yPos: String?
 
         /// 马赛克的宽度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。
+        ///
         /// 默认值：10%。
         public let width: String?
 
         /// 马赛克的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。
+        ///
         /// 默认值：10%。
         public let height: String?
 
@@ -7483,6 +7554,7 @@ extension Vod {
         /// - Default：使用默认物体库；
         /// - UserDefine：使用用户自定义物体库。
         /// - All：同时使用默认物体库和用户自定义物体库。
+        ///
         /// 默认值： All，同时使用默认物体库和用户自定义物体库。
         public let objectLibrary: String?
 
@@ -7601,6 +7673,7 @@ extension Vod {
     public struct OutputAudioStream: TCInputModel, TCOutputModel {
         /// 音频流的编码格式，可选值：
         /// - libfdk_aac：适合 mp4 文件。
+        ///
         /// 默认值：libfdk_aac。
         public let codec: String?
 
@@ -7609,6 +7682,7 @@ extension Vod {
         /// - 32000
         /// - 44100
         /// - 48000
+        ///
         /// 单位：Hz。
         /// 默认值：16000。
         public let sampleRate: Int64?
@@ -7616,6 +7690,7 @@ extension Vod {
         /// 音频声道数，可选值：
         /// - 1：单声道 。
         /// - 2：双声道
+        ///
         /// 默认值：2。
         public let audioChannel: Int64?
 
@@ -7636,6 +7711,7 @@ extension Vod {
     public struct OutputVideoStream: TCInputModel, TCOutputModel {
         /// 视频流的编码格式，可选值：
         /// - libx264：H.264 编码
+        ///
         /// 默认值：libx264。
         public let codec: String?
 
@@ -8291,6 +8367,7 @@ extension Vod {
         /// 审核的内容，可选值：
         /// - Media：原始音视频；
         /// - Cover：封面。
+        ///
         /// 不填或填空数组时，默认为审核 Media。
         public let reviewContents: [String]?
 
@@ -9120,16 +9197,20 @@ extension Vod {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// - libmp3lame。
+        ///
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         /// - flac。
+        ///
         /// 当外层参数 Container 为 m4a 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame；
         /// - ac3。
+        ///
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         /// - libfdk_aac：更适合 mp4；
         /// - libmp3lame：更适合 flv；
         /// - mp2。
+        ///
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// - libfdk_aac。
         public let codec: String?
@@ -9239,6 +9320,7 @@ extension Vod {
         /// - libx264：H.264 编码；
         /// - libx265：H.265 编码；
         /// - av1：AOMedia Video 1 编码。
+        ///
         /// 默认视频流的编码格式为 H.264 编码。
         public let codec: String?
 
@@ -9509,12 +9591,14 @@ extension Vod {
         /// 是否去除视频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值 0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值 0。
         public let removeAudio: Int64?
 
@@ -9768,6 +9852,7 @@ extension Vod {
         /// Referer 校验类型，可选值：
         /// - Black：黑名单方式校验。HTTP 请求携带了 Referers 列表中的某个 Referer 将被拒绝访问。
         /// - White：白名单方式校验。HTTP 请求携带了 Referers 列表中的 Referer 时才允许访问。
+        ///
         /// 当 Status 取值为 Enabled 时，AuthType 必须赋值。
         public let authType: String?
 
@@ -9777,6 +9862,7 @@ extension Vod {
         /// 是否允许空 Referer 访问本域名，可选值：
         /// - Yes： 是。
         /// - No： 否。
+        ///
         /// 当 Status 取值为 Enabled 时，BlankRefererAllowed 必须赋值。
         public let blankRefererAllowed: String?
 
@@ -9891,6 +9977,7 @@ extension Vod {
         /// - weak：轻画质修复；
         /// - normal：正常画质修复；
         /// - strong：强画质修复。
+        ///
         /// 默认值：weak。
         public let type: String?
 
@@ -10267,6 +10354,7 @@ extension Vod {
         /// - OCR：画面上的文字；
         /// - ASR：语音中的文字；
         /// - Voice：声音。
+        ///
         /// Label 表示违禁的标签，取值范围：
         /// - Porn：色情；
         /// - Terror：暴力；
@@ -10344,12 +10432,14 @@ extension Vod {
         /// 播放状态，可选值：
         /// - Enabled：启动状态；
         /// - Disabled：停止状态。
+        ///
         /// 默认值：Enabled。
         public let status: String?
 
         /// 播放模式，可选值：
         /// - Loop：循环播放播单；
         /// - Linear：单次播放，播单播放完停止播放。
+        ///
         /// 默认值：Loop。
         public let playBackMode: String?
 
@@ -10376,6 +10466,7 @@ extension Vod {
         /// 播放的音视频类型，可选值：
         /// - Transcode：转码输出；转码输出会有多个模版，必须指定 Definition 字段
         /// - Original：原始音视频。
+        ///
         /// Type 对应的格式必须为 HLS 格式。
         public let audioVideoType: String
 
@@ -10464,6 +10555,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -10472,12 +10564,14 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -10501,6 +10595,7 @@ extension Vod {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -10534,6 +10629,7 @@ extension Vod {
 
         /// 去划痕类型，仅当去划痕控制开关为 ON 时有效，可选值：
         /// - normal：正常去划痕；
+        ///
         /// 默认值：normal。
         public let type: String?
 
@@ -10712,6 +10808,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -10720,12 +10817,14 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -10743,6 +10842,7 @@ extension Vod {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -10985,6 +11085,7 @@ extension Vod {
         /// 贴图片段的媒体素材来源，可以是：
         /// - 点播的媒体文件 ID；
         /// - 其他媒体文件的下载 URL。
+        ///
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -10996,18 +11097,21 @@ extension Vod {
 
         /// 原点位置，取值有：
         /// - Center：坐标原点为中心位置，如画布中心。
+        ///
         /// 默认值：Center。
         public let coordinateOrigin: String?
 
         /// 贴图原点距离画布原点的水平位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示贴图 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布宽度的 10%。
         /// - 当字符串以 px 结尾，表示贴图 XPos 单位为像素，如 100px 表示 XPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let xPos: String?
 
         /// 贴图原点距离画布原点的垂直位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示贴图 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
         /// - 当字符串以 px 结尾，表示贴图 YPos 单位为像素，如 100px 表示 YPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let yPos: String?
 
@@ -11180,12 +11284,14 @@ extension Vod {
         /// 画面超分控制开关，可选值：
         /// - ON：开启画面超分；
         /// - OFF：关闭画面超分。
+        ///
         /// 当开启画面超分时，默认2倍超分。
         public let `switch`: String
 
         /// 画面超分类型，仅当画面超分控制开关为 ON 时有效，可选值：
         /// - lq：针对低清晰度有较多噪声视频的超分；
         /// - hq：针对高清晰度视频超分。
+        ///
         /// 默认值：lq。
         public let type: String?
 
@@ -11210,23 +11316,27 @@ extension Vod {
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///    Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 W%。
+        ///
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///    Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 H%。
+        ///
         /// 默认值为 0px。
         public let height: String?
 
@@ -11245,23 +11355,27 @@ extension Vod {
     public struct SvgWatermarkInputForUpdate: TCInputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///    Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 W%。
+        ///
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///    Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 H%。
+        ///
         /// 默认值为 0px。
         public let height: String?
 
@@ -11290,7 +11404,8 @@ extension Vod {
     public struct TEHDConfig: TCInputModel, TCOutputModel {
         /// 极速高清类型，可选值：
         /// - TEHD-100 表示极速高清-100;
-        /// - OFF 表示关闭极速高清。不填表示 OFF。
+        /// - OFF 表示关闭极速高清。
+        /// 不填表示 OFF。
         public let type: String
 
         /// 视频码率上限，当 Type 指定了极速高清类型时有效。
@@ -11312,7 +11427,8 @@ extension Vod {
     public struct TEHDConfigForUpdate: TCInputModel {
         /// 极速高清类型，可选值：
         /// - TEHD-100 表示极速高清-100;
-        /// - OFF 表示关闭极速高清。不填表示不修改。
+        /// - OFF 表示关闭极速高清。
+        /// 不填表示不修改。
         public let type: String?
 
         /// 视频码率上限，不填代表不修改。
@@ -11392,6 +11508,7 @@ extension Vod {
         /// - ReduceMediaBitrate：降码率任务；
         /// - WechatDistribute：微信发布任务；
         /// - ReviewAudioVideo：音视频审核任务。
+        ///
         /// 兼容 2017 版的任务类型：
         /// - Transcode：视频转码任务；
         /// - SnapshotByTimeOffset：视频截图任务；
@@ -11493,6 +11610,7 @@ extension Vod {
         /// - Edit.TESHD-10.H265.FHD: H.265编码方式全高清极速高清视频编辑
         /// - Edit.TESHD-10.H265.2K: H.265编码方式2K极速高清视频编辑
         /// - Edit.TESHD-10.H265.4K: H.265编码方式4K极速高清视频编辑
+        ///
         /// 去水印、音画质重生规格：
         /// - 480P: 短边 ≤ 480px
         /// - 720P: 短边 ≤ 720px
@@ -11761,6 +11879,7 @@ extension Vod {
         /// 文字透明度，取值范围：(0, 1]
         /// - 0：完全透明
         /// - 1：完全不透明
+        ///
         /// 默认值：1。
         public let fontAlpha: Float
 
@@ -12399,6 +12518,7 @@ extension Vod {
         /// 视频降噪类型，仅当视频降噪控制开关为 ON 时有效，可选值：
         /// - weak：轻视频降噪；
         /// - strong：强视频降噪。
+        ///
         /// 默认值：weak。
         public let type: String?
 
@@ -12441,6 +12561,7 @@ extension Vod {
         /// - libx265：H.265 编码；
         /// - av1：AOMedia Video 1 编码；
         /// - H.266：H.266 编码。
+        ///
         /// _注意：_
         /// - av1，H.266 编码容器目前只支持 mp4 ；
         /// - H.266 目前只支持恒定 CRF 码率控制方式。
@@ -12457,6 +12578,7 @@ extension Vod {
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String?
 
@@ -12465,6 +12587,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64?
 
@@ -12473,6 +12596,7 @@ extension Vod {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64?
 
@@ -12481,6 +12605,7 @@ extension Vod {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
+        ///
         /// 默认值：black 。
         public let fillType: String?
 
@@ -12499,12 +12624,14 @@ extension Vod {
         /// 当原始视频为 HDR（High Dynamic Range）时，转码输出是否依然保持 HDR。取值范围：
         /// - ON: 如果原始文件是 HDR，则转码输出保持 HDR；否则转码输出为 SDR （Standard Dynamic Range）。
         /// - OFF: 无论原始文件是 HDR 还是 SDR，转码输出均为 SDR。
+        ///
         /// 默认值：OFF。
         public let preserveHDRSwitch: String?
 
         /// 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
         /// - hvc1 表示 hvc1 标签；
         /// - hev1 表示 hev1 标签。
+        ///
         /// 默认值：hvc1。
         public let codecTag: String?
 
@@ -12544,6 +12671,7 @@ extension Vod {
         /// - libx265：H.265 编码；
         /// - av1：AOMedia Video 1 编码；
         /// - H.266：H.266 编码。
+        ///
         /// _注意：_
         /// - av1，H.266 编码容器目前只支持 mp4 ；
         /// - H.266 目前只支持恒定 CRF 码率控制方式。
@@ -12599,6 +12727,7 @@ extension Vod {
         /// 编码标签，仅当视频流的编码格式为 H.265 编码时有效，可选值：
         /// - hvc1 表示 hvc1 标签；
         /// - hev1 表示 hev1 标签。
+        ///
         /// 默认值：hvc1。
         public let codecTag: String?
 
@@ -12636,6 +12765,7 @@ extension Vod {
         /// 视频片段的媒体素材来源，可以是：
         /// - 点播的媒体文件 ID；
         /// - 其他媒体文件的下载 URL。
+        ///
         /// 注意：当使用其他媒体文件的下载 URL 作为素材来源，且开启了访问控制（如防盗链）时，需要在 URL 携带访问控制参数（如防盗链签名）。
         public let sourceMedia: String
 
@@ -12652,18 +12782,21 @@ extension Vod {
 
         /// 视频原点位置，取值有：
         /// - Center：坐标原点为中心位置，如画布中心。
+        ///
         /// 默认值 ：Center。
         public let coordinateOrigin: String?
 
         /// 视频片段原点距离画布原点的水平位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示视频片段 XPos 为画布宽度指定百分比的位置，如 10% 表示 XPos 为画布口宽度的 10%。
         /// - 当字符串以 px 结尾，表示视频片段 XPos 单位为像素，如 100px 表示 XPos 为100像素。
+        ///
         /// 默认值：0px。
         public let xPos: String?
 
         /// 视频片段原点距离画布原点的垂直位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示视频片段 YPos 为画布高度指定百分比的位置，如 10% 表示 YPos 为画布高度的 10%。
         /// - 当字符串以 px 结尾，表示视频片段 YPos 单位为像素，如 100px 表示 YPos 为100像素。
+        ///
         /// 默认值：0px。
         public let yPos: String?
 

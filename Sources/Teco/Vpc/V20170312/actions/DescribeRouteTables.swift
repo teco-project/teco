@@ -29,18 +29,18 @@ extension Vpc {
         /// - tag-key - String -是否必填：否 - （过滤条件）按照标签键进行过滤。
         /// - tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。
         /// - next-hop-type - String - 是否必填：否 - （过滤条件）按下一跳类型进行过滤。使用next-hop-type进行过滤时，必须同时携带route-table-id与vpc-id。
-        /// 目前我们支持的类型有：
-        /// LOCAL: 本地路由
-        /// CVM：公网网关类型的云服务器；
-        /// VPN：VPN网关；
-        /// DIRECTCONNECT：专线网关；
-        /// PEERCONNECTION：对等连接；
-        /// HAVIP：高可用虚拟IP；
-        /// NAT：NAT网关;
-        /// NORMAL_CVM：普通云服务器；
-        /// EIP：云服务器的公网IP；
-        /// CCN：云联网；
-        /// LOCAL_GATEWAY：本地网关。
+        ///   目前我们支持的类型有：
+        ///   LOCAL: 本地路由
+        ///   CVM：公网网关类型的云服务器；
+        ///   VPN：VPN网关；
+        ///   DIRECTCONNECT：专线网关；
+        ///   PEERCONNECTION：对等连接；
+        ///   HAVIP：高可用虚拟IP；
+        ///   NAT：NAT网关;
+        ///   NORMAL_CVM：普通云服务器；
+        ///   EIP：云服务器的公网IP；
+        ///   CCN：云联网；
+        ///   LOCAL_GATEWAY：本地网关。
         public let filters: [Filter]?
 
         /// 路由表实例ID，例如：rtb-azd4dt1c。

@@ -51,12 +51,14 @@ extension Postgres {
         /// 实例计费类型，目前支持：
         /// - PREPAID：预付费，即包年包月。
         /// - POSTPAID_BY_HOUR：后付费，即按量计费。
+        ///
         /// 默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
         public let instanceChargeType: String?
 
         /// 是否自动使用代金券：
         /// - 0：否
         /// - 1：是
+        ///
         /// 默认值：0
         public let autoVoucher: UInt64?
 
@@ -66,6 +68,7 @@ extension Postgres {
         /// 续费标记：
         /// - 0：手动续费
         /// - 1：自动续费
+        ///
         /// 默认值：0
         public let autoRenewFlag: Int64?
 
@@ -87,6 +90,7 @@ extension Postgres {
         /// 是否需要支持Ipv6：
         /// - 0：否
         /// - 1：是
+        ///
         /// 默认值：0
         public let needSupportIpv6: UInt64?
 

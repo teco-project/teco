@@ -28,6 +28,7 @@ extension Vod {
         /// - On：启用。
         /// - Off：停用。
         /// - Destroyed：销毁。
+        ///
         /// 当前状态如果是 Destoying ，不能进行启用操作，需要等待销毁完成后才能重新启用。
         public let status: String
 

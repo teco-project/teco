@@ -61,7 +61,8 @@ extension Emr {
 
         /// 是否开启集群Master节点公网。取值范围：
         /// - NEED_MASTER_WAN：表示开启集群Master节点公网。
-        /// - NOT_NEED_MASTER_WAN：表示不开启。默认开启集群Master节点公网。
+        /// - NOT_NEED_MASTER_WAN：表示不开启。
+        /// 默认开启集群Master节点公网。
         public let needMasterWan: String?
 
         /// 是否开启外网远程登录。（在SecurityGroupId不为空时，该参数无效）不填默认为不开启 取值范围：

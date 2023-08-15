@@ -29,12 +29,14 @@ extension Teo {
         /// - purge_prefix：目录刷新；
         /// - purge_host：Hostname 刷新；
         /// - purge_all：站点下全部缓存刷新；
-        /// - purge_cache_tag：cache-tag 刷新。缓存清除类型详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
+        /// - purge_cache_tag：cache-tag 刷新。
+        /// 缓存清除类型详情请查看[清除缓存](https://cloud.tencent.com/document/product/1552/70759)。
         public let type: String
 
         /// 节点缓存清除方法，仅对目录刷新类型有效，取值有：
         /// - invalidate：仅刷新目录下产生了更新的资源；
-        /// - delete：无论目录下资源是否更新都刷新节点资源。注意：使用目录刷新时，默认值： invalidate。
+        /// - delete：无论目录下资源是否更新都刷新节点资源。
+        /// 注意：使用目录刷新时，默认值： invalidate。
         public let method: String?
 
         /// 要清除缓存的资源列表。每个元素格式依据清除缓存类型而定，可参考接口示例。

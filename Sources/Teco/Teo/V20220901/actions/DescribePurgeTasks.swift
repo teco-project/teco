@@ -47,79 +47,45 @@ extension Teo {
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
         /// - zone-id
-        ///
-        /// 按照【**站点 ID**】进行过滤。zone-id形如：zone-xxx，暂不支持多值
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
+        ///   按照【**站点 ID**】进行过滤。zone-id形如：zone-xxx，暂不支持多值
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
         /// - job-id
-        ///
-        /// 按照【**任务ID**】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
+        ///   按照【**任务ID**】进行过滤。job-id形如：1379afjk91u32h，暂不支持多值。
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
         /// - target
-        ///
-        /// 按照【**目标资源信息**】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
+        ///   按照【**目标资源信息**】进行过滤，target形如：http://www.qq.com/1.txt或者tag1，暂不支持多值
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
         /// - domains
-        ///
-        /// 按照【**域名**】进行过滤，domains形如：www.qq.com
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持。
+        ///   按照【**域名**】进行过滤，domains形如：www.qq.com
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持。
         /// - statuses
-        ///
-        /// 按照【**任务状态**】进行过滤
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持。
-        ///
-        /// 可选项：
-        ///
-        /// processing：处理中
-        ///
-        /// success：成功
-        ///
-        /// failed：失败
-        ///
-        /// timeout：超时
+        ///   按照【**任务状态**】进行过滤
+        ///   必选：否
+        ///   模糊查询：不支持。
+        ///   可选项：
+        ///   processing：处理中
+        ///   success：成功
+        ///   failed：失败
+        ///   timeout：超时
         /// - type
-        ///
-        /// 按照【**清除缓存类型**】进行过滤，暂不支持多值。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 模糊查询：不支持
-        ///
-        /// 可选项：
-        ///
-        /// purge_url：URL
-        ///
-        /// purge_prefix：前缀
-        ///
-        /// purge_all：全部缓存内容
-        ///
-        /// purge_host：Hostname
-        ///
-        /// purge_cache_tag：CacheTag
+        ///   按照【**清除缓存类型**】进行过滤，暂不支持多值。
+        ///   类型：String
+        ///   必选：否
+        ///   模糊查询：不支持
+        ///   可选项：
+        ///   purge_url：URL
+        ///   purge_prefix：前缀
+        ///   purge_all：全部缓存内容
+        ///   purge_host：Hostname
+        ///   purge_cache_tag：CacheTag
         public let filters: [AdvancedFilter]?
 
         public init(zoneId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil) {

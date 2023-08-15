@@ -22,7 +22,8 @@ extension Lighthouse {
     /// DescribeDiskConfigs请求参数结构体
     public struct DescribeDiskConfigsRequest: TCRequestModel {
         /// 过滤器列表。
-        /// - zone按照【可用区】进行过滤。
+        /// - zone
+        /// 按照【可用区】进行过滤。
         /// 类型：String
         /// 必选：否
         public let filters: [Filter]?

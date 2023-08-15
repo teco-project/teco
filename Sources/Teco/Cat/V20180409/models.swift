@@ -116,6 +116,7 @@ extension Cat {
         /// IP 类型
         /// - 1 = IPv4
         /// - 2 = IPv6
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipType: Int64?
 
@@ -123,6 +124,7 @@ extension Cat {
         /// - 1 = 中国大陆
         /// - 2 = 港澳台
         /// - 3 = 国外
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: Int64?
 
@@ -174,6 +176,7 @@ extension Cat {
         /// IP 类型
         /// - 1 = IPv4
         /// - 2 = IPv6
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipType: Int64?
 
@@ -181,6 +184,7 @@ extension Cat {
         /// - 1 = 中国大陆
         /// - 2 = 港澳台
         /// - 3 = 境外
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: Int64?
 
@@ -276,6 +280,7 @@ extension Cat {
         /// 定时任务启动状态
         /// - 1 = 定时任务表达式生效
         /// - 2 = 定时任务表达式未生效（一般为任务手动暂停）
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronState: Int64?
 

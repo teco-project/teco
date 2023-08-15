@@ -40,24 +40,28 @@ extension Vod {
         /// - SimpleAES
         /// - Widevine
         /// - FairPlay
+        ///
         /// 如果取值为空字符串，代表不对视频做 DRM 保护。
         public let drmType: String?
 
         /// DRM 的密钥提供商，取值范围：
         /// - SDMC：华曦达；
         /// - VOD：云点播。
+        ///
         /// 默认为 VOD 。
         public let drmKeyProvider: String?
 
         /// 是否禁止视频低码率转高码率，取值范围：
         /// - 0：否，
         /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoBitrate: UInt64?
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
         /// - 0：否，
         /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoResolution: UInt64?
 
@@ -67,6 +71,7 @@ extension Vod {
         /// 切片类型，当 Format 为 HLS 时有效，可选值：
         /// - ts：ts 切片；
         /// - fmp4：fmp4 切片。
+        ///
         /// 默认值：ts。
         public let segmentType: String?
 

@@ -38,7 +38,7 @@ extension Cwp {
         /// - Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版）
         /// - Risk - String 是否必填: 否 - 风险主机( yes )
         /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
-        /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
+        ///   每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filters]?
 
         public init(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil) {

@@ -32,7 +32,8 @@ extension Es {
 
         /// 目标商业特性版本：
         /// - oss 开源版
-        /// - basic 基础版当前仅在5.6.4升级6.x版本时使用，默认值为basic
+        /// - basic 基础版
+        /// 当前仅在5.6.4升级6.x版本时使用，默认值为basic
         public let licenseType: String?
 
         /// 6.8（及以上版本）基础版是否开启xpack security认证
@@ -42,7 +43,8 @@ extension Es {
 
         /// 升级方式：
         /// - scale 蓝绿变更
-        /// - restart 滚动重启默认值为scale
+        /// - restart 滚动重启
+        /// 默认值为scale
         public let upgradeMode: String?
 
         /// 升级版本前是否对集群进行备份，默认不备份

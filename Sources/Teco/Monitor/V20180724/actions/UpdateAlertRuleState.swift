@@ -30,6 +30,7 @@ extension Monitor {
         /// 规则状态码，取值如下：
         /// - 2=RuleEnabled
         /// - 3=RuleDisabled
+        ///
         /// 默认状态码为 2 启用。
         public let ruleState: Int64
 

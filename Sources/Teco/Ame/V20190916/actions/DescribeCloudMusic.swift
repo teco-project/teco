@@ -28,6 +28,7 @@ extension Ame {
         /// - MP3-128K-FTW：含有水印的试听资源；
         /// - MP3-320K-FTD-P：320kbps歌曲热门片段；
         /// - MP3-320K-FTD：320kbps已核验歌曲完整资源。
+        ///
         /// 默认为：MP3-128K-FTW
         public let musicType: String?
 

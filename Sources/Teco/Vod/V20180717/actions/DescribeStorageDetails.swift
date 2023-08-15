@@ -33,6 +33,7 @@ extension Vod {
         /// 统计时间粒度，有效值：
         /// - Minute：以5分钟为粒度。
         /// - Day：以天为粒度。
+        ///
         /// 默认按时间跨度决定，小于等于1天以5分钟为粒度，大于1天则以天为粒度。
         public let interval: String?
 
@@ -50,12 +51,14 @@ extension Vod {
         /// - ArchiveBulkRetrieval：归档批量取回量。
         /// - DeepArchiveStandardRetrieval：深度归档标准取回量。
         /// - DeepArchiveBulkRetrieval：深度归档批量取回量。
+        ///
         /// 默认值为 TotalStorage。
         public let storageType: String?
 
         /// 查询的存储区域，有效值：
         /// - Chinese Mainland：中国境内（不包含港澳台）。
         /// - Outside Chinese Mainland：中国境外。
+        ///
         /// 默认值为 Chinese Mainland。
         public let area: String?
 

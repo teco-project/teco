@@ -72,12 +72,14 @@ extension Teo {
 
         /// 列表排序方式，取值有：
         /// - asc：升序排列；
-        /// - desc：降序排列。默认值为asc。
+        /// - desc：降序排列。
+        /// 默认值为asc。
         public let direction: String?
 
         /// 匹配方式，取值有：
         /// - all：返回匹配所有查询条件的加速域名；
-        /// - any：返回匹配任意一个查询条件的加速域名。默认值为all。
+        /// - any：返回匹配任意一个查询条件的加速域名。
+        /// 默认值为all。
         public let match: String?
 
         /// 分页查询限制数目，默认值：20，上限：200。
@@ -89,6 +91,7 @@ extension Teo {
         /// 排序依据，取值有：
         /// - created_on：加速域名创建时间；
         /// - domain-name：加速域名名称；
+        ///
         /// </li>默认根据domain-name属性排序。
         public let order: String?
 

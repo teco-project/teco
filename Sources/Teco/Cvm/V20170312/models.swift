@@ -447,6 +447,7 @@ extension Cvm {
         ///
         /// - BASIC：基础网络
         /// - VPC1.0：私有网络VPC1.0
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unsupportNetworks: [String]?
 
@@ -920,6 +921,7 @@ extension Cvm {
         /// - SUCCESS：表示操作成功
         /// - OPERATING：表示操作执行中
         /// - FAILED：表示操作失败
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationState: String?
 
@@ -1389,6 +1391,7 @@ extension Cvm {
         /// 后续合计费用的原价，后付费模式使用，单位：元。
         ///
         /// - 如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
 
@@ -1396,6 +1399,7 @@ extension Cvm {
         ///
         /// - HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：
         /// - GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
 
@@ -1414,6 +1418,7 @@ extension Cvm {
         /// 后续合计费用的折扣价，后付费模式使用，单位：元
         ///
         /// - 如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
 
@@ -1630,6 +1635,7 @@ extension Cvm {
         /// - `POSTPAID_BY_HOUR`：表示后付费，即按量计费
         /// - `CDHPAID`：`专用宿主机`付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。
         /// - `SPOTPAID`：表示竞价实例付费。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceChargeType: String?
 

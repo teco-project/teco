@@ -245,7 +245,6 @@ extension Thpc {
 
         /// 节点显示名称。
         ///
-        /// -
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
         public let instanceName: String?
@@ -546,7 +545,6 @@ extension Thpc {
 
         /// 节点显示名称。
         ///
-        /// -
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
         public let instanceName: String?
@@ -632,8 +630,8 @@ extension Thpc {
         ///
         /// - 不指定节点显示名称则默认显示‘未命名’。
         /// - 购买多个节点，如果指定模式串`{R:x}`，表示生成数字[`[x, x+n-1]`，其中`n`表示购买节点的数量，例如`server_{R:3}`，购买1个时，节点显示名称为`server_3`；购买2个时，节点显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。
-        /// 购买多个节点，如果不指定模式串，则在节点显示名称添加后缀`1、2...n`，其中`n`表示购买节点的数量，例如`server_`，购买2个时，节点显示名称分别为`server_1`，`server_2`。
-        /// -
+        ///   购买多个节点，如果不指定模式串，则在节点显示名称添加后缀`1、2...n`，其中`n`表示购买节点的数量，例如`server_`，购买2个时，节点显示名称分别为`server_1`，`server_2`。
+        ///
         /// 最多支持60个字符（包含模式串）。
         public let instanceName: String?
 
@@ -717,6 +715,7 @@ extension Thpc {
         /// - INIT_FAILED：初始化失败。
         /// - RUNNING：运行中。
         /// - DELETING：销毁中。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeState: String?
 
@@ -734,6 +733,7 @@ extension Thpc {
         /// - Compute：计算节点。
         /// - Login：登录节点。
         /// - ManagerBackup：备用管控节点。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeRole: String?
 
@@ -741,6 +741,7 @@ extension Thpc {
         ///
         /// - STATIC：静态节点。
         /// - DYNAMIC：弹性节点。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeType: String?
 

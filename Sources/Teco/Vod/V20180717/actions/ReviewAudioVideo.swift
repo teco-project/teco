@@ -30,6 +30,7 @@ extension Vod {
         /// 审核的内容，可选值有：
         /// - Media：原始音视频；
         /// - Cover：封面。
+        ///
         /// 不填或填空数组时，默认为审核 Media。
         public let reviewContents: [String]?
 

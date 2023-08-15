@@ -51,6 +51,7 @@ extension Vod {
         /// - North America：北美。
         /// - South America：南美。
         /// - Africa：非洲。
+        ///
         /// 默认为中国大陆。
         public let area: String?
 
@@ -105,6 +106,7 @@ extension Vod {
         /// 每条数据的时间粒度，单位：分钟，取值有：
         /// - 5：5 分钟粒度，返回指定查询时间内5分钟粒度的明细数据。
         /// - 1440：天粒度，返回指定查询时间内1天粒度的数据。起始时间和结束时间跨度大于24小时，只支持天粒度的数据。
+        ///
         /// 当 StartTime 和 EndTime 时间跨度大于24小时时，DataInterval 默认为 1440。
         public let dataInterval: UInt64?
 

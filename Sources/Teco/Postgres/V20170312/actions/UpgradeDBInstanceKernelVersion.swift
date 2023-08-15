@@ -31,6 +31,7 @@ extension Postgres {
         /// - 0：立即切换
         /// - 1：指定时间切换
         /// - 2：维护时间窗口内切换
+        ///
         /// 默认值：0
         public let switchTag: UInt64?
 
@@ -43,6 +44,7 @@ extension Postgres {
         /// 是否对本次升级实例内核版本号操作执行预检查。
         /// - true：执行预检查操作，不升级内核版本号。检查项目包含请求参数、内核版本号兼容性、实例参数等。
         /// - false：发送正常请求（默认值），通过检查后直接升级内核版本号。
+        ///
         /// 默认值：false
         public let dryRun: Bool?
 

@@ -344,6 +344,7 @@ extension Emr {
         /// - 34：表示集群已退费。
         /// - 301：表示创建失败。
         /// - 302：表示扩容失败。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
 
@@ -799,6 +800,7 @@ extension Emr {
         /// - CLOUD_HSSD：表示增强型SSD云硬盘。
         /// - CLOUD_THROUGHPUT：表示吞吐型云硬盘。
         /// - CLOUD_TSSD：表示极速型SSD云硬盘。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -1567,6 +1569,7 @@ extension Emr {
         /// - CLOUD_SSD：表示云SSD。
         /// - CLOUD_PREMIUM：表示高效云盘。
         /// - CLOUD_HSSD：表示增强型SSD云硬盘。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -2933,6 +2936,7 @@ extension Emr {
         /// - 6：表示增强型SSD云硬盘。
         /// - 11：表示吞吐型云硬盘。
         /// - 12：表示极速型SSD云硬盘。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageType: Int64?
 
@@ -2941,6 +2945,7 @@ extension Emr {
         /// - CLOUD_SSD：表示云SSD。
         /// - CLOUD_PREMIUM：表示高效云盘。
         /// - CLOUD_BASIC：表示云硬盘。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
 
@@ -3750,6 +3755,7 @@ extension Emr {
         /// - master
         /// - standby
         /// - third-party
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneTag: String?
 

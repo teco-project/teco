@@ -98,6 +98,7 @@ extension Emr {
         /// 扩容的时间单位。取值范围：
         /// - s：表示秒。
         /// - m：表示月份。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
 

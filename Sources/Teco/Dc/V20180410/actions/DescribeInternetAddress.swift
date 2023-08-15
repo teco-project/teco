@@ -33,6 +33,7 @@ extension Dc {
         /// - AddrProto地址类型。0：IPv4 1:IPv6
         /// - Status 地址状态。 0：使用中， 1：已停用， 2：已退还
         /// - Subnet 互联网公网地址，数组
+        ///
         /// <InstanceIds>互联网公网地址ID，数组</li>
         public let filters: [Filter]?
 

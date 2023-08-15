@@ -31,12 +31,14 @@ extension Vod {
         /// - AdaptiveDynamicStream：自适应码流输出；
         /// - Transcode：转码输出；
         /// - Original：原始音视频。
+        ///
         /// 默认为 AdaptiveDynamicStream。
         public let audioVideoType: String?
 
         /// 播放 DRM 保护的自适应码流开关：
         /// - ON：开启，表示仅播放 DRM  保护的自适应码流输出；
         /// - OFF：关闭，表示播放未加密的自适应码流输出。
+        ///
         /// 默认为 OFF。
         /// 当 AudioVideoType 为 AdaptiveDynamicStream 时，此参数有效。
         public let drmSwitch: String?

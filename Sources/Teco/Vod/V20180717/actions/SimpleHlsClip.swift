@@ -44,6 +44,7 @@ extension Vod {
 
         /// 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
         /// - 默认值：0，表示其他分类。
+        ///
         /// 仅 IsPersistence 为 1 时有效。
         public let classId: Int64?
 

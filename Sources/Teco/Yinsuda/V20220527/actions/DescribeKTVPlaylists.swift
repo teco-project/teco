@@ -31,6 +31,7 @@ extension Yinsuda {
         /// 类型列表，取值有：
         /// - OfficialRec：官方推荐；
         /// - Customize：自定义。
+        ///
         /// 默认值为 OfficialRec。
         public let types: [String]?
 

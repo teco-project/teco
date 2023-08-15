@@ -31,10 +31,10 @@ extension Tcss {
         /// 过滤条件。
         /// - Keywords- String - 是否必填：否 - 模糊查询可选字段
         /// - Type- String - 是否必填：否 - 主机运行状态筛选，"Apache"
-        /// "Jboss"
-        /// "lighttpd"
-        /// "Nginx"
-        /// "Tomcat"
+        ///   "Jboss"
+        ///   "lighttpd"
+        ///   "Nginx"
+        ///   "Tomcat"
         public let filters: [AssetFilters]?
 
         public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {

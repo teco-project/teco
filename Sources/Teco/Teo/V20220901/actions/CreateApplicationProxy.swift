@@ -45,7 +45,8 @@ extension Teo {
 
         /// 四层代理模式，取值有：
         /// - hostname：表示子域名模式；
-        /// - instance：表示实例模式。不填写使用默认值instance。
+        /// - instance：表示实例模式。
+        /// 不填写使用默认值instance。
         public let proxyType: String?
 
         /// 会话保持时间，取值范围：30-3600，单位：秒。

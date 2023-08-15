@@ -217,6 +217,7 @@ extension Tcbr {
         /// 支付方式。包含以下取值：
         /// - prepayment：预付费
         /// - postpaid：后付费
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let payMode: String?
 

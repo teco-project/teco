@@ -28,12 +28,14 @@ extension Mps {
         /// 编排触发类型，可选值：
         /// - CosFileUpload： 腾讯云 COS 文件上传触发
         /// - AwsS3FileUpload：Aws S3 文件上传触发。
+        ///
         /// 不填或者为空表示全部。
         public let triggerType: String?
 
         /// 状态，取值范围：
         /// - Enabled：已启用，
         /// - Disabled：已禁用。
+        ///
         /// 不填此参数，则不区编排状态。
         public let status: String?
 

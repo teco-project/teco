@@ -49,7 +49,8 @@ extension Emr {
 
         /// 按照OrderField升序或者降序进行排序。取值范围：
         /// - 0：表示降序。
-        /// - 1：表示升序。默认值为0。
+        /// - 1：表示升序。
+        /// 默认值为0。
         public let asc: Int64?
 
         public init(displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil) {

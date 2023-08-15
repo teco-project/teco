@@ -153,6 +153,7 @@ extension Mps {
         /// - action-image-sprite：雪碧图
         /// - action-snapshotByTimeOffset: 时间点截图
         /// - action-adaptive-substream：自适应码流
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activityType: String?
 
@@ -1173,6 +1174,7 @@ extension Mps {
         /// 人物性别：
         /// - Male：男性；
         /// - Female：女性。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gender: String?
 
@@ -1199,12 +1201,14 @@ extension Mps {
         /// 人物类型：
         /// - Politician：官员；
         /// - Artist：艺人。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let personType: String?
 
         /// 敏感度标注：
         /// - Normal：正常；
         /// - Sensitive：敏感。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
@@ -1620,6 +1624,7 @@ extension Mps {
         /// 视频涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#AiReviewPoliticalTaskOutput)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// - violation_photo：违规图标。
+        ///
         /// 其他（即 politician/entertainment/sport/entrepreneur/scholar/celebrity/military）：
         /// - politician：涉敏人物。
         public let label: String
@@ -2212,6 +2217,7 @@ extension Mps {
         /// 人脸图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串集合。
         /// - 当 Type为add 或 reset 时，该字段必填；
         /// - 数组长度限制：5 张图片。
+        ///
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
 
@@ -2408,6 +2414,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -2416,12 +2423,14 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -2461,12 +2470,14 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
         /// - weak
         /// - strong
+        ///
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -2585,15 +2596,19 @@ extension Mps {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// - libmp3lame。
+        ///
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         /// - flac。
+        ///
         /// 当外层参数 Container 为 m4a 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame；
         /// - ac3。
+        ///
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         /// - libfdk_aac：更适合 mp4；
         /// - libmp3lame：更适合 flv。
+        ///
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame。
@@ -2607,6 +2622,7 @@ extension Mps {
         /// - 32000
         /// - 44100
         /// - 48000
+        ///
         /// 单位：Hz。
         public let sampleRate: UInt64
 
@@ -2614,6 +2630,7 @@ extension Mps {
         /// - 1：单通道
         /// - 2：双通道
         /// - 6：立体声
+        ///
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 默认值：2。
         public let audioChannel: Int64?
@@ -2638,19 +2655,24 @@ extension Mps {
         /// 音频流的编码格式。
         /// 当外层参数 Container 为 mp3 时，可选值为：
         /// - libmp3lame。
+        ///
         /// 当外层参数 Container 为 ogg 或 flac 时，可选值为：
         /// - flac。
+        ///
         /// 当外层参数 Container 为 m4a 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame；
         /// - ac3。
+        ///
         /// 当外层参数 Container 为 mp4 或 flv 时，可选值为：
         /// - libfdk_aac：更适合 mp4；
         /// - libmp3lame：更适合 flv；
         /// - mp2。
+        ///
         /// 当外层参数 Container 为 hls 时，可选值为：
         /// - libfdk_aac；
         /// - libmp3lame。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codec: String?
 
@@ -2662,6 +2684,7 @@ extension Mps {
         /// - 32000
         /// - 44100
         /// - 48000
+        ///
         /// 单位：Hz。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleRate: UInt64?
@@ -2670,6 +2693,7 @@ extension Mps {
         /// - 1：单通道
         /// - 2：双通道
         /// - 6：立体声
+        ///
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let audioChannel: Int64?
@@ -2811,6 +2835,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -2818,6 +2843,7 @@ extension Mps {
         /// - weak
         /// - normal
         /// - strong
+        ///
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -2859,6 +2885,7 @@ extension Mps {
         /// 违禁控制参数。违禁内容包括：
         /// - 谩骂；
         /// - 涉毒违法。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
@@ -4131,6 +4158,7 @@ extension Mps {
         /// - Default：使用默认人物库；
         /// - UserDefine：使用用户自定义人物库。
         /// - All：同时使用默认人物库和用户自定义人物库。
+        ///
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
 
@@ -4199,6 +4227,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -4594,6 +4623,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -4665,12 +4695,14 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
         /// - HDR10
         /// - HLG
+        ///
         /// 默认值：HDR10。
         /// 注意：video的编码方式需要为libx265；
         /// 注意：视频编码位深为10。
@@ -4730,6 +4762,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -4737,6 +4770,7 @@ extension Mps {
         /// - weak
         /// - normal
         /// - strong
+        ///
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -4806,6 +4840,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -4814,12 +4849,14 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -4844,6 +4881,7 @@ extension Mps {
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：
         /// - stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁“或者“拉长“；
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -4880,12 +4918,14 @@ extension Mps {
         /// 水印的宽度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。取值范围为[8, 4096]。
+        ///
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
+        ///
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
@@ -4923,6 +4963,7 @@ extension Mps {
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。取值范围为0或[8, 4096]。
+        ///
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
@@ -4960,6 +5001,7 @@ extension Mps {
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；
+        ///
         /// 0px：表示 Height 按照 Width 对视频宽度的比例缩放。
         public let height: String
 
@@ -5574,11 +5616,13 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
         /// - normal
+        ///
         /// 默认值：normal。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -5876,6 +5920,7 @@ extension Mps {
         /// 嫌疑片段涉敏结果标签。内容审核模板[画面涉敏任务控制参数](https://cloud.tencent.com/document/api/862/37615#PoliticalImgReviewTemplateInfo)里 LabelSet 参数与此参数取值范围的对应关系：
         /// violation_photo：
         /// - violation_photo：违规图标。
+        ///
         /// politician：
         /// - nation_politician：国家领导人；
         /// - province_politician: 省部级领导人；
@@ -5884,17 +5929,23 @@ extension Mps {
         /// - rural_politician：乡科级领导人；
         /// - sensitive_politician：涉敏人物；
         /// - foreign_politician：国外领导人。
+        ///
         /// entertainment：
         /// - sensitive_entertainment：敏感娱乐人物。
+        ///
         /// sport：
         /// - sensitive_sport：敏感体育人物。
+        ///
         /// entrepreneur：
         /// - sensitive_entrepreneur：敏感商业人物。
+        ///
         /// scholar：
         /// - sensitive_scholar：敏感教育学者。
+        ///
         /// celebrity：
         /// - sensitive_celebrity：敏感知名人物；
         /// - historical_celebrity：历史知名人物。
+        ///
         /// military：
         /// - sensitive_military：敏感军事人物。
         public let label: String
@@ -6711,30 +6762,35 @@ extension Mps {
     public struct MosaicInput: TCInputModel, TCOutputModel {
         /// 原点位置，目前仅支持：
         /// - TopLeft：表示坐标原点位于视频图像左上角，马赛克原点为图片或文字的左上角。
+        ///
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 马赛克原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let xPos: String?
 
         /// 马赛克原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let yPos: String?
 
         /// 马赛克的宽度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 Width 单位为像素，如 100px 表示 Width 为 100 像素。
+        ///
         /// 默认值：10%。
         public let width: String?
 
         /// 马赛克的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示马赛克 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示马赛克 Height 单位为像素，如 100px 表示 Height 为 100 像素。
+        ///
         /// 默认值：10%。
         public let height: String?
 
@@ -7712,12 +7768,14 @@ extension Mps {
         /// 水印的宽度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Width 为视频宽度的百分比大小，如 10% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素。
+        ///
         /// 默认值：10%。
         public let width: String?
 
         /// 水印的高度。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 Height 为视频高度的百分比大小，如 10% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素。
+        ///
         /// 默认值：0px，表示 Height 按照原始水印图片的宽高比缩放。
         public let height: String?
 
@@ -7750,12 +7808,14 @@ extension Mps {
         /// 是否去除视频数据，取值：
         /// - 0：保留；
         /// - 1：去除。
+        ///
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，取值：
         /// - 0：保留；
         /// - 1：去除。
+        ///
         /// 默认值：0。
         public let removeAudio: Int64?
 
@@ -7795,18 +7855,21 @@ extension Mps {
 
         /// 原点位置，目前仅支持：
         /// - TopLeft：表示坐标原点位于视频图像左上角，水印原点为图片或文字的左上角。
+        ///
         /// 默认值：TopLeft。
         public let coordinateOrigin: String?
 
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 XPos 为视频宽度指定百分比，如 10% 表示 XPos 为视频宽度的 10%；
         /// - 当字符串以 px 结尾，表示水印 XPos 为指定像素，如 100px 表示 XPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let xPos: String?
 
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式：
         /// - 当字符串以 % 结尾，表示水印 YPos 为视频高度指定百分比，如 10% 表示 YPos 为视频高度的 10%；
         /// - 当字符串以 px 结尾，表示水印 YPos 为指定像素，如 100px 表示 YPos 为 100 像素。
+        ///
         /// 默认值：0px。
         public let yPos: String?
 
@@ -8041,6 +8104,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -8049,12 +8113,14 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -8078,6 +8144,7 @@ extension Mps {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -8353,6 +8420,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -8400,6 +8468,7 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
@@ -8488,6 +8557,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64
 
@@ -8496,12 +8566,14 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64
 
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         public let resolutionAdaptive: String
 
@@ -8519,6 +8591,7 @@ extension Mps {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - black：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - black：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊。
+        ///
         /// 默认值：black 。
         public let fillType: String
 
@@ -8562,6 +8635,7 @@ extension Mps {
         /// - song.ttf：宋体
         /// - simkai.ttf：楷体
         /// - arial.ttf：仅支持英文
+        ///
         /// 默认hei.ttf
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontType: String?
@@ -8577,6 +8651,7 @@ extension Mps {
         /// 文字透明度，取值范围：(0, 1]
         /// - 0：完全透明
         /// - 1：完全不透明
+        ///
         /// 默认值：1。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fontAlpha: Float?
@@ -8605,18 +8680,21 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
         /// - lq：针对低清晰度有较多噪声视频的超分；
         /// - hq：针对高清晰度视频超分。
+        ///
         /// 默认值：lq。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
         /// 超分倍数，可选值：
         /// - 2：目前只支持 2 倍超分。
+        ///
         /// 默认值：2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
@@ -8638,23 +8716,27 @@ extension Mps {
     public struct SvgWatermarkInput: TCInputModel, TCOutputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///    Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 W%。
+        ///
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///    Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 H%。
+        ///
         /// 默认值为 0px。
         public let height: String?
 
@@ -8673,23 +8755,27 @@ extension Mps {
     public struct SvgWatermarkInputForUpdate: TCInputModel {
         /// 水印的宽度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Width 单位为像素，如 100px 表示 Width 为 100 像素；当填 0px 且
-        ///  Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///    Height 不为 0px 时，表示水印的宽度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的宽度取原始 SVG 图像的宽度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Width 为视频宽度的百分比大小，如 10W% 表示 Width 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Width 为视频高度的百分比大小，如 10H% 表示 Width 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Width 为视频短边的百分比大小，如 10S% 表示 Width 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Width 为视频长边的百分比大小，如 10L% 表示 Width 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 W%。
+        ///
         /// 默认值为 10W%。
         public let width: String?
 
         /// 水印的高度，支持 px，%，W%，H%，S%，L% 六种格式：
         /// - 当字符串以 px 结尾，表示水印 Height 单位为像素，如 100px 表示 Height 为 100 像素；当填 0px 且
-        ///  Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///    Width 不为 0px 时，表示水印的高度按原始 SVG 图像等比缩放；当 Width、Height 都填 0px 时，表示水印的高度取原始 SVG 图像的高度；
+        ///
         /// - 当字符串以 W% 结尾，表示水印 Height 为视频宽度的百分比大小，如 10W% 表示 Height 为视频宽度的 10%；
         /// - 当字符串以 H% 结尾，表示水印 Height 为视频高度的百分比大小，如 10H% 表示 Height 为视频高度的 10%；
         /// - 当字符串以 S% 结尾，表示水印 Height 为视频短边的百分比大小，如 10S% 表示 Height 为视频短边的 10%；
         /// - 当字符串以 L% 结尾，表示水印 Height 为视频长边的百分比大小，如 10L% 表示 Height 为视频长边的 10%；
         /// - 当字符串以 % 结尾时，含义同 H%。
+        ///
         /// 默认值为 0px。
         public let height: String?
 
@@ -8709,6 +8795,7 @@ extension Mps {
         /// 极速高清类型，可选值：
         /// - TEHD-100：极速高清-100（视频极速高清）。
         /// - TEHD-200：极速高清-200（音频极速高清）。
+        ///
         /// 不填代表不启用极速高清。
         public let type: String
 
@@ -8732,6 +8819,7 @@ extension Mps {
         /// 极速高清类型，可选值：
         /// - TEHD-100：极速高清-100（视频极速高清）。
         /// - TEHD-200：极速高清-200（音频极速高清）。
+        ///
         /// 不填代表不修改。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -8806,6 +8894,7 @@ extension Mps {
         /// - URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数
         /// - SCF：不推荐使用，需要在控制台额外配置SCF
         /// - AWS-SQS：AWS 队列，只适用于 AWS 任务，且要求同区域
+        ///
         /// _ 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 _
         public let notifyType: String?
 
@@ -9082,6 +9171,7 @@ extension Mps {
         /// 文字透明度，取值范围：(0, 1]
         /// - 0：完全透明
         /// - 1：完全不透明
+        ///
         /// 默认值：1。
         public let fontAlpha: Float
 
@@ -9600,12 +9690,14 @@ extension Mps {
         /// 能力配置开关，可选值：
         /// - ON：开启；
         /// - OFF：关闭。
+        ///
         /// 默认值：ON。
         public let `switch`: String?
 
         /// 类型，可选值：
         /// - weak
         /// - strong
+        ///
         /// 默认值：weak。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
@@ -9702,6 +9794,7 @@ extension Mps {
         /// - libx264：H.264 编码
         /// - libx265：H.265 编码
         /// - av1：AOMedia Video 1 编码
+        ///
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         public let codec: String
@@ -9718,6 +9811,7 @@ extension Mps {
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 默认值：open。
         /// 注意：自适应模式时，Width不能小于Height。
         public let resolutionAdaptive: String?
@@ -9727,6 +9821,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let width: UInt64?
 
@@ -9735,6 +9830,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 默认值：0。
         public let height: UInt64?
 
@@ -9747,6 +9843,7 @@ extension Mps {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
+        ///
         /// 默认值：black 。
         /// 注意：自适应码流只支持 stretch、black。
         public let fillType: String?
@@ -9787,6 +9884,7 @@ extension Mps {
         /// - libx264：H.264 编码
         /// - libx265：H.265 编码
         /// - av1：AOMedia Video 1 编码
+        ///
         /// 注意：目前 H.265 编码必须指定分辨率，并且需要在 640*480 以内。
         /// 注意：av1 编码容器目前只支持 mp4 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -9805,6 +9903,7 @@ extension Mps {
         /// 分辨率自适应，可选值：
         /// - open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；
         /// - close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。
+        ///
         /// 注意：自适应模式时，Width不能小于Height。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resolutionAdaptive: String?
@@ -9814,6 +9913,7 @@ extension Mps {
         /// - 当 Width 为 0，Height 非 0，则 Width 按比例缩放；
         /// - 当 Width 非 0，Height 为 0，则 Height 按比例缩放；
         /// - 当 Width、Height 均非 0，则分辨率按用户指定。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let width: UInt64?
 
@@ -9830,6 +9930,7 @@ extension Mps {
         /// - black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。
         /// - white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。
         /// - gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fillType: String?
 
@@ -9841,6 +9942,7 @@ extension Mps {
         /// 内容自适应编码。可选值：
         /// - 0：不开启
         /// - 1：开启
+        ///
         /// 默认值: 0.   当开启该参数时，将会自适应生成多个不同分辨率，不同码率的码流， 其中VideoTemplate的宽和高为多个码流中的最大分辨率，VideoTemplate中的码率为多个码流中的最高码率， VideoTemplate中的vcrf为多个码流中的最高质量。 当不设置分辨率、码率和vcrf时， ContentAdaptStream 参数生成的最高分辨率为视频源的分辨率，视频质量为接近vmaf95分。 若要开启该参数或了解计费细节, 请联系您的腾讯云商务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentAdaptStream: UInt64?

@@ -32,14 +32,17 @@ extension Tic {
         public let limit: Int64?
 
         /// - **Name**
+        ///
         /// 按照【**版本名称**】进行过滤
         /// 类型：string
         ///
         /// - **Status**
+        ///
         /// 按照【**版本状态**】过滤，形如`VERSION_EDITING`，`PLAN_IN_PROGRESS`等
         /// 类型：string
         ///
         /// - **StackId**
+        ///
         /// 按照版本所属的【**资源栈ID**】进行过滤，形如`stk-xxxxxx`
         /// 类型：string
         public let filters: [Filter]?

@@ -1077,6 +1077,7 @@ extension Ie {
         /// - LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置
         /// - RightBottom：PosXY 表示水印右下点到图片右下点的相对位置
         /// - Center：PosXY 表示水印中心点到图片中心点的相对位置
+        ///
         /// 默认：LeftTop。
         public let posOriginType: String?
 
@@ -1125,6 +1126,7 @@ extension Ie {
         /// - LeftBottom：PosXY 表示水印左下点到图片左下点的相对位置
         /// - RightBottom：PosXY 表示水印右下点到图片右下点的相对位置
         /// - Center：PosXY 表示水印中心点到图片中心点的相对位置
+        ///
         /// 默认：LeftTop。
         public let posOriginType: String?
 
@@ -1132,6 +1134,7 @@ extension Ie {
         /// - SimHei
         /// - SimKai
         /// - Arial
+        ///
         /// 默认 SimHei。
         public let font: String?
 

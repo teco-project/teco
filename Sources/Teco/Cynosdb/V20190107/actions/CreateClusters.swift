@@ -132,6 +132,7 @@ extension Cynosdb {
         /// 当DbMode为SEVERLESS时，指定集群是否自动暂停，可选范围
         /// - yes
         /// - no
+        ///
         /// 默认值:yes
         public let autoPause: String?
 

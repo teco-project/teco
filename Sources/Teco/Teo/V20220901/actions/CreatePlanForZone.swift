@@ -36,7 +36,8 @@ extension Teo {
         /// - ent_cm: 中国大陆内容分发网络企业版套餐；
         /// - ent_cm_with_bot: 中国大陆内容分发网络企业版套餐附带bot管理。
         /// - ent_global ：全球内容分发网络（包括中国大陆）企业版套餐；
-        /// - ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。当前账户可购买套餐类型请以[DescribeAvailablePlans](https://cloud.tencent.com/document/product/1552/80606)返回为准。
+        /// - ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。
+        /// 当前账户可购买套餐类型请以[DescribeAvailablePlans](https://cloud.tencent.com/document/product/1552/80606)返回为准。
         public let planType: String
 
         public init(zoneId: String, planType: String) {

@@ -53,13 +53,15 @@ extension Teo {
         /// 攻击类型，取值有：
         /// - flood：洪泛攻击；
         /// - icmpFlood：icmp洪泛攻击；
-        /// - all：所有的攻击类型。不填默认为all，表示查询全部攻击类型。
+        /// - all：所有的攻击类型。
+        /// 不填默认为all，表示查询全部攻击类型。
         public let attackType: String?
 
         /// 协议类型，取值有：
         /// - tcp：tcp协议；
         /// - udp：udp协议；
-        /// - all：所有的协议类型。不填默认为all，表示查询所有协议。
+        /// - all：所有的协议类型。
+        /// 不填默认为all，表示查询所有协议。
         public let protocolType: String?
 
         /// 端口号。
@@ -70,7 +72,8 @@ extension Teo {
 
         /// 数据归属地区，取值有：
         /// - overseas：全球（除中国大陆地区）数据；
-        /// - mainland：中国大陆地区数据。不填将根据用户所在地智能选择地区。
+        /// - mainland：中国大陆地区数据。
+        /// 不填将根据用户所在地智能选择地区。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, attackType: String? = nil, protocolType: String? = nil, port: Int64? = nil, limit: Int64? = nil, area: String? = nil) {

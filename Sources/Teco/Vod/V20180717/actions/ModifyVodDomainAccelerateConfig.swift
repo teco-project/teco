@@ -33,6 +33,7 @@ extension Vod {
         /// 开启或者关闭所选区域的域名加速，可选值：
         /// - Enabled: 开启。
         /// - Disabled：关闭。
+        ///
         /// 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         public let status: String
 

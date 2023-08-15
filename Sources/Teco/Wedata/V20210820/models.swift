@@ -5521,6 +5521,7 @@ extension Wedata {
         /// - NONE: 全部不检查
         /// - ALL: 检查全部上游父任务
         /// - MAKE_SCOPE: 只在（当前补录计划）选中任务中检查
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkParentType: String?
 

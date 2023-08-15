@@ -45,7 +45,8 @@ extension Es {
 
         /// 计费类型
         /// - PREPAID：预付费，即包年包月
-        /// - POSTPAID_BY_HOUR：按小时后付费默认值POSTPAID_BY_HOUR
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// 默认值POSTPAID_BY_HOUR
         public let chargeType: String?
 
         /// 包年包月购买时长（单位由参数TimeUnit决定）
@@ -53,7 +54,8 @@ extension Es {
 
         /// 自动续费标识
         /// - RENEW_FLAG_AUTO：自动续费
-        /// - RENEW_FLAG_MANUAL：不自动续费，用户手动续费ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
+        /// - RENEW_FLAG_MANUAL：不自动续费，用户手动续费
+        /// ChargeType为PREPAID时需要设置，如不传递该参数，普通用户默认不自动续费，SVIP用户自动续费
         public let renewFlag: String?
 
         /// 已废弃请使用NodeInfoList
@@ -70,7 +72,8 @@ extension Es {
         /// 已废弃请使用NodeInfoList
         /// 节点磁盘类型
         /// - CLOUD_SSD：SSD云硬盘
-        /// - CLOUD_PREMIUM：高硬能云硬盘默认值CLOUD_SSD
+        /// - CLOUD_PREMIUM：高硬能云硬盘
+        /// 默认值CLOUD_SSD
         public let diskType: String?
 
         /// 已废弃请使用NodeInfoList
@@ -82,7 +85,8 @@ extension Es {
 
         /// 是否自动使用代金券
         /// - 0：不自动使用
-        /// - 1：自动使用默认值0
+        /// - 1：自动使用
+        /// 默认值0
         public let autoVoucher: Int64?
 
         /// 代金券ID列表（目前仅支持指定一张代金券）
@@ -91,7 +95,8 @@ extension Es {
         /// 已废弃请使用NodeInfoList
         /// 是否创建专用主节点
         /// - true：开启专用主节点
-        /// - false：不开启专用主节点默认值false
+        /// - false：不开启专用主节点
+        /// 默认值false
         public let enableDedicatedMaster: Bool?
 
         /// 已废弃请使用NodeInfoList
@@ -118,7 +123,8 @@ extension Es {
 
         /// 集群部署方式
         /// - 0：单可用区部署
-        /// - 1：多可用区部署默认为0
+        /// - 1：多可用区部署
+        /// 默认为0
         public let deployMode: UInt64?
 
         /// 多可用区部署时可用区的详细信息(DeployMode为1时必传)
@@ -127,7 +133,8 @@ extension Es {
         /// License类型
         /// - oss：开源版
         /// - basic：基础版
-        /// - platinum：白金版默认值platinum
+        /// - platinum：白金版
+        /// 默认值platinum
         public let licenseType: String?
 
         /// 节点信息列表， 用于描述集群各类节点的规格信息如节点类型，节点个数，节点规格，磁盘类型，磁盘大小等

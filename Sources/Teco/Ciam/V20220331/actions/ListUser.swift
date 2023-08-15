@@ -29,8 +29,10 @@ extension Ciam {
 
         /// Key可选值为condition、userGroupId
         ///
-        /// - **condition** 	Values = 查询条件，用户ID，用户名称，手机或邮箱
-        /// - **userGroupId** 	Values = 用户组ID
+        /// - **condition**
+        /// 	Values = 查询条件，用户ID，用户名称，手机或邮箱
+        /// - **userGroupId**
+        /// 	Values = 用户组ID
         public let filters: [Filter]?
 
         /// 返回信息是否为原文

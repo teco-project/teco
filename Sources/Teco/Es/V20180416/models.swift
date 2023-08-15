@@ -588,12 +588,14 @@ extension Es {
         /// License类型
         /// - oss：开源版
         /// - basic：基础版
-        /// - platinum：白金版默认值platinum
+        /// - platinum：白金版
+        /// 默认值platinum
         public let licenseType: String
 
         /// 是否为冷热集群
         /// - true: 冷热集群
         /// - false: 非冷热集群
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableHotWarmMode: Bool?
 
@@ -605,6 +607,7 @@ extension Es {
         /// - ES.S1.2XLARGE32：8核32G
         /// - ES.S1.4XLARGE32：16核32G
         /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warmNodeType: String?
 
@@ -643,12 +646,14 @@ extension Es {
         /// 部署模式
         /// - 0：单可用区
         /// - 1：多可用区
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployMode: UInt64?
 
         /// ES公网访问状态
         /// - OPEN：开启
         /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicAccess: String?
 
@@ -662,18 +667,21 @@ extension Es {
         /// Kibana公网访问状态
         /// - OPEN：开启
         /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaPublicAccess: String?
 
         /// Kibana内网访问状态
         /// - OPEN：开启
         /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaPrivateAccess: String?
 
         /// 6.8（及以上版本）基础版是否开启xpack security认证
         /// - 1：不开启
         /// - 2：开启
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityType: UInt64?
 
@@ -713,6 +721,7 @@ extension Es {
         /// - ES.S1.2XLARGE32：8核32G
         /// - ES.S1.4XLARGE32：16核32G
         /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coldNodeType: String?
 
@@ -744,6 +753,7 @@ extension Es {
         /// - ES.S1.2XLARGE32：8核32G
         /// - ES.S1.4XLARGE32：16核32G
         /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frozenNodeType: String?
 
@@ -806,6 +816,7 @@ extension Es {
         /// Kibana的altering外网告警策略
         /// - OPEN：开启
         /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaAlteringPublicAccess: String?
 
@@ -1131,7 +1142,8 @@ extension Es {
 
         /// License类型
         /// - oss：开源版
-        /// - xpack：基础版默认值xpack
+        /// - xpack：基础版
+        /// 默认值xpack
         public let licenseType: String
 
         /// 实例创建时间
@@ -1387,12 +1399,14 @@ extension Es {
         /// - hotData: 热数据节点
         /// - warmData: 冷数据节点
         /// - dedicatedMaster: 专用主节点
+        ///
         /// 默认值为hotData
         public let type: String?
 
         /// 节点磁盘类型
         /// - CLOUD_SSD：SSD云硬盘
-        /// - CLOUD_PREMIUM：高硬能云硬盘默认值CLOUD_SSD
+        /// - CLOUD_PREMIUM：高硬能云硬盘
+        /// 默认值CLOUD_SSD
         public let diskType: String?
 
         /// 节点磁盘容量（单位GB）

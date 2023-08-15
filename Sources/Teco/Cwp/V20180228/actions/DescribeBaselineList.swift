@@ -31,7 +31,8 @@ extension Cwp {
         /// 过滤条件。
         /// - StrategyId- Uint64 - 基线策略id
         /// - Status - Uint64 - 处理状态1已通过 0未通过
-        /// - Level - Uint64[] - 处理状态1已通过 0未通过BaselineName
+        /// - Level - Uint64[] - 处理状态1已通过 0未通过
+        /// BaselineName
         /// - BaselineName  - String - 基线名称
         /// - Quuid- String - 主机quuid
         /// - Uuid- String - 主机uuid

@@ -1397,6 +1397,7 @@ extension Lighthouse {
         /// - 大写字母：[A-Z]
         /// - 数字：0-9
         /// - 特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
+        ///
         /// `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
         ///
         /// - 小写字母：[a-z]
@@ -1642,6 +1643,7 @@ extension Lighthouse {
         /// - SUCCESS：表示操作成功
         /// - OPERATING：表示操作执行中
         /// - FAILED：表示操作失败
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationState: String?
 

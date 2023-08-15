@@ -36,12 +36,14 @@ extension Vod {
         /// 是否去除视频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值：0。
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
         /// - 0：保留
         /// - 1：去除
+        ///
         /// 默认值：0。
         public let removeAudio: Int64?
 
@@ -57,6 +59,7 @@ extension Vod {
         /// 切片类型，当 Container 为 hls 时有效，可选值：
         /// - ts：ts 切片；
         /// - fmp4：fmp4 切片。
+        ///
         /// 默认值：ts。
         public let segmentType: String?
 

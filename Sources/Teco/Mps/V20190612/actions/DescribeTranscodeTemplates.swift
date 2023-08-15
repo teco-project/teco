@@ -52,6 +52,7 @@ extension Mps {
         /// - TEHD-100：视频极速高清
         /// - TEHD-200：音频极速高清
         /// - Enhance：音视频增强模板。
+        ///
         /// 默认空，不限制类型。
         public let transcodeType: String?
 

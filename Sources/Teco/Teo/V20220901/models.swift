@@ -89,6 +89,7 @@ extension Teo {
         /// 加速域名归属权验证状态，取值有：
         /// - pending：待验证；
         /// - finished：已完成验证。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identificationStatus: String?
 
@@ -235,7 +236,8 @@ extension Teo {
         /// ip封禁的惩罚时间单位，取值有：
         /// - second：秒；
         /// - minutes：分；
-        /// - hour：小时。默认为second。
+        /// - hour：小时。
+        /// 默认为second。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishTimeUnit: String?
 
@@ -316,18 +318,21 @@ extension Teo {
         /// - HTTP/2 访问（Http2）；
         /// - 回源跟随重定向(UpstreamFollowRedirect)；
         /// - 修改源站(Origin)。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let normalAction: NormalAction?
 
         /// 带有请求头/响应头的功能操作，选择该类型的功能项有：
         /// - 修改 HTTP 请求头（RequestHeader）；
         /// - 修改HTTP响应头（ResponseHeader）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteAction: RewriteAction?
 
         /// 带有状态码的功能操作，选择该类型的功能项有：
         /// - 自定义错误页面（ErrorPage）；
         /// - 状态码缓存 TTL（StatusCodeCache）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeAction: CodeAction?
 
@@ -630,6 +635,7 @@ extension Teo {
         /// 加速区域，取值有：
         /// - mainland：中国大陆境内;
         /// - overseas：全球（不含中国大陆）。
+        ///
         /// 默认值：overseas
         public let area: String
 
@@ -715,6 +721,7 @@ extension Teo {
         /// 端口，支持格式：
         /// - 单个端口，如：80。
         /// - 端口段，如：81-82。表示81，82两个端口。
+        ///
         /// 注意：一条规则最多可填写20个端口。
         public let port: [String]
 
@@ -743,12 +750,14 @@ extension Teo {
         /// - TOA：TOA（仅Proto=TCP时可选）；
         /// - PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；
         /// - PPV2：Proxy Protocol传递，协议版本V2；
-        /// - OFF：不传递。默认值：OFF。
+        /// - OFF：不传递。
+        /// 默认值：OFF。
         public let forwardClientIp: String?
 
         /// 是否开启会话保持，取值有：
         /// - true：开启；
-        /// - false：关闭。默认值：false。
+        /// - false：关闭。
+        /// 默认值：false。
         public let sessionPersist: Bool?
 
         /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
@@ -997,7 +1006,8 @@ extension Teo {
 
         /// 规则状态，取值有：
         /// - on：生效；
-        /// - off：不生效。默认on生效。
+        /// - off：不生效。
+        /// 默认on生效。
         public let ruleStatus: String
 
         /// 规则详情。
@@ -1015,6 +1025,7 @@ extension Teo {
 
         /// 过滤词，取值有：
         /// - sip：客户端ip。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqFields: [String]?
 
@@ -1025,6 +1036,7 @@ extension Teo {
         /// 统计范围，字段为null时，代表source_to_eo。取值有：
         /// - source_to_eo：（响应）源站到EdgeOne。
         /// - client_to_eo：（请求）客户端到EdgeOne；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqScope: [String]?
 
@@ -1091,6 +1103,7 @@ extension Teo {
         /// 是否开启强制缓存，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         @available(*, deprecated)
         public let ignoreCacheControl: String? = nil
@@ -1145,12 +1158,14 @@ extension Teo {
         /// 是否开启全路径缓存，取值有：
         /// - on：开启全路径缓存（即关闭参数忽略）；
         /// - off：关闭全路径缓存（即开启参数忽略）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullUrlCache: String?
 
         /// 是否忽略大小写缓存，取值有：
         /// - on：忽略；
         /// - off：不忽略。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCase: String?
 
@@ -1250,6 +1265,7 @@ extension Teo {
         /// Cname状态信息，取值有：
         /// - active：生效；
         /// - moved：不生效。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -1289,6 +1305,7 @@ extension Teo {
         /// 支持的压缩算法列表，取值有：
         /// - brotli：brotli算法；
         /// - gzip：gzip算法。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithms: [String]?
 
@@ -1353,6 +1370,7 @@ extension Teo {
         /// 攻击事件所属地区，取值有：
         /// - overseas：全球（除中国大陆地区）数据；
         /// - mainland：中国大陆地区数据。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
 
@@ -1407,6 +1425,7 @@ extension Teo {
         /// - default: 默认证书;
         /// - upload:用户上传;
         /// - managed:腾讯云托管。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
@@ -1436,6 +1455,7 @@ extension Teo {
         /// - processing: 部署中；
         /// - deployed: 已部署；
         /// - failed: 部署失败。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -1821,6 +1841,7 @@ extension Teo {
         /// - acl：自定义规则；
         /// - cc：cc攻击防护；
         /// - bot：Bot防护。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modules: [String]?
 
@@ -1901,6 +1922,7 @@ extension Teo {
         /// 开关，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -1963,6 +1985,7 @@ extension Teo {
         /// 重定向状态码，取值有：
         /// - 301：301跳转；
         /// - 302：302跳转。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
 
@@ -2026,12 +2049,14 @@ extension Teo {
         /// 是否包含子域名，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeSubDomains: String?
 
         /// 是否开启预加载，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preload: String?
 
@@ -2055,12 +2080,14 @@ extension Teo {
         /// http2 配置开关，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let http2: String?
 
         /// OCSP 配置开关，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocspStapling: String?
 
@@ -2068,7 +2095,8 @@ extension Teo {
         /// - TLSv1：TLSv1版本；
         /// - TLSV1.1：TLSv1.1版本；
         /// - TLSV1.2：TLSv1.2版本；
-        /// - TLSv1.3：TLSv1.3版本。修改时必须开启连续的版本。
+        /// - TLSv1.3：TLSv1.3版本。
+        /// 修改时必须开启连续的版本。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
 
@@ -2082,7 +2110,8 @@ extension Teo {
 
         /// 申请类型，取值有：
         /// - apply：托管EdgeOne；
-        /// - none：不托管EdgeOne。不填，默认取值为none。
+        /// - none：不托管EdgeOne。
+        /// 不填，默认取值为none。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyType: String?
 
@@ -2090,6 +2119,7 @@ extension Teo {
         /// - loose-v2023：提供最高的兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；
         /// - general-v2023：提供较高的兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；
         /// - strict-v2023：提供最高的安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cipherSuite: String?
 
@@ -2207,6 +2237,7 @@ extension Teo {
         /// 开关，取值有：
         /// - on：开启；
         /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2258,6 +2289,7 @@ extension Teo {
         /// 开关，取值有：
         /// - on：开启；
         /// - off：关闭；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2297,6 +2329,7 @@ extension Teo {
         /// - not_include：不包含；
         /// - equal：等于；
         /// - not_equal：不等于。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
 
@@ -2312,6 +2345,7 @@ extension Teo {
         /// 规则启用状态，当返回为null时，为启用。取值有：
         /// - on：启用；
         /// - off：未启用。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -2540,12 +2574,14 @@ extension Teo {
         /// - http：强制 http 回源；
         /// - follow：协议跟随回源；
         /// - https：强制 https 回源。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullProtocol: String?
 
         /// 源站为腾讯云 COS 时，是否为私有访问 bucket，取值有：
         /// - on：私有访问；
         /// - off：公共访问。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosPrivateAccess: String?
 
@@ -2588,6 +2624,7 @@ extension Teo {
         /// 指定是否允许访问私有对象存储源站。当源站类型OriginType=COS或AWS_S3时有效 取值有：
         /// - on：使用私有鉴权；
         /// - off：不使用私有鉴权。
+        ///
         /// 不填写，默认值为off。
         public let privateAccess: String?
 
@@ -2629,7 +2666,8 @@ extension Teo {
         /// 源站配置类型，当OriginType=self时，取值有：
         /// - area：按区域配置；
         /// - weight： 按权重配置。
-        /// - proto： 按HTTP协议配置。当OriginType=third_party/cos时放空。
+        /// - proto： 按HTTP协议配置。
+        /// 当OriginType=third_party/cos时放空。
         public let configurationType: String?
 
         /// 源站记录信息。
@@ -2676,7 +2714,8 @@ extension Teo {
 
         /// 指定是否允许访问私有对象存储源站，当源站类型OriginType=COS或AWS_S3时有效，取值有：
         /// - on：使用私有鉴权；
-        /// - off：不使用私有鉴权。不填写，默认值为：off。
+        /// - off：不使用私有鉴权。
+        /// 不填写，默认值为：off。
         public let privateAccess: String?
 
         /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
@@ -2775,13 +2814,15 @@ extension Teo {
         /// - Europe：欧洲；
         /// - Africa：非洲；
         /// - Oceania：大洋洲；
-        /// - Americas：美洲。源站组记录中，至少需要有一项为全部地区。
+        /// - Americas：美洲。
+        /// 源站组记录中，至少需要有一项为全部地区。
         public let area: [String]?
 
         /// 当源站类型OriginType=third_part时有效
         /// 是否私有鉴权，取值有：
         /// - true：使用私有鉴权；
-        /// - false：不使用私有鉴权。不填写，默认值为：false。
+        /// - false：不使用私有鉴权。
+        /// 不填写，默认值为：false。
         public let `private`: Bool?
 
         /// 当源站类型Private=true时有效，表示私有鉴权使用参数。
@@ -2976,6 +3017,7 @@ extension Teo {
         /// CacheKey使用QueryString的方式，取值有：
         /// - includeCustom：使用部分url参数；
         /// - excludeCustom：排除部分url参数。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -3120,7 +3162,8 @@ extension Teo {
 
         /// 模板处置方式，取值有：
         /// - alg：JavaScript挑战；
-        /// - monitor：观察。不填写默认取alg。
+        /// - monitor：观察。
+        /// 不填写默认取alg。
         public let action: String?
 
         /// 模板值详情。仅出参返回。
@@ -3148,6 +3191,7 @@ extension Teo {
         /// - normal：适中；
         /// - strict：严格；
         /// - close：关闭，仅精准速率限制生效。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
 
@@ -3157,6 +3201,7 @@ extension Teo {
         /// 模板处置方式，取值有：
         /// - alg：JavaScript挑战；
         /// - monitor：观察。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -3208,7 +3253,8 @@ extension Teo {
 
         /// 规则状态，取值有：
         /// - on：生效；
-        /// - off：不生效。默认on生效。
+        /// - off：不生效。
+        /// 默认on生效。
         public let ruleStatus: String
 
         /// 规则详情。
@@ -3223,6 +3269,7 @@ extension Teo {
 
         /// 过滤词，取值有：
         /// - sip：客户端ip。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqFields: [String]?
 
@@ -3233,6 +3280,7 @@ extension Teo {
         /// 统计范围，字段为 null 时，代表 source_to_eo。取值有：
         /// - source_to_eo：（响应）源站到EdgeOne。
         /// - client_to_eo：（请求）客户端到EdgeOne；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqScope: [String]?
 
@@ -3324,6 +3372,7 @@ extension Teo {
         /// - plan：套餐类型；
         /// - pay-as-you-go：后付费类型。
         /// - value-added：增值服务类型。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let group: String?
 
@@ -3657,7 +3706,8 @@ extension Teo {
         /// - TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；
         /// - OBJECT：参数值为对象类型，ChoiceProperties 为改对象类型关联的属性；
         /// - CUSTOM_NUM：参数值用户自定义，整型类型；
-        /// - CUSTOM_STRING：参数值用户自定义，字符串类型。注意：当参数类型为 OBJECT 类型时，请注意参考 [示例2 参数为 OBJECT 类型的创建](https://tcloud4api.woa.com/document/product/1657/79382?!preview&!document=1)
+        /// - CUSTOM_STRING：参数值用户自定义，字符串类型。
+        /// 注意：当参数类型为 OBJECT 类型时，请注意参考 [示例2 参数为 OBJECT 类型的创建](https://tcloud4api.woa.com/document/product/1657/79382?!preview&!document=1)
         public let type: String
 
         /// 数值参数的最大值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
@@ -3674,6 +3724,7 @@ extension Teo {
         public let choiceProperties: [RuleChoicePropertiesItem]
 
         /// - 为 NULL：无特殊参数，RuleAction 选择 NormalAction；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraParameter: RuleExtraParameter?
 
@@ -3696,7 +3747,8 @@ extension Teo {
         /// - 访问URL 重写（AccessUrlRedirect）；
         /// - 回源 URL 重写 （UpstreamUrlRedirect）；
         /// - 自定义错误页面
-        /// (ErrorPage)；
+        ///   (ErrorPage)；
+        ///
         /// - QUIC（QUIC）；
         /// - WebSocket （WebSocket）；
         /// - 视频拖拽（VideoSeek）；
@@ -3870,6 +3922,7 @@ extension Teo {
         /// - default：默认证书；</lil>
         /// - upload：用户上传；
         /// - managed：腾讯云托管。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
@@ -3992,6 +4045,7 @@ extension Teo {
         /// 慢速攻击的处置动作，取值有：
         /// - monitor：观察；
         /// - drop：拦截。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -4141,6 +4195,7 @@ extension Teo {
         /// - custom-rule：自定义规则数；
         /// - rate-limiting-rule：速率限制规则数；
         /// - l4-proxy-instance：四层代理实例数。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pack: String?
 
@@ -4161,6 +4216,7 @@ extension Teo {
         /// - cm_60G_anycast_unlimited：中国大陆加速区域保底防护60Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护；
         /// - cm_100G_anycast_300G：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；
         /// - cm_100G_anycast_unlimited：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protectionSpecs: String?
 
@@ -4185,7 +4241,8 @@ extension Teo {
     public struct SwitchConfig: TCInputModel, TCOutputModel {
         /// Web类型的安全总开关，取值有：
         /// - on：开启；
-        /// - off：关闭。不影响DDoS与Bot的开关。
+        /// - off：关闭。
+        /// 不影响DDoS与Bot的开关。
         public let webSwitch: String
 
         public init(webSwitch: String) {
@@ -4459,7 +4516,8 @@ extension Teo {
     public struct WafConfig: TCInputModel, TCOutputModel {
         /// WafConfig开关，取值有：
         /// - on：开启；
-        /// - off：关闭。开关仅与配置是否生效有关，即使为off（关闭），也可以正常修改配置的内容。
+        /// - off：关闭。
+        /// 开关仅与配置是否生效有关，即使为off（关闭），也可以正常修改配置的内容。
         public let `switch`: String
 
         /// 上一次设置的防护级别，取值有：

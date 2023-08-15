@@ -30,6 +30,7 @@ extension As {
         /// - auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。
         /// - scaling-policy-name - String - 是否必填：否 -（过滤条件）按照告警策略名称过滤。
         /// - scaling-policy-type - String - 是否必填：否 -（过滤条件）按照告警策略类型过滤，取值范围为SIMPLE，TARGET_TRACKING。
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
         public let filters: [Filter]?
 

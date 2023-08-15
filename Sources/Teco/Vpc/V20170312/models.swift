@@ -1329,6 +1329,7 @@ extension Vpc {
         /// 网关类型：
         /// - NORMAL - 标准型，注：云联网只支持标准型
         /// - NAT - NAT型
+        ///
         /// NAT类型支持网络地址转换配置，类型确定后不能修改；一个私有网络可以创建一个NAT类型的专线网关和一个非NAT类型的专线网关
         public let gatewayType: String
 
@@ -1395,6 +1396,7 @@ extension Vpc {
         /// - `VXLAN` - VXLAN类型。
         /// - `MPLS` - MPLS类型。
         /// - `Hybrid` - Hybrid类型。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessNetworkType: String?
 
@@ -2895,6 +2897,7 @@ extension Vpc {
         /// - `PT`：云金
         /// - `AU`：云银
         /// - `AG`：云铜
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qosLevel: String?
 

@@ -31,17 +31,18 @@ extension Cwp {
         /// - NameStrict - String - 是否必填：否 - 框架名（严格匹配）
         /// - Lang - String - 是否必填：否 - 框架语言:java/python
         /// - Type - String - 是否必填：否 - 服务类型：
-        /// 0：全部
-        /// 1:Tomcat
-        /// 2:Apache
-        /// 3:Nginx
-        /// 4:WebLogic
-        /// 5:Websphere
-        /// 6:JBoss
-        /// 7:WildFly
-        /// 8:Jetty
-        /// 9:IHS
-        /// 10:Tengine
+        ///   0：全部
+        ///   1:Tomcat
+        ///   2:Apache
+        ///   3:Nginx
+        ///   4:WebLogic
+        ///   5:Websphere
+        ///   6:JBoss
+        ///   7:WildFly
+        ///   8:Jetty
+        ///   9:IHS
+        ///   10:Tengine
+        ///
         /// - OsType - String - 是否必填：否 - windows/linux
         /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [Filter]?

@@ -33,7 +33,8 @@ extension Teo {
         /// 证书配置，取值有：
         /// - none：不配置；
         /// - hosting：SSL托管证书；
-        /// - apply：申请免费证书。不填写保持原有配置。
+        /// - apply：申请免费证书。
+        /// 不填写保持原有配置。
         public let certType: String?
 
         /// 当 CertType 取值为 hosting 时填入相应证书 ID。
