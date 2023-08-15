@@ -25,9 +25,9 @@ extension Cls {
         public let name: String
 
         /// 通知类型。可选值：
-        /// <li> Trigger - 告警触发
-        /// <li> Recovery - 告警恢复
-        /// <li> All - 告警触发和告警恢复
+        /// - Trigger - 告警触发
+        /// - Recovery - 告警恢复
+        /// - All - 告警触发和告警恢复
         public let type: String
 
         /// 通知接收对象。

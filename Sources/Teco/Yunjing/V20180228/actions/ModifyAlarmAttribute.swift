@@ -22,15 +22,15 @@ extension Yunjing {
     /// ModifyAlarmAttribute请求参数结构体
     public struct ModifyAlarmAttributeRequest: TCRequestModel {
         /// 告警项目。
-        /// <li>Offline：防护软件离线</li>
-        /// <li>Malware：发现木马文件</li>
-        /// <li>NonlocalLogin：发现异地登录行为</li>
-        /// <li>CrackSuccess：被暴力破解成功</li>
+        /// - Offline：防护软件离线
+        /// - Malware：发现木马文件
+        /// - NonlocalLogin：发现异地登录行为
+        /// - CrackSuccess：被暴力破解成功
         public let attribute: String
 
         /// 告警项目属性。
-        /// <li>CLOSE：关闭</li>
-        /// <li>OPEN：打开</li>
+        /// - CLOSE：关闭
+        /// - OPEN：打开
         public let value: String
 
         public init(attribute: String, value: String) {

@@ -26,7 +26,7 @@ extension Keewidb {
         public let product: String
 
         /// 项目 ID。
-        /// 登录 [账号中心](https://console.cloud.tencent.com/developer)，在<b>项目管理</b>中可获取项目 ID。
+        /// 登录 [账号中心](https://console.cloud.tencent.com/developer)，在**项目管理**中可获取项目 ID。
         public let projectId: UInt64?
 
         /// 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。

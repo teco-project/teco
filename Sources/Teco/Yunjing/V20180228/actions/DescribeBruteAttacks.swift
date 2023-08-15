@@ -29,8 +29,8 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 -  查询关键字</li>
-        /// <li>Status - String - 是否必填：否 -  查询状态（FAILED：破解失败 |SUCCESS：破解成功）</li>
+        /// - Keywords - String - 是否必填：否 -  查询关键字
+        /// - Status - String - 是否必填：否 -  查询状态（FAILED：破解失败 |SUCCESS：破解成功）
         public let filters: [Filter]?
 
         /// 返回数量，默认为10，最大值为100。

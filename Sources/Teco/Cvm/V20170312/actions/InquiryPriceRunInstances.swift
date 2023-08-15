@@ -22,26 +22,29 @@ extension Cvm {
     /// InquiryPriceRunInstances请求参数结构体
     public struct InquiryPriceRunInstancesRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        ///  <b>注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。</b>
+        ///  **注：如果您不指定LaunchTemplate参数，则Placement为必选参数。若同时传递Placement和LaunchTemplate，则默认覆盖LaunchTemplate中对应的Placement的值。**
         public let placement: Placement
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。镜像类型分为四种：
         ///
-        /// <li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li>
+        /// - 公共镜像
+        /// - 自定义镜像
+        /// - 共享镜像
+        /// - 服务市场镜像
         ///
         /// 可通过以下方式获取可用的镜像ID：
         ///
-        /// <li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
-        ///  <b>注：如果您不指定LaunchTemplate参数，则ImageId为必选参数。若同时传递ImageId和LaunchTemplate，则默认覆盖LaunchTemplate中对应的ImageId的值。</b>
+        /// - `公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。
+        /// - 通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。
+        ///
+        ///  **注：如果您不指定LaunchTemplate参数，则ImageId为必选参数。若同时传递ImageId和LaunchTemplate，则默认覆盖LaunchTemplate中对应的ImageId的值。**
         public let imageId: String
 
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。
         ///
-        /// <li>PREPAID：预付费，即包年包月
-        ///
-        /// <li>POSTPAID_BY_HOUR：按小时后付费
-        ///
-        /// <li>SPOTPAID：竞价付费
+        /// - PREPAID：预付费，即包年包月
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// - SPOTPAID：竞价付费
         ///
         /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
@@ -69,7 +72,10 @@ extension Cvm {
 
         /// 实例显示名称。
         ///
-        /// <li>不指定实例显示名称则默认显示‘未命名’。</li><li>购买多台实例，如果指定模式串`{R:x}`，表示生成数字`[x, x+n-1]`，其中`n`表示购买实例的数量，例如`server_{R:3}`，购买1台时，实例显示名称为`server_3`；购买2台时，实例显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。</li><li>购买多台实例，如果不指定模式串，则在实例显示名称添加后缀`1、2...n`，其中`n`表示购买实例的数量，例如`server_`，购买2台时，实例显示名称分别为`server_1`，`server_2`。</li><li>最多支持60个字符（包含模式串）。
+        /// - 不指定实例显示名称则默认显示‘未命名’。
+        /// - 购买多台实例，如果指定模式串`{R:x}`，表示生成数字`[x, x+n-1]`，其中`n`表示购买实例的数量，例如`server_{R:3}`，购买1台时，实例显示名称为`server_3`；购买2台时，实例显示名称分别为`server_3`，`server_4`。支持指定多个模式串`{R:x}`。
+        /// - 购买多台实例，如果不指定模式串，则在实例显示名称添加后缀`1、2...n`，其中`n`表示购买实例的数量，例如`server_`，购买2台时，实例显示名称分别为`server_1`，`server_2`。
+        /// - 最多支持60个字符（包含模式串）。
         public let instanceName: String?
 
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
@@ -88,11 +94,9 @@ extension Cvm {
 
         /// 云服务器的主机名。
         ///
-        /// <li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
-        ///
-        /// <li>Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
-        ///
-        /// <li>其他类型（Linux 等）实例：主机名字符长度为[2, 30]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
+        /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
+        /// - Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
+        /// - 其他类型（Linux 等）实例：主机名字符长度为[2, 30]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
         public let hostName: String?
 
         /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例，当前仅支持绑定标签到云服务器实例。

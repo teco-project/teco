@@ -28,13 +28,14 @@ extension Teo {
         public let domainNames: [String]
 
         /// 加速域名状态，取值有：
-        /// <li>online：启用；</li>
-        /// <li>offline：停用。</li>
+        /// - online：启用；
+        /// - offline：停用。
         public let status: String
 
         /// 是否强制停用。当域名存在关联资源（如马甲域名、流量调度功能）时，是否强制停用该域名，取值有：
-        /// <li> true：停用该域名及所有关联资源；</li>
-        /// <li> false：当该加速域名存在关联资源时，不允许停用。</li>不填写，默认值为：false。
+        /// - true：停用该域名及所有关联资源；
+        /// - false：当该加速域名存在关联资源时，不允许停用。
+        /// 不填写，默认值为：false。
         public let force: Bool?
 
         public init(zoneId: String, domainNames: [String], status: String, force: Bool? = nil) {

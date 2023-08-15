@@ -76,7 +76,7 @@ extension Vpc {
     ///
     /// 本接口（CreateVpc）用于创建私有网络（VPC）。
     /// * 用户可以创建的最小网段子网掩码为28（有16个IP地址），10.0.0.0/12，172.16.0.0/12最大网段子网掩码为12（1,048,576个IP地址），192.168.0.0/16最大网段子网掩码为16（65,536个IP地址）如果需要规划VPC网段请参见[网络规划](https://cloud.tencent.com/document/product/215/30313)。
-    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 [VPC使用限制](https://cloud.tencent.com/doc/product/215/537)，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
     /// * 创建VPC同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createVpc(_ input: CreateVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
@@ -87,7 +87,7 @@ extension Vpc {
     ///
     /// 本接口（CreateVpc）用于创建私有网络（VPC）。
     /// * 用户可以创建的最小网段子网掩码为28（有16个IP地址），10.0.0.0/12，172.16.0.0/12最大网段子网掩码为12（1,048,576个IP地址），192.168.0.0/16最大网段子网掩码为16（65,536个IP地址）如果需要规划VPC网段请参见[网络规划](https://cloud.tencent.com/document/product/215/30313)。
-    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 [VPC使用限制](https://cloud.tencent.com/doc/product/215/537)，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
     /// * 创建VPC同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createVpc(_ input: CreateVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
@@ -98,7 +98,7 @@ extension Vpc {
     ///
     /// 本接口（CreateVpc）用于创建私有网络（VPC）。
     /// * 用户可以创建的最小网段子网掩码为28（有16个IP地址），10.0.0.0/12，172.16.0.0/12最大网段子网掩码为12（1,048,576个IP地址），192.168.0.0/16最大网段子网掩码为16（65,536个IP地址）如果需要规划VPC网段请参见[网络规划](https://cloud.tencent.com/document/product/215/30313)。
-    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 [VPC使用限制](https://cloud.tencent.com/doc/product/215/537)，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
     /// * 创建VPC同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
@@ -109,7 +109,7 @@ extension Vpc {
     ///
     /// 本接口（CreateVpc）用于创建私有网络（VPC）。
     /// * 用户可以创建的最小网段子网掩码为28（有16个IP地址），10.0.0.0/12，172.16.0.0/12最大网段子网掩码为12（1,048,576个IP地址），192.168.0.0/16最大网段子网掩码为16（65,536个IP地址）如果需要规划VPC网段请参见[网络规划](https://cloud.tencent.com/document/product/215/30313)。
-    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 <a href="https://cloud.tencent.com/doc/product/215/537" title="VPC使用限制">VPC使用限制</a>，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
+    /// * 同一个地域能创建的VPC资源个数也是有限制的，详见 [VPC使用限制](https://cloud.tencent.com/doc/product/215/537)，如果需要申请更多资源，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。
     /// * 创建VPC同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createVpc(vpcName: String, cidrBlock: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {

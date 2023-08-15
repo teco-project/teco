@@ -22,7 +22,7 @@ extension Ame {
     /// CreateKTVRobot请求参数结构体
     public struct CreateKTVRobotRequest: TCRequestModel {
         /// RTC厂商类型，取值有：
-        /// <li>TRTC</li>
+        /// - TRTC
         public let rtcSystem: String
 
         /// 进房参数。

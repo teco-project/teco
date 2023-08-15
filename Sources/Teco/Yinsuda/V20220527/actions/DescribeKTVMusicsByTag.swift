@@ -38,13 +38,13 @@ extension Yinsuda {
         public let limit: Int64?
 
         /// 权益过滤，取值有：
-        /// <li>Play：可播；</li>
-        /// <li>Sing：可唱。</li>
+        /// - Play：可播；
+        /// - Sing：可唱。
         public let rightFilters: [String]?
 
         /// 物料过滤，取值有：
-        /// <li>Lyrics：含有歌词；</li>
-        /// <li>Midi：含有音高线。</li>
+        /// - Lyrics：含有歌词；
+        /// - Midi：含有音高线。
         public let materialFilters: [String]?
 
         public init(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, materialFilters: [String]? = nil) {

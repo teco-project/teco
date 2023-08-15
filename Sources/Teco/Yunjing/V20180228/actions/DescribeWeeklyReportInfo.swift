@@ -68,9 +68,9 @@ extension Yunjing {
         @TCDateEncoding public var endDate: Date
 
         /// 安全等级。
-        /// <li>HIGH：高</li>
-        /// <li>MIDDLE：中</li>
-        /// <li>LOW：低</li>
+        /// - HIGH：高
+        /// - MIDDLE：中
+        /// - LOW：低
         public let level: String
 
         /// 木马记录数。

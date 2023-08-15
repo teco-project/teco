@@ -45,7 +45,14 @@ extension Es {
         public let diskSize: UInt64?
 
         /// 已废弃请使用NodeInfoList
-        /// 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
         public let nodeType: String?
 
         /// 已废弃请使用NodeInfoList
@@ -53,20 +60,34 @@ extension Es {
         public let masterNodeNum: UInt64?
 
         /// 已废弃请使用NodeInfoList
-        /// 专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 专用主节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
         public let masterNodeType: String?
 
         /// 已废弃请使用NodeInfoList
         /// 专用主节点磁盘大小（单位GB系统默认配置为50GB,暂不支持自定义）
         public let masterNodeDiskSize: UInt64?
 
-        /// 更新配置时是否强制重启<li>true强制重启</li><li>false不强制重启</li>当前仅更新EsConfig时需要设置，默认值为false
+        /// 更新配置时是否强制重启
+        /// - true强制重启
+        /// - false不强制重启
+        /// 当前仅更新EsConfig时需要设置，默认值为false
         public let forceRestart: Bool?
 
         /// COS自动备份信息
         public let cosBackup: CosBackup?
 
-        /// 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改
+        /// 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括
+        /// - 修改一种节点的个数
+        /// - 修改一种节点的节点规格及磁盘大小
+        /// - 增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）
+        /// 上述操作一次只能进行一种，且磁盘类型不支持修改
         public let nodeInfoList: [NodeInfo]?
 
         /// ES集群公网访问状态

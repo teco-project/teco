@@ -206,7 +206,8 @@ extension Lighthouse {
 
         /// 系统盘类型。
         /// 取值范围：
-        /// <li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
+        /// - CLOUD_SSD：SSD 云硬盘
+        /// - CLOUD_PREMIUM：高性能云硬盘
         public let systemDiskType: String
 
         /// 系统盘大小。单位GB。
@@ -238,14 +239,14 @@ extension Lighthouse {
 
         /// 套餐类型。
         /// 取值范围：
-        /// <li>STARTER_BUNDLE：入门型</li>
-        /// <li>GENERAL_BUNDLE：通用型</li>
-        /// <li>ENTERPRISE_BUNDLE：企业型</li>
-        /// <li>STORAGE_BUNDLE：存储型</li>
-        /// <li>EXCLUSIVE_BUNDLE：专属型</li>
-        /// <li>HK_EXCLUSIVE_BUNDLE：香港专属型 </li>
-        /// <li>CAREFREE_BUNDLE：无忧型</li>
-        /// <li>BEFAST_BUNDLE：蜂驰型 </li>
+        /// - STARTER_BUNDLE：入门型
+        /// - GENERAL_BUNDLE：通用型
+        /// - ENTERPRISE_BUNDLE：企业型
+        /// - STORAGE_BUNDLE：存储型
+        /// - EXCLUSIVE_BUNDLE：专属型
+        /// - HK_EXCLUSIVE_BUNDLE：香港专属型
+        /// - CAREFREE_BUNDLE：无忧型
+        /// - BEFAST_BUNDLE：蜂驰型
         public let bundleType: String
 
         /// 套餐类型描述信息。
@@ -389,8 +390,8 @@ extension Lighthouse {
     /// 计费项目明细。
     public struct DetailPrice: TCOutputModel {
         /// 描述计费项目名称，目前取值
-        /// <li>"DiskSpace"代表云硬盘空间收费项。</li>
-        /// <li>"DiskBackupQuota"代表云硬盘备份点配额收费项。</li>
+        /// - "DiskSpace"代表云硬盘空间收费项。
+        /// - "DiskBackupQuota"代表云硬盘备份点配额收费项。
         public let priceName: String
 
         /// 云硬盘计费项维度单价。
@@ -474,16 +475,16 @@ extension Lighthouse {
         public let renewFlag: String
 
         /// 磁盘状态，取值范围：
-        /// <li>PENDING：创建中。 </li>
-        /// <li>UNATTACHED：未挂载。</li>
-        /// <li>ATTACHING：挂载中。</li>
-        /// <li>ATTACHED：已挂载。</li>
-        /// <li>DETACHING：卸载中。 </li>
-        /// <li> SHUTDOWN：已隔离。</li>
-        /// <li> CREATED_FAILED：创建失败。</li>
-        /// <li>TERMINATING：销毁中。</li>
-        /// <li> DELETING：删除中。</li>
-        /// <li> FREEZING：冻结中。</li>
+        /// - PENDING：创建中。
+        /// - UNATTACHED：未挂载。
+        /// - ATTACHING：挂载中。
+        /// - ATTACHED：已挂载。
+        /// - DETACHING：卸载中。
+        /// - SHUTDOWN：已隔离。
+        /// - CREATED_FAILED：创建失败。
+        /// - TERMINATING：销毁中。
+        /// - DELETING：删除中。
+        /// - FREEZING：冻结中。
         public let diskState: String
 
         /// 磁盘挂载状态
@@ -560,7 +561,8 @@ extension Lighthouse {
         /// 云硬盘备份点ID。
         public let diskBackupId: String
 
-        /// 创建此云硬盘备份点的云硬盘类型。取值：<li>DATA_DISK：数据盘</li>
+        /// 创建此云硬盘备份点的云硬盘类型。取值：
+        /// - DATA_DISK：数据盘
         public let diskUsage: String
 
         /// 创建此云硬盘备份点的云硬盘 ID。
@@ -573,10 +575,10 @@ extension Lighthouse {
         public let diskBackupName: String
 
         /// 云硬盘备份点的状态。取值范围：
-        /// <li>NORMAL：正常。 </li>
-        /// <li>CREATING：创建中。</li>
-        /// <li>ROLLBACKING：回滚中。</li>
-        /// <li>DELETING：删除中。</li>
+        /// - NORMAL：正常。
+        /// - CREATING：创建中。
+        /// - ROLLBACKING：回滚中。
+        /// - DELETING：删除中。
         public let diskBackupState: String
 
         /// 创建或回滚云硬盘备份点进度百分比，成功后此字段取值为 100。
@@ -761,10 +763,10 @@ extension Lighthouse {
         public let activityName: String
 
         /// 活动状态。取值范围：
-        /// <li>INIT：表示初始化，活动尚未执行</li>
-        /// <li>OPERATING：表示活动执行中</li>
-        /// <li>SUCCESS：表示活动执行成功</li>
-        /// <li>FAILED：表示活动执行失败</li>
+        /// - INIT：表示初始化，活动尚未执行
+        /// - OPERATING：表示活动执行中
+        /// - SUCCESS：表示活动执行成功
+        /// - FAILED：表示活动执行失败
         public let activityState: String
 
         /// 活动执行的命令输出，以base64编码。
@@ -1094,7 +1096,20 @@ extension Lighthouse {
         public let loginSettings: LoginSettings
 
         /// 实例状态。取值范围：
-        /// <li>PENDING：表示创建中</li><li>LAUNCH_FAILED：表示创建失败</li><li>RUNNING：表示运行中</li><li>STOPPED：表示关机</li><li>STARTING：表示开机中</li><li>STOPPING：表示关机中</li><li>REBOOTING：表示重启中</li><li>SHUTDOWN：表示停止待销毁</li><li>TERMINATING：表示销毁中</li><li>DELETING：表示删除中</li><li>FREEZING：表示冻结中</li><li>ENTER_RESCUE_MODE：表示进入救援模式中</li><li>RESCUE_MODE：表示救援模式</li><li>EXIT_RESCUE_MODE：表示退出救援模式中</li>
+        /// - PENDING：表示创建中
+        /// - LAUNCH_FAILED：表示创建失败
+        /// - RUNNING：表示运行中
+        /// - STOPPED：表示关机
+        /// - STARTING：表示开机中
+        /// - STOPPING：表示关机中
+        /// - REBOOTING：表示重启中
+        /// - SHUTDOWN：表示停止待销毁
+        /// - TERMINATING：表示销毁中
+        /// - DELETING：表示删除中
+        /// - FREEZING：表示冻结中
+        /// - ENTER_RESCUE_MODE：表示进入救援模式中
+        /// - RESCUE_MODE：表示救援模式
+        /// - EXIT_RESCUE_MODE：表示退出救援模式中
         public let instanceState: String
 
         /// 实例全局唯一 ID。
@@ -1154,7 +1169,8 @@ extension Lighthouse {
         public let tags: [Tag]
 
         /// 实例封禁状态。取值范围：
-        /// <li>NORMAL实例正常。</li><li>NETWORK_RESTRICT：网络封禁。</li>
+        /// - NORMAL实例正常。
+        /// - NETWORK_RESTRICT：网络封禁。
         public let instanceRestrictState: String
 
         enum CodingKeys: String, CodingKey {
@@ -1195,11 +1211,9 @@ extension Lighthouse {
 
         /// 自动续费标识。取值范围：
         ///
-        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
-        ///
-        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费
-        ///
-        /// <li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知
+        /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费
+        /// - DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知
         ///
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
@@ -1317,8 +1331,8 @@ extension Lighthouse {
     /// 描述了启动配置创建实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等。
     public struct InternetAccessible: TCOutputModel {
         /// 网络计费类型，取值范围：
-        /// <li>按流量包付费：TRAFFIC_POSTPAID_BY_HOUR</li>
-        /// <li>按带宽付费： BANDWIDTH_POSTPAID_BY_HOUR</li>
+        /// - 按流量包付费：TRAFFIC_POSTPAID_BY_HOUR
+        /// - 按带宽付费： BANDWIDTH_POSTPAID_BY_HOUR
         public let internetChargeType: String
 
         /// 公网出带宽上限，单位：Mbps。
@@ -1372,29 +1386,24 @@ extension Lighthouse {
 
     /// 实例密码登录配置信息。
     public struct LoginConfiguration: TCInputModel {
-        /// <li>"YES"代表选择自动生成密码，这时不指定Password字段。</li>
-        /// <li>"NO"代表选择自定义密码，这时要指定Password字段。</li>
+        /// - "YES"代表选择自动生成密码，这时不指定Password字段。
+        /// - "NO"代表选择自定义密码，这时要指定Password字段。
         public let autoGeneratePassword: String?
 
         /// 实例登录密码。具体按照操作系统的复杂度要求。
         /// `LINUX_UNIX` 实例密码必须 8-30 位，推荐使用 12 位以上密码，不能包含空格, 不能以“/”开头，至少包含以下字符中的三种不同字符，字符种类：
         ///
-        /// <li>小写字母：[a-z]
+        /// - 小写字母：[a-z]
+        /// - 大写字母：[A-Z]
+        /// - 数字：0-9
+        /// - 特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
         ///
-        /// <li>大写字母：[A-Z]
-        ///
-        /// <li>数字：0-9
-        ///
-        /// <li>特殊字符： ()\`\~!@#$%^&\*-+=\_|{}[]:;' <>,.?/</li>
         /// `WINDOWS` 实例密码必须 12-30 位，不能包含空格, 不能以“/”开头且不包括用户名，至少包含以下字符中的三种不同字符
         ///
-        /// <li>小写字母：[a-z]
-        ///
-        /// <li>大写字母：[A-Z]
-        ///
-        /// <li>数字： 0-9
-        ///
-        /// <li>特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
+        /// - 小写字母：[a-z]
+        /// - 大写字母：[A-Z]
+        /// - 数字： 0-9
+        /// - 特殊字符：()\`~!@#$%^&\*-+=\_|{}[]:;' <>,.?/
         public let password: String?
 
         /// 密钥ID列表，最多同时指定5个密钥。关联密钥后，就可以通过对应的私钥来访问实例。密钥与密码不能同时指定，同时WINDOWS操作系统不支持指定密钥。密钥ID列表可以通过[DescribeKeyPairs](https://cloud.tencent.com/document/product/1207/55540)接口获取。
@@ -1429,9 +1438,9 @@ extension Lighthouse {
         public let modifyPrice: Price
 
         /// 变更套餐状态。取值：
-        /// <li>SOLD_OUT：套餐售罄</li>
-        /// <li>AVAILABLE：支持套餐变更</li>
-        /// <li>UNAVAILABLE：暂不支持套餐变更</li>
+        /// - SOLD_OUT：套餐售罄
+        /// - AVAILABLE：支持套餐变更
+        /// - UNAVAILABLE：暂不支持套餐变更
         public let modifyBundleState: String
 
         /// 套餐信息。
@@ -1602,7 +1611,8 @@ extension Lighthouse {
         /// 快照 ID。
         public let snapshotId: String
 
-        /// 创建此快照的磁盘类型。取值：<li>SYSTEM_DISK：系统盘</li>
+        /// 创建此快照的磁盘类型。取值：
+        /// - SYSTEM_DISK：系统盘
         public let diskUsage: String
 
         /// 创建此快照的磁盘 ID。
@@ -1615,9 +1625,9 @@ extension Lighthouse {
         public let snapshotName: String
 
         /// 快照的状态。取值范围：
-        /// <li>NORMAL：正常 </li>
-        /// <li>CREATING：创建中</li>
-        /// <li>ROLLBACKING：回滚中。</li>
+        /// - NORMAL：正常
+        /// - CREATING：创建中
+        /// - ROLLBACKING：回滚中。
         public let snapshotState: String
 
         /// 创建或回滚快照进度百分比，成功后此字段取值为 100。
@@ -1630,9 +1640,10 @@ extension Lighthouse {
 
         /// 快照的最新操作状态，只有创建、回滚快照时记录。
         /// 取值范围：
-        /// <li>SUCCESS：表示操作成功</li>
-        /// <li>OPERATING：表示操作执行中</li>
-        /// <li>FAILED：表示操作失败</li>
+        /// - SUCCESS：表示操作成功
+        /// - OPERATING：表示操作执行中
+        /// - FAILED：表示操作失败
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestOperationState: String?
 
@@ -1724,7 +1735,11 @@ extension Lighthouse {
     public struct SystemDisk: TCOutputModel {
         /// 系统盘类型。
         /// 取值范围：
-        /// <li> LOCAL_BASIC：本地硬盘</li><li> LOCAL_SSD：本地 SSD 硬盘</li><li> CLOUD_BASIC：普通云硬盘</li><li> CLOUD_SSD：SSD 云硬盘</li><li> CLOUD_PREMIUM：高性能云硬盘</li>
+        /// - LOCAL_BASIC：本地硬盘
+        /// - LOCAL_SSD：本地 SSD 硬盘
+        /// - CLOUD_BASIC：普通云硬盘
+        /// - CLOUD_SSD：SSD 云硬盘
+        /// - CLOUD_PREMIUM：高性能云硬盘
         public let diskType: String
 
         /// 系统盘大小，单位：GB。
@@ -1813,8 +1828,8 @@ extension Lighthouse {
         @TCTimestampISO8601Encoding public var deadline: Date?
 
         /// 流量包状态：
-        /// <li>NETWORK_NORMAL：正常</li>
-        /// <li>OVERDUE_NETWORK_DISABLED：欠费断网</li>
+        /// - NETWORK_NORMAL：正常
+        /// - OVERDUE_NETWORK_DISABLED：欠费断网
         public let status: String
 
         enum CodingKeys: String, CodingKey {

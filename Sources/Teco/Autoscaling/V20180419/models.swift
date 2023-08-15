@@ -29,20 +29,26 @@ extension As {
 
         /// 伸缩活动类型。取值如下：
         ///
-        /// <li>SCALE_OUT：扩容活动<li>SCALE_IN：缩容活动<li>ATTACH_INSTANCES：添加实例<li>REMOVE_INSTANCES：销毁实例<li>DETACH_INSTANCES：移出实例<li>TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁<li>REPLACE_UNHEALTHY_INSTANCE：替换不健康实例
-        /// <li>START_INSTANCES：开启实例
-        /// <li>STOP_INSTANCES：关闭实例
-        /// <li>INVOKE_COMMAND：执行命令
+        /// - SCALE_OUT：扩容活动
+        /// - SCALE_IN：缩容活动
+        /// - ATTACH_INSTANCES：添加实例
+        /// - REMOVE_INSTANCES：销毁实例
+        /// - DETACH_INSTANCES：移出实例
+        /// - TERMINATE_INSTANCES_UNEXPECTEDLY：实例在CVM控制台被销毁
+        /// - REPLACE_UNHEALTHY_INSTANCE：替换不健康实例
+        /// - START_INSTANCES：开启实例
+        /// - STOP_INSTANCES：关闭实例
+        /// - INVOKE_COMMAND：执行命令
         public let activityType: String
 
         /// 伸缩活动状态。取值如下：
         ///
-        /// <li>INIT：初始化中
-        /// <li>RUNNING：运行中
-        /// <li>SUCCESSFUL：活动成功
-        /// <li>PARTIALLY_SUCCESSFUL：活动部分成功
-        /// <li>FAILED：活动失败
-        /// <li>CANCELLED：活动取消
+        /// - INIT：初始化中
+        /// - RUNNING：运行中
+        /// - SUCCESSFUL：活动成功
+        /// - PARTIALLY_SUCCESSFUL：活动部分成功
+        /// - FAILED：活动失败
+        /// - CANCELLED：活动取消
         public let statusCode: String
 
         /// 伸缩活动状态描述。
@@ -117,10 +123,10 @@ extension As {
         public let instanceId: String
 
         /// 实例在伸缩活动中的状态。取值如下：
-        /// <li>INIT：初始化中
-        /// <li>RUNNING：实例操作中
-        /// <li>SUCCESSFUL：活动成功
-        /// <li>FAILED：活动失败
+        /// - INIT：初始化中
+        /// - RUNNING：实例操作中
+        /// - SUCCESSFUL：活动成功
+        /// - FAILED：活动失败
         public let instanceStatus: String
 
         enum CodingKeys: String, CodingKey {
@@ -142,9 +148,8 @@ extension As {
 
         /// 伸缩建议警告级别。取值范围：
         ///
-        /// <li>WARNING：警告级别
-        ///
-        /// <li>CRITICAL：严重级别
+        /// - WARNING：警告级别
+        /// - CRITICAL：严重级别
         public let level: String?
 
         enum CodingKeys: String, CodingKey {
@@ -162,11 +167,9 @@ extension As {
 
         /// 伸缩组警告级别。取值范围：
         ///
-        /// <li>NORMAL：正常
-        ///
-        /// <li>WARNING：警告级别
-        ///
-        /// <li>CRITICAL：严重级别
+        /// - NORMAL：正常
+        /// - WARNING：警告级别
+        /// - CRITICAL：严重级别
         public let level: String
 
         /// 伸缩组配置建议集合。
@@ -189,25 +192,16 @@ extension As {
 
         /// 伸缩组当前状态。取值范围：
         ///
-        /// <li>NORMAL：正常
-        ///
-        /// <li>CVM_ABNORMAL：启动配置异常
-        ///
-        /// <li>LB_ABNORMAL：负载均衡器异常
-        ///
-        /// <li>LB_LISTENER_ABNORMAL：负载均衡器监听器异常
-        ///
-        /// <li>LB_LOCATION_ABNORMAL：负载均衡器监听器转发配置异常
-        ///
-        /// <li>VPC_ABNORMAL：VPC网络异常
-        ///
-        /// <li>SUBNET_ABNORMAL：VPC子网异常
-        ///
-        /// <li>INSUFFICIENT_BALANCE：余额不足
-        ///
-        /// <li>LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配
-        ///
-        /// <li>LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配
+        /// - NORMAL：正常
+        /// - CVM_ABNORMAL：启动配置异常
+        /// - LB_ABNORMAL：负载均衡器异常
+        /// - LB_LISTENER_ABNORMAL：负载均衡器监听器异常
+        /// - LB_LOCATION_ABNORMAL：负载均衡器监听器转发配置异常
+        /// - VPC_ABNORMAL：VPC网络异常
+        /// - SUBNET_ABNORMAL：VPC子网异常
+        /// - INSUFFICIENT_BALANCE：余额不足
+        /// - LB_BACKEND_REGION_NOT_MATCH：CLB实例后端地域与AS服务所在地域不匹配
+        /// - LB_BACKEND_VPC_NOT_MATCH：CLB实例VPC与伸缩组VPC不匹配
         public let autoScalingGroupStatus: String
 
         /// 创建时间，采用UTC标准计时
@@ -281,16 +275,14 @@ extension As {
 
         /// 多可用区/子网策略。
         ///
-        /// <li> PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
-        ///
-        /// <li> EQUALITY：每次选择当前实例数最少的可用区/子网进行扩容，使得每个可用区/子网都有机会发生扩容，多次扩容出的实例会打散到多个可用区/子网。
+        /// - PRIORITY，按照可用区/子网列表的顺序，作为优先级来尝试创建实例，如果优先级最高的可用区/子网可以创建成功，则总在该可用区/子网创建。
+        /// - EQUALITY：每次选择当前实例数最少的可用区/子网进行扩容，使得每个可用区/子网都有机会发生扩容，多次扩容出的实例会打散到多个可用区/子网。
         public let multiZoneSubnetPolicy: String
 
         /// 伸缩组实例健康检查类型，取值如下：
         ///
-        /// <li>CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)
-        ///
-        /// <li>CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)
+        /// - CVM：根据实例网络状态判断实例是否处于不健康状态，不健康的网络状态即发生实例 PING 不可达事件，详细判断标准可参考[实例健康检查](https://cloud.tencent.com/document/product/377/8553)
+        /// - CLB：根据 CLB 的健康检查状态判断实例是否处于不健康状态，CLB健康检查原理可参考[健康检查](https://cloud.tencent.com/document/product/214/6097)
         public let healthCheckType: String
 
         /// CLB健康检查宽限期
@@ -298,9 +290,8 @@ extension As {
 
         /// 实例分配策略，取值包括 LAUNCH_CONFIGURATION 和 SPOT_MIXED。
         ///
-        /// <li> LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
-        ///
-        /// <li> SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
+        /// - LAUNCH_CONFIGURATION，代表传统的按照启动配置模式。
+        /// - SPOT_MIXED，代表竞价混合模式。目前仅支持启动配置为按量计费模式时使用混合模式，混合模式下，伸缩组将根据设定扩容按量或竞价机型。使用混合模式时，关联的启动配置的计费类型不可被修改。
         public let instanceAllocationPolicy: String
 
         /// 竞价混合模式下，各计费类型实例的分配策略。
@@ -309,9 +300,8 @@ extension As {
 
         /// 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
         ///
-        /// <li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
-        ///
-        /// <li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
+        /// - TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
+        /// - FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
         public let capacityRebalance: Bool
 
         enum CodingKeys: String, CodingKey {
@@ -401,19 +391,13 @@ extension As {
     public struct DataDisk: TCInputModel, TCOutputModel {
         /// 数据盘类型。数据盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：
         ///
-        /// <li>LOCAL_BASIC：本地硬盘
-        ///
-        /// <li>LOCAL_SSD：本地SSD硬盘
-        ///
-        /// <li>CLOUD_BASIC：普通云硬盘
-        ///
-        /// <li>CLOUD_PREMIUM：高性能云硬盘
-        ///
-        /// <li>CLOUD_SSD：SSD云硬盘
-        ///
-        /// <li>CLOUD_HSSD：增强型SSD云硬盘
-        ///
-        /// <li>CLOUD_TSSD：极速型SSD云硬盘
+        /// - LOCAL_BASIC：本地硬盘
+        /// - LOCAL_SSD：本地SSD硬盘
+        /// - CLOUD_BASIC：普通云硬盘
+        /// - CLOUD_PREMIUM：高性能云硬盘
+        /// - CLOUD_SSD：SSD云硬盘
+        /// - CLOUD_HSSD：增强型SSD云硬盘
+        /// - CLOUD_TSSD：极速型SSD云硬盘
         ///
         /// 默认取值与系统盘类型（SystemDisk.DiskType）保持一致。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -429,17 +413,17 @@ extension As {
 
         /// 数据盘是否随子机销毁。取值范围：
         ///
-        /// <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
+        /// - TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
+        /// - FALSE：子机销毁时，保留数据盘
         ///
-        /// <li>FALSE：子机销毁时，保留数据盘
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
 
         /// 数据盘是否加密。取值范围：
         ///
-        /// <li>TRUE：加密
+        /// - TRUE：加密
+        /// - FALSE：不加密
         ///
-        /// <li>FALSE：不加密
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
 
@@ -629,19 +613,18 @@ extension As {
     public struct HostNameSettings: TCInputModel, TCOutputModel {
         /// 云服务器的主机名。
         ///
-        /// <li> 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
+        /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
+        /// - 不支持 Windows 实例。
+        /// - 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         ///
-        /// <li> 不支持 Windows 实例。
-        ///
-        /// <li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostName: String?
 
         /// 云服务器主机名的风格，取值范围包括 ORIGINAL 和  UNIQUE，默认为 ORIGINAL。
         ///
-        /// <li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
+        /// - ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
+        /// - UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。
         ///
-        /// <li> UNIQUE，入参所填的 HostName 相当于主机名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 HostName 可以保证唯一。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNameStyle: String?
 
@@ -660,9 +643,9 @@ extension As {
     public struct IPv6InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费模式。取值包括TRAFFIC_POSTPAID_BY_HOUR、BANDWIDTH_PACKAGE，默认取值为TRAFFIC_POSTPAID_BY_HOUR。查看当前账户类型可参考[账户类型说明](https://cloud.tencent.com/document/product/1199/49090#judge)。
         ///
-        /// <li> IPv6对标准账户类型支持TRAFFIC_POSTPAID_BY_HOUR。
+        /// - IPv6对标准账户类型支持TRAFFIC_POSTPAID_BY_HOUR。
+        /// - IPv6对传统账户类型支持BANDWIDTH_PACKAGE。
         ///
-        /// <li> IPv6对传统账户类型支持BANDWIDTH_PACKAGE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetChargeType: String?
 
@@ -705,25 +688,25 @@ extension As {
 
         /// 生命周期状态，取值如下：
         ///
-        /// <li>IN_SERVICE：运行中
-        /// <li>CREATING：创建中
-        /// <li>CREATION_FAILED：创建失败
-        /// <li>TERMINATING：中止中
-        /// <li>TERMINATION_FAILED：中止失败
-        /// <li>ATTACHING：绑定中
-        /// <li>ATTACH_FAILED：绑定失败
-        /// <li>DETACHING：解绑中
-        /// <li>DETACH_FAILED：解绑失败
-        /// <li>ATTACHING_LB：绑定LB中
-        /// <li>DETACHING_LB：解绑LB中
-        /// <li>MODIFYING_LB：修改LB中
-        /// <li>STARTING：开机中
-        /// <li>START_FAILED：开机失败
-        /// <li>STOPPING：关机中
-        /// <li>STOP_FAILED：关机失败
-        /// <li>STOPPED：已关机
-        /// <li>IN_LAUNCHING_HOOK：扩容生命周期挂钩中
-        /// <li>IN_TERMINATING_HOOK：缩容生命周期挂钩中
+        /// - IN_SERVICE：运行中
+        /// - CREATING：创建中
+        /// - CREATION_FAILED：创建失败
+        /// - TERMINATING：中止中
+        /// - TERMINATION_FAILED：中止失败
+        /// - ATTACHING：绑定中
+        /// - ATTACH_FAILED：绑定失败
+        /// - DETACHING：解绑中
+        /// - DETACH_FAILED：解绑失败
+        /// - ATTACHING_LB：绑定LB中
+        /// - DETACHING_LB：解绑LB中
+        /// - MODIFYING_LB：修改LB中
+        /// - STARTING：开机中
+        /// - START_FAILED：开机失败
+        /// - STOPPING：关机中
+        /// - STOP_FAILED：关机失败
+        /// - STOPPED：已关机
+        /// - IN_LAUNCHING_HOOK：扩容生命周期挂钩中
+        /// - IN_TERMINATING_HOOK：缩容生命周期挂钩中
         public let lifeCycleState: String
 
         /// 健康状态，取值包括HEALTHY和UNHEALTHY
@@ -754,10 +737,10 @@ extension As {
         public let autoScalingGroupName: String
 
         /// 预热状态，取值如下：
-        /// <li>WAITING_ENTER_WARMUP：等待进入预热
-        /// <li>NO_NEED_WARMUP：无需预热
-        /// <li>IN_WARMUP：预热中
-        /// <li>AFTER_WARMUP：完成预热
+        /// - WAITING_ENTER_WARMUP：等待进入预热
+        /// - NO_NEED_WARMUP：无需预热
+        /// - IN_WARMUP：预热中
+        /// - AFTER_WARMUP：完成预热
         public let warmupStatus: String
 
         /// 置放群组id，仅支持指定一个。
@@ -790,11 +773,9 @@ extension As {
 
         /// 自动续费标识。取值范围：
         ///
-        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
-        ///
-        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
-        ///
-        /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
         ///
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
@@ -879,13 +860,10 @@ extension As {
     public struct InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费类型。取值范围：
         ///
-        /// <li>BANDWIDTH_PREPAID：预付费按带宽结算
-        ///
-        /// <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
-        ///
-        /// <li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
-        ///
-        /// <li>BANDWIDTH_PACKAGE：带宽包用户
+        /// - BANDWIDTH_PREPAID：预付费按带宽结算
+        /// - TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费
+        /// - BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费
+        /// - BANDWIDTH_PACKAGE：带宽包用户
         ///
         /// 默认取值：TRAFFIC_POSTPAID_BY_HOUR。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -897,9 +875,8 @@ extension As {
 
         /// 是否分配公网IP。取值范围：
         ///
-        /// <li>TRUE：表示分配公网IP
-        ///
-        /// <li>FALSE：表示不分配公网IP
+        /// - TRUE：表示分配公网IP
+        /// - FALSE：表示不分配公网IP
         ///
         /// 当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1010,20 +987,16 @@ extension As {
 
         /// 启动配置当前状态。取值范围：
         ///
-        /// <li>NORMAL：正常
-        ///
-        /// <li>IMAGE_ABNORMAL：启动配置镜像异常
-        ///
-        /// <li>CBS_SNAP_ABNORMAL：启动配置数据盘快照异常
-        ///
-        /// <li>SECURITY_GROUP_ABNORMAL：启动配置安全组异常
+        /// - NORMAL：正常
+        /// - IMAGE_ABNORMAL：启动配置镜像异常
+        /// - CBS_SNAP_ABNORMAL：启动配置数据盘快照异常
+        /// - SECURITY_GROUP_ABNORMAL：启动配置安全组异常
         public let launchConfigurationStatus: String
 
         /// 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
         ///
-        /// <li>POSTPAID_BY_HOUR：按小时后付费
-        ///
-        /// <li>SPOTPAID：竞价付费
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// - SPOTPAID：竞价付费
         public let instanceChargeType: String
 
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
@@ -1066,9 +1039,8 @@ extension As {
 
         /// 云盘类型选择策略。取值范围：
         ///
-        /// <li>ORIGINAL：使用设置的云盘类型
-        ///
-        /// <li>AUTOMATIC：自动选择当前可用区下可用的云盘类型
+        /// - ORIGINAL：使用设置的云盘类型
+        /// - AUTOMATIC：自动选择当前可用区下可用的云盘类型
         public let diskTypePolicy: String
 
         /// 高性能计算集群ID。
@@ -1126,16 +1098,16 @@ extension As {
 
         /// 命令调用的结果，表示执行TAT命令是否成功。
         ///
-        /// <li>SUCCESSFUL 命令调用成功，不代表命令执行成功，执行的具体情况可根据InvocationId进行查询</li>
-        /// <li>FAILED 命令调用失败</li>
-        /// <li>NONE</li>
+        /// - SUCCESSFUL 命令调用成功，不代表命令执行成功，执行的具体情况可根据InvocationId进行查询
+        /// - FAILED 命令调用失败
+        /// - NONE
         public let invokeCommandResult: String
 
         /// 通知的结果，表示通知CMQ/TDMQ是否成功。
         ///
-        /// <li>SUCCESSFUL 通知成功</li>
-        /// <li>FAILED 通知失败</li>
-        /// <li>NONE</li>
+        /// - SUCCESSFUL 通知成功
+        /// - FAILED 通知失败
+        /// - NONE
         public let notificationResult: String
 
         /// 生命周期挂钩动作的执行结果，取值包括 CONTINUE、ABANDON。
@@ -1143,14 +1115,14 @@ extension As {
 
         /// 结果的原因。
         ///
-        /// <li>HEARTBEAT_TIMEOUT 由于心跳超时，结果根据DefaultResult设置。</li>
-        /// <li>NOTIFICATION_FAILURE 由于发送通知失败，结果根据DefaultResult设置。</li>
-        /// <li>CALL_INTERFACE 调用了接口CompleteLifecycleAction设置结果。</li>
-        /// <li>ANOTHER_ACTION_ABANDON 另一个生命周期操作的结果已设置为“ABANDON”。</li>
-        /// <li>COMMAND_CALL_FAILURE  由于命令调用失败，结果根据DefaultResult设置。</li>
-        /// <li>COMMAND_EXEC_FINISH  命令执行完成。</li>
-        /// <li>COMMAND_EXEC_FAILURE 由于命令执行失败，结果根据DefaultResult设置。</li>
-        /// <li>COMMAND_EXEC_RESULT_CHECK_FAILURE 由于命令结果检查失败，结果根据DefaultResult设置。</li>
+        /// - HEARTBEAT_TIMEOUT 由于心跳超时，结果根据DefaultResult设置。
+        /// - NOTIFICATION_FAILURE 由于发送通知失败，结果根据DefaultResult设置。
+        /// - CALL_INTERFACE 调用了接口CompleteLifecycleAction设置结果。
+        /// - ANOTHER_ACTION_ABANDON 另一个生命周期操作的结果已设置为“ABANDON”。
+        /// - COMMAND_CALL_FAILURE  由于命令调用失败，结果根据DefaultResult设置。
+        /// - COMMAND_EXEC_FINISH  命令执行完成。
+        /// - COMMAND_EXEC_FAILURE 由于命令执行失败，结果根据DefaultResult设置。
+        /// - COMMAND_EXEC_RESULT_CHECK_FAILURE 由于命令结果检查失败，结果根据DefaultResult设置。
         public let resultReason: String
 
         enum CodingKeys: String, CodingKey {
@@ -1256,9 +1228,8 @@ extension As {
     public struct LoginSettings: TCInputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：
         ///
-        /// <li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
-        ///
-        /// <li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。
+        /// - Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。
+        /// - Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? /]中的特殊符号。
         ///
         /// 若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         public let password: String?
@@ -1268,9 +1239,8 @@ extension As {
 
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：
         ///
-        /// <li>TRUE：表示保持镜像的登录设置
-        ///
-        /// <li>FALSE：表示不保持镜像的登录设置
+        /// - TRUE：表示保持镜像的登录设置
+        /// - FALSE：表示不保持镜像的登录设置
         ///
         /// 默认取值：FALSE。
         public let keepImageLogin: Bool?
@@ -1292,17 +1262,32 @@ extension As {
     public struct MetricAlarm: TCInputModel, TCOutputModel {
         /// 比较运算符，可选值：
         ///
-        /// <li>GREATER_THAN：大于</li><li>GREATER_THAN_OR_EQUAL_TO：大于或等于</li><li>LESS_THAN：小于</li><li> LESS_THAN_OR_EQUAL_TO：小于或等于</li><li> EQUAL_TO：等于</li> <li>NOT_EQUAL_TO：不等于</li>
+        /// - GREATER_THAN：大于
+        /// - GREATER_THAN_OR_EQUAL_TO：大于或等于
+        /// - LESS_THAN：小于
+        /// - LESS_THAN_OR_EQUAL_TO：小于或等于
+        /// - EQUAL_TO：等于
+        /// - NOT_EQUAL_TO：不等于
         public let comparisonOperator: String
 
         /// 指标名称，可选字段如下：
         ///
-        /// <li>CPU_UTILIZATION：CPU利用率</li><li>MEM_UTILIZATION：内存利用率</li><li>LAN_TRAFFIC_OUT：内网出带宽</li><li>LAN_TRAFFIC_IN：内网入带宽</li><li>WAN_TRAFFIC_OUT：外网出带宽</li><li>WAN_TRAFFIC_IN：外网入带宽</li>
+        /// - CPU_UTILIZATION：CPU利用率
+        /// - MEM_UTILIZATION：内存利用率
+        /// - LAN_TRAFFIC_OUT：内网出带宽
+        /// - LAN_TRAFFIC_IN：内网入带宽
+        /// - WAN_TRAFFIC_OUT：外网出带宽
+        /// - WAN_TRAFFIC_IN：外网入带宽
         public let metricName: String
 
         /// 告警阈值：
         ///
-        /// <li>CPU_UTILIZATION：[1, 100]，单位：%</li><li>MEM_UTILIZATION：[1, 100]，单位：%</li><li>LAN_TRAFFIC_OUT：>0，单位：Mbps </li><li>LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        /// - CPU_UTILIZATION：[1, 100]，单位：%
+        /// - MEM_UTILIZATION：[1, 100]，单位：%
+        /// - LAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - LAN_TRAFFIC_IN：>0，单位：Mbps
+        /// - WAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - WAN_TRAFFIC_IN：>0，单位：Mbps
         public let threshold: UInt64
 
         /// 时间周期，单位：秒，取值枚举值为60、300。
@@ -1313,14 +1298,21 @@ extension As {
 
         /// 统计类型，可选字段如下：
         ///
-        /// <li>AVERAGE：平均值</li><li>MAXIMUM：最大值<li>MINIMUM：最小值</li>
+        /// - AVERAGE：平均值
+        /// - MAXIMUM：最大值
+        /// - MINIMUM：最小值
         ///
         /// 默认取值：AVERAGE
         public let statistic: String?
 
         /// 精确告警阈值，本参数不作为入参输入，仅用作查询接口出参：
         ///
-        /// <li>CPU_UTILIZATION：(0, 100]，单位：%</li><li>MEM_UTILIZATION：(0, 100]，单位：%</li><li>LAN_TRAFFIC_OUT：>0，单位：Mbps </li><li>LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        /// - CPU_UTILIZATION：(0, 100]，单位：%
+        /// - MEM_UTILIZATION：(0, 100]，单位：%
+        /// - LAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - LAN_TRAFFIC_IN：>0，单位：Mbps
+        /// - WAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - WAN_TRAFFIC_IN：>0，单位：Mbps
         public let preciseThreshold: Float?
 
         public init(comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil, preciseThreshold: Float? = nil) {
@@ -1347,10 +1339,10 @@ extension As {
     /// 通知目标
     public struct NotificationTarget: TCInputModel, TCOutputModel {
         /// 目标类型，取值范围包括`CMQ_QUEUE`、`CMQ_TOPIC`、`TDMQ_CMQ_QUEUE`、`TDMQ_CMQ_TOPIC`。
-        /// <li> CMQ_QUEUE，指腾讯云消息队列-队列模型。</li>
-        /// <li> CMQ_TOPIC，指腾讯云消息队列-主题模型。</li>
-        /// <li> TDMQ_CMQ_QUEUE，指腾讯云 TDMQ 消息队列-队列模型。</li>
-        /// <li> TDMQ_CMQ_TOPIC，指腾讯云 TDMQ 消息队列-主题模型。</li>
+        /// - CMQ_QUEUE，指腾讯云消息队列-队列模型。
+        /// - CMQ_TOPIC，指腾讯云消息队列-主题模型。
+        /// - TDMQ_CMQ_QUEUE，指腾讯云 TDMQ 消息队列-队列模型。
+        /// - TDMQ_CMQ_TOPIC，指腾讯云 TDMQ 消息队列-主题模型。
         public let targetType: String
 
         /// 队列名称，如果`TargetType`取值为`CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE`，则本字段必填。
@@ -1394,9 +1386,9 @@ extension As {
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[自动化助手](https://cloud.tencent.com/document/product/1340)服务。取值范围：
         ///
-        /// <li>TRUE：表示开启自动化助手服务
+        /// - TRUE：表示开启自动化助手服务
+        /// - FALSE：表示不开启自动化助手服务
         ///
-        /// <li>FALSE：表示不开启自动化助手服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
 
@@ -1413,9 +1405,8 @@ extension As {
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](https://cloud.tencent.com/document/product/248)服务。取值范围：
         ///
-        /// <li>TRUE：表示开启云监控服务
-        ///
-        /// <li>FALSE：表示不开启云监控服务
+        /// - TRUE：表示开启云监控服务
+        /// - FALSE：表示不开启云监控服务
         ///
         /// 默认取值：TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1434,9 +1425,8 @@ extension As {
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](https://cloud.tencent.com/document/product/296)服务。取值范围：
         ///
-        /// <li>TRUE：表示开启云安全服务
-        ///
-        /// <li>FALSE：表示不开启云安全服务
+        /// - TRUE：表示开启云安全服务
+        /// - FALSE：表示不开启云安全服务
         ///
         /// 默认取值：TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1469,7 +1459,9 @@ extension As {
 
         /// 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：
         ///
-        /// <li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        /// - CHANGE_IN_CAPACITY：增加或减少若干期望实例数
+        /// - EXACT_CAPACITY：调整至指定期望实例数
+        /// - PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数
         public let adjustmentType: String
 
         /// 告警触发后，期望实例数的调整值，仅适用于简单策略。
@@ -1483,13 +1475,23 @@ extension As {
 
         /// 预定义监控项，仅适用于目标追踪策略。取值范围：
         ///
-        /// <li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        /// - ASG_AVG_CPU_UTILIZATION：平均CPU使用率
+        /// - ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽
+        /// - ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽
+        /// - ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽
+        /// - ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let predefinedMetricType: String?
 
         /// 目标值，仅适用于目标追踪策略。
         ///
-        /// <li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        /// - ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%
+        /// - ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps
+        /// - ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps
+        /// - ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetValue: UInt64?
 
@@ -1499,7 +1501,9 @@ extension As {
 
         /// 是否禁用缩容，仅适用于目标追踪策略。取值范围：
         ///
-        /// <li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        /// - true：目标追踪策略仅触发扩容
+        /// - false：目标追踪策略触发扩容和缩容
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disableScaleIn: Bool?
 
@@ -1571,9 +1575,8 @@ extension As {
 
         /// 定时任务的执行类型。取值范围：
         ///
-        /// <li>CRONTAB：代表定时任务为重复执行。
-        ///
-        /// <li>ONCE：代表定时任务为单次执行。
+        /// - CRONTAB：代表定时任务为重复执行。
+        /// - ONCE：代表定时任务为单次执行。
         public let scheduledType: String
 
         enum CodingKeys: String, CodingKey {
@@ -1651,17 +1654,16 @@ extension As {
 
         /// 混合模式下，竞价实例的分配策略。取值包括 COST_OPTIMIZED 和 CAPACITY_OPTIMIZED，默认取 COST_OPTIMIZED。
         ///
-        /// <li> COST_OPTIMIZED，成本优化策略。对于启动配置内的所有机型，按照各机型在各可用区的每核单价由小到大依次尝试。优先尝试购买每核单价最便宜的，如果购买失败则尝试购买次便宜的，以此类推。
+        /// - COST_OPTIMIZED，成本优化策略。对于启动配置内的所有机型，按照各机型在各可用区的每核单价由小到大依次尝试。优先尝试购买每核单价最便宜的，如果购买失败则尝试购买次便宜的，以此类推。
+        /// - CAPACITY_OPTIMIZED，容量优化策略。对于启动配置内的所有机型，按照各机型在各可用区的库存情况由大到小依次尝试。优先尝试购买剩余库存最大的机型，这样可尽量降低竞价实例被动回收的发生概率。
         ///
-        /// <li> CAPACITY_OPTIMIZED，容量优化策略。对于启动配置内的所有机型，按照各机型在各可用区的库存情况由大到小依次尝试。优先尝试购买剩余库存最大的机型，这样可尽量降低竞价实例被动回收的发生概率。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spotAllocationStrategy: String?
 
         /// 按量实例替补功能。取值范围：
         ///
-        /// <li> TRUE，开启该功能，当所有竞价机型因库存不足等原因全部购买失败后，尝试购买按量实例。
-        ///
-        /// <li> FALSE，不开启该功能，伸缩组在需要扩容竞价实例时仅尝试所配置的竞价机型。
+        /// - TRUE，开启该功能，当所有竞价机型因库存不足等原因全部购买失败后，尝试购买按量实例。
+        /// - FALSE，不开启该功能，伸缩组在需要扩容竞价实例时仅尝试所配置的竞价机型。
         ///
         /// 默认取值： TRUE。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1686,15 +1688,11 @@ extension As {
     public struct SystemDisk: TCInputModel, TCOutputModel {
         /// 系统盘类型。系统盘类型限制详见[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)。取值范围：
         ///
-        /// <li>LOCAL_BASIC：本地硬盘
-        ///
-        /// <li>LOCAL_SSD：本地SSD硬盘
-        ///
-        /// <li>CLOUD_BASIC：普通云硬盘
-        ///
-        /// <li>CLOUD_PREMIUM：高性能云硬盘
-        ///
-        /// <li>CLOUD_SSD：SSD云硬盘
+        /// - LOCAL_BASIC：本地硬盘
+        /// - LOCAL_SSD：本地SSD硬盘
+        /// - CLOUD_BASIC：普通云硬盘
+        /// - CLOUD_PREMIUM：高性能云硬盘
+        /// - CLOUD_SSD：SSD云硬盘
         ///
         /// 默认取值：CLOUD_PREMIUM。
         /// 注意：此字段可能返回 null，表示取不到有效值。

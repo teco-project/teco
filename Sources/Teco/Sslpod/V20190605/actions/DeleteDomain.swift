@@ -21,7 +21,7 @@ import TecoCore
 extension Sslpod {
     /// DeleteDomain请求参数结构体
     public struct DeleteDomainRequest: TCRequestModel {
-        /// 域名ID，可通过<a href="https://cloud.tencent.com/document/api/1084/49339">搜索域名</a>接口获得
+        /// 域名ID，可通过[搜索域名](https://cloud.tencent.com/document/api/1084/49339)接口获得
         public let domainId: Int64
 
         public init(domainId: Int64) {

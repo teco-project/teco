@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineFixList请求参数结构体
     public struct DescribeBaselineFixListRequest: TCPaginatedRequest {
-        /// <li>ItemName- string - 是否必填：否 - 项名称</li>
+        /// - ItemName- string - 是否必填：否 - 项名称
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

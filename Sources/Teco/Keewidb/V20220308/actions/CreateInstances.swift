@@ -33,7 +33,9 @@ extension Keewidb {
         /// 请登录控制台在私有网络列表查询，如：subnet-8abje***。
         public let uniqSubnetId: String
 
-        /// 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        /// 计费模式。
+        /// - 0：按量计费。
+        /// - 1：包年包月。
         public let billingMode: Int64
 
         /// 实例数量，单次最大购买数量以查询产品售卖规格返回的数量为准。
@@ -49,30 +51,43 @@ extension Keewidb {
         public let replicasNum: Int64
 
         /// 实例内存容量，单位：GB。
-        /// KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        /// KeeWiDB 内存容量**MachineMemory**与持久内存容量**MemSize**为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let machineMemory: Int64
 
-        /// 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        /// 实例所属的可用区ID。
+        /// - 具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。
+        /// - 参数**ZoneId**和**ZoneName**至少配置其中一个。
         public let zoneId: UInt64?
 
-        /// 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></u>
+        /// 实例所属的可用区名称。
+        /// - 具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。
+        /// - 参数**ZoneId**和**ZoneName**至少配置其中一个。
         public let zoneName: String?
 
         /// 创建实例的名称。
         /// 仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。
         public let instanceName: String?
 
-        /// 指明创建的实例是否需要支持免密访问。<ul><li>true：免密实例。</li><li>false：非免密实例，默认为非免密实例。此时，需要设置访问密码。</li></ul>
+        /// 指明创建的实例是否需要支持免密访问。
+        /// - true：免密实例。
+        /// - false：非免密实例，默认为非免密实例。此时，需要设置访问密码。
         public let noAuth: Bool?
 
-        /// 实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li>
-        /// <li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul>
+        /// 实例访问密码。
+        /// - 当参数**NoAuth**为**true**时，Password为无需设置，否则Password为必填参数。
+        /// - 密码复杂度要求：
+        ///   - 8-30个字符。
+        ///   - 至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种。
+        ///   - 不能以"/"开头。
         public let password: String?
 
         /// 自定义端口。默认为6379，范围[1024,65535]。
         public let vPort: UInt64?
 
-        /// 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        /// 包年包月计费的续费模式。
+        /// - 0：默认状态，指手动续费。
+        /// - 1：自动续费。
+        /// - 2：到期不再续费。
         public let autoRenew: UInt64?
 
         /// 给实例设置安全组 ID 数组。
@@ -82,7 +97,7 @@ extension Keewidb {
         public let resourceTags: [ResourceTag]?
 
         /// 混合存储版，单分片持久化内存容量，单位：GB。
-        /// KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        /// KeeWiDB 内存容量**MachineMemory**与持久内存容量**MemSize**为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
         public let memSize: Int64?
 
         /// 每个分片硬盘的容量。单位：GB。
@@ -95,7 +110,9 @@ extension Keewidb {
         /// 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
         public let projectId: Int64?
 
-        /// 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li>
+        /// 数据压缩开关。
+        /// - ON：开启，默认开启压缩。
+        /// - OFF：关闭。
         public let compression: String?
 
         public init(typeId: UInt64, uniqVpcId: String, uniqSubnetId: String, billingMode: Int64, goodsNum: UInt64, period: UInt64, shardNum: Int64, replicasNum: Int64, machineMemory: Int64, zoneId: UInt64? = nil, zoneName: String? = nil, instanceName: String? = nil, noAuth: Bool? = nil, password: String? = nil, vPort: UInt64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, resourceTags: [ResourceTag]? = nil, memSize: Int64? = nil, diskSize: Int64? = nil, machineCpu: Int64? = nil, projectId: Int64? = nil, compression: String? = nil) {

@@ -32,8 +32,8 @@ extension Cwp {
         public let baselineId: UInt64
 
         /// 过滤条件。
-        /// <li>AliasName- String- 主机别名</li>
-        /// <li>Status- Uint- 1已通过  0未通过 5检测中</li>
+        /// - AliasName- String- 主机别名
+        /// - Status- Uint- 1已通过  0未通过 5检测中
         public let filters: [Filters]?
 
         /// 策略id

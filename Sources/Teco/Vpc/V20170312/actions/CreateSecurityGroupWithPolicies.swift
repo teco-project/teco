@@ -27,7 +27,7 @@ extension Vpc {
         /// 安全组备注，最多100个字符。
         public let groupDescription: String
 
-        /// 项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">qcloud控制台项目管理页面</a>查询到。
+        /// 项目ID，默认0。可在[qcloud控制台项目管理页面](https://console.cloud.tencent.com/project)查询到。
         public let projectId: String?
 
         /// 安全组规则集合。
@@ -65,8 +65,8 @@ extension Vpc {
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用<a href="https://cloud.tencent.com/document/product/215/15807">CreateSecurityGroupPolicies</a>
+    /// * 每个账户下每个地域的每个项目的[安全组数量限制](https://cloud.tencent.com/document/product/213/12453)。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用[CreateSecurityGroupPolicies](https://cloud.tencent.com/document/product/215/15807)
     /// 将安全组的规则设置为需要的规则。
     ///
     /// 安全组规则说明：
@@ -87,8 +87,8 @@ extension Vpc {
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用<a href="https://cloud.tencent.com/document/product/215/15807">CreateSecurityGroupPolicies</a>
+    /// * 每个账户下每个地域的每个项目的[安全组数量限制](https://cloud.tencent.com/document/product/213/12453)。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用[CreateSecurityGroupPolicies](https://cloud.tencent.com/document/product/215/15807)
     /// 将安全组的规则设置为需要的规则。
     ///
     /// 安全组规则说明：
@@ -109,8 +109,8 @@ extension Vpc {
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用<a href="https://cloud.tencent.com/document/product/215/15807">CreateSecurityGroupPolicies</a>
+    /// * 每个账户下每个地域的每个项目的[安全组数量限制](https://cloud.tencent.com/document/product/213/12453)。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用[CreateSecurityGroupPolicies](https://cloud.tencent.com/document/product/215/15807)
     /// 将安全组的规则设置为需要的规则。
     ///
     /// 安全组规则说明：
@@ -131,8 +131,8 @@ extension Vpc {
     /// 创建安全组和规则
     ///
     /// 本接口（CreateSecurityGroupWithPolicies）用于创建新的安全组（SecurityGroup），并且可以同时添加安全组规则（SecurityGroupPolicy）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用<a href="https://cloud.tencent.com/document/product/215/15807">CreateSecurityGroupPolicies</a>
+    /// * 每个账户下每个地域的每个项目的[安全组数量限制](https://cloud.tencent.com/document/product/213/12453)。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用[CreateSecurityGroupPolicies](https://cloud.tencent.com/document/product/215/15807)
     /// 将安全组的规则设置为需要的规则。
     ///
     /// 安全组规则说明：

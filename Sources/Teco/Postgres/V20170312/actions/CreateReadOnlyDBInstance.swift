@@ -38,8 +38,8 @@ extension Postgres {
         public let instanceCount: UInt64
 
         /// 购买时长，单位：月。
-        /// <li>预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
-        /// <li>后付费：只支持1
+        /// - 预付费：支持1,2,3,4,5,6,7,8,9,10,11,12,24,36
+        /// - 后付费：只支持1
         public let period: UInt64
 
         /// 私有网络ID，形如vpc-xxxxxxxx。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372) ，从接口返回中的unVpcId字段获取。
@@ -49,14 +49,16 @@ extension Postgres {
         public let subnetId: String?
 
         /// 实例计费类型，目前支持：
-        /// <li>PREPAID：预付费，即包年包月。
-        /// <li>POSTPAID_BY_HOUR：后付费，即按量计费。
+        /// - PREPAID：预付费，即包年包月。
+        /// - POSTPAID_BY_HOUR：后付费，即按量计费。
+        ///
         /// 默认值：PREPAID。如果主实例为后付费，只读实例必须也为后付费。
         public let instanceChargeType: String?
 
         /// 是否自动使用代金券：
-        /// <li>0：否
-        /// <li>1：是
+        /// - 0：否
+        /// - 1：是
+        ///
         /// 默认值：0
         public let autoVoucher: UInt64?
 
@@ -64,8 +66,9 @@ extension Postgres {
         public let voucherIds: [String]?
 
         /// 续费标记：
-        /// <li>0：手动续费
-        /// <li>1：自动续费
+        /// - 0：手动续费
+        /// - 1：自动续费
+        ///
         /// 默认值：0
         public let autoRenewFlag: Int64?
 
@@ -85,8 +88,9 @@ extension Postgres {
         public let securityGroupIds: [String]?
 
         /// 是否需要支持Ipv6：
-        /// <li>0：否
-        /// <li>1：是
+        /// - 0：否
+        /// - 1：是
+        ///
         /// 默认值：0
         public let needSupportIpv6: UInt64?
 

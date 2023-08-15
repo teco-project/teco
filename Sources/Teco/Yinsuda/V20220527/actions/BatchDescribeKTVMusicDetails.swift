@@ -31,7 +31,8 @@ extension Yinsuda {
         public let musicIds: [String]
 
         /// 播放场景。默认为Chat
-        /// <li>Live：直播</li><li>Chat：语聊</li>
+        /// - Live：直播
+        /// - Chat：语聊
         public let playScene: String?
 
         /// 玩家用户标识

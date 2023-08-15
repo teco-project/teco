@@ -55,7 +55,8 @@ extension Vpc {
 
     /// 重置路由表名称和路由策略
     ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。
+    ///
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
@@ -64,7 +65,8 @@ extension Vpc {
 
     /// 重置路由表名称和路由策略
     ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。
+    ///
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
@@ -73,7 +75,8 @@ extension Vpc {
 
     /// 重置路由表名称和路由策略
     ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。
+    ///
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
@@ -82,7 +85,8 @@ extension Vpc {
 
     /// 重置路由表名称和路由策略
     ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。
+    ///
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {

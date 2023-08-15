@@ -25,19 +25,20 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>User- string - 是否必填：否 - 运行用户</li>
-        /// <li>Name- string - 是否必填：否 - Web服务名：
-        /// 1:Tomcat
-        /// 2:Apache
-        /// 3:Nginx
-        /// 4:WebLogic
-        /// 5:Websphere
-        /// 6:JBoss
-        /// 7:WildFly
-        /// 8:Jetty
-        /// 9:IHS
-        /// 10:Tengine</li>
-        /// <li>OsType- string - 是否必填：否 - Windows/linux</li>
+        /// - User- string - 是否必填：否 - 运行用户
+        /// - Name- string - 是否必填：否 - Web服务名：
+        ///   1:Tomcat
+        ///   2:Apache
+        ///   3:Nginx
+        ///   4:WebLogic
+        ///   5:Websphere
+        ///   6:JBoss
+        ///   7:WildFly
+        ///   8:Jetty
+        ///   9:IHS
+        ///   10:Tengine
+        ///
+        /// - OsType- string - 是否必填：否 - Windows/linux
         public let filters: [AssetFilters]?
 
         /// 排序方式，asc升序 或 desc降序

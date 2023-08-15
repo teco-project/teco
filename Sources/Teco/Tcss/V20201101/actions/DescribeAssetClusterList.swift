@@ -23,9 +23,9 @@ extension Tcss {
     /// DescribeAssetClusterList请求参数结构体
     public struct DescribeAssetClusterListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
-        /// <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
-        /// <li>Status - string  - 是否必填: 否 -集群状态</li>
+        /// - ClusterID - string  - 是否必填: 否 -集群ID
+        /// - ClusterName - string  - 是否必填: 否 -集群名称
+        /// - Status - string  - 是否必填: 否 -集群状态
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

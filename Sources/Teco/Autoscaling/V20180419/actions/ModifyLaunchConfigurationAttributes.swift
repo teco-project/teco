@@ -26,11 +26,15 @@ extension As {
 
         /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：
         ///
-        /// <li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li>
+        /// - 公共镜像
+        /// - 自定义镜像
+        /// - 共享镜像
+        /// - 服务市场镜像
         ///
         /// 可通过以下方式获取可用的镜像ID：
         ///
-        /// <li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
+        /// - `公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。
+        /// - 通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。
         public let imageId: String?
 
         /// 实例类型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
@@ -39,9 +43,8 @@ extension As {
 
         /// 实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。
         ///
-        /// <li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
-        ///
-        /// <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
+        /// - ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
+        /// - ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
         ///
         /// 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
         /// 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
@@ -63,11 +66,9 @@ extension As {
 
         /// 实例计费类型。具体取值范围如下：
         ///
-        /// <li>POSTPAID_BY_HOUR：按小时后付费
-        ///
-        /// <li>SPOTPAID：竞价付费
-        ///
-        /// <li>PREPAID：预付费，即包年包月
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// - SPOTPAID：竞价付费
+        /// - PREPAID：预付费，即包年包月
         public let instanceChargeType: String?
 
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
@@ -84,9 +85,8 @@ extension As {
 
         /// 云盘类型选择策略，取值范围：
         ///
-        /// <li>ORIGINAL：使用设置的云盘类型。
-        ///
-        /// <li>AUTOMATIC：自动选择当前可用的云盘类型。
+        /// - ORIGINAL：使用设置的云盘类型。
+        /// - AUTOMATIC：自动选择当前可用的云盘类型。
         public let diskTypePolicy: String?
 
         /// 实例系统盘配置信息。

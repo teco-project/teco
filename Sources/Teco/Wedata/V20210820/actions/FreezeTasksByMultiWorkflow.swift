@@ -49,7 +49,8 @@ extension Wedata {
 
     /// 基于多个工作流进行批量冻结任务操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 基于多个工作流进行批量冻结任务操作
     @inlinable
     public func freezeTasksByMultiWorkflow(_ input: FreezeTasksByMultiWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksByMultiWorkflowResponse> {
@@ -58,7 +59,8 @@ extension Wedata {
 
     /// 基于多个工作流进行批量冻结任务操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 基于多个工作流进行批量冻结任务操作
     @inlinable
     public func freezeTasksByMultiWorkflow(_ input: FreezeTasksByMultiWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksByMultiWorkflowResponse {
@@ -67,7 +69,8 @@ extension Wedata {
 
     /// 基于多个工作流进行批量冻结任务操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 基于多个工作流进行批量冻结任务操作
     @inlinable
     public func freezeTasksByMultiWorkflow(workFlowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksByMultiWorkflowResponse> {
@@ -76,7 +79,8 @@ extension Wedata {
 
     /// 基于多个工作流进行批量冻结任务操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 基于多个工作流进行批量冻结任务操作
     @inlinable
     public func freezeTasksByMultiWorkflow(workFlowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksByMultiWorkflowResponse {

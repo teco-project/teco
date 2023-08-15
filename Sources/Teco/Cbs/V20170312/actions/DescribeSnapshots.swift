@@ -27,22 +27,16 @@ extension Cbs {
 
         /// 过滤条件。参数不支持同时指定`SnapshotIds`和`Filters`。
         ///
-        /// <li>snapshot-id - Array of String - 是否必填：否 -（过滤条件）按照快照的ID过滤。快照ID形如：`snap-11112222`。
+        /// - snapshot-id - Array of String - 是否必填：否 -（过滤条件）按照快照的ID过滤。快照ID形如：`snap-11112222`。
+        /// - snapshot-name - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。
+        /// - snapshot-state - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。 (NORMAL：正常 | CREATING：创建中 | ROLLBACKING：回滚中。)
+        /// - disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建快照的云盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)
+        /// - project-id  - Array of String - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。
+        /// - disk-id  - Array of String - 是否必填：否 -（过滤条件）按照创建快照的云硬盘ID过滤。
+        /// - zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。
+        /// - encrypt - Array of String - 是否必填：否 -（过滤条件）按是否加密盘快照过滤。 (TRUE：表示加密盘快照 | FALSE：表示非加密盘快照。)
+        /// - snapshot-type- Array of String - 是否必填：否 -（过滤条件）根据snapshot-type指定的快照类型查询对应的快照。
         ///
-        /// <li>snapshot-name - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。
-        ///
-        /// <li>snapshot-state - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。 (NORMAL：正常 | CREATING：创建中 | ROLLBACKING：回滚中。)
-        ///
-        /// <li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按创建快照的云盘类型过滤。 (SYSTEM_DISK：代表系统盘 | DATA_DISK：代表数据盘。)
-        ///
-        /// <li>project-id  - Array of String - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。
-        ///
-        /// <li>disk-id  - Array of String - 是否必填：否 -（过滤条件）按照创建快照的云硬盘ID过滤。
-        ///
-        /// <li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。
-        ///
-        /// <li>encrypt - Array of String - 是否必填：否 -（过滤条件）按是否加密盘快照过滤。 (TRUE：表示加密盘快照 | FALSE：表示非加密盘快照。)
-        /// <li>snapshot-type- Array of String - 是否必填：否 -（过滤条件）根据snapshot-type指定的快照类型查询对应的快照。
         /// (SHARED_SNAPSHOT：表示共享过来的快照 | PRIVATE_SNAPSHOT：表示自己私有快照。)
         public let filters: [Filter]?
 
@@ -51,7 +45,7 @@ extension Cbs {
 
         /// 快照列表排序的依据字段。取值范围：
         ///
-        /// <li>CREATE_TIME：依据快照的创建时间排序
+        /// - CREATE_TIME：依据快照的创建时间排序
         ///
         /// 默认按创建时间排序。
         public let orderField: String?
@@ -61,9 +55,8 @@ extension Cbs {
 
         /// 输出云盘列表的排列顺序。取值范围：
         ///
-        /// <li>ASC：升序排列
-        ///
-        /// <li>DESC：降序排列。
+        /// - ASC：升序排列
+        /// - DESC：降序排列。
         public let order: String?
 
         public init(snapshotIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, order: String? = nil) {

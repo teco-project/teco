@@ -104,8 +104,6 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
-    ///
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelBeta(_ input: DetectLabelBetaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelBetaResponse> {
@@ -115,8 +113,6 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
-    ///
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelBeta(_ input: DetectLabelBetaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {
@@ -126,8 +122,6 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
-    ///
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelBeta(imageUrl: String? = nil, imageBase64: String? = nil, scenes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelBetaResponse> {
@@ -137,8 +131,6 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
-    ///
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelBeta(imageUrl: String? = nil, imageBase64: String? = nil, scenes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {

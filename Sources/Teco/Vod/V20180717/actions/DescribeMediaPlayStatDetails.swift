@@ -30,12 +30,13 @@ extension Vod {
         /// 结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 统计时间粒度，有效值：
-        /// <li>Hour：以小时为粒度。</li>
-        /// <li>Day：以天为粒度。</li>
+        /// - Hour：以小时为粒度。
+        /// - Day：以天为粒度。
+        ///
         /// 默认按时间跨度决定，小于1天以小时为粒度，大于等于1天则以天为粒度。
         public let interval: String?
 

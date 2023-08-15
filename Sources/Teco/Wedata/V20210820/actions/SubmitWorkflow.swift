@@ -64,7 +64,8 @@ extension Wedata {
 
     /// 提交工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 提交工作流
     @inlinable
     public func submitWorkflow(_ input: SubmitWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
@@ -73,7 +74,8 @@ extension Wedata {
 
     /// 提交工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 提交工作流
     @inlinable
     public func submitWorkflow(_ input: SubmitWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
@@ -82,7 +84,8 @@ extension Wedata {
 
     /// 提交工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 提交工作流
     @inlinable
     public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
@@ -91,7 +94,8 @@ extension Wedata {
 
     /// 提交工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 提交工作流
     @inlinable
     public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {

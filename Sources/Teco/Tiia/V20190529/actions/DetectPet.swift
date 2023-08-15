@@ -59,7 +59,6 @@ extension Tiia {
     /// 宠物识别
     ///
     /// 传入一张图片，识别出图片中是否存在宠物
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectPet(_ input: DetectPetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectPetResponse> {
@@ -69,7 +68,6 @@ extension Tiia {
     /// 宠物识别
     ///
     /// 传入一张图片，识别出图片中是否存在宠物
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectPet(_ input: DetectPetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {
@@ -79,7 +77,6 @@ extension Tiia {
     /// 宠物识别
     ///
     /// 传入一张图片，识别出图片中是否存在宠物
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectPet(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectPetResponse> {
@@ -89,7 +86,6 @@ extension Tiia {
     /// 宠物识别
     ///
     /// 传入一张图片，识别出图片中是否存在宠物
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectPet(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {

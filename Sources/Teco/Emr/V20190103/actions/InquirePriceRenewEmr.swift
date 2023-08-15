@@ -34,11 +34,11 @@ extension Emr {
         public let payMode: Int64
 
         /// 实例续费的时间单位。取值范围：
-        /// <li>m：表示月份。</li>
+        /// - m：表示月份。
         public let timeUnit: String?
 
         /// 货币种类。取值范围：
-        /// <li>CNY：表示人民币。</li>
+        /// - CNY：表示人民币。
         public let currency: String?
 
         public init(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil) {
@@ -71,7 +71,8 @@ extension Emr {
         public let discountCost: Float?
 
         /// 实例续费的时间单位。取值范围：
-        /// <li>m：表示月份。</li>
+        /// - m：表示月份。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeUnit: String?
 

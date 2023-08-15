@@ -26,8 +26,8 @@ extension Vpc {
         public let ccnId: String
 
         /// 过滤条件。
-        /// <li>sregion - String - （过滤条件）源地域，形如：ap-guangzhou。</li>
-        /// <li>dregion - String - （过滤条件）目的地域，形如：ap-shanghai-bm</li>
+        /// - sregion - String - （过滤条件）源地域，形如：ap-guangzhou。
+        /// - dregion - String - （过滤条件）目的地域，形如：ap-shanghai-bm
         public let filters: [Filter]?
 
         /// 排序条件，目前支持带宽（`BandwidthLimit`）和过期时间（`ExpireTime`），默认按 `ExpireTime` 排序。

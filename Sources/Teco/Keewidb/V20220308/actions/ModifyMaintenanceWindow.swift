@@ -45,7 +45,9 @@ extension Keewidb {
 
     /// ModifyMaintenanceWindow返回参数结构体
     public struct ModifyMaintenanceWindowResponse: TCResponseModel {
-        /// 执行结果。<ul><li>success：修改成功。 </li> <li>failed：修改失败。</li></ul>
+        /// 执行结果。
+        /// - success：修改成功。
+        /// - failed：修改失败。
         public let status: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -34,7 +34,11 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>ComponentName- String - 是否必填：否 - 镜像组件名称</li><li>ComponentVersion- String - 是否必填：否 - 镜像组件版本</li><li>ComponentType- String - 是否必填：否 - 镜像组件类型</li><li>VulLevel- String - 是否必填：否 - 漏洞威胁等级</li><li>HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部</li>
+        /// - ComponentName- String - 是否必填：否 - 镜像组件名称
+        /// - ComponentVersion- String - 是否必填：否 - 镜像组件版本
+        /// - ComponentType- String - 是否必填：否 - 镜像组件类型
+        /// - VulLevel- String - 是否必填：否 - 漏洞威胁等级
+        /// - HasVul- String - 是否必填：否 -是否有漏洞；true：是，false，否；不传或ALL ：全部
         public let filters: [AssetFilters]?
 
         /// 排序字段

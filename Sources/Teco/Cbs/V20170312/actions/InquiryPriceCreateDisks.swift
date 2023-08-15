@@ -23,22 +23,17 @@ extension Cbs {
     public struct InquiryPriceCreateDisksRequest: TCRequestModel {
         /// 云硬盘计费类型。
         ///
-        /// <li>PREPAID：预付费，即包年包月
-        ///
-        /// <li>POSTPAID_BY_HOUR：按小时后付费
+        /// - PREPAID：预付费，即包年包月
+        /// - POSTPAID_BY_HOUR：按小时后付费
         public let diskChargeType: String
 
         /// 硬盘介质类型。取值范围：
         ///
-        /// <li>CLOUD_BASIC：表示普通云硬盘
-        ///
-        /// <li>CLOUD_PREMIUM：表示高性能云硬盘
-        ///
-        /// <li>CLOUD_SSD：表示SSD云硬盘
-        ///
-        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘
-        ///
-        /// <li>CLOUD_TSSD：表示极速型SSD云硬盘。
+        /// - CLOUD_BASIC：表示普通云硬盘
+        /// - CLOUD_PREMIUM：表示高性能云硬盘
+        /// - CLOUD_SSD：表示SSD云硬盘
+        /// - CLOUD_HSSD：表示增强型SSD云硬盘
+        /// - CLOUD_TSSD：表示极速型SSD云硬盘。
         public let diskType: String
 
         /// 云硬盘大小，单位为GB。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。

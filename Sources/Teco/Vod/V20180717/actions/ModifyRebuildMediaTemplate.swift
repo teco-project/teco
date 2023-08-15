@@ -24,7 +24,7 @@ extension Vod {
         /// 视频重生模板号。
         public let definition: Int64
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: String?
 
         /// 视频重生模板名称。
@@ -49,13 +49,13 @@ extension Vod {
         public let container: String?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeAudio: Int64?
 
         public init(definition: Int64, subAppId: String? = nil, name: String? = nil, comment: String? = nil, rebuildVideoInfo: RebuildVideoInfo? = nil, rebuildAudioInfo: RebuildAudioInfo? = nil, targetVideoInfo: RebuildMediaTargetVideoStream? = nil, targetAudioInfo: RebuildMediaTargetAudioStream? = nil, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil) {

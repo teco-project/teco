@@ -28,13 +28,13 @@ extension As {
         public let lifecycleHookName: String?
 
         /// 进入生命周期挂钩场景，取值包括：
-        /// <li> INSTANCE_LAUNCHING：实例启动后
-        /// <li> INSTANCE_TERMINATING：实例销毁前
+        /// - INSTANCE_LAUNCHING：实例启动后
+        /// - INSTANCE_TERMINATING：实例销毁前
         public let lifecycleTransition: String?
 
         /// 定义伸缩组在生命周期挂钩超时的情况下应采取的操作，取值包括：
-        /// <li> CONTINUE： 超时后继续伸缩活动
-        /// <li> ABANDON：超时后终止伸缩活动
+        /// - CONTINUE： 超时后继续伸缩活动
+        /// - ABANDON：超时后终止伸缩活动
         public let defaultResult: String?
 
         /// 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从 30 到 7200 秒。

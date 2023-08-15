@@ -59,9 +59,9 @@ extension Cme {
 
     /// 视频智能拆条
     ///
-    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
-    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
-    /// <li>【本接口内测中，暂不建议使用】</li>
+    /// - 发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。
+    /// - 和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。
+    /// - 【本接口内测中，暂不建议使用】
     @inlinable
     public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
         self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,9 +69,9 @@ extension Cme {
 
     /// 视频智能拆条
     ///
-    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
-    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
-    /// <li>【本接口内测中，暂不建议使用】</li>
+    /// - 发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。
+    /// - 和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。
+    /// - 【本接口内测中，暂不建议使用】
     @inlinable
     public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
         try await self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -79,9 +79,9 @@ extension Cme {
 
     /// 视频智能拆条
     ///
-    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
-    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
-    /// <li>【本接口内测中，暂不建议使用】</li>
+    /// - 发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。
+    /// - 和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。
+    /// - 【本接口内测中，暂不建议使用】
     @inlinable
     public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
         self.generateVideoSegmentationSchemeByAi(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -89,9 +89,9 @@ extension Cme {
 
     /// 视频智能拆条
     ///
-    /// <li>发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。</li>
-    /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
-    /// <li>【本接口内测中，暂不建议使用】</li>
+    /// - 发起视频智能拆条任务，支持智能生成和平精英集锦、王者荣耀集锦、足球集锦、篮球集锦 、人物集锦、新闻拆条等任务。
+    /// - 和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。
+    /// - 【本接口内测中，暂不建议使用】
     @inlinable
     public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
         try await self.generateVideoSegmentationSchemeByAi(.init(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)

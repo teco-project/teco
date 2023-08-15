@@ -25,12 +25,12 @@ extension Vod {
         /// 视频重生模板列表。
         public let definitions: [Int64]?
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: Int64?
 
         /// 模板类型过滤条件，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         /// 分页偏移量，默认值：0。

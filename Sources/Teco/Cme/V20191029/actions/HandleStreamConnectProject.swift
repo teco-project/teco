@@ -34,8 +34,8 @@ extension Cme {
         public let inputInfo: StreamInputInfo?
 
         /// 主备输入源标识，取值有：
-        /// <li> Main ：主源；</li>
-        /// <li> Backup ：备源。</li>
+        /// - Main ：主源；
+        /// - Backup ：备源。
         public let inputEndpoint: String?
 
         /// 转推输出源操作参数。具体操作方式详见 [操作类型](#Operation) 及下文示例。
@@ -91,9 +91,9 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// _本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。_
     ///
-    /// ### 操作类型<a id="Operation"></a>
+    /// ### 操作类型
     /// - `AddInput`（添加输入源），包括：
     /// 	- 添加直播拉流输入源，参见 [示例1](#.E7.A4.BA.E4.BE.8B1-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8B.89.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
     /// 	- 添加直播推流输入源，参见 [示例2](#.E7.A4.BA.E4.BE.8B2-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8E.A8.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
@@ -115,9 +115,9 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// _本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。_
     ///
-    /// ### 操作类型<a id="Operation"></a>
+    /// ### 操作类型
     /// - `AddInput`（添加输入源），包括：
     /// 	- 添加直播拉流输入源，参见 [示例1](#.E7.A4.BA.E4.BE.8B1-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8B.89.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
     /// 	- 添加直播推流输入源，参见 [示例2](#.E7.A4.BA.E4.BE.8B2-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8E.A8.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
@@ -139,9 +139,9 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// _本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。_
     ///
-    /// ### 操作类型<a id="Operation"></a>
+    /// ### 操作类型
     /// - `AddInput`（添加输入源），包括：
     /// 	- 添加直播拉流输入源，参见 [示例1](#.E7.A4.BA.E4.BE.8B1-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8B.89.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
     /// 	- 添加直播推流输入源，参见 [示例2](#.E7.A4.BA.E4.BE.8B2-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8E.A8.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
@@ -163,9 +163,9 @@ extension Cme {
 
     /// 操作云转推项目 (废弃)
     ///
-    /// <font color=red>本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 <b>[HandleMediaCastProject 接口](/document/product/1156/87841) </b>实现。</font>
+    /// _本接口废弃，可创建媒体转推项目替代，操作媒体转推项目可使用 **[HandleMediaCastProject 接口](/document/product/1156/87841) **实现。_
     ///
-    /// ### 操作类型<a id="Operation"></a>
+    /// ### 操作类型
     /// - `AddInput`（添加输入源），包括：
     /// 	- 添加直播拉流输入源，参见 [示例1](#.E7.A4.BA.E4.BE.8B1-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8B.89.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；
     /// 	- 添加直播推流输入源，参见 [示例2](#.E7.A4.BA.E4.BE.8B2-.E6.B7.BB.E5.8A.A0.E7.9B.B4.E6.92.AD.E6.8E.A8.E6.B5.81.E8.BE.93.E5.85.A5.E6.BA.90)；

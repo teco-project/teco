@@ -110,11 +110,9 @@ extension Cls {
 
         /// 告警模板的类型。可选值：
         ///
-        /// <li> Trigger - 告警触发
-        ///
-        /// <li> Recovery - 告警恢复
-        ///
-        /// <li> All - 告警触发和告警恢复
+        /// - Trigger - 告警触发
+        /// - Recovery - 告警恢复
+        /// - All - 告警触发和告警恢复
         public let type: String
 
         /// 告警通知模板接收者信息。
@@ -170,7 +168,7 @@ extension Cls {
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
-        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        /// 详细说明参见[检索条件语法规则](https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules)
         public let syntaxRule: UInt64?
 
         public init(topicId: String, query: String, number: Int64, startTimeOffset: Int64, endTimeOffset: Int64, logsetId: String, syntaxRule: UInt64? = nil) {
@@ -2046,9 +2044,8 @@ extension Cls {
     public struct MonitorTime: TCInputModel, TCOutputModel {
         /// 可选值：
         ///
-        /// <li> Period - 周期执行
-        ///
-        /// <li> Fixed - 定期执行
+        /// - Period - 周期执行
+        /// - Fixed - 定期执行
         public let type: String
 
         /// 执行的周期，或者定制执行的时间节点。单位为分钟，取值范围为1~1440。
@@ -2088,9 +2085,9 @@ extension Cls {
     public struct NoticeReceiver: TCInputModel, TCOutputModel {
         /// 接受者类型。可选值：
         ///
-        /// <li> Uin - 用户ID
+        /// - Uin - 用户ID
+        /// - Group - 用户组ID
         ///
-        /// <li> Group - 用户组ID
         /// 暂不支持其余接收者类型。
         public let receiverType: String
 
@@ -2099,13 +2096,10 @@ extension Cls {
 
         /// 通知接收渠道。
         ///
-        /// <li> Email - 邮件
-        ///
-        /// <li> Sms - 短信
-        ///
-        /// <li> WeChat - 微信
-        ///
-        /// <li> Phone - 电话
+        /// - Email - 邮件
+        /// - Sms - 短信
+        /// - WeChat - 微信
+        /// - Phone - 电话
         public let receiverChannels: [String]
 
         /// 允许接收信息的开始时间。
@@ -2727,24 +2721,25 @@ extension Cls {
         public let url: String
 
         /// 回调的类型。可选值：
-        /// <li> WeCom
-        /// <li> Http
+        /// - WeCom
+        /// - Http
         public let callbackType: String
 
         /// 回调方法。可选值：
-        /// <li> POST
-        /// <li> PUT
+        /// - POST
+        /// - PUT
+        ///
         /// 默认值为POST。CallbackType为Http时为必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?
 
         /// 请求头。
-        /// 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求头。
+        /// 注意：该参数已废弃，请在[创建告警策略](https://cloud.tencent.com/document/product/614/56466)接口CallBack参数中指定请求头。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [String]?
 
         /// 请求内容。
-        /// 注意：该参数已废弃，请在<a href="https://cloud.tencent.com/document/product/614/56466">创建告警策略</a>接口CallBack参数中指定请求内容。
+        /// 注意：该参数已废弃，请在[创建告警策略](https://cloud.tencent.com/document/product/614/56466)接口CallBack参数中指定请求内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let body: String?
 

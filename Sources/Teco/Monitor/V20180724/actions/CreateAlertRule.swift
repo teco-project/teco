@@ -27,15 +27,15 @@ extension Monitor {
         /// 规则名称
         public let ruleName: String
 
-        /// 规则表达式，可参考<a href="https://cloud.tencent.com/document/product/1416/56008">告警规则说明</a>
+        /// 规则表达式，可参考[告警规则说明](https://cloud.tencent.com/document/product/1416/56008)
         public let expr: String
 
         /// 告警通知模板 ID 列表
         public let receivers: [String]
 
         /// 规则状态码，取值如下：
-        /// <li>2=RuleEnabled</li>
-        /// <li>3=RuleDisabled</li>
+        /// - 2=RuleEnabled
+        /// - 3=RuleDisabled
         public let ruleState: Int64?
 
         /// 规则报警持续时间

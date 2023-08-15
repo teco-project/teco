@@ -32,7 +32,7 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 关键字(规则名称)</li>
+        /// - Keywords - String - 是否必填：否 - 关键字(规则名称)
         public let filters: [Filter]?
 
         public init(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

@@ -29,7 +29,7 @@ extension Cwp {
         public let limit: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
+        /// - Keywords - String - 是否必填：否 - 查询关键字
         public let filters: [Filter]?
 
         public init(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {

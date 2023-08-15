@@ -28,8 +28,8 @@ extension Cme {
         public let projectId: String
 
         /// 导入媒资类型，取值：
-        /// <li>VOD：云点播文件；</li>
-        /// <li>EXTERNAL：媒资绑定。</li>
+        /// - VOD：云点播文件；
+        /// - EXTERNAL：媒资绑定。
         ///
         /// 注意：如果不填默认为云点播文件，如果媒体存储在非腾讯云点播中，都需要使用媒资绑定。
         public let sourceType: String?
@@ -44,7 +44,7 @@ extension Cme {
         public let name: String?
 
         /// 媒体预处理配置 ID，取值：
-        /// <li>10：进行视频编辑预处理。</li>
+        /// - 10：进行视频编辑预处理。
         ///
         /// 注意：如果填0或者不填则不进行处理，如果原始视频不可在浏览器直接播放将无法在编辑页面编辑。
         public let preProcessDefinition: Int64?

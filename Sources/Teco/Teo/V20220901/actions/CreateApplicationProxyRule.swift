@@ -28,43 +28,45 @@ extension Teo {
         public let proxyId: String
 
         /// 协议，取值有：
-        /// <li>TCP：TCP协议；</li>
-        /// <li>UDP：UDP协议。</li>
+        /// - TCP：TCP协议；
+        /// - UDP：UDP协议。
         public let proto: String
 
         /// 端口，支持格式：
-        /// <li>80：80端口；</li>
-        /// <li>81-90：81至90端口。</li>
+        /// - 80：80端口；
+        /// - 81-90：81至90端口。
         public let port: [String]
 
         /// 源站类型，取值有：
-        /// <li>custom：手动添加；</li>
-        /// <li>origins：源站组。</li>
+        /// - custom：手动添加；
+        /// - origins：源站组。
         public let originType: String
 
         /// 源站信息：
-        /// <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
-        /// <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
+        /// - 当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；
+        /// - 当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。
         public let originValue: [String]
 
         /// 传递客户端IP，取值有：
-        /// <li>TOA：TOA（仅Proto=TCP时可选）；</li>
-        /// <li>PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；</li>
-        /// <li>PPV2：Proxy Protocol传递，协议版本V2；</li>
-        /// <li>OFF：不传递。</li>默认值：OFF。
+        /// - TOA：TOA（仅Proto=TCP时可选）；
+        /// - PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；
+        /// - PPV2：Proxy Protocol传递，协议版本V2；
+        /// - OFF：不传递。
+        /// 默认值：OFF。
         public let forwardClientIp: String?
 
         /// 是否开启会话保持，取值有：
-        /// <li>true：开启；</li>
-        /// <li>false：关闭。</li>默认值：false。
+        /// - true：开启；
+        /// - false：关闭。
+        /// 默认值：false。
         public let sessionPersist: Bool?
 
         /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
         public let sessionPersistTime: UInt64?
 
         /// 源站端口，支持格式：
-        /// <li>单端口：80；</li>
-        /// <li>端口段：81-90，81至90端口。</li>
+        /// - 单端口：80；
+        /// - 端口段：81-90，81至90端口。
         public let originPort: String?
 
         public init(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil) {

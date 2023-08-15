@@ -36,61 +36,59 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 查询的指标，取值有：
-        /// <li>l7Flow_outFlux: Edegone响应流量；</li>
-        /// <li>l7Flow_inFlux: Edgeone请求流量；</li>
-        /// <li>l7Flow_outBandwidth: Edegone响应带宽；</li>
-        /// <li>l7Flow_inBandwidth: Edegone请求带宽；</li>
-        /// <li>l7Flow_hit_outFlux: 缓存命中流量；</li>
-        /// <li>l7Flow_request: 访问请求数；</li>
-        /// <li>l7Flow_flux: 访问请求上行+下行流量；</li>
-        /// <li>l7Flow_bandwidth：访问请求上行+下行带宽。</li>
+        /// - l7Flow_outFlux: Edegone响应流量；
+        /// - l7Flow_inFlux: Edgeone请求流量；
+        /// - l7Flow_outBandwidth: Edegone响应带宽；
+        /// - l7Flow_inBandwidth: Edegone请求带宽；
+        /// - l7Flow_hit_outFlux: 缓存命中流量；
+        /// - l7Flow_request: 访问请求数；
+        /// - l7Flow_flux: 访问请求上行+下行流量；
+        /// - l7Flow_bandwidth：访问请求上行+下行带宽。
         public let metricNames: [String]
 
         /// 站点集合。
-        /// 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
+        /// 若不填写，默认选择全部站点，且最多只能查询近30天的数据；若填写，则可查询站点绑定套餐支持的[数据分析最大查询范围](https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90)。
         public let zoneIds: [String]?
 
         /// 查询的域名集合，不填默认查询所有子域名。
         public let domains: [String]?
 
         /// 查询的协议类型，取值有：
-        /// <li>http: http协议；</li>
-        /// <li>https: https协议；</li>
-        /// <li>http2: http2协议；</li>
-        /// <li>all:  所有协议。</li>不填默认为all，此参数暂未生效。
+        /// - http: http协议；
+        /// - https: https协议；
+        /// - http2: http2协议；
+        /// - all:  所有协议。
+        /// 不填默认为all，此参数暂未生效。
         public let `protocol`: String?
 
         /// 查询时间粒度，取值有：
-        /// <li>min：1分钟；</li>
-        /// <li>5min：5分钟；</li>
-        /// <li>hour：1小时；</li>
-        /// <li>day：1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        /// - min：1分钟；
+        /// - 5min：5分钟；
+        /// - hour：1小时；
+        /// - day：1天。
+        /// 不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
         /// 过滤条件，详细的过滤条件Key值如下：
-        /// <li>socket
+        /// - socket
+        ///   按照【**HTTP协议类型**】进行过滤。
+        ///   对应的Value可选项如下：
+        ///   HTTP：HTTP 协议；
+        ///   HTTPS：HTTPS协议；
+        ///   QUIC：QUIC协议。
         ///
-        /// 按照【<strong>HTTP协议类型</strong>】进行过滤。
+        /// - tagKey
+        ///   按照【**标签Key**】进行过滤。
         ///
-        /// 对应的Value可选项如下：
-        ///
-        /// HTTP：HTTP 协议；
-        ///
-        /// HTTPS：HTTPS协议；
-        ///
-        /// QUIC：QUIC协议。</li>
-        /// <li>tagKey
-        ///
-        /// 按照【<strong>标签Key</strong>】进行过滤。</li>
-        /// <li>tagValue
-        ///
-        /// 按照【<strong>标签Value</strong>】进行过滤。</li>
+        /// - tagValue
+        ///   按照【**标签Value**】进行过滤。
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据；</li>
-        /// <li>global：全球数据。</li>不填默认取值为global。
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据；
+        /// - global：全球数据。
+        /// 不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil) {

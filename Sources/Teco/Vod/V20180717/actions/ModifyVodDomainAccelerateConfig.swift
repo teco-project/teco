@@ -25,18 +25,19 @@ extension Vod {
         public let domain: String
 
         /// 区域，可选值：
-        /// <li>Chinese Mainland：中国境内（不包含港澳台）。</li>
-        /// <li>Outside Chinese Mainland: 中国境外。</li>
-        /// <li>Global: 全球范围。</li>
+        /// - Chinese Mainland：中国境内（不包含港澳台）。
+        /// - Outside Chinese Mainland: 中国境外。
+        /// - Global: 全球范围。
         public let area: String
 
         /// 开启或者关闭所选区域的域名加速，可选值：
-        /// <li>Enabled: 开启。</li>
-        /// <li>Disabled：关闭。</li>
+        /// - Enabled: 开启。
+        /// - Disabled：关闭。
+        ///
         /// 开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         public let status: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         public init(domain: String, area: String, status: String, subAppId: UInt64? = nil) {

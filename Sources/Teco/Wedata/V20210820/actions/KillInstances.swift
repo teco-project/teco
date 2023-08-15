@@ -54,7 +54,8 @@ extension Wedata {
 
     /// 实例批量终止操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量终止操作
     @inlinable
     public func killInstances(_ input: KillInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
@@ -63,7 +64,8 @@ extension Wedata {
 
     /// 实例批量终止操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量终止操作
     @inlinable
     public func killInstances(_ input: KillInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {
@@ -72,7 +74,8 @@ extension Wedata {
 
     /// 实例批量终止操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量终止操作
     @inlinable
     public func killInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
@@ -81,7 +84,8 @@ extension Wedata {
 
     /// 实例批量终止操作【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量终止操作
     @inlinable
     public func killInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {

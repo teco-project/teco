@@ -23,9 +23,9 @@ extension Yunjing {
     /// DescribeVuls请求参数结构体
     public struct DescribeVulsRequest: TCPaginatedRequest {
         /// 漏洞类型。
-        /// <li>WEB：Web应用漏洞</li>
-        /// <li>SYSTEM：系统组件漏洞</li>
-        /// <li>BASELINE：安全基线</li>
+        /// - WEB：Web应用漏洞
+        /// - SYSTEM：系统组件漏洞
+        /// - BASELINE：安全基线
         public let vulType: String
 
         /// 返回数量，默认为10，最大值为100。
@@ -35,7 +35,7 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | FIXED：已修复）
+        /// - Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | FIXED：已修复）
         ///
         /// Status过滤条件值只能取其一，不能是“或”逻辑。
         public let filters: [Filter]?

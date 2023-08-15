@@ -29,12 +29,12 @@ extension Vpc {
         public let routeIds: [String]?
 
         /// 过滤条件，参数不支持同时指定RouteIds和Filters。
-        /// <li>route-id - String -（过滤条件）路由策略ID。</li>
-        /// <li>cidr-block - String -（过滤条件）目的端。</li>
-        /// <li>instance-type - String -（过滤条件）下一跳类型。</li>
-        /// <li>instance-region - String -（过滤条件）下一跳所属地域。</li>
-        /// <li>instance-id - String -（过滤条件）下一跳实例ID。</li>
-        /// <li>route-table-id - String -（过滤条件）路由表ID列表，形如ccntr-1234edfr，可以根据路由表ID 过滤。</li>
+        /// - route-id - String -（过滤条件）路由策略ID。
+        /// - cidr-block - String -（过滤条件）目的端。
+        /// - instance-type - String -（过滤条件）下一跳类型。
+        /// - instance-region - String -（过滤条件）下一跳所属地域。
+        /// - instance-id - String -（过滤条件）下一跳实例ID。
+        /// - route-table-id - String -（过滤条件）路由表ID列表，形如ccntr-1234edfr，可以根据路由表ID 过滤。
         public let filters: [Filter]?
 
         /// 偏移量

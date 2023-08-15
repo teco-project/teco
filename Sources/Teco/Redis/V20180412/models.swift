@@ -611,10 +611,10 @@ extension Redis {
 
     /// 实例参数
     public struct InstanceParam: TCInputModel {
-        /// 设置参数的名称。例如timeout。当前支持自定义的参数，请参见<a href="https://cloud.tencent.com/document/product/239/49925">参数配置</a>。
+        /// 设置参数的名称。例如timeout。当前支持自定义的参数，请参见[参数配置](https://cloud.tencent.com/document/product/239/49925)。
         public let key: String
 
-        /// 设置参数名称对应的运行值。例如timeout对应运行值可设置为120， 单位为秒（s）。指当客户端连接闲置时间达到120 s时，将关闭连接。更多参数取值信息，请参见<a href="https://cloud.tencent.com/document/product/239/49925">参数配置</a>。
+        /// 设置参数名称对应的运行值。例如timeout对应运行值可设置为120， 单位为秒（s）。指当客户端连接闲置时间达到120 s时，将关闭连接。更多参数取值信息，请参见[参数配置](https://cloud.tencent.com/document/product/239/49925)。
         public let value: String
 
         public init(key: String, value: String) {
@@ -711,7 +711,25 @@ extension Redis {
         /// 项目 ID。
         public let projectId: Int64
 
-        /// 地域 ID。<ul><li>1：广州。</li><li>4：上海。</li><li>5：中国香港。</li><li>6：多伦多。</li> <li>7：上海金融。</li> <li>8：北京。</li> <li>9：新加坡。</li> <li>11：深圳金融。</li> <li>15：美西（硅谷）。</li><li>16：成都。</li><li>17：法兰克福。</li><li>18：首尔。</li><li>19：重庆。</li><li>21：孟买。</li><li>22：美东（弗吉尼亚）。</li><li>23：曼谷。</li><li>24：莫斯科。</li><li>25：东京。</li></ul>
+        /// 地域 ID。
+        /// - 1：广州。
+        /// - 4：上海。
+        /// - 5：中国香港。
+        /// - 6：多伦多。
+        /// - 7：上海金融。
+        /// - 8：北京。
+        /// - 9：新加坡。
+        /// - 11：深圳金融。
+        /// - 15：美西（硅谷）。
+        /// - 16：成都。
+        /// - 17：法兰克福。
+        /// - 18：首尔。
+        /// - 19：重庆。
+        /// - 21：孟买。
+        /// - 22：美东（弗吉尼亚）。
+        /// - 23：曼谷。
+        /// - 24：莫斯科。
+        /// - 25：东京。
         public let regionId: Int64
 
         /// 区域 ID。
@@ -723,7 +741,12 @@ extension Redis {
         /// vpc网络下子网ID，如：46315。
         public let subnetId: Int64
 
-        /// 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
+        /// 实例当前状态。
+        /// - 0：待初始化。
+        /// - 1：实例在流程中。
+        /// - 2：实例运行中。
+        /// - -2：实例已隔离。
+        /// - -3：实例待删除。
         public let status: Int64
 
         /// 实例 VIP。
@@ -754,7 +777,9 @@ extension Redis {
         /// - 16：Redis 6.2内存版（集群架构）。
         public let type: Int64
 
-        /// 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
+        /// 实例是否设置自动续费标识。
+        /// - 1：设置自动续费。
+        /// - 0：未设置自动续费。
         public let autoRenewFlag: Int64
 
         /// 包年包月计费实例到期的时间。
@@ -763,7 +788,9 @@ extension Redis {
         /// 引擎：社区版Redis、腾讯云CKV。
         public let engine: String
 
-        /// 产品类型。<ul><li>standalone：标准版。</li><li>cluster ：集群版。</li></ul>
+        /// 产品类型。
+        /// - standalone：标准版。
+        /// - cluster ：集群版。
         public let productType: String
 
         /// vpc网络id，例如vpc-fk33jsf43kgv。
@@ -772,7 +799,9 @@ extension Redis {
         /// vpc网络下子网id，例如：subnet-fd3j6l35mm0。
         public let uniqSubnetId: String
 
-        /// 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        /// 计费模式。
+        /// - 0：按量计费。
+        /// - 1：包年包月。
         public let billingMode: Int64
 
         /// 实例运行状态描述：如”实例运行中“。
@@ -816,7 +845,9 @@ extension Redis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
 
-        /// 是否为免密实例。<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
+        /// 是否为免密实例。
+        /// - true：免密实例。
+        /// - false：非免密实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noAuth: Bool?
 
@@ -852,7 +883,9 @@ extension Redis {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
-        /// 监控版本。<ul><li>1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见[云数据库 Redis 1分钟粒度下线公告](https://cloud.tencent.com/document/product/239/80653)。</li><li>5s：5秒粒度监控。</li></ul>
+        /// 监控版本。
+        /// - 1m：1分钟粒度监控。目前该监控粒度已下线，具体信息，请参见[云数据库 Redis 1分钟粒度下线公告](https://cloud.tencent.com/document/product/239/80653)。
+        /// - 5s：5秒粒度监控。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorVersion: String?
 
@@ -1057,7 +1090,16 @@ extension Redis {
         /// 实例名称。
         public let instanceName: String
 
-        /// 地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li> 5：香港。</li> <li> 6：多伦多。</li> <li> 7：上海金融。</li> <li> 8：北京。</li> <li> 9：新加坡。</li> <li> 11：深圳金融。</li> <li> 15：美西（硅谷）。</li> </ul>
+        /// 地域ID。
+        /// - 1：广州。
+        /// - 4：上海。
+        /// - 5：香港。
+        /// - 6：多伦多。
+        /// - 7：上海金融。
+        /// - 8：北京。
+        /// - 9：新加坡。
+        /// - 11：深圳金融。
+        /// - 15：美西（硅谷）。
         public let regionId: UInt64
 
         /// 区域 ID。
@@ -1079,7 +1121,9 @@ extension Redis {
         /// 引擎：社区版Redis、腾讯云CKV。
         public let engine: String
 
-        /// 实例读写权限。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
+        /// 实例读写权限。
+        /// - rw：可读写。
+        /// - r：只读。
         public let role: String
 
         /// 实例 VIP 地址。
@@ -1095,7 +1139,12 @@ extension Redis {
         /// 实例端口。
         public let vPort: Int64
 
-        /// 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
+        /// 实例状态。
+        /// - 0：待初始化。
+        /// - 1：流程中。
+        /// - 2：运行中。
+        /// - -2：已隔离。
+        /// - -3：待删除。
         public let status: Int64
 
         /// 仓库ID。
@@ -1528,10 +1577,14 @@ extension Redis {
 
     /// 描述 Redis 实例的主节点或者副本节点信息。
     public struct RedisNodeInfo: TCInputModel, TCOutputModel {
-        /// 节点类型。<ul><li>0：为主节点。</li><li>1：为副本节点。</li></ul>
+        /// 节点类型。
+        /// - 0：为主节点。
+        /// - 1：为副本节点。
         public let nodeType: Int64
 
-        /// 主节点或者副本节点的 ID。<ul><li>该参数用于创建 Redis 实例接口[CreateInstances](https://cloud.tencent.com/document/product/239/20026) 并不需要设置，而用于变更实例配置的接口 [UpgradeInstance](https://cloud.tencent.com/document/product/239/20013) 删除副本时才需要设置。</li><li>该参数可使用接口 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 获取Integer类型的节点 ID。</li></ul>
+        /// 主节点或者副本节点的 ID。
+        /// - 该参数用于创建 Redis 实例接口[CreateInstances](https://cloud.tencent.com/document/product/239/20026) 并不需要设置，而用于变更实例配置的接口 [UpgradeInstance](https://cloud.tencent.com/document/product/239/20013) 删除副本时才需要设置。
+        /// - 该参数可使用接口 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 获取Integer类型的节点 ID。
         public let nodeId: Int64?
 
         /// 主节点或者副本节点的可用区 ID。

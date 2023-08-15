@@ -21,12 +21,12 @@ import TecoCore
 extension Mps {
     /// CreateWordSamples请求参数结构体
     public struct CreateWordSamplesRequest: TCRequestModel {
-        /// <b>关键词应用场景，可选值：</b>
+        /// **关键词应用场景，可选值：**
         /// 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         /// 2. Recognition.Asr：通过音频识别技术，进行内容识别；
         /// 3. Review.Ocr：通过光学字符识别技术，进行不适宜内容识别；
         /// 4. Review.Asr：通过音频识别技术，进行不适宜内容识别；
-        /// <b>可合并简写为：</b>
+        /// **可合并简写为：**
         /// 5. Recognition：通过光学字符识别技术、音频识别技术，进行内容识别，等价于 1+2；
         /// 6. Review：通过光学字符识别技术、音频识别技术，进行不适宜内容识别，等价于 3+4；
         /// 7. All：通过光学字符识别技术、音频识别技术，进行内容识别、不适宜内容识别，等价于 1+2+3+4。

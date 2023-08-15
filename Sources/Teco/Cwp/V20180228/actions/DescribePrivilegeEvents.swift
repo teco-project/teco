@@ -29,7 +29,7 @@ extension Cwp {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Keywords - String - 是否必填：否 - 关键词(主机IP)</li>
+        /// - Keywords - String - 是否必填：否 - 关键词(主机IP)
         public let filters: [Filter]?
 
         /// 排序方式：根据请求次数排序：asc-升序/desc-降序

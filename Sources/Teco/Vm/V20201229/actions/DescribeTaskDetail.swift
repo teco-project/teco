@@ -149,7 +149,7 @@ extension Vm {
 
     /// 查看任务详情
     ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。
     ///
     /// 默认接口请求频率限制：**200次/秒**。
     @inlinable
@@ -159,7 +159,7 @@ extension Vm {
 
     /// 查看任务详情
     ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。
     ///
     /// 默认接口请求频率限制：**200次/秒**。
     @inlinable
@@ -169,7 +169,7 @@ extension Vm {
 
     /// 查看任务详情
     ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。
     ///
     /// 默认接口请求频率限制：**200次/秒**。
     @inlinable
@@ -179,7 +179,7 @@ extension Vm {
 
     /// 查看任务详情
     ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。
     ///
     /// 默认接口请求频率限制：**200次/秒**。
     @inlinable

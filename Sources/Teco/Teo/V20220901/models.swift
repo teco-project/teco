@@ -22,8 +22,8 @@ extension Teo {
     /// 中国大陆加速优化配置。
     public struct AccelerateMainland: TCInputModel, TCOutputModel {
         /// 是否开启中国大陆加速优化配置，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -38,8 +38,8 @@ extension Teo {
     /// 加速类型
     public struct AccelerateType: TCInputModel, TCOutputModel {
         /// 加速开关。取值范围：
-        /// <li> on：打开;</li>
-        /// <li>off：关闭。</li>
+        /// - on：打开;
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -76,17 +76,20 @@ extension Teo {
         public let zoneId: String?
 
         /// 加速域名状态，取值有：
-        /// <li>online：已生效；</li>
-        /// <li>process：部署中；</li>
-        /// <li>offline：已停用；</li>
-        /// <li>forbidden：已封禁；</li>
-        /// <li>init：未生效，待激活站点；</li>
+        /// - online：已生效；
+        /// - process：部署中；
+        /// - offline：已停用；
+        /// - forbidden：已封禁；
+        /// - init：未生效，待激活站点；
         public let domainStatus: String?
 
         /// CNAME 地址。
         public let cname: String?
 
-        /// 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
+        /// 加速域名归属权验证状态，取值有：
+        /// - pending：待验证；
+        /// - finished：已完成验证。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let identificationStatus: String?
 
@@ -105,46 +108,46 @@ extension Teo {
     /// 精准防护条件
     public struct AclCondition: TCInputModel, TCOutputModel {
         /// 匹配字段，取值有：
-        /// <li>host：请求域名；</li>
-        /// <li>sip：客户端IP；</li>
-        /// <li>ua：User-Agent；</li>
-        /// <li>cookie：会话 Cookie；</li>
-        /// <li>cgi：CGI 脚本；</li>
-        /// <li>xff：XFF 扩展头部；</li>
-        /// <li>url：请求 URL；</li>
-        /// <li>accept：请求内容类型；</li>
-        /// <li>method：请求方式；</li>
-        /// <li>header：请求头部；</li>
-        /// <li>app_proto：应用层协议；</li>
-        /// <li>sip_proto：网络层协议；</li>
-        /// <li>uabot：UA 特征规则，仅bot自定义规则可用；</li>
-        /// <li>idcid：IDC 规则，仅bot自定义规则可用；</li>
-        /// <li>sipbot：搜索引擎规则，仅bot自定义规则可用；</li>
-        /// <li>portrait：画像分析，仅bot自定义规则可用；</li>
-        /// <li>header_seq：请求头顺序，仅bot自定义规则可用；</li>
-        /// <li>hdr：请求正文，仅Web防护自定义规则可用。</li>
+        /// - host：请求域名；
+        /// - sip：客户端IP；
+        /// - ua：User-Agent；
+        /// - cookie：会话 Cookie；
+        /// - cgi：CGI 脚本；
+        /// - xff：XFF 扩展头部；
+        /// - url：请求 URL；
+        /// - accept：请求内容类型；
+        /// - method：请求方式；
+        /// - header：请求头部；
+        /// - app_proto：应用层协议；
+        /// - sip_proto：网络层协议；
+        /// - uabot：UA 特征规则，仅bot自定义规则可用；
+        /// - idcid：IDC 规则，仅bot自定义规则可用；
+        /// - sipbot：搜索引擎规则，仅bot自定义规则可用；
+        /// - portrait：画像分析，仅bot自定义规则可用；
+        /// - header_seq：请求头顺序，仅bot自定义规则可用；
+        /// - hdr：请求正文，仅Web防护自定义规则可用。
         public let matchFrom: String
 
         /// 匹配字符串。当 MatchFrom 为 header 时，可以填入 header 的 key 作为参数。
         public let matchParam: String
 
         /// 匹配关系，取值有：
-        /// <li>equal：字符串等于；</li>
-        /// <li>not_equal：数值不等于；</li>
-        /// <li>include：字符包含；</li>
-        /// <li>not_include：字符不包含；</li>
-        /// <li>match：ip匹配；</li>
-        /// <li>not_match：ip不匹配；</li>
-        /// <li>include_area：地域包含；</li>
-        /// <li>is_empty：存在字段但值为空；</li>
-        /// <li>not_exists：不存在关键字段；</li>
-        /// <li>regexp：正则匹配；</li>
-        /// <li>len_gt：数值大于；</li>
-        /// <li>len_lt：数值小于；</li>
-        /// <li>len_eq：数值等于；</li>
-        /// <li>match_prefix：前缀匹配；</li>
-        /// <li>match_suffix：后缀匹配；</li>
-        /// <li>wildcard：通配符。</li>
+        /// - equal：字符串等于；
+        /// - not_equal：数值不等于；
+        /// - include：字符包含；
+        /// - not_include：字符不包含；
+        /// - match：ip匹配；
+        /// - not_match：ip不匹配；
+        /// - include_area：地域包含；
+        /// - is_empty：存在字段但值为空；
+        /// - not_exists：不存在关键字段；
+        /// - regexp：正则匹配；
+        /// - len_gt：数值大于；
+        /// - len_lt：数值小于；
+        /// - len_eq：数值等于；
+        /// - match_prefix：前缀匹配；
+        /// - match_suffix：后缀匹配；
+        /// - wildcard：通配符。
         public let `operator`: String
 
         /// 匹配内容。
@@ -168,8 +171,8 @@ extension Teo {
     /// ACL配置
     public struct AclConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 用户自定义规则。
@@ -198,18 +201,18 @@ extension Teo {
         public let ruleName: String
 
         /// 处罚动作，取值有：
-        /// <li>trans：放行；</li>
-        /// <li>drop：拦截；</li>
-        /// <li>monitor：观察；</li>
-        /// <li>ban：IP封禁；</li>
-        /// <li>redirect：重定向；</li>
-        /// <li>page：指定页面；</li>
-        /// <li>alg：Javascript挑战。</li>
+        /// - trans：放行；
+        /// - drop：拦截；
+        /// - monitor：观察；
+        /// - ban：IP封禁；
+        /// - redirect：重定向；
+        /// - page：指定页面；
+        /// - alg：Javascript挑战。
         public let action: String
 
         /// 规则状态，取值有：
-        /// <li>on：生效；</li>
-        /// <li>off：失效。</li>
+        /// - on：生效；
+        /// - off：失效。
         public let ruleStatus: String
 
         /// 自定义规则。
@@ -231,9 +234,10 @@ extension Teo {
         public let punishTime: Int64?
 
         /// ip封禁的惩罚时间单位，取值有：
-        /// <li>second：秒；</li>
-        /// <li>minutes：分；</li>
-        /// <li>hour：小时。</li>默认为second。
+        /// - second：秒；
+        /// - minutes：分；
+        /// - hour：小时。
+        /// 默认为second。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let punishTimeUnit: String?
 
@@ -289,43 +293,46 @@ extension Teo {
     /// 规则引擎功能项操作，对于一种功能只对应下面三种类型的其中一种，RuleAction 数组中的每一项只能是其中一个类型，更多功能项的填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。
     public struct Action: TCInputModel, TCOutputModel {
         /// 常规功能操作，选择该类型的功能项有：
-        /// <li> 访问URL 重写（AccessUrlRedirect）；</li>
-        /// <li> 回源 URL 重写 （UpstreamUrlRedirect）；</li>
-        /// <li> QUIC（QUIC）；</li>
-        /// <li> WebSocket （WebSocket）；</li>
-        /// <li> 视频拖拽（VideoSeek）；</li>
-        /// <li> Token 鉴权（Authentication）；</li>
-        /// <li> 自定义CacheKey（CacheKey）；</li>
-        /// <li> 节点缓存 TTL （Cache）；</li>
-        /// <li> 浏览器缓存 TTL（MaxAge）；</li>
-        /// <li> 离线缓存（OfflineCache）；</li>
-        /// <li> 智能加速（SmartRouting）；</li>
-        /// <li> 分片回源（RangeOriginPull）；</li>
-        /// <li> HTTP/2 回源（UpstreamHttp2）；</li>
-        /// <li> Host Header 重写（HostHeader）；</li>
-        /// <li> 强制 HTTPS（ForceRedirect）；</li>
-        /// <li> 回源 HTTPS（OriginPullProtocol）；</li>
-        /// <li> 缓存预刷新（CachePrefresh）；</li>
-        /// <li> 智能压缩（Compression）；</li>
-        /// <li> Hsts；</li>
-        /// <li> ClientIpHeader；</li>
-        /// <li> SslTlsSecureConf；</li>
-        /// <li> OcspStapling；</li>
-        /// <li> HTTP/2 访问（Http2）；</li>
-        /// <li> 回源跟随重定向(UpstreamFollowRedirect)；</li>
-        /// <li> 修改源站(Origin)。</li>
+        /// - 访问URL 重写（AccessUrlRedirect）；
+        /// - 回源 URL 重写 （UpstreamUrlRedirect）；
+        /// - QUIC（QUIC）；
+        /// - WebSocket （WebSocket）；
+        /// - 视频拖拽（VideoSeek）；
+        /// - Token 鉴权（Authentication）；
+        /// - 自定义CacheKey（CacheKey）；
+        /// - 节点缓存 TTL （Cache）；
+        /// - 浏览器缓存 TTL（MaxAge）；
+        /// - 离线缓存（OfflineCache）；
+        /// - 智能加速（SmartRouting）；
+        /// - 分片回源（RangeOriginPull）；
+        /// - HTTP/2 回源（UpstreamHttp2）；
+        /// - Host Header 重写（HostHeader）；
+        /// - 强制 HTTPS（ForceRedirect）；
+        /// - 回源 HTTPS（OriginPullProtocol）；
+        /// - 缓存预刷新（CachePrefresh）；
+        /// - 智能压缩（Compression）；
+        /// - Hsts；
+        /// - ClientIpHeader；
+        /// - SslTlsSecureConf；
+        /// - OcspStapling；
+        /// - HTTP/2 访问（Http2）；
+        /// - 回源跟随重定向(UpstreamFollowRedirect)；
+        /// - 修改源站(Origin)。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let normalAction: NormalAction?
 
         /// 带有请求头/响应头的功能操作，选择该类型的功能项有：
-        /// <li> 修改 HTTP 请求头（RequestHeader）；</li>
-        /// <li> 修改HTTP响应头（ResponseHeader）。</li>
+        /// - 修改 HTTP 请求头（RequestHeader）；
+        /// - 修改HTTP响应头（ResponseHeader）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteAction: RewriteAction?
 
         /// 带有状态码的功能操作，选择该类型的功能项有：
-        /// <li> 自定义错误页面（ErrorPage）；</li>
-        /// <li> 状态码缓存 TTL（StatusCodeCache）。</li>
+        /// - 自定义错误页面（ErrorPage）；
+        /// - 状态码缓存 TTL（StatusCodeCache）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeAction: CodeAction?
 
@@ -371,9 +378,9 @@ extension Teo {
     /// AI规则引擎防护
     public struct AiRule: TCInputModel, TCOutputModel {
         /// AI规则引擎状态，取值有：
-        /// <li> smart_status_close：关闭；</li>
-        /// <li> smart_status_open：拦截处置；</li>
-        /// <li> smart_status_observe：观察处置。</li>
+        /// - smart_status_close：关闭；
+        /// - smart_status_open：拦截处置；
+        /// - smart_status_observe：观察处置。
         public let mode: String
 
         public init(mode: String) {
@@ -391,9 +398,9 @@ extension Teo {
         public let name: String?
 
         /// 工作量证明 (proof_Of-Work)校验强度，默认low，取值有：
-        /// <li>low：低；</li>
-        /// <li>middle：中；</li>
-        /// <li>high：高。</li>
+        /// - low：低；
+        /// - middle：中；
+        /// - high：高。
         public let workLevel: String?
 
         /// 执行方式，js延迟执行的时间。单位为ms，默认500，取值：0～1000。
@@ -430,23 +437,23 @@ extension Teo {
     /// Bot主动特征识别校验结果。
     public struct AlgDetectResult: TCInputModel, TCOutputModel {
         /// 校验结果，取值有：
-        /// <li>invalid：不合法Cookie；</li>
-        /// <li>cookie_empty：末携带Cookie或Cookie己过期；</li>
-        /// <li>js_empty：客户端末启用JS（末完成检测）；</li>
-        /// <li>low：会话速率和周期特征校验低风险；</li>
-        /// <li>middle：会话速率和周期特征校验中风险；</li>
-        /// <li>high：会话速率和周期特征校验高风险；</li>
-        /// <li>timeout：检测超时时长；</li>
-        /// <li>not_browser：不合法浏览器；</li>
-        /// <li>is_bot：Bot客户端。</li>
+        /// - invalid：不合法Cookie；
+        /// - cookie_empty：末携带Cookie或Cookie己过期；
+        /// - js_empty：客户端末启用JS（末完成检测）；
+        /// - low：会话速率和周期特征校验低风险；
+        /// - middle：会话速率和周期特征校验中风险；
+        /// - high：会话速率和周期特征校验高风险；
+        /// - timeout：检测超时时长；
+        /// - not_browser：不合法浏览器；
+        /// - is_bot：Bot客户端。
         public let result: String?
 
         /// 处罚动作，取值有：
-        /// <li>drop：拦截；</li>
-        /// <li>monitor：观察；</li>
-        /// <li>silence：静默；</li>
-        /// <li>shortdelay：（短时间）等待后响应；</li>
-        /// <li>longdelay：（长时间）等待后响应。</li>
+        /// - drop：拦截；
+        /// - monitor：观察；
+        /// - silence：静默；
+        /// - shortdelay：（短时间）等待后响应；
+        /// - longdelay：（长时间）等待后响应。
         public let action: String?
 
         public init(result: String? = nil, action: String? = nil) {
@@ -511,13 +518,13 @@ extension Teo {
         public let name: String?
 
         /// 校验方式，默认update_detect，取值有：
-        /// <li>detect：仅校验；</li>
-        /// <li>update_detect：更新Cookie并校验。</li>
+        /// - detect：仅校验；
+        /// - update_detect：更新Cookie并校验。
         public let detectMode: String?
 
         /// 会话速率和周期特征校验开关，默认off，取值有：
-        /// <li>off：关闭；</li>
-        /// <li>on：打开。</li>
+        /// - off：关闭；
+        /// - on：打开。
         public let sessionAnalyzeSwitch: String?
 
         /// 校验结果为未携带Cookie或Cookie已过期的统计周期。单位为秒，默认10，取值：5～3600。
@@ -565,16 +572,16 @@ extension Teo {
         public let targetName: String
 
         /// 别称域名状态，取值有：
-        /// <li> active：已生效； </li>
-        /// <li> pending：部署中；</li>
-        /// <li> conflict：被找回。 </li>
-        /// <li> stop：已停用；</li>
+        /// - active：已生效；
+        /// - pending：部署中；
+        /// - conflict：被找回。
+        /// - stop：已停用；
         public let status: String
 
         /// 封禁模式，取值有：
-        /// <li> 0：未封禁； </li>
-        /// <li> 11：合规封禁；</li>
-        /// <li> 14：未备案封禁。</li>
+        /// - 0：未封禁；
+        /// - 11：合规封禁；
+        /// - 14：未备案封禁。
         public let forbidMode: Int64
 
         /// 别称域名创建时间。
@@ -616,47 +623,48 @@ extension Teo {
         public let proxyName: String
 
         /// 四层代理模式，取值有：
-        /// <li>hostname：表示子域名模式；</li>
-        /// <li>instance：表示实例模式。</li>
+        /// - hostname：表示子域名模式；
+        /// - instance：表示实例模式。
         public let proxyType: String
 
         /// 调度模式，取值有：
-        /// <li>ip：表示Anycast IP调度；</li>
-        /// <li>domain：表示CNAME调度。</li>
+        /// - ip：表示Anycast IP调度；
+        /// - domain：表示CNAME调度。
         public let platType: String
 
         /// 加速区域，取值有：
-        /// <li>mainland：中国大陆境内;</li>
-        /// <li>overseas：全球（不含中国大陆）。</li>
+        /// - mainland：中国大陆境内;
+        /// - overseas：全球（不含中国大陆）。
+        ///
         /// 默认值：overseas
         public let area: String
 
         /// 是否开启安全，取值有：
-        /// <li>0：关闭安全；</li>
-        /// <li>1：开启安全。</li>
+        /// - 0：关闭安全；
+        /// - 1：开启安全。
         public let securityType: Int64
 
         /// 是否开启加速，取值有：
-        /// <li>0：关闭加速；</li>
-        /// <li>1：开启加速。</li>
+        /// - 0：关闭加速；
+        /// - 1：开启加速。
         public let accelerateType: Int64
 
         /// 会话保持时间。
         public let sessionPersistTime: UInt64
 
         /// 状态，取值有：
-        /// <li>online：启用；</li>
-        /// <li>offline：停用；</li>
-        /// <li>progress：部署中；</li>
-        /// <li>stopping：停用中；</li>
-        /// <li>fail：部署失败/停用失败。</li>
+        /// - online：启用；
+        /// - offline：停用；
+        /// - progress：部署中；
+        /// - stopping：停用中；
+        /// - fail：部署失败/停用失败。
         public let status: String
 
         /// 封禁状态，取值有：
-        /// <li>banned：已封禁;</li>
-        /// <li>banning：封禁中；</li>
-        /// <li>recover：已解封；</li>
-        /// <li>recovering：解封禁中。</li>
+        /// - banned：已封禁;
+        /// - banning：封禁中；
+        /// - recover：已解封；
+        /// - recovering：解封禁中。
         public let banStatus: String
 
         /// 调度信息。
@@ -706,47 +714,50 @@ extension Teo {
     /// 应用代理规则
     public struct ApplicationProxyRule: TCInputModel, TCOutputModel {
         /// 协议，取值有：
-        /// <li>TCP：TCP协议；</li>
-        /// <li>UDP：UDP协议。</li>
+        /// - TCP：TCP协议；
+        /// - UDP：UDP协议。
         public let proto: String
 
         /// 端口，支持格式：
-        /// <li>单个端口，如：80。</li>
-        /// <li>端口段，如：81-82。表示81，82两个端口。</li>
+        /// - 单个端口，如：80。
+        /// - 端口段，如：81-82。表示81，82两个端口。
+        ///
         /// 注意：一条规则最多可填写20个端口。
         public let port: [String]
 
         /// 源站类型，取值有：
-        /// <li>custom：手动添加；</li>
-        /// <li>origins：源站组。</li>
+        /// - custom：手动添加；
+        /// - origins：源站组。
         public let originType: String
 
         /// 源站信息：
-        /// <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
-        /// <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
+        /// - 当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；
+        /// - 当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。
         public let originValue: [String]
 
         /// 规则ID。
         public let ruleId: String?
 
         /// 状态，取值有：
-        /// <li>online：启用；</li>
-        /// <li>offline：停用；</li>
-        /// <li>progress：部署中；</li>
-        /// <li>stopping：停用中；</li>
-        /// <li>fail：部署失败/停用失败。</li>
+        /// - online：启用；
+        /// - offline：停用；
+        /// - progress：部署中；
+        /// - stopping：停用中；
+        /// - fail：部署失败/停用失败。
         public let status: String?
 
         /// 传递客户端IP，取值有：
-        /// <li>TOA：TOA（仅Proto=TCP时可选）；</li>
-        /// <li>PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；</li>
-        /// <li>PPV2：Proxy Protocol传递，协议版本V2；</li>
-        /// <li>OFF：不传递。</li>默认值：OFF。
+        /// - TOA：TOA（仅Proto=TCP时可选）；
+        /// - PPV1：Proxy Protocol传递，协议版本V1（仅Proto=TCP时可选）；
+        /// - PPV2：Proxy Protocol传递，协议版本V2；
+        /// - OFF：不传递。
+        /// 默认值：OFF。
         public let forwardClientIp: String?
 
         /// 是否开启会话保持，取值有：
-        /// <li>true：开启；</li>
-        /// <li>false：关闭。</li>默认值：false。
+        /// - true：开启；
+        /// - false：关闭。
+        /// 默认值：false。
         public let sessionPersist: Bool?
 
         /// 会话保持的时间，只有当SessionPersist为true时，该值才会生效。
@@ -754,8 +765,8 @@ extension Teo {
         public let sessionPersistTime: UInt64?
 
         /// 源站端口，支持格式：
-        /// <li>单端口，如：80。</li>
-        /// <li>端口段：81-82，表示81，82两个端口。</li>
+        /// - 单端口，如：80。
+        /// - 端口段：81-82，表示81，82两个端口。
         public let originPort: String?
 
         public init(proto: String, port: [String], originType: String, originValue: [String], ruleId: String? = nil, status: String? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil, sessionPersistTime: UInt64? = nil, originPort: String? = nil) {
@@ -806,8 +817,8 @@ extension Teo {
     /// 安全Bot配置
     public struct BotConfig: TCInputModel, TCOutputModel {
         /// bot开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 通用详细基础规则。如果为null，默认使用历史配置。
@@ -854,13 +865,13 @@ extension Teo {
     /// Bot扩展处置方式，多处置动作组合。
     public struct BotExtendAction: TCInputModel, TCOutputModel {
         /// 处置动作，取值有：
-        /// <li>monitor：观察；</li>
-        /// <li>alg：JavaScript挑战；</li>
-        /// <li>captcha：托管挑战；</li>
-        /// <li>random：随机，按照ExtendActions分配处置动作和比例；</li>
-        /// <li>silence：静默；</li>
-        /// <li>shortdelay：短时响应；</li>
-        /// <li>longdelay：长时响应。</li>
+        /// - monitor：观察；
+        /// - alg：JavaScript挑战；
+        /// - captcha：托管挑战；
+        /// - random：随机，按照ExtendActions分配处置动作和比例；
+        /// - silence：静默；
+        /// - shortdelay：短时响应；
+        /// - longdelay：长时响应。
         public let action: String
 
         /// 处置方式的触发概率，范围0-100。
@@ -881,10 +892,10 @@ extension Teo {
     /// Bot 规则，下列规则ID可参考接口 DescribeBotManagedRules返回的ID信息
     public struct BotManagedRule: TCInputModel, TCOutputModel {
         /// 触发规则后的处置方式，取值有：
-        /// <li>drop：拦截；</li>
-        /// <li>trans：放行；</li>
-        /// <li>alg：Javascript挑战；</li>
-        /// <li>monitor：观察。</li>
+        /// - drop：拦截；
+        /// - trans：放行；
+        /// - alg：Javascript挑战；
+        /// - monitor：观察。
         public let action: String
 
         /// 本规则的ID。仅出参使用。
@@ -934,8 +945,8 @@ extension Teo {
     /// bot 用户画像规则
     public struct BotPortraitRule: TCInputModel, TCOutputModel {
         /// 本功能的开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 本规则的ID。仅出参使用。
@@ -982,20 +993,21 @@ extension Teo {
         public let ruleName: String
 
         /// 处置动作，取值有：
-        /// <li>drop：拦截；</li>
-        /// <li>monitor：观察；</li>
-        /// <li>trans：放行；</li>
-        /// <li>alg：JavaScript挑战；</li>
-        /// <li>captcha：托管挑战；</li>
-        /// <li>random：随机处置；</li>
-        /// <li>silence：静默；</li>
-        /// <li>shortdelay：短时响应；</li>
-        /// <li>longdelay：长时响应。</li>
+        /// - drop：拦截；
+        /// - monitor：观察；
+        /// - trans：放行；
+        /// - alg：JavaScript挑战；
+        /// - captcha：托管挑战；
+        /// - random：随机处置；
+        /// - silence：静默；
+        /// - shortdelay：短时响应；
+        /// - longdelay：长时响应。
         public let action: String
 
         /// 规则状态，取值有：
-        /// <li>on：生效；</li>
-        /// <li>off：不生效。</li>默认on生效。
+        /// - on：生效；
+        /// - off：不生效。
+        /// 默认on生效。
         public let ruleStatus: String
 
         /// 规则详情。
@@ -1012,7 +1024,8 @@ extension Teo {
         public let extendActions: [BotExtendAction]?
 
         /// 过滤词，取值有：
-        /// <li>sip：客户端ip。</li>
+        /// - sip：客户端ip。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqFields: [String]?
 
@@ -1021,8 +1034,9 @@ extension Teo {
         public let updateTime: String?
 
         /// 统计范围，字段为null时，代表source_to_eo。取值有：
-        /// <li>source_to_eo：（响应）源站到EdgeOne。</li>
-        /// <li>client_to_eo：（请求）客户端到EdgeOne；</li>
+        /// - source_to_eo：（响应）源站到EdgeOne。
+        /// - client_to_eo：（请求）客户端到EdgeOne；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqScope: [String]?
 
@@ -1056,8 +1070,8 @@ extension Teo {
     /// cc配置项。
     public struct CC: TCInputModel, TCOutputModel {
         /// Waf开关，取值为：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 策略ID。
@@ -1077,8 +1091,8 @@ extension Teo {
     /// 缓存时间设置
     public struct Cache: TCInputModel, TCOutputModel {
         /// 缓存配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 缓存过期时间设置。
@@ -1087,8 +1101,9 @@ extension Teo {
         public let cacheTime: Int64?
 
         /// 是否开启强制缓存，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         @available(*, deprecated)
         public let ignoreCacheControl: String? = nil
@@ -1141,14 +1156,16 @@ extension Teo {
     /// 缓存键配置。
     public struct CacheKey: TCInputModel, TCOutputModel {
         /// 是否开启全路径缓存，取值有：
-        /// <li>on：开启全路径缓存（即关闭参数忽略）；</li>
-        /// <li>off：关闭全路径缓存（即开启参数忽略）。</li>
+        /// - on：开启全路径缓存（即关闭参数忽略）；
+        /// - off：关闭全路径缓存（即开启参数忽略）。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullUrlCache: String?
 
         /// 是否忽略大小写缓存，取值有：
-        /// <li>on：忽略；</li>
-        /// <li>off：不忽略。</li>
+        /// - on：忽略；
+        /// - off：不忽略。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCase: String?
 
@@ -1172,8 +1189,8 @@ extension Teo {
     /// 缓存预刷新
     public struct CachePrefresh: TCInputModel, TCOutputModel {
         /// 缓存预刷新配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 缓存预刷新百分比，取值范围：1-99。
@@ -1194,8 +1211,8 @@ extension Teo {
     /// 回源时携带客户端IP所属地域信息，值的格式为ISO-3166-1两位字母代码。
     public struct ClientIpCountry: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 存放客户端 IP 所属地域信息的请求头名称，当 Switch=on 时有效。
@@ -1216,8 +1233,8 @@ extension Teo {
     /// 存储客户端请求IP的头部信息配置
     public struct ClientIpHeader: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 回源时，存放客户端 IP 的请求头名称。
@@ -1246,8 +1263,9 @@ extension Teo {
         public let cname: String?
 
         /// Cname状态信息，取值有：
-        /// <li>active：生效；</li>
-        /// <li>moved：不生效。</li>
+        /// - active：生效；
+        /// - moved：不生效。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -1280,13 +1298,14 @@ extension Teo {
     /// 智能压缩配置。
     public struct Compression: TCInputModel, TCOutputModel {
         /// 智能压缩配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 支持的压缩算法列表，取值有：
-        /// <li>brotli：brotli算法；</li>
-        /// <li>gzip：gzip算法。</li>
+        /// - brotli：brotli算法；
+        /// - gzip：gzip算法。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithms: [String]?
 
@@ -1304,8 +1323,8 @@ extension Teo {
     /// DDoS配置
     public struct DDoS: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -1349,8 +1368,9 @@ extension Teo {
         public let zoneId: String?
 
         /// 攻击事件所属地区，取值有：
-        /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据。</li>
+        /// - overseas：全球（除中国大陆地区）数据；
+        /// - mainland：中国大陆地区数据。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let area: String?
 
@@ -1402,9 +1422,10 @@ extension Teo {
         public let alias: String?
 
         /// 证书类型，取值有：
-        /// <li>default: 默认证书;</li>
-        /// <li>upload:用户上传;</li>
-        /// <li>managed:腾讯云托管。</li>
+        /// - default: 默认证书;
+        /// - upload:用户上传;
+        /// - managed:腾讯云托管。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
@@ -1431,9 +1452,10 @@ extension Teo {
         public let subjectAltName: [String]?
 
         /// 部署状态，取值有：
-        /// <li>processing: 部署中；</li>
-        /// <li>deployed: 已部署；</li>
-        /// <li>failed: 部署失败。</li>
+        /// - processing: 部署中；
+        /// - deployed: 已部署；
+        /// - failed: 部署失败。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -1478,9 +1500,9 @@ extension Teo {
         public let zoneId: String
 
         /// 加速服务状态，取值为：
-        /// <li> process：部署中；</li>
-        /// <li> online：已启动；</li>
-        /// <li> offline：已关闭。</li>
+        /// - process：部署中；
+        /// - online：已启动；
+        /// - offline：已关闭。
         public let status: String
 
         /// 域名。
@@ -1505,9 +1527,9 @@ extension Teo {
         public let mode: Int64
 
         /// 域名加速地域，取值有：
-        /// <li> global：全球；</li>
-        /// <li> mainland：中国大陆；</li>
-        /// <li> overseas：境外区域。</li>
+        /// - global：全球；
+        /// - mainland：中国大陆；
+        /// - overseas：境外区域。
         public let area: String
 
         /// 加速类型配置项。
@@ -1614,8 +1636,8 @@ extension Teo {
     /// 拦截页面的总体配置，用于配置各个模块的拦截后行为。
     public struct DropPageConfig: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// Waf(托管规则)模块的拦截页面配置。如果为null，默认使用历史配置。
@@ -1652,8 +1674,8 @@ extension Teo {
         public let name: String
 
         /// 页面的类型，取值有：
-        /// <li> file：页面文件内容；</li>
-        /// <li> url：上传的url地址。</li>
+        /// - file：页面文件内容；
+        /// - url：上传的url地址。
         public let type: String
 
         public init(pageId: Int64, statusCode: Int64, name: String, type: String) {
@@ -1674,8 +1696,8 @@ extension Teo {
     /// 例外规则，用于配置需要跳过特定场景的规则
     public struct ExceptConfig: TCInputModel, TCOutputModel {
         /// 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 例外规则详情。如果为null，默认使用历史配置。
@@ -1702,8 +1724,8 @@ extension Teo {
         public let action: String
 
         /// 规则生效状态，取值有：
-        /// <li>on：生效；</li>
-        /// <li>off：失效。</li>
+        /// - on：生效；
+        /// - off：失效。
         public let ruleStatus: String
 
         /// 规则ID。仅出参使用。默认由底层生成。
@@ -1753,39 +1775,39 @@ extension Teo {
     /// 例外规则生效的具体条件。
     public struct ExceptUserRuleCondition: TCInputModel, TCOutputModel {
         /// 匹配项，取值有：
-        /// <li>host：请求域名；</li>
-        /// <li>sip：客户端IP；</li>
-        /// <li>ua：User-Agent；</li>
-        /// <li>cookie：会话 Cookie；</li>
-        /// <li>cgi：CGI 脚本；</li>
-        /// <li>xff：XFF 扩展头部；</li>
-        /// <li>url：请求 URL；</li>
-        /// <li>accept：请求内容类型；</li>
-        /// <li>method：请求方式；</li>
-        /// <li>header：请求头部；</li>
-        /// <li>sip_proto：网络层协议。</li>
+        /// - host：请求域名；
+        /// - sip：客户端IP；
+        /// - ua：User-Agent；
+        /// - cookie：会话 Cookie；
+        /// - cgi：CGI 脚本；
+        /// - xff：XFF 扩展头部；
+        /// - url：请求 URL；
+        /// - accept：请求内容类型；
+        /// - method：请求方式；
+        /// - header：请求头部；
+        /// - sip_proto：网络层协议。
         public let matchFrom: String?
 
         /// 匹配项的参数。仅当 MatchFrom 为 header 时，可以使用本参数，值可填入 header 的 key 作为参数。
         public let matchParam: String?
 
         /// 匹配操作符，取值有：
-        /// <li>equal：字符串等于；</li>
-        /// <li>not_equal：数值不等于；</li>
-        /// <li>include：字符包含；</li>
-        /// <li>not_include：字符不包含；</li>
-        /// <li>match：ip匹配；</li>
-        /// <li>not_match：ip不匹配；</li>
-        /// <li>include_area：地域包含；</li>
-        /// <li>is_empty：存在字段但值为空；</li>
-        /// <li>not_exists：不存在关键字段；</li>
-        /// <li>regexp：正则匹配；</li>
-        /// <li>len_gt：数值大于；</li>
-        /// <li>len_lt：数值小于；</li>
-        /// <li>len_eq：数值等于；</li>
-        /// <li>match_prefix：前缀匹配；</li>
-        /// <li>match_suffix：后缀匹配；</li>
-        /// <li>wildcard：通配符。</li>
+        /// - equal：字符串等于；
+        /// - not_equal：数值不等于；
+        /// - include：字符包含；
+        /// - not_include：字符不包含；
+        /// - match：ip匹配；
+        /// - not_match：ip不匹配；
+        /// - include_area：地域包含；
+        /// - is_empty：存在字段但值为空；
+        /// - not_exists：不存在关键字段；
+        /// - regexp：正则匹配；
+        /// - len_gt：数值大于；
+        /// - len_lt：数值小于；
+        /// - len_eq：数值等于；
+        /// - match_prefix：前缀匹配；
+        /// - match_suffix：后缀匹配；
+        /// - wildcard：通配符。
         public let `operator`: String?
 
         /// 匹配值。
@@ -1809,16 +1831,17 @@ extension Teo {
     /// 例外规则的生效范围。
     public struct ExceptUserRuleScope: TCInputModel, TCOutputModel {
         /// 例外规则类型。其中complete模式代表全量数据进行例外，partial模式代表可选择指定模块指定字段进行例外，该字段取值有：
-        /// <li>complete：完全跳过模式；</li>
-        /// <li>partial：部分跳过模式。</li>
+        /// - complete：完全跳过模式；
+        /// - partial：部分跳过模式。
         public let type: String?
 
         /// 生效的模块，该字段取值有：
-        /// <li>waf：托管规则；</li>
-        /// <li>rate：速率限制；</li>
-        /// <li>acl：自定义规则；</li>
-        /// <li>cc：cc攻击防护；</li>
-        /// <li>bot：Bot防护。</li>
+        /// - waf：托管规则；
+        /// - rate：速率限制；
+        /// - acl：自定义规则；
+        /// - cc：cc攻击防护；
+        /// - bot：Bot防护。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modules: [String]?
 
@@ -1897,8 +1920,9 @@ extension Teo {
     /// 慢速攻击的首段包配置。
     public struct FirstPartConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -1920,8 +1944,8 @@ extension Teo {
     /// 缓存遵循源站配置
     public struct FollowOrigin: TCInputModel, TCOutputModel {
         /// 遵循源站配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 源站未返回 Cache-Control 头时, 设置默认的缓存时间
@@ -1954,13 +1978,14 @@ extension Teo {
     /// 访问协议强制https跳转配置
     public struct ForceRedirect: TCInputModel, TCOutputModel {
         /// 访问强制跳转配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 重定向状态码，取值有：
-        /// <li>301：301跳转；</li>
-        /// <li>302：302跳转。</li>
+        /// - 301：301跳转；
+        /// - 302：302跳转。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
 
@@ -1978,8 +2003,8 @@ extension Teo {
     /// Grpc配置项
     public struct Grpc: TCInputModel, TCOutputModel {
         /// 是否开启 Grpc 配置，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2013,8 +2038,8 @@ extension Teo {
     /// Hsts配置
     public struct Hsts: TCInputModel, TCOutputModel {
         /// 是否开启，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// MaxAge 数值。单位为秒，最大值为1天。
@@ -2022,14 +2047,16 @@ extension Teo {
         public let maxAge: Int64?
 
         /// 是否包含子域名，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeSubDomains: String?
 
         /// 是否开启预加载，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preload: String?
 
@@ -2051,22 +2078,25 @@ extension Teo {
     /// 域名 https 加速配置，默认为关闭状态
     public struct Https: TCInputModel, TCOutputModel {
         /// http2 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let http2: String?
 
         /// OCSP 配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ocspStapling: String?
 
         /// Tls 版本设置，取值有：
-        /// <li>TLSv1：TLSv1版本；</li>
-        /// <li>TLSV1.1：TLSv1.1版本；</li>
-        /// <li>TLSV1.2：TLSv1.2版本；</li>
-        /// <li>TLSv1.3：TLSv1.3版本。</li>修改时必须开启连续的版本。
+        /// - TLSv1：TLSv1版本；
+        /// - TLSV1.1：TLSv1.1版本；
+        /// - TLSV1.2：TLSv1.2版本；
+        /// - TLSv1.3：TLSv1.3版本。
+        /// 修改时必须开启连续的版本。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tlsVersion: [String]?
 
@@ -2079,15 +2109,17 @@ extension Teo {
         public let certInfo: [ServerCertInfo]?
 
         /// 申请类型，取值有：
-        /// <li>apply：托管EdgeOne；</li>
-        /// <li>none：不托管EdgeOne。</li>不填，默认取值为none。
+        /// - apply：托管EdgeOne；
+        /// - none：不托管EdgeOne。
+        /// 不填，默认取值为none。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyType: String?
 
         /// 密码套件，取值有：
-        /// <li>loose-v2023：提供最高的兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；</li>
-        /// <li>general-v2023：提供较高的兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；</li>
-        /// <li>strict-v2023：提供最高的安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。
+        /// - loose-v2023：提供最高的兼容性，安全性一般，支持 TLS 1.0-1.3 密码套件；
+        /// - general-v2023：提供较高的兼容性，安全性中等，支持 TLS 1.2-1.3 密码套件；
+        /// - strict-v2023：提供最高的安全性能，禁用所有含不安全隐患的加密套件，支持 TLS 1.2-1.3 密码套件。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cipherSuite: String?
 
@@ -2160,8 +2192,8 @@ extension Teo {
         public let domain: String?
 
         /// 验证状态，取值有：
-        /// <li> pending：验证中；</li>
-        /// <li> finished：验证完成。</li>
+        /// - pending：验证中；
+        /// - finished：验证完成。
         public let status: String
 
         /// 站点归属权校验：Dns校验信息。
@@ -2187,8 +2219,8 @@ extension Teo {
     /// 图片优化配置。
     public struct ImageOptimize: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2203,8 +2235,9 @@ extension Teo {
     /// 智能分析规则
     public struct IntelligenceRule: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2226,18 +2259,18 @@ extension Teo {
     /// Bot智能分析规则详情
     public struct IntelligenceRuleItem: TCInputModel, TCOutputModel {
         /// 智能分析标签，取值有：
-        /// <li>evil_bot：恶意bot；</li>
-        /// <li>suspect_bot：疑似bot；</li>
-        /// <li>good_bot：良好bot；</li>
-        /// <li>normal：正常请求。</li>
+        /// - evil_bot：恶意bot；
+        /// - suspect_bot：疑似bot；
+        /// - good_bot：良好bot；
+        /// - normal：正常请求。
         public let label: String
 
         /// 触发智能分析标签对应的处置方式，取值有：
-        /// <li>drop：拦截；</li>
-        /// <li>trans：放行；</li>
-        /// <li>alg：Javascript挑战；</li>
-        /// <li>captcha：数字验证码；</li>
-        /// <li>monitor：观察。</li>
+        /// - drop：拦截；
+        /// - trans：放行；
+        /// - alg：Javascript挑战；
+        /// - captcha：数字验证码；
+        /// - monitor：观察。
         public let action: String
 
         public init(label: String, action: String) {
@@ -2254,8 +2287,9 @@ extension Teo {
     /// IP黑白名单及IP区域控制配置
     public struct IpTableConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭；</li>
+        /// - on：开启；
+        /// - off：关闭；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `switch`: String?
 
@@ -2277,24 +2311,25 @@ extension Teo {
     /// IP黑白名单详细规则
     public struct IpTableRule: TCInputModel, TCOutputModel {
         /// 动作，取值有：
-        /// <li> drop：拦截；</li>
-        /// <li> trans：放行；</li>
-        /// <li> monitor：观察。</li>
+        /// - drop：拦截；
+        /// - trans：放行；
+        /// - monitor：观察。
         public let action: String
 
         /// 根据类型匹配，取值有：
-        /// <li>ip：对ip进行匹配；</li>
-        /// <li>area：对ip所属地区匹配。</li>
+        /// - ip：对ip进行匹配；
+        /// - area：对ip所属地区匹配。
         public let matchFrom: String
 
         /// 规则的匹配方式，默认为空代表等于。
         /// 取值有：
-        /// <li> is_emty：配置为空；</li>
-        /// <li> not_exists：配置为不存在；</li>
-        /// <li> include：包含；</li>
-        /// <li> not_include：不包含；</li>
-        /// <li> equal：等于；</li>
-        /// <li> not_equal：不等于。</li>
+        /// - is_emty：配置为空；
+        /// - not_exists：配置为不存在；
+        /// - include：包含；
+        /// - not_include：不包含；
+        /// - equal：等于；
+        /// - not_equal：不等于。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
 
@@ -2308,8 +2343,9 @@ extension Teo {
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         /// 规则启用状态，当返回为null时，为启用。取值有：
-        /// <li> on：启用；</li>
-        /// <li> off：未启用。</li>
+        /// - on：启用；
+        /// - off：未启用。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
 
@@ -2346,8 +2382,8 @@ extension Teo {
     /// Ipv6访问配置
     public struct Ipv6: TCInputModel, TCOutputModel {
         /// Ipv6 访问功能配置，取值有：
-        /// <li>on：开启Ipv6访问功能；</li>
-        /// <li>off：关闭Ipv6访问功能。</li>
+        /// - on：开启Ipv6访问功能；
+        /// - off：关闭Ipv6访问功能。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2365,8 +2401,8 @@ extension Teo {
         public let proxyId: String
 
         /// 日志所属区域，取值有：
-        /// <li>mainland：中国大陆境内;</li>
-        /// <li>overseas：全球（不含中国大陆）。</li>
+        /// - mainland：中国大陆境内;
+        /// - overseas：全球（不含中国大陆）。
         public let area: String
 
         /// 离线日志数据包名。
@@ -2411,8 +2447,8 @@ extension Teo {
         public let domain: String
 
         /// 日志所属区域，取值有：
-        /// <li>mainland：中国大陆境内; </li>
-        /// <li>overseas：全球（不含中国大陆）。</li>
+        /// - mainland：中国大陆境内;
+        /// - overseas：全球（不含中国大陆）。
         public let area: String
 
         /// 离线日志数据包名。
@@ -2454,8 +2490,8 @@ extension Teo {
     /// 浏览器缓存规则配置，用于设置 MaxAge 默认值，默认为关闭状态
     public struct MaxAge: TCInputModel, TCOutputModel {
         /// 是否遵循源站，取值有：
-        /// <li>on：遵循源站，忽略MaxAge 时间设置；</li>
-        /// <li>off：不遵循源站，使用MaxAge 时间设置。</li>
+        /// - on：遵循源站，忽略MaxAge 时间设置；
+        /// - off：不遵循源站，使用MaxAge 时间设置。
         public let followOrigin: String?
 
         /// MaxAge 时间设置，单位秒，最大365天。
@@ -2476,8 +2512,8 @@ extension Teo {
     /// 不缓存配置
     public struct NoCache: TCInputModel, TCOutputModel {
         /// 不缓存配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2511,8 +2547,8 @@ extension Teo {
     /// 离线缓存是否开启
     public struct OfflineCache: TCInputModel, TCOutputModel {
         /// 离线缓存是否开启，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -2535,15 +2571,17 @@ extension Teo {
         public let backupOrigins: [String]?
 
         /// 回源协议配置，取值有：
-        /// <li>http：强制 http 回源；</li>
-        /// <li>follow：协议跟随回源；</li>
-        /// <li>https：强制 https 回源。</li>
+        /// - http：强制 http 回源；
+        /// - follow：协议跟随回源；
+        /// - https：强制 https 回源。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originPullProtocol: String?
 
         /// 源站为腾讯云 COS 时，是否为私有访问 bucket，取值有：
-        /// <li>on：私有访问；</li>
-        /// <li>off：公共访问。</li>
+        /// - on：私有访问；
+        /// - off：公共访问。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosPrivateAccess: String?
 
@@ -2565,10 +2603,10 @@ extension Teo {
     /// 加速域名源站信息。
     public struct OriginDetail: TCOutputModel {
         /// 源站类型，取值有：
-        /// <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
-        /// <li>COS：COS源。</li>
-        /// <li>ORIGIN_GROUP：源站组类型源站。</li>
-        /// <li>AWS_S3：AWS S3对象存储源站。</li>
+        /// - IP_DOMAIN：IPV4、IPV6或域名类型源站；
+        /// - COS：COS源。
+        /// - ORIGIN_GROUP：源站组类型源站。
+        /// - AWS_S3：AWS S3对象存储源站。
         public let originType: String?
 
         /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
@@ -2584,8 +2622,9 @@ extension Teo {
         public let backOriginGroupName: String?
 
         /// 指定是否允许访问私有对象存储源站。当源站类型OriginType=COS或AWS_S3时有效 取值有：
-        /// <li>on：使用私有鉴权；</li>
-        /// <li>off：不使用私有鉴权。</li>
+        /// - on：使用私有鉴权；
+        /// - off：不使用私有鉴权。
+        ///
         /// 不填写，默认值为off。
         public let privateAccess: String?
 
@@ -2616,18 +2655,19 @@ extension Teo {
         public let originGroupId: String?
 
         /// 源站类型，取值有：
-        /// <li>self：自有源站；</li>
-        /// <li>third_party：第三方源站；</li>
-        /// <li>cos：腾讯云COS源站。</li>
+        /// - self：自有源站；
+        /// - third_party：第三方源站；
+        /// - cos：腾讯云COS源站。
         public let originType: String?
 
         /// 源站组名称。
         public let originGroupName: String?
 
         /// 源站配置类型，当OriginType=self时，取值有：
-        /// <li>area：按区域配置；</li>
-        /// <li>weight： 按权重配置。</li>
-        /// <li>proto： 按HTTP协议配置。</li>当OriginType=third_party/cos时放空。
+        /// - area：按区域配置；
+        /// - weight： 按权重配置。
+        /// - proto： 按HTTP协议配置。
+        /// 当OriginType=third_party/cos时放空。
         public let configurationType: String?
 
         /// 源站记录信息。
@@ -2659,11 +2699,11 @@ extension Teo {
     /// 加速域名源站信息。
     public struct OriginInfo: TCInputModel {
         /// 源站类型，取值有：
-        /// <li>IP_DOMAIN：IPV4、IPV6或域名类型源站；</li>
-        /// <li>COS：COS源。</li>
-        /// <li>ORIGIN_GROUP：源站组类型源站。</li>
-        /// <li>AWS_S3：AWS S3对象存储源站。</li>
-        /// <li>SPACE：Edgeone源站Space存储，Space存储不允许配置该类型源站。</li>
+        /// - IP_DOMAIN：IPV4、IPV6或域名类型源站；
+        /// - COS：COS源。
+        /// - ORIGIN_GROUP：源站组类型源站。
+        /// - AWS_S3：AWS S3对象存储源站。
+        /// - SPACE：Edgeone源站Space存储，Space存储不允许配置该类型源站。
         public let originType: String
 
         /// 源站地址，当OriginType参数指定为ORIGIN_GROUP时，该参数填写源站组ID，其他情况下填写源站地址。
@@ -2673,8 +2713,9 @@ extension Teo {
         public let backupOrigin: String?
 
         /// 指定是否允许访问私有对象存储源站，当源站类型OriginType=COS或AWS_S3时有效，取值有：
-        /// <li>on：使用私有鉴权；</li>
-        /// <li>off：不使用私有鉴权。</li>不填写，默认值为：off。
+        /// - on：使用私有鉴权；
+        /// - off：不使用私有鉴权。
+        /// 不填写，默认值为：off。
         public let privateAccess: String?
 
         /// 私有鉴权使用参数，当源站类型PrivateAccess=on时有效。
@@ -2713,19 +2754,19 @@ extension Teo {
         public let currentIPWhitelist: IPWhitelist?
 
         /// 该站点是否需要更新源站白名单，取值有：
-        /// <li>true ：需要更新IP白名单 ；</li>
-        /// <li>false ：无需更新IP白名单。</li>
+        /// - true ：需要更新IP白名单 ；
+        /// - false ：无需更新IP白名单。
         public let needUpdate: Bool
 
         /// 源站防护状态，取值有：
-        /// <li>online ：源站防护启用中 ；</li>
-        /// <li>offline ：源站防护已停用 ；</li>
-        /// <li>nonactivate ：源站防护未激活，仅在从未使用过源站防护功能的站点调用中返回。</li>
+        /// - online ：源站防护启用中 ；
+        /// - offline ：源站防护已停用 ；
+        /// - nonactivate ：源站防护未激活，仅在从未使用过源站防护功能的站点调用中返回。
         public let status: String
 
         /// 站点套餐是否支持源站防护，取值有：
-        /// <li>true ：支持 ；</li>
-        /// <li>false ：不支持。</li>
+        /// - true ：支持 ；
+        /// - false ：不支持。
         public let planSupport: Bool
 
         /// 最新IP白名单与当前IP白名单的对比。
@@ -2764,22 +2805,24 @@ extension Teo {
         public let weight: UInt64?
 
         /// 当源站配置类型ConfigurationType=proto时，表示源站的协议类型，将按照客户端请求协议回到相应的源站，取值有：
-        /// <li>http：HTTP协议源站；</li>
-        /// <li>https：HTTPS协议源站。</li>
+        /// - http：HTTP协议源站；
+        /// - https：HTTPS协议源站。
         public let proto: String?
 
         /// 当源站配置类型ConfigurationType=area时，表示区域，为空表示全部地区。取值为iso-3166中alpha-2编码或者大洲区域代码。大洲区域代码取值为：
-        /// <li>Asia：亚洲；</li>
-        /// <li>Europe：欧洲；</li>
-        /// <li>Africa：非洲；</li>
-        /// <li>Oceania：大洋洲；</li>
-        /// <li>Americas：美洲。</li>源站组记录中，至少需要有一项为全部地区。
+        /// - Asia：亚洲；
+        /// - Europe：欧洲；
+        /// - Africa：非洲；
+        /// - Oceania：大洋洲；
+        /// - Americas：美洲。
+        /// 源站组记录中，至少需要有一项为全部地区。
         public let area: [String]?
 
         /// 当源站类型OriginType=third_part时有效
         /// 是否私有鉴权，取值有：
-        /// <li>true：使用私有鉴权；</li>
-        /// <li>false：不使用私有鉴权。</li>不填写，默认值为：false。
+        /// - true：使用私有鉴权；
+        /// - false：不使用私有鉴权。
+        /// 不填写，默认值为：false。
         public let `private`: Bool?
 
         /// 当源站类型Private=true时有效，表示私有鉴权使用参数。
@@ -2811,7 +2854,7 @@ extension Teo {
     /// 例外规则的详细模块配置。
     public struct PartialModule: TCInputModel, TCOutputModel {
         /// 模块名称，取值为：
-        /// <li>waf：托管规则。</li>
+        /// - waf：托管规则。
         public let module: String?
 
         /// 模块下的需要例外的具体规则ID列表。
@@ -2832,34 +2875,34 @@ extension Teo {
     /// edgeone套餐信息
     public struct PlanInfo: TCOutputModel {
         /// 结算货币类型，取值有：
-        /// <li> CNY ：人民币结算； </li>
-        /// <li> USD ：美元结算。</li>
+        /// - CNY ：人民币结算；
+        /// - USD ：美元结算。
         public let currency: String
 
         /// 套餐所含流量，该流量数值为安全加速流量，内容加速流量和智能加速流量的总和（单位：字节）。
         public let flux: UInt64
 
         /// 结算周期，取值有：
-        /// <li> y ：按年结算； </li>
-        /// <li> m ：按月结算；</li>
-        /// <li> h ：按小时结算； </li>
-        /// <li> M ：按分钟结算；</li>
-        /// <li> s ：按秒结算。 </li>
+        /// - y ：按年结算；
+        /// - m ：按月结算；
+        /// - h ：按小时结算；
+        /// - M ：按分钟结算；
+        /// - s ：按秒结算。
         public let frequency: String
 
         /// 套餐类型，取值有：
-        /// <li> sta ：全球内容分发网络（不包括中国大陆）标准版套餐； </li>
-        /// <li> sta_with_bot ：全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；</li>
-        /// <li> sta_cm ：中国大陆内容分发网络标准版套餐； </li>
-        /// <li> sta_cm_with_bot ：中国大陆内容分发网络标准版套餐附带bot管理；</li>
-        /// <li> sta_global ：全球内容分发网络（包括中国大陆）标准版套餐； </li>
-        /// <li> sta_global_with_bot ：全球内容分发网络（包括中国大陆）标准版套餐附带bot管理；</li>
-        /// <li> ent ：全球内容分发网络（不包括中国大陆）企业版套餐； </li>
-        /// <li> ent_with_bot ： 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；</li>
-        /// <li> ent_cm ：中国大陆内容分发网络企业版套餐； </li>
-        /// <li> ent_cm_with_bot ：中国大陆内容分发网络企业版套餐附带bot管理；</li>
-        /// <li> ent_global ：全球内容分发网络（包括中国大陆）企业版套餐； </li>
-        /// <li> ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。</li>
+        /// - sta ：全球内容分发网络（不包括中国大陆）标准版套餐；
+        /// - sta_with_bot ：全球内容分发网络（不包括中国大陆）标准版套餐附带bot管理；
+        /// - sta_cm ：中国大陆内容分发网络标准版套餐；
+        /// - sta_cm_with_bot ：中国大陆内容分发网络标准版套餐附带bot管理；
+        /// - sta_global ：全球内容分发网络（包括中国大陆）标准版套餐；
+        /// - sta_global_with_bot ：全球内容分发网络（包括中国大陆）标准版套餐附带bot管理；
+        /// - ent ：全球内容分发网络（不包括中国大陆）企业版套餐；
+        /// - ent_with_bot ： 全球内容分发网络（不包括中国大陆）企业版套餐附带bot管理；
+        /// - ent_cm ：中国大陆内容分发网络企业版套餐；
+        /// - ent_cm_with_bot ：中国大陆内容分发网络企业版套餐附带bot管理；
+        /// - ent_global ：全球内容分发网络（包括中国大陆）企业版套餐；
+        /// - ent_global_with_bot ：全球内容分发网络（包括中国大陆）企业版套餐附带bot管理。
         public let planType: String
 
         /// 套餐价格（单位：分）。
@@ -2872,9 +2915,9 @@ extension Teo {
         public let siteNumber: UInt64
 
         /// 套餐加速区域类型，取值有：
-        /// <li> mainland ：中国大陆； </li>
-        /// <li> overseas ：全球（不包括中国大陆）；</li>
-        /// <li> global ：全球（包括中国大陆）。 </li>
+        /// - mainland ：中国大陆；
+        /// - overseas ：全球（不包括中国大陆）；
+        /// - global ：全球（包括中国大陆）。
         public let area: String
 
         enum CodingKeys: String, CodingKey {
@@ -2892,8 +2935,8 @@ extension Teo {
     /// POST请求上传文件流式传输最大限制
     public struct PostMaxSize: TCInputModel, TCOutputModel {
         /// 是否开启 POST 请求上传文件限制，平台默认为限制为32MB，取值有：
-        /// <li>on：开启限制；</li>
-        /// <li>off：关闭限制。</li>
+        /// - on：开启限制；
+        /// - off：关闭限制。
         public let `switch`: String
 
         /// 最大限制，取值在1MB和500MB之间。单位字节。
@@ -2914,8 +2957,8 @@ extension Teo {
     /// 源站记录私有鉴权参数
     public struct PrivateParameter: TCInputModel, TCOutputModel {
         /// 私有鉴权参数名称，取值有：
-        /// <li>AccessKeyId：鉴权参数Access Key ID；</li>
-        /// <li>SecretAccessKey：鉴权参数Secret Access Key。</li>
+        /// - AccessKeyId：鉴权参数Access Key ID；
+        /// - SecretAccessKey：鉴权参数Secret Access Key。
         public let name: String
 
         /// 私有鉴权参数值。
@@ -2938,14 +2981,14 @@ extension Teo {
         public let key: String
 
         /// 查询条件操作符，操作类型有：
-        /// <li>equals: 等于；</li>
-        /// <li>notEquals: 不等于；</li>
-        /// <li>include: 包含；</li>
-        /// <li>notInclude: 不包含; </li>
-        /// <li>startWith: 开始的值是value；</li>
-        /// <li>notStartWith: 不以value的值开始；</li>
-        /// <li>endWith: 结尾是value值；</li>
-        /// <li>notEndWith: 不以value的值结尾。</li>
+        /// - equals: 等于；
+        /// - notEquals: 不等于；
+        /// - include: 包含；
+        /// - notInclude: 不包含;
+        /// - startWith: 开始的值是value；
+        /// - notStartWith: 不以value的值开始；
+        /// - endWith: 结尾是value值；
+        /// - notEndWith: 不以value的值结尾。
         public let `operator`: String
 
         /// 筛选条件的值。
@@ -2967,13 +3010,14 @@ extension Teo {
     /// CacheKey中包含请求参数
     public struct QueryString: TCInputModel, TCOutputModel {
         /// CacheKey是否由QueryString组成，取值有：
-        /// <li>on：是；</li>
-        /// <li>off：否。</li>
+        /// - on：是；
+        /// - off：否。
         public let `switch`: String
 
         /// CacheKey使用QueryString的方式，取值有：
-        /// <li>includeCustom：使用部分url参数；</li>
-        /// <li>excludeCustom：排除部分url参数。</li>
+        /// - includeCustom：使用部分url参数；
+        /// - excludeCustom：排除部分url参数。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -2997,8 +3041,8 @@ extension Teo {
     /// Quic配置项
     public struct Quic: TCInputModel, TCOutputModel {
         /// 是否开启 Quic 配置，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3022,11 +3066,12 @@ extension Teo {
         public let dailyAvailable: Int64
 
         /// 刷新预热缓存类型，取值有：
-        /// <li> purge_prefix：按前缀刷新；</li>
-        /// <li> purge_url：按URL刷新；</li>
-        /// <li> purge_host：按Hostname刷新；</li>
-        /// <li> purge_all：刷新全部缓存内容；</li>
-        /// <li> purge_cache_tag：按CacheTag刷新；</li><li> prefetch_url：按URL预热。</li>
+        /// - purge_prefix：按前缀刷新；
+        /// - purge_url：按URL刷新；
+        /// - purge_host：按Hostname刷新；
+        /// - purge_all：刷新全部缓存内容；
+        /// - purge_cache_tag：按CacheTag刷新；
+        /// - prefetch_url：按URL预热。
         public let type: String
 
         enum CodingKeys: String, CodingKey {
@@ -3040,8 +3085,8 @@ extension Teo {
     /// 速率限制规则
     public struct RateLimitConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 速率限制-用户规则列表。如果为null，默认使用历史配置。
@@ -3079,13 +3124,13 @@ extension Teo {
     /// 智能客户端过滤
     public struct RateLimitIntelligence: TCInputModel, TCOutputModel {
         /// 功能开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 执行动作，取值有：
-        /// <li>monitor：观察；</li>
-        /// <li>alg：挑战。</li>
+        /// - monitor：观察；
+        /// - alg：挑战。
         public let action: String
 
         /// 规则id，仅出参使用。
@@ -3107,17 +3152,18 @@ extension Teo {
     /// 速率限制模板
     public struct RateLimitTemplate: TCInputModel, TCOutputModel {
         /// 模板等级名称，取值有：
-        /// <li>sup_loose：超级宽松；</li>
-        /// <li>loose：宽松；</li>
-        /// <li>emergency：紧急；</li>
-        /// <li>normal：适中；</li>
-        /// <li>strict：严格；</li>
-        /// <li>close：关闭，仅精准速率限制生效。</li>
+        /// - sup_loose：超级宽松；
+        /// - loose：宽松；
+        /// - emergency：紧急；
+        /// - normal：适中；
+        /// - strict：严格；
+        /// - close：关闭，仅精准速率限制生效。
         public let mode: String
 
         /// 模板处置方式，取值有：
-        /// <li>alg：JavaScript挑战；</li>
-        /// <li>monitor：观察。</li>不填写默认取alg。
+        /// - alg：JavaScript挑战；
+        /// - monitor：观察。
+        /// 不填写默认取alg。
         public let action: String?
 
         /// 模板值详情。仅出参返回。
@@ -3139,12 +3185,13 @@ extension Teo {
     /// 模板当前详细配置
     public struct RateLimitTemplateDetail: TCOutputModel {
         /// 模板等级名称，取值有：
-        /// <li>sup_loose：超级宽松；</li>
-        /// <li>loose：宽松；</li>
-        /// <li>emergency：紧急；</li>
-        /// <li>normal：适中；</li>
-        /// <li>strict：严格；</li>
-        /// <li>close：关闭，仅精准速率限制生效。</li>
+        /// - sup_loose：超级宽松；
+        /// - loose：宽松；
+        /// - emergency：紧急；
+        /// - normal：适中；
+        /// - strict：严格；
+        /// - close：关闭，仅精准速率限制生效。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
 
@@ -3152,8 +3199,9 @@ extension Teo {
         public let id: Int64?
 
         /// 模板处置方式，取值有：
-        /// <li>alg：JavaScript挑战；</li>
-        /// <li>monitor：观察。</li>
+        /// - alg：JavaScript挑战；
+        /// - monitor：观察。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -3188,21 +3236,25 @@ extension Teo {
         /// 规则名，只能以英文字符，数字，下划线组合，且不能以下划线开头。
         public let ruleName: String
 
-        /// 处置动作，取值有： <li>monitor：观察；</li> <li>drop：拦截；</li> <li>alg：JavaScript挑战。</li>
+        /// 处置动作，取值有：
+        /// - monitor：观察；
+        /// - drop：拦截；
+        /// - alg：JavaScript挑战。
         public let action: String
 
         /// 惩罚时长，0-2天。
         public let punishTime: Int64
 
         /// 处罚时长单位，取值有：
-        /// <li>second：秒；</li>
-        /// <li>minutes：分钟；</li>
-        /// <li>hour：小时。</li>
+        /// - second：秒；
+        /// - minutes：分钟；
+        /// - hour：小时。
         public let punishTimeUnit: String
 
         /// 规则状态，取值有：
-        /// <li>on：生效；</li>
-        /// <li>off：不生效。</li>默认on生效。
+        /// - on：生效；
+        /// - off：不生效。
+        /// 默认on生效。
         public let ruleStatus: String
 
         /// 规则详情。
@@ -3216,7 +3268,8 @@ extension Teo {
         public let ruleID: Int64?
 
         /// 过滤词，取值有：
-        /// <li>sip：客户端ip。</li>
+        /// - sip：客户端ip。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqFields: [String]?
 
@@ -3225,8 +3278,9 @@ extension Teo {
         public let updateTime: String?
 
         /// 统计范围，字段为 null 时，代表 source_to_eo。取值有：
-        /// <li>source_to_eo：（响应）源站到EdgeOne。</li>
-        /// <li>client_to_eo：（请求）客户端到EdgeOne；</li>
+        /// - source_to_eo：（响应）源站到EdgeOne。
+        /// - client_to_eo：（请求）客户端到EdgeOne；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let freqScope: [String]?
 
@@ -3269,7 +3323,7 @@ extension Teo {
         public let id: String
 
         /// 付费模式，取值有：
-        /// <li>0：后付费。</li>
+        /// - 0：后付费。
         public let payMode: Int64
 
         /// 创建时间。
@@ -3291,33 +3345,34 @@ extension Teo {
         @TCTimestampISO8601Encoding public var expireTime: Date
 
         /// 套餐状态，取值有：
-        /// <li>normal：正常；</li>
-        /// <li>isolated：隔离；</li>
-        /// <li>destroyed：销毁。</li>
+        /// - normal：正常；
+        /// - isolated：隔离；
+        /// - destroyed：销毁。
         public let status: String
 
         /// 询价参数。
         public let sv: [Sv]
 
         /// 是否自动续费，取值有：
-        /// <li>0：默认状态；</li>
-        /// <li>1：自动续费；</li>
-        /// <li>2：不自动续费。</li>
+        /// - 0：默认状态；
+        /// - 1：自动续费；
+        /// - 2：不自动续费。
         public let autoRenewFlag: Int64
 
         /// 套餐关联资源 ID。
         public let planId: String
 
         /// 地域，取值有：
-        /// <li>mainland：国内；</li>
-        /// <li>overseas：海外。</li>
-        /// <li>global：全球。</li>
+        /// - mainland：国内；
+        /// - overseas：海外。
+        /// - global：全球。
         public let area: String
 
         /// 资源类型，取值有：
-        /// <li>plan：套餐类型；</li>
-        /// <li>pay-as-you-go：后付费类型。</li>
-        /// <li>value-added：增值服务类型。</li>
+        /// - plan：套餐类型；
+        /// - pay-as-you-go：后付费类型。
+        /// - value-added：增值服务类型。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let group: String?
 
@@ -3405,10 +3460,10 @@ extension Teo {
         public let name: String
 
         /// 参数值类型。
-        /// <li> CHOICE：参数值只能在 ChoicesValue 中选择； </li>
-        /// <li> TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；</li>
-        /// <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
-        /// <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>
+        /// - CHOICE：参数值只能在 ChoicesValue 中选择；
+        /// - TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；
+        /// - CUSTOM_NUM：参数值用户自定义，整型类型；
+        /// - CUSTOM_STRING：参数值用户自定义，字符串类型。
         public let type: String
 
         /// 参数值的可选值。
@@ -3428,9 +3483,9 @@ extension Teo {
         public let isAllowEmpty: Bool
 
         /// 特殊参数。
-        /// <li> 为 NULL：RuleAction 选择 NormalAction；</li>
-        /// <li> 成员参数 Id 为 Action：RuleAction 选择 RewirteAction；</li>
-        /// <li> 成员参数 Id 为 StatusCode：RuleAction 选择 CodeAction。</li>
+        /// - 为 NULL：RuleAction 选择 NormalAction；
+        /// - 成员参数 Id 为 Action：RuleAction 选择 RewirteAction；
+        /// - 成员参数 Id 为 StatusCode：RuleAction 选择 CodeAction。
         public let extraParameter: RuleExtraParameter
 
         enum CodingKeys: String, CodingKey {
@@ -3472,40 +3527,41 @@ extension Teo {
     /// 规则引擎条件参数
     public struct RuleCondition: TCInputModel, TCOutputModel {
         /// 运算符，取值有：
-        /// <li> equal: 等于； </li>
-        /// <li> notequal: 不等于；</li>
-        /// <li> exist: 存在； </li>
-        /// <li> notexist: 不存在。</li>
+        /// - equal: 等于；
+        /// - notequal: 不等于；
+        /// - exist: 存在；
+        /// - notexist: 不存在。
         public let `operator`: String
 
         /// 匹配类型，取值有：
-        /// <li> filename：文件名； </li>
-        /// <li> extension：文件后缀； </li>
-        /// <li> host：HOST； </li>
-        /// <li> full_url：URL Full，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径； </li>
-        /// <li> url：URL Path，当前站点下 URL 路径的请求； </li><li>client_country：客户端国家/地区；</li>
-        /// <li> query_string：查询字符串，当前站点下请求URL的查询字符串； </li>
-        /// <li> request_header：HTTP请求头部。 </li>
+        /// - filename：文件名；
+        /// - extension：文件后缀；
+        /// - host：HOST；
+        /// - full_url：URL Full，当前站点下完整 URL 路径，必须包含 HTTP 协议，Host 和 路径；
+        /// - url：URL Path，当前站点下 URL 路径的请求；
+        /// - client_country：客户端国家/地区；
+        /// - query_string：查询字符串，当前站点下请求URL的查询字符串；
+        /// - request_header：HTTP请求头部。
         public let target: String
 
         /// 对应匹配类型的参数值，仅在匹配类型为查询字符串或HTTP请求头并且运算符取值为存在或不存在时允许传空数组，对应匹配类型有：
-        /// <li> 文件后缀：jpg、txt等文件后缀；</li>
-        /// <li> 文件名称：例如 foo.jpg 中的 foo；</li>
-        /// <li> 全部（站点任意请求）： all； </li>
-        /// <li> HOST：当前站点下的 host ，例如www.maxx55.com；</li>
-        /// <li> URL Path：当前站点下 URL 路径的请求，例如：/example；</li>
-        /// <li> URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example；</li>
-        /// <li> 客户端国家/地区：符合ISO3166标准的国家/地区标识；</li>
-        /// <li> 查询字符串: 当前站点下URL请求中查询字符串的参数值，例如lang=cn&version=1中的cn和1； </li>
-        /// <li> HTTP 请求头: HTTP请求头部字段值，例如Accept-Language:zh-CN,zh;q=0.9中的zh-CN,zh;q=0.9。 </li>
+        /// - 文件后缀：jpg、txt等文件后缀；
+        /// - 文件名称：例如 foo.jpg 中的 foo；
+        /// - 全部（站点任意请求）： all；
+        /// - HOST：当前站点下的 host ，例如www.maxx55.com；
+        /// - URL Path：当前站点下 URL 路径的请求，例如：/example；
+        /// - URL Full：当前站点下完整 URL 请求，必须包含 HTTP 协议，Host 和 路径，例如：https://www.maxx55.cn/example；
+        /// - 客户端国家/地区：符合ISO3166标准的国家/地区标识；
+        /// - 查询字符串: 当前站点下URL请求中查询字符串的参数值，例如lang=cn&version=1中的cn和1；
+        /// - HTTP 请求头: HTTP请求头部字段值，例如Accept-Language:zh-CN,zh;q=0.9中的zh-CN,zh;q=0.9。
         public let values: [String]?
 
         /// 是否忽略参数值的大小写，默认值为 false。
         public let ignoreCase: Bool?
 
         /// 对应匹配类型的参数名称，在 Target 值为以下取值时有效，有效时值不能为空：
-        /// <li> query_string（查询字符串）: 当前站点下URL请求中查询字符串的参数名称，例如lang=cn&version=1中的lang和version； </li>
-        /// <li> request_header（HTTP 请求头）: HTTP请求头部字段名，例如Accept-Language:zh-CN,zh;q=0.9中的Accept-Language。 </li>
+        /// - query_string（查询字符串）: 当前站点下URL请求中查询字符串的参数名称，例如lang=cn&version=1中的lang和version；
+        /// - request_header（HTTP 请求头）: HTTP请求头部字段名，例如Accept-Language:zh-CN,zh;q=0.9中的Accept-Language。
         public let name: String?
 
         /// 是否忽略参数名称的大小写，默认值为 false。
@@ -3534,14 +3590,14 @@ extension Teo {
     /// 规则引擎参数详情信息，特殊参数类型。
     public struct RuleExtraParameter: TCOutputModel {
         /// 参数名，取值有：
-        /// <li> Action：修改 HTTP 头部所需参数，RuleAction 选择 RewirteAction；</li>
-        /// <li> StatusCode：状态码相关功能所需参数，RuleAction 选择 CodeAction。</li>
+        /// - Action：修改 HTTP 头部所需参数，RuleAction 选择 RewirteAction；
+        /// - StatusCode：状态码相关功能所需参数，RuleAction 选择 CodeAction。
         public let id: String
 
         /// 参数值类型。
-        /// <li> CHOICE：参数值只能在 Values 中选择； </li>
-        /// <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
-        /// <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>
+        /// - CHOICE：参数值只能在 Values 中选择；
+        /// - CUSTOM_NUM：参数值用户自定义，整型类型；
+        /// - CUSTOM_STRING：参数值用户自定义，字符串类型。
         public let type: String
 
         /// 可选参数值。
@@ -3564,8 +3620,8 @@ extension Teo {
         public let ruleName: String
 
         /// 规则状态，取值有:
-        /// <li> enable: 启用； </li>
-        /// <li> disable: 未启用。 </li>
+        /// - enable: 启用；
+        /// - disable: 未启用。
         public let status: String
 
         /// 规则内容。
@@ -3609,9 +3665,9 @@ extension Teo {
     /// 规则引擎条件 HTTP 请求/响应头操作动作参数。
     public struct RuleRewriteActionParams: TCInputModel, TCOutputModel {
         /// 功能参数名称，参数填写规范可调用接口 [查询规则引擎的设置参数](https://tcloud4api.woa.com/document/product/1657/79433?!preview&!document=1) 查看。现在只有三种取值：
-        /// <li> add：添加 HTTP 头部；</li>
-        /// <li> set：重写 HTTP 头部；</li>
-        /// <li> del：删除 HTTP 头部。</li>
+        /// - add：添加 HTTP 头部；
+        /// - set：重写 HTTP 头部；
+        /// - del：删除 HTTP 头部。
         public let action: String
 
         /// 参数名称。
@@ -3646,11 +3702,12 @@ extension Teo {
         public let choicesValue: [String]
 
         /// 参数值类型。
-        /// <li> CHOICE：参数值只能在 ChoicesValue 中选择； </li>
-        /// <li> TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；</li>
-        /// <li> OBJECT：参数值为对象类型，ChoiceProperties 为改对象类型关联的属性；</li>
-        /// <li> CUSTOM_NUM：参数值用户自定义，整型类型；</li>
-        /// <li> CUSTOM_STRING：参数值用户自定义，字符串类型。</li>注意：当参数类型为 OBJECT 类型时，请注意参考 [示例2 参数为 OBJECT 类型的创建](https://tcloud4api.woa.com/document/product/1657/79382?!preview&!document=1)
+        /// - CHOICE：参数值只能在 ChoicesValue 中选择；
+        /// - TOGGLE：参数值为开关类型，可在 ChoicesValue 中选择；
+        /// - OBJECT：参数值为对象类型，ChoiceProperties 为改对象类型关联的属性；
+        /// - CUSTOM_NUM：参数值用户自定义，整型类型；
+        /// - CUSTOM_STRING：参数值用户自定义，字符串类型。
+        /// 注意：当参数类型为 OBJECT 类型时，请注意参考 [示例2 参数为 OBJECT 类型的创建](https://tcloud4api.woa.com/document/product/1657/79382?!preview&!document=1)
         public let type: String
 
         /// 数值参数的最大值，非数值参数或 Min 和 Max 值都为 0 则此项无意义。
@@ -3666,7 +3723,8 @@ extension Teo {
         /// 注意：如果可选参数无特殊新增参数则该数组为空数组。
         public let choiceProperties: [RuleChoicePropertiesItem]
 
-        /// <li> 为 NULL：无特殊参数，RuleAction 选择 NormalAction；</li>
+        /// - 为 NULL：无特殊参数，RuleAction 选择 NormalAction；
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraParameter: RuleExtraParameter?
 
@@ -3686,33 +3744,34 @@ extension Teo {
     /// 规则引擎可应用于匹配请求的设置列表及其详细信息
     public struct RulesSettingAction: TCOutputModel {
         /// 功能名称，取值有：
-        /// <li> 访问URL 重写（AccessUrlRedirect）；</li>
-        /// <li> 回源 URL 重写 （UpstreamUrlRedirect）；</li>
-        /// <li> 自定义错误页面
-        /// (ErrorPage)；</li>
-        /// <li> QUIC（QUIC）；</li>
-        /// <li> WebSocket （WebSocket）；</li>
-        /// <li> 视频拖拽（VideoSeek）；</li>
-        /// <li> Token 鉴权（Authentication）；</li>
-        /// <li> 自定义CacheKey（CacheKey）；</li>
-        /// <li> 节点缓存 TTL （Cache）；</li>
-        /// <li> 浏览器缓存 TTL（MaxAge）；</li>
-        /// <li> 离线缓存（OfflineCache）；</li>
-        /// <li> 智能加速（SmartRouting）；</li>
-        /// <li> 分片回源（RangeOriginPull）；</li>
-        /// <li> HTTP/2 回源（UpstreamHttp2）；</li>
-        /// <li> Host Header 重写（HostHeader）；</li>
-        /// <li> 强制 HTTPS（ForceRedirect）；</li>
-        /// <li> 回源 HTTPS（OriginPullProtocol）；</li>
-        /// <li> 缓存预刷新（CachePrefresh）；</li>
-        /// <li> 智能压缩（Compression）；</li>
-        /// <li> 修改 HTTP 请求头（RequestHeader）；</li>
-        /// <li> 修改HTTP响应头（ResponseHeader）;</li>
-        /// <li> 状态码缓存 TTL（StatusCodeCache）;</li>
-        /// <li> Hsts；</li>
-        /// <li> ClientIpHeader；</li>
-        /// <li> TlsVersion；</li>
-        /// <li> OcspStapling。</li>
+        /// - 访问URL 重写（AccessUrlRedirect）；
+        /// - 回源 URL 重写 （UpstreamUrlRedirect）；
+        /// - 自定义错误页面
+        ///   (ErrorPage)；
+        ///
+        /// - QUIC（QUIC）；
+        /// - WebSocket （WebSocket）；
+        /// - 视频拖拽（VideoSeek）；
+        /// - Token 鉴权（Authentication）；
+        /// - 自定义CacheKey（CacheKey）；
+        /// - 节点缓存 TTL （Cache）；
+        /// - 浏览器缓存 TTL（MaxAge）；
+        /// - 离线缓存（OfflineCache）；
+        /// - 智能加速（SmartRouting）；
+        /// - 分片回源（RangeOriginPull）；
+        /// - HTTP/2 回源（UpstreamHttp2）；
+        /// - Host Header 重写（HostHeader）；
+        /// - 强制 HTTPS（ForceRedirect）；
+        /// - 回源 HTTPS（OriginPullProtocol）；
+        /// - 缓存预刷新（CachePrefresh）；
+        /// - 智能压缩（Compression）；
+        /// - 修改 HTTP 请求头（RequestHeader）；
+        /// - 修改HTTP响应头（ResponseHeader）;
+        /// - 状态码缓存 TTL（StatusCodeCache）;
+        /// - Hsts；
+        /// - ClientIpHeader；
+        /// - TlsVersion；
+        /// - OcspStapling。
         public let action: String
 
         /// 参数信息。
@@ -3836,8 +3895,8 @@ extension Teo {
     /// 安全类型配置项。
     public struct SecurityType: TCInputModel, TCOutputModel {
         /// 安全类型开关，取值为：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -3860,9 +3919,10 @@ extension Teo {
         public let alias: String?
 
         /// 证书类型，取值有：
-        /// <li>default：默认证书；</lil>
-        /// <li>upload：用户上传；</li>
-        /// <li>managed：腾讯云托管。</li>
+        /// - default：默认证书；</lil>
+        /// - upload：用户上传；
+        /// - managed：腾讯云托管。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
 
@@ -3912,27 +3972,27 @@ extension Teo {
     /// 例外规则的跳过匹配条件，即在例外时根据本匹配条件，略过指定字段及内容。
     public struct SkipCondition: TCInputModel, TCOutputModel {
         /// 例外跳过类型，取值为：
-        /// <li>header_fields：HTTP请求Header；</li>
-        /// <li>cookie：HTTP请求Cookie；</li>
-        /// <li>query_string：HTTP请求URL中的Query参数；</li>
-        /// <li>uri：HTTP请求URI；</li>
-        /// <li>body_raw：HTTP请求Body；</li>
-        /// <li>body_json： JSON格式的HTTP Body。</li>
+        /// - header_fields：HTTP请求Header；
+        /// - cookie：HTTP请求Cookie；
+        /// - query_string：HTTP请求URL中的Query参数；
+        /// - uri：HTTP请求URI；
+        /// - body_raw：HTTP请求Body；
+        /// - body_json： JSON格式的HTTP Body。
         public let type: String
 
         /// 选择跳过的字段，取值为：
-        /// <li>args：uri 下选择 query 参数: ?name1=jack&age=12；</li>
-        /// <li>path：uri 下选择部分路径：/path/to/resource.jpg；</li>
-        /// <li>full：uri 下选择完整路径：example.com/path/to/resource.jpg?name1=jack&age=12；</li>
-        /// <li>upload_filename：分段文件名，即分段传输文件时；</li>
-        /// <li>keys：所有的Key；</li>
-        /// <li>values：匹配Key对应的值；</li>
-        /// <li>key_value：匹配Key及匹配Value。</li>
+        /// - args：uri 下选择 query 参数: ?name1=jack&age=12；
+        /// - path：uri 下选择部分路径：/path/to/resource.jpg；
+        /// - full：uri 下选择完整路径：example.com/path/to/resource.jpg?name1=jack&age=12；
+        /// - upload_filename：分段文件名，即分段传输文件时；
+        /// - keys：所有的Key；
+        /// - values：匹配Key对应的值；
+        /// - key_value：匹配Key及匹配Value。
         public let selector: String
 
         /// 匹配Key所使用的匹配方式，取值为：
-        /// <li>equal：精准匹配，等于；</li>
-        /// <li>wildcard：通配符匹配，支持 * 通配。</li>
+        /// - equal：精准匹配，等于；
+        /// - wildcard：通配符匹配，支持 * 通配。
         public let matchFromType: String?
 
         /// 匹配Key的值。
@@ -3940,8 +4000,8 @@ extension Teo {
         public let matchFrom: [String]?
 
         /// 匹配Content所使用的匹配方式，取值为：
-        /// <li>equal：精准匹配，等于；</li>
-        /// <li>wildcard：通配符匹配，支持 * 通配。</li>
+        /// - equal：精准匹配，等于；
+        /// - wildcard：通配符匹配，支持 * 通配。
         public let matchContentType: String?
 
         /// 匹配Value的值。
@@ -3970,8 +4030,8 @@ extension Teo {
     /// 慢速攻击配置。
     public struct SlowPostConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 首包配置。
@@ -3983,8 +4043,9 @@ extension Teo {
         public let slowRateConfig: SlowRateConfig?
 
         /// 慢速攻击的处置动作，取值有：
-        /// <li>monitor：观察；</li>
-        /// <li>drop：拦截。</li>
+        /// - monitor：观察；
+        /// - drop：拦截。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 
@@ -4012,8 +4073,8 @@ extension Teo {
     /// 慢速攻击的基础配置。
     public struct SlowRateConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 统计的间隔，单位是秒，即在首段包传输结束后，将数据传输轴按照本参数切分，每个分片独立计算慢速攻击。
@@ -4040,8 +4101,8 @@ extension Teo {
     /// 智能加速配置
     public struct SmartRouting: TCInputModel, TCOutputModel {
         /// 智能加速配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -4056,8 +4117,8 @@ extension Teo {
     /// 支持标准debug结构体
     public struct StandardDebug: TCInputModel, TCOutputModel {
         /// Debug 功能开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 允许的客户端来源。支持填写 IPV4 以及 IPV6 的 IP/IP 段，不填则表示允许任意客户端 IP。
@@ -4130,10 +4191,11 @@ extension Teo {
         public let value: String
 
         /// 询价参数映射的配额，取值有：
-        /// <li>zone：站点数；</li>
-        /// <li>custom-rule：自定义规则数；</li>
-        /// <li>rate-limiting-rule：速率限制规则数；</li>
-        /// <li>l4-proxy-instance：四层代理实例数。</li>
+        /// - zone：站点数；
+        /// - custom-rule：自定义规则数；
+        /// - rate-limiting-rule：速率限制规则数；
+        /// - l4-proxy-instance：四层代理实例数。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pack: String?
 
@@ -4142,7 +4204,19 @@ extension Teo {
         public let instanceId: String?
 
         /// 询价参数对应的防护等级。
-        /// 取值有： <li> cm_30G：中国大陆加速区域保底防护30Gbps；</li><li> cm_60G：中国大陆加速区域保底防护60Gbps；</li><li> cm_100G：中国大陆加速区域保底防护100Gbps；</li><li> anycast_300G：全球加速区域（除中国大陆）Anycast联防300Gbps；</li><li> anycast_unlimited：全球加速区域（除中国大陆）Anycast无上限全力防护；</li><li> cm_30G_anycast_300G：中国大陆加速区域保底防护30Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；</li><li> cm_30G_anycast_unlimited：中国大陆加速区域保底防护30Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护；</li><li> cm_60G_anycast_300G：中国大陆加速区域保底防护60Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；</li><li> cm_60G_anycast_unlimited：中国大陆加速区域保底防护60Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护；</li><li> cm_100G_anycast_300G：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；</li><li> cm_100G_anycast_unlimited：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护。</li>
+        /// 取值有：
+        /// - cm_30G：中国大陆加速区域保底防护30Gbps；
+        /// - cm_60G：中国大陆加速区域保底防护60Gbps；
+        /// - cm_100G：中国大陆加速区域保底防护100Gbps；
+        /// - anycast_300G：全球加速区域（除中国大陆）Anycast联防300Gbps；
+        /// - anycast_unlimited：全球加速区域（除中国大陆）Anycast无上限全力防护；
+        /// - cm_30G_anycast_300G：中国大陆加速区域保底防护30Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；
+        /// - cm_30G_anycast_unlimited：中国大陆加速区域保底防护30Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护；
+        /// - cm_60G_anycast_300G：中国大陆加速区域保底防护60Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；
+        /// - cm_60G_anycast_unlimited：中国大陆加速区域保底防护60Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护；
+        /// - cm_100G_anycast_300G：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast联防300Gbps；
+        /// - cm_100G_anycast_unlimited：中国大陆加速区域保底防护100Gbps，全球加速区域（除中国大陆）Anycast无上限全力防护。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protectionSpecs: String?
 
@@ -4166,8 +4240,9 @@ extension Teo {
     /// 功能总开关
     public struct SwitchConfig: TCInputModel, TCOutputModel {
         /// Web类型的安全总开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>不影响DDoS与Bot的开关。
+        /// - on：开启；
+        /// - off：关闭。
+        /// 不影响DDoS与Bot的开关。
         public let webSwitch: String
 
         public init(webSwitch: String) {
@@ -4369,8 +4444,8 @@ extension Teo {
     /// Http2回源配置
     public struct UpstreamHttp2: TCInputModel, TCOutputModel {
         /// http2 回源配置开关，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         public init(switch: String) {
@@ -4385,8 +4460,8 @@ extension Teo {
     /// 自定义 nameservers
     public struct VanityNameServers: TCInputModel, TCOutputModel {
         /// 自定义 ns 开关，取值有：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 自定义 ns 列表。
@@ -4419,8 +4494,8 @@ extension Teo {
 
     public struct Waf: TCInputModel, TCOutputModel {
         /// Waf开关，取值为：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 策略ID。
@@ -4440,21 +4515,22 @@ extension Teo {
     /// Waf配置。
     public struct WafConfig: TCInputModel, TCOutputModel {
         /// WafConfig开关，取值有：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>开关仅与配置是否生效有关，即使为off（关闭），也可以正常修改配置的内容。
+        /// - on：开启；
+        /// - off：关闭。
+        /// 开关仅与配置是否生效有关，即使为off（关闭），也可以正常修改配置的内容。
         public let `switch`: String
 
         /// 上一次设置的防护级别，取值有：
-        /// <li> loose：宽松；</li>
-        /// <li> normal：正常；</li>
-        /// <li> strict：严格；</li>
-        /// <li> stricter：超严格；</li>
-        /// <li> custom：自定义。</li>
+        /// - loose：宽松；
+        /// - normal：正常；
+        /// - strict：严格；
+        /// - stricter：超严格；
+        /// - custom：自定义。
         public let level: String
 
         /// 全局WAF模式，取值有：
-        /// <li> block：阻断（全局阻断，但可对详细规则配置观察）；</li>
-        /// <li> observe：观察（无论详细规则配置什么，都为观察）。</li>
+        /// - block：阻断（全局阻断，但可对详细规则配置观察）；
+        /// - observe：观察（无论详细规则配置什么，都为观察）。
         public let mode: String
 
         /// 托管规则详细配置。如果为null，默认使用历史配置。
@@ -4483,8 +4559,8 @@ extension Teo {
     /// Waf规则
     public struct WafRule: TCInputModel, TCOutputModel {
         /// 托管规则开关，取值有：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
+        /// - on：开启；
+        /// - off：关闭。
         public let `switch`: String
 
         /// 黑名单ID列表，将规则ID加入本参数列表中代表该ID关闭，即该规则ID不再生效。
@@ -4509,8 +4585,8 @@ extension Teo {
     /// WebSocket配置
     public struct WebSocket: TCInputModel, TCOutputModel {
         /// WebSocket 超时时间配置开关，取值有：
-        /// <li>on：使用Timeout作为WebSocket超时时间；</li>
-        /// <li>off：平台仍支持WebSocket连接，此时使用系统默认的15秒为超时时间。</li>
+        /// - on：使用Timeout作为WebSocket超时时间；
+        /// - off：平台仍支持WebSocket连接，此时使用系统默认的15秒为超时时间。
         public let `switch`: String
 
         /// 超时时间，单位为秒，最大超时时间120秒。
@@ -4542,29 +4618,29 @@ extension Teo {
         public let nameServers: [String]
 
         /// 站点状态，取值有：
-        /// <li> active：NS 已切换； </li>
-        /// <li> pending：NS 未切换；</li>
-        /// <li> moved：NS 已切走；</li>
-        /// <li> deactivated：被封禁。 </li>
+        /// - active：NS 已切换；
+        /// - pending：NS 未切换；
+        /// - moved：NS 已切走；
+        /// - deactivated：被封禁。
         public let status: String
 
         /// 站点接入方式，取值有
-        /// <li> full：NS 接入； </li>
-        /// <li> partial：CNAME 接入；</li>
-        /// <li> noDomainAccess：无域名接入。</li>
+        /// - full：NS 接入；
+        /// - partial：CNAME 接入；
+        /// - noDomainAccess：无域名接入。
         public let type: String
 
         /// 站点是否关闭。
         public let paused: Bool
 
         /// 是否开启 CNAME 加速，取值有：
-        /// <li> enabled：开启；</li>
-        /// <li> disabled：关闭。</li>
+        /// - enabled：开启；
+        /// - disabled：关闭。
         public let cnameSpeedUp: String
 
         /// CNAME 接入状态，取值有：
-        /// <li> finished：站点已验证；</li>
-        /// <li> pending：站点验证中。</li>
+        /// - finished：站点已验证；
+        /// - pending：站点验证中。
         public let cnameStatus: String
 
         /// 资源标签列表。
@@ -4586,9 +4662,9 @@ extension Teo {
         @TCTimestampISO8601Encoding public var modifiedOn: Date
 
         /// 站点接入地域，取值有：
-        /// <li> global：全球；</li>
-        /// <li> mainland：中国大陆；</li>
-        /// <li> overseas：境外区域。</li>
+        /// - global：全球；
+        /// - mainland：中国大陆；
+        /// - overseas：境外区域。
         public let area: String
 
         /// 用户自定义 NS 信息。
@@ -4600,9 +4676,9 @@ extension Teo {
         public let vanityNameServersIps: [VanityNameServersIps]?
 
         /// 展示状态，取值有：
-        /// <li> active：已启用；</li>
-        /// <li> inactive：未生效；</li>
-        /// <li> paused：已停用。</li>
+        /// - active：已启用；
+        /// - inactive：未生效；
+        /// - paused：已停用。
         public let activeStatus: String
 
         /// 站点别名。数字、英文、-和_组合，限制20个字符。
@@ -4610,11 +4686,13 @@ extension Teo {
         public let aliasZoneName: String?
 
         /// 是否伪站点，取值有：
-        /// <li> 0：非伪站点；</li>
-        /// <li> 1：伪站点。</li>
+        /// - 0：非伪站点；
+        /// - 1：伪站点。
         public let isFake: Int64
 
-        /// 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作。</li>
+        /// 锁定状态，取值有：
+        /// - enable：正常，允许进行修改操作；
+        /// - disable：锁定中，不允许进行修改操作。
         public let lockStatus: String?
 
         enum CodingKeys: String, CodingKey {
@@ -4647,8 +4725,8 @@ extension Teo {
         public let zoneName: String
 
         /// 站点加速区域信息，取值有：
-        /// <li> mainland：中国境内加速；</li>
-        /// <li> overseas：中国境外加速。</li>
+        /// - mainland：中国境内加速；
+        /// - overseas：中国境外加速。
         public let area: String
 
         /// 节点缓存键配置。

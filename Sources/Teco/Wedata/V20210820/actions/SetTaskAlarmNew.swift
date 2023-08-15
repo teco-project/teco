@@ -54,7 +54,8 @@ extension Wedata {
 
     /// 设置任务告警【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(_ input: SetTaskAlarmNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTaskAlarmNewResponse> {
@@ -63,7 +64,8 @@ extension Wedata {
 
     /// 设置任务告警【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(_ input: SetTaskAlarmNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTaskAlarmNewResponse {
@@ -72,7 +74,8 @@ extension Wedata {
 
     /// 设置任务告警【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(alarmInfoList: [AlarmInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTaskAlarmNewResponse> {
@@ -81,7 +84,8 @@ extension Wedata {
 
     /// 设置任务告警【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(alarmInfoList: [AlarmInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTaskAlarmNewResponse {

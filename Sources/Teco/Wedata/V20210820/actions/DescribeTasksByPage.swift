@@ -84,7 +84,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
@@ -93,7 +94,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
@@ -102,7 +104,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
@@ -111,7 +114,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
@@ -120,7 +124,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPagePaginated(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [TaskInfoData])> {
@@ -129,7 +134,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     @inlinable @discardableResult
     public func describeTasksByPagePaginated(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeTasksByPageResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -138,7 +144,8 @@ extension Wedata {
 
     /// 根据工作流分页查询任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 根据工作流分页查询任务
     ///
     /// - Returns: `AsyncSequence`s of ``TaskInfoData`` and ``DescribeTasksByPageResponse`` that can be iterated over asynchronously on demand.

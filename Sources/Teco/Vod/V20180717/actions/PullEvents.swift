@@ -59,7 +59,7 @@ extension Vod {
     /// * 接口为长轮询模式，即：如果服务端存在未消费事件，则立即返回给请求方；如果服务端没有未消费事件，则后台会将请求挂起，直到有新的事件产生为止；
     /// * 请求最多挂起5秒，建议请求方将超时时间设置为10秒；
     /// * 未被拉取的事件通知最多保留4天，超过该时限的事件通知可能会被清除；
-    /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
+    /// * 若该接口有事件返回，调用方必须在_30秒_内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在_30秒_后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(_ input: PullEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
@@ -72,7 +72,7 @@ extension Vod {
     /// * 接口为长轮询模式，即：如果服务端存在未消费事件，则立即返回给请求方；如果服务端没有未消费事件，则后台会将请求挂起，直到有新的事件产生为止；
     /// * 请求最多挂起5秒，建议请求方将超时时间设置为10秒；
     /// * 未被拉取的事件通知最多保留4天，超过该时限的事件通知可能会被清除；
-    /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
+    /// * 若该接口有事件返回，调用方必须在_30秒_内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在_30秒_后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(_ input: PullEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
@@ -85,7 +85,7 @@ extension Vod {
     /// * 接口为长轮询模式，即：如果服务端存在未消费事件，则立即返回给请求方；如果服务端没有未消费事件，则后台会将请求挂起，直到有新的事件产生为止；
     /// * 请求最多挂起5秒，建议请求方将超时时间设置为10秒；
     /// * 未被拉取的事件通知最多保留4天，超过该时限的事件通知可能会被清除；
-    /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
+    /// * 若该接口有事件返回，调用方必须在_30秒_内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在_30秒_后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
@@ -98,7 +98,7 @@ extension Vod {
     /// * 接口为长轮询模式，即：如果服务端存在未消费事件，则立即返回给请求方；如果服务端没有未消费事件，则后台会将请求挂起，直到有新的事件产生为止；
     /// * 请求最多挂起5秒，建议请求方将超时时间设置为10秒；
     /// * 未被拉取的事件通知最多保留4天，超过该时限的事件通知可能会被清除；
-    /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
+    /// * 若该接口有事件返回，调用方必须在_30秒_内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在_30秒_后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
     public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {

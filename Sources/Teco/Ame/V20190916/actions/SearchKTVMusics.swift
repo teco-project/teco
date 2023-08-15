@@ -33,13 +33,13 @@ extension Ame {
         public let limit: Int64
 
         /// 排序方式。默认按照匹配度排序
-        /// <li> Sort.Field 可选 CreateTime</li>
-        /// <li> Sort.Order 可选 Desc </li>
-        /// <li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
+        /// - Sort.Field 可选 CreateTime
+        /// - Sort.Order 可选 Desc
+        /// - 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。
         public let sort: SortBy?
 
         /// 标签 ID 集合，匹配集合指定所有 ID 。
-        /// <li>数组长度限制：10。</li>
+        /// - 数组长度限制：10。
         public let tagIds: [String]?
 
         public init(keyWord: String, offset: Int64, limit: Int64, sort: SortBy? = nil, tagIds: [String]? = nil) {

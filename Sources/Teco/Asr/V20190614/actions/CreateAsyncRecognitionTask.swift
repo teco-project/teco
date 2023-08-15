@@ -110,11 +110,16 @@ extension Asr {
     /// 语音流异步识别任务创建
     ///
     /// 本接口用于对语音流进行准实时识别，通过异步回调来返回识别结果。适用于直播审核等场景。
-    /// <br>• 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
-    /// <br>• 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
-    /// <br>• 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
-    /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    ///
+    /// • 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
+    ///
+    /// • 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
+    ///
+    /// • 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
+    ///
+    /// • 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// • 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
         self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -123,11 +128,16 @@ extension Asr {
     /// 语音流异步识别任务创建
     ///
     /// 本接口用于对语音流进行准实时识别，通过异步回调来返回识别结果。适用于直播审核等场景。
-    /// <br>• 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
-    /// <br>• 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
-    /// <br>• 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
-    /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    ///
+    /// • 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
+    ///
+    /// • 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
+    ///
+    /// • 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
+    ///
+    /// • 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// • 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
         try await self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -136,11 +146,16 @@ extension Asr {
     /// 语音流异步识别任务创建
     ///
     /// 本接口用于对语音流进行准实时识别，通过异步回调来返回识别结果。适用于直播审核等场景。
-    /// <br>• 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
-    /// <br>• 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
-    /// <br>• 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
-    /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    ///
+    /// • 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
+    ///
+    /// • 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
+    ///
+    /// • 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
+    ///
+    /// • 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// • 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
         self.createAsyncRecognitionTask(.init(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)
@@ -149,11 +164,16 @@ extension Asr {
     /// 语音流异步识别任务创建
     ///
     /// 本接口用于对语音流进行准实时识别，通过异步回调来返回识别结果。适用于直播审核等场景。
-    /// <br>• 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
-    /// <br>• 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
-    /// <br>• 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
-    /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
-    /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
+    ///
+    /// • 支持rtmp、rtsp等流媒体协议，以及各类基于http协议的直播流(不支持hls)
+    ///
+    /// • 音频流时长无限制，服务会自动拉取音频流数据，若连续10分钟拉不到流数据时，服务会终止识别任务
+    ///
+    /// • 服务通过回调的方式来提供识别结果，用户需要提供CallbackUrl。回调时机为一小段话(最长15秒)回调一次。
+    ///
+    /// • 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
+    ///
+    /// • 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
     public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
         try await self.createAsyncRecognitionTask(.init(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)

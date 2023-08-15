@@ -50,7 +50,8 @@ extension Vpc {
 
     /// 释放IPv6子网段
     ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。
+    ///
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
@@ -59,7 +60,8 @@ extension Vpc {
 
     /// 释放IPv6子网段
     ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。
+    ///
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
@@ -68,7 +70,8 @@ extension Vpc {
 
     /// 释放IPv6子网段
     ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。
+    ///
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
@@ -77,7 +80,8 @@ extension Vpc {
 
     /// 释放IPv6子网段
     ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。
+    ///
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {

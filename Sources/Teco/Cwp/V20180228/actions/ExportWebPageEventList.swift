@@ -22,9 +22,9 @@ extension Cwp {
     /// ExportWebPageEventList请求参数结构体
     public struct ExportWebPageEventListRequest: TCRequestModel {
         /// 过滤条件
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>EventType - String - 是否必填：否 - 事件类型</li>
-        /// <li>EventStatus - String - 是否必填：否 - 事件状态</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - EventType - String - 是否必填：否 - 事件类型
+        /// - EventStatus - String - 是否必填：否 - 事件状态
         public let filters: [AssetFilters]?
 
         /// 排序方式：CreateTime 或 RestoreTime，默认为CreateTime

@@ -26,11 +26,11 @@ extension Vpc {
         public let dhcpIpIds: [String]?
 
         /// 过滤条件，参数不支持同时指定DhcpIpIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
-        /// <li>subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。</li>
-        /// <li>dhcpip-id - String - （过滤条件）DhcpIp实例ID，形如：dhcpip-pxir56ns。</li>
-        /// <li>dhcpip-name - String - （过滤条件）DhcpIp实例名称。</li>
-        /// <li>address-ip - String - （过滤条件）DhcpIp实例的IP，根据IP精确查找。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
+        /// - subnet-id - String - （过滤条件）所属子网实例ID，形如：subnet-f49l6u0z。
+        /// - dhcpip-id - String - （过滤条件）DhcpIp实例ID，形如：dhcpip-pxir56ns。
+        /// - dhcpip-name - String - （过滤条件）DhcpIp实例名称。
+        /// - address-ip - String - （过滤条件）DhcpIp实例的IP，根据IP精确查找。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

@@ -24,18 +24,18 @@ extension Vod {
         /// 播放器配置名称。
         public let name: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 播放的音视频类型，可选值：
-        /// <li>AdaptiveDynamicStream：自适应码流输出；</li>
-        /// <li>Transcode：转码输出；</li>
-        /// <li>Original：原始音视频。</li>
+        /// - AdaptiveDynamicStream：自适应码流输出；
+        /// - Transcode：转码输出；
+        /// - Original：原始音视频。
         public let audioVideoType: String?
 
         /// 播放 DRM 保护的自适应码流开关：
-        /// <li>ON：开启，表示仅播放 DRM  保护的自适应码流输出；</li>
-        /// <li>OFF：关闭，表示播放未加密的自适应码流输出。</li>
+        /// - ON：开启，表示仅播放 DRM  保护的自适应码流输出；
+        /// - OFF：关闭，表示播放未加密的自适应码流输出。
         public let drmSwitch: String?
 
         /// 允许输出的未加密的自适应码流模板 ID。
@@ -57,9 +57,9 @@ extension Vod {
         public let domain: String?
 
         /// 播放时使用的 Scheme。取值范围：
-        /// <li>Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；</li>
-        /// <li>HTTP；</li>
-        /// <li>HTTPS。</li>
+        /// - Default：使用[默认分发配置](https://cloud.tencent.com/document/product/266/33373)中的 Scheme；
+        /// - HTTP；
+        /// - HTTPS。
         public let scheme: String?
 
         /// 模板描述信息，长度限制：256 个字符。
@@ -108,7 +108,7 @@ extension Vod {
 
     /// 修改播放器配置
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySuperPlayerConfigResponse> {
@@ -117,7 +117,7 @@ extension Vod {
 
     /// 修改播放器配置
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySuperPlayerConfigResponse {
@@ -126,7 +126,7 @@ extension Vod {
 
     /// 修改播放器配置
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfoForUpdate? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySuperPlayerConfigResponse> {
@@ -135,7 +135,7 @@ extension Vod {
 
     /// 修改播放器配置
     ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 该 API 已经_不再维护_，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfoForUpdate? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySuperPlayerConfigResponse {

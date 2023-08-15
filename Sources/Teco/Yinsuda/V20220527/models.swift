@@ -68,10 +68,10 @@ extension Yinsuda {
     /// 节拍信息。
     public struct KTVBPMInfo: TCOutputModel {
         /// 节拍类型，取值有：
-        /// <li>Slow：慢；</li>
-        /// <li>Middle：中等；</li>
-        /// <li>Fast：快；</li>
-        /// <li>Unknown：未知。</li>
+        /// - Slow：慢；
+        /// - Middle：中等；
+        /// - Fast：快；
+        /// - Unknown：未知。
         public let type: String
 
         /// BPM 值。
@@ -168,13 +168,13 @@ extension Yinsuda {
         public let albumInfo: MusicAlbumInfo?
 
         /// 权益列表，取值有：
-        /// <li>Play：可播；</li>
-        /// <li>Sing：可唱。</li>
+        /// - Play：可播；
+        /// - Sing：可唱。
         public let rightSet: [String]
 
         /// 推荐类型，取值有：
-        /// <li>Featured：精选；</li>
-        /// <li>Other：其他。</li>
+        /// - Featured：精选；
+        /// - Other：其他。
         public let recommendType: String
 
         enum CodingKeys: String, CodingKey {
@@ -264,9 +264,9 @@ extension Yinsuda {
         public let robotId: String
 
         /// 状态，取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>Destroy：销毁</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - Destroy：销毁
         public let status: String
 
         /// 播放列表。
@@ -285,14 +285,14 @@ extension Yinsuda {
         public let joinRoomInput: JoinRoomInput
 
         /// RTC厂商类型，取值有：
-        /// <li>TRTC</li>
+        /// - TRTC
         public let rtcSystem: String
 
         /// 播放模式，PlayMode取值有：
-        /// <li>RepeatPlaylist：列表循环</li>
-        /// <li>Order：顺序播放</li>
-        /// <li>RepeatSingle：单曲循环</li>
-        /// <li>Shuffle：随机播放</li>
+        /// - RepeatPlaylist：列表循环
+        /// - Order：顺序播放
+        /// - RepeatSingle：单曲循环
+        /// - Shuffle：随机播放
         public let setPlayModeInput: SetPlayModeCommandInput
 
         enum CodingKeys: String, CodingKey {
@@ -366,12 +366,17 @@ extension Yinsuda {
 
         /// 充值会员天数。
         /// 取值有：
-        /// <li>31</li> <li>93</li><li>186</li> <li>372</li>
+        /// - 31
+        /// - 93
+        /// - 186
+        /// - 372
         public let vipDays: Int64?
 
         /// 订单状态。
         /// 取值有：
-        /// <li>Success：成功</li><li>Fail：失败</li><li>Processing：订单处理中</li>
+        /// - Success：成功
+        /// - Fail：失败
+        /// - Processing：订单处理中
         public let status: String?
 
         /// 创建时间。
@@ -403,7 +408,8 @@ extension Yinsuda {
         @TCTimestampISO8601Encoding public var liveVipEndTime: Date?
 
         /// 会员生效状态
-        /// <li>Valid：生效</li><li>Invalid：无效</li>
+        /// - Valid：生效
+        /// - Invalid：无效
         public let liveVipStatus: String?
 
         enum CodingKeys: String, CodingKey {
@@ -416,9 +422,9 @@ extension Yinsuda {
     /// 歌曲专辑封面信息。
     public struct MusicAlbumCoverInfo: TCOutputModel {
         /// 尺寸规格，取值有：
-        /// <li>Mini：150 x 150 尺寸；</li>
-        /// <li>Small：240 x 240 尺寸；</li>
-        /// <li>Medium：480 x 480 尺寸。</li>
+        /// - Mini：150 x 150 尺寸；
+        /// - Small：240 x 240 尺寸；
+        /// - Medium：480 x 480 尺寸。
         public let dimension: String
 
         /// 下载链接。
@@ -494,8 +500,8 @@ extension Yinsuda {
     /// 音频参数信息
     public struct SetAudioParamCommandInput: TCInputModel {
         /// 音频类型，取值有：
-        /// <li>Original：原唱</li>
-        /// <li>Accompaniment：伴奏</li>
+        /// - Original：原唱
+        /// - Accompaniment：伴奏
         public let type: String?
 
         public init(type: String? = nil) {
@@ -510,9 +516,10 @@ extension Yinsuda {
     /// 设置销毁模式
     public struct SetDestroyModeCommandInput: TCInputModel {
         /// 销毁模式，取值有：
-        /// <li>Auto：房间没人时自动销毁</li>
-        /// <li>Expire：房间没人时过期自动销毁</li>
-        /// <li>Never：不自动销毁，需手动销毁</li>默认为：Auto。
+        /// - Auto：房间没人时自动销毁
+        /// - Expire：房间没人时过期自动销毁
+        /// - Never：不自动销毁，需手动销毁
+        /// 默认为：Auto。
         public let destroyMode: String
 
         /// 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
@@ -532,10 +539,10 @@ extension Yinsuda {
     /// 设置播放模式
     public struct SetPlayModeCommandInput: TCInputModel {
         /// 播放模式，取值有：
-        /// <li>RepeatPlaylist：列表循环</li>
-        /// <li>Order：顺序播放</li>
-        /// <li>RepeatSingle：单曲循环</li>
-        /// <li>Shuffle：随机播放</li>
+        /// - RepeatPlaylist：列表循环
+        /// - Order：顺序播放
+        /// - RepeatSingle：单曲循环
+        /// - Shuffle：随机播放
         public let playMode: String
 
         public init(playMode: String) {
@@ -550,10 +557,10 @@ extension Yinsuda {
     /// 设置播放列表指令参数
     public struct SetPlaylistCommandInput: TCInputModel {
         /// 变更类型，取值有：
-        /// <li>Add：添加</li>
-        /// <li>Delete：删除</li>
-        /// <li>ClearList：清空歌曲列表</li>
-        /// <li>Move：移动歌曲</li>
+        /// - Add：添加
+        /// - Delete：删除
+        /// - ClearList：清空歌曲列表
+        /// - Move：移动歌曲
         public let type: String
 
         /// 歌单索引位置，
@@ -586,16 +593,16 @@ extension Yinsuda {
     /// KTV 机器人初始化参数，在创建后自动完成相关初始化工作。
     public struct SyncRobotCommand: TCInputModel {
         /// 可同时传入多个指令，顺序执行。取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>SwitchPrevious：上一首</li>
-        /// <li>SwitchNext：下一首</li>
-        /// <li>SetPlayMode：设置播放模式</li>
-        /// <li>Seek：调整播放进度</li>
-        /// <li>SetPlaylist：歌单变更</li>
-        /// <li>SetAudioParam：音频参数变更</li>
-        /// <li>SendMessage：发送自定义消息</li>
-        /// <li>SetDestroyMode：设置销毁模式</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - SwitchPrevious：上一首
+        /// - SwitchNext：下一首
+        /// - SetPlayMode：设置播放模式
+        /// - Seek：调整播放进度
+        /// - SetPlaylist：歌单变更
+        /// - SetAudioParam：音频参数变更
+        /// - SendMessage：发送自定义消息
+        /// - SetDestroyMode：设置销毁模式
         public let command: String
 
         /// 播放参数。
@@ -673,12 +680,12 @@ extension Yinsuda {
 
     /// 时间范围
     public struct TimeRange: TCInputModel {
-        /// <li>大于等于此时间（起始时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        /// - 大于等于此时间（起始时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let before: String?
 
-        /// <li>小于此时间（结束时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        /// - 小于此时间（结束时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let after: String?
 
         public init(before: String? = nil, after: String? = nil) {
@@ -705,8 +712,8 @@ extension Yinsuda {
         public let liveVipUserInfo: LiveVipUserInfo?
 
         /// 用户类型
-        /// <li>Normal：普通用户</li>
-        /// <li>LiveVip：直播会员用户</li>
+        /// - Normal：普通用户
+        /// - LiveVip：直播会员用户
         public let userType: String?
 
         enum CodingKeys: String, CodingKey {

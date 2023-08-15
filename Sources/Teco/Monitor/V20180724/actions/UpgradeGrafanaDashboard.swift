@@ -25,23 +25,23 @@ extension Monitor {
         public let instanceId: String
 
         /// Prometheus 集成项 Code，升级对应的 Dashboard，取值如下：
-        /// <li>spring_mvc</li>
-        /// <li>mysql</li>
-        /// <li>go</li>
-        /// <li>redis</li>
-        /// <li>jvm</li>
-        /// <li>pgsql</li>
-        /// <li>mongo</li>
-        /// <li>kafka</li>
-        /// <li>es</li>
-        /// <li>flink</li>
-        /// <li>blackbox</li>
-        /// <li>consule</li>
-        /// <li>memcached</li>
-        /// <li>zk</li>
-        /// <li>tps</li>
-        /// <li>istio</li>
-        /// <li>etcd</li>
+        /// - spring_mvc
+        /// - mysql
+        /// - go
+        /// - redis
+        /// - jvm
+        /// - pgsql
+        /// - mongo
+        /// - kafka
+        /// - es
+        /// - flink
+        /// - blackbox
+        /// - consule
+        /// - memcached
+        /// - zk
+        /// - tps
+        /// - istio
+        /// - etcd
         public let integrationCodes: [String]?
 
         public init(instanceId: String, integrationCodes: [String]? = nil) {

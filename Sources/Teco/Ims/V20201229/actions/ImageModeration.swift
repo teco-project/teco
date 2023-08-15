@@ -182,21 +182,11 @@ extension Ims {
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
     /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
+    /// 关于版本迭代的描述
+    ///
+    /// 当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：[图片内容安全-2019版本](https://cloud.tencent.com/document/product/1125/38206)
+    ///
+    /// 2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。
     @inlinable
     public func imageModeration(_ input: ImageModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
         self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -228,21 +218,11 @@ extension Ims {
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
     /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
+    /// 关于版本迭代的描述
+    ///
+    /// 当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：[图片内容安全-2019版本](https://cloud.tencent.com/document/product/1125/38206)
+    ///
+    /// 2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。
     @inlinable
     public func imageModeration(_ input: ImageModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
         try await self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -274,21 +254,11 @@ extension Ims {
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
     /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
+    /// 关于版本迭代的描述
+    ///
+    /// 当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：[图片内容安全-2019版本](https://cloud.tencent.com/document/product/1125/38206)
+    ///
+    /// 2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。
     @inlinable
     public func imageModeration(bizType: String? = nil, dataId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, interval: Int64? = nil, maxFrames: Int64? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
         self.imageModeration(.init(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device), region: region, logger: logger, on: eventLoop)
@@ -320,21 +290,11 @@ extension Ims {
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
     /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
+    /// 关于版本迭代的描述
+    ///
+    /// 当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：[图片内容安全-2019版本](https://cloud.tencent.com/document/product/1125/38206)
+    ///
+    /// 2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。
     @inlinable
     public func imageModeration(bizType: String? = nil, dataId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, interval: Int64? = nil, maxFrames: Int64? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
         try await self.imageModeration(.init(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device), region: region, logger: logger, on: eventLoop)

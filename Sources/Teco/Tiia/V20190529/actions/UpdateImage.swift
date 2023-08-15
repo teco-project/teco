@@ -61,8 +61,6 @@ extension Tiia {
     /// 更新图片
     ///
     /// 本接口支持根据图库ID、物品ID、图片名称来修改图片信息（暂仅支持修改Tags）
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(_ input: UpdateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageResponse> {
@@ -72,8 +70,6 @@ extension Tiia {
     /// 更新图片
     ///
     /// 本接口支持根据图库ID、物品ID、图片名称来修改图片信息（暂仅支持修改Tags）
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(_ input: UpdateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageResponse {
@@ -83,8 +79,6 @@ extension Tiia {
     /// 更新图片
     ///
     /// 本接口支持根据图库ID、物品ID、图片名称来修改图片信息（暂仅支持修改Tags）
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(groupId: String, entityId: String, picName: String? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageResponse> {
@@ -94,8 +88,6 @@ extension Tiia {
     /// 更新图片
     ///
     /// 本接口支持根据图库ID、物品ID、图片名称来修改图片信息（暂仅支持修改Tags）
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(groupId: String, entityId: String, picName: String? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageResponse {

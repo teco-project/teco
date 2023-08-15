@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribeAIRecognitionTemplates请求参数结构体
     public struct DescribeAIRecognitionTemplatesRequest: TCPaginatedRequest {
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 音视频内容识别模板唯一标识过滤条件，数组长度限制：100。

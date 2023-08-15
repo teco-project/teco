@@ -25,8 +25,8 @@ extension Tat {
         public let content: String
 
         /// 待执行命令的实例ID列表，上限100。支持实例类型：
-        /// <li> CVM
-        /// <li> LIGHTHOUSE
+        /// - CVM
+        /// - LIGHTHOUSE
         public let instanceIds: [String]
 
         /// 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
@@ -45,8 +45,9 @@ extension Tat {
         public let timeout: UInt64?
 
         /// 是否保存命令，取值范围：
-        /// <li> True：保存
-        /// <li> False：不保存
+        /// - True：保存
+        /// - False：不保存
+        ///
         /// 默认为 False。
         public let saveCommand: Bool?
 

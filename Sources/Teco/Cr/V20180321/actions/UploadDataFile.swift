@@ -30,7 +30,13 @@ extension Cr {
         /// 文件名
         public let fileName: String
 
-        /// <p>上传类型，不填默认到期/逾期提醒文件，取值范围：</p><ul style="margin-bottom:0px;"><li>data：到期/逾期提醒文件</li><li>repay：到期/逾期提醒停拨文件</li><li>callback：回访文件</li><li>callstop：回访停拨文件</li><li>blacklist：黑名单文件</li></ul>
+        /// 上传类型，不填默认到期/逾期提醒文件，取值范围：
+        ///
+        /// - data：到期/逾期提醒文件
+        /// - repay：到期/逾期提醒停拨文件
+        /// - callback：回访文件
+        /// - callstop：回访停拨文件
+        /// - blacklist：黑名单文件
         public let uploadModel: String?
 
         /// 文件上传地址，文件与文件地址上传只可选用一种，大小不超过50MB。

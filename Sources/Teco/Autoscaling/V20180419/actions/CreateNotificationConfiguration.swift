@@ -25,12 +25,12 @@ extension As {
         public let autoScalingGroupId: String
 
         /// 通知类型，即为需要订阅的通知类型集合，取值范围如下：
-        /// <li>SCALE_OUT_SUCCESSFUL：扩容成功</li>
-        /// <li>SCALE_OUT_FAILED：扩容失败</li>
-        /// <li>SCALE_IN_SUCCESSFUL：缩容成功</li>
-        /// <li>SCALE_IN_FAILED：缩容失败</li>
-        /// <li>REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL：替换不健康子机成功</li>
-        /// <li>REPLACE_UNHEALTHY_INSTANCE_FAILED：替换不健康子机失败</li>
+        /// - SCALE_OUT_SUCCESSFUL：扩容成功
+        /// - SCALE_OUT_FAILED：扩容失败
+        /// - SCALE_IN_SUCCESSFUL：缩容成功
+        /// - SCALE_IN_FAILED：缩容失败
+        /// - REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL：替换不健康子机成功
+        /// - REPLACE_UNHEALTHY_INSTANCE_FAILED：替换不健康子机失败
         public let notificationTypes: [String]
 
         /// 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
@@ -38,15 +38,11 @@ extension As {
 
         /// 通知接收端类型，取值如下
         ///
-        /// <li>USER_GROUP：用户组
-        ///
-        /// <li>CMQ_QUEUE：CMQ 队列
-        ///
-        /// <li>CMQ_TOPIC：CMQ 主题
-        ///
-        /// <li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
-        ///
-        /// <li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
+        /// - USER_GROUP：用户组
+        /// - CMQ_QUEUE：CMQ 队列
+        /// - CMQ_TOPIC：CMQ 主题
+        /// - TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
+        /// - TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
         ///
         /// 默认值为：`USER_GROUP`。
         public let targetType: String?

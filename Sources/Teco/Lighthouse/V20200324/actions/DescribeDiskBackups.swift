@@ -26,17 +26,21 @@ extension Lighthouse {
         public let diskBackupIds: [String]?
 
         /// 过滤器列表。
-        /// <li>disk-backup-id</li>按照【云硬盘备份点 ID】进行过滤。
+        /// - disk-backup-id
+        /// 按照【云硬盘备份点 ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>disk-id</li>按照【云硬盘 ID】进行过滤。
+        /// - disk-id
+        /// 按照【云硬盘 ID】进行过滤。
         /// 类型：String
         /// 必选：否
-        /// <li>disk-backup-state</li>按照【云硬盘备份点状态】进行过滤。
+        /// - disk-backup-state
+        /// 按照【云硬盘备份点状态】进行过滤。
         /// 类型：String
         /// 必选：否
         /// 取值：参考数据结构[DiskBackup](https://cloud.tencent.com/document/product/1207/47576#DiskBackup)下的DiskBackupState取值。
-        /// <li>disk-usage</li>按照【云硬盘类型】进行过滤。
+        /// - disk-usage
+        /// 按照【云硬盘类型】进行过滤。
         /// 类型：String
         /// 必选：否
         /// 取值：SYSTEM_DISK或DATA_DISK

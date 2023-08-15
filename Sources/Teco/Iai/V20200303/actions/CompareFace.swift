@@ -123,8 +123,6 @@ extension Iai {
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
     ///
     /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(_ input: CompareFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareFaceResponse> {
@@ -136,8 +134,6 @@ extension Iai {
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
     ///
     /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(_ input: CompareFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareFaceResponse {
@@ -149,8 +145,6 @@ extension Iai {
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
     ///
     /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareFaceResponse> {
@@ -162,8 +156,6 @@ extension Iai {
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
     ///
     /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func compareFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareFaceResponse {

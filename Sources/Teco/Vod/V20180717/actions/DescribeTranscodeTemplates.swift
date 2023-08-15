@@ -22,25 +22,25 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribeTranscodeTemplates请求参数结构体
     public struct DescribeTranscodeTemplatesRequest: TCPaginatedRequest {
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 转码模板唯一标识过滤条件，数组长度限制：100。
         public let definitions: [Int64]?
 
         /// 模板类型过滤条件，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         /// 封装格式过滤条件，可选值：
-        /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式板；</li>
-        /// <li>PureAudio：纯音频格式，只能包含音频流的封装格式。</li>
+        /// - Video：视频格式，可以同时包含视频流和音频流的封装格式板；
+        /// - PureAudio：纯音频格式，只能包含音频流的封装格式。
         public let containerType: String?
 
         /// 极速高清过滤条件，用于过滤普通转码或极速高清转码模板，可选值：
-        /// <li>Common：普通转码模板；</li>
-        /// <li>TEHD：极速高清模板。</li>
+        /// - Common：普通转码模板；
+        /// - TEHD：极速高清模板。
         public let tehdType: String?
 
         /// 分页偏移量，默认值：0。

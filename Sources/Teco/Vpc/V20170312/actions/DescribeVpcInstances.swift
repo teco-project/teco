@@ -23,9 +23,9 @@ extension Vpc {
     /// DescribeVpcInstances请求参数结构体
     public struct DescribeVpcInstancesRequest: TCPaginatedRequest {
         /// 过滤条件，参数不支持同时指定RouteTableIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
-        /// <li>instance-id - String - （过滤条件）云主机实例ID。</li>
-        /// <li>instance-name - String - （过滤条件）云主机名称。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
+        /// - instance-id - String - （过滤条件）云主机实例ID。
+        /// - instance-name - String - （过滤条件）云主机名称。
         public let filters: [Filter]
 
         /// 偏移量，默认为0。

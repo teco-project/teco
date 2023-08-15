@@ -32,27 +32,27 @@ extension Cme {
         public let aspectRatioSet: [String]?
 
         /// 项目类型过滤参数列表，取值有：
-        /// <li>VIDEO_EDIT：视频编辑。</li>
-        /// <li>SWITCHER：导播台。</li>
-        /// <li>VIDEO_SEGMENTATION：视频拆条。</li>
-        /// <li>STREAM_CONNECT：云转推。</li>
-        /// <li>RECORD_REPLAY：录制回放。</li>
-        /// <li>MEDIA_CAST：点播转直播。</li>
+        /// - VIDEO_EDIT：视频编辑。
+        /// - SWITCHER：导播台。
+        /// - VIDEO_SEGMENTATION：视频拆条。
+        /// - STREAM_CONNECT：云转推。
+        /// - RECORD_REPLAY：录制回放。
+        /// - MEDIA_CAST：点播转直播。
         ///
         /// 注：如果不填则不使用项目类型进行过滤。
         public let categorySet: [String]?
 
         /// 项目模式过滤参数列表，一个项目可以有多种模式并相互切换。
         /// 当 Category 为 VIDEO_EDIT 时，可选模式有：
-        /// <li>Default：默认模式。</li>
-        /// <li>VideoEditTemplate：视频编辑模板制作模式。</li>
+        /// - Default：默认模式。
+        /// - VideoEditTemplate：视频编辑模板制作模式。
         ///
         /// 注：不填不使用项目模式进行过滤。
         public let modes: [String]?
 
         /// 结果排序方式，支持下列排序字段：
-        /// <li>CreateTime：创建时间；</li>
-        /// <li>UpdateTime：更新时间。</li>
+        /// - CreateTime：创建时间；
+        /// - UpdateTime：更新时间。
         ///
         /// 注：如不填，则使用项目创建时间倒序排列。
         public let sort: SortBy?

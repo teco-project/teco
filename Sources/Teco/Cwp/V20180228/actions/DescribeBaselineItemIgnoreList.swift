@@ -31,7 +31,7 @@ extension Cwp {
         /// 请求偏移默认0
         public let offset: Int64?
 
-        /// <li>CatgoryId - int64 - 是否必填：否 - 规则Id</li>
+        /// - CatgoryId - int64 - 是否必填：否 - 规则Id
         public let filters: [Filter]?
 
         /// 排序方式 [ASC:升序|DESC:降序]

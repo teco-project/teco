@@ -28,9 +28,9 @@ extension Teo {
         public let ipGroup: IPGroup
 
         /// 操作类型，取值有：
-        /// <li> append: 向 IPGroup 中追加 Content 参数中内容；</li>
-        /// <li> remove: 从 IPGroup 中删除 Content 参数中内容；</li>
-        /// <li> update: 全量替换 IPGroup 内容，并可修改 IPGroup 名称。 </li>
+        /// - append: 向 IPGroup 中追加 Content 参数中内容；
+        /// - remove: 从 IPGroup 中删除 Content 参数中内容；
+        /// - update: 全量替换 IPGroup 内容，并可修改 IPGroup 名称。
         public let mode: String
 
         public init(zoneId: String, ipGroup: IPGroup, mode: String) {

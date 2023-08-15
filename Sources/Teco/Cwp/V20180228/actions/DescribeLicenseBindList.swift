@@ -31,7 +31,7 @@ extension Cwp {
         /// 资源ID
         public let resourceId: String
 
-        /// <li>Keywords 机器别名/公私IP 模糊查询</li>
+        /// - Keywords 机器别名/公私IP 模糊查询
         public let filters: [Filters]?
 
         /// 限制条数,默认10.

@@ -84,7 +84,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
@@ -93,7 +94,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
@@ -102,7 +104,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
@@ -111,7 +114,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable
     public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
@@ -120,7 +124,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable
     public func describeDataSourceListPaginated(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [DataSourceInfo])> {
@@ -129,7 +134,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     @inlinable @discardableResult
     public func describeDataSourceListPaginated(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDataSourceListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -138,7 +144,8 @@ extension Wedata {
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源详情
     ///
     /// - Returns: `AsyncSequence`s of ``DataSourceInfo`` and ``DescribeDataSourceListResponse`` that can be iterated over asynchronously on demand.

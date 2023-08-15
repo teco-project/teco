@@ -26,8 +26,8 @@ extension Vpc {
         public let directConnectGatewayId: String
 
         /// 云联网路由学习类型，可选值：
-        /// <li>`BGP` - 自动学习。</li>
-        /// <li>`STATIC` - 静态，即用户配置，默认值。</li>
+        /// - `BGP` - 自动学习。
+        /// - `STATIC` - 静态，即用户配置，默认值。
         public let ccnRouteType: String?
 
         /// 偏移量。

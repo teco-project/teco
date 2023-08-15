@@ -21,10 +21,25 @@ import TecoCore
 extension Cvm {
     /// DescribeAccountQuota请求参数结构体
     public struct DescribeAccountQuotaRequest: TCRequestModel {
-        /// <li><strong>zone</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
-        /// <li><strong>quota-type</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
+        /// - **zone**
+        ///
+        /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
+        /// - **quota-type**
+        ///
+        /// 按照【**配额类型**】进行过滤。配额类型形如：PostPaidQuotaSet。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet
         public let filters: [Filter]?
 
         public init(filters: [Filter]? = nil) {

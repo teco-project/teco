@@ -33,7 +33,7 @@ extension Irp {
         /// 用户设备ID数组，可传入用户的多个类型ID，用于关联画像信息
         public let userIdList: [UserIdInfo]?
 
-        /// 推荐返回数量，默认10个，最多支持50个的内容返回。如果有更多数量要求，<a href="https://console.cloud.tencent.com/workorder/category" target="_blank">提单</a>沟通解决
+        /// 推荐返回数量，默认10个，最多支持50个的内容返回。如果有更多数量要求，[提单](https://console.cloud.tencent.com/workorder/category)沟通解决
         public let itemCnt: Int64?
 
         /// 当场景是相关推荐时该值必填，场景是非相关推荐时该值无效

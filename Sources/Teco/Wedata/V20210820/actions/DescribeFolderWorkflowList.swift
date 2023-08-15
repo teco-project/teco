@@ -89,7 +89,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderWorkflowListResponse> {
@@ -98,7 +99,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
@@ -107,7 +109,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderWorkflowListResponse> {
@@ -116,7 +119,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
@@ -125,7 +129,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable
     public func describeFolderWorkflowListPaginated(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [Workflow])> {
@@ -134,7 +139,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     @inlinable @discardableResult
     public func describeFolderWorkflowListPaginated(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeFolderWorkflowListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -143,7 +149,8 @@ extension Wedata {
 
     /// 拉取文件夹下的工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 拉取文件夹下的工作流
     ///
     /// - Returns: `AsyncSequence`s of ``Workflow`` and ``DescribeFolderWorkflowListResponse`` that can be iterated over asynchronously on demand.

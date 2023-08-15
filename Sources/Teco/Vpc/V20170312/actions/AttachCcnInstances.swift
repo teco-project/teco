@@ -55,7 +55,8 @@ extension Vpc {
 
     /// 云联网关联实例
     ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。
+    ///
     /// 每个云联网能够关联的网络实例个数是有限的，详情请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(_ input: AttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnInstancesResponse> {
@@ -64,7 +65,8 @@ extension Vpc {
 
     /// 云联网关联实例
     ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。
+    ///
     /// 每个云联网能够关联的网络实例个数是有限的，详情请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(_ input: AttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
@@ -73,7 +75,8 @@ extension Vpc {
 
     /// 云联网关联实例
     ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。
+    ///
     /// 每个云联网能够关联的网络实例个数是有限的，详情请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(ccnId: String, instances: [CcnInstance], ccnUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnInstancesResponse> {
@@ -82,7 +85,8 @@ extension Vpc {
 
     /// 云联网关联实例
     ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。
+    ///
     /// 每个云联网能够关联的网络实例个数是有限的，详情请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable @discardableResult
     public func attachCcnInstances(ccnId: String, instances: [CcnInstance], ccnUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {

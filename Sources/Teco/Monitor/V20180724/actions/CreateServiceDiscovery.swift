@@ -24,17 +24,17 @@ extension Monitor {
         /// Prometheus 实例 ID
         public let instanceId: String
 
-        /// <li>类型为TKE：对应集成的腾讯云容器服务集群 ID</li>
+        /// - 类型为TKE：对应集成的腾讯云容器服务集群 ID
         public let kubeClusterId: String
 
         /// 用户 Kubernetes 集群类型：
-        /// <li> 1 = 容器服务集群(TKE) </li>
+        /// - 1 = 容器服务集群(TKE)
         public let kubeType: Int64
 
         /// 服务发现类型，取值如下：
-        /// <li> 1 = ServiceMonitor</li>
-        /// <li> 2 = PodMonitor</li>
-        /// <li> 3 = JobMonitor</li>
+        /// - 1 = ServiceMonitor
+        /// - 2 = PodMonitor
+        /// - 3 = JobMonitor
         public let type: Int64
 
         /// 服务发现配置信息
@@ -74,8 +74,9 @@ extension Monitor {
     /// 创建服务发现
     ///
     /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceDiscoveryResponse> {
         self.client.execute(action: "CreateServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -84,8 +85,9 @@ extension Monitor {
     /// 创建服务发现
     ///
     /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceDiscoveryResponse {
         try await self.client.execute(action: "CreateServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -94,8 +96,9 @@ extension Monitor {
     /// 创建服务发现
     ///
     /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func createServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceDiscoveryResponse> {
         self.createServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), region: region, logger: logger, on: eventLoop)
@@ -104,8 +107,9 @@ extension Monitor {
     /// 创建服务发现
     ///
     /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    ///
+    /// 注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// [Agent 安装](https://cloud.tencent.com/document/product/248/48859)。
     @inlinable
     public func createServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceDiscoveryResponse {
         try await self.createServiceDiscovery(.init(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), region: region, logger: logger, on: eventLoop)

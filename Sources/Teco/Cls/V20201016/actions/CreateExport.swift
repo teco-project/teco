@@ -27,7 +27,7 @@ extension Cls {
         /// 日志导出数量,  最大值5000万
         public let count: UInt64
 
-        /// 日志导出检索语句，不支持<a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>
+        /// 日志导出检索语句，不支持[SQL语句](https://cloud.tencent.com/document/product/614/44061)
         public let query: String
 
         /// 日志导出起始时间，毫秒时间戳

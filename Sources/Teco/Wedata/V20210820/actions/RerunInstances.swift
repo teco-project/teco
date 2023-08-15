@@ -79,7 +79,8 @@ extension Wedata {
 
     /// 实例批量重跑【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(_ input: RerunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
@@ -88,7 +89,8 @@ extension Wedata {
 
     /// 实例批量重跑【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(_ input: RerunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
@@ -97,7 +99,8 @@ extension Wedata {
 
     /// 实例批量重跑【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
@@ -106,7 +109,8 @@ extension Wedata {
 
     /// 实例批量重跑【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 实例批量重跑
     @inlinable
     public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {

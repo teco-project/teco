@@ -26,20 +26,21 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>AppName- string - 是否必填：否 - 应用名搜索</li>
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Type - int - 是否必填：否 - 类型	: 仅linux
-        /// 0: 全部
-        /// 1: 运维
-        /// 2 : 数据库
-        /// 3 : 安全
-        /// 4 : 可疑应用
-        /// 5 : 系统架构
-        /// 6 : 系统应用
-        /// 7 : WEB服务
-        /// 99:其他</li>
-        /// <li>OsType - uint64 - 是否必填：否 - windows/linux</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// - AppName- string - 是否必填：否 - 应用名搜索
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Type - int - 是否必填：否 - 类型	: 仅linux
+        ///   0: 全部
+        ///   1: 运维
+        ///   2 : 数据库
+        ///   3 : 安全
+        ///   4 : 可疑应用
+        ///   5 : 系统架构
+        ///   6 : 系统应用
+        ///   7 : WEB服务
+        ///   99:其他
+        ///
+        /// - OsType - uint64 - 是否必填：否 - windows/linux
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [AssetFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

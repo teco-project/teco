@@ -29,23 +29,24 @@ extension Teo {
         public let proxyName: String
 
         /// 调度模式，取值有：
-        /// <li>ip：表示Anycast IP调度；</li>
-        /// <li>domain：表示CNAME调度。</li>
+        /// - ip：表示Anycast IP调度；
+        /// - domain：表示CNAME调度。
         public let platType: String
 
         /// 是否开启安全，取值有：
-        /// <li>0：关闭安全；</li>
-        /// <li>1：开启安全。</li>
+        /// - 0：关闭安全；
+        /// - 1：开启安全。
         public let securityType: Int64
 
         /// 是否开启加速，取值有：
-        /// <li>0：关闭加速；</li>
-        /// <li>1：开启加速。</li>
+        /// - 0：关闭加速；
+        /// - 1：开启加速。
         public let accelerateType: Int64
 
         /// 四层代理模式，取值有：
-        /// <li>hostname：表示子域名模式；</li>
-        /// <li>instance：表示实例模式。</li>不填写使用默认值instance。
+        /// - hostname：表示子域名模式；
+        /// - instance：表示实例模式。
+        /// 不填写使用默认值instance。
         public let proxyType: String?
 
         /// 会话保持时间，取值范围：30-3600，单位：秒。

@@ -29,9 +29,9 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)</li>
-        /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
-        /// <li>DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]</li>
+        /// - HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)
+        /// - MachineIp - String - 是否必填：否 - 主机内网IP
+        /// - DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]
         public let filters: [Filter]?
 
         /// 主机安全客户端ID

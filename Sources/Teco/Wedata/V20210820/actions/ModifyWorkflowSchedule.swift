@@ -114,7 +114,8 @@ extension Wedata {
 
     /// 更新工作流调度【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新工作流调度
     @inlinable
     public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
@@ -123,7 +124,8 @@ extension Wedata {
 
     /// 更新工作流调度【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新工作流调度
     @inlinable
     public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
@@ -132,7 +134,8 @@ extension Wedata {
 
     /// 更新工作流调度【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新工作流调度
     @inlinable
     public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
@@ -141,7 +144,8 @@ extension Wedata {
 
     /// 更新工作流调度【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新工作流调度
     @inlinable
     public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {

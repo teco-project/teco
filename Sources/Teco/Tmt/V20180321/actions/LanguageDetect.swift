@@ -41,7 +41,21 @@ extension Tmt {
     /// LanguageDetect返回参数结构体
     public struct LanguageDetectResponse: TCResponseModel {
         /// 识别出的语言种类，参考语言列表
-        /// <li> zh : 中文 </li> <li> en : 英文 </li><li> jp : 日语 </li> <li> kr : 韩语 </li><li> de : 德语 </li><li> fr : 法语 </li><li> es : 西班牙文 </li> <li> it : 意大利文 </li><li> tr : 土耳其文 </li><li> ru : 俄文 </li><li> pt : 葡萄牙文 </li><li> vi : 越南文 </li><li> id : 印度尼西亚文 </li><li> ms : 马来西亚文 </li><li> th : 泰文 </li>
+        /// - zh : 中文
+        /// - en : 英文
+        /// - jp : 日语
+        /// - kr : 韩语
+        /// - de : 德语
+        /// - fr : 法语
+        /// - es : 西班牙文
+        /// - it : 意大利文
+        /// - tr : 土耳其文
+        /// - ru : 俄文
+        /// - pt : 葡萄牙文
+        /// - vi : 越南文
+        /// - id : 印度尼西亚文
+        /// - ms : 马来西亚文
+        /// - th : 泰文
         public let lang: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -55,7 +69,8 @@ extension Tmt {
 
     /// 语种识别
     ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。
+    ///
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func languageDetect(_ input: LanguageDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
@@ -64,7 +79,8 @@ extension Tmt {
 
     /// 语种识别
     ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。
+    ///
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func languageDetect(_ input: LanguageDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
@@ -73,7 +89,8 @@ extension Tmt {
 
     /// 语种识别
     ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。
+    ///
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func languageDetect(text: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
@@ -82,7 +99,8 @@ extension Tmt {
 
     /// 语种识别
     ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。
+    ///
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func languageDetect(text: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {

@@ -36,8 +36,9 @@ extension Teo {
         public let sessionPersistTime: UInt64?
 
         /// 四层代理模式，取值有：
-        /// <li>hostname：表示子域名模式；</li>
-        /// <li>instance：表示实例模式。</li>不填写保持原有配置。
+        /// - hostname：表示子域名模式；
+        /// - instance：表示实例模式。
+        /// 不填写保持原有配置。
         public let proxyType: String?
 
         /// Ipv6 访问配置，不填写保持原有配置。

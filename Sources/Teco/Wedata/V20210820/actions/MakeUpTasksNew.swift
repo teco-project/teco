@@ -74,7 +74,8 @@ extension Wedata {
 
     /// 批量补录任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
@@ -83,7 +84,8 @@ extension Wedata {
 
     /// 批量补录任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
@@ -92,7 +94,8 @@ extension Wedata {
 
     /// 批量补录任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
@@ -101,7 +104,8 @@ extension Wedata {
 
     /// 批量补录任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
     public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {

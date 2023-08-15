@@ -22,11 +22,11 @@ extension Vod {
     /// CreateContentReviewTemplate请求参数结构体
     public struct CreateContentReviewTemplateRequest: TCRequestModel {
         /// 音视频审核结果是否进入音视频审核墙（对识别结果进行人工复核）的开关。
-        /// <li>ON：是；</li>
-        /// <li>OFF：否。</li>
+        /// - ON：是；
+        /// - OFF：否。
         public let reviewWallSwitch: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 内容审核模板名称，长度限制：64 个字符。
@@ -45,8 +45,8 @@ extension Vod {
         public let politicalConfigure: PoliticalConfigureInfo?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         public let prohibitedConfigure: ProhibitedConfigureInfo?
 
         /// 用户自定义内容审核控制参数。
@@ -98,7 +98,7 @@ extension Vod {
 
     /// 创建音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
@@ -107,7 +107,7 @@ extension Vod {
 
     /// 创建音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
@@ -116,7 +116,7 @@ extension Vod {
 
     /// 创建音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
@@ -125,7 +125,7 @@ extension Vod {
 
     /// 创建音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [创建审核模板](https://cloud.tencent.com/document/api/266/84391)。
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
     public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {

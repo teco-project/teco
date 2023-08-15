@@ -75,8 +75,11 @@ extension Ess {
 
     /// 通过多模板创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。<br/>
-    /// 此接口合同组中的子合同必须都是模板发起的合同。 <br/>目前最大仅支持50个子合同
+    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。
+    ///
+    /// 此接口合同组中的子合同必须都是模板发起的合同。
+    ///
+    /// 目前最大仅支持50个子合同
     @inlinable
     public func createFlowGroupByTemplates(_ input: CreateFlowGroupByTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowGroupByTemplatesResponse> {
         self.client.execute(action: "CreateFlowGroupByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -84,8 +87,11 @@ extension Ess {
 
     /// 通过多模板创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。<br/>
-    /// 此接口合同组中的子合同必须都是模板发起的合同。 <br/>目前最大仅支持50个子合同
+    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。
+    ///
+    /// 此接口合同组中的子合同必须都是模板发起的合同。
+    ///
+    /// 目前最大仅支持50个子合同
     @inlinable
     public func createFlowGroupByTemplates(_ input: CreateFlowGroupByTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowGroupByTemplatesResponse {
         try await self.client.execute(action: "CreateFlowGroupByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -93,8 +99,11 @@ extension Ess {
 
     /// 通过多模板创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。<br/>
-    /// 此接口合同组中的子合同必须都是模板发起的合同。 <br/>目前最大仅支持50个子合同
+    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。
+    ///
+    /// 此接口合同组中的子合同必须都是模板发起的合同。
+    ///
+    /// 目前最大仅支持50个子合同
     @inlinable
     public func createFlowGroupByTemplates(operator: UserInfo, flowGroupName: String, flowGroupInfos: [FlowGroupInfo], agent: Agent? = nil, flowGroupOptions: FlowGroupOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowGroupByTemplatesResponse> {
         self.createFlowGroupByTemplates(.init(operator: `operator`, flowGroupName: flowGroupName, flowGroupInfos: flowGroupInfos, agent: agent, flowGroupOptions: flowGroupOptions), region: region, logger: logger, on: eventLoop)
@@ -102,8 +111,11 @@ extension Ess {
 
     /// 通过多模板创建合同组签署流程
     ///
-    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。<br/>
-    /// 此接口合同组中的子合同必须都是模板发起的合同。 <br/>目前最大仅支持50个子合同
+    /// 此接口（CreateFlowGroupByTemplates）通过多模板创建合同组签署流程。
+    ///
+    /// 此接口合同组中的子合同必须都是模板发起的合同。
+    ///
+    /// 目前最大仅支持50个子合同
     @inlinable
     public func createFlowGroupByTemplates(operator: UserInfo, flowGroupName: String, flowGroupInfos: [FlowGroupInfo], agent: Agent? = nil, flowGroupOptions: FlowGroupOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowGroupByTemplatesResponse {
         try await self.createFlowGroupByTemplates(.init(operator: `operator`, flowGroupName: flowGroupName, flowGroupInfos: flowGroupInfos, agent: agent, flowGroupOptions: flowGroupOptions), region: region, logger: logger, on: eventLoop)

@@ -99,9 +99,9 @@ extension Cat {
         public let code: String
 
         /// 节点类型
-        /// <li> 1 = IDC </li>
-        /// <li> 2 = LastMile </li>
-        /// <li> 3 = Mobile </li>
+        /// - 1 = IDC
+        /// - 2 = LastMile
+        /// - 3 = Mobile
         public let type: Int64
 
         /// 网络服务商
@@ -114,15 +114,17 @@ extension Cat {
         public let city: String
 
         /// IP 类型
-        /// <li> 1 = IPv4 </li>
-        /// <li> 2 = IPv6 </li>
+        /// - 1 = IPv4
+        /// - 2 = IPv6
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipType: Int64?
 
         /// 区域
-        /// <li> 1 = 中国大陆 </li>
-        /// <li> 2 = 港澳台 </li>
-        /// <li> 3 = 国外 </li>
+        /// - 1 = 中国大陆
+        /// - 2 = 港澳台
+        /// - 3 = 国外
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: Int64?
 
@@ -157,9 +159,9 @@ extension Cat {
         public let code: String
 
         /// 节点类型
-        /// <li> 1 = IDC </li>
-        /// <li> 2 = LastMile </li>
-        /// <li> 3 = Mobile </li>
+        /// - 1 = IDC
+        /// - 2 = LastMile
+        /// - 3 = Mobile
         public let type: Int64
 
         /// 网络服务商
@@ -172,15 +174,17 @@ extension Cat {
         public let city: String
 
         /// IP 类型
-        /// <li> 1 = IPv4 </li>
-        /// <li> 2 = IPv6 </li>
+        /// - 1 = IPv4
+        /// - 2 = IPv6
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipType: Int64?
 
         /// 区域
-        /// <li> 1 = 中国大陆 </li>
-        /// <li> 2 = 港澳台 </li>
-        /// <li> 3 = 境外 </li>
+        /// - 1 = 中国大陆
+        /// - 2 = 港澳台
+        /// - 3 = 境外
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: Int64?
 
@@ -216,12 +220,12 @@ extension Cat {
         public let taskId: String
 
         /// 拨测类型
-        /// <li>1 = 页面浏览</li>
-        /// <li> 2 =文件上传 </li>
-        /// <li> 3 = 文件下载</li>
-        /// <li> 4 = 端口性能 </li>
-        /// <li> 5 = 网络质量 </li>
-        /// <li> 6 =流媒体 </li>
+        /// - 1 = 页面浏览
+        /// - 2 =文件上传
+        /// - 3 = 文件下载
+        /// - 4 = 端口性能
+        /// - 5 = 网络质量
+        /// - 6 =流媒体
         ///
         /// 即时拨测只支持页面浏览，网络质量，文件下载
         public let taskType: Int64
@@ -236,34 +240,34 @@ extension Cat {
         public let parameters: String
 
         /// 任务状态
-        /// <li>1 = 创建中</li>
-        /// <li> 2 = 运行中 </li>
-        /// <li> 3 = 运行异常 </li>
-        /// <li> 4 = 暂停中 </li>
-        /// <li> 5 = 暂停异常 </li>
-        /// <li> 6 = 任务暂停 </li>
-        /// <li> 7 = 任务删除中 </li>
-        /// <li> 8 = 任务删除异常 </li>
-        /// <li> 9 = 任务删除</li>
-        /// <li> 10 = 定时任务暂停中 </li>
+        /// - 1 = 创建中
+        /// - 2 = 运行中
+        /// - 3 = 运行异常
+        /// - 4 = 暂停中
+        /// - 5 = 暂停异常
+        /// - 6 = 任务暂停
+        /// - 7 = 任务删除中
+        /// - 8 = 任务删除异常
+        /// - 9 = 任务删除
+        /// - 10 = 定时任务暂停中
         public let status: Int64
 
         /// 目标地址
         public let targetAddress: String
 
         /// 付费模式
-        /// <li>1 = 试用版本</li>
-        /// <li> 2 = 付费版本 </li>
+        /// - 1 = 试用版本
+        /// - 2 = 付费版本
         public let payMode: Int64
 
         /// 订单状态
-        /// <li>1 = 正常</li>
-        /// <li> 2 = 欠费 </li>
+        /// - 1 = 正常
+        /// - 2 = 欠费
         public let orderState: Int64
 
         /// 任务分类
-        /// <li>1 = PC</li>
-        /// <li> 2 = Mobile </li>
+        /// - 1 = PC
+        /// - 2 = Mobile
         public let taskCategory: Int64
 
         /// 创建时间
@@ -274,8 +278,9 @@ extension Cat {
         public let cron: String?
 
         /// 定时任务启动状态
-        /// <li>1 = 定时任务表达式生效</li>
-        /// <li> 2 = 定时任务表达式未生效（一般为任务手动暂停）</li>
+        /// - 1 = 定时任务表达式生效
+        /// - 2 = 定时任务表达式未生效（一般为任务手动暂停）
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronState: Int64?
 

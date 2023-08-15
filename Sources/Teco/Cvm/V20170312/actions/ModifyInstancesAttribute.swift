@@ -25,10 +25,12 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// 实例名称。可任意命名，但不得超过60个字符。
-        /// <dx-alert infotype="explain" title="">必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置</dx-alert>
+        ///
+        /// - Note: 必须指定InstanceName与SecurityGroups的其中一个，但不能同时设置
         public let instanceName: String?
 
-        /// 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。<dx-alert infotype="explain" title="">必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置</dx-alert>
+        /// 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。
+        /// - Note: 必须指定SecurityGroups与InstanceName的其中一个，但不能同时设置
         public let securityGroups: [String]?
 
         /// 给实例绑定用户角色，传空值为解绑操作
@@ -36,18 +38,15 @@ extension Cvm {
 
         /// 实例的主机名。
         ///
-        /// <li>点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
-        ///
-        /// <li>Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
-        ///
-        /// <li>其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
+        /// - 点号（.）和短横线（-）不能作为 HostName 的首尾字符，不能连续使用。
+        /// - Windows 实例：主机名字符长度为[2, 15]，允许字母（不限制大小写）、数字和短横线（-）组成，不支持点号（.），不能全是数字。
+        /// - 其他类型（Linux 等）实例：主机名字符长度为[2, 60]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。
         public let hostName: String?
 
         /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：
         ///
-        /// <li>TRUE：表示开启实例保护，不允许通过api接口删除实例
-        ///
-        /// <li>FALSE：表示关闭实例保护，允许通过api接口删除实例
+        /// - TRUE：表示开启实例保护，不允许通过api接口删除实例
+        /// - FALSE：表示关闭实例保护，允许通过api接口删除实例
         ///
         /// 默认取值：FALSE。
         public let disableApiTermination: Bool?

@@ -130,7 +130,8 @@ extension Wedata {
 
     /// 数据源管理-创建数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 创建数据源
     @inlinable
     public func createDataSource(_ input: CreateDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
@@ -139,7 +140,8 @@ extension Wedata {
 
     /// 数据源管理-创建数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 创建数据源
     @inlinable
     public func createDataSource(_ input: CreateDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
@@ -148,7 +150,8 @@ extension Wedata {
 
     /// 数据源管理-创建数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 创建数据源
     @inlinable
     public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
@@ -157,7 +160,8 @@ extension Wedata {
 
     /// 数据源管理-创建数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 创建数据源
     @inlinable
     public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {

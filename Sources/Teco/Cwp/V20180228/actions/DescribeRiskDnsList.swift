@@ -29,11 +29,11 @@ extension Cwp {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Url - String - 是否必填：否 - Url筛选</li>
-        /// <li>Status - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任</li>
-        /// <li>MergeBeginTime - String - 是否必填：否 - 最近访问开始时间</li>
-        /// <li>MergeEndTime - String - 是否必填：否 - 最近访问结束时间</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Url - String - 是否必填：否 - Url筛选
+        /// - Status - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任
+        /// - MergeBeginTime - String - 是否必填：否 - 最近访问开始时间
+        /// - MergeEndTime - String - 是否必填：否 - 最近访问结束时间
         public let filters: [Filter]?
 
         /// 排序方式：根据请求次数排序：asc-升序/desc-降序

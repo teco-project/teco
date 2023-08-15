@@ -24,9 +24,9 @@ extension Dc {
     public struct DescribeDirectConnectTunnelsRequest: TCPaginatedRequest {
         /// 过滤条件:
         /// 参数不支持同时指定DirectConnectTunnelIds和Filters。
-        /// <li> direct-connect-tunnel-name, 专用通道名称。</li>
-        /// <li> direct-connect-tunnel-id, 专用通道实例ID，如dcx-abcdefgh。</li>
-        /// <li>direct-connect-id, 物理专线实例ID，如，dc-abcdefgh。</li>
+        /// - direct-connect-tunnel-name, 专用通道名称。
+        /// - direct-connect-tunnel-id, 专用通道实例ID，如dcx-abcdefgh。
+        /// - direct-connect-id, 物理专线实例ID，如，dc-abcdefgh。
         public let filters: [Filter]?
 
         /// 专用通道 ID数组

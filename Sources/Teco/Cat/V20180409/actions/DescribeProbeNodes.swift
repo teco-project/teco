@@ -22,15 +22,15 @@ extension Cat {
     /// DescribeProbeNodes请求参数结构体
     public struct DescribeProbeNodesRequest: TCRequestModel {
         /// 节点类型
-        /// <li> 1 = IDC </li>
-        /// <li> 2 = LastMile </li>
-        /// <li> 3 = Mobile </li>
+        /// - 1 = IDC
+        /// - 2 = LastMile
+        /// - 3 = Mobile
         public let nodeType: Int64?
 
         /// 节点区域
-        /// <li> 1 = 中国大陆 </li>
-        /// <li> 2 = 港澳台 </li>
-        /// <li> 3 = 海外 </li>
+        /// - 1 = 中国大陆
+        /// - 2 = 港澳台
+        /// - 3 = 海外
         public let location: Int64?
 
         /// 是否IPv6
@@ -40,8 +40,8 @@ extension Cat {
         public let nodeName: String?
 
         /// 付费模式
-        /// <li>1 = 试用版本</li>
-        /// <li> 2 = 付费版本 </li>
+        /// - 1 = 试用版本
+        /// - 2 = 付费版本
         public let payMode: Int64?
 
         public init(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil) {

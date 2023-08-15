@@ -23,10 +23,10 @@ extension Vpc {
     /// DescribeVpcEndPoint请求参数结构体
     public struct DescribeVpcEndPointRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li> end-point-service-id- String - （过滤条件）终端节点服务ID。</li>
-        /// <li>end-point-name - String - （过滤条件）终端节点实例名称。</li>
-        /// <li> end-point-id- String - （过滤条件）终端节点实例ID。</li>
-        /// <li> vpc-id- String - （过滤条件）VPC实例ID。</li>
+        /// - end-point-service-id- String - （过滤条件）终端节点服务ID。
+        /// - end-point-name - String - （过滤条件）终端节点实例名称。
+        /// - end-point-id- String - （过滤条件）终端节点实例ID。
+        /// - vpc-id- String - （过滤条件）VPC实例ID。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

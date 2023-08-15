@@ -28,7 +28,7 @@ extension Cls {
         public let to: Int64
 
         /// 检索分析语句，最大长度为12KB
-        /// 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+        /// 语句由 [检索条件](https://cloud.tencent.com/document/product/614/47044) | [SQL语句](https://cloud.tencent.com/document/product/614/44061)构成，无需对日志进行统计分析时，可省略其中的管道符` | `及SQL语句
         /// 使用*或空字符串可查询所有日志
         public let query: String
 
@@ -39,20 +39,20 @@ extension Cls {
         /// 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
         /// 注意：
         /// * 仅当检索分析语句(Query)不包含SQL时有效
-        /// * SQL结果条数指定方式参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        /// * SQL结果条数指定方式参考[SQL LIMIT语法](https://cloud.tencent.com/document/product/614/58977)
         public let limit: Int64?
 
         /// 透传上次接口返回的Context值，可获取后续更多日志，总计最多可获取1万条原始日志，过期时间1小时
         /// 注意：
         /// * 透传该参数时，请勿修改除该参数外的其它参数
         /// * 仅当检索分析语句(Query)不包含SQL时有效
-        /// * SQL获取后续结果参考<a href="https://cloud.tencent.com/document/product/614/58977" target="_blank">SQL LIMIT语法</a>
+        /// * SQL获取后续结果参考[SQL LIMIT语法](https://cloud.tencent.com/document/product/614/58977)
         public let context: String?
 
         /// 原始日志是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         /// 注意：
         /// * 仅当检索分析语句(Query)不包含SQL时有效
-        /// * SQL结果排序方式参考<a href="https://cloud.tencent.com/document/product/614/58978" target="_blank">SQL ORDER BY语法</a>
+        /// * SQL结果排序方式参考[SQL ORDER BY语法](https://cloud.tencent.com/document/product/614/58978)
         public let sort: String?
 
         /// 为true代表使用新的检索结果返回方式，输出参数AnalysisRecords和Columns有效
@@ -69,7 +69,7 @@ extension Cls {
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
-        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        /// 详细说明参见[检索条件语法规则](https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules)
         public let syntaxRule: UInt64?
 
         /// - 要检索分析的日志主题列表，最大支持20个日志主题。

@@ -27,7 +27,9 @@ extension Es {
         /// 实例管道信息
         public let pipeline: LogstashPipeline
 
-        /// 操作类型<li>1：只保存</li><li>2：保存并部署</li>
+        /// 操作类型
+        /// - 1：只保存
+        /// - 2：保存并部署
         public let opType: UInt64?
 
         public init(instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil) {

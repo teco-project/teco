@@ -24,7 +24,7 @@ extension Vod {
         /// 转码模板唯一标识。
         public let definition: Int64
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 封装格式，可选值：mp4、flv、hls、mp3、flac、ogg、m4a、wav。其中，mp3、flac、ogg、m4a、wav 为纯音频文件。
@@ -37,13 +37,13 @@ extension Vod {
         public let comment: String?
 
         /// 是否去除视频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeVideo: Int64?
 
         /// 是否去除音频数据，可选值：
-        /// <li>0：保留</li>
-        /// <li>1：去除</li>
+        /// - 0：保留
+        /// - 1：去除
         public let removeAudio: Int64?
 
         /// 视频流配置参数。
@@ -56,8 +56,8 @@ extension Vod {
         public let tehdConfig: TEHDConfigForUpdate?
 
         /// 切片类型，当 Container 为 hls 时有效，可选值：
-        /// <li>ts：ts 切片；</li>
-        /// <li>fmp4：fmp4 切片。</li>
+        /// - ts：ts 切片；
+        /// - fmp4：fmp4 切片。
         public let segmentType: String?
 
         public init(definition: Int64, subAppId: UInt64? = nil, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, segmentType: String? = nil) {

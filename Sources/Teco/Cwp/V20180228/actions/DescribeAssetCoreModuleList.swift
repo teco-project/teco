@@ -29,9 +29,9 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name- string - 是否必填：否 - 包名</li>
-        /// <li>User- string - 是否必填：否 - 用户</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name- string - 是否必填：否 - 包名
+        /// - User- string - 是否必填：否 - 用户
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

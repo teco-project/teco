@@ -28,7 +28,11 @@ extension Mongodb {
         public let nodeIds: [String]?
 
         /// 节点角色。可选值包括：
-        /// <ul><li>PRIMARY：主节点。</li><li>SECONDARY：从节点。</li><li>READONLY：只读节点。</li><li>ARBITER：仲裁节点。</li></ul>
+        ///
+        /// - PRIMARY：主节点。
+        /// - SECONDARY：从节点。
+        /// - READONLY：只读节点。
+        /// - ARBITER：仲裁节点。
         public let roles: [String]?
 
         /// 该参数指定节点是否为Hidden节点，默认为false。
@@ -38,7 +42,9 @@ extension Mongodb {
         public let priority: Int64?
 
         /// 该参数指定节点投票权。
-        /// <ul><li>1：具有投票权。</li><li>0：无投票权。</li></ul>
+        ///
+        /// - 1：具有投票权。
+        /// - 0：无投票权。
         public let votes: Int64?
 
         /// 节点标签。

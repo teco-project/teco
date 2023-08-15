@@ -32,7 +32,7 @@ extension Cwp {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Username - String - 是否必填：否 - 帐号名</li>
+        /// - Username - String - 是否必填：否 - 帐号名
         public let filters: [Filter]?
 
         public init(uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

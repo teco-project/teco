@@ -69,8 +69,9 @@ extension Cr {
 
     /// 录音查询（文件）
     ///
-    /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
-    /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
+    /// 用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。
+    ///
+    /// 注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。
     @inlinable
     public func downloadRecordList(_ input: DownloadRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadRecordListResponse> {
         self.client.execute(action: "DownloadRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -78,8 +79,9 @@ extension Cr {
 
     /// 录音查询（文件）
     ///
-    /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
-    /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
+    /// 用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。
+    ///
+    /// 注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。
     @inlinable
     public func downloadRecordList(_ input: DownloadRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadRecordListResponse {
         try await self.client.execute(action: "DownloadRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -87,8 +89,9 @@ extension Cr {
 
     /// 录音查询（文件）
     ///
-    /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
-    /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
+    /// 用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。
+    ///
+    /// 注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。
     @inlinable
     public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadRecordListResponse> {
         self.downloadRecordList(.init(module: module, operation: operation, bizDate: bizDate, instId: instId), region: region, logger: logger, on: eventLoop)
@@ -96,8 +99,9 @@ extension Cr {
 
     /// 录音查询（文件）
     ///
-    /// <p>用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。</p>
-    /// <p>注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。</p>
+    /// 用于获取录音下载链接清单，次日早上8:00后可查询前日录音清单。
+    ///
+    /// 注意：录音清单中的录音下载链接仅次日20:00之前有效，请及时下载。
     @inlinable
     public func downloadRecordList(module: String, operation: String, bizDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadRecordListResponse {
         try await self.downloadRecordList(.init(module: module, operation: operation, bizDate: bizDate, instId: instId), region: region, logger: logger, on: eventLoop)

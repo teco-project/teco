@@ -34,8 +34,8 @@ extension Cme {
         public let remark: String?
 
         /// 成员角色，可取值有：
-        /// <li>Admin：团队管理员；</li>
-        /// <li>Member：普通成员。</li>
+        /// - Admin：团队管理员；
+        /// - Member：普通成员。
         public let role: String?
 
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以修改任意团队成员的信息。如果指定操作者，则操作者必须为团队的管理员或者所有者。

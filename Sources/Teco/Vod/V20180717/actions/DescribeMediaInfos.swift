@@ -24,22 +24,22 @@ extension Vod {
         /// 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
         public let fileIds: [String]
 
-        /// <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
-        /// <li>basicInfo（视频基础信息）。</li>
-        /// <li>metaData（视频元信息）。</li>
-        /// <li>transcodeInfo（视频转码结果信息）。</li>
-        /// <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
-        /// <li>imageSpriteInfo（视频雪碧图信息）。</li>
-        /// <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
-        /// <li>sampleSnapshotInfo（采样截图信息）。</li>
-        /// <li>keyFrameDescInfo（打点信息）。</li>
-        /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
-        /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
-        /// <li>subtitleInfo（字幕信息）。</li>
-        /// <li>reviewInfo（审核信息）。</li>
+        /// - basicInfo（视频基础信息）。
+        /// - metaData（视频元信息）。
+        /// - transcodeInfo（视频转码结果信息）。
+        /// - animatedGraphicsInfo（视频转动图结果信息）。
+        /// - imageSpriteInfo（视频雪碧图信息）。
+        /// - snapshotByTimeOffsetInfo（视频指定时间点截图信息）。
+        /// - sampleSnapshotInfo（采样截图信息）。
+        /// - keyFrameDescInfo（打点信息）。
+        /// - adaptiveDynamicStreamingInfo（转自适应码流信息）。
+        /// - miniProgramReviewInfo（小程序审核信息）。
+        /// - subtitleInfo（字幕信息）。
+        /// - reviewInfo（审核信息）。
         public let filters: [String]?
 
         public init(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil) {

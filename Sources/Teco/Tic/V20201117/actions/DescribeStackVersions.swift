@@ -31,15 +31,18 @@ extension Tic {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let limit: Int64?
 
-        /// <li>**Name**</li>
+        /// - **Name**
+        ///
         /// 按照【**版本名称**】进行过滤
         /// 类型：string
         ///
-        /// <li>**Status**</li>
+        /// - **Status**
+        ///
         /// 按照【**版本状态**】过滤，形如`VERSION_EDITING`，`PLAN_IN_PROGRESS`等
         /// 类型：string
         ///
-        /// <li>**StackId**</li>
+        /// - **StackId**
+        ///
         /// 按照版本所属的【**资源栈ID**】进行过滤，形如`stk-xxxxxx`
         /// 类型：string
         public let filters: [Filter]?

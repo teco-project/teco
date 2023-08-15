@@ -29,10 +29,10 @@ extension Cwp {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 查询关键字 </li>
-        /// <li>UserName - String - 是否必填：否 - 用户名筛选 </li>
-        /// <li>ModifyBeginTime - String - 是否必填：否 - 按照修改时间段筛选，开始时间 </li>
-        /// <li>ModifyEndTime - String - 是否必填：否 - 按照修改时间段筛选，结束时间 </li>
+        /// - IpOrAlias - String - 是否必填：否 - 查询关键字
+        /// - UserName - String - 是否必填：否 - 用户名筛选
+        /// - ModifyBeginTime - String - 是否必填：否 - 按照修改时间段筛选，开始时间
+        /// - ModifyEndTime - String - 是否必填：否 - 按照修改时间段筛选，结束时间
         public let filters: [Filter]?
 
         public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

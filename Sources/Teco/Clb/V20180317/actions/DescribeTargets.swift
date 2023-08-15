@@ -34,8 +34,8 @@ extension Clb {
         public let port: Int64?
 
         /// 查询负载均衡绑定的后端服务列表，过滤条件如下：
-        /// <li> location-id - String - 是否必填：否 - （过滤条件）按照 规则ID 过滤，如："loc-12345678"。</li>
-        /// <li> private-ip-address - String - 是否必填：否 - （过滤条件）按照 后端服务内网IP 过滤，如："172.16.1.1"。</li>
+        /// - location-id - String - 是否必填：否 - （过滤条件）按照 规则ID 过滤，如："loc-12345678"。
+        /// - private-ip-address - String - 是否必填：否 - （过滤条件）按照 后端服务内网IP 过滤，如："172.16.1.1"。
         public let filters: [Filter]?
 
         public init(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, filters: [Filter]? = nil) {

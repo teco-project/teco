@@ -28,9 +28,10 @@ extension Monitor {
         public let instanceId: String
 
         /// 规则状态码，取值如下：
-        /// <li>1=RuleDeleted</li>
-        /// <li>2=RuleEnabled</li>
-        /// <li>3=RuleDisabled</li>
+        /// - 1=RuleDeleted
+        /// - 2=RuleEnabled
+        /// - 3=RuleDisabled
+        ///
         /// 默认状态码为 2 启用。
         public let ruleState: Int64
 

@@ -28,8 +28,8 @@ extension Tcb {
         public let uuId: String
 
         /// 账号的状态
-        /// <li>ENABLE</li>
-        /// <li>DISABLE</li>
+        /// - ENABLE
+        /// - DISABLE
         public let status: String?
 
         public init(envId: String, uuId: String, status: String? = nil) {

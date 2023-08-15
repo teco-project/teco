@@ -37,7 +37,13 @@ extension Keewidb {
         /// 查询备份文件的结束时间，格式如：2017-02-08 19:09:26。查询实例在 [beginTime, endTime] 时间段内的备份列表。
         public let endTime: String?
 
-        /// 备份任务状态。<ul><li>1：备份在流程中。</li><li>2：备份正常。</li><li>3：备份转RDB文件处理中。</li><li>4：已完成RDB转换。</li><li>-1：备份已过期。</li><li>-2：备份已删除。</li></ul>
+        /// 备份任务状态。
+        /// - 1：备份在流程中。
+        /// - 2：备份正常。
+        /// - 3：备份转RDB文件处理中。
+        /// - 4：已完成RDB转换。
+        /// - -1：备份已过期。
+        /// - -2：备份已删除。
         public let status: [Int64]?
 
         public init(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, status: [Int64]? = nil) {

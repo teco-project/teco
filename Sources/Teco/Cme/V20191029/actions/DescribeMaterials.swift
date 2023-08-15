@@ -28,8 +28,8 @@ extension Cme {
         public let materialIds: [String]
 
         /// 列表排序，支持下列排序字段：
-        /// <li>CreateTime：创建时间；</li>
-        /// <li>UpdateTime：更新时间。</li>
+        /// - CreateTime：创建时间；
+        /// - UpdateTime：更新时间。
         public let sort: SortBy?
 
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以获取任意媒体的信息。如果指定操作者，则操作者必须对媒体有读权限。

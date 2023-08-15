@@ -31,8 +31,9 @@ extension Postgres {
         public let storage: UInt64
 
         /// 是否自动使用代金券：
-        /// <li>0：否
-        /// <li>1：是
+        /// - 0：否
+        /// - 1：是
+        ///
         /// 默认值：0
         public let autoVoucher: UInt64?
 
@@ -43,9 +44,10 @@ extension Postgres {
         public let activityId: UInt64?
 
         /// 指定实例配置完成变更后的切换时间。
-        /// <li>0：立即切换
-        /// <li>1：指定时间切换
-        /// <li>2：维护时间窗口内切换
+        /// - 0：立即切换
+        /// - 1：指定时间切换
+        /// - 2：维护时间窗口内切换
+        ///
         /// 默认值：0
         public let switchTag: UInt64?
 

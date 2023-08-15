@@ -73,7 +73,7 @@ extension Partners {
     /// 为代客or申请中代客分派跟进人（业务员），入参可从以下API获取
     /// - 代客列表获取API： [DescribeAgentAuditedClients](https://cloud.tencent.com/document/product/563/19184)
     /// - 申请中代客列表获取API：[DescribeAgentClients](https://cloud.tencent.com/document/product/563/16046)
-    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196) <br><br>
+    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196)
     @inlinable
     public func assignClientsToSales(_ input: AssignClientsToSalesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignClientsToSalesResponse> {
         self.client.execute(action: "AssignClientsToSales", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Partners {
     /// 为代客or申请中代客分派跟进人（业务员），入参可从以下API获取
     /// - 代客列表获取API： [DescribeAgentAuditedClients](https://cloud.tencent.com/document/product/563/19184)
     /// - 申请中代客列表获取API：[DescribeAgentClients](https://cloud.tencent.com/document/product/563/16046)
-    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196) <br><br>
+    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196)
     @inlinable
     public func assignClientsToSales(_ input: AssignClientsToSalesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignClientsToSalesResponse {
         try await self.client.execute(action: "AssignClientsToSales", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -95,7 +95,7 @@ extension Partners {
     /// 为代客or申请中代客分派跟进人（业务员），入参可从以下API获取
     /// - 代客列表获取API： [DescribeAgentAuditedClients](https://cloud.tencent.com/document/product/563/19184)
     /// - 申请中代客列表获取API：[DescribeAgentClients](https://cloud.tencent.com/document/product/563/16046)
-    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196) <br><br>
+    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196)
     @inlinable
     public func assignClientsToSales(clientUins: [String], salesUin: String, assignClientStatus: String, assignActionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignClientsToSalesResponse> {
         self.assignClientsToSales(.init(clientUins: clientUins, salesUin: salesUin, assignClientStatus: assignClientStatus, assignActionType: assignActionType), region: region, logger: logger, on: eventLoop)
@@ -106,7 +106,7 @@ extension Partners {
     /// 为代客or申请中代客分派跟进人（业务员），入参可从以下API获取
     /// - 代客列表获取API： [DescribeAgentAuditedClients](https://cloud.tencent.com/document/product/563/19184)
     /// - 申请中代客列表获取API：[DescribeAgentClients](https://cloud.tencent.com/document/product/563/16046)
-    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196) <br><br>
+    /// - 业务员列表获取API：[DescribeSalesmans](https://cloud.tencent.com/document/product/563/35196)
     @inlinable
     public func assignClientsToSales(clientUins: [String], salesUin: String, assignClientStatus: String, assignActionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignClientsToSalesResponse {
         try await self.assignClientsToSales(.init(clientUins: clientUins, salesUin: salesUin, assignClientStatus: assignClientStatus, assignActionType: assignActionType), region: region, logger: logger, on: eventLoop)

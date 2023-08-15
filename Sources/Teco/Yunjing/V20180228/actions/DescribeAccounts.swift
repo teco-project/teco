@@ -35,9 +35,9 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Username - String - 是否必填：否 - 帐号名</li>
-        /// <li>Privilege - String - 是否必填：否 - 帐号类型（ORDINARY: 普通帐号 | SUPPER: 超级管理员帐号）</li>
-        /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
+        /// - Username - String - 是否必填：否 - 帐号名
+        /// - Privilege - String - 是否必填：否 - 帐号类型（ORDINARY: 普通帐号 | SUPPER: 超级管理员帐号）
+        /// - MachineIp - String - 是否必填：否 - 主机内网IP
         public let filters: [Filter]?
 
         public init(uuid: String? = nil, username: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

@@ -66,7 +66,7 @@ extension Ocr {
         /// 返回图像预处理后的图片，图像预处理未开启时返回内容为空。
         public let retImageBase64: String
 
-        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看[如何纠正倾斜文本](https://cloud.tencent.com/document/product/866/45139)
         public let angle: Float
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

@@ -22,9 +22,9 @@ extension Yunjing {
     /// ModifyProVersionRenewFlag请求参数结构体
     public struct ModifyProVersionRenewFlagRequest: TCRequestModel {
         /// 自动续费标识。取值范围：
-        /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
-        /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
-        /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
+        /// - NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
+        /// - NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        /// - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
         public let renewFlag: String
 
         /// 主机唯一ID，对应CVM的uuid、BM的instanceId。

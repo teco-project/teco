@@ -24,27 +24,75 @@ extension Cvm {
     public struct DescribeImagesRequest: TCPaginatedRequest {
         /// 镜像ID列表 。镜像ID如：`img-gvbnzy6f`。array型参数的格式可以参考[API简介](https://cloud.tencent.com/document/api/213/15688)。镜像ID可以通过如下方式获取：
         ///
-        /// <li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
-        ///
-        /// <li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
+        /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
+        /// - 通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
         public let imageIds: [String]?
 
         /// 过滤条件，每次请求的`Filters`的上限为10，`Filters.Values`的上限为5。参数不可以同时指定`ImageIds`和`Filters`。详细的过滤条件如下：
         ///
-        /// <li><strong>image-id</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>镜像ID</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>image-type</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>镜像类型</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：</p><p style="padding-left: 30px;">PRIVATE_IMAGE: 私有镜像 (本账户创建的镜像)</p><p style="padding-left: 30px;">PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)</p><p style="padding-left: 30px;">SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像)</p>
-        /// <li><strong>image-name</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>镜像名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>platform</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>镜像平台</strong>】进行过滤，如CentOS。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>tag-key</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>标签键</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>tag-value</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>标签值</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>tag:tag-key</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>标签键值对</strong>】进行过滤。tag-key使用具体的标签键进行替换。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        /// - **image-id**
+        ///
+        /// 按照【**镜像ID**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **image-type**
+        ///
+        /// 按照【**镜像类型**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：
+        ///
+        /// PRIVATE_IMAGE: 私有镜像 (本账户创建的镜像)
+        ///
+        /// PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)
+        ///
+        /// SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像)
+        ///
+        /// - **image-name**
+        ///
+        /// 按照【**镜像名称**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **platform**
+        ///
+        /// 按照【**镜像平台**】进行过滤，如CentOS。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag-key**
+        ///
+        /// 按照【**标签键**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag-value**
+        ///
+        /// 按照【**标签值**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **tag:tag-key**
+        ///
+        /// 按照【**标签键值对**】进行过滤。tag-key使用具体的标签键进行替换。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset详见[API简介](/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)。

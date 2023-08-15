@@ -36,18 +36,18 @@ extension Postgres {
     /// DescribeDBInstanceHAConfig返回参数结构体
     public struct DescribeDBInstanceHAConfigResponse: TCResponseModel {
         /// 主从同步方式：
-        /// <li>Semi-sync：半同步
-        /// <li>Async：异步
+        /// - Semi-sync：半同步
+        /// - Async：异步
         public let syncMode: String
 
         /// 高可用备机最大延迟数据量。备节点延迟数据量小于等于该值，且备节点延迟时间小于等于MaxStandbyLag时，可以切换为主节点。
-        /// <li>单位：byte
-        /// <li>参数范围：[1073741824, 322122547200]
+        /// - 单位：byte
+        /// - 参数范围：[1073741824, 322122547200]
         public let maxStandbyLatency: UInt64
 
         /// 高可用备机最大延迟时间。备节点延迟时间小于等于该值，且备节点延迟数据量小于等于MaxStandbyLatency时，可以切换为主节点。
-        /// <li>单位：s
-        /// <li>参数范围：[5, 10]
+        /// - 单位：s
+        /// - 参数范围：[5, 10]
         public let maxStandbyLag: UInt64
 
         /// 同步备机最大延迟数据量。备机延迟数据量小于等于该值，且该备机延迟时间小于等于MaxSyncStandbyLag时，则该备机采用同步复制；否则，采用异步复制。
@@ -80,8 +80,8 @@ extension Postgres {
     /// 查询实例HA配置
     ///
     /// 本接口（DescribeDBInstanceHAConfig）用于查询实例HA配置信息。其中HA配置信息包括：
-    /// <li>允许备节点切换为主节点的条件配置
-    /// <li>半同步实例使用同步复制或异步复制的条件配置
+    /// - 允许备节点切换为主节点的条件配置
+    /// - 半同步实例使用同步复制或异步复制的条件配置
     @inlinable
     public func describeDBInstanceHAConfig(_ input: DescribeDBInstanceHAConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceHAConfigResponse> {
         self.client.execute(action: "DescribeDBInstanceHAConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -90,8 +90,8 @@ extension Postgres {
     /// 查询实例HA配置
     ///
     /// 本接口（DescribeDBInstanceHAConfig）用于查询实例HA配置信息。其中HA配置信息包括：
-    /// <li>允许备节点切换为主节点的条件配置
-    /// <li>半同步实例使用同步复制或异步复制的条件配置
+    /// - 允许备节点切换为主节点的条件配置
+    /// - 半同步实例使用同步复制或异步复制的条件配置
     @inlinable
     public func describeDBInstanceHAConfig(_ input: DescribeDBInstanceHAConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceHAConfigResponse {
         try await self.client.execute(action: "DescribeDBInstanceHAConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -100,8 +100,8 @@ extension Postgres {
     /// 查询实例HA配置
     ///
     /// 本接口（DescribeDBInstanceHAConfig）用于查询实例HA配置信息。其中HA配置信息包括：
-    /// <li>允许备节点切换为主节点的条件配置
-    /// <li>半同步实例使用同步复制或异步复制的条件配置
+    /// - 允许备节点切换为主节点的条件配置
+    /// - 半同步实例使用同步复制或异步复制的条件配置
     @inlinable
     public func describeDBInstanceHAConfig(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceHAConfigResponse> {
         self.describeDBInstanceHAConfig(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
@@ -110,8 +110,8 @@ extension Postgres {
     /// 查询实例HA配置
     ///
     /// 本接口（DescribeDBInstanceHAConfig）用于查询实例HA配置信息。其中HA配置信息包括：
-    /// <li>允许备节点切换为主节点的条件配置
-    /// <li>半同步实例使用同步复制或异步复制的条件配置
+    /// - 允许备节点切换为主节点的条件配置
+    /// - 半同步实例使用同步复制或异步复制的条件配置
     @inlinable
     public func describeDBInstanceHAConfig(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceHAConfigResponse {
         try await self.describeDBInstanceHAConfig(.init(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)

@@ -368,9 +368,9 @@ extension Gme {
         public let url: String
 
         /// 检测任务执行结果状态，分别为：
-        /// <li>Start: 任务开始</li>
-        /// <li>Success: 成功结束</li>
-        /// <li>Error: 异常</li>
+        /// - Start: 任务开始
+        /// - Success: 成功结束
+        /// - Error: 异常
         public let status: String
 
         /// 提交检测的应用 ID
@@ -561,7 +561,7 @@ extension Gme {
 
     /// 语音检测详情
     public struct ScanDetail: TCOutputModel {
-        /// 违规场景，参照<a href="https://cloud.tencent.com/document/product/607/37622#Label_Value">Label</a>定义
+        /// 违规场景，参照[Label](https://cloud.tencent.com/document/product/607/37622#Label_Value)定义
         public let label: String
 
         /// 该场景下概率[0.00,100.00],分值越大违规概率越高

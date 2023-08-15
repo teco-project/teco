@@ -31,23 +31,87 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
 
-        /// <li><strong>zone</strong></li>
-        /// <p style="padding-left: 30px;">按照预留实例计费可购买的【<strong>可用区</strong>】进行过滤。形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
-        /// <li><strong>duration</strong></li>
-        /// <p style="padding-left: 30px;">按照预留实例计费【<strong>有效期</strong>】即预留实例计费购买时长进行过滤。形如：31536000。</p><p style="padding-left: 30px;">类型：Integer</p><p style="padding-left: 30px;">计量单位：秒</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：31536000 (1年) | 94608000（3年）</p>
-        /// <li><strong>instance-type</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>预留实例规格</strong>】进行过滤。形如：S3.MEDIUM4。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例规格列表</a></p>
-        /// <li><strong>instance-family</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>预留实例类型</strong>】进行过滤。形如：S3。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/11518">预留实例类型列表</a></p>
-        /// <li><strong>offering-type</strong></li>
-        /// <li><strong>offering-type</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>付款类型</strong>】进行过滤。形如：All Upfront (全预付)。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：All Upfront (全预付) | Partial Upfront (部分预付) | No Upfront (零预付)</p>
-        /// <li><strong>product-description</strong></li>
-        /// <p style="padding-left: 30px;">按照预留实例计费的【<strong>平台描述</strong>】（即操作系统）进行过滤。形如：linux。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：linux</p>
-        /// <li><strong>reserved-instances-id</strong></li>
-        /// <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费ID</strong>】进行过滤。形如：650c138f-ae7e-4750-952a-96841d6e9fc1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>state</strong></li>
-        /// <p style="padding-left: 30px;">按照已购买【<strong>预留实例计费状态</strong>】进行过滤。形如：active。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：active (已创建) | pending (等待被创建) | retired (过期)</p>
+        /// - **zone**
+        ///
+        /// 按照预留实例计费可购买的【**可用区**】进行过滤。形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
+        /// - **duration**
+        ///
+        /// 按照预留实例计费【**有效期**】即预留实例计费购买时长进行过滤。形如：31536000。
+        ///
+        /// 类型：Integer
+        ///
+        /// 计量单位：秒
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：31536000 (1年) | 94608000（3年）
+        ///
+        /// - **instance-type**
+        ///
+        /// 按照【**预留实例规格**】进行过滤。形如：S3.MEDIUM4。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[预留实例规格列表](https://cloud.tencent.com/document/product/213/11518)
+        ///
+        /// - **instance-family**
+        ///
+        /// 按照【**预留实例类型**】进行过滤。形如：S3。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[预留实例类型列表](https://cloud.tencent.com/document/product/213/11518)
+        ///
+        /// - **offering-type**
+        /// - **offering-type**
+        ///
+        /// 按照【**付款类型**】进行过滤。形如：All Upfront (全预付)。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：All Upfront (全预付) | Partial Upfront (部分预付) | No Upfront (零预付)
+        ///
+        /// - **product-description**
+        ///
+        /// 按照预留实例计费的【**平台描述**】（即操作系统）进行过滤。形如：linux。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：linux
+        ///
+        /// - **reserved-instances-id**
+        ///
+        /// 按照已购买【**预留实例计费ID**】进行过滤。形如：650c138f-ae7e-4750-952a-96841d6e9fc1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **state**
+        ///
+        /// 按照已购买【**预留实例计费状态**】进行过滤。形如：active。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：active (已创建) | pending (等待被创建) | retired (过期)
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
 

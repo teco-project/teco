@@ -30,7 +30,10 @@ extension Cr {
         /// 报文信息
         public let data: String
 
-        /// <p>上传类型，不填默认到期/逾期提醒数据，取值范围：</p><ul style="margin-bottom:0px;"><li>data：到期/逾期提醒数据</li><li>repay：到期/逾期提醒停拨数据</li></ul>
+        /// 上传类型，不填默认到期/逾期提醒数据，取值范围：
+        ///
+        /// - data：到期/逾期提醒数据
+        /// - repay：到期/逾期提醒停拨数据
         public let uploadModel: String?
 
         /// 实例ID，不传默认为系统分配的初始实例。

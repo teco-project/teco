@@ -26,8 +26,9 @@ extension Mps {
         public let workflowIds: [Int64]?
 
         /// 工作流状态，取值范围：
-        /// <li>Enabled：已启用，</li>
-        /// <li>Disabled：已禁用。</li>
+        /// - Enabled：已启用，
+        /// - Disabled：已禁用。
+        ///
         /// 不填此参数，则不区分工作流状态。
         public let status: String?
 

@@ -24,7 +24,10 @@ extension Es {
         /// 实例ID
         public let instanceId: String
 
-        /// 是否强制重启<li>true：强制重启</li><li>false：不强制重启</li>默认false
+        /// 是否强制重启
+        /// - true：强制重启
+        /// - false：不强制重启
+        /// 默认false
         public let forceRestart: Bool?
 
         /// 重启模式：0 滚动重启； 1 全量重启

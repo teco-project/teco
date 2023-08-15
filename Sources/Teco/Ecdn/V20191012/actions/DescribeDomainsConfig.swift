@@ -89,7 +89,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomainsConfig(_ input: DescribeDomainsConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsConfigResponse> {
         self.client.execute(action: "DescribeDomainsConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -99,7 +99,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomainsConfig(_ input: DescribeDomainsConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsConfigResponse {
         try await self.client.execute(action: "DescribeDomainsConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -109,7 +109,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsConfigResponse> {
         self.describeDomainsConfig(.init(offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomainsConfig(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsConfigResponse {
         try await self.describeDomainsConfig(.init(offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
@@ -129,7 +129,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomainsConfigPaginated(_ input: DescribeDomainsConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [DomainDetailInfo])> {
         self.client.paginate(input: input, region: region, command: self.describeDomainsConfig, logger: logger, on: eventLoop)
@@ -139,7 +139,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     @inlinable @discardableResult
     public func describeDomainsConfigPaginated(_ input: DescribeDomainsConfigRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeDomainsConfigResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describeDomainsConfig, callback: onResponse, logger: logger, on: eventLoop)
@@ -149,7 +149,7 @@ extension Ecdn {
     ///
     /// 本接口（DescribeDomainsConfig）用于查询CDN加速域名详细配置信息。
     ///
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41117"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    /// - Attention: 若您的业务已迁移至 CDN 控制台，请参考[ CDN 接口文档](https://cloud.tencent.com/document/api/228/41117)，使用  CDN 相关API 进行操作。
     ///
     /// - Returns: `AsyncSequence`s of ``DomainDetailInfo`` and ``DescribeDomainsConfigResponse`` that can be iterated over asynchronously on demand.
     @inlinable

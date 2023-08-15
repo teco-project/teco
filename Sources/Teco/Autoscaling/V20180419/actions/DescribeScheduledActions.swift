@@ -26,9 +26,9 @@ extension As {
         public let scheduledActionIds: [String]?
 
         /// 过滤条件。
-        /// <li> scheduled-action-id - String - 是否必填：否 -（过滤条件）按照定时任务ID过滤。</li>
-        /// <li> scheduled-action-name - String - 是否必填：否 - （过滤条件） 按照定时任务名称过滤。</li>
-        /// <li> auto-scaling-group-id - String - 是否必填：否 - （过滤条件） 按照伸缩组ID过滤。</li>
+        /// - scheduled-action-id - String - 是否必填：否 -（过滤条件）按照定时任务ID过滤。
+        /// - scheduled-action-name - String - 是否必填：否 - （过滤条件） 按照定时任务名称过滤。
+        /// - auto-scaling-group-id - String - 是否必填：否 - （过滤条件） 按照伸缩组ID过滤。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。

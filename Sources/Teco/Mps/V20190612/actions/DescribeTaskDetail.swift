@@ -36,16 +36,16 @@ extension Mps {
     /// DescribeTaskDetail返回参数结构体
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务类型，目前取值有：
-        /// <li>WorkflowTask：视频工作流处理任务。</li>
-        /// <li>EditMediaTask：视频编辑任务。</li>
-        /// <li>LiveStreamProcessTask：直播流处理任务。</li>
-        /// <li>ScheduleTask：编排处理任务。</li>
+        /// - WorkflowTask：视频工作流处理任务。
+        /// - EditMediaTask：视频编辑任务。
+        /// - LiveStreamProcessTask：直播流处理任务。
+        /// - ScheduleTask：编排处理任务。
         public let taskType: String
 
         /// 任务状态，取值：
-        /// <li>WAITING：等待中；</li>
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - WAITING：等待中；
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。

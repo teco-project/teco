@@ -420,7 +420,7 @@ extension Faceid {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encryptList: [String]?
 
-        /// 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        /// 有加密需求的用户，接入传入kms的CiphertextBlob，关于数据加密可查阅[数据加密](https://cloud.tencent.com/document/product/1007/47180) 文档。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ciphertextBlob: String?
 

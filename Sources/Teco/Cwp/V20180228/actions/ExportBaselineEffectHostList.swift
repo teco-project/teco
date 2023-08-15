@@ -25,7 +25,7 @@ extension Cwp {
         public let baselineId: UInt64
 
         /// 筛选条件
-        /// <li>AliasName- String- 主机别名</li>
+        /// - AliasName- String- 主机别名
         public let filters: [Filters]?
 
         /// 策略id

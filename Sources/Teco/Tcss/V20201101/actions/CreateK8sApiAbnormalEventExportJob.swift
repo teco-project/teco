@@ -22,14 +22,14 @@ extension Tcss {
     /// CreateK8sApiAbnormalEventExportJob请求参数结构体
     public struct CreateK8sApiAbnormalEventExportJobRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]</li>
-        /// <li>MatchRules - string  - 是否必填: 否 -命中规则筛选</li>
-        /// <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
-        /// <li>Status - string  - 是否必填: 否 -事件状态筛选</li>
-        /// <li>MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选</li>
-        /// <li>ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态</li>
-        /// <li>ClusterName - string  - 是否必填: 否 -集群名称</li>
-        /// <li>ClusterID - string  - 是否必填: 否 -集群ID</li>
+        /// - TimeRange - string -是否必填: 否 - 时间范围筛选 ["2022-03-31 16:55:00", "2022-03-31 17:00:00"]
+        /// - MatchRules - string  - 是否必填: 否 -命中规则筛选
+        /// - RiskLevel - string  - 是否必填: 否 -威胁等级筛选
+        /// - Status - string  - 是否必填: 否 -事件状态筛选
+        /// - MatchRuleType - string  - 是否必填: 否 -命中规则类型筛选
+        /// - ClusterRunningStatus - string  - 是否必填: 否 -集群运行状态
+        /// - ClusterName - string  - 是否必填: 否 -集群名称
+        /// - ClusterID - string  - 是否必填: 否 -集群ID
         public let filters: [RunTimeFilters]?
 
         /// 排序方式

@@ -26,8 +26,8 @@ extension Vpc {
         public let ip6AddressIds: [String]?
 
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AddressIds`和`Filters`。详细的过滤条件如下：
-        /// <li> address-ip - String - 是否必填：否 - （过滤条件）按照 EIP 的 IP 地址过滤。</li>
-        /// <li> network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。</li>
+        /// - address-ip - String - 是否必填：否 - （过滤条件）按照 EIP 的 IP 地址过滤。
+        /// - network-interface-id - String - 是否必填：否 - （过滤条件）按照弹性网卡的唯一ID过滤。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。

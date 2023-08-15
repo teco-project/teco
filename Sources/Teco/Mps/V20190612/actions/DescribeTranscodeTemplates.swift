@@ -26,18 +26,18 @@ extension Mps {
         public let definitions: [Int64]?
 
         /// 模板类型过滤条件，可选值：
-        /// <li>Preset：系统预置模板；</li>
-        /// <li>Custom：用户自定义模板。</li>
+        /// - Preset：系统预置模板；
+        /// - Custom：用户自定义模板。
         public let type: String?
 
         /// 封装格式过滤条件，可选值：
-        /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式板；</li>
-        /// <li>PureAudio：纯音频格式，只能包含音频流的封装格式。</li>
+        /// - Video：视频格式，可以同时包含视频流和音频流的封装格式板；
+        /// - PureAudio：纯音频格式，只能包含音频流的封装格式。
         public let containerType: String?
 
         /// （建议使用TranscodeType代替）极速高清过滤条件，用于过滤普通转码或极速高清转码模板，可选值：
-        /// <li>Common：普通转码模板；</li>
-        /// <li>TEHD：极速高清模板。</li>
+        /// - Common：普通转码模板；
+        /// - TEHD：极速高清模板。
         public let tehdType: String?
 
         /// 分页偏移量，默认值：0。
@@ -47,11 +47,12 @@ extension Mps {
         public let limit: UInt64?
 
         /// 模板类型（替换旧版本 TEHDType），可选值：
-        /// <li>Common：普通转码模板；</li>
-        /// <li>TEHD：视频极速高清，老的类型（建议使用 TEHD-100） 。</li>
-        /// <li>TEHD-100：视频极速高清</li>
-        /// <li>TEHD-200：音频极速高清</li>
-        /// <li>Enhance：音视频增强模板。</li>
+        /// - Common：普通转码模板；
+        /// - TEHD：视频极速高清，老的类型（建议使用 TEHD-100） 。
+        /// - TEHD-100：视频极速高清
+        /// - TEHD-200：音频极速高清
+        /// - Enhance：音视频增强模板。
+        ///
         /// 默认空，不限制类型。
         public let transcodeType: String?
 

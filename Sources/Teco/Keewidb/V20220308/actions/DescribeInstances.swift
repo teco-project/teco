@@ -32,10 +32,17 @@ extension Keewidb {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String?
 
-        /// 排序依据。枚举范围如下所示。 <ul><li>projectId：实例按照项目ID排序。</li><li>createtime：实例按照创建时间排序。</li><li>instancename：实例按照实例名称排序。</li><li>type：实例按照类型排序。</li><li>curDeadline：实例按照到期时间排序。</li></ul>
+        /// 排序依据。枚举范围如下所示。
+        /// - projectId：实例按照项目ID排序。
+        /// - createtime：实例按照创建时间排序。
+        /// - instancename：实例按照实例名称排序。
+        /// - type：实例按照类型排序。
+        /// - curDeadline：实例按照到期时间排序。
         public let orderBy: String?
 
-        /// 排序方式。<ul><li>1：倒序。默认为倒序。</li><li>0：顺序。</li></ul>
+        /// 排序方式。
+        /// - 1：倒序。默认为倒序。
+        /// - 0：顺序。
         public let orderType: Int64?
 
         /// 私有网络ID数组。数组下标从0开始，如果不传则默认选择基础网络，如：47525
@@ -59,16 +66,28 @@ extension Keewidb {
         /// 子网ID数组，数组下标从0开始，如：subnet-fdj24n34j2
         public let uniqSubnetIds: [String]?
 
-        /// 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
+        /// 实例状态。
+        /// - 0：待初始化。
+        /// - 1：流程中。
+        /// - 2：运行中。
+        /// - -2：已隔离。
+        /// - -3：待删除。
         public let status: [Int64]?
 
-        /// 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        /// 包年包月计费的续费模式。
+        /// - 0：默认状态，指手动续费。
+        /// - 1：自动续费。
+        /// - 2：到期不再续费。
         public let autoRenew: [Int64]?
 
-        /// 计费模式。<ul><li>postpaid：按量计费。</li><li>prepaid：包年包月。</li></ul>
+        /// 计费模式。
+        /// - postpaid：按量计费。
+        /// - prepaid：包年包月。
         public let billingMode: String?
 
-        /// 实例类型。<ul><li>13：标准版。</li><li>14：集群版。</li></ul>
+        /// 实例类型。
+        /// - 13：标准版。
+        /// - 14：集群版。
         public let type: Int64?
 
         /// 搜索关键词：支持实例 ID、实例名称、私有网络IP地址。

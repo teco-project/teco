@@ -90,8 +90,10 @@ extension Intlpartnersmgt {
     ///
     /// 在合作伙伴平台，创建腾讯云账号，子客户注册完成后，自动与合作伙伴账号绑定。
     ///
-    /// 注意事项：<br>
-    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。<br>
+    /// 注意事项：
+    ///
+    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。
+    ///
     /// 2、客户首次登录需要补充个人信息
     @inlinable
     public func createAccount(_ input: CreateAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
@@ -102,8 +104,10 @@ extension Intlpartnersmgt {
     ///
     /// 在合作伙伴平台，创建腾讯云账号，子客户注册完成后，自动与合作伙伴账号绑定。
     ///
-    /// 注意事项：<br>
-    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。<br>
+    /// 注意事项：
+    ///
+    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。
+    ///
     /// 2、客户首次登录需要补充个人信息
     @inlinable
     public func createAccount(_ input: CreateAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
@@ -114,8 +118,10 @@ extension Intlpartnersmgt {
     ///
     /// 在合作伙伴平台，创建腾讯云账号，子客户注册完成后，自动与合作伙伴账号绑定。
     ///
-    /// 注意事项：<br>
-    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。<br>
+    /// 注意事项：
+    ///
+    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。
+    ///
     /// 2、客户首次登录需要补充个人信息
     @inlinable
     public func createAccount(accountType: String, mail: String, password: String, confirmPassword: String, phoneNum: String, countryCode: String, area: String, extended: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
@@ -126,8 +132,10 @@ extension Intlpartnersmgt {
     ///
     /// 在合作伙伴平台，创建腾讯云账号，子客户注册完成后，自动与合作伙伴账号绑定。
     ///
-    /// 注意事项：<br>
-    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。<br>
+    /// 注意事项：
+    ///
+    /// 1、创建腾讯云账号，输入的邮箱、手机号，需要合作伙伴做有效性验证。
+    ///
     /// 2、客户首次登录需要补充个人信息
     @inlinable
     public func createAccount(accountType: String, mail: String, password: String, confirmPassword: String, phoneNum: String, countryCode: String, area: String, extended: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {

@@ -25,23 +25,23 @@ extension Emr {
         public let productVersion: String
 
         /// 是否开启节点高可用。取值范围：
-        /// <li>true：表示开启节点高可用。</li>
-        /// <li>false：表示不开启节点高可用。</li>
+        /// - true：表示开启节点高可用。
+        /// - false：表示不开启节点高可用。
         public let enableSupportHAFlag: Bool
 
         /// 实例名称。
-        /// <li>长度限制为6-36个字符。</li>
-        /// <li>只允许包含中文、字母、数字、-、_。</li>
+        /// - 长度限制为6-36个字符。
+        /// - 只允许包含中文、字母、数字、-、_。
         public let instanceName: String
 
         /// 实例计费模式。取值范围：
-        /// <li>PREPAID：预付费，即包年包月。</li>
-        /// <li>POSTPAID_BY_HOUR：按小时后付费。</li>
+        /// - PREPAID：预付费，即包年包月。
+        /// - POSTPAID_BY_HOUR：按小时后付费。
         public let instanceChargeType: String
 
         /// 实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。
-        /// <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
-        /// <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
+        /// - 设置密钥时，密码仅用于组件原生WebUI快捷入口登录。
+        /// - 未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。
         public let loginSettings: LoginSettings
 
         /// 集群应用场景以及支持部署组件配置
@@ -60,18 +60,19 @@ extension Emr {
         public let clientToken: String?
 
         /// 是否开启集群Master节点公网。取值范围：
-        /// <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
-        /// <li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
+        /// - NEED_MASTER_WAN：表示开启集群Master节点公网。
+        /// - NOT_NEED_MASTER_WAN：表示不开启。
+        /// 默认开启集群Master节点公网。
         public let needMasterWan: String?
 
         /// 是否开启外网远程登录。（在SecurityGroupId不为空时，该参数无效）不填默认为不开启 取值范围：
-        /// <li>true：表示开启</li>
-        /// <li>false：表示不开启</li>
+        /// - true：表示开启
+        /// - false：表示不开启
         public let enableRemoteLoginFlag: Bool?
 
         /// 是否开启Kerberos认证。默认不开启 取值范围：
-        /// <li>true：表示开启</li>
-        /// <li>false：表示不开启</li>
+        /// - true：表示开启
+        /// - false：表示不开启
         public let enableKerberosFlag: Bool?
 
         /// [自定义软件配置](https://cloud.tencent.com/document/product/589/35655?from_cn_redirect=1)
@@ -85,8 +86,8 @@ extension Emr {
         public let disasterRecoverGroupIds: [String]?
 
         /// 是否开启集群维度CBS加密。默认不加密 取值范围：
-        /// <li>true：表示加密</li>
-        /// <li>false：表示不加密</li>
+        /// - true：表示加密
+        /// - false：表示不加密
         public let enableCbsEncryptFlag: Bool?
 
         /// MetaDB信息，当MetaType选择EMR_NEW_META时，MetaDataJdbcUrl MetaDataUser MetaDataPass UnifyMetaInstanceId不用填

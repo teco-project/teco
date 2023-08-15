@@ -22,9 +22,9 @@ extension Emr {
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 集群筛选策略。取值范围：
-        /// <li>clusterList：表示查询除了已销毁集群之外的集群列表。</li>
-        /// <li>monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。</li>
-        /// <li>cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。</li>
+        /// - clusterList：表示查询除了已销毁集群之外的集群列表。
+        /// - monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。
+        /// - cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。
         public let displayStrategy: String
 
         /// 按照一个或者多个实例ID查询。实例ID形如: emr-xxxxxxxx 。(此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的 Ids.N 一节)。如果不填写实例ID，返回该APPID下所有实例列表。
@@ -42,14 +42,15 @@ extension Emr {
         public let projectId: Int64?
 
         /// 排序字段。取值范围：
-        /// <li>clusterId：表示按照实例ID排序。</li>
-        /// <li>addTime：表示按照实例创建时间排序。</li>
-        /// <li>status：表示按照实例的状态码排序。</li>
+        /// - clusterId：表示按照实例ID排序。
+        /// - addTime：表示按照实例创建时间排序。
+        /// - status：表示按照实例的状态码排序。
         public let orderField: String?
 
         /// 按照OrderField升序或者降序进行排序。取值范围：
-        /// <li>0：表示降序。</li>
-        /// <li>1：表示升序。</li>默认值为0。
+        /// - 0：表示降序。
+        /// - 1：表示升序。
+        /// 默认值为0。
         public let asc: Int64?
 
         public init(displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil) {

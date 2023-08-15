@@ -26,19 +26,18 @@ extension Cvm {
 
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。
         ///
-        /// <li>PREPAID：预付费，即包年包月。
-        ///
-        /// <li>POSTPAID_BY_HOUR：后付费，即按量付费。
+        /// - PREPAID：预付费，即包年包月。
+        /// - POSTPAID_BY_HOUR：后付费，即按量付费。
         public let instanceChargeType: String
 
-        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">若指定实例的付费模式为预付费则该参数必传。</dx-alert>
+        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        /// - Note: 若指定实例的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 是否同时切换弹性数据云盘计费模式。取值范围：
         ///
-        /// <li>TRUE：表示切换弹性数据云盘计费模式
-        ///
-        /// <li>FALSE：表示不切换弹性数据云盘计费模式
+        /// - TRUE：表示切换弹性数据云盘计费模式
+        /// - FALSE：表示不切换弹性数据云盘计费模式
         ///
         /// 默认取值：FALSE。
         public let modifyPortableDataDisk: Bool?

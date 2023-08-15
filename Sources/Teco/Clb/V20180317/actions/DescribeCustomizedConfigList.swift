@@ -38,8 +38,8 @@ extension Clb {
         public let uconfigIds: [String]?
 
         /// 过滤条件如下：
-        /// <li> loadbalancer-id - String - 是否必填：否 - （过滤条件）按照 负载均衡ID 过滤，如："lb-12345678"。</li>
-        /// <li> vip - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip 过滤，如："1.1.1.1","2204::22:3"。</li>
+        /// - loadbalancer-id - String - 是否必填：否 - （过滤条件）按照 负载均衡ID 过滤，如："lb-12345678"。
+        /// - vip - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip 过滤，如："1.1.1.1","2204::22:3"。
         public let filters: [Filter]?
 
         public init(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil) {

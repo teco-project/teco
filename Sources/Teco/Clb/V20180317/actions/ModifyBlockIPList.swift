@@ -25,12 +25,12 @@ extension Clb {
         public let loadBalancerIds: [String]
 
         /// 操作类型，可取：
-        /// <li> add_customized_field（首次设置header，开启黑名单功能）</li>
-        /// <li> set_customized_field（修改header）</li>
-        /// <li> del_customized_field（删除header）</li>
-        /// <li> add_blocked（添加黑名单）</li>
-        /// <li> del_blocked（删除黑名单）</li>
-        /// <li> flush_blocked（清空黑名单）</li>
+        /// - add_customized_field（首次设置header，开启黑名单功能）
+        /// - set_customized_field（修改header）
+        /// - del_customized_field（删除header）
+        /// - add_blocked（添加黑名单）
+        /// - del_blocked（删除黑名单）
+        /// - flush_blocked（清空黑名单）
         public let type: String
 
         /// 客户端真实IP存放的header字段名

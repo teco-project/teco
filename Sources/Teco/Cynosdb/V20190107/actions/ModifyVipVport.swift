@@ -34,7 +34,7 @@ extension Cynosdb {
         public let vport: Int64?
 
         /// 数据库类型，取值范围:
-        /// <li> MYSQL </li>
+        /// - MYSQL
         public let dbType: String?
 
         /// 旧ip回收前的保留时间，单位小时，0表示立即回收

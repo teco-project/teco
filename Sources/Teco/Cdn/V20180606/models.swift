@@ -3743,7 +3743,7 @@ extension Cdn {
 
         /// IP 黑白名单验证失败时返回的 code
         ///
-        /// <font color=red>已下线，参数失效，不支持自定义状态码，固定返回514</font>
+        /// _已下线，参数失效，不支持自定义状态码，固定返回514_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
 
@@ -4320,12 +4320,12 @@ extension Cdn {
     /// + 热备源站回源域名配置
     public struct Origin: TCInputModel, TCOutputModel {
         /// 主源站列表
-        /// <font color=red>修改源站时，需要同时填充对应的 OriginType</font>
+        /// _修改源站时，需要同时填充对应的 OriginType_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let origins: [String]?
 
         /// 主源站类型
-        /// <font color=red>当源站列表 Origins 不为空时必填</font>
+        /// _当源站列表 Origins 不为空时必填_
         /// 入参支持以下几种类型：
         /// domain：域名类型
         /// domainv6：域名解析V6类型
@@ -4354,7 +4354,7 @@ extension Cdn {
         public let originType: String?
 
         /// 回主源站时 Host 头部
-        /// <font color=red>当源站类型为cos或者第三方存储加速时,ServerName字段必填</font>
+        /// _当源站类型为cos或者第三方存储加速时,ServerName字段必填_
         /// 不填充则默认为加速域名
         /// 若接入的是泛域名，则回源 Host 默认为访问时的子域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4373,12 +4373,12 @@ extension Cdn {
         public let originPullProtocol: String?
 
         /// 备源站列表
-        /// <font color=red>修改备源站时，需要同时填充对应的 BackupOriginType</font>
+        /// _修改备源站时，需要同时填充对应的 BackupOriginType_
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupOrigins: [String]?
 
         /// 备源站类型
-        /// <font color=red>备源站列表BackupOrigins 不为空时必填</font>
+        /// _备源站列表BackupOrigins 不为空时必填_
         /// 支持以下类型：
         /// domain：域名类型
         /// ip：IP 列表作为源站
@@ -4415,7 +4415,7 @@ extension Cdn {
         public let advanceHttps: AdvanceHttps?
 
         /// 对象存储回源厂商
-        /// <font color=red>当源站类型为第三方存储源站(third_party)时必填</font>
+        /// _当源站类型为第三方存储源站(third_party)时必填_
         /// 可选值包括以下:
         /// aws_s3: AWS S3
         /// ali_oss: 阿里云 OSS

@@ -123,7 +123,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamPublishedListResponse> {
@@ -132,7 +133,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPublishedListResponse {
@@ -141,7 +143,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(domainName: String, endTime: String, startTime: String, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamPublishedListResponse> {
@@ -150,7 +153,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(domainName: String, endTime: String, startTime: String, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPublishedListResponse {
@@ -159,7 +163,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedListPaginated(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(UInt64?, [StreamName])> {
@@ -168,7 +173,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable @discardableResult
     public func describeLiveStreamPublishedListPaginated(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, onResponse: @escaping (DescribeLiveStreamPublishedListResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
@@ -177,7 +183,8 @@ extension Live {
 
     /// 查询历史流列表
     ///
-    /// 返回已经推过流的流列表。<br>
+    /// 返回已经推过流的流列表。
+    ///
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     ///
     /// - Returns: `AsyncSequence`s of ``StreamName`` and ``DescribeLiveStreamPublishedListResponse`` that can be iterated over asynchronously on demand.

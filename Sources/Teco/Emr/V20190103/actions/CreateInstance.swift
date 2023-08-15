@@ -22,18 +22,18 @@ extension Emr {
     /// CreateInstance请求参数结构体
     public struct CreateInstanceRequest: TCRequestModel {
         /// 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
-        /// <li>16：表示EMR-V2.3.0。</li>
-        /// <li>20：表示EMR-V2.5.0。</li>
-        /// <li>25：表示EMR-V3.1.0。</li>
-        /// <li>27：表示KAFKA-V1.0.0。</li>
-        /// <li>30：表示EMR-V2.6.0。</li>
-        /// <li>33 :   表示EMR-V3.2.1。</li>
-        /// <li>34 :   表示EMR-V3.3.0。</li>
-        /// <li>36 :   表示STARROCKS-V1.0.0。</li>
-        /// <li>37 :   表示EMR-V3.4.0。</li>
-        /// <li>38 :   表示EMR-V2.7.0。</li>
-        /// <li>39 :   表示STARROCKS-V1.1.0。</li>
-        /// <li>41 :   表示DRUID-V1.1.0。</li>
+        /// - 16：表示EMR-V2.3.0。
+        /// - 20：表示EMR-V2.5.0。
+        /// - 25：表示EMR-V3.1.0。
+        /// - 27：表示KAFKA-V1.0.0。
+        /// - 30：表示EMR-V2.6.0。
+        /// - 33 :   表示EMR-V3.2.1。
+        /// - 34 :   表示EMR-V3.3.0。
+        /// - 36 :   表示STARROCKS-V1.0.0。
+        /// - 37 :   表示EMR-V3.4.0。
+        /// - 38 :   表示EMR-V2.7.0。
+        /// - 39 :   表示STARROCKS-V1.1.0。
+        /// - 41 :   表示DRUID-V1.1.0。
         public let productId: UInt64
 
         /// 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
@@ -41,33 +41,33 @@ extension Emr {
         public let software: [String]
 
         /// 是否开启节点高可用。取值范围：
-        /// <li>0：表示不开启节点高可用。</li>
-        /// <li>1：表示开启节点高可用。</li>
+        /// - 0：表示不开启节点高可用。
+        /// - 1：表示开启节点高可用。
         public let supportHA: UInt64
 
         /// 实例名称。
-        /// <li>长度限制为6-36个字符。</li>
-        /// <li>只允许包含中文、字母、数字、-、_。</li>
+        /// - 长度限制为6-36个字符。
+        /// - 只允许包含中文、字母、数字、-、_。
         public let instanceName: String
 
         /// 实例计费模式。取值范围：
-        /// <li>0：表示按量计费。</li>
-        /// <li>1：表示包年包月。</li>
+        /// - 0：表示按量计费。
+        /// - 1：表示包年包月。
         public let payMode: UInt64
 
         /// 购买实例的时长。结合TimeUnit一起使用。
-        /// <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        /// <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        /// - TimeUnit为s时，该参数只能填写3600，表示按量计费实例。
+        /// - TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月
         public let timeSpan: UInt64
 
         /// 购买实例的时间单位。取值范围：
-        /// <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        /// <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        /// - s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。
+        /// - m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。
         public let timeUnit: String
 
         /// 实例登录设置。通过该参数可以设置所购买节点的登录方式密码或者密钥。
-        /// <li>设置密钥时，密码仅用于组件原生WebUI快捷入口登录。</li>
-        /// <li>未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。</li>
+        /// - 设置密钥时，密码仅用于组件原生WebUI快捷入口登录。
+        /// - 未设置密钥时，密码用于登录所购节点以及组件原生WebUI快捷入口登录。
         public let loginSettings: LoginSettings
 
         /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
@@ -89,16 +89,17 @@ extension Emr {
         public let preExecutedFileSettings: [PreExecuteFileSettings]?
 
         /// 包年包月实例是否自动续费。取值范围：
-        /// <li>0：表示不自动续费。</li>
-        /// <li>1：表示自动续费。</li>
+        /// - 0：表示不自动续费。
+        /// - 1：表示自动续费。
         public let autoRenew: UInt64?
 
         /// 客户端Token。
         public let clientToken: String?
 
         /// 是否开启集群Master节点公网。取值范围：
-        /// <li>NEED_MASTER_WAN：表示开启集群Master节点公网。</li>
-        /// <li>NOT_NEED_MASTER_WAN：表示不开启。</li>默认开启集群Master节点公网。
+        /// - NEED_MASTER_WAN：表示开启集群Master节点公网。
+        /// - NOT_NEED_MASTER_WAN：表示不开启。
+        /// 默认开启集群Master节点公网。
         public let needMasterWan: String?
 
         /// 是否需要开启外网远程登录，即22号端口。在SgId不为空时，该参数无效。
@@ -121,9 +122,9 @@ extension Emr {
         public let cbsEncrypt: UInt64?
 
         /// hive共享元数据库类型。取值范围：
-        /// <li>EMR_NEW_META：表示集群默认创建</li>
-        /// <li>EMR_EXIT_META：表示集群使用指定EMR-MetaDB。</li>
-        /// <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        /// - EMR_NEW_META：表示集群默认创建
+        /// - EMR_EXIT_META：表示集群使用指定EMR-MetaDB。
+        /// - USER_CUSTOM_META：表示集群使用自定义MetaDB。
         public let metaType: String?
 
         /// EMR-MetaDB实例

@@ -35,17 +35,18 @@ extension Yinsuda {
 
         /// 充值会员天数。
         /// 取值有：
-        /// <li>31</li>
-        /// <li>93</li>
-        /// <li>186</li>
-        /// <li>372</li>
+        /// - 31
+        /// - 93
+        /// - 186
+        /// - 372
         public let vipDays: Int64
 
         /// 充值分类。取值有：room_card-包月房卡; 其他-保留。
         public let giveType: String?
 
         /// 播放场景。默认为Live
-        /// <li>Live：直播</li><li>Chat：语聊</li>
+        /// - Live：直播
+        /// - Chat：语聊
         public let playScene: String?
 
         public init(appName: String, userId: String, tradeSerialNo: String, roomId: String, vipDays: Int64, giveType: String? = nil, playScene: String? = nil) {

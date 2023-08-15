@@ -84,15 +84,15 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 安全帽识别<div style="width: 70pt"> |无安全帽、有安全帽、被优选过滤|
-    /// | 2 | 玩手机识别<div style="width: 70pt"> |没有电话、打电话、玩手机、被优选过滤|
-    /// | 3 | 抽烟识别<div style="width: 70pt"> |没有抽烟、抽烟、被优选过滤	|
-    /// | 4 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤|
-    /// | 5 | 工地安全带识别<div style="width: 70pt"> |无工地安全带、工地安全带、被优选过滤	|
-    /// | 6 | 手套识别<div style="width: 70pt"> |无手套、有手套、手套不确定、被优选过滤	|
-    /// | 7 | 工服识别<div style="width: 70pt"> |无工服、有工服、被优选过滤|
-    /// | 8 | 护目镜识别<div style="width: 70pt"> |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 1 | 安全帽识别 |无安全帽、有安全帽、被优选过滤|
+    /// | 2 | 玩手机识别 |没有电话、打电话、玩手机、被优选过滤|
+    /// | 3 | 抽烟识别 |没有抽烟、抽烟、被优选过滤	|
+    /// | 4 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤|
+    /// | 5 | 工地安全带识别 |无工地安全带、工地安全带、被优选过滤	|
+    /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
+    /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
+    /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(_ input: DetectSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectSecurityResponse> {
         self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -105,15 +105,15 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 安全帽识别<div style="width: 70pt"> |无安全帽、有安全帽、被优选过滤|
-    /// | 2 | 玩手机识别<div style="width: 70pt"> |没有电话、打电话、玩手机、被优选过滤|
-    /// | 3 | 抽烟识别<div style="width: 70pt"> |没有抽烟、抽烟、被优选过滤	|
-    /// | 4 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤|
-    /// | 5 | 工地安全带识别<div style="width: 70pt"> |无工地安全带、工地安全带、被优选过滤	|
-    /// | 6 | 手套识别<div style="width: 70pt"> |无手套、有手套、手套不确定、被优选过滤	|
-    /// | 7 | 工服识别<div style="width: 70pt"> |无工服、有工服、被优选过滤|
-    /// | 8 | 护目镜识别<div style="width: 70pt"> |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 1 | 安全帽识别 |无安全帽、有安全帽、被优选过滤|
+    /// | 2 | 玩手机识别 |没有电话、打电话、玩手机、被优选过滤|
+    /// | 3 | 抽烟识别 |没有抽烟、抽烟、被优选过滤	|
+    /// | 4 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤|
+    /// | 5 | 工地安全带识别 |无工地安全带、工地安全带、被优选过滤	|
+    /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
+    /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
+    /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(_ input: DetectSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectSecurityResponse {
         try await self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -126,15 +126,15 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 安全帽识别<div style="width: 70pt"> |无安全帽、有安全帽、被优选过滤|
-    /// | 2 | 玩手机识别<div style="width: 70pt"> |没有电话、打电话、玩手机、被优选过滤|
-    /// | 3 | 抽烟识别<div style="width: 70pt"> |没有抽烟、抽烟、被优选过滤	|
-    /// | 4 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤|
-    /// | 5 | 工地安全带识别<div style="width: 70pt"> |无工地安全带、工地安全带、被优选过滤	|
-    /// | 6 | 手套识别<div style="width: 70pt"> |无手套、有手套、手套不确定、被优选过滤	|
-    /// | 7 | 工服识别<div style="width: 70pt"> |无工服、有工服、被优选过滤|
-    /// | 8 | 护目镜识别<div style="width: 70pt"> |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 1 | 安全帽识别 |无安全帽、有安全帽、被优选过滤|
+    /// | 2 | 玩手机识别 |没有电话、打电话、玩手机、被优选过滤|
+    /// | 3 | 抽烟识别 |没有抽烟、抽烟、被优选过滤	|
+    /// | 4 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤|
+    /// | 5 | 工地安全带识别 |无工地安全带、工地安全带、被优选过滤	|
+    /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
+    /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
+    /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectSecurityResponse> {
         self.detectSecurity(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)
@@ -147,15 +147,15 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 安全帽识别<div style="width: 70pt"> |无安全帽、有安全帽、被优选过滤|
-    /// | 2 | 玩手机识别<div style="width: 70pt"> |没有电话、打电话、玩手机、被优选过滤|
-    /// | 3 | 抽烟识别<div style="width: 70pt"> |没有抽烟、抽烟、被优选过滤	|
-    /// | 4 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤|
-    /// | 5 | 工地安全带识别<div style="width: 70pt"> |无工地安全带、工地安全带、被优选过滤	|
-    /// | 6 | 手套识别<div style="width: 70pt"> |无手套、有手套、手套不确定、被优选过滤	|
-    /// | 7 | 工服识别<div style="width: 70pt"> |无工服、有工服、被优选过滤|
-    /// | 8 | 护目镜识别<div style="width: 70pt"> |无护目镜、有护目镜、被优选过滤|
-    /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
+    /// | 1 | 安全帽识别 |无安全帽、有安全帽、被优选过滤|
+    /// | 2 | 玩手机识别 |没有电话、打电话、玩手机、被优选过滤|
+    /// | 3 | 抽烟识别 |没有抽烟、抽烟、被优选过滤	|
+    /// | 4 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤|
+    /// | 5 | 工地安全带识别 |无工地安全带、工地安全带、被优选过滤	|
+    /// | 6 | 手套识别 |无手套、有手套、手套不确定、被优选过滤	|
+    /// | 7 | 工服识别 |无工服、有工服、被优选过滤|
+    /// | 8 | 护目镜识别 |无护目镜、有护目镜、被优选过滤|
+    /// | 9 | 反光衣识别 |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectSecurityResponse {
         try await self.detectSecurity(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)

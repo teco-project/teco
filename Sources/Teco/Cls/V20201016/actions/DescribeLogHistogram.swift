@@ -38,7 +38,7 @@ extension Cls {
 
         /// 检索语法规则，默认值为0。
         /// 0：Lucene语法，1：CQL语法。
-        /// 详细说明参见<a href="https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules" target="_blank">检索条件语法规则</a>
+        /// 详细说明参见[检索条件语法规则](https://cloud.tencent.com/document/product/614/47044#RetrievesConditionalRules)
         public let syntaxRule: UInt64?
 
         public init(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, syntaxRule: UInt64? = nil) {

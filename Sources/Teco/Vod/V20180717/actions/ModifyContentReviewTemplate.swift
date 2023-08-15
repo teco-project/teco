@@ -24,7 +24,7 @@ extension Vod {
         /// 内容审核模板唯一标识。
         public let definition: Int64
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 内容审核模板名称，长度限制：64 个字符。
@@ -43,8 +43,8 @@ extension Vod {
         public let politicalConfigure: PoliticalConfigureInfoForUpdate?
 
         /// 违禁控制参数。违禁内容包括：
-        /// <li>谩骂；</li>
-        /// <li>涉毒违法。</li>
+        /// - 谩骂；
+        /// - 涉毒违法。
         public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
 
         /// 用户自定义内容审核控制参数。
@@ -54,8 +54,8 @@ extension Vod {
         public let screenshotInterval: Float?
 
         /// 审核结果是否进入审核墙（对审核结果进行人工识别）的开关。
-        /// <li>ON：是；</li>
-        /// <li>OFF：否。</li>
+        /// - ON：是；
+        /// - OFF：否。
         public let reviewWallSwitch: String?
 
         public init(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil) {
@@ -99,7 +99,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
@@ -108,7 +108,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
@@ -117,7 +117,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
@@ -126,7 +126,7 @@ extension Vod {
 
     /// 修改音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [修改审核模板](https://cloud.tencent.com/document/api/266/84388)。
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {

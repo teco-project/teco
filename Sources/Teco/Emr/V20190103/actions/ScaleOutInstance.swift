@@ -23,21 +23,21 @@ extension Emr {
     /// ScaleOutInstance请求参数结构体
     public struct ScaleOutInstanceRequest: TCPaginatedRequest {
         /// 扩容的时间单位。取值范围：
-        /// <li>s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。</li>
-        /// <li>m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。</li>
+        /// - s：表示秒。PayMode取值为0时，TimeUnit只能取值为s。
+        /// - m：表示月份。PayMode取值为1时，TimeUnit只能取值为m。
         public let timeUnit: String
 
         /// 扩容的时长。结合TimeUnit一起使用。
-        /// <li>TimeUnit为s时，该参数只能填写3600，表示按量计费实例。</li>
-        /// <li>TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月</li>
+        /// - TimeUnit为s时，该参数只能填写3600，表示按量计费实例。
+        /// - TimeUnit为m时，该参数填写的数字表示包年包月实例的购买时长，如1表示购买一个月
         public let timeSpan: UInt64
 
         /// 实例ID。
         public let instanceId: String
 
         /// 实例计费模式。取值范围：
-        /// <li>0：表示按量计费。</li>
-        /// <li>1：表示包年包月。</li>
+        /// - 0：表示按量计费。
+        /// - 1：表示包年包月。
         public let payMode: UInt64
 
         /// 客户端Token。
@@ -59,8 +59,8 @@ extension Emr {
         public let routerCount: UInt64?
 
         /// 部署的服务。
-        /// <li>SoftDeployInfo和ServiceNodeInfo是同组参数，和UnNecessaryNodeList参数互斥。</li>
-        /// <li>建议使用SoftDeployInfo和ServiceNodeInfo组合。</li>
+        /// - SoftDeployInfo和ServiceNodeInfo是同组参数，和UnNecessaryNodeList参数互斥。
+        /// - 建议使用SoftDeployInfo和ServiceNodeInfo组合。
         public let softDeployInfo: [UInt64]?
 
         /// 启动的进程。

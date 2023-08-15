@@ -29,18 +29,16 @@ extension Cvm {
 
         /// 试运行，测试使用，不执行具体逻辑。取值范围：
         ///
-        /// <li>TRUE：跳过执行逻辑
-        ///
-        /// <li>FALSE：执行逻辑
+        /// - TRUE：跳过执行逻辑
+        /// - FALSE：执行逻辑
         ///
         /// 默认取值：FALSE。
         public let dryRun: Bool?
 
         /// 是否续费弹性数据盘。取值范围：
         ///
-        /// <li>TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘
-        ///
-        /// <li>FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘
+        /// - TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘
+        /// - FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘
         ///
         /// 默认取值：TRUE。
         public let renewPortableDataDisk: Bool?

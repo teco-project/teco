@@ -29,14 +29,14 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>Name - String - 是否必填：否 - 包 名</li>
-        /// <li>StartTime - String - 是否必填：否 - 安装开始时间</li>
-        /// <li>EndTime - String - 是否必填：否 - 安装开始时间</li>
-        /// <li>Type - int - 是否必填：否 - 安装包类型：
-        /// 1:rmp
-        /// 2:dpkg
-        /// 3:java
-        /// 4:system</li>
+        /// - Name - String - 是否必填：否 - 包 名
+        /// - StartTime - String - 是否必填：否 - 安装开始时间
+        /// - EndTime - String - 是否必填：否 - 安装开始时间
+        /// - Type - int - 是否必填：否 - 安装包类型：
+        ///   1:rmp
+        ///   2:dpkg
+        ///   3:java
+        ///   4:system
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

@@ -22,8 +22,8 @@ extension Vpc {
     /// DescribeServiceTemplateGroups请求参数结构体
     public struct DescribeServiceTemplateGroupsRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>service-template-group-name - String - （过滤条件）协议端口模板集合名称。</li>
-        /// <li>service-template-group-id - String - （过滤条件）协议端口模板集合实例ID，例如：ppmg-e6dy460g。</li>
+        /// - service-template-group-name - String - （过滤条件）协议端口模板集合名称。
+        /// - service-template-group-id - String - （过滤条件）协议端口模板集合实例ID，例如：ppmg-e6dy460g。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

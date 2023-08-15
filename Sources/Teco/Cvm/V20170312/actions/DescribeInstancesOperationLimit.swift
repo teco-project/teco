@@ -25,7 +25,7 @@ extension Cvm {
         public let instanceIds: [String]
 
         /// 实例操作。
-        /// <li> INSTANCE_DEGRADE：实例降配操作</li>
+        /// - INSTANCE_DEGRADE：实例降配操作
         public let operation: String
 
         public init(instanceIds: [String], operation: String) {

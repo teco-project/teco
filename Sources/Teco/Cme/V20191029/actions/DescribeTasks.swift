@@ -29,15 +29,15 @@ extension Cme {
         public let projectId: String?
 
         /// 任务类型集合，取值有：
-        /// <li>VIDEO_EDIT_PROJECT_EXPORT：视频编辑项目导出。</li>
+        /// - VIDEO_EDIT_PROJECT_EXPORT：视频编辑项目导出。
         ///
         /// 注：不填不使用任务类型进行过滤。
         public let taskTypeSet: [String]?
 
         /// 任务状态集合，取值有：
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>SUCCESS：成功；</li>
-        /// <li>FAIL：失败。</li>
+        /// - PROCESSING：处理中；
+        /// - SUCCESS：成功；
+        /// - FAIL：失败。
         ///
         /// 注：不填则不使用任务状态进行过滤。
         public let statusSet: [String]?

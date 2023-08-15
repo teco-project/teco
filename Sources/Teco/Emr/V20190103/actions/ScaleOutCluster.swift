@@ -22,9 +22,9 @@ extension Emr {
     /// ScaleOutCluster请求参数结构体
     public struct ScaleOutClusterRequest: TCRequestModel {
         /// 节点计费模式。取值范围：
-        /// <li>PREPAID：预付费，即包年包月。</li>
-        /// <li>POSTPAID_BY_HOUR：按小时后付费。</li>
-        /// <li>SPOTPAID：竞价付费（仅支持TASK节点）。</li>
+        /// - PREPAID：预付费，即包年包月。
+        /// - POSTPAID_BY_HOUR：按小时后付费。
+        /// - SPOTPAID：竞价付费（仅支持TASK节点）。
         public let instanceChargeType: String
 
         /// 集群实例ID。
@@ -71,8 +71,8 @@ extension Emr {
         public let yarnNodeLabel: String?
 
         /// 扩容后是否启动服务，默认取值否
-        /// <li>true：是</li>
-        /// <li>false：否</li>
+        /// - true：是
+        /// - false：否
         public let enableStartServiceFlag: Bool?
 
         /// 规格设置

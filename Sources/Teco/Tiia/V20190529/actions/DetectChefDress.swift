@@ -85,11 +85,11 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 厨师服识别<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 2 | 厨师服识别（酒店版）<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 3 | 厨师帽识别<div style="width: 70pt"> |无厨师帽、有厨师帽、被优选过滤	|
-    /// | 4 | 赤膊识别<div style="width: 70pt"> |非赤膊、赤膊、被优选过滤|
-    /// | 5 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤	|
+    /// | 1 | 厨师服识别 |无厨师服、有厨师服、被优选过滤|
+    /// | 2 | 厨师服识别（酒店版） |无厨师服、有厨师服、被优选过滤|
+    /// | 3 | 厨师帽识别 |无厨师帽、有厨师帽、被优选过滤	|
+    /// | 4 | 赤膊识别 |非赤膊、赤膊、被优选过滤|
+    /// | 5 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤	|
     @inlinable
     public func detectChefDress(_ input: DetectChefDressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectChefDressResponse> {
         self.client.execute(action: "DetectChefDress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -104,11 +104,11 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 厨师服识别<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 2 | 厨师服识别（酒店版）<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 3 | 厨师帽识别<div style="width: 70pt"> |无厨师帽、有厨师帽、被优选过滤	|
-    /// | 4 | 赤膊识别<div style="width: 70pt"> |非赤膊、赤膊、被优选过滤|
-    /// | 5 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤	|
+    /// | 1 | 厨师服识别 |无厨师服、有厨师服、被优选过滤|
+    /// | 2 | 厨师服识别（酒店版） |无厨师服、有厨师服、被优选过滤|
+    /// | 3 | 厨师帽识别 |无厨师帽、有厨师帽、被优选过滤	|
+    /// | 4 | 赤膊识别 |非赤膊、赤膊、被优选过滤|
+    /// | 5 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤	|
     @inlinable
     public func detectChefDress(_ input: DetectChefDressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectChefDressResponse {
         try await self.client.execute(action: "DetectChefDress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -123,11 +123,11 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 厨师服识别<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 2 | 厨师服识别（酒店版）<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 3 | 厨师帽识别<div style="width: 70pt"> |无厨师帽、有厨师帽、被优选过滤	|
-    /// | 4 | 赤膊识别<div style="width: 70pt"> |非赤膊、赤膊、被优选过滤|
-    /// | 5 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤	|
+    /// | 1 | 厨师服识别 |无厨师服、有厨师服、被优选过滤|
+    /// | 2 | 厨师服识别（酒店版） |无厨师服、有厨师服、被优选过滤|
+    /// | 3 | 厨师帽识别 |无厨师帽、有厨师帽、被优选过滤	|
+    /// | 4 | 赤膊识别 |非赤膊、赤膊、被优选过滤|
+    /// | 5 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤	|
     @inlinable
     public func detectChefDress(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectChefDressResponse> {
         self.detectChefDress(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)
@@ -142,11 +142,11 @@ extension Tiia {
     ///
     /// |序号 | 标签名称 | 标签值 |
     /// | :-----|  :----------   |:-----------------  |
-    /// | 1 | 厨师服识别<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 2 | 厨师服识别（酒店版）<div style="width: 70pt"> |无厨师服、有厨师服、被优选过滤|
-    /// | 3 | 厨师帽识别<div style="width: 70pt"> |无厨师帽、有厨师帽、被优选过滤	|
-    /// | 4 | 赤膊识别<div style="width: 70pt"> |非赤膊、赤膊、被优选过滤|
-    /// | 5 | 口罩识别<div style="width: 70pt"> |无口罩、有口罩、口罩不确定、被优选过滤	|
+    /// | 1 | 厨师服识别 |无厨师服、有厨师服、被优选过滤|
+    /// | 2 | 厨师服识别（酒店版） |无厨师服、有厨师服、被优选过滤|
+    /// | 3 | 厨师帽识别 |无厨师帽、有厨师帽、被优选过滤	|
+    /// | 4 | 赤膊识别 |非赤膊、赤膊、被优选过滤|
+    /// | 5 | 口罩识别 |无口罩、有口罩、口罩不确定、被优选过滤	|
     @inlinable
     public func detectChefDress(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectChefDressResponse {
         try await self.detectChefDress(.init(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)

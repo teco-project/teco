@@ -28,10 +28,10 @@ extension Ame {
         /// 条数，必须大于0，最大值为30
         public let limit: UInt64
 
-        /// （电台/歌单）ID，CategoryId和CategoryCode两个必传1个，可以从<a href="https://cloud.tencent.com/document/product/1155/40109">获取分类内容（Station）列表接口</a>中获取。
+        /// （电台/歌单）ID，CategoryId和CategoryCode两个必传1个，可以从[获取分类内容（Station）列表接口](https://cloud.tencent.com/document/product/1155/40109)中获取。
         public let categoryId: String?
 
-        /// （电台/歌单）ID，CategoryId和CategoryCode两个必传1个，可以从<a href="https://cloud.tencent.com/document/product/1155/40109">获取分类内容（Station）列表接口</a>中获取。
+        /// （电台/歌单）ID，CategoryId和CategoryCode两个必传1个，可以从[获取分类内容（Station）列表接口](https://cloud.tencent.com/document/product/1155/40109)中获取。
         public let categoryCode: String?
 
         public init(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil) {

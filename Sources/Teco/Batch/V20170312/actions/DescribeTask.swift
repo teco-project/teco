@@ -35,7 +35,7 @@ extension Batch {
         public let limit: UInt64?
 
         /// 过滤条件，详情如下：
-        /// <li> task-instance-type - String - 是否必填： 否 - 按照任务实例状态进行过滤（SUBMITTED：已提交；PENDING：等待中；RUNNABLE：可运行；STARTING：启动中；RUNNING：运行中；SUCCEED：成功；FAILED：失败；FAILED_INTERRUPTED：失败后保留实例）。</li>
+        /// - task-instance-type - String - 是否必填： 否 - 按照任务实例状态进行过滤（SUBMITTED：已提交；PENDING：等待中；RUNNABLE：可运行；STARTING：启动中；RUNNING：运行中；SUCCEED：成功；FAILED：失败；FAILED_INTERRUPTED：失败后保留实例）。
         public let filters: [Filter]?
 
         public init(jobId: String, taskName: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {

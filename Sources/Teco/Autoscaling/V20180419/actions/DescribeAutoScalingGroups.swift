@@ -26,13 +26,14 @@ extension As {
         public let autoScalingGroupIds: [String]?
 
         /// 过滤条件。
-        /// <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
-        /// <li> auto-scaling-group-name - String - 是否必填：否 -（过滤条件）按照伸缩组名称过滤。</li>
-        /// <li> vague-auto-scaling-group-name - String - 是否必填：否 -（过滤条件）按照伸缩组名称模糊搜索。</li>
-        /// <li> launch-configuration-id - String - 是否必填：否 -（过滤条件）按照启动配置ID过滤。</li>
-        /// <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
-        /// <li> tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
-        /// <li> tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2</li>
+        /// - auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。
+        /// - auto-scaling-group-name - String - 是否必填：否 -（过滤条件）按照伸缩组名称过滤。
+        /// - vague-auto-scaling-group-name - String - 是否必填：否 -（过滤条件）按照伸缩组名称模糊搜索。
+        /// - launch-configuration-id - String - 是否必填：否 -（过滤条件）按照启动配置ID过滤。
+        /// - tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
+        /// - tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。
+        /// - tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`AutoScalingGroupIds`和`Filters`。
         public let filters: [Filter]?
 

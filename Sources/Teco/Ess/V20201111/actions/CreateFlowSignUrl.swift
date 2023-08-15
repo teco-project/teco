@@ -85,13 +85,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @inlinable
     public func createFlowSignUrl(_ input: CreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
         self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -99,13 +101,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @inlinable
     public func createFlowSignUrl(_ input: CreateFlowSignUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {
         try await self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -113,13 +117,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], operator: UserInfo? = nil, agent: Agent? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
         self.createFlowSignUrl(.init(flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, agent: agent, jumpUrl: jumpUrl), region: region, logger: logger, on: eventLoop)
@@ -127,13 +133,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @available(*, deprecated, renamed: "createFlowSignUrl(flowId:flowApproverInfos:operator:agent:jumpUrl:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
@@ -142,13 +150,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], operator: UserInfo? = nil, agent: Agent? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {
         try await self.createFlowSignUrl(.init(flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, agent: agent, jumpUrl: jumpUrl), region: region, logger: logger, on: eventLoop)
@@ -156,13 +166,15 @@ extension Ess {
 
     /// 创建个人用户H5签署链接
     ///
-    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败 <br/>
+    /// 创建个人H5签署链接，请联系客户经理申请开通使用, 否则调用会返回失败
     ///
-    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署 <br/>
+    /// 该接口用于发起合同后，生成个人签署人的签署链接, 暂时不支持企业端签署
     ///
-    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON） <br/>
-    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件<br/>
-    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式<br/>
+    /// 注意：该接口目前签署人类型仅支持个人签署方（PERSON）
+    ///
+    /// 注意：该接口可生成签署链接的C端签署人必须仅有手写签名和时间类型的签署控件
+    ///
+    /// 注意：该接口返回的签署链接是用于APP集成的场景，支持APP打开或浏览器直接打开，不支持微信小程序嵌入。微信小程序请使用小程序跳转或半屏弹窗的方式
     @available(*, deprecated, renamed: "createFlowSignUrl(flowId:flowApproverInfos:operator:agent:jumpUrl:region:logger:on:)", message: "'organization' is deprecated. Setting this parameter has no effect.")
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, jumpUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {

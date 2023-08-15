@@ -111,10 +111,10 @@ extension Ape {
         public let downloadPrice: UInt64?
 
         /// 下载类型。匹配集合中的任意元素：
-        /// <li>Single: 单张购买下载</li>
-        /// <li>BasicEnterpriseMember: 企业基础会员下载</li>
-        /// <li>AdvancedEnterpriseMember: 企业高级会员下载</li>
-        /// <li>DistinguishedEnterpriseMember: 企业尊享会员下载</li>
+        /// - Single: 单张购买下载
+        /// - BasicEnterpriseMember: 企业基础会员下载
+        /// - AdvancedEnterpriseMember: 企业高级会员下载
+        /// - DistinguishedEnterpriseMember: 企业尊享会员下载
         public let downloadType: String?
 
         public init(imageId: Int64, licenseScopeId: Int64? = nil, dimensionsNameId: Int64? = nil, userId: String? = nil, downloadPrice: UInt64? = nil, downloadType: String? = nil) {

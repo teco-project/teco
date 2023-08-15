@@ -55,7 +55,8 @@ extension Wedata {
 
     /// 查看数据源列表不带额外信息【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源列表
     @inlinable
     public func describeDataSourceWithoutInfo(_ input: DescribeDataSourceWithoutInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceWithoutInfoResponse> {
@@ -64,7 +65,8 @@ extension Wedata {
 
     /// 查看数据源列表不带额外信息【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源列表
     @inlinable
     public func describeDataSourceWithoutInfo(_ input: DescribeDataSourceWithoutInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceWithoutInfoResponse {
@@ -73,7 +75,8 @@ extension Wedata {
 
     /// 查看数据源列表不带额外信息【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源列表
     @inlinable
     public func describeDataSourceWithoutInfo(orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceWithoutInfoResponse> {
@@ -82,7 +85,8 @@ extension Wedata {
 
     /// 查看数据源列表不带额外信息【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 数据源列表
     @inlinable
     public func describeDataSourceWithoutInfo(orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceWithoutInfoResponse {

@@ -26,15 +26,16 @@ extension Vpc {
 
         /// 过滤条件，不支持同时指定VpcIds和Filters参数。
         /// 支持的过滤条件如下：
-        /// <li>vpc-name：VPC实例名称，支持模糊查询。</li>
-        /// <li>is-default ：是否默认VPC。</li>
-        /// <li>vpc-id ：VPC实例ID，例如：vpc-f49l6u0z。</li>
-        /// <li>cidr-block：VPC的CIDR。</li>
-        /// <li>tag-key ：按照标签键进行过滤，非必填参数。</li>
-        /// <li>tag:tag-key：按照标签键值对进行过滤，非必填参数。 其中 tag-key 请使用具体的标签键进行替换，可参考示例2。</li>
+        /// - vpc-name：VPC实例名称，支持模糊查询。
+        /// - is-default ：是否默认VPC。
+        /// - vpc-id ：VPC实例ID，例如：vpc-f49l6u0z。
+        /// - cidr-block：VPC的CIDR。
+        /// - tag-key ：按照标签键进行过滤，非必填参数。
+        /// - tag:tag-key：按照标签键值对进行过滤，非必填参数。 其中 tag-key 请使用具体的标签键进行替换，可参考示例2。
+        ///
         ///   **说明：**若同一个过滤条件（Filter）存在多个Values，则同一Filter下Values间的关系为逻辑或（OR）关系；若存在多个过滤条件（Filter），Filter之间的关系为逻辑与（AND）关系。
-        /// <li>ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。</li>
-        /// <li>isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。</li>
+        /// - ipv6-cidr-block - String - （过滤条件）IPv6子网网段，形如: 2402:4e00:1717:8700::/64 。
+        /// - isp-type  - String - （过滤条件）运营商类型，形如: BGP 取值范围：'BGP'-默认, 'CMCC'-中国移动, 'CTCC'-中国电信, 'CUCC'-中国联调。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

@@ -50,7 +50,8 @@ extension Vpc {
 
     /// 云联网解关联实例
     ///
-    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。
+    ///
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
@@ -59,7 +60,8 @@ extension Vpc {
 
     /// 云联网解关联实例
     ///
-    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。
+    ///
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
@@ -68,7 +70,8 @@ extension Vpc {
 
     /// 云联网解关联实例
     ///
-    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。
+    ///
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
@@ -77,7 +80,8 @@ extension Vpc {
 
     /// 云联网解关联实例
     ///
-    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
+    /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。
+    ///
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {

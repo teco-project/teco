@@ -135,7 +135,8 @@ extension Wedata {
 
     /// 数据源管理-修改数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 修改数据源
     @inlinable
     public func modifyDataSource(_ input: ModifyDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataSourceResponse> {
@@ -144,7 +145,8 @@ extension Wedata {
 
     /// 数据源管理-修改数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 修改数据源
     @inlinable
     public func modifyDataSource(_ input: ModifyDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataSourceResponse {
@@ -153,7 +155,8 @@ extension Wedata {
 
     /// 数据源管理-修改数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 修改数据源
     @inlinable
     public func modifyDataSource(name: String, category: String, type: String, id: UInt64? = nil, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, ownerProjectId: String? = nil, ownerProjectName: String? = nil, ownerProjectIdent: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataSourceResponse> {
@@ -162,7 +165,8 @@ extension Wedata {
 
     /// 数据源管理-修改数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 修改数据源
     @inlinable
     public func modifyDataSource(name: String, category: String, type: String, id: UInt64? = nil, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, ownerProjectId: String? = nil, ownerProjectName: String? = nil, ownerProjectIdent: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataSourceResponse {

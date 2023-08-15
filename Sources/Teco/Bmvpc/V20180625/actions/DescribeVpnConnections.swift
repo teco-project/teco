@@ -26,9 +26,9 @@ extension Bmvpc {
         public let vpnConnectionIds: [String]?
 
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定VpnConnectionIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。</li>
-        /// <li>state - String - （过滤条件 VPN状态：creating，available，createfailed，changing，changefailed，deleting，deletefailed。</li>
-        /// <li>zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID形如：vpc-f49l6u0z。
+        /// - state - String - （过滤条件 VPN状态：creating，available，createfailed，changing，changefailed，deleting，deletefailed。
+        /// - zone - String - （过滤条件）VPN所在可用区，形如：ap-guangzhou-2。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。

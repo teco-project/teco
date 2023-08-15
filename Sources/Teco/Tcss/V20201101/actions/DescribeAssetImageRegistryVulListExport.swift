@@ -31,8 +31,8 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Level- String - 是否必填：否 - 漏洞级别筛选，</li>
-        /// <li>Name - String - 是否必填：否 - 漏洞名称</li>
+        /// - Level- String - 是否必填：否 - 漏洞级别筛选，
+        /// - Name - String - 是否必填：否 - 漏洞名称
         public let filters: [AssetFilters]?
 
         /// 镜像信息

@@ -50,7 +50,8 @@ extension Wedata {
 
     /// 数据源管理-删除数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除数据源
     @inlinable
     public func deleteDataSources(_ input: DeleteDataSourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
@@ -59,7 +60,8 @@ extension Wedata {
 
     /// 数据源管理-删除数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除数据源
     @inlinable
     public func deleteDataSources(_ input: DeleteDataSourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
@@ -68,7 +70,8 @@ extension Wedata {
 
     /// 数据源管理-删除数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除数据源
     @inlinable
     public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
@@ -77,7 +80,8 @@ extension Wedata {
 
     /// 数据源管理-删除数据源【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除数据源
     @inlinable
     public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {

@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// ExportBaselineWeakPasswordList请求参数结构体
     public struct ExportBaselineWeakPasswordListRequest: TCRequestModel {
-        /// <li>WeakPassword - string - 是否必填：否 - 弱口令</li>
+        /// - WeakPassword - string - 是否必填：否 - 弱口令
         public let filters: [Filter]?
 
         /// 0:过滤的结果导出；1:全部导出

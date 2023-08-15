@@ -32,13 +32,13 @@ extension Vpc {
         public let limit: UInt64?
 
         /// 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。
-        /// <li>protocol - String - 协议，形如：`TCP`。</li>
-        /// <li>description - String - 描述。</li>
-        /// <li>destination-cidr - String - 目的CIDR， 形如：'192.168.0.0/24'。</li>
-        /// <li>source-cidr- String - 源CIDR， 形如：'192.168.0.0/24'。</li>
-        /// <li>action - String - 动作，形如ACCEPT或DROP。</li>
-        /// <li>network-acl-quintuple-entry-id - String - 五元组唯一ID，形如：'acli45-ahnu4rv5'。</li>
-        /// <li>network-acl-direction - String - 方向，形如：'INGRESS'或'EGRESS'。</li>
+        /// - protocol - String - 协议，形如：`TCP`。
+        /// - description - String - 描述。
+        /// - destination-cidr - String - 目的CIDR， 形如：'192.168.0.0/24'。
+        /// - source-cidr- String - 源CIDR， 形如：'192.168.0.0/24'。
+        /// - action - String - 动作，形如ACCEPT或DROP。
+        /// - network-acl-quintuple-entry-id - String - 五元组唯一ID，形如：'acli45-ahnu4rv5'。
+        /// - network-acl-direction - String - 方向，形如：'INGRESS'或'EGRESS'。
         public let filters: [Filter]?
 
         public init(networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {

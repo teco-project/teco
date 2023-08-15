@@ -22,10 +22,10 @@ extension Tcss {
     /// CreateImageExportJob请求参数结构体
     public struct CreateImageExportJobRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>ImageName- String - 是否必填：否 - 镜像名称筛选，</li>
-        /// <li>ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr</li>
-        /// <li>ImageID- String - 是否必填：否 - 镜像ID筛选，</li>
-        /// <li>SecurityRisk- String - 是否必填：否 - 安全风险，VulCnt 、VirusCnt、RiskCnt、IsTrustImage</li>
+        /// - ImageName- String - 是否必填：否 - 镜像名称筛选，
+        /// - ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr
+        /// - ImageID- String - 是否必填：否 - 镜像ID筛选，
+        /// - SecurityRisk- String - 是否必填：否 - 安全风险，VulCnt 、VirusCnt、RiskCnt、IsTrustImage
         public let filters: [RunTimeFilters]?
 
         /// 偏移量，默认为0。

@@ -21,10 +21,10 @@ import TecoCore
 extension Facefusion {
     /// FuseFace请求参数结构体
     public struct FuseFaceRequest: TCRequestModel {
-        /// 活动 ID，请在<a href="https://console.cloud.tencent.com/facefusion" target="_blank">人脸融合控制台</a>查看。
+        /// 活动 ID，请在[人脸融合控制台](https://console.cloud.tencent.com/facefusion)查看。
         public let projectId: String
 
-        /// 素材 ID，请在<a href="https://console.cloud.tencent.com/facefusion" target="_blank">人脸融合控制台</a>查看。
+        /// 素材 ID，请在[人脸融合控制台](https://console.cloud.tencent.com/facefusion)查看。
         public let modelId: String
 
         /// 返回图像方式（url 或 base64) ，二选一。url有效期为7天。
@@ -96,10 +96,9 @@ extension Facefusion {
 
     /// 图片人脸融合
     ///
-    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">融合接入指引</a>。
+    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 [融合接入指引](https://cloud.tencent.com/document/product/670/38247)。
     ///
     /// 请求频率限制为20次/秒。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(_ input: FuseFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
@@ -108,10 +107,9 @@ extension Facefusion {
 
     /// 图片人脸融合
     ///
-    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">融合接入指引</a>。
+    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 [融合接入指引](https://cloud.tencent.com/document/product/670/38247)。
     ///
     /// 请求频率限制为20次/秒。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(_ input: FuseFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
@@ -120,10 +118,9 @@ extension Facefusion {
 
     /// 图片人脸融合
     ///
-    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">融合接入指引</a>。
+    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 [融合接入指引](https://cloud.tencent.com/document/product/670/38247)。
     ///
     /// 请求频率限制为20次/秒。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
@@ -132,10 +129,9 @@ extension Facefusion {
 
     /// 图片人脸融合
     ///
-    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 <a href="https://cloud.tencent.com/document/product/670/38247" target="_blank">融合接入指引</a>。
+    /// 本接口用于单脸、多脸、选脸融合，上传人脸图片，得到与素材模板融合后的人脸图片。支持为融合结果图添加标识。查看 [融合接入指引](https://cloud.tencent.com/document/product/670/38247)。
     ///
     /// 请求频率限制为20次/秒。
-    /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, logoAdd: Int64? = nil, logoParam: LogoParam? = nil, fuseParam: FuseParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {

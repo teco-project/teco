@@ -26,24 +26,25 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>User- string - 是否必填：否 - 运行用户</li>
-        /// <li>Name- string - 是否必填：否 - Web服务名：
-        /// 1:Tomcat
-        /// 2:Apache
-        /// 3:Nginx
-        /// 4:WebLogic
-        /// 5:Websphere
-        /// 6:JBoss
-        /// 7:WildFly
-        /// 8:Jetty
-        /// 9:IHS
-        /// 10:Tengine</li>
-        /// <li>OsType- string - 是否必填：否 - Windows/linux</li>
-        /// <li>Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )</li>
+        /// - User- string - 是否必填：否 - 运行用户
+        /// - Name- string - 是否必填：否 - Web服务名：
+        ///   1:Tomcat
+        ///   2:Apache
+        ///   3:Nginx
+        ///   4:WebLogic
+        ///   5:Websphere
+        ///   6:JBoss
+        ///   7:WildFly
+        ///   8:Jetty
+        ///   9:IHS
+        ///   10:Tengine
+        ///
+        /// - OsType- string - 是否必填：否 - Windows/linux
+        /// - Os -String 是否必填: 否 - 操作系统( DescribeMachineOsList 接口 值 )
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
         public let offset: UInt64?
 
         /// 需要返回的数量，默认为10，最大值为100

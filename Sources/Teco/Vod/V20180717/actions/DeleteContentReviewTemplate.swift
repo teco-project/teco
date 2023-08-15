@@ -24,7 +24,7 @@ extension Vod {
         /// 内容审核模板唯一标识。
         public let definition: Int64
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         public init(definition: Int64, subAppId: UInt64? = nil) {
@@ -50,7 +50,7 @@ extension Vod {
 
     /// 删除音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
@@ -59,7 +59,7 @@ extension Vod {
 
     /// 删除音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
@@ -68,7 +68,7 @@ extension Vod {
 
     /// 删除音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
@@ -77,7 +77,7 @@ extension Vod {
 
     /// 删除音视频内容审核模板
     ///
-    /// 该 API 已经<font color=red>不再维护</font>，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
+    /// 该 API 已经_不再维护_，新版审核模板支持音视频审核和图片审核，详细请参考 [删除审核模板](https://cloud.tencent.com/document/api/266/84390)。
     /// 删除用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {

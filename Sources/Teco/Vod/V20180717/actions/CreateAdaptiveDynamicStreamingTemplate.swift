@@ -22,42 +22,46 @@ extension Vod {
     /// CreateAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct CreateAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 自适应转码格式，取值范围：
-        /// <li>HLS；</li>
-        /// <li>MPEG-DASH。</li>
+        /// - HLS；
+        /// - MPEG-DASH。
         public let format: String
 
         /// 自适应转码输出子流参数信息，最多输出10路子流。
         /// 注意：各个子流的帧率必须保持一致；如果不一致，采用第一个子流的帧率作为输出帧率。
         public let streamInfos: [AdaptiveStreamTemplate]
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 模板名称，长度限制：64 个字符。
         public let name: String?
 
         /// DRM 方案类型，取值范围：
-        /// <li>SimpleAES</li>
-        /// <li>Widevine</li>
-        /// <li>FairPlay</li>
+        /// - SimpleAES
+        /// - Widevine
+        /// - FairPlay
+        ///
         /// 如果取值为空字符串，代表不对视频做 DRM 保护。
         public let drmType: String?
 
         /// DRM 的密钥提供商，取值范围：
-        /// <li>SDMC：华曦达；</li>
-        /// <li>VOD：云点播。</li>
+        /// - SDMC：华曦达；
+        /// - VOD：云点播。
+        ///
         /// 默认为 VOD 。
         public let drmKeyProvider: String?
 
         /// 是否禁止视频低码率转高码率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoBitrate: UInt64?
 
         /// 是否禁止视频分辨率转高分辨率，取值范围：
-        /// <li>0：否，</li>
-        /// <li>1：是。</li>
+        /// - 0：否，
+        /// - 1：是。
+        ///
         /// 默认为否。
         public let disableHigherVideoResolution: UInt64?
 
@@ -65,8 +69,9 @@ extension Vod {
         public let comment: String?
 
         /// 切片类型，当 Format 为 HLS 时有效，可选值：
-        /// <li>ts：ts 切片；</li>
-        /// <li>fmp4：fmp4 切片。</li>
+        /// - ts：ts 切片；
+        /// - fmp4：fmp4 切片。
+        ///
         /// 默认值：ts。
         public let segmentType: String?
 

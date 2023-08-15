@@ -32,7 +32,7 @@ extension Batch {
         public let limit: Int64?
 
         /// 过滤条件
-        /// <li> compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤。</li>
+        /// - compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤。
         public let filters: Filter?
 
         public init(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil) {

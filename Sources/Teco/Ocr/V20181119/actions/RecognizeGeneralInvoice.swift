@@ -117,144 +117,35 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     ///
-    ///
     /// 支持返回的细项目子票种SubType、子票种中文TypeDescription、以及对应所属大类票种Type 的说明如下列表：
-    /// <table style="width:715px">
-    ///       <thead>
-    ///         <tr>
-    ///           <th style="width:200px">SubType 子票种英文</th>
-    ///           <th style="width:200px">TypeDescription子票种中文</th>
-    ///           <th >Type 所属大类票种</th>
-    ///         </tr>
-    ///       </thead>
-    ///       <tbody>
-    ///         <tr>
-    ///           <td> VatSpecialInvoice</td>
-    ///           <td> 增值税专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatCommonInvoice</td>
-    ///           <td> 增值税普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicCommonInvoice </td>
-    ///           <td> 增值税电子普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoice </td>
-    ///           <td> 增值税电子专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceBlockchain</td>
-    ///           <td> 区块链电子发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceToll</td>
-    ///           <td> 增值税电子普通发票(通行费)</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatSalesList</td>
-    ///           <td> 增值税销货清单</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoiceFull</td>
-    ///           <td> 电子发票(专用发票)</td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceFull</td>
-    ///           <td> 电子发票(普通发票) </td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MotorVehicleSaleInvoice </td>
-    ///           <td> 机动车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> UsedCarPurchaseInvoice </td>
-    ///           <td> 二手车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatInvoiceRoll </td>
-    ///           <td> 增值税普通发票(卷票) </td>
-    ///           <td> 11 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TaxiTicket </td>
-    ///           <td> 出租车发票 </td>
-    ///           <td> 0 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> QuotaInvoice </td>
-    ///           <td> 定额发票 </td>
-    ///           <td> 1 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TrainTicket </td>
-    ///           <td> 火车票 </td>
-    ///           <td> 2 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> AirTransport </td>
-    ///           <td> 机票行程单 </td>
-    ///           <td> 5 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MachinePrintedInvoice </td>
-    ///           <td> 通用机打发票 </td>
-    ///           <td> 8 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> BusInvoice </td>
-    ///           <td> 汽车票 </td>
-    ///           <td> 9 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> ShippingInvoice </td>
-    ///           <td> 轮船票 </td>
-    ///           <td> 10 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeGeneralBill </td>
-    ///           <td> 非税收入通用票据 </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeElectronicBill </td>
-    ///           <td> 非税收入一般缴款书(电子) </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TollInvoice </td>
-    ///           <td> 过路过桥费发票 </td>
-    ///           <td> 13 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalOutpatientInvoice </td>
-    ///           <td> 医疗门诊收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalHospitalizedInvoice </td>
-    ///           <td> 医疗住院收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> OtherInvoice </td>
-    ///           <td> 其他发票 </td>
-    ///           <td> -1 </td>
-    ///         </tr>
-    ///       </tbody>
-    ///     </table>
+    ///
+    /// | SubType 子票种英文 | TypeDescription子票种中文 | Type 所属大类票种 |
+    /// |---|---|---|
+    /// | VatSpecialInvoice | 增值税专用发票 | 3 |
+    /// | VatCommonInvoice | 增值税普通发票 | 3 |
+    /// | VatElectronicCommonInvoice | 增值税电子普通发票 | 3 |
+    /// | VatElectronicSpecialInvoice | 增值税电子专用发票 | 3 |
+    /// | VatElectronicInvoiceBlockchain | 区块链电子发票 | 3 |
+    /// | VatElectronicInvoiceToll | 增值税电子普通发票(通行费) | 3 |
+    /// | VatSalesList | 增值税销货清单 | 3 |
+    /// | VatElectronicSpecialInvoiceFull | 电子发票(专用发票) | 16 |
+    /// | VatElectronicInvoiceFull | 电子发票(普通发票) | 16 |
+    /// | MotorVehicleSaleInvoice | 机动车销售统一发票 | 12 |
+    /// | UsedCarPurchaseInvoice | 二手车销售统一发票 | 12 |
+    /// | VatInvoiceRoll | 增值税普通发票(卷票) | 11 |
+    /// | TaxiTicket | 出租车发票 | 0 |
+    /// | QuotaInvoice | 定额发票 | 1 |
+    /// | TrainTicket | 火车票 | 2 |
+    /// | AirTransport | 机票行程单 | 5 |
+    /// | MachinePrintedInvoice | 通用机打发票 | 8 |
+    /// | BusInvoice | 汽车票 | 9 |
+    /// | ShippingInvoice | 轮船票 | 10 |
+    /// | NonTaxIncomeGeneralBill | 非税收入通用票据 | 15 |
+    /// | NonTaxIncomeElectronicBill | 非税收入一般缴款书(电子) | 15 |
+    /// | TollInvoice | 过路过桥费发票 | 13 |
+    /// | MedicalOutpatientInvoice | 医疗门诊收费票据（电子） | 17 |
+    /// | MedicalHospitalizedInvoice | 医疗住院收费票据（电子） | 17 |
+    /// | OtherInvoice | 其他发票 | -1 |
     @inlinable
     public func recognizeGeneralInvoice(_ input: RecognizeGeneralInvoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeGeneralInvoiceResponse> {
         self.client.execute(action: "RecognizeGeneralInvoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -266,144 +157,35 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     ///
-    ///
     /// 支持返回的细项目子票种SubType、子票种中文TypeDescription、以及对应所属大类票种Type 的说明如下列表：
-    /// <table style="width:715px">
-    ///       <thead>
-    ///         <tr>
-    ///           <th style="width:200px">SubType 子票种英文</th>
-    ///           <th style="width:200px">TypeDescription子票种中文</th>
-    ///           <th >Type 所属大类票种</th>
-    ///         </tr>
-    ///       </thead>
-    ///       <tbody>
-    ///         <tr>
-    ///           <td> VatSpecialInvoice</td>
-    ///           <td> 增值税专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatCommonInvoice</td>
-    ///           <td> 增值税普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicCommonInvoice </td>
-    ///           <td> 增值税电子普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoice </td>
-    ///           <td> 增值税电子专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceBlockchain</td>
-    ///           <td> 区块链电子发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceToll</td>
-    ///           <td> 增值税电子普通发票(通行费)</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatSalesList</td>
-    ///           <td> 增值税销货清单</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoiceFull</td>
-    ///           <td> 电子发票(专用发票)</td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceFull</td>
-    ///           <td> 电子发票(普通发票) </td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MotorVehicleSaleInvoice </td>
-    ///           <td> 机动车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> UsedCarPurchaseInvoice </td>
-    ///           <td> 二手车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatInvoiceRoll </td>
-    ///           <td> 增值税普通发票(卷票) </td>
-    ///           <td> 11 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TaxiTicket </td>
-    ///           <td> 出租车发票 </td>
-    ///           <td> 0 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> QuotaInvoice </td>
-    ///           <td> 定额发票 </td>
-    ///           <td> 1 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TrainTicket </td>
-    ///           <td> 火车票 </td>
-    ///           <td> 2 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> AirTransport </td>
-    ///           <td> 机票行程单 </td>
-    ///           <td> 5 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MachinePrintedInvoice </td>
-    ///           <td> 通用机打发票 </td>
-    ///           <td> 8 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> BusInvoice </td>
-    ///           <td> 汽车票 </td>
-    ///           <td> 9 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> ShippingInvoice </td>
-    ///           <td> 轮船票 </td>
-    ///           <td> 10 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeGeneralBill </td>
-    ///           <td> 非税收入通用票据 </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeElectronicBill </td>
-    ///           <td> 非税收入一般缴款书(电子) </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TollInvoice </td>
-    ///           <td> 过路过桥费发票 </td>
-    ///           <td> 13 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalOutpatientInvoice </td>
-    ///           <td> 医疗门诊收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalHospitalizedInvoice </td>
-    ///           <td> 医疗住院收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> OtherInvoice </td>
-    ///           <td> 其他发票 </td>
-    ///           <td> -1 </td>
-    ///         </tr>
-    ///       </tbody>
-    ///     </table>
+    ///
+    /// | SubType 子票种英文 | TypeDescription子票种中文 | Type 所属大类票种 |
+    /// |---|---|---|
+    /// | VatSpecialInvoice | 增值税专用发票 | 3 |
+    /// | VatCommonInvoice | 增值税普通发票 | 3 |
+    /// | VatElectronicCommonInvoice | 增值税电子普通发票 | 3 |
+    /// | VatElectronicSpecialInvoice | 增值税电子专用发票 | 3 |
+    /// | VatElectronicInvoiceBlockchain | 区块链电子发票 | 3 |
+    /// | VatElectronicInvoiceToll | 增值税电子普通发票(通行费) | 3 |
+    /// | VatSalesList | 增值税销货清单 | 3 |
+    /// | VatElectronicSpecialInvoiceFull | 电子发票(专用发票) | 16 |
+    /// | VatElectronicInvoiceFull | 电子发票(普通发票) | 16 |
+    /// | MotorVehicleSaleInvoice | 机动车销售统一发票 | 12 |
+    /// | UsedCarPurchaseInvoice | 二手车销售统一发票 | 12 |
+    /// | VatInvoiceRoll | 增值税普通发票(卷票) | 11 |
+    /// | TaxiTicket | 出租车发票 | 0 |
+    /// | QuotaInvoice | 定额发票 | 1 |
+    /// | TrainTicket | 火车票 | 2 |
+    /// | AirTransport | 机票行程单 | 5 |
+    /// | MachinePrintedInvoice | 通用机打发票 | 8 |
+    /// | BusInvoice | 汽车票 | 9 |
+    /// | ShippingInvoice | 轮船票 | 10 |
+    /// | NonTaxIncomeGeneralBill | 非税收入通用票据 | 15 |
+    /// | NonTaxIncomeElectronicBill | 非税收入一般缴款书(电子) | 15 |
+    /// | TollInvoice | 过路过桥费发票 | 13 |
+    /// | MedicalOutpatientInvoice | 医疗门诊收费票据（电子） | 17 |
+    /// | MedicalHospitalizedInvoice | 医疗住院收费票据（电子） | 17 |
+    /// | OtherInvoice | 其他发票 | -1 |
     @inlinable
     public func recognizeGeneralInvoice(_ input: RecognizeGeneralInvoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeGeneralInvoiceResponse {
         try await self.client.execute(action: "RecognizeGeneralInvoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -415,144 +197,35 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     ///
-    ///
     /// 支持返回的细项目子票种SubType、子票种中文TypeDescription、以及对应所属大类票种Type 的说明如下列表：
-    /// <table style="width:715px">
-    ///       <thead>
-    ///         <tr>
-    ///           <th style="width:200px">SubType 子票种英文</th>
-    ///           <th style="width:200px">TypeDescription子票种中文</th>
-    ///           <th >Type 所属大类票种</th>
-    ///         </tr>
-    ///       </thead>
-    ///       <tbody>
-    ///         <tr>
-    ///           <td> VatSpecialInvoice</td>
-    ///           <td> 增值税专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatCommonInvoice</td>
-    ///           <td> 增值税普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicCommonInvoice </td>
-    ///           <td> 增值税电子普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoice </td>
-    ///           <td> 增值税电子专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceBlockchain</td>
-    ///           <td> 区块链电子发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceToll</td>
-    ///           <td> 增值税电子普通发票(通行费)</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatSalesList</td>
-    ///           <td> 增值税销货清单</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoiceFull</td>
-    ///           <td> 电子发票(专用发票)</td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceFull</td>
-    ///           <td> 电子发票(普通发票) </td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MotorVehicleSaleInvoice </td>
-    ///           <td> 机动车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> UsedCarPurchaseInvoice </td>
-    ///           <td> 二手车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatInvoiceRoll </td>
-    ///           <td> 增值税普通发票(卷票) </td>
-    ///           <td> 11 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TaxiTicket </td>
-    ///           <td> 出租车发票 </td>
-    ///           <td> 0 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> QuotaInvoice </td>
-    ///           <td> 定额发票 </td>
-    ///           <td> 1 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TrainTicket </td>
-    ///           <td> 火车票 </td>
-    ///           <td> 2 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> AirTransport </td>
-    ///           <td> 机票行程单 </td>
-    ///           <td> 5 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MachinePrintedInvoice </td>
-    ///           <td> 通用机打发票 </td>
-    ///           <td> 8 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> BusInvoice </td>
-    ///           <td> 汽车票 </td>
-    ///           <td> 9 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> ShippingInvoice </td>
-    ///           <td> 轮船票 </td>
-    ///           <td> 10 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeGeneralBill </td>
-    ///           <td> 非税收入通用票据 </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeElectronicBill </td>
-    ///           <td> 非税收入一般缴款书(电子) </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TollInvoice </td>
-    ///           <td> 过路过桥费发票 </td>
-    ///           <td> 13 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalOutpatientInvoice </td>
-    ///           <td> 医疗门诊收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalHospitalizedInvoice </td>
-    ///           <td> 医疗住院收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> OtherInvoice </td>
-    ///           <td> 其他发票 </td>
-    ///           <td> -1 </td>
-    ///         </tr>
-    ///       </tbody>
-    ///     </table>
+    ///
+    /// | SubType 子票种英文 | TypeDescription子票种中文 | Type 所属大类票种 |
+    /// |---|---|---|
+    /// | VatSpecialInvoice | 增值税专用发票 | 3 |
+    /// | VatCommonInvoice | 增值税普通发票 | 3 |
+    /// | VatElectronicCommonInvoice | 增值税电子普通发票 | 3 |
+    /// | VatElectronicSpecialInvoice | 增值税电子专用发票 | 3 |
+    /// | VatElectronicInvoiceBlockchain | 区块链电子发票 | 3 |
+    /// | VatElectronicInvoiceToll | 增值税电子普通发票(通行费) | 3 |
+    /// | VatSalesList | 增值税销货清单 | 3 |
+    /// | VatElectronicSpecialInvoiceFull | 电子发票(专用发票) | 16 |
+    /// | VatElectronicInvoiceFull | 电子发票(普通发票) | 16 |
+    /// | MotorVehicleSaleInvoice | 机动车销售统一发票 | 12 |
+    /// | UsedCarPurchaseInvoice | 二手车销售统一发票 | 12 |
+    /// | VatInvoiceRoll | 增值税普通发票(卷票) | 11 |
+    /// | TaxiTicket | 出租车发票 | 0 |
+    /// | QuotaInvoice | 定额发票 | 1 |
+    /// | TrainTicket | 火车票 | 2 |
+    /// | AirTransport | 机票行程单 | 5 |
+    /// | MachinePrintedInvoice | 通用机打发票 | 8 |
+    /// | BusInvoice | 汽车票 | 9 |
+    /// | ShippingInvoice | 轮船票 | 10 |
+    /// | NonTaxIncomeGeneralBill | 非税收入通用票据 | 15 |
+    /// | NonTaxIncomeElectronicBill | 非税收入一般缴款书(电子) | 15 |
+    /// | TollInvoice | 过路过桥费发票 | 13 |
+    /// | MedicalOutpatientInvoice | 医疗门诊收费票据（电子） | 17 |
+    /// | MedicalHospitalizedInvoice | 医疗住院收费票据（电子） | 17 |
+    /// | OtherInvoice | 其他发票 | -1 |
     @inlinable
     public func recognizeGeneralInvoice(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, enableOther: Bool? = nil, enablePdf: Bool? = nil, pdfPageNumber: Int64? = nil, enableMultiplePage: Bool? = nil, enableCutImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeGeneralInvoiceResponse> {
         self.recognizeGeneralInvoice(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, enableOther: enableOther, enablePdf: enablePdf, pdfPageNumber: pdfPageNumber, enableMultiplePage: enableMultiplePage, enableCutImage: enableCutImage), region: region, logger: logger, on: eventLoop)
@@ -564,144 +237,35 @@ extension Ocr {
     ///
     /// 默认接口请求频率限制：5次/秒。
     ///
-    ///
     /// 支持返回的细项目子票种SubType、子票种中文TypeDescription、以及对应所属大类票种Type 的说明如下列表：
-    /// <table style="width:715px">
-    ///       <thead>
-    ///         <tr>
-    ///           <th style="width:200px">SubType 子票种英文</th>
-    ///           <th style="width:200px">TypeDescription子票种中文</th>
-    ///           <th >Type 所属大类票种</th>
-    ///         </tr>
-    ///       </thead>
-    ///       <tbody>
-    ///         <tr>
-    ///           <td> VatSpecialInvoice</td>
-    ///           <td> 增值税专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatCommonInvoice</td>
-    ///           <td> 增值税普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicCommonInvoice </td>
-    ///           <td> 增值税电子普通发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoice </td>
-    ///           <td> 增值税电子专用发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceBlockchain</td>
-    ///           <td> 区块链电子发票 </td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceToll</td>
-    ///           <td> 增值税电子普通发票(通行费)</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatSalesList</td>
-    ///           <td> 增值税销货清单</td>
-    ///           <td> 3 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicSpecialInvoiceFull</td>
-    ///           <td> 电子发票(专用发票)</td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatElectronicInvoiceFull</td>
-    ///           <td> 电子发票(普通发票) </td>
-    ///           <td> 16 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MotorVehicleSaleInvoice </td>
-    ///           <td> 机动车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> UsedCarPurchaseInvoice </td>
-    ///           <td> 二手车销售统一发票 </td>
-    ///           <td> 12 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> VatInvoiceRoll </td>
-    ///           <td> 增值税普通发票(卷票) </td>
-    ///           <td> 11 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TaxiTicket </td>
-    ///           <td> 出租车发票 </td>
-    ///           <td> 0 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> QuotaInvoice </td>
-    ///           <td> 定额发票 </td>
-    ///           <td> 1 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TrainTicket </td>
-    ///           <td> 火车票 </td>
-    ///           <td> 2 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> AirTransport </td>
-    ///           <td> 机票行程单 </td>
-    ///           <td> 5 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MachinePrintedInvoice </td>
-    ///           <td> 通用机打发票 </td>
-    ///           <td> 8 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> BusInvoice </td>
-    ///           <td> 汽车票 </td>
-    ///           <td> 9 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> ShippingInvoice </td>
-    ///           <td> 轮船票 </td>
-    ///           <td> 10 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeGeneralBill </td>
-    ///           <td> 非税收入通用票据 </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> NonTaxIncomeElectronicBill </td>
-    ///           <td> 非税收入一般缴款书(电子) </td>
-    ///           <td> 15 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> TollInvoice </td>
-    ///           <td> 过路过桥费发票 </td>
-    ///           <td> 13 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalOutpatientInvoice </td>
-    ///           <td> 医疗门诊收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> MedicalHospitalizedInvoice </td>
-    ///           <td> 医疗住院收费票据（电子） </td>
-    ///           <td> 17 </td>
-    ///         </tr>
-    ///         <tr>
-    ///           <td> OtherInvoice </td>
-    ///           <td> 其他发票 </td>
-    ///           <td> -1 </td>
-    ///         </tr>
-    ///       </tbody>
-    ///     </table>
+    ///
+    /// | SubType 子票种英文 | TypeDescription子票种中文 | Type 所属大类票种 |
+    /// |---|---|---|
+    /// | VatSpecialInvoice | 增值税专用发票 | 3 |
+    /// | VatCommonInvoice | 增值税普通发票 | 3 |
+    /// | VatElectronicCommonInvoice | 增值税电子普通发票 | 3 |
+    /// | VatElectronicSpecialInvoice | 增值税电子专用发票 | 3 |
+    /// | VatElectronicInvoiceBlockchain | 区块链电子发票 | 3 |
+    /// | VatElectronicInvoiceToll | 增值税电子普通发票(通行费) | 3 |
+    /// | VatSalesList | 增值税销货清单 | 3 |
+    /// | VatElectronicSpecialInvoiceFull | 电子发票(专用发票) | 16 |
+    /// | VatElectronicInvoiceFull | 电子发票(普通发票) | 16 |
+    /// | MotorVehicleSaleInvoice | 机动车销售统一发票 | 12 |
+    /// | UsedCarPurchaseInvoice | 二手车销售统一发票 | 12 |
+    /// | VatInvoiceRoll | 增值税普通发票(卷票) | 11 |
+    /// | TaxiTicket | 出租车发票 | 0 |
+    /// | QuotaInvoice | 定额发票 | 1 |
+    /// | TrainTicket | 火车票 | 2 |
+    /// | AirTransport | 机票行程单 | 5 |
+    /// | MachinePrintedInvoice | 通用机打发票 | 8 |
+    /// | BusInvoice | 汽车票 | 9 |
+    /// | ShippingInvoice | 轮船票 | 10 |
+    /// | NonTaxIncomeGeneralBill | 非税收入通用票据 | 15 |
+    /// | NonTaxIncomeElectronicBill | 非税收入一般缴款书(电子) | 15 |
+    /// | TollInvoice | 过路过桥费发票 | 13 |
+    /// | MedicalOutpatientInvoice | 医疗门诊收费票据（电子） | 17 |
+    /// | MedicalHospitalizedInvoice | 医疗住院收费票据（电子） | 17 |
+    /// | OtherInvoice | 其他发票 | -1 |
     @inlinable
     public func recognizeGeneralInvoice(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, enableOther: Bool? = nil, enablePdf: Bool? = nil, pdfPageNumber: Int64? = nil, enableMultiplePage: Bool? = nil, enableCutImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeGeneralInvoiceResponse {
         try await self.recognizeGeneralInvoice(.init(imageBase64: imageBase64, imageUrl: imageUrl, types: types, enableOther: enableOther, enablePdf: enablePdf, pdfPageNumber: pdfPageNumber, enableMultiplePage: enableMultiplePage, enableCutImage: enableCutImage), region: region, logger: logger, on: eventLoop)

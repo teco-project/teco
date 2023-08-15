@@ -124,8 +124,6 @@ extension Gse {
     /// 请求成功时，将返回策略名称。扩缩容策略在成功创建立即自动生效。
     /// ```
     ///
-    ///
-    ///
     /// ## RuleBased基于规则的策略
     ///
     /// ####  请求参数取值说明
@@ -172,16 +170,142 @@ extension Gse {
     ///
     /// - | 策略名称（MetricName）                                       | 计算公式                                   | 场景                                        | 场景使用举例                                                 |
     ///   | :----------------------------------------------------------- | :----------------------------------------- | :------------------------------------------ | :----------------------------------------------------------- |
-    ///   | CurrentPlayerSessions<br>当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：<br>MetricName: CurrentPlayerSessions<br>ComparisonOperator: '<=' <br>Threshold: 300<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ChangeInCapacity<br>说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
-    ///   | AvailableGameServerSessions<br>可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：<br/>MetricName: AvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 5<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
-    ///   | PercentAvailableGameServerSessions<br>可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：<br/>MetricName: PercentAvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: -30<br/>ScalingAdjustment: PercentChangeInCapacity<br/>说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
-    ///   | AvailableCustomCount<br>可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：<br/>MetricName: AvailableCustomCount<br/>ComparisonOperator: '>=' <br/>Threshold: 6<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: -1<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
-    ///   | PercentAvailableCustomCount<br>可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：<br/>MetricName: PercentAvailableCustomCount<br/>ComparisonOperator: '<' <br/>Threshold: 15<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
-    ///   | ActiveInstances<br>活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：<br/>MetricName: ActiveInstances<br/>ComparisonOperator: '<' <br/>Threshold: 3<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 3<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
-    ///   | IdleInstances<br>空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：<br/>MetricName: IdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 2<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
-    ///   | PercentIdleInstances<br>空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：<br/>MetricName: PercentIdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
+    ///   | CurrentPlayerSessions
     ///
+    /// 当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：
     ///
+    /// MetricName: CurrentPlayerSessions
+    ///
+    /// ComparisonOperator: '<='
+    ///
+    /// Threshold: 300
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
+    ///   | AvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: AvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 5
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
+    ///   | PercentAvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：
+    ///
+    /// MetricName: PercentAvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: -30
+    ///
+    /// ScalingAdjustment: PercentChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
+    ///   | AvailableCustomCount
+    ///
+    /// 可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：
+    ///
+    /// MetricName: AvailableCustomCount
+    ///
+    /// ComparisonOperator: '>='
+    ///
+    /// Threshold: 6
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: -1
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
+    ///   | PercentAvailableCustomCount
+    ///
+    /// 可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：
+    ///
+    /// MetricName: PercentAvailableCustomCount
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 15
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
+    ///   | ActiveInstances
+    ///
+    /// 活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: ActiveInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 3
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 3
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
+    ///   | IdleInstances
+    ///
+    /// 空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: IdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 2
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
+    ///   | PercentIdleInstances
+    ///
+    /// 空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: PercentIdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
     ///
     /// **备注2**
     ///
@@ -230,8 +354,6 @@ extension Gse {
     /// 请求成功时，将返回策略名称。扩缩容策略在成功创建立即自动生效。
     /// ```
     ///
-    ///
-    ///
     /// ## RuleBased基于规则的策略
     ///
     /// ####  请求参数取值说明
@@ -278,16 +400,142 @@ extension Gse {
     ///
     /// - | 策略名称（MetricName）                                       | 计算公式                                   | 场景                                        | 场景使用举例                                                 |
     ///   | :----------------------------------------------------------- | :----------------------------------------- | :------------------------------------------ | :----------------------------------------------------------- |
-    ///   | CurrentPlayerSessions<br>当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：<br>MetricName: CurrentPlayerSessions<br>ComparisonOperator: '<=' <br>Threshold: 300<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ChangeInCapacity<br>说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
-    ///   | AvailableGameServerSessions<br>可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：<br/>MetricName: AvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 5<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
-    ///   | PercentAvailableGameServerSessions<br>可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：<br/>MetricName: PercentAvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: -30<br/>ScalingAdjustment: PercentChangeInCapacity<br/>说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
-    ///   | AvailableCustomCount<br>可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：<br/>MetricName: AvailableCustomCount<br/>ComparisonOperator: '>=' <br/>Threshold: 6<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: -1<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
-    ///   | PercentAvailableCustomCount<br>可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：<br/>MetricName: PercentAvailableCustomCount<br/>ComparisonOperator: '<' <br/>Threshold: 15<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
-    ///   | ActiveInstances<br>活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：<br/>MetricName: ActiveInstances<br/>ComparisonOperator: '<' <br/>Threshold: 3<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 3<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
-    ///   | IdleInstances<br>空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：<br/>MetricName: IdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 2<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
-    ///   | PercentIdleInstances<br>空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：<br/>MetricName: PercentIdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
+    ///   | CurrentPlayerSessions
     ///
+    /// 当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：
     ///
+    /// MetricName: CurrentPlayerSessions
+    ///
+    /// ComparisonOperator: '<='
+    ///
+    /// Threshold: 300
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
+    ///   | AvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: AvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 5
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
+    ///   | PercentAvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：
+    ///
+    /// MetricName: PercentAvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: -30
+    ///
+    /// ScalingAdjustment: PercentChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
+    ///   | AvailableCustomCount
+    ///
+    /// 可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：
+    ///
+    /// MetricName: AvailableCustomCount
+    ///
+    /// ComparisonOperator: '>='
+    ///
+    /// Threshold: 6
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: -1
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
+    ///   | PercentAvailableCustomCount
+    ///
+    /// 可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：
+    ///
+    /// MetricName: PercentAvailableCustomCount
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 15
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
+    ///   | ActiveInstances
+    ///
+    /// 活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: ActiveInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 3
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 3
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
+    ///   | IdleInstances
+    ///
+    /// 空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: IdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 2
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
+    ///   | PercentIdleInstances
+    ///
+    /// 空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: PercentIdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
     ///
     /// **备注2**
     ///
@@ -336,8 +584,6 @@ extension Gse {
     /// 请求成功时，将返回策略名称。扩缩容策略在成功创建立即自动生效。
     /// ```
     ///
-    ///
-    ///
     /// ## RuleBased基于规则的策略
     ///
     /// ####  请求参数取值说明
@@ -384,16 +630,142 @@ extension Gse {
     ///
     /// - | 策略名称（MetricName）                                       | 计算公式                                   | 场景                                        | 场景使用举例                                                 |
     ///   | :----------------------------------------------------------- | :----------------------------------------- | :------------------------------------------ | :----------------------------------------------------------- |
-    ///   | CurrentPlayerSessions<br>当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：<br>MetricName: CurrentPlayerSessions<br>ComparisonOperator: '<=' <br>Threshold: 300<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ChangeInCapacity<br>说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
-    ///   | AvailableGameServerSessions<br>可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：<br/>MetricName: AvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 5<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
-    ///   | PercentAvailableGameServerSessions<br>可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：<br/>MetricName: PercentAvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: -30<br/>ScalingAdjustment: PercentChangeInCapacity<br/>说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
-    ///   | AvailableCustomCount<br>可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：<br/>MetricName: AvailableCustomCount<br/>ComparisonOperator: '>=' <br/>Threshold: 6<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: -1<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
-    ///   | PercentAvailableCustomCount<br>可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：<br/>MetricName: PercentAvailableCustomCount<br/>ComparisonOperator: '<' <br/>Threshold: 15<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
-    ///   | ActiveInstances<br>活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：<br/>MetricName: ActiveInstances<br/>ComparisonOperator: '<' <br/>Threshold: 3<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 3<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
-    ///   | IdleInstances<br>空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：<br/>MetricName: IdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 2<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
-    ///   | PercentIdleInstances<br>空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：<br/>MetricName: PercentIdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
+    ///   | CurrentPlayerSessions
     ///
+    /// 当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：
     ///
+    /// MetricName: CurrentPlayerSessions
+    ///
+    /// ComparisonOperator: '<='
+    ///
+    /// Threshold: 300
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
+    ///   | AvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: AvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 5
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
+    ///   | PercentAvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：
+    ///
+    /// MetricName: PercentAvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: -30
+    ///
+    /// ScalingAdjustment: PercentChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
+    ///   | AvailableCustomCount
+    ///
+    /// 可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：
+    ///
+    /// MetricName: AvailableCustomCount
+    ///
+    /// ComparisonOperator: '>='
+    ///
+    /// Threshold: 6
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: -1
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
+    ///   | PercentAvailableCustomCount
+    ///
+    /// 可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：
+    ///
+    /// MetricName: PercentAvailableCustomCount
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 15
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
+    ///   | ActiveInstances
+    ///
+    /// 活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: ActiveInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 3
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 3
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
+    ///   | IdleInstances
+    ///
+    /// 空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: IdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 2
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
+    ///   | PercentIdleInstances
+    ///
+    /// 空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: PercentIdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
     ///
     /// **备注2**
     ///
@@ -442,8 +814,6 @@ extension Gse {
     /// 请求成功时，将返回策略名称。扩缩容策略在成功创建立即自动生效。
     /// ```
     ///
-    ///
-    ///
     /// ## RuleBased基于规则的策略
     ///
     /// ####  请求参数取值说明
@@ -490,16 +860,142 @@ extension Gse {
     ///
     /// - | 策略名称（MetricName）                                       | 计算公式                                   | 场景                                        | 场景使用举例                                                 |
     ///   | :----------------------------------------------------------- | :----------------------------------------- | :------------------------------------------ | :----------------------------------------------------------- |
-    ///   | CurrentPlayerSessions<br>当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：<br>MetricName: CurrentPlayerSessions<br>ComparisonOperator: '<=' <br>Threshold: 300<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ChangeInCapacity<br>说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
-    ///   | AvailableGameServerSessions<br>可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：<br/>MetricName: AvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 5<br/>ScalingAdjustment: 2<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
-    ///   | PercentAvailableGameServerSessions<br>可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：<br/>MetricName: PercentAvailableGameServerSessions<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: -30<br/>ScalingAdjustment: PercentChangeInCapacity<br/>说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
-    ///   | AvailableCustomCount<br>可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：<br/>MetricName: AvailableCustomCount<br/>ComparisonOperator: '>=' <br/>Threshold: 6<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: -1<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
-    ///   | PercentAvailableCustomCount<br>可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：<br/>MetricName: PercentAvailableCustomCount<br/>ComparisonOperator: '<' <br/>Threshold: 15<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
-    ///   | ActiveInstances<br>活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：<br/>MetricName: ActiveInstances<br/>ComparisonOperator: '<' <br/>Threshold: 3<br/>EvaluationPeriods: 1<br/>ScalingAdjustment: 3<br/>ScalingAdjustment: ExactCapacity<br/>说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
-    ///   | IdleInstances<br>空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：<br/>MetricName: IdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 2<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
-    ///   | PercentIdleInstances<br>空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：<br/>MetricName: PercentIdleInstances<br/>ComparisonOperator: '<' <br/>Threshold: 50<br/>EvaluationPeriods: 3<br/>ScalingAdjustment: 1<br/>ScalingAdjustment: ChangeInCapacity<br/>说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
+    ///   | CurrentPlayerSessions
     ///
+    /// 当前玩家数指标                      | = 当前在线的玩家数                         | CVM随着玩家会话数变化做扩缩容。             | 例如：
     ///
+    /// MetricName: CurrentPlayerSessions
+    ///
+    /// ComparisonOperator: '<='
+    ///
+    /// Threshold: 300
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前CurrentPlayerSessions小于等于300，持续1分钟，则扩容2台CVM。 |
+    ///   | AvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话数          | = 可用游戏服务会话数                       | CVM随着可用游戏会话数变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: AvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 5
+    ///
+    /// ScalingAdjustment: 2
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableGameServerSessions小于50，持续5分钟，则扩容到2台CVM。 |
+    ///   | PercentAvailableGameServerSessions
+    ///
+    /// 可用游戏服务器会话百分比 | = 空闲游戏会话数 / 所有的游戏会话数 * 100% | CVM随着可用游戏会话数百分比变化做扩缩容。   | 例如：
+    ///
+    /// MetricName: PercentAvailableGameServerSessions
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: -30
+    ///
+    /// ScalingAdjustment: PercentChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableGameServerSessions小于50%，持续1分钟，则缩容当前实例数30%台CVM。 |
+    ///   | AvailableCustomCount
+    ///
+    /// 可用客户自定义数指标                 | = 客户自定义的数                           | CVM随着可用客户自定义数变化做扩缩容。       | 例如：
+    ///
+    /// MetricName: AvailableCustomCount
+    ///
+    /// ComparisonOperator: '>='
+    ///
+    /// Threshold: 6
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: -1
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前AvailableCustomCount大于等于6，持续3分钟，则缩容到1台CVM。 |
+    ///   | PercentAvailableCustomCount
+    ///
+    /// 可用客户自定义数百分比        | = 客户自定义数 / 客户最大自定义数* 100%    | CVM随着可用客户自定义数百分比变化做扩缩容。 | 例如：
+    ///
+    /// MetricName: PercentAvailableCustomCount
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 15
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentAvailableCustomCount小于15%，持续3分钟，则扩容1台CVM。 |
+    ///   | ActiveInstances
+    ///
+    /// 活跃实例数指标                            | = 总实例数 - 缩容中的实例数                | CVM随着活跃实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: ActiveInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 3
+    ///
+    /// EvaluationPeriods: 1
+    ///
+    /// ScalingAdjustment: 3
+    ///
+    /// ScalingAdjustment: ExactCapacity
+    ///
+    /// 说明：若当前ActiveInstances小于3台，持续1分钟，则扩容保留到3台CVM。 |
+    ///   | IdleInstances
+    ///
+    /// 空闲实例数指标                              | = 未使用的进程数 / 每实例进程数            | CVM随着空闲实例数变化做扩缩容。             | 例如：
+    ///
+    /// MetricName: IdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 2
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前IdleInstances小于2台，持续3分钟，则扩容1台CVM。 |
+    ///   | PercentIdleInstances
+    ///
+    /// 空闲实例百分比                       | = IdleInstances / ActiveInstances * 100%   | CVM随着空闲实例百分比变化做扩缩容。         | 例如：
+    ///
+    /// MetricName: PercentIdleInstances
+    ///
+    /// ComparisonOperator: '<'
+    ///
+    /// Threshold: 50
+    ///
+    /// EvaluationPeriods: 3
+    ///
+    /// ScalingAdjustment: 1
+    ///
+    /// ScalingAdjustment: ChangeInCapacity
+    ///
+    /// 说明：若当前PercentIdleInstances小于50%，持续3分钟，则扩容1台CVM。 |
     ///
     /// **备注2**
     ///

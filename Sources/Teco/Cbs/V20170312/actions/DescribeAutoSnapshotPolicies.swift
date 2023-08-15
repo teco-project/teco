@@ -27,11 +27,9 @@ extension Cbs {
 
         /// 过滤条件。参数不支持同时指定`AutoSnapshotPolicyIds`和`Filters`。
         ///
-        /// <li>auto-snapshot-policy-id - Array of String - 是否必填：否 -（过滤条件）按定期快照策略ID进行过滤。定期快照策略ID形如：`asp-11112222`。
-        ///
-        /// <li>auto-snapshot-policy-state - Array of String - 是否必填：否 -（过滤条件）按定期快照策略的状态进行过滤。定期快照策略ID形如：`asp-11112222`。(NORMAL：正常 | ISOLATED：已隔离。)
-        ///
-        /// <li>auto-snapshot-policy-name - Array of String - 是否必填：否 -（过滤条件）按定期快照策略名称进行过滤。
+        /// - auto-snapshot-policy-id - Array of String - 是否必填：否 -（过滤条件）按定期快照策略ID进行过滤。定期快照策略ID形如：`asp-11112222`。
+        /// - auto-snapshot-policy-state - Array of String - 是否必填：否 -（过滤条件）按定期快照策略的状态进行过滤。定期快照策略ID形如：`asp-11112222`。(NORMAL：正常 | ISOLATED：已隔离。)
+        /// - auto-snapshot-policy-name - Array of String - 是否必填：否 -（过滤条件）按定期快照策略名称进行过滤。
         public let filters: [Filter]?
 
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
@@ -42,14 +40,13 @@ extension Cbs {
 
         /// 输出定期快照列表的排列顺序。取值范围：
         ///
-        /// <li>ASC：升序排列
-        ///
-        /// <li>DESC：降序排列。
+        /// - ASC：升序排列
+        /// - DESC：降序排列。
         public let order: String?
 
         /// 定期快照列表排序的依据字段。取值范围：
         ///
-        /// <li>CREATETIME：依据定期快照的创建时间排序
+        /// - CREATETIME：依据定期快照的创建时间排序
         ///
         /// 默认按创建时间排序。
         public let orderField: String?

@@ -22,16 +22,16 @@ extension Tcss {
     /// CreateHostExportJob请求参数结构体
     public struct CreateHostExportJobRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"</li>
-        /// <li>HostName - String - 是否必填：否 - 主机名筛选</li>
-        /// <li>Group- String - 是否必填：否 - 主机群组搜索</li>
-        /// <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
-        /// <li>HostID- string - 是否必填：否 - 主机id搜索</li>
-        /// <li>DockerVersion- string - 是否必填：否 - docker版本搜索</li>
-        /// <li>MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；</li>
-        /// <li>DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"</li>
-        /// <li>ProjectID- string - 是否必填：否 - 所属项目id搜索</li>
-        /// <li>Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]</li>
+        /// - Status - String - 是否必填：否 - agent状态筛选，"ALL":"全部"(或不传该字段),"UNINSTALL"："未安装","OFFLINE"："离线", "ONLINE"："防护中"
+        /// - HostName - String - 是否必填：否 - 主机名筛选
+        /// - Group- String - 是否必填：否 - 主机群组搜索
+        /// - HostIP- string - 是否必填：否 - 主机ip搜索
+        /// - HostID- string - 是否必填：否 - 主机id搜索
+        /// - DockerVersion- string - 是否必填：否 - docker版本搜索
+        /// - MachineType- string - 是否必填：否 - 主机来源MachineType搜索，"ALL":"全部"(或不传该字段),主机来源：["CVM", "ECM", "LH", "BM"]  中的之一为腾讯云服务器；["Other"]之一非腾讯云服务器；
+        /// - DockerStatus- string - 是否必填：否 - docker安装状态，"ALL":"全部"(或不传该字段),"INSTALL":"已安装","UNINSTALL":"未安装"
+        /// - ProjectID- string - 是否必填：否 - 所属项目id搜索
+        /// - Tag:xxx(tag:key)- string- 是否必填：否 - 标签键值搜索 示例Filters":[{"Name":"tag:tke-kind","Values":["service"]}]
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

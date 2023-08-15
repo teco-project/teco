@@ -32,11 +32,11 @@ extension Vpc {
         public let sslVpnServerIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SslVpnServerIds和Filters。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。</li>
-        /// <li>vpn-gateway-id - String - （过滤条件）VPN实例ID，形如：vpngw-5aluhh9t。</li>
-        /// <li>vpn-gateway-name - String - （过滤条件）VPN实例名称。</li>
-        /// <li>ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。</li>
-        /// <li>ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID，形如：vpns-xxx。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID，形如：vpc-f49l6u0z。
+        /// - vpn-gateway-id - String - （过滤条件）VPN实例ID，形如：vpngw-5aluhh9t。
+        /// - vpn-gateway-name - String - （过滤条件）VPN实例名称。
+        /// - ssl-vpn-server-name - String - （过滤条件）SSL-VPN-SERVER实例名称。
+        /// - ssl-vpn-server-id - String - （过滤条件）SSL-VPN-SERVER实例ID，形如：vpns-xxx。
         public let filters: [FilterObject]?
 
         /// vpn门户使用。 默认Flase

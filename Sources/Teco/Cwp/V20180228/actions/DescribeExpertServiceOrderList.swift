@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeExpertServiceOrderList请求参数结构体
     public struct DescribeExpertServiceOrderListRequest: TCPaginatedRequest {
-        /// <li>InquireType- String - 是否必填：否 - 订单类型过滤，</li>
+        /// - InquireType- String - 是否必填：否 - 订单类型过滤，
         public let filters: [Filters]?
 
         /// 分页条数 最大100条

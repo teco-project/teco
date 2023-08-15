@@ -22,15 +22,15 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeBaselineHostDetectList请求参数结构体
     public struct DescribeBaselineHostDetectListRequest: TCPaginatedRequest {
-        /// <li>PolicyId - int64 - 是否必填：否 - 策略Id</li>
-        /// <li>HostName - string - 是否必填：否 - 主机名称</i>
-        /// <li>HostIp - string - 是否必填：否 - 主机Ip</i>
-        /// <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        /// <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
-        /// <li>DetectStatus - int - 是否必填：否 - 检测状态</li>
-        /// <li>Level - int - 是否必填：否 - 风险等级</li>
-        /// <li>StartTime - string - 是否必填：否 - 开时时间</li>
-        /// <li>EndTime - string - 是否必填：否 - 结束时间</li>
+        /// - PolicyId - int64 - 是否必填：否 - 策略Id
+        /// - HostName - string - 是否必填：否 - 主机名称</i>
+        /// - HostIp - string - 是否必填：否 - 主机Ip</i>
+        /// - ItemId - int64 - 是否必填：否 - 项Id</i>
+        /// - RuleId - int64 - 是否必填：否 - 规则Id
+        /// - DetectStatus - int - 是否必填：否 - 检测状态
+        /// - Level - int - 是否必填：否 - 风险等级
+        /// - StartTime - string - 是否必填：否 - 开时时间
+        /// - EndTime - string - 是否必填：否 - 结束时间
         public let filters: [Filter]?
 
         /// 限制条数,默认10,最大100

@@ -25,8 +25,8 @@ extension Tcb {
         public let envId: String
 
         /// 终端用户来源
-        /// <li> qcloud </li>
-        /// <li>miniapp</li>
+        /// - qcloud
+        /// - miniapp
         public let source: String?
 
         public init(envId: String, source: String? = nil) {

@@ -31,14 +31,14 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
-        /// <li>ImageID- string - 是否必填：否 - 镜像ID</li>
-        /// <li>ImageName- String -是否必填: 否 - 镜像名称</li>
-        /// <li>ClientIP- string -是否必填: 否 - 内网IP</li>
-        /// <li>PublicIP- string -是否必填: 否 - 外网IP</li>
-        /// <li>ComponentName- string -是否必填: 否 - 组件名称</li>
-        /// <li>ComponentVersion- string -是否必填: 否 - 组件版本</li>
-        /// <li>HostName- string -是否必填: 否 - 主机名称</li>
+        /// - OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞
+        /// - ImageID- string - 是否必填：否 - 镜像ID
+        /// - ImageName- String -是否必填: 否 - 镜像名称
+        /// - ClientIP- string -是否必填: 否 - 内网IP
+        /// - PublicIP- string -是否必填: 否 - 外网IP
+        /// - ComponentName- string -是否必填: 否 - 组件名称
+        /// - ComponentVersion- string -是否必填: 否 - 组件版本
+        /// - HostName- string -是否必填: 否 - 主机名称
         public let filters: [RunTimeFilters]?
 
         /// 排序方式

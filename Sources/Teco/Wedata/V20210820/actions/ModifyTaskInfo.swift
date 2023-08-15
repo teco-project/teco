@@ -189,7 +189,8 @@ extension Wedata {
 
     /// 更新任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新任务
     @inlinable
     public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
@@ -198,7 +199,8 @@ extension Wedata {
 
     /// 更新任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新任务
     @inlinable
     public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
@@ -207,7 +209,8 @@ extension Wedata {
 
     /// 更新任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新任务
     @inlinable
     public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
@@ -216,7 +219,8 @@ extension Wedata {
 
     /// 更新任务【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 更新任务
     @inlinable
     public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {

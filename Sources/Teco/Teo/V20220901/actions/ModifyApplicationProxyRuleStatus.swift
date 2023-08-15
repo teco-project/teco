@@ -31,8 +31,8 @@ extension Teo {
         public let ruleId: String
 
         /// 状态，取值有：
-        /// <li>offline: 停用；</li>
-        /// <li>online: 启用。</li>
+        /// - offline: 停用；
+        /// - online: 启用。
         public let status: String
 
         public init(zoneId: String, proxyId: String, ruleId: String, status: String) {

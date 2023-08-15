@@ -26,8 +26,9 @@ extension As {
         public let instanceIds: [String]?
 
         /// 过滤条件。
-        /// <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。</li>
-        /// <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
+        /// - instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。
+        /// - auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
         public let filters: [Filter]?
 

@@ -28,7 +28,8 @@ extension Sms {
         public let international: UInt64
 
         /// 模板 ID 数组。数组为空时默认查询模板列表信息，请使用 Limit 和 Offset 字段设置查询范围。
-        /// <dx-alert infotype="notice" title="注意">默认数组长度最大100</dx-alert>
+        ///
+        /// - Attention: 默认数组长度最大100
         public let templateIdSet: [UInt64]?
 
         /// 最大上限，最多100。

@@ -24,7 +24,7 @@ extension Vod {
         /// 视频处理任务的任务 ID。
         public let taskId: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         public init(taskId: String, subAppId: UInt64? = nil) {
@@ -41,27 +41,27 @@ extension Vod {
     /// DescribeTaskDetail返回参数结构体
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务类型，取值：
-        /// <li>Procedure：视频处理任务；</li>
-        /// <li>EditMedia：视频编辑任务；</li>
-        /// <li>SplitMedia：视频拆条任务；</li>
-        /// <li>ComposeMedia：制作媒体文件任务；</li>
-        /// <li>WechatPublish：微信发布任务；</li>
-        /// <li>WechatMiniProgramPublish：微信小程序视频发布任务；</li>
-        /// <li>PullUpload：拉取上传媒体文件任务；</li>
-        /// <li>FastClipMedia：快速剪辑任务；</li>
-        /// <li>RemoveWatermarkTask：智能去除水印任务；</li>
-        /// <li>DescribeFileAttributesTask：获取文件属性任务；</li>
-        /// <li>RebuildMedia：音画质重生任务；</li>
-        /// <li>ReviewAudioVideo：音视频审核任务；</li>
-        /// <li>ExtractTraceWatermark：提取溯源水印任务；</li>
-        /// <li>ExtractCopyRightWatermark：提取版权水印任务；</li>
-        /// <li>QualityInspect：音画质检测任务。</li>
+        /// - Procedure：视频处理任务；
+        /// - EditMedia：视频编辑任务；
+        /// - SplitMedia：视频拆条任务；
+        /// - ComposeMedia：制作媒体文件任务；
+        /// - WechatPublish：微信发布任务；
+        /// - WechatMiniProgramPublish：微信小程序视频发布任务；
+        /// - PullUpload：拉取上传媒体文件任务；
+        /// - FastClipMedia：快速剪辑任务；
+        /// - RemoveWatermarkTask：智能去除水印任务；
+        /// - DescribeFileAttributesTask：获取文件属性任务；
+        /// - RebuildMedia：音画质重生任务；
+        /// - ReviewAudioVideo：音视频审核任务；
+        /// - ExtractTraceWatermark：提取溯源水印任务；
+        /// - ExtractCopyRightWatermark：提取版权水印任务；
+        /// - QualityInspect：音画质检测任务。
         public let taskType: String
 
         /// 任务状态，取值：
-        /// <li>WAITING：等待中；</li>
-        /// <li>PROCESSING：处理中；</li>
-        /// <li>FINISH：已完成。</li>
+        /// - WAITING：等待中；
+        /// - PROCESSING：处理中；
+        /// - FINISH：已完成。
         public let status: String
 
         /// 任务的创建时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。

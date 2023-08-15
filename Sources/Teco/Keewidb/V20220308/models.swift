@@ -25,16 +25,25 @@ extension Keewidb {
         /// 备份 ID。
         public let backupId: String
 
-        /// 备份类型。<ul><li>1：手动备份，指根据业务运维排障需求，立即执行备份任务的操作。</li> <li>0：自动备份，指根据自动备份策略定时自动发起的备份任务。</li></ul>
+        /// 备份类型。
+        /// - 1：手动备份，指根据业务运维排障需求，立即执行备份任务的操作。
+        /// - 0：自动备份，指根据自动备份策略定时自动发起的备份任务。
         public let backupType: String
 
         /// 备份的备注信息.
         public let remark: String
 
-        /// 备份状态。  <ul><li>1：备份任务被其它流程锁定。</li><li>2：备份正常，没有被任何流程锁定。</li> <li>-1：备份已过期。</li><li>3：备份正在被导出。</li> <li>4：备份导出成功。</li></ul>
+        /// 备份状态。
+        /// - 1：备份任务被其它流程锁定。
+        /// - 2：备份正常，没有被任何流程锁定。
+        /// - -1：备份已过期。
+        /// - 3：备份正在被导出。
+        /// - 4：备份导出成功。
         public let status: Int64
 
-        /// 备份是否被锁定。<ul><li>0：未被锁定。</li><li>1：已被锁定。</li></ul>
+        /// 备份是否被锁定。
+        /// - 0：未被锁定。
+        /// - 1：已被锁定。
         public let locked: Int64
 
         enum CodingKeys: String, CodingKey {
@@ -164,7 +173,10 @@ extension Keewidb {
         /// 项目 ID。
         public let projectId: Int64
 
-        /// 地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li>8：北京。</li></ul>
+        /// 地域ID。
+        /// - 1：广州。
+        /// - 4：上海。
+        /// - 8：北京。
         public let regionId: Int64
 
         /// 可用区 ID。
@@ -173,7 +185,12 @@ extension Keewidb {
         /// VPC 网络 ID， 如：75101。该参数当前暂保留，可忽略。
         public let vpcId: Int64
 
-        /// 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
+        /// 实例当前状态。
+        /// - 0：待初始化。
+        /// - 1：实例在流程中。
+        /// - 2：实例运行中。
+        /// - -2：实例已隔离。
+        /// - -3：实例待删除。
         public let status: Int64
 
         /// VPC 网络下子网 ID， 如：46315。该参数当前暂保留，可忽略。
@@ -191,10 +208,14 @@ extension Keewidb {
         /// 实例持久内存总容量大小，单位：MB。
         public let size: Float
 
-        /// 实例类型。<ul><li>13：标准版。</li><li>14：集群版。</li></ul>
+        /// 实例类型。
+        /// - 13：标准版。
+        /// - 14：集群版。
         public let type: Int64
 
-        /// 实例是否设置自动续费标识。<ul><li>1：设置自动续费。</li><li>0：未设置自动续费。</li></ul>
+        /// 实例是否设置自动续费标识。
+        /// - 1：设置自动续费。
+        /// - 0：未设置自动续费。
         public let autoRenewFlag: Int64
 
         /// 实例到期时间。
@@ -203,7 +224,9 @@ extension Keewidb {
         /// 存储引擎。
         public let engine: String
 
-        /// 产品类型。<ul><li>standalone ：标准版。</li><li>cluster ：集群版。</li></ul>
+        /// 产品类型。
+        /// - standalone ：标准版。
+        /// - cluster ：集群版。
         public let productType: String
 
         /// VPC 网络 ID， 如：vpc-fk33jsf4****。
@@ -212,7 +235,9 @@ extension Keewidb {
         /// VPC 网络下子网 ID，如：subnet-fd3j6l3****。
         public let uniqSubnetId: String
 
-        /// 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        /// 计费模式。
+        /// - 0：按量计费。
+        /// - 1：包年包月。
         public let billingMode: Int64
 
         /// 实例运行状态描述：如”实例运行中“。
@@ -253,7 +278,9 @@ extension Keewidb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
 
-        /// 是否为免密实例；<ul><li>true：免密实例。</li><li>false：非免密实例。</li></ul>
+        /// 是否为免密实例；
+        /// - true：免密实例。
+        /// - false：非免密实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noAuth: Bool?
 
@@ -289,7 +316,9 @@ extension Keewidb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
-        /// 监控版本。<ul><li>1m：分钟粒度监控。</li><li>5s：5秒粒度监控。</li></ul>
+        /// 监控版本。
+        /// - 1m：分钟粒度监控。
+        /// - 5s：5秒粒度监控。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monitorVersion: String?
 
@@ -801,7 +830,9 @@ extension Keewidb {
         /// 节点的可用区ID，比如ap-guangzhou-1。
         public let zoneId: String
 
-        /// 节点组角色。<ul><li>master：为主节点。</li><li>replica：为副本节点。</li></ul>
+        /// 节点组角色。
+        /// - master：为主节点。
+        /// - replica：为副本节点。
         public let role: String
 
         /// 节点组节点列表。

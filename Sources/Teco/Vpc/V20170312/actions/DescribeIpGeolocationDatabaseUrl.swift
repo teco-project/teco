@@ -59,7 +59,7 @@ extension Vpc {
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    /// <font color="#FF0000">本接口即将下线，仅供存量用户使用，暂停新增用户。</font>
+    /// _本接口即将下线，仅供存量用户使用，暂停新增用户。_
     @inlinable
     public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationDatabaseUrlResponse> {
         self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Vpc {
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    /// <font color="#FF0000">本接口即将下线，仅供存量用户使用，暂停新增用户。</font>
+    /// _本接口即将下线，仅供存量用户使用，暂停新增用户。_
     @inlinable
     public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
         try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -77,7 +77,7 @@ extension Vpc {
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    /// <font color="#FF0000">本接口即将下线，仅供存量用户使用，暂停新增用户。</font>
+    /// _本接口即将下线，仅供存量用户使用，暂停新增用户。_
     @inlinable
     public func describeIpGeolocationDatabaseUrl(type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationDatabaseUrlResponse> {
         self.describeIpGeolocationDatabaseUrl(.init(type: type), region: region, logger: logger, on: eventLoop)
@@ -86,7 +86,7 @@ extension Vpc {
     /// 获取IP地理位置库下载链接
     ///
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    /// <font color="#FF0000">本接口即将下线，仅供存量用户使用，暂停新增用户。</font>
+    /// _本接口即将下线，仅供存量用户使用，暂停新增用户。_
     @inlinable
     public func describeIpGeolocationDatabaseUrl(type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
         try await self.describeIpGeolocationDatabaseUrl(.init(type: type), region: region, logger: logger, on: eventLoop)

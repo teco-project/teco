@@ -65,7 +65,8 @@ extension Wedata {
 
     /// 触发事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 触发事件
     @inlinable
     public func triggerEvent(_ input: TriggerEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerEventResponse> {
@@ -74,7 +75,8 @@ extension Wedata {
 
     /// 触发事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 触发事件
     @inlinable
     public func triggerEvent(_ input: TriggerEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerEventResponse {
@@ -83,7 +85,8 @@ extension Wedata {
 
     /// 触发事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 触发事件
     @inlinable
     public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerEventResponse> {
@@ -92,7 +95,8 @@ extension Wedata {
 
     /// 触发事件【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 触发事件
     @inlinable
     public func triggerEvent(projectId: String, name: String, dimension: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerEventResponse {

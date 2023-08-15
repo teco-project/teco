@@ -32,9 +32,7 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>
-        /// Status- String - 是否必填：否 -插件运行状态：注入中:INJECTING，注入成功：SUCCESS，注入失败：FAIL，插件超时：TIMEOUT，插件退出：QUIT
-        /// </li>
+        /// - Status- String - 是否必填：否 -插件运行状态：注入中:INJECTING，注入成功：SUCCESS，注入失败：FAIL，插件超时：TIMEOUT，插件退出：QUIT
         public let filters: [RunTimeFilters]?
 
         public init(hostID: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil) {

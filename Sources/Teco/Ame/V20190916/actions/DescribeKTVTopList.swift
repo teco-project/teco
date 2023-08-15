@@ -22,12 +22,12 @@ extension Ame {
     /// DescribeKTVTopList请求参数结构体
     public struct DescribeKTVTopListRequest: TCRequestModel {
         /// 榜单类型。默认Hot
-        /// <li> Hot, 热歌榜。</li>
+        /// - Hot, 热歌榜。
         public let type: String?
 
         /// 榜单周期 默认为Week
-        /// <li> Week, 周榜。</li>
-        /// <li> Month, 月榜。</li>
+        /// - Week, 周榜。
+        /// - Month, 月榜。
         public let period: String?
 
         public init(type: String? = nil, period: String? = nil) {

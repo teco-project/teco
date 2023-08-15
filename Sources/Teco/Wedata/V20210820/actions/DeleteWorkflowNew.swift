@@ -66,7 +66,8 @@ extension Wedata {
 
     /// 删除工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
@@ -75,7 +76,8 @@ extension Wedata {
 
     /// 删除工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
@@ -84,7 +86,8 @@ extension Wedata {
 
     /// 删除工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
@@ -93,7 +96,8 @@ extension Wedata {
 
     /// 删除工作流【Beta版本】
     ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// _[注意：该Beta版本只满足广州区部分白名单客户使用]_
+    ///
     /// 删除工作流
     @inlinable
     public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {

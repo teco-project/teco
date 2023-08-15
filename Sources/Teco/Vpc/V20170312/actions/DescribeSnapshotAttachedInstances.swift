@@ -27,8 +27,8 @@ extension Vpc {
 
         /// 过滤条件。
         /// 支持的过滤条件如下：
-        /// <li>instance-id：实例ID。</li>
-        /// <li>instance-region：实例所在地域。</li>
+        /// - instance-id：实例ID。
+        /// - instance-region：实例所在地域。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

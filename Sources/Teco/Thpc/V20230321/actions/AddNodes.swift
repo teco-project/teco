@@ -38,11 +38,9 @@ extension Thpc {
 
         /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
         ///
-        /// <li>PREPAID：预付费，即包年包月
-        ///
-        /// <li>POSTPAID_BY_HOUR：按小时后付费
-        ///
-        /// <li>SPOTPAID：竞价付费
+        /// - PREPAID：预付费，即包年包月
+        /// - POSTPAID_BY_HOUR：按小时后付费
+        /// - SPOTPAID：竞价付费
         ///
         /// 默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
@@ -52,7 +50,7 @@ extension Thpc {
 
         /// 节点机型。不同实例机型指定了不同的资源规格。
         ///
-        /// <li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
+        /// - 具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
 
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
@@ -78,14 +76,15 @@ extension Thpc {
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
 
-        /// 队列名称。不指定则为默认队列。<li>SLURM默认队列为：compute。<li>SGE默认队列为：all.q。
+        /// 队列名称。不指定则为默认队列。
+        /// - SLURM默认队列为：compute。
+        /// - SGE默认队列为：all.q。
         public let queueName: String?
 
         /// 添加节点角色。默认值：Compute
         ///
-        /// <li>Compute：计算节点。
-        ///
-        /// <li>Login：登录节点。
+        /// - Compute：计算节点。
+        /// - Login：登录节点。
         public let nodeRole: String?
 
         /// 是否只预检此次请求。
@@ -95,7 +94,9 @@ extension Thpc {
         /// false（默认）：发送正常请求，通过检查后直接创建实例
         public let dryRun: Bool?
 
-        /// 添加节点类型。默认取值：STATIC。<li>STATIC：静态节点，不会参与弹性伸缩流程。<li>DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
+        /// 添加节点类型。默认取值：STATIC。
+        /// - STATIC：静态节点，不会参与弹性伸缩流程。
+        /// - DYNAMIC：弹性节点，会被弹性缩容的节点。管控节点和登录节点不支持此参数。
         public let nodeType: String?
 
         /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。

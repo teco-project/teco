@@ -26,8 +26,8 @@ extension Vpc {
         public let snapshotPolicyIds: [String]?
 
         /// 过滤条件，参数不支持同时指定SnapshotPolicyIds和Filters。
-        /// <li>snapshot-policy-id - String -（过滤条件）快照策略ID。</li>
-        /// <li>snapshot-policy-name - String -（过滤条件）快照策略名称。</li>
+        /// - snapshot-policy-id - String -（过滤条件）快照策略ID。
+        /// - snapshot-policy-name - String -（过滤条件）快照策略名称。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

@@ -42,8 +42,8 @@ extension Faceid {
         /// 建议视频存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议视频存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let videoUrl: String?
 
-        /// 数字模式传参：传数字验证码，验证码需先调用<a href="https://cloud.tencent.com/document/product/1007/31821">获取数字验证码接口</a>得到；
-        /// 动作模式传参：传动作顺序，动作顺序需先调用<a href="https://cloud.tencent.com/document/product/1007/31822">获取动作顺序接口</a>得到；
+        /// 数字模式传参：传数字验证码，验证码需先调用[获取数字验证码接口](https://cloud.tencent.com/document/product/1007/31821)得到；
+        /// 动作模式传参：传动作顺序，动作顺序需先调用[获取动作顺序接口](https://cloud.tencent.com/document/product/1007/31822)得到；
         /// 静默模式传参：空。
         public let validateData: String?
 

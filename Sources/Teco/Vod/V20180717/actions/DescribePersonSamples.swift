@@ -22,12 +22,12 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribePersonSamples请求参数结构体
     public struct DescribePersonSamplesRequest: TCPaginatedRequest {
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 拉取的素材类型，可选值：
-        /// <li>UserDefine：用户自定义素材库；</li>
-        /// <li>Default：系统默认素材库。</li>
+        /// - UserDefine：用户自定义素材库；
+        /// - Default：系统默认素材库。
         ///
         /// 默认值：UserDefine，拉取用户自定义素材库素材。
         /// 说明：如果是拉取系统默认素材库，只能使用素材名字或者素材 ID + 素材名字的方式进行拉取，且五官图片只返回一张。

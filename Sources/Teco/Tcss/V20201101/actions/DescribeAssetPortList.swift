@@ -29,12 +29,12 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>All - String - 是否必填：否 - 模糊查询可选字段</li>
-        /// <li>RunAs - String - 是否必填：否 - 运行用户筛选，</li>
-        /// <li>ContainerID - String - 是否必填：否 - 容器id</li>
-        /// <li>HostID- String - 是否必填：是 - 主机id</li>
-        /// <li>HostIP- string - 是否必填：否 - 主机ip搜索</li>
-        /// <li>ProcessName- string - 是否必填：否 - 进程名搜索</li>
+        /// - All - String - 是否必填：否 - 模糊查询可选字段
+        /// - RunAs - String - 是否必填：否 - 运行用户筛选，
+        /// - ContainerID - String - 是否必填：否 - 容器id
+        /// - HostID- String - 是否必填：是 - 主机id
+        /// - HostIP- string - 是否必填：否 - 主机ip搜索
+        /// - ProcessName- string - 是否必填：否 - 进程名搜索
         public let filters: [AssetFilters]?
 
         public init(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {

@@ -51,8 +51,8 @@ extension Tts {
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     ///
-    /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
-    /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
+    /// - 当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。
+    /// - 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。
     @inlinable
     public func describeTtsTaskStatus(_ input: DescribeTtsTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTtsTaskStatusResponse> {
         self.client.execute(action: "DescribeTtsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -62,8 +62,8 @@ extension Tts {
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     ///
-    /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
-    /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
+    /// - 当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。
+    /// - 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。
     @inlinable
     public func describeTtsTaskStatus(_ input: DescribeTtsTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTtsTaskStatusResponse {
         try await self.client.execute(action: "DescribeTtsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -73,8 +73,8 @@ extension Tts {
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     ///
-    /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
-    /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
+    /// - 当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。
+    /// - 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。
     @inlinable
     public func describeTtsTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTtsTaskStatusResponse> {
         self.describeTtsTaskStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)
@@ -84,8 +84,8 @@ extension Tts {
     ///
     /// 在调用长文本语音合成请求接口后，有回调和轮询两种方式获取识别结果。
     ///
-    /// <li>当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。</li>
-    /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
+    /// - 当采用回调方式时，合成完毕后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见 长文本语音合成结果查询 。
+    /// - 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。
     @inlinable
     public func describeTtsTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTtsTaskStatusResponse {
         try await self.describeTtsTaskStatus(.init(taskId: taskId), region: region, logger: logger, on: eventLoop)

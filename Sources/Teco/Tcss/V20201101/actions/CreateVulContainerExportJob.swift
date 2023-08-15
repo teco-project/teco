@@ -31,9 +31,9 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
-        /// <li>ContainerID- string - 是否必填：否 - 容器ID</li>
-        /// <li>ContainerName- String -是否必填: 否 - 容器名称</li>
+        /// - OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞
+        /// - ContainerID- string - 是否必填：否 - 容器ID
+        /// - ContainerName- String -是否必填: 否 - 容器名称
         public let filters: [RunTimeFilters]?
 
         public init(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil) {

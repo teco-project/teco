@@ -28,8 +28,8 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>Name- string - 是否必填：否 - 包名</li>
-        /// <li>User- string - 是否必填：否 - 用户</li>
+        /// - Name- string - 是否必填：否 - 包名
+        /// - User- string - 是否必填：否 - 用户
         public let filters: [AssetFilters]?
 
         /// 排序方式，asc升序 或 desc降序

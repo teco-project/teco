@@ -27,13 +27,13 @@ extension Vpc {
 
         /// 过滤条件:
         /// 参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5
-        /// <li> nat-gateway-id，NAT网关的ID，如`nat-0yi4hekt`</li>
-        /// <li> vpc-id，私有网络VPC的ID，如`vpc-0yi4hekt`</li>
-        /// <li> public-ip-address， 弹性IP，如`139.199.232.238`。</li>
-        /// <li>public-port， 公网端口。</li>
-        /// <li>private-ip-address， 内网IP，如`10.0.0.1`。</li>
-        /// <li>private-port， 内网端口。</li>
-        /// <li>description，规则描述。</li>
+        /// - nat-gateway-id，NAT网关的ID，如`nat-0yi4hekt`
+        /// - vpc-id，私有网络VPC的ID，如`vpc-0yi4hekt`
+        /// - public-ip-address， 弹性IP，如`139.199.232.238`。
+        /// - public-port， 公网端口。
+        /// - private-ip-address， 内网IP，如`10.0.0.1`。
+        /// - private-port， 内网端口。
+        /// - description，规则描述。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

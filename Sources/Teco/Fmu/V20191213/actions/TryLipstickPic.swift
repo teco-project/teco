@@ -79,8 +79,6 @@ extension Fmu {
     /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
     ///
     /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(_ input: TryLipstickPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TryLipstickPicResponse> {
@@ -94,8 +92,6 @@ extension Fmu {
     /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
     ///
     /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(_ input: TryLipstickPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TryLipstickPicResponse {
@@ -109,8 +105,6 @@ extension Fmu {
     /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
     ///
     /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(lipColorInfos: [LipColorInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TryLipstickPicResponse> {
@@ -124,8 +118,6 @@ extension Fmu {
     /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
     ///
     /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    ///
-    /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func tryLipstickPic(lipColorInfos: [LipColorInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TryLipstickPicResponse {

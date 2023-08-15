@@ -21,7 +21,10 @@ import TecoCore
 extension Keewidb {
     /// ModifyInstance请求参数结构体
     public struct ModifyInstanceRequest: TCRequestModel {
-        /// 修改实例操作。<ul><li>rename：表示实例重命名。</li><li>modifyProject：修改实例所属项目。</li><li>modifyAutoRenew：修改实例续费模式。</li></ul>
+        /// 修改实例操作。
+        /// - rename：表示实例重命名。
+        /// - modifyProject：修改实例所属项目。
+        /// - modifyAutoRenew：修改实例续费模式。
         public let operation: String
 
         /// 实例 ID 数组。
@@ -33,7 +36,10 @@ extension Keewidb {
         /// 实例新的项目 ID。
         public let projectId: Int64?
 
-        /// 包年包月计费的续费模式。<b>InstanceIds</b>数组和<b>AutoRenews</b>数组中的修改值对应。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</ul>
+        /// 包年包月计费的续费模式。**InstanceIds**数组和**AutoRenews**数组中的修改值对应。
+        /// - 0：默认状态，指手动续费。
+        /// - 1：自动续费。
+        /// - 2：到期不再续费。
         public let autoRenews: [Int64]?
 
         public init(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil) {

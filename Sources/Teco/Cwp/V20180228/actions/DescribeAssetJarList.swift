@@ -29,14 +29,15 @@ extension Cwp {
         public let quuid: String?
 
         /// 过滤条件。
-        /// <li>IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选</li>
-        /// <li>Name- string - 是否必填：否 - 包名</li>
-        /// <li>Type- uint - 是否必填：否 - 类型
-        /// 1: 应用程序
-        /// 2 : 系统类库
-        /// 3 : Web服务自带库
-        /// 4 : 其他依赖包</li>
-        /// <li>Status- string - 是否必填：否 - 是否可执行：0否，1是</li>
+        /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
+        /// - Name- string - 是否必填：否 - 包名
+        /// - Type- uint - 是否必填：否 - 类型
+        ///   1: 应用程序
+        ///   2 : 系统类库
+        ///   3 : Web服务自带库
+        ///   4 : 其他依赖包
+        ///
+        /// - Status- string - 是否必填：否 - 是否可执行：0否，1是
         public let filters: [AssetFilters]?
 
         /// 偏移量，默认为0。

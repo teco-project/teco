@@ -23,8 +23,8 @@ extension Tcss {
     /// DescribeK8sApiAbnormalRuleList请求参数结构体
     public struct DescribeK8sApiAbnormalRuleListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>RuleType - string  - 是否必填: 否 -规则类型</li>
-        /// <li>Status - string  - 是否必填: 否 -状态</li>
+        /// - RuleType - string  - 是否必填: 否 -规则类型
+        /// - Status - string  - 是否必填: 否 -状态
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100
@@ -37,8 +37,8 @@ extension Tcss {
         public let order: String?
 
         /// 排序字段。
-        /// <li>UpdateTime - string  - 是否必填: 否 -最后更新时间</li>
-        /// <li>EffectClusterCount - string  - 是否必填: 否 -影响集群数</li>
+        /// - UpdateTime - string  - 是否必填: 否 -最后更新时间
+        /// - EffectClusterCount - string  - 是否必填: 否 -影响集群数
         public let by: String?
 
         public init(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {

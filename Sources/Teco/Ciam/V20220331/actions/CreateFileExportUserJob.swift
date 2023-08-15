@@ -26,14 +26,18 @@ extension Ciam {
 
         /// 导出的数据类型
         ///
-        /// <li> **NDJSON** </li>  New-line Delimited JSON
-        /// <li> **CSV** </li>  Comma-Separated Values
+        /// - **NDJSON**
+        ///   New-line Delimited JSON
+        /// - **CSV**
+        ///   Comma-Separated Values
         public let format: String?
 
         /// Key可选值为condition、userGroupId
         ///
-        /// <li> **condition** </li>	Values = 查询条件，用户ID，用户名称，手机或邮箱
-        /// <li> **userGroupId** </li>	Values = 用户组ID
+        /// - **condition**
+        /// 	Values = 查询条件，用户ID，用户名称，手机或邮箱
+        /// - **userGroupId**
+        /// 	Values = 用户组ID
         public let filters: [Filter]?
 
         /// 导出用户包含的属性和映射名称，为空时包含所有的属性

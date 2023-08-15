@@ -42,8 +42,8 @@ extension Yunjing {
         public let componentName: String
 
         /// 组件类型。
-        /// <li>WEB：web组件</li>
-        /// <li>SYSTEM：系统组件</li>
+        /// - WEB：web组件
+        /// - SYSTEM：系统组件
         public let componentType: String
 
         /// 组件官网。

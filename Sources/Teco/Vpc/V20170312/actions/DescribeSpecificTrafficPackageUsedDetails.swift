@@ -27,7 +27,9 @@ extension Vpc {
         /// 共享流量包唯一ID
         public let trafficPackageId: String
 
-        /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。详细的过滤条件如下：<li> resource-id - String - 是否必填：否 - （过滤条件）按照抵扣流量资源的唯一 ID 过滤。</li><li> resource-type - String - 是否必填：否 - （过滤条件）按照资源类型过滤，资源类型包括 CVM 和 EIP </li>
+        /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。详细的过滤条件如下：
+        /// - resource-id - String - 是否必填：否 - （过滤条件）按照抵扣流量资源的唯一 ID 过滤。
+        /// - resource-type - String - 是否必填：否 - （过滤条件）按照资源类型过滤，资源类型包括 CVM 和 EIP
         public let filters: [Filter]?
 
         /// 排序条件。该参数仅支持根据抵扣量排序，传值为 deduction

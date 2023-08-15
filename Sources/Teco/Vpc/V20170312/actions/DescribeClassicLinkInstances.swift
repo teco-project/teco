@@ -22,8 +22,8 @@ extension Vpc {
     /// DescribeClassicLinkInstances请求参数结构体
     public struct DescribeClassicLinkInstancesRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>vpc-id - String - （过滤条件）VPC实例ID。</li>
-        /// <li>vm-ip - String - （过滤条件）基础网络云服务器IP。</li>
+        /// - vpc-id - String - （过滤条件）VPC实例ID。
+        /// - vm-ip - String - （过滤条件）基础网络云服务器IP。
         public let filters: [FilterObject]?
 
         /// 偏移量，默认值0。

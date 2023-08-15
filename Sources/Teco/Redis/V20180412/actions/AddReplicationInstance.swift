@@ -27,7 +27,9 @@ extension Redis {
         /// 实例ID。
         public let instanceId: String
 
-        /// 给复制组添加的实例分配角色。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
+        /// 给复制组添加的实例分配角色。
+        /// - rw：可读写。
+        /// - r：只读。
         public let instanceRole: String
 
         public init(groupId: String, instanceId: String, instanceRole: String) {

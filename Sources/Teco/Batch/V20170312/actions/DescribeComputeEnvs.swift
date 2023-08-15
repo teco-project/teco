@@ -26,13 +26,14 @@ extension Batch {
         public let envIds: [String]?
 
         /// 过滤条件
-        /// <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        /// <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
-        /// <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
-        /// <li> resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。</li>
-        /// <li> tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。</li>
-        /// <li>tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。</li>
-        /// <li>tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
+        /// - zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。
+        /// - env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。
+        /// - env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。
+        /// - resource-type - String - 是否必填：否 -（过滤条件）按照计算资源类型过滤，取值CVM或者CPM(黑石)。
+        /// - tag-key - String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
+        /// - tag-value - String - 是否必填：否 -（过滤条件）按照标签值进行过滤。
+        /// - tag:tag-key - String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        ///
         /// 与EnvIds参数不能同时指定。
         public let filters: [Filter]?
 

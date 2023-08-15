@@ -68,7 +68,7 @@ extension Ocr {
         /// 默认值为0。如果图片为PDF时，返回PDF的总页数。
         public let pdfPageSize: Int64
 
-        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看[如何纠正倾斜文本](https://cloud.tencent.com/document/product/866/45139)
         public let angle: Float
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

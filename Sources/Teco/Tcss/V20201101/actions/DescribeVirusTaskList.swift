@@ -32,13 +32,13 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>ContainerName - String - 是否必填：否 - 容器名称</li>
-        /// <li>ContainerId - String - 是否必填：否 - 容器id</li>
-        /// <li>Hostname - String - 是否必填：否 - 主机名称</li>
-        /// <li>HostIp- String - 是否必填：否 - 主机IP</li>
-        /// <li>ImageId- String - 是否必填：否 - 镜像ID</li>
-        /// <li>ImageName- String - 是否必填：否 - 镜像名称</li>
-        /// <li>Status- String - 是否必填：否 - 状态</li>
+        /// - ContainerName - String - 是否必填：否 - 容器名称
+        /// - ContainerId - String - 是否必填：否 - 容器id
+        /// - Hostname - String - 是否必填：否 - 主机名称
+        /// - HostIp- String - 是否必填：否 - 主机IP
+        /// - ImageId- String - 是否必填：否 - 镜像ID
+        /// - ImageName- String - 是否必填：否 - 镜像名称
+        /// - Status- String - 是否必填：否 - 状态
         public let filters: [RunTimeFilters]?
 
         /// 排序字段

@@ -26,36 +26,21 @@ extension Teo {
         public let zoneIds: [String]?
 
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
-        /// <li>need-update
+        /// - need-update
+        ///   按照【**站点是否需要更新源站防护IP白名单**】进行过滤。
+        ///   类型：String
+        ///   必选：否
+        ///   可选项：
+        ///   true：需要更新
+        ///   false：无需更新
         ///
-        /// 按照【<strong>站点是否需要更新源站防护IP白名单</strong>】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 可选项：
-        ///
-        /// true：需要更新
-        ///
-        /// false：无需更新
-        ///
-        /// </li>
-        /// <li>plan-support
-        ///
-        /// 按照【<strong>站点套餐是否支持源站防护</strong>】进行过滤。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：否
-        ///
-        /// 可选项：
-        ///
-        /// true：支持
-        ///
-        /// false：不支持
-        ///
-        /// </li>
+        /// - plan-support
+        ///   按照【**站点套餐是否支持源站防护**】进行过滤。
+        ///   类型：String
+        ///   必选：否
+        ///   可选项：
+        ///   true：支持
+        ///   false：不支持
         public let filters: [Filter]?
 
         /// 分页查询偏移量，默认为0。

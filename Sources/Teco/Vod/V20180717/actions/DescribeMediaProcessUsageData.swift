@@ -27,22 +27,22 @@ extension Vod {
         /// 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let endTime: String
 
-        /// <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 查询视频处理任务类型，目前支持的任务类型包括：
-        /// <li> Transcoding: 普通转码</li>
-        /// <li> Transcoding-TESHD: 极速高清转码</li>
-        /// <li> Editing: 视频编辑</li>
-        /// <li> Editing-TESHD: 极速高清视频编辑</li>
-        /// <li> AdaptiveBitrateStreaming: 自适应码流</li>
-        /// <li> ContentAudit: 内容审核</li>
-        /// <li> ContentRecognition: 内容识别</li>
-        /// <li> RemoveWatermark: 去除水印</li>
-        /// <li> ExtractTraceWatermark: 提取水印</li>
-        /// <li> AddTraceWatermark: 添加水印</li>
-        /// <li> RebuildMedia: 音画质重生</li>
-        /// <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
+        /// - Transcoding: 普通转码
+        /// - Transcoding-TESHD: 极速高清转码
+        /// - Editing: 视频编辑
+        /// - Editing-TESHD: 极速高清视频编辑
+        /// - AdaptiveBitrateStreaming: 自适应码流
+        /// - ContentAudit: 内容审核
+        /// - ContentRecognition: 内容识别
+        /// - RemoveWatermark: 去除水印
+        /// - ExtractTraceWatermark: 提取水印
+        /// - AddTraceWatermark: 添加水印
+        /// - RebuildMedia: 音画质重生
+        /// - Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）
         public let type: String?
 
         public init(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil) {

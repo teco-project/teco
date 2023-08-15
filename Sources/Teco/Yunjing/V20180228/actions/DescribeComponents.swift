@@ -35,8 +35,8 @@ extension Yunjing {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>ComponentVersion - String - 是否必填：否 - 组件版本号</li>
-        /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
+        /// - ComponentVersion - String - 是否必填：否 - 组件版本号
+        /// - MachineIp - String - 是否必填：否 - 主机内网IP
         public let filters: [Filter]?
 
         public init(uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {

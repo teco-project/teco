@@ -22,7 +22,7 @@ import TecoPaginationHelpers
 extension Vod {
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCPaginatedRequest {
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
@@ -38,8 +38,8 @@ extension Vod {
         public let finishTime: TimeRange?
 
         /// 排序方式。Sort.Field 可选：
-        /// <li> CreateTime 任务创建时间。</li>
-        /// <li>FinishTime 任务结束时间。</li>
+        /// - CreateTime 任务创建时间。
+        /// - FinishTime 任务结束时间。
         public let sort: SortBy?
 
         /// 返回记录条数，默认值：10，最大值：100。

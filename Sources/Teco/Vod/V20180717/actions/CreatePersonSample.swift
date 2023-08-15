@@ -30,7 +30,7 @@ extension Vod {
         /// 3. All：包含以上全部，等价于 1+2。
         public let usages: [String]
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         /// 素材描述，长度限制：1024 个字符。
@@ -41,8 +41,8 @@ extension Vod {
         public let faceContents: [String]?
 
         /// 素材标签
-        /// <li>数组长度限制：20 个标签；</li>
-        /// <li>单个标签长度限制：128 个字符。</li>
+        /// - 数组长度限制：20 个标签；
+        /// - 单个标签长度限制：128 个字符。
         public let tags: [String]?
 
         public init(name: String, usages: [String], subAppId: UInt64? = nil, description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil) {

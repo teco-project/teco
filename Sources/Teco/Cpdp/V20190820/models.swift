@@ -4472,14 +4472,14 @@ extension Cpdp {
         public let organizationCode: String?
 
         /// 法人名称，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let legalPersonName: String?
 
         /// 法人证件类型，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
         public let legalPersonIdType: String?
 
         /// 法人证件号码，如果SubMchName不是法人，需要另外送入法人信息（企业必输）
-        /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
+        /// <敏感信息>加密详见[《商户端接口敏感信息加密说明》](https://cloud.tencent.com/document/product/1122/48979)
         public let legalPersonIdCode: String?
 
         public init(organizationName: String? = nil, organizationType: String? = nil, organizationCode: String? = nil, legalPersonName: String? = nil, legalPersonIdType: String? = nil, legalPersonIdCode: String? = nil) {

@@ -256,9 +256,9 @@ extension Ame {
     /// 直播互动歌曲规格信息。
     public struct KTVMusicDefinitionInfo: TCOutputModel {
         /// 规格，取值有：
-        /// <li>audio/mi：低规格；</li>
-        /// <li>audio/lo：中规格；</li>
-        /// <li>audio/hi：高规格。</li>
+        /// - audio/mi：低规格；
+        /// - audio/lo：中规格；
+        /// - audio/hi：高规格。
         public let definition: String
 
         /// 码率，单位为 bps。
@@ -402,9 +402,9 @@ extension Ame {
         public let robotId: String
 
         /// 状态，取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>Destroy：销毁</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - Destroy：销毁
         public let status: String
 
         /// 播放列表。
@@ -423,17 +423,17 @@ extension Ame {
         public let joinRoomInput: JoinRoomInput
 
         /// RTC厂商类型，取值有：
-        /// <li>TRTC</li>
+        /// - TRTC
         public let rtcSystem: String
 
         /// 播放模式，PlayMode取值有：
-        /// <li>RepeatPlaylist：列表循环</li>
-        /// <li>Order：顺序播放</li>
-        /// <li>RepeatSingle：单曲循环</li>
-        /// <li>Shuffle：随机播放</li>
+        /// - RepeatPlaylist：列表循环
+        /// - Order：顺序播放
+        /// - RepeatSingle：单曲循环
+        /// - Shuffle：随机播放
         public let setPlayModeInput: SetPlayModeCommandInput
 
-        /// <del>音量，范围 0~100，默认为 50。</del>（已废弃，请采用 SetRealVolumeInput ）
+        /// ~~音量，范围 0~100，默认为 50。~~（已废弃，请采用 SetRealVolumeInput ）
         public let setVolumeInput: SetVolumeCommandInput
 
         /// 真实音量，范围 0~100，默认为 50。
@@ -872,14 +872,14 @@ extension Ame {
     /// 音频参数信息
     public struct SetAudioParamCommandInput: TCInputModel {
         /// 规格，取值有：
-        /// <li>audio/mi：低规格</li>
-        /// <li>audio/lo：中规格</li>
-        /// <li>audio/hi：高规格</li>
+        /// - audio/mi：低规格
+        /// - audio/lo：中规格
+        /// - audio/hi：高规格
         public let definition: String?
 
         /// 音频类型，取值有：
-        /// <li>Original：原唱</li>
-        /// <li>Accompaniment：伴奏</li>
+        /// - Original：原唱
+        /// - Accompaniment：伴奏
         public let type: String?
 
         public init(definition: String? = nil, type: String? = nil) {
@@ -896,9 +896,10 @@ extension Ame {
     /// 设置销毁模式
     public struct SetDestroyModeCommandInput: TCInputModel {
         /// 销毁模式，取值有：
-        /// <li>Auto：房间没人时自动销毁</li>
-        /// <li>Expire：房间没人时过期自动销毁</li>
-        /// <li>Never：不自动销毁，需手动销毁</li>默认为：Auto。
+        /// - Auto：房间没人时自动销毁
+        /// - Expire：房间没人时过期自动销毁
+        /// - Never：不自动销毁，需手动销毁
+        /// 默认为：Auto。
         public let destroyMode: String
 
         /// 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
@@ -918,10 +919,10 @@ extension Ame {
     /// 设置播放模式
     public struct SetPlayModeCommandInput: TCInputModel {
         /// 播放模式，取值有：
-        /// <li>RepeatPlaylist：列表循环</li>
-        /// <li>Order：顺序播放</li>
-        /// <li>RepeatSingle：单曲循环</li>
-        /// <li>Shuffle：随机播放</li>
+        /// - RepeatPlaylist：列表循环
+        /// - Order：顺序播放
+        /// - RepeatSingle：单曲循环
+        /// - Shuffle：随机播放
         public let playMode: String
 
         public init(playMode: String) {
@@ -936,10 +937,10 @@ extension Ame {
     /// 设置播放列表指令参数
     public struct SetPlaylistCommandInput: TCInputModel {
         /// 变更类型，取值有：
-        /// <li>Add：添加</li>
-        /// <li>Delete：删除</li>
-        /// <li>ClearList：清空歌曲列表</li>
-        /// <li>Move：移动歌曲</li>
+        /// - Add：添加
+        /// - Delete：删除
+        /// - ClearList：清空歌曲列表
+        /// - Move：移动歌曲
         public let type: String
 
         /// 歌单索引位置，
@@ -1055,18 +1056,18 @@ extension Ame {
     /// KTV 机器人初始化参数，在创建后自动完成相关初始化工作。
     public struct SyncRobotCommand: TCInputModel {
         /// 可同时传入多个指令，顺序执行。取值有：
-        /// <li>Play：播放</li>
-        /// <li>Pause：暂停</li>
-        /// <li>SwitchPrevious：上一首</li>
-        /// <li>SwitchNext：下一首</li>
-        /// <li>SetPlayMode：设置播放模式</li>
-        /// <li>Seek：调整播放进度</li>
-        /// <li>SetPlaylist：歌单变更</li>
-        /// <li>SetAudioParam：音频参数变更</li>
-        /// <li>SendMessage：发送自定义消息</li>
-        /// <li>SetDestroyMode：设置销毁模式</li>
-        /// <li><del>SetVolume：设置音量</del>（已废弃，请采用 SetRealVolume）</li>
-        /// <li>SetRealVolume：设置真实音量</li>
+        /// - Play：播放
+        /// - Pause：暂停
+        /// - SwitchPrevious：上一首
+        /// - SwitchNext：下一首
+        /// - SetPlayMode：设置播放模式
+        /// - Seek：调整播放进度
+        /// - SetPlaylist：歌单变更
+        /// - SetAudioParam：音频参数变更
+        /// - SendMessage：发送自定义消息
+        /// - SetDestroyMode：设置销毁模式
+        /// - ~~SetVolume：设置音量~~（已废弃，请采用 SetRealVolume）
+        /// - SetRealVolume：设置真实音量
         public let command: String
 
         /// 播放参数。
@@ -1090,7 +1091,7 @@ extension Ame {
         /// 销毁模式，当Command取SetDestroyMode时，必填。
         public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
 
-        /// <del>音量，当Command取SetVolume时，必填。</del>
+        /// ~~音量，当Command取SetVolume时，必填。~~
         /// （已废弃，请采用 SetRealVolumeCommandInput）
         public let setVolumeCommandInput: SetVolumeCommandInput?
 
@@ -1143,13 +1144,14 @@ extension Ame {
         public let privateMapKey: String?
 
         /// 用户角色，目前支持两种角色：
-        /// <li>anchor：主播</li>
-        /// <li>audience：观众</li>
+        /// - anchor：主播
+        /// - audience：观众
         public let role: String?
 
         /// TRTC房间号的类型：
-        /// <li>Integer：数字类型</li>
-        /// <li> String：字符串类型</li>
+        /// - Integer：数字类型
+        /// - String：字符串类型
+        ///
         /// 默认为：Integer 。
         public let roomIdType: String?
 
@@ -1196,12 +1198,12 @@ extension Ame {
 
     /// 时间范围
     public struct TimeRange: TCInputModel {
-        /// <li>大于等于此时间（起始时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        /// - 大于等于此时间（起始时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let before: String?
 
-        /// <li>小于此时间（结束时间）。</li>
-        /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
+        /// - 小于此时间（结束时间）。
+        /// - 格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let after: String?
 
         public init(before: String? = nil, after: String? = nil) {

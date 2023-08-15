@@ -32,8 +32,8 @@ extension Tcss {
         public let limit: UInt64?
 
         /// 过滤条件。
-        /// <li>Action - string -是否必填: 否 - 执行动作</li>
-        /// <li>RiskLevel - string  - 是否必填: 否 -威胁等级筛选</li>
+        /// - Action - string -是否必填: 否 - 执行动作
+        /// - RiskLevel - string  - 是否必填: 否 -威胁等级筛选
         public let filters: [RunTimeFilters]?
 
         public init(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil) {

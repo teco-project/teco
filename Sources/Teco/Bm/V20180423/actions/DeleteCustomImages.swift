@@ -49,7 +49,8 @@ extension Bm {
 
     /// 删除自定义镜像
     ///
-    /// 删除自定义镜像<br>
+    /// 删除自定义镜像
+    ///
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(_ input: DeleteCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
@@ -58,7 +59,8 @@ extension Bm {
 
     /// 删除自定义镜像
     ///
-    /// 删除自定义镜像<br>
+    /// 删除自定义镜像
+    ///
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(_ input: DeleteCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
@@ -67,7 +69,8 @@ extension Bm {
 
     /// 删除自定义镜像
     ///
-    /// 删除自定义镜像<br>
+    /// 删除自定义镜像
+    ///
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
@@ -76,7 +79,8 @@ extension Bm {
 
     /// 删除自定义镜像
     ///
-    /// 删除自定义镜像<br>
+    /// 删除自定义镜像
+    ///
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
     public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {

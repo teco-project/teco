@@ -24,35 +24,21 @@ extension Ecm {
     public struct DescribeDisksRequest: TCPaginatedRequest {
         /// 过滤条件。参数不支持同时指定`DiskIds`和`Filters`。
         ///
-        /// <li>disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)
-        ///
-        /// <li>disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)
-        ///
-        /// <li>portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)
-        ///
-        /// <li>project-id - Array of Integer - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。
-        ///
-        /// <li>disk-id - Array of String - 是否必填：否 -（过滤条件）按照云硬盘ID过滤。云盘ID形如：`disk-11112222`。
-        ///
-        /// <li>disk-name - Array of String - 是否必填：否 -（过滤条件）按照云盘名称过滤。
-        ///
-        /// <li>disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：表示SSD云硬盘 | CLOUD_HSSD：表示增强型SSD云硬盘。| CLOUD_TSSD：表示极速型云硬盘。)
-        ///
-        /// <li>disk-state - Array of String - 是否必填：否 -（过滤条件）按照云盘状态过滤。(UNATTACHED：未挂载 | ATTACHING：挂载中 | ATTACHED：已挂载 | DETACHING：解挂中 | EXPANDING：扩容中 | ROLLBACKING：回滚中 | TORECYCLE：待回收。)
-        ///
-        /// <li>instance-id - Array of String - 是否必填：否 -（过滤条件）按照云盘挂载的云主机实例ID过滤。可根据此参数查询挂载在指定云主机下的云硬盘。
-        ///
-        /// <li>zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。
-        ///
-        /// <li>instance-ip-address - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载云主机的内网或外网IP过滤。
-        ///
-        /// <li>instance-name - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载的实例名称过滤。
-        ///
-        /// <li>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
-        ///
-        /// <li>tag-value - Array of String - 是否必填：否 -（过滤条件）照标签值进行过滤。
-        ///
-        /// <li>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        /// - disk-usage - Array of String - 是否必填：否 -（过滤条件）按云盘类型过滤。 (SYSTEM_DISK：表示系统盘 | DATA_DISK：表示数据盘)
+        /// - disk-charge-type - Array of String - 是否必填：否 -（过滤条件）按照云硬盘计费模式过滤。 (PREPAID：表示预付费，即包年包月 | POSTPAID_BY_HOUR：表示后付费，即按量计费。)
+        /// - portable - Array of String - 是否必填：否 -（过滤条件）按是否为弹性云盘过滤。 (TRUE：表示弹性云盘 | FALSE：表示非弹性云盘。)
+        /// - project-id - Array of Integer - 是否必填：否 -（过滤条件）按云硬盘所属项目ID过滤。
+        /// - disk-id - Array of String - 是否必填：否 -（过滤条件）按照云硬盘ID过滤。云盘ID形如：`disk-11112222`。
+        /// - disk-name - Array of String - 是否必填：否 -（过滤条件）按照云盘名称过滤。
+        /// - disk-type - Array of String - 是否必填：否 -（过滤条件）按照云盘介质类型过滤。(CLOUD_BASIC：表示普通云硬盘 | CLOUD_PREMIUM：表示高性能云硬盘。| CLOUD_SSD：表示SSD云硬盘 | CLOUD_HSSD：表示增强型SSD云硬盘。| CLOUD_TSSD：表示极速型云硬盘。)
+        /// - disk-state - Array of String - 是否必填：否 -（过滤条件）按照云盘状态过滤。(UNATTACHED：未挂载 | ATTACHING：挂载中 | ATTACHED：已挂载 | DETACHING：解挂中 | EXPANDING：扩容中 | ROLLBACKING：回滚中 | TORECYCLE：待回收。)
+        /// - instance-id - Array of String - 是否必填：否 -（过滤条件）按照云盘挂载的云主机实例ID过滤。可根据此参数查询挂载在指定云主机下的云硬盘。
+        /// - zone - Array of String - 是否必填：否 -（过滤条件）按照[可用区](/document/product/213/15753#ZoneInfo)过滤。
+        /// - instance-ip-address - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载云主机的内网或外网IP过滤。
+        /// - instance-name - Array of String - 是否必填：否 -（过滤条件）按云盘所挂载的实例名称过滤。
+        /// - tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
+        /// - tag-value - Array of String - 是否必填：否 -（过滤条件）照标签值进行过滤。
+        /// - tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
         public let filters: [Filter]?
 
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](/document/product/362/15633)中的相关小节。
@@ -60,9 +46,8 @@ extension Ecm {
 
         /// 云盘列表排序的依据字段。取值范围：
         ///
-        /// <li>CREATE_TIME：依据云盘的创建时间排序
-        ///
-        /// <li>DEADLINE：依据云盘的到期时间排序
+        /// - CREATE_TIME：依据云盘的创建时间排序
+        /// - DEADLINE：依据云盘的到期时间排序
         ///
         /// 默认按云盘创建时间排序。
         public let orderField: String?
@@ -78,9 +63,8 @@ extension Ecm {
 
         /// 输出云盘列表的排列顺序。取值范围：
         ///
-        /// <li>ASC：升序排列
-        ///
-        /// <li>DESC：降序排列。
+        /// - ASC：升序排列
+        /// - DESC：降序排列。
         public let order: String?
 
         public init(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil) {

@@ -24,7 +24,7 @@ extension Sqlserver {
         /// 实例短 ID 列表
         public let instanceIds: [String]
 
-        /// 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改的值。<b>注意</b>：如果修改的参数需要<b>重启</b>实例，那么您的实例将会在执行修改时<b>重启</b>。您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
+        /// 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改的值。**注意**：如果修改的参数需要**重启**实例，那么您的实例将会在执行修改时**重启**。您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
         public let paramList: [Parameter]
 
         /// 执行参数调整任务的方式，默认为 0。支持值包括：0 - 立刻执行，1 - 时间窗执行。
@@ -56,7 +56,7 @@ extension Sqlserver {
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    /// <b>注意</b>：如果修改的参数是需要<b>重启实例</b>的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时<b>重启实例</b>。
+    /// **注意**：如果修改的参数是需要**重启实例**的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时**重启实例**。
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    /// <b>注意</b>：如果修改的参数是需要<b>重启实例</b>的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时<b>重启实例</b>。
+    /// **注意**：如果修改的参数是需要**重启实例**的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时**重启实例**。
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
@@ -76,7 +76,7 @@ extension Sqlserver {
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    /// <b>注意</b>：如果修改的参数是需要<b>重启实例</b>的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时<b>重启实例</b>。
+    /// **注意**：如果修改的参数是需要**重启实例**的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时**重启实例**。
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter], waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
@@ -86,7 +86,7 @@ extension Sqlserver {
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    /// <b>注意</b>：如果修改的参数是需要<b>重启实例</b>的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时<b>重启实例</b>。
+    /// **注意**：如果修改的参数是需要**重启实例**的，那么实例将会按照WaitSwitch参数的设置(可能是立即执行也可能在可维护时间窗内自动执行)在执行参数修改时**重启实例**。
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter], waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {

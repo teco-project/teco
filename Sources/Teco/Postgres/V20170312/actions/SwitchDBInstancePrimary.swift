@@ -25,14 +25,14 @@ extension Postgres {
         public let dbInstanceId: String
 
         /// 是否强制切换。强制切换时只要备节点可访问，无论主备延迟多大都会发起切换。只有SwitchTag为0时，才可使用立即切换。
-        /// <li>默认：false
+        /// - 默认：false
         public let force: Bool?
 
         /// 指定实例配置完成变更后的切换时间。
-        /// <li>0：立即切换
-        /// <li>1：指定时间切换
-        /// <li>2：维护时间窗口内切换
-        /// <li>默认值：0
+        /// - 0：立即切换
+        /// - 1：指定时间切换
+        /// - 2：维护时间窗口内切换
+        /// - 默认值：0
         public let switchTag: UInt64?
 
         /// 切换开始时间，时间格式：HH:MM:SS，例如：01:00:00。当SwitchTag为0或2时，该参数失效。
@@ -71,9 +71,9 @@ extension Postgres {
     /// 切换实例主备关系
     ///
     /// 本接口（SwitchDBInstancePrimary）用于切换实例主备关系。
-    /// <li>通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
-    /// <li>通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
-    /// <li>只有主实例可以执行该操作
+    /// - 通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
+    /// - 通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
+    /// - 只有主实例可以执行该操作
     @inlinable @discardableResult
     public func switchDBInstancePrimary(_ input: SwitchDBInstancePrimaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstancePrimaryResponse> {
         self.client.execute(action: "SwitchDBInstancePrimary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -82,9 +82,9 @@ extension Postgres {
     /// 切换实例主备关系
     ///
     /// 本接口（SwitchDBInstancePrimary）用于切换实例主备关系。
-    /// <li>通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
-    /// <li>通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
-    /// <li>只有主实例可以执行该操作
+    /// - 通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
+    /// - 通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
+    /// - 只有主实例可以执行该操作
     @inlinable @discardableResult
     public func switchDBInstancePrimary(_ input: SwitchDBInstancePrimaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstancePrimaryResponse {
         try await self.client.execute(action: "SwitchDBInstancePrimary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -93,9 +93,9 @@ extension Postgres {
     /// 切换实例主备关系
     ///
     /// 本接口（SwitchDBInstancePrimary）用于切换实例主备关系。
-    /// <li>通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
-    /// <li>通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
-    /// <li>只有主实例可以执行该操作
+    /// - 通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
+    /// - 通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
+    /// - 只有主实例可以执行该操作
     @inlinable @discardableResult
     public func switchDBInstancePrimary(dbInstanceId: String, force: Bool? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstancePrimaryResponse> {
         self.switchDBInstancePrimary(.init(dbInstanceId: dbInstanceId, force: force, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
@@ -104,9 +104,9 @@ extension Postgres {
     /// 切换实例主备关系
     ///
     /// 本接口（SwitchDBInstancePrimary）用于切换实例主备关系。
-    /// <li>通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
-    /// <li>通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
-    /// <li>只有主实例可以执行该操作
+    /// - 通过主动发起切换，可以验证业务能否正确处理实例主备切换的场景
+    /// - 通过使用强制切换，可以在备节点延迟不满足切换条件时，强制发起主从切换
+    /// - 只有主实例可以执行该操作
     @inlinable @discardableResult
     public func switchDBInstancePrimary(dbInstanceId: String, force: Bool? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstancePrimaryResponse {
         try await self.switchDBInstancePrimary(.init(dbInstanceId: dbInstanceId, force: force, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)

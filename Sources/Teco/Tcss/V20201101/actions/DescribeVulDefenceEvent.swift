@@ -23,20 +23,20 @@ extension Tcss {
     /// DescribeVulDefenceEvent请求参数结构体
     public struct DescribeVulDefenceEventRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>Status- String - 是否必填：否 - 插件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_DEFENDED：已防御</li>
-        /// <li>ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED </li>
-        /// <li>ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING</li>
-        /// <li>EventType - String -是否必填: 否 -  入侵状态，防御成功：EVENT_DEFENDED，尝试攻击：EVENT_ATTACK </li>
-        /// <li>TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间 </li>
-        /// <li>VulName- string - 是否必填：否 - 漏洞名称。</li>
-        /// <li>CVEID- string - 是否必填：否 - CVE编号。</li>
-        /// <li>SourceIP- string - 是否必填：否 - 攻击源IP。</li>
-        /// <li>ContainerName- string - 是否必填：否 - 容器名称。</li>
-        /// <li>ContainerID- string - 是否必填：否 - 容器ID。</li>
-        /// <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
-        /// <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
-        /// <li>HostName- string - 是否必填：否 - 主机名称。</li>
-        /// <li>HostIP- string - 是否必填：否 - 内网IP。</li>
+        /// - Status- String - 是否必填：否 - 插件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_DEFENDED：已防御
+        /// - ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED
+        /// - ContainerNetStatus- String -是否必填: 否 -  容器网络状态筛选 未隔离：NORMAL，已隔离：ISOLATED，隔离失败：ISOLATE_FAILED，解除隔离失败：RESTORE_FAILED，解除隔离中：RESTORING，隔离中：ISOLATING
+        /// - EventType - String -是否必填: 否 -  入侵状态，防御成功：EVENT_DEFENDED，尝试攻击：EVENT_ATTACK
+        /// - TimeRange- String -是否必填: 否 -  时间范围，第一个值表示开始时间，第二个值表示结束时间
+        /// - VulName- string - 是否必填：否 - 漏洞名称。
+        /// - CVEID- string - 是否必填：否 - CVE编号。
+        /// - SourceIP- string - 是否必填：否 - 攻击源IP。
+        /// - ContainerName- string - 是否必填：否 - 容器名称。
+        /// - ContainerID- string - 是否必填：否 - 容器ID。
+        /// - ImageName- string - 是否必填：否 - 镜像名称。
+        /// - ImageID- string - 是否必填：否 - 镜像ID。
+        /// - HostName- string - 是否必填：否 - 主机名称。
+        /// - HostIP- string - 是否必填：否 - 内网IP。
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

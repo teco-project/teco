@@ -3808,8 +3808,8 @@ extension Cwp {
         public let componentName: String
 
         /// 组件类型。
-        /// <li>WEB：Web组件</li>
-        /// <li>SYSTEM：系统组件</li>
+        /// - WEB：Web组件
+        /// - SYSTEM：系统组件
         public let componentType: String
 
         /// 组件描述。
@@ -4236,8 +4236,9 @@ extension Cwp {
         public let machineExtraInfo: MachineExtraInfo?
 
         /// 文件威胁行为
-        /// <li>read 读取文件</li>
-        /// <li>write 修改文件</li>
+        /// - read 读取文件
+        /// - write 修改文件
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileAction: String?
 
@@ -4358,9 +4359,9 @@ extension Cwp {
         public let username: String
 
         /// 帐号变更类型。
-        /// <li>CREATE：表示新增帐号</li>
-        /// <li>MODIFY：表示修改帐号</li>
-        /// <li>DELETE：表示删除帐号</li>
+        /// - CREATE：表示新增帐号
+        /// - MODIFY：表示修改帐号
+        /// - DELETE：表示删除帐号
         public let modifyType: String
 
         /// 变更时间。
@@ -5044,10 +5045,10 @@ extension Cwp {
         public let machineOs: String
 
         /// 主机状态。
-        /// <li>OFFLINE: 离线  </li>
-        /// <li>ONLINE: 在线</li>
-        /// <li>SHUTDOWN: 已关机</li>
-        /// <li>UNINSTALLED: 未防护</li>
+        /// - OFFLINE: 离线
+        /// - ONLINE: 在线
+        /// - SHUTDOWN: 已关机
+        /// - UNINSTALLED: 未防护
         public let machineStatus: String
 
         /// 云镜客户端唯一Uuid，若客户端长时间不在线将返回空字符。
@@ -5063,16 +5064,16 @@ extension Cwp {
         public let machineIp: String
 
         /// 是否是专业版。
-        /// <li>true： 是</li>
-        /// <li>false：否</li>
+        /// - true： 是
+        /// - false：否
         public let isProVersion: Bool
 
         /// 主机外网IP。
         public let machineWanIp: String
 
         /// 主机状态。
-        /// <li>POSTPAY: 表示后付费，即按量计费  </li>
-        /// <li>PREPAY: 表示预付费，即包年包月</li>
+        /// - POSTPAY: 表示后付费，即按量计费
+        /// - PREPAY: 表示预付费，即包年包月
         public let payMode: String
 
         /// 木马数。
@@ -5088,9 +5089,9 @@ extension Cwp {
         public let cyberAttackNum: Int64
 
         /// 风险状态。
-        /// <li>SAFE：安全</li>
-        /// <li>RISK：风险</li>
-        /// <li>UNKNOWN：未知</li>
+        /// - SAFE：安全
+        /// - RISK：风险
+        /// - UNKNOWN：未知
         public let securityStatus: String
 
         /// 入侵事件数
@@ -6855,22 +6856,22 @@ extension Cwp {
         @TCTimestampEncoding public var eventTime: Date
 
         /// 安全事件类型。
-        /// <li>MALWARE：木马事件</li>
-        /// <li>NON_LOCAL_LOGIN：异地登录</li>
-        /// <li>BRUTEATTACK_SUCCESS：密码破解成功</li>
-        /// <li>VUL：漏洞</li>
-        /// <li>BASELINE：安全基线</li>
+        /// - MALWARE：木马事件
+        /// - NON_LOCAL_LOGIN：异地登录
+        /// - BRUTEATTACK_SUCCESS：密码破解成功
+        /// - VUL：漏洞
+        /// - BASELINE：安全基线
         public let eventType: String
 
         /// 安全事件消息。
         public let message: String
 
         /// 安全事件等级。
-        /// <li>RISK: 严重</li>
-        /// <li>HIGH: 高危</li>
-        /// <li>NORMAL: 中危</li>
-        /// <li>LOW: 低危</li>
-        /// <li>UNKNOWNED: 可疑</li>
+        /// - RISK: 严重
+        /// - HIGH: 高危
+        /// - NORMAL: 中危
+        /// - LOW: 低危
+        /// - UNKNOWNED: 可疑
         public let securityLevel: String
 
         enum CodingKeys: String, CodingKey {

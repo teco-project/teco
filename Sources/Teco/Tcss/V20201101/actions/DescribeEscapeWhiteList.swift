@@ -23,9 +23,9 @@ extension Tcss {
     /// DescribeEscapeWhiteList请求参数结构体
     public struct DescribeEscapeWhiteListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>EventType- String - 是否必填：否 - 加白事件类型，ESCAPE_CGROUPS：利用cgroup机制逃逸，ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸， ESCAPE_DOCKER_API：访问Docker API接口逃逸，ESCAPE_VUL_OCCURRED：逃逸漏洞利用，MOUNT_SENSITIVE_PTAH：敏感路径挂载，PRIVILEGE_CONTAINER_START：特权容器， PRIVILEGE：程序提权逃逸</li>
-        /// <li>ImageName- string - 是否必填：否 - 镜像名称。</li>
-        /// <li>ImageID- string - 是否必填：否 - 镜像ID。</li>
+        /// - EventType- String - 是否必填：否 - 加白事件类型，ESCAPE_CGROUPS：利用cgroup机制逃逸，ESCAPE_TAMPER_SENSITIVE_FILE：篡改敏感文件逃逸， ESCAPE_DOCKER_API：访问Docker API接口逃逸，ESCAPE_VUL_OCCURRED：逃逸漏洞利用，MOUNT_SENSITIVE_PTAH：敏感路径挂载，PRIVILEGE_CONTAINER_START：特权容器， PRIVILEGE：程序提权逃逸
+        /// - ImageName- string - 是否必填：否 - 镜像名称。
+        /// - ImageID- string - 是否必填：否 - 镜像ID。
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

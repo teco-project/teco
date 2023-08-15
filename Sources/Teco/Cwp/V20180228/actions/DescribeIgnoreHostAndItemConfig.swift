@@ -21,9 +21,9 @@ import TecoCore
 extension Cwp {
     /// DescribeIgnoreHostAndItemConfig请求参数结构体
     public struct DescribeIgnoreHostAndItemConfigRequest: TCRequestModel {
-        /// <li>ItemId - int64 - 是否必填：否 - 项Id</i>
-        /// <li>RuleId - int64 - 是否必填：否 - 规则Id</li>
-        /// <li>HostId - string - 是否必填：否 - 主机Id</li>
+        /// - ItemId - int64 - 是否必填：否 - 项Id</i>
+        /// - RuleId - int64 - 是否必填：否 - 规则Id
+        /// - HostId - string - 是否必填：否 - 主机Id
         public let filters: [Filter]?
 
         public init(filters: [Filter]? = nil) {

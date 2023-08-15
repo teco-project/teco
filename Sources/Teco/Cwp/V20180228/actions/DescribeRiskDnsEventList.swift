@@ -22,14 +22,14 @@ import TecoPaginationHelpers
 extension Cwp {
     /// DescribeRiskDnsEventList请求参数结构体
     public struct DescribeRiskDnsEventListRequest: TCPaginatedRequest {
-        /// <li>IpOrName - String - 是否必填：否 - 主机Ip或别名筛选</li>
-        /// <li>HostId - String - 是否必填：否 - 主机Id</li>
-        /// <li>AgentId - String - 是否必填：否 - 客户端Id</li>
-        /// <li>PolicyType - String - 是否必填：否 - 策略类型,0:系统策略1:用户自定义策略</li>
-        /// <li>Domain - String - 是否必填：否 - 域名(先对域名做urlencode,再base64)</li>
-        /// <li>HandleStatus - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任</li>
-        /// <li>BeginTime - String - 是否必填：否 - 最近访问开始时间</li>
-        /// <li>EndTime - String - 是否必填：否 - 最近访问结束时间</li>
+        /// - IpOrName - String - 是否必填：否 - 主机Ip或别名筛选
+        /// - HostId - String - 是否必填：否 - 主机Id
+        /// - AgentId - String - 是否必填：否 - 客户端Id
+        /// - PolicyType - String - 是否必填：否 - 策略类型,0:系统策略1:用户自定义策略
+        /// - Domain - String - 是否必填：否 - 域名(先对域名做urlencode,再base64)
+        /// - HandleStatus - String - 是否必填：否 - 状态筛选0:待处理；2:信任；3:不信任
+        /// - BeginTime - String - 是否必填：否 - 最近访问开始时间
+        /// - EndTime - String - 是否必填：否 - 最近访问结束时间
         public let filters: [Filter]?
 
         /// 需要返回的数量，默认为10，最大值为100

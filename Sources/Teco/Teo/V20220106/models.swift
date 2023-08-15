@@ -59,7 +59,7 @@ extension Teo {
         public let id: String
 
         /// 付费模式，取值有：
-        /// <li>0：后付费。</li>
+        /// - 0：后付费。
         public let payMode: Int64
 
         /// 创建时间。
@@ -81,26 +81,26 @@ extension Teo {
         @TCTimestampISO8601Encoding public var expireTime: Date
 
         /// 套餐状态，取值有：
-        /// <li>normal：正常；</li>
-        /// <li>isolated：隔离；</li>
-        /// <li>destroyed：销毁。</li>
+        /// - normal：正常；
+        /// - isolated：隔离；
+        /// - destroyed：销毁。
         public let status: String
 
         /// 询价参数。
         public let sv: [Sv]
 
         /// 是否自动续费，取值有：
-        /// <li>0：默认状态；</li>
-        /// <li>1：自动续费；</li>
-        /// <li>2：不自动续费。</li>
+        /// - 0：默认状态；
+        /// - 1：自动续费；
+        /// - 2：不自动续费。
         public let autoRenewFlag: Int64
 
         /// 套餐关联资源 ID。
         public let planId: String
 
         /// 地域，取值有：
-        /// <li>mainland：国内；</li>
-        /// <li>overseas：海外。</li>
+        /// - mainland：国内；
+        /// - overseas：海外。
         public let area: String
 
         enum CodingKeys: String, CodingKey {
@@ -203,28 +203,28 @@ extension Teo {
         public let nameServers: [String]
 
         /// 站点状态，取值有：
-        /// <li> active：NS 已切换； </li>
-        /// <li> pending：NS 未切换；</li>
-        /// <li> moved：NS 已切走；</li>
-        /// <li> deactivated：被封禁。 </li>
+        /// - active：NS 已切换；
+        /// - pending：NS 未切换；
+        /// - moved：NS 已切走；
+        /// - deactivated：被封禁。
         public let status: String
 
         /// 站点接入方式，取值有
-        /// <li> full：NS 接入； </li>
-        /// <li> partial：CNAME 接入。</li>
+        /// - full：NS 接入；
+        /// - partial：CNAME 接入。
         public let type: String
 
         /// 站点是否关闭。
         public let paused: Bool
 
         /// 是否开启cname加速，取值有：
-        /// <li> enabled：开启；</li>
-        /// <li> disabled：关闭。</li>
+        /// - enabled：开启；
+        /// - disabled：关闭。
         public let cnameSpeedUp: String
 
         /// cname 接入状态，取值有：
-        /// <li> finished：站点已验证；</li>
-        /// <li> pending：站点验证中。</li>
+        /// - finished：站点已验证；
+        /// - pending：站点验证中。
         public let cnameStatus: String
 
         /// 资源标签列表。
@@ -246,9 +246,9 @@ extension Teo {
         @TCTimestampISO8601Encoding public var modifiedOn: Date
 
         /// 站点接入地域，取值为：
-        /// <li> global：全球；</li>
-        /// <li> mainland：中国大陆；</li>
-        /// <li> overseas：境外区域。</li>
+        /// - global：全球；
+        /// - mainland：中国大陆；
+        /// - overseas：境外区域。
         public let area: String
 
         enum CodingKeys: String, CodingKey {
@@ -272,10 +272,10 @@ extension Teo {
     /// 站点查询过滤条件
     public struct ZoneFilter: TCInputModel {
         /// 过滤字段名，支持的列表如下：
-        /// <li> name：站点名；</li>
-        /// <li> status：站点状态；</li>
-        /// <li> tagKey：标签键；</li>
-        /// <li> tagValue: 标签值。</li>
+        /// - name：站点名；
+        /// - status：站点状态；
+        /// - tagKey：标签键；
+        /// - tagValue: 标签值。
         public let name: String
 
         /// 过滤字段值。

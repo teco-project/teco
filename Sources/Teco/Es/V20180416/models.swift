@@ -512,7 +512,14 @@ extension Es {
         /// 包年包月购买时长,单位:月
         public let chargePeriod: UInt64
 
-        /// 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
         public let nodeType: String
 
         /// 节点个数
@@ -578,14 +585,29 @@ extension Es {
         /// 实例拥有的标签列表
         public let tagList: [TagInfo]
 
-        /// License类型<li>oss：开源版</li><li>basic：基础版</li><li>platinum：白金版</li>默认值platinum
+        /// License类型
+        /// - oss：开源版
+        /// - basic：基础版
+        /// - platinum：白金版
+        /// 默认值platinum
         public let licenseType: String
 
-        /// 是否为冷热集群<li>true: 冷热集群</li><li>false: 非冷热集群</li>
+        /// 是否为冷热集群
+        /// - true: 冷热集群
+        /// - false: 非冷热集群
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableHotWarmMode: Bool?
 
-        /// 温节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 温节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let warmNodeType: String?
 
@@ -621,11 +643,17 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let multiZoneInfo: [ZoneDetail]?
 
-        /// 部署模式<li>0：单可用区</li><li>1：多可用区</li>
+        /// 部署模式
+        /// - 0：单可用区
+        /// - 1：多可用区
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployMode: UInt64?
 
-        /// ES公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭
+        /// ES公网访问状态
+        /// - OPEN：开启
+        /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicAccess: String?
 
@@ -636,15 +664,24 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaPrivateUrl: String?
 
-        /// Kibana公网访问状态<li>OPEN：开启</li><li>CLOSE：关闭
+        /// Kibana公网访问状态
+        /// - OPEN：开启
+        /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaPublicAccess: String?
 
-        /// Kibana内网访问状态<li>OPEN：开启</li><li>CLOSE：关闭
+        /// Kibana内网访问状态
+        /// - OPEN：开启
+        /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaPrivateAccess: String?
 
-        /// 6.8（及以上版本）基础版是否开启xpack security认证<li>1：不开启</li><li>2：开启</li>
+        /// 6.8（及以上版本）基础版是否开启xpack security认证
+        /// - 1：不开启
+        /// - 2：开启
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityType: UInt64?
 
@@ -676,7 +713,15 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityGroups: [String]?
 
-        /// 冷节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 冷节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coldNodeType: String?
 
@@ -700,7 +745,15 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coldDiskSize: UInt64?
 
-        /// 冻节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 冻节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frozenNodeType: String?
 
@@ -760,7 +813,10 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let processPercent: Float?
 
-        /// Kibana的altering外网告警策略<li>OPEN：开启</li><li>CLOSE：关闭
+        /// Kibana的altering外网告警策略
+        /// - OPEN：开启
+        /// - CLOSE：关闭
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kibanaAlteringPublicAccess: String?
 
@@ -963,7 +1019,9 @@ extension Es {
 
     /// 节点本地盘信息
     public struct LocalDiskInfo: TCOutputModel {
-        /// 本地盘类型<li>LOCAL_SATA：大数据型</li><li>NVME_SSD：高IO型</li>
+        /// 本地盘类型
+        /// - LOCAL_SATA：大数据型
+        /// - NVME_SSD：高IO型
         public let localDiskType: String
 
         /// 本地盘单盘大小
@@ -1060,7 +1118,14 @@ extension Es {
         /// 自动续费标识。取值范围：  NOTIFY_AND_AUTO_RENEW：通知过期且自动续费  NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费  DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费  默认取值：NOTIFY_AND_AUTO_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String
 
-        /// 节点规格<li>LOGSTASH.S1.SMALL2：1核2G</li><li>LOGSTASH.S1.MEDIUM4：2核4G</li><li>LOGSTASH.S1.MEDIUM8：2核8G</li><li>LOGSTASH.S1.LARGE16：4核16G</li><li>LOGSTASH.S1.2XLARGE32：8核32G</li><li>LOGSTASH.S1.4XLARGE32：16核32G</li><li>LOGSTASH.S1.4XLARGE64：16核64G</li>
+        /// 节点规格
+        /// - LOGSTASH.S1.SMALL2：1核2G
+        /// - LOGSTASH.S1.MEDIUM4：2核4G
+        /// - LOGSTASH.S1.MEDIUM8：2核8G
+        /// - LOGSTASH.S1.LARGE16：4核16G
+        /// - LOGSTASH.S1.2XLARGE32：8核32G
+        /// - LOGSTASH.S1.4XLARGE32：16核32G
+        /// - LOGSTASH.S1.4XLARGE64：16核64G
         public let nodeType: String
 
         /// 节点个数
@@ -1075,7 +1140,10 @@ extension Es {
         /// Logstash版本号
         public let logstashVersion: String
 
-        /// License类型<li>oss：开源版</li><li>xpack：基础版</li>默认值xpack
+        /// License类型
+        /// - oss：开源版
+        /// - xpack：基础版
+        /// 默认值xpack
         public let licenseType: String
 
         /// 实例创建时间
@@ -1276,7 +1344,14 @@ extension Es {
         /// 是否启用了专用主节点
         public let enableDedicatedMaster: Bool
 
-        /// 专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 专用主节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
         public let masterNodeType: String
 
         /// 专用主节点个数
@@ -1310,16 +1385,28 @@ extension Es {
         /// 节点数量
         public let nodeNum: UInt64
 
-        /// 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        /// 节点规格
+        /// - ES.S1.SMALL2：1核2G
+        /// - ES.S1.MEDIUM4：2核4G
+        /// - ES.S1.MEDIUM8：2核8G
+        /// - ES.S1.LARGE16：4核16G
+        /// - ES.S1.2XLARGE32：8核32G
+        /// - ES.S1.4XLARGE32：16核32G
+        /// - ES.S1.4XLARGE64：16核64G
         public let nodeType: String
 
-        /// 节点类型<li>hotData: 热数据节点</li>
-        /// <li>warmData: 冷数据节点</li>
-        /// <li>dedicatedMaster: 专用主节点</li>
+        /// 节点类型
+        /// - hotData: 热数据节点
+        /// - warmData: 冷数据节点
+        /// - dedicatedMaster: 专用主节点
+        ///
         /// 默认值为hotData
         public let type: String?
 
-        /// 节点磁盘类型<li>CLOUD_SSD：SSD云硬盘</li><li>CLOUD_PREMIUM：高硬能云硬盘</li>默认值CLOUD_SSD
+        /// 节点磁盘类型
+        /// - CLOUD_SSD：SSD云硬盘
+        /// - CLOUD_PREMIUM：高硬能云硬盘
+        /// 默认值CLOUD_SSD
         public let diskType: String?
 
         /// 节点磁盘容量（单位GB）

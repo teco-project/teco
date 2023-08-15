@@ -25,8 +25,8 @@ extension Teo {
         public let zoneId: String
 
         /// 站点状态，取值有：
-        /// <li> false：开启站点；</li>
-        /// <li> true：关闭站点。</li>
+        /// - false：开启站点；
+        /// - true：关闭站点。
         public let paused: Bool
 
         public init(zoneId: String, paused: Bool) {

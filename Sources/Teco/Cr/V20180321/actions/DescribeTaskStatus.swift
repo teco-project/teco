@@ -50,10 +50,19 @@ extension Cr {
 
     /// DescribeTaskStatus返回参数结构体
     public struct DescribeTaskStatusResponse: TCResponseModel {
-        /// <p>任务结果：</p><ul style="margin-bottom:0px;"><li>处理中："Uploading Data."</li><li>上传成功："File Uploading Task Success."</li><li>上传失败：具体失败原因</li></ul>
+        /// 任务结果：
+        ///
+        /// - 处理中："Uploading Data."
+        /// - 上传成功："File Uploading Task Success."
+        /// - 上传失败：具体失败原因
         public let taskResult: String
 
-        /// <p>任务类型：</p><ul style="margin-bottom:0px;"><li>到期/逾期提醒数据上传：002</li><li>到期/逾期提醒停拨数据上传：003</li><li>回访数据上传：004</li><li>回访停拨数据上传：005</li></ul>
+        /// 任务类型：
+        ///
+        /// - 到期/逾期提醒数据上传：002
+        /// - 到期/逾期提醒停拨数据上传：003
+        /// - 回访数据上传：004
+        /// - 回访停拨数据上传：005
         public let taskType: String
 
         /// 过滤文件下载链接，有过滤数据时才存在。

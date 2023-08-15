@@ -26,16 +26,15 @@ extension Monitor {
         public let instanceIds: [String]?
 
         /// 按照【实例状态】进行过滤。
-        /// <ul>
-        /// <li>1：正在创建</li>
-        /// <li>2：运行中</li>
-        /// <li>3：异常</li>
-        /// <li>4：重建中</li>
-        /// <li>5：销毁中</li>
-        /// <li>6：已停服</li>
-        /// <li>8：欠费停服中</li>
-        /// <li>9：欠费已停服</li>
-        /// </ul>
+        ///
+        /// - 1：正在创建
+        /// - 2：运行中
+        /// - 3：异常
+        /// - 4：重建中
+        /// - 5：销毁中
+        /// - 6：已停服
+        /// - 8：欠费停服中
+        /// - 9：欠费已停服
         public let instanceStatus: [Int64]?
 
         /// 按照【实例名称】进行过滤。
@@ -57,8 +56,8 @@ extension Monitor {
         public let offset: Int64?
 
         /// 按照【计费类型】进行过滤。
-        /// <li>2：包年包月</li>
-        /// <li>3：按量</li>
+        /// - 2：包年包月
+        /// - 3：按量
         public let instanceChargeType: Int64?
 
         public init(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil) {
@@ -126,10 +125,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable
     public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesResponse> {
         self.client.execute(action: "DescribePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -138,10 +136,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable
     public func describePrometheusInstances(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
         try await self.client.execute(action: "DescribePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -150,10 +147,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable
     public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesResponse> {
         self.describePrometheusInstances(.init(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
@@ -162,10 +158,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable
     public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
         try await self.describePrometheusInstances(.init(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
@@ -174,10 +169,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable
     public func describePrometheusInstancesPaginated(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<(Int64?, [PrometheusInstancesItem])> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
@@ -186,10 +180,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     @inlinable @discardableResult
     public func describePrometheusInstancesPaginated(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, onResponse: @escaping (DescribePrometheusInstancesResponse, EventLoop) -> EventLoopFuture<Bool>, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Void> {
         self.client.paginate(input: input, region: region, command: self.describePrometheusInstances, callback: onResponse, logger: logger, on: eventLoop)
@@ -198,10 +191,9 @@ extension Monitor {
     /// 查看 Prometheus 实例列表
     ///
     /// 本接口 (DescribePrometheusInstances) 用于查询一个或多个实例的详细信息。
-    /// <ul>
-    /// <li>可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息</li>
-    /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
-    /// </ul>
+    ///
+    /// - 可以根据实例ID、实例名称或者实例状态等信息来查询实例的详细信息
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。
     ///
     /// - Returns: `AsyncSequence`s of ``PrometheusInstancesItem`` and ``DescribePrometheusInstancesResponse`` that can be iterated over asynchronously on demand.
     @inlinable

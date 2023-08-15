@@ -29,11 +29,11 @@ extension Cwp {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Status - String - 是否必填：是 - 漏洞状态筛选，0//未检测 1有风险 ，2无风险 ，3 检查中展示progress</li>
-        /// <li>Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示</li>
-        /// <li>VulName- String - 是否必填：否 - 漏洞名称搜索</li>
-        /// <li>Uuids- String - 是否必填：否 - 主机uuid</li>
-        /// <li>IsSupportDefense - int- 是否必填：否 - 是否支持防御 0:不支持 1:支持</li>
+        /// - Status - String - 是否必填：是 - 漏洞状态筛选，0//未检测 1有风险 ，2无风险 ，3 检查中展示progress
+        /// - Level - String - 是否必填：否 - 漏洞等级筛选 1:低 2:中 3:高 4:提示
+        /// - VulName- String - 是否必填：否 - 漏洞名称搜索
+        /// - Uuids- String - 是否必填：否 - 主机uuid
+        /// - IsSupportDefense - int- 是否必填：否 - 是否支持防御 0:不支持 1:支持
         public let filters: [Filters]?
 
         /// 排序方式 desc , asc

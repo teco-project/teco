@@ -23,13 +23,10 @@ extension Teo {
     /// DescribeDefaultCertificates请求参数结构体
     public struct DescribeDefaultCertificatesRequest: TCPaginatedRequest {
         /// 过滤条件，Filters.Values的上限为5。详细的过滤条件如下：
-        /// <li>zone-id
-        ///
-        /// 按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-xxx。
-        ///
-        /// 类型：String
-        ///
-        /// 必选：是 </li>
+        /// - zone-id
+        ///   按照【**站点ID**】进行过滤。站点ID形如：zone-xxx。
+        ///   类型：String
+        ///   必选：是
         public let filters: [Filter]
 
         /// 分页查询偏移量。默认值：0。

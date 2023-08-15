@@ -22,11 +22,11 @@ extension Cwp {
     /// DescribeGeneralStat请求参数结构体
     public struct DescribeGeneralStatRequest: TCRequestModel {
         /// 云主机类型。
-        /// <li>CVM：表示腾讯云服务器</li>
-        /// <li>BM:  表示黑石物理机</li>
-        /// <li>ECM:  表示边缘计算服务器</li>
-        /// <li>LH:  表示轻量应用服务器</li>
-        /// <li>Other:  表示混合云机器</li>
+        /// - CVM：表示腾讯云服务器
+        /// - BM:  表示黑石物理机
+        /// - ECM:  表示边缘计算服务器
+        /// - LH:  表示轻量应用服务器
+        /// - Other:  表示混合云机器
         public let machineType: String?
 
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai

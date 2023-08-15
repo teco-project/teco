@@ -24,19 +24,22 @@ extension Keewidb {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
-        /// 操作类型。<ul><li>changeVip：修改实例私有网络。</li><li>changeVpc：修改实例私有网络所属子网。</li><li>changeBaseToVpc：基础网络转为私有网络。</li></ul>
+        /// 操作类型。
+        /// - changeVip：修改实例私有网络。
+        /// - changeVpc：修改实例私有网络所属子网。
+        /// - changeBaseToVpc：基础网络转为私有网络。
         public let operation: String
 
         /// 修改后的 VIP 地址。
-        /// 当参数<b>Operation</b>为<b>changeVip</b>时，需设置实例修改后的 VIP 地址。该参数不配置，则自动分配。
+        /// 当参数**Operation**为**changeVip**时，需设置实例修改后的 VIP 地址。该参数不配置，则自动分配。
         public let vip: String?
 
         /// 修改后的私有网络 ID。
-        /// 当参数<b>Operation</b>为<b>changeVip</b>或者为<b>changeBaseToVpc</b>时，务必设置实例修改后的私有网络 ID。
+        /// 当参数**Operation**为**changeVip**或者为**changeBaseToVpc**时，务必设置实例修改后的私有网络 ID。
         public let vpcId: String?
 
         /// 修改后的所属子网 ID。
-        /// 当参数<b>Operation</b>为<b>changeVpc</b>或者为<b>changeBaseToVpc</b>时，务必设置实例修改后的子网 ID。
+        /// 当参数**Operation**为**changeVpc**或者为**changeBaseToVpc**时，务必设置实例修改后的子网 ID。
         public let subnetId: String?
 
         /// 原 VIP 保留时长。
@@ -64,7 +67,9 @@ extension Keewidb {
 
     /// ModifyNetworkConfig返回参数结构体
     public struct ModifyNetworkConfigResponse: TCResponseModel {
-        /// 执行状态。<ul><li>true：执行成功。</li><li>false：执行失败。</li></ul>
+        /// 执行状态。
+        /// - true：执行成功。
+        /// - false：执行失败。
         public let status: Bool
 
         /// 修改后的子网 ID。

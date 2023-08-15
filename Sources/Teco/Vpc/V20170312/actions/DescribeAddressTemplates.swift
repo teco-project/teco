@@ -22,9 +22,9 @@ extension Vpc {
     /// DescribeAddressTemplates请求参数结构体
     public struct DescribeAddressTemplatesRequest: TCRequestModel {
         /// 过滤条件。
-        /// <li>address-template-name - IP地址模板名称。</li>
-        /// <li>address-template-id - IP地址模板实例ID，例如：ipm-mdunqeb6。</li>
-        /// <li>address-ip - IP地址。</li>
+        /// - address-template-name - IP地址模板名称。
+        /// - address-template-id - IP地址模板实例ID，例如：ipm-mdunqeb6。
+        /// - address-ip - IP地址。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。

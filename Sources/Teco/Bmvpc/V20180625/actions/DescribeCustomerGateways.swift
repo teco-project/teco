@@ -26,10 +26,10 @@ extension Bmvpc {
         public let customerGatewayIds: [String]?
 
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定CustomerGatewayIds和Filters。
-        /// <li>customergateway-name - String - （过滤条件）对端网关名称。</li>
-        /// <li>ip-address - String - （过滤条件)对端网关地址。</li>
-        /// <li>customergateway-id - String - （过滤条件）对端网关唯一ID。</li>
-        /// <li>zone - String - （过滤条件）对端所在可用区，形如：ap-guangzhou-2。</li>
+        /// - customergateway-name - String - （过滤条件）对端网关名称。
+        /// - ip-address - String - （过滤条件)对端网关地址。
+        /// - customergateway-id - String - （过滤条件）对端网关唯一ID。
+        /// - zone - String - （过滤条件）对端所在可用区，形如：ap-guangzhou-2。
         public let filters: [Filter]?
 
         /// 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。

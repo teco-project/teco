@@ -26,9 +26,10 @@ extension Batch {
         public let envIds: [String]?
 
         /// 过滤条件
-        /// <li> zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。</li>
-        /// <li> env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。</li>
-        /// <li> env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。</li>
+        /// - zone - String - 是否必填：否 -（过滤条件）按照可用区过滤。
+        /// - env-id - String - 是否必填：否 -（过滤条件）按照计算环境ID过滤。
+        /// - env-name - String - 是否必填：否 -（过滤条件）按照计算环境名称过滤。
+        ///
         /// 与EnvIds参数不能同时指定。
         public let filters: [Filter]?
 

@@ -32,8 +32,10 @@ extension Ciam {
 
         /// 融合属性
         ///
-        /// <li> **PHONENUMBER** </li>	  手机号码
-        /// <li> **EMAIL** </li>  邮箱
+        /// - **PHONENUMBER**
+        /// 	  手机号码
+        /// - **EMAIL**
+        ///   邮箱
         public let userLinkedOnAttribute: String
 
         public init(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String) {

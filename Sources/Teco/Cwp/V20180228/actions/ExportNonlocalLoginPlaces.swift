@@ -21,7 +21,7 @@ import TecoCore
 extension Cwp {
     /// ExportNonlocalLoginPlaces请求参数结构体
     public struct ExportNonlocalLoginPlacesRequest: TCRequestModel {
-        /// <li>Status - int - 是否必填：否 - 状态筛选1:正常登录；2：异地登录</li>
+        /// - Status - int - 是否必填：否 - 状态筛选1:正常登录；2：异地登录
         public let filters: [Filter]?
 
         public init(filters: [Filter]? = nil) {

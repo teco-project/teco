@@ -58,7 +58,7 @@ extension Tiia {
         /// 是否需要启用主体识别，默认为**TRUE**。
         /// • 为**TRUE**时，启用主体识别，返回主体信息。若没有指定**ImageRect**，自动提取最大面积主体创建图片并进行主体识别。主体识别结果可在**Response**中获取。
         /// • 为**FALSE**时，不启用主体识别，不返回主体信息。若没有指定**ImageRect**，以整张图创建图片。
-        /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
+        /// **_注意：仅服务类型为商品图像搜索时才生效。_**
         public let enableDetect: Bool?
 
         /// 图像类目ID。
@@ -70,7 +70,7 @@ extension Tiia {
         /// 3：包。
         /// 4：鞋。
         /// 5：配饰。
-        /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
+        /// **_注意：仅服务类型为商品图像搜索时才生效。_**
         public let categoryId: Int64?
 
         /// 图像主体区域。
@@ -108,7 +108,7 @@ extension Tiia {
     public struct CreateImageResponse: TCResponseModel {
         /// 输入图的主体信息。
         /// 若启用主体识别且在请求中指定了类目ID或主体区域，以指定的主体为准。若启用主体识别且没有指定，以最大面积主体为准。
-        /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
+        /// **_注意：仅服务类型为商品图像搜索时才生效。_**
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let object: ObjectInfo?
 
@@ -124,8 +124,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
@@ -135,8 +133,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
@@ -146,8 +142,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
@@ -157,8 +151,6 @@ extension Tiia {
     /// 创建图片
     ///
     /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中，每创建一张图片会对应提取和存储一条图片特征数据。
-    ///
-    /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func createImage(groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {

@@ -22,16 +22,48 @@ import TecoPaginationHelpers
 extension Cvm {
     /// DescribeHosts请求参数结构体
     public struct DescribeHostsRequest: TCPaginatedRequest {
-        /// <li><strong>zone</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>可用区</strong>】进行过滤。可用区形如：ap-guangzhou-1。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：<a href="https://cloud.tencent.com/document/product/213/6091">可用区列表</a></p>
-        /// <li><strong>project-id</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>项目ID</strong>】进行过滤，可通过调用[DescribeProject](https://cloud.tencent.com/document/api/378/4400)查询已创建的项目列表或登录[控制台](https://console.cloud.tencent.com/cvm/index)进行查看；也可以调用[AddProject](https://cloud.tencent.com/document/api/378/4398)创建新的项目。项目ID形如：1002189。</p><p style="padding-left: 30px;">类型：Integer</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>host-id</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>[CDH](https://cloud.tencent.com/document/product/416) ID</strong>】进行过滤。[CDH](https://cloud.tencent.com/document/product/416) ID形如：host-xxxxxxxx。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>host-name</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>CDH实例名称</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
-        /// <li><strong>host-state</strong></li>
-        /// <p style="padding-left: 30px;">按照【<strong>CDH实例状态</strong>】进行过滤。（PENDING：创建中 | LAUNCH_FAILURE：创建失败 | RUNNING：运行中 | EXPIRED：已过期）</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
+        /// - **zone**
+        ///
+        /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// 可选项：[可用区列表](https://cloud.tencent.com/document/product/213/6091)
+        ///
+        /// - **project-id**
+        ///
+        /// 按照【**项目ID**】进行过滤，可通过调用[DescribeProject](https://cloud.tencent.com/document/api/378/4400)查询已创建的项目列表或登录[控制台](https://console.cloud.tencent.com/cvm/index)进行查看；也可以调用[AddProject](https://cloud.tencent.com/document/api/378/4398)创建新的项目。项目ID形如：1002189。
+        ///
+        /// 类型：Integer
+        ///
+        /// 必选：否
+        ///
+        /// - **host-id**
+        ///
+        /// 按照【**[CDH](https://cloud.tencent.com/document/product/416) ID**】进行过滤。[CDH](https://cloud.tencent.com/document/product/416) ID形如：host-xxxxxxxx。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **host-name**
+        ///
+        /// 按照【**CDH实例名称**】进行过滤。
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
+        /// - **host-state**
+        ///
+        /// 按照【**CDH实例状态**】进行过滤。（PENDING：创建中 | LAUNCH_FAILURE：创建失败 | RUNNING：运行中 | EXPIRED：已过期）
+        ///
+        /// 类型：String
+        ///
+        /// 必选：否
+        ///
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
 

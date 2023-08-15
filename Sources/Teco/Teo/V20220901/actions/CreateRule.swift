@@ -28,8 +28,8 @@ extension Teo {
         public let ruleName: String
 
         /// 规则状态，取值有：
-        /// <li> enable: 启用； </li>
-        /// <li> disable: 未启用。</li>
+        /// - enable: 启用；
+        /// - disable: 未启用。
         public let status: String
 
         /// 规则内容。

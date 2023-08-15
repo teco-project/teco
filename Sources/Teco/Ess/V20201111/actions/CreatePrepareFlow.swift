@@ -152,8 +152,10 @@ extension Ess {
     /// 获取发起合同web页面
     ///
     /// 创建快速发起流程
-    /// <br/>适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
-    /// <br/>注：该接口文件的resourceId 是通过上传文件之后获取的。
+    ///
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    ///
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
     @inlinable
     public func createPrepareFlow(_ input: CreatePrepareFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrepareFlowResponse> {
         self.client.execute(action: "CreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -162,8 +164,10 @@ extension Ess {
     /// 获取发起合同web页面
     ///
     /// 创建快速发起流程
-    /// <br/>适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
-    /// <br/>注：该接口文件的resourceId 是通过上传文件之后获取的。
+    ///
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    ///
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
     @inlinable
     public func createPrepareFlow(_ input: CreatePrepareFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
         try await self.client.execute(action: "CreatePrepareFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -172,8 +176,10 @@ extension Ess {
     /// 获取发起合同web页面
     ///
     /// 创建快速发起流程
-    /// <br/>适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
-    /// <br/>注：该接口文件的resourceId 是通过上传文件之后获取的。
+    ///
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    ///
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
     @inlinable
     public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, flowType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrepareFlowResponse> {
         self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, flowType: flowType, agent: agent), region: region, logger: logger, on: eventLoop)
@@ -182,8 +188,10 @@ extension Ess {
     /// 获取发起合同web页面
     ///
     /// 创建快速发起流程
-    /// <br/>适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
-    /// <br/>注：该接口文件的resourceId 是通过上传文件之后获取的。
+    ///
+    /// 适用场景：用户通过API 合同文件及签署信息，并可通过我们返回的URL在页面完成签署控件等信息的编辑与确认，快速发起合同.
+    ///
+    /// 注：该接口文件的resourceId 是通过上传文件之后获取的。
     @inlinable
     public func createPrepareFlow(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil, resourceType: Int64? = nil, components: Component? = nil, flowOption: CreateFlowOption? = nil, needSignReview: Bool? = nil, needCreateReview: Bool? = nil, userData: String? = nil, flowId: String? = nil, flowType: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrepareFlowResponse {
         try await self.createPrepareFlow(.init(operator: `operator`, resourceId: resourceId, flowName: flowName, unordered: unordered, deadline: deadline, userFlowTypeId: userFlowTypeId, approvers: approvers, intelligentStatus: intelligentStatus, resourceType: resourceType, components: components, flowOption: flowOption, needSignReview: needSignReview, needCreateReview: needCreateReview, userData: userData, flowId: flowId, flowType: flowType, agent: agent), region: region, logger: logger, on: eventLoop)

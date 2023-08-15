@@ -32,9 +32,9 @@ extension Tcss {
         public let offset: UInt64?
 
         /// 过滤条件。
-        /// <li>Level- String - 是否必填：否 - 风险级别 1,2,3,4，</li>
-        /// <li>Behavior - String - 是否必填：否 - 风险行为 1,2,3,4</li>
-        /// <li>Type - String - 是否必填：否 - 风险类型  1,2,</li>
+        /// - Level- String - 是否必填：否 - 风险级别 1,2,3,4，
+        /// - Behavior - String - 是否必填：否 - 风险行为 1,2,3,4
+        /// - Type - String - 是否必填：否 - 风险类型  1,2,
         public let filters: [AssetFilters]?
 
         /// 排序字段

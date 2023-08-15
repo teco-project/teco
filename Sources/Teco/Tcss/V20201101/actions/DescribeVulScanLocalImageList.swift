@@ -26,10 +26,10 @@ extension Tcss {
         public let taskID: Int64
 
         /// 过滤条件。
-        /// <li>OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞</li>
-        /// <li>ImageID- string - 是否必填：否 - 镜像ID</li>
-        /// <li>ImageName- String -是否必填: 否 - 镜像名称</li>
-        /// <li>ScanStatus- string -是否必填: 否 - 检测状态。WAIT_SCAN：待检测，SCANNING：检查中，SCANNED：检查完成，SCAN_ERR：检查失败，CANCELED：检测停止</li>
+        /// - OnlyAffectedNewestImage- Bool- 是否必填：否 - 仅展示影响最新版本镜像的漏洞
+        /// - ImageID- string - 是否必填：否 - 镜像ID
+        /// - ImageName- String -是否必填: 否 - 镜像名称
+        /// - ScanStatus- string -是否必填: 否 - 检测状态。WAIT_SCAN：待检测，SCANNING：检查中，SCANNED：检查完成，SCAN_ERR：检查失败，CANCELED：检测停止
         public let filters: [RunTimeFilters]?
 
         /// 需要返回的数量，默认为10，最大值为100

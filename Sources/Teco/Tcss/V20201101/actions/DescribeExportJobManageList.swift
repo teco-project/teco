@@ -23,9 +23,8 @@ extension Tcss {
     /// DescribeExportJobManageList请求参数结构体
     public struct DescribeExportJobManageListRequest: TCPaginatedRequest {
         /// 过滤条件。
-        /// <li>ExportStatus- string -是否必填: 否 - 导出状态 RUNNING: 导出中 SUCCESS:导出完成 FAILURE:失败
-        /// <li>ExportSource- string -是否必填: 否 - 导出来源 LocalImage: 本地镜像
-        /// </li>
+        /// - ExportStatus- string -是否必填: 否 - 导出状态 RUNNING: 导出中 SUCCESS:导出完成 FAILURE:失败
+        /// - ExportSource- string -是否必填: 否 - 导出来源 LocalImage: 本地镜像
         public let filters: [RunTimeFilters]?
 
         /// 偏移量，默认为0。

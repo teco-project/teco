@@ -24,7 +24,7 @@ extension Vod {
         /// 点播会话，取申请上传接口的返回值 VodSessionKey。
         public let vodSessionKey: String
 
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
         public init(vodSessionKey: String, subAppId: UInt64? = nil) {
