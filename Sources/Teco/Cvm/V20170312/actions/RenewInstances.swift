@@ -24,8 +24,8 @@ extension Cvm {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
 
-        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">
-        /// 包年包月实例该参数为必传参数。</dx-alert>
+        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。
+        /// - Note: 包年包月实例该参数为必传参数。
         public let instanceChargePrepaid: InstanceChargePrepaid?
 
         /// 是否续费弹性数据盘。取值范围：
