@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlow请求参数结构体
-    public struct CreateFlowRequest: TCRequestModel {
+    public struct CreateFlowRequest: TCRequest {
         /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         public let `operator`: UserInfo
 
@@ -142,7 +142,7 @@ extension Ess {
     }
 
     /// CreateFlow返回参数结构体
-    public struct CreateFlowResponse: TCResponseModel {
+    public struct CreateFlowResponse: TCResponse {
         /// 签署流程编号
         public let flowId: String
 

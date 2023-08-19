@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeServiceTemplateGroups请求参数结构体
-    public struct DescribeServiceTemplateGroupsRequest: TCRequestModel {
+    public struct DescribeServiceTemplateGroupsRequest: TCRequest {
         /// 过滤条件。
         /// - service-template-group-name - String - （过滤条件）协议端口模板集合名称。
         /// - service-template-group-id - String - （过滤条件）协议端口模板集合实例ID，例如：ppmg-e6dy460g。
@@ -46,7 +46,7 @@ extension Vpc {
     }
 
     /// DescribeServiceTemplateGroups返回参数结构体
-    public struct DescribeServiceTemplateGroupsResponse: TCResponseModel {
+    public struct DescribeServiceTemplateGroupsResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DescribeDedicatedClusterCosCapacity请求参数结构体
-    public struct DescribeDedicatedClusterCosCapacityRequest: TCRequestModel {
+    public struct DescribeDedicatedClusterCosCapacityRequest: TCRequest {
         /// 查询的专用集群id
         public let dedicatedClusterId: String
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DescribeDedicatedClusterCosCapacity返回参数结构体
-    public struct DescribeDedicatedClusterCosCapacityResponse: TCResponseModel {
+    public struct DescribeDedicatedClusterCosCapacityResponse: TCResponse {
         /// 本集群内cos容量信息，单位：‘GB’
         public let cosCapacity: CosCapacity
 

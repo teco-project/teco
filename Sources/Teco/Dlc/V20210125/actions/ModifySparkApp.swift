@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// ModifySparkApp请求参数结构体
-    public struct ModifySparkAppRequest: TCRequestModel {
+    public struct ModifySparkAppRequest: TCRequest {
         /// spark作业名
         public let appName: String
 
@@ -179,7 +179,7 @@ extension Dlc {
     }
 
     /// ModifySparkApp返回参数结构体
-    public struct ModifySparkAppResponse: TCResponseModel {
+    public struct ModifySparkAppResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

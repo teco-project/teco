@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DeleteLoginStatus请求参数结构体
-    public struct DeleteLoginStatusRequest: TCRequestModel {
+    public struct DeleteLoginStatusRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -39,7 +39,7 @@ extension Cme {
     }
 
     /// DeleteLoginStatus返回参数结构体
-    public struct DeleteLoginStatusResponse: TCResponseModel {
+    public struct DeleteLoginStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

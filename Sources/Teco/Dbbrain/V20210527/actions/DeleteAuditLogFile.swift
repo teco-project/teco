@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DeleteAuditLogFile请求参数结构体
-    public struct DeleteAuditLogFileRequest: TCRequestModel {
+    public struct DeleteAuditLogFileRequest: TCRequest {
         /// 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
         public let product: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// DeleteAuditLogFile返回参数结构体
-    public struct DeleteAuditLogFileResponse: TCResponseModel {
+    public struct DeleteAuditLogFileResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

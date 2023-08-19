@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tms {
     /// TextModeration请求参数结构体
-    public struct TextModerationRequest: TCRequestModel {
+    public struct TextModerationRequest: TCRequest {
         /// 文本内容Base64编码。限制原文长度不能超过10000个unicode字符
         public let content: String
 
@@ -54,7 +54,7 @@ extension Tms {
     }
 
     /// TextModeration返回参数结构体
-    public struct TextModerationResponse: TCResponseModel {
+    public struct TextModerationResponse: TCResponse {
         /// 您在入参时所填入的Biztype参数
         public let bizType: String
 

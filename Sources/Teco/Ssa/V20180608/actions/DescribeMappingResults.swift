@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeMappingResults请求参数结构体
-    public struct DescribeMappingResultsRequest: TCRequestModel {
+    public struct DescribeMappingResultsRequest: TCRequest {
         /// 过滤条件，FilterKey 取值范围：AssetId，AssetIp，PrivateIp，Protocol，Service，OS，Process，Component，AssetType，Domain，Port，LastMappingTime，MappingType，Disposal，Vpc
         public let filter: [AssetQueryFilter]?
 
@@ -49,7 +49,7 @@ extension Ssa {
     }
 
     /// DescribeMappingResults返回参数结构体
-    public struct DescribeMappingResultsResponse: TCResponseModel {
+    public struct DescribeMappingResultsResponse: TCResponse {
         /// 总记录数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?

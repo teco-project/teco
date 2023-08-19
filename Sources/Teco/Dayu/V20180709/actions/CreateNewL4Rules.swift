@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// CreateNewL4Rules请求参数结构体
-    public struct CreateNewL4RulesRequest: TCRequestModel {
+    public struct CreateNewL4RulesRequest: TCRequest {
         /// 高防产品代号：bgpip
         public let business: String
 
@@ -49,7 +49,7 @@ extension Dayu {
     }
 
     /// CreateNewL4Rules返回参数结构体
-    public struct CreateNewL4RulesResponse: TCResponseModel {
+    public struct CreateNewL4RulesResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

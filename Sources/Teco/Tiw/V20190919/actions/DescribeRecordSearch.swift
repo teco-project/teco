@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiw {
     /// DescribeRecordSearch请求参数结构体
-    public struct DescribeRecordSearchRequest: TCRequestModel {
+    public struct DescribeRecordSearchRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRecordSearch返回参数结构体
-    public struct DescribeRecordSearchResponse: TCResponseModel {
+    public struct DescribeRecordSearchResponse: TCResponse {
         /// 录制任务搜索结果集合
         public let recordTaskSet: [RecordTaskSearchResult]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeRegions请求参数结构体
-    public struct DescribeRegionsRequest: TCRequestModel {
+    public struct DescribeRegionsRequest: TCRequest {
         /// 地域整型ID，目前黑石可用地域包括：8-北京，4-上海，1-广州， 19-重庆
         public let regionId: UInt64?
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeRegions返回参数结构体
-    public struct DescribeRegionsResponse: TCResponseModel {
+    public struct DescribeRegionsResponse: TCResponse {
         /// 地域信息
         public let regionInfoSet: [RegionInfo]
 

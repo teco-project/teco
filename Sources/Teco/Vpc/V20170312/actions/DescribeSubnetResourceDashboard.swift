@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSubnetResourceDashboard请求参数结构体
-    public struct DescribeSubnetResourceDashboardRequest: TCRequestModel {
+    public struct DescribeSubnetResourceDashboardRequest: TCRequest {
         /// Subnet实例ID，例如：subnet-f1xjkw1b。
         public let subnetIds: [String]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeSubnetResourceDashboard返回参数结构体
-    public struct DescribeSubnetResourceDashboardResponse: TCResponseModel {
+    public struct DescribeSubnetResourceDashboardResponse: TCResponse {
         /// 资源统计结果。
         public let resourceStatisticsSet: [ResourceStatistics]
 

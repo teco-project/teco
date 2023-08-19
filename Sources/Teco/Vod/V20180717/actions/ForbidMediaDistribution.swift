@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ForbidMediaDistribution请求参数结构体
-    public struct ForbidMediaDistributionRequest: TCRequestModel {
+    public struct ForbidMediaDistributionRequest: TCRequest {
         /// 媒体文件列表，每次最多可提交 20 条。
         public let fileIds: [String]
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// ForbidMediaDistribution返回参数结构体
-    public struct ForbidMediaDistributionResponse: TCResponseModel {
+    public struct ForbidMediaDistributionResponse: TCResponse {
         /// 不存在的文件 ID 列表。
         public let notExistFileIdSet: [String]
 

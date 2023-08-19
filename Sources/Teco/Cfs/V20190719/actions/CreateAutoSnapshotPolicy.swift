@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// CreateAutoSnapshotPolicy请求参数结构体
-    public struct CreateAutoSnapshotPolicyRequest: TCRequestModel {
+    public struct CreateAutoSnapshotPolicyRequest: TCRequest {
         /// 快照重复时间点,0-23
         public let hour: String
 
@@ -59,7 +59,7 @@ extension Cfs {
     }
 
     /// CreateAutoSnapshotPolicy返回参数结构体
-    public struct CreateAutoSnapshotPolicyResponse: TCResponseModel {
+    public struct CreateAutoSnapshotPolicyResponse: TCResponse {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
 

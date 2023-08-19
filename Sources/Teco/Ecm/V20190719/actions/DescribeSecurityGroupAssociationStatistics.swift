@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeSecurityGroupAssociationStatistics请求参数结构体
-    public struct DescribeSecurityGroupAssociationStatisticsRequest: TCRequestModel {
+    public struct DescribeSecurityGroupAssociationStatisticsRequest: TCRequest {
         /// 安全实例ID，例如esg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/1108/47697)获取。
         public let securityGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeSecurityGroupAssociationStatistics返回参数结构体
-    public struct DescribeSecurityGroupAssociationStatisticsResponse: TCResponseModel {
+    public struct DescribeSecurityGroupAssociationStatisticsResponse: TCResponse {
         /// 安全组关联实例统计。
         public let securityGroupAssociationStatisticsSet: [SecurityGroupAssociationStatistics]
 

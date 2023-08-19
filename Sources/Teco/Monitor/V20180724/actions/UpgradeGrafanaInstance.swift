@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpgradeGrafanaInstance请求参数结构体
-    public struct UpgradeGrafanaInstanceRequest: TCRequestModel {
+    public struct UpgradeGrafanaInstanceRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// UpgradeGrafanaInstance返回参数结构体
-    public struct UpgradeGrafanaInstanceResponse: TCResponseModel {
+    public struct UpgradeGrafanaInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

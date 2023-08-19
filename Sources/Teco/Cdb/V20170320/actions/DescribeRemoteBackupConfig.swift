@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeRemoteBackupConfig请求参数结构体
-    public struct DescribeRemoteBackupConfigRequest: TCRequestModel {
+    public struct DescribeRemoteBackupConfigRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeRemoteBackupConfig返回参数结构体
-    public struct DescribeRemoteBackupConfigResponse: TCResponseModel {
+    public struct DescribeRemoteBackupConfigResponse: TCResponse {
         /// 异地备份保留时间，单位为天
         public let expireDays: Int64
 

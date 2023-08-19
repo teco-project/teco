@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// QueryProducts请求参数结构体
-    public struct QueryProductsRequest: TCRequestModel {
+    public struct QueryProductsRequest: TCRequest {
         /// 模块名。默认值（固定）：Product
         public let module: String
 
@@ -44,7 +44,7 @@ extension Cr {
     }
 
     /// QueryProducts返回参数结构体
-    public struct QueryProductsResponse: TCResponseModel {
+    public struct QueryProductsResponse: TCResponse {
         /// 产品信息。
         public let productList: [ProductQueryInfo]
 

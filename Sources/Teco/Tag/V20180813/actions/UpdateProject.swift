@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// UpdateProject请求参数结构体
-    public struct UpdateProjectRequest: TCRequestModel {
+    public struct UpdateProjectRequest: TCRequest {
         /// 项目ID
         public let projectId: UInt64
 
@@ -49,7 +49,7 @@ extension Tag {
     }
 
     /// UpdateProject返回参数结构体
-    public struct UpdateProjectResponse: TCResponseModel {
+    public struct UpdateProjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

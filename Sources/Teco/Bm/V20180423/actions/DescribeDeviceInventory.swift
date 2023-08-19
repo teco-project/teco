@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDeviceInventory请求参数结构体
-    public struct DescribeDeviceInventoryRequest: TCRequestModel {
+    public struct DescribeDeviceInventoryRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -84,7 +84,7 @@ extension Bm {
     }
 
     /// DescribeDeviceInventory返回参数结构体
-    public struct DescribeDeviceInventoryResponse: TCResponseModel {
+    public struct DescribeDeviceInventoryResponse: TCResponse {
         /// 库存设备数量
         public let deviceCount: UInt64
 

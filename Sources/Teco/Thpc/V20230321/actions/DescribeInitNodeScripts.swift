@@ -20,7 +20,7 @@ import TecoCore
 
 extension Thpc {
     /// DescribeInitNodeScripts请求参数结构体
-    public struct DescribeInitNodeScriptsRequest: TCRequestModel {
+    public struct DescribeInitNodeScriptsRequest: TCRequest {
         /// 集群ID。
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Thpc {
     }
 
     /// DescribeInitNodeScripts返回参数结构体
-    public struct DescribeInitNodeScriptsResponse: TCResponseModel {
+    public struct DescribeInitNodeScriptsResponse: TCResponse {
         /// 节点初始化脚本列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let initNodeScriptSet: [NodeScript]?

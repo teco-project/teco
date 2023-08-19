@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// ClassifyContent请求参数结构体
-    public struct ClassifyContentRequest: TCRequestModel {
+    public struct ClassifyContentRequest: TCRequest {
         /// 待分类的文章的标题（仅支持UTF-8格式，不超过100字符）。
         public let title: String
 
@@ -39,7 +39,7 @@ extension Nlp {
     }
 
     /// ClassifyContent返回参数结构体
-    public struct ClassifyContentResponse: TCResponseModel {
+    public struct ClassifyContentResponse: TCResponse {
         /// 一级分类。（请参见附录[三级分类体系表](https://cloud.tencent.com/document/product/271/94286)）
         public let firstClassification: Category
 

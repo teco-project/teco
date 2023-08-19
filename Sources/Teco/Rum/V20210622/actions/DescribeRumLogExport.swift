@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeRumLogExport请求参数结构体
-    public struct DescribeRumLogExportRequest: TCRequestModel {
+    public struct DescribeRumLogExportRequest: TCRequest {
         /// 导出标识name
         public let name: String
 
@@ -59,7 +59,7 @@ extension Rum {
     }
 
     /// DescribeRumLogExport返回参数结构体
-    public struct DescribeRumLogExportResponse: TCResponseModel {
+    public struct DescribeRumLogExportResponse: TCResponse {
         /// 返回字符串
         public let result: String
 

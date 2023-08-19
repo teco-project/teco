@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// CreateTopic请求参数结构体
-    public struct CreateTopicRequest: TCRequestModel {
+    public struct CreateTopicRequest: TCRequest {
         /// 日志主题的名称。
         public let topicName: String
 
@@ -54,7 +54,7 @@ extension Clb {
     }
 
     /// CreateTopic返回参数结构体
-    public struct CreateTopicResponse: TCResponseModel {
+    public struct CreateTopicResponse: TCResponse {
         /// 日志主题的 ID。
         public let topicId: String
 

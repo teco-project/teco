@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeSeals请求参数结构体
-    public struct DescribeSealsRequest: TCRequestModel {
+    public struct DescribeSealsRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -44,7 +44,7 @@ extension Essbasic {
     }
 
     /// DescribeSeals返回参数结构体
-    public struct DescribeSealsResponse: TCResponseModel {
+    public struct DescribeSealsResponse: TCResponse {
         /// 印章信息
         public let seals: [Seal]
 

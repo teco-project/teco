@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// RestartEKSContainerInstances请求参数结构体
-    public struct RestartEKSContainerInstancesRequest: TCRequestModel {
+    public struct RestartEKSContainerInstancesRequest: TCRequest {
         /// EKS instance ids
         public let eksCiIds: [String]
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// RestartEKSContainerInstances返回参数结构体
-    public struct RestartEKSContainerInstancesResponse: TCResponseModel {
+    public struct RestartEKSContainerInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

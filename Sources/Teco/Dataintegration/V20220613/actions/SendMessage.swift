@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dataintegration {
     /// SendMessage请求参数结构体
-    public struct SendMessageRequest: TCRequestModel {
+    public struct SendMessageRequest: TCRequest {
         /// 接入资源ID
         public let dataHubId: String
 
@@ -39,7 +39,7 @@ extension Dataintegration {
     }
 
     /// SendMessage返回参数结构体
-    public struct SendMessageResponse: TCResponseModel {
+    public struct SendMessageResponse: TCResponse {
         /// 消息ID
         public let messageId: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ResumeServerless请求参数结构体
-    public struct ResumeServerlessRequest: TCRequestModel {
+    public struct ResumeServerlessRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// ResumeServerless返回参数结构体
-    public struct ResumeServerlessResponse: TCResponseModel {
+    public struct ResumeServerlessResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

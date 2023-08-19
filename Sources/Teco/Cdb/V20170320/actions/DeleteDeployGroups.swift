@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DeleteDeployGroups请求参数结构体
-    public struct DeleteDeployGroupsRequest: TCRequestModel {
+    public struct DeleteDeployGroupsRequest: TCRequest {
         /// 要删除的置放群组 ID 列表。
         public let deployGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DeleteDeployGroups返回参数结构体
-    public struct DeleteDeployGroupsResponse: TCResponseModel {
+    public struct DeleteDeployGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

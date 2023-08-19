@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// CreateSecurityGroupRules请求参数结构体
-    public struct CreateSecurityGroupRulesRequest: TCRequestModel {
+    public struct CreateSecurityGroupRulesRequest: TCRequest {
         /// 添加的企业安全组规则数据
         public let data: [SecurityGroupListData]
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// CreateSecurityGroupRules返回参数结构体
-    public struct CreateSecurityGroupRulesResponse: TCResponseModel {
+    public struct CreateSecurityGroupRulesResponse: TCResponse {
         /// 状态值，0：添加成功，非0：添加失败
         public let status: UInt64
 

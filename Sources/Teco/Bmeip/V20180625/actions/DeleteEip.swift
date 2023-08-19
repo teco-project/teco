@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// DeleteEip请求参数结构体
-    public struct DeleteEipRequest: TCRequestModel {
+    public struct DeleteEipRequest: TCRequest {
         /// Eip实例ID列表
         public let eipIds: [String]
 
@@ -34,7 +34,7 @@ extension Bmeip {
     }
 
     /// DeleteEip返回参数结构体
-    public struct DeleteEipResponse: TCResponseModel {
+    public struct DeleteEipResponse: TCResponse {
         /// 任务Id
         public let taskId: UInt64
 

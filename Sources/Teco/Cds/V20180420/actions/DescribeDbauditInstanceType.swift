@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cds {
     /// DescribeDbauditInstanceType请求参数结构体
-    public struct DescribeDbauditInstanceTypeRequest: TCRequestModel {
+    public struct DescribeDbauditInstanceTypeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDbauditInstanceType返回参数结构体
-    public struct DescribeDbauditInstanceTypeResponse: TCResponseModel {
+    public struct DescribeDbauditInstanceTypeResponse: TCResponse {
         /// 数据安全审计产品规格信息列表
         public let dbauditTypesSet: [DbauditTypesInfo]
 

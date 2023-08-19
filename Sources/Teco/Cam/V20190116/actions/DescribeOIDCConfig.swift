@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DescribeOIDCConfig请求参数结构体
-    public struct DescribeOIDCConfigRequest: TCRequestModel {
+    public struct DescribeOIDCConfigRequest: TCRequest {
         /// 名称
         public let name: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DescribeOIDCConfig返回参数结构体
-    public struct DescribeOIDCConfigResponse: TCResponseModel {
+    public struct DescribeOIDCConfigResponse: TCResponse {
         /// 身份提供商类型 11角色身份提供商
         public let providerType: UInt64
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tiw {
     /// DescribeApplicationUsage请求参数结构体
-    public struct DescribeApplicationUsageRequest: TCRequestModel {
+    public struct DescribeApplicationUsageRequest: TCRequest {
         /// 用量开始时间（包括该时间点）
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -71,7 +71,7 @@ extension Tiw {
     }
 
     /// DescribeApplicationUsage返回参数结构体
-    public struct DescribeApplicationUsageResponse: TCResponseModel {
+    public struct DescribeApplicationUsageResponse: TCResponse {
         /// 画图所需的用量数据
         public let data: [DataItem]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CancelDcnJob请求参数结构体
-    public struct CancelDcnJobRequest: TCRequestModel {
+    public struct CancelDcnJobRequest: TCRequest {
         /// 灾备实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// CancelDcnJob返回参数结构体
-    public struct CancelDcnJobResponse: TCResponseModel {
+    public struct CancelDcnJobResponse: TCResponse {
         /// 流程ID
         public let flowId: Int64
 

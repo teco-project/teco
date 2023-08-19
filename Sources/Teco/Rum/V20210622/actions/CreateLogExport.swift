@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateLogExport请求参数结构体
-    public struct CreateLogExportRequest: TCRequestModel {
+    public struct CreateLogExportRequest: TCRequest {
         /// 项目ID
         public let id: Int64
 
@@ -64,7 +64,7 @@ extension Rum {
     }
 
     /// CreateLogExport返回参数结构体
-    public struct CreateLogExportResponse: TCResponseModel {
+    public struct CreateLogExportResponse: TCResponse {
         /// 日志导出ID
         public let exportID: String
 

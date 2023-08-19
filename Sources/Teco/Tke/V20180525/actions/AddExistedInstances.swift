@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// AddExistedInstances请求参数结构体
-    public struct AddExistedInstancesRequest: TCRequestModel {
+    public struct AddExistedInstancesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -86,7 +86,7 @@ extension Tke {
     }
 
     /// AddExistedInstances返回参数结构体
-    public struct AddExistedInstancesResponse: TCResponseModel {
+    public struct AddExistedInstancesResponse: TCResponse {
         /// 失败的节点ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedInstanceIds: [String]?

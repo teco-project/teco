@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribePromotionActivity请求参数结构体
-    public struct DescribePromotionActivityRequest: TCRequestModel {
+    public struct DescribePromotionActivityRequest: TCRequest {
         /// 活动ID
         public let activeID: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribePromotionActivity返回参数结构体
-    public struct DescribePromotionActivityResponse: TCResponseModel {
+    public struct DescribePromotionActivityResponse: TCResponse {
         /// 促销活动内容
         public let list: [PromotionActivityContent]
 

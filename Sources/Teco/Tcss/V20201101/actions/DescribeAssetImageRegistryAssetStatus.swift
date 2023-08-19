@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageRegistryAssetStatus请求参数结构体
-    public struct DescribeAssetImageRegistryAssetStatusRequest: TCRequestModel {
+    public struct DescribeAssetImageRegistryAssetStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetImageRegistryAssetStatus返回参数结构体
-    public struct DescribeAssetImageRegistryAssetStatusResponse: TCResponseModel {
+    public struct DescribeAssetImageRegistryAssetStatusResponse: TCResponse {
         /// 更新进度状态,doing更新中，success更新成功，failed失败
         public let status: String
 

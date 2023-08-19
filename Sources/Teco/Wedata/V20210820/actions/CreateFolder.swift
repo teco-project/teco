@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateFolder请求参数结构体
-    public struct CreateFolderRequest: TCRequestModel {
+    public struct CreateFolderRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// CreateFolder返回参数结构体
-    public struct CreateFolderResponse: TCResponseModel {
+    public struct CreateFolderResponse: TCResponse {
         /// 文件夹Id，null则创建失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CommonId?

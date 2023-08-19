@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeEventLogData请求参数结构体
-    public struct DescribeEventLogDataRequest: TCRequestModel {
+    public struct DescribeEventLogDataRequest: TCRequest {
         /// 防护类型，映射如下：
         ///   waf = "Web攻击"
         ///   cc = "CC攻击"
@@ -76,7 +76,7 @@ extension Cdn {
     }
 
     /// DescribeEventLogData返回参数结构体
-    public struct DescribeEventLogDataResponse: TCResponseModel {
+    public struct DescribeEventLogDataResponse: TCResponse {
         /// 统计曲线结果
         public let results: [EventLogStatsData]
 

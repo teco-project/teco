@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeBillingSpecs请求参数结构体
-    public struct DescribeBillingSpecsRequest: TCRequestModel {
+    public struct DescribeBillingSpecsRequest: TCRequest {
         /// 枚举值：TRAIN、NOTEBOOK、INFERENCE
         public let taskType: String
 
@@ -44,7 +44,7 @@ extension Tione {
     }
 
     /// DescribeBillingSpecs返回参数结构体
-    public struct DescribeBillingSpecsResponse: TCResponseModel {
+    public struct DescribeBillingSpecsResponse: TCResponse {
         /// 计费项列表
         public let specs: [Spec]
 

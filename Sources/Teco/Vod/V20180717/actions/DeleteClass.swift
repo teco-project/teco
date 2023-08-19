@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteClass请求参数结构体
-    public struct DeleteClassRequest: TCRequestModel {
+    public struct DeleteClassRequest: TCRequest {
         /// 分类 ID
         public let classId: Int64
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteClass返回参数结构体
-    public struct DeleteClassResponse: TCResponseModel {
+    public struct DeleteClassResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

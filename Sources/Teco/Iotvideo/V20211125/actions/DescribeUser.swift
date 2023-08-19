@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeUser请求参数结构体
-    public struct DescribeUserRequest: TCRequestModel {
+    public struct DescribeUserRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUser返回参数结构体
-    public struct DescribeUserResponse: TCResponseModel {
+    public struct DescribeUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

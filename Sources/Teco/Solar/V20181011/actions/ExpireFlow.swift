@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// ExpireFlow请求参数结构体
-    public struct ExpireFlowRequest: TCRequestModel {
+    public struct ExpireFlowRequest: TCRequest {
         /// 工单ID
         public let flowId: String
 
@@ -34,7 +34,7 @@ extension Solar {
     }
 
     /// ExpireFlow返回参数结构体
-    public struct ExpireFlowResponse: TCResponseModel {
+    public struct ExpireFlowResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

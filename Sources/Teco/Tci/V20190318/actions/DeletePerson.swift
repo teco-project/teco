@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DeletePerson请求参数结构体
-    public struct DeletePersonRequest: TCRequestModel {
+    public struct DeletePersonRequest: TCRequest {
         /// 人员库唯一标识符
         public let libraryId: String
 
@@ -39,7 +39,7 @@ extension Tci {
     }
 
     /// DeletePerson返回参数结构体
-    public struct DeletePersonResponse: TCResponseModel {
+    public struct DeletePersonResponse: TCResponse {
         /// 人脸信息
         public let faceInfoSet: [FaceInfo]
 

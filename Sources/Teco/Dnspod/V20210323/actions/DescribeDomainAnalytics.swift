@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeDomainAnalytics请求参数结构体
-    public struct DescribeDomainAnalyticsRequest: TCRequestModel {
+    public struct DescribeDomainAnalyticsRequest: TCRequest {
         /// 要查询解析量的域名
         public let domain: String
 
@@ -54,7 +54,7 @@ extension Dnspod {
     }
 
     /// DescribeDomainAnalytics返回参数结构体
-    public struct DescribeDomainAnalyticsResponse: TCResponseModel {
+    public struct DescribeDomainAnalyticsResponse: TCResponse {
         /// 当前统计维度解析量小计
         public let data: [DomainAnalyticsDetail]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mna {
     /// GetPublicKey请求参数结构体
-    public struct GetPublicKeyRequest: TCRequestModel {
+    public struct GetPublicKeyRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetPublicKey返回参数结构体
-    public struct GetPublicKeyResponse: TCResponseModel {
+    public struct GetPublicKeyResponse: TCResponse {
         /// 非对称公钥
         public let publicKey: String
 

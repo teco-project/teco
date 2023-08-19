@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// QrcodeOCR请求参数结构体
-    public struct QrcodeOCRRequest: TCRequestModel {
+    public struct QrcodeOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，支持PNG、JPG、JPEG格式。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -41,7 +41,7 @@ extension Ocr {
     }
 
     /// QrcodeOCR返回参数结构体
-    public struct QrcodeOCRResponse: TCResponseModel {
+    public struct QrcodeOCRResponse: TCResponse {
         /// 二维码/条形码识别结果信息，具体内容请点击左侧链接。
         public let codeResults: [QrcodeResultsInfo]
 

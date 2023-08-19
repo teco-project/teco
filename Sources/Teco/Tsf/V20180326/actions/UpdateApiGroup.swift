@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// UpdateApiGroup请求参数结构体
-    public struct UpdateApiGroupRequest: TCRequestModel {
+    public struct UpdateApiGroupRequest: TCRequest {
         /// Api 分组ID
         public let groupId: String
 
@@ -74,7 +74,7 @@ extension Tsf {
     }
 
     /// UpdateApiGroup返回参数结构体
-    public struct UpdateApiGroupResponse: TCResponseModel {
+    public struct UpdateApiGroupResponse: TCResponse {
         /// 返回结果，true: 成功, false: 失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeTopSpaceTableTimeSeries请求参数结构体
-    public struct DescribeTopSpaceTableTimeSeriesRequest: TCRequestModel {
+    public struct DescribeTopSpaceTableTimeSeriesRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -67,7 +67,7 @@ extension Dbbrain {
     }
 
     /// DescribeTopSpaceTableTimeSeries返回参数结构体
-    public struct DescribeTopSpaceTableTimeSeriesResponse: TCResponseModel {
+    public struct DescribeTopSpaceTableTimeSeriesResponse: TCResponse {
         /// 返回的Top表空间统计信息的时序数据列表。
         public let topSpaceTableTimeSeries: [TableSpaceTimeSeries]
 

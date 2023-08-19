@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DeleteDB请求参数结构体
-    public struct DeleteDBRequest: TCRequestModel {
+    public struct DeleteDBRequest: TCRequest {
         /// 实例ID，形如mssql-rljoi3bf
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// DeleteDB返回参数结构体
-    public struct DeleteDBResponse: TCResponseModel {
+    public struct DeleteDBResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

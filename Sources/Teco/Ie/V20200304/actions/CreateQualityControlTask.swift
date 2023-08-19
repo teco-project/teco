@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ie {
     /// CreateQualityControlTask请求参数结构体
-    public struct CreateQualityControlTaskRequest: TCRequestModel {
+    public struct CreateQualityControlTaskRequest: TCRequest {
         /// 质检任务参数
         public let qualityControlInfo: QualityControlInfo
 
@@ -44,7 +44,7 @@ extension Ie {
     }
 
     /// CreateQualityControlTask返回参数结构体
-    public struct CreateQualityControlTaskResponse: TCResponseModel {
+    public struct CreateQualityControlTaskResponse: TCResponse {
         /// 质检任务 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

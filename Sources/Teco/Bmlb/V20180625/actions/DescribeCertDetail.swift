@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Bmlb {
     /// DescribeCertDetail请求参数结构体
-    public struct DescribeCertDetailRequest: TCRequestModel {
+    public struct DescribeCertDetailRequest: TCRequest {
         /// 证书ID。
         public let certId: String
 
@@ -36,7 +36,7 @@ extension Bmlb {
     }
 
     /// DescribeCertDetail返回参数结构体
-    public struct DescribeCertDetailResponse: TCResponseModel {
+    public struct DescribeCertDetailResponse: TCResponse {
         /// 证书ID。
         public let certId: String
 

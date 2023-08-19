@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// SuspendResumeDataEngine请求参数结构体
-    public struct SuspendResumeDataEngineRequest: TCRequestModel {
+    public struct SuspendResumeDataEngineRequest: TCRequest {
         /// 虚拟集群名称
         public let dataEngineName: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// SuspendResumeDataEngine返回参数结构体
-    public struct SuspendResumeDataEngineResponse: TCResponseModel {
+    public struct SuspendResumeDataEngineResponse: TCResponse {
         /// 虚拟集群详细信息
         public let dataEngineName: String
 

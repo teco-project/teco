@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateUserSig请求参数结构体
-    public struct CreateUserSigRequest: TCRequestModel {
+    public struct CreateUserSigRequest: TCRequest {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64
 
@@ -49,7 +49,7 @@ extension Ccc {
     }
 
     /// CreateUserSig返回参数结构体
-    public struct CreateUserSigResponse: TCResponseModel {
+    public struct CreateUserSigResponse: TCResponse {
         /// 签名结果
         public let userSig: String
 

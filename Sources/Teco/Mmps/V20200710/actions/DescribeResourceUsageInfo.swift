@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mmps {
     /// DescribeResourceUsageInfo请求参数结构体
-    public struct DescribeResourceUsageInfoRequest: TCRequestModel {
+    public struct DescribeResourceUsageInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeResourceUsageInfo返回参数结构体
-    public struct DescribeResourceUsageInfoResponse: TCResponseModel {
+    public struct DescribeResourceUsageInfoResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// SetAutoRenewFlag请求参数结构体
-    public struct SetAutoRenewFlagRequest: TCRequestModel {
+    public struct SetAutoRenewFlagRequest: TCRequest {
         /// 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
         public let dbInstanceIdSet: [String]
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// SetAutoRenewFlag返回参数结构体
-    public struct SetAutoRenewFlagResponse: TCResponseModel {
+    public struct SetAutoRenewFlagResponse: TCResponse {
         /// 设置成功的实例个数
         public let count: Int64
 

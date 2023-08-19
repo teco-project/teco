@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// BeautifyVideo请求参数结构体
-    public struct BeautifyVideoRequest: TCRequestModel {
+    public struct BeautifyVideoRequest: TCRequest {
         /// 视频url地址
         public let url: String
 
@@ -44,7 +44,7 @@ extension Fmu {
     }
 
     /// BeautifyVideo返回参数结构体
-    public struct BeautifyVideoResponse: TCResponseModel {
+    public struct BeautifyVideoResponse: TCResponse {
         /// 视频美颜任务的Job id
         public let jobId: String
 

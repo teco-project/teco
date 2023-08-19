@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// RestartApplicationPod请求参数结构体
-    public struct RestartApplicationPodRequest: TCRequestModel {
+    public struct RestartApplicationPodRequest: TCRequest {
         /// 环境id
         public let environmentId: String
 
@@ -64,7 +64,7 @@ extension Tem {
     }
 
     /// RestartApplicationPod返回参数结构体
-    public struct RestartApplicationPodResponse: TCResponseModel {
+    public struct RestartApplicationPodResponse: TCResponse {
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

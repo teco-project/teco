@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ChangeInstanceMaster请求参数结构体
-    public struct ChangeInstanceMasterRequest: TCRequestModel {
+    public struct ChangeInstanceMasterRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Keewidb {
     }
 
     /// ChangeInstanceMaster返回参数结构体
-    public struct ChangeInstanceMasterResponse: TCResponseModel {
+    public struct ChangeInstanceMasterResponse: TCResponse {
         /// 异步任务 ID。
         public let taskId: Int64
 

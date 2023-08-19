@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeApiDetail请求参数结构体
-    public struct DescribeApiDetailRequest: TCRequestModel {
+    public struct DescribeApiDetailRequest: TCRequest {
         /// 微服务id
         public let microserviceId: String
 
@@ -54,7 +54,7 @@ extension Tsf {
     }
 
     /// DescribeApiDetail返回参数结构体
-    public struct DescribeApiDetailResponse: TCResponseModel {
+    public struct DescribeApiDetailResponse: TCResponse {
         /// API 详情
         public let result: ApiDetailResponse
 

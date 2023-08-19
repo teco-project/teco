@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeBlackWhiteIpList请求参数结构体
-    public struct DescribeBlackWhiteIpListRequest: TCRequestModel {
+    public struct DescribeBlackWhiteIpListRequest: TCRequest {
         /// 资源实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Antiddos {
     }
 
     /// DescribeBlackWhiteIpList返回参数结构体
-    public struct DescribeBlackWhiteIpListResponse: TCResponseModel {
+    public struct DescribeBlackWhiteIpListResponse: TCResponse {
         /// 黑名单IP列表
         public let blackIpList: [String]
 

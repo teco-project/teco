@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ControlDevicePreset请求参数结构体
-    public struct ControlDevicePresetRequest: TCRequestModel {
+    public struct ControlDevicePresetRequest: TCRequest {
         /// 通道 ID（从通道查询接口DescribeDeviceChannel中获取）
         public let channelId: String
 
@@ -46,7 +46,7 @@ extension Iss {
     }
 
     /// ControlDevicePreset返回参数结构体
-    public struct ControlDevicePresetResponse: TCResponseModel {
+    public struct ControlDevicePresetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

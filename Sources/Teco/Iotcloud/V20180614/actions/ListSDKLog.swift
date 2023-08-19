@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// ListSDKLog请求参数结构体
-    public struct ListSDKLogRequest: TCRequestModel {
+    public struct ListSDKLogRequest: TCRequest {
         /// 日志开始时间
         public let minTime: UInt64
 
@@ -58,7 +58,7 @@ extension Iotcloud {
     }
 
     /// ListSDKLog返回参数结构体
-    public struct ListSDKLogResponse: TCResponseModel {
+    public struct ListSDKLogResponse: TCResponse {
         /// 日志检索上下文
         public let context: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeBandwidthPackageBillUsage请求参数结构体
-    public struct DescribeBandwidthPackageBillUsageRequest: TCRequestModel {
+    public struct DescribeBandwidthPackageBillUsageRequest: TCRequest {
         /// 后付费共享带宽包的唯一ID
         public let bandwidthPackageId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeBandwidthPackageBillUsage返回参数结构体
-    public struct DescribeBandwidthPackageBillUsageResponse: TCResponseModel {
+    public struct DescribeBandwidthPackageBillUsageResponse: TCResponse {
         /// 当前计费用量
         public let bandwidthPackageBillBandwidthSet: [BandwidthPackageBillBandwidth]
 

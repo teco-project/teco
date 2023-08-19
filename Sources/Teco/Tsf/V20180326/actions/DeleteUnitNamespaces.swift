@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteUnitNamespaces请求参数结构体
-    public struct DeleteUnitNamespacesRequest: TCRequestModel {
+    public struct DeleteUnitNamespacesRequest: TCRequest {
         /// 网关实体ID
         public let gatewayInstanceId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DeleteUnitNamespaces返回参数结构体
-    public struct DeleteUnitNamespacesResponse: TCResponseModel {
+    public struct DeleteUnitNamespacesResponse: TCResponse {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

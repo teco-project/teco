@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pds {
     /// DescribeStockEstimation请求参数结构体
-    public struct DescribeStockEstimationRequest: TCRequestModel {
+    public struct DescribeStockEstimationRequest: TCRequest {
         /// 用户信息
         public let serviceParams: UserInfos
 
@@ -34,7 +34,7 @@ extension Pds {
     }
 
     /// DescribeStockEstimation返回参数结构体
-    public struct DescribeStockEstimationResponse: TCResponseModel {
+    public struct DescribeStockEstimationResponse: TCResponse {
         /// 用户信誉分，1-5从低到高
         public let serviceRsp: Score
 

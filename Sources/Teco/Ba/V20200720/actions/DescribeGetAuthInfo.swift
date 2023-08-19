@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ba {
     /// DescribeGetAuthInfo请求参数结构体
-    public struct DescribeGetAuthInfoRequest: TCRequestModel {
+    public struct DescribeGetAuthInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeGetAuthInfo返回参数结构体
-    public struct DescribeGetAuthInfoResponse: TCResponseModel {
+    public struct DescribeGetAuthInfoResponse: TCResponse {
         /// 实名认证状态：0未实名，1已实名
         public let isTenPayMasked: String
 

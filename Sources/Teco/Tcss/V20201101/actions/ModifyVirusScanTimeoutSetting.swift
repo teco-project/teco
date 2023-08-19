@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyVirusScanTimeoutSetting请求参数结构体
-    public struct ModifyVirusScanTimeoutSettingRequest: TCRequestModel {
+    public struct ModifyVirusScanTimeoutSettingRequest: TCRequest {
         /// 超时时长单位小时(5~24h)
         public let timeout: UInt64
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// ModifyVirusScanTimeoutSetting返回参数结构体
-    public struct ModifyVirusScanTimeoutSettingResponse: TCResponseModel {
+    public struct ModifyVirusScanTimeoutSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

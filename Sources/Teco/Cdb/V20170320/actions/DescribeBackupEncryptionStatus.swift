@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBackupEncryptionStatus请求参数结构体
-    public struct DescribeBackupEncryptionStatusRequest: TCRequestModel {
+    public struct DescribeBackupEncryptionStatusRequest: TCRequest {
         /// 实例ID，格式如：cdb-XXXX。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeBackupEncryptionStatus返回参数结构体
-    public struct DescribeBackupEncryptionStatusResponse: TCResponseModel {
+    public struct DescribeBackupEncryptionStatusResponse: TCResponse {
         /// 实例是否开启了物理备份加密。可能的值有 on, off 。
         public let encryptionStatus: String
 

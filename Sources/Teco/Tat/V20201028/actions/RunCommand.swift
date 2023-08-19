@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// RunCommand请求参数结构体
-    public struct RunCommandRequest: TCRequestModel {
+    public struct RunCommandRequest: TCRequest {
         /// Base64编码后的命令内容，长度不可超过64KB。
         public let content: String
 
@@ -124,7 +124,7 @@ extension Tat {
     }
 
     /// RunCommand返回参数结构体
-    public struct RunCommandResponse: TCResponseModel {
+    public struct RunCommandResponse: TCResponse {
         /// 命令ID。
         public let commandId: String
 

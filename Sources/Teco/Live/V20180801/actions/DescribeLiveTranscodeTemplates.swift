@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTranscodeTemplates请求参数结构体
-    public struct DescribeLiveTranscodeTemplatesRequest: TCRequestModel {
+    public struct DescribeLiveTranscodeTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveTranscodeTemplates返回参数结构体
-    public struct DescribeLiveTranscodeTemplatesResponse: TCResponseModel {
+    public struct DescribeLiveTranscodeTemplatesResponse: TCResponse {
         /// 转码模板列表。
         public let templates: [TemplateInfo]
 

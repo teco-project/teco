@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DeleteDiskBackups请求参数结构体
-    public struct DeleteDiskBackupsRequest: TCRequestModel {
+    public struct DeleteDiskBackupsRequest: TCRequest {
         /// 云硬盘备份点ID列表，可通过 [DescribeDiskBackups](https://cloud.tencent.com/document/api/1207/84379)接口查询。
         public let diskBackupIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DeleteDiskBackups返回参数结构体
-    public struct DeleteDiskBackupsResponse: TCResponseModel {
+    public struct DeleteDiskBackupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

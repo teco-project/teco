@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// SaveAndDeployLogstashPipeline请求参数结构体
-    public struct SaveAndDeployLogstashPipelineRequest: TCRequestModel {
+    public struct SaveAndDeployLogstashPipelineRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Es {
     }
 
     /// SaveAndDeployLogstashPipeline返回参数结构体
-    public struct SaveAndDeployLogstashPipelineResponse: TCResponseModel {
+    public struct SaveAndDeployLogstashPipelineResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

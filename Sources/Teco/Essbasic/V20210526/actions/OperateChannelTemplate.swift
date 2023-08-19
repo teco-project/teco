@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// OperateChannelTemplate请求参数结构体
-    public struct OperateChannelTemplateRequest: TCRequestModel {
+    public struct OperateChannelTemplateRequest: TCRequest {
         /// 应用相关信息。
         /// 此接口Agent.AppId必填。
         public let agent: Agent
@@ -85,7 +85,7 @@ extension Essbasic {
     }
 
     /// OperateChannelTemplate返回参数结构体
-    public struct OperateChannelTemplateResponse: TCResponseModel {
+    public struct OperateChannelTemplateResponse: TCResponse {
         /// 腾讯电子签颁发给第三方应用平台的应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?

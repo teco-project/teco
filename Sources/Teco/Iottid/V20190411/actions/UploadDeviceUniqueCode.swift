@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// UploadDeviceUniqueCode请求参数结构体
-    public struct UploadDeviceUniqueCodeRequest: TCRequestModel {
+    public struct UploadDeviceUniqueCodeRequest: TCRequest {
         /// 硬件唯一标识码
         public let codeSet: [String]
 
@@ -39,7 +39,7 @@ extension Iottid {
     }
 
     /// UploadDeviceUniqueCode返回参数结构体
-    public struct UploadDeviceUniqueCodeResponse: TCResponseModel {
+    public struct UploadDeviceUniqueCodeResponse: TCResponse {
         /// 本次已上传数量
         public let count: UInt64
 

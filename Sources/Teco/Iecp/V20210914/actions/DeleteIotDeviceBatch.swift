@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DeleteIotDeviceBatch请求参数结构体
-    public struct DeleteIotDeviceBatchRequest: TCRequestModel {
+    public struct DeleteIotDeviceBatchRequest: TCRequest {
         public let deviceIDList: [UInt64]
 
         public init(deviceIDList: [UInt64]) {
@@ -33,7 +33,7 @@ extension Iecp {
     }
 
     /// DeleteIotDeviceBatch返回参数结构体
-    public struct DeleteIotDeviceBatchResponse: TCResponseModel {
+    public struct DeleteIotDeviceBatchResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

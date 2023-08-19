@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportVulList请求参数结构体
-    public struct ExportVulListRequest: TCRequestModel {
+    public struct ExportVulListRequest: TCRequest {
         /// 过滤条件。
         /// - VulCategory - int - 是否必填：否 - 漏洞分类筛选1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
         /// - IfEmergency - String - 是否必填：否 - 是否为应急漏洞，查询应急漏洞传:yes
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// ExportVulList返回参数结构体
-    public struct ExportVulListResponse: TCResponseModel {
+    public struct ExportVulListResponse: TCResponse {
         /// 导出的文件下载url（已弃用！）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

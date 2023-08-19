@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// RecoverDevices请求参数结构体
-    public struct RecoverDevicesRequest: TCRequestModel {
+    public struct RecoverDevicesRequest: TCRequest {
         /// 需要恢复的物理机ID列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// RecoverDevices返回参数结构体
-    public struct RecoverDevicesResponse: TCResponseModel {
+    public struct RecoverDevicesResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

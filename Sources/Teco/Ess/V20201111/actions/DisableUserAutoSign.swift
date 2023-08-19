@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DisableUserAutoSign请求参数结构体
-    public struct DisableUserAutoSignRequest: TCRequestModel {
+    public struct DisableUserAutoSignRequest: TCRequest {
         /// 操作人信息,UserId必填
         public let `operator`: UserInfo
 
@@ -50,7 +50,7 @@ extension Ess {
     }
 
     /// DisableUserAutoSign返回参数结构体
-    public struct DisableUserAutoSignResponse: TCResponseModel {
+    public struct DisableUserAutoSignResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

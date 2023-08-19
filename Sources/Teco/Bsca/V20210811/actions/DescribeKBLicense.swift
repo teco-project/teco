@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bsca {
     /// DescribeKBLicense请求参数结构体
-    public struct DescribeKBLicenseRequest: TCRequestModel {
+    public struct DescribeKBLicenseRequest: TCRequest {
         /// License表达式
         public let licenseExpression: String?
 
@@ -34,7 +34,7 @@ extension Bsca {
     }
 
     /// DescribeKBLicense返回参数结构体
-    public struct DescribeKBLicenseResponse: TCResponseModel {
+    public struct DescribeKBLicenseResponse: TCResponse {
         /// 许可证列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let licenseList: [LicenseUnion]?

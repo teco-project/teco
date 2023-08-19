@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribePurchaseStateInfo请求参数结构体
-    public struct DescribePurchaseStateInfoRequest: TCRequestModel {
+    public struct DescribePurchaseStateInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePurchaseStateInfo返回参数结构体
-    public struct DescribePurchaseStateInfoResponse: TCResponseModel {
+    public struct DescribePurchaseStateInfoResponse: TCResponse {
         /// 0：可申请试用可购买；1：只可购买(含试用审核不通过和试用过期)；2：试用生效中；3：专业版生效中；4：专业版过期
         public let state: Int64
 

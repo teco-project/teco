@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveDomains请求参数结构体
-    public struct DescribeLiveDomainsRequest: TCRequestModel {
+    public struct DescribeLiveDomainsRequest: TCRequest {
         /// 域名状态过滤。0-停用，1-启用。
         public let domainStatus: UInt64?
 
@@ -67,7 +67,7 @@ extension Live {
     }
 
     /// DescribeLiveDomains返回参数结构体
-    public struct DescribeLiveDomainsResponse: TCResponseModel {
+    public struct DescribeLiveDomainsResponse: TCResponse {
         /// 总记录数。
         public let allCount: UInt64
 

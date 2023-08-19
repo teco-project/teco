@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribePublisherSummary请求参数结构体
-    public struct DescribePublisherSummaryRequest: TCRequestModel {
+    public struct DescribePublisherSummaryRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tdmq {
     }
 
     /// DescribePublisherSummary返回参数结构体
-    public struct DescribePublisherSummaryResponse: TCResponseModel {
+    public struct DescribePublisherSummaryResponse: TCResponse {
         /// 生产速率（条/秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msgRateIn: Float?

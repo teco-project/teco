@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeProjectSecurityGroups请求参数结构体
-    public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeProjectSecurityGroupsRequest: TCRequest {
         /// 项目ID。
         public let projectId: Int64?
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeProjectSecurityGroups返回参数结构体
-    public struct DescribeProjectSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeProjectSecurityGroupsResponse: TCResponse {
         /// 安全组详情。
         public let groups: [SecurityGroup]
 

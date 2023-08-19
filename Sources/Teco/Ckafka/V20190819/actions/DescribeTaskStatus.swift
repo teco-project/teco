@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 任务唯一标记
         public let flowId: Int64
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 返回结果
         public let result: TaskStatusResponse
 

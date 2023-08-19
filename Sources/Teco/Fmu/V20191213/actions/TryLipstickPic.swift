@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// TryLipstickPic请求参数结构体
-    public struct TryLipstickPicRequest: TCRequestModel {
+    public struct TryLipstickPicRequest: TCRequest {
         /// 唇色信息。
         /// 您可以输入最多3个 LipColorInfo 来实现给一张图中的最多3张人脸试唇色。
         public let lipColorInfos: [LipColorInfo]
@@ -55,7 +55,7 @@ extension Fmu {
     }
 
     /// TryLipstickPic返回参数结构体
-    public struct TryLipstickPicResponse: TCResponseModel {
+    public struct TryLipstickPicResponse: TCResponse {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
         public let resultImage: String
 

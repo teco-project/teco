@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// PublishBroadcastMessage请求参数结构体
-    public struct PublishBroadcastMessageRequest: TCRequestModel {
+    public struct PublishBroadcastMessageRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotexplorer {
     }
 
     /// PublishBroadcastMessage返回参数结构体
-    public struct PublishBroadcastMessageResponse: TCResponseModel {
+    public struct PublishBroadcastMessageResponse: TCResponse {
         /// 广播消息任务Id
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// CreateAddressTemplate请求参数结构体
-    public struct CreateAddressTemplateRequest: TCRequestModel {
+    public struct CreateAddressTemplateRequest: TCRequest {
         /// 模板名称
         public let name: String
 
@@ -51,7 +51,7 @@ extension Cfw {
     }
 
     /// CreateAddressTemplate返回参数结构体
-    public struct CreateAddressTemplateResponse: TCResponseModel {
+    public struct CreateAddressTemplateResponse: TCResponse {
         /// 创建结果,0成功
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// CreateInstance请求参数结构体
-    public struct CreateInstanceRequest: TCRequestModel {
+    public struct CreateInstanceRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -245,7 +245,7 @@ extension Es {
     }
 
     /// CreateInstance返回参数结构体
-    public struct CreateInstanceResponse: TCResponseModel {
+    public struct CreateInstanceResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

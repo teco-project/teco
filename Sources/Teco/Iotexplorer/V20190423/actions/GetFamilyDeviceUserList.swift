@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// GetFamilyDeviceUserList请求参数结构体
-    public struct GetFamilyDeviceUserListRequest: TCRequestModel {
+    public struct GetFamilyDeviceUserListRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// GetFamilyDeviceUserList返回参数结构体
-    public struct GetFamilyDeviceUserListResponse: TCResponseModel {
+    public struct GetFamilyDeviceUserListResponse: TCResponse {
         /// 设备的用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userList: [DeviceUser]?

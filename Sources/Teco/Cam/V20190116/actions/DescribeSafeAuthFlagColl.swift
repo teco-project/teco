@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DescribeSafeAuthFlagColl请求参数结构体
-    public struct DescribeSafeAuthFlagCollRequest: TCRequestModel {
+    public struct DescribeSafeAuthFlagCollRequest: TCRequest {
         /// 子账号
         public let subUin: UInt64
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DescribeSafeAuthFlagColl返回参数结构体
-    public struct DescribeSafeAuthFlagCollResponse: TCResponseModel {
+    public struct DescribeSafeAuthFlagCollResponse: TCResponse {
         /// 登录保护设置
         public let loginFlag: LoginActionFlag
 

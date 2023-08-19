@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateSampleSnapshotTemplate请求参数结构体
-    public struct CreateSampleSnapshotTemplateRequest: TCRequestModel {
+    public struct CreateSampleSnapshotTemplateRequest: TCRequest {
         /// 采样截图类型，取值：
         /// - Percent：按百分比。
         /// - Time：按时间间隔。
@@ -100,7 +100,7 @@ extension Mps {
     }
 
     /// CreateSampleSnapshotTemplate返回参数结构体
-    public struct CreateSampleSnapshotTemplateResponse: TCResponseModel {
+    public struct CreateSampleSnapshotTemplateResponse: TCResponse {
         /// 采样截图模板唯一标识。
         public let definition: UInt64
 

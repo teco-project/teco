@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// ModifyCRWhiteList请求参数结构体
-    public struct ModifyCRWhiteListRequest: TCRequestModel {
+    public struct ModifyCRWhiteListRequest: TCRequest {
         /// 该字段已废弃，白名单ID
         public let whiteListId: Int64?
 
@@ -64,7 +64,7 @@ extension Bma {
     }
 
     /// ModifyCRWhiteList返回参数结构体
-    public struct ModifyCRWhiteListResponse: TCResponseModel {
+    public struct ModifyCRWhiteListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

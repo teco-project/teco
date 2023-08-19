@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyTemplateMember请求参数结构体
-    public struct ModifyTemplateMemberRequest: TCRequestModel {
+    public struct ModifyTemplateMemberRequest: TCRequest {
         /// 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
         public let templateId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyTemplateMember返回参数结构体
-    public struct ModifyTemplateMemberResponse: TCResponseModel {
+    public struct ModifyTemplateMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

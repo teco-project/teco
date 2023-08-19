@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeCkSqlApis请求参数结构体
-    public struct DescribeCkSqlApisRequest: TCRequestModel {
+    public struct DescribeCkSqlApisRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -60,7 +60,7 @@ extension Cdwch {
     }
 
     /// DescribeCkSqlApis返回参数结构体
-    public struct DescribeCkSqlApisResponse: TCResponseModel {
+    public struct DescribeCkSqlApisResponse: TCResponse {
         /// 返回的查询数据，大部分情况是list，也可能是bool
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnData: String?

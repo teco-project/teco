@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vod {
     /// DescribePrepaidProducts请求参数结构体
-    public struct DescribePrepaidProductsRequest: TCRequestModel {
+    public struct DescribePrepaidProductsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePrepaidProducts返回参数结构体
-    public struct DescribePrepaidProductsResponse: TCResponseModel {
+    public struct DescribePrepaidProductsResponse: TCResponse {
         /// 购买的预付费商品实例列表。
         public let productInstanceSet: [ProductInstance]
 

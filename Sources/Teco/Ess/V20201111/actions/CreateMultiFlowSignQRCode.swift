@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateMultiFlowSignQRCode请求参数结构体
-    public struct CreateMultiFlowSignQRCodeRequest: TCRequestModel {
+    public struct CreateMultiFlowSignQRCodeRequest: TCRequest {
         /// 用户信息，其中UserId为必填参数
         public let `operator`: UserInfo
 
@@ -109,7 +109,7 @@ extension Ess {
     }
 
     /// CreateMultiFlowSignQRCode返回参数结构体
-    public struct CreateMultiFlowSignQRCodeResponse: TCResponseModel {
+    public struct CreateMultiFlowSignQRCodeResponse: TCResponse {
         /// 签署二维码对象
         public let qrCode: SignQrCode
 

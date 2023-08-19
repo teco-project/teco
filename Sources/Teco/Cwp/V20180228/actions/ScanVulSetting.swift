@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ScanVulSetting请求参数结构体
-    public struct ScanVulSettingRequest: TCRequestModel {
+    public struct ScanVulSettingRequest: TCRequest {
         /// 定期检测间隔时间（天）
         public let timerInterval: UInt64
 
@@ -74,7 +74,7 @@ extension Cwp {
     }
 
     /// ScanVulSetting返回参数结构体
-    public struct ScanVulSettingResponse: TCResponseModel {
+    public struct ScanVulSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// AsymmetricSm2Decrypt请求参数结构体
-    public struct AsymmetricSm2DecryptRequest: TCRequestModel {
+    public struct AsymmetricSm2DecryptRequest: TCRequest {
         /// CMK的唯一标识
         public let keyId: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// AsymmetricSm2Decrypt返回参数结构体
-    public struct AsymmetricSm2DecryptResponse: TCResponseModel {
+    public struct AsymmetricSm2DecryptResponse: TCResponse {
         /// CMK的唯一标识
         public let keyId: String
 

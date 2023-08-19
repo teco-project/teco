@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ResetWarning请求参数结构体
-    public struct ResetWarningRequest: TCRequestModel {
+    public struct ResetWarningRequest: TCRequest {
         /// 告警ID
         public let id: Int64?
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// ResetWarning返回参数结构体
-    public struct ResetWarningResponse: TCResponseModel {
+    public struct ResetWarningResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

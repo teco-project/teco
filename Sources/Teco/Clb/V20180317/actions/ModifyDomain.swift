@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ModifyDomain请求参数结构体
-    public struct ModifyDomainRequest: TCRequestModel {
+    public struct ModifyDomainRequest: TCRequest {
         /// 负载均衡实例 ID。
         public let loadBalancerId: String
 
@@ -49,7 +49,7 @@ extension Clb {
     }
 
     /// ModifyDomain返回参数结构体
-    public struct ModifyDomainResponse: TCResponseModel {
+    public struct ModifyDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

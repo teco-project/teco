@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sts {
     /// AssumeRole请求参数结构体
-    public struct AssumeRoleRequest: TCRequestModel {
+    public struct AssumeRoleRequest: TCRequest {
         /// 角色的资源描述，可在[访问管理](https://console.cloud.tencent.com/cam/role)，点击角色名获取。
         /// 普通角色：
         /// qcs::cam::uin/12345678:role/4611686018427397919、qcs::cam::uin/12345678:roleName/testRoleName
@@ -74,7 +74,7 @@ extension Sts {
     }
 
     /// AssumeRole返回参数结构体
-    public struct AssumeRoleResponse: TCResponseModel {
+    public struct AssumeRoleResponse: TCResponse {
         /// 临时访问凭证
         public let credentials: Credentials
 

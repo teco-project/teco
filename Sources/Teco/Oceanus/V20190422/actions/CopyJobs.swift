@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CopyJobs请求参数结构体
-    public struct CopyJobsRequest: TCRequestModel {
+    public struct CopyJobsRequest: TCRequest {
         /// 复制明细列表
         public let jobItems: [CopyJobItem]
 
@@ -39,7 +39,7 @@ extension Oceanus {
     }
 
     /// CopyJobs返回参数结构体
-    public struct CopyJobsResponse: TCResponseModel {
+    public struct CopyJobsResponse: TCResponse {
         /// 成功条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?

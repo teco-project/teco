@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// UnbindVpcIp请求参数结构体
-    public struct UnbindVpcIpRequest: TCRequestModel {
+    public struct UnbindVpcIpRequest: TCRequest {
         /// Eip实例ID
         public let eipId: String
 
@@ -44,7 +44,7 @@ extension Bmeip {
     }
 
     /// UnbindVpcIp返回参数结构体
-    public struct UnbindVpcIpResponse: TCResponseModel {
+    public struct UnbindVpcIpResponse: TCResponse {
         /// 绑定黑石物理机异步任务ID，可以通过查询EIP任务状态查询任务状态
         public let taskId: Int64
 

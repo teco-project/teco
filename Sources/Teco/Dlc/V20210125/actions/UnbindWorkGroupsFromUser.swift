@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// UnbindWorkGroupsFromUser请求参数结构体
-    public struct UnbindWorkGroupsFromUserRequest: TCRequestModel {
+    public struct UnbindWorkGroupsFromUserRequest: TCRequest {
         /// 解绑的工作组Id和用户Id的关联关系
         public let addInfo: WorkGroupIdSetOfUserId
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// UnbindWorkGroupsFromUser返回参数结构体
-    public struct UnbindWorkGroupsFromUserResponse: TCResponseModel {
+    public struct UnbindWorkGroupsFromUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

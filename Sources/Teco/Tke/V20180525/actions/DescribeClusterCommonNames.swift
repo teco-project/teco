@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterCommonNames请求参数结构体
-    public struct DescribeClusterCommonNamesRequest: TCRequestModel {
+    public struct DescribeClusterCommonNamesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DescribeClusterCommonNames返回参数结构体
-    public struct DescribeClusterCommonNamesResponse: TCResponseModel {
+    public struct DescribeClusterCommonNamesResponse: TCResponse {
         /// 子账户Uin与其客户端证书的CN字段映射
         public let commonNames: [CommonName]
 

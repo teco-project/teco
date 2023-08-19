@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeInLongAgentTaskList请求参数结构体
-    public struct DescribeInLongAgentTaskListRequest: TCRequestModel {
+    public struct DescribeInLongAgentTaskListRequest: TCRequest {
         /// 采集器ID
         public let agentId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeInLongAgentTaskList返回参数结构体
-    public struct DescribeInLongAgentTaskListResponse: TCResponseModel {
+    public struct DescribeInLongAgentTaskListResponse: TCResponse {
         /// 采集器关联的集成任务列表
         public let items: [InLongAgentTask]
 

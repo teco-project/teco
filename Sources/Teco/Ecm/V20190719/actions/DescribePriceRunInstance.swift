@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribePriceRunInstance请求参数结构体
-    public struct DescribePriceRunInstanceRequest: TCRequestModel {
+    public struct DescribePriceRunInstanceRequest: TCRequest {
         /// 实例的机型信息
         public let instanceType: String
 
@@ -58,7 +58,7 @@ extension Ecm {
     }
 
     /// DescribePriceRunInstance返回参数结构体
-    public struct DescribePriceRunInstanceResponse: TCResponseModel {
+    public struct DescribePriceRunInstanceResponse: TCResponse {
         /// 实例价格信息
         public let instancePrice: InstancesPrice
 

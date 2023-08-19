@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageScanTask请求参数结构体
-    public struct DescribeAssetImageScanTaskRequest: TCRequestModel {
+    public struct DescribeAssetImageScanTaskRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetImageScanTask返回参数结构体
-    public struct DescribeAssetImageScanTaskResponse: TCResponseModel {
+    public struct DescribeAssetImageScanTaskResponse: TCResponse {
         /// 任务id
         public let taskID: String
 

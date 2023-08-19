@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyCustomWhiteRule请求参数结构体
-    public struct ModifyCustomWhiteRuleRequest: TCRequestModel {
+    public struct ModifyCustomWhiteRuleRequest: TCRequest {
         /// 编辑的域名
         public let domain: String
 
@@ -64,7 +64,7 @@ extension Waf {
     }
 
     /// ModifyCustomWhiteRule返回参数结构体
-    public struct ModifyCustomWhiteRuleResponse: TCResponseModel {
+    public struct ModifyCustomWhiteRuleResponse: TCResponse {
         /// 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
         public let success: ResponseCode
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeCDNStatDetails请求参数结构体
-    public struct DescribeCDNStatDetailsRequest: TCRequestModel {
+    public struct DescribeCDNStatDetailsRequest: TCRequest {
         /// 查询指标，取值有：
         /// - Traffic：流量，单位为 Byte。
         /// - Bandwidth：带宽，单位为 Bps。
@@ -136,7 +136,7 @@ extension Vod {
     }
 
     /// DescribeCDNStatDetails返回参数结构体
-    public struct DescribeCDNStatDetailsResponse: TCResponseModel {
+    public struct DescribeCDNStatDetailsResponse: TCResponse {
         /// 每条数据的时间粒度，单位：分钟。
         public let dataInterval: UInt64
 

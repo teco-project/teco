@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// RemoveUserByStrRoomId请求参数结构体
-    public struct RemoveUserByStrRoomIdRequest: TCRequestModel {
+    public struct RemoveUserByStrRoomIdRequest: TCRequest {
         /// TRTC的SDKAppId。
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Trtc {
     }
 
     /// RemoveUserByStrRoomId返回参数结构体
-    public struct RemoveUserByStrRoomIdResponse: TCResponseModel {
+    public struct RemoveUserByStrRoomIdResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

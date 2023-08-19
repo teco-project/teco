@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeIndex请求参数结构体
-    public struct DescribeIndexRequest: TCRequestModel {
+    public struct DescribeIndexRequest: TCRequest {
         /// 日志主题ID
         public let topicId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeIndex返回参数结构体
-    public struct DescribeIndexResponse: TCResponseModel {
+    public struct DescribeIndexResponse: TCResponse {
         /// 日志主题ID
         public let topicId: String
 

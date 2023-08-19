@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// GetPublicKey请求参数结构体
-    public struct GetPublicKeyRequest: TCRequestModel {
+    public struct GetPublicKeyRequest: TCRequest {
         /// CMK的唯一标识。
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// GetPublicKey返回参数结构体
-    public struct GetPublicKeyResponse: TCResponseModel {
+    public struct GetPublicKeyResponse: TCResponse {
         /// CMK的唯一标识。
         public let keyId: String
 

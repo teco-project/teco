@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// InquiryPriceRenewVpnGateway请求参数结构体
-    public struct InquiryPriceRenewVpnGatewayRequest: TCRequestModel {
+    public struct InquiryPriceRenewVpnGatewayRequest: TCRequest {
         /// VPN网关实例ID。
         public let vpnGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// InquiryPriceRenewVpnGateway返回参数结构体
-    public struct InquiryPriceRenewVpnGatewayResponse: TCResponseModel {
+    public struct InquiryPriceRenewVpnGatewayResponse: TCResponse {
         /// 商品价格。
         public let price: Price
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Sqlserver {
     /// RollbackInstance请求参数结构体
-    public struct RollbackInstanceRequest: TCRequestModel {
+    public struct RollbackInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Sqlserver {
     }
 
     /// RollbackInstance返回参数结构体
-    public struct RollbackInstanceResponse: TCResponseModel {
+    public struct RollbackInstanceResponse: TCResponse {
         /// 异步任务ID
         public let flowId: UInt64
 

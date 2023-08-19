@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteServerlessGroup请求参数结构体
-    public struct DeleteServerlessGroupRequest: TCRequestModel {
+    public struct DeleteServerlessGroupRequest: TCRequest {
         /// groupId，分组唯一标识
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteServerlessGroup返回参数结构体
-    public struct DeleteServerlessGroupResponse: TCResponseModel {
+    public struct DeleteServerlessGroupResponse: TCResponse {
         /// 结果true：成功；false：失败。
         public let result: Bool
 

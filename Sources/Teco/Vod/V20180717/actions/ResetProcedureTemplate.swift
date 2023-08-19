@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ResetProcedureTemplate请求参数结构体
-    public struct ResetProcedureTemplateRequest: TCRequestModel {
+    public struct ResetProcedureTemplateRequest: TCRequest {
         /// 任务流名字
         public let name: String
 
@@ -70,7 +70,7 @@ extension Vod {
     }
 
     /// ResetProcedureTemplate返回参数结构体
-    public struct ResetProcedureTemplateResponse: TCResponseModel {
+    public struct ResetProcedureTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

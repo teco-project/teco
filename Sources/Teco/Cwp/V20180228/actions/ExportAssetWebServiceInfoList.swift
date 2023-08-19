@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportAssetWebServiceInfoList请求参数结构体
-    public struct ExportAssetWebServiceInfoListRequest: TCRequestModel {
+    public struct ExportAssetWebServiceInfoListRequest: TCRequest {
         /// 查询指定Quuid主机的信息
         public let quuid: String?
 
@@ -63,7 +63,7 @@ extension Cwp {
     }
 
     /// ExportAssetWebServiceInfoList返回参数结构体
-    public struct ExportAssetWebServiceInfoListResponse: TCResponseModel {
+    public struct ExportAssetWebServiceInfoListResponse: TCResponse {
         /// 异步下载任务ID，需要配合ExportTasks接口使用
         public let taskId: String
 

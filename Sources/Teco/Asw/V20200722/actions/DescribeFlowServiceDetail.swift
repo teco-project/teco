@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asw {
     /// DescribeFlowServiceDetail请求参数结构体
-    public struct DescribeFlowServiceDetailRequest: TCRequestModel {
+    public struct DescribeFlowServiceDetailRequest: TCRequest {
         /// 状态机所属服务资源名
         public let flowServiceResource: String
 
@@ -34,7 +34,7 @@ extension Asw {
     }
 
     /// DescribeFlowServiceDetail返回参数结构体
-    public struct DescribeFlowServiceDetailResponse: TCResponseModel {
+    public struct DescribeFlowServiceDetailResponse: TCResponse {
         /// 状态机所属服务名
         public let flowServiceName: String
 

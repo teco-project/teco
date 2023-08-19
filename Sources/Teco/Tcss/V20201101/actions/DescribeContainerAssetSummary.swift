@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeContainerAssetSummary请求参数结构体
-    public struct DescribeContainerAssetSummaryRequest: TCRequestModel {
+    public struct DescribeContainerAssetSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeContainerAssetSummary返回参数结构体
-    public struct DescribeContainerAssetSummaryResponse: TCResponseModel {
+    public struct DescribeContainerAssetSummaryResponse: TCResponse {
         /// 容器总数
         public let containerTotalCnt: UInt64
 

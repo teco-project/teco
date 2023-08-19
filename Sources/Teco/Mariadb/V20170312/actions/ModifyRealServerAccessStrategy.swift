@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifyRealServerAccessStrategy请求参数结构体
-    public struct ModifyRealServerAccessStrategyRequest: TCRequestModel {
+    public struct ModifyRealServerAccessStrategyRequest: TCRequest {
         /// 实例 ID，格式如：tdsql-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// ModifyRealServerAccessStrategy返回参数结构体
-    public struct ModifyRealServerAccessStrategyResponse: TCResponseModel {
+    public struct ModifyRealServerAccessStrategyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DeleteMachineGroupInfo请求参数结构体
-    public struct DeleteMachineGroupInfoRequest: TCRequestModel {
+    public struct DeleteMachineGroupInfoRequest: TCRequest {
         /// 机器组ID
         public let groupId: String
 
@@ -40,7 +40,7 @@ extension Cls {
     }
 
     /// DeleteMachineGroupInfo返回参数结构体
-    public struct DeleteMachineGroupInfoResponse: TCResponseModel {
+    public struct DeleteMachineGroupInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

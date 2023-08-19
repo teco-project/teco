@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterEndpoints请求参数结构体
-    public struct DescribeClusterEndpointsRequest: TCRequestModel {
+    public struct DescribeClusterEndpointsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterEndpoints返回参数结构体
-    public struct DescribeClusterEndpointsResponse: TCResponseModel {
+    public struct DescribeClusterEndpointsResponse: TCResponse {
         /// 集群APIServer的CA证书
         public let certificationAuthority: String
 

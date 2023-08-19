@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexPaymentOrderList请求参数结构体
-    public struct QueryFlexPaymentOrderListRequest: TCRequestModel {
+    public struct QueryFlexPaymentOrderListRequest: TCRequest {
         /// 开始时间，格式"yyyy-MM-dd hh:mm:ss"
         public let startTime: String
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// QueryFlexPaymentOrderList返回参数结构体
-    public struct QueryFlexPaymentOrderListResponse: TCResponseModel {
+    public struct QueryFlexPaymentOrderListResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

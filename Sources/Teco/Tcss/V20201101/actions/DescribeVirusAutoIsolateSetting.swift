@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusAutoIsolateSetting请求参数结构体
-    public struct DescribeVirusAutoIsolateSettingRequest: TCRequestModel {
+    public struct DescribeVirusAutoIsolateSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVirusAutoIsolateSetting返回参数结构体
-    public struct DescribeVirusAutoIsolateSettingResponse: TCResponseModel {
+    public struct DescribeVirusAutoIsolateSettingResponse: TCResponse {
         /// 自动隔离开关(true:开 false:关)
         public let autoIsolateSwitch: Bool
 

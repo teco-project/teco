@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// CreateUserGroup请求参数结构体
-    public struct CreateUserGroupRequest: TCRequestModel {
+    public struct CreateUserGroupRequest: TCRequest {
         /// 用户组名，最大长度32字符
         public let name: String
 
@@ -39,7 +39,7 @@ extension Dasb {
     }
 
     /// CreateUserGroup返回参数结构体
-    public struct CreateUserGroupResponse: TCResponseModel {
+    public struct CreateUserGroupResponse: TCResponse {
         /// 新建成功的用户组ID
         public let id: UInt64
 

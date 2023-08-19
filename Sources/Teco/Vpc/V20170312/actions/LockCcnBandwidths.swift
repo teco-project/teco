@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// LockCcnBandwidths请求参数结构体
-    public struct LockCcnBandwidthsRequest: TCRequestModel {
+    public struct LockCcnBandwidthsRequest: TCRequest {
         /// 带宽实例的唯一ID数组。
         public let instances: [CcnFlowLock]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// LockCcnBandwidths返回参数结构体
-    public struct LockCcnBandwidthsResponse: TCResponseModel {
+    public struct LockCcnBandwidthsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

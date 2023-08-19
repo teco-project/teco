@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateDBInstanceHour请求参数结构体
-    public struct CreateDBInstanceHourRequest: TCRequestModel {
+    public struct CreateDBInstanceHourRequest: TCRequest {
         /// 实例数量，默认值为 1，最小值 1，最大值为 100。
         public let goodsNum: Int64
 
@@ -214,7 +214,7 @@ extension Cdb {
     }
 
     /// CreateDBInstanceHour返回参数结构体
-    public struct CreateDBInstanceHourResponse: TCResponseModel {
+    public struct CreateDBInstanceHourResponse: TCResponse {
         /// 短订单 ID。
         public let dealIds: [String]
 

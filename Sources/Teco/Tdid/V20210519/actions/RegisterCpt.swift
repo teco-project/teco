@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// RegisterCpt请求参数结构体
-    public struct RegisterCptRequest: TCRequestModel {
+    public struct RegisterCptRequest: TCRequest {
         /// 群组ID
         public let groupId: UInt64
 
@@ -49,7 +49,7 @@ extension Tdid {
     }
 
     /// RegisterCpt返回参数结构体
-    public struct RegisterCptResponse: TCResponseModel {
+    public struct RegisterCptResponse: TCResponse {
         /// 凭证模板索引
         public let id: UInt64
 

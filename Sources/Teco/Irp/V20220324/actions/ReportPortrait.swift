@@ -20,7 +20,7 @@ import TecoCore
 
 extension Irp {
     /// ReportPortrait请求参数结构体
-    public struct ReportPortraitRequest: TCRequestModel {
+    public struct ReportPortraitRequest: TCRequest {
         /// 推荐平台上的业务id
         public let bid: String
 
@@ -39,7 +39,7 @@ extension Irp {
     }
 
     /// ReportPortrait返回参数结构体
-    public struct ReportPortraitResponse: TCResponseModel {
+    public struct ReportPortraitResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

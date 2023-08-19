@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeAccount请求参数结构体
-    public struct DescribeAccountRequest: TCRequestModel {
+    public struct DescribeAccountRequest: TCRequest {
         /// 1设备，2云存，3ai
         public let accountType: UInt64
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeAccount返回参数结构体
-    public struct DescribeAccountResponse: TCResponseModel {
+    public struct DescribeAccountResponse: TCResponse {
         /// 查询的账号id
         public let uin: String
 

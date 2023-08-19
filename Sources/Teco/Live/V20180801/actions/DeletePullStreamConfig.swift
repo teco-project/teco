@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeletePullStreamConfig请求参数结构体
-    public struct DeletePullStreamConfigRequest: TCRequestModel {
+    public struct DeletePullStreamConfigRequest: TCRequest {
         /// 配置 ID。
         /// 1. 在添加拉流配置接口 [CreatePullStreamConfig](/document/api/267/30159) 调用返回值中获取配置 ID。
         /// 2. 可以从接口 [DescribePullStreamConfigs](/document/api/267/30158) 中查询已创建过的拉流配置列表。
@@ -36,7 +36,7 @@ extension Live {
     }
 
     /// DeletePullStreamConfig返回参数结构体
-    public struct DeletePullStreamConfigResponse: TCResponseModel {
+    public struct DeletePullStreamConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

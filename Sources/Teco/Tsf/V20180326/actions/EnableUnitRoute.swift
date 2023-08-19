@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// EnableUnitRoute请求参数结构体
-    public struct EnableUnitRouteRequest: TCRequestModel {
+    public struct EnableUnitRouteRequest: TCRequest {
         /// 网关实体ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// EnableUnitRoute返回参数结构体
-    public struct EnableUnitRouteResponse: TCResponseModel {
+    public struct EnableUnitRouteResponse: TCResponse {
         /// 返回结果，成功失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

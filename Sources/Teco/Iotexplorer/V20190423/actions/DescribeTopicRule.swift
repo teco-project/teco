@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DescribeTopicRule请求参数结构体
-    public struct DescribeTopicRuleRequest: TCRequestModel {
+    public struct DescribeTopicRuleRequest: TCRequest {
         /// 规则名称。
         public let ruleName: String
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// DescribeTopicRule返回参数结构体
-    public struct DescribeTopicRuleResponse: TCResponseModel {
+    public struct DescribeTopicRuleResponse: TCResponse {
         /// 规则描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rule: TopicRule?

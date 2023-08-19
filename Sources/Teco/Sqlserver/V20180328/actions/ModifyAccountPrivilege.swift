@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyAccountPrivilege请求参数结构体
-    public struct ModifyAccountPrivilegeRequest: TCRequestModel {
+    public struct ModifyAccountPrivilegeRequest: TCRequest {
         /// 数据库实例ID，形如mssql-njj2mtpl
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// ModifyAccountPrivilege返回参数结构体
-    public struct ModifyAccountPrivilegeResponse: TCResponseModel {
+    public struct ModifyAccountPrivilegeResponse: TCResponse {
         /// 异步任务流程ID
         public let flowId: UInt64
 

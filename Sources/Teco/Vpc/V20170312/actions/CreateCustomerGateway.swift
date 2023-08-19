@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateCustomerGateway请求参数结构体
-    public struct CreateCustomerGatewayRequest: TCRequestModel {
+    public struct CreateCustomerGatewayRequest: TCRequest {
         /// 对端网关名称，可任意命名，但不得超过60个字符。
         public let customerGatewayName: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// CreateCustomerGateway返回参数结构体
-    public struct CreateCustomerGatewayResponse: TCResponseModel {
+    public struct CreateCustomerGatewayResponse: TCResponse {
         /// 对端网关对象
         public let customerGateway: CustomerGateway
 

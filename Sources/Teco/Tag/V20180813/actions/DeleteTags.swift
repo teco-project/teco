@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// DeleteTags请求参数结构体
-    public struct DeleteTagsRequest: TCRequestModel {
+    public struct DeleteTagsRequest: TCRequest {
         /// 标签列表。
         /// N取值范围：0~9
         public let tags: [Tag]
@@ -35,7 +35,7 @@ extension Tag {
     }
 
     /// DeleteTags返回参数结构体
-    public struct DeleteTagsResponse: TCResponseModel {
+    public struct DeleteTagsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

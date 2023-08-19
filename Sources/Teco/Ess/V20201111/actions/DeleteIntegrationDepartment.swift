@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DeleteIntegrationDepartment请求参数结构体
-    public struct DeleteIntegrationDepartmentRequest: TCRequestModel {
+    public struct DeleteIntegrationDepartmentRequest: TCRequest {
         /// 操作人信息，UserId必填且需拥有组织架构管理权限
         public let `operator`: UserInfo
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// DeleteIntegrationDepartment返回参数结构体
-    public struct DeleteIntegrationDepartmentResponse: TCResponseModel {
+    public struct DeleteIntegrationDepartmentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

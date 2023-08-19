@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateEmergencyVulScan请求参数结构体
-    public struct CreateEmergencyVulScanRequest: TCRequestModel {
+    public struct CreateEmergencyVulScanRequest: TCRequest {
         /// 漏洞id
         public let vulId: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// CreateEmergencyVulScan返回参数结构体
-    public struct CreateEmergencyVulScanResponse: TCResponseModel {
+    public struct CreateEmergencyVulScanResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

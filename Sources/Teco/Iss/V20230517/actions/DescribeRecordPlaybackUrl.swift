@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeRecordPlaybackUrl请求参数结构体
-    public struct DescribeRecordPlaybackUrlRequest: TCRequestModel {
+    public struct DescribeRecordPlaybackUrlRequest: TCRequest {
         /// 设备通道ID
         public let channelId: String
 
@@ -44,7 +44,7 @@ extension Iss {
     }
 
     /// DescribeRecordPlaybackUrl返回参数结构体
-    public struct DescribeRecordPlaybackUrlResponse: TCResponseModel {
+    public struct DescribeRecordPlaybackUrlResponse: TCResponse {
         /// 返回结果
         public let data: RecordPlaybackUrl
 

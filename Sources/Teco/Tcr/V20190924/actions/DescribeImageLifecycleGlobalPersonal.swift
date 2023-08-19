@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcr {
     /// DescribeImageLifecycleGlobalPersonal请求参数结构体
-    public struct DescribeImageLifecycleGlobalPersonalRequest: TCRequestModel {
+    public struct DescribeImageLifecycleGlobalPersonalRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageLifecycleGlobalPersonal返回参数结构体
-    public struct DescribeImageLifecycleGlobalPersonalResponse: TCResponseModel {
+    public struct DescribeImageLifecycleGlobalPersonalResponse: TCResponse {
         /// 全局自动删除策略信息
         public let data: AutoDelStrategyInfoResp
 

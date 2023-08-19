@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRealTimeTaskSpeed请求参数结构体
-    public struct DescribeRealTimeTaskSpeedRequest: TCRequestModel {
+    public struct DescribeRealTimeTaskSpeedRequest: TCRequest {
         public let taskId: String
 
         /// 带毫秒的时间戳
@@ -52,7 +52,7 @@ extension Wedata {
     }
 
     /// DescribeRealTimeTaskSpeed返回参数结构体
-    public struct DescribeRealTimeTaskSpeedResponse: TCResponseModel {
+    public struct DescribeRealTimeTaskSpeedResponse: TCResponse {
         /// 同步速度条/s列表
         public let recordsSpeedList: [RecordsSpeed]
 

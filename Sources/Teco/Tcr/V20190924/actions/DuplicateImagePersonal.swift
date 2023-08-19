@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DuplicateImagePersonal请求参数结构体
-    public struct DuplicateImagePersonalRequest: TCRequestModel {
+    public struct DuplicateImagePersonalRequest: TCRequest {
         /// 源镜像名称，不包含domain。例如： tencentyun/foo:v1
         public let srcImage: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// DuplicateImagePersonal返回参数结构体
-    public struct DuplicateImagePersonalResponse: TCResponseModel {
+    public struct DuplicateImagePersonalResponse: TCResponse {
         /// 复制镜像返回值
         public let data: DupImageTagResp
 

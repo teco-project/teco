@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// QueryMigrationCheckProcess请求参数结构体
-    public struct QueryMigrationCheckProcessRequest: TCRequestModel {
+    public struct QueryMigrationCheckProcessRequest: TCRequest {
         /// 迁移任务ID
         public let migrateId: Int64
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// QueryMigrationCheckProcess返回参数结构体
-    public struct QueryMigrationCheckProcessResponse: TCResponseModel {
+    public struct QueryMigrationCheckProcessResponse: TCResponse {
         /// 总步骤数量
         public let totalStep: Int64
 

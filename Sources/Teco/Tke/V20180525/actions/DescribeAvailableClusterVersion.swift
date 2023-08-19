@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeAvailableClusterVersion请求参数结构体
-    public struct DescribeAvailableClusterVersionRequest: TCRequestModel {
+    public struct DescribeAvailableClusterVersionRequest: TCRequest {
         /// 集群 Id
         public let clusterId: String?
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeAvailableClusterVersion返回参数结构体
-    public struct DescribeAvailableClusterVersionResponse: TCResponseModel {
+    public struct DescribeAvailableClusterVersionResponse: TCResponse {
         /// 可升级的集群版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versions: [String]?

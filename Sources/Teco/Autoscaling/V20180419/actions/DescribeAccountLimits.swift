@@ -20,13 +20,13 @@ import TecoCore
 
 extension As {
     /// DescribeAccountLimits请求参数结构体
-    public struct DescribeAccountLimitsRequest: TCRequestModel {
+    public struct DescribeAccountLimitsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAccountLimits返回参数结构体
-    public struct DescribeAccountLimitsResponse: TCResponseModel {
+    public struct DescribeAccountLimitsResponse: TCResponse {
         /// 用户账户被允许创建的启动配置最大数量
         public let maxNumberOfLaunchConfigurations: Int64
 

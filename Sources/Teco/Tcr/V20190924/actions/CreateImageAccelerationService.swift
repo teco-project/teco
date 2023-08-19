@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateImageAccelerationService请求参数结构体
-    public struct CreateImageAccelerationServiceRequest: TCRequestModel {
+    public struct CreateImageAccelerationServiceRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -64,7 +64,7 @@ extension Tcr {
     }
 
     /// CreateImageAccelerationService返回参数结构体
-    public struct CreateImageAccelerationServiceResponse: TCResponseModel {
+    public struct CreateImageAccelerationServiceResponse: TCResponse {
         /// 实例Id
         public let registryId: String
 

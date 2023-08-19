@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeKTVSuggestions请求参数结构体
-    public struct DescribeKTVSuggestionsRequest: TCRequestModel {
+    public struct DescribeKTVSuggestionsRequest: TCRequest {
         /// 联想关键词
         public let keyWord: String
 
@@ -34,7 +34,7 @@ extension Ame {
     }
 
     /// DescribeKTVSuggestions返回参数结构体
-    public struct DescribeKTVSuggestionsResponse: TCResponseModel {
+    public struct DescribeKTVSuggestionsResponse: TCResponse {
         /// 联想词信息列表。返回总数最大为10。
         public let ktvSuggestionInfoSet: [KTVSuggestionInfo]
 

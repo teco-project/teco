@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// Encrypt请求参数结构体
-    public struct EncryptRequest: TCRequestModel {
+    public struct EncryptRequest: TCRequest {
         /// 调用CreateKey生成的CMK全局唯一标识符
         public let keyId: String
 
@@ -44,7 +44,7 @@ extension Kms {
     }
 
     /// Encrypt返回参数结构体
-    public struct EncryptResponse: TCResponseModel {
+    public struct EncryptResponse: TCResponse {
         /// 加密后的密文，base64编码。注意：本字段中打包了密文和密钥的相关信息，不是对明文的直接加密结果，只有将该字段作为Decrypt接口的输入参数，才可以解密出原文。
         public let ciphertextBlob: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gse {
     /// DescribeInstanceLimit请求参数结构体
-    public struct DescribeInstanceLimitRequest: TCRequestModel {
+    public struct DescribeInstanceLimitRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInstanceLimit返回参数结构体
-    public struct DescribeInstanceLimitResponse: TCResponseModel {
+    public struct DescribeInstanceLimitResponse: TCResponse {
         /// 限额
         public let limit: Int64
 

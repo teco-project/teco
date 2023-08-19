@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// RunJobFlow请求参数结构体
-    public struct RunJobFlowRequest: TCRequestModel {
+    public struct RunJobFlowRequest: TCRequest {
         /// 作业名称。
         public let name: String
 
@@ -105,7 +105,7 @@ extension Emr {
     }
 
     /// RunJobFlow返回参数结构体
-    public struct RunJobFlowResponse: TCResponseModel {
+    public struct RunJobFlowResponse: TCResponse {
         /// 作业流程ID。
         public let jobFlowId: Int64
 

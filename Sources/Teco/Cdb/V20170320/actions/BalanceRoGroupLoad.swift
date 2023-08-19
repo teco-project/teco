@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// BalanceRoGroupLoad请求参数结构体
-    public struct BalanceRoGroupLoadRequest: TCRequestModel {
+    public struct BalanceRoGroupLoadRequest: TCRequest {
         /// RO 组的 ID，格式如：cdbrg-c1nl9rpv。
         public let roGroupId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// BalanceRoGroupLoad返回参数结构体
-    public struct BalanceRoGroupLoadResponse: TCResponseModel {
+    public struct BalanceRoGroupLoadResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

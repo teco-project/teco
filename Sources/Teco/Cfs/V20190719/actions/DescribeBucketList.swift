@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DescribeBucketList请求参数结构体
-    public struct DescribeBucketListRequest: TCRequestModel {
+    public struct DescribeBucketListRequest: TCRequest {
         /// 数据源服务商。COS: 腾讯云COS，OSS: 阿里云OSS，OBS:华为云OBS
         public let srcService: String
 
@@ -44,7 +44,7 @@ extension Cfs {
     }
 
     /// DescribeBucketList返回参数结构体
-    public struct DescribeBucketListResponse: TCResponseModel {
+    public struct DescribeBucketListResponse: TCResponse {
         /// 桶的数量
         public let totalCount: Int64
 

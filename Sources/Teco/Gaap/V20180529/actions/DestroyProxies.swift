@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DestroyProxies请求参数结构体
-    public struct DestroyProxiesRequest: TCRequestModel {
+    public struct DestroyProxiesRequest: TCRequest {
         /// 强制删除标识。
         /// 1，强制删除该通道列表，无论是否已经绑定了源站；
         /// 0，如果已绑定了源站，则无法删除。
@@ -53,7 +53,7 @@ extension Gaap {
     }
 
     /// DestroyProxies返回参数结构体
-    public struct DestroyProxiesResponse: TCResponseModel {
+    public struct DestroyProxiesResponse: TCResponse {
         /// 处于不可销毁状态下的通道实例ID列表。
         public let invalidStatusInstanceSet: [String]
 

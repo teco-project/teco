@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudhsm {
     /// DescribeHSMByVpcId请求参数结构体
-    public struct DescribeHSMByVpcIdRequest: TCRequestModel {
+    public struct DescribeHSMByVpcIdRequest: TCRequest {
         /// VPC标识符
         public let vpcId: String
 
@@ -34,7 +34,7 @@ extension Cloudhsm {
     }
 
     /// DescribeHSMByVpcId返回参数结构体
-    public struct DescribeHSMByVpcIdResponse: TCResponseModel {
+    public struct DescribeHSMByVpcIdResponse: TCResponse {
         /// HSM数量
         public let totalCount: Int64
 

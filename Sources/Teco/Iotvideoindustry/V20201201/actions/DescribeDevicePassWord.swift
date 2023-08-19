@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeDevicePassWord请求参数结构体
-    public struct DescribeDevicePassWordRequest: TCRequestModel {
+    public struct DescribeDevicePassWordRequest: TCRequest {
         /// 设备唯一标识
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeDevicePassWord返回参数结构体
-    public struct DescribeDevicePassWordResponse: TCResponseModel {
+    public struct DescribeDevicePassWordResponse: TCResponse {
         /// 设备密码
         public let passWord: String
 

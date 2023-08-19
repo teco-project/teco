@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// InquiryPriceResetInstance请求参数结构体
-    public struct InquiryPriceResetInstanceRequest: TCRequestModel {
+    public struct InquiryPriceResetInstanceRequest: TCRequest {
         /// 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Cvm {
     }
 
     /// InquiryPriceResetInstance返回参数结构体
-    public struct InquiryPriceResetInstanceResponse: TCResponseModel {
+    public struct InquiryPriceResetInstanceResponse: TCResponse {
         /// 该参数表示重装成对应配置实例的价格。
         public let price: Price
 

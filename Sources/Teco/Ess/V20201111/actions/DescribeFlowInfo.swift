@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeFlowInfo请求参数结构体
-    public struct DescribeFlowInfoRequest: TCRequestModel {
+    public struct DescribeFlowInfoRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo?
 
@@ -52,7 +52,7 @@ extension Ess {
     }
 
     /// DescribeFlowInfo返回参数结构体
-    public struct DescribeFlowInfoResponse: TCResponseModel {
+    public struct DescribeFlowInfoResponse: TCResponse {
         /// 签署流程信息
         public let flowDetailInfos: [FlowDetailInfo]
 

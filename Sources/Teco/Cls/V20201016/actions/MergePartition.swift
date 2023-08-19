@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// MergePartition请求参数结构体
-    public struct MergePartitionRequest: TCRequestModel {
+    public struct MergePartitionRequest: TCRequest {
         /// 日志主题ID
         public let topicId: String
 
@@ -39,7 +39,7 @@ extension Cls {
     }
 
     /// MergePartition返回参数结构体
-    public struct MergePartitionResponse: TCResponseModel {
+    public struct MergePartitionResponse: TCResponse {
         /// 合并结果集
         public let partitions: [PartitionInfo]
 

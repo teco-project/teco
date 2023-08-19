@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeWarningCallback请求参数结构体
-    public struct DescribeWarningCallbackRequest: TCRequestModel {
+    public struct DescribeWarningCallbackRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -34,7 +34,7 @@ extension Tiw {
     }
 
     /// DescribeWarningCallback返回参数结构体
-    public struct DescribeWarningCallbackResponse: TCResponseModel {
+    public struct DescribeWarningCallbackResponse: TCResponse {
         /// 告警事件回调地址，如果未设置回调地址，该字段为空字符串
         public let callback: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribePolicyStatus请求参数结构体
-    public struct DescribePolicyStatusRequest: TCRequestModel {
+    public struct DescribePolicyStatusRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Waf {
     }
 
     /// DescribePolicyStatus返回参数结构体
-    public struct DescribePolicyStatusResponse: TCResponseModel {
+    public struct DescribePolicyStatusResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

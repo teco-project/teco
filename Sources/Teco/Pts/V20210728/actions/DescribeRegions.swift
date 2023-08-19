@@ -20,13 +20,13 @@ import TecoCore
 
 extension Pts {
     /// DescribeRegions请求参数结构体
-    public struct DescribeRegionsRequest: TCRequestModel {
+    public struct DescribeRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRegions返回参数结构体
-    public struct DescribeRegionsResponse: TCResponseModel {
+    public struct DescribeRegionsResponse: TCResponse {
         /// 地域数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionSet: [RegionDetail]?

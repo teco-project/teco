@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// GetFirmwareURL请求参数结构体
-    public struct GetFirmwareURLRequest: TCRequestModel {
+    public struct GetFirmwareURLRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// GetFirmwareURL返回参数结构体
-    public struct GetFirmwareURLResponse: TCResponseModel {
+    public struct GetFirmwareURLResponse: TCResponse {
         /// 固件URL
         public let url: String
 

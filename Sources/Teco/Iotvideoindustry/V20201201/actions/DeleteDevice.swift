@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DeleteDevice请求参数结构体
-    public struct DeleteDeviceRequest: TCRequestModel {
+    public struct DeleteDeviceRequest: TCRequest {
         /// 设备唯一标识
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DeleteDevice返回参数结构体
-    public struct DeleteDeviceResponse: TCResponseModel {
+    public struct DeleteDeviceResponse: TCResponse {
         /// 操作结果 OK-成功； 其他-失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

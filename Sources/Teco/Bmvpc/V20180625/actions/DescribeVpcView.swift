@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DescribeVpcView请求参数结构体
-    public struct DescribeVpcViewRequest: TCRequestModel {
+    public struct DescribeVpcViewRequest: TCRequest {
         /// 私有网络唯一ID
         public let vpcId: String
 
@@ -34,7 +34,7 @@ extension Bmvpc {
     }
 
     /// DescribeVpcView返回参数结构体
-    public struct DescribeVpcViewResponse: TCResponseModel {
+    public struct DescribeVpcViewResponse: TCResponse {
         /// VPC视图信息
         public let vpcView: VpcViewInfo
 

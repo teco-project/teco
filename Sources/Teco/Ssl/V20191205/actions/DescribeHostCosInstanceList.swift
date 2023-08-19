@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostCosInstanceList请求参数结构体
-    public struct DescribeHostCosInstanceListRequest: TCRequestModel {
+    public struct DescribeHostCosInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -49,7 +49,7 @@ extension Ssl {
     }
 
     /// DescribeHostCosInstanceList返回参数结构体
-    public struct DescribeHostCosInstanceListResponse: TCResponseModel {
+    public struct DescribeHostCosInstanceListResponse: TCResponse {
         /// COS实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [CosInstanceDetail]?

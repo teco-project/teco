@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// TerminateClusterNodes请求参数结构体
-    public struct TerminateClusterNodesRequest: TCRequestModel {
+    public struct TerminateClusterNodesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -60,7 +60,7 @@ extension Emr {
     }
 
     /// TerminateClusterNodes返回参数结构体
-    public struct TerminateClusterNodesResponse: TCResponseModel {
+    public struct TerminateClusterNodesResponse: TCResponse {
         /// 缩容流程ID。
         public let flowId: Int64
 

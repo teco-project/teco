@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ModifyIpv6AddressesAttribute请求参数结构体
-    public struct ModifyIpv6AddressesAttributeRequest: TCRequestModel {
+    public struct ModifyIpv6AddressesAttributeRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// ModifyIpv6AddressesAttribute返回参数结构体
-    public struct ModifyIpv6AddressesAttributeResponse: TCResponseModel {
+    public struct ModifyIpv6AddressesAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

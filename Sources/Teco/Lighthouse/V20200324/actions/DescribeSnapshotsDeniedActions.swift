@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeSnapshotsDeniedActions请求参数结构体
-    public struct DescribeSnapshotsDeniedActionsRequest: TCRequestModel {
+    public struct DescribeSnapshotsDeniedActionsRequest: TCRequest {
         /// 快照 ID 列表, 可通过 DescribeSnapshots 查询。
         public let snapshotIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeSnapshotsDeniedActions返回参数结构体
-    public struct DescribeSnapshotsDeniedActionsResponse: TCResponseModel {
+    public struct DescribeSnapshotsDeniedActionsResponse: TCResponse {
         /// 快照操作限制列表详细信息。
         public let snapshotDeniedActionSet: [SnapshotDeniedActions]
 

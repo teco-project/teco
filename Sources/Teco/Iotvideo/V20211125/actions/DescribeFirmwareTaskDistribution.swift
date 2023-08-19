@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeFirmwareTaskDistribution请求参数结构体
-    public struct DescribeFirmwareTaskDistributionRequest: TCRequestModel {
+    public struct DescribeFirmwareTaskDistributionRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeFirmwareTaskDistribution返回参数结构体
-    public struct DescribeFirmwareTaskDistributionResponse: TCResponseModel {
+    public struct DescribeFirmwareTaskDistributionResponse: TCResponse {
         /// 固件升级任务状态分布信息
         public let statusInfos: [StatusStatistic]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateBatchCancelFlowUrl请求参数结构体
-    public struct CreateBatchCancelFlowUrlRequest: TCRequestModel {
+    public struct CreateBatchCancelFlowUrlRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -45,7 +45,7 @@ extension Ess {
     }
 
     /// CreateBatchCancelFlowUrl返回参数结构体
-    public struct CreateBatchCancelFlowUrlResponse: TCResponseModel {
+    public struct CreateBatchCancelFlowUrlResponse: TCResponse {
         /// 批量撤回签署流程链接
         public let batchCancelFlowUrl: String
 

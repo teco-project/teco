@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// SetVocabState请求参数结构体
-    public struct SetVocabStateRequest: TCRequestModel {
+    public struct SetVocabStateRequest: TCRequest {
         /// 热词表ID。
         public let vocabId: String
 
@@ -39,7 +39,7 @@ extension Asr {
     }
 
     /// SetVocabState返回参数结构体
-    public struct SetVocabStateResponse: TCResponseModel {
+    public struct SetVocabStateResponse: TCResponse {
         /// 热词表ID
         public let vocabId: String
 

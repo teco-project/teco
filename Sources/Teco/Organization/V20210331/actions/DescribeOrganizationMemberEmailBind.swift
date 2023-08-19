@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// DescribeOrganizationMemberEmailBind请求参数结构体
-    public struct DescribeOrganizationMemberEmailBindRequest: TCRequestModel {
+    public struct DescribeOrganizationMemberEmailBindRequest: TCRequest {
         /// 成员Uin
         public let memberUin: Int64
 
@@ -34,7 +34,7 @@ extension Organization {
     }
 
     /// DescribeOrganizationMemberEmailBind返回参数结构体
-    public struct DescribeOrganizationMemberEmailBindResponse: TCResponseModel {
+    public struct DescribeOrganizationMemberEmailBindResponse: TCResponse {
         /// 绑定ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bindId: UInt64?

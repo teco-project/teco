@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEksContainerInstanceLog请求参数结构体
-    public struct DescribeEksContainerInstanceLogRequest: TCRequestModel {
+    public struct DescribeEksContainerInstanceLogRequest: TCRequest {
         /// Eks Container Instance Id，即容器实例Id
         public let eksCiId: String
 
@@ -64,7 +64,7 @@ extension Tke {
     }
 
     /// DescribeEksContainerInstanceLog返回参数结构体
-    public struct DescribeEksContainerInstanceLogResponse: TCResponseModel {
+    public struct DescribeEksContainerInstanceLogResponse: TCResponse {
         /// 容器名称
         public let containerName: String
 

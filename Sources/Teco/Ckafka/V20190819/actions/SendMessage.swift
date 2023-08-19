@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// SendMessage请求参数结构体
-    public struct SendMessageRequest: TCRequestModel {
+    public struct SendMessageRequest: TCRequest {
         /// DataHub接入ID
         public let dataHubId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// SendMessage返回参数结构体
-    public struct SendMessageResponse: TCResponseModel {
+    public struct SendMessageResponse: TCResponse {
         /// 消息ID列表
         public let messageId: [String]
 

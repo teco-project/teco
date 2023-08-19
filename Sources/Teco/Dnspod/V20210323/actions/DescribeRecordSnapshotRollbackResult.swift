@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeRecordSnapshotRollbackResult请求参数结构体
-    public struct DescribeRecordSnapshotRollbackResultRequest: TCRequestModel {
+    public struct DescribeRecordSnapshotRollbackResultRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -44,7 +44,7 @@ extension Dnspod {
     }
 
     /// DescribeRecordSnapshotRollbackResult返回参数结构体
-    public struct DescribeRecordSnapshotRollbackResultResponse: TCResponseModel {
+    public struct DescribeRecordSnapshotRollbackResultResponse: TCResponse {
         /// 回滚任务 ID
         public let jobId: UInt64
 

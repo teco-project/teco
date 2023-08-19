@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CheckEdgeClusterCIDR请求参数结构体
-    public struct CheckEdgeClusterCIDRRequest: TCRequestModel {
+    public struct CheckEdgeClusterCIDRRequest: TCRequest {
         /// 集群的vpc-id
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// CheckEdgeClusterCIDR返回参数结构体
-    public struct CheckEdgeClusterCIDRResponse: TCResponseModel {
+    public struct CheckEdgeClusterCIDRResponse: TCResponse {
         /// 返回码，具体如下
         /// -1 内部错误
         /// 0 没冲突

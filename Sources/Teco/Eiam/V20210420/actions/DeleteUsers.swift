@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DeleteUsers请求参数结构体
-    public struct DeleteUsersRequest: TCRequestModel {
+    public struct DeleteUsersRequest: TCRequest {
         /// 被删除用户的ID列表。DeleteIdList 和 DeleteNameList 需至少一个不为空；都不为空时优先使用 DeleteNameList。
         public let deleteIdList: [String]?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DeleteUsers返回参数结构体
-    public struct DeleteUsersResponse: TCResponseModel {
+    public struct DeleteUsersResponse: TCResponse {
         /// 未被成功删除的用户信息。当业务参数为DeleteIdList时，本字段将返回未成功删除的用户ID列表。当业务参数为DeleteNameList时，本字段将返回未成功删除的用户名称列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedItems: [String]?

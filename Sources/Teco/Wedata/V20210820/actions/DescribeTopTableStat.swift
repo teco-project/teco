@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTopTableStat请求参数结构体
-    public struct DescribeTopTableStatRequest: TCRequestModel {
+    public struct DescribeTopTableStatRequest: TCRequest {
         /// Project Id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeTopTableStat返回参数结构体
-    public struct DescribeTopTableStatResponse: TCResponseModel {
+    public struct DescribeTopTableStatResponse: TCResponse {
         /// 结果
         public let data: TopTableStat
 

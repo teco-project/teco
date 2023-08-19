@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// ResidenceBookletOCR请求参数结构体
-    public struct ResidenceBookletOCRRequest: TCRequestModel {
+    public struct ResidenceBookletOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -46,7 +46,7 @@ extension Ocr {
     }
 
     /// ResidenceBookletOCR返回参数结构体
-    public struct ResidenceBookletOCRResponse: TCResponseModel {
+    public struct ResidenceBookletOCRResponse: TCResponse {
         /// 户号
         public let householdNumber: String
 

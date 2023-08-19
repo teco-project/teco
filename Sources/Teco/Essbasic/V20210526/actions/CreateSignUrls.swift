@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateSignUrls请求参数结构体
-    public struct CreateSignUrlsRequest: TCRequestModel {
+    public struct CreateSignUrlsRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -127,7 +127,7 @@ extension Essbasic {
     }
 
     /// CreateSignUrls返回参数结构体
-    public struct CreateSignUrlsResponse: TCResponseModel {
+    public struct CreateSignUrlsResponse: TCResponse {
         /// 签署参与者签署H5链接信息数组
         public let signUrlInfos: [SignUrlInfo]
 

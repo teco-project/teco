@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// SearchFaces请求参数结构体
-    public struct SearchFacesRequest: TCRequestModel {
+    public struct SearchFacesRequest: TCRequest {
         /// 希望搜索的人员库列表，上限100个。
         public let groupIds: [String]
 
@@ -95,7 +95,7 @@ extension Iai {
     }
 
     /// SearchFaces返回参数结构体
-    public struct SearchFacesResponse: TCResponseModel {
+    public struct SearchFacesResponse: TCResponse {
         /// 识别结果。
         public let results: [Result]
 

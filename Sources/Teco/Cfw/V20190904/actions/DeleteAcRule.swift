@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DeleteAcRule请求参数结构体
-    public struct DeleteAcRuleRequest: TCRequestModel {
+    public struct DeleteAcRuleRequest: TCRequest {
         /// 删除规则对应的id值, 对应获取规则列表接口的Id 值
         public let id: UInt64
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// DeleteAcRule返回参数结构体
-    public struct DeleteAcRuleResponse: TCResponseModel {
+    public struct DeleteAcRuleResponse: TCResponse {
         /// 状态值 0: 删除成功, !0: 删除失败
         public let status: Int64
 

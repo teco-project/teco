@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyCdbProxyParam请求参数结构体
-    public struct ModifyCdbProxyParamRequest: TCRequestModel {
+    public struct ModifyCdbProxyParamRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// ModifyCdbProxyParam返回参数结构体
-    public struct ModifyCdbProxyParamResponse: TCResponseModel {
+    public struct ModifyCdbProxyParamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

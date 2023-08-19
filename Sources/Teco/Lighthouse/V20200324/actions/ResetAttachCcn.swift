@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ResetAttachCcn请求参数结构体
-    public struct ResetAttachCcnRequest: TCRequestModel {
+    public struct ResetAttachCcnRequest: TCRequest {
         /// 云联网实例ID。
         public let ccnId: String
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// ResetAttachCcn返回参数结构体
-    public struct ResetAttachCcnResponse: TCResponseModel {
+    public struct ResetAttachCcnResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

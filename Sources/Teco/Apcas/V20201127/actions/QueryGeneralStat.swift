@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apcas {
     /// QueryGeneralStat请求参数结构体
-    public struct QueryGeneralStatRequest: TCRequestModel {
+    public struct QueryGeneralStatRequest: TCRequest {
         /// 请求类型:1,人群特征洞察统计 2购车意向预测统计
         public let type: UInt64
 
@@ -34,7 +34,7 @@ extension Apcas {
     }
 
     /// QueryGeneralStat返回参数结构体
-    public struct QueryGeneralStatResponse: TCResponseModel {
+    public struct QueryGeneralStatResponse: TCResponse {
         /// 调用量信息
         public let generalStat: GeneralStat
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// GetCredentialStatus请求参数结构体
-    public struct GetCredentialStatusRequest: TCRequestModel {
+    public struct GetCredentialStatusRequest: TCRequest {
         /// 凭证id
         public let credentialId: String
 
@@ -34,7 +34,7 @@ extension Tdid {
     }
 
     /// GetCredentialStatus返回参数结构体
-    public struct GetCredentialStatusResponse: TCResponseModel {
+    public struct GetCredentialStatusResponse: TCResponse {
         /// 凭证状态信息
         public let credentialStatus: CredentialStatus
 

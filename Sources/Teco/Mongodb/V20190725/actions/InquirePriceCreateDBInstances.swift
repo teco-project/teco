@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// InquirePriceCreateDBInstances请求参数结构体
-    public struct InquirePriceCreateDBInstancesRequest: TCRequestModel {
+    public struct InquirePriceCreateDBInstancesRequest: TCRequest {
         /// 实例所属区域及可用区信息。格式：ap-guangzhou-2。
         public let zone: String
 
@@ -140,7 +140,7 @@ extension Mongodb {
     }
 
     /// InquirePriceCreateDBInstances返回参数结构体
-    public struct InquirePriceCreateDBInstancesResponse: TCResponseModel {
+    public struct InquirePriceCreateDBInstancesResponse: TCResponse {
         /// 价格
         public let price: DBInstancePrice
 

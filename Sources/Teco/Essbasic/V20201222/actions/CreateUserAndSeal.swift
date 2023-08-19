@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateUserAndSeal请求参数结构体
-    public struct CreateUserAndSealRequest: TCRequestModel {
+    public struct CreateUserAndSealRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -82,7 +82,7 @@ extension Essbasic {
     }
 
     /// CreateUserAndSeal返回参数结构体
-    public struct CreateUserAndSealResponse: TCResponseModel {
+    public struct CreateUserAndSealResponse: TCResponse {
         /// 用户唯一标识，按应用号隔离
         public let userId: String
 

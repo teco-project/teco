@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchModifyOpsOwners请求参数结构体
-    public struct BatchModifyOpsOwnersRequest: TCRequestModel {
+    public struct BatchModifyOpsOwnersRequest: TCRequest {
         /// 需要更新责任人的TaskId数组
         public let taskIdList: [String]
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// BatchModifyOpsOwners返回参数结构体
-    public struct BatchModifyOpsOwnersResponse: TCResponseModel {
+    public struct BatchModifyOpsOwnersResponse: TCResponse {
         /// 返回批量操作成功个数、失败个数、操作总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchOperationOpsDto?

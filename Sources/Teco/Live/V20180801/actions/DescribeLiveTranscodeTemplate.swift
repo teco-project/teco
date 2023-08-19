@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTranscodeTemplate请求参数结构体
-    public struct DescribeLiveTranscodeTemplateRequest: TCRequestModel {
+    public struct DescribeLiveTranscodeTemplateRequest: TCRequest {
         /// 模板 ID。
         /// 注意：在创建转码模板接口 [CreateLiveTranscodeTemplate](/document/product/267/32646) 调用的返回值中获取模板 ID。
         public let templateId: Int64
@@ -35,7 +35,7 @@ extension Live {
     }
 
     /// DescribeLiveTranscodeTemplate返回参数结构体
-    public struct DescribeLiveTranscodeTemplateResponse: TCResponseModel {
+    public struct DescribeLiveTranscodeTemplateResponse: TCResponse {
         /// 模板信息。
         public let template: TemplateInfo
 

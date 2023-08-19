@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RegisterBill请求参数结构体
-    public struct RegisterBillRequest: TCRequestModel {
+    public struct RegisterBillRequest: TCRequest {
         /// 请求类型此接口固定填：RegBillSupportWithdrawReq
         public let requestType: String
 
@@ -124,7 +124,7 @@ extension Cpdp {
     }
 
     /// RegisterBill返回参数结构体
-    public struct RegisterBillResponse: TCResponseModel {
+    public struct RegisterBillResponse: TCResponse {
         /// 银行流水号
         public let frontSeqNo: String
 

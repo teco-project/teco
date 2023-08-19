@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeRouteConflicts请求参数结构体
-    public struct DescribeRouteConflictsRequest: TCRequestModel {
+    public struct DescribeRouteConflictsRequest: TCRequest {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DescribeRouteConflicts返回参数结构体
-    public struct DescribeRouteConflictsResponse: TCResponseModel {
+    public struct DescribeRouteConflictsResponse: TCResponse {
         /// 路由策略冲突列表。
         public let routeConflictSet: [RouteConflict]
 

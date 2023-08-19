@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// ModifyGroup请求参数结构体
-    public struct ModifyGroupRequest: TCRequestModel {
+    public struct ModifyGroupRequest: TCRequest {
         /// 人员库ID，取值为创建人员库接口中的GroupId
         public let groupId: String
 
@@ -49,7 +49,7 @@ extension Iai {
     }
 
     /// ModifyGroup返回参数结构体
-    public struct ModifyGroupResponse: TCResponseModel {
+    public struct ModifyGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// GetRoomEvent请求参数结构体
-    public struct GetRoomEventRequest: TCRequestModel {
+    public struct GetRoomEventRequest: TCRequest {
         /// 房间Id。
         public let roomId: UInt64
 
@@ -67,7 +67,7 @@ extension Lcic {
     }
 
     /// GetRoomEvent返回参数结构体
-    public struct GetRoomEventResponse: TCResponseModel {
+    public struct GetRoomEventResponse: TCResponse {
         /// 该房间的事件总数，keyword搜索不影响该值。
         public let total: UInt64
 

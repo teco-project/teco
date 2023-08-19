@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// UpdateFunctionConfiguration请求参数结构体
-    public struct UpdateFunctionConfigurationRequest: TCRequestModel {
+    public struct UpdateFunctionConfigurationRequest: TCRequest {
         /// 要修改的函数名称
         public let functionName: String
 
@@ -135,7 +135,7 @@ extension Scf {
     }
 
     /// UpdateFunctionConfiguration返回参数结构体
-    public struct UpdateFunctionConfigurationResponse: TCResponseModel {
+    public struct UpdateFunctionConfigurationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

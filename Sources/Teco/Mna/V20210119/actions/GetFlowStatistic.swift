@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// GetFlowStatistic请求参数结构体
-    public struct GetFlowStatisticRequest: TCRequestModel {
+    public struct GetFlowStatisticRequest: TCRequest {
         /// 设备ID
         public let deviceId: String
 
@@ -54,7 +54,7 @@ extension Mna {
     }
 
     /// GetFlowStatistic返回参数结构体
-    public struct GetFlowStatisticResponse: TCResponseModel {
+    public struct GetFlowStatisticResponse: TCResponse {
         /// 流量详细信息
         public let netDetails: [NetDetails]
 

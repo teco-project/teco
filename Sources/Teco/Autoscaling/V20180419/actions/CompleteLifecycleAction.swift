@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CompleteLifecycleAction请求参数结构体
-    public struct CompleteLifecycleActionRequest: TCRequestModel {
+    public struct CompleteLifecycleActionRequest: TCRequest {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
 
@@ -49,7 +49,7 @@ extension As {
     }
 
     /// CompleteLifecycleAction返回参数结构体
-    public struct CompleteLifecycleActionResponse: TCResponseModel {
+    public struct CompleteLifecycleActionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

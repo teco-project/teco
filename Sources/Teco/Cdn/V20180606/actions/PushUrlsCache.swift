@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// PushUrlsCache请求参数结构体
-    public struct PushUrlsCacheRequest: TCRequestModel {
+    public struct PushUrlsCacheRequest: TCRequest {
         /// URL 列表，需要包含协议头部 http:// 或 https://
         public let urls: [String]
 
@@ -81,7 +81,7 @@ extension Cdn {
     }
 
     /// PushUrlsCache返回参数结构体
-    public struct PushUrlsCacheResponse: TCResponseModel {
+    public struct PushUrlsCacheResponse: TCResponse {
         /// 此批提交的任务 ID
         public let taskId: String
 

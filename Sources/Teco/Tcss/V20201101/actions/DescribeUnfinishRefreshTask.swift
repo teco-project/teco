@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeUnfinishRefreshTask请求参数结构体
-    public struct DescribeUnfinishRefreshTaskRequest: TCRequestModel {
+    public struct DescribeUnfinishRefreshTaskRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUnfinishRefreshTask返回参数结构体
-    public struct DescribeUnfinishRefreshTaskResponse: TCResponseModel {
+    public struct DescribeUnfinishRefreshTaskResponse: TCResponse {
         /// 返回最近的一次任务ID
         public let taskId: UInt64
 

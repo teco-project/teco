@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// GrantAccountPrivileges请求参数结构体
-    public struct GrantAccountPrivilegesRequest: TCRequestModel {
+    public struct GrantAccountPrivilegesRequest: TCRequest {
         /// 实例 ID，形如：dcdbt-ow728lmc。
         public let instanceId: String
 
@@ -72,7 +72,7 @@ extension Dcdb {
     }
 
     /// GrantAccountPrivileges返回参数结构体
-    public struct GrantAccountPrivilegesResponse: TCResponseModel {
+    public struct GrantAccountPrivilegesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

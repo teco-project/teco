@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeScanVulSetting请求参数结构体
-    public struct DescribeScanVulSettingRequest: TCRequestModel {
+    public struct DescribeScanVulSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeScanVulSetting返回参数结构体
-    public struct DescribeScanVulSettingResponse: TCResponseModel {
+    public struct DescribeScanVulSettingResponse: TCResponse {
         /// 漏洞类型：1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
         public let vulCategories: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ResetAPIDocPassword请求参数结构体
-    public struct ResetAPIDocPasswordRequest: TCRequestModel {
+    public struct ResetAPIDocPasswordRequest: TCRequest {
         /// API文档ID
         public let apiDocId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// ResetAPIDocPassword返回参数结构体
-    public struct ResetAPIDocPasswordResponse: TCResponseModel {
+    public struct ResetAPIDocPasswordResponse: TCResponse {
         /// API文档基本信息
         public let result: APIDoc
 

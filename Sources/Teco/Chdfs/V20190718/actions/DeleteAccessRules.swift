@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DeleteAccessRules请求参数结构体
-    public struct DeleteAccessRulesRequest: TCRequestModel {
+    public struct DeleteAccessRulesRequest: TCRequest {
         /// 多个权限规则ID，上限为10
         public let accessRuleIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DeleteAccessRules返回参数结构体
-    public struct DeleteAccessRulesResponse: TCResponseModel {
+    public struct DeleteAccessRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

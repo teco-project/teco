@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// DescribeContentQuota请求参数结构体
-    public struct DescribeContentQuotaRequest: TCRequestModel {
+    public struct DescribeContentQuotaRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -34,7 +34,7 @@ extension Teo {
     }
 
     /// DescribeContentQuota返回参数结构体
-    public struct DescribeContentQuotaResponse: TCResponseModel {
+    public struct DescribeContentQuotaResponse: TCResponse {
         /// 刷新相关配额。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let purgeQuota: [Quota]?

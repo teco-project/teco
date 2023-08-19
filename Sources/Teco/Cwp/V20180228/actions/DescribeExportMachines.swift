@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeExportMachines请求参数结构体
-    public struct DescribeExportMachinesRequest: TCRequestModel {
+    public struct DescribeExportMachinesRequest: TCRequest {
         /// 云主机类型。
         /// - CVM：表示虚拟主机
         /// - BM:  表示黑石物理机
@@ -66,7 +66,7 @@ extension Cwp {
     }
 
     /// DescribeExportMachines返回参数结构体
-    public struct DescribeExportMachinesResponse: TCResponseModel {
+    public struct DescribeExportMachinesResponse: TCResponse {
         /// 任务ID,需要到接口“异步导出任务”ExportTasks获取DownloadUrl下载地址
         public let taskId: String
 

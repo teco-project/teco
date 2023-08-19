@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Sqlserver {
     /// DescribeMigrationDetail请求参数结构体
-    public struct DescribeMigrationDetailRequest: TCRequestModel {
+    public struct DescribeMigrationDetailRequest: TCRequest {
         /// 迁移任务ID
         public let migrateId: UInt64
 
@@ -36,7 +36,7 @@ extension Sqlserver {
     }
 
     /// DescribeMigrationDetail返回参数结构体
-    public struct DescribeMigrationDetailResponse: TCResponseModel {
+    public struct DescribeMigrationDetailResponse: TCResponse {
         /// 迁移任务ID
         public let migrateId: UInt64
 

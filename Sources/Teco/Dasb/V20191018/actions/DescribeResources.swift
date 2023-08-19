@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// DescribeResources请求参数结构体
-    public struct DescribeResourcesRequest: TCRequestModel {
+    public struct DescribeResourcesRequest: TCRequest {
         /// 地域码, 如: ap-guangzhou
         public let apCode: String?
 
@@ -44,7 +44,7 @@ extension Dasb {
     }
 
     /// DescribeResources返回参数结构体
-    public struct DescribeResourcesResponse: TCResponseModel {
+    public struct DescribeResourcesResponse: TCResponse {
         /// 堡垒机资源列表
         public let resourceSet: [Resource]
 

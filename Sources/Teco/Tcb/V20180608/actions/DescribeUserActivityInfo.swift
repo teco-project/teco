@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeUserActivityInfo请求参数结构体
-    public struct DescribeUserActivityInfoRequest: TCRequestModel {
+    public struct DescribeUserActivityInfoRequest: TCRequest {
         /// 活动id
         public let activityId: Int64
 
@@ -49,7 +49,7 @@ extension Tcb {
     }
 
     /// DescribeUserActivityInfo返回参数结构体
-    public struct DescribeUserActivityInfoResponse: TCResponseModel {
+    public struct DescribeUserActivityInfoResponse: TCResponse {
         /// 自定义标记，1元钱裂变需求中即代指`团id`
         public let tag: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CreatePositionSpace请求参数结构体
-    public struct CreatePositionSpaceRequest: TCRequestModel {
+    public struct CreatePositionSpaceRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -59,7 +59,7 @@ extension Iotexplorer {
     }
 
     /// CreatePositionSpace返回参数结构体
-    public struct CreatePositionSpaceResponse: TCResponseModel {
+    public struct CreatePositionSpaceResponse: TCResponse {
         /// 空间Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spaceId: String?

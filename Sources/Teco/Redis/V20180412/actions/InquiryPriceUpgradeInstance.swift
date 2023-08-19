@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// InquiryPriceUpgradeInstance请求参数结构体
-    public struct InquiryPriceUpgradeInstanceRequest: TCRequestModel {
+    public struct InquiryPriceUpgradeInstanceRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Redis {
     }
 
     /// InquiryPriceUpgradeInstance返回参数结构体
-    public struct InquiryPriceUpgradeInstanceResponse: TCResponseModel {
+    public struct InquiryPriceUpgradeInstanceResponse: TCResponse {
         /// 价格，单位：分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let price: Float?

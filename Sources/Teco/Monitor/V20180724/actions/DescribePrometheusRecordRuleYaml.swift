@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusRecordRuleYaml请求参数结构体
-    public struct DescribePrometheusRecordRuleYamlRequest: TCRequestModel {
+    public struct DescribePrometheusRecordRuleYamlRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -51,7 +51,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusRecordRuleYaml返回参数结构体
-    public struct DescribePrometheusRecordRuleYamlResponse: TCResponseModel {
+    public struct DescribePrometheusRecordRuleYamlResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

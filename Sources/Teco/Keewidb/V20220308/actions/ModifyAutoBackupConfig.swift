@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ModifyAutoBackupConfig请求参数结构体
-    public struct ModifyAutoBackupConfigRequest: TCRequestModel {
+    public struct ModifyAutoBackupConfigRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -45,7 +45,7 @@ extension Keewidb {
     }
 
     /// ModifyAutoBackupConfig返回参数结构体
-    public struct ModifyAutoBackupConfigResponse: TCResponseModel {
+    public struct ModifyAutoBackupConfigResponse: TCResponse {
         /// 增量备份文件保存天数。
         public let backupStorageDays: Int64
 

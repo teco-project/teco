@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeImageAuthorizedInfo请求参数结构体
-    public struct DescribeImageAuthorizedInfoRequest: TCRequestModel {
+    public struct DescribeImageAuthorizedInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageAuthorizedInfo返回参数结构体
-    public struct DescribeImageAuthorizedInfoResponse: TCResponseModel {
+    public struct DescribeImageAuthorizedInfoResponse: TCResponse {
         /// 总共有效的镜像授权数
         public let totalAuthorizedCnt: UInt64
 

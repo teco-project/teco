@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// DeleteFace请求参数结构体
-    public struct DeleteFaceRequest: TCRequestModel {
+    public struct DeleteFaceRequest: TCRequest {
         /// 人员ID
         public let personId: String
 
@@ -39,7 +39,7 @@ extension Iai {
     }
 
     /// DeleteFace返回参数结构体
-    public struct DeleteFaceResponse: TCResponseModel {
+    public struct DeleteFaceResponse: TCResponse {
         /// 删除成功的人脸数量
         public let sucDeletedNum: UInt64
 

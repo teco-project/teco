@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeTimeWindow请求参数结构体
-    public struct DescribeTimeWindowRequest: TCRequestModel {
+    public struct DescribeTimeWindowRequest: TCRequest {
         /// 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeTimeWindow返回参数结构体
-    public struct DescribeTimeWindowResponse: TCResponseModel {
+    public struct DescribeTimeWindowResponse: TCResponse {
         /// 星期一的可维护时间列表。
         public let monday: [String]
 

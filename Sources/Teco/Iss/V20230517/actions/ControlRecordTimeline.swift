@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ControlRecordTimeline请求参数结构体
-    public struct ControlRecordTimelineRequest: TCRequestModel {
+    public struct ControlRecordTimelineRequest: TCRequest {
         /// 通道 ID（从通道查询接口DescribeDeviceChannel中获取）
         public let channelId: String
 
@@ -44,7 +44,7 @@ extension Iss {
     }
 
     /// ControlRecordTimeline返回参数结构体
-    public struct ControlRecordTimelineResponse: TCResponseModel {
+    public struct ControlRecordTimelineResponse: TCResponse {
         /// 返回数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [Timeline]?

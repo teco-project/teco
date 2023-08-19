@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeFlow请求参数结构体
-    public struct DescribeFlowRequest: TCRequestModel {
+    public struct DescribeFlowRequest: TCRequest {
         /// 异步请求接口返回的任务流程号。
         public let flowId: Int64
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DescribeFlow返回参数结构体
-    public struct DescribeFlowResponse: TCResponseModel {
+    public struct DescribeFlowResponse: TCResponse {
         /// 流程状态，0：成功，1：失败，2：运行中
         public let status: Int64
 

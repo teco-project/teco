@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulSummary请求参数结构体
-    public struct DescribeVulSummaryRequest: TCRequestModel {
+    public struct DescribeVulSummaryRequest: TCRequest {
         /// 过滤条件。
         /// - OnlyAffectedNewestImage- string- 是否必填：否 - 仅展示影响最新版本镜像的漏洞true,false
         /// - OnlyAffectedContainer-string- 是否必填：否 - 仅展示影响容器的漏洞,true,false
@@ -37,7 +37,7 @@ extension Tcss {
     }
 
     /// DescribeVulSummary返回参数结构体
-    public struct DescribeVulSummaryResponse: TCResponseModel {
+    public struct DescribeVulSummaryResponse: TCResponse {
         /// 漏洞总数量
         public let vulTotalCount: Int64
 

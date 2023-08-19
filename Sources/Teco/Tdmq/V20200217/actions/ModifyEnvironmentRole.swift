@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyEnvironmentRole请求参数结构体
-    public struct ModifyEnvironmentRoleRequest: TCRequestModel {
+    public struct ModifyEnvironmentRoleRequest: TCRequest {
         /// 环境（命名空间）名称。
         public let environmentId: String
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// ModifyEnvironmentRole返回参数结构体
-    public struct ModifyEnvironmentRoleResponse: TCResponseModel {
+    public struct ModifyEnvironmentRoleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

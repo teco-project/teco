@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitImageTask请求参数结构体
-    public struct SubmitImageTaskRequest: TCRequestModel {
+    public struct SubmitImageTaskRequest: TCRequest {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
         public let fileContent: String
 
@@ -74,7 +74,7 @@ extension Tci {
     }
 
     /// SubmitImageTask返回参数结构体
-    public struct SubmitImageTaskResponse: TCResponseModel {
+    public struct SubmitImageTaskResponse: TCResponse {
         /// 识别结果
         public let resultSet: [ImageTaskResult]
 

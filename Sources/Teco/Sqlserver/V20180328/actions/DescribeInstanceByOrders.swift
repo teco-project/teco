@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeInstanceByOrders请求参数结构体
-    public struct DescribeInstanceByOrdersRequest: TCRequestModel {
+    public struct DescribeInstanceByOrdersRequest: TCRequest {
         /// 订单号集合
         public let dealNames: [String]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeInstanceByOrders返回参数结构体
-    public struct DescribeInstanceByOrdersResponse: TCResponseModel {
+    public struct DescribeInstanceByOrdersResponse: TCResponse {
         /// 资源ID集合
         public let dealInstance: [DealInstance]?
 

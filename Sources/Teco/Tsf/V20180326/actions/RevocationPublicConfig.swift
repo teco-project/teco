@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// RevocationPublicConfig请求参数结构体
-    public struct RevocationPublicConfigRequest: TCRequestModel {
+    public struct RevocationPublicConfigRequest: TCRequest {
         /// 配置项发布ID
         public let configReleaseId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// RevocationPublicConfig返回参数结构体
-    public struct RevocationPublicConfigResponse: TCResponseModel {
+    public struct RevocationPublicConfigResponse: TCResponse {
         /// true：撤销成功；false：撤销失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

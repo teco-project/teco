@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRabbitMQVirtualHost请求参数结构体
-    public struct CreateRabbitMQVirtualHostRequest: TCRequestModel {
+    public struct CreateRabbitMQVirtualHostRequest: TCRequest {
         /// 集群实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// CreateRabbitMQVirtualHost返回参数结构体
-    public struct CreateRabbitMQVirtualHostResponse: TCResponseModel {
+    public struct CreateRabbitMQVirtualHostResponse: TCResponse {
         /// vhost名
         public let virtualHost: String
 

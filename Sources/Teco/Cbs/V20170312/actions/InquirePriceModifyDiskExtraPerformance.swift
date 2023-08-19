@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InquirePriceModifyDiskExtraPerformance请求参数结构体
-    public struct InquirePriceModifyDiskExtraPerformanceRequest: TCRequestModel {
+    public struct InquirePriceModifyDiskExtraPerformanceRequest: TCRequest {
         /// 额外购买的云硬盘性能值，单位MB/s。
         public let throughputPerformance: UInt64
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// InquirePriceModifyDiskExtraPerformance返回参数结构体
-    public struct InquirePriceModifyDiskExtraPerformanceResponse: TCResponseModel {
+    public struct InquirePriceModifyDiskExtraPerformanceResponse: TCResponse {
         /// 描述了调整云盘额外性能时对应的价格。
         public let diskPrice: Price
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// PurgePathCache请求参数结构体
-    public struct PurgePathCacheRequest: TCRequestModel {
+    public struct PurgePathCacheRequest: TCRequest {
         /// 要刷新的目录列表，必须包含协议头部。
         public let paths: [String]
 
@@ -39,7 +39,7 @@ extension Ecdn {
     }
 
     /// PurgePathCache返回参数结构体
-    public struct PurgePathCacheResponse: TCResponseModel {
+    public struct PurgePathCacheResponse: TCResponse {
         /// 刷新任务Id。
         public let taskId: String
 

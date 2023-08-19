@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfg {
     /// ExecuteTask请求参数结构体
-    public struct ExecuteTaskRequest: TCRequestModel {
+    public struct ExecuteTaskRequest: TCRequest {
         /// 需要执行的任务ID
         public let taskId: Int64
 
@@ -34,7 +34,7 @@ extension Cfg {
     }
 
     /// ExecuteTask返回参数结构体
-    public struct ExecuteTaskResponse: TCResponseModel {
+    public struct ExecuteTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

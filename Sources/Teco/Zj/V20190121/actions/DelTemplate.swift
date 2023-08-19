@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// DelTemplate请求参数结构体
-    public struct DelTemplateRequest: TCRequestModel {
+    public struct DelTemplateRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -39,7 +39,7 @@ extension Zj {
     }
 
     /// DelTemplate返回参数结构体
-    public struct DelTemplateResponse: TCResponseModel {
+    public struct DelTemplateResponse: TCResponse {
         /// 接口返回
         public let data: SmsSuccessResponse
 

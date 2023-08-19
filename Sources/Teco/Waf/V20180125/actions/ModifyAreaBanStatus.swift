@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyAreaBanStatus请求参数结构体
-    public struct ModifyAreaBanStatusRequest: TCRequestModel {
+    public struct ModifyAreaBanStatusRequest: TCRequest {
         /// 修要修改的域名
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Waf {
     }
 
     /// ModifyAreaBanStatus返回参数结构体
-    public struct ModifyAreaBanStatusResponse: TCResponseModel {
+    public struct ModifyAreaBanStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

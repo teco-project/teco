@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// InquiryPriceCreateProxy请求参数结构体
-    public struct InquiryPriceCreateProxyRequest: TCRequestModel {
+    public struct InquiryPriceCreateProxyRequest: TCRequest {
         /// 加速区域名称。
         public let accessRegion: String
 
@@ -84,7 +84,7 @@ extension Gaap {
     }
 
     /// InquiryPriceCreateProxy返回参数结构体
-    public struct InquiryPriceCreateProxyResponse: TCResponseModel {
+    public struct InquiryPriceCreateProxyResponse: TCResponse {
         /// 通道基础费用价格，单位：元/天。
         public let proxyDailyPrice: Float
 

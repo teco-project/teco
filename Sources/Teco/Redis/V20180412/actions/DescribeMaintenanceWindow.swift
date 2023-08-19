@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeMaintenanceWindow请求参数结构体
-    public struct DescribeMaintenanceWindowRequest: TCRequestModel {
+    public struct DescribeMaintenanceWindowRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeMaintenanceWindow返回参数结构体
-    public struct DescribeMaintenanceWindowResponse: TCResponseModel {
+    public struct DescribeMaintenanceWindowResponse: TCResponse {
         /// 维护时间窗起始时间，如：17:00
         public let startTime: String
 

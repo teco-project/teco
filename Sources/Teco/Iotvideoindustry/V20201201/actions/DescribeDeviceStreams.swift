@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeDeviceStreams请求参数结构体
-    public struct DescribeDeviceStreamsRequest: TCRequestModel {
+    public struct DescribeDeviceStreamsRequest: TCRequest {
         /// 设备唯一标识
         public let deviceId: String
 
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeDeviceStreams返回参数结构体
-    public struct DescribeDeviceStreamsResponse: TCResponseModel {
+    public struct DescribeDeviceStreamsResponse: TCResponse {
         /// 设备实时流地址列表
         public let data: DescribeDeviceStreamsData
 

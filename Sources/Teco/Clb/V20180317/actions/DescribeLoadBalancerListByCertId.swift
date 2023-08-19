@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeLoadBalancerListByCertId请求参数结构体
-    public struct DescribeLoadBalancerListByCertIdRequest: TCRequestModel {
+    public struct DescribeLoadBalancerListByCertIdRequest: TCRequest {
         /// 服务端证书的ID，或客户端证书的ID
         public let certIds: [String]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DescribeLoadBalancerListByCertId返回参数结构体
-    public struct DescribeLoadBalancerListByCertIdResponse: TCResponseModel {
+    public struct DescribeLoadBalancerListByCertIdResponse: TCResponse {
         /// 证书ID，以及与该证书ID关联的负载均衡实例列表
         public let certSet: [CertIdRelatedWithLoadBalancers]
 

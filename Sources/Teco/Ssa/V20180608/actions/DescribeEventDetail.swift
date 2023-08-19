@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeEventDetail请求参数结构体
-    public struct DescribeEventDetailRequest: TCRequestModel {
+    public struct DescribeEventDetailRequest: TCRequest {
         /// 事件索引名
         public let index: String?
 
@@ -54,7 +54,7 @@ extension Ssa {
     }
 
     /// DescribeEventDetail返回参数结构体
-    public struct DescribeEventDetailResponse: TCResponseModel {
+    public struct DescribeEventDetailResponse: TCResponse {
         /// 事件详情
         public let data: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// CreateSelectiveCredential请求参数结构体
-    public struct CreateSelectiveCredentialRequest: TCRequestModel {
+    public struct CreateSelectiveCredentialRequest: TCRequest {
         /// 参数集合
         public let functionArg: VerifyFunctionArg
 
@@ -39,7 +39,7 @@ extension Tdid {
     }
 
     /// CreateSelectiveCredential返回参数结构体
-    public struct CreateSelectiveCredentialResponse: TCResponseModel {
+    public struct CreateSelectiveCredentialResponse: TCResponse {
         /// 凭证字符串
         public let credentialData: String
 

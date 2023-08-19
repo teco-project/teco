@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// ModifyDevice请求参数结构体
-    public struct ModifyDeviceRequest: TCRequestModel {
+    public struct ModifyDeviceRequest: TCRequest {
         /// 资产记录ID
         public let id: UInt64
 
@@ -49,7 +49,7 @@ extension Dasb {
     }
 
     /// ModifyDevice返回参数结构体
-    public struct ModifyDeviceResponse: TCResponseModel {
+    public struct ModifyDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

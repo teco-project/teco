@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vm {
     /// CreateVideoModerationTask请求参数结构体
-    public struct CreateVideoModerationTaskRequest: TCRequestModel {
+    public struct CreateVideoModerationTaskRequest: TCRequest {
         /// 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
         public let bizType: String
 
@@ -59,7 +59,7 @@ extension Vm {
     }
 
     /// CreateVideoModerationTask返回参数结构体
-    public struct CreateVideoModerationTaskResponse: TCResponseModel {
+    public struct CreateVideoModerationTaskResponse: TCResponse {
         /// 任务创建结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?

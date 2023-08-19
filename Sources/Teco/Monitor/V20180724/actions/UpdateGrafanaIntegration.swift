@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateGrafanaIntegration请求参数结构体
-    public struct UpdateGrafanaIntegrationRequest: TCRequestModel {
+    public struct UpdateGrafanaIntegrationRequest: TCRequest {
         /// 集成 ID，可在实例详情-云产品集成-集成列表查看。例如：integration-abcd1234
         public let integrationId: String
 
@@ -49,7 +49,7 @@ extension Monitor {
     }
 
     /// UpdateGrafanaIntegration返回参数结构体
-    public struct UpdateGrafanaIntegrationResponse: TCResponseModel {
+    public struct UpdateGrafanaIntegrationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

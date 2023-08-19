@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowSignUrl请求参数结构体
-    public struct CreateFlowSignUrlRequest: TCRequestModel {
+    public struct CreateFlowSignUrlRequest: TCRequest {
         /// 流程编号
         public let flowId: String
 
@@ -70,7 +70,7 @@ extension Ess {
     }
 
     /// CreateFlowSignUrl返回参数结构体
-    public struct CreateFlowSignUrlResponse: TCResponseModel {
+    public struct CreateFlowSignUrlResponse: TCResponse {
         /// 签署人签署链接信息
         public let flowApproverUrlInfos: [FlowApproverUrlInfo]
 

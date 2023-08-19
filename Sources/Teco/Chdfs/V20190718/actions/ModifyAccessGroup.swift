@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// ModifyAccessGroup请求参数结构体
-    public struct ModifyAccessGroupRequest: TCRequestModel {
+    public struct ModifyAccessGroupRequest: TCRequest {
         /// 权限组ID
         public let accessGroupId: String
 
@@ -44,7 +44,7 @@ extension Chdfs {
     }
 
     /// ModifyAccessGroup返回参数结构体
-    public struct ModifyAccessGroupResponse: TCResponseModel {
+    public struct ModifyAccessGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

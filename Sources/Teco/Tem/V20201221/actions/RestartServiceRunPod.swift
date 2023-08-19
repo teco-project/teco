@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// RestartServiceRunPod请求参数结构体
-    public struct RestartServiceRunPodRequest: TCRequestModel {
+    public struct RestartServiceRunPodRequest: TCRequest {
         /// 环境id
         public let namespaceId: String
 
@@ -64,7 +64,7 @@ extension Tem {
     }
 
     /// RestartServiceRunPod返回参数结构体
-    public struct RestartServiceRunPodResponse: TCResponseModel {
+    public struct RestartServiceRunPodResponse: TCResponse {
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

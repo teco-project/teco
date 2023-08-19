@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// ModifyCallback请求参数结构体
-    public struct ModifyCallbackRequest: TCRequestModel {
+    public struct ModifyCallbackRequest: TCRequest {
         /// 任务分析完成后回调地址
         public let taskFinishNotifyURL: String
 
@@ -39,7 +39,7 @@ extension Ivld {
     }
 
     /// ModifyCallback返回参数结构体
-    public struct ModifyCallbackResponse: TCResponseModel {
+    public struct ModifyCallbackResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

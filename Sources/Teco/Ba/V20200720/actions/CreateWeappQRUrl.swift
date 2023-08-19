@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ba {
     /// CreateWeappQRUrl请求参数结构体
-    public struct CreateWeappQRUrlRequest: TCRequestModel {
+    public struct CreateWeappQRUrlRequest: TCRequest {
         /// 代理角色临时密钥的Token
         public let sessionKey: String
 
@@ -34,7 +34,7 @@ extension Ba {
     }
 
     /// CreateWeappQRUrl返回参数结构体
-    public struct CreateWeappQRUrlResponse: TCResponseModel {
+    public struct CreateWeappQRUrlResponse: TCResponse {
         /// 渠道备案小程序二维码
         public let url: String
 

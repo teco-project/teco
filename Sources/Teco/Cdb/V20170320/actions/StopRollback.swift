@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// StopRollback请求参数结构体
-    public struct StopRollbackRequest: TCRequestModel {
+    public struct StopRollbackRequest: TCRequest {
         /// 撤销回档任务对应的实例Id。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// StopRollback返回参数结构体
-    public struct StopRollbackResponse: TCResponseModel {
+    public struct StopRollbackResponse: TCResponse {
         /// 执行请求的异步任务ID
         public let asyncRequestId: String
 

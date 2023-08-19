@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ModifySubOrganizationInfo请求参数结构体
-    public struct ModifySubOrganizationInfoRequest: TCRequestModel {
+    public struct ModifySubOrganizationInfoRequest: TCRequest {
         /// 调用方信息，该接口 SubOrganizationId 字段与 OpenId 字段二者至少需要传入一个，全部传入时则使用 SubOrganizationId 信息
         public let caller: Caller
 
@@ -98,7 +98,7 @@ extension Essbasic {
     }
 
     /// ModifySubOrganizationInfo返回参数结构体
-    public struct ModifySubOrganizationInfoResponse: TCResponseModel {
+    public struct ModifySubOrganizationInfoResponse: TCResponse {
         /// 子机构ID
         public let subOrganizationId: String
 

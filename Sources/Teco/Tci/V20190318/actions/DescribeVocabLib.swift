@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tci {
     /// DescribeVocabLib请求参数结构体
-    public struct DescribeVocabLibRequest: TCRequestModel {
+    public struct DescribeVocabLibRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVocabLib返回参数结构体
-    public struct DescribeVocabLibResponse: TCResponseModel {
+    public struct DescribeVocabLibResponse: TCResponse {
         /// 返回该appid下的所有词汇库名
         public let vocabLibNameSet: [String]
 

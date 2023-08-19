@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryAcctInfo请求参数结构体
-    public struct QueryAcctInfoRequest: TCRequestModel {
+    public struct QueryAcctInfoRequest: TCRequest {
         /// 聚鑫平台分配的支付MidasAppId
         public let midasAppId: String
 
@@ -66,7 +66,7 @@ extension Cpdp {
     }
 
     /// QueryAcctInfo返回参数结构体
-    public struct QueryAcctInfoResponse: TCResponseModel {
+    public struct QueryAcctInfoResponse: TCResponse {
         /// 聚鑫计费SubAppId，代表子商户
         public let subAppId: String
 

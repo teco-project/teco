@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyApplicationMaterial请求参数结构体
-    public struct ApplyApplicationMaterialRequest: TCRequestModel {
+    public struct ApplyApplicationMaterialRequest: TCRequest {
         /// 对接方汇出指令编号
         public let transactionId: String
 
@@ -79,7 +79,7 @@ extension Cpdp {
     }
 
     /// ApplyApplicationMaterial返回参数结构体
-    public struct ApplyApplicationMaterialResponse: TCResponseModel {
+    public struct ApplyApplicationMaterialResponse: TCResponse {
         /// 提交申报材料结果
         public let result: ApplyDeclareResult
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeSlowLogUserHostStats请求参数结构体
-    public struct DescribeSlowLogUserHostStatsRequest: TCRequestModel {
+    public struct DescribeSlowLogUserHostStatsRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -62,7 +62,7 @@ extension Dbbrain {
     }
 
     /// DescribeSlowLogUserHostStats返回参数结构体
-    public struct DescribeSlowLogUserHostStatsResponse: TCResponseModel {
+    public struct DescribeSlowLogUserHostStatsResponse: TCResponse {
         /// 来源地址数目。
         public let totalCount: Int64
 

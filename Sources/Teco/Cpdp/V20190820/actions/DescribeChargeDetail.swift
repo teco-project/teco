@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// DescribeChargeDetail请求参数结构体
-    public struct DescribeChargeDetailRequest: TCRequestModel {
+    public struct DescribeChargeDetailRequest: TCRequest {
         /// 请求类型
         public let requestType: String
 
@@ -99,7 +99,7 @@ extension Cpdp {
     }
 
     /// DescribeChargeDetail返回参数结构体
-    public struct DescribeChargeDetailResponse: TCResponseModel {
+    public struct DescribeChargeDetailResponse: TCResponse {
         /// 交易状态 （0：成功，1：失败，2：异常,3:冲正，5：待处理）
         public let orderStatus: String
 

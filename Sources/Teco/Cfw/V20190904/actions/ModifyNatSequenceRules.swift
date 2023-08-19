@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyNatSequenceRules请求参数结构体
-    public struct ModifyNatSequenceRulesRequest: TCRequestModel {
+    public struct ModifyNatSequenceRulesRequest: TCRequest {
         /// 规则快速排序：OrderIndex，原始序号；NewOrderIndex：新序号
         public let ruleChangeItems: [RuleChangeItem]
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// ModifyNatSequenceRules返回参数结构体
-    public struct ModifyNatSequenceRulesResponse: TCResponseModel {
+    public struct ModifyNatSequenceRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

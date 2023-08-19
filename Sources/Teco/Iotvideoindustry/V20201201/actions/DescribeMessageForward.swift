@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeMessageForward请求参数结构体
-    public struct DescribeMessageForwardRequest: TCRequestModel {
+    public struct DescribeMessageForwardRequest: TCRequest {
         /// 配置ID
         public let intId: Int64
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeMessageForward返回参数结构体
-    public struct DescribeMessageForwardResponse: TCResponseModel {
+    public struct DescribeMessageForwardResponse: TCResponse {
         /// 区域ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: String?

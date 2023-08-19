@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DestroyDBInstance请求参数结构体
-    public struct DestroyDBInstanceRequest: TCRequestModel {
+    public struct DestroyDBInstanceRequest: TCRequest {
         /// 待下线实例ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DestroyDBInstance返回参数结构体
-    public struct DestroyDBInstanceResponse: TCResponseModel {
+    public struct DestroyDBInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

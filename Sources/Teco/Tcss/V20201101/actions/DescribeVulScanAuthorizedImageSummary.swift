@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulScanAuthorizedImageSummary请求参数结构体
-    public struct DescribeVulScanAuthorizedImageSummaryRequest: TCRequestModel {
+    public struct DescribeVulScanAuthorizedImageSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulScanAuthorizedImageSummary返回参数结构体
-    public struct DescribeVulScanAuthorizedImageSummaryResponse: TCResponseModel {
+    public struct DescribeVulScanAuthorizedImageSummaryResponse: TCResponse {
         /// 全部已授权的本地镜像数
         public let allAuthorizedImageCount: Int64
 

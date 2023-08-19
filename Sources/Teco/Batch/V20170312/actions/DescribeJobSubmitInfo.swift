@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// DescribeJobSubmitInfo请求参数结构体
-    public struct DescribeJobSubmitInfoRequest: TCRequestModel {
+    public struct DescribeJobSubmitInfoRequest: TCRequest {
         /// 作业ID
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Batch {
     }
 
     /// DescribeJobSubmitInfo返回参数结构体
-    public struct DescribeJobSubmitInfoResponse: TCResponseModel {
+    public struct DescribeJobSubmitInfoResponse: TCResponse {
         /// 作业ID
         public let jobId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// RecognizeMediaForZhiXue请求参数结构体
-    public struct RecognizeMediaForZhiXueRequest: TCRequestModel {
+    public struct RecognizeMediaForZhiXueRequest: TCRequest {
         /// 输入媒体文件存储信息。
         public let inputInfo: MediaInputInfo
 
@@ -44,7 +44,7 @@ extension Mps {
     }
 
     /// RecognizeMediaForZhiXue返回参数结构体
-    public struct RecognizeMediaForZhiXueResponse: TCResponseModel {
+    public struct RecognizeMediaForZhiXueResponse: TCResponse {
         /// 任务 ID，可以通过该 ID 查询任务状态和结果。
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRabbitMQUser请求参数结构体
-    public struct CreateRabbitMQUserRequest: TCRequestModel {
+    public struct CreateRabbitMQUserRequest: TCRequest {
         /// 集群实例Id
         public let instanceId: String
 
@@ -65,7 +65,7 @@ extension Tdmq {
     }
 
     /// CreateRabbitMQUser返回参数结构体
-    public struct CreateRabbitMQUserResponse: TCResponseModel {
+    public struct CreateRabbitMQUserResponse: TCResponse {
         /// 用户名，登录时使用
         public let user: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DescribeUserInAndOutTime请求参数结构体
-    public struct DescribeUserInAndOutTimeRequest: TCRequestModel {
+    public struct DescribeUserInAndOutTimeRequest: TCRequest {
         /// 应用ID
         public let bizId: Int64
 
@@ -54,7 +54,7 @@ extension Gme {
     }
 
     /// DescribeUserInAndOutTime返回参数结构体
-    public struct DescribeUserInAndOutTimeResponse: TCResponseModel {
+    public struct DescribeUserInAndOutTimeResponse: TCResponse {
         /// 用户在房间得进出时间列表
         public let inOutList: [InOutTimeInfo]
 

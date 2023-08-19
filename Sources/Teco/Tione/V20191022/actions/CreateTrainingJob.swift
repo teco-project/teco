@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateTrainingJob请求参数结构体
-    public struct CreateTrainingJobRequest: TCRequestModel {
+    public struct CreateTrainingJobRequest: TCRequest {
         /// 算法镜像配置
         public let algorithmSpecification: AlgorithmSpecification
 
@@ -85,7 +85,7 @@ extension Tione {
     }
 
     /// CreateTrainingJob返回参数结构体
-    public struct CreateTrainingJobResponse: TCResponseModel {
+    public struct CreateTrainingJobResponse: TCResponse {
         /// 训练任务名称
         public let trainingJobName: String
 

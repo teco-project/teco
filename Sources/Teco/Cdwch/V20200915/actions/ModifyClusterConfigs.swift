@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// ModifyClusterConfigs请求参数结构体
-    public struct ModifyClusterConfigsRequest: TCRequestModel {
+    public struct ModifyClusterConfigsRequest: TCRequest {
         /// 集群ID，例如cdwch-xxxx
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdwch {
     }
 
     /// ModifyClusterConfigs返回参数结构体
-    public struct ModifyClusterConfigsResponse: TCResponseModel {
+    public struct ModifyClusterConfigsResponse: TCResponse {
         /// 流程相关信息
         public let flowId: Int64
 

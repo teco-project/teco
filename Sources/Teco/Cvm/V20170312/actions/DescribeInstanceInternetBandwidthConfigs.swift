@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeInstanceInternetBandwidthConfigs请求参数结构体
-    public struct DescribeInstanceInternetBandwidthConfigsRequest: TCRequestModel {
+    public struct DescribeInstanceInternetBandwidthConfigsRequest: TCRequest {
         /// 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// DescribeInstanceInternetBandwidthConfigs返回参数结构体
-    public struct DescribeInstanceInternetBandwidthConfigsResponse: TCResponseModel {
+    public struct DescribeInstanceInternetBandwidthConfigsResponse: TCResponse {
         /// 带宽配置信息列表。
         public let internetBandwidthConfigSet: [InternetBandwidthConfig]
 

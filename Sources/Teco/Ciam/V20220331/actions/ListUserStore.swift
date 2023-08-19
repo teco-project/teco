@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ciam {
     /// ListUserStore请求参数结构体
-    public struct ListUserStoreRequest: TCRequestModel {
+    public struct ListUserStoreRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListUserStore返回参数结构体
-    public struct ListUserStoreResponse: TCResponseModel {
+    public struct ListUserStoreResponse: TCResponse {
         /// 用户目录列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userStoreSet: [UserStore]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// ModifyFileSystem请求参数结构体
-    public struct ModifyFileSystemRequest: TCRequestModel {
+    public struct ModifyFileSystemRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -50,7 +50,7 @@ extension Chdfs {
     }
 
     /// ModifyFileSystem返回参数结构体
-    public struct ModifyFileSystemResponse: TCResponseModel {
+    public struct ModifyFileSystemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

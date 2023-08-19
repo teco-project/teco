@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dlc {
     /// DescribeDMSTable请求参数结构体
-    public struct DescribeDMSTableRequest: TCRequestModel {
+    public struct DescribeDMSTableRequest: TCRequest {
         /// 数据库名称
         public let dbName: String?
 
@@ -66,7 +66,7 @@ extension Dlc {
     }
 
     /// DescribeDMSTable返回参数结构体
-    public struct DescribeDMSTableResponse: TCResponseModel {
+    public struct DescribeDMSTableResponse: TCResponse {
         /// 基础对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asset: Asset?

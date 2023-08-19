@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateVirusScanTask请求参数结构体
-    public struct CreateVirusScanTaskRequest: TCRequestModel {
+    public struct CreateVirusScanTaskRequest: TCRequest {
         /// 是否扫描所有路径
         public let scanPathAll: Bool
 
@@ -72,7 +72,7 @@ extension Tcss {
     }
 
     /// CreateVirusScanTask返回参数结构体
-    public struct CreateVirusScanTaskResponse: TCResponseModel {
+    public struct CreateVirusScanTaskResponse: TCResponse {
         /// 任务id
         public let taskID: String
 

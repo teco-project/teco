@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyAutoOpenProVersionConfig请求参数结构体
-    public struct ModifyAutoOpenProVersionConfigRequest: TCRequestModel {
+    public struct ModifyAutoOpenProVersionConfigRequest: TCRequest {
         /// 设置自动开通状态。
         /// - CLOSE：关闭
         /// - OPEN：打开
@@ -46,7 +46,7 @@ extension Cwp {
     }
 
     /// ModifyAutoOpenProVersionConfig返回参数结构体
-    public struct ModifyAutoOpenProVersionConfigResponse: TCResponseModel {
+    public struct ModifyAutoOpenProVersionConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

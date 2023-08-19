@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// AddCustomPersonImage请求参数结构体
-    public struct AddCustomPersonImageRequest: TCRequestModel {
+    public struct AddCustomPersonImageRequest: TCRequest {
         /// 自定义人物Id
         public let personId: String
 
@@ -44,7 +44,7 @@ extension Ivld {
     }
 
     /// AddCustomPersonImage返回参数结构体
-    public struct AddCustomPersonImageResponse: TCResponseModel {
+    public struct AddCustomPersonImageResponse: TCResponse {
         /// 自定义人物Id
         public let personId: String
 

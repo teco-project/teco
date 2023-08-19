@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// DescribeEisConnectorConfig请求参数结构体
-    public struct DescribeEisConnectorConfigRequest: TCRequestModel {
+    public struct DescribeEisConnectorConfigRequest: TCRequest {
         /// 连接器名称
         public let connectorName: String
 
@@ -39,7 +39,7 @@ extension Eis {
     }
 
     /// DescribeEisConnectorConfig返回参数结构体
-    public struct DescribeEisConnectorConfigResponse: TCResponseModel {
+    public struct DescribeEisConnectorConfigResponse: TCResponse {
         /// 连接器配置参数描述（json结构），示例如下：
         /// {
         ///     "attributes":{

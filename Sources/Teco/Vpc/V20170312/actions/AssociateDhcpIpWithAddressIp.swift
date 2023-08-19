@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssociateDhcpIpWithAddressIp请求参数结构体
-    public struct AssociateDhcpIpWithAddressIpRequest: TCRequestModel {
+    public struct AssociateDhcpIpWithAddressIpRequest: TCRequest {
         /// `DhcpIp`唯一`ID`，形如：`dhcpip-9o233uri`。必须是没有绑定`EIP`的`DhcpIp`
         public let dhcpIpId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// AssociateDhcpIpWithAddressIp返回参数结构体
-    public struct AssociateDhcpIpWithAddressIpResponse: TCResponseModel {
+    public struct AssociateDhcpIpWithAddressIpResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

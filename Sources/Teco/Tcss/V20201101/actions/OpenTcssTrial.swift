@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// OpenTcssTrial请求参数结构体
-    public struct OpenTcssTrialRequest: TCRequestModel {
+    public struct OpenTcssTrialRequest: TCRequest {
         public init() {
         }
     }
 
     /// OpenTcssTrial返回参数结构体
-    public struct OpenTcssTrialResponse: TCResponseModel {
+    public struct OpenTcssTrialResponse: TCResponse {
         /// 试用开通结束时间
         public let endTime: String
 

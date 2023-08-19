@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Yunjing {
     /// DescribeWeeklyReportInfo请求参数结构体
-    public struct DescribeWeeklyReportInfoRequest: TCRequestModel {
+    public struct DescribeWeeklyReportInfoRequest: TCRequest {
         /// 专业周报开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -39,7 +39,7 @@ extension Yunjing {
     }
 
     /// DescribeWeeklyReportInfo返回参数结构体
-    public struct DescribeWeeklyReportInfoResponse: TCResponseModel {
+    public struct DescribeWeeklyReportInfoResponse: TCResponse {
         /// 账号所属公司或个人名称。
         public let companyName: String
 

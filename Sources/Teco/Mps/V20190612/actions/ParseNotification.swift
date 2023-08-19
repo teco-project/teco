@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ParseNotification请求参数结构体
-    public struct ParseNotificationRequest: TCRequestModel {
+    public struct ParseNotificationRequest: TCRequest {
         /// 从 CMQ 获取到的事件通知内容。
         public let content: String
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// ParseNotification返回参数结构体
-    public struct ParseNotificationResponse: TCResponseModel {
+    public struct ParseNotificationResponse: TCResponse {
         /// 支持事件类型，目前取值有：
         /// - WorkflowTask：视频工作流处理任务。
         /// - EditMediaTask：视频编辑任务。

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CompleteMigrateJob请求参数结构体
-    public struct CompleteMigrateJobRequest: TCRequestModel {
+    public struct CompleteMigrateJobRequest: TCRequest {
         /// 数据迁移任务ID
         public let jobId: String
 
@@ -39,7 +39,7 @@ extension Dts {
     }
 
     /// CompleteMigrateJob返回参数结构体
-    public struct CompleteMigrateJobResponse: TCResponseModel {
+    public struct CompleteMigrateJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

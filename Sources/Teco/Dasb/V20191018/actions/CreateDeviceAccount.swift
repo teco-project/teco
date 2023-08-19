@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// CreateDeviceAccount请求参数结构体
-    public struct CreateDeviceAccountRequest: TCRequestModel {
+    public struct CreateDeviceAccountRequest: TCRequest {
         /// 主机记录ID
         public let deviceId: UInt64
 
@@ -39,7 +39,7 @@ extension Dasb {
     }
 
     /// CreateDeviceAccount返回参数结构体
-    public struct CreateDeviceAccountResponse: TCResponseModel {
+    public struct CreateDeviceAccountResponse: TCResponse {
         /// 新建成功后返回的记录ID
         public let id: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// LoginUser请求参数结构体
-    public struct LoginUserRequest: TCRequestModel {
+    public struct LoginUserRequest: TCRequest {
         /// 注册获取的用户id。
         public let userId: String
 
@@ -34,7 +34,7 @@ extension Lcic {
     }
 
     /// LoginUser返回参数结构体
-    public struct LoginUserResponse: TCResponseModel {
+    public struct LoginUserResponse: TCResponse {
         /// 用户Id。
         public let userId: String
 

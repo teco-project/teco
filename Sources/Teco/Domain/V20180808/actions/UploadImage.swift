@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// UploadImage请求参数结构体
-    public struct UploadImageRequest: TCRequestModel {
+    public struct UploadImageRequest: TCRequest {
         /// 资质照片，照片的base64编码。
         public let imageFile: String
 
@@ -34,7 +34,7 @@ extension Domain {
     }
 
     /// UploadImage返回参数结构体
-    public struct UploadImageResponse: TCResponseModel {
+    public struct UploadImageResponse: TCResponse {
         /// 资质照片地址。
         public let accessUrl: String
 

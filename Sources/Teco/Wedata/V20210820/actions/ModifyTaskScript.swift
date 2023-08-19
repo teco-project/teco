@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyTaskScript请求参数结构体
-    public struct ModifyTaskScriptRequest: TCRequestModel {
+    public struct ModifyTaskScriptRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// ModifyTaskScript返回参数结构体
-    public struct ModifyTaskScriptResponse: TCResponseModel {
+    public struct ModifyTaskScriptResponse: TCResponse {
         /// 详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CommonContent?

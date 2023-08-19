@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusAutoIsolateSampleDetail请求参数结构体
-    public struct DescribeVirusAutoIsolateSampleDetailRequest: TCRequestModel {
+    public struct DescribeVirusAutoIsolateSampleDetailRequest: TCRequest {
         /// 文件MD5值
         public let md5: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusAutoIsolateSampleDetail返回参数结构体
-    public struct DescribeVirusAutoIsolateSampleDetailResponse: TCResponseModel {
+    public struct DescribeVirusAutoIsolateSampleDetailResponse: TCResponse {
         /// 文件Md5值
         public let md5: String
 

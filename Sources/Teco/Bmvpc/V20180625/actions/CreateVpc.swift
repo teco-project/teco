@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// CreateVpc请求参数结构体
-    public struct CreateVpcRequest: TCRequestModel {
+    public struct CreateVpcRequest: TCRequest {
         /// 私有网络的名称
         public let vpcName: String
 
@@ -54,7 +54,7 @@ extension Bmvpc {
     }
 
     /// CreateVpc返回参数结构体
-    public struct CreateVpcResponse: TCResponseModel {
+    public struct CreateVpcResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

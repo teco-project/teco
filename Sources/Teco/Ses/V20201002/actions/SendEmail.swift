@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// SendEmail请求参数结构体
-    public struct SendEmailRequest: TCRequestModel {
+    public struct SendEmailRequest: TCRequest {
         /// 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com
         /// 如需填写发件人说明，请按照如下方式：
         /// 别名 <邮箱地址>
@@ -86,7 +86,7 @@ extension Ses {
     }
 
     /// SendEmail返回参数结构体
-    public struct SendEmailResponse: TCResponseModel {
+    public struct SendEmailResponse: TCResponse {
         /// 接受消息生成的唯一消息标识符。
         public let messageId: String
 

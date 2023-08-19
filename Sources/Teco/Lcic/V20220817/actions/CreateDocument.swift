@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// CreateDocument请求参数结构体
-    public struct CreateDocumentRequest: TCRequestModel {
+    public struct CreateDocumentRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -75,7 +75,7 @@ extension Lcic {
     }
 
     /// CreateDocument返回参数结构体
-    public struct CreateDocumentResponse: TCResponseModel {
+    public struct CreateDocumentResponse: TCResponse {
         /// 文档ID。
         public let documentId: String
 

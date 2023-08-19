@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeExporterIntegrations请求参数结构体
-    public struct DescribeExporterIntegrationsRequest: TCRequestModel {
+    public struct DescribeExporterIntegrationsRequest: TCRequest {
         /// 实例 ID
         public let instanceId: String
 
@@ -57,7 +57,7 @@ extension Monitor {
     }
 
     /// DescribeExporterIntegrations返回参数结构体
-    public struct DescribeExporterIntegrationsResponse: TCResponseModel {
+    public struct DescribeExporterIntegrationsResponse: TCResponse {
         /// 集成配置列表
         public let integrationSet: [IntegrationConfiguration]
 

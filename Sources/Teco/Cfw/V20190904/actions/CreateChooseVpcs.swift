@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// CreateChooseVpcs请求参数结构体
-    public struct CreateChooseVpcsRequest: TCRequestModel {
+    public struct CreateChooseVpcsRequest: TCRequest {
         /// vpc列表
         public let vpcList: [String]
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// CreateChooseVpcs返回参数结构体
-    public struct CreateChooseVpcsResponse: TCResponseModel {
+    public struct CreateChooseVpcsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

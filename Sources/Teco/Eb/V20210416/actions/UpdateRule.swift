@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// UpdateRule请求参数结构体
-    public struct UpdateRuleRequest: TCRequestModel {
+    public struct UpdateRuleRequest: TCRequest {
         /// 事件规则ID
         public let ruleId: String
 
@@ -59,7 +59,7 @@ extension Eb {
     }
 
     /// UpdateRule返回参数结构体
-    public struct UpdateRuleResponse: TCResponseModel {
+    public struct UpdateRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

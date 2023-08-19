@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeAlias请求参数结构体
-    public struct DescribeAliasRequest: TCRequestModel {
+    public struct DescribeAliasRequest: TCRequest {
         /// 要检索的队列别名的唯一标识符
         public let aliasId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeAlias返回参数结构体
-    public struct DescribeAliasResponse: TCResponseModel {
+    public struct DescribeAliasResponse: TCResponse {
         /// 别名对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: Alias?

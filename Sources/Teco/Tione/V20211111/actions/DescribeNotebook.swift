@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeNotebook请求参数结构体
-    public struct DescribeNotebookRequest: TCRequestModel {
+    public struct DescribeNotebookRequest: TCRequest {
         /// notebook id
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeNotebook返回参数结构体
-    public struct DescribeNotebookResponse: TCResponseModel {
+    public struct DescribeNotebookResponse: TCResponse {
         /// 详情
         public let notebookDetail: NotebookDetail
 

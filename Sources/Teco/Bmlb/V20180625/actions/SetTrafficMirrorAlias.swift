@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// SetTrafficMirrorAlias请求参数结构体
-    public struct SetTrafficMirrorAliasRequest: TCRequestModel {
+    public struct SetTrafficMirrorAliasRequest: TCRequest {
         /// 流量镜像实例ID。
         public let trafficMirrorId: String
 
@@ -39,7 +39,7 @@ extension Bmlb {
     }
 
     /// SetTrafficMirrorAlias返回参数结构体
-    public struct SetTrafficMirrorAliasResponse: TCResponseModel {
+    public struct SetTrafficMirrorAliasResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// IsolateDisks请求参数结构体
-    public struct IsolateDisksRequest: TCRequestModel {
+    public struct IsolateDisksRequest: TCRequest {
         /// 云硬盘ID列表。一个或多个待操作的云硬盘ID。可通过[DescribeDisks](https://cloud.tencent.com/document/product/1207/66093)接口返回值中的DiskId获取。每次请求退还数据盘数量总计上限为20。
         public let diskIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// IsolateDisks返回参数结构体
-    public struct IsolateDisksResponse: TCResponseModel {
+    public struct IsolateDisksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeOrgNode请求参数结构体
-    public struct DescribeOrgNodeRequest: TCRequestModel {
+    public struct DescribeOrgNodeRequest: TCRequest {
         /// 机构节点ID，是机构节点全局唯一标识，长度限制：64个字符。如果为空默认读取机构根节点信息。
         public let orgNodeId: String?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DescribeOrgNode返回参数结构体
-    public struct DescribeOrgNodeResponse: TCResponseModel {
+    public struct DescribeOrgNodeResponse: TCResponse {
         /// 机构节点展示名称，长度限制：64个字符。 默认与机构名相同。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let displayName: String?

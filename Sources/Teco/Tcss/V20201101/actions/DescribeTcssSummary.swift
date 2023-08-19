@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeTcssSummary请求参数结构体
-    public struct DescribeTcssSummaryRequest: TCRequestModel {
+    public struct DescribeTcssSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTcssSummary返回参数结构体
-    public struct DescribeTcssSummaryResponse: TCResponseModel {
+    public struct DescribeTcssSummaryResponse: TCResponse {
         /// 镜像总数
         public let imageCnt: UInt64
 

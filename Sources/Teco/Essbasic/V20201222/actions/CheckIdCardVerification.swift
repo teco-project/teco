@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CheckIdCardVerification请求参数结构体
-    public struct CheckIdCardVerificationRequest: TCRequestModel {
+    public struct CheckIdCardVerificationRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// CheckIdCardVerification返回参数结构体
-    public struct CheckIdCardVerificationResponse: TCResponseModel {
+    public struct CheckIdCardVerificationResponse: TCResponse {
         /// 检测结果;
         /// 收费错误码:
         ///   0: 通过,

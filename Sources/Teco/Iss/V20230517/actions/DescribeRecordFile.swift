@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeRecordFile请求参数结构体
-    public struct DescribeRecordFileRequest: TCRequestModel {
+    public struct DescribeRecordFileRequest: TCRequest {
         /// 通道所属设备ID
         public let deviceId: String
 
@@ -49,7 +49,7 @@ extension Iss {
     }
 
     /// 用于查询设备云端录像时间轴信息返回数据
-    public struct DescribeRecordFileResponse: TCResponseModel {
+    public struct DescribeRecordFileResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

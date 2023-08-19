@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeBizHttpStatus请求参数结构体
-    public struct DescribeBizHttpStatusRequest: TCRequestModel {
+    public struct DescribeBizHttpStatusRequest: TCRequest {
         /// 统计方式，仅支持sum
         public let statistics: String
 
@@ -69,7 +69,7 @@ extension Antiddos {
     }
 
     /// DescribeBizHttpStatus返回参数结构体
-    public struct DescribeBizHttpStatusResponse: TCResponseModel {
+    public struct DescribeBizHttpStatusResponse: TCResponse {
         /// 业务流量http状态码统计数据
         public let httpStatusMap: HttpStatusMap
 

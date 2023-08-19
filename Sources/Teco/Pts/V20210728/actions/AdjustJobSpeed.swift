@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// AdjustJobSpeed请求参数结构体
-    public struct AdjustJobSpeedRequest: TCRequestModel {
+    public struct AdjustJobSpeedRequest: TCRequest {
         /// 任务ID
         public let jobId: String
 
@@ -39,7 +39,7 @@ extension Pts {
     }
 
     /// AdjustJobSpeed返回参数结构体
-    public struct AdjustJobSpeedResponse: TCResponseModel {
+    public struct AdjustJobSpeedResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

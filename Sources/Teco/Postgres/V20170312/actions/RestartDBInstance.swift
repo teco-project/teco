@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// RestartDBInstance请求参数结构体
-    public struct RestartDBInstanceRequest: TCRequestModel {
+    public struct RestartDBInstanceRequest: TCRequest {
         /// 实例ID，形如postgres-6r233v55
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// RestartDBInstance返回参数结构体
-    public struct RestartDBInstanceResponse: TCResponseModel {
+    public struct RestartDBInstanceResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

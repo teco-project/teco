@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Pts {
     /// CreateCronJob请求参数结构体
-    public struct CreateCronJobRequest: TCRequestModel {
+    public struct CreateCronJobRequest: TCRequest {
         /// 定时任务名字
         public let name: String
 
@@ -84,7 +84,7 @@ extension Pts {
     }
 
     /// CreateCronJob返回参数结构体
-    public struct CreateCronJobResponse: TCResponseModel {
+    public struct CreateCronJobResponse: TCResponse {
         /// 定时任务ID
         public let cronJobId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeMusic请求参数结构体
-    public struct DescribeMusicRequest: TCRequestModel {
+    public struct DescribeMusicRequest: TCRequest {
         /// 歌曲ID
         public let itemId: String
 
@@ -51,7 +51,7 @@ extension Ame {
     }
 
     /// DescribeMusic返回参数结构体
-    public struct DescribeMusicResponse: TCResponseModel {
+    public struct DescribeMusicResponse: TCResponse {
         /// 音乐相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let music: Music?

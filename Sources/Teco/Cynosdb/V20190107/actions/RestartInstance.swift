@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// RestartInstance请求参数结构体
-    public struct RestartInstanceRequest: TCRequestModel {
+    public struct RestartInstanceRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// RestartInstance返回参数结构体
-    public struct RestartInstanceResponse: TCResponseModel {
+    public struct RestartInstanceResponse: TCResponse {
         /// 异步任务id
         public let flowId: Int64
 

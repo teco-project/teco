@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateRedInvoice请求参数结构体
-    public struct CreateRedInvoiceRequest: TCRequestModel {
+    public struct CreateRedInvoiceRequest: TCRequest {
         /// 开票平台ID
         /// 0 : 高灯
         /// 1 : 票易通
@@ -51,7 +51,7 @@ extension Cpdp {
     }
 
     /// CreateRedInvoice返回参数结构体
-    public struct CreateRedInvoiceResponse: TCResponseModel {
+    public struct CreateRedInvoiceResponse: TCResponse {
         /// 红冲结果
         public let result: CreateRedInvoiceResult
 

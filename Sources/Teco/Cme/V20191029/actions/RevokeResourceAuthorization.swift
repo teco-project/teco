@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// RevokeResourceAuthorization请求参数结构体
-    public struct RevokeResourceAuthorizationRequest: TCRequestModel {
+    public struct RevokeResourceAuthorizationRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -63,7 +63,7 @@ extension Cme {
     }
 
     /// RevokeResourceAuthorization返回参数结构体
-    public struct RevokeResourceAuthorizationResponse: TCResponseModel {
+    public struct RevokeResourceAuthorizationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

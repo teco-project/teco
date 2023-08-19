@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CheckDuplicateTemplateName请求参数结构体
-    public struct CheckDuplicateTemplateNameRequest: TCRequestModel {
+    public struct CheckDuplicateTemplateNameRequest: TCRequest {
         /// 规则模板ID
         public let templateId: UInt64?
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// CheckDuplicateTemplateName返回参数结构体
-    public struct CheckDuplicateTemplateNameResponse: TCResponseModel {
+    public struct CheckDuplicateTemplateNameResponse: TCResponse {
         /// 是否重名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

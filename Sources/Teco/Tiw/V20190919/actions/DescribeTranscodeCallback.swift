@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeTranscodeCallback请求参数结构体
-    public struct DescribeTranscodeCallbackRequest: TCRequestModel {
+    public struct DescribeTranscodeCallbackRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -34,7 +34,7 @@ extension Tiw {
     }
 
     /// DescribeTranscodeCallback返回参数结构体
-    public struct DescribeTranscodeCallbackResponse: TCResponseModel {
+    public struct DescribeTranscodeCallbackResponse: TCResponse {
         /// 文档转码回调地址
         public let callback: String
 

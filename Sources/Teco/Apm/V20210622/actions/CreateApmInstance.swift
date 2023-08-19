@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apm {
     /// CreateApmInstance请求参数结构体
-    public struct CreateApmInstanceRequest: TCRequestModel {
+    public struct CreateApmInstanceRequest: TCRequest {
         /// 实例名
         public let name: String
 
@@ -54,7 +54,7 @@ extension Apm {
     }
 
     /// CreateApmInstance返回参数结构体
-    public struct CreateApmInstanceResponse: TCResponseModel {
+    public struct CreateApmInstanceResponse: TCResponse {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?

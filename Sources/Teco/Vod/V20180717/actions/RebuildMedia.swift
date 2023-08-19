@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// RebuildMedia请求参数结构体
-    public struct RebuildMediaRequest: TCRequestModel {
+    public struct RebuildMediaRequest: TCRequest {
         /// 媒体文件 ID。
         public let fileId: String
 
@@ -134,7 +134,7 @@ extension Vod {
     }
 
     /// RebuildMedia返回参数结构体
-    public struct RebuildMediaResponse: TCResponseModel {
+    public struct RebuildMediaResponse: TCResponse {
         /// 视频重生的任务 ID，可以通过该 ID 查询视频重生任务的状态。
         public let taskId: String
 

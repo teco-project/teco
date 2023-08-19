@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeWorkspaces请求参数结构体
-    public struct DescribeWorkspacesRequest: TCRequestModel {
+    public struct DescribeWorkspacesRequest: TCRequest {
         /// 工作空间名称过滤条件
         public let name: String?
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// DescribeWorkspaces返回参数结构体
-    public struct DescribeWorkspacesResponse: TCResponseModel {
+    public struct DescribeWorkspacesResponse: TCResponse {
         /// 工作空间列表
         public let data: [WorkspaceStatusInfo]
 

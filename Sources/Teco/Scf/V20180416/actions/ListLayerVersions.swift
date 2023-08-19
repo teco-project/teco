@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// ListLayerVersions请求参数结构体
-    public struct ListLayerVersionsRequest: TCRequestModel {
+    public struct ListLayerVersionsRequest: TCRequest {
         /// 层名称
         public let layerName: String
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// ListLayerVersions返回参数结构体
-    public struct ListLayerVersionsResponse: TCResponseModel {
+    public struct ListLayerVersionsResponse: TCResponse {
         /// 层版本列表
         public let layerVersions: [LayerVersionInfo]
 

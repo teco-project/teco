@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeRenewalPrice请求参数结构体
-    public struct DescribeRenewalPriceRequest: TCRequestModel {
+    public struct DescribeRenewalPriceRequest: TCRequest {
         /// 待续费的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Mariadb {
     }
 
     /// DescribeRenewalPrice返回参数结构体
-    public struct DescribeRenewalPriceResponse: TCResponseModel {
+    public struct DescribeRenewalPriceResponse: TCResponse {
         /// 原价
         /// * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
         /// * 币种：国内站为人民币，国际站为美元

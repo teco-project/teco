@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DeleteSecurityGroupRule请求参数结构体
-    public struct DeleteSecurityGroupRuleRequest: TCRequestModel {
+    public struct DeleteSecurityGroupRuleRequest: TCRequest {
         /// 所需要删除规则的ID
         public let id: UInt64
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// DeleteSecurityGroupRule返回参数结构体
-    public struct DeleteSecurityGroupRuleResponse: TCResponseModel {
+    public struct DeleteSecurityGroupRuleResponse: TCResponse {
         /// 状态值，0：成功，非0：失败
         public let status: Int64
 

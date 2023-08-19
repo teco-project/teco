@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateRecordingRule请求参数结构体
-    public struct UpdateRecordingRuleRequest: TCRequestModel {
+    public struct UpdateRecordingRuleRequest: TCRequest {
         /// 聚合规则名称
         public let name: String
 
@@ -59,7 +59,7 @@ extension Monitor {
     }
 
     /// UpdateRecordingRule返回参数结构体
-    public struct UpdateRecordingRuleResponse: TCResponseModel {
+    public struct UpdateRecordingRuleResponse: TCResponse {
         /// 规则 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?

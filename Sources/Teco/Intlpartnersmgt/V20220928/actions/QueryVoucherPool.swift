@@ -20,13 +20,13 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryVoucherPool请求参数结构体
-    public struct QueryVoucherPoolRequest: TCRequestModel {
+    public struct QueryVoucherPoolRequest: TCRequest {
         public init() {
         }
     }
 
     /// QueryVoucherPool返回参数结构体
-    public struct QueryVoucherPoolResponse: TCResponseModel {
+    public struct QueryVoucherPoolResponse: TCResponse {
         /// 经销商姓名
         public let agentName: String
 

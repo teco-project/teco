@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ManageExternalEndpoint请求参数结构体
-    public struct ManageExternalEndpointRequest: TCRequestModel {
+    public struct ManageExternalEndpointRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// ManageExternalEndpoint返回参数结构体
-    public struct ManageExternalEndpointResponse: TCResponseModel {
+    public struct ManageExternalEndpointResponse: TCResponse {
         /// 实例Id
         public let registryId: String
 

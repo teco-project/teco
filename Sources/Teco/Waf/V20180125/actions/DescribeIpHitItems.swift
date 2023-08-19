@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeIpHitItems请求参数结构体
-    public struct DescribeIpHitItemsRequest: TCRequestModel {
+    public struct DescribeIpHitItemsRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -89,7 +89,7 @@ extension Waf {
     }
 
     /// DescribeIpHitItems返回参数结构体
-    public struct DescribeIpHitItemsResponse: TCResponseModel {
+    public struct DescribeIpHitItemsResponse: TCResponse {
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: IpHitItemsData?

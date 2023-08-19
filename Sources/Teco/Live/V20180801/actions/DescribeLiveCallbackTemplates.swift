@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveCallbackTemplates请求参数结构体
-    public struct DescribeLiveCallbackTemplatesRequest: TCRequestModel {
+    public struct DescribeLiveCallbackTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveCallbackTemplates返回参数结构体
-    public struct DescribeLiveCallbackTemplatesResponse: TCResponseModel {
+    public struct DescribeLiveCallbackTemplatesResponse: TCResponse {
         /// 模板信息列表。
         public let templates: [CallBackTemplateInfo]
 

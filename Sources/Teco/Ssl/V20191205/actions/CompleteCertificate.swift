@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// CompleteCertificate请求参数结构体
-    public struct CompleteCertificateRequest: TCRequestModel {
+    public struct CompleteCertificateRequest: TCRequest {
         /// 证书ID
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// CompleteCertificate返回参数结构体
-    public struct CompleteCertificateResponse: TCResponseModel {
+    public struct CompleteCertificateResponse: TCResponse {
         /// 证书ID
         public let certificateId: String
 

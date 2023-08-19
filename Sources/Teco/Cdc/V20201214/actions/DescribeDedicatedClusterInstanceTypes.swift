@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DescribeDedicatedClusterInstanceTypes请求参数结构体
-    public struct DescribeDedicatedClusterInstanceTypesRequest: TCRequestModel {
+    public struct DescribeDedicatedClusterInstanceTypesRequest: TCRequest {
         /// 查询的专用集群id
         public let dedicatedClusterId: String
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DescribeDedicatedClusterInstanceTypes返回参数结构体
-    public struct DescribeDedicatedClusterInstanceTypesResponse: TCResponseModel {
+    public struct DescribeDedicatedClusterInstanceTypesResponse: TCResponse {
         /// 支持的实例规格列表
         public let dedicatedClusterInstanceTypeSet: [DedicatedClusterInstanceType]
 

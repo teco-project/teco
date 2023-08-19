@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyRabbitMQVipInstance请求参数结构体
-    public struct ModifyRabbitMQVipInstanceRequest: TCRequestModel {
+    public struct ModifyRabbitMQVipInstanceRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Tdmq {
     }
 
     /// ModifyRabbitMQVipInstance返回参数结构体
-    public struct ModifyRabbitMQVipInstanceResponse: TCResponseModel {
+    public struct ModifyRabbitMQVipInstanceResponse: TCResponse {
         /// 实例id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?

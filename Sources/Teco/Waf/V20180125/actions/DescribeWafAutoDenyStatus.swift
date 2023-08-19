@@ -20,13 +20,13 @@ import TecoCore
 
 extension Waf {
     /// DescribeWafAutoDenyStatus请求参数结构体
-    public struct DescribeWafAutoDenyStatusRequest: TCRequestModel {
+    public struct DescribeWafAutoDenyStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWafAutoDenyStatus返回参数结构体
-    public struct DescribeWafAutoDenyStatusResponse: TCResponseModel {
+    public struct DescribeWafAutoDenyStatusResponse: TCResponse {
         /// WAF 自动封禁详情
         public let wafAutoDenyDetails: AutoDenyDetail
 

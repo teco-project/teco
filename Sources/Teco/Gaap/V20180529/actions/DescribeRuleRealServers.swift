@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRuleRealServers请求参数结构体
-    public struct DescribeRuleRealServersRequest: TCRequestModel {
+    public struct DescribeRuleRealServersRequest: TCRequest {
         /// 转发规则ID
         public let ruleId: String
 
@@ -44,7 +44,7 @@ extension Gaap {
     }
 
     /// DescribeRuleRealServers返回参数结构体
-    public struct DescribeRuleRealServersResponse: TCResponseModel {
+    public struct DescribeRuleRealServersResponse: TCResponse {
         /// 可绑定的源站个数
         public let totalCount: UInt64
 

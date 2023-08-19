@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CreateTmpInstances请求参数结构体
-    public struct CreateTmpInstancesRequest: TCRequestModel {
+    public struct CreateTmpInstancesRequest: TCRequest {
         /// 回档实例的ID列表，形如：tdsql-ow728lmc。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// CreateTmpInstances返回参数结构体
-    public struct CreateTmpInstancesResponse: TCResponseModel {
+    public struct CreateTmpInstancesResponse: TCResponse {
         /// 异步任务流程ID。
         public let flowId: Int64
 

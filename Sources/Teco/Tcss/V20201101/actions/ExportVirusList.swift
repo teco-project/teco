@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ExportVirusList请求参数结构体
-    public struct ExportVirusListRequest: TCRequestModel {
+    public struct ExportVirusListRequest: TCRequest {
         /// 过滤条件。
         /// - FileName - String - 是否必填：否 - 文件名称
         /// - FilePath - String - 是否必填：否 - 文件路径
@@ -63,7 +63,7 @@ extension Tcss {
     }
 
     /// ExportVirusList返回参数结构体
-    public struct ExportVirusListResponse: TCResponseModel {
+    public struct ExportVirusListResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

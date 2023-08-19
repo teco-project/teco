@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ReloadDeviceOs请求参数结构体
-    public struct ReloadDeviceOsRequest: TCRequestModel {
+    public struct ReloadDeviceOsRequest: TCRequest {
         /// 设备的唯一ID
         public let instanceId: String
 
@@ -131,7 +131,7 @@ extension Bm {
     }
 
     /// ReloadDeviceOs返回参数结构体
-    public struct ReloadDeviceOsResponse: TCResponseModel {
+    public struct ReloadDeviceOsResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

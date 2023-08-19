@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// QueryBeautifyVideoJob请求参数结构体
-    public struct QueryBeautifyVideoJobRequest: TCRequestModel {
+    public struct QueryBeautifyVideoJobRequest: TCRequest {
         /// 视频美颜Job id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Fmu {
     }
 
     /// QueryBeautifyVideoJob返回参数结构体
-    public struct QueryBeautifyVideoJobResponse: TCResponseModel {
+    public struct QueryBeautifyVideoJobResponse: TCResponse {
         /// 当前任务状态：排队中、处理中、处理失败或者处理完成
         public let jobStatus: String
 

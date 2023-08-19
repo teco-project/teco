@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ModifyDeviceAutoRenewFlag请求参数结构体
-    public struct ModifyDeviceAutoRenewFlagRequest: TCRequestModel {
+    public struct ModifyDeviceAutoRenewFlagRequest: TCRequest {
         /// 自动续费标志位。0: 不自动续费; 1: 自动续费
         public let autoRenewFlag: UInt64
 
@@ -39,7 +39,7 @@ extension Bm {
     }
 
     /// ModifyDeviceAutoRenewFlag返回参数结构体
-    public struct ModifyDeviceAutoRenewFlagResponse: TCResponseModel {
+    public struct ModifyDeviceAutoRenewFlagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

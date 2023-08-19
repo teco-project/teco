@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateRole请求参数结构体
-    public struct CreateRoleRequest: TCRequestModel {
+    public struct CreateRoleRequest: TCRequest {
         /// 角色名称。长度为1~128个字符，可包含英文字母、数字和+=,.@-_。
         public let roleName: String
 
@@ -59,7 +59,7 @@ extension Cam {
     }
 
     /// CreateRole返回参数结构体
-    public struct CreateRoleResponse: TCResponseModel {
+    public struct CreateRoleResponse: TCResponse {
         /// 角色ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleId: String?

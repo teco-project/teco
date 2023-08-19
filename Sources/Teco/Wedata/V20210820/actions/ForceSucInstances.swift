@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ForceSucInstances请求参数结构体
-    public struct ForceSucInstancesRequest: TCRequestModel {
+    public struct ForceSucInstancesRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// ForceSucInstances返回参数结构体
-    public struct ForceSucInstancesResponse: TCResponseModel {
+    public struct ForceSucInstancesResponse: TCResponse {
         /// 返回实例批量终止结果
         public let data: OperateResult
 

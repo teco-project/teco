@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// CleanUpInstance请求参数结构体
-    public struct CleanUpInstanceRequest: TCRequestModel {
+    public struct CleanUpInstanceRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// CleanUpInstance返回参数结构体
-    public struct CleanUpInstanceResponse: TCResponseModel {
+    public struct CleanUpInstanceResponse: TCResponse {
         /// 任务 ID。
         public let taskId: Int64
 

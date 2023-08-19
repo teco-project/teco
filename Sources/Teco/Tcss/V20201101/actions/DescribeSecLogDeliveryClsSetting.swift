@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogDeliveryClsSetting请求参数结构体
-    public struct DescribeSecLogDeliveryClsSettingRequest: TCRequestModel {
+    public struct DescribeSecLogDeliveryClsSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecLogDeliveryClsSetting返回参数结构体
-    public struct DescribeSecLogDeliveryClsSettingResponse: TCResponseModel {
+    public struct DescribeSecLogDeliveryClsSettingResponse: TCResponse {
         /// 日志类型列表
         public let logTypeList: [SecLogDeliveryClsSettingInfo]
 

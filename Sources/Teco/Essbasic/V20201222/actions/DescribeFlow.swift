@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFlow请求参数结构体
-    public struct DescribeFlowRequest: TCRequestModel {
+    public struct DescribeFlowRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// DescribeFlow返回参数结构体
-    public struct DescribeFlowResponse: TCResponseModel {
+    public struct DescribeFlowResponse: TCResponse {
         /// 流程创建者信息
         public let creator: Caller
 

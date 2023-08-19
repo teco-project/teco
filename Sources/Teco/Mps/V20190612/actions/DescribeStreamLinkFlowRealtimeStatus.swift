@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DescribeStreamLinkFlowRealtimeStatus请求参数结构体
-    public struct DescribeStreamLinkFlowRealtimeStatusRequest: TCRequestModel {
+    public struct DescribeStreamLinkFlowRealtimeStatusRequest: TCRequest {
         /// 流ID。
         public let flowId: String
 
@@ -44,7 +44,7 @@ extension Mps {
     }
 
     /// DescribeStreamLinkFlowRealtimeStatus返回参数结构体
-    public struct DescribeStreamLinkFlowRealtimeStatusResponse: TCResponseModel {
+    public struct DescribeStreamLinkFlowRealtimeStatusResponse: TCResponse {
         /// 查询时间，单位s。
         public let timestamp: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CheckRepeatAssetImageRegistry请求参数结构体
-    public struct CheckRepeatAssetImageRegistryRequest: TCRequestModel {
+    public struct CheckRepeatAssetImageRegistryRequest: TCRequest {
         /// 仓库名
         public let name: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// CheckRepeatAssetImageRegistry返回参数结构体
-    public struct CheckRepeatAssetImageRegistryResponse: TCResponseModel {
+    public struct CheckRepeatAssetImageRegistryResponse: TCResponse {
         /// 是否重复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isRepeat: Bool?

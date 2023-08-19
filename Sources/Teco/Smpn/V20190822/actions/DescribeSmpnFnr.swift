@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smpn {
     /// DescribeSmpnFnr请求参数结构体
-    public struct DescribeSmpnFnrRequest: TCRequestModel {
+    public struct DescribeSmpnFnrRequest: TCRequest {
         /// 虚假号码识别请求内容
         public let requestData: FNRRequest
 
@@ -39,7 +39,7 @@ extension Smpn {
     }
 
     /// DescribeSmpnFnr返回参数结构体
-    public struct DescribeSmpnFnrResponse: TCResponseModel {
+    public struct DescribeSmpnFnrResponse: TCResponse {
         /// 虚假号码识别回应内容
         public let responseData: FNRResponse
 

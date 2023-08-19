@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UploadTaxList请求参数结构体
-    public struct UploadTaxListRequest: TCRequestModel {
+    public struct UploadTaxListRequest: TCRequest {
         /// 平台渠道
         public let channel: Int64
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// UploadTaxList返回参数结构体
-    public struct UploadTaxListResponse: TCResponseModel {
+    public struct UploadTaxListResponse: TCResponse {
         /// 完税ID
         public let taxId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DeleteImportedKeyMaterial请求参数结构体
-    public struct DeleteImportedKeyMaterialRequest: TCRequestModel {
+    public struct DeleteImportedKeyMaterialRequest: TCRequest {
         /// 指定需要删除密钥材料的EXTERNAL CMK。
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DeleteImportedKeyMaterial返回参数结构体
-    public struct DeleteImportedKeyMaterialResponse: TCResponseModel {
+    public struct DeleteImportedKeyMaterialResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

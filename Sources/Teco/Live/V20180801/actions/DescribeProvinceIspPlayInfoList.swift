@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeProvinceIspPlayInfoList请求参数结构体
-    public struct DescribeProvinceIspPlayInfoListRequest: TCRequestModel {
+    public struct DescribeProvinceIspPlayInfoListRequest: TCRequest {
         /// 起始时间点，当前使用北京时间，
         /// 例：2019-02-21 10:00:00。
         public let startTime: String
@@ -85,7 +85,7 @@ extension Live {
     }
 
     /// DescribeProvinceIspPlayInfoList返回参数结构体
-    public struct DescribeProvinceIspPlayInfoListResponse: TCResponseModel {
+    public struct DescribeProvinceIspPlayInfoListResponse: TCResponse {
         /// 播放信息列表。
         public let dataInfoList: [PlayStatInfo]
 

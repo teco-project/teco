@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyTableStatus请求参数结构体
-    public struct ModifyTableStatusRequest: TCRequestModel {
+    public struct ModifyTableStatusRequest: TCRequest {
         /// EdgeId值两个vpc间的边id
         public let edgeId: String?
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// ModifyTableStatus返回参数结构体
-    public struct ModifyTableStatusResponse: TCResponseModel {
+    public struct ModifyTableStatusResponse: TCResponse {
         /// 0：正常，-1：不正常
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?

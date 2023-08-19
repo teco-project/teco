@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DeleteCloudBaseRunServerVersion请求参数结构体
-    public struct DeleteCloudBaseRunServerVersionRequest: TCRequestModel {
+    public struct DeleteCloudBaseRunServerVersionRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -59,7 +59,7 @@ extension Tcb {
     }
 
     /// DeleteCloudBaseRunServerVersion返回参数结构体
-    public struct DeleteCloudBaseRunServerVersionResponse: TCResponseModel {
+    public struct DeleteCloudBaseRunServerVersionResponse: TCResponse {
         /// 返回结果，succ为成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

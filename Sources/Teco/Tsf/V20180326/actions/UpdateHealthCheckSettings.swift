@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// UpdateHealthCheckSettings请求参数结构体
-    public struct UpdateHealthCheckSettingsRequest: TCRequestModel {
+    public struct UpdateHealthCheckSettingsRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// UpdateHealthCheckSettings返回参数结构体
-    public struct UpdateHealthCheckSettingsResponse: TCResponseModel {
+    public struct UpdateHealthCheckSettingsResponse: TCResponse {
         /// 更新健康检查配置操作是否成功。
         /// true：操作成功。
         /// false：操作失败。

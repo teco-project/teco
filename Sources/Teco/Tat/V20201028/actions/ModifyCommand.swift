@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// ModifyCommand请求参数结构体
-    public struct ModifyCommandRequest: TCRequestModel {
+    public struct ModifyCommandRequest: TCRequest {
         /// 命令ID。
         public let commandId: String
 
@@ -93,7 +93,7 @@ extension Tat {
     }
 
     /// ModifyCommand返回参数结构体
-    public struct ModifyCommandResponse: TCResponseModel {
+    public struct ModifyCommandResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

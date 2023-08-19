@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateContentReviewTemplate请求参数结构体
-    public struct CreateContentReviewTemplateRequest: TCRequestModel {
+    public struct CreateContentReviewTemplateRequest: TCRequest {
         /// 音视频审核结果是否进入音视频审核墙（对识别结果进行人工复核）的开关。
         /// - ON：是；
         /// - OFF：否。
@@ -83,7 +83,7 @@ extension Vod {
     }
 
     /// CreateContentReviewTemplate返回参数结构体
-    public struct CreateContentReviewTemplateResponse: TCResponseModel {
+    public struct CreateContentReviewTemplateResponse: TCResponse {
         /// 音视频内容审核模板唯一标识。
         public let definition: Int64
 

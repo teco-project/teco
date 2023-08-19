@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// DescribeViews请求参数结构体
-    public struct DescribeViewsRequest: TCRequestModel {
+    public struct DescribeViewsRequest: TCRequest {
         /// 集群实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Es {
     }
 
     /// DescribeViews返回参数结构体
-    public struct DescribeViewsResponse: TCResponseModel {
+    public struct DescribeViewsResponse: TCResponse {
         /// 集群维度视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterView: ClusterView?

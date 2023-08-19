@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeTaskInfo请求参数结构体
-    public struct DescribeTaskInfoRequest: TCRequestModel {
+    public struct DescribeTaskInfoRequest: TCRequest {
         /// 任务 ID。
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DescribeTaskInfo返回参数结构体
-    public struct DescribeTaskInfoResponse: TCResponseModel {
+    public struct DescribeTaskInfoResponse: TCResponse {
         /// 任务状态。
         /// - preparing：待执行。
         /// - running：执行中。

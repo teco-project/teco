@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeUndoVulCounts请求参数结构体
-    public struct DescribeUndoVulCountsRequest: TCRequestModel {
+    public struct DescribeUndoVulCountsRequest: TCRequest {
         /// 漏洞分类，1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
         public let vulCategory: UInt64?
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// DescribeUndoVulCounts返回参数结构体
-    public struct DescribeUndoVulCountsResponse: TCResponseModel {
+    public struct DescribeUndoVulCountsResponse: TCResponse {
         /// 未处理的漏洞数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let undoVulCount: UInt64?

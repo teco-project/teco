@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeServiceTemplates请求参数结构体
-    public struct DescribeServiceTemplatesRequest: TCRequestModel {
+    public struct DescribeServiceTemplatesRequest: TCRequest {
         /// 过滤条件。
         /// - service-template-name - 协议端口模板名称。
         /// - service-template-id - 协议端口模板实例ID，例如：ppm-e6dy460g。
@@ -47,7 +47,7 @@ extension Vpc {
     }
 
     /// DescribeServiceTemplates返回参数结构体
-    public struct DescribeServiceTemplatesResponse: TCResponseModel {
+    public struct DescribeServiceTemplatesResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

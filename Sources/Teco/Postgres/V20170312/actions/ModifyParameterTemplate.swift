@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyParameterTemplate请求参数结构体
-    public struct ModifyParameterTemplateRequest: TCRequestModel {
+    public struct ModifyParameterTemplateRequest: TCRequest {
         /// 参数模板ID，用于唯一确认参数模板，不可修改
         public let templateId: String
 
@@ -54,7 +54,7 @@ extension Postgres {
     }
 
     /// ModifyParameterTemplate返回参数结构体
-    public struct ModifyParameterTemplateResponse: TCResponseModel {
+    public struct ModifyParameterTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

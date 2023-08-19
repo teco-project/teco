@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// ListVersionByFunction请求参数结构体
-    public struct ListVersionByFunctionRequest: TCRequestModel {
+    public struct ListVersionByFunctionRequest: TCRequest {
         /// 函数名
         public let functionName: String
 
@@ -59,7 +59,7 @@ extension Scf {
     }
 
     /// ListVersionByFunction返回参数结构体
-    public struct ListVersionByFunctionResponse: TCResponseModel {
+    public struct ListVersionByFunctionResponse: TCResponse {
         /// 函数版本。
         public let functionVersion: [String]
 

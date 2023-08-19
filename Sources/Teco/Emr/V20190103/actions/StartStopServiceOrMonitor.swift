@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// StartStopServiceOrMonitor请求参数结构体
-    public struct StartStopServiceOrMonitorRequest: TCRequestModel {
+    public struct StartStopServiceOrMonitorRequest: TCRequest {
         /// 集群ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Emr {
     }
 
     /// StartStopServiceOrMonitor返回参数结构体
-    public struct StartStopServiceOrMonitorResponse: TCResponseModel {
+    public struct StartStopServiceOrMonitorResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

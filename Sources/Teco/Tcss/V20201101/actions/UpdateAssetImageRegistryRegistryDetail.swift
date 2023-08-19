@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// UpdateAssetImageRegistryRegistryDetail请求参数结构体
-    public struct UpdateAssetImageRegistryRegistryDetailRequest: TCRequestModel {
+    public struct UpdateAssetImageRegistryRegistryDetailRequest: TCRequest {
         /// 仓库名
         public let name: String
 
@@ -84,7 +84,7 @@ extension Tcss {
     }
 
     /// UpdateAssetImageRegistryRegistryDetail返回参数结构体
-    public struct UpdateAssetImageRegistryRegistryDetailResponse: TCResponseModel {
+    public struct UpdateAssetImageRegistryRegistryDetailResponse: TCResponse {
         /// 连接错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthCheckErr: String?

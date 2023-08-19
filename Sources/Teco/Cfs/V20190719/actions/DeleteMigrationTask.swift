@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DeleteMigrationTask请求参数结构体
-    public struct DeleteMigrationTaskRequest: TCRequestModel {
+    public struct DeleteMigrationTaskRequest: TCRequest {
         /// 迁移任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DeleteMigrationTask返回参数结构体
-    public struct DeleteMigrationTaskResponse: TCResponseModel {
+    public struct DeleteMigrationTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

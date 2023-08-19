@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifySnapshotByTimeOffsetTemplate请求参数结构体
-    public struct ModifySnapshotByTimeOffsetTemplateRequest: TCRequestModel {
+    public struct ModifySnapshotByTimeOffsetTemplateRequest: TCRequest {
         /// 指定时间点截图模板唯一标识。
         public let definition: UInt64
 
@@ -96,7 +96,7 @@ extension Vod {
     }
 
     /// ModifySnapshotByTimeOffsetTemplate返回参数结构体
-    public struct ModifySnapshotByTimeOffsetTemplateResponse: TCResponseModel {
+    public struct ModifySnapshotByTimeOffsetTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

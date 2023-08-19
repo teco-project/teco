@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeClusterNamespaceList请求参数结构体
-    public struct DescribeClusterNamespaceListRequest: TCRequestModel {
+    public struct DescribeClusterNamespaceListRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeClusterNamespaceList返回参数结构体
-    public struct DescribeClusterNamespaceListResponse: TCResponseModel {
+    public struct DescribeClusterNamespaceListResponse: TCResponse {
         /// 命名空间
         public let namespaces: [Namespace]
 

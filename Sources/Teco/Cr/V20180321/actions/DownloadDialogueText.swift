@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DownloadDialogueText请求参数结构体
-    public struct DownloadDialogueTextRequest: TCRequestModel {
+    public struct DownloadDialogueTextRequest: TCRequest {
         /// 模块名，本接口取值：Report
         public let module: String
 
@@ -54,7 +54,7 @@ extension Cr {
     }
 
     /// DownloadDialogueText返回参数结构体
-    public struct DownloadDialogueTextResponse: TCResponseModel {
+    public struct DownloadDialogueTextResponse: TCResponse {
         /// 对话文本下载地址
         public let textReportUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// ModifyDBInstanceSpec请求参数结构体
-    public struct ModifyDBInstanceSpecRequest: TCRequestModel {
+    public struct ModifyDBInstanceSpecRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Mongodb {
     }
 
     /// ModifyDBInstanceSpec返回参数结构体
-    public struct ModifyDBInstanceSpecResponse: TCResponseModel {
+    public struct ModifyDBInstanceSpecResponse: TCResponse {
         /// 订单ID
         public let dealId: String
 

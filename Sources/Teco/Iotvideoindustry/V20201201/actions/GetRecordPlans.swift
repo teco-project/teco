@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// GetRecordPlans请求参数结构体
-    public struct GetRecordPlansRequest: TCRequestModel {
+    public struct GetRecordPlansRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetRecordPlans返回参数结构体
-    public struct GetRecordPlansResponse: TCResponseModel {
+    public struct GetRecordPlansResponse: TCResponse {
         /// 录制计划详情·列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let plans: [RecordPlanItem]?

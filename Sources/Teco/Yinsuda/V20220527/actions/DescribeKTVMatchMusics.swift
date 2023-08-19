@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// DescribeKTVMatchMusics请求参数结构体
-    public struct DescribeKTVMatchMusicsRequest: TCRequestModel {
+    public struct DescribeKTVMatchMusicsRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -44,7 +44,7 @@ extension Yinsuda {
     }
 
     /// DescribeKTVMatchMusics返回参数结构体
-    public struct DescribeKTVMatchMusicsResponse: TCResponseModel {
+    public struct DescribeKTVMatchMusicsResponse: TCResponse {
         /// 匹配到的歌曲列表。
         public let matchMusicSet: [KTVMatchMusic]
 

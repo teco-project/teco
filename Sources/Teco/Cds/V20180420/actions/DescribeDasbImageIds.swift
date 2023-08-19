@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cds {
     /// DescribeDasbImageIds请求参数结构体
-    public struct DescribeDasbImageIdsRequest: TCRequestModel {
+    public struct DescribeDasbImageIdsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDasbImageIds返回参数结构体
-    public struct DescribeDasbImageIdsResponse: TCResponseModel {
+    public struct DescribeDasbImageIdsResponse: TCResponse {
         /// 基础镜像ID
         public let baseImageId: String
 

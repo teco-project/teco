@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsServiceStatus请求参数结构体
-    public struct DescribeCfsServiceStatusRequest: TCRequestModel {
+    public struct DescribeCfsServiceStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCfsServiceStatus返回参数结构体
-    public struct DescribeCfsServiceStatusResponse: TCResponseModel {
+    public struct DescribeCfsServiceStatusResponse: TCResponse {
         /// 该用户当前 CFS 服务的状态，none 为未开通，creating 为开通中，created 为已开通
         public let cfsServiceStatus: String
 

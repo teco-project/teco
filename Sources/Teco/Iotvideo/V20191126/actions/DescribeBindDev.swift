@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeBindDev请求参数结构体
-    public struct DescribeBindDevRequest: TCRequestModel {
+    public struct DescribeBindDevRequest: TCRequest {
         /// 终端用户在IoT Video上的唯一标识ID
         public let accessId: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeBindDev返回参数结构体
-    public struct DescribeBindDevResponse: TCResponseModel {
+    public struct DescribeBindDevResponse: TCResponse {
         /// 绑定的设备列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [BindDevInfo]?

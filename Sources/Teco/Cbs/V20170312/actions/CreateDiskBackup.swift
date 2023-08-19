@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// CreateDiskBackup请求参数结构体
-    public struct CreateDiskBackupRequest: TCRequestModel {
+    public struct CreateDiskBackupRequest: TCRequest {
         /// 要创建备份点的云硬盘名称。
         public let diskId: String
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// CreateDiskBackup返回参数结构体
-    public struct CreateDiskBackupResponse: TCResponseModel {
+    public struct CreateDiskBackupResponse: TCResponse {
         /// 云硬盘备份点的ID。
         public let diskBackupId: String
 

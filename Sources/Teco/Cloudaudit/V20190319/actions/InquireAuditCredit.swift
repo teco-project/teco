@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cloudaudit {
     /// InquireAuditCredit请求参数结构体
-    public struct InquireAuditCreditRequest: TCRequestModel {
+    public struct InquireAuditCreditRequest: TCRequest {
         public init() {
         }
     }
 
     /// InquireAuditCredit返回参数结构体
-    public struct InquireAuditCreditResponse: TCResponseModel {
+    public struct InquireAuditCreditResponse: TCResponse {
         /// 可创建跟踪集的数量
         public let auditAmount: Int64
 

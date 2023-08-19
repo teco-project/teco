@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// CreateGroup请求参数结构体
-    public struct CreateGroupRequest: TCRequestModel {
+    public struct CreateGroupRequest: TCRequest {
         /// 人体库名称，[1,60]个字符，可修改，不可重复。
         public let groupName: String
 
@@ -51,7 +51,7 @@ extension Bda {
     }
 
     /// CreateGroup返回参数结构体
-    public struct CreateGroupResponse: TCResponseModel {
+    public struct CreateGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

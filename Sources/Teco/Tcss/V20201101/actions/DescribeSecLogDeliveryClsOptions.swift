@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeSecLogDeliveryClsOptions请求参数结构体
-    public struct DescribeSecLogDeliveryClsOptionsRequest: TCRequestModel {
+    public struct DescribeSecLogDeliveryClsOptionsRequest: TCRequest {
         /// 地域
         public let clsRegion: String?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeSecLogDeliveryClsOptions返回参数结构体
-    public struct DescribeSecLogDeliveryClsOptionsResponse: TCResponseModel {
+    public struct DescribeSecLogDeliveryClsOptionsResponse: TCResponse {
         /// cls可选日志集合列表(仅当入参ClsRegion不为空时返回)
         public let logSetList: [ClsLogsetInfo]
 

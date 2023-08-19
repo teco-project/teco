@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeDbAssets请求参数结构体
-    public struct DescribeDbAssetsRequest: TCRequestModel {
+    public struct DescribeDbAssetsRequest: TCRequest {
         /// -
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeDbAssets返回参数结构体
-    public struct DescribeDbAssetsResponse: TCResponseModel {
+    public struct DescribeDbAssetsResponse: TCResponse {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?

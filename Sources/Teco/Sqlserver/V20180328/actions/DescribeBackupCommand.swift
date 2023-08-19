@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeBackupCommand请求参数结构体
-    public struct DescribeBackupCommandRequest: TCRequestModel {
+    public struct DescribeBackupCommandRequest: TCRequest {
         /// 备份文件类型，FULL-全量备份，FULL_LOG-全量备份需要日志增量，FULL_DIFF-全量备份需要差异增量，LOG-日志备份，DIFF-差异备份
         public let backupFileType: String
 
@@ -49,7 +49,7 @@ extension Sqlserver {
     }
 
     /// DescribeBackupCommand返回参数结构体
-    public struct DescribeBackupCommandResponse: TCResponseModel {
+    public struct DescribeBackupCommandResponse: TCResponse {
         /// 创建备份命令
         public let command: String
 

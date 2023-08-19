@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeOpsInstanceLogList请求参数结构体
-    public struct DescribeOpsInstanceLogListRequest: TCRequestModel {
+    public struct DescribeOpsInstanceLogListRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeOpsInstanceLogList返回参数结构体
-    public struct DescribeOpsInstanceLogListResponse: TCResponseModel {
+    public struct DescribeOpsInstanceLogListResponse: TCResponse {
         /// 实例日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [InstanceLogInfo]?

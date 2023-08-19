@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DeleteTraceIds请求参数结构体
-    public struct DeleteTraceIdsRequest: TCRequestModel {
+    public struct DeleteTraceIdsRequest: TCRequest {
         /// 设备TID列表
         public let tids: [String]
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DeleteTraceIds返回参数结构体
-    public struct DeleteTraceIdsResponse: TCResponseModel {
+    public struct DeleteTraceIdsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

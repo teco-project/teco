@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateOrganizationModifyQrCode请求参数结构体
-    public struct ChannelCreateOrganizationModifyQrCodeRequest: TCRequestModel {
+    public struct ChannelCreateOrganizationModifyQrCodeRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.AppId 必填。
         public let agent: Agent
 
@@ -34,7 +34,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateOrganizationModifyQrCode返回参数结构体
-    public struct ChannelCreateOrganizationModifyQrCodeResponse: TCResponseModel {
+    public struct ChannelCreateOrganizationModifyQrCodeResponse: TCResponse {
         /// 二维码下载链接
         public let qrCodeUrl: String?
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyService请求参数结构体
-    public struct ModifyServiceRequest: TCRequestModel {
+    public struct ModifyServiceRequest: TCRequest {
         /// 待修改服务的唯一 Id。
         public let serviceId: String
 
@@ -54,7 +54,7 @@ extension Apigateway {
     }
 
     /// ModifyService返回参数结构体
-    public struct ModifyServiceResponse: TCResponseModel {
+    public struct ModifyServiceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

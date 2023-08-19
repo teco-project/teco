@@ -20,13 +20,13 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeListListener请求参数结构体
-    public struct DescribeListListenerRequest: TCRequestModel {
+    public struct DescribeListListenerRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeListListener返回参数结构体
-    public struct DescribeListListenerResponse: TCResponseModel {
+    public struct DescribeListListenerResponse: TCResponse {
         /// 4层转发监听器列表
         public let layer4Listeners: [Layer4Rule]
 

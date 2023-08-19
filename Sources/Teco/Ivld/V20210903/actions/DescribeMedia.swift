@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DescribeMedia请求参数结构体
-    public struct DescribeMediaRequest: TCRequestModel {
+    public struct DescribeMediaRequest: TCRequest {
         /// 导入媒资返回的媒资ID，最长32B
         public let mediaId: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// DescribeMedia返回参数结构体
-    public struct DescribeMediaResponse: TCResponseModel {
+    public struct DescribeMediaResponse: TCResponse {
         /// 媒资信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaInfo: MediaInfo?

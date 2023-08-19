@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// FreezeFlexBalance请求参数结构体
-    public struct FreezeFlexBalanceRequest: TCRequestModel {
+    public struct FreezeFlexBalanceRequest: TCRequest {
         /// 收款用户ID
         public let payeeId: String
 
@@ -72,7 +72,7 @@ extension Cpdp {
     }
 
     /// FreezeFlexBalance返回参数结构体
-    public struct FreezeFlexBalanceResponse: TCResponseModel {
+    public struct FreezeFlexBalanceResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

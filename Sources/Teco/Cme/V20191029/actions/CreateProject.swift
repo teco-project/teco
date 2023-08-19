@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// CreateProject请求参数结构体
-    public struct CreateProjectRequest: TCRequestModel {
+    public struct CreateProjectRequest: TCRequest {
         /// 平台 Id，指定访问的平台。平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -113,7 +113,7 @@ extension Cme {
     }
 
     /// CreateProject返回参数结构体
-    public struct CreateProjectResponse: TCResponseModel {
+    public struct CreateProjectResponse: TCResponse {
         /// 项目 Id。
         public let projectId: String
 

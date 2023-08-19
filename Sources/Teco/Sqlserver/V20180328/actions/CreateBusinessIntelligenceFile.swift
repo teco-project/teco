@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateBusinessIntelligenceFile请求参数结构体
-    public struct CreateBusinessIntelligenceFileRequest: TCRequestModel {
+    public struct CreateBusinessIntelligenceFileRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Sqlserver {
     }
 
     /// CreateBusinessIntelligenceFile返回参数结构体
-    public struct CreateBusinessIntelligenceFileResponse: TCResponseModel {
+    public struct CreateBusinessIntelligenceFileResponse: TCResponse {
         /// 文件名称
         public let fileTaskId: String
 

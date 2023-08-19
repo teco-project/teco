@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyDBInstanceNetwork请求参数结构体
-    public struct ModifyDBInstanceNetworkRequest: TCRequestModel {
+    public struct ModifyDBInstanceNetworkRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Sqlserver {
     }
 
     /// ModifyDBInstanceNetwork返回参数结构体
-    public struct ModifyDBInstanceNetworkResponse: TCResponseModel {
+    public struct ModifyDBInstanceNetworkResponse: TCResponse {
         /// 实例转网流程id，可通过[DescribeFlowStatus](https://cloud.tencent.com/document/product/238/19967)接口查询流程状态
         public let flowId: Int64
 

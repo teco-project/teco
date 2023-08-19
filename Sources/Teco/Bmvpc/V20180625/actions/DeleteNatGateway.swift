@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteNatGateway请求参数结构体
-    public struct DeleteNatGatewayRequest: TCRequestModel {
+    public struct DeleteNatGatewayRequest: TCRequest {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DeleteNatGateway返回参数结构体
-    public struct DeleteNatGatewayResponse: TCResponseModel {
+    public struct DeleteNatGatewayResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

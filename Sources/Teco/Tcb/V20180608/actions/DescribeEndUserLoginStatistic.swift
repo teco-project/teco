@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeEndUserLoginStatistic请求参数结构体
-    public struct DescribeEndUserLoginStatisticRequest: TCRequestModel {
+    public struct DescribeEndUserLoginStatisticRequest: TCRequest {
         /// 环境id
         public let envId: String
 
@@ -41,7 +41,7 @@ extension Tcb {
     }
 
     /// DescribeEndUserLoginStatistic返回参数结构体
-    public struct DescribeEndUserLoginStatisticResponse: TCResponseModel {
+    public struct DescribeEndUserLoginStatisticResponse: TCResponse {
         /// 环境终端用户新增与登录统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loginStatistics: [LoginStatistic]?

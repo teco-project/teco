@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateServiceDiscovery请求参数结构体
-    public struct UpdateServiceDiscoveryRequest: TCRequestModel {
+    public struct UpdateServiceDiscoveryRequest: TCRequest {
         /// Prometheus 实例 ID
         public let instanceId: String
 
@@ -58,7 +58,7 @@ extension Monitor {
     }
 
     /// UpdateServiceDiscovery返回参数结构体
-    public struct UpdateServiceDiscoveryResponse: TCResponseModel {
+    public struct UpdateServiceDiscoveryResponse: TCResponse {
         /// 更新成功之后，返回对应服务发现的信息
         public let serviceDiscovery: ServiceDiscoveryItem
 

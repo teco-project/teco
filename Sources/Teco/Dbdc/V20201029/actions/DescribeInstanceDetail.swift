@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbdc {
     /// DescribeInstanceDetail请求参数结构体
-    public struct DescribeInstanceDetailRequest: TCRequestModel {
+    public struct DescribeInstanceDetailRequest: TCRequest {
         /// 独享集群实例Id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dbdc {
     }
 
     /// DescribeInstanceDetail返回参数结构体
-    public struct DescribeInstanceDetailResponse: TCResponseModel {
+    public struct DescribeInstanceDetailResponse: TCResponse {
         /// 独享集群实例Id
         public let instanceId: String
 

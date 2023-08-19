@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DeleteLaunchConfiguration请求参数结构体
-    public struct DeleteLaunchConfigurationRequest: TCRequestModel {
+    public struct DeleteLaunchConfigurationRequest: TCRequest {
         /// 需要删除的启动配置ID。
         public let launchConfigurationId: String
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DeleteLaunchConfiguration返回参数结构体
-    public struct DeleteLaunchConfigurationResponse: TCResponseModel {
+    public struct DeleteLaunchConfigurationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

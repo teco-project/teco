@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateGameServerSession请求参数结构体
-    public struct UpdateGameServerSessionRequest: TCRequestModel {
+    public struct UpdateGameServerSessionRequest: TCRequest {
         /// 游戏服务器会话ID，最小长度1个ASCII字符，最大长度不超过256个ASCII字符
         public let gameServerSessionId: String
 
@@ -54,7 +54,7 @@ extension Gse {
     }
 
     /// UpdateGameServerSession返回参数结构体
-    public struct UpdateGameServerSessionResponse: TCResponseModel {
+    public struct UpdateGameServerSessionResponse: TCResponse {
         /// 更新后的游戏会话
         public let gameServerSession: GameServerSession
 

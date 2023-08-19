@@ -20,13 +20,13 @@ import TecoCore
 
 extension Sslpod {
     /// DescribeDomainTags请求参数结构体
-    public struct DescribeDomainTagsRequest: TCRequestModel {
+    public struct DescribeDomainTagsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDomainTags返回参数结构体
-    public struct DescribeDomainTagsResponse: TCResponseModel {
+    public struct DescribeDomainTagsResponse: TCResponse {
         /// Tag数组
         public let data: [String]
 

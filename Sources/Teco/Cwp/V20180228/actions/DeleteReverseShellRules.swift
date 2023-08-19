@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteReverseShellRules请求参数结构体
-    public struct DeleteReverseShellRulesRequest: TCRequestModel {
+    public struct DeleteReverseShellRulesRequest: TCRequest {
         /// ID数组. (最大100条)
         public let ids: [UInt64]
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DeleteReverseShellRules返回参数结构体
-    public struct DeleteReverseShellRulesResponse: TCResponseModel {
+    public struct DeleteReverseShellRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

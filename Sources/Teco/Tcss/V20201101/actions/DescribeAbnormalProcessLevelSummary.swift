@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAbnormalProcessLevelSummary请求参数结构体
-    public struct DescribeAbnormalProcessLevelSummaryRequest: TCRequestModel {
+    public struct DescribeAbnormalProcessLevelSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAbnormalProcessLevelSummary返回参数结构体
-    public struct DescribeAbnormalProcessLevelSummaryResponse: TCResponseModel {
+    public struct DescribeAbnormalProcessLevelSummaryResponse: TCResponse {
         /// 异常进程高危待处理事件数
         public let highLevelEventCount: Int64
 

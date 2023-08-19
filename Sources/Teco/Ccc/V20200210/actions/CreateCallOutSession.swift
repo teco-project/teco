@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateCallOutSession请求参数结构体
-    public struct CreateCallOutSessionRequest: TCRequestModel {
+    public struct CreateCallOutSessionRequest: TCRequest {
         /// 应用 ID
         public let sdkAppId: UInt64
 
@@ -64,7 +64,7 @@ extension Ccc {
     }
 
     /// CreateCallOutSession返回参数结构体
-    public struct CreateCallOutSessionResponse: TCResponseModel {
+    public struct CreateCallOutSessionResponse: TCResponse {
         /// 新创建的会话 ID
         public let sessionId: String
 

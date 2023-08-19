@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeTemplateLimits请求参数结构体
-    public struct DescribeTemplateLimitsRequest: TCRequestModel {
+    public struct DescribeTemplateLimitsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTemplateLimits返回参数结构体
-    public struct DescribeTemplateLimitsResponse: TCResponseModel {
+    public struct DescribeTemplateLimitsResponse: TCResponse {
         /// 参数模板配额对象。
         public let templateLimit: TemplateLimit
 

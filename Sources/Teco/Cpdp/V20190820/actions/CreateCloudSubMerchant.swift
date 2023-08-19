@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateCloudSubMerchant请求参数结构体
-    public struct CreateCloudSubMerchantRequest: TCRequestModel {
+    public struct CreateCloudSubMerchantRequest: TCRequest {
         /// 米大师分配的支付主MidasAppId，根应用Id。
         public let midasAppId: String
 
@@ -72,7 +72,7 @@ extension Cpdp {
     }
 
     /// CreateCloudSubMerchant返回参数结构体
-    public struct CreateCloudSubMerchantResponse: TCResponseModel {
+    public struct CreateCloudSubMerchantResponse: TCResponse {
         /// 子应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAppId: String?

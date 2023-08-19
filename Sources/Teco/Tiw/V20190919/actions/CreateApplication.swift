@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// CreateApplication请求参数结构体
-    public struct CreateApplicationRequest: TCRequestModel {
+    public struct CreateApplicationRequest: TCRequest {
         /// 应用SdkAppId
         public let sdkAppId: Int64
 
@@ -54,7 +54,7 @@ extension Tiw {
     }
 
     /// CreateApplication返回参数结构体
-    public struct CreateApplicationResponse: TCResponseModel {
+    public struct CreateApplicationResponse: TCResponse {
         /// 客户的AppId
         public let appId: Int64
 

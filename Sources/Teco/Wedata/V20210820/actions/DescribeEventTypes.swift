@@ -20,13 +20,13 @@ import TecoCore
 
 extension Wedata {
     /// DescribeEventTypes请求参数结构体
-    public struct DescribeEventTypesRequest: TCRequestModel {
+    public struct DescribeEventTypesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEventTypes返回参数结构体
-    public struct DescribeEventTypesResponse: TCResponseModel {
+    public struct DescribeEventTypesResponse: TCResponse {
         /// 事件类型
         public let data: [String]
 

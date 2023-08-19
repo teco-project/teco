@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// SendCustomAlarmMsg请求参数结构体
-    public struct SendCustomAlarmMsgRequest: TCRequestModel {
+    public struct SendCustomAlarmMsgRequest: TCRequest {
         /// 接口模块名，当前取值monitor
         public let module: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// SendCustomAlarmMsg返回参数结构体
-    public struct SendCustomAlarmMsgResponse: TCResponseModel {
+    public struct SendCustomAlarmMsgResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

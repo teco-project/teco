@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// CreateCustomGroup请求参数结构体
-    public struct CreateCustomGroupRequest: TCRequestModel {
+    public struct CreateCustomGroupRequest: TCRequest {
         /// 人脸图片COS存储桶Host地址
         public let bucket: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// CreateCustomGroup返回参数结构体
-    public struct CreateCustomGroupResponse: TCResponseModel {
+    public struct CreateCustomGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

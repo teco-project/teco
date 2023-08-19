@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// CreateEipAcl请求参数结构体
-    public struct CreateEipAclRequest: TCRequestModel {
+    public struct CreateEipAclRequest: TCRequest {
         /// ACL 名称
         public let aclName: String
 
@@ -39,7 +39,7 @@ extension Bmeip {
     }
 
     /// CreateEipAcl返回参数结构体
-    public struct CreateEipAclResponse: TCResponseModel {
+    public struct CreateEipAclResponse: TCResponse {
         /// ACL 实例 ID
         public let aclId: String
 

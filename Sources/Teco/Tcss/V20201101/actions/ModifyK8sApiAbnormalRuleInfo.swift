@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyK8sApiAbnormalRuleInfo请求参数结构体
-    public struct ModifyK8sApiAbnormalRuleInfoRequest: TCRequestModel {
+    public struct ModifyK8sApiAbnormalRuleInfoRequest: TCRequest {
         /// 规则详情
         public let ruleInfo: K8sApiAbnormalRuleInfo
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// ModifyK8sApiAbnormalRuleInfo返回参数结构体
-    public struct ModifyK8sApiAbnormalRuleInfoResponse: TCResponseModel {
+    public struct ModifyK8sApiAbnormalRuleInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

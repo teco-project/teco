@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// InquirePriceRenewDisks请求参数结构体
-    public struct InquirePriceRenewDisksRequest: TCRequestModel {
+    public struct InquirePriceRenewDisksRequest: TCRequest {
         /// 云硬盘ID列表。
         public let diskIds: [String]
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// InquirePriceRenewDisks返回参数结构体
-    public struct InquirePriceRenewDisksResponse: TCResponseModel {
+    public struct InquirePriceRenewDisksResponse: TCResponse {
         /// 云硬盘价格。
         public let diskPrice: DiskPrice
 

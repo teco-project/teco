@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tione {
     /// DescribeTrainingJob请求参数结构体
-    public struct DescribeTrainingJobRequest: TCRequestModel {
+    public struct DescribeTrainingJobRequest: TCRequest {
         /// 训练任务名称
         public let trainingJobName: String
 
@@ -36,7 +36,7 @@ extension Tione {
     }
 
     /// DescribeTrainingJob返回参数结构体
-    public struct DescribeTrainingJobResponse: TCResponseModel {
+    public struct DescribeTrainingJobResponse: TCResponse {
         /// 算法镜像配置
         public let algorithmSpecification: AlgorithmSpecification
 

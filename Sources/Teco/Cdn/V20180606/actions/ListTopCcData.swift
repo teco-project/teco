@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListTopCcData请求参数结构体
-    public struct ListTopCcDataRequest: TCRequestModel {
+    public struct ListTopCcDataRequest: TCRequest {
         /// 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
         public let startTime: String
 
@@ -76,7 +76,7 @@ extension Cdn {
     }
 
     /// ListTopCcData返回参数结构体
-    public struct ListTopCcDataResponse: TCResponseModel {
+    public struct ListTopCcDataResponse: TCResponse {
         /// Top数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [CcTopData]?

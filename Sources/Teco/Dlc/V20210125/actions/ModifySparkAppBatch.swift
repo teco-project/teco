@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// ModifySparkAppBatch请求参数结构体
-    public struct ModifySparkAppBatchRequest: TCRequestModel {
+    public struct ModifySparkAppBatchRequest: TCRequest {
         /// 需要批量修改的Spark作业任务ID列表
         public let sparkAppId: [String]
 
@@ -64,7 +64,7 @@ extension Dlc {
     }
 
     /// ModifySparkAppBatch返回参数结构体
-    public struct ModifySparkAppBatchResponse: TCResponseModel {
+    public struct ModifySparkAppBatchResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

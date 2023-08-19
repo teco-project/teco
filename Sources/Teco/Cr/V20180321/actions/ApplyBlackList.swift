@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// ApplyBlackList请求参数结构体
-    public struct ApplyBlackListRequest: TCRequestModel {
+    public struct ApplyBlackListRequest: TCRequest {
         /// 模块名，本接口取值：account
         public let module: String
 
@@ -49,7 +49,7 @@ extension Cr {
     }
 
     /// ApplyBlackList返回参数结构体
-    public struct ApplyBlackListResponse: TCResponseModel {
+    public struct ApplyBlackListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vrs {
     /// DownloadVRSModel请求参数结构体
-    public struct DownloadVRSModelRequest: TCRequestModel {
+    public struct DownloadVRSModelRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Vrs {
     }
 
     /// DownloadVRSModel返回参数结构体
-    public struct DownloadVRSModelResponse: TCResponseModel {
+    public struct DownloadVRSModelResponse: TCResponse {
         /// 响应
         public let data: DownloadVRSModelRsp
 

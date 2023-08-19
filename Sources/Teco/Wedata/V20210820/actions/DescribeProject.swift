@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeProject请求参数结构体
-    public struct DescribeProjectRequest: TCRequestModel {
+    public struct DescribeProjectRequest: TCRequest {
         /// 项目id。一般使用项目Id来查询，与projectName必须存在一个。
         public let projectId: String?
 
@@ -64,7 +64,7 @@ extension Wedata {
     }
 
     /// DescribeProject返回参数结构体
-    public struct DescribeProjectResponse: TCResponseModel {
+    public struct DescribeProjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

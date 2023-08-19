@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetPolicyVersion请求参数结构体
-    public struct GetPolicyVersionRequest: TCRequestModel {
+    public struct GetPolicyVersionRequest: TCRequest {
         /// 策略ID
         public let policyId: UInt64
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// GetPolicyVersion返回参数结构体
-    public struct GetPolicyVersionResponse: TCResponseModel {
+    public struct GetPolicyVersionResponse: TCResponse {
         /// 策略版本详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyVersion: PolicyVersionDetail?

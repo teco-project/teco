@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Gse {
     /// DescribeFleetStatisticFlows请求参数结构体
-    public struct DescribeFleetStatisticFlowsRequest: TCRequestModel {
+    public struct DescribeFleetStatisticFlowsRequest: TCRequest {
         /// 服务器舰队ID
         public let fleetId: String?
 
@@ -62,7 +62,7 @@ extension Gse {
     }
 
     /// DescribeFleetStatisticFlows返回参数结构体
-    public struct DescribeFleetStatisticFlowsResponse: TCResponseModel {
+    public struct DescribeFleetStatisticFlowsResponse: TCResponse {
         /// 流量统计列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usedFlowList: [FleetStatisticFlows]?

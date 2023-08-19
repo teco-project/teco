@@ -20,7 +20,7 @@ import TecoCore
 
 extension Irp {
     /// FeedRecommend请求参数结构体
-    public struct FeedRecommendRequest: TCRequestModel {
+    public struct FeedRecommendRequest: TCRequest {
         /// 实例ID，在控制台获取
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Irp {
     }
 
     /// FeedRecommend返回参数结构体
-    public struct FeedRecommendResponse: TCResponseModel {
+    public struct FeedRecommendResponse: TCResponse {
         /// 推荐返回的内容信息列表
         public let dataList: [RecItemData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetRole请求参数结构体
-    public struct GetRoleRequest: TCRequestModel {
+    public struct GetRoleRequest: TCRequest {
         /// 角色 ID，用于指定角色，入参 RoleId 与 RoleName 二选一
         public let roleId: String?
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// GetRole返回参数结构体
-    public struct GetRoleResponse: TCResponseModel {
+    public struct GetRoleResponse: TCResponse {
         /// 角色详情
         public let roleInfo: RoleInfo
 

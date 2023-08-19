@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ModifyLoadBalancerSla请求参数结构体
-    public struct ModifyLoadBalancerSlaRequest: TCRequestModel {
+    public struct ModifyLoadBalancerSlaRequest: TCRequest {
         /// 负载均衡实例信息。
         public let loadBalancerSla: [SlaUpdateParam]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// ModifyLoadBalancerSla返回参数结构体
-    public struct ModifyLoadBalancerSlaResponse: TCResponseModel {
+    public struct ModifyLoadBalancerSlaResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

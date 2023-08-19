@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// BindPsaTag请求参数结构体
-    public struct BindPsaTagRequest: TCRequestModel {
+    public struct BindPsaTagRequest: TCRequest {
         /// 预授权规则ID
         public let psaId: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// BindPsaTag返回参数结构体
-    public struct BindPsaTagResponse: TCResponseModel {
+    public struct BindPsaTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

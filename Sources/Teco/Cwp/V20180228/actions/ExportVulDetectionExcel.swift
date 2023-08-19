@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportVulDetectionExcel请求参数结构体
-    public struct ExportVulDetectionExcelRequest: TCRequestModel {
+    public struct ExportVulDetectionExcelRequest: TCRequest {
         /// 本次漏洞检测任务id（不同于出参的导出本次漏洞检测Excel的任务Id）
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ExportVulDetectionExcel返回参数结构体
-    public struct ExportVulDetectionExcelResponse: TCResponseModel {
+    public struct ExportVulDetectionExcelResponse: TCResponse {
         /// 该参数已废弃
         public let downloadUrl: String
 

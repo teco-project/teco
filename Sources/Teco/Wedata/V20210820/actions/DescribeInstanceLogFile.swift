@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeInstanceLogFile请求参数结构体
-    public struct DescribeInstanceLogFileRequest: TCRequestModel {
+    public struct DescribeInstanceLogFileRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// DescribeInstanceLogFile返回参数结构体
-    public struct DescribeInstanceLogFileResponse: TCResponseModel {
+    public struct DescribeInstanceLogFileResponse: TCResponse {
         /// 下载文件详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: InstanceDownloadLogInfo?

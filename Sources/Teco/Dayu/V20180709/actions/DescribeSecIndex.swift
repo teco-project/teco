@@ -22,13 +22,13 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeSecIndex请求参数结构体
-    public struct DescribeSecIndexRequest: TCRequestModel {
+    public struct DescribeSecIndexRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecIndex返回参数结构体
-    public struct DescribeSecIndexResponse: TCResponseModel {
+    public struct DescribeSecIndexResponse: TCResponse {
         /// 字段值，如下：
         /// AttackIpCount：受攻击的IP数
         /// AttackCount：攻击次数

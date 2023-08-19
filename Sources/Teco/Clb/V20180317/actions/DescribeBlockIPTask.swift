@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeBlockIPTask请求参数结构体
-    public struct DescribeBlockIPTaskRequest: TCRequestModel {
+    public struct DescribeBlockIPTaskRequest: TCRequest {
         /// ModifyBlockIPList 接口返回的异步任务的ID。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DescribeBlockIPTask返回参数结构体
-    public struct DescribeBlockIPTaskResponse: TCResponseModel {
+    public struct DescribeBlockIPTaskResponse: TCResponse {
         /// 1 running，2 fail，6 succ
         public let status: Int64
 

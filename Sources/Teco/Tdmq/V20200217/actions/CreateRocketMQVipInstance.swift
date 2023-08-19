@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRocketMQVipInstance请求参数结构体
-    public struct CreateRocketMQVipInstanceRequest: TCRequestModel {
+    public struct CreateRocketMQVipInstanceRequest: TCRequest {
         /// 实例名称
         public let name: String
 
@@ -68,7 +68,7 @@ extension Tdmq {
     }
 
     /// CreateRocketMQVipInstance返回参数结构体
-    public struct CreateRocketMQVipInstanceResponse: TCResponseModel {
+    public struct CreateRocketMQVipInstanceResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

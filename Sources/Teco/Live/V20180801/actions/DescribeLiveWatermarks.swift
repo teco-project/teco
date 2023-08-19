@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveWatermarks请求参数结构体
-    public struct DescribeLiveWatermarksRequest: TCRequestModel {
+    public struct DescribeLiveWatermarksRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveWatermarks返回参数结构体
-    public struct DescribeLiveWatermarksResponse: TCResponseModel {
+    public struct DescribeLiveWatermarksResponse: TCResponse {
         /// 水印总个数。
         public let totalNum: UInt64
 

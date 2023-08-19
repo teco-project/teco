@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeAsyncRequestInfo请求参数结构体
-    public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
+    public struct DescribeAsyncRequestInfoRequest: TCRequest {
         /// 任务 ID
         public let asyncRequestId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeAsyncRequestInfo返回参数结构体
-    public struct DescribeAsyncRequestInfoResponse: TCResponseModel {
+    public struct DescribeAsyncRequestInfoResponse: TCResponse {
         /// 任务执行结果信息
         public let info: String
 

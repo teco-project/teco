@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddOrganization请求参数结构体
-    public struct AddOrganizationRequest: TCRequestModel {
+    public struct AddOrganizationRequest: TCRequest {
         /// 组织名称（仅支持中文、英文、数字、_、-的组合，长度不超过16个字符，且组织名称不能重复）
         public let name: String
 
@@ -39,7 +39,7 @@ extension Iss {
     }
 
     /// AddOrganization返回参数结构体
-    public struct AddOrganizationResponse: TCResponseModel {
+    public struct AddOrganizationResponse: TCResponse {
         /// 增加组织接口返回数据
         public let data: AddOrgResponse
 

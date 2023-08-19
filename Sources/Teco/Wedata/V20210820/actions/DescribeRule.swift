@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRule请求参数结构体
-    public struct DescribeRuleRequest: TCRequestModel {
+    public struct DescribeRuleRequest: TCRequest {
         /// 质量规则ID
         public let ruleId: UInt64?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeRule返回参数结构体
-    public struct DescribeRuleResponse: TCResponseModel {
+    public struct DescribeRuleResponse: TCResponse {
         /// 规则详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Rule?

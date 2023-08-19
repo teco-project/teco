@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ModifyLanIp请求参数结构体
-    public struct ModifyLanIpRequest: TCRequestModel {
+    public struct ModifyLanIpRequest: TCRequest {
         /// 物理机ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Bm {
     }
 
     /// ModifyLanIp返回参数结构体
-    public struct ModifyLanIpResponse: TCResponseModel {
+    public struct ModifyLanIpResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

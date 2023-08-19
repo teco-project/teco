@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeApplicationYaml请求参数结构体
-    public struct DescribeApplicationYamlRequest: TCRequestModel {
+    public struct DescribeApplicationYamlRequest: TCRequest {
         /// 应用模板ID
         public let applicationId: UInt64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DescribeApplicationYaml返回参数结构体
-    public struct DescribeApplicationYamlResponse: TCResponseModel {
+    public struct DescribeApplicationYamlResponse: TCResponse {
         /// base64 后的yaml
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?

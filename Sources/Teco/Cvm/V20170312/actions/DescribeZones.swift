@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cvm {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 可用区数量。
         public let totalCount: UInt64
 

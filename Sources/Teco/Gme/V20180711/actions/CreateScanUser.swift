@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// CreateScanUser请求参数结构体
-    public struct CreateScanUserRequest: TCRequestModel {
+    public struct CreateScanUserRequest: TCRequest {
         /// 应用ID，登录控制台 - 服务管理创建应用得到的AppID
         public let bizId: UInt64
 
@@ -39,7 +39,7 @@ extension Gme {
     }
 
     /// CreateScanUser返回参数结构体
-    public struct CreateScanUserResponse: TCResponseModel {
+    public struct CreateScanUserResponse: TCResponse {
         /// 返回结果码
         public let errorCode: Int64
 

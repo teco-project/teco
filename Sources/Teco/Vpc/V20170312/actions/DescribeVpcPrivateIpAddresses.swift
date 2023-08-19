@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcPrivateIpAddresses请求参数结构体
-    public struct DescribeVpcPrivateIpAddressesRequest: TCRequestModel {
+    public struct DescribeVpcPrivateIpAddressesRequest: TCRequest {
         /// `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DescribeVpcPrivateIpAddresses返回参数结构体
-    public struct DescribeVpcPrivateIpAddressesResponse: TCResponseModel {
+    public struct DescribeVpcPrivateIpAddressesResponse: TCResponse {
         /// 内网`IP`地址信息列表。
         public let vpcPrivateIpAddressSet: [VpcPrivateIpAddress]
 

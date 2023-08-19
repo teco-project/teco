@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeGroup请求参数结构体
-    public struct DescribeGroupRequest: TCRequestModel {
+    public struct DescribeGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeGroup返回参数结构体
-    public struct DescribeGroupResponse: TCResponseModel {
+    public struct DescribeGroupResponse: TCResponse {
         /// 虚拟机部署组详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: VmGroup?

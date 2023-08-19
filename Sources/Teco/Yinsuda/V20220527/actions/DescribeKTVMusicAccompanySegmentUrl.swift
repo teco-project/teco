@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// DescribeKTVMusicAccompanySegmentUrl请求参数结构体
-    public struct DescribeKTVMusicAccompanySegmentUrlRequest: TCRequestModel {
+    public struct DescribeKTVMusicAccompanySegmentUrlRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -56,7 +56,7 @@ extension Yinsuda {
     }
 
     /// DescribeKTVMusicAccompanySegmentUrl返回参数结构体
-    public struct DescribeKTVMusicAccompanySegmentUrlResponse: TCResponseModel {
+    public struct DescribeKTVMusicAccompanySegmentUrlResponse: TCResponse {
         /// 歌曲状态。
         /// 0：可用
         /// 1：下线

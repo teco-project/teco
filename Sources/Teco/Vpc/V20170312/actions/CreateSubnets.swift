@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateSubnets请求参数结构体
-    public struct CreateSubnetsRequest: TCRequestModel {
+    public struct CreateSubnetsRequest: TCRequest {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         public let vpcId: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// CreateSubnets返回参数结构体
-    public struct CreateSubnetsResponse: TCResponseModel {
+    public struct CreateSubnetsResponse: TCResponse {
         /// 新创建的子网列表。
         public let subnetSet: [Subnet]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyDBInstancesProject请求参数结构体
-    public struct ModifyDBInstancesProjectRequest: TCRequestModel {
+    public struct ModifyDBInstancesProjectRequest: TCRequest {
         /// 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
         public let dbInstanceIdSet: [String]
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// ModifyDBInstancesProject返回参数结构体
-    public struct ModifyDBInstancesProjectResponse: TCResponseModel {
+    public struct ModifyDBInstancesProjectResponse: TCResponse {
         /// 转移项目成功的实例个数
         public let count: Int64
 

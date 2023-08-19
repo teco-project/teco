@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeSaleInfo请求参数结构体
-    public struct DescribeSaleInfoRequest: TCRequestModel {
+    public struct DescribeSaleInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSaleInfo返回参数结构体
-    public struct DescribeSaleInfoResponse: TCResponseModel {
+    public struct DescribeSaleInfoResponse: TCResponse {
         /// 可售卖地域信息列表
         public let regionList: [RegionInfo]
 

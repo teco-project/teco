@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// ModifyGlobalDomainAttribute请求参数结构体
-    public struct ModifyGlobalDomainAttributeRequest: TCRequestModel {
+    public struct ModifyGlobalDomainAttributeRequest: TCRequest {
         /// 域名ID
         public let domainId: String
 
@@ -49,7 +49,7 @@ extension Gaap {
     }
 
     /// ModifyGlobalDomainAttribute返回参数结构体
-    public struct ModifyGlobalDomainAttributeResponse: TCResponseModel {
+    public struct ModifyGlobalDomainAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

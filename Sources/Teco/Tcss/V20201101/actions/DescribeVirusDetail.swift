@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusDetail请求参数结构体
-    public struct DescribeVirusDetailRequest: TCRequestModel {
+    public struct DescribeVirusDetailRequest: TCRequest {
         /// 木马文件id
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusDetail返回参数结构体
-    public struct DescribeVirusDetailResponse: TCResponseModel {
+    public struct DescribeVirusDetailResponse: TCResponse {
         /// 镜像ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageId: String?

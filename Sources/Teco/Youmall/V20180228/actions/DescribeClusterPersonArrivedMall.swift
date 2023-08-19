@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Youmall {
     /// DescribeClusterPersonArrivedMall请求参数结构体
-    public struct DescribeClusterPersonArrivedMallRequest: TCRequestModel {
+    public struct DescribeClusterPersonArrivedMallRequest: TCRequest {
         /// 卖场编码
         public let mallId: String
 
@@ -57,7 +57,7 @@ extension Youmall {
     }
 
     /// DescribeClusterPersonArrivedMall返回参数结构体
-    public struct DescribeClusterPersonArrivedMallResponse: TCResponseModel {
+    public struct DescribeClusterPersonArrivedMallResponse: TCResponse {
         /// 卖场系统编码
         public let mallId: String
 

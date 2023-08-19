@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// CreateHostingDomain请求参数结构体
-    public struct CreateHostingDomainRequest: TCRequestModel {
+    public struct CreateHostingDomainRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -44,7 +44,7 @@ extension Tcb {
     }
 
     /// CreateHostingDomain返回参数结构体
-    public struct CreateHostingDomainResponse: TCResponseModel {
+    public struct CreateHostingDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

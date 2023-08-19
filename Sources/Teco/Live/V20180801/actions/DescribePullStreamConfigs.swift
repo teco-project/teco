@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribePullStreamConfigs请求参数结构体
-    public struct DescribePullStreamConfigsRequest: TCRequestModel {
+    public struct DescribePullStreamConfigsRequest: TCRequest {
         /// 配置 ID。
         /// 获取途径：从 CreatePullStreamConfig 接口返回值获取。
         public let configId: String?
@@ -35,7 +35,7 @@ extension Live {
     }
 
     /// DescribePullStreamConfigs返回参数结构体
-    public struct DescribePullStreamConfigsResponse: TCResponseModel {
+    public struct DescribePullStreamConfigsResponse: TCResponse {
         /// 拉流配置。
         public let pullStreamConfigs: [PullStreamConfig]
 

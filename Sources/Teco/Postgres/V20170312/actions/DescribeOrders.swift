@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeOrders请求参数结构体
-    public struct DescribeOrdersRequest: TCRequestModel {
+    public struct DescribeOrdersRequest: TCRequest {
         /// 订单名集合
         public let dealNames: [String]
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeOrders返回参数结构体
-    public struct DescribeOrdersResponse: TCResponseModel {
+    public struct DescribeOrdersResponse: TCResponse {
         /// 订单数量
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// CreateDevice请求参数结构体
-    public struct CreateDeviceRequest: TCRequestModel {
+    public struct CreateDeviceRequest: TCRequest {
         /// 创建设备所归属的项目ID
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Trro {
     }
 
     /// CreateDevice返回参数结构体
-    public struct CreateDeviceResponse: TCResponseModel {
+    public struct CreateDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

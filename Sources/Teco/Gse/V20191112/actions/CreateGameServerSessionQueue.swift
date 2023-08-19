@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CreateGameServerSessionQueue请求参数结构体
-    public struct CreateGameServerSessionQueueRequest: TCRequestModel {
+    public struct CreateGameServerSessionQueueRequest: TCRequest {
         /// 游戏服务器会话队列名称，长度1~128
         public let name: String
 
@@ -54,7 +54,7 @@ extension Gse {
     }
 
     /// CreateGameServerSessionQueue返回参数结构体
-    public struct CreateGameServerSessionQueueResponse: TCResponseModel {
+    public struct CreateGameServerSessionQueueResponse: TCResponse {
         /// 游戏服务器会话队列
         public let gameServerSessionQueue: GameServerSessionQueue
 

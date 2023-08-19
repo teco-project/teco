@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DeleteGatewayVersion请求参数结构体
-    public struct DeleteGatewayVersionRequest: TCRequestModel {
+    public struct DeleteGatewayVersionRequest: TCRequest {
         /// 环境id
         public let envId: String
 
@@ -64,7 +64,7 @@ extension Tcb {
     }
 
     /// DeleteGatewayVersion返回参数结构体
-    public struct DeleteGatewayVersionResponse: TCResponseModel {
+    public struct DeleteGatewayVersionResponse: TCResponse {
         /// 删除结果
         public let result: String
 

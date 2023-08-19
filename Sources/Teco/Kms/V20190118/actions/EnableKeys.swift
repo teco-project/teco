@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// EnableKeys请求参数结构体
-    public struct EnableKeysRequest: TCRequestModel {
+    public struct EnableKeysRequest: TCRequest {
         /// 需要批量启用的CMK Id 列表， CMK数量最大支持100
         public let keyIds: [String]
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// EnableKeys返回参数结构体
-    public struct EnableKeysResponse: TCResponseModel {
+    public struct EnableKeysResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

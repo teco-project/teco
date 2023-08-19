@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ie {
     /// CreateEditingTask请求参数结构体
-    public struct CreateEditingTaskRequest: TCRequestModel {
+    public struct CreateEditingTaskRequest: TCRequest {
         /// 智能编辑任务参数。
         public let editingInfo: EditingInfo
 
@@ -49,7 +49,7 @@ extension Ie {
     }
 
     /// CreateEditingTask返回参数结构体
-    public struct CreateEditingTaskResponse: TCResponseModel {
+    public struct CreateEditingTaskResponse: TCResponse {
         /// 编辑任务 ID，可以通过该 ID 查询任务状态。
         public let taskId: String
 

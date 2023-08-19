@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// CreateDomainAndIp请求参数结构体
-    public struct CreateDomainAndIpRequest: TCRequestModel {
+    public struct CreateDomainAndIpRequest: TCRequest {
         /// -
         public let content: [String]
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// CreateDomainAndIp返回参数结构体
-    public struct CreateDomainAndIpResponse: TCResponseModel {
+    public struct CreateDomainAndIpResponse: TCResponse {
         /// 返回创建成功的数量
         public let data: Int64
 

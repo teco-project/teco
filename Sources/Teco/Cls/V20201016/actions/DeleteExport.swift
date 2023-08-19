@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DeleteExport请求参数结构体
-    public struct DeleteExportRequest: TCRequestModel {
+    public struct DeleteExportRequest: TCRequest {
         /// 日志导出ID
         public let exportId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DeleteExport返回参数结构体
-    public struct DeleteExportResponse: TCResponseModel {
+    public struct DeleteExportResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

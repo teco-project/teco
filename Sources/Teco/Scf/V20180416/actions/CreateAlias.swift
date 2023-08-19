@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// CreateAlias请求参数结构体
-    public struct CreateAliasRequest: TCRequestModel {
+    public struct CreateAliasRequest: TCRequest {
         /// 别名的名称，在函数级别中唯一，只能包含字母、数字、'_'和‘-’，且必须以字母开头，长度限制为1-64
         public let name: String
 
@@ -59,7 +59,7 @@ extension Scf {
     }
 
     /// CreateAlias返回参数结构体
-    public struct CreateAliasResponse: TCResponseModel {
+    public struct CreateAliasResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

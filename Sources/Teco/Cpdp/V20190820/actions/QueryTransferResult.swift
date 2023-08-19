@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryTransferResult请求参数结构体
-    public struct QueryTransferResultRequest: TCRequestModel {
+    public struct QueryTransferResultRequest: TCRequest {
         /// 商户号
         public let merchantId: String
 
@@ -61,7 +61,7 @@ extension Cpdp {
     }
 
     /// QueryTransferResult返回参数结构体
-    public struct QueryTransferResultResponse: TCResponseModel {
+    public struct QueryTransferResultResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功
         public let errCode: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeCkafkaZone请求参数结构体
-    public struct DescribeCkafkaZoneRequest: TCRequestModel {
+    public struct DescribeCkafkaZoneRequest: TCRequest {
         /// cdc专业集群业务参数
         public let cdcId: String?
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// DescribeCkafkaZone返回参数结构体
-    public struct DescribeCkafkaZoneResponse: TCResponseModel {
+    public struct DescribeCkafkaZoneResponse: TCResponse {
         /// 查询结果复杂对象实体
         public let result: ZoneResponse
 

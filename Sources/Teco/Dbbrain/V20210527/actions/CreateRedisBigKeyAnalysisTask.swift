@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateRedisBigKeyAnalysisTask请求参数结构体
-    public struct CreateRedisBigKeyAnalysisTaskRequest: TCRequestModel {
+    public struct CreateRedisBigKeyAnalysisTaskRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -50,7 +50,7 @@ extension Dbbrain {
     }
 
     /// CreateRedisBigKeyAnalysisTask返回参数结构体
-    public struct CreateRedisBigKeyAnalysisTaskResponse: TCResponseModel {
+    public struct CreateRedisBigKeyAnalysisTaskResponse: TCResponse {
         /// 异步任务ID。
         public let asyncRequestId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeInstanceBackups请求参数结构体
-    public struct DescribeInstanceBackupsRequest: TCRequestModel {
+    public struct DescribeInstanceBackupsRequest: TCRequest {
         /// 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
         public let instanceId: String
 
@@ -66,7 +66,7 @@ extension Keewidb {
     }
 
     /// DescribeInstanceBackups返回参数结构体
-    public struct DescribeInstanceBackupsResponse: TCResponseModel {
+    public struct DescribeInstanceBackupsResponse: TCResponse {
         /// 备份文件总数。
         public let totalCount: Int64
 

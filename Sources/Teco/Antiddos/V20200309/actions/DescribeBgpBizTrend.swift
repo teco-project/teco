@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeBgpBizTrend请求参数结构体
-    public struct DescribeBgpBizTrendRequest: TCRequestModel {
+    public struct DescribeBgpBizTrendRequest: TCRequest {
         /// DDoS防护子产品代号（bgp-multip表示高防包）
         public let business: String
 
@@ -59,7 +59,7 @@ extension Antiddos {
     }
 
     /// DescribeBgpBizTrend返回参数结构体
-    public struct DescribeBgpBizTrendResponse: TCResponseModel {
+    public struct DescribeBgpBizTrendResponse: TCResponse {
         /// 曲线图各个时间点的值
         public let dataList: [UInt64]
 

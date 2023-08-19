@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DescribeJobSavepoint请求参数结构体
-    public struct DescribeJobSavepointRequest: TCRequestModel {
+    public struct DescribeJobSavepointRequest: TCRequest {
         /// 作业 SerialId
         public let jobId: String
 
@@ -49,7 +49,7 @@ extension Oceanus {
     }
 
     /// DescribeJobSavepoint返回参数结构体
-    public struct DescribeJobSavepointResponse: TCResponseModel {
+    public struct DescribeJobSavepointResponse: TCResponse {
         /// 快照列表总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNumber: Int64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// GetMultiFlowStatistic请求参数结构体
-    public struct GetMultiFlowStatisticRequest: TCRequestModel {
+    public struct GetMultiFlowStatisticRequest: TCRequest {
         /// 设备id列表，单次最多请求10个设备
         public let deviceIds: [String]
 
@@ -54,7 +54,7 @@ extension Mna {
     }
 
     /// GetMultiFlowStatistic返回参数结构体
-    public struct GetMultiFlowStatisticResponse: TCResponseModel {
+    public struct GetMultiFlowStatisticResponse: TCResponse {
         /// 批量设备流量信息
         public let flowDetails: [FlowDetails]
 

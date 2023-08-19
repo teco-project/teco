@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeGroupDomainConfig请求参数结构体
-    public struct DescribeGroupDomainConfigRequest: TCRequestModel {
+    public struct DescribeGroupDomainConfigRequest: TCRequest {
         /// 通道组ID。
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeGroupDomainConfig返回参数结构体
-    public struct DescribeGroupDomainConfigResponse: TCResponseModel {
+    public struct DescribeGroupDomainConfigResponse: TCResponse {
         /// 域名解析就近接入配置列表。
         public let accessRegionList: [DomainAccessRegionDict]
 

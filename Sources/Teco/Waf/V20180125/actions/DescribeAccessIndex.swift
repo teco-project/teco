@@ -20,13 +20,13 @@ import TecoCore
 
 extension Waf {
     /// DescribeAccessIndex请求参数结构体
-    public struct DescribeAccessIndexRequest: TCRequestModel {
+    public struct DescribeAccessIndexRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAccessIndex返回参数结构体
-    public struct DescribeAccessIndexResponse: TCResponseModel {
+    public struct DescribeAccessIndexResponse: TCResponse {
         /// 是否生效，true表示生效，false表示未生效
         public let status: Bool
 

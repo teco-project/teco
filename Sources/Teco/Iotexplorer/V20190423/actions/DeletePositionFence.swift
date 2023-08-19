@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DeletePositionFence请求参数结构体
-    public struct DeletePositionFenceRequest: TCRequestModel {
+    public struct DeletePositionFenceRequest: TCRequest {
         /// 位置空间Id
         public let spaceId: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// DeletePositionFence返回参数结构体
-    public struct DeletePositionFenceResponse: TCResponseModel {
+    public struct DeletePositionFenceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

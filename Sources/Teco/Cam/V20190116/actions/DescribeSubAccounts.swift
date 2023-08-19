@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DescribeSubAccounts请求参数结构体
-    public struct DescribeSubAccountsRequest: TCRequestModel {
+    public struct DescribeSubAccountsRequest: TCRequest {
         /// 子用户UIN列表，最多支持50个UIN
         public let filterSubAccountUin: [UInt64]
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// DescribeSubAccounts返回参数结构体
-    public struct DescribeSubAccountsResponse: TCResponseModel {
+    public struct DescribeSubAccountsResponse: TCResponse {
         /// 子用户列表
         public let subAccounts: [SubAccountUser]
 

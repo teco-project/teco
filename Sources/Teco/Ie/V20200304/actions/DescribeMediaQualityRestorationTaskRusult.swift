@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ie {
     /// DescribeMediaQualityRestorationTaskRusult请求参数结构体
-    public struct DescribeMediaQualityRestorationTaskRusultRequest: TCRequestModel {
+    public struct DescribeMediaQualityRestorationTaskRusultRequest: TCRequest {
         /// 画质重生任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Ie {
     }
 
     /// DescribeMediaQualityRestorationTaskRusult返回参数结构体
-    public struct DescribeMediaQualityRestorationTaskRusultResponse: TCResponseModel {
+    public struct DescribeMediaQualityRestorationTaskRusultResponse: TCResponse {
         /// 画质重生任务结果信息
         public let taskResult: MediaQualityRestorationTaskResult
 

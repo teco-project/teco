@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifySubAppIdInfo请求参数结构体
-    public struct ModifySubAppIdInfoRequest: TCRequestModel {
+    public struct ModifySubAppIdInfoRequest: TCRequest {
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// ModifySubAppIdInfo返回参数结构体
-    public struct ModifySubAppIdInfoResponse: TCResponseModel {
+    public struct ModifySubAppIdInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

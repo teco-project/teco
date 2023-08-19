@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDeviceHardwareInfo请求参数结构体
-    public struct DescribeDeviceHardwareInfoRequest: TCRequestModel {
+    public struct DescribeDeviceHardwareInfoRequest: TCRequest {
         /// 设备 ID 列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DescribeDeviceHardwareInfo返回参数结构体
-    public struct DescribeDeviceHardwareInfoResponse: TCResponseModel {
+    public struct DescribeDeviceHardwareInfoResponse: TCResponse {
         /// 设备硬件配置信息
         public let deviceHardwareInfoSet: [DeviceHardwareInfo]
 

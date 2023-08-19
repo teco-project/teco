@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Scf {
     /// GetFunction请求参数结构体
-    public struct GetFunctionRequest: TCRequestModel {
+    public struct GetFunctionRequest: TCRequest {
         /// 需要获取详情的函数名称
         public let functionName: String
 
@@ -53,7 +53,7 @@ extension Scf {
     }
 
     /// GetFunction返回参数结构体
-    public struct GetFunctionResponse: TCResponseModel {
+    public struct GetFunctionResponse: TCResponse {
         /// 函数的最后修改时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateEdgeCVMInstances请求参数结构体
-    public struct CreateEdgeCVMInstancesRequest: TCRequestModel {
+    public struct CreateEdgeCVMInstancesRequest: TCRequest {
         /// 集群id
         public let clusterID: String
 
@@ -64,7 +64,7 @@ extension Tke {
     }
 
     /// CreateEdgeCVMInstances返回参数结构体
-    public struct CreateEdgeCVMInstancesResponse: TCResponseModel {
+    public struct CreateEdgeCVMInstancesResponse: TCResponse {
         /// cvm id 列表
         public let cvmIdSet: [String]
 

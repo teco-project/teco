@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// UploadDataFile请求参数结构体
-    public struct UploadDataFileRequest: TCRequestModel {
+    public struct UploadDataFileRequest: TCRequest {
         /// 模块名，本接口取值：Data
         public let module: String
 
@@ -65,7 +65,7 @@ extension Cr {
     }
 
     /// UploadDataFile返回参数结构体
-    public struct UploadDataFileResponse: TCResponseModel {
+    public struct UploadDataFileResponse: TCResponse {
         /// 数据ID
         public let dataResId: String
 

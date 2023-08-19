@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateNotebookSession请求参数结构体
-    public struct CreateNotebookSessionRequest: TCRequestModel {
+    public struct CreateNotebookSessionRequest: TCRequest {
         /// Session名称
         public let name: String
 
@@ -107,7 +107,7 @@ extension Dlc {
     }
 
     /// CreateNotebookSession返回参数结构体
-    public struct CreateNotebookSessionResponse: TCResponseModel {
+    public struct CreateNotebookSessionResponse: TCResponse {
         /// Session唯一标识
         public let sessionId: String
 

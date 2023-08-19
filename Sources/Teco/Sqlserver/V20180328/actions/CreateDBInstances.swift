@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateDBInstances请求参数结构体
-    public struct CreateDBInstancesRequest: TCRequestModel {
+    public struct CreateDBInstancesRequest: TCRequest {
         /// 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
         public let zone: String
 
@@ -139,7 +139,7 @@ extension Sqlserver {
     }
 
     /// CreateDBInstances返回参数结构体
-    public struct CreateDBInstancesResponse: TCResponseModel {
+    public struct CreateDBInstancesResponse: TCResponse {
         /// 订单名称
         public let dealName: String
 

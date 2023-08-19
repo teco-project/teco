@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// ModifySmsTemplate请求参数结构体
-    public struct ModifySmsTemplateRequest: TCRequestModel {
+    public struct ModifySmsTemplateRequest: TCRequest {
         /// 待修改模板的ID。
         public let templateId: UInt64
 
@@ -61,7 +61,7 @@ extension Sms {
     }
 
     /// ModifySmsTemplate返回参数结构体
-    public struct ModifySmsTemplateResponse: TCResponseModel {
+    public struct ModifySmsTemplateResponse: TCResponse {
         /// 修改模板参数响应
         public let modifyTemplateStatus: ModifyTemplateStatus
 

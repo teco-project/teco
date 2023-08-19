@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDBEncryptAttributes请求参数结构体
-    public struct DescribeDBEncryptAttributesRequest: TCRequestModel {
+    public struct DescribeDBEncryptAttributesRequest: TCRequest {
         /// 实例Id，形如：tdsqlshard-ow728lmc。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DescribeDBEncryptAttributes返回参数结构体
-    public struct DescribeDBEncryptAttributesResponse: TCResponseModel {
+    public struct DescribeDBEncryptAttributesResponse: TCResponse {
         /// 是否启用加密，1-已开启；0-未开启。
         public let encryptStatus: Int64
 

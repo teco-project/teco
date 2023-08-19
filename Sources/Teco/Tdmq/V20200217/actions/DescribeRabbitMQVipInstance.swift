@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeRabbitMQVipInstance请求参数结构体
-    public struct DescribeRabbitMQVipInstanceRequest: TCRequestModel {
+    public struct DescribeRabbitMQVipInstanceRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribeRabbitMQVipInstance返回参数结构体
-    public struct DescribeRabbitMQVipInstanceResponse: TCResponseModel {
+    public struct DescribeRabbitMQVipInstanceResponse: TCResponse {
         /// 集群信息
         public let clusterInfo: RabbitMQClusterInfo
 

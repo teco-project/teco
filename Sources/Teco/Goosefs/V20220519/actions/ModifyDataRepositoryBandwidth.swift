@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// ModifyDataRepositoryBandwidth请求参数结构体
-    public struct ModifyDataRepositoryBandwidthRequest: TCRequestModel {
+    public struct ModifyDataRepositoryBandwidthRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -39,7 +39,7 @@ extension Goosefs {
     }
 
     /// ModifyDataRepositoryBandwidth返回参数结构体
-    public struct ModifyDataRepositoryBandwidthResponse: TCResponseModel {
+    public struct ModifyDataRepositoryBandwidthResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

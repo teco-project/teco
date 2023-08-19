@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// EnableAutoScalingGroup请求参数结构体
-    public struct EnableAutoScalingGroupRequest: TCRequestModel {
+    public struct EnableAutoScalingGroupRequest: TCRequest {
         /// 伸缩组ID
         public let autoScalingGroupId: String
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// EnableAutoScalingGroup返回参数结构体
-    public struct EnableAutoScalingGroupResponse: TCResponseModel {
+    public struct EnableAutoScalingGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

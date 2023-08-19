@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddStreamAuth请求参数结构体
-    public struct AddStreamAuthRequest: TCRequestModel {
+    public struct AddStreamAuthRequest: TCRequest {
         /// 鉴权配置ID（uuid）
         public let id: String
 
@@ -64,7 +64,7 @@ extension Iss {
     }
 
     /// 设置推拉流鉴权返回数据结构
-    public struct AddStreamAuthResponse: TCResponseModel {
+    public struct AddStreamAuthResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

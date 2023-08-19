@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeleteLiveWatermarkRule请求参数结构体
-    public struct DeleteLiveWatermarkRuleRequest: TCRequestModel {
+    public struct DeleteLiveWatermarkRuleRequest: TCRequest {
         /// 推流域名。
         public let domainName: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// DeleteLiveWatermarkRule返回参数结构体
-    public struct DeleteLiveWatermarkRuleResponse: TCResponseModel {
+    public struct DeleteLiveWatermarkRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

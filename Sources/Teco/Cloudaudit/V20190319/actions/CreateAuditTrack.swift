@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// CreateAuditTrack请求参数结构体
-    public struct CreateAuditTrackRequest: TCRequestModel {
+    public struct CreateAuditTrackRequest: TCRequest {
         /// 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
         public let name: String
 
@@ -64,7 +64,7 @@ extension Cloudaudit {
     }
 
     /// CreateAuditTrack返回参数结构体
-    public struct CreateAuditTrackResponse: TCResponseModel {
+    public struct CreateAuditTrackResponse: TCResponse {
         /// 跟踪集 ID
         public let trackId: UInt64
 

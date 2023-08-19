@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// SetRenewFlag请求参数结构体
-    public struct SetRenewFlagRequest: TCRequestModel {
+    public struct SetRenewFlagRequest: TCRequest {
         /// 需操作的实例ID
         public let resourceIds: [String]
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// SetRenewFlag返回参数结构体
-    public struct SetRenewFlagResponse: TCResponseModel {
+    public struct SetRenewFlagResponse: TCResponse {
         /// 操作成功实例数
         public let count: Int64
 

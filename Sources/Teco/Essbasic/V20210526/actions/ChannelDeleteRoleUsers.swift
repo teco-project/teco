@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelDeleteRoleUsers请求参数结构体
-    public struct ChannelDeleteRoleUsersRequest: TCRequestModel {
+    public struct ChannelDeleteRoleUsersRequest: TCRequest {
         /// 代理信息此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -62,7 +62,7 @@ extension Essbasic {
     }
 
     /// ChannelDeleteRoleUsers返回参数结构体
-    public struct ChannelDeleteRoleUsersResponse: TCResponseModel {
+    public struct ChannelDeleteRoleUsersResponse: TCResponse {
         /// 角色id
         public let roleId: String
 

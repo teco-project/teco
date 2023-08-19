@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// StartWhiteboardPush请求参数结构体
-    public struct StartWhiteboardPushRequest: TCRequestModel {
+    public struct StartWhiteboardPushRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -189,7 +189,7 @@ extension Tiw {
     }
 
     /// StartWhiteboardPush返回参数结构体
-    public struct StartWhiteboardPushResponse: TCResponseModel {
+    public struct StartWhiteboardPushResponse: TCResponse {
         /// 推流任务Id
         public let taskId: String
 

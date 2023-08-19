@@ -20,13 +20,13 @@ import TecoCore
 
 extension Wedata {
     /// DescribeOfflineTaskToken请求参数结构体
-    public struct DescribeOfflineTaskTokenRequest: TCRequestModel {
+    public struct DescribeOfflineTaskTokenRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeOfflineTaskToken返回参数结构体
-    public struct DescribeOfflineTaskTokenResponse: TCResponseModel {
+    public struct DescribeOfflineTaskTokenResponse: TCResponse {
         /// 长连接临时token
         public let token: String
 

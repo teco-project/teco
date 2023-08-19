@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeMessageQueue请求参数结构体
-    public struct DescribeMessageQueueRequest: TCRequestModel {
+    public struct DescribeMessageQueueRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeMessageQueue返回参数结构体
-    public struct DescribeMessageQueueResponse: TCResponseModel {
+    public struct DescribeMessageQueueResponse: TCResponse {
         /// 消息队列配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: MsgQueueData?

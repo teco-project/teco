@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DeleteReadOnlyGroupNetworkAccess请求参数结构体
-    public struct DeleteReadOnlyGroupNetworkAccessRequest: TCRequestModel {
+    public struct DeleteReadOnlyGroupNetworkAccessRequest: TCRequest {
         /// RO组ID，形如：pgro-4t9c6g7k。
         public let readOnlyGroupId: String
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// DeleteReadOnlyGroupNetworkAccess返回参数结构体
-    public struct DeleteReadOnlyGroupNetworkAccessResponse: TCResponseModel {
+    public struct DeleteReadOnlyGroupNetworkAccessResponse: TCResponse {
         /// 流程ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?

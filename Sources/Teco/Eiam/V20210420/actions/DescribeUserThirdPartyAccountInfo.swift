@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeUserThirdPartyAccountInfo请求参数结构体
-    public struct DescribeUserThirdPartyAccountInfoRequest: TCRequestModel {
+    public struct DescribeUserThirdPartyAccountInfoRequest: TCRequest {
         /// 用户名。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
         public let userName: String?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DescribeUserThirdPartyAccountInfo返回参数结构体
-    public struct DescribeUserThirdPartyAccountInfoResponse: TCResponseModel {
+    public struct DescribeUserThirdPartyAccountInfoResponse: TCResponse {
         /// 用户 id。
         public let userId: String
 

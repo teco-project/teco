@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// ModifyCertificatesExpiringNotificationSwitch请求参数结构体
-    public struct ModifyCertificatesExpiringNotificationSwitchRequest: TCRequestModel {
+    public struct ModifyCertificatesExpiringNotificationSwitchRequest: TCRequest {
         /// 证书ID列表。最多50个
         public let certificateIds: [String]
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// ModifyCertificatesExpiringNotificationSwitch返回参数结构体
-    public struct ModifyCertificatesExpiringNotificationSwitchResponse: TCResponseModel {
+    public struct ModifyCertificatesExpiringNotificationSwitchResponse: TCResponse {
         /// 证书ID列表
         public let certificateIds: [String]
 

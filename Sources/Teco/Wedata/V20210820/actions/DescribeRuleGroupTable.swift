@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRuleGroupTable请求参数结构体
-    public struct DescribeRuleGroupTableRequest: TCRequestModel {
+    public struct DescribeRuleGroupTableRequest: TCRequest {
         /// 表ID
         public let tableId: String
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DescribeRuleGroupTable返回参数结构体
-    public struct DescribeRuleGroupTableResponse: TCResponseModel {
+    public struct DescribeRuleGroupTableResponse: TCResponse {
         /// 数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: RuleGroupTable?

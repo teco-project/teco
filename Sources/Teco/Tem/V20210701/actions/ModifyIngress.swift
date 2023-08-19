@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// ModifyIngress请求参数结构体
-    public struct ModifyIngressRequest: TCRequestModel {
+    public struct ModifyIngressRequest: TCRequest {
         /// Ingress 规则配置
         public let ingress: IngressInfo
 
@@ -39,7 +39,7 @@ extension Tem {
     }
 
     /// ModifyIngress返回参数结构体
-    public struct ModifyIngressResponse: TCResponseModel {
+    public struct ModifyIngressResponse: TCResponse {
         /// 创建成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

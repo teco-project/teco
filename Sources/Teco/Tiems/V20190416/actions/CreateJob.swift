@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// CreateJob请求参数结构体
-    public struct CreateJobRequest: TCRequestModel {
+    public struct CreateJobRequest: TCRequest {
         /// 任务名称
         public let name: String
 
@@ -99,7 +99,7 @@ extension Tiems {
     }
 
     /// CreateJob返回参数结构体
-    public struct CreateJobResponse: TCResponseModel {
+    public struct CreateJobResponse: TCResponse {
         /// 任务
         public let job: Job
 

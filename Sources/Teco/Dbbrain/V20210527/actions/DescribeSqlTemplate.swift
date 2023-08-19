@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeSqlTemplate请求参数结构体
-    public struct DescribeSqlTemplateRequest: TCRequestModel {
+    public struct DescribeSqlTemplateRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// DescribeSqlTemplate返回参数结构体
-    public struct DescribeSqlTemplateResponse: TCResponseModel {
+    public struct DescribeSqlTemplateResponse: TCResponse {
         /// 数据库名。
         public let schema: String
 

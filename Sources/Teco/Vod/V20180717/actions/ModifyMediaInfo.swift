@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyMediaInfo请求参数结构体
-    public struct ModifyMediaInfoRequest: TCRequestModel {
+    public struct ModifyMediaInfoRequest: TCRequest {
         /// 媒体文件唯一标识。
         public let fileId: String
 
@@ -112,7 +112,7 @@ extension Vod {
     }
 
     /// ModifyMediaInfo返回参数结构体
-    public struct ModifyMediaInfoResponse: TCResponseModel {
+    public struct ModifyMediaInfoResponse: TCResponse {
         /// 新的视频封面 URL。
         /// * 注意：仅当请求携带 CoverData 时此返回值有效。 *
         public let coverUrl: String

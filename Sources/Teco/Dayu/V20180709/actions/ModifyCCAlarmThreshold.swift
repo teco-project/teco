@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// ModifyCCAlarmThreshold请求参数结构体
-    public struct ModifyCCAlarmThresholdRequest: TCRequestModel {
+    public struct ModifyCCAlarmThresholdRequest: TCRequest {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
         public let business: String
 
@@ -49,7 +49,7 @@ extension Dayu {
     }
 
     /// ModifyCCAlarmThreshold返回参数结构体
-    public struct ModifyCCAlarmThresholdResponse: TCResponseModel {
+    public struct ModifyCCAlarmThresholdResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

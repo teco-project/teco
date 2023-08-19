@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// GenHiveTableDDLSql请求参数结构体
-    public struct GenHiveTableDDLSqlRequest: TCRequestModel {
+    public struct GenHiveTableDDLSqlRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -144,7 +144,7 @@ extension Wedata {
     }
 
     /// GenHiveTableDDLSql返回参数结构体
-    public struct GenHiveTableDDLSqlResponse: TCResponseModel {
+    public struct GenHiveTableDDLSqlResponse: TCResponse {
         /// 生成的ddl语句
         public let ddlSql: String
 

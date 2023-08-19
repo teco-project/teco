@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAssetImageRegistryScanStatusOneKey请求参数结构体
-    public struct DescribeAssetImageRegistryScanStatusOneKeyRequest: TCRequestModel {
+    public struct DescribeAssetImageRegistryScanStatusOneKeyRequest: TCRequest {
         /// 需要获取进度的镜像列表
         public let images: [ImageInfo]?
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// DescribeAssetImageRegistryScanStatusOneKey返回参数结构体
-    public struct DescribeAssetImageRegistryScanStatusOneKeyResponse: TCResponseModel {
+    public struct DescribeAssetImageRegistryScanStatusOneKeyResponse: TCResponse {
         /// 镜像个数
         public let imageTotal: UInt64
 

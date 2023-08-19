@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineHostRiskTop请求参数结构体
-    public struct DescribeBaselineHostRiskTopRequest: TCRequestModel {
+    public struct DescribeBaselineHostRiskTopRequest: TCRequest {
         /// 策略ID
         public let policyId: Int64?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineHostRiskTop返回参数结构体
-    public struct DescribeBaselineHostRiskTopResponse: TCResponseModel {
+    public struct DescribeBaselineHostRiskTopResponse: TCResponse {
         /// 风险主机top5
         public let hostRiskTop5: [HostRiskLevelCount]
 

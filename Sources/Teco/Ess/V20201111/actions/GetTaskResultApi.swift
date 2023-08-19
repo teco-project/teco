@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// GetTaskResultApi请求参数结构体
-    public struct GetTaskResultApiRequest: TCRequestModel {
+    public struct GetTaskResultApiRequest: TCRequest {
         /// 任务Id，通过接口CreateConvertTaskApi或CreateMergeFileTask得到的返回任务id
         public let taskId: String
 
@@ -55,7 +55,7 @@ extension Ess {
     }
 
     /// GetTaskResultApi返回参数结构体
-    public struct GetTaskResultApiResponse: TCResponseModel {
+    public struct GetTaskResultApiResponse: TCResponse {
         /// 任务Id
         public let taskId: String
 

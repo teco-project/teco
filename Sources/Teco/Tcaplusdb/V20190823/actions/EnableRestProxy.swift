@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// EnableRestProxy请求参数结构体
-    public struct EnableRestProxyRequest: TCRequestModel {
+    public struct EnableRestProxyRequest: TCRequest {
         /// 对应于appid
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tcaplusdb {
     }
 
     /// EnableRestProxy返回参数结构体
-    public struct EnableRestProxyResponse: TCResponseModel {
+    public struct EnableRestProxyResponse: TCResponse {
         /// RestProxy的状态，0为关闭，1为开启中，2为开启，3为关闭中
         public let restProxyStatus: UInt64
 

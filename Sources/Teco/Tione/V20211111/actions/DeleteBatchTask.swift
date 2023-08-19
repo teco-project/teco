@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DeleteBatchTask请求参数结构体
-    public struct DeleteBatchTaskRequest: TCRequestModel {
+    public struct DeleteBatchTaskRequest: TCRequest {
         /// 跑批任务ID
         public let batchTaskId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DeleteBatchTask返回参数结构体
-    public struct DeleteBatchTaskResponse: TCResponseModel {
+    public struct DeleteBatchTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

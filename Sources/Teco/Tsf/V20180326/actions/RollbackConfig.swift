@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// RollbackConfig请求参数结构体
-    public struct RollbackConfigRequest: TCRequestModel {
+    public struct RollbackConfigRequest: TCRequest {
         /// 配置项发布历史ID
         public let configReleaseLogId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// RollbackConfig返回参数结构体
-    public struct RollbackConfigResponse: TCResponseModel {
+    public struct RollbackConfigResponse: TCResponse {
         /// true：回滚成功；false：回滚失败
         public let result: Bool
 

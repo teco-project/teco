@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ChangeInstanceRole请求参数结构体
-    public struct ChangeInstanceRoleRequest: TCRequestModel {
+    public struct ChangeInstanceRoleRequest: TCRequest {
         /// 复制组ID
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// ChangeInstanceRole返回参数结构体
-    public struct ChangeInstanceRoleResponse: TCResponseModel {
+    public struct ChangeInstanceRoleResponse: TCResponse {
         /// 异步流程ID
         public let taskId: Int64
 

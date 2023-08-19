@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// UpgradeDBInstanceEngineVersion请求参数结构体
-    public struct UpgradeDBInstanceEngineVersionRequest: TCRequestModel {
+    public struct UpgradeDBInstanceEngineVersionRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// UpgradeDBInstanceEngineVersion返回参数结构体
-    public struct UpgradeDBInstanceEngineVersionResponse: TCResponseModel {
+    public struct UpgradeDBInstanceEngineVersionResponse: TCResponse {
         /// 异步任务 ID，可使用 [查询异步任务的执行结果](https://cloud.tencent.com/document/api/236/20410) 获取其执行情况。
         public let asyncRequestId: String
 

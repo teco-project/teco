@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bm {
     /// DescribeRepairTaskConstant请求参数结构体
-    public struct DescribeRepairTaskConstantRequest: TCRequestModel {
+    public struct DescribeRepairTaskConstantRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRepairTaskConstant返回参数结构体
-    public struct DescribeRepairTaskConstantResponse: TCResponseModel {
+    public struct DescribeRepairTaskConstantResponse: TCResponse {
         /// 故障类型ID与对应中文名列表
         public let taskTypeSet: [TaskType]
 

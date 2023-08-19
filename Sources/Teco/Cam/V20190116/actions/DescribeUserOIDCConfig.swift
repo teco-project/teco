@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// DescribeUserOIDCConfig请求参数结构体
-    public struct DescribeUserOIDCConfigRequest: TCRequestModel {
+    public struct DescribeUserOIDCConfigRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserOIDCConfig返回参数结构体
-    public struct DescribeUserOIDCConfigResponse: TCResponseModel {
+    public struct DescribeUserOIDCConfigResponse: TCResponse {
         /// 身份提供商类型。 12：用户OIDC身份提供商
         public let providerType: UInt64
 

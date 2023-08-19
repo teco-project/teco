@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// BindRuleRealServers请求参数结构体
-    public struct BindRuleRealServersRequest: TCRequestModel {
+    public struct BindRuleRealServersRequest: TCRequest {
         /// 转发规则ID
         public let ruleId: String
 
@@ -42,7 +42,7 @@ extension Gaap {
     }
 
     /// BindRuleRealServers返回参数结构体
-    public struct BindRuleRealServersResponse: TCResponseModel {
+    public struct BindRuleRealServersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

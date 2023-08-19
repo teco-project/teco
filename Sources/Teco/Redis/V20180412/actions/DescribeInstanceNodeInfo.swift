@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceNodeInfo请求参数结构体
-    public struct DescribeInstanceNodeInfoRequest: TCRequestModel {
+    public struct DescribeInstanceNodeInfoRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Redis {
     }
 
     /// DescribeInstanceNodeInfo返回参数结构体
-    public struct DescribeInstanceNodeInfoResponse: TCResponseModel {
+    public struct DescribeInstanceNodeInfoResponse: TCResponse {
         /// Proxy节点数量。
         public let proxyCount: Int64
 

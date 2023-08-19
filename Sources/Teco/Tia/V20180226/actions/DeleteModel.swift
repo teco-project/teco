@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tia {
     /// DeleteModel请求参数结构体
-    public struct DeleteModelRequest: TCRequestModel {
+    public struct DeleteModelRequest: TCRequest {
         /// 要删除的模型名称
         public let name: String
 
@@ -44,7 +44,7 @@ extension Tia {
     }
 
     /// DeleteModel返回参数结构体
-    public struct DeleteModelResponse: TCResponseModel {
+    public struct DeleteModelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

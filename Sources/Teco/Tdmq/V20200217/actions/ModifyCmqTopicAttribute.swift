@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyCmqTopicAttribute请求参数结构体
-    public struct ModifyCmqTopicAttributeRequest: TCRequestModel {
+    public struct ModifyCmqTopicAttributeRequest: TCRequest {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
         public let topicName: String
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// ModifyCmqTopicAttribute返回参数结构体
-    public struct ModifyCmqTopicAttributeResponse: TCResponseModel {
+    public struct ModifyCmqTopicAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeChannelLiveStreamURL请求参数结构体
-    public struct DescribeChannelLiveStreamURLRequest: TCRequestModel {
+    public struct DescribeChannelLiveStreamURLRequest: TCRequest {
         /// 设备唯一标识，必填参数
         public let deviceId: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeChannelLiveStreamURL返回参数结构体
-    public struct DescribeChannelLiveStreamURLResponse: TCResponseModel {
+    public struct DescribeChannelLiveStreamURLResponse: TCResponse {
         /// 设备实时流地址列表
         public let data: DescribeDeviceStreamsData
 

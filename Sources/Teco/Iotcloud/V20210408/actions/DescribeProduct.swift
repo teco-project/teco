@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeProduct请求参数结构体
-    public struct DescribeProductRequest: TCRequestModel {
+    public struct DescribeProductRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotcloud {
     }
 
     /// DescribeProduct返回参数结构体
-    public struct DescribeProductResponse: TCResponseModel {
+    public struct DescribeProductResponse: TCResponse {
         /// 产品ID
         public let productId: String
 

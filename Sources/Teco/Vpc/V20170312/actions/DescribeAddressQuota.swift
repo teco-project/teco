@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeAddressQuota请求参数结构体
-    public struct DescribeAddressQuotaRequest: TCRequestModel {
+    public struct DescribeAddressQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAddressQuota返回参数结构体
-    public struct DescribeAddressQuotaResponse: TCResponseModel {
+    public struct DescribeAddressQuotaResponse: TCResponse {
         /// 账户 EIP 配额信息。
         public let quotaSet: [Quota]
 

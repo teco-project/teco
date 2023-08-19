@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeFlow请求参数结构体
-    public struct DescribeFlowRequest: TCRequestModel {
+    public struct DescribeFlowRequest: TCRequest {
         /// 任务流ID
         public let flowId: Int64
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeFlow返回参数结构体
-    public struct DescribeFlowResponse: TCResponseModel {
+    public struct DescribeFlowResponse: TCResponse {
         /// 任务流状态。0-成功，1-失败，2-处理中
         public let status: Int64
 

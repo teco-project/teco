@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vms {
     /// SendTtsVoice请求参数结构体
-    public struct SendTtsVoiceRequest: TCRequestModel {
+    public struct SendTtsVoiceRequest: TCRequest {
         /// 模板 ID，在控制台审核通过的模板 ID。
         public let templateId: String
 
@@ -61,7 +61,7 @@ extension Vms {
     }
 
     /// SendTtsVoice返回参数结构体
-    public struct SendTtsVoiceResponse: TCResponseModel {
+    public struct SendTtsVoiceResponse: TCResponse {
         /// 语音通知发送状态。
         public let sendStatus: SendStatus
 

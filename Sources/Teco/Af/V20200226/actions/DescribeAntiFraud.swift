@@ -20,7 +20,7 @@ import TecoCore
 
 extension Af {
     /// DescribeAntiFraud请求参数结构体
-    public struct DescribeAntiFraudRequest: TCRequestModel {
+    public struct DescribeAntiFraudRequest: TCRequest {
         /// 原始业务入参(二选一）
         public let businessSecurityData: FinanceAntiFraudFilter?
 
@@ -39,7 +39,7 @@ extension Af {
     }
 
     /// DescribeAntiFraud返回参数结构体
-    public struct DescribeAntiFraudResponse: TCResponseModel {
+    public struct DescribeAntiFraudResponse: TCResponse {
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: FinanceAntiFraudRecord?

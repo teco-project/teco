@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateProxy请求参数结构体
-    public struct CreateProxyRequest: TCRequestModel {
+    public struct CreateProxyRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -89,7 +89,7 @@ extension Cynosdb {
     }
 
     /// CreateProxy返回参数结构体
-    public struct CreateProxyResponse: TCResponseModel {
+    public struct CreateProxyResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

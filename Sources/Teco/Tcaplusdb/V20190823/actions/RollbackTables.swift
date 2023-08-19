@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcaplusdb {
     /// RollbackTables请求参数结构体
-    public struct RollbackTablesRequest: TCRequestModel {
+    public struct RollbackTablesRequest: TCRequest {
         /// 待回档表格所在集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Tcaplusdb {
     }
 
     /// RollbackTables返回参数结构体
-    public struct RollbackTablesResponse: TCResponseModel {
+    public struct RollbackTablesResponse: TCResponse {
         /// 表格回档任务结果数量
         public let totalCount: UInt64
 

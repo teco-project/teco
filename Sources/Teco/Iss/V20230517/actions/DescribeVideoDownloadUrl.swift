@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeVideoDownloadUrl请求参数结构体
-    public struct DescribeVideoDownloadUrlRequest: TCRequestModel {
+    public struct DescribeVideoDownloadUrlRequest: TCRequest {
         /// 通道 ID
         public let channelId: String
 
@@ -54,7 +54,7 @@ extension Iss {
     }
 
     /// 获取云录像下载URL返回的数据
-    public struct DescribeVideoDownloadUrlResponse: TCResponseModel {
+    public struct DescribeVideoDownloadUrlResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

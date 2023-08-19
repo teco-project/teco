@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// OfflineCluster请求参数结构体
-    public struct OfflineClusterRequest: TCRequestModel {
+    public struct OfflineClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// OfflineCluster返回参数结构体
-    public struct OfflineClusterResponse: TCResponseModel {
+    public struct OfflineClusterResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

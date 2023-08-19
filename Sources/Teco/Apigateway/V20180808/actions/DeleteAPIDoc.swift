@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteAPIDoc请求参数结构体
-    public struct DeleteAPIDocRequest: TCRequestModel {
+    public struct DeleteAPIDocRequest: TCRequest {
         /// API文档ID
         public let apiDocId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DeleteAPIDoc返回参数结构体
-    public struct DeleteAPIDocResponse: TCResponseModel {
+    public struct DeleteAPIDocResponse: TCResponse {
         /// 操作是否成功
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateSchemeUrl请求参数结构体
-    public struct CreateSchemeUrlRequest: TCRequestModel {
+    public struct CreateSchemeUrlRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -95,7 +95,7 @@ extension Ess {
     }
 
     /// CreateSchemeUrl返回参数结构体
-    public struct CreateSchemeUrlResponse: TCResponseModel {
+    public struct CreateSchemeUrlResponse: TCResponse {
         /// 小程序链接地址，有效期5分钟
         public let schemeUrl: String
 

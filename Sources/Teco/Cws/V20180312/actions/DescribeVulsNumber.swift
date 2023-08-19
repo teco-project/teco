@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cws {
     /// DescribeVulsNumber请求参数结构体
-    public struct DescribeVulsNumberRequest: TCRequestModel {
+    public struct DescribeVulsNumberRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulsNumber返回参数结构体
-    public struct DescribeVulsNumberResponse: TCResponseModel {
+    public struct DescribeVulsNumberResponse: TCResponse {
         /// 受影响的网站总数。
         public let impactSiteNumber: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssignPrivateIpAddresses请求参数结构体
-    public struct AssignPrivateIpAddressesRequest: TCRequestModel {
+    public struct AssignPrivateIpAddressesRequest: TCRequest {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// AssignPrivateIpAddresses返回参数结构体
-    public struct AssignPrivateIpAddressesResponse: TCResponseModel {
+    public struct AssignPrivateIpAddressesResponse: TCResponse {
         /// 内网IP详细信息。
         public let privateIpAddressSet: [PrivateIpAddressSpecification]
 

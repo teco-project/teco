@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// CreateVerifyRecord请求参数结构体
-    public struct CreateVerifyRecordRequest: TCRequestModel {
+    public struct CreateVerifyRecordRequest: TCRequest {
         /// 要取回的域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Ecdn {
     }
 
     /// CreateVerifyRecord返回参数结构体
-    public struct CreateVerifyRecordResponse: TCResponseModel {
+    public struct CreateVerifyRecordResponse: TCResponse {
         /// 子解析
         public let subDomain: String
 

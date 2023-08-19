@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cam {
     /// DescribeSafeAuthFlag请求参数结构体
-    public struct DescribeSafeAuthFlagRequest: TCRequestModel {
+    public struct DescribeSafeAuthFlagRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSafeAuthFlag返回参数结构体
-    public struct DescribeSafeAuthFlagResponse: TCResponseModel {
+    public struct DescribeSafeAuthFlagResponse: TCResponse {
         /// 登录保护设置
         public let loginFlag: LoginActionFlag
 

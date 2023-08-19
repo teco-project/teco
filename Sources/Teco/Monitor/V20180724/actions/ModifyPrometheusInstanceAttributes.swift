@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// ModifyPrometheusInstanceAttributes请求参数结构体
-    public struct ModifyPrometheusInstanceAttributesRequest: TCRequestModel {
+    public struct ModifyPrometheusInstanceAttributesRequest: TCRequest {
         /// 实例名称
         public let instanceName: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// ModifyPrometheusInstanceAttributes返回参数结构体
-    public struct ModifyPrometheusInstanceAttributesResponse: TCResponseModel {
+    public struct ModifyPrometheusInstanceAttributesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

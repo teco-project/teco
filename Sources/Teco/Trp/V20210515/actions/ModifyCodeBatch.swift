@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyCodeBatch请求参数结构体
-    public struct ModifyCodeBatchRequest: TCRequestModel {
+    public struct ModifyCodeBatchRequest: TCRequest {
         /// 批次ID
         public let batchId: String
 
@@ -79,7 +79,7 @@ extension Trp {
     }
 
     /// ModifyCodeBatch返回参数结构体
-    public struct ModifyCodeBatchResponse: TCResponseModel {
+    public struct ModifyCodeBatchResponse: TCResponse {
         /// 批次ID
         public let batchId: String
 

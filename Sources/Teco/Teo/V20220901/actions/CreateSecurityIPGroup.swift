@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreateSecurityIPGroup请求参数结构体
-    public struct CreateSecurityIPGroupRequest: TCRequestModel {
+    public struct CreateSecurityIPGroupRequest: TCRequest {
         /// 站点 Id。
         public let zoneId: String
 
@@ -39,7 +39,7 @@ extension Teo {
     }
 
     /// CreateSecurityIPGroup返回参数结构体
-    public struct CreateSecurityIPGroupResponse: TCResponseModel {
+    public struct CreateSecurityIPGroupResponse: TCResponse {
         /// IP 组 Id。
         public let groupId: Int64
 

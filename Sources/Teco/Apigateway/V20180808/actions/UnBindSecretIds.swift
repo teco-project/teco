@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnBindSecretIds请求参数结构体
-    public struct UnBindSecretIdsRequest: TCRequestModel {
+    public struct UnBindSecretIdsRequest: TCRequest {
         /// 待解绑的使用计划唯一 ID。
         public let usagePlanId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// UnBindSecretIds返回参数结构体
-    public struct UnBindSecretIdsResponse: TCResponseModel {
+    public struct UnBindSecretIdsResponse: TCResponse {
         /// 解绑操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

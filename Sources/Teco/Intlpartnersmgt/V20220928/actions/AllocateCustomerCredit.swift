@@ -20,7 +20,7 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// AllocateCustomerCredit请求参数结构体
-    public struct AllocateCustomerCreditRequest: TCRequestModel {
+    public struct AllocateCustomerCreditRequest: TCRequest {
         /// 分配客户信用的具体值
         public let addedCredit: Float
 
@@ -39,7 +39,7 @@ extension Intlpartnersmgt {
     }
 
     /// AllocateCustomerCredit返回参数结构体
-    public struct AllocateCustomerCreditResponse: TCResponseModel {
+    public struct AllocateCustomerCreditResponse: TCResponse {
         /// 更新后的信用总额
         public let totalCredit: Float
 

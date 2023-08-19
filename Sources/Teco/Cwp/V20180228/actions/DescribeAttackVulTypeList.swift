@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAttackVulTypeList请求参数结构体
-    public struct DescribeAttackVulTypeListRequest: TCRequestModel {
+    public struct DescribeAttackVulTypeListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAttackVulTypeList返回参数结构体
-    public struct DescribeAttackVulTypeListResponse: TCResponseModel {
+    public struct DescribeAttackVulTypeListResponse: TCResponse {
         /// 威胁类型列表
         public let list: [String]
 

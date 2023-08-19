@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// EnableTaskFlow请求参数结构体
-    public struct EnableTaskFlowRequest: TCRequestModel {
+    public struct EnableTaskFlowRequest: TCRequest {
         /// 工作流 ID
         public let flowId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// EnableTaskFlow返回参数结构体
-    public struct EnableTaskFlowResponse: TCResponseModel {
+    public struct EnableTaskFlowResponse: TCResponse {
         /// true成功，false: 失败
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveSnapshotTemplate请求参数结构体
-    public struct CreateLiveSnapshotTemplateRequest: TCRequestModel {
+    public struct CreateLiveSnapshotTemplateRequest: TCRequest {
         /// 模板名称。
         /// 长度上限：255字节。
         /// 仅支持中文、英文、数字、_、-。
@@ -98,7 +98,7 @@ extension Live {
     }
 
     /// CreateLiveSnapshotTemplate返回参数结构体
-    public struct CreateLiveSnapshotTemplateResponse: TCResponseModel {
+    public struct CreateLiveSnapshotTemplateResponse: TCResponse {
         /// 模板Id。
         public let templateId: Int64
 

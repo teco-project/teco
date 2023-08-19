@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// UpgradeVersionToMultiAvailabilityZones请求参数结构体
-    public struct UpgradeVersionToMultiAvailabilityZonesRequest: TCRequestModel {
+    public struct UpgradeVersionToMultiAvailabilityZonesRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -42,7 +42,7 @@ extension Redis {
     }
 
     /// UpgradeVersionToMultiAvailabilityZones返回参数结构体
-    public struct UpgradeVersionToMultiAvailabilityZonesResponse: TCResponseModel {
+    public struct UpgradeVersionToMultiAvailabilityZonesResponse: TCResponse {
         /// 任务ID
         public let flowId: Int64
 

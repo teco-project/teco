@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEncryptionStatus请求参数结构体
-    public struct DescribeEncryptionStatusRequest: TCRequestModel {
+    public struct DescribeEncryptionStatusRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEncryptionStatus返回参数结构体
-    public struct DescribeEncryptionStatusResponse: TCResponseModel {
+    public struct DescribeEncryptionStatusResponse: TCResponse {
         /// 加密状态
         public let status: String
 

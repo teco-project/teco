@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateGencode请求参数结构体
-    public struct CreateGencodeRequest: TCRequestModel {
+    public struct CreateGencodeRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// CreateGencode返回参数结构体
-    public struct CreateGencodeResponse: TCResponseModel {
+    public struct CreateGencodeResponse: TCResponse {
         /// 生成的源代码(zip压缩后的base64编码)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zipCode: String?

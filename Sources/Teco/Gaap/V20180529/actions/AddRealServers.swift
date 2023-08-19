@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// AddRealServers请求参数结构体
-    public struct AddRealServersRequest: TCRequestModel {
+    public struct AddRealServersRequest: TCRequest {
         /// 源站对应的项目ID
         public let projectId: UInt64
 
@@ -49,7 +49,7 @@ extension Gaap {
     }
 
     /// AddRealServers返回参数结构体
-    public struct AddRealServersResponse: TCResponseModel {
+    public struct AddRealServersResponse: TCResponse {
         /// 源站信息列表
         public let realServerSet: [NewRealServer]
 

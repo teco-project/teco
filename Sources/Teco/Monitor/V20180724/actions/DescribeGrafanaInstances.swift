@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeGrafanaInstances请求参数结构体
-    public struct DescribeGrafanaInstancesRequest: TCRequestModel {
+    public struct DescribeGrafanaInstancesRequest: TCRequest {
         /// 查询偏移量
         public let offset: Int64
 
@@ -59,7 +59,7 @@ extension Monitor {
     }
 
     /// DescribeGrafanaInstances返回参数结构体
-    public struct DescribeGrafanaInstancesResponse: TCResponseModel {
+    public struct DescribeGrafanaInstancesResponse: TCResponse {
         /// 已废弃，请使用 Instances
         public let instanceSet: [GrafanaInstanceInfo]
 

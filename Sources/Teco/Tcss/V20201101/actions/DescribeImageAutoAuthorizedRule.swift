@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeImageAutoAuthorizedRule请求参数结构体
-    public struct DescribeImageAutoAuthorizedRuleRequest: TCRequestModel {
+    public struct DescribeImageAutoAuthorizedRuleRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageAutoAuthorizedRule返回参数结构体
-    public struct DescribeImageAutoAuthorizedRuleResponse: TCResponseModel {
+    public struct DescribeImageAutoAuthorizedRuleResponse: TCResponse {
         /// 规则是否生效，0:不生效，1:已生效
         public let isEnabled: Int64
 

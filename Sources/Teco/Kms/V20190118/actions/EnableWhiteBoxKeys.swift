@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// EnableWhiteBoxKeys请求参数结构体
-    public struct EnableWhiteBoxKeysRequest: TCRequestModel {
+    public struct EnableWhiteBoxKeysRequest: TCRequest {
         /// 白盒密钥的全局唯一标识符列表。注意：要确保所有提供的KeyId是格式有效的，没有重复，个数不超过50个，并且都是有效存在的。
         public let keyIds: [String]
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// EnableWhiteBoxKeys返回参数结构体
-    public struct EnableWhiteBoxKeysResponse: TCResponseModel {
+    public struct EnableWhiteBoxKeysResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

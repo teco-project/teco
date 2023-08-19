@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ModifyModuleIpDirect请求参数结构体
-    public struct ModifyModuleIpDirectRequest: TCRequestModel {
+    public struct ModifyModuleIpDirectRequest: TCRequest {
         /// 模块ID。
         public let moduleId: String
 
@@ -41,7 +41,7 @@ extension Ecm {
     }
 
     /// ModifyModuleIpDirect返回参数结构体
-    public struct ModifyModuleIpDirectResponse: TCResponseModel {
+    public struct ModifyModuleIpDirectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

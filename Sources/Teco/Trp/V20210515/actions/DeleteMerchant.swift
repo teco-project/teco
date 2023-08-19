@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DeleteMerchant请求参数结构体
-    public struct DeleteMerchantRequest: TCRequestModel {
+    public struct DeleteMerchantRequest: TCRequest {
         /// 商户标识码
         public let merchantId: String
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DeleteMerchant返回参数结构体
-    public struct DeleteMerchantResponse: TCResponseModel {
+    public struct DeleteMerchantResponse: TCResponse {
         /// 商户标识码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?

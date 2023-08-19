@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDefaultParams请求参数结构体
-    public struct DescribeDefaultParamsRequest: TCRequestModel {
+    public struct DescribeDefaultParamsRequest: TCRequest {
         /// 引擎版本，目前支持 ["5.1", "5.5", "5.6", "5.7", "8.0"]
         public let engineVersion: String?
 
@@ -44,7 +44,7 @@ extension Cdb {
     }
 
     /// DescribeDefaultParams返回参数结构体
-    public struct DescribeDefaultParamsResponse: TCResponseModel {
+    public struct DescribeDefaultParamsResponse: TCResponse {
         /// 参数个数。
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DisIsolateDBInstances请求参数结构体
-    public struct DisIsolateDBInstancesRequest: TCRequestModel {
+    public struct DisIsolateDBInstancesRequest: TCRequest {
         /// 实例ID列表。注意：当前已不支持同时解隔离多个实例，这里只能传入单个实例ID。
         public let dbInstanceIdSet: [String]
 
@@ -55,7 +55,7 @@ extension Postgres {
     }
 
     /// DisIsolateDBInstances返回参数结构体
-    public struct DisIsolateDBInstancesResponse: TCResponseModel {
+    public struct DisIsolateDBInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

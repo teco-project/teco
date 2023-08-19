@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeWhitelists请求参数结构体
-    public struct DescribeWhitelistsRequest: TCRequestModel {
+    public struct DescribeWhitelistsRequest: TCRequest {
         /// 实例instance-ID
         public let instanceID: String
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// DescribeWhitelists返回参数结构体
-    public struct DescribeWhitelistsResponse: TCResponseModel {
+    public struct DescribeWhitelistsResponse: TCResponse {
         /// 白名单列表
         public let whitelistSet: [Whitelist]
 

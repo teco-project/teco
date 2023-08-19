@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// CreateLoadBalancerSnatIps请求参数结构体
-    public struct CreateLoadBalancerSnatIpsRequest: TCRequestModel {
+    public struct CreateLoadBalancerSnatIpsRequest: TCRequest {
         /// 负载均衡唯一性ID，例如：lb-12345678。
         public let loadBalancerId: String
 
@@ -44,7 +44,7 @@ extension Clb {
     }
 
     /// CreateLoadBalancerSnatIps返回参数结构体
-    public struct CreateLoadBalancerSnatIpsResponse: TCResponseModel {
+    public struct CreateLoadBalancerSnatIpsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

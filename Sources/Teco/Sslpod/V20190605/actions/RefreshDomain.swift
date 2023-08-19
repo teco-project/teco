@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sslpod {
     /// RefreshDomain请求参数结构体
-    public struct RefreshDomainRequest: TCRequestModel {
+    public struct RefreshDomainRequest: TCRequest {
         /// 域名列表中的ID，可通过搜索域名接口获得
         public let domainId: Int64
 
@@ -34,7 +34,7 @@ extension Sslpod {
     }
 
     /// RefreshDomain返回参数结构体
-    public struct RefreshDomainResponse: TCResponseModel {
+    public struct RefreshDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

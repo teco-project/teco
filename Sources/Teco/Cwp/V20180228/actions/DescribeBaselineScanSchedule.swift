@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineScanSchedule请求参数结构体
-    public struct DescribeBaselineScanScheduleRequest: TCRequestModel {
+    public struct DescribeBaselineScanScheduleRequest: TCRequest {
         /// 任务id
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineScanSchedule返回参数结构体
-    public struct DescribeBaselineScanScheduleResponse: TCResponseModel {
+    public struct DescribeBaselineScanScheduleResponse: TCResponse {
         /// 检测进度(百分比)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schedule: UInt64?

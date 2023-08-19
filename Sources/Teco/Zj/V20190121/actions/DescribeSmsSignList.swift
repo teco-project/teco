@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// DescribeSmsSignList请求参数结构体
-    public struct DescribeSmsSignListRequest: TCRequestModel {
+    public struct DescribeSmsSignListRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -46,7 +46,7 @@ extension Zj {
     }
 
     /// DescribeSmsSignList返回参数结构体
-    public struct DescribeSmsSignListResponse: TCResponseModel {
+    public struct DescribeSmsSignListResponse: TCResponse {
         /// 返回数据
         public let data: [DescribeSmsSignListDataStruct]
 

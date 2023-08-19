@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mvj {
     /// MarketingValueJudgement请求参数结构体
-    public struct MarketingValueJudgementRequest: TCRequestModel {
+    public struct MarketingValueJudgementRequest: TCRequest {
         /// 手机账号类型填写4
         public let accountType: UInt64
 
@@ -59,7 +59,7 @@ extension Mvj {
     }
 
     /// MarketingValueJudgement返回参数结构体
-    public struct MarketingValueJudgementResponse: TCResponseModel {
+    public struct MarketingValueJudgementResponse: TCResponse {
         /// 返回数据
         public let data: Data
 

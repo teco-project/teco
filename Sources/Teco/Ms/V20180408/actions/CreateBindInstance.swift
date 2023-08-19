@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateBindInstance请求参数结构体
-    public struct CreateBindInstanceRequest: TCRequestModel {
+    public struct CreateBindInstanceRequest: TCRequest {
         /// 资源id，全局唯一
         public let resourceId: String
 
@@ -49,7 +49,7 @@ extension Ms {
     }
 
     /// CreateBindInstance返回参数结构体
-    public struct CreateBindInstanceResponse: TCResponseModel {
+    public struct CreateBindInstanceResponse: TCResponse {
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let progress: UInt64
 

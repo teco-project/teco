@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateBPBrand请求参数结构体
-    public struct CreateBPBrandRequest: TCRequestModel {
+    public struct CreateBPBrandRequest: TCRequest {
         /// 品牌名称
         public let brandName: String
 
@@ -104,7 +104,7 @@ extension Bma {
     }
 
     /// CreateBPBrand返回参数结构体
-    public struct CreateBPBrandResponse: TCResponseModel {
+    public struct CreateBPBrandResponse: TCResponse {
         /// 企业id
         public let companyId: Int64
 

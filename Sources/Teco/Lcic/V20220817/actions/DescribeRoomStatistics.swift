@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeRoomStatistics请求参数结构体
-    public struct DescribeRoomStatisticsRequest: TCRequestModel {
+    public struct DescribeRoomStatisticsRequest: TCRequest {
         /// 房间Id。
         public let roomId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DescribeRoomStatistics返回参数结构体
-    public struct DescribeRoomStatisticsResponse: TCResponseModel {
+    public struct DescribeRoomStatisticsResponse: TCResponse {
         /// 峰值在线成员人数。
         public let peakMemberNumber: UInt64
 

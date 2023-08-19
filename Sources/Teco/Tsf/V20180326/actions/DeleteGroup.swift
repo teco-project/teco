@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteGroup请求参数结构体
-    public struct DeleteGroupRequest: TCRequestModel {
+    public struct DeleteGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteGroup返回参数结构体
-    public struct DeleteGroupResponse: TCResponseModel {
+    public struct DeleteGroupResponse: TCResponse {
         /// 删除部署组操作是否成功。
         /// true：操作成功。
         /// false：操作失败。

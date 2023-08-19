@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// UpdateProduct请求参数结构体
-    public struct UpdateProductRequest: TCRequestModel {
+    public struct UpdateProductRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iot {
     }
 
     /// UpdateProduct返回参数结构体
-    public struct UpdateProductResponse: TCResponseModel {
+    public struct UpdateProductResponse: TCResponse {
         /// 更新后的产品信息
         public let product: Product
 

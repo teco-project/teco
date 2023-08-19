@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateStoreLocation请求参数结构体
-    public struct CreateStoreLocationRequest: TCRequestModel {
+    public struct CreateStoreLocationRequest: TCRequest {
         /// 计算结果存储cos路径，如：cosn://bucketname/
         public let storeLocation: String
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// CreateStoreLocation返回参数结构体
-    public struct CreateStoreLocationResponse: TCResponseModel {
+    public struct CreateStoreLocationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

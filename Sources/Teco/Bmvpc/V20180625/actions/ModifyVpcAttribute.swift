@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// ModifyVpcAttribute请求参数结构体
-    public struct ModifyVpcAttributeRequest: TCRequestModel {
+    public struct ModifyVpcAttributeRequest: TCRequest {
         /// 私有网络ID
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Bmvpc {
     }
 
     /// ModifyVpcAttribute返回参数结构体
-    public struct ModifyVpcAttributeResponse: TCResponseModel {
+    public struct ModifyVpcAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

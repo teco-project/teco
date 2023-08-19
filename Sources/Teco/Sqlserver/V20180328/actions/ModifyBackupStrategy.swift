@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyBackupStrategy请求参数结构体
-    public struct ModifyBackupStrategyRequest: TCRequestModel {
+    public struct ModifyBackupStrategyRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -89,7 +89,7 @@ extension Sqlserver {
     }
 
     /// ModifyBackupStrategy返回参数结构体
-    public struct ModifyBackupStrategyResponse: TCResponseModel {
+    public struct ModifyBackupStrategyResponse: TCResponse {
         /// 返回错误码
         public let errno: Int64
 

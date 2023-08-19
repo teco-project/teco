@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// AssignIpv6CidrBlocks请求参数结构体
-    public struct AssignIpv6CidrBlocksRequest: TCRequestModel {
+    public struct AssignIpv6CidrBlocksRequest: TCRequest {
         /// `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// AssignIpv6CidrBlocks返回参数结构体
-    public struct AssignIpv6CidrBlocksResponse: TCResponseModel {
+    public struct AssignIpv6CidrBlocksResponse: TCResponse {
         /// IPv6网段和所属运营商。
         public let iPv6CidrBlockSet: [ISPIPv6CidrBlock]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeResourceTags请求参数结构体
-    public struct DescribeResourceTagsRequest: TCRequestModel {
+    public struct DescribeResourceTagsRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DescribeResourceTags返回参数结构体
-    public struct DescribeResourceTagsResponse: TCResponseModel {
+    public struct DescribeResourceTagsResponse: TCResponse {
         /// 资源标签列表
         public let tags: [Tag]
 

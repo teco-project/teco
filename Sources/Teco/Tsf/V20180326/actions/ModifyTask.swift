@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyTask请求参数结构体
-    public struct ModifyTaskRequest: TCRequestModel {
+    public struct ModifyTaskRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -113,7 +113,7 @@ extension Tsf {
     }
 
     /// ModifyTask返回参数结构体
-    public struct ModifyTaskResponse: TCResponseModel {
+    public struct ModifyTaskResponse: TCResponse {
         /// 更新是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

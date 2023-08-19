@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// StopMCUMixTranscodeByStrRoomId请求参数结构体
-    public struct StopMCUMixTranscodeByStrRoomIdRequest: TCRequestModel {
+    public struct StopMCUMixTranscodeByStrRoomIdRequest: TCRequest {
         /// TRTC的SDKAppId。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Trtc {
     }
 
     /// StopMCUMixTranscodeByStrRoomId返回参数结构体
-    public struct StopMCUMixTranscodeByStrRoomIdResponse: TCResponseModel {
+    public struct StopMCUMixTranscodeByStrRoomIdResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

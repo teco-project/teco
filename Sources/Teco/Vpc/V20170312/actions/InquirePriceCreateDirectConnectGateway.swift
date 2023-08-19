@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// InquirePriceCreateDirectConnectGateway请求参数结构体
-    public struct InquirePriceCreateDirectConnectGatewayRequest: TCRequestModel {
+    public struct InquirePriceCreateDirectConnectGatewayRequest: TCRequest {
         public init() {
         }
     }
 
     /// InquirePriceCreateDirectConnectGateway返回参数结构体
-    public struct InquirePriceCreateDirectConnectGatewayResponse: TCResponseModel {
+    public struct InquirePriceCreateDirectConnectGatewayResponse: TCResponse {
         /// 专线网关标准接入费用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCost: Int64?

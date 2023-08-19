@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeDeviceChannel请求参数结构体
-    public struct DescribeDeviceChannelRequest: TCRequestModel {
+    public struct DescribeDeviceChannelRequest: TCRequest {
         /// 设备ID（从获取设备列表接口ListDevices中获取）
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// 查询设备通道信息返回结果
-    public struct DescribeDeviceChannelResponse: TCResponseModel {
+    public struct DescribeDeviceChannelResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

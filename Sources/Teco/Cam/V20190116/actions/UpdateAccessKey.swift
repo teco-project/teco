@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UpdateAccessKey请求参数结构体
-    public struct UpdateAccessKeyRequest: TCRequestModel {
+    public struct UpdateAccessKeyRequest: TCRequest {
         /// 指定需要更新的AccessKeyId
         public let accessKeyId: String
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// UpdateAccessKey返回参数结构体
-    public struct UpdateAccessKeyResponse: TCResponseModel {
+    public struct UpdateAccessKeyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

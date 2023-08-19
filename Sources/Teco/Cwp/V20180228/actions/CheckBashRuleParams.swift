@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CheckBashRuleParams请求参数结构体
-    public struct CheckBashRuleParamsRequest: TCRequestModel {
+    public struct CheckBashRuleParamsRequest: TCRequest {
         /// 校验内容 Name或Rule ，两个都要校验时逗号分割
         public let checkField: String
 
@@ -54,7 +54,7 @@ extension Cwp {
     }
 
     /// CheckBashRuleParams返回参数结构体
-    public struct CheckBashRuleParamsResponse: TCResponseModel {
+    public struct CheckBashRuleParamsResponse: TCResponse {
         /// 0=校验通过  1=规则名称校验不通过 2=正则表达式校验不通过
         public let errCode: UInt64
 

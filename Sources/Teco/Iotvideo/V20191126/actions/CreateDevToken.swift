@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateDevToken请求参数结构体
-    public struct CreateDevTokenRequest: TCRequestModel {
+    public struct CreateDevTokenRequest: TCRequest {
         /// 客户的终端用户在IoT Video上的唯一标识ID
         public let accessId: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// CreateDevToken返回参数结构体
-    public struct CreateDevTokenResponse: TCResponseModel {
+    public struct CreateDevTokenResponse: TCResponse {
         /// 返回的用户token列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DevTokenInfo]?

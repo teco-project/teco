@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ReplaceSecurityGroupPolicy请求参数结构体
-    public struct ReplaceSecurityGroupPolicyRequest: TCRequestModel {
+    public struct ReplaceSecurityGroupPolicyRequest: TCRequest {
         /// 安全组实例ID，例如esg-33ocnj9n，可通过DescribeSecurityGroups获取
         public let securityGroupId: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// ReplaceSecurityGroupPolicy返回参数结构体
-    public struct ReplaceSecurityGroupPolicyResponse: TCResponseModel {
+    public struct ReplaceSecurityGroupPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

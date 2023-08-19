@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// CreateEngine请求参数结构体
-    public struct CreateEngineRequest: TCRequestModel {
+    public struct CreateEngineRequest: TCRequest {
         /// 引擎类型。参考值：
         /// - zookeeper
         /// - nacos
@@ -165,7 +165,7 @@ extension Tse {
     }
 
     /// CreateEngine返回参数结构体
-    public struct CreateEngineResponse: TCResponseModel {
+    public struct CreateEngineResponse: TCResponse {
         /// 引擎实例 ID
         public let instanceId: String
 

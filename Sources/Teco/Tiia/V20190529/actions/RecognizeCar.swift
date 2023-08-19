@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// RecognizeCar请求参数结构体
-    public struct RecognizeCarRequest: TCRequestModel {
+    public struct RecognizeCarRequest: TCRequest {
         /// 图片URL地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG。
@@ -48,7 +48,7 @@ extension Tiia {
     }
 
     /// RecognizeCar返回参数结构体
-    public struct RecognizeCarResponse: TCResponseModel {
+    public struct RecognizeCarResponse: TCResponse {
         /// 汽车的四个矩形顶点坐标，如果图片中存在多辆车，则输出最大车辆的坐标。
         public let carCoords: [Coord]
 

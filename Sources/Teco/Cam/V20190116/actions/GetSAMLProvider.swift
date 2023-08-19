@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cam {
     /// GetSAMLProvider请求参数结构体
-    public struct GetSAMLProviderRequest: TCRequestModel {
+    public struct GetSAMLProviderRequest: TCRequest {
         /// SAML身份提供商名称
         public let name: String
 
@@ -36,7 +36,7 @@ extension Cam {
     }
 
     /// GetSAMLProvider返回参数结构体
-    public struct GetSAMLProviderResponse: TCResponseModel {
+    public struct GetSAMLProviderResponse: TCResponse {
         /// SAML身份提供商名称
         public let name: String
 

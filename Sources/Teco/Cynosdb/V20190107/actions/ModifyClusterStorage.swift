@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyClusterStorage请求参数结构体
-    public struct ModifyClusterStorageRequest: TCRequestModel {
+    public struct ModifyClusterStorageRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Cynosdb {
     }
 
     /// ModifyClusterStorage返回参数结构体
-    public struct ModifyClusterStorageResponse: TCResponseModel {
+    public struct ModifyClusterStorageResponse: TCResponse {
         /// 冻结流水ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// CreateFacePicture请求参数结构体
-    public struct CreateFacePictureRequest: TCRequestModel {
+    public struct CreateFacePictureRequest: TCRequest {
         /// 集团ID
         public let companyId: String
 
@@ -59,7 +59,7 @@ extension Youmall {
     }
 
     /// CreateFacePicture返回参数结构体
-    public struct CreateFacePictureResponse: TCResponseModel {
+    public struct CreateFacePictureResponse: TCResponse {
         /// 人物ID
         public let personId: Int64
 

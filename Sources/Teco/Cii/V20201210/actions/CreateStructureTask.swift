@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// CreateStructureTask请求参数结构体
-    public struct CreateStructureTaskRequest: TCRequestModel {
+    public struct CreateStructureTaskRequest: TCRequest {
         /// 保单号
         public let policyId: String
 
@@ -72,7 +72,7 @@ extension Cii {
     }
 
     /// CreateStructureTask返回参数结构体
-    public struct CreateStructureTaskResponse: TCResponseModel {
+    public struct CreateStructureTaskResponse: TCResponse {
         /// 本次结构化任务的ID
         public let taskId: String
 

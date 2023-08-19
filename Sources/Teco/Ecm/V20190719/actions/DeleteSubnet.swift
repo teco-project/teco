@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DeleteSubnet请求参数结构体
-    public struct DeleteSubnetRequest: TCRequestModel {
+    public struct DeleteSubnetRequest: TCRequest {
         /// 子网实例ID。可通过DescribeSubnets接口返回值中的SubnetId获取。
         public let subnetId: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DeleteSubnet返回参数结构体
-    public struct DeleteSubnetResponse: TCResponseModel {
+    public struct DeleteSubnetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

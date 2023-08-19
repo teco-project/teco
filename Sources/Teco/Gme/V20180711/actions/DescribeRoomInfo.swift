@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DescribeRoomInfo请求参数结构体
-    public struct DescribeRoomInfoRequest: TCRequestModel {
+    public struct DescribeRoomInfoRequest: TCRequest {
         /// 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// DescribeRoomInfo返回参数结构体
-    public struct DescribeRoomInfoResponse: TCResponseModel {
+    public struct DescribeRoomInfoResponse: TCResponse {
         /// 操作结果, 0成功, 非0失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: UInt64?

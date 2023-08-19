@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyAssetScan请求参数结构体
-    public struct ModifyAssetScanRequest: TCRequestModel {
+    public struct ModifyAssetScanRequest: TCRequest {
         /// 扫描范围：1端口, 2端口+漏扫
         public let scanRange: Int64
 
@@ -59,7 +59,7 @@ extension Cfw {
     }
 
     /// ModifyAssetScan返回参数结构体
-    public struct ModifyAssetScanResponse: TCResponseModel {
+    public struct ModifyAssetScanResponse: TCResponse {
         /// 接口返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnMsg: String?

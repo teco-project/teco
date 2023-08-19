@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeCodesByPack请求参数结构体
-    public struct DescribeCodesByPackRequest: TCRequestModel {
+    public struct DescribeCodesByPackRequest: TCRequest {
         /// 码包ID
         public let packId: String
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeCodesByPack返回参数结构体
-    public struct DescribeCodesByPackResponse: TCResponseModel {
+    public struct DescribeCodesByPackResponse: TCResponse {
         /// 码列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codes: [CodeItem]?

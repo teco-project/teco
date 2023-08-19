@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// CreateAccountUser请求参数结构体
-    public struct CreateAccountUserRequest: TCRequestModel {
+    public struct CreateAccountUserRequest: TCRequest {
         /// 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -63,7 +63,7 @@ extension Mongodb {
     }
 
     /// CreateAccountUser返回参数结构体
-    public struct CreateAccountUserResponse: TCResponseModel {
+    public struct CreateAccountUserResponse: TCResponse {
         /// 创建任务ID。
         public let flowId: UInt64
 

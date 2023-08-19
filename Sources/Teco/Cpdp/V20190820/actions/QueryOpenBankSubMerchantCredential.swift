@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankSubMerchantCredential请求参数结构体
-    public struct QueryOpenBankSubMerchantCredentialRequest: TCRequestModel {
+    public struct QueryOpenBankSubMerchantCredentialRequest: TCRequest {
         /// 渠道商户ID。
         public let channelMerchantId: String
 
@@ -70,7 +70,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankSubMerchantCredential返回参数结构体
-    public struct QueryOpenBankSubMerchantCredentialResponse: TCResponseModel {
+    public struct QueryOpenBankSubMerchantCredentialResponse: TCResponse {
         /// 错误码。
         public let errCode: String
 

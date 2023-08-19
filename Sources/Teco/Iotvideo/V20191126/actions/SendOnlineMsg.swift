@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// SendOnlineMsg请求参数结构体
-    public struct SendOnlineMsgRequest: TCRequestModel {
+    public struct SendOnlineMsgRequest: TCRequest {
         /// 设备TID
         public let tid: String
 
@@ -57,7 +57,7 @@ extension Iotvideo {
     }
 
     /// SendOnlineMsg返回参数结构体
-    public struct SendOnlineMsgResponse: TCResponseModel {
+    public struct SendOnlineMsgResponse: TCResponse {
         /// 若返回此项则表明需要用户用此taskID进行查询请求是否成功(只有waitresp不等于0的情况下才可能会返回该taskID项)
         public let taskId: String
 

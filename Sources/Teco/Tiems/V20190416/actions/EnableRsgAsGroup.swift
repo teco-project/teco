@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// EnableRsgAsGroup请求参数结构体
-    public struct EnableRsgAsGroupRequest: TCRequestModel {
+    public struct EnableRsgAsGroupRequest: TCRequest {
         /// 伸缩组 ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tiems {
     }
 
     /// EnableRsgAsGroup返回参数结构体
-    public struct EnableRsgAsGroupResponse: TCResponseModel {
+    public struct EnableRsgAsGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

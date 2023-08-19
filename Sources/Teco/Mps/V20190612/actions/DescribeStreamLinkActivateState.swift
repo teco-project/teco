@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mps {
     /// DescribeStreamLinkActivateState请求参数结构体
-    public struct DescribeStreamLinkActivateStateRequest: TCRequestModel {
+    public struct DescribeStreamLinkActivateStateRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeStreamLinkActivateState返回参数结构体
-    public struct DescribeStreamLinkActivateStateResponse: TCResponseModel {
+    public struct DescribeStreamLinkActivateStateResponse: TCResponse {
         /// 用户已激活为0，否则为非0。
         public let status: Int64
 

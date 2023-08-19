@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// SearchAccessLog请求参数结构体
-    public struct SearchAccessLogRequest: TCRequestModel {
+    public struct SearchAccessLogRequest: TCRequest {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题，新版本此字段填空字符串
         public let topicId: String
 
@@ -69,7 +69,7 @@ extension Waf {
     }
 
     /// SearchAccessLog返回参数结构体
-    public struct SearchAccessLogResponse: TCResponseModel {
+    public struct SearchAccessLogResponse: TCResponse {
         /// 新接口此字段失效，默认返回空字符串
         public let context: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyDBInstanceProject请求参数结构体
-    public struct ModifyDBInstanceProjectRequest: TCRequestModel {
+    public struct ModifyDBInstanceProjectRequest: TCRequest {
         /// 实例ID数组，形如mssql-j8kv137v
         public let instanceIdSet: [String]
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// ModifyDBInstanceProject返回参数结构体
-    public struct ModifyDBInstanceProjectResponse: TCResponseModel {
+    public struct ModifyDBInstanceProjectResponse: TCResponse {
         /// 修改成功的实例个数
         public let count: Int64
 

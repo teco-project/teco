@@ -20,7 +20,7 @@ import TecoCore
 
 extension Omics {
     /// CreateEnvironment请求参数结构体
-    public struct CreateEnvironmentRequest: TCRequestModel {
+    public struct CreateEnvironmentRequest: TCRequest {
         /// 环境名称。
         public let name: String
 
@@ -44,7 +44,7 @@ extension Omics {
     }
 
     /// CreateEnvironment返回参数结构体
-    public struct CreateEnvironmentResponse: TCResponseModel {
+    public struct CreateEnvironmentResponse: TCResponse {
         /// 环境ID。
         public let environmentId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeIntegrationStatistics请求参数结构体
-    public struct DescribeIntegrationStatisticsRequest: TCRequestModel {
+    public struct DescribeIntegrationStatisticsRequest: TCRequest {
         /// 任务类型（实时：201，离线：202）
         public let taskType: Int64
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeIntegrationStatistics返回参数结构体
-    public struct DescribeIntegrationStatisticsResponse: TCResponseModel {
+    public struct DescribeIntegrationStatisticsResponse: TCResponse {
         /// 总任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalTask: Int64?

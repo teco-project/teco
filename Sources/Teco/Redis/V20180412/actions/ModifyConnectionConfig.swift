@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ModifyConnectionConfig请求参数结构体
-    public struct ModifyConnectionConfigRequest: TCRequestModel {
+    public struct ModifyConnectionConfigRequest: TCRequest {
         /// 实例的ID，长度在12-36之间。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Redis {
     }
 
     /// ModifyConnectionConfig返回参数结构体
-    public struct ModifyConnectionConfigResponse: TCResponseModel {
+    public struct ModifyConnectionConfigResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

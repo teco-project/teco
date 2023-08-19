@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ReleaseStudioProduct请求参数结构体
-    public struct ReleaseStudioProductRequest: TCRequestModel {
+    public struct ReleaseStudioProductRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotexplorer {
     }
 
     /// ReleaseStudioProduct返回参数结构体
-    public struct ReleaseStudioProductResponse: TCResponseModel {
+    public struct ReleaseStudioProductResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// TerminateContract请求参数结构体
-    public struct TerminateContractRequest: TCRequestModel {
+    public struct TerminateContractRequest: TCRequest {
         /// 聚鑫分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -118,7 +118,7 @@ extension Cpdp {
     }
 
     /// TerminateContract返回参数结构体
-    public struct TerminateContractResponse: TCResponseModel {
+    public struct TerminateContractResponse: TCResponse {
         /// 解约数据
         public let contractTerminateData: ResponseTerminateContract
 

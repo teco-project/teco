@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeMapInfo请求参数结构体
-    public struct DescribeMapInfoRequest: TCRequestModel {
+    public struct DescribeMapInfoRequest: TCRequest {
         /// 映射查询类别：
         /// isp：运营商映射查询
         /// district：省份（中国境内）、国家/地区（中国境外）映射查询
@@ -36,7 +36,7 @@ extension Cdn {
     }
 
     /// DescribeMapInfo返回参数结构体
-    public struct DescribeMapInfoResponse: TCResponseModel {
+    public struct DescribeMapInfoResponse: TCResponse {
         /// 映射关系数组。
         public let mapInfoList: [MapInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcLimits请求参数结构体
-    public struct DescribeVpcLimitsRequest: TCRequestModel {
+    public struct DescribeVpcLimitsRequest: TCRequest {
         /// 配额名称。每次最大查询100个配额类型。
         public let limitTypes: [String]
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeVpcLimits返回参数结构体
-    public struct DescribeVpcLimitsResponse: TCResponseModel {
+    public struct DescribeVpcLimitsResponse: TCResponse {
         /// 私有网络配额
         public let vpcLimitSet: [VpcLimit]
 

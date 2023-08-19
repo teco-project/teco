@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// ModifyInstanceNetwork请求参数结构体
-    public struct ModifyInstanceNetworkRequest: TCRequestModel {
+    public struct ModifyInstanceNetworkRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Dcdb {
     }
 
     /// ModifyInstanceNetwork返回参数结构体
-    public struct ModifyInstanceNetworkResponse: TCResponseModel {
+    public struct ModifyInstanceNetworkResponse: TCResponse {
         /// 异步任务ID，根据此FlowId通过DescribeFlow接口查询任务进行状态
         public let flowId: Int64
 

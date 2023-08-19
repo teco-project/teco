@@ -20,7 +20,7 @@ import TecoCore
 
 extension Npp {
     /// DeleteCallBack请求参数结构体
-    public struct DeleteCallBackRequest: TCRequestModel {
+    public struct DeleteCallBackRequest: TCRequest {
         /// 业务appid
         public let bizAppId: String
 
@@ -44,7 +44,7 @@ extension Npp {
     }
 
     /// DeleteCallBack返回参数结构体
-    public struct DeleteCallBackResponse: TCResponseModel {
+    public struct DeleteCallBackResponse: TCResponse {
         /// 错误码
         public let errorCode: String
 

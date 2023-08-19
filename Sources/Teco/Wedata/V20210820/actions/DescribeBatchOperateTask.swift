@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeBatchOperateTask请求参数结构体
-    public struct DescribeBatchOperateTaskRequest: TCRequestModel {
+    public struct DescribeBatchOperateTaskRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -125,7 +125,7 @@ extension Wedata {
     }
 
     /// DescribeBatchOperateTask返回参数结构体
-    public struct DescribeBatchOperateTaskResponse: TCResponseModel {
+    public struct DescribeBatchOperateTaskResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: DescribeBatchOperateTaskPage?

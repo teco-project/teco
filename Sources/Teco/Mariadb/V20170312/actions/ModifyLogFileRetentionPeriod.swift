@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifyLogFileRetentionPeriod请求参数结构体
-    public struct ModifyLogFileRetentionPeriodRequest: TCRequestModel {
+    public struct ModifyLogFileRetentionPeriodRequest: TCRequest {
         /// 实例 ID，形如：tdsql-ow728lmc。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// ModifyLogFileRetentionPeriod返回参数结构体
-    public struct ModifyLogFileRetentionPeriodResponse: TCResponseModel {
+    public struct ModifyLogFileRetentionPeriodResponse: TCResponse {
         /// 实例 ID，形如：tdsql-ow728lmc。
         public let instanceId: String
 

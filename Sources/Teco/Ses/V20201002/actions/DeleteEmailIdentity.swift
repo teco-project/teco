@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// DeleteEmailIdentity请求参数结构体
-    public struct DeleteEmailIdentityRequest: TCRequestModel {
+    public struct DeleteEmailIdentityRequest: TCRequest {
         /// 发信域名
         public let emailIdentity: String
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// DeleteEmailIdentity返回参数结构体
-    public struct DeleteEmailIdentityResponse: TCResponseModel {
+    public struct DeleteEmailIdentityResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

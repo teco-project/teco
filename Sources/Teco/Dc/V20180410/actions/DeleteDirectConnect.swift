@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// DeleteDirectConnect请求参数结构体
-    public struct DeleteDirectConnectRequest: TCRequestModel {
+    public struct DeleteDirectConnectRequest: TCRequest {
         /// 物理专线的ID。
         public let directConnectId: String
 
@@ -34,7 +34,7 @@ extension Dc {
     }
 
     /// DeleteDirectConnect返回参数结构体
-    public struct DeleteDirectConnectResponse: TCResponseModel {
+    public struct DeleteDirectConnectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeAttendanceResult请求参数结构体
-    public struct DescribeAttendanceResultRequest: TCRequestModel {
+    public struct DescribeAttendanceResultRequest: TCRequest {
         /// 任务唯一标识符
         public let jobId: Int64
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// DescribeAttendanceResult返回参数结构体
-    public struct DescribeAttendanceResultResponse: TCResponseModel {
+    public struct DescribeAttendanceResultResponse: TCResponse {
         /// 缺失人员的ID列表(只针对请求中的libids字段)
         public let absenceSetInLibs: [AbsenceInfo]
 

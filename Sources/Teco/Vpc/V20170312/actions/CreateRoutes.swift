@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateRoutes请求参数结构体
-    public struct CreateRoutesRequest: TCRequestModel {
+    public struct CreateRoutesRequest: TCRequest {
         /// 路由表实例ID。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// CreateRoutes返回参数结构体
-    public struct CreateRoutesResponse: TCResponseModel {
+    public struct CreateRoutesResponse: TCResponse {
         /// 新增的实例个数。
         public let totalCount: UInt64
 

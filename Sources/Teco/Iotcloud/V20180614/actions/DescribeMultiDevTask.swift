@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeMultiDevTask请求参数结构体
-    public struct DescribeMultiDevTaskRequest: TCRequestModel {
+    public struct DescribeMultiDevTaskRequest: TCRequest {
         /// 任务 ID，由批量创建设备接口返回
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// DescribeMultiDevTask返回参数结构体
-    public struct DescribeMultiDevTaskResponse: TCResponseModel {
+    public struct DescribeMultiDevTaskResponse: TCResponse {
         /// 任务 ID
         public let taskId: String
 

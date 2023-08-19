@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryMaliciousRegistration请求参数结构体
-    public struct QueryMaliciousRegistrationRequest: TCRequestModel {
+    public struct QueryMaliciousRegistrationRequest: TCRequest {
         /// 商户ID，调用方使用的商户号信息，与商户主体一一对应
         public let merchantId: String
 
@@ -89,7 +89,7 @@ extension Cpdp {
     }
 
     /// QueryMaliciousRegistration返回参数结构体
-    public struct QueryMaliciousRegistrationResponse: TCResponseModel {
+    public struct QueryMaliciousRegistrationResponse: TCResponse {
         /// 错误码
         public let errCode: String
 

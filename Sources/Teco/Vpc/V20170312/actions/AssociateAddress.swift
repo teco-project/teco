@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssociateAddress请求参数结构体
-    public struct AssociateAddressRequest: TCRequestModel {
+    public struct AssociateAddressRequest: TCRequest {
         /// 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
         public let addressId: String
 
@@ -54,7 +54,7 @@ extension Vpc {
     }
 
     /// AssociateAddress返回参数结构体
-    public struct AssociateAddressResponse: TCResponseModel {
+    public struct AssociateAddressResponse: TCResponse {
         /// 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         public let taskId: String
 

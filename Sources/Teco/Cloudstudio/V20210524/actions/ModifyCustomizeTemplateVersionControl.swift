@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// ModifyCustomizeTemplateVersionControl请求参数结构体
-    public struct ModifyCustomizeTemplateVersionControlRequest: TCRequestModel {
+    public struct ModifyCustomizeTemplateVersionControlRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -54,7 +54,7 @@ extension Cloudstudio {
     }
 
     /// ModifyCustomizeTemplateVersionControl返回参数结构体
-    public struct ModifyCustomizeTemplateVersionControlResponse: TCResponseModel {
+    public struct ModifyCustomizeTemplateVersionControlResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkspaceTemplateInfo?

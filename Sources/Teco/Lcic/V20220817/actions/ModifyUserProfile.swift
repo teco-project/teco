@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// ModifyUserProfile请求参数结构体
-    public struct ModifyUserProfileRequest: TCRequestModel {
+    public struct ModifyUserProfileRequest: TCRequest {
         /// 待修改用户ID
         public let userId: String
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// ModifyUserProfile返回参数结构体
-    public struct ModifyUserProfileResponse: TCResponseModel {
+    public struct ModifyUserProfileResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

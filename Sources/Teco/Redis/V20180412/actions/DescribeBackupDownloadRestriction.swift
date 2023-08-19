@@ -20,13 +20,13 @@ import TecoCore
 
 extension Redis {
     /// DescribeBackupDownloadRestriction请求参数结构体
-    public struct DescribeBackupDownloadRestrictionRequest: TCRequestModel {
+    public struct DescribeBackupDownloadRestrictionRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBackupDownloadRestriction返回参数结构体
-    public struct DescribeBackupDownloadRestrictionResponse: TCResponseModel {
+    public struct DescribeBackupDownloadRestrictionResponse: TCResponse {
         /// 下载备份文件的网络限制类型：
         ///
         /// - NoLimit：不限制，腾讯云内外网均可以下载备份文件。

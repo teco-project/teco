@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeClusterNodes请求参数结构体
-    public struct DescribeClusterNodesRequest: TCRequestModel {
+    public struct DescribeClusterNodesRequest: TCRequest {
         /// 集群实例ID,实例ID形如: emr-xxxxxxxx
         public let instanceId: String
 
@@ -78,7 +78,7 @@ extension Emr {
     }
 
     /// DescribeClusterNodes返回参数结构体
-    public struct DescribeClusterNodesResponse: TCResponseModel {
+    public struct DescribeClusterNodesResponse: TCResponse {
         /// 查询到的节点总数
         public let totalCnt: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smop {
     /// SubmitTaskEvent请求参数结构体
-    public struct SubmitTaskEventRequest: TCRequestModel {
+    public struct SubmitTaskEventRequest: TCRequest {
         /// 用户ID
         public let accountId: String
 
@@ -64,7 +64,7 @@ extension Smop {
     }
 
     /// SubmitTaskEvent返回参数结构体
-    public struct SubmitTaskEventResponse: TCResponseModel {
+    public struct SubmitTaskEventResponse: TCResponse {
         /// 订单ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orderId: String?

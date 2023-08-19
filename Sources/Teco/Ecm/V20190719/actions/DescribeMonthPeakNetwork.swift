@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeMonthPeakNetwork请求参数结构体
-    public struct DescribeMonthPeakNetworkRequest: TCRequestModel {
+    public struct DescribeMonthPeakNetworkRequest: TCRequest {
         /// 月份时间(xxxx-xx) 如2021-03,默认取当前时间的上一个月份
         public let month: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DescribeMonthPeakNetwork返回参数结构体
-    public struct DescribeMonthPeakNetworkResponse: TCResponseModel {
+    public struct DescribeMonthPeakNetworkResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let monthNetWorkData: [MonthNetwork]?

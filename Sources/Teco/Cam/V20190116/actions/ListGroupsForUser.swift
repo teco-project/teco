@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListGroupsForUser请求参数结构体
-    public struct ListGroupsForUserRequest: TCRequestModel {
+    public struct ListGroupsForUserRequest: TCRequest {
         /// 子用户 UID
         public let uid: UInt64?
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// ListGroupsForUser返回参数结构体
-    public struct ListGroupsForUserResponse: TCResponseModel {
+    public struct ListGroupsForUserResponse: TCResponse {
         /// 子用户加入的用户组总数
         public let totalNum: UInt64
 

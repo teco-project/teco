@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DescribeTreeJobs请求参数结构体
-    public struct DescribeTreeJobsRequest: TCRequestModel {
+    public struct DescribeTreeJobsRequest: TCRequest {
         /// 工作空间 Serialid
         public let workSpaceId: String?
 
@@ -34,7 +34,7 @@ extension Oceanus {
     }
 
     /// DescribeTreeJobs返回参数结构体
-    public struct DescribeTreeJobsResponse: TCResponseModel {
+    public struct DescribeTreeJobsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

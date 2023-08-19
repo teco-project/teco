@@ -20,7 +20,7 @@ import TecoCore
 
 extension Aai {
     /// Chat请求参数结构体
-    public struct ChatRequest: TCRequestModel {
+    public struct ChatRequest: TCRequest {
         /// 聊天输入文本
         public let text: String
 
@@ -44,7 +44,7 @@ extension Aai {
     }
 
     /// Chat返回参数结构体
-    public struct ChatResponse: TCResponseModel {
+    public struct ChatResponse: TCResponse {
         /// 聊天输出文本
         public let answer: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeSSOAccount请求参数结构体
-    public struct DescribeSSOAccountRequest: TCRequestModel {
+    public struct DescribeSSOAccountRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribeSSOAccount返回参数结构体
-    public struct DescribeSSOAccountResponse: TCResponseModel {
+    public struct DescribeSSOAccountResponse: TCResponse {
         /// 授权账号列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountSet: [GrafanaAccountInfo]?

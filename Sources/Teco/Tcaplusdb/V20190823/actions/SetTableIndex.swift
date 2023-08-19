@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// SetTableIndex请求参数结构体
-    public struct SetTableIndexRequest: TCRequestModel {
+    public struct SetTableIndexRequest: TCRequest {
         /// 表所属集群实例ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// SetTableIndex返回参数结构体
-    public struct SetTableIndexResponse: TCResponseModel {
+    public struct SetTableIndexResponse: TCResponse {
         /// 表格分布式索引创建结果数量
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// MigratePrivateIpAddress请求参数结构体
-    public struct MigratePrivateIpAddressRequest: TCRequestModel {
+    public struct MigratePrivateIpAddressRequest: TCRequest {
         /// ECM 地域，形如ap-xian-ecm。
         public let ecmRegion: String
 
@@ -49,7 +49,7 @@ extension Ecm {
     }
 
     /// MigratePrivateIpAddress返回参数结构体
-    public struct MigratePrivateIpAddressResponse: TCResponseModel {
+    public struct MigratePrivateIpAddressResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Npp {
     /// Get400Cdr请求参数结构体
-    public struct Get400CdrRequest: TCRequestModel {
+    public struct Get400CdrRequest: TCRequest {
         /// 业务appid
         public let bizAppId: String
 
@@ -54,7 +54,7 @@ extension Npp {
     }
 
     /// Get400Cdr返回参数结构体
-    public struct Get400CdrResponse: TCResponseModel {
+    public struct Get400CdrResponse: TCResponse {
         /// 错误码
         public let errorCode: String
 

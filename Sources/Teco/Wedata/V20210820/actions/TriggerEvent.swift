@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// TriggerEvent请求参数结构体
-    public struct TriggerEventRequest: TCRequestModel {
+    public struct TriggerEventRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// TriggerEvent返回参数结构体
-    public struct TriggerEventResponse: TCResponseModel {
+    public struct TriggerEventResponse: TCResponse {
         /// 成功或者失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BatchReturn?

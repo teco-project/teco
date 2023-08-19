@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateCloneInstance请求参数结构体
-    public struct CreateCloneInstanceRequest: TCRequestModel {
+    public struct CreateCloneInstanceRequest: TCRequest {
         /// 克隆源实例Id。
         public let instanceId: String
 
@@ -134,7 +134,7 @@ extension Cdb {
     }
 
     /// CreateCloneInstance返回参数结构体
-    public struct CreateCloneInstanceResponse: TCResponseModel {
+    public struct CreateCloneInstanceResponse: TCResponse {
         /// 异步任务的请求ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
 

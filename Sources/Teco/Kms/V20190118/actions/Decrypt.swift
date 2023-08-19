@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// Decrypt请求参数结构体
-    public struct DecryptRequest: TCRequestModel {
+    public struct DecryptRequest: TCRequest {
         /// 待解密的密文数据
         public let ciphertextBlob: String
 
@@ -49,7 +49,7 @@ extension Kms {
     }
 
     /// Decrypt返回参数结构体
-    public struct DecryptResponse: TCResponseModel {
+    public struct DecryptResponse: TCResponse {
         /// CMK的全局唯一标识
         public let keyId: String
 

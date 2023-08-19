@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// DeleteReservedConcurrencyConfig请求参数结构体
-    public struct DeleteReservedConcurrencyConfigRequest: TCRequestModel {
+    public struct DeleteReservedConcurrencyConfigRequest: TCRequest {
         /// 需要删除最大独占配额的函数的名称
         public let functionName: String
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// DeleteReservedConcurrencyConfig返回参数结构体
-    public struct DeleteReservedConcurrencyConfigResponse: TCResponseModel {
+    public struct DeleteReservedConcurrencyConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

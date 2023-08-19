@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UpdateAlertRule请求参数结构体
-    public struct UpdateAlertRuleRequest: TCRequestModel {
+    public struct UpdateAlertRuleRequest: TCRequest {
         /// Prometheus 报警规则 ID
         public let ruleId: String
 
@@ -86,7 +86,7 @@ extension Monitor {
     }
 
     /// UpdateAlertRule返回参数结构体
-    public struct UpdateAlertRuleResponse: TCResponseModel {
+    public struct UpdateAlertRuleResponse: TCResponse {
         /// 规则 ID
         public let ruleId: String
 

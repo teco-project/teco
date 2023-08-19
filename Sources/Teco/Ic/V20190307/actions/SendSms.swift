@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ic {
     /// SendSms请求参数结构体
-    public struct SendSmsRequest: TCRequestModel {
+    public struct SendSmsRequest: TCRequest {
         /// 应用ID
         public let sdkappid: Int64
 
@@ -44,7 +44,7 @@ extension Ic {
     }
 
     /// SendSms返回参数结构体
-    public struct SendSmsResponse: TCResponseModel {
+    public struct SendSmsResponse: TCResponse {
         /// 短信流水信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: SmsSid?

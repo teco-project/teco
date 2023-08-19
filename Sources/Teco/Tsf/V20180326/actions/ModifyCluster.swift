@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyCluster请求参数结构体
-    public struct ModifyClusterRequest: TCRequestModel {
+    public struct ModifyClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tsf {
     }
 
     /// ModifyCluster返回参数结构体
-    public struct ModifyClusterResponse: TCResponseModel {
+    public struct ModifyClusterResponse: TCResponse {
         /// 更新集群详情操作是否成功。
         /// true： 操作成功。
         /// false：操作失败。

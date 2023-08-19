@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tbm {
     /// DescribeBrandSocialReport请求参数结构体
-    public struct DescribeBrandSocialReportRequest: TCRequestModel {
+    public struct DescribeBrandSocialReportRequest: TCRequest {
         /// 品牌ID
         public let brandId: String
 
@@ -52,7 +52,7 @@ extension Tbm {
     }
 
     /// DescribeBrandSocialReport返回参数结构体
-    public struct DescribeBrandSocialReportResponse: TCResponseModel {
+    public struct DescribeBrandSocialReportResponse: TCResponse {
         /// 累计统计数据
         public let totalCount: UInt64
 

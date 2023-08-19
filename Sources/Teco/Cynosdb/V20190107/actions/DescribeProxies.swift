@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeProxies请求参数结构体
-    public struct DescribeProxiesRequest: TCRequestModel {
+    public struct DescribeProxiesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String?
 
@@ -63,7 +63,7 @@ extension Cynosdb {
     }
 
     /// DescribeProxies返回参数结构体
-    public struct DescribeProxiesResponse: TCResponseModel {
+    public struct DescribeProxiesResponse: TCResponse {
         /// 数据库代理组数
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// CreateRule请求参数结构体
-    public struct CreateRuleRequest: TCRequestModel {
+    public struct CreateRuleRequest: TCRequest {
         /// 规则名称，[a-zA-Z0-9-\.]* 长度128
         public let ruleName: String
 
@@ -49,7 +49,7 @@ extension Gpm {
     }
 
     /// CreateRule返回参数结构体
-    public struct CreateRuleResponse: TCResponseModel {
+    public struct CreateRuleResponse: TCResponse {
         /// 规则信息
         public let ruleInfo: RuleInfo
 

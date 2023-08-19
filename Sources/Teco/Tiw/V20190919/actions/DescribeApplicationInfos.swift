@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tiw {
     /// DescribeApplicationInfos请求参数结构体
-    public struct DescribeApplicationInfosRequest: TCRequestModel {
+    public struct DescribeApplicationInfosRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeApplicationInfos返回参数结构体
-    public struct DescribeApplicationInfosResponse: TCResponseModel {
+    public struct DescribeApplicationInfosResponse: TCResponse {
         /// 应用列表
         public let applicationInfos: [ApplicationItem]
 

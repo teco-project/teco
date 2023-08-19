@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// CreateCfsPGroup请求参数结构体
-    public struct CreateCfsPGroupRequest: TCRequestModel {
+    public struct CreateCfsPGroupRequest: TCRequest {
         /// 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
         public let name: String
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// CreateCfsPGroup返回参数结构体
-    public struct CreateCfsPGroupResponse: TCResponseModel {
+    public struct CreateCfsPGroupResponse: TCResponse {
         /// 权限组 ID
         public let pGroupId: String
 

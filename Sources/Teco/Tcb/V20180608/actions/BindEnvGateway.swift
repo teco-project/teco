@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// BindEnvGateway请求参数结构体
-    public struct BindEnvGatewayRequest: TCRequestModel {
+    public struct BindEnvGatewayRequest: TCRequest {
         /// 子环境id
         public let subEnvId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// BindEnvGateway返回参数结构体
-    public struct BindEnvGatewayResponse: TCResponseModel {
+    public struct BindEnvGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

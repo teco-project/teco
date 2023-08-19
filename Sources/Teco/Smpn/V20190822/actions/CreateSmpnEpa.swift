@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smpn {
     /// CreateSmpnEpa请求参数结构体
-    public struct CreateSmpnEpaRequest: TCRequestModel {
+    public struct CreateSmpnEpaRequest: TCRequest {
         /// 企业号码认证请求内容
         public let requestData: EPARequest
 
@@ -39,7 +39,7 @@ extension Smpn {
     }
 
     /// CreateSmpnEpa返回参数结构体
-    public struct CreateSmpnEpaResponse: TCResponseModel {
+    public struct CreateSmpnEpaResponse: TCResponse {
         /// 业号码认证回应内容
         public let responseData: EPAResponse
 

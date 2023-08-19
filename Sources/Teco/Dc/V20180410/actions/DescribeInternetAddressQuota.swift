@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dc {
     /// DescribeInternetAddressQuota请求参数结构体
-    public struct DescribeInternetAddressQuotaRequest: TCRequestModel {
+    public struct DescribeInternetAddressQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInternetAddressQuota返回参数结构体
-    public struct DescribeInternetAddressQuotaResponse: TCResponseModel {
+    public struct DescribeInternetAddressQuotaResponse: TCResponse {
         /// IPv6互联网公网允许的最小前缀长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6PrefixLen: Int64?

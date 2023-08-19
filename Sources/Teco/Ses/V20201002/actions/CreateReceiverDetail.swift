@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// CreateReceiverDetail请求参数结构体
-    public struct CreateReceiverDetailRequest: TCRequestModel {
+    public struct CreateReceiverDetailRequest: TCRequest {
         /// 收件人列表ID
         public let receiverId: UInt64
 
@@ -39,7 +39,7 @@ extension Ses {
     }
 
     /// CreateReceiverDetail返回参数结构体
-    public struct CreateReceiverDetailResponse: TCResponseModel {
+    public struct CreateReceiverDetailResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

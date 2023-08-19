@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// SetTranscodeCallback请求参数结构体
-    public struct SetTranscodeCallbackRequest: TCRequestModel {
+    public struct SetTranscodeCallbackRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -40,7 +40,7 @@ extension Tiw {
     }
 
     /// SetTranscodeCallback返回参数结构体
-    public struct SetTranscodeCallbackResponse: TCResponseModel {
+    public struct SetTranscodeCallbackResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

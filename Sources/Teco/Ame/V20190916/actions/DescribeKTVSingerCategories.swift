@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ame {
     /// DescribeKTVSingerCategories请求参数结构体
-    public struct DescribeKTVSingerCategoriesRequest: TCRequestModel {
+    public struct DescribeKTVSingerCategoriesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeKTVSingerCategories返回参数结构体
-    public struct DescribeKTVSingerCategoriesResponse: TCResponseModel {
+    public struct DescribeKTVSingerCategoriesResponse: TCResponse {
         /// 歌手性别分类列表
         public let genderSet: [KTVSingerCategoryInfo]
 

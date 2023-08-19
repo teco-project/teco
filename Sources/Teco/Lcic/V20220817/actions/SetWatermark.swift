@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// SetWatermark请求参数结构体
-    public struct SetWatermarkRequest: TCRequestModel {
+    public struct SetWatermarkRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -99,7 +99,7 @@ extension Lcic {
     }
 
     /// SetWatermark返回参数结构体
-    public struct SetWatermarkResponse: TCResponseModel {
+    public struct SetWatermarkResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

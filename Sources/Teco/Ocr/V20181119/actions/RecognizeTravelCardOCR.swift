@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RecognizeTravelCardOCR请求参数结构体
-    public struct RecognizeTravelCardOCRRequest: TCRequestModel {
+    public struct RecognizeTravelCardOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -46,7 +46,7 @@ extension Ocr {
     }
 
     /// RecognizeTravelCardOCR返回参数结构体
-    public struct RecognizeTravelCardOCRResponse: TCResponseModel {
+    public struct RecognizeTravelCardOCRResponse: TCResponse {
         /// 行程卡更新时间，格式为：XXXX.XX.XX XX:XX:XX
         public let time: String
 

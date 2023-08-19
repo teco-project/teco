@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateScript请求参数结构体
-    public struct CreateScriptRequest: TCRequestModel {
+    public struct CreateScriptRequest: TCRequest {
         /// 脚本名称，最大不能超过255个字符。
         public let scriptName: String
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CreateScript返回参数结构体
-    public struct CreateScriptResponse: TCResponseModel {
+    public struct CreateScriptResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

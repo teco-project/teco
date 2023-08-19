@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// CreatePicture请求参数结构体
-    public struct CreatePictureRequest: TCRequestModel {
+    public struct CreatePictureRequest: TCRequest {
         /// 应用id
         public let sdkAppId: UInt64
 
@@ -64,7 +64,7 @@ extension Trtc {
     }
 
     /// CreatePicture返回参数结构体
-    public struct CreatePictureResponse: TCResponseModel {
+    public struct CreatePictureResponse: TCResponse {
         /// 图片id
         public let pictureId: UInt64
 

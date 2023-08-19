@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeInstanceLastLog请求参数结构体
-    public struct DescribeInstanceLastLogRequest: TCRequestModel {
+    public struct DescribeInstanceLastLogRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeInstanceLastLog返回参数结构体
-    public struct DescribeInstanceLastLogResponse: TCResponseModel {
+    public struct DescribeInstanceLastLogResponse: TCResponse {
         /// 日志
         public let data: String
 

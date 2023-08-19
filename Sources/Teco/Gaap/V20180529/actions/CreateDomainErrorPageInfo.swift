@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateDomainErrorPageInfo请求参数结构体
-    public struct CreateDomainErrorPageInfoRequest: TCRequestModel {
+    public struct CreateDomainErrorPageInfoRequest: TCRequest {
         /// 监听器ID
         public let listenerId: String
 
@@ -64,7 +64,7 @@ extension Gaap {
     }
 
     /// CreateDomainErrorPageInfo返回参数结构体
-    public struct CreateDomainErrorPageInfoResponse: TCResponseModel {
+    public struct CreateDomainErrorPageInfoResponse: TCResponse {
         /// 错误定制响应的配置ID
         public let errorPageId: String
 

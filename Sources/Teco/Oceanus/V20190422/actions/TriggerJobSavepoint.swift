@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// TriggerJobSavepoint请求参数结构体
-    public struct TriggerJobSavepointRequest: TCRequestModel {
+    public struct TriggerJobSavepointRequest: TCRequest {
         /// 作业 SerialId
         public let jobId: String
 
@@ -44,7 +44,7 @@ extension Oceanus {
     }
 
     /// TriggerJobSavepoint返回参数结构体
-    public struct TriggerJobSavepointResponse: TCResponseModel {
+    public struct TriggerJobSavepointResponse: TCResponse {
         /// 是否成功
         public let savepointTrigger: Bool
 

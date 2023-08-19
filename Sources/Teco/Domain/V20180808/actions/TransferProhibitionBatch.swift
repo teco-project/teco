@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// TransferProhibitionBatch请求参数结构体
-    public struct TransferProhibitionBatchRequest: TCRequestModel {
+    public struct TransferProhibitionBatchRequest: TCRequest {
         /// 批量操作的域名。
         public let domains: [String]
 
@@ -41,7 +41,7 @@ extension Domain {
     }
 
     /// TransferProhibitionBatch返回参数结构体
-    public struct TransferProhibitionBatchResponse: TCResponseModel {
+    public struct TransferProhibitionBatchResponse: TCResponse {
         /// 日志ID
         public let logId: UInt64
 

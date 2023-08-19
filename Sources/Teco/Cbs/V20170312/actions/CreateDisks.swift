@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// CreateDisks请求参数结构体
-    public struct CreateDisksRequest: TCRequestModel {
+    public struct CreateDisksRequest: TCRequest {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。
         public let placement: Placement
 
@@ -135,7 +135,7 @@ extension Cbs {
     }
 
     /// CreateDisks返回参数结构体
-    public struct CreateDisksResponse: TCResponseModel {
+    public struct CreateDisksResponse: TCResponse {
         /// 创建的云硬盘ID列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskIdSet: [String]?

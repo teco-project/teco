@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchStopWorkflowsByIds请求参数结构体
-    public struct BatchStopWorkflowsByIdsRequest: TCRequestModel {
+    public struct BatchStopWorkflowsByIdsRequest: TCRequest {
         /// 工作流id列表
         public let workflowIds: [String]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// BatchStopWorkflowsByIds返回参数结构体
-    public struct BatchStopWorkflowsByIdsResponse: TCResponseModel {
+    public struct BatchStopWorkflowsByIdsResponse: TCResponse {
         /// 操作返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: OperationOpsDto?

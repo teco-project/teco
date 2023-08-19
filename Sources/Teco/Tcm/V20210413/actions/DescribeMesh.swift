@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcm {
     /// DescribeMesh请求参数结构体
-    public struct DescribeMeshRequest: TCRequestModel {
+    public struct DescribeMeshRequest: TCRequest {
         /// 需要查询的网格 Id
         public let meshId: String
 
@@ -34,7 +34,7 @@ extension Tcm {
     }
 
     /// DescribeMesh返回参数结构体
-    public struct DescribeMeshResponse: TCResponseModel {
+    public struct DescribeMeshResponse: TCResponse {
         /// Mesh详细信息
         public let mesh: Mesh
 

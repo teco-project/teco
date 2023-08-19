@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateCommonMixStream请求参数结构体
-    public struct CreateCommonMixStreamRequest: TCRequestModel {
+    public struct CreateCommonMixStreamRequest: TCRequest {
         /// 混流会话（申请混流开始到取消混流结束）标识 ID。80字节以内，仅含字母、数字以及下划线的字符串。
         public let mixStreamSessionId: String
 
@@ -60,7 +60,7 @@ extension Live {
     }
 
     /// CreateCommonMixStream返回参数结构体
-    public struct CreateCommonMixStreamResponse: TCResponseModel {
+    public struct CreateCommonMixStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// DescribeStructureTaskResult请求参数结构体
-    public struct DescribeStructureTaskResultRequest: TCRequestModel {
+    public struct DescribeStructureTaskResultRequest: TCRequest {
         /// 结构化任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Cii {
     }
 
     /// DescribeStructureTaskResult返回参数结构体
-    public struct DescribeStructureTaskResultResponse: TCResponseModel {
+    public struct DescribeStructureTaskResultResponse: TCResponse {
         /// 结果状态：
         /// 0：返回成功
         /// 1：结果未生成

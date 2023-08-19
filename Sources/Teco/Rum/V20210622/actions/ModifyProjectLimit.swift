@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// ModifyProjectLimit请求参数结构体
-    public struct ModifyProjectLimitRequest: TCRequestModel {
+    public struct ModifyProjectLimitRequest: TCRequest {
         /// 项目ID
         public let projectID: Int64
 
@@ -54,7 +54,7 @@ extension Rum {
     }
 
     /// ModifyProjectLimit返回参数结构体
-    public struct ModifyProjectLimitResponse: TCResponseModel {
+    public struct ModifyProjectLimitResponse: TCResponse {
         /// 返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let msg: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeReviewDetails请求参数结构体
-    public struct DescribeReviewDetailsRequest: TCRequestModel {
+    public struct DescribeReviewDetailsRequest: TCRequest {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// DescribeReviewDetails返回参数结构体
-    public struct DescribeReviewDetailsResponse: TCResponseModel {
+    public struct DescribeReviewDetailsResponse: TCResponse {
         /// 发起内容智能识别次数。
         public let totalCount: Int64
 

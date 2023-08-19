@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateMicroservice请求参数结构体
-    public struct CreateMicroserviceRequest: TCRequestModel {
+    public struct CreateMicroserviceRequest: TCRequest {
         /// 命名空间ID
         public let namespaceId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// CreateMicroservice返回参数结构体
-    public struct CreateMicroserviceResponse: TCResponseModel {
+    public struct CreateMicroserviceResponse: TCResponse {
         /// 新增微服务是否成功。
         /// true：操作成功。
         /// false：操作失败。

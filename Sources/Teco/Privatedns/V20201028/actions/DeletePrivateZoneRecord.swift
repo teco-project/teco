@@ -20,7 +20,7 @@ import TecoCore
 
 extension Privatedns {
     /// DeletePrivateZoneRecord请求参数结构体
-    public struct DeletePrivateZoneRecordRequest: TCRequestModel {
+    public struct DeletePrivateZoneRecordRequest: TCRequest {
         /// 私有域ID
         public let zoneId: String?
 
@@ -44,7 +44,7 @@ extension Privatedns {
     }
 
     /// DeletePrivateZoneRecord返回参数结构体
-    public struct DeletePrivateZoneRecordResponse: TCResponseModel {
+    public struct DeletePrivateZoneRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

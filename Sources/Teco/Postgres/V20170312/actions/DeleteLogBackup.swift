@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DeleteLogBackup请求参数结构体
-    public struct DeleteLogBackupRequest: TCRequestModel {
+    public struct DeleteLogBackupRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// DeleteLogBackup返回参数结构体
-    public struct DeleteLogBackupResponse: TCResponseModel {
+    public struct DeleteLogBackupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

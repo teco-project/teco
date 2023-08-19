@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vrs {
     /// CreateVRSTask请求参数结构体
-    public struct CreateVRSTaskRequest: TCRequestModel {
+    public struct CreateVRSTaskRequest: TCRequest {
         /// 唯一请求 ID
         public let sessionId: String
 
@@ -83,7 +83,7 @@ extension Vrs {
     }
 
     /// CreateVRSTask返回参数结构体
-    public struct CreateVRSTaskResponse: TCResponseModel {
+    public struct CreateVRSTaskResponse: TCResponse {
         /// 创建任务结果
         public let data: CreateVRSTaskRespData
 

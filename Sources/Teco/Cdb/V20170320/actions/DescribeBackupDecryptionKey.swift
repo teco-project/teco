@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBackupDecryptionKey请求参数结构体
-    public struct DescribeBackupDecryptionKeyRequest: TCRequestModel {
+    public struct DescribeBackupDecryptionKeyRequest: TCRequest {
         /// 实例ID，格式如：cdb-XXXX。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DescribeBackupDecryptionKey返回参数结构体
-    public struct DescribeBackupDecryptionKeyResponse: TCResponseModel {
+    public struct DescribeBackupDecryptionKeyResponse: TCResponse {
         /// 备份文件解密密钥。
         public let decryptionKey: String
 

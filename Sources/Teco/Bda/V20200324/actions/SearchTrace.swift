@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// SearchTrace请求参数结构体
-    public struct SearchTraceRequest: TCRequestModel {
+    public struct SearchTraceRequest: TCRequest {
         /// 希望搜索的人体库ID。
         public let groupId: String
 
@@ -52,7 +52,7 @@ extension Bda {
     }
 
     /// SearchTrace返回参数结构体
-    public struct SearchTraceResponse: TCResponseModel {
+    public struct SearchTraceResponse: TCResponse {
         /// 识别出的最相似候选人。
         public let candidates: [Candidate]
 

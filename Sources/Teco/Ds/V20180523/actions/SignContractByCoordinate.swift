@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// SignContractByCoordinate请求参数结构体
-    public struct SignContractByCoordinateRequest: TCRequestModel {
+    public struct SignContractByCoordinateRequest: TCRequest {
         /// 模块名ContractMng
         public let module: String
 
@@ -79,7 +79,7 @@ extension Ds {
     }
 
     /// SignContractByCoordinate返回参数结构体
-    public struct SignContractByCoordinateResponse: TCResponseModel {
+    public struct SignContractByCoordinateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

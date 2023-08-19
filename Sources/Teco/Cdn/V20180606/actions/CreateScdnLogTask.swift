@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// CreateScdnLogTask请求参数结构体
-    public struct CreateScdnLogTaskRequest: TCRequestModel {
+    public struct CreateScdnLogTaskRequest: TCRequest {
         /// 防护类型
         /// Mode 映射如下：
         ///   waf = "Web攻击"
@@ -124,7 +124,7 @@ extension Cdn {
     }
 
     /// CreateScdnLogTask返回参数结构体
-    public struct CreateScdnLogTaskResponse: TCResponseModel {
+    public struct CreateScdnLogTaskResponse: TCResponse {
         /// 创建结果,
         /// "0" -> 创建成功
         public let result: String

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// SrvInvoke请求参数结构体
-    public struct SrvInvokeRequest: TCRequestModel {
+    public struct SrvInvokeRequest: TCRequest {
         /// 服务类型，iss或者dam
         public let service: String
 
@@ -44,7 +44,7 @@ extension Tbaas {
     }
 
     /// SrvInvoke返回参数结构体
-    public struct SrvInvokeResponse: TCResponseModel {
+    public struct SrvInvokeResponse: TCResponse {
         /// 返回码
         public let retCode: Int64
 

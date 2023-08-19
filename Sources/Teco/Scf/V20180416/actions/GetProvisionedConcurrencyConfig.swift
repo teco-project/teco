@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetProvisionedConcurrencyConfig请求参数结构体
-    public struct GetProvisionedConcurrencyConfigRequest: TCRequestModel {
+    public struct GetProvisionedConcurrencyConfigRequest: TCRequest {
         /// 需要获取预置并发详情的函数名称。
         public let functionName: String
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// GetProvisionedConcurrencyConfig返回参数结构体
-    public struct GetProvisionedConcurrencyConfigResponse: TCResponseModel {
+    public struct GetProvisionedConcurrencyConfigResponse: TCResponse {
         /// 该函数剩余可配置的预置并发数。
         public let unallocatedConcurrencyNum: UInt64
 

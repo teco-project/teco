@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mmps {
     /// DescribeFlySecMiniAppScanReportList请求参数结构体
-    public struct DescribeFlySecMiniAppScanReportListRequest: TCRequestModel {
+    public struct DescribeFlySecMiniAppScanReportListRequest: TCRequest {
         /// 小程序AppID
         public let miniAppID: String
 
@@ -54,7 +54,7 @@ extension Mmps {
     }
 
     /// DescribeFlySecMiniAppScanReportList返回参数结构体
-    public struct DescribeFlySecMiniAppScanReportListResponse: TCResponseModel {
+    public struct DescribeFlySecMiniAppScanReportListResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
 

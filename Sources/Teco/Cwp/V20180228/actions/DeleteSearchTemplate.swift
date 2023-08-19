@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteSearchTemplate请求参数结构体
-    public struct DeleteSearchTemplateRequest: TCRequestModel {
+    public struct DeleteSearchTemplateRequest: TCRequest {
         /// 模板ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DeleteSearchTemplate返回参数结构体
-    public struct DeleteSearchTemplateResponse: TCResponseModel {
+    public struct DeleteSearchTemplateResponse: TCResponse {
         /// 0：成功，非0：失败
         public let status: UInt64
 

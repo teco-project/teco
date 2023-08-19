@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// UpdateApiTimeouts请求参数结构体
-    public struct UpdateApiTimeoutsRequest: TCRequestModel {
+    public struct UpdateApiTimeoutsRequest: TCRequest {
         /// API ID 列表
         public let apiIds: [String]
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// UpdateApiTimeouts返回参数结构体
-    public struct UpdateApiTimeoutsResponse: TCResponseModel {
+    public struct UpdateApiTimeoutsResponse: TCResponse {
         /// 是否成功
         public let result: Bool
 

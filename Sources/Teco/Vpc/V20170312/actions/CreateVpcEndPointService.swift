@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateVpcEndPointService请求参数结构体
-    public struct CreateVpcEndPointServiceRequest: TCRequestModel {
+    public struct CreateVpcEndPointServiceRequest: TCRequest {
         /// VPC实例ID。
         public let vpcId: String
 
@@ -59,7 +59,7 @@ extension Vpc {
     }
 
     /// CreateVpcEndPointService返回参数结构体
-    public struct CreateVpcEndPointServiceResponse: TCResponseModel {
+    public struct CreateVpcEndPointServiceResponse: TCResponse {
         /// 终端节点服务对象详细信息。
         public let endPointService: EndPointService
 

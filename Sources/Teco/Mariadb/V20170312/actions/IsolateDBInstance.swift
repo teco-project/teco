@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// IsolateDBInstance请求参数结构体
-    public struct IsolateDBInstanceRequest: TCRequestModel {
+    public struct IsolateDBInstanceRequest: TCRequest {
         /// 实例 ID，格式如：tdsql-dasjkhd，与云数据库控制台页面中显示的实例 ID 相同，可使用 查询实例列表 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// IsolateDBInstance返回参数结构体
-    public struct IsolateDBInstanceResponse: TCResponseModel {
+    public struct IsolateDBInstanceResponse: TCResponse {
         /// 隔离成功实例ID列表。
         public let successInstanceIds: [String]
 

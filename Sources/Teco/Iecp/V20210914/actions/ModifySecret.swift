@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// ModifySecret请求参数结构体
-    public struct ModifySecretRequest: TCRequestModel {
+    public struct ModifySecretRequest: TCRequest {
         /// 边缘单元ID
         public let edgeUnitID: UInt64
 
@@ -49,7 +49,7 @@ extension Iecp {
     }
 
     /// ModifySecret返回参数结构体
-    public struct ModifySecretResponse: TCResponseModel {
+    public struct ModifySecretResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// DeleteSecretVersion请求参数结构体
-    public struct DeleteSecretVersionRequest: TCRequestModel {
+    public struct DeleteSecretVersionRequest: TCRequest {
         /// 指定凭据名称。
         public let secretName: String
 
@@ -39,7 +39,7 @@ extension Ssm {
     }
 
     /// DeleteSecretVersion返回参数结构体
-    public struct DeleteSecretVersionResponse: TCResponseModel {
+    public struct DeleteSecretVersionResponse: TCResponse {
         /// 凭据名称。
         public let secretName: String
 

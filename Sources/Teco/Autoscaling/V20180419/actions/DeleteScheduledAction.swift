@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DeleteScheduledAction请求参数结构体
-    public struct DeleteScheduledActionRequest: TCRequestModel {
+    public struct DeleteScheduledActionRequest: TCRequest {
         /// 待删除的定时任务ID。
         public let scheduledActionId: String
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DeleteScheduledAction返回参数结构体
-    public struct DeleteScheduledActionResponse: TCResponseModel {
+    public struct DeleteScheduledActionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

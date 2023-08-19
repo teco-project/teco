@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateSchedulerMailProfile请求参数结构体
-    public struct CreateSchedulerMailProfileRequest: TCRequestModel {
+    public struct CreateSchedulerMailProfileRequest: TCRequest {
         /// 取值范围1-7，分别代表周一至周日。
         public let weekConfiguration: [Int64]
 
@@ -54,7 +54,7 @@ extension Dbbrain {
     }
 
     /// CreateSchedulerMailProfile返回参数结构体
-    public struct CreateSchedulerMailProfileResponse: TCResponseModel {
+    public struct CreateSchedulerMailProfileResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

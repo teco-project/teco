@@ -20,13 +20,13 @@ import TecoCore
 
 extension Teo {
     /// DescribeRulesSetting请求参数结构体
-    public struct DescribeRulesSettingRequest: TCRequestModel {
+    public struct DescribeRulesSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRulesSetting返回参数结构体
-    public struct DescribeRulesSettingResponse: TCResponseModel {
+    public struct DescribeRulesSettingResponse: TCResponse {
         /// 规则引擎可应用匹配请求的设置列表及其详细建议配置信息。
         public let actions: [RulesSettingAction]
 

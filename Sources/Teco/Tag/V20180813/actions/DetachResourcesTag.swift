@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// DetachResourcesTag请求参数结构体
-    public struct DetachResourcesTagRequest: TCRequestModel {
+    public struct DetachResourcesTagRequest: TCRequest {
         /// 资源所属业务名称（资源六段式中的第三段）
         public let serviceType: String
 
@@ -54,7 +54,7 @@ extension Tag {
     }
 
     /// DetachResourcesTag返回参数结构体
-    public struct DetachResourcesTagResponse: TCResponseModel {
+    public struct DetachResourcesTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

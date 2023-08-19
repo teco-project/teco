@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// CreateEip请求参数结构体
-    public struct CreateEipRequest: TCRequestModel {
+    public struct CreateEipRequest: TCRequest {
         /// 申请数量，默认为1, 最大 20
         public let goodsNum: UInt64?
 
@@ -64,7 +64,7 @@ extension Bmeip {
     }
 
     /// CreateEip返回参数结构体
-    public struct CreateEipResponse: TCResponseModel {
+    public struct CreateEipResponse: TCResponse {
         /// EIP列表
         public let eipIds: [String]
 

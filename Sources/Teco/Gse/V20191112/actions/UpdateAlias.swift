@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateAlias请求参数结构体
-    public struct UpdateAliasRequest: TCRequestModel {
+    public struct UpdateAliasRequest: TCRequest {
         /// 要更新的别名的唯一标识符
         public let aliasId: String
 
@@ -49,7 +49,7 @@ extension Gse {
     }
 
     /// UpdateAlias返回参数结构体
-    public struct UpdateAliasResponse: TCResponseModel {
+    public struct UpdateAliasResponse: TCResponse {
         /// 别名对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: Alias?

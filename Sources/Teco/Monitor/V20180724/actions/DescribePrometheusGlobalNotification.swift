@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusGlobalNotification请求参数结构体
-    public struct DescribePrometheusGlobalNotificationRequest: TCRequestModel {
+    public struct DescribePrometheusGlobalNotificationRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusGlobalNotification返回参数结构体
-    public struct DescribePrometheusGlobalNotificationResponse: TCResponseModel {
+    public struct DescribePrometheusGlobalNotificationResponse: TCResponse {
         /// 全局告警通知渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notification: PrometheusNotificationItem?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetAsyncEventStatus请求参数结构体
-    public struct GetAsyncEventStatusRequest: TCRequestModel {
+    public struct GetAsyncEventStatusRequest: TCRequest {
         /// 异步执行请求 id
         public let invokeRequestId: String
 
@@ -34,7 +34,7 @@ extension Scf {
     }
 
     /// GetAsyncEventStatus返回参数结构体
-    public struct GetAsyncEventStatusResponse: TCResponseModel {
+    public struct GetAsyncEventStatusResponse: TCResponse {
         /// 异步事件状态
         public let result: AsyncEventStatus
 

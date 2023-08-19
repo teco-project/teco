@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateMailProfile请求参数结构体
-    public struct CreateMailProfileRequest: TCRequestModel {
+    public struct CreateMailProfileRequest: TCRequest {
         /// 邮件配置内容。
         public let profileInfo: ProfileInfo
 
@@ -59,7 +59,7 @@ extension Dbbrain {
     }
 
     /// CreateMailProfile返回参数结构体
-    public struct CreateMailProfileResponse: TCResponseModel {
+    public struct CreateMailProfileResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

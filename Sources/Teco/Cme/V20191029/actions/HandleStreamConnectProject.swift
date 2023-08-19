@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// HandleStreamConnectProject请求参数结构体
-    public struct HandleStreamConnectProjectRequest: TCRequestModel {
+    public struct HandleStreamConnectProjectRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -71,7 +71,7 @@ extension Cme {
     }
 
     /// HandleStreamConnectProject返回参数结构体
-    public struct HandleStreamConnectProjectResponse: TCResponseModel {
+    public struct HandleStreamConnectProjectResponse: TCResponse {
         /// 输入源推流地址，当 Operation 取值 AddInput 且 InputType 为 RtmpPush 类型时有效。
         public let streamInputRtmpPushUrl: String
 

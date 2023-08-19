@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ReleaseIp6AddressesBandwidth请求参数结构体
-    public struct ReleaseIp6AddressesBandwidthRequest: TCRequestModel {
+    public struct ReleaseIp6AddressesBandwidthRequest: TCRequest {
         /// IPV6地址。Ip6Addresses和Ip6AddressIds必须且只能传一个
         public let ip6Addresses: [String]?
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ReleaseIp6AddressesBandwidth返回参数结构体
-    public struct ReleaseIp6AddressesBandwidthResponse: TCResponseModel {
+    public struct ReleaseIp6AddressesBandwidthResponse: TCResponse {
         /// 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAttackLogInfo请求参数结构体
-    public struct DescribeAttackLogInfoRequest: TCRequestModel {
+    public struct DescribeAttackLogInfoRequest: TCRequest {
         /// 日志ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeAttackLogInfo返回参数结构体
-    public struct DescribeAttackLogInfoResponse: TCResponseModel {
+    public struct DescribeAttackLogInfoResponse: TCResponse {
         /// 日志ID
         public let id: UInt64
 

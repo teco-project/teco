@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// UpgradeInstance请求参数结构体
-    public struct UpgradeInstanceRequest: TCRequestModel {
+    public struct UpgradeInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -74,7 +74,7 @@ extension Cynosdb {
     }
 
     /// UpgradeInstance返回参数结构体
-    public struct UpgradeInstanceResponse: TCResponseModel {
+    public struct UpgradeInstanceResponse: TCResponse {
         /// 冻结流水ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?

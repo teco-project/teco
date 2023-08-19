@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeDeviceResource请求参数结构体
-    public struct DescribeDeviceResourceRequest: TCRequestModel {
+    public struct DescribeDeviceResourceRequest: TCRequest {
         /// 设备名称
         public let deviceName: String
 
@@ -44,7 +44,7 @@ extension Iotcloud {
     }
 
     /// DescribeDeviceResource返回参数结构体
-    public struct DescribeDeviceResourceResponse: TCResponseModel {
+    public struct DescribeDeviceResourceResponse: TCResponse {
         /// 设备资源详情
         public let result: DeviceResourceInfo
 

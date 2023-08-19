@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeComponentInfo请求参数结构体
-    public struct DescribeComponentInfoRequest: TCRequestModel {
+    public struct DescribeComponentInfoRequest: TCRequest {
         /// 组件ID。
         public let componentId: UInt64
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DescribeComponentInfo返回参数结构体
-    public struct DescribeComponentInfoResponse: TCResponseModel {
+    public struct DescribeComponentInfoResponse: TCResponse {
         /// 组件ID。
         public let id: UInt64
 

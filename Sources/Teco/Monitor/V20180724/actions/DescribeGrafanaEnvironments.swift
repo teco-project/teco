@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeGrafanaEnvironments请求参数结构体
-    public struct DescribeGrafanaEnvironmentsRequest: TCRequestModel {
+    public struct DescribeGrafanaEnvironmentsRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeGrafanaEnvironments返回参数结构体
-    public struct DescribeGrafanaEnvironmentsResponse: TCResponseModel {
+    public struct DescribeGrafanaEnvironmentsResponse: TCResponse {
         /// 环境变量字符串
         public let envs: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateNatGateway请求参数结构体
-    public struct CreateNatGatewayRequest: TCRequestModel {
+    public struct CreateNatGatewayRequest: TCRequest {
         /// NAT网关名称
         public let natGatewayName: String
 
@@ -89,7 +89,7 @@ extension Vpc {
     }
 
     /// CreateNatGateway返回参数结构体
-    public struct CreateNatGatewayResponse: TCResponseModel {
+    public struct CreateNatGatewayResponse: TCResponse {
         /// NAT网关对象数组。
         public let natGatewaySet: [NatGateway]
 

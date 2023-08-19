@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeBaselineInstanceDag请求参数结构体
-    public struct DescribeBaselineInstanceDagRequest: TCRequestModel {
+    public struct DescribeBaselineInstanceDagRequest: TCRequest {
         /// 基线实例id
         public let baselineInstanceId: Int64
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeBaselineInstanceDag返回参数结构体
-    public struct DescribeBaselineInstanceDagResponse: TCResponseModel {
+    public struct DescribeBaselineInstanceDagResponse: TCResponse {
         /// 基线实例dag
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: BaselineInstanceVo?

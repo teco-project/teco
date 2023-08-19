@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// StopCreatingImage请求参数结构体
-    public struct StopCreatingImageRequest: TCRequestModel {
+    public struct StopCreatingImageRequest: TCRequest {
         /// 镜像保存记录ID
         public let recordId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// StopCreatingImage返回参数结构体
-    public struct StopCreatingImageResponse: TCResponseModel {
+    public struct StopCreatingImageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

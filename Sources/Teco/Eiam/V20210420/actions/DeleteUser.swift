@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DeleteUser请求参数结构体
-    public struct DeleteUserRequest: TCRequestModel {
+    public struct DeleteUserRequest: TCRequest {
         /// 用户名，长度限制：32个字符。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
         public let userName: String?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DeleteUser返回参数结构体
-    public struct DeleteUserResponse: TCResponseModel {
+    public struct DeleteUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

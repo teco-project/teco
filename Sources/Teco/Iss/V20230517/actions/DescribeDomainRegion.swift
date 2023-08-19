@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// DescribeDomainRegion请求参数结构体
-    public struct DescribeDomainRegionRequest: TCRequestModel {
+    public struct DescribeDomainRegionRequest: TCRequest {
         public init() {
         }
     }
 
     /// 查询域名可绑定集群数据
-    public struct DescribeDomainRegionResponse: TCResponseModel {
+    public struct DescribeDomainRegionResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

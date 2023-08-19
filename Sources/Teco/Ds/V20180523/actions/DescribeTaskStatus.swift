@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 模块名CommonMng
         public let module: String
 
@@ -44,7 +44,7 @@ extension Ds {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 任务结果
         public let taskResult: String
 

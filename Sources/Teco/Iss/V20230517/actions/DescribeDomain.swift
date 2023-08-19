@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// DescribeDomain请求参数结构体
-    public struct DescribeDomainRequest: TCRequestModel {
+    public struct DescribeDomainRequest: TCRequest {
         public init() {
         }
     }
 
     /// 查询域名详情数据
-    public struct DescribeDomainResponse: TCResponseModel {
+    public struct DescribeDomainResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

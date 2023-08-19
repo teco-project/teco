@@ -20,13 +20,13 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeFileSystems请求参数结构体
-    public struct DescribeFileSystemsRequest: TCRequestModel {
+    public struct DescribeFileSystemsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeFileSystems返回参数结构体
-    public struct DescribeFileSystemsResponse: TCResponseModel {
+    public struct DescribeFileSystemsResponse: TCResponse {
         /// 文件系统列表
         public let fileSystems: [FileSystem]
 

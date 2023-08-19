@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeCreateGatewayApiStatus请求参数结构体
-    public struct DescribeCreateGatewayApiStatusRequest: TCRequestModel {
+    public struct DescribeCreateGatewayApiStatusRequest: TCRequest {
         /// 请求方法
         public let groupId: String?
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DescribeCreateGatewayApiStatus返回参数结构体
-    public struct DescribeCreateGatewayApiStatusResponse: TCResponseModel {
+    public struct DescribeCreateGatewayApiStatusResponse: TCResponse {
         /// 是否已完成导入任务
         public let result: Bool
 

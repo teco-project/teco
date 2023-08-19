@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateImageExportJob请求参数结构体
-    public struct CreateImageExportJobRequest: TCRequestModel {
+    public struct CreateImageExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - ImageName- String - 是否必填：否 - 镜像名称筛选，
         /// - ScanStatus - String - 是否必填：否 - 镜像扫描状态notScan，scanning，scanned，scanErr
@@ -63,7 +63,7 @@ extension Tcss {
     }
 
     /// CreateImageExportJob返回参数结构体
-    public struct CreateImageExportJobResponse: TCResponseModel {
+    public struct CreateImageExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

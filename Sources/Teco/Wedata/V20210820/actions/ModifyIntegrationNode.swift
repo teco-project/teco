@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyIntegrationNode请求参数结构体
-    public struct ModifyIntegrationNodeRequest: TCRequestModel {
+    public struct ModifyIntegrationNodeRequest: TCRequest {
         /// 集成节点信息
         public let nodeInfo: IntegrationNodeInfo
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// ModifyIntegrationNode返回参数结构体
-    public struct ModifyIntegrationNodeResponse: TCResponseModel {
+    public struct ModifyIntegrationNodeResponse: TCResponse {
         /// 节点id
         public let id: String
 

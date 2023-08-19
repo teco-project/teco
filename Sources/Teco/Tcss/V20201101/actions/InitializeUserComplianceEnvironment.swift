@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// InitializeUserComplianceEnvironment请求参数结构体
-    public struct InitializeUserComplianceEnvironmentRequest: TCRequestModel {
+    public struct InitializeUserComplianceEnvironmentRequest: TCRequest {
         public init() {
         }
     }
 
     /// InitializeUserComplianceEnvironment返回参数结构体
-    public struct InitializeUserComplianceEnvironmentResponse: TCResponseModel {
+    public struct InitializeUserComplianceEnvironmentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

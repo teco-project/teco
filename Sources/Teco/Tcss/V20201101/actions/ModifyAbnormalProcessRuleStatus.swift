@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyAbnormalProcessRuleStatus请求参数结构体
-    public struct ModifyAbnormalProcessRuleStatusRequest: TCRequestModel {
+    public struct ModifyAbnormalProcessRuleStatusRequest: TCRequest {
         /// 策略的ids
         public let ruleIdSet: [String]
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// ModifyAbnormalProcessRuleStatus返回参数结构体
-    public struct ModifyAbnormalProcessRuleStatusResponse: TCResponseModel {
+    public struct ModifyAbnormalProcessRuleStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

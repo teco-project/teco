@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateUDPListeners请求参数结构体
-    public struct CreateUDPListenersRequest: TCRequestModel {
+    public struct CreateUDPListenersRequest: TCRequest {
         /// 监听器名称
         public let listenerName: String
 
@@ -119,7 +119,7 @@ extension Gaap {
     }
 
     /// CreateUDPListeners返回参数结构体
-    public struct CreateUDPListenersResponse: TCResponseModel {
+    public struct CreateUDPListenersResponse: TCResponse {
         /// 返回监听器ID
         public let listenerIds: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// ListUserGroups请求参数结构体
-    public struct ListUserGroupsRequest: TCRequestModel {
+    public struct ListUserGroupsRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -47,7 +47,7 @@ extension Ciam {
     }
 
     /// ListUserGroups返回参数结构体
-    public struct ListUserGroupsResponse: TCResponseModel {
+    public struct ListUserGroupsResponse: TCResponse {
         /// 用户组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [UserGroup]?

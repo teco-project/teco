@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// RotateProductSecret请求参数结构体
-    public struct RotateProductSecretRequest: TCRequestModel {
+    public struct RotateProductSecretRequest: TCRequest {
         /// 需要轮转的凭据名。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// RotateProductSecret返回参数结构体
-    public struct RotateProductSecretResponse: TCResponseModel {
+    public struct RotateProductSecretResponse: TCResponse {
         /// 当凭据类型为云产品凭据时（即SecretType为1，如MySQL、Tdsql等托管凭据）此字段有效，返回轮转异步任务ID号。
         public let flowID: Int64
 

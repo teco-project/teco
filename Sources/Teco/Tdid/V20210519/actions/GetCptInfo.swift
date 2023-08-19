@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdid {
     /// GetCptInfo请求参数结构体
-    public struct GetCptInfoRequest: TCRequestModel {
+    public struct GetCptInfoRequest: TCRequest {
         /// Cpt索引
         public let cptIndex: UInt64
 
@@ -34,7 +34,7 @@ extension Tdid {
     }
 
     /// GetCptInfo返回参数结构体
-    public struct GetCptInfoResponse: TCResponseModel {
+    public struct GetCptInfoResponse: TCResponse {
         /// CptJsonData的具体信息
         public let cptJsonData: String
 

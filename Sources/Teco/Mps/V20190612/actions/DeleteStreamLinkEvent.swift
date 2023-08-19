@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DeleteStreamLinkEvent请求参数结构体
-    public struct DeleteStreamLinkEventRequest: TCRequestModel {
+    public struct DeleteStreamLinkEventRequest: TCRequest {
         /// 媒体传输事件Id，删除前需要保证该Event关联的所有Flow都已经删除。
         public let eventId: String
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// DeleteStreamLinkEvent返回参数结构体
-    public struct DeleteStreamLinkEventResponse: TCResponseModel {
+    public struct DeleteStreamLinkEventResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

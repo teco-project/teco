@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// CreateTrigger请求参数结构体
-    public struct CreateTriggerRequest: TCRequestModel {
+    public struct CreateTriggerRequest: TCRequest {
         /// 新建触发器绑定的函数名称
         public let functionName: String
 
@@ -74,7 +74,7 @@ extension Scf {
     }
 
     /// CreateTrigger返回参数结构体
-    public struct CreateTriggerResponse: TCResponseModel {
+    public struct CreateTriggerResponse: TCResponse {
         /// 触发器信息
         public let triggerInfo: Trigger
 

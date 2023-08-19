@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeIgnoreHostAndItemConfig请求参数结构体
-    public struct DescribeIgnoreHostAndItemConfigRequest: TCRequestModel {
+    public struct DescribeIgnoreHostAndItemConfigRequest: TCRequest {
         /// - ItemId - int64 - 是否必填：否 - 项Id</i>
         /// - RuleId - int64 - 是否必填：否 - 规则Id
         /// - HostId - string - 是否必填：否 - 主机Id
@@ -36,7 +36,7 @@ extension Cwp {
     }
 
     /// DescribeIgnoreHostAndItemConfig返回参数结构体
-    public struct DescribeIgnoreHostAndItemConfigResponse: TCResponseModel {
+    public struct DescribeIgnoreHostAndItemConfigResponse: TCResponse {
         /// 受影响检测项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemSet: [BaselineItemInfo]?

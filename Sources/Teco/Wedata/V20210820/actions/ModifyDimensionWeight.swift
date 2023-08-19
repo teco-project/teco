@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyDimensionWeight请求参数结构体
-    public struct ModifyDimensionWeightRequest: TCRequestModel {
+    public struct ModifyDimensionWeightRequest: TCRequest {
         /// 权重信息列表
         public let weightInfoList: [WeightInfo]
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// ModifyDimensionWeight返回参数结构体
-    public struct ModifyDimensionWeightResponse: TCResponseModel {
+    public struct ModifyDimensionWeightResponse: TCResponse {
         /// 更新权重是否成功
         public let data: Bool
 

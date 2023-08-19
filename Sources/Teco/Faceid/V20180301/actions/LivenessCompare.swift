@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// LivenessCompare请求参数结构体
-    public struct LivenessCompareRequest: TCRequestModel {
+    public struct LivenessCompareRequest: TCRequest {
         /// 活体检测类型，取值：LIP/ACTION/SILENT。
         /// LIP为数字模式，ACTION为动作模式，SILENT为静默模式，三种模式选择一种传入。
         public let livenessType: String
@@ -86,7 +86,7 @@ extension Faceid {
     }
 
     /// LivenessCompare返回参数结构体
-    public struct LivenessCompareResponse: TCResponseModel {
+    public struct LivenessCompareResponse: TCResponse {
         /// 验证通过后的视频最佳截图照片，照片为BASE64编码后的值，jpg格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bestFrameBase64: String?

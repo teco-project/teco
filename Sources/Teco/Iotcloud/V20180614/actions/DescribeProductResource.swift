@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribeProductResource请求参数结构体
-    public struct DescribeProductResourceRequest: TCRequestModel {
+    public struct DescribeProductResourceRequest: TCRequest {
         /// 需要查看资源列表的产品 ID
         public let productID: String?
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// DescribeProductResource返回参数结构体
-    public struct DescribeProductResourceResponse: TCResponseModel {
+    public struct DescribeProductResourceResponse: TCResponse {
         /// 资源详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ProductResourceInfo?

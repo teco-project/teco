@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListTopDDoSData请求参数结构体
-    public struct ListTopDDoSDataRequest: TCRequestModel {
+    public struct ListTopDDoSDataRequest: TCRequest {
         /// 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
         public let startTime: String
 
@@ -50,7 +50,7 @@ extension Cdn {
     }
 
     /// ListTopDDoSData返回参数结构体
-    public struct ListTopDDoSDataResponse: TCResponseModel {
+    public struct ListTopDDoSDataResponse: TCResponse {
         /// DDoS 攻击类型的top数据，当Metric=AttackType的时候返回攻击类型的统计数据，IPData为空
         public let data: [DDoSTopData]
 

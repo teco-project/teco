@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyMachineGroup请求参数结构体
-    public struct ModifyMachineGroupRequest: TCRequestModel {
+    public struct ModifyMachineGroupRequest: TCRequest {
         /// 机器组ID
         public let groupId: String
 
@@ -74,7 +74,7 @@ extension Cls {
     }
 
     /// ModifyMachineGroup返回参数结构体
-    public struct ModifyMachineGroupResponse: TCResponseModel {
+    public struct ModifyMachineGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

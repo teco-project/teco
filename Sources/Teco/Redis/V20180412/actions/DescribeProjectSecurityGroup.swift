@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeProjectSecurityGroup请求参数结构体
-    public struct DescribeProjectSecurityGroupRequest: TCRequestModel {
+    public struct DescribeProjectSecurityGroupRequest: TCRequest {
         /// 0:默认项目；-1 所有项目; >0: 特定项目
         public let projectId: Int64?
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// DescribeProjectSecurityGroup返回参数结构体
-    public struct DescribeProjectSecurityGroupResponse: TCResponseModel {
+    public struct DescribeProjectSecurityGroupResponse: TCResponse {
         /// 项目安全组
         public let securityGroupDetails: [SecurityGroupDetail]
 

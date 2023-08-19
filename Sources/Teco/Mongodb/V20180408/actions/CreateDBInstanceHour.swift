@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// CreateDBInstanceHour请求参数结构体
-    public struct CreateDBInstanceHourRequest: TCRequestModel {
+    public struct CreateDBInstanceHourRequest: TCRequest {
         /// 实例内存大小，单位：GB
         public let memory: UInt64
 
@@ -104,7 +104,7 @@ extension Mongodb {
     }
 
     /// CreateDBInstanceHour返回参数结构体
-    public struct CreateDBInstanceHourResponse: TCResponseModel {
+    public struct CreateDBInstanceHourResponse: TCResponse {
         /// 订单ID
         public let dealId: String
 

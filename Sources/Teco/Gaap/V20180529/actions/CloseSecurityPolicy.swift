@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CloseSecurityPolicy请求参数结构体
-    public struct CloseSecurityPolicyRequest: TCRequestModel {
+    public struct CloseSecurityPolicyRequest: TCRequest {
         /// 通道ID
         public let proxyId: String?
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// CloseSecurityPolicy返回参数结构体
-    public struct CloseSecurityPolicyResponse: TCResponseModel {
+    public struct CloseSecurityPolicyResponse: TCResponse {
         /// 异步流程ID，可以通过DescribeAsyncTaskStatus 查询流程执行进展和状态
         public let taskId: String
 

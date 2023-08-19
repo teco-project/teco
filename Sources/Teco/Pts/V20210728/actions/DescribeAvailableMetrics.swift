@@ -20,13 +20,13 @@ import TecoCore
 
 extension Pts {
     /// DescribeAvailableMetrics请求参数结构体
-    public struct DescribeAvailableMetricsRequest: TCRequestModel {
+    public struct DescribeAvailableMetricsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAvailableMetrics返回参数结构体
-    public struct DescribeAvailableMetricsResponse: TCResponseModel {
+    public struct DescribeAvailableMetricsResponse: TCResponse {
         /// 系统支持的所有指标
         public let metricSet: [MetricInfo]
 

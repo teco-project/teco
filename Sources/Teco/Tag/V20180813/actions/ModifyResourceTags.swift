@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// ModifyResourceTags请求参数结构体
-    public struct ModifyResourceTagsRequest: TCRequestModel {
+    public struct ModifyResourceTagsRequest: TCRequest {
         /// [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
         public let resource: String
 
@@ -44,7 +44,7 @@ extension Tag {
     }
 
     /// ModifyResourceTags返回参数结构体
-    public struct ModifyResourceTagsResponse: TCResponseModel {
+    public struct ModifyResourceTagsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

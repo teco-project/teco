@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CompleteExpansion请求参数结构体
-    public struct CompleteExpansionRequest: TCRequestModel {
+    public struct CompleteExpansionRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// CompleteExpansion返回参数结构体
-    public struct CompleteExpansionResponse: TCResponseModel {
+    public struct CompleteExpansionResponse: TCResponse {
         /// 流程ID，可通过接口DescribeFlowStatus查询立即切换升级任务的状态。
         public let flowId: UInt64
 

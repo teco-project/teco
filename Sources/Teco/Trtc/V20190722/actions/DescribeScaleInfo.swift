@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeScaleInfo请求参数结构体
-    public struct DescribeScaleInfoRequest: TCRequestModel {
+    public struct DescribeScaleInfoRequest: TCRequest {
         /// 用户SdkAppId（如：1400xxxxxx）
         public let sdkAppId: UInt64
 
@@ -46,7 +46,7 @@ extension Trtc {
     }
 
     /// DescribeScaleInfo返回参数结构体
-    public struct DescribeScaleInfoResponse: TCResponseModel {
+    public struct DescribeScaleInfoResponse: TCResponse {
         /// 返回的数据条数
         public let total: UInt64
 

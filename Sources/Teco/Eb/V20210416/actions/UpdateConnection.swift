@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// UpdateConnection请求参数结构体
-    public struct UpdateConnectionRequest: TCRequestModel {
+    public struct UpdateConnectionRequest: TCRequest {
         /// 连接器ID
         public let connectionId: String
 
@@ -54,7 +54,7 @@ extension Eb {
     }
 
     /// UpdateConnection返回参数结构体
-    public struct UpdateConnectionResponse: TCResponseModel {
+    public struct UpdateConnectionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

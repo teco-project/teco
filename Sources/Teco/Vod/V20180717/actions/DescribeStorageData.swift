@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeStorageData请求参数结构体
-    public struct DescribeStorageDataRequest: TCRequestModel {
+    public struct DescribeStorageDataRequest: TCRequest {
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
@@ -34,7 +34,7 @@ extension Vod {
     }
 
     /// DescribeStorageData返回参数结构体
-    public struct DescribeStorageDataResponse: TCResponseModel {
+    public struct DescribeStorageDataResponse: TCResponse {
         /// 当前媒体总量。
         public let mediaCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// RenewHosts请求参数结构体
-    public struct RenewHostsRequest: TCRequestModel {
+    public struct RenewHostsRequest: TCRequest {
         /// 一个或多个待操作的CDH实例ID。每次请求的CDH实例的上限为100。
         public let hostIds: [String]
 
@@ -39,7 +39,7 @@ extension Cvm {
     }
 
     /// RenewHosts返回参数结构体
-    public struct RenewHostsResponse: TCResponseModel {
+    public struct RenewHostsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

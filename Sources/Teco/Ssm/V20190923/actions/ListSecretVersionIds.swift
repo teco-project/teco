@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// ListSecretVersionIds请求参数结构体
-    public struct ListSecretVersionIdsRequest: TCRequestModel {
+    public struct ListSecretVersionIdsRequest: TCRequest {
         /// 凭据名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// ListSecretVersionIds返回参数结构体
-    public struct ListSecretVersionIdsResponse: TCResponseModel {
+    public struct ListSecretVersionIdsResponse: TCResponse {
         /// 凭据名称。
         public let secretName: String
 

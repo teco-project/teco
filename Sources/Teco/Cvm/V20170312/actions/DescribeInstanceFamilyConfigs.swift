@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cvm {
     /// DescribeInstanceFamilyConfigs请求参数结构体
-    public struct DescribeInstanceFamilyConfigsRequest: TCRequestModel {
+    public struct DescribeInstanceFamilyConfigsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInstanceFamilyConfigs返回参数结构体
-    public struct DescribeInstanceFamilyConfigsResponse: TCResponseModel {
+    public struct DescribeInstanceFamilyConfigsResponse: TCResponse {
         /// 实例机型组配置的列表信息
         public let instanceFamilyConfigSet: [InstanceFamilyConfig]
 

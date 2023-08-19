@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterControllers请求参数结构体
-    public struct DescribeClusterControllersRequest: TCRequestModel {
+    public struct DescribeClusterControllersRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterControllers返回参数结构体
-    public struct DescribeClusterControllersResponse: TCResponseModel {
+    public struct DescribeClusterControllersResponse: TCResponse {
         /// 描述集群中各个控制器的状态
         public let controllerStatusSet: [ControllerStatus]
 

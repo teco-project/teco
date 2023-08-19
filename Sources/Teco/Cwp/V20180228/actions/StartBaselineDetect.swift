@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// StartBaselineDetect请求参数结构体
-    public struct StartBaselineDetectRequest: TCRequestModel {
+    public struct StartBaselineDetectRequest: TCRequest {
         /// 基线检测参数
         public let param: BaselineDetectParam
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// StartBaselineDetect返回参数结构体
-    public struct StartBaselineDetectResponse: TCResponseModel {
+    public struct StartBaselineDetectResponse: TCResponse {
         /// 扫描任务ID
         public let taskId: Int64
 

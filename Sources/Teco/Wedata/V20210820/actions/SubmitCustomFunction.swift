@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SubmitCustomFunction请求参数结构体
-    public struct SubmitCustomFunctionRequest: TCRequestModel {
+    public struct SubmitCustomFunctionRequest: TCRequest {
         /// 函数唯一标识
         public let functionId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// SubmitCustomFunction返回参数结构体
-    public struct SubmitCustomFunctionResponse: TCResponseModel {
+    public struct SubmitCustomFunctionResponse: TCResponse {
         /// 函数唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functionId: String?

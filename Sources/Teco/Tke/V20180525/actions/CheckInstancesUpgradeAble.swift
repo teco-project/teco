@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CheckInstancesUpgradeAble请求参数结构体
-    public struct CheckInstancesUpgradeAbleRequest: TCRequestModel {
+    public struct CheckInstancesUpgradeAbleRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Tke {
     }
 
     /// CheckInstancesUpgradeAble返回参数结构体
-    public struct CheckInstancesUpgradeAbleResponse: TCResponseModel {
+    public struct CheckInstancesUpgradeAbleResponse: TCResponse {
         /// 集群master当前小版本
         public let clusterVersion: String
 

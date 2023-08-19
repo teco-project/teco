@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// AttachCcnInstances请求参数结构体
-    public struct AttachCcnInstancesRequest: TCRequestModel {
+    public struct AttachCcnInstancesRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String?
 
@@ -44,7 +44,7 @@ extension Gse {
     }
 
     /// AttachCcnInstances返回参数结构体
-    public struct AttachCcnInstancesResponse: TCResponseModel {
+    public struct AttachCcnInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeClusterInstanceGrps请求参数结构体
-    public struct DescribeClusterInstanceGrpsRequest: TCRequestModel {
+    public struct DescribeClusterInstanceGrpsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeClusterInstanceGrps返回参数结构体
-    public struct DescribeClusterInstanceGrpsResponse: TCResponseModel {
+    public struct DescribeClusterInstanceGrpsResponse: TCResponse {
         /// 实例组个数
         public let totalCount: Int64
 

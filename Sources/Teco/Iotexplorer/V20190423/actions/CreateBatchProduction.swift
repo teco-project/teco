@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CreateBatchProduction请求参数结构体
-    public struct CreateBatchProductionRequest: TCRequestModel {
+    public struct CreateBatchProductionRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -64,7 +64,7 @@ extension Iotexplorer {
     }
 
     /// CreateBatchProduction返回参数结构体
-    public struct CreateBatchProductionResponse: TCResponseModel {
+    public struct CreateBatchProductionResponse: TCResponse {
         /// 项目Id
         public let projectId: String
 

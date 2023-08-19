@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeApplicationAttribute请求参数结构体
-    public struct DescribeApplicationAttributeRequest: TCRequestModel {
+    public struct DescribeApplicationAttributeRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeApplicationAttribute返回参数结构体
-    public struct DescribeApplicationAttributeResponse: TCResponseModel {
+    public struct DescribeApplicationAttributeResponse: TCResponse {
         /// 应用列表其它字段返回参数
         public let result: ApplicationAttribute
 

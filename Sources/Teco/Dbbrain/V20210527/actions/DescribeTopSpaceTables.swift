@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeTopSpaceTables请求参数结构体
-    public struct DescribeTopSpaceTablesRequest: TCRequestModel {
+    public struct DescribeTopSpaceTablesRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// DescribeTopSpaceTables返回参数结构体
-    public struct DescribeTopSpaceTablesResponse: TCResponseModel {
+    public struct DescribeTopSpaceTablesResponse: TCResponse {
         /// 返回的Top表空间统计信息列表。
         public let topSpaceTables: [TableSpaceData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DisableCCCPhoneNumber请求参数结构体
-    public struct DisableCCCPhoneNumberRequest: TCRequestModel {
+    public struct DisableCCCPhoneNumberRequest: TCRequest {
         /// 号码列表，0086开头
         public let phoneNumbers: [String]
 
@@ -44,7 +44,7 @@ extension Ccc {
     }
 
     /// DisableCCCPhoneNumber返回参数结构体
-    public struct DisableCCCPhoneNumberResponse: TCResponseModel {
+    public struct DisableCCCPhoneNumberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

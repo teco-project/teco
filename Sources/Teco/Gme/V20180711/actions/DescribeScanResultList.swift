@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DescribeScanResultList请求参数结构体
-    public struct DescribeScanResultListRequest: TCRequestModel {
+    public struct DescribeScanResultListRequest: TCRequest {
         /// 应用 ID，登录[控制台](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         public let bizId: UInt64
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// DescribeScanResultList返回参数结构体
-    public struct DescribeScanResultListResponse: TCResponseModel {
+    public struct DescribeScanResultListResponse: TCResponse {
         /// 要查询的语音检测任务的结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DescribeScanResult]?

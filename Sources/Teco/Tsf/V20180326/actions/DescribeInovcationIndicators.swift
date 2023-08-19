@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tsf {
     /// DescribeInovcationIndicators请求参数结构体
-    public struct DescribeInovcationIndicatorsRequest: TCRequestModel {
+    public struct DescribeInovcationIndicatorsRequest: TCRequest {
         /// 维度
         public let dimension: String
 
@@ -97,7 +97,7 @@ extension Tsf {
     }
 
     /// DescribeInovcationIndicators返回参数结构体
-    public struct DescribeInovcationIndicatorsResponse: TCResponseModel {
+    public struct DescribeInovcationIndicatorsResponse: TCResponse {
         /// 服务调用监控指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: InvocationIndicator?

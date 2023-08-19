@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeEscapeEventDetail请求参数结构体
-    public struct DescribeEscapeEventDetailRequest: TCRequestModel {
+    public struct DescribeEscapeEventDetailRequest: TCRequest {
         /// 事件唯一id
         public let eventId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeEscapeEventDetail返回参数结构体
-    public struct DescribeEscapeEventDetailResponse: TCResponseModel {
+    public struct DescribeEscapeEventDetailResponse: TCResponse {
         /// 事件基本信息
         public let eventBaseInfo: RunTimeEventBaseInfo
 

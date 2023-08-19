@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyClass请求参数结构体
-    public struct ModifyClassRequest: TCRequestModel {
+    public struct ModifyClassRequest: TCRequest {
         /// 分类 ID
         public let classId: UInt64
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// ModifyClass返回参数结构体
-    public struct ModifyClassResponse: TCResponseModel {
+    public struct ModifyClassResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

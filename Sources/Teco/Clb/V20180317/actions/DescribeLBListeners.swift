@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeLBListeners请求参数结构体
-    public struct DescribeLBListenersRequest: TCRequestModel {
+    public struct DescribeLBListenersRequest: TCRequest {
         /// 需要查询的内网ip列表
         public let backends: [LbRsItem]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DescribeLBListeners返回参数结构体
-    public struct DescribeLBListenersResponse: TCResponseModel {
+    public struct DescribeLBListenersResponse: TCResponse {
         /// 绑定的后端规则
         public let loadBalancers: [LBItem]
 

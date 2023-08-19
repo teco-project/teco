@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryBatchPaymentResult请求参数结构体
-    public struct QueryBatchPaymentResultRequest: TCRequestModel {
+    public struct QueryBatchPaymentResultRequest: TCRequest {
         /// 批次号
         public let batchId: String
 
@@ -34,7 +34,7 @@ extension Cpdp {
     }
 
     /// QueryBatchPaymentResult返回参数结构体
-    public struct QueryBatchPaymentResultResponse: TCResponseModel {
+    public struct QueryBatchPaymentResultResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

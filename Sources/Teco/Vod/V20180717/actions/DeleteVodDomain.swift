@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteVodDomain请求参数结构体
-    public struct DeleteVodDomainRequest: TCRequestModel {
+    public struct DeleteVodDomainRequest: TCRequest {
         /// 要删除的点播加速域名。
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteVodDomain返回参数结构体
-    public struct DeleteVodDomainResponse: TCResponseModel {
+    public struct DeleteVodDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

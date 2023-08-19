@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeCdbProxyInfo请求参数结构体
-    public struct DescribeCdbProxyInfoRequest: TCRequestModel {
+    public struct DescribeCdbProxyInfoRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DescribeCdbProxyInfo返回参数结构体
-    public struct DescribeCdbProxyInfoResponse: TCResponseModel {
+    public struct DescribeCdbProxyInfoResponse: TCResponse {
         /// 代理组数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?

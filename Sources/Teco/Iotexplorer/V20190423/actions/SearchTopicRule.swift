@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// SearchTopicRule请求参数结构体
-    public struct SearchTopicRuleRequest: TCRequestModel {
+    public struct SearchTopicRuleRequest: TCRequest {
         /// 规则名
         public let ruleName: String
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// SearchTopicRule返回参数结构体
-    public struct SearchTopicRuleResponse: TCResponseModel {
+    public struct SearchTopicRuleResponse: TCResponse {
         /// 搜索到的规则总数
         public let totalCnt: Int64
 

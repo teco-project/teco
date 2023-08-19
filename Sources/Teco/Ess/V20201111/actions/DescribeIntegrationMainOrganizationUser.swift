@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeIntegrationMainOrganizationUser请求参数结构体
-    public struct DescribeIntegrationMainOrganizationUserRequest: TCRequestModel {
+    public struct DescribeIntegrationMainOrganizationUserRequest: TCRequest {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
@@ -34,7 +34,7 @@ extension Ess {
     }
 
     /// DescribeIntegrationMainOrganizationUser返回参数结构体
-    public struct DescribeIntegrationMainOrganizationUserResponse: TCResponseModel {
+    public struct DescribeIntegrationMainOrganizationUserResponse: TCResponse {
         /// 主企业员工账号信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let integrationMainOrganizationUser: IntegrationMainOrganizationUser?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateApplication请求参数结构体
-    public struct CreateApplicationRequest: TCRequestModel {
+    public struct CreateApplicationRequest: TCRequest {
         /// 应用名
         public let applicationName: String
 
@@ -104,7 +104,7 @@ extension Tem {
     }
 
     /// CreateApplication返回参数结构体
-    public struct CreateApplicationResponse: TCResponseModel {
+    public struct CreateApplicationResponse: TCResponse {
         /// 服务code
         public let result: String
 

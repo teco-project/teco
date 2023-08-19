@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeIpGeolocationInfos请求参数结构体
-    public struct DescribeIpGeolocationInfosRequest: TCRequestModel {
+    public struct DescribeIpGeolocationInfosRequest: TCRequest {
         /// 需查询的IP地址列表，目前仅支持IPv4地址。查询的IP地址数量上限为100个。
         public let addressIps: [String]
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DescribeIpGeolocationInfos返回参数结构体
-    public struct DescribeIpGeolocationInfosResponse: TCResponseModel {
+    public struct DescribeIpGeolocationInfosResponse: TCResponse {
         /// IP地址信息列表。
         public let addressInfo: [IpGeolocationInfo]
 

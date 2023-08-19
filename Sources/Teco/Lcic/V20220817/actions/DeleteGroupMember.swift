@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DeleteGroupMember请求参数结构体
-    public struct DeleteGroupMemberRequest: TCRequestModel {
+    public struct DeleteGroupMemberRequest: TCRequest {
         /// 群组ID，联合群组无法删除群组成员
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DeleteGroupMember返回参数结构体
-    public struct DeleteGroupMemberResponse: TCResponseModel {
+    public struct DeleteGroupMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

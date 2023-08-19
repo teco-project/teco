@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeClusterInstances请求参数结构体
-    public struct DescribeEdgeClusterInstancesRequest: TCRequestModel {
+    public struct DescribeEdgeClusterInstancesRequest: TCRequest {
         /// 集群id
         public let clusterID: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// DescribeEdgeClusterInstances返回参数结构体
-    public struct DescribeEdgeClusterInstancesResponse: TCResponseModel {
+    public struct DescribeEdgeClusterInstancesResponse: TCResponse {
         /// 该集群总数
         public let totalCount: Int64
 

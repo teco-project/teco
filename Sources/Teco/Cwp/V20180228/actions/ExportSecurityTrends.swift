@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cwp {
     /// ExportSecurityTrends请求参数结构体
-    public struct ExportSecurityTrendsRequest: TCRequestModel {
+    public struct ExportSecurityTrendsRequest: TCRequest {
         /// 开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Cwp {
     }
 
     /// ExportSecurityTrends返回参数结构体
-    public struct ExportSecurityTrendsResponse: TCResponseModel {
+    public struct ExportSecurityTrendsResponse: TCResponse {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbp {
     /// CreateBot请求参数结构体
-    public struct CreateBotRequest: TCRequestModel {
+    public struct CreateBotRequest: TCRequest {
         /// 机器人名称
         public let botName: String
 
@@ -39,7 +39,7 @@ extension Tbp {
     }
 
     /// CreateBot返回参数结构体
-    public struct CreateBotResponse: TCResponseModel {
+    public struct CreateBotResponse: TCResponse {
         /// 任务ID
         public let taskRequestId: String
 

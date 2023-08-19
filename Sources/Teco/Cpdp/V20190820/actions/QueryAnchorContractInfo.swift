@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryAnchorContractInfo请求参数结构体
-    public struct QueryAnchorContractInfoRequest: TCRequestModel {
+    public struct QueryAnchorContractInfoRequest: TCRequest {
         /// 起始时间，格式为yyyy-MM-dd
         public let beginTime: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// QueryAnchorContractInfo返回参数结构体
-    public struct QueryAnchorContractInfoResponse: TCResponseModel {
+    public struct QueryAnchorContractInfoResponse: TCResponse {
         /// 签约主播数据
         public let anchorContractInfoList: [AnchorContractInfo]
 

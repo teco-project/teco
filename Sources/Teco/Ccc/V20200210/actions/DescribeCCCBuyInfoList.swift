@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// DescribeCCCBuyInfoList请求参数结构体
-    public struct DescribeCCCBuyInfoListRequest: TCRequestModel {
+    public struct DescribeCCCBuyInfoListRequest: TCRequest {
         /// 应用ID列表，不传时查询所有应用
         public let sdkAppIds: [Int64]?
 
@@ -34,7 +34,7 @@ extension Ccc {
     }
 
     /// DescribeCCCBuyInfoList返回参数结构体
-    public struct DescribeCCCBuyInfoListResponse: TCResponseModel {
+    public struct DescribeCCCBuyInfoListResponse: TCResponse {
         /// 应用总数
         public let totalCount: Int64
 

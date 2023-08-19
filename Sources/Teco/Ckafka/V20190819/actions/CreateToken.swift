@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateToken请求参数结构体
-    public struct CreateTokenRequest: TCRequestModel {
+    public struct CreateTokenRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// CreateToken返回参数结构体
-    public struct CreateTokenResponse: TCResponseModel {
+    public struct CreateTokenResponse: TCResponse {
         /// token串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateEnhanceMediaTemplate请求参数结构体
-    public struct CreateEnhanceMediaTemplateRequest: TCRequestModel {
+    public struct CreateEnhanceMediaTemplateRequest: TCRequest {
         /// 输出文件封装格式，可选值：mp4、flv、hls。
         public let container: String
 
@@ -87,7 +87,7 @@ extension Vod {
     }
 
     /// CreateEnhanceMediaTemplate返回参数结构体
-    public struct CreateEnhanceMediaTemplateResponse: TCResponseModel {
+    public struct CreateEnhanceMediaTemplateResponse: TCResponse {
         /// 音画质重生模板 ID。
         public let definition: Int64
 

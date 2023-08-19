@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateDirectConnectGateway请求参数结构体
-    public struct CreateDirectConnectGatewayRequest: TCRequestModel {
+    public struct CreateDirectConnectGatewayRequest: TCRequest {
         /// 专线网关名称
         public let directConnectGatewayName: String
 
@@ -70,7 +70,7 @@ extension Vpc {
     }
 
     /// CreateDirectConnectGateway返回参数结构体
-    public struct CreateDirectConnectGatewayResponse: TCResponseModel {
+    public struct CreateDirectConnectGatewayResponse: TCResponse {
         /// 专线网关对象。
         public let directConnectGateway: DirectConnectGateway
 

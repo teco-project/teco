@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteCluster请求参数结构体
-    public struct DeleteClusterRequest: TCRequestModel {
+    public struct DeleteClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DeleteCluster返回参数结构体
-    public struct DeleteClusterResponse: TCResponseModel {
+    public struct DeleteClusterResponse: TCResponse {
         /// 删除集群操作是否成功。
         /// true：操作成功。
         /// false：操作失败。

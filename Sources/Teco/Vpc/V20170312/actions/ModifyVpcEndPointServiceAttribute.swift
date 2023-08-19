@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyVpcEndPointServiceAttribute请求参数结构体
-    public struct ModifyVpcEndPointServiceAttributeRequest: TCRequestModel {
+    public struct ModifyVpcEndPointServiceAttributeRequest: TCRequest {
         /// 终端节点服务ID。
         public let endPointServiceId: String
 
@@ -56,7 +56,7 @@ extension Vpc {
     }
 
     /// ModifyVpcEndPointServiceAttribute返回参数结构体
-    public struct ModifyVpcEndPointServiceAttributeResponse: TCResponseModel {
+    public struct ModifyVpcEndPointServiceAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

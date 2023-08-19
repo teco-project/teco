@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cbs {
     /// GetSnapOverview请求参数结构体
-    public struct GetSnapOverviewRequest: TCRequestModel {
+    public struct GetSnapOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetSnapOverview返回参数结构体
-    public struct GetSnapOverviewResponse: TCResponseModel {
+    public struct GetSnapOverviewResponse: TCResponse {
         /// 用户快照总大小
         public let totalSize: Float
 

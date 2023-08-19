@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DestroyHourDCDBInstance请求参数结构体
-    public struct DestroyHourDCDBInstanceRequest: TCRequestModel {
+    public struct DestroyHourDCDBInstanceRequest: TCRequest {
         /// 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DestroyHourDCDBInstance返回参数结构体
-    public struct DestroyHourDCDBInstanceResponse: TCResponseModel {
+    public struct DestroyHourDCDBInstanceResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID [查询异步任务的执行结果](https://cloud.tencent.com/document/product/557/56485)。
         public let flowId: Int64
 

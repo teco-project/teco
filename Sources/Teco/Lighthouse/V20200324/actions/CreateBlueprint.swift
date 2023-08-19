@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateBlueprint请求参数结构体
-    public struct CreateBlueprintRequest: TCRequestModel {
+    public struct CreateBlueprintRequest: TCRequest {
         /// 镜像名称。最大长度60。
         public let blueprintName: String
 
@@ -54,7 +54,7 @@ extension Lighthouse {
     }
 
     /// CreateBlueprint返回参数结构体
-    public struct CreateBlueprintResponse: TCResponseModel {
+    public struct CreateBlueprintResponse: TCResponse {
         /// 自定义镜像ID。
         public let blueprintId: String
 

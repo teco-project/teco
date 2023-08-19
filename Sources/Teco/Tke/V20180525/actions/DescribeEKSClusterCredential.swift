@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEKSClusterCredential请求参数结构体
-    public struct DescribeEKSClusterCredentialRequest: TCRequestModel {
+    public struct DescribeEKSClusterCredentialRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEKSClusterCredential返回参数结构体
-    public struct DescribeEKSClusterCredentialResponse: TCResponseModel {
+    public struct DescribeEKSClusterCredentialResponse: TCResponse {
         /// 集群的接入地址信息
         public let addresses: [IPAddress]
 

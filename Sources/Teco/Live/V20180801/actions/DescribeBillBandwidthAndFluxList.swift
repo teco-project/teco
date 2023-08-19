@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeBillBandwidthAndFluxList请求参数结构体
-    public struct DescribeBillBandwidthAndFluxListRequest: TCRequestModel {
+    public struct DescribeBillBandwidthAndFluxListRequest: TCRequest {
         /// 起始时间点，接口查询支持两种时间格式：
         /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
@@ -86,7 +86,7 @@ extension Live {
     }
 
     /// DescribeBillBandwidthAndFluxList返回参数结构体
-    public struct DescribeBillBandwidthAndFluxListResponse: TCResponseModel {
+    public struct DescribeBillBandwidthAndFluxListResponse: TCResponse {
         /// 峰值带宽所在时间点，接口返回支持两种时间格式(与接口请求传递的时间格式一致)：
         /// 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见IOS日期格式说明文档: https://cloud.tencent.com/document/product/266/11732#I
         /// 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。

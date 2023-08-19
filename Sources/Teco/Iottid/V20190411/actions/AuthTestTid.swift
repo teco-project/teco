@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// AuthTestTid请求参数结构体
-    public struct AuthTestTidRequest: TCRequestModel {
+    public struct AuthTestTidRequest: TCRequest {
         /// 设备端SDK填入测试TID参数后生成的加密数据串
         public let data: String
 
@@ -34,7 +34,7 @@ extension Iottid {
     }
 
     /// AuthTestTid返回参数结构体
-    public struct AuthTestTidResponse: TCResponseModel {
+    public struct AuthTestTidResponse: TCResponse {
         /// 认证结果
         public let pass: Bool
 

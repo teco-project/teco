@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// DetectBody请求参数结构体
-    public struct DetectBodyRequest: TCRequestModel {
+    public struct DetectBodyRequest: TCRequest {
         /// 人体图片 Base64 数据。
         /// 图片 base64 编码后大小不可超过5M。
         /// 图片分辨率不得超过 1920 * 1080 。
@@ -63,7 +63,7 @@ extension Bda {
     }
 
     /// DetectBody返回参数结构体
-    public struct DetectBodyResponse: TCResponseModel {
+    public struct DetectBodyResponse: TCResponse {
         /// 图中检测出来的人体框。
         public let bodyDetectResults: [BodyDetectResult]
 

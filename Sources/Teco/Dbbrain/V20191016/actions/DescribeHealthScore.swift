@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeHealthScore请求参数结构体
-    public struct DescribeHealthScoreRequest: TCRequestModel {
+    public struct DescribeHealthScoreRequest: TCRequest {
         /// 需要获取健康得分的实例ID。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// DescribeHealthScore返回参数结构体
-    public struct DescribeHealthScoreResponse: TCResponseModel {
+    public struct DescribeHealthScoreResponse: TCResponse {
         /// 健康得分以及异常扣分项。
         public let data: HealthScoreInfo
 

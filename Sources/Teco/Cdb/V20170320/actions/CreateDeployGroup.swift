@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateDeployGroup请求参数结构体
-    public struct CreateDeployGroupRequest: TCRequestModel {
+    public struct CreateDeployGroupRequest: TCRequest {
         /// 置放群组名称，最长不能超过60个字符。
         public let deployGroupName: String
 
@@ -54,7 +54,7 @@ extension Cdb {
     }
 
     /// CreateDeployGroup返回参数结构体
-    public struct CreateDeployGroupResponse: TCResponseModel {
+    public struct CreateDeployGroupResponse: TCResponse {
         /// 置放群组ID。
         public let deployGroupId: String
 

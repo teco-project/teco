@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeDependOpsTaskList请求参数结构体
-    public struct DescribeDependOpsTaskListRequest: TCRequestModel {
+    public struct DescribeDependOpsTaskListRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeDependOpsTaskList返回参数结构体
-    public struct DescribeDependOpsTaskListResponse: TCResponseModel {
+    public struct DescribeDependOpsTaskListResponse: TCResponse {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TaskOpsDto]?

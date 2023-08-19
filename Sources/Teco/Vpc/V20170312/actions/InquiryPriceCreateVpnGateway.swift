@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// InquiryPriceCreateVpnGateway请求参数结构体
-    public struct InquiryPriceCreateVpnGatewayRequest: TCRequestModel {
+    public struct InquiryPriceCreateVpnGatewayRequest: TCRequest {
         /// 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps。
         public let internetMaxBandwidthOut: UInt64
 
@@ -54,7 +54,7 @@ extension Vpc {
     }
 
     /// InquiryPriceCreateVpnGateway返回参数结构体
-    public struct InquiryPriceCreateVpnGatewayResponse: TCResponseModel {
+    public struct InquiryPriceCreateVpnGatewayResponse: TCResponse {
         /// 商品价格。
         public let price: Price
 

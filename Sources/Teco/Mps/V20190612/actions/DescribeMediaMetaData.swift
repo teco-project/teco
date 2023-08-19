@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DescribeMediaMetaData请求参数结构体
-    public struct DescribeMediaMetaDataRequest: TCRequestModel {
+    public struct DescribeMediaMetaDataRequest: TCRequest {
         /// 需要获取元信息的文件输入信息。
         public let inputInfo: MediaInputInfo
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// DescribeMediaMetaData返回参数结构体
-    public struct DescribeMediaMetaDataResponse: TCResponseModel {
+    public struct DescribeMediaMetaDataResponse: TCResponse {
         /// 媒体元信息。
         public let metaData: MediaMetaData
 

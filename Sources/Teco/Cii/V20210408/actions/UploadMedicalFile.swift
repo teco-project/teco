@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// UploadMedicalFile请求参数结构体
-    public struct UploadMedicalFileRequest: TCRequestModel {
+    public struct UploadMedicalFileRequest: TCRequest {
         /// 文件的URL地址。File与FileURL不能同时为空，若File参数也存在，会只取File的内容。
         public let fileURL: String?
 
@@ -34,7 +34,7 @@ extension Cii {
     }
 
     /// UploadMedicalFile返回参数结构体
-    public struct UploadMedicalFileResponse: TCResponseModel {
+    public struct UploadMedicalFileResponse: TCResponse {
         /// 文件存储的key，可以用来创建结构化任务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileKey: String?

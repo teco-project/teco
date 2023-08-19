@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// StartMatching请求参数结构体
-    public struct StartMatchingRequest: TCRequestModel {
+    public struct StartMatchingRequest: TCRequest {
         /// 匹配 Code。
         public let matchCode: String
 
@@ -44,7 +44,7 @@ extension Gpm {
     }
 
     /// StartMatching返回参数结构体
-    public struct StartMatchingResponse: TCResponseModel {
+    public struct StartMatchingResponse: TCResponse {
         /// 错误码。
         public let errCode: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateDevice请求参数结构体
-    public struct CreateDeviceRequest: TCRequestModel {
+    public struct CreateDeviceRequest: TCRequest {
         /// 产品 ID 。创建产品时腾讯云为用户分配全局唯一的 ID
         public let productId: String
 
@@ -79,7 +79,7 @@ extension Iotcloud {
     }
 
     /// CreateDevice返回参数结构体
-    public struct CreateDeviceResponse: TCResponseModel {
+    public struct CreateDeviceResponse: TCResponse {
         /// 设备名称
         public let deviceName: String
 

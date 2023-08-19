@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// GetFaceIdToken请求参数结构体
-    public struct GetFaceIdTokenRequest: TCRequestModel {
+    public struct GetFaceIdTokenRequest: TCRequest {
         /// 本地上传照片(LOCAL)、商业库(BUSINESS)
         public let compareLib: String
 
@@ -71,7 +71,7 @@ extension Faceid {
     }
 
     /// GetFaceIdToken返回参数结构体
-    public struct GetFaceIdTokenResponse: TCResponseModel {
+    public struct GetFaceIdTokenResponse: TCResponse {
         /// 有效期 10分钟。只能完成1次核身。
         public let faceIdToken: String
 

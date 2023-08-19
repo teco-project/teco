@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CheckInstance请求参数结构体
-    public struct CheckInstanceRequest: TCRequestModel {
+    public struct CheckInstanceRequest: TCRequest {
         /// 待检测的实例Id
         public let registryId: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// CheckInstance返回参数结构体
-    public struct CheckInstanceResponse: TCResponseModel {
+    public struct CheckInstanceResponse: TCResponse {
         /// 检查结果，true为合法，false为非法
         public let isValidated: Bool
 

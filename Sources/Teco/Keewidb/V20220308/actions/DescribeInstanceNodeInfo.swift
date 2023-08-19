@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeInstanceNodeInfo请求参数结构体
-    public struct DescribeInstanceNodeInfoRequest: TCRequestModel {
+    public struct DescribeInstanceNodeInfoRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Keewidb {
     }
 
     /// DescribeInstanceNodeInfo返回参数结构体
-    public struct DescribeInstanceNodeInfoResponse: TCResponseModel {
+    public struct DescribeInstanceNodeInfoResponse: TCResponse {
         /// Proxy 节点数量。
         public let proxyCount: Int64
 

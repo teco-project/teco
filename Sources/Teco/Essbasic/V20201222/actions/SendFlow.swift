@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// SendFlow请求参数结构体
-    public struct SendFlowRequest: TCRequestModel {
+    public struct SendFlowRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -109,7 +109,7 @@ extension Essbasic {
     }
 
     /// SendFlow返回参数结构体
-    public struct SendFlowResponse: TCResponseModel {
+    public struct SendFlowResponse: TCResponse {
         /// 签署任务ID，标识每一次的流程发送
         public let signId: String
 

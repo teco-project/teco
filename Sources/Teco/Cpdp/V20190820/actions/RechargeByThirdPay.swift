@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RechargeByThirdPay请求参数结构体
-    public struct RechargeByThirdPayRequest: TCRequestModel {
+    public struct RechargeByThirdPayRequest: TCRequest {
         /// 请求类型 此接口固定填：MemberRechargeThirdPayReq
         public let requestType: String
 
@@ -144,7 +144,7 @@ extension Cpdp {
     }
 
     /// RechargeByThirdPay返回参数结构体
-    public struct RechargeByThirdPayResponse: TCResponseModel {
+    public struct RechargeByThirdPayResponse: TCResponse {
         /// 保留字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedMessage: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteWordSamples请求参数结构体
-    public struct DeleteWordSamplesRequest: TCRequestModel {
+    public struct DeleteWordSamplesRequest: TCRequest {
         /// 关键词，数组长度限制：100 个词。
         public let keywords: [String]
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteWordSamples返回参数结构体
-    public struct DeleteWordSamplesResponse: TCResponseModel {
+    public struct DeleteWordSamplesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

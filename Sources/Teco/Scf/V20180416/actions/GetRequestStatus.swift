@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetRequestStatus请求参数结构体
-    public struct GetRequestStatusRequest: TCRequestModel {
+    public struct GetRequestStatusRequest: TCRequest {
         /// 函数名称
         public let functionName: String
 
@@ -54,7 +54,7 @@ extension Scf {
     }
 
     /// GetRequestStatus返回参数结构体
-    public struct GetRequestStatusResponse: TCResponseModel {
+    public struct GetRequestStatusResponse: TCResponse {
         /// 函数运行状态的总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

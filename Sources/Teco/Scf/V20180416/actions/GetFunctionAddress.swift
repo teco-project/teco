@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetFunctionAddress请求参数结构体
-    public struct GetFunctionAddressRequest: TCRequestModel {
+    public struct GetFunctionAddressRequest: TCRequest {
         /// 函数的名称
         public let functionName: String
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// GetFunctionAddress返回参数结构体
-    public struct GetFunctionAddressResponse: TCResponseModel {
+    public struct GetFunctionAddressResponse: TCResponse {
         /// 函数的Cos地址
         public let url: String
 

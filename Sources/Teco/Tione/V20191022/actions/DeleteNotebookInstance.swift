@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DeleteNotebookInstance请求参数结构体
-    public struct DeleteNotebookInstanceRequest: TCRequestModel {
+    public struct DeleteNotebookInstanceRequest: TCRequest {
         /// Notebook实例名称
         public let notebookInstanceName: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DeleteNotebookInstance返回参数结构体
-    public struct DeleteNotebookInstanceResponse: TCResponseModel {
+    public struct DeleteNotebookInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

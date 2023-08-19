@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cws {
     /// CreateSites请求参数结构体
-    public struct CreateSitesRequest: TCRequestModel {
+    public struct CreateSitesRequest: TCRequest {
         /// 站点的url列表
         public let urls: [String]
 
@@ -39,7 +39,7 @@ extension Cws {
     }
 
     /// CreateSites返回参数结构体
-    public struct CreateSitesResponse: TCResponseModel {
+    public struct CreateSitesResponse: TCResponse {
         /// 新增站点数。
         public let number: UInt64
 

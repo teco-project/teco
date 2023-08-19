@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// CreateDevice请求参数结构体
-    public struct CreateDeviceRequest: TCRequestModel {
+    public struct CreateDeviceRequest: TCRequest {
         /// 设备名称
         public let nickName: String
 
@@ -49,7 +49,7 @@ extension Iotvideoindustry {
     }
 
     /// CreateDevice返回参数结构体
-    public struct CreateDeviceResponse: TCResponseModel {
+    public struct CreateDeviceResponse: TCResponse {
         /// 设备编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deviceCode: String?

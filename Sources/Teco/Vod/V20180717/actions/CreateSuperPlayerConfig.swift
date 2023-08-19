@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateSuperPlayerConfig请求参数结构体
-    public struct CreateSuperPlayerConfigRequest: TCRequestModel {
+    public struct CreateSuperPlayerConfigRequest: TCRequest {
         /// 播放器配置名称，长度限制：64 个字符。只允许出现 [0-9a-zA-Z] 及 _- 字符（如 test_ABC-123），同一个用户该名称唯一。
         public let name: String
 
@@ -114,7 +114,7 @@ extension Vod {
     }
 
     /// CreateSuperPlayerConfig返回参数结构体
-    public struct CreateSuperPlayerConfigResponse: TCResponseModel {
+    public struct CreateSuperPlayerConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

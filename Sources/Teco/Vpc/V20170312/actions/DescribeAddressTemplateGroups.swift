@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeAddressTemplateGroups请求参数结构体
-    public struct DescribeAddressTemplateGroupsRequest: TCRequestModel {
+    public struct DescribeAddressTemplateGroupsRequest: TCRequest {
         /// 过滤条件。
         /// - address-template-group-name - String - （过滤条件）IP地址模板集合名称。
         /// - address-template-group-id - String - （过滤条件）IP地址模板实集合例ID，例如：ipmg-mdunqeb6。
@@ -46,7 +46,7 @@ extension Vpc {
     }
 
     /// DescribeAddressTemplateGroups返回参数结构体
-    public struct DescribeAddressTemplateGroupsResponse: TCResponseModel {
+    public struct DescribeAddressTemplateGroupsResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

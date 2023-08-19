@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// SegmentPortraitPic请求参数结构体
-    public struct SegmentPortraitPicRequest: TCRequestModel {
+    public struct SegmentPortraitPicRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// 图片分辨率须小于2000*2000。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
@@ -59,7 +59,7 @@ extension Bda {
     }
 
     /// SegmentPortraitPic返回参数结构体
-    public struct SegmentPortraitPicResponse: TCResponseModel {
+    public struct SegmentPortraitPicResponse: TCResponse {
         /// 处理后的图片 base64 数据，透明背景图。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImage: String?

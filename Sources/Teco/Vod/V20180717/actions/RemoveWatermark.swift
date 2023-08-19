@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// RemoveWatermark请求参数结构体
-    public struct RemoveWatermarkRequest: TCRequestModel {
+    public struct RemoveWatermarkRequest: TCRequest {
         /// 媒体文件 ID 。
         public let fileId: String
 
@@ -59,7 +59,7 @@ extension Vod {
     }
 
     /// RemoveWatermark返回参数结构体
-    public struct RemoveWatermarkResponse: TCResponseModel {
+    public struct RemoveWatermarkResponse: TCResponse {
         /// 任务 ID 。
         public let taskId: String
 

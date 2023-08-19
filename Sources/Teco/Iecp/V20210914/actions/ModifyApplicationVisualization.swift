@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// ModifyApplicationVisualization请求参数结构体
-    public struct ModifyApplicationVisualizationRequest: TCRequestModel {
+    public struct ModifyApplicationVisualizationRequest: TCRequest {
         /// 应用ID
         public let applicationId: UInt64
 
@@ -89,7 +89,7 @@ extension Iecp {
     }
 
     /// ModifyApplicationVisualization返回参数结构体
-    public struct ModifyApplicationVisualizationResponse: TCResponseModel {
+    public struct ModifyApplicationVisualizationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

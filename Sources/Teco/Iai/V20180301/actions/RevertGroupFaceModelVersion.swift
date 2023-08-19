@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// RevertGroupFaceModelVersion请求参数结构体
-    public struct RevertGroupFaceModelVersionRequest: TCRequestModel {
+    public struct RevertGroupFaceModelVersionRequest: TCRequest {
         /// 需要回滚的升级任务ID。
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Iai {
     }
 
     /// RevertGroupFaceModelVersion返回参数结构体
-    public struct RevertGroupFaceModelVersionResponse: TCResponseModel {
+    public struct RevertGroupFaceModelVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

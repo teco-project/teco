@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteApiGroup请求参数结构体
-    public struct DeleteApiGroupRequest: TCRequestModel {
+    public struct DeleteApiGroupRequest: TCRequest {
         /// API 分组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteApiGroup返回参数结构体
-    public struct DeleteApiGroupResponse: TCResponseModel {
+    public struct DeleteApiGroupResponse: TCResponse {
         /// 成功失败
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// DescribeToken请求参数结构体
-    public struct DescribeTokenRequest: TCRequestModel {
+    public struct DescribeTokenRequest: TCRequest {
         /// 匹配code
         public let matchCode: String
 
@@ -34,7 +34,7 @@ extension Gpm {
     }
 
     /// DescribeToken返回参数结构体
-    public struct DescribeTokenResponse: TCResponseModel {
+    public struct DescribeTokenResponse: TCResponse {
         /// 当前的MatchCode对应的Token。如果当前MatchCode没有Token，该参数可能取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchToken: String?

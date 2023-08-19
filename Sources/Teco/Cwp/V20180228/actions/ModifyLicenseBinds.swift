@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyLicenseBinds请求参数结构体
-    public struct ModifyLicenseBindsRequest: TCRequestModel {
+    public struct ModifyLicenseBindsRequest: TCRequest {
         /// 资源ID
         public let resourceId: String
 
@@ -49,7 +49,7 @@ extension Cwp {
     }
 
     /// ModifyLicenseBinds返回参数结构体
-    public struct ModifyLicenseBindsResponse: TCResponseModel {
+    public struct ModifyLicenseBindsResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

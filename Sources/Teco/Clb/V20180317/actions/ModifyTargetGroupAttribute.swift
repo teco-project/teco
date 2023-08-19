@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ModifyTargetGroupAttribute请求参数结构体
-    public struct ModifyTargetGroupAttributeRequest: TCRequestModel {
+    public struct ModifyTargetGroupAttributeRequest: TCRequest {
         /// 目标组的ID。
         public let targetGroupId: String
 
@@ -44,7 +44,7 @@ extension Clb {
     }
 
     /// ModifyTargetGroupAttribute返回参数结构体
-    public struct ModifyTargetGroupAttributeResponse: TCResponseModel {
+    public struct ModifyTargetGroupAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

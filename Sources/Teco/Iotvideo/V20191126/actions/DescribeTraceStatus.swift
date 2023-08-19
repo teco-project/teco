@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeTraceStatus请求参数结构体
-    public struct DescribeTraceStatusRequest: TCRequestModel {
+    public struct DescribeTraceStatusRequest: TCRequest {
         /// 设备TID列表
         public let tids: [String]
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeTraceStatus返回参数结构体
-    public struct DescribeTraceStatusResponse: TCResponseModel {
+    public struct DescribeTraceStatusResponse: TCResponse {
         /// 设备追踪状态列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TraceStatus]?

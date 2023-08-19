@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// CreateWorkspaceByTemplate请求参数结构体
-    public struct CreateWorkspaceByTemplateRequest: TCRequestModel {
+    public struct CreateWorkspaceByTemplateRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -44,7 +44,7 @@ extension Cloudstudio {
     }
 
     /// CreateWorkspaceByTemplate返回参数结构体
-    public struct CreateWorkspaceByTemplateResponse: TCResponseModel {
+    public struct CreateWorkspaceByTemplateResponse: TCResponse {
         /// 创建工作空间返回的信息
         public let data: WorkspaceInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// CreateParamTemplate请求参数结构体
-    public struct CreateParamTemplateRequest: TCRequestModel {
+    public struct CreateParamTemplateRequest: TCRequest {
         /// 模板名称
         public let templateName: String
 
@@ -59,7 +59,7 @@ extension Cynosdb {
     }
 
     /// CreateParamTemplate返回参数结构体
-    public struct CreateParamTemplateResponse: TCResponseModel {
+    public struct CreateParamTemplateResponse: TCResponse {
         /// 模板ID
         public let templateId: Int64
 

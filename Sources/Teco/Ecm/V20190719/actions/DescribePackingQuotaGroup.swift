@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribePackingQuotaGroup请求参数结构体
-    public struct DescribePackingQuotaGroupRequest: TCRequestModel {
+    public struct DescribePackingQuotaGroupRequest: TCRequest {
         /// 过滤条件，name取值为：Zone-可用区， InstanceType-实例类型，DataDiskSize - 数据盘大小
         public let filters: [Filter]?
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribePackingQuotaGroup返回参数结构体
-    public struct DescribePackingQuotaGroupResponse: TCResponseModel {
+    public struct DescribePackingQuotaGroupResponse: TCResponse {
         /// 装箱配额组
         public let packingQuotaSet: [PackingQuotaGroup]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// InstallPlugins请求参数结构体
-    public struct InstallPluginsRequest: TCRequestModel {
+    public struct InstallPluginsRequest: TCRequest {
         /// 插件信息
         public let plugins: [GrafanaPlugin]
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// InstallPlugins返回参数结构体
-    public struct InstallPluginsResponse: TCResponseModel {
+    public struct InstallPluginsResponse: TCResponse {
         /// 已安装插件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pluginIds: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeCCIpAllowDeny请求参数结构体
-    public struct DescribeCCIpAllowDenyRequest: TCRequestModel {
+    public struct DescribeCCIpAllowDenyRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
@@ -60,7 +60,7 @@ extension Dayu {
     }
 
     /// DescribeCCIpAllowDeny返回参数结构体
-    public struct DescribeCCIpAllowDenyResponse: TCResponseModel {
+    public struct DescribeCCIpAllowDenyResponse: TCResponse {
         /// 该字段被RecordList字段替代了，请不要使用
         public let data: [KeyValue]
 

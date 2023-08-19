@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeBinlogSaveDays请求参数结构体
-    public struct DescribeBinlogSaveDaysRequest: TCRequestModel {
+    public struct DescribeBinlogSaveDaysRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeBinlogSaveDays返回参数结构体
-    public struct DescribeBinlogSaveDaysResponse: TCResponseModel {
+    public struct DescribeBinlogSaveDaysResponse: TCResponse {
         /// Binlog保留天数
         public let binlogSaveDays: Int64
 

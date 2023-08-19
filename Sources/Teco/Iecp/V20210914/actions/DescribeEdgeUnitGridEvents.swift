@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitGridEvents请求参数结构体
-    public struct DescribeEdgeUnitGridEventsRequest: TCRequestModel {
+    public struct DescribeEdgeUnitGridEventsRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -59,7 +59,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitGridEvents返回参数结构体
-    public struct DescribeEdgeUnitGridEventsResponse: TCResponseModel {
+    public struct DescribeEdgeUnitGridEventsResponse: TCResponse {
         /// 事件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventSet: [GridEventInfo]?

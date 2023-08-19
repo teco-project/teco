@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateDatahubTopic请求参数结构体
-    public struct CreateDatahubTopicRequest: TCRequestModel {
+    public struct CreateDatahubTopicRequest: TCRequest {
         /// 名称，是一个不超过 128 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         public let name: String
 
@@ -54,7 +54,7 @@ extension Ckafka {
     }
 
     /// CreateDatahubTopic返回参数结构体
-    public struct CreateDatahubTopicResponse: TCResponseModel {
+    public struct CreateDatahubTopicResponse: TCResponse {
         /// 返回创建结果
         public let result: DatahubTopicResp
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ProgramFpgaImage请求参数结构体
-    public struct ProgramFpgaImageRequest: TCRequestModel {
+    public struct ProgramFpgaImageRequest: TCRequest {
         /// 实例的ID信息。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Cvm {
     }
 
     /// ProgramFpgaImage返回参数结构体
-    public struct ProgramFpgaImageResponse: TCResponseModel {
+    public struct ProgramFpgaImageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

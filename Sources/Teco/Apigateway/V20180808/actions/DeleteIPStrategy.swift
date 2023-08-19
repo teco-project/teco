@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteIPStrategy请求参数结构体
-    public struct DeleteIPStrategyRequest: TCRequestModel {
+    public struct DeleteIPStrategyRequest: TCRequest {
         /// 待删除的IP策略所属的服务唯一ID。
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// DeleteIPStrategy返回参数结构体
-    public struct DeleteIPStrategyResponse: TCResponseModel {
+    public struct DeleteIPStrategyResponse: TCResponse {
         /// 删除操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

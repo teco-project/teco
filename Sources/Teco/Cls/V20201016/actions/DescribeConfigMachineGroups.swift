@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeConfigMachineGroups请求参数结构体
-    public struct DescribeConfigMachineGroupsRequest: TCRequestModel {
+    public struct DescribeConfigMachineGroupsRequest: TCRequest {
         /// 采集配置ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeConfigMachineGroups返回参数结构体
-    public struct DescribeConfigMachineGroupsResponse: TCResponseModel {
+    public struct DescribeConfigMachineGroupsResponse: TCResponse {
         /// 采集规则配置绑定的机器组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let machineGroups: [MachineGroupInfo]?

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cvm {
     /// DescribeImageQuota请求参数结构体
-    public struct DescribeImageQuotaRequest: TCRequestModel {
+    public struct DescribeImageQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageQuota返回参数结构体
-    public struct DescribeImageQuotaResponse: TCResponseModel {
+    public struct DescribeImageQuotaResponse: TCResponse {
         /// 账户的镜像配额
         public let imageNumQuota: Int64
 

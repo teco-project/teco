@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeVASStatistic请求参数结构体
-    public struct DescribeVASStatisticRequest: TCRequestModel {
+    public struct DescribeVASStatisticRequest: TCRequest {
         /// 域名ID
         public let domainId: UInt64
 
@@ -34,7 +34,7 @@ extension Dnspod {
     }
 
     /// DescribeVASStatistic返回参数结构体
-    public struct DescribeVASStatisticResponse: TCResponseModel {
+    public struct DescribeVASStatisticResponse: TCResponse {
         /// 增值服务用量列表
         public let vasList: [VASStatisticItem]
 

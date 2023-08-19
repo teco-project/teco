@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DisassociateTargetGroups请求参数结构体
-    public struct DisassociateTargetGroupsRequest: TCRequestModel {
+    public struct DisassociateTargetGroupsRequest: TCRequest {
         /// 待解绑的规则关系数组。
         public let associations: [TargetGroupAssociation]
 
@@ -34,7 +34,7 @@ extension Clb {
     }
 
     /// DisassociateTargetGroups返回参数结构体
-    public struct DisassociateTargetGroupsResponse: TCResponseModel {
+    public struct DisassociateTargetGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

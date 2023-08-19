@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeExtendedServiceAuthInfo请求参数结构体
-    public struct DescribeExtendedServiceAuthInfoRequest: TCRequestModel {
+    public struct DescribeExtendedServiceAuthInfoRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填
         ///
         /// 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
@@ -36,7 +36,7 @@ extension Essbasic {
     }
 
     /// DescribeExtendedServiceAuthInfo返回参数结构体
-    public struct DescribeExtendedServiceAuthInfoResponse: TCResponseModel {
+    public struct DescribeExtendedServiceAuthInfoResponse: TCResponse {
         /// 企业扩展服务授权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authInfo: [ExtentServiceAuthInfo]?

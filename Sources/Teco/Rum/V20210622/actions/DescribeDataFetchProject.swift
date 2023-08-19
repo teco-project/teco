@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeDataFetchProject请求参数结构体
-    public struct DescribeDataFetchProjectRequest: TCRequestModel {
+    public struct DescribeDataFetchProjectRequest: TCRequest {
         /// 开始时间
         public let startTime: Int64
 
@@ -154,7 +154,7 @@ extension Rum {
     }
 
     /// DescribeDataFetchProject返回参数结构体
-    public struct DescribeDataFetchProjectResponse: TCResponseModel {
+    public struct DescribeDataFetchProjectResponse: TCResponse {
         /// 返回值
         public let result: String
 

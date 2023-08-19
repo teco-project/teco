@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DeleteSnapshots请求参数结构体
-    public struct DeleteSnapshotsRequest: TCRequestModel {
+    public struct DeleteSnapshotsRequest: TCRequest {
         /// 要删除的快照ID列表，可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotIds: [String]
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// DeleteSnapshots返回参数结构体
-    public struct DeleteSnapshotsResponse: TCResponseModel {
+    public struct DeleteSnapshotsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

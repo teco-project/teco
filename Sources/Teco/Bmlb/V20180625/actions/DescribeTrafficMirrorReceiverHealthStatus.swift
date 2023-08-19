@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// DescribeTrafficMirrorReceiverHealthStatus请求参数结构体
-    public struct DescribeTrafficMirrorReceiverHealthStatusRequest: TCRequestModel {
+    public struct DescribeTrafficMirrorReceiverHealthStatusRequest: TCRequest {
         /// 查询所在的流量镜像ID。
         public let trafficMirrorId: String
 
@@ -39,7 +39,7 @@ extension Bmlb {
     }
 
     /// DescribeTrafficMirrorReceiverHealthStatus返回参数结构体
-    public struct DescribeTrafficMirrorReceiverHealthStatusResponse: TCResponseModel {
+    public struct DescribeTrafficMirrorReceiverHealthStatusResponse: TCResponse {
         /// 内网IP和端口对应的状态。
         public let receiversStatusSet: [TrafficMirrorReciversStatus]
 

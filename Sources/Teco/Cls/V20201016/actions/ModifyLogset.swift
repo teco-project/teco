@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyLogset请求参数结构体
-    public struct ModifyLogsetRequest: TCRequestModel {
+    public struct ModifyLogsetRequest: TCRequest {
         /// 日志集ID
         public let logsetId: String
 
@@ -44,7 +44,7 @@ extension Cls {
     }
 
     /// ModifyLogset返回参数结构体
-    public struct ModifyLogsetResponse: TCResponseModel {
+    public struct ModifyLogsetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

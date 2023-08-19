@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// DescribeZoneSetting请求参数结构体
-    public struct DescribeZoneSettingRequest: TCRequestModel {
+    public struct DescribeZoneSettingRequest: TCRequest {
         /// 站点ID。
         public let zoneId: String
 
@@ -34,7 +34,7 @@ extension Teo {
     }
 
     /// DescribeZoneSetting返回参数结构体
-    public struct DescribeZoneSettingResponse: TCResponseModel {
+    public struct DescribeZoneSettingResponse: TCResponse {
         /// 站点配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneSetting: ZoneSetting?

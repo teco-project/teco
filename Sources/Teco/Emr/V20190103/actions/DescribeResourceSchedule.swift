@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeResourceSchedule请求参数结构体
-    public struct DescribeResourceScheduleRequest: TCRequestModel {
+    public struct DescribeResourceScheduleRequest: TCRequest {
         /// emr集群的英文id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Emr {
     }
 
     /// DescribeResourceSchedule返回参数结构体
-    public struct DescribeResourceScheduleResponse: TCResponseModel {
+    public struct DescribeResourceScheduleResponse: TCResponse {
         /// 资源调度功能是否开启
         public let openSwitch: Bool
 

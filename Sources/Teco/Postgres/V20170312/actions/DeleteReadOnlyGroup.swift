@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DeleteReadOnlyGroup请求参数结构体
-    public struct DeleteReadOnlyGroupRequest: TCRequestModel {
+    public struct DeleteReadOnlyGroupRequest: TCRequest {
         /// 待删除只读组ID
         public let readOnlyGroupId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DeleteReadOnlyGroup返回参数结构体
-    public struct DeleteReadOnlyGroupResponse: TCResponseModel {
+    public struct DeleteReadOnlyGroupResponse: TCResponse {
         /// 流程ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?

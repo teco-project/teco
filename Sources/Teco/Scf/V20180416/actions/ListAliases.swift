@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// ListAliases请求参数结构体
-    public struct ListAliasesRequest: TCRequestModel {
+    public struct ListAliasesRequest: TCRequest {
         /// 函数名称
         public let functionName: String
 
@@ -54,7 +54,7 @@ extension Scf {
     }
 
     /// ListAliases返回参数结构体
-    public struct ListAliasesResponse: TCResponseModel {
+    public struct ListAliasesResponse: TCResponse {
         /// 别名列表
         public let aliases: [Alias]
 

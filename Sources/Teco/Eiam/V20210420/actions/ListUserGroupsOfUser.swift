@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// ListUserGroupsOfUser请求参数结构体
-    public struct ListUserGroupsOfUserRequest: TCRequestModel {
+    public struct ListUserGroupsOfUserRequest: TCRequest {
         /// 用户ID，是用户的全局唯一标识。
         public let userId: String
 
@@ -54,7 +54,7 @@ extension Eiam {
     }
 
     /// ListUserGroupsOfUser返回参数结构体
-    public struct ListUserGroupsOfUserResponse: TCResponseModel {
+    public struct ListUserGroupsOfUserResponse: TCResponse {
         /// 用户所属的用户组ID列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupIds: [String]?

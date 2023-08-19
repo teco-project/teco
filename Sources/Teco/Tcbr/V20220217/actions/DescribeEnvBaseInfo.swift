@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcbr {
     /// DescribeEnvBaseInfo请求参数结构体
-    public struct DescribeEnvBaseInfoRequest: TCRequestModel {
+    public struct DescribeEnvBaseInfoRequest: TCRequest {
         /// 环境 Id
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcbr {
     }
 
     /// DescribeEnvBaseInfo返回参数结构体
-    public struct DescribeEnvBaseInfoResponse: TCResponseModel {
+    public struct DescribeEnvBaseInfoResponse: TCResponse {
         /// 环境基础信息
         public let envBaseInfo: EnvBaseInfo
 

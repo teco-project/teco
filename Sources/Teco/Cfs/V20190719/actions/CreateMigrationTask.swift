@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// CreateMigrationTask请求参数结构体
-    public struct CreateMigrationTaskRequest: TCRequestModel {
+    public struct CreateMigrationTaskRequest: TCRequest {
         /// 迁移任务名称
         public let taskName: String
 
@@ -104,7 +104,7 @@ extension Cfs {
     }
 
     /// CreateMigrationTask返回参数结构体
-    public struct CreateMigrationTaskResponse: TCResponseModel {
+    public struct CreateMigrationTaskResponse: TCResponse {
         /// 迁移任务Id
         public let taskId: String
 

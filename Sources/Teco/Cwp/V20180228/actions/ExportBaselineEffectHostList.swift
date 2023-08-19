@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportBaselineEffectHostList请求参数结构体
-    public struct ExportBaselineEffectHostListRequest: TCRequestModel {
+    public struct ExportBaselineEffectHostListRequest: TCRequest {
         /// 基线id
         public let baselineId: UInt64
 
@@ -55,7 +55,7 @@ extension Cwp {
     }
 
     /// ExportBaselineEffectHostList返回参数结构体
-    public struct ExportBaselineEffectHostListResponse: TCResponseModel {
+    public struct ExportBaselineEffectHostListResponse: TCResponse {
         /// 该参数已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

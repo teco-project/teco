@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateDiskBackup请求参数结构体
-    public struct CreateDiskBackupRequest: TCRequestModel {
+    public struct CreateDiskBackupRequest: TCRequest {
         /// 云硬盘 ID。当前只支持数据盘创建备份点。
         public let diskId: String
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// CreateDiskBackup返回参数结构体
-    public struct CreateDiskBackupResponse: TCResponseModel {
+    public struct CreateDiskBackupResponse: TCResponse {
         /// 备份点ID。
         public let diskBackupId: String
 

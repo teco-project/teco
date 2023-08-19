@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CloseWanService请求参数结构体
-    public struct CloseWanServiceRequest: TCRequestModel {
+    public struct CloseWanServiceRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// CloseWanService返回参数结构体
-    public struct CloseWanServiceResponse: TCResponseModel {
+    public struct CloseWanServiceResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
 

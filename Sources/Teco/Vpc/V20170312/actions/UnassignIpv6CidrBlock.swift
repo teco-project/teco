@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// UnassignIpv6CidrBlock请求参数结构体
-    public struct UnassignIpv6CidrBlockRequest: TCRequestModel {
+    public struct UnassignIpv6CidrBlockRequest: TCRequest {
         /// `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// UnassignIpv6CidrBlock返回参数结构体
-    public struct UnassignIpv6CidrBlockResponse: TCResponseModel {
+    public struct UnassignIpv6CidrBlockResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

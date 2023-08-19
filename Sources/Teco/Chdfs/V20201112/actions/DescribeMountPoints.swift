@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeMountPoints请求参数结构体
-    public struct DescribeMountPointsRequest: TCRequestModel {
+    public struct DescribeMountPointsRequest: TCRequest {
         /// 文件系统ID
         /// 备注：入参只能指定AccessGroupId、FileSystemId和OwnerUin的其中一个
         public let fileSystemId: String?
@@ -45,7 +45,7 @@ extension Chdfs {
     }
 
     /// DescribeMountPoints返回参数结构体
-    public struct DescribeMountPointsResponse: TCResponseModel {
+    public struct DescribeMountPointsResponse: TCResponse {
         /// 挂载点列表
         public let mountPoints: [MountPoint]
 

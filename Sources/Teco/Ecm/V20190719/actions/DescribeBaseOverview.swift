@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ecm {
     /// DescribeBaseOverview请求参数结构体
-    public struct DescribeBaseOverviewRequest: TCRequestModel {
+    public struct DescribeBaseOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBaseOverview返回参数结构体
-    public struct DescribeBaseOverviewResponse: TCResponseModel {
+    public struct DescribeBaseOverviewResponse: TCResponse {
         /// 模块数量，单位：个
         public let moduleNum: Int64
 

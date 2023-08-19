@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateSecurityPolicy请求参数结构体
-    public struct CreateSecurityPolicyRequest: TCRequestModel {
+    public struct CreateSecurityPolicyRequest: TCRequest {
         /// 默认策略：ACCEPT或DROP
         public let defaultAction: String
 
@@ -44,7 +44,7 @@ extension Gaap {
     }
 
     /// CreateSecurityPolicy返回参数结构体
-    public struct CreateSecurityPolicyResponse: TCResponseModel {
+    public struct CreateSecurityPolicyResponse: TCResponse {
         /// 安全策略ID
         public let policyId: String
 

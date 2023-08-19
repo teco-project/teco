@@ -20,13 +20,13 @@ import TecoCore
 
 extension Kms {
     /// DescribeWhiteBoxServiceStatus请求参数结构体
-    public struct DescribeWhiteBoxServiceStatusRequest: TCRequestModel {
+    public struct DescribeWhiteBoxServiceStatusRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWhiteBoxServiceStatus返回参数结构体
-    public struct DescribeWhiteBoxServiceStatusResponse: TCResponseModel {
+    public struct DescribeWhiteBoxServiceStatusResponse: TCResponse {
         /// 用户的白盒密钥服务是否可用
         public let serviceEnabled: Bool
 

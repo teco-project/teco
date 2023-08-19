@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DeployServiceV2请求参数结构体
-    public struct DeployServiceV2Request: TCRequestModel {
+    public struct DeployServiceV2Request: TCRequest {
         /// 服务ID
         public let serviceId: String
 
@@ -205,7 +205,7 @@ extension Tem {
     }
 
     /// DeployServiceV2返回参数结构体
-    public struct DeployServiceV2Response: TCResponseModel {
+    public struct DeployServiceV2Response: TCResponse {
         /// 版本ID（前端可忽略）
         public let result: String
 

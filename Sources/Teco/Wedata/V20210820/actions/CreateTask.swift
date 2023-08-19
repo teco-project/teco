@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateTask请求参数结构体
-    public struct CreateTaskRequest: TCRequestModel {
+    public struct CreateTaskRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// CreateTask返回参数结构体
-    public struct CreateTaskResponse: TCResponseModel {
+    public struct CreateTaskResponse: TCResponse {
         /// 返回任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CommonId?

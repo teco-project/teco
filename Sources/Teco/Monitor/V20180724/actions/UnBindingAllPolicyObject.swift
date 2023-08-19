@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// UnBindingAllPolicyObject请求参数结构体
-    public struct UnBindingAllPolicyObjectRequest: TCRequestModel {
+    public struct UnBindingAllPolicyObjectRequest: TCRequest {
         /// 固定值，为"monitor"
         public let module: String
 
@@ -54,7 +54,7 @@ extension Monitor {
     }
 
     /// UnBindingAllPolicyObject返回参数结构体
-    public struct UnBindingAllPolicyObjectResponse: TCResponseModel {
+    public struct UnBindingAllPolicyObjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

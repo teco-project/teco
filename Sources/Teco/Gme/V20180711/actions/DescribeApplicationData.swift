@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Gme {
     /// DescribeApplicationData请求参数结构体
-    public struct DescribeApplicationDataRequest: TCRequestModel {
+    public struct DescribeApplicationDataRequest: TCRequest {
         /// 应用ID
         public let bizId: UInt64
 
@@ -52,7 +52,7 @@ extension Gme {
     }
 
     /// DescribeApplicationData返回参数结构体
-    public struct DescribeApplicationDataResponse: TCResponseModel {
+    public struct DescribeApplicationDataResponse: TCResponse {
         /// 应用统计数据
         public let data: ApplicationDataStatistics
 

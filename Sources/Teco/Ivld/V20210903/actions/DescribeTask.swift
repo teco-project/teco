@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DescribeTask请求参数结构体
-    public struct DescribeTaskRequest: TCRequestModel {
+    public struct DescribeTaskRequest: TCRequest {
         /// CreateTask返回的任务ID，最长32B
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// DescribeTask返回参数结构体
-    public struct DescribeTaskResponse: TCResponseModel {
+    public struct DescribeTaskResponse: TCResponse {
         /// 任务信息，详情参见TaskInfo的定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskInfo: TaskInfo?

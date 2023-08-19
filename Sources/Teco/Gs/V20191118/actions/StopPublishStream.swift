@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gs {
     /// StopPublishStream请求参数结构体
-    public struct StopPublishStreamRequest: TCRequestModel {
+    public struct StopPublishStreamRequest: TCRequest {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
         public let userId: String
 
@@ -34,7 +34,7 @@ extension Gs {
     }
 
     /// StopPublishStream返回参数结构体
-    public struct StopPublishStreamResponse: TCResponseModel {
+    public struct StopPublishStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

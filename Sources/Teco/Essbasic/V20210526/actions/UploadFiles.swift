@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// UploadFiles请求参数结构体
-    public struct UploadFilesRequest: TCRequestModel {
+    public struct UploadFilesRequest: TCRequest {
         /// 应用相关信息，若是第三方应用集成调用 若是第三方应用集成调用,Agent.AppId 和 Agent.ProxyOrganizationOpenId 必填
         public let agent: Agent
 
@@ -58,7 +58,7 @@ extension Essbasic {
     }
 
     /// UploadFiles返回参数结构体
-    public struct UploadFilesResponse: TCResponseModel {
+    public struct UploadFilesResponse: TCResponse {
         /// 上传成功文件数量
         public let totalCount: Int64
 

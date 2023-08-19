@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeCloudStorage请求参数结构体
-    public struct DescribeCloudStorageRequest: TCRequestModel {
+    public struct DescribeCloudStorageRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeCloudStorage返回参数结构体
-    public struct DescribeCloudStorageResponse: TCResponseModel {
+    public struct DescribeCloudStorageResponse: TCResponse {
         /// 云存开启状态，1为开启，0为未开启或已过期
         public let status: UInt64
 

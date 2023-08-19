@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeTaskLastStatus请求参数结构体
-    public struct DescribeTaskLastStatusRequest: TCRequestModel {
+    public struct DescribeTaskLastStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeTaskLastStatus返回参数结构体
-    public struct DescribeTaskLastStatusResponse: TCResponseModel {
+    public struct DescribeTaskLastStatusResponse: TCResponse {
         /// 任务上一次执行状态
         public let result: TaskLastExecuteStatus
 

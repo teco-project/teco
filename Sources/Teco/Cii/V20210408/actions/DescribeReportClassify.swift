@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// DescribeReportClassify请求参数结构体
-    public struct DescribeReportClassifyRequest: TCRequestModel {
+    public struct DescribeReportClassifyRequest: TCRequest {
         /// 服务类型
         /// Structured 仅结构化
         /// Underwrite 结构化+核保
@@ -41,7 +41,7 @@ extension Cii {
     }
 
     /// DescribeReportClassify返回参数结构体
-    public struct DescribeReportClassifyResponse: TCResponseModel {
+    public struct DescribeReportClassifyResponse: TCResponse {
         /// 报告分类结果
         public let reports: [ClassifiedReports]
 

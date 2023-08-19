@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryInvoice请求参数结构体
-    public struct QueryInvoiceRequest: TCRequestModel {
+    public struct QueryInvoiceRequest: TCRequest {
         /// 开票平台ID
         /// 0 : 高灯
         /// 1 : 票易通
@@ -68,7 +68,7 @@ extension Cpdp {
     }
 
     /// QueryInvoice返回参数结构体
-    public struct QueryInvoiceResponse: TCResponseModel {
+    public struct QueryInvoiceResponse: TCResponse {
         /// 发票查询结果
         public let result: QueryInvoiceResult
 

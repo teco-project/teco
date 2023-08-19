@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ScanComplianceAssetsByPolicyItem请求参数结构体
-    public struct ScanComplianceAssetsByPolicyItemRequest: TCRequestModel {
+    public struct ScanComplianceAssetsByPolicyItemRequest: TCRequest {
         /// 指定的检测项的ID
         public let customerPolicyItemId: UInt64
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// ScanComplianceAssetsByPolicyItem返回参数结构体
-    public struct ScanComplianceAssetsByPolicyItemResponse: TCResponseModel {
+    public struct ScanComplianceAssetsByPolicyItemResponse: TCResponse {
         /// 返回重新检测任务的ID。
         public let taskId: UInt64
 

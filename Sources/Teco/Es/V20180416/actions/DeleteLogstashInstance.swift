@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// DeleteLogstashInstance请求参数结构体
-    public struct DeleteLogstashInstanceRequest: TCRequestModel {
+    public struct DeleteLogstashInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Es {
     }
 
     /// DeleteLogstashInstance返回参数结构体
-    public struct DeleteLogstashInstanceResponse: TCResponseModel {
+    public struct DeleteLogstashInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

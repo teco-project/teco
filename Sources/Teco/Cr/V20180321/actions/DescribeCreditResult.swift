@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DescribeCreditResult请求参数结构体
-    public struct DescribeCreditResultRequest: TCRequestModel {
+    public struct DescribeCreditResultRequest: TCRequest {
         /// 模块名，本接口取值：Credit
         public let module: String
 
@@ -64,7 +64,7 @@ extension Cr {
     }
 
     /// DescribeCreditResult返回参数结构体
-    public struct DescribeCreditResultResponse: TCResponseModel {
+    public struct DescribeCreditResultResponse: TCResponse {
         /// 呼叫结果，取值范围：
         ///
         /// - NON：接通

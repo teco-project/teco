@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecc {
     /// ECC请求参数结构体
-    public struct ECCRequest: TCRequestModel {
+    public struct ECCRequest: TCRequest {
         /// 作文文本，必填
         public let content: String
 
@@ -74,7 +74,7 @@ extension Ecc {
     }
 
     /// ECC返回参数结构体
-    public struct ECCResponse: TCResponseModel {
+    public struct ECCResponse: TCResponse {
         /// 整体的批改结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CorrectData?

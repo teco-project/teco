@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// GetDeviceLicense请求参数结构体
-    public struct GetDeviceLicenseRequest: TCRequestModel {
+    public struct GetDeviceLicenseRequest: TCRequest {
         /// 目标设备所属项目ID
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Trro {
     }
 
     /// GetDeviceLicense返回参数结构体
-    public struct GetDeviceLicenseResponse: TCResponseModel {
+    public struct GetDeviceLicenseResponse: TCResponse {
         /// 指定设备已经绑定的可用license数量
         public let availableCount: Int64
 

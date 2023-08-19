@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ModifyRabbitMQVirtualHost请求参数结构体
-    public struct ModifyRabbitMQVirtualHostRequest: TCRequestModel {
+    public struct ModifyRabbitMQVirtualHostRequest: TCRequest {
         /// 集群实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Tdmq {
     }
 
     /// ModifyRabbitMQVirtualHost返回参数结构体
-    public struct ModifyRabbitMQVirtualHostResponse: TCResponseModel {
+    public struct ModifyRabbitMQVirtualHostResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

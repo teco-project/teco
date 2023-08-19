@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// RetryJobs请求参数结构体
-    public struct RetryJobsRequest: TCRequestModel {
+    public struct RetryJobsRequest: TCRequest {
         /// 作业ID列表。
         public let jobIds: [String]
 
@@ -34,7 +34,7 @@ extension Batch {
     }
 
     /// RetryJobs返回参数结构体
-    public struct RetryJobsResponse: TCResponseModel {
+    public struct RetryJobsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

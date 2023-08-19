@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// UpdateService请求参数结构体
-    public struct UpdateServiceRequest: TCRequestModel {
+    public struct UpdateServiceRequest: TCRequest {
         /// 服务Id
         public let serviceId: String
 
@@ -84,7 +84,7 @@ extension Tiems {
     }
 
     /// UpdateService返回参数结构体
-    public struct UpdateServiceResponse: TCResponseModel {
+    public struct UpdateServiceResponse: TCResponse {
         /// 服务
         public let service: ModelService
 

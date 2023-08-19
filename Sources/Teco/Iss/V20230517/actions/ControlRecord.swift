@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// ControlRecord请求参数结构体
-    public struct ControlRecordRequest: TCRequestModel {
+    public struct ControlRecordRequest: TCRequest {
         /// 通道ID（录像播放地址格式 https://${domain}/live/${ChannelId}@${Session}）
         public let channelId: String
 
@@ -54,7 +54,7 @@ extension Iss {
     }
 
     /// ControlRecord返回参数结构体
-    public struct ControlRecordResponse: TCResponseModel {
+    public struct ControlRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

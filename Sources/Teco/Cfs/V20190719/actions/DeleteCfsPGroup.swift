@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DeleteCfsPGroup请求参数结构体
-    public struct DeleteCfsPGroupRequest: TCRequestModel {
+    public struct DeleteCfsPGroupRequest: TCRequest {
         /// 权限组 ID
         public let pGroupId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DeleteCfsPGroup返回参数结构体
-    public struct DeleteCfsPGroupResponse: TCResponseModel {
+    public struct DeleteCfsPGroupResponse: TCResponse {
         /// 权限组 ID
         public let pGroupId: String
 

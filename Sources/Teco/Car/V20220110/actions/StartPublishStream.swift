@@ -20,7 +20,7 @@ import TecoCore
 
 extension Car {
     /// StartPublishStream请求参数结构体
-    public struct StartPublishStreamRequest: TCRequestModel {
+    public struct StartPublishStreamRequest: TCRequest {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（UserId将作为StreamId进行推流，比如绑定推流域名为abc.livepush.myqcloud.com，那么推流地址为rtmp://abc.livepush.myqcloud.com/live/UserId?txSecret=xxx&txTime=xxx）
         public let userId: String
 
@@ -34,7 +34,7 @@ extension Car {
     }
 
     /// StartPublishStream返回参数结构体
-    public struct StartPublishStreamResponse: TCResponseModel {
+    public struct StartPublishStreamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

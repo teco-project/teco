@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateModule请求参数结构体
-    public struct CreateModuleRequest: TCRequestModel {
+    public struct CreateModuleRequest: TCRequest {
         /// 模块名称，如视频直播模块。限制：模块名称不得以空格开头，长度不得超过60个字符。
         public let moduleName: String
 
@@ -96,7 +96,7 @@ extension Ecm {
     }
 
     /// CreateModule返回参数结构体
-    public struct CreateModuleResponse: TCResponseModel {
+    public struct CreateModuleResponse: TCResponse {
         /// 模块ID，创建模块成功后分配给该模块的ID。
         public let moduleId: String
 

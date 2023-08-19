@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DeleteRecordBackupTemplate请求参数结构体
-    public struct DeleteRecordBackupTemplateRequest: TCRequestModel {
+    public struct DeleteRecordBackupTemplateRequest: TCRequest {
         /// 模板ID（从查询录像上云模板列表接口ListRecordBackupTemplates中获取）
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DeleteRecordBackupTemplate返回参数结构体
-    public struct DeleteRecordBackupTemplateResponse: TCResponseModel {
+    public struct DeleteRecordBackupTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

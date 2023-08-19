@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CancelEncryptTask请求参数结构体
-    public struct CancelEncryptTaskRequest: TCRequestModel {
+    public struct CancelEncryptTaskRequest: TCRequest {
         /// 加固任务结果Id
         public let resultId: String
 
@@ -34,7 +34,7 @@ extension Ms {
     }
 
     /// CancelEncryptTask返回参数结构体
-    public struct CancelEncryptTaskResponse: TCResponseModel {
+    public struct CancelEncryptTaskResponse: TCResponse {
         /// 1: 取消任务成功 ； -1 ：取消任务失败，原因为任务进程已结束，不能取消。
         public let state: Int64
 

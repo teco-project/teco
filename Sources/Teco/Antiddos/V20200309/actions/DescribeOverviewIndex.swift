@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeOverviewIndex请求参数结构体
-    public struct DescribeOverviewIndexRequest: TCRequestModel {
+    public struct DescribeOverviewIndexRequest: TCRequest {
         /// 拉取指标起始时间
         public let startTime: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// DescribeOverviewIndex返回参数结构体
-    public struct DescribeOverviewIndexResponse: TCResponseModel {
+    public struct DescribeOverviewIndexResponse: TCResponse {
         /// IP总数
         public let allIpCount: UInt64
 

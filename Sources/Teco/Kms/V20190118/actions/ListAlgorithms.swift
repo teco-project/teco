@@ -20,13 +20,13 @@ import TecoCore
 
 extension Kms {
     /// ListAlgorithms请求参数结构体
-    public struct ListAlgorithmsRequest: TCRequestModel {
+    public struct ListAlgorithmsRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListAlgorithms返回参数结构体
-    public struct ListAlgorithmsResponse: TCResponseModel {
+    public struct ListAlgorithmsResponse: TCResponse {
         /// 本地区支持的对称加密算法
         public let symmetricAlgorithms: [AlgorithmInfo]
 

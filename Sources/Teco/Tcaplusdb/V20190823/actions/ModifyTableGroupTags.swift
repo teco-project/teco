@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyTableGroupTags请求参数结构体
-    public struct ModifyTableGroupTagsRequest: TCRequestModel {
+    public struct ModifyTableGroupTagsRequest: TCRequest {
         /// 待修改标签表格组所属集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyTableGroupTags返回参数结构体
-    public struct ModifyTableGroupTagsResponse: TCResponseModel {
+    public struct ModifyTableGroupTagsResponse: TCResponse {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

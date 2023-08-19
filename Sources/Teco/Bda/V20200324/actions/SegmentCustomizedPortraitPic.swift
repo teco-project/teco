@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// SegmentCustomizedPortraitPic请求参数结构体
-    public struct SegmentCustomizedPortraitPicRequest: TCRequestModel {
+    public struct SegmentCustomizedPortraitPicRequest: TCRequest {
         /// 此参数为分割选项，请根据需要选择自己所想从图片中分割的部分。注意所有选项均为非必选，如未选择则值默认为false, 但是必须要保证多于一个选项的描述为true。
         public let segmentationOptions: SegmentationOptions
 
@@ -51,7 +51,7 @@ extension Bda {
     }
 
     /// SegmentCustomizedPortraitPic返回参数结构体
-    public struct SegmentCustomizedPortraitPicResponse: TCResponseModel {
+    public struct SegmentCustomizedPortraitPicResponse: TCResponse {
         /// 根据指定标签分割输出的透明背景人像图片的 base64 数据。
         public let portraitImage: String
 

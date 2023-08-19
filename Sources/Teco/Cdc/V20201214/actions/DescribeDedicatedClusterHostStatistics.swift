@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DescribeDedicatedClusterHostStatistics请求参数结构体
-    public struct DescribeDedicatedClusterHostStatisticsRequest: TCRequestModel {
+    public struct DescribeDedicatedClusterHostStatisticsRequest: TCRequest {
         /// 查询的专用集群id
         public let dedicatedClusterId: String
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DescribeDedicatedClusterHostStatistics返回参数结构体
-    public struct DescribeDedicatedClusterHostStatisticsResponse: TCResponseModel {
+    public struct DescribeDedicatedClusterHostStatisticsResponse: TCResponse {
         /// 该集群内宿主机的统计信息列表
         public let hostStatisticSet: [HostStatistic]
 

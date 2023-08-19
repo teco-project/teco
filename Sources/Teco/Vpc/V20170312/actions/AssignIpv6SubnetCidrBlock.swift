@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssignIpv6SubnetCidrBlock请求参数结构体
-    public struct AssignIpv6SubnetCidrBlockRequest: TCRequestModel {
+    public struct AssignIpv6SubnetCidrBlockRequest: TCRequest {
         /// 子网所在私有网络`ID`。形如：`vpc-f49l6u0z`。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// AssignIpv6SubnetCidrBlock返回参数结构体
-    public struct AssignIpv6SubnetCidrBlockResponse: TCResponseModel {
+    public struct AssignIpv6SubnetCidrBlockResponse: TCResponse {
         /// 分配 `IPv6` 子网段列表。
         public let ipv6SubnetCidrBlockSet: [Ipv6SubnetCidrBlock]
 

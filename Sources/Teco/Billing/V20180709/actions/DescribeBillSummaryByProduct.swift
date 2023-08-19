@@ -20,7 +20,7 @@ import TecoCore
 
 extension Billing {
     /// DescribeBillSummaryByProduct请求参数结构体
-    public struct DescribeBillSummaryByProductRequest: TCRequestModel {
+    public struct DescribeBillSummaryByProductRequest: TCRequest {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
         public let beginTime: String
 
@@ -54,7 +54,7 @@ extension Billing {
     }
 
     /// DescribeBillSummaryByProduct返回参数结构体
-    public struct DescribeBillSummaryByProductResponse: TCResponseModel {
+    public struct DescribeBillSummaryByProductResponse: TCResponse {
         /// 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
         public let ready: UInt64
 

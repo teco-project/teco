@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// CreateAIFormTask请求参数结构体
-    public struct CreateAIFormTaskRequest: TCRequestModel {
+    public struct CreateAIFormTaskRequest: TCRequest {
         /// 多个文件的URL列表
         public let fileList: [SmartFormFileUrl]
 
@@ -49,7 +49,7 @@ extension Ocr {
     }
 
     /// CreateAIFormTask返回参数结构体
-    public struct CreateAIFormTaskResponse: TCResponseModel {
+    public struct CreateAIFormTaskResponse: TCResponse {
         /// 本次识别任务的唯一身份ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

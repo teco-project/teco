@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DeleteUserDevice请求参数结构体
-    public struct DeleteUserDeviceRequest: TCRequestModel {
+    public struct DeleteUserDeviceRequest: TCRequest {
         /// 设备ID（从获取设备列表ListDevices接口中获取）
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DeleteUserDevice返回参数结构体
-    public struct DeleteUserDeviceResponse: TCResponseModel {
+    public struct DeleteUserDeviceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeMaintenanceSpan请求参数结构体
-    public struct DescribeMaintenanceSpanRequest: TCRequestModel {
+    public struct DescribeMaintenanceSpanRequest: TCRequest {
         /// 实例ID，形如mssql-k8voqdlz
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeMaintenanceSpan返回参数结构体
-    public struct DescribeMaintenanceSpanResponse: TCResponseModel {
+    public struct DescribeMaintenanceSpanResponse: TCResponse {
         /// 以周为单位，表示周几允许维护，例如：[1,2,3,4,5,6,7]表示周一到周日均为可维护日。
         public let weekly: [Int64]
 

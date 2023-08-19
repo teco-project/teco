@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DescribeUrlDetectionResult请求参数结构体
-    public struct DescribeUrlDetectionResultRequest: TCRequestModel {
+    public struct DescribeUrlDetectionResultRequest: TCRequest {
         /// 查询的网址
         public let url: String
 
@@ -34,7 +34,7 @@ extension Ms {
     }
 
     /// DescribeUrlDetectionResult返回参数结构体
-    public struct DescribeUrlDetectionResultResponse: TCResponseModel {
+    public struct DescribeUrlDetectionResultResponse: TCResponse {
         /// [查询结果]查询结果；枚举值：0 查询成功，否则查询失败
         public let resultCode: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportNonlocalLoginPlaces请求参数结构体
-    public struct ExportNonlocalLoginPlacesRequest: TCRequestModel {
+    public struct ExportNonlocalLoginPlacesRequest: TCRequest {
         /// - Status - int - 是否必填：否 - 状态筛选1:正常登录；2：异地登录
         public let filters: [Filter]?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ExportNonlocalLoginPlaces返回参数结构体
-    public struct ExportNonlocalLoginPlacesResponse: TCResponseModel {
+    public struct ExportNonlocalLoginPlacesResponse: TCResponse {
         /// 该参数已废弃
         public let downloadUrl: String
 

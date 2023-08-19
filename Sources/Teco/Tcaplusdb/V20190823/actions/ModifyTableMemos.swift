@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyTableMemos请求参数结构体
-    public struct ModifyTableMemosRequest: TCRequestModel {
+    public struct ModifyTableMemosRequest: TCRequest {
         /// 表所属集群实例ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyTableMemos返回参数结构体
-    public struct ModifyTableMemosResponse: TCResponseModel {
+    public struct ModifyTableMemosResponse: TCResponse {
         /// 表备注修改结果数量
         public let totalCount: UInt64
 

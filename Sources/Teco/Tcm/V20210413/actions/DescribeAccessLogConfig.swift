@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcm {
     /// DescribeAccessLogConfig请求参数结构体
-    public struct DescribeAccessLogConfigRequest: TCRequestModel {
+    public struct DescribeAccessLogConfigRequest: TCRequest {
         /// mesh名字
         public let meshId: String
 
@@ -34,7 +34,7 @@ extension Tcm {
     }
 
     /// DescribeAccessLogConfig返回参数结构体
-    public struct DescribeAccessLogConfigResponse: TCResponseModel {
+    public struct DescribeAccessLogConfigResponse: TCResponse {
         /// 访问日志输出路径。默认 /dev/stdout
         public let file: String
 

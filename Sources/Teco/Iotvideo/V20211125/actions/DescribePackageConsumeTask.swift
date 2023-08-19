@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribePackageConsumeTask请求参数结构体
-    public struct DescribePackageConsumeTaskRequest: TCRequestModel {
+    public struct DescribePackageConsumeTaskRequest: TCRequest {
         /// 任务id
         public let taskId: Int64
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribePackageConsumeTask返回参数结构体
-    public struct DescribePackageConsumeTaskResponse: TCResponseModel {
+    public struct DescribePackageConsumeTaskResponse: TCResponse {
         /// 文件下载的url，文件详情是套餐包消耗详情
         public let url: String
 

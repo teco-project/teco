@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeProxyAndStatisticsListeners请求参数结构体
-    public struct DescribeProxyAndStatisticsListenersRequest: TCRequestModel {
+    public struct DescribeProxyAndStatisticsListenersRequest: TCRequest {
         /// 项目ID
         public let projectId: UInt64
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeProxyAndStatisticsListeners返回参数结构体
-    public struct DescribeProxyAndStatisticsListenersResponse: TCResponseModel {
+    public struct DescribeProxyAndStatisticsListenersResponse: TCResponse {
         /// 可以统计的通道信息
         public let proxySet: [ProxySimpleInfo]
 

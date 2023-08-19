@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ExportVideoByTemplate请求参数结构体
-    public struct ExportVideoByTemplateRequest: TCRequestModel {
+    public struct ExportVideoByTemplateRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -74,7 +74,7 @@ extension Cme {
     }
 
     /// ExportVideoByTemplate返回参数结构体
-    public struct ExportVideoByTemplateResponse: TCResponseModel {
+    public struct ExportVideoByTemplateResponse: TCResponse {
         /// 导出任务 Id。
         public let taskId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeAvailableRecoveryTime请求参数结构体
-    public struct DescribeAvailableRecoveryTimeRequest: TCRequestModel {
+    public struct DescribeAvailableRecoveryTimeRequest: TCRequest {
         /// 实例ID
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// DescribeAvailableRecoveryTime返回参数结构体
-    public struct DescribeAvailableRecoveryTimeResponse: TCResponseModel {
+    public struct DescribeAvailableRecoveryTimeResponse: TCResponse {
         /// 可恢复的最早时间，时区为东八区（UTC+8）。
         public let recoveryBeginTime: String
 

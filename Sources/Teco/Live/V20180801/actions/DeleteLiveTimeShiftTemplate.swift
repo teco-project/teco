@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DeleteLiveTimeShiftTemplate请求参数结构体
-    public struct DeleteLiveTimeShiftTemplateRequest: TCRequestModel {
+    public struct DeleteLiveTimeShiftTemplateRequest: TCRequest {
         /// 模板 ID。
         public let templateId: Int64
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DeleteLiveTimeShiftTemplate返回参数结构体
-    public struct DeleteLiveTimeShiftTemplateResponse: TCResponseModel {
+    public struct DeleteLiveTimeShiftTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

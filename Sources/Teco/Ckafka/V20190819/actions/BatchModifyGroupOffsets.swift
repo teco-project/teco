@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// BatchModifyGroupOffsets请求参数结构体
-    public struct BatchModifyGroupOffsetsRequest: TCRequestModel {
+    public struct BatchModifyGroupOffsetsRequest: TCRequest {
         /// 消费分组名称
         public let groupName: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// BatchModifyGroupOffsets返回参数结构体
-    public struct BatchModifyGroupOffsetsResponse: TCResponseModel {
+    public struct BatchModifyGroupOffsetsResponse: TCResponse {
         /// 返回结果
         public let result: JgwOperateResponse
 

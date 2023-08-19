@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DeleteCloudRecording请求参数结构体
-    public struct DeleteCloudRecordingRequest: TCRequestModel {
+    public struct DeleteCloudRecordingRequest: TCRequest {
         /// TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Trtc {
     }
 
     /// DeleteCloudRecording返回参数结构体
-    public struct DeleteCloudRecordingResponse: TCResponseModel {
+    public struct DeleteCloudRecordingResponse: TCResponse {
         /// 云录制服务分配的任务 ID。任务 ID 是对一次录制生命周期过程的唯一标识，结束录制时会失去意义。
         public let taskId: String
 

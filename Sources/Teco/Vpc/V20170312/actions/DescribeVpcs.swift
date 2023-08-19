@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcs请求参数结构体
-    public struct DescribeVpcsRequest: TCRequestModel {
+    public struct DescribeVpcsRequest: TCRequest {
         /// VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
         public let vpcIds: [String]?
 
@@ -60,7 +60,7 @@ extension Vpc {
     }
 
     /// DescribeVpcs返回参数结构体
-    public struct DescribeVpcsResponse: TCResponseModel {
+    public struct DescribeVpcsResponse: TCResponse {
         /// 符合条件的对象数。
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyEnterpriseSecurityGroupRule请求参数结构体
-    public struct ModifyEnterpriseSecurityGroupRuleRequest: TCRequestModel {
+    public struct ModifyEnterpriseSecurityGroupRuleRequest: TCRequest {
         /// 规则的uuid，可通过查询规则列表获取
         public let ruleUuid: UInt64
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// ModifyEnterpriseSecurityGroupRule返回参数结构体
-    public struct ModifyEnterpriseSecurityGroupRuleResponse: TCResponseModel {
+    public struct ModifyEnterpriseSecurityGroupRuleResponse: TCResponse {
         /// 状态值，0：编辑成功，非0：编辑失败
         public let status: UInt64
 

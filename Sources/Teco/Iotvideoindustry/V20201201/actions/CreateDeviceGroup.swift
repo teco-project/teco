@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// CreateDeviceGroup请求参数结构体
-    public struct CreateDeviceGroupRequest: TCRequestModel {
+    public struct CreateDeviceGroupRequest: TCRequest {
         /// 分组名称
         public let groupName: String
 
@@ -44,7 +44,7 @@ extension Iotvideoindustry {
     }
 
     /// CreateDeviceGroup返回参数结构体
-    public struct CreateDeviceGroupResponse: TCResponseModel {
+    public struct CreateDeviceGroupResponse: TCResponse {
         /// 响应结果，“OK”为成功，其他为失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

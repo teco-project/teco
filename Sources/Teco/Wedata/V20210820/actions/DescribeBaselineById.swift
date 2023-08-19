@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeBaselineById请求参数结构体
-    public struct DescribeBaselineByIdRequest: TCRequestModel {
+    public struct DescribeBaselineByIdRequest: TCRequest {
         public let baselineId: String
 
         /// 1
@@ -38,7 +38,7 @@ extension Wedata {
     }
 
     /// DescribeBaselineById返回参数结构体
-    public struct DescribeBaselineByIdResponse: TCResponseModel {
+    public struct DescribeBaselineByIdResponse: TCResponse {
         /// 租户id
         public let data: BaselineDetailResponse
 

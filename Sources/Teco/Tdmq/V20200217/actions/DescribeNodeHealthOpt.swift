@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeNodeHealthOpt请求参数结构体
-    public struct DescribeNodeHealthOptRequest: TCRequestModel {
+    public struct DescribeNodeHealthOptRequest: TCRequest {
         /// 节点实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribeNodeHealthOpt返回参数结构体
-    public struct DescribeNodeHealthOptResponse: TCResponseModel {
+    public struct DescribeNodeHealthOptResponse: TCResponse {
         /// 0-异常；1-正常
         public let nodeState: Int64
 

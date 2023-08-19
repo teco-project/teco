@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeTopicAttributes请求参数结构体
-    public struct DescribeTopicAttributesRequest: TCRequestModel {
+    public struct DescribeTopicAttributesRequest: TCRequest {
         /// 实例 ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// DescribeTopicAttributes返回参数结构体
-    public struct DescribeTopicAttributesResponse: TCResponseModel {
+    public struct DescribeTopicAttributesResponse: TCResponse {
         /// 返回的结果对象
         public let result: TopicAttributesResponse
 

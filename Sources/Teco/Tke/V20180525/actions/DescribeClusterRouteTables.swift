@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterRouteTables请求参数结构体
-    public struct DescribeClusterRouteTablesRequest: TCRequestModel {
+    public struct DescribeClusterRouteTablesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeClusterRouteTables返回参数结构体
-    public struct DescribeClusterRouteTablesResponse: TCResponseModel {
+    public struct DescribeClusterRouteTablesResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: Int64
 

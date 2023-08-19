@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeBlockIgnoreList请求参数结构体
-    public struct DescribeBlockIgnoreListRequest: TCRequestModel {
+    public struct DescribeBlockIgnoreListRequest: TCRequest {
         /// 单页数量
         public let limit: Int64
 
@@ -64,7 +64,7 @@ extension Cfw {
     }
 
     /// DescribeBlockIgnoreList返回参数结构体
-    public struct DescribeBlockIgnoreListResponse: TCResponseModel {
+    public struct DescribeBlockIgnoreListResponse: TCResponse {
         /// 列表数据
         public let data: [BlockIgnoreRule]
 

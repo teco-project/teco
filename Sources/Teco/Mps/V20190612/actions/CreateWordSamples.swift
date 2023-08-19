@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateWordSamples请求参数结构体
-    public struct CreateWordSamplesRequest: TCRequestModel {
+    public struct CreateWordSamplesRequest: TCRequest {
         /// **关键词应用场景，可选值：**
         /// 1. Recognition.Ocr：通过光学字符识别技术，进行内容识别；
         /// 2. Recognition.Asr：通过音频识别技术，进行内容识别；
@@ -47,7 +47,7 @@ extension Mps {
     }
 
     /// CreateWordSamples返回参数结构体
-    public struct CreateWordSamplesResponse: TCResponseModel {
+    public struct CreateWordSamplesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

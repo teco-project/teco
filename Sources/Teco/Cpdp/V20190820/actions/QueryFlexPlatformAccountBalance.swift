@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexPlatformAccountBalance请求参数结构体
-    public struct QueryFlexPlatformAccountBalanceRequest: TCRequestModel {
+    public struct QueryFlexPlatformAccountBalanceRequest: TCRequest {
         /// 收入类型
         /// LABOR:劳务所得
         /// OCCASION:偶然所得
@@ -50,7 +50,7 @@ extension Cpdp {
     }
 
     /// QueryFlexPlatformAccountBalance返回参数结构体
-    public struct QueryFlexPlatformAccountBalanceResponse: TCResponseModel {
+    public struct QueryFlexPlatformAccountBalanceResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

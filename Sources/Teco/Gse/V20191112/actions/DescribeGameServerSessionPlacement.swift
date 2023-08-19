@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeGameServerSessionPlacement请求参数结构体
-    public struct DescribeGameServerSessionPlacementRequest: TCRequestModel {
+    public struct DescribeGameServerSessionPlacementRequest: TCRequest {
         /// 游戏服务器会话放置的唯一标识符
         public let placementId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeGameServerSessionPlacement返回参数结构体
-    public struct DescribeGameServerSessionPlacementResponse: TCResponseModel {
+    public struct DescribeGameServerSessionPlacementResponse: TCResponse {
         /// 游戏服务器会话放置
         public let gameServerSessionPlacement: GameServerSessionPlacement
 

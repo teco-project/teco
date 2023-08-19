@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLivePadRule请求参数结构体
-    public struct CreateLivePadRuleRequest: TCRequestModel {
+    public struct CreateLivePadRuleRequest: TCRequest {
         /// 推流域名。
         public let domainName: String
 
@@ -50,7 +50,7 @@ extension Live {
     }
 
     /// CreateLivePadRule返回参数结构体
-    public struct CreateLivePadRuleResponse: TCResponseModel {
+    public struct CreateLivePadRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

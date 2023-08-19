@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cvm {
     /// CreateDisasterRecoverGroup请求参数结构体
-    public struct CreateDisasterRecoverGroupRequest: TCRequestModel {
+    public struct CreateDisasterRecoverGroupRequest: TCRequest {
         /// 分散置放群组名称，长度1-60个字符，支持中、英文。
         public let name: String
 
@@ -52,7 +52,7 @@ extension Cvm {
     }
 
     /// CreateDisasterRecoverGroup返回参数结构体
-    public struct CreateDisasterRecoverGroupResponse: TCResponseModel {
+    public struct CreateDisasterRecoverGroupResponse: TCResponse {
         /// 分散置放群组ID列表。
         public let disasterRecoverGroupId: String
 

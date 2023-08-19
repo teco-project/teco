@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CreateTransformation请求参数结构体
-    public struct CreateTransformationRequest: TCRequestModel {
+    public struct CreateTransformationRequest: TCRequest {
         /// 事件总线 id
         public let eventBusId: String
 
@@ -44,7 +44,7 @@ extension Eb {
     }
 
     /// CreateTransformation返回参数结构体
-    public struct CreateTransformationResponse: TCResponseModel {
+    public struct CreateTransformationResponse: TCResponse {
         /// 生成的转换器id
         public let transformationId: String
 

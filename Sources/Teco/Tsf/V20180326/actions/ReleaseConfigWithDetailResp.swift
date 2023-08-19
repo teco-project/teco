@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ReleaseConfigWithDetailResp请求参数结构体
-    public struct ReleaseConfigWithDetailRespRequest: TCRequestModel {
+    public struct ReleaseConfigWithDetailRespRequest: TCRequest {
         /// 配置ID
         public let configId: String
 
@@ -44,7 +44,7 @@ extension Tsf {
     }
 
     /// ReleaseConfigWithDetailResp返回参数结构体
-    public struct ReleaseConfigWithDetailRespResponse: TCResponseModel {
+    public struct ReleaseConfigWithDetailRespResponse: TCResponse {
         /// 配置项发布 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ConfigRelease?

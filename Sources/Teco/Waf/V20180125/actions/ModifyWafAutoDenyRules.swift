@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyWafAutoDenyRules请求参数结构体
-    public struct ModifyWafAutoDenyRulesRequest: TCRequestModel {
+    public struct ModifyWafAutoDenyRulesRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -54,7 +54,7 @@ extension Waf {
     }
 
     /// ModifyWafAutoDenyRules返回参数结构体
-    public struct ModifyWafAutoDenyRulesResponse: TCResponseModel {
+    public struct ModifyWafAutoDenyRulesResponse: TCResponse {
         /// 成功的状态码，需要JSON解码后再使用，返回的格式是{"域名":"状态"}，成功的状态码为Success，其它的为失败的状态码（yunapi定义的错误码）
         public let success: ResponseCode
 

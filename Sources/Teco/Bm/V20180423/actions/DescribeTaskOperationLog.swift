@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeTaskOperationLog请求参数结构体
-    public struct DescribeTaskOperationLogRequest: TCRequestModel {
+    public struct DescribeTaskOperationLogRequest: TCRequest {
         /// 维修任务ID
         public let taskId: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// DescribeTaskOperationLog返回参数结构体
-    public struct DescribeTaskOperationLogResponse: TCResponseModel {
+    public struct DescribeTaskOperationLogResponse: TCResponse {
         /// 操作日志
         public let taskOperationLogSet: [TaskOperationLog]
 

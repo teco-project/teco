@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// ModifyCCHostProtection请求参数结构体
-    public struct ModifyCCHostProtectionRequest: TCRequestModel {
+    public struct ModifyCCHostProtectionRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
         public let business: String
 
@@ -49,7 +49,7 @@ extension Dayu {
     }
 
     /// ModifyCCHostProtection返回参数结构体
-    public struct ModifyCCHostProtectionResponse: TCResponseModel {
+    public struct ModifyCCHostProtectionResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 任务描述
         public let taskSet: [TaskInput]
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 任务描述
         public let taskSet: [TaskOutput]
 

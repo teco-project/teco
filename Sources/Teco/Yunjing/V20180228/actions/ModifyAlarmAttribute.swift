@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// ModifyAlarmAttribute请求参数结构体
-    public struct ModifyAlarmAttributeRequest: TCRequestModel {
+    public struct ModifyAlarmAttributeRequest: TCRequest {
         /// 告警项目。
         /// - Offline：防护软件离线
         /// - Malware：发现木马文件
@@ -45,7 +45,7 @@ extension Yunjing {
     }
 
     /// ModifyAlarmAttribute返回参数结构体
-    public struct ModifyAlarmAttributeResponse: TCResponseModel {
+    public struct ModifyAlarmAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

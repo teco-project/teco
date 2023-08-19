@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeColumnLineage请求参数结构体
-    public struct DescribeColumnLineageRequest: TCRequestModel {
+    public struct DescribeColumnLineageRequest: TCRequest {
         /// 查询方向，INPUT,OUTPUT,BOTH枚举值
         public let direction: String
 
@@ -59,7 +59,7 @@ extension Wedata {
     }
 
     /// DescribeColumnLineage返回参数结构体
-    public struct DescribeColumnLineageResponse: TCResponseModel {
+    public struct DescribeColumnLineageResponse: TCResponse {
         /// 字段血缘信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnAggregationLineage: ColumnAggregationLineage?

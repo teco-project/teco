@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeESAggregations请求参数结构体
-    public struct DescribeESAggregationsRequest: TCRequestModel {
+    public struct DescribeESAggregationsRequest: TCRequest {
         /// ES聚合条件JSON
         public let query: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeESAggregations返回参数结构体
-    public struct DescribeESAggregationsResponse: TCResponseModel {
+    public struct DescribeESAggregationsResponse: TCResponse {
         /// ES聚合结果JSON
         public let data: String
 

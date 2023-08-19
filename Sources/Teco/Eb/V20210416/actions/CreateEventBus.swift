@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CreateEventBus请求参数结构体
-    public struct CreateEventBusRequest: TCRequestModel {
+    public struct CreateEventBusRequest: TCRequest {
         /// 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         public let eventBusName: String
 
@@ -49,7 +49,7 @@ extension Eb {
     }
 
     /// CreateEventBus返回参数结构体
-    public struct CreateEventBusResponse: TCResponseModel {
+    public struct CreateEventBusResponse: TCResponse {
         /// 事件集ID
         public let eventBusId: String
 

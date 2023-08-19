@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteMicroservice请求参数结构体
-    public struct DeleteMicroserviceRequest: TCRequestModel {
+    public struct DeleteMicroserviceRequest: TCRequest {
         /// 微服务ID
         public let microserviceId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteMicroservice返回参数结构体
-    public struct DeleteMicroserviceResponse: TCResponseModel {
+    public struct DeleteMicroserviceResponse: TCResponse {
         /// 删除微服务是否成功。
         /// true：操作成功。
         /// false：操作失败。

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeLogs请求参数结构体
-    public struct DescribeLogsRequest: TCRequestModel {
+    public struct DescribeLogsRequest: TCRequest {
         /// 查询哪个服务的事件（可选值为TRAIN, NOTEBOOK, INFER）
         public let service: String
 
@@ -78,7 +78,7 @@ extension Tione {
     }
 
     /// DescribeLogs返回参数结构体
-    public struct DescribeLogsResponse: TCResponseModel {
+    public struct DescribeLogsResponse: TCResponse {
         /// 分页的游标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let context: String?

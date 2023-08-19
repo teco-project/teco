@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowReminds请求参数结构体
-    public struct CreateFlowRemindsRequest: TCRequestModel {
+    public struct CreateFlowRemindsRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// CreateFlowReminds返回参数结构体
-    public struct CreateFlowRemindsResponse: TCResponseModel {
+    public struct CreateFlowRemindsResponse: TCResponse {
         /// 催办合同详情列表
         public let remindFlowRecords: [RemindFlowRecords]
 

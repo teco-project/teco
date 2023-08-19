@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyContainerReplicas请求参数结构体
-    public struct ModifyContainerReplicasRequest: TCRequestModel {
+    public struct ModifyContainerReplicasRequest: TCRequest {
         /// 部署组ID，部署组唯一标识
         public let groupId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// ModifyContainerReplicas返回参数结构体
-    public struct ModifyContainerReplicasResponse: TCResponseModel {
+    public struct ModifyContainerReplicasResponse: TCResponse {
         /// 结果true：成功；false：失败；
         public let result: Bool
 

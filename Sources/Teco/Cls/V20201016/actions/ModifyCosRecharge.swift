@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyCosRecharge请求参数结构体
-    public struct ModifyCosRechargeRequest: TCRequestModel {
+    public struct ModifyCosRechargeRequest: TCRequest {
         /// COS导入配置ID
         public let id: String
 
@@ -49,7 +49,7 @@ extension Cls {
     }
 
     /// ModifyCosRecharge返回参数结构体
-    public struct ModifyCosRechargeResponse: TCResponseModel {
+    public struct ModifyCosRechargeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ExportInstanceSlowQueries请求参数结构体
-    public struct ExportInstanceSlowQueriesRequest: TCRequestModel {
+    public struct ExportInstanceSlowQueriesRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -84,7 +84,7 @@ extension Cynosdb {
     }
 
     /// ExportInstanceSlowQueries返回参数结构体
-    public struct ExportInstanceSlowQueriesResponse: TCResponseModel {
+    public struct ExportInstanceSlowQueriesResponse: TCResponse {
         /// 慢查询导出内容
         public let fileContent: String
 

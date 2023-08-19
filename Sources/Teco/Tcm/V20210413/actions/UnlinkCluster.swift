@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcm {
     /// UnlinkCluster请求参数结构体
-    public struct UnlinkClusterRequest: TCRequestModel {
+    public struct UnlinkClusterRequest: TCRequest {
         /// 网格Id
         public let meshId: String
 
@@ -39,7 +39,7 @@ extension Tcm {
     }
 
     /// UnlinkCluster返回参数结构体
-    public struct UnlinkClusterResponse: TCResponseModel {
+    public struct UnlinkClusterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

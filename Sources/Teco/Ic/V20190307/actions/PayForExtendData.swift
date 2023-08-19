@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ic {
     /// PayForExtendData请求参数结构体
-    public struct PayForExtendDataRequest: TCRequestModel {
+    public struct PayForExtendDataRequest: TCRequest {
         /// 卡片ICCID
         public let iccid: String
 
@@ -44,7 +44,7 @@ extension Ic {
     }
 
     /// PayForExtendData返回参数结构体
-    public struct PayForExtendDataResponse: TCResponseModel {
+    public struct PayForExtendDataResponse: TCResponse {
         /// 订单号
         public let data: ResOrderIds
 

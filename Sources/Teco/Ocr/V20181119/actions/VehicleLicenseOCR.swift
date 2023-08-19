@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VehicleLicenseOCR请求参数结构体
-    public struct VehicleLicenseOCRRequest: TCRequestModel {
+    public struct VehicleLicenseOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -49,7 +49,7 @@ extension Ocr {
     }
 
     /// VehicleLicenseOCR返回参数结构体
-    public struct VehicleLicenseOCRResponse: TCResponseModel {
+    public struct VehicleLicenseOCRResponse: TCResponse {
         /// 行驶证主页正面的识别结果，CardSide 为 FRONT。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frontInfo: TextVehicleFront?

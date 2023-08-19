@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// EnableReplicaReadonly请求参数结构体
-    public struct EnableReplicaReadonlyRequest: TCRequestModel {
+    public struct EnableReplicaReadonlyRequest: TCRequest {
         /// 实例序号ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// EnableReplicaReadonly返回参数结构体
-    public struct EnableReplicaReadonlyResponse: TCResponseModel {
+    public struct EnableReplicaReadonlyResponse: TCResponse {
         /// 错误：ERROR，正确OK（已废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

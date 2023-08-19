@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListAttachedUserAllPolicies请求参数结构体
-    public struct ListAttachedUserAllPoliciesRequest: TCRequestModel {
+    public struct ListAttachedUserAllPoliciesRequest: TCRequest {
         /// 目标用户ID
         public let targetUin: UInt64
 
@@ -59,7 +59,7 @@ extension Cam {
     }
 
     /// ListAttachedUserAllPolicies返回参数结构体
-    public struct ListAttachedUserAllPoliciesResponse: TCResponseModel {
+    public struct ListAttachedUserAllPoliciesResponse: TCResponse {
         /// 策略列表数据
         public let policyList: [AttachedUserPolicy]
 

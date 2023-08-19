@@ -20,7 +20,7 @@ import TecoCore
 
 extension Aiart {
     /// ImageToImage请求参数结构体
-    public struct ImageToImageRequest: TCRequestModel {
+    public struct ImageToImageRequest: TCRequest {
         /// 输入图 Base64 数据。
         /// 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
         /// Base64 和 Url 必须提供一个，如果都提供以 Base64 为准。
@@ -97,7 +97,7 @@ extension Aiart {
     }
 
     /// ImageToImage返回参数结构体
-    public struct ImageToImageResponse: TCResponseModel {
+    public struct ImageToImageResponse: TCResponse {
         /// 根据入参 RspImgType 填入不同，返回不同的内容。
         /// 如果传入 base64 则返回生成图 Base64 编码。
         /// 如果传入 url 则返回的生成图 URL , 有效期1小时，请及时保存。

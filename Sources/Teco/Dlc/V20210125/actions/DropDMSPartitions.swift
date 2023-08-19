@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DropDMSPartitions请求参数结构体
-    public struct DropDMSPartitionsRequest: TCRequestModel {
+    public struct DropDMSPartitionsRequest: TCRequest {
         /// 数据库名称
         public let databaseName: String?
 
@@ -59,7 +59,7 @@ extension Dlc {
     }
 
     /// DropDMSPartitions返回参数结构体
-    public struct DropDMSPartitionsResponse: TCResponseModel {
+    public struct DropDMSPartitionsResponse: TCResponse {
         /// 状态
         public let status: Bool
 

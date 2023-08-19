@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbm {
     /// DescribeUserPortrait请求参数结构体
-    public struct DescribeUserPortraitRequest: TCRequestModel {
+    public struct DescribeUserPortraitRequest: TCRequest {
         /// 品牌ID
         public let brandId: String
 
@@ -34,7 +34,7 @@ extension Tbm {
     }
 
     /// DescribeUserPortrait返回参数结构体
-    public struct DescribeUserPortraitResponse: TCResponseModel {
+    public struct DescribeUserPortraitResponse: TCResponse {
         /// 年龄画像
         public let age: AgePortraitInfo
 

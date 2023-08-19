@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateWorkGroup请求参数结构体
-    public struct CreateWorkGroupRequest: TCRequestModel {
+    public struct CreateWorkGroupRequest: TCRequest {
         /// 工作组名称
         public let workGroupName: String
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CreateWorkGroup返回参数结构体
-    public struct CreateWorkGroupResponse: TCResponseModel {
+    public struct CreateWorkGroupResponse: TCResponse {
         /// 工作组Id，全局唯一
         public let workGroupId: Int64
 

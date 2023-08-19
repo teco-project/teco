@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// CreateDeal请求参数结构体
-    public struct CreateDealRequest: TCRequestModel {
+    public struct CreateDealRequest: TCRequest {
         /// 询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）
         public let dealType: UInt64
 
@@ -83,7 +83,7 @@ extension Dnspod {
     }
 
     /// CreateDeal返回参数结构体
-    public struct CreateDealResponse: TCResponseModel {
+    public struct CreateDealResponse: TCResponse {
         /// 大订单号，一个大订单号下可以有多个子订单，说明是同一次下单
         public let bigDealId: String
 

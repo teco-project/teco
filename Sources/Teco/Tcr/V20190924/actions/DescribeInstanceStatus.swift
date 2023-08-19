@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeInstanceStatus请求参数结构体
-    public struct DescribeInstanceStatusRequest: TCRequestModel {
+    public struct DescribeInstanceStatusRequest: TCRequest {
         /// 实例ID的数组
         public let registryIds: [String]
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeInstanceStatus返回参数结构体
-    public struct DescribeInstanceStatusResponse: TCResponseModel {
+    public struct DescribeInstanceStatusResponse: TCResponse {
         /// 实例的状态列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryStatusSet: [RegistryStatus]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateInstanceSnapshot请求参数结构体
-    public struct CreateInstanceSnapshotRequest: TCRequestModel {
+    public struct CreateInstanceSnapshotRequest: TCRequest {
         /// 需要创建快照的实例 ID。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// CreateInstanceSnapshot返回参数结构体
-    public struct CreateInstanceSnapshotResponse: TCResponseModel {
+    public struct CreateInstanceSnapshotResponse: TCResponse {
         /// 快照 ID。
         public let snapshotId: String
 

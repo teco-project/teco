@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeRiskSyscallWhiteListDetail请求参数结构体
-    public struct DescribeRiskSyscallWhiteListDetailRequest: TCRequestModel {
+    public struct DescribeRiskSyscallWhiteListDetailRequest: TCRequest {
         /// 白名单id
         public let whiteListId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeRiskSyscallWhiteListDetail返回参数结构体
-    public struct DescribeRiskSyscallWhiteListDetailResponse: TCResponseModel {
+    public struct DescribeRiskSyscallWhiteListDetailResponse: TCResponse {
         /// 白名单基本信息
         public let whiteListDetailInfo: RiskSyscallWhiteListInfo
 

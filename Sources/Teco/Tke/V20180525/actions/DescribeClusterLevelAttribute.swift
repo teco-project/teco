@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterLevelAttribute请求参数结构体
-    public struct DescribeClusterLevelAttributeRequest: TCRequestModel {
+    public struct DescribeClusterLevelAttributeRequest: TCRequest {
         /// 集群ID，变配时使用
         public let clusterID: String?
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterLevelAttribute返回参数结构体
-    public struct DescribeClusterLevelAttributeResponse: TCResponseModel {
+    public struct DescribeClusterLevelAttributeResponse: TCResponse {
         /// 总数
         public let totalCount: Int64
 

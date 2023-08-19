@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyDhcpIpAttribute请求参数结构体
-    public struct ModifyDhcpIpAttributeRequest: TCRequestModel {
+    public struct ModifyDhcpIpAttributeRequest: TCRequest {
         /// `DhcpIp`唯一`ID`，形如：`dhcpip-9o233uri`。
         public let dhcpIpId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ModifyDhcpIpAttribute返回参数结构体
-    public struct ModifyDhcpIpAttributeResponse: TCResponseModel {
+    public struct ModifyDhcpIpAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

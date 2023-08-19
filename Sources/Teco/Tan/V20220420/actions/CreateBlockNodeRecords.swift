@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tan {
     /// CreateBlockNodeRecords请求参数结构体
-    public struct CreateBlockNodeRecordsRequest: TCRequestModel {
+    public struct CreateBlockNodeRecordsRequest: TCRequest {
         /// 盘查组id，可在“盘查组概览”功能中获取。
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Tan {
     }
 
     /// CreateBlockNodeRecords返回参数结构体
-    public struct CreateBlockNodeRecordsResponse: TCResponseModel {
+    public struct CreateBlockNodeRecordsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

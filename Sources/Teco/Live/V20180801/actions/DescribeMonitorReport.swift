@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeMonitorReport请求参数结构体
-    public struct DescribeMonitorReportRequest: TCRequestModel {
+    public struct DescribeMonitorReportRequest: TCRequest {
         /// 监播任务ID。
         public let monitorId: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeMonitorReport返回参数结构体
-    public struct DescribeMonitorReportResponse: TCResponseModel {
+    public struct DescribeMonitorReportResponse: TCResponse {
         /// 媒体处理结果信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mpsResult: MPSResult?

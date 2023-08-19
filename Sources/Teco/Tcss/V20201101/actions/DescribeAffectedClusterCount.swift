@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAffectedClusterCount请求参数结构体
-    public struct DescribeAffectedClusterCountRequest: TCRequestModel {
+    public struct DescribeAffectedClusterCountRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAffectedClusterCount返回参数结构体
-    public struct DescribeAffectedClusterCountResponse: TCResponseModel {
+    public struct DescribeAffectedClusterCountResponse: TCResponse {
         /// 严重风险的集群数量
         public let seriousRiskClusterCount: UInt64
 

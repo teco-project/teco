@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteBaselineRule请求参数结构体
-    public struct DeleteBaselineRuleRequest: TCRequestModel {
+    public struct DeleteBaselineRuleRequest: TCRequest {
         /// 规则Id
         public let ruleId: Int64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DeleteBaselineRule返回参数结构体
-    public struct DeleteBaselineRuleResponse: TCResponseModel {
+    public struct DeleteBaselineRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

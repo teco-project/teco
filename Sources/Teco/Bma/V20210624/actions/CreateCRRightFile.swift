@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateCRRightFile请求参数结构体
-    public struct CreateCRRightFileRequest: TCRequestModel {
+    public struct CreateCRRightFileRequest: TCRequest {
         /// 作品ID
         public let workId: Int64
 
@@ -39,7 +39,7 @@ extension Bma {
     }
 
     /// CreateCRRightFile返回参数结构体
-    public struct CreateCRRightFileResponse: TCResponseModel {
+    public struct CreateCRRightFileResponse: TCResponse {
         /// 权属文件Id，按提交顺序排序
         public let fileIds: [Int64]
 

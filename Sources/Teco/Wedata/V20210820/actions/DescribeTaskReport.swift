@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Wedata {
     /// DescribeTaskReport请求参数结构体
-    public struct DescribeTaskReportRequest: TCRequestModel {
+    public struct DescribeTaskReportRequest: TCRequest {
         /// 任务Id
         public let taskId: String
 
@@ -57,7 +57,7 @@ extension Wedata {
     }
 
     /// DescribeTaskReport返回参数结构体
-    public struct DescribeTaskReportResponse: TCResponseModel {
+    public struct DescribeTaskReportResponse: TCResponse {
         /// 总读取条数
         public let totalReadRecords: UInt64
 

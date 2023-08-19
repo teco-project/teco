@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfg {
     /// CreateTaskFromTemplate请求参数结构体
-    public struct CreateTaskFromTemplateRequest: TCRequestModel {
+    public struct CreateTaskFromTemplateRequest: TCRequest {
         /// 从经验库中查询到的经验模板ID
         public let templateId: UInt64
 
@@ -39,7 +39,7 @@ extension Cfg {
     }
 
     /// CreateTaskFromTemplate返回参数结构体
-    public struct CreateTaskFromTemplateResponse: TCResponseModel {
+    public struct CreateTaskFromTemplateResponse: TCResponse {
         /// 创建成功的演练ID
         public let taskId: UInt64
 

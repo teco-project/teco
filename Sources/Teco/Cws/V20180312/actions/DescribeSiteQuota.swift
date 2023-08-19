@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cws {
     /// DescribeSiteQuota请求参数结构体
-    public struct DescribeSiteQuotaRequest: TCRequestModel {
+    public struct DescribeSiteQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSiteQuota返回参数结构体
-    public struct DescribeSiteQuotaResponse: TCResponseModel {
+    public struct DescribeSiteQuotaResponse: TCResponse {
         /// 已购买的扫描次数。
         public let total: UInt64
 

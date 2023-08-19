@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// InstanceScalingDown请求参数结构体
-    public struct InstanceScalingDownRequest: TCRequestModel {
+    public struct InstanceScalingDownRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -55,7 +55,7 @@ extension Ckafka {
     }
 
     /// InstanceScalingDown返回参数结构体
-    public struct InstanceScalingDownResponse: TCResponseModel {
+    public struct InstanceScalingDownResponse: TCResponse {
         /// 缩容应答
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ScalingDownResp?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// UploadRevokeLetter请求参数结构体
-    public struct UploadRevokeLetterRequest: TCRequestModel {
+    public struct UploadRevokeLetterRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// UploadRevokeLetter返回参数结构体
-    public struct UploadRevokeLetterResponse: TCResponseModel {
+    public struct UploadRevokeLetterResponse: TCResponse {
         /// 证书 ID。
         public let certificateId: String
 

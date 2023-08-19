@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DemoteServiceUsagePlan请求参数结构体
-    public struct DemoteServiceUsagePlanRequest: TCRequestModel {
+    public struct DemoteServiceUsagePlanRequest: TCRequest {
         /// 使用计划ID。
         public let usagePlanId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// DemoteServiceUsagePlan返回参数结构体
-    public struct DemoteServiceUsagePlanResponse: TCResponseModel {
+    public struct DemoteServiceUsagePlanResponse: TCResponse {
         /// 降级操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

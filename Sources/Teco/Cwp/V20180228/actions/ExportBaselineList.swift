@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportBaselineList请求参数结构体
-    public struct ExportBaselineListRequest: TCRequestModel {
+    public struct ExportBaselineListRequest: TCRequest {
         /// 过滤条件：
         /// - StrategyId- Uint64 - 基线策略id
         /// - Status - Uint64 - 事件状态：0-未通过，1-忽略，3-通过，5-检测中
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// ExportBaselineList返回参数结构体
-    public struct ExportBaselineListResponse: TCResponseModel {
+    public struct ExportBaselineListResponse: TCResponse {
         /// 导出文件下载地址（已弃用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadUrl: String?

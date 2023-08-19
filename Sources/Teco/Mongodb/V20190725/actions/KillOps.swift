@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// KillOps请求参数结构体
-    public struct KillOpsRequest: TCRequestModel {
+    public struct KillOpsRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// KillOps返回参数结构体
-    public struct KillOpsResponse: TCResponseModel {
+    public struct KillOpsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

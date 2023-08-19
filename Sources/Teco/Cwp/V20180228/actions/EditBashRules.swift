@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// EditBashRules请求参数结构体
-    public struct EditBashRulesRequest: TCRequestModel {
+    public struct EditBashRulesRequest: TCRequest {
         /// 规则ID（新增时不填）
         public let id: UInt64?
 
@@ -79,7 +79,7 @@ extension Cwp {
     }
 
     /// EditBashRules返回参数结构体
-    public struct EditBashRulesResponse: TCResponseModel {
+    public struct EditBashRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

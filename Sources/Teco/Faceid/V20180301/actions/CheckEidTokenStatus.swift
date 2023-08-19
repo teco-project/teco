@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// CheckEidTokenStatus请求参数结构体
-    public struct CheckEidTokenStatusRequest: TCRequestModel {
+    public struct CheckEidTokenStatusRequest: TCRequest {
         /// E证通流程的唯一标识，调用GetEidToken接口时生成。
         public let eidToken: String
 
@@ -34,7 +34,7 @@ extension Faceid {
     }
 
     /// CheckEidTokenStatus返回参数结构体
-    public struct CheckEidTokenStatusResponse: TCResponseModel {
+    public struct CheckEidTokenStatusResponse: TCResponse {
         /// 枚举：
         /// init：token未验证
         /// doing: 验证中

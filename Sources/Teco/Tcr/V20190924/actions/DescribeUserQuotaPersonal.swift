@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcr {
     /// DescribeUserQuotaPersonal请求参数结构体
-    public struct DescribeUserQuotaPersonalRequest: TCRequestModel {
+    public struct DescribeUserQuotaPersonalRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserQuotaPersonal返回参数结构体
-    public struct DescribeUserQuotaPersonalResponse: TCResponseModel {
+    public struct DescribeUserQuotaPersonalResponse: TCResponse {
         /// 配额返回信息
         public let data: RespLimit
 

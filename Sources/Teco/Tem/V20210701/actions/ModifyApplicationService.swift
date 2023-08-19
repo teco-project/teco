@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// ModifyApplicationService请求参数结构体
-    public struct ModifyApplicationServiceRequest: TCRequestModel {
+    public struct ModifyApplicationServiceRequest: TCRequest {
         /// 服务id
         public let applicationId: String
 
@@ -54,7 +54,7 @@ extension Tem {
     }
 
     /// ModifyApplicationService返回参数结构体
-    public struct ModifyApplicationServiceResponse: TCResponseModel {
+    public struct ModifyApplicationServiceResponse: TCResponse {
         /// 是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AssociateNetworkInterfaceSecurityGroups请求参数结构体
-    public struct AssociateNetworkInterfaceSecurityGroupsRequest: TCRequestModel {
+    public struct AssociateNetworkInterfaceSecurityGroupsRequest: TCRequest {
         /// 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。
         public let networkInterfaceIds: [String]
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// AssociateNetworkInterfaceSecurityGroups返回参数结构体
-    public struct AssociateNetworkInterfaceSecurityGroupsResponse: TCResponseModel {
+    public struct AssociateNetworkInterfaceSecurityGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

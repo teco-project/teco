@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeUnauthorizedCoresTendency请求参数结构体
-    public struct DescribeUnauthorizedCoresTendencyRequest: TCRequestModel {
+    public struct DescribeUnauthorizedCoresTendencyRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUnauthorizedCoresTendency返回参数结构体
-    public struct DescribeUnauthorizedCoresTendencyResponse: TCResponseModel {
+    public struct DescribeUnauthorizedCoresTendencyResponse: TCResponse {
         /// 未授权核数趋势
         public let list: [UnauthorizedCoresTendency]
 

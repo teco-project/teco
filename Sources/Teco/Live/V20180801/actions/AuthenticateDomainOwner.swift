@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// AuthenticateDomainOwner请求参数结构体
-    public struct AuthenticateDomainOwnerRequest: TCRequestModel {
+    public struct AuthenticateDomainOwnerRequest: TCRequest {
         /// 要验证的域名。
         public let domainName: String
 
@@ -42,7 +42,7 @@ extension Live {
     }
 
     /// AuthenticateDomainOwner返回参数结构体
-    public struct AuthenticateDomainOwnerResponse: TCResponseModel {
+    public struct AuthenticateDomainOwnerResponse: TCResponse {
         /// 验证内容。
         /// VerifyType 传 dnsCheck 时，为要配的 TXT 记录值。
         /// VerifyType 传 fileCheck 时，为文件内容。

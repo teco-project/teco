@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DescribeRoleList请求参数结构体
-    public struct DescribeRoleListRequest: TCRequestModel {
+    public struct DescribeRoleListRequest: TCRequest {
         /// 页码，从1开始
         public let page: UInt64
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// DescribeRoleList返回参数结构体
-    public struct DescribeRoleListResponse: TCResponseModel {
+    public struct DescribeRoleListResponse: TCResponse {
         /// 角色详情列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [RoleInfo]?

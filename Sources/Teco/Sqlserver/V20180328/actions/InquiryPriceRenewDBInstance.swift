@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// InquiryPriceRenewDBInstance请求参数结构体
-    public struct InquiryPriceRenewDBInstanceRequest: TCRequestModel {
+    public struct InquiryPriceRenewDBInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// InquiryPriceRenewDBInstance返回参数结构体
-    public struct InquiryPriceRenewDBInstanceResponse: TCResponseModel {
+    public struct InquiryPriceRenewDBInstanceResponse: TCResponse {
         /// 未打折的原价，其值除以100表示最终的价格。例如10094表示100.94元
         public let originalPrice: UInt64
 

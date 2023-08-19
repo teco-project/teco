@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyWatermarkTemplate请求参数结构体
-    public struct ModifyWatermarkTemplateRequest: TCRequestModel {
+    public struct ModifyWatermarkTemplateRequest: TCRequest {
         /// 水印模板唯一标识。
         public let definition: Int64
 
@@ -87,7 +87,7 @@ extension Vod {
     }
 
     /// ModifyWatermarkTemplate返回参数结构体
-    public struct ModifyWatermarkTemplateResponse: TCResponseModel {
+    public struct ModifyWatermarkTemplateResponse: TCResponse {
         /// 图片水印地址，仅当 ImageTemplate.ImageContent 非空，该字段有值。
         public let imageUrl: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Gaap {
     /// DescribeListenerStatistics请求参数结构体
-    public struct DescribeListenerStatisticsRequest: TCRequestModel {
+    public struct DescribeListenerStatisticsRequest: TCRequest {
         /// 监听器ID
         public let listenerId: String
 
@@ -65,7 +65,7 @@ extension Gaap {
     }
 
     /// DescribeListenerStatistics返回参数结构体
-    public struct DescribeListenerStatisticsResponse: TCResponseModel {
+    public struct DescribeListenerStatisticsResponse: TCResponse {
         /// 通道组统计数据
         public let statisticsData: [MetricStatisticsInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DeleteShieldInstances请求参数结构体
-    public struct DeleteShieldInstancesRequest: TCRequestModel {
+    public struct DeleteShieldInstancesRequest: TCRequest {
         /// 任务唯一标识ItemId的列表
         public let itemIds: [String]
 
@@ -34,7 +34,7 @@ extension Ms {
     }
 
     /// DeleteShieldInstances返回参数结构体
-    public struct DeleteShieldInstancesResponse: TCResponseModel {
+    public struct DeleteShieldInstancesResponse: TCResponse {
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let progress: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineDetectOverview请求参数结构体
-    public struct DescribeBaselineDetectOverviewRequest: TCRequestModel {
+    public struct DescribeBaselineDetectOverviewRequest: TCRequest {
         /// 策略Id
         public let policyId: Int64?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineDetectOverview返回参数结构体
-    public struct DescribeBaselineDetectOverviewResponse: TCResponseModel {
+    public struct DescribeBaselineDetectOverviewResponse: TCResponse {
         /// 检测服务器数
         public let hostCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRocketMQCluster请求参数结构体
-    public struct CreateRocketMQClusterRequest: TCRequestModel {
+    public struct CreateRocketMQClusterRequest: TCRequest {
         /// 集群名称，3-64个字符，只能包含字母、数字、“-”及“_”
         public let name: String
 
@@ -39,7 +39,7 @@ extension Tdmq {
     }
 
     /// CreateRocketMQCluster返回参数结构体
-    public struct CreateRocketMQClusterResponse: TCResponseModel {
+    public struct CreateRocketMQClusterResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

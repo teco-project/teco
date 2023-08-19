@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// DescribeZones请求参数结构体
-    public struct DescribeZonesRequest: TCRequestModel {
+    public struct DescribeZonesRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -39,7 +39,7 @@ extension Ump {
     }
 
     /// DescribeZones返回参数结构体
-    public struct DescribeZonesResponse: TCResponseModel {
+    public struct DescribeZonesResponse: TCResponse {
         /// 点位列表
         public let zones: [ZoneConfig]
 

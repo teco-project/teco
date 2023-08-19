@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CheckSavepoint请求参数结构体
-    public struct CheckSavepointRequest: TCRequestModel {
+    public struct CheckSavepointRequest: TCRequest {
         /// 作业 id
         public let jobId: String
 
@@ -54,7 +54,7 @@ extension Oceanus {
     }
 
     /// CheckSavepoint返回参数结构体
-    public struct CheckSavepointResponse: TCResponseModel {
+    public struct CheckSavepointResponse: TCResponse {
         /// 资源 id
         public let serialId: String
 

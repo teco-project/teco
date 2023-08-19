@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeCNAME请求参数结构体
-    public struct DescribeCNAMERequest: TCRequestModel {
+    public struct DescribeCNAMERequest: TCRequest {
         /// 服务节点 ID（从查询域名可绑定服务节点接口DescribeDomainRegion中获取）
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DescribeCNAME返回参数结构体
-    public struct DescribeCNAMEResponse: TCResponseModel {
+    public struct DescribeCNAMEResponse: TCResponse {
         /// CNAME 记录值
         public let data: String
 

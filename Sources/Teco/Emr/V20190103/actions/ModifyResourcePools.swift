@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// ModifyResourcePools请求参数结构体
-    public struct ModifyResourcePoolsRequest: TCRequestModel {
+    public struct ModifyResourcePoolsRequest: TCRequest {
         /// emr集群id
         public let instanceId: String
 
@@ -41,7 +41,7 @@ extension Emr {
     }
 
     /// ModifyResourcePools返回参数结构体
-    public struct ModifyResourcePoolsResponse: TCResponseModel {
+    public struct ModifyResourcePoolsResponse: TCResponse {
         /// false表示不是草稿，提交刷新请求成功
         public let isDraft: Bool
 

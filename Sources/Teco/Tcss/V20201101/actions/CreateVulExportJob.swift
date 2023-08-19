@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateVulExportJob请求参数结构体
-    public struct CreateVulExportJobRequest: TCRequestModel {
+    public struct CreateVulExportJobRequest: TCRequest {
         /// 镜像ID
         public let imageID: String
 
@@ -69,7 +69,7 @@ extension Tcss {
     }
 
     /// CreateVulExportJob返回参数结构体
-    public struct CreateVulExportJobResponse: TCResponseModel {
+    public struct CreateVulExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateInternalTable请求参数结构体
-    public struct CreateInternalTableRequest: TCRequestModel {
+    public struct CreateInternalTableRequest: TCRequest {
         /// 表基本信息
         public let tableBaseInfo: TableBaseInfo
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CreateInternalTable返回参数结构体
-    public struct CreateInternalTableResponse: TCResponseModel {
+    public struct CreateInternalTableResponse: TCResponse {
         /// 创建托管存储内表sql语句描述
         public let execution: String
 

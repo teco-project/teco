@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyWorkflowSchedule请求参数结构体
-    public struct ModifyWorkflowScheduleRequest: TCRequestModel {
+    public struct ModifyWorkflowScheduleRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -99,7 +99,7 @@ extension Wedata {
     }
 
     /// ModifyWorkflowSchedule返回参数结构体
-    public struct ModifyWorkflowScheduleResponse: TCResponseModel {
+    public struct ModifyWorkflowScheduleResponse: TCResponse {
         /// 执行结果
         public let data: BatchResult
 

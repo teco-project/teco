@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// TerminateTaskFlowBatch请求参数结构体
-    public struct TerminateTaskFlowBatchRequest: TCRequestModel {
+    public struct TerminateTaskFlowBatchRequest: TCRequest {
         /// 工作流批次 ID
         public let flowBatchId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// TerminateTaskFlowBatch返回参数结构体
-    public struct TerminateTaskFlowBatchResponse: TCResponseModel {
+    public struct TerminateTaskFlowBatchResponse: TCResponse {
         /// 是否停止成功
         public let result: Bool
 

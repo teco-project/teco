@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateShipper请求参数结构体
-    public struct CreateShipperRequest: TCRequestModel {
+    public struct CreateShipperRequest: TCRequest {
         /// 创建的投递规则所属的日志主题ID
         public let topicId: String
 
@@ -94,7 +94,7 @@ extension Cls {
     }
 
     /// CreateShipper返回参数结构体
-    public struct CreateShipperResponse: TCResponseModel {
+    public struct CreateShipperResponse: TCResponse {
         /// 投递任务ID
         public let shipperId: String
 

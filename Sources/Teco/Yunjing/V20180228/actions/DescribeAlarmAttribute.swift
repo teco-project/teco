@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeAlarmAttribute请求参数结构体
-    public struct DescribeAlarmAttributeRequest: TCRequestModel {
+    public struct DescribeAlarmAttributeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAlarmAttribute返回参数结构体
-    public struct DescribeAlarmAttributeResponse: TCResponseModel {
+    public struct DescribeAlarmAttributeResponse: TCResponse {
         /// 防护软件离线告警状态：
         /// - OPEN：告警已开启
         /// - CLOSE： 告警已关闭

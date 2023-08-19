@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateTraceCodesAsync请求参数结构体
-    public struct CreateTraceCodesAsyncRequest: TCRequestModel {
+    public struct CreateTraceCodesAsyncRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -44,7 +44,7 @@ extension Trp {
     }
 
     /// CreateTraceCodesAsync返回参数结构体
-    public struct CreateTraceCodesAsyncResponse: TCResponseModel {
+    public struct CreateTraceCodesAsyncResponse: TCResponse {
         /// 批次ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?

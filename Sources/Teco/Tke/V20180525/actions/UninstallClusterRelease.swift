@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UninstallClusterRelease请求参数结构体
-    public struct UninstallClusterReleaseRequest: TCRequestModel {
+    public struct UninstallClusterReleaseRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tke {
     }
 
     /// UninstallClusterRelease返回参数结构体
-    public struct UninstallClusterReleaseResponse: TCResponseModel {
+    public struct UninstallClusterReleaseResponse: TCResponse {
         /// 应用详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let release: PendingRelease?

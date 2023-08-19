@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateShieldInstance请求参数结构体
-    public struct CreateShieldInstanceRequest: TCRequestModel {
+    public struct CreateShieldInstanceRequest: TCRequest {
         /// 待加固的应用信息
         public let appInfo: AppInfo
 
@@ -39,7 +39,7 @@ extension Ms {
     }
 
     /// CreateShieldInstance返回参数结构体
-    public struct CreateShieldInstanceResponse: TCResponseModel {
+    public struct CreateShieldInstanceResponse: TCResponse {
         /// 任务状态: 1-已完成,2-处理中,3-处理出错,4-处理超时
         public let progress: UInt64
 

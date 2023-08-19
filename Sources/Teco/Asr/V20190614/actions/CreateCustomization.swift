@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// CreateCustomization请求参数结构体
-    public struct CreateCustomizationRequest: TCRequestModel {
+    public struct CreateCustomizationRequest: TCRequest {
         /// 自学习模型名称，需在1-20字符之间
         public let modelName: String
 
@@ -49,7 +49,7 @@ extension Asr {
     }
 
     /// CreateCustomization返回参数结构体
-    public struct CreateCustomizationResponse: TCResponseModel {
+    public struct CreateCustomizationResponse: TCResponse {
         /// 模型ID
         public let modelId: String
 

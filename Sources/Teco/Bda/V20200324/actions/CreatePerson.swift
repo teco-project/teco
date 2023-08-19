@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bda {
     /// CreatePerson请求参数结构体
-    public struct CreatePersonRequest: TCRequestModel {
+    public struct CreatePersonRequest: TCRequest {
         /// 待加入的人员库ID。
         public let groupId: String
 
@@ -50,7 +50,7 @@ extension Bda {
     }
 
     /// CreatePerson返回参数结构体
-    public struct CreatePersonResponse: TCResponseModel {
+    public struct CreatePersonResponse: TCResponse {
         /// 人员动作轨迹唯一标识。
         public let traceId: String
 

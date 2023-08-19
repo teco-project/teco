@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeRoMinScale请求参数结构体
-    public struct DescribeRoMinScaleRequest: TCRequestModel {
+    public struct DescribeRoMinScaleRequest: TCRequest {
         /// 只读实例ID，格式如：cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，该参数与MasterInstanceId参数不能同时为空。
         public let roInstanceId: String?
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DescribeRoMinScale返回参数结构体
-    public struct DescribeRoMinScaleResponse: TCResponseModel {
+    public struct DescribeRoMinScaleResponse: TCResponse {
         /// 内存规格大小, 单位为：MB。
         public let memory: Int64
 

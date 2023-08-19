@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVulHostCountScanTime请求参数结构体
-    public struct DescribeVulHostCountScanTimeRequest: TCRequestModel {
+    public struct DescribeVulHostCountScanTimeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulHostCountScanTime返回参数结构体
-    public struct DescribeVulHostCountScanTimeResponse: TCResponseModel {
+    public struct DescribeVulHostCountScanTimeResponse: TCResponse {
         /// 总漏洞数
         public let totalVulCount: UInt64
 

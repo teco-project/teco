@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tkgdq {
     /// DescribeTriple请求参数结构体
-    public struct DescribeTripleRequest: TCRequestModel {
+    public struct DescribeTripleRequest: TCRequest {
         /// 三元组查询条件
         public let tripleCondition: String
 
@@ -34,7 +34,7 @@ extension Tkgdq {
     }
 
     /// DescribeTriple返回参数结构体
-    public struct DescribeTripleResponse: TCResponseModel {
+    public struct DescribeTripleResponse: TCResponse {
         /// 返回三元组信息
         public let content: [TripleContent]
 

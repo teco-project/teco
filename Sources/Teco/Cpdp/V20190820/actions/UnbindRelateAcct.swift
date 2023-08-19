@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UnbindRelateAcct请求参数结构体
-    public struct UnbindRelateAcctRequest: TCRequestModel {
+    public struct UnbindRelateAcctRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -59,7 +59,7 @@ extension Cpdp {
     }
 
     /// UnbindRelateAcct返回参数结构体
-    public struct UnbindRelateAcctResponse: TCResponseModel {
+    public struct UnbindRelateAcctResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

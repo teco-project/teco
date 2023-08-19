@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cws {
     /// DescribeSitesVerification请求参数结构体
-    public struct DescribeSitesVerificationRequest: TCRequestModel {
+    public struct DescribeSitesVerificationRequest: TCRequest {
         /// 站点的url列表
         public let urls: [String]
 
@@ -34,7 +34,7 @@ extension Cws {
     }
 
     /// DescribeSitesVerification返回参数结构体
-    public struct DescribeSitesVerificationResponse: TCResponseModel {
+    public struct DescribeSitesVerificationResponse: TCResponse {
         /// 验证信息数量。
         public let totalCount: UInt64
 

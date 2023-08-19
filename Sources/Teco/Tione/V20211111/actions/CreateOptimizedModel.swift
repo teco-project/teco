@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateOptimizedModel请求参数结构体
-    public struct CreateOptimizedModelRequest: TCRequestModel {
+    public struct CreateOptimizedModelRequest: TCRequest {
         /// 模型加速任务ID
         public let modelAccTaskId: String
 
@@ -39,7 +39,7 @@ extension Tione {
     }
 
     /// CreateOptimizedModel返回参数结构体
-    public struct CreateOptimizedModelResponse: TCResponseModel {
+    public struct CreateOptimizedModelResponse: TCResponse {
         /// 模型ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelId: String?

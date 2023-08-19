@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeResourceTaskStatus请求参数结构体
-    public struct DescribeResourceTaskStatusRequest: TCRequestModel {
+    public struct DescribeResourceTaskStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeResourceTaskStatus返回参数结构体
-    public struct DescribeResourceTaskStatusResponse: TCResponseModel {
+    public struct DescribeResourceTaskStatusResponse: TCResponse {
         /// 资源任务执行状态结果
         public let result: ResourceTaskStatusResult
 

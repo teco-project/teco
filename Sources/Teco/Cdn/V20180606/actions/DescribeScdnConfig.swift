@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeScdnConfig请求参数结构体
-    public struct DescribeScdnConfigRequest: TCRequestModel {
+    public struct DescribeScdnConfigRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Cdn {
     }
 
     /// DescribeScdnConfig返回参数结构体
-    public struct DescribeScdnConfigResponse: TCResponseModel {
+    public struct DescribeScdnConfigResponse: TCResponse {
         /// 自定义防护策略配置
         public let acl: ScdnAclConfig
 

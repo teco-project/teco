@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// DeleteSites请求参数结构体
-    public struct DeleteSitesRequest: TCRequestModel {
+    public struct DeleteSitesRequest: TCRequest {
         /// 要删除的站点id列表
         public let siteIds: [String]
 
@@ -34,7 +34,7 @@ extension Cdc {
     }
 
     /// DeleteSites返回参数结构体
-    public struct DeleteSitesResponse: TCResponseModel {
+    public struct DeleteSitesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

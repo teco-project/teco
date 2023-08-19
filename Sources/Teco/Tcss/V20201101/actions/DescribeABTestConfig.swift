@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeABTestConfig请求参数结构体
-    public struct DescribeABTestConfigRequest: TCRequestModel {
+    public struct DescribeABTestConfigRequest: TCRequest {
         /// 灰度项目名称
         public let projectName: String?
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeABTestConfig返回参数结构体
-    public struct DescribeABTestConfigResponse: TCResponseModel {
+    public struct DescribeABTestConfigResponse: TCResponse {
         /// 灰度项目配置
         public let config: [ABTestConfig]
 

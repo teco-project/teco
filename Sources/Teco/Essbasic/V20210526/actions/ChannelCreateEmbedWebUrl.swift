@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateEmbedWebUrl请求参数结构体
-    public struct ChannelCreateEmbedWebUrlRequest: TCRequestModel {
+    public struct ChannelCreateEmbedWebUrlRequest: TCRequest {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -76,7 +76,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateEmbedWebUrl返回参数结构体
-    public struct ChannelCreateEmbedWebUrlResponse: TCResponseModel {
+    public struct ChannelCreateEmbedWebUrlResponse: TCResponse {
         /// 嵌入的web链接
         public let webUrl: String
 

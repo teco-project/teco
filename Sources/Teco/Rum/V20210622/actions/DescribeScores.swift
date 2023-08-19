@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeScores请求参数结构体
-    public struct DescribeScoresRequest: TCRequestModel {
+    public struct DescribeScoresRequest: TCRequest {
         /// 结束时间
         public let endTime: String
 
@@ -49,7 +49,7 @@ extension Rum {
     }
 
     /// DescribeScores返回参数结构体
-    public struct DescribeScoresResponse: TCResponseModel {
+    public struct DescribeScoresResponse: TCResponse {
         /// 数组
         public let scoreSet: [ScoreInfo]
 

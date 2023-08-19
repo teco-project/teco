@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bm {
     /// DescribeHardwareSpecification请求参数结构体
-    public struct DescribeHardwareSpecificationRequest: TCRequestModel {
+    public struct DescribeHardwareSpecificationRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeHardwareSpecification返回参数结构体
-    public struct DescribeHardwareSpecificationResponse: TCResponseModel {
+    public struct DescribeHardwareSpecificationResponse: TCResponse {
         /// CPU型号列表
         public let cpuInfoSet: [CpuInfo]
 

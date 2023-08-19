@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeConfigMap请求参数结构体
-    public struct DescribeConfigMapRequest: TCRequestModel {
+    public struct DescribeConfigMapRequest: TCRequest {
         /// 单元ID
         public let edgeUnitID: UInt64
 
@@ -44,7 +44,7 @@ extension Iecp {
     }
 
     /// DescribeConfigMap返回参数结构体
-    public struct DescribeConfigMapResponse: TCResponseModel {
+    public struct DescribeConfigMapResponse: TCResponse {
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?

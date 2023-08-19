@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// DeletePerson请求参数结构体
-    public struct DeletePersonRequest: TCRequestModel {
+    public struct DeletePersonRequest: TCRequest {
         /// 人员ID
         public let personId: String
 
@@ -34,7 +34,7 @@ extension Iai {
     }
 
     /// DeletePerson返回参数结构体
-    public struct DeletePersonResponse: TCResponseModel {
+    public struct DeletePersonResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

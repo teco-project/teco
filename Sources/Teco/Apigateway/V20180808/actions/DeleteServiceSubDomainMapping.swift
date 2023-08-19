@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteServiceSubDomainMapping请求参数结构体
-    public struct DeleteServiceSubDomainMappingRequest: TCRequestModel {
+    public struct DeleteServiceSubDomainMappingRequest: TCRequest {
         /// 服务唯一 ID。
         public let serviceId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// DeleteServiceSubDomainMapping返回参数结构体
-    public struct DeleteServiceSubDomainMappingResponse: TCResponseModel {
+    public struct DeleteServiceSubDomainMappingResponse: TCResponse {
         /// 删除自定义域名的路径映射操作是否成功。
         public let result: Bool
 

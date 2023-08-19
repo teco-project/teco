@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// UpgradeInstance请求参数结构体
-    public struct UpgradeInstanceRequest: TCRequestModel {
+    public struct UpgradeInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -77,7 +77,7 @@ extension Es {
     }
 
     /// UpgradeInstance返回参数结构体
-    public struct UpgradeInstanceResponse: TCResponseModel {
+    public struct UpgradeInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

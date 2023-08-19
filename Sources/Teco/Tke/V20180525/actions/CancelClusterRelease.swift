@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CancelClusterRelease请求参数结构体
-    public struct CancelClusterReleaseRequest: TCRequestModel {
+    public struct CancelClusterReleaseRequest: TCRequest {
         /// 应用ID
         public let id: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// CancelClusterRelease返回参数结构体
-    public struct CancelClusterReleaseResponse: TCResponseModel {
+    public struct CancelClusterReleaseResponse: TCResponse {
         /// 应用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let release: PendingRelease?

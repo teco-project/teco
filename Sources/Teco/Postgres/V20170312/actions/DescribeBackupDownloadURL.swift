@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// DescribeBackupDownloadURL请求参数结构体
-    public struct DescribeBackupDownloadURLRequest: TCRequestModel {
+    public struct DescribeBackupDownloadURLRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -54,7 +54,7 @@ extension Postgres {
     }
 
     /// DescribeBackupDownloadURL返回参数结构体
-    public struct DescribeBackupDownloadURLResponse: TCResponseModel {
+    public struct DescribeBackupDownloadURLResponse: TCResponse {
         /// 备份的下载地址。
         public let backupDownloadURL: String
 

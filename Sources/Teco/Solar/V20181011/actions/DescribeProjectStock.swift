@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// DescribeProjectStock请求参数结构体
-    public struct DescribeProjectStockRequest: TCRequestModel {
+    public struct DescribeProjectStockRequest: TCRequest {
         /// 子项目id
         public let subProjectId: String
 
@@ -34,7 +34,7 @@ extension Solar {
     }
 
     /// DescribeProjectStock返回参数结构体
-    public struct DescribeProjectStockResponse: TCResponseModel {
+    public struct DescribeProjectStockResponse: TCResponse {
         /// 项目库存列表
         public let projectStocks: [ProjectStock]
 

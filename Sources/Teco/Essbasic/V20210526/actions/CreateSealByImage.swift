@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateSealByImage请求参数结构体
-    public struct CreateSealByImageRequest: TCRequestModel {
+    public struct CreateSealByImageRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -56,7 +56,7 @@ extension Essbasic {
     }
 
     /// CreateSealByImage返回参数结构体
-    public struct CreateSealByImageResponse: TCResponseModel {
+    public struct CreateSealByImageResponse: TCResponse {
         /// 印章id
         public let sealId: String
 

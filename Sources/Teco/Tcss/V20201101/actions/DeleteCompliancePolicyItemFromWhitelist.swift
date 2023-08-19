@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DeleteCompliancePolicyItemFromWhitelist请求参数结构体
-    public struct DeleteCompliancePolicyItemFromWhitelistRequest: TCRequestModel {
+    public struct DeleteCompliancePolicyItemFromWhitelistRequest: TCRequest {
         /// 指定的白名单项的ID的列表
         public let whitelistIdSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DeleteCompliancePolicyItemFromWhitelist返回参数结构体
-    public struct DeleteCompliancePolicyItemFromWhitelistResponse: TCResponseModel {
+    public struct DeleteCompliancePolicyItemFromWhitelistResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

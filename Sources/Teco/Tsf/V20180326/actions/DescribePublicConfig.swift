@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribePublicConfig请求参数结构体
-    public struct DescribePublicConfigRequest: TCRequestModel {
+    public struct DescribePublicConfigRequest: TCRequest {
         /// 需要查询的配置项ID
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribePublicConfig返回参数结构体
-    public struct DescribePublicConfigResponse: TCResponseModel {
+    public struct DescribePublicConfigResponse: TCResponse {
         /// 全局配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Config?

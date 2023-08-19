@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateBatchPayment请求参数结构体
-    public struct CreateBatchPaymentRequest: TCRequestModel {
+    public struct CreateBatchPaymentRequest: TCRequest {
         /// 1 微信企业付款
         /// 2 支付宝转账
         /// 3 平安银企直连代发转账
@@ -51,7 +51,7 @@ extension Cpdp {
     }
 
     /// CreateBatchPayment返回参数结构体
-    public struct CreateBatchPaymentResponse: TCResponseModel {
+    public struct CreateBatchPaymentResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

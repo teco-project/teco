@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeListenerRealServers请求参数结构体
-    public struct DescribeListenerRealServersRequest: TCRequestModel {
+    public struct DescribeListenerRealServersRequest: TCRequest {
         /// 监听器ID
         public let listenerId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeListenerRealServers返回参数结构体
-    public struct DescribeListenerRealServersResponse: TCResponseModel {
+    public struct DescribeListenerRealServersResponse: TCResponse {
         /// 可绑定源站的个数
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateTrainingTask请求参数结构体
-    public struct CreateTrainingTaskRequest: TCRequestModel {
+    public struct CreateTrainingTaskRequest: TCRequest {
         /// 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
         public let name: String
 
@@ -140,7 +140,7 @@ extension Tione {
     }
 
     /// CreateTrainingTask返回参数结构体
-    public struct CreateTrainingTaskResponse: TCResponseModel {
+    public struct CreateTrainingTaskResponse: TCResponse {
         /// 训练任务ID
         public let id: String
 

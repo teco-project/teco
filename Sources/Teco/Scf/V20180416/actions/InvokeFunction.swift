@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// InvokeFunction请求参数结构体
-    public struct InvokeFunctionRequest: TCRequestModel {
+    public struct InvokeFunctionRequest: TCRequest {
         /// 函数名称
         public let functionName: String
 
@@ -59,7 +59,7 @@ extension Scf {
     }
 
     /// InvokeFunction返回参数结构体
-    public struct InvokeFunctionResponse: TCResponseModel {
+    public struct InvokeFunctionResponse: TCResponse {
         /// 函数执行结果
         public let result: Result
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// ReplaceActivityRecord请求参数结构体
-    public struct ReplaceActivityRecordRequest: TCRequestModel {
+    public struct ReplaceActivityRecordRequest: TCRequest {
         /// 活动id
         public let activityId: Int64
 
@@ -54,7 +54,7 @@ extension Tcb {
     }
 
     /// ReplaceActivityRecord返回参数结构体
-    public struct ReplaceActivityRecordResponse: TCResponseModel {
+    public struct ReplaceActivityRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateCodeBatch请求参数结构体
-    public struct CreateCodeBatchRequest: TCRequestModel {
+    public struct CreateCodeBatchRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -84,7 +84,7 @@ extension Trp {
     }
 
     /// CreateCodeBatch返回参数结构体
-    public struct CreateCodeBatchResponse: TCResponseModel {
+    public struct CreateCodeBatchResponse: TCResponse {
         /// 批次ID
         public let batchId: String
 

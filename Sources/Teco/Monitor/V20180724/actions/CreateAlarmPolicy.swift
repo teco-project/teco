@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateAlarmPolicy请求参数结构体
-    public struct CreateAlarmPolicyRequest: TCRequestModel {
+    public struct CreateAlarmPolicyRequest: TCRequest {
         /// 固定值，为"monitor"
         public let module: String
 
@@ -124,7 +124,7 @@ extension Monitor {
     }
 
     /// CreateAlarmPolicy返回参数结构体
-    public struct CreateAlarmPolicyResponse: TCResponseModel {
+    public struct CreateAlarmPolicyResponse: TCResponse {
         /// 告警策略 ID
         public let policyId: String
 

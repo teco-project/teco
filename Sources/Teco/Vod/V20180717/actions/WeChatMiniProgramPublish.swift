@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// WeChatMiniProgramPublish请求参数结构体
-    public struct WeChatMiniProgramPublishRequest: TCRequestModel {
+    public struct WeChatMiniProgramPublishRequest: TCRequest {
         /// 媒体文件 ID。
         public let fileId: String
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// WeChatMiniProgramPublish返回参数结构体
-    public struct WeChatMiniProgramPublishResponse: TCResponseModel {
+    public struct WeChatMiniProgramPublishResponse: TCResponse {
         /// 任务 ID。
         public let taskId: String
 

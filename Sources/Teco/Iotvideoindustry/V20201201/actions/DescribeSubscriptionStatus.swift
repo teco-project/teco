@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeSubscriptionStatus请求参数结构体
-    public struct DescribeSubscriptionStatusRequest: TCRequestModel {
+    public struct DescribeSubscriptionStatusRequest: TCRequest {
         /// 设备ID
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeSubscriptionStatus返回参数结构体
-    public struct DescribeSubscriptionStatusResponse: TCResponseModel {
+    public struct DescribeSubscriptionStatusResponse: TCResponse {
         /// 设备GB28181报警订阅状态 1：未开启订阅；2：已开启订阅
         public let alarmStatus: Int64
 

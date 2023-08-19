@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CloneDB请求参数结构体
-    public struct CloneDBRequest: TCRequestModel {
+    public struct CloneDBRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// CloneDB返回参数结构体
-    public struct CloneDBResponse: TCResponseModel {
+    public struct CloneDBResponse: TCResponse {
         /// 异步流程任务ID，使用FlowId调用DescribeFlowStatus接口获取任务执行状态
         public let flowId: Int64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryPartnerCredit请求参数结构体
-    public struct QueryPartnerCreditRequest: TCRequestModel {
+    public struct QueryPartnerCreditRequest: TCRequest {
         public init() {
         }
     }
 
     /// QueryPartnerCredit返回参数结构体
-    public struct QueryPartnerCreditResponse: TCResponseModel {
+    public struct QueryPartnerCreditResponse: TCResponse {
         /// 已分配额度
         public let allocatedCredit: Float
 

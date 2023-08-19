@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetRolePermissionBoundary请求参数结构体
-    public struct GetRolePermissionBoundaryRequest: TCRequestModel {
+    public struct GetRolePermissionBoundaryRequest: TCRequest {
         /// 角色ID
         public let roleId: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// GetRolePermissionBoundary返回参数结构体
-    public struct GetRolePermissionBoundaryResponse: TCResponseModel {
+    public struct GetRolePermissionBoundaryResponse: TCResponse {
         /// 策略ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyId: Int64?

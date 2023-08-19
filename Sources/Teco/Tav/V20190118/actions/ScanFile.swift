@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tav {
     /// ScanFile请求参数结构体
-    public struct ScanFileRequest: TCRequestModel {
+    public struct ScanFileRequest: TCRequest {
         /// 购买服务后获得的授权信息，用于保证请求有效性
         public let key: String
 
@@ -44,7 +44,7 @@ extension Tav {
     }
 
     /// ScanFile返回参数结构体
-    public struct ScanFileResponse: TCResponseModel {
+    public struct ScanFileResponse: TCResponse {
         /// 接口调用状态，成功返回200，失败返回400
         public let status: UInt64
 

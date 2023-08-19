@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeExportJobResult请求参数结构体
-    public struct DescribeExportJobResultRequest: TCRequestModel {
+    public struct DescribeExportJobResultRequest: TCRequest {
         /// CreateExportComplianceStatusListJob返回的JobId字段的值
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeExportJobResult返回参数结构体
-    public struct DescribeExportJobResultResponse: TCResponseModel {
+    public struct DescribeExportJobResultResponse: TCResponse {
         /// 导出的状态。取值为, SUCCESS:成功、FAILURE:失败，RUNNING: 进行中。
         public let exportStatus: String
 

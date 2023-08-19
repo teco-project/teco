@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeGeneralResourceQuotas请求参数结构体
-    public struct DescribeGeneralResourceQuotasRequest: TCRequestModel {
+    public struct DescribeGeneralResourceQuotasRequest: TCRequest {
         /// 资源名列表，可取值:
         /// - GENERAL_BUNDLE_INSTANCE 通用型套餐实例
         /// - STORAGE_BUNDLE_INSTANCE 存储型套餐实例
@@ -45,7 +45,7 @@ extension Lighthouse {
     }
 
     /// DescribeGeneralResourceQuotas返回参数结构体
-    public struct DescribeGeneralResourceQuotasResponse: TCResponseModel {
+    public struct DescribeGeneralResourceQuotasResponse: TCResponse {
         /// 通用资源配额详细信息列表。
         public let generalResourceQuotaSet: [GeneralResourceQuota]
 

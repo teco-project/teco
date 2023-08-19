@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// SyncAssetScan请求参数结构体
-    public struct SyncAssetScanRequest: TCRequestModel {
+    public struct SyncAssetScanRequest: TCRequest {
         /// 是否同步：true-是 false-否；默认false
         public let sync: Bool
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// SyncAssetScan返回参数结构体
-    public struct SyncAssetScanResponse: TCResponseModel {
+    public struct SyncAssetScanResponse: TCResponse {
         /// 枚举值有(大写)：NOTASK（没有同步任务），SYNCING（同步中），FINISHED（同步完成）
         public let state: String
 

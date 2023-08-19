@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// Query请求参数结构体
-    public struct QueryRequest: TCRequestModel {
+    public struct QueryRequest: TCRequest {
         /// 模块名，固定字段：transaction
         public let module: String
 
@@ -74,7 +74,7 @@ extension Tbaas {
     }
 
     /// Query返回参数结构体
-    public struct QueryResponse: TCResponseModel {
+    public struct QueryResponse: TCResponse {
         /// 查询结果数据
         public let data: [String]
 

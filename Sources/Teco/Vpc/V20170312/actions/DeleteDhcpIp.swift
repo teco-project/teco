@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteDhcpIp请求参数结构体
-    public struct DeleteDhcpIpRequest: TCRequestModel {
+    public struct DeleteDhcpIpRequest: TCRequest {
         /// `DhcpIp`的`ID`，是`DhcpIp`的唯一标识。
         public let dhcpIpId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteDhcpIp返回参数结构体
-    public struct DeleteDhcpIpResponse: TCResponseModel {
+    public struct DeleteDhcpIpResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

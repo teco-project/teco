@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// ModifyNamespace请求参数结构体
-    public struct ModifyNamespaceRequest: TCRequestModel {
+    public struct ModifyNamespaceRequest: TCRequest {
         /// 环境id
         public let namespaceId: String
 
@@ -59,7 +59,7 @@ extension Tem {
     }
 
     /// ModifyNamespace返回参数结构体
-    public struct ModifyNamespaceResponse: TCResponseModel {
+    public struct ModifyNamespaceResponse: TCResponse {
         /// 成功时为命名空间ID，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

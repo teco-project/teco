@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeAccountAllGrantPrivileges请求参数结构体
-    public struct DescribeAccountAllGrantPrivilegesRequest: TCRequestModel {
+    public struct DescribeAccountAllGrantPrivilegesRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// DescribeAccountAllGrantPrivileges返回参数结构体
-    public struct DescribeAccountAllGrantPrivilegesResponse: TCResponseModel {
+    public struct DescribeAccountAllGrantPrivilegesResponse: TCResponse {
         /// 权限语句
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privilegeStatements: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeOrders请求参数结构体
-    public struct DescribeOrdersRequest: TCRequestModel {
+    public struct DescribeOrdersRequest: TCRequest {
         /// 待查询的长订单号列表，创建实例、续费实例、扩容实例接口返回。
         public let dealNames: [String]
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// DescribeOrders返回参数结构体
-    public struct DescribeOrdersResponse: TCResponseModel {
+    public struct DescribeOrdersResponse: TCResponse {
         /// 返回的订单数量。
         public let totalCount: UInt64
 

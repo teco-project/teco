@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeDNSConfig请求参数结构体
-    public struct DescribeDNSConfigRequest: TCRequestModel {
+    public struct DescribeDNSConfigRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeDNSConfig返回参数结构体
-    public struct DescribeDNSConfigResponse: TCResponseModel {
+    public struct DescribeDNSConfigResponse: TCResponse {
         /// DNS 服务器数组
         public let nameServers: [String]
 

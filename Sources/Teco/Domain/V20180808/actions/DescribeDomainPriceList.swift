@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// DescribeDomainPriceList请求参数结构体
-    public struct DescribeDomainPriceListRequest: TCRequestModel {
+    public struct DescribeDomainPriceListRequest: TCRequest {
         /// 查询价格的后缀列表。默认则为全部后缀
         public let tldList: [String]?
 
@@ -44,7 +44,7 @@ extension Domain {
     }
 
     /// DescribeDomainPriceList返回参数结构体
-    public struct DescribeDomainPriceListResponse: TCResponseModel {
+    public struct DescribeDomainPriceListResponse: TCResponse {
         /// 域名价格列表
         public let priceList: [PriceInfo]
 

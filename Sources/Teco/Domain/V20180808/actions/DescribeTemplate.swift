@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// DescribeTemplate请求参数结构体
-    public struct DescribeTemplateRequest: TCRequestModel {
+    public struct DescribeTemplateRequest: TCRequest {
         /// 模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Domain {
     }
 
     /// DescribeTemplate返回参数结构体
-    public struct DescribeTemplateResponse: TCResponseModel {
+    public struct DescribeTemplateResponse: TCResponse {
         /// 模板信息
         public let template: TemplateInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportBashEvents请求参数结构体
-    public struct ExportBashEventsRequest: TCRequestModel {
+    public struct ExportBashEventsRequest: TCRequest {
         /// 过滤参数
         public let filters: [Filters]?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ExportBashEvents返回参数结构体
-    public struct ExportBashEventsResponse: TCResponseModel {
+    public struct ExportBashEventsResponse: TCResponse {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
 

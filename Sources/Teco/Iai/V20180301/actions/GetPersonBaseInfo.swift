@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// GetPersonBaseInfo请求参数结构体
-    public struct GetPersonBaseInfoRequest: TCRequestModel {
+    public struct GetPersonBaseInfoRequest: TCRequest {
         /// 人员ID
         public let personId: String
 
@@ -34,7 +34,7 @@ extension Iai {
     }
 
     /// GetPersonBaseInfo返回参数结构体
-    public struct GetPersonBaseInfoResponse: TCResponseModel {
+    public struct GetPersonBaseInfoResponse: TCResponse {
         /// 人员名称
         public let personName: String
 

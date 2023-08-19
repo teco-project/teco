@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// GeneralAccurateOCR请求参数结构体
-    public struct GeneralAccurateOCRRequest: TCRequestModel {
+    public struct GeneralAccurateOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 要求图片经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP格式。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
@@ -63,7 +63,7 @@ extension Ocr {
     }
 
     /// GeneralAccurateOCR返回参数结构体
-    public struct GeneralAccurateOCRResponse: TCResponseModel {
+    public struct GeneralAccurateOCRResponse: TCResponse {
         /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
         public let textDetections: [TextDetection]
 

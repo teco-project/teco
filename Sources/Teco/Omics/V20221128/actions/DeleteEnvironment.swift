@@ -20,7 +20,7 @@ import TecoCore
 
 extension Omics {
     /// DeleteEnvironment请求参数结构体
-    public struct DeleteEnvironmentRequest: TCRequestModel {
+    public struct DeleteEnvironmentRequest: TCRequest {
         /// 环境ID。
         public let environmentId: String
 
@@ -34,7 +34,7 @@ extension Omics {
     }
 
     /// DeleteEnvironment返回参数结构体
-    public struct DeleteEnvironmentResponse: TCResponseModel {
+    public struct DeleteEnvironmentResponse: TCResponse {
         /// 工作流UUID。
         public let workflowUuid: String
 

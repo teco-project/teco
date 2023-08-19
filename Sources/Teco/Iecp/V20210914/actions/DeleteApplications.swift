@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DeleteApplications请求参数结构体
-    public struct DeleteApplicationsRequest: TCRequestModel {
+    public struct DeleteApplicationsRequest: TCRequest {
         /// 应用模板ID列表
         public let applicationIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// DeleteApplications返回参数结构体
-    public struct DeleteApplicationsResponse: TCResponseModel {
+    public struct DeleteApplicationsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

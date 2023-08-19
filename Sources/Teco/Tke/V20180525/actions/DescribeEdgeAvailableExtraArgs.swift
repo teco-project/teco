@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeAvailableExtraArgs请求参数结构体
-    public struct DescribeEdgeAvailableExtraArgsRequest: TCRequestModel {
+    public struct DescribeEdgeAvailableExtraArgsRequest: TCRequest {
         /// 集群版本
         public let clusterVersion: String?
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEdgeAvailableExtraArgs返回参数结构体
-    public struct DescribeEdgeAvailableExtraArgsResponse: TCResponseModel {
+    public struct DescribeEdgeAvailableExtraArgsResponse: TCResponse {
         /// 集群版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterVersion: String?

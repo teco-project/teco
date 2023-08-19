@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCurveData请求参数结构体
-    public struct DescribeCurveDataRequest: TCRequestModel {
+    public struct DescribeCurveDataRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -78,7 +78,7 @@ extension Tcb {
     }
 
     /// DescribeCurveData返回参数结构体
-    public struct DescribeCurveDataResponse: TCResponseModel {
+    public struct DescribeCurveDataResponse: TCResponse {
         /// 开始时间, 会根据数据的统计周期进行取整.
         public let startTime: String
 

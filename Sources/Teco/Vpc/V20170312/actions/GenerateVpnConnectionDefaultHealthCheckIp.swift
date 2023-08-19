@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// GenerateVpnConnectionDefaultHealthCheckIp请求参数结构体
-    public struct GenerateVpnConnectionDefaultHealthCheckIpRequest: TCRequestModel {
+    public struct GenerateVpnConnectionDefaultHealthCheckIpRequest: TCRequest {
         /// VPN网关id， 例如：vpngw-1w9tue3d
         public let vpnGatewayId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// GenerateVpnConnectionDefaultHealthCheckIp返回参数结构体
-    public struct GenerateVpnConnectionDefaultHealthCheckIpResponse: TCResponseModel {
+    public struct GenerateVpnConnectionDefaultHealthCheckIpResponse: TCResponse {
         /// VPN通道健康检查本端ip
         public let healthCheckLocalIp: String
 

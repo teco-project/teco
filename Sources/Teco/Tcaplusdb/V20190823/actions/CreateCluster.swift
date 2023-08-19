@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// 集群数据描述语言类型，如：`PROTO`，`TDR`或`MIX`
         public let idlType: String
 
@@ -84,7 +84,7 @@ extension Tcaplusdb {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

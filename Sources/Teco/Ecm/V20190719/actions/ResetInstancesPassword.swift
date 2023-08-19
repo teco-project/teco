@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ResetInstancesPassword请求参数结构体
-    public struct ResetInstancesPasswordRequest: TCRequestModel {
+    public struct ResetInstancesPasswordRequest: TCRequest {
         /// 待重置密码的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
         public let instanceIdSet: [String]
 
@@ -51,7 +51,7 @@ extension Ecm {
     }
 
     /// ResetInstancesPassword返回参数结构体
-    public struct ResetInstancesPasswordResponse: TCResponseModel {
+    public struct ResetInstancesPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

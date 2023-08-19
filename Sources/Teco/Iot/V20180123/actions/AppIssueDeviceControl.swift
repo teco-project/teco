@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// AppIssueDeviceControl请求参数结构体
-    public struct AppIssueDeviceControlRequest: TCRequestModel {
+    public struct AppIssueDeviceControlRequest: TCRequest {
         /// 访问Token
         public let accessToken: String
 
@@ -54,7 +54,7 @@ extension Iot {
     }
 
     /// AppIssueDeviceControl返回参数结构体
-    public struct AppIssueDeviceControlResponse: TCResponseModel {
+    public struct AppIssueDeviceControlResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

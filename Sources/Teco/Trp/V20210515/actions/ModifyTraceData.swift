@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ModifyTraceData请求参数结构体
-    public struct ModifyTraceDataRequest: TCRequestModel {
+    public struct ModifyTraceDataRequest: TCRequest {
         /// 溯源ID
         public let traceId: String?
 
@@ -114,7 +114,7 @@ extension Trp {
     }
 
     /// ModifyTraceData返回参数结构体
-    public struct ModifyTraceDataResponse: TCResponseModel {
+    public struct ModifyTraceDataResponse: TCResponse {
         /// 溯源ID
         public let traceId: String
 

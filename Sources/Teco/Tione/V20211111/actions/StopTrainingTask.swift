@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// StopTrainingTask请求参数结构体
-    public struct StopTrainingTaskRequest: TCRequestModel {
+    public struct StopTrainingTaskRequest: TCRequest {
         /// 训练任务ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// StopTrainingTask返回参数结构体
-    public struct StopTrainingTaskResponse: TCResponseModel {
+    public struct StopTrainingTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

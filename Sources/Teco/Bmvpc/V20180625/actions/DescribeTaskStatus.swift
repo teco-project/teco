@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DescribeTaskStatus请求参数结构体
-    public struct DescribeTaskStatusRequest: TCRequestModel {
+    public struct DescribeTaskStatusRequest: TCRequest {
         /// 任务ID
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Bmvpc {
     }
 
     /// DescribeTaskStatus返回参数结构体
-    public struct DescribeTaskStatusResponse: TCResponseModel {
+    public struct DescribeTaskStatusResponse: TCResponse {
         /// 任务状态，其中0表示任务执行成功，1表示任务执行失败，2表示任务正在执行中
         public let status: UInt64
 

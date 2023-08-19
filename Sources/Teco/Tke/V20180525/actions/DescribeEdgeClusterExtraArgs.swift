@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeClusterExtraArgs请求参数结构体
-    public struct DescribeEdgeClusterExtraArgsRequest: TCRequestModel {
+    public struct DescribeEdgeClusterExtraArgsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEdgeClusterExtraArgs返回参数结构体
-    public struct DescribeEdgeClusterExtraArgsResponse: TCResponseModel {
+    public struct DescribeEdgeClusterExtraArgsResponse: TCResponse {
         /// 集群自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterExtraArgs: EdgeClusterExtraArgs?

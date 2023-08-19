@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// CreateQos请求参数结构体
-    public struct CreateQosRequest: TCRequestModel {
+    public struct CreateQosRequest: TCRequest {
         /// 加速业务源地址信息，SrcIpv6和（SrcIpv4+SrcPublicIpv4）二选一，目前Ipv6不可用，全部填写以Ipv4参数为准。
         public let srcAddressInfo: SrcAddressInfo
 
@@ -91,7 +91,7 @@ extension Mna {
     }
 
     /// CreateQos返回参数结构体
-    public struct CreateQosResponse: TCResponseModel {
+    public struct CreateQosResponse: TCResponse {
         /// 单次加速唯一 Id
         public let sessionId: String
 

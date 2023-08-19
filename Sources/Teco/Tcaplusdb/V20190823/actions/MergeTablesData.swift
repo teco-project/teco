@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// MergeTablesData请求参数结构体
-    public struct MergeTablesDataRequest: TCRequestModel {
+    public struct MergeTablesDataRequest: TCRequest {
         /// 选取的表格
         public let selectedTables: [MergeTablesInfo]
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// MergeTablesData返回参数结构体
-    public struct MergeTablesDataResponse: TCResponseModel {
+    public struct MergeTablesDataResponse: TCResponse {
         /// 合服结果集
         public let results: [MergeTableResult]
 

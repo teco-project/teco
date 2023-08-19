@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// CreateAudit请求参数结构体
-    public struct CreateAuditRequest: TCRequestModel {
+    public struct CreateAuditRequest: TCRequest {
         /// 是否开启cmq消息通知。1：是，0：否。目前仅支持cmq的队列服务。如果开启cmq消息通知服务，云审计会将您的日志内容实时投递到您指定地域的指定队列中。
         public let isEnableCmqNotify: Int64
 
@@ -94,7 +94,7 @@ extension Cloudaudit {
     }
 
     /// CreateAudit返回参数结构体
-    public struct CreateAuditResponse: TCResponseModel {
+    public struct CreateAuditResponse: TCResponse {
         /// 是否创建成功。
         public let isSuccess: Int64
 

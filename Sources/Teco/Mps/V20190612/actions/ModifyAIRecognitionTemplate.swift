@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ModifyAIRecognitionTemplate请求参数结构体
-    public struct ModifyAIRecognitionTemplateRequest: TCRequestModel {
+    public struct ModifyAIRecognitionTemplateRequest: TCRequest {
         /// 视频内容识别模板唯一标识。
         public let definition: Int64
 
@@ -74,7 +74,7 @@ extension Mps {
     }
 
     /// ModifyAIRecognitionTemplate返回参数结构体
-    public struct ModifyAIRecognitionTemplateResponse: TCResponseModel {
+    public struct ModifyAIRecognitionTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

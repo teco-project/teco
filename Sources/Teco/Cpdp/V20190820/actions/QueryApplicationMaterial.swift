@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryApplicationMaterial请求参数结构体
-    public struct QueryApplicationMaterialRequest: TCRequestModel {
+    public struct QueryApplicationMaterialRequest: TCRequest {
         /// 申报流水号
         public let declareId: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// QueryApplicationMaterial返回参数结构体
-    public struct QueryApplicationMaterialResponse: TCResponseModel {
+    public struct QueryApplicationMaterialResponse: TCResponse {
         /// 成功申报材料查询结果
         public let result: QueryDeclareResult
 

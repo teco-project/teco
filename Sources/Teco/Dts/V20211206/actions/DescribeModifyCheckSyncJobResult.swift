@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DescribeModifyCheckSyncJobResult请求参数结构体
-    public struct DescribeModifyCheckSyncJobResultRequest: TCRequestModel {
+    public struct DescribeModifyCheckSyncJobResultRequest: TCRequest {
         /// 同步任务id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DescribeModifyCheckSyncJobResult返回参数结构体
-    public struct DescribeModifyCheckSyncJobResultResponse: TCResponseModel {
+    public struct DescribeModifyCheckSyncJobResultResponse: TCResponse {
         /// 校验任务执行状态，如：notStarted(未开始)、running(校验中)、failed(校验任务失败)、success(任务成功)
         public let status: String
 

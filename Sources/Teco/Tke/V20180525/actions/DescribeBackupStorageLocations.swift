@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeBackupStorageLocations请求参数结构体
-    public struct DescribeBackupStorageLocationsRequest: TCRequestModel {
+    public struct DescribeBackupStorageLocationsRequest: TCRequest {
         /// 多个备份仓库名称，如果不填写，默认返回当前地域所有存储仓库名称
         public let names: [String]?
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeBackupStorageLocations返回参数结构体
-    public struct DescribeBackupStorageLocationsResponse: TCResponseModel {
+    public struct DescribeBackupStorageLocationsResponse: TCResponse {
         /// 详细备份仓库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupStorageLocationSet: [BackupStorageLocation]?

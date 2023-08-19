@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeGroupList请求参数结构体
-    public struct DescribeGroupListRequest: TCRequestModel {
+    public struct DescribeGroupListRequest: TCRequest {
         /// 低代码平台应用ID
         public let sdkAppId: UInt64
 
@@ -54,7 +54,7 @@ extension Lcic {
     }
 
     /// DescribeGroupList返回参数结构体
-    public struct DescribeGroupListResponse: TCResponseModel {
+    public struct DescribeGroupListResponse: TCResponse {
         /// 记录总数。当前匹配群组总数。
         public let total: UInt64
 

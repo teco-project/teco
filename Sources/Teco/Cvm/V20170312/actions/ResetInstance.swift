@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ResetInstance请求参数结构体
-    public struct ResetInstanceRequest: TCRequestModel {
+    public struct ResetInstanceRequest: TCRequest {
         /// 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
         public let instanceId: String
 
@@ -80,7 +80,7 @@ extension Cvm {
     }
 
     /// ResetInstance返回参数结构体
-    public struct ResetInstanceResponse: TCResponseModel {
+    public struct ResetInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

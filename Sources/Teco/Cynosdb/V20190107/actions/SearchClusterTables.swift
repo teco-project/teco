@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// SearchClusterTables请求参数结构体
-    public struct SearchClusterTablesRequest: TCRequestModel {
+    public struct SearchClusterTablesRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -52,7 +52,7 @@ extension Cynosdb {
     }
 
     /// SearchClusterTables返回参数结构体
-    public struct SearchClusterTablesResponse: TCResponseModel {
+    public struct SearchClusterTablesResponse: TCResponse {
         /// 数据表列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [DatabaseTables]?

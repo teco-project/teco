@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// SearchClsLog请求参数结构体
-    public struct SearchClsLogRequest: TCRequestModel {
+    public struct SearchClsLogRequest: TCRequest {
         /// 需要查询的日志集ID
         public let logsetId: String
 
@@ -82,7 +82,7 @@ extension Cdn {
     }
 
     /// SearchClsLog返回参数结构体
-    public struct SearchClsLogResponse: TCResponseModel {
+    public struct SearchClsLogResponse: TCResponse {
         /// 查询结果
         public let logs: ClsSearchLogs
 

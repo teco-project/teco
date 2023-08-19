@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// ModifyDDoSWaterKey请求参数结构体
-    public struct ModifyDDoSWaterKeyRequest: TCRequestModel {
+    public struct ModifyDDoSWaterKeyRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
@@ -49,7 +49,7 @@ extension Dayu {
     }
 
     /// ModifyDDoSWaterKey返回参数结构体
-    public struct ModifyDDoSWaterKeyResponse: TCResponseModel {
+    public struct ModifyDDoSWaterKeyResponse: TCResponse {
         /// 水印密钥列表
         public let keyList: [WaterPrintKey]
 

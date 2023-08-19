@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeAccessFastAnalysis请求参数结构体
-    public struct DescribeAccessFastAnalysisRequest: TCRequestModel {
+    public struct DescribeAccessFastAnalysisRequest: TCRequest {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
         public let topicId: String
 
@@ -54,7 +54,7 @@ extension Waf {
     }
 
     /// DescribeAccessFastAnalysis返回参数结构体
-    public struct DescribeAccessFastAnalysisResponse: TCResponseModel {
+    public struct DescribeAccessFastAnalysisResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

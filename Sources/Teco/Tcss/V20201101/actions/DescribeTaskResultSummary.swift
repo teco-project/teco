@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeTaskResultSummary请求参数结构体
-    public struct DescribeTaskResultSummaryRequest: TCRequestModel {
+    public struct DescribeTaskResultSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTaskResultSummary返回参数结构体
-    public struct DescribeTaskResultSummaryResponse: TCResponseModel {
+    public struct DescribeTaskResultSummaryResponse: TCResponse {
         /// 严重风险影响的节点数量,返回7天数据
         public let seriousRiskNodeCount: [UInt64]
 

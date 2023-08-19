@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeImportMachineInfo请求参数结构体
-    public struct DescribeImportMachineInfoRequest: TCRequestModel {
+    public struct DescribeImportMachineInfoRequest: TCRequest {
         /// 服务器内网IP（默认）/ 服务器名称 / 服务器ID 数组 (最大 1000条)
         public let machineList: [String]
 
@@ -50,7 +50,7 @@ extension Cwp {
     }
 
     /// DescribeImportMachineInfo返回参数结构体
-    public struct DescribeImportMachineInfoResponse: TCResponseModel {
+    public struct DescribeImportMachineInfoResponse: TCResponse {
         /// 有效的机器信息列表：机器名称、机器公网/内网ip、机器标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let effectiveMachineInfoList: [EffectiveMachineInfo]?

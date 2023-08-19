@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeRedisTopKeyPrefixList请求参数结构体
-    public struct DescribeRedisTopKeyPrefixListRequest: TCRequestModel {
+    public struct DescribeRedisTopKeyPrefixListRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Dbbrain {
     }
 
     /// DescribeRedisTopKeyPrefixList返回参数结构体
-    public struct DescribeRedisTopKeyPrefixListResponse: TCResponseModel {
+    public struct DescribeRedisTopKeyPrefixListResponse: TCResponse {
         /// top key前缀列表。
         public let items: [RedisPreKeySpaceData]
 

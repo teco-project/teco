@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// UpdateFunctionEventInvokeConfig请求参数结构体
-    public struct UpdateFunctionEventInvokeConfigRequest: TCRequestModel {
+    public struct UpdateFunctionEventInvokeConfigRequest: TCRequest {
         /// 异步重试配置信息
         public let asyncTriggerConfig: AsyncTriggerConfig
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// UpdateFunctionEventInvokeConfig返回参数结构体
-    public struct UpdateFunctionEventInvokeConfigResponse: TCResponseModel {
+    public struct UpdateFunctionEventInvokeConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

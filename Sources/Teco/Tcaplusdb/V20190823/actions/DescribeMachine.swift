@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DescribeMachine请求参数结构体
-    public struct DescribeMachineRequest: TCRequestModel {
+    public struct DescribeMachineRequest: TCRequest {
         /// 不为0，表示查询支持ipv6的机器
         public let ipv6Enable: Int64?
 
@@ -34,7 +34,7 @@ extension Tcaplusdb {
     }
 
     /// DescribeMachine返回参数结构体
-    public struct DescribeMachineResponse: TCResponseModel {
+    public struct DescribeMachineResponse: TCResponse {
         /// 独占机器资源列表
         public let poolList: [PoolInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// AddUser请求参数结构体
-    public struct AddUserRequest: TCRequestModel {
+    public struct AddUserRequest: TCRequest {
         /// 子用户用户名
         public let name: String
 
@@ -74,7 +74,7 @@ extension Cam {
     }
 
     /// AddUser返回参数结构体
-    public struct AddUserResponse: TCResponseModel {
+    public struct AddUserResponse: TCResponse {
         /// 子用户 UIN
         public let uin: UInt64
 

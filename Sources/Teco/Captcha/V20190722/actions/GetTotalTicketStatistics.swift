@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// GetTotalTicketStatistics请求参数结构体
-    public struct GetTotalTicketStatisticsRequest: TCRequestModel {
+    public struct GetTotalTicketStatisticsRequest: TCRequest {
         /// 开始时间
         public let startTimeStr: String
 
@@ -47,7 +47,7 @@ extension Captcha {
     }
 
     /// GetTotalTicketStatistics返回参数结构体
-    public struct GetTotalTicketStatisticsResponse: TCResponseModel {
+    public struct GetTotalTicketStatisticsResponse: TCResponse {
         /// 返回数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: CaptchaStatisticObj?

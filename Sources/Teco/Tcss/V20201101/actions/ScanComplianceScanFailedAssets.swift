@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ScanComplianceScanFailedAssets请求参数结构体
-    public struct ScanComplianceScanFailedAssetsRequest: TCRequestModel {
+    public struct ScanComplianceScanFailedAssetsRequest: TCRequest {
         /// 要重新扫描的客户资产项ID的列表。
         public let customerAssetIdSet: [UInt64]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// ScanComplianceScanFailedAssets返回参数结构体
-    public struct ScanComplianceScanFailedAssetsResponse: TCResponseModel {
+    public struct ScanComplianceScanFailedAssetsResponse: TCResponse {
         /// 返回重新检测任务的ID。
         public let taskId: UInt64
 

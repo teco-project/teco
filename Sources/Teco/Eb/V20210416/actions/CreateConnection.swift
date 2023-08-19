@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CreateConnection请求参数结构体
-    public struct CreateConnectionRequest: TCRequestModel {
+    public struct CreateConnectionRequest: TCRequest {
         /// 连接器描述
         public let connectionDescription: ConnectionDescription
 
@@ -59,7 +59,7 @@ extension Eb {
     }
 
     /// CreateConnection返回参数结构体
-    public struct CreateConnectionResponse: TCResponseModel {
+    public struct CreateConnectionResponse: TCResponse {
         /// 连接器ID
         public let connectionId: String
 

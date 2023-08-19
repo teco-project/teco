@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateSecurityRules请求参数结构体
-    public struct CreateSecurityRulesRequest: TCRequestModel {
+    public struct CreateSecurityRulesRequest: TCRequest {
         /// 安全策略ID
         public let policyId: String
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// CreateSecurityRules返回参数结构体
-    public struct CreateSecurityRulesResponse: TCResponseModel {
+    public struct CreateSecurityRulesResponse: TCResponse {
         /// 规则ID列表
         public let ruleIdList: [String]
 

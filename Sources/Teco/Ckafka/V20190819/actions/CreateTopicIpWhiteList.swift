@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateTopicIpWhiteList请求参数结构体
-    public struct CreateTopicIpWhiteListRequest: TCRequestModel {
+    public struct CreateTopicIpWhiteListRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Ckafka {
     }
 
     /// CreateTopicIpWhiteList返回参数结构体
-    public struct CreateTopicIpWhiteListResponse: TCResponseModel {
+    public struct CreateTopicIpWhiteListResponse: TCResponse {
         /// 删除主题IP白名单结果
         public let result: JgwOperateResponse
 

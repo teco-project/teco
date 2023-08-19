@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ModifyMntMbrBindRelateAcctBankCode请求参数结构体
-    public struct ModifyMntMbrBindRelateAcctBankCodeRequest: TCRequestModel {
+    public struct ModifyMntMbrBindRelateAcctBankCodeRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -69,7 +69,7 @@ extension Cpdp {
     }
 
     /// ModifyMntMbrBindRelateAcctBankCode返回参数结构体
-    public struct ModifyMntMbrBindRelateAcctBankCodeResponse: TCResponseModel {
+    public struct ModifyMntMbrBindRelateAcctBankCodeResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

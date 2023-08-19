@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DeleteRouteTriggerTime请求参数结构体
-    public struct DeleteRouteTriggerTimeRequest: TCRequestModel {
+    public struct DeleteRouteTriggerTimeRequest: TCRequest {
         /// 修改时间
         public let delayTime: String
 
@@ -34,7 +34,7 @@ extension Ckafka {
     }
 
     /// DeleteRouteTriggerTime返回参数结构体
-    public struct DeleteRouteTriggerTimeResponse: TCResponseModel {
+    public struct DeleteRouteTriggerTimeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

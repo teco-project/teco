@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sslpod {
     /// ResolveDomain请求参数结构体
-    public struct ResolveDomainRequest: TCRequestModel {
+    public struct ResolveDomainRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Sslpod {
     }
 
     /// ResolveDomain返回参数结构体
-    public struct ResolveDomainResponse: TCResponseModel {
+    public struct ResolveDomainResponse: TCResponse {
         /// 响应数据
         public let data: [String]
 

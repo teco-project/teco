@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeRestoreTasks请求参数结构体
-    public struct DescribeRestoreTasksRequest: TCRequestModel {
+    public struct DescribeRestoreTasksRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DescribeRestoreTasks返回参数结构体
-    public struct DescribeRestoreTasksResponse: TCResponseModel {
+    public struct DescribeRestoreTasksResponse: TCResponse {
         /// 回热任务列表
         public let restoreTasks: [RestoreTask]
 

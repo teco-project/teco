@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeEventDetail请求参数结构体
-    public struct DescribeEventDetailRequest: TCRequestModel {
+    public struct DescribeEventDetailRequest: TCRequest {
         /// 事件id
         public let eventId: UInt64
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeEventDetail返回参数结构体
-    public struct DescribeEventDetailResponse: TCResponseModel {
+    public struct DescribeEventDetailResponse: TCResponse {
         /// 事件详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: EventDto?

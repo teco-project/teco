@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeStreamPushInfoList请求参数结构体
-    public struct DescribeStreamPushInfoListRequest: TCRequestModel {
+    public struct DescribeStreamPushInfoListRequest: TCRequest {
         /// 流名称。
         public let streamName: String
 
@@ -54,7 +54,7 @@ extension Live {
     }
 
     /// DescribeStreamPushInfoList返回参数结构体
-    public struct DescribeStreamPushInfoListResponse: TCResponseModel {
+    public struct DescribeStreamPushInfoListResponse: TCResponse {
         /// 返回的数据列表。
         public let dataInfoList: [PushQualityData]
 

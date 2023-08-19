@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DeleteRepositoryTags请求参数结构体
-    public struct DeleteRepositoryTagsRequest: TCRequestModel {
+    public struct DeleteRepositoryTagsRequest: TCRequest {
         /// 实例ID
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// DeleteRepositoryTags返回参数结构体
-    public struct DeleteRepositoryTagsResponse: TCResponseModel {
+    public struct DeleteRepositoryTagsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

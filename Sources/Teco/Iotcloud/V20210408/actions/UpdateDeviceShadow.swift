@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// UpdateDeviceShadow请求参数结构体
-    public struct UpdateDeviceShadowRequest: TCRequestModel {
+    public struct UpdateDeviceShadowRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotcloud {
     }
 
     /// UpdateDeviceShadow返回参数结构体
-    public struct UpdateDeviceShadowResponse: TCResponseModel {
+    public struct UpdateDeviceShadowResponse: TCResponse {
         /// 设备影子数据，JSON字符串格式
         public let data: String
 

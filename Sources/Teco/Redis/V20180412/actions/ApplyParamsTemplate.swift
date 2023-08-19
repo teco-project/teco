@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ApplyParamsTemplate请求参数结构体
-    public struct ApplyParamsTemplateRequest: TCRequestModel {
+    public struct ApplyParamsTemplateRequest: TCRequest {
         /// 实例ID列表
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// ApplyParamsTemplate返回参数结构体
-    public struct ApplyParamsTemplateResponse: TCResponseModel {
+    public struct ApplyParamsTemplateResponse: TCResponse {
         /// 任务ID
         public let taskIds: [Int64]
 

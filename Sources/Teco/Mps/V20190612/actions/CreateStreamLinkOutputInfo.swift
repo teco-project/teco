@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateStreamLinkOutputInfo请求参数结构体
-    public struct CreateStreamLinkOutputInfoRequest: TCRequestModel {
+    public struct CreateStreamLinkOutputInfoRequest: TCRequest {
         /// 传输流Id。
         public let flowId: String
 
@@ -39,7 +39,7 @@ extension Mps {
     }
 
     /// CreateStreamLinkOutputInfo返回参数结构体
-    public struct CreateStreamLinkOutputInfoResponse: TCResponseModel {
+    public struct CreateStreamLinkOutputInfoResponse: TCResponse {
         /// 创建后的Output信息。
         public let info: DescribeOutput
 

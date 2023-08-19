@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateConfig请求参数结构体
-    public struct CreateConfigRequest: TCRequestModel {
+    public struct CreateConfigRequest: TCRequest {
         /// 采集配置名称
         public let name: String
 
@@ -73,7 +73,7 @@ extension Cls {
     }
 
     /// CreateConfig返回参数结构体
-    public struct CreateConfigResponse: TCResponseModel {
+    public struct CreateConfigResponse: TCResponse {
         /// 采集配置ID
         public let configId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ResetAccountPassword请求参数结构体
-    public struct ResetAccountPasswordRequest: TCRequestModel {
+    public struct ResetAccountPasswordRequest: TCRequest {
         /// 实例ID，形如postgres-4wdeb0zv
         public let dbInstanceId: String
 
@@ -44,7 +44,7 @@ extension Postgres {
     }
 
     /// ResetAccountPassword返回参数结构体
-    public struct ResetAccountPasswordResponse: TCResponseModel {
+    public struct ResetAccountPasswordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

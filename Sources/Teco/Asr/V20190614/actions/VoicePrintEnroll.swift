@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// VoicePrintEnroll请求参数结构体
-    public struct VoicePrintEnrollRequest: TCRequestModel {
+    public struct VoicePrintEnrollRequest: TCRequest {
         /// 音频格式 0: pcm, 1: wav
         public let voiceFormat: Int64
 
@@ -49,7 +49,7 @@ extension Asr {
     }
 
     /// VoicePrintEnroll返回参数结构体
-    public struct VoicePrintEnrollResponse: TCResponseModel {
+    public struct VoicePrintEnrollResponse: TCResponse {
         /// 说话人基本数据
         public let data: VoicePrintBaseData
 

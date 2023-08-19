@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteInLongAgent请求参数结构体
-    public struct DeleteInLongAgentRequest: TCRequestModel {
+    public struct DeleteInLongAgentRequest: TCRequest {
         /// 采集器ID
         public let agentId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteInLongAgent返回参数结构体
-    public struct DeleteInLongAgentResponse: TCResponseModel {
+    public struct DeleteInLongAgentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

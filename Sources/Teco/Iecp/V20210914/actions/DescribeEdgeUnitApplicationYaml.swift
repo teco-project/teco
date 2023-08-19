@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitApplicationYaml请求参数结构体
-    public struct DescribeEdgeUnitApplicationYamlRequest: TCRequestModel {
+    public struct DescribeEdgeUnitApplicationYamlRequest: TCRequest {
         /// 单元ID
         public let edgeUnitId: UInt64
 
@@ -39,7 +39,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitApplicationYaml返回参数结构体
-    public struct DescribeEdgeUnitApplicationYamlResponse: TCResponseModel {
+    public struct DescribeEdgeUnitApplicationYamlResponse: TCResponse {
         /// Yaml配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// SwitchInstanceVip请求参数结构体
-    public struct SwitchInstanceVipRequest: TCRequestModel {
+    public struct SwitchInstanceVipRequest: TCRequest {
         /// 源实例ID
         public let srcInstanceId: String
 
@@ -54,7 +54,7 @@ extension Redis {
     }
 
     /// SwitchInstanceVip返回参数结构体
-    public struct SwitchInstanceVipResponse: TCResponseModel {
+    public struct SwitchInstanceVipResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

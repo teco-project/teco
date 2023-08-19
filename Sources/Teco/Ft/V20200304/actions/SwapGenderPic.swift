@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ft {
     /// SwapGenderPic请求参数结构体
-    public struct SwapGenderPicRequest: TCRequestModel {
+    public struct SwapGenderPicRequest: TCRequest {
         /// 人脸转化性别信息。
         /// 您可以输入最多3个 GenderInfo 来实现给一张图中的最多3张人脸转换性别。
         public let genderInfos: [GenderInfo]
@@ -55,7 +55,7 @@ extension Ft {
     }
 
     /// SwapGenderPic返回参数结构体
-    public struct SwapGenderPicResponse: TCResponseModel {
+    public struct SwapGenderPicResponse: TCResponse {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
         public let resultImage: String
 

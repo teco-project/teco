@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DeleteSubnet请求参数结构体
-    public struct DeleteSubnetRequest: TCRequestModel {
+    public struct DeleteSubnetRequest: TCRequest {
         /// 私有网络ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DeleteSubnet返回参数结构体
-    public struct DeleteSubnetResponse: TCResponseModel {
+    public struct DeleteSubnetResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: UInt64
 

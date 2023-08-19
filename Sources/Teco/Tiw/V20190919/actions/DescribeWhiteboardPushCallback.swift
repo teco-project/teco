@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeWhiteboardPushCallback请求参数结构体
-    public struct DescribeWhiteboardPushCallbackRequest: TCRequestModel {
+    public struct DescribeWhiteboardPushCallbackRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -34,7 +34,7 @@ extension Tiw {
     }
 
     /// DescribeWhiteboardPushCallback返回参数结构体
-    public struct DescribeWhiteboardPushCallbackResponse: TCResponseModel {
+    public struct DescribeWhiteboardPushCallbackResponse: TCResponse {
         /// 白板推流事件回调地址，如果未设置回调地址，该字段为空字符串
         public let callback: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// UpdateCfsSnapshotAttribute请求参数结构体
-    public struct UpdateCfsSnapshotAttributeRequest: TCRequestModel {
+    public struct UpdateCfsSnapshotAttributeRequest: TCRequest {
         /// 文件系统快照ID
         public let snapshotId: String
 
@@ -44,7 +44,7 @@ extension Cfs {
     }
 
     /// UpdateCfsSnapshotAttribute返回参数结构体
-    public struct UpdateCfsSnapshotAttributeResponse: TCResponseModel {
+    public struct UpdateCfsSnapshotAttributeResponse: TCResponse {
         /// 文件系统快照ID
         public let snapshotId: String
 

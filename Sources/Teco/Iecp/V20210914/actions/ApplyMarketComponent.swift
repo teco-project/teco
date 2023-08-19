@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// ApplyMarketComponent请求参数结构体
-    public struct ApplyMarketComponentRequest: TCRequestModel {
+    public struct ApplyMarketComponentRequest: TCRequest {
         /// 组件ID
         public let id: Int64
 
@@ -34,7 +34,7 @@ extension Iecp {
     }
 
     /// ApplyMarketComponent返回参数结构体
-    public struct ApplyMarketComponentResponse: TCResponseModel {
+    public struct ApplyMarketComponentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tsw {
     /// DescribeServiceAlertObject请求参数结构体
-    public struct DescribeServiceAlertObjectRequest: TCRequestModel {
+    public struct DescribeServiceAlertObjectRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeServiceAlertObject返回参数结构体
-    public struct DescribeServiceAlertObjectResponse: TCResponseModel {
+    public struct DescribeServiceAlertObjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeAudioTask请求参数结构体
-    public struct DescribeAudioTaskRequest: TCRequestModel {
+    public struct DescribeAudioTaskRequest: TCRequest {
         /// 音频任务唯一id。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
         public let jobId: Int64
 
@@ -44,7 +44,7 @@ extension Tci {
     }
 
     /// DescribeAudioTask返回参数结构体
-    public struct DescribeAudioTaskResponse: TCResponseModel {
+    public struct DescribeAudioTaskResponse: TCResponse {
         /// 如果请求中开启了静音检测开关，则会返回所有的静音片段（静音时长超过阈值的片段）。
         public let allMuteSlice: AllMuteSlice
 

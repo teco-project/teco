@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DownloadReport请求参数结构体
-    public struct DownloadReportRequest: TCRequestModel {
+    public struct DownloadReportRequest: TCRequest {
         /// 模块名，本接口取值：Report
         public let module: String
 
@@ -54,7 +54,7 @@ extension Cr {
     }
 
     /// DownloadReport返回参数结构体
-    public struct DownloadReportResponse: TCResponseModel {
+    public struct DownloadReportResponse: TCResponse {
         /// 到期/逾期提醒日报下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dailyReportUrl: String?

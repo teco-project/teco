@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyInstanceParam请求参数结构体
-    public struct ModifyInstanceParamRequest: TCRequestModel {
+    public struct ModifyInstanceParamRequest: TCRequest {
         /// 实例短 ID 列表
         public let instanceIds: [String]
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// ModifyInstanceParam返回参数结构体
-    public struct ModifyInstanceParamResponse: TCResponseModel {
+    public struct ModifyInstanceParamResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

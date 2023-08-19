@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DescribeKeys请求参数结构体
-    public struct DescribeKeysRequest: TCRequestModel {
+    public struct DescribeKeysRequest: TCRequest {
         /// 查询CMK的ID列表，批量查询一次最多支持100个KeyId
         public let keyIds: [String]
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DescribeKeys返回参数结构体
-    public struct DescribeKeysResponse: TCResponseModel {
+    public struct DescribeKeysResponse: TCResponse {
         /// 返回的属性信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyMetadatas: [KeyMetadata]?

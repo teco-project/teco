@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyEscapeEventStatus请求参数结构体
-    public struct ModifyEscapeEventStatusRequest: TCRequestModel {
+    public struct ModifyEscapeEventStatusRequest: TCRequest {
         /// 处理事件ids
         public let eventIdSet: [String]
 
@@ -66,7 +66,7 @@ extension Tcss {
     }
 
     /// ModifyEscapeEventStatus返回参数结构体
-    public struct ModifyEscapeEventStatusResponse: TCResponseModel {
+    public struct ModifyEscapeEventStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

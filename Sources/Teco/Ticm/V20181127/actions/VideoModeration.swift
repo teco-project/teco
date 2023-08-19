@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ticm {
     /// VideoModeration请求参数结构体
-    public struct VideoModerationRequest: TCRequestModel {
+    public struct VideoModerationRequest: TCRequest {
         /// 需要审核的视频的URL地址
         public let videoUrl: String
 
@@ -49,7 +49,7 @@ extension Ticm {
     }
 
     /// VideoModeration返回参数结构体
-    public struct VideoModerationResponse: TCResponseModel {
+    public struct VideoModerationResponse: TCResponse {
         /// 视频审核任务ID
         public let vodTaskId: String
 

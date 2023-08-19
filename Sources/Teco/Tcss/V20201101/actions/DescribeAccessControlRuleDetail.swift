@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAccessControlRuleDetail请求参数结构体
-    public struct DescribeAccessControlRuleDetailRequest: TCRequestModel {
+    public struct DescribeAccessControlRuleDetailRequest: TCRequest {
         /// 策略唯一id
         public let ruleId: String?
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// DescribeAccessControlRuleDetail返回参数结构体
-    public struct DescribeAccessControlRuleDetailResponse: TCResponseModel {
+    public struct DescribeAccessControlRuleDetailResponse: TCResponse {
         /// 运行时策略详细信息
         public let ruleDetail: AccessControlRuleInfo
 

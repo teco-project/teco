@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// QueryDataRepositoryBandwidth请求参数结构体
-    public struct QueryDataRepositoryBandwidthRequest: TCRequestModel {
+    public struct QueryDataRepositoryBandwidthRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Goosefs {
     }
 
     /// QueryDataRepositoryBandwidth返回参数结构体
-    public struct QueryDataRepositoryBandwidthResponse: TCResponseModel {
+    public struct QueryDataRepositoryBandwidthResponse: TCResponse {
         /// 数据流动带宽, 单位MB/s
         public let bandwidth: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Btoe {
     /// VerifyEvidenceHash请求参数结构体
-    public struct VerifyEvidenceHashRequest: TCRequestModel {
+    public struct VerifyEvidenceHashRequest: TCRequest {
         /// 存证内容hash，hash类型即为用户在存证时所用或所选的hash类型
         public let evidenceHash: String
 
@@ -34,7 +34,7 @@ extension Btoe {
     }
 
     /// VerifyEvidenceHash返回参数结构体
-    public struct VerifyEvidenceHashResponse: TCResponseModel {
+    public struct VerifyEvidenceHashResponse: TCResponse {
         /// 核验结果，true为核验成功，false为核验失败
         public let result: Bool
 

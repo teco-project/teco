@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// ModifyAppStatus请求参数结构体
-    public struct ModifyAppStatusRequest: TCRequestModel {
+    public struct ModifyAppStatusRequest: TCRequest {
         /// 应用ID，创建应用后由后台生成并返回。
         public let bizId: UInt64
 
@@ -39,7 +39,7 @@ extension Gme {
     }
 
     /// ModifyAppStatus返回参数结构体
-    public struct ModifyAppStatusResponse: TCResponseModel {
+    public struct ModifyAppStatusResponse: TCResponse {
         /// 修改应用开关状态返回数据
         public let data: ModifyAppStatusResp
 

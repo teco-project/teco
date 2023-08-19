@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// AddProject请求参数结构体
-    public struct AddProjectRequest: TCRequestModel {
+    public struct AddProjectRequest: TCRequest {
         /// 项目名称
         public let projectName: String
 
@@ -39,7 +39,7 @@ extension Tag {
     }
 
     /// AddProject返回参数结构体
-    public struct AddProjectResponse: TCResponseModel {
+    public struct AddProjectResponse: TCResponse {
         /// 项目Id
         public let projectId: UInt64
 

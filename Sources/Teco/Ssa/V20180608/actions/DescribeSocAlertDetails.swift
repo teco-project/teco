@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeSocAlertDetails请求参数结构体
-    public struct DescribeSocAlertDetailsRequest: TCRequestModel {
+    public struct DescribeSocAlertDetailsRequest: TCRequest {
         /// 告警id
         public let alertId: String
 
@@ -39,7 +39,7 @@ extension Ssa {
     }
 
     /// DescribeSocAlertDetails返回参数结构体
-    public struct DescribeSocAlertDetailsResponse: TCResponseModel {
+    public struct DescribeSocAlertDetailsResponse: TCResponse {
         /// 返回详情数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AlertDetail?

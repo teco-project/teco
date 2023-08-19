@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// DescribeAccounts请求参数结构体
-    public struct DescribeAccountsRequest: TCRequestModel {
+    public struct DescribeAccountsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdcpg {
     }
 
     /// DescribeAccounts返回参数结构体
-    public struct DescribeAccountsResponse: TCResponseModel {
+    public struct DescribeAccountsResponse: TCResponse {
         /// 总条数
         public let totalCount: Int64
 

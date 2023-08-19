@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateWebThemeConfig请求参数结构体
-    public struct CreateWebThemeConfigRequest: TCRequestModel {
+    public struct CreateWebThemeConfigRequest: TCRequest {
         /// 操作人信息
         public let `operator`: UserInfo
 
@@ -48,7 +48,7 @@ extension Ess {
     }
 
     /// CreateWebThemeConfig返回参数结构体
-    public struct CreateWebThemeConfigResponse: TCResponseModel {
+    public struct CreateWebThemeConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

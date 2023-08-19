@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeMonitorMetrics请求参数结构体
-    public struct DescribeMonitorMetricsRequest: TCRequestModel {
+    public struct DescribeMonitorMetricsRequest: TCRequest {
         /// IECP边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -74,7 +74,7 @@ extension Iecp {
     }
 
     /// DescribeMonitorMetrics返回参数结构体
-    public struct DescribeMonitorMetricsResponse: TCResponseModel {
+    public struct DescribeMonitorMetricsResponse: TCResponse {
         /// 查询监控指标结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metrics: [MonitorMetricsColumn]?

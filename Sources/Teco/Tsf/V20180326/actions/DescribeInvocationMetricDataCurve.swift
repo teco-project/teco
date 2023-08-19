@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tsf {
     /// DescribeInvocationMetricDataCurve请求参数结构体
-    public struct DescribeInvocationMetricDataCurveRequest: TCRequestModel {
+    public struct DescribeInvocationMetricDataCurveRequest: TCRequest {
         /// 查询开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -72,7 +72,7 @@ extension Tsf {
     }
 
     /// DescribeInvocationMetricDataCurve返回参数结构体
-    public struct DescribeInvocationMetricDataCurveResponse: TCResponseModel {
+    public struct DescribeInvocationMetricDataCurveResponse: TCResponse {
         /// 指标监控数据曲线集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MetricDataCurve]?

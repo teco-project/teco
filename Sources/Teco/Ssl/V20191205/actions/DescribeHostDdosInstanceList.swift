@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostDdosInstanceList请求参数结构体
-    public struct DescribeHostDdosInstanceListRequest: TCRequestModel {
+    public struct DescribeHostDdosInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -54,7 +54,7 @@ extension Ssl {
     }
 
     /// DescribeHostDdosInstanceList返回参数结构体
-    public struct DescribeHostDdosInstanceListResponse: TCResponseModel {
+    public struct DescribeHostDdosInstanceListResponse: TCResponse {
         /// DDOS实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [DdosInstanceDetail]?

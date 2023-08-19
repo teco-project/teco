@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyMachineRemark请求参数结构体
-    public struct ModifyMachineRemarkRequest: TCRequestModel {
+    public struct ModifyMachineRemarkRequest: TCRequest {
         /// 主机Quuid
         public let quuid: String
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// ModifyMachineRemark返回参数结构体
-    public struct ModifyMachineRemarkResponse: TCResponseModel {
+    public struct ModifyMachineRemarkResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

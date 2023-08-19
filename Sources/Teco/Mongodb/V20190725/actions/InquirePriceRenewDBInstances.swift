@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// InquirePriceRenewDBInstances请求参数结构体
-    public struct InquirePriceRenewDBInstancesRequest: TCRequestModel {
+    public struct InquirePriceRenewDBInstancesRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同，接口单次最多只支持5个实例进行操作。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Mongodb {
     }
 
     /// InquirePriceRenewDBInstances返回参数结构体
-    public struct InquirePriceRenewDBInstancesResponse: TCResponseModel {
+    public struct InquirePriceRenewDBInstancesResponse: TCResponse {
         /// 价格
         public let price: DBInstancePrice
 

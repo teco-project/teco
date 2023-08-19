@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribePackIndex请求参数结构体
-    public struct DescribePackIndexRequest: TCRequestModel {
+    public struct DescribePackIndexRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示高防包；net表示高防IP专业版）
         public let business: String
 
@@ -34,7 +34,7 @@ extension Dayu {
     }
 
     /// DescribePackIndex返回参数结构体
-    public struct DescribePackIndexResponse: TCResponseModel {
+    public struct DescribePackIndexResponse: TCResponse {
         /// 字段值，如下：
         /// TotalPackCount：资源数
         /// AttackPackCount：清洗中的资源数

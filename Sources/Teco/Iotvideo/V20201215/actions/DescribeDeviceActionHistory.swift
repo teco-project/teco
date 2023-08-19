@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeDeviceActionHistory请求参数结构体
-    public struct DescribeDeviceActionHistoryRequest: TCRequestModel {
+    public struct DescribeDeviceActionHistoryRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -64,7 +64,7 @@ extension Iotvideo {
     }
 
     /// DescribeDeviceActionHistory返回参数结构体
-    public struct DescribeDeviceActionHistoryResponse: TCResponseModel {
+    public struct DescribeDeviceActionHistoryResponse: TCResponse {
         /// 总条数
         public let totalCounts: UInt64
 

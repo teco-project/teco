@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeInstalledPlugins请求参数结构体
-    public struct DescribeInstalledPluginsRequest: TCRequestModel {
+    public struct DescribeInstalledPluginsRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-kleu3gt0
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribeInstalledPlugins返回参数结构体
-    public struct DescribeInstalledPluginsResponse: TCResponseModel {
+    public struct DescribeInstalledPluginsResponse: TCResponse {
         /// 插件列表
         public let pluginSet: [GrafanaPlugin]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceShards请求参数结构体
-    public struct DescribeInstanceShardsRequest: TCRequestModel {
+    public struct DescribeInstanceShardsRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -41,7 +41,7 @@ extension Redis {
     }
 
     /// DescribeInstanceShards返回参数结构体
-    public struct DescribeInstanceShardsResponse: TCResponseModel {
+    public struct DescribeInstanceShardsResponse: TCResponse {
         /// 实例分片列表信息，包括：节点信息、节点ID、Key数量、使用容量、容量倾斜率等信息。
         public let instanceShards: [InstanceClusterShard]
 

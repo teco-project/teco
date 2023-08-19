@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribePostpayPackageFreeQuotas请求参数结构体
-    public struct DescribePostpayPackageFreeQuotasRequest: TCRequestModel {
+    public struct DescribePostpayPackageFreeQuotasRequest: TCRequest {
         /// 环境ID
         public let envId: String?
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribePostpayPackageFreeQuotas返回参数结构体
-    public struct DescribePostpayPackageFreeQuotasResponse: TCResponseModel {
+    public struct DescribePostpayPackageFreeQuotasResponse: TCResponse {
         /// 免费量资源信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packageFreeQuotaInfos: [PackageFreeQuotaInfo]?

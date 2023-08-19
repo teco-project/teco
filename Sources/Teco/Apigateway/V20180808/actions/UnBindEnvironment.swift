@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnBindEnvironment请求参数结构体
-    public struct UnBindEnvironmentRequest: TCRequestModel {
+    public struct UnBindEnvironmentRequest: TCRequest {
         /// 绑定类型，取值为 API、SERVICE，默认值为 SERVICE。
         public let bindType: String
 
@@ -54,7 +54,7 @@ extension Apigateway {
     }
 
     /// UnBindEnvironment返回参数结构体
-    public struct UnBindEnvironmentResponse: TCResponseModel {
+    public struct UnBindEnvironmentResponse: TCResponse {
         /// 解绑操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

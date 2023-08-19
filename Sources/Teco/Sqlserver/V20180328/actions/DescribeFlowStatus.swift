@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeFlowStatus请求参数结构体
-    public struct DescribeFlowStatusRequest: TCRequestModel {
+    public struct DescribeFlowStatusRequest: TCRequest {
         /// 流程ID
         public let flowId: Int64
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeFlowStatus返回参数结构体
-    public struct DescribeFlowStatusResponse: TCResponseModel {
+    public struct DescribeFlowStatusResponse: TCResponse {
         /// 流程状态，0：成功，1：失败，2：运行中
         public let status: Int64
 

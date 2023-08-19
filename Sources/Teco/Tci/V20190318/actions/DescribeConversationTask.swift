@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DescribeConversationTask请求参数结构体
-    public struct DescribeConversationTaskRequest: TCRequestModel {
+    public struct DescribeConversationTaskRequest: TCRequest {
         /// 音频任务唯一id。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
         public let jobId: Int64
 
@@ -49,7 +49,7 @@ extension Tci {
     }
 
     /// DescribeConversationTask返回参数结构体
-    public struct DescribeConversationTaskResponse: TCResponseModel {
+    public struct DescribeConversationTaskResponse: TCResponse {
         /// 返回的当前音频的统计信息。当进度为100时返回。
         public let asrStat: ASRStat
 

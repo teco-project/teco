@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeProxyGroupDetails请求参数结构体
-    public struct DescribeProxyGroupDetailsRequest: TCRequestModel {
+    public struct DescribeProxyGroupDetailsRequest: TCRequest {
         /// 通道组ID。
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeProxyGroupDetails返回参数结构体
-    public struct DescribeProxyGroupDetailsResponse: TCResponseModel {
+    public struct DescribeProxyGroupDetailsResponse: TCResponse {
         /// 通道组详细信息。
         public let proxyGroupDetail: ProxyGroupDetail
 

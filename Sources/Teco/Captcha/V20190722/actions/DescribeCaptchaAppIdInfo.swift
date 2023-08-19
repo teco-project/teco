@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaAppIdInfo请求参数结构体
-    public struct DescribeCaptchaAppIdInfoRequest: TCRequestModel {
+    public struct DescribeCaptchaAppIdInfoRequest: TCRequest {
         /// 验证码应用注册APPID
         public let captchaAppId: UInt64
 
@@ -34,7 +34,7 @@ extension Captcha {
     }
 
     /// DescribeCaptchaAppIdInfo返回参数结构体
-    public struct DescribeCaptchaAppIdInfoResponse: TCResponseModel {
+    public struct DescribeCaptchaAppIdInfoResponse: TCResponse {
         /// 界面风格
         public let schemeColor: String
 

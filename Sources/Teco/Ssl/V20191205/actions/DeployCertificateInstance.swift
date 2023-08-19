@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DeployCertificateInstance请求参数结构体
-    public struct DeployCertificateInstanceRequest: TCRequestModel {
+    public struct DeployCertificateInstanceRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -53,7 +53,7 @@ extension Ssl {
     }
 
     /// DeployCertificateInstance返回参数结构体
-    public struct DeployCertificateInstanceResponse: TCResponseModel {
+    public struct DeployCertificateInstanceResponse: TCResponse {
         /// 云资源部署任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployRecordId: UInt64?

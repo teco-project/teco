@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// InitializeDisks请求参数结构体
-    public struct InitializeDisksRequest: TCRequestModel {
+    public struct InitializeDisksRequest: TCRequest {
         /// 待重新初始化的云硬盘ID列表， 单次初始化限制20块以内
         public let diskIds: [String]
 
@@ -34,7 +34,7 @@ extension Cbs {
     }
 
     /// InitializeDisks返回参数结构体
-    public struct InitializeDisksResponse: TCResponseModel {
+    public struct InitializeDisksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

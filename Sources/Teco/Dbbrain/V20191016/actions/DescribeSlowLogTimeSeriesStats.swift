@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeSlowLogTimeSeriesStats请求参数结构体
-    public struct DescribeSlowLogTimeSeriesStatsRequest: TCRequestModel {
+    public struct DescribeSlowLogTimeSeriesStatsRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -57,7 +57,7 @@ extension Dbbrain {
     }
 
     /// DescribeSlowLogTimeSeriesStats返回参数结构体
-    public struct DescribeSlowLogTimeSeriesStatsResponse: TCResponseModel {
+    public struct DescribeSlowLogTimeSeriesStatsResponse: TCResponse {
         /// 柱间单位时间间隔，单位为秒。
         public let period: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DeleteBackup请求参数结构体
-    public struct DeleteBackupRequest: TCRequestModel {
+    public struct DeleteBackupRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DeleteBackup返回参数结构体
-    public struct DeleteBackupResponse: TCResponseModel {
+    public struct DeleteBackupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

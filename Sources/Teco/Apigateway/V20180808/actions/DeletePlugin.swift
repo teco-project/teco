@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeletePlugin请求参数结构体
-    public struct DeletePluginRequest: TCRequestModel {
+    public struct DeletePluginRequest: TCRequest {
         /// 要删除的API网关插件的ID。
         public let pluginId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DeletePlugin返回参数结构体
-    public struct DeletePluginResponse: TCResponseModel {
+    public struct DeletePluginResponse: TCResponse {
         /// 删除操作是否成功。
         public let result: Bool
 

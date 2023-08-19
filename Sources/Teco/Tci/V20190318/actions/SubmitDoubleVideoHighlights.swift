@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitDoubleVideoHighlights请求参数结构体
-    public struct SubmitDoubleVideoHighlightsRequest: TCRequestModel {
+    public struct SubmitDoubleVideoHighlightsRequest: TCRequest {
         /// 学生视频url
         public let fileContent: String
 
@@ -69,7 +69,7 @@ extension Tci {
     }
 
     /// SubmitDoubleVideoHighlights返回参数结构体
-    public struct SubmitDoubleVideoHighlightsResponse: TCResponseModel {
+    public struct SubmitDoubleVideoHighlightsResponse: TCResponse {
         /// 视频拆条任务ID，用来唯一标识视频拆条任务。
         public let jobId: Int64
 

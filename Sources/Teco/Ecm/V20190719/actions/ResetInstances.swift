@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ResetInstances请求参数结构体
-    public struct ResetInstancesRequest: TCRequestModel {
+    public struct ResetInstancesRequest: TCRequest {
         /// 待重装的实例ID列表。
         public let instanceIdSet: [String]
 
@@ -64,7 +64,7 @@ extension Ecm {
     }
 
     /// ResetInstances返回参数结构体
-    public struct ResetInstancesResponse: TCResponseModel {
+    public struct ResetInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

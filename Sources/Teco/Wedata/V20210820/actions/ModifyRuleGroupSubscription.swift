@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyRuleGroupSubscription请求参数结构体
-    public struct ModifyRuleGroupSubscriptionRequest: TCRequestModel {
+    public struct ModifyRuleGroupSubscriptionRequest: TCRequest {
         /// 规则组ID
         public let ruleGroupId: UInt64?
 
@@ -69,7 +69,7 @@ extension Wedata {
     }
 
     /// ModifyRuleGroupSubscription返回参数结构体
-    public struct ModifyRuleGroupSubscriptionResponse: TCResponseModel {
+    public struct ModifyRuleGroupSubscriptionResponse: TCResponse {
         /// 规则组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: UInt64?

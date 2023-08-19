@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bizlive {
     /// DescribeWorkers请求参数结构体
-    public struct DescribeWorkersRequest: TCRequestModel {
+    public struct DescribeWorkersRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWorkers返回参数结构体
-    public struct DescribeWorkersResponse: TCResponseModel {
+    public struct DescribeWorkersResponse: TCResponse {
         /// 各个区域的机器情况
         public let regionDetail: [WorkerRegionInfo]
 

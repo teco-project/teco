@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CloneAccount请求参数结构体
-    public struct CloneAccountRequest: TCRequestModel {
+    public struct CloneAccountRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Mariadb {
     }
 
     /// CloneAccount返回参数结构体
-    public struct CloneAccountResponse: TCResponseModel {
+    public struct CloneAccountResponse: TCResponse {
         /// 异步任务流程ID。
         public let flowId: UInt64
 

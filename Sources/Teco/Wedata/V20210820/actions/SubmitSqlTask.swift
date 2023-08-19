@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SubmitSqlTask请求参数结构体
-    public struct SubmitSqlTaskRequest: TCRequestModel {
+    public struct SubmitSqlTaskRequest: TCRequest {
         /// 数据库类型
         public let databaseType: String
 
@@ -94,7 +94,7 @@ extension Wedata {
     }
 
     /// SubmitSqlTask返回参数结构体
-    public struct SubmitSqlTaskResponse: TCResponseModel {
+    public struct SubmitSqlTaskResponse: TCResponse {
         /// 任务提交记录
         public let record: AdhocRecord
 

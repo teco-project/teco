@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// PublishRRPCMessage请求参数结构体
-    public struct PublishRRPCMessageRequest: TCRequestModel {
+    public struct PublishRRPCMessageRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotcloud {
     }
 
     /// PublishRRPCMessage返回参数结构体
-    public struct PublishRRPCMessageResponse: TCResponseModel {
+    public struct PublishRRPCMessageResponse: TCResponse {
         /// RRPC消息ID
         public let messageId: Int64
 

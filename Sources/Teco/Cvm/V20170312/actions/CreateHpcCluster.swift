@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// CreateHpcCluster请求参数结构体
-    public struct CreateHpcClusterRequest: TCRequestModel {
+    public struct CreateHpcClusterRequest: TCRequest {
         /// 可用区。
         public let zone: String
 
@@ -44,7 +44,7 @@ extension Cvm {
     }
 
     /// CreateHpcCluster返回参数结构体
-    public struct CreateHpcClusterResponse: TCResponseModel {
+    public struct CreateHpcClusterResponse: TCResponse {
         /// 高性能计算集群信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hpcClusterSet: [HpcClusterInfo]?

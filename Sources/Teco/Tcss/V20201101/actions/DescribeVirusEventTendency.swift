@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusEventTendency请求参数结构体
-    public struct DescribeVirusEventTendencyRequest: TCRequestModel {
+    public struct DescribeVirusEventTendencyRequest: TCRequest {
         /// 趋势周期(默认为7天)
         public let tendencyPeriod: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusEventTendency返回参数结构体
-    public struct DescribeVirusEventTendencyResponse: TCResponseModel {
+    public struct DescribeVirusEventTendencyResponse: TCResponse {
         /// 趋势列表
         public let list: [VirusTendencyInfo]
 

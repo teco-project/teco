@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// PublishMessage请求参数结构体
-    public struct PublishMessageRequest: TCRequestModel {
+    public struct PublishMessageRequest: TCRequest {
         /// 消息发往的主题。命名规则：${ProductId}/${DeviceName}/[a-zA-Z0-9:_-]{1,128}
         public let topic: String
 
@@ -59,7 +59,7 @@ extension Iotcloud {
     }
 
     /// PublishMessage返回参数结构体
-    public struct PublishMessageResponse: TCResponseModel {
+    public struct PublishMessageResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

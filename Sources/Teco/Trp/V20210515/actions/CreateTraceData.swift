@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateTraceData请求参数结构体
-    public struct CreateTraceDataRequest: TCRequestModel {
+    public struct CreateTraceDataRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -84,7 +84,7 @@ extension Trp {
     }
 
     /// CreateTraceData返回参数结构体
-    public struct CreateTraceDataResponse: TCResponseModel {
+    public struct CreateTraceDataResponse: TCResponse {
         /// 溯源ID
         public let traceId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// QueryCrossVpcSubnetSupportForClientNode请求参数结构体
-    public struct QueryCrossVpcSubnetSupportForClientNodeRequest: TCRequestModel {
+    public struct QueryCrossVpcSubnetSupportForClientNodeRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Goosefs {
     }
 
     /// QueryCrossVpcSubnetSupportForClientNode返回参数结构体
-    public struct QueryCrossVpcSubnetSupportForClientNodeResponse: TCResponseModel {
+    public struct QueryCrossVpcSubnetSupportForClientNodeResponse: TCResponse {
         /// 支持的子网信息集合
         public let subnetInfoCollection: [SubnetInfo]
 

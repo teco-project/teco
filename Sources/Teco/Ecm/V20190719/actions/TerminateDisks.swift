@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// TerminateDisks请求参数结构体
-    public struct TerminateDisksRequest: TCRequestModel {
+    public struct TerminateDisksRequest: TCRequest {
         /// 需退还的云盘ID列表。
         public let diskIds: [String]
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// TerminateDisks返回参数结构体
-    public struct TerminateDisksResponse: TCResponseModel {
+    public struct TerminateDisksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

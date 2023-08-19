@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeUnusualEvent请求参数结构体
-    public struct DescribeUnusualEventRequest: TCRequestModel {
+    public struct DescribeUnusualEventRequest: TCRequest {
         /// 用户SdkAppId（如：1400xxxxxx）
         public let sdkAppId: UInt64
 
@@ -50,7 +50,7 @@ extension Trtc {
     }
 
     /// DescribeUnusualEvent返回参数结构体
-    public struct DescribeUnusualEventResponse: TCResponseModel {
+    public struct DescribeUnusualEventResponse: TCResponse {
         /// 返回的数据总条数
         /// 范围：[0，20]
         public let total: UInt64

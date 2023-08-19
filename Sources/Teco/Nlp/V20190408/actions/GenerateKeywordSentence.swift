@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// GenerateKeywordSentence请求参数结构体
-    public struct GenerateKeywordSentenceRequest: TCRequestModel {
+    public struct GenerateKeywordSentenceRequest: TCRequest {
         /// 生成句子的关键词，关键词个数需不超过4个，中文关键词长度应不超过10字符，英文关键词长度不超过3个单词。关键词中不可包含标点符号。
         public let wordList: [String]
 
@@ -48,7 +48,7 @@ extension Nlp {
     }
 
     /// GenerateKeywordSentence返回参数结构体
-    public struct GenerateKeywordSentenceResponse: TCResponseModel {
+    public struct GenerateKeywordSentenceResponse: TCResponse {
         /// 生成的句子列表。
         public let keywordSentenceList: [KeywordSentence]
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// ModifyPurgeFetchTaskStatus请求参数结构体
-    public struct ModifyPurgeFetchTaskStatusRequest: TCRequestModel {
+    public struct ModifyPurgeFetchTaskStatusRequest: TCRequest {
         /// 执行时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -56,7 +56,7 @@ extension Cdn {
     }
 
     /// ModifyPurgeFetchTaskStatus返回参数结构体
-    public struct ModifyPurgeFetchTaskStatusResponse: TCResponseModel {
+    public struct ModifyPurgeFetchTaskStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

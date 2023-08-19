@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// TerminateInstances请求参数结构体
-    public struct TerminateInstancesRequest: TCRequestModel {
+    public struct TerminateInstancesRequest: TCRequest {
         /// 待销毁的实例ID列表。
         public let instanceIdSet: [String]
 
@@ -51,7 +51,7 @@ extension Ecm {
     }
 
     /// TerminateInstances返回参数结构体
-    public struct TerminateInstancesResponse: TCResponseModel {
+    public struct TerminateInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

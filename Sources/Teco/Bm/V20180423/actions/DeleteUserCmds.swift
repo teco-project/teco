@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DeleteUserCmds请求参数结构体
-    public struct DeleteUserCmdsRequest: TCRequestModel {
+    public struct DeleteUserCmdsRequest: TCRequest {
         /// 需要删除的脚本ID
         public let cmdIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DeleteUserCmds返回参数结构体
-    public struct DeleteUserCmdsResponse: TCResponseModel {
+    public struct DeleteUserCmdsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

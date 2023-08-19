@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyCcnAttachedInstancesAttribute请求参数结构体
-    public struct ModifyCcnAttachedInstancesAttributeRequest: TCRequestModel {
+    public struct ModifyCcnAttachedInstancesAttributeRequest: TCRequest {
         /// CCN实例ID。形如：ccn-f49l6u0z。
         public let ccnId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// ModifyCcnAttachedInstancesAttribute返回参数结构体
-    public struct ModifyCcnAttachedInstancesAttributeResponse: TCResponseModel {
+    public struct ModifyCcnAttachedInstancesAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

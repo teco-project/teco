@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeAccountQuota请求参数结构体
-    public struct DescribeAccountQuotaRequest: TCRequestModel {
+    public struct DescribeAccountQuotaRequest: TCRequest {
         /// - **zone**
         ///
         /// 按照【**可用区**】进行过滤。可用区形如：ap-guangzhou-1。
@@ -52,7 +52,7 @@ extension Cvm {
     }
 
     /// DescribeAccountQuota返回参数结构体
-    public struct DescribeAccountQuotaResponse: TCResponseModel {
+    public struct DescribeAccountQuotaResponse: TCResponse {
         /// 用户appid
         public let appId: UInt64
 

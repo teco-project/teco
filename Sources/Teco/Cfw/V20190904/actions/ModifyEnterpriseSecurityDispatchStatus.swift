@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyEnterpriseSecurityDispatchStatus请求参数结构体
-    public struct ModifyEnterpriseSecurityDispatchStatusRequest: TCRequestModel {
+    public struct ModifyEnterpriseSecurityDispatchStatusRequest: TCRequest {
         /// 0：打开立即下发开关；
         ///
         /// 1：关闭立即下发开关；
@@ -38,7 +38,7 @@ extension Cfw {
     }
 
     /// ModifyEnterpriseSecurityDispatchStatus返回参数结构体
-    public struct ModifyEnterpriseSecurityDispatchStatusResponse: TCResponseModel {
+    public struct ModifyEnterpriseSecurityDispatchStatusResponse: TCResponse {
         /// 0: 修改成功, 其他: 修改失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?

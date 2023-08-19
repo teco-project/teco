@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// DescribeLink请求参数结构体
-    public struct DescribeLinkRequest: TCRequestModel {
+    public struct DescribeLinkRequest: TCRequest {
         /// 云兔卡ID
         public let linkID: Int64
 
@@ -39,7 +39,7 @@ extension Hasim {
     }
 
     /// DescribeLink返回参数结构体
-    public struct DescribeLinkResponse: TCResponseModel {
+    public struct DescribeLinkResponse: TCResponse {
         /// 云兔连接详细信息
         public let data: LinkDetailInfo
 

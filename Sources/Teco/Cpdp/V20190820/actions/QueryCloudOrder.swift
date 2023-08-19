@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryCloudOrder请求参数结构体
-    public struct QueryCloudOrderRequest: TCRequestModel {
+    public struct QueryCloudOrderRequest: TCRequest {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// QueryCloudOrder返回参数结构体
-    public struct QueryCloudOrderResponse: TCResponseModel {
+    public struct QueryCloudOrderResponse: TCResponse {
         /// 订单数量
         public let totalNum: Int64
 

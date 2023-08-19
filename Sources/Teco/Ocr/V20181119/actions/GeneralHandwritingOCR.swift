@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// GeneralHandwritingOCR请求参数结构体
-    public struct GeneralHandwritingOCRRequest: TCRequestModel {
+    public struct GeneralHandwritingOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -63,7 +63,7 @@ extension Ocr {
     }
 
     /// GeneralHandwritingOCR返回参数结构体
-    public struct GeneralHandwritingOCRResponse: TCResponseModel {
+    public struct GeneralHandwritingOCRResponse: TCResponse {
         /// 检测到的文本信息，具体内容请点击左侧链接。
         public let textDetections: [TextGeneralHandwriting]
 

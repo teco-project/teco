@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// BindRs请求参数结构体
-    public struct BindRsRequest: TCRequestModel {
+    public struct BindRsRequest: TCRequest {
         /// Eip实例ID
         public let eipId: String
 
@@ -39,7 +39,7 @@ extension Bmeip {
     }
 
     /// BindRs返回参数结构体
-    public struct BindRsResponse: TCResponseModel {
+    public struct BindRsResponse: TCResponse {
         /// 绑定黑石物理机异步任务ID，可以通过DescribeEipTask查询任务状态
         public let taskId: Int64
 

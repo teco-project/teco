@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// EvaluateWordSimilarity请求参数结构体
-    public struct EvaluateWordSimilarityRequest: TCRequestModel {
+    public struct EvaluateWordSimilarityRequest: TCRequest {
         /// 计算相似度的源词。（仅支持UTF-8格式，不超过10字符）
         public let sourceWord: String
 
@@ -39,7 +39,7 @@ extension Nlp {
     }
 
     /// EvaluateWordSimilarity返回参数结构体
-    public struct EvaluateWordSimilarityResponse: TCResponseModel {
+    public struct EvaluateWordSimilarityResponse: TCResponse {
         /// 词相似度分值。
         public let similarity: Float
 

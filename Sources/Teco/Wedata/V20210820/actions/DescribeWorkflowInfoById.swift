@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeWorkflowInfoById请求参数结构体
-    public struct DescribeWorkflowInfoByIdRequest: TCRequestModel {
+    public struct DescribeWorkflowInfoByIdRequest: TCRequest {
         /// 工作流id
         public let workflowId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeWorkflowInfoById返回参数结构体
-    public struct DescribeWorkflowInfoByIdResponse: TCResponseModel {
+    public struct DescribeWorkflowInfoByIdResponse: TCResponse {
         /// 工作流调度详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: WorkflowSchedulerOpsDto?

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// ExportBotData请求参数结构体
-    public struct ExportBotDataRequest: TCRequestModel {
+    public struct ExportBotDataRequest: TCRequest {
         /// 模块名。默认值（固定）：AiApi
         public let module: String
 
@@ -59,7 +59,7 @@ extension Cr {
     }
 
     /// ExportBotData返回参数结构体
-    public struct ExportBotDataResponse: TCResponseModel {
+    public struct ExportBotDataResponse: TCResponse {
         /// 导出文件列表
         public let data: [BotFileData]
 

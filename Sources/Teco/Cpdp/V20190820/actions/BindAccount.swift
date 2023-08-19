@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// BindAccount请求参数结构体
-    public struct BindAccountRequest: TCRequestModel {
+    public struct BindAccountRequest: TCRequest {
         /// 主播Id
         public let anchorId: String
 
@@ -54,7 +54,7 @@ extension Cpdp {
     }
 
     /// BindAccount返回参数结构体
-    public struct BindAccountResponse: TCResponseModel {
+    public struct BindAccountResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

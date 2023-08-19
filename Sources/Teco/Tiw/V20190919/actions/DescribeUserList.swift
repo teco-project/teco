@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeUserList请求参数结构体
-    public struct DescribeUserListRequest: TCRequestModel {
+    public struct DescribeUserListRequest: TCRequest {
         /// 白板应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -54,7 +54,7 @@ extension Tiw {
     }
 
     /// DescribeUserList返回参数结构体
-    public struct DescribeUserListResponse: TCResponseModel {
+    public struct DescribeUserListResponse: TCResponse {
         /// 房间内的用户列表
         public let userList: [UserListItem]
 

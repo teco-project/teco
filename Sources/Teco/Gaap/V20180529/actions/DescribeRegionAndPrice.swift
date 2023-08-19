@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRegionAndPrice请求参数结构体
-    public struct DescribeRegionAndPriceRequest: TCRequestModel {
+    public struct DescribeRegionAndPriceRequest: TCRequest {
         /// IP版本，可取值：IPv4、IPv6，默认值IPv4
         public let ipAddressVersion: String?
 
@@ -39,7 +39,7 @@ extension Gaap {
     }
 
     /// DescribeRegionAndPrice返回参数结构体
-    public struct DescribeRegionAndPriceResponse: TCResponseModel {
+    public struct DescribeRegionAndPriceResponse: TCResponse {
         /// 源站区域总数
         public let totalCount: UInt64
 

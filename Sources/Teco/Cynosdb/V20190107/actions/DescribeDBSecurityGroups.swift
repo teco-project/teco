@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeDBSecurityGroups请求参数结构体
-    public struct DescribeDBSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeDBSecurityGroupsRequest: TCRequest {
         /// 实例组ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeDBSecurityGroups返回参数结构体
-    public struct DescribeDBSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeDBSecurityGroupsResponse: TCResponse {
         /// 安全组信息
         public let groups: [SecurityGroup]
 

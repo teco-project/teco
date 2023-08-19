@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DescribeMountPoint请求参数结构体
-    public struct DescribeMountPointRequest: TCRequestModel {
+    public struct DescribeMountPointRequest: TCRequest {
         /// 挂载点ID
         public let mountPointId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DescribeMountPoint返回参数结构体
-    public struct DescribeMountPointResponse: TCResponseModel {
+    public struct DescribeMountPointResponse: TCResponse {
         /// 挂载点
         public let mountPoint: MountPoint
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateComplianceTask请求参数结构体
-    public struct CreateComplianceTaskRequest: TCRequestModel {
+    public struct CreateComplianceTaskRequest: TCRequest {
         /// 指定要扫描的资产类型列表。
         /// ASSET_CONTAINER, 容器
         /// ASSET_IMAGE, 镜像
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// CreateComplianceTask返回参数结构体
-    public struct CreateComplianceTaskResponse: TCResponseModel {
+    public struct CreateComplianceTaskResponse: TCResponse {
         /// 返回创建的合规检查任务的ID。
         public let taskId: UInt64
 

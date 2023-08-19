@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// ResetPassword请求参数结构体
-    public struct ResetPasswordRequest: TCRequestModel {
+    public struct ResetPasswordRequest: TCRequest {
         /// 用户ID
         public let userId: String
 
@@ -39,7 +39,7 @@ extension Ciam {
     }
 
     /// ResetPassword返回参数结构体
-    public struct ResetPasswordResponse: TCResponseModel {
+    public struct ResetPasswordResponse: TCResponse {
         /// 重置后的用户密码
         public let password: String
 

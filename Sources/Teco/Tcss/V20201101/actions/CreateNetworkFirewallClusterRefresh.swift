@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// CreateNetworkFirewallClusterRefresh请求参数结构体
-    public struct CreateNetworkFirewallClusterRefreshRequest: TCRequestModel {
+    public struct CreateNetworkFirewallClusterRefreshRequest: TCRequest {
         public init() {
         }
     }
 
     /// CreateNetworkFirewallClusterRefresh返回参数结构体
-    public struct CreateNetworkFirewallClusterRefreshResponse: TCResponseModel {
+    public struct CreateNetworkFirewallClusterRefreshResponse: TCResponse {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
 

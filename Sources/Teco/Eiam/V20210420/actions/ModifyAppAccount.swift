@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// ModifyAppAccount请求参数结构体
-    public struct ModifyAppAccountRequest: TCRequestModel {
+    public struct ModifyAppAccountRequest: TCRequest {
         /// 账号ID。
         public let accountId: String
 
@@ -49,7 +49,7 @@ extension Eiam {
     }
 
     /// ModifyAppAccount返回参数结构体
-    public struct ModifyAppAccountResponse: TCResponseModel {
+    public struct ModifyAppAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

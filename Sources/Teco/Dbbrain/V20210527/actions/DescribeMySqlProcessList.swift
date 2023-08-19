@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeMySqlProcessList请求参数结构体
-    public struct DescribeMySqlProcessListRequest: TCRequestModel {
+    public struct DescribeMySqlProcessListRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -84,7 +84,7 @@ extension Dbbrain {
     }
 
     /// DescribeMySqlProcessList返回参数结构体
-    public struct DescribeMySqlProcessListResponse: TCResponseModel {
+    public struct DescribeMySqlProcessListResponse: TCResponse {
         /// 实时线程列表。
         public let processList: [MySqlProcess]
 

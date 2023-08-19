@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cis {
     /// InquiryPriceCreateCis请求参数结构体
-    public struct InquiryPriceCreateCisRequest: TCRequestModel {
+    public struct InquiryPriceCreateCisRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -44,7 +44,7 @@ extension Cis {
     }
 
     /// InquiryPriceCreateCis返回参数结构体
-    public struct InquiryPriceCreateCisResponse: TCResponseModel {
+    public struct InquiryPriceCreateCisResponse: TCResponse {
         /// 价格
         public let price: Price
 

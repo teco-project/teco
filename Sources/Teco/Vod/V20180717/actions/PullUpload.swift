@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Vod {
     /// PullUpload请求参数结构体
-    public struct PullUploadRequest: TCRequestModel {
+    public struct PullUploadRequest: TCRequest {
         /// 要拉取的媒体 URL，暂不支持拉取 Dash 格式（可以支持 HLS）。
         /// 支持的扩展名详见[媒体类型](https://cloud.tencent.com/document/product/266/9760#.E5.AA.92.E4.BD.93.E7.B1.BB.E5.9E.8B)。请确保媒体 URL 可以访问。
         public let mediaUrl: String
@@ -103,7 +103,7 @@ extension Vod {
     }
 
     /// PullUpload返回参数结构体
-    public struct PullUploadResponse: TCResponseModel {
+    public struct PullUploadResponse: TCResponse {
         /// 拉取上传视频的任务 ID，可以通过该 ID 查询拉取上传任务的状态。
         public let taskId: String
 

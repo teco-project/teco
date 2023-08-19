@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeCdnIp请求参数结构体
-    public struct DescribeCdnIpRequest: TCRequestModel {
+    public struct DescribeCdnIpRequest: TCRequest {
         /// 需要查询的 IP 列表
         public let ips: [String]
 
@@ -34,7 +34,7 @@ extension Cdn {
     }
 
     /// DescribeCdnIp返回参数结构体
-    public struct DescribeCdnIpResponse: TCResponseModel {
+    public struct DescribeCdnIpResponse: TCResponse {
         /// 查询的节点归属详情。
         public let ips: [CdnIp]
 

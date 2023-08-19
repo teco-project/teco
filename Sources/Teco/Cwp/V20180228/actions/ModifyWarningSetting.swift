@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyWarningSetting请求参数结构体
-    public struct ModifyWarningSettingRequest: TCRequestModel {
+    public struct ModifyWarningSettingRequest: TCRequest {
         /// 告警设置的修改内容
         public let warningObjects: [WarningObject]
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ModifyWarningSetting返回参数结构体
-    public struct ModifyWarningSettingResponse: TCResponseModel {
+    public struct ModifyWarningSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

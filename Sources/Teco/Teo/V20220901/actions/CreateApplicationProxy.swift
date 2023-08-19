@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// CreateApplicationProxy请求参数结构体
-    public struct CreateApplicationProxyRequest: TCRequestModel {
+    public struct CreateApplicationProxyRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -92,7 +92,7 @@ extension Teo {
     }
 
     /// CreateApplicationProxy返回参数结构体
-    public struct CreateApplicationProxyResponse: TCResponseModel {
+    public struct CreateApplicationProxyResponse: TCResponse {
         /// 新增的四层代理应用ID。
         public let proxyId: String
 

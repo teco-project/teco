@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DeleteEndUser请求参数结构体
-    public struct DeleteEndUserRequest: TCRequestModel {
+    public struct DeleteEndUserRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DeleteEndUser返回参数结构体
-    public struct DeleteEndUserResponse: TCResponseModel {
+    public struct DeleteEndUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

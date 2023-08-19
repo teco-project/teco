@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dcdb {
     /// DescribeDCDBInstanceDetail请求参数结构体
-    public struct DescribeDCDBInstanceDetailRequest: TCRequestModel {
+    public struct DescribeDCDBInstanceDetailRequest: TCRequest {
         /// 实例ID，形如dcdbt-7oaxtcb7
         public let instanceId: String
 
@@ -36,7 +36,7 @@ extension Dcdb {
     }
 
     /// DescribeDCDBInstanceDetail返回参数结构体
-    public struct DescribeDCDBInstanceDetailResponse: TCResponseModel {
+    public struct DescribeDCDBInstanceDetailResponse: TCResponse {
         /// 实例ID，形如dcdbt-7oaxtcb7
         public let instanceId: String
 

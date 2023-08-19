@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// ModifyScheduledSql请求参数结构体
-    public struct ModifyScheduledSqlRequest: TCRequestModel {
+    public struct ModifyScheduledSqlRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -84,7 +84,7 @@ extension Cls {
     }
 
     /// ModifyScheduledSql返回参数结构体
-    public struct ModifyScheduledSqlResponse: TCResponseModel {
+    public struct ModifyScheduledSqlResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

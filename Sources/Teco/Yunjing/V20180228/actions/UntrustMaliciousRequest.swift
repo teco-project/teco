@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// UntrustMaliciousRequest请求参数结构体
-    public struct UntrustMaliciousRequestRequest: TCRequestModel {
+    public struct UntrustMaliciousRequestRequest: TCRequest {
         /// 受信任记录ID。
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// UntrustMaliciousRequest返回参数结构体
-    public struct UntrustMaliciousRequestResponse: TCResponseModel {
+    public struct UntrustMaliciousRequestResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

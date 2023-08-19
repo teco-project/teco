@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DeleteAutoSnapshotPolicy请求参数结构体
-    public struct DeleteAutoSnapshotPolicyRequest: TCRequestModel {
+    public struct DeleteAutoSnapshotPolicyRequest: TCRequest {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DeleteAutoSnapshotPolicy返回参数结构体
-    public struct DeleteAutoSnapshotPolicyResponse: TCResponseModel {
+    public struct DeleteAutoSnapshotPolicyResponse: TCResponse {
         /// 快照策略ID
         public let autoSnapshotPolicyId: String
 

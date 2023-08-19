@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tse {
     /// DescribeSREInstanceAccessAddress请求参数结构体
-    public struct DescribeSREInstanceAccessAddressRequest: TCRequestModel {
+    public struct DescribeSREInstanceAccessAddressRequest: TCRequest {
         /// 注册引擎实例Id
         public let instanceId: String?
 
@@ -54,7 +54,7 @@ extension Tse {
     }
 
     /// DescribeSREInstanceAccessAddress返回参数结构体
-    public struct DescribeSREInstanceAccessAddressResponse: TCResponseModel {
+    public struct DescribeSREInstanceAccessAddressResponse: TCResponse {
         /// 内网访问地址
         public let intranetAddress: String
 

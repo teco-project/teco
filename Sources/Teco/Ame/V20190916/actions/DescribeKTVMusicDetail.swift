@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ame {
     /// DescribeKTVMusicDetail请求参数结构体
-    public struct DescribeKTVMusicDetailRequest: TCRequestModel {
+    public struct DescribeKTVMusicDetailRequest: TCRequest {
         /// 曲目 Id
         public let musicId: String
 
@@ -34,7 +34,7 @@ extension Ame {
     }
 
     /// DescribeKTVMusicDetail返回参数结构体
-    public struct DescribeKTVMusicDetailResponse: TCResponseModel {
+    public struct DescribeKTVMusicDetailResponse: TCResponse {
         /// 歌曲基础信息
         public let ktvMusicBaseInfo: KTVMusicBaseInfo
 

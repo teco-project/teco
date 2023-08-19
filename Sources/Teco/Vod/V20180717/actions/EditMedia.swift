@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// EditMedia请求参数结构体
-    public struct EditMediaRequest: TCRequestModel {
+    public struct EditMediaRequest: TCRequest {
         /// 输入视频的类型，可以取的值为  File，Stream 两种。
         public let inputType: String
 
@@ -86,7 +86,7 @@ extension Vod {
     }
 
     /// EditMedia返回参数结构体
-    public struct EditMediaResponse: TCResponseModel {
+    public struct EditMediaResponse: TCResponse {
         /// 编辑视频的任务 ID，可以通过该 ID 查询编辑任务（任务类型为 EditMedia）的状态。
         public let taskId: String
 

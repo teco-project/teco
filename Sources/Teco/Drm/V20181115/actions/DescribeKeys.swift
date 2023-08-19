@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// DescribeKeys请求参数结构体
-    public struct DescribeKeysRequest: TCRequestModel {
+    public struct DescribeKeysRequest: TCRequest {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
         public let drmType: String
 
@@ -56,7 +56,7 @@ extension Drm {
     }
 
     /// DescribeKeys返回参数结构体
-    public struct DescribeKeysResponse: TCResponseModel {
+    public struct DescribeKeysResponse: TCResponse {
         /// 加密密钥列表
         public let keys: [Key]
 

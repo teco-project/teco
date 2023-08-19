@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeAddon请求参数结构体
-    public struct DescribeAddonRequest: TCRequestModel {
+    public struct DescribeAddonRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeAddon返回参数结构体
-    public struct DescribeAddonResponse: TCResponseModel {
+    public struct DescribeAddonResponse: TCResponse {
         /// addon列表
         public let addons: [Addon]
 

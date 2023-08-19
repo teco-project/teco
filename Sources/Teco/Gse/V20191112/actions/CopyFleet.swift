@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// CopyFleet请求参数结构体
-    public struct CopyFleetRequest: TCRequestModel {
+    public struct CopyFleetRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String
 
@@ -129,7 +129,7 @@ extension Gse {
     }
 
     /// CopyFleet返回参数结构体
-    public struct CopyFleetResponse: TCResponseModel {
+    public struct CopyFleetResponse: TCResponse {
         /// 服务器舰队属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetAttributes: [FleetAttributes]?

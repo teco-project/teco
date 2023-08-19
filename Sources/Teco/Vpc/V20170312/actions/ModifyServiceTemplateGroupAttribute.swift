@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyServiceTemplateGroupAttribute请求参数结构体
-    public struct ModifyServiceTemplateGroupAttributeRequest: TCRequestModel {
+    public struct ModifyServiceTemplateGroupAttributeRequest: TCRequest {
         /// 协议端口模板集合实例ID，例如：ppmg-ei8hfd9a。
         public let serviceTemplateGroupId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyServiceTemplateGroupAttribute返回参数结构体
-    public struct ModifyServiceTemplateGroupAttributeResponse: TCResponseModel {
+    public struct ModifyServiceTemplateGroupAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

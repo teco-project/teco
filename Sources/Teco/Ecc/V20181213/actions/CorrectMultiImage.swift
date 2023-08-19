@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecc {
     /// CorrectMultiImage请求参数结构体
-    public struct CorrectMultiImageRequest: TCRequestModel {
+    public struct CorrectMultiImageRequest: TCRequest {
         /// 图片的url链接或base64数据。每张图片数据作为数组的一个元素，数组个数与图片个数保持一致。存放类别依据InputType而定，url与base64编码不能混合使用。
         public let image: [String]
 
@@ -84,7 +84,7 @@ extension Ecc {
     }
 
     /// CorrectMultiImage返回参数结构体
-    public struct CorrectMultiImageResponse: TCResponseModel {
+    public struct CorrectMultiImageResponse: TCResponse {
         /// 接口返回数据
         public let data: CompostionContext
 

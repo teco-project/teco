@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateOpenBankAggregatedSubMerchantRegistration请求参数结构体
-    public struct CreateOpenBankAggregatedSubMerchantRegistrationRequest: TCRequestModel {
+    public struct CreateOpenBankAggregatedSubMerchantRegistrationRequest: TCRequest {
         /// 外部进件序列号。
         public let outRegistrationNo: String
 
@@ -133,7 +133,7 @@ extension Cpdp {
     }
 
     /// CreateOpenBankAggregatedSubMerchantRegistration返回参数结构体
-    public struct CreateOpenBankAggregatedSubMerchantRegistrationResponse: TCResponseModel {
+    public struct CreateOpenBankAggregatedSubMerchantRegistrationResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

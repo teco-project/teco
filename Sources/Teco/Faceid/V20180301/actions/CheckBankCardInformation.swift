@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// CheckBankCardInformation请求参数结构体
-    public struct CheckBankCardInformationRequest: TCRequestModel {
+    public struct CheckBankCardInformationRequest: TCRequest {
         /// 银行卡号。
         public let bankCard: String
 
@@ -39,7 +39,7 @@ extension Faceid {
     }
 
     /// CheckBankCardInformation返回参数结构体
-    public struct CheckBankCardInformationResponse: TCResponseModel {
+    public struct CheckBankCardInformationResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 查询成功

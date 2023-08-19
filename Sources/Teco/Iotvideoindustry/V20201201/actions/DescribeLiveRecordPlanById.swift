@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeLiveRecordPlanById请求参数结构体
-    public struct DescribeLiveRecordPlanByIdRequest: TCRequestModel {
+    public struct DescribeLiveRecordPlanByIdRequest: TCRequest {
         /// 录制计划ID
         public let planId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeLiveRecordPlanById返回参数结构体
-    public struct DescribeLiveRecordPlanByIdResponse: TCResponseModel {
+    public struct DescribeLiveRecordPlanByIdResponse: TCResponse {
         /// 计划名称
         public let planName: String
 

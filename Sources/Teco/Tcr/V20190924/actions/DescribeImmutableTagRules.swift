@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeImmutableTagRules请求参数结构体
-    public struct DescribeImmutableTagRulesRequest: TCRequestModel {
+    public struct DescribeImmutableTagRulesRequest: TCRequest {
         /// 实例 Id
         public let registryId: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// DescribeImmutableTagRules返回参数结构体
-    public struct DescribeImmutableTagRulesResponse: TCResponseModel {
+    public struct DescribeImmutableTagRulesResponse: TCResponse {
         /// 规则列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [ImmutableTagRule]?

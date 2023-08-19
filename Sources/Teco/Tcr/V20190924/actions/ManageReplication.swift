@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ManageReplication请求参数结构体
-    public struct ManageReplicationRequest: TCRequestModel {
+    public struct ManageReplicationRequest: TCRequest {
         /// 复制源实例ID
         public let sourceRegistryId: String
 
@@ -59,7 +59,7 @@ extension Tcr {
     }
 
     /// ManageReplication返回参数结构体
-    public struct ManageReplicationResponse: TCResponseModel {
+    public struct ManageReplicationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

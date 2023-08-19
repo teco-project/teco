@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// CreateStaticStore请求参数结构体
-    public struct CreateStaticStoreRequest: TCRequestModel {
+    public struct CreateStaticStoreRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// CreateStaticStore返回参数结构体
-    public struct CreateStaticStoreResponse: TCResponseModel {
+    public struct CreateStaticStoreResponse: TCResponse {
         /// 创建静态资源结果(succ/fail)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

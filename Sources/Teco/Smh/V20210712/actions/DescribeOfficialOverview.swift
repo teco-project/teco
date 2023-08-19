@@ -20,13 +20,13 @@ import TecoCore
 
 extension Smh {
     /// DescribeOfficialOverview请求参数结构体
-    public struct DescribeOfficialOverviewRequest: TCRequestModel {
+    public struct DescribeOfficialOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeOfficialOverview返回参数结构体
-    public struct DescribeOfficialOverviewResponse: TCResponseModel {
+    public struct DescribeOfficialOverviewResponse: TCResponse {
         /// 云盘实例数量
         public let quantity: UInt64
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ivld {
     /// DescribeCustomGroup请求参数结构体
-    public struct DescribeCustomGroupRequest: TCRequestModel {
+    public struct DescribeCustomGroupRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCustomGroup返回参数结构体
-    public struct DescribeCustomGroupResponse: TCResponseModel {
+    public struct DescribeCustomGroupResponse: TCResponse {
         /// 自定义人物库所包含的人物个数
         public let groupSize: Int64
 

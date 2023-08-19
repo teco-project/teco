@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// MixedInvoiceDetect请求参数结构体
-    public struct MixedInvoiceDetectRequest: TCRequestModel {
+    public struct MixedInvoiceDetectRequest: TCRequest {
         /// 是否需要返回裁剪后的图片。
         public let returnImage: Bool
 
@@ -61,7 +61,7 @@ extension Ocr {
     }
 
     /// MixedInvoiceDetect返回参数结构体
-    public struct MixedInvoiceDetectResponse: TCResponseModel {
+    public struct MixedInvoiceDetectResponse: TCResponse {
         /// 检测出的票据类型列表，具体内容请点击左侧链接。
         public let invoiceDetectInfos: [InvoiceDetectInfo]
 

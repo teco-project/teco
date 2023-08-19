@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Msp {
     /// RegisterMigrationTask请求参数结构体
-    public struct RegisterMigrationTaskRequest: TCRequestModel {
+    public struct RegisterMigrationTaskRequest: TCRequest {
         /// 任务类型，取值database（数据库迁移）、file（文件迁移）、host（主机迁移）
         public let taskType: String
 
@@ -97,7 +97,7 @@ extension Msp {
     }
 
     /// RegisterMigrationTask返回参数结构体
-    public struct RegisterMigrationTaskResponse: TCResponseModel {
+    public struct RegisterMigrationTaskResponse: TCResponse {
         /// 任务ID
         public let taskId: String
 

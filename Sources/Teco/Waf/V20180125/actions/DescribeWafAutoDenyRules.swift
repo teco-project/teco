@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeWafAutoDenyRules请求参数结构体
-    public struct DescribeWafAutoDenyRulesRequest: TCRequestModel {
+    public struct DescribeWafAutoDenyRulesRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// DescribeWafAutoDenyRules返回参数结构体
-    public struct DescribeWafAutoDenyRulesResponse: TCResponseModel {
+    public struct DescribeWafAutoDenyRulesResponse: TCResponse {
         /// 攻击次数阈值
         public let attackThreshold: Int64
 

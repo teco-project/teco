@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DisableApiKey请求参数结构体
-    public struct DisableApiKeyRequest: TCRequestModel {
+    public struct DisableApiKeyRequest: TCRequest {
         /// 待禁用的密钥 ID。
         public let accessKeyId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DisableApiKey返回参数结构体
-    public struct DisableApiKeyResponse: TCResponseModel {
+    public struct DisableApiKeyResponse: TCResponse {
         /// 禁用密钥操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

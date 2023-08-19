@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSecurityGroupLimits请求参数结构体
-    public struct DescribeSecurityGroupLimitsRequest: TCRequestModel {
+    public struct DescribeSecurityGroupLimitsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeSecurityGroupLimits返回参数结构体
-    public struct DescribeSecurityGroupLimitsResponse: TCResponseModel {
+    public struct DescribeSecurityGroupLimitsResponse: TCResponse {
         /// 用户安全组配额限制。
         public let securityGroupLimitSet: SecurityGroupLimitSet
 

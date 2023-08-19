@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// ModifyInstancePre请求参数结构体
-    public struct ModifyInstancePreRequest: TCRequestModel {
+    public struct ModifyInstancePreRequest: TCRequest {
         /// 实例名称
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// ModifyInstancePre返回参数结构体
-    public struct ModifyInstancePreResponse: TCResponseModel {
+    public struct ModifyInstancePreResponse: TCResponse {
         /// 变更预付费实例配置返回结构
         public let result: CreateInstancePreResp
 

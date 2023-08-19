@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// CreateIndex请求参数结构体
-    public struct CreateIndexRequest: TCRequestModel {
+    public struct CreateIndexRequest: TCRequest {
         /// ES集群ID
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Es {
     }
 
     /// CreateIndex返回参数结构体
-    public struct CreateIndexResponse: TCResponseModel {
+    public struct CreateIndexResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

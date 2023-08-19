@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ScanAsset请求参数结构体
-    public struct ScanAssetRequest: TCRequestModel {
+    public struct ScanAssetRequest: TCRequest {
         /// 资产指纹类型id列表
         public let assetTypeIds: [UInt64]?
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// ScanAsset返回参数结构体
-    public struct ScanAssetResponse: TCResponseModel {
+    public struct ScanAssetResponse: TCResponse {
         /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: UInt64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DescribeShieldPlanInstance请求参数结构体
-    public struct DescribeShieldPlanInstanceRequest: TCRequestModel {
+    public struct DescribeShieldPlanInstanceRequest: TCRequest {
         /// 资源id
         public let resourceId: String
 
@@ -39,7 +39,7 @@ extension Ms {
     }
 
     /// DescribeShieldPlanInstance返回参数结构体
-    public struct DescribeShieldPlanInstanceResponse: TCResponseModel {
+    public struct DescribeShieldPlanInstanceResponse: TCResponse {
         /// 绑定资源信息
         public let bindInfo: BindInfo
 

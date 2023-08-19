@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// ModifyBPOfflineAttachment请求参数结构体
-    public struct ModifyBPOfflineAttachmentRequest: TCRequestModel {
+    public struct ModifyBPOfflineAttachmentRequest: TCRequest {
         /// 营业执照
         public let licenseName: String?
 
@@ -54,7 +54,7 @@ extension Bma {
     }
 
     /// ModifyBPOfflineAttachment返回参数结构体
-    public struct ModifyBPOfflineAttachmentResponse: TCResponseModel {
+    public struct ModifyBPOfflineAttachmentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

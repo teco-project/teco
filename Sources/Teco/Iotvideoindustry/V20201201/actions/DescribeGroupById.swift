@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeGroupById请求参数结构体
-    public struct DescribeGroupByIdRequest: TCRequestModel {
+    public struct DescribeGroupByIdRequest: TCRequest {
         /// 分组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeGroupById返回参数结构体
-    public struct DescribeGroupByIdResponse: TCResponseModel {
+    public struct DescribeGroupByIdResponse: TCResponse {
         /// 分组信息详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let group: GroupItem?

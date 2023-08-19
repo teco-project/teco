@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tics {
     /// DescribeDomainInfo请求参数结构体
-    public struct DescribeDomainInfoRequest: TCRequestModel {
+    public struct DescribeDomainInfoRequest: TCRequest {
         /// 要查询的域名
         public let key: String
 
@@ -39,7 +39,7 @@ extension Tics {
     }
 
     /// DescribeDomainInfo返回参数结构体
-    public struct DescribeDomainInfoResponse: TCResponseModel {
+    public struct DescribeDomainInfoResponse: TCResponse {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
 

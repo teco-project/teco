@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RestoreInstance请求参数结构体
-    public struct RestoreInstanceRequest: TCRequestModel {
+    public struct RestoreInstanceRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Sqlserver {
     }
 
     /// RestoreInstance返回参数结构体
-    public struct RestoreInstanceResponse: TCResponseModel {
+    public struct RestoreInstanceResponse: TCResponse {
         /// 异步流程任务ID，使用FlowId调用DescribeFlowStatus接口获取任务执行状态
         public let flowId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateIntegrationUserRoles请求参数结构体
-    public struct CreateIntegrationUserRolesRequest: TCRequestModel {
+    public struct CreateIntegrationUserRolesRequest: TCRequest {
         /// 操作人信息，UserId必填
         public let `operator`: UserInfo
 
@@ -49,7 +49,7 @@ extension Ess {
     }
 
     /// CreateIntegrationUserRoles返回参数结构体
-    public struct CreateIntegrationUserRolesResponse: TCResponseModel {
+    public struct CreateIntegrationUserRolesResponse: TCResponse {
         /// 绑定角色失败列表信息
         public let failedCreateRoleData: [FailedCreateRoleData]
 

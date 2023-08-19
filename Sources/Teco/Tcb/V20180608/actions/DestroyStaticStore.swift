@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DestroyStaticStore请求参数结构体
-    public struct DestroyStaticStoreRequest: TCRequestModel {
+    public struct DestroyStaticStoreRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DestroyStaticStore返回参数结构体
-    public struct DestroyStaticStoreResponse: TCResponseModel {
+    public struct DestroyStaticStoreResponse: TCResponse {
         /// 条件任务结果(succ/fail)
         public let result: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribePushChannel请求参数结构体
-    public struct DescribePushChannelRequest: TCRequestModel {
+    public struct DescribePushChannelRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribePushChannel返回参数结构体
-    public struct DescribePushChannelResponse: TCResponseModel {
+    public struct DescribePushChannelResponse: TCResponse {
         /// 推送类型。ckafka：消息队列；forward：http/https推送
         public let type: String
 

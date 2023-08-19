@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DescribeVpcQuota请求参数结构体
-    public struct DescribeVpcQuotaRequest: TCRequestModel {
+    public struct DescribeVpcQuotaRequest: TCRequest {
         /// 类型
         public let typeIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Bmvpc {
     }
 
     /// DescribeVpcQuota返回参数结构体
-    public struct DescribeVpcQuotaResponse: TCResponseModel {
+    public struct DescribeVpcQuotaResponse: TCResponse {
         /// 配额信息
         public let vpcQuotaSet: [VpcQuota]
 

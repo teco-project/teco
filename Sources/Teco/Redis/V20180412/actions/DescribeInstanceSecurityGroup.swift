@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceSecurityGroup请求参数结构体
-    public struct DescribeInstanceSecurityGroupRequest: TCRequestModel {
+    public struct DescribeInstanceSecurityGroupRequest: TCRequest {
         /// 实例 ID 列表。例如;["crs-f2ho5rsz\n"]
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeInstanceSecurityGroup返回参数结构体
-    public struct DescribeInstanceSecurityGroupResponse: TCResponseModel {
+    public struct DescribeInstanceSecurityGroupResponse: TCResponse {
         /// 实例安全组信息。
         public let instanceSecurityGroupsDetail: [InstanceSecurityGroupDetail]
 

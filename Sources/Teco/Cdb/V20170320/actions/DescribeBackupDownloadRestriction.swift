@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBackupDownloadRestriction请求参数结构体
-    public struct DescribeBackupDownloadRestrictionRequest: TCRequestModel {
+    public struct DescribeBackupDownloadRestrictionRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBackupDownloadRestriction返回参数结构体
-    public struct DescribeBackupDownloadRestrictionResponse: TCResponseModel {
+    public struct DescribeBackupDownloadRestrictionResponse: TCResponse {
         /// NoLimit 不限制,内外网都可以下载； LimitOnlyIntranet 仅内网可下载； Customize 用户自定义vpc:ip可下载。 只有该值为 Customize 时， LimitVpc 和 LimitIp 才有意义。
         public let limitType: String
 

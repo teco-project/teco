@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// CreateLaunchTemplate请求参数结构体
-    public struct CreateLaunchTemplateRequest: TCRequestModel {
+    public struct CreateLaunchTemplateRequest: TCRequest {
         /// 实例启动模板名称。长度为2~128个英文或中文字符。
         public let launchTemplateName: String
 
@@ -202,7 +202,7 @@ extension Cvm {
     }
 
     /// CreateLaunchTemplate返回参数结构体
-    public struct CreateLaunchTemplateResponse: TCResponseModel {
+    public struct CreateLaunchTemplateResponse: TCResponse {
         /// 当通过本接口来创建实例启动模板时会返回该参数，表示创建成功的实例启动模板`ID`。
         public let launchTemplateId: String
 

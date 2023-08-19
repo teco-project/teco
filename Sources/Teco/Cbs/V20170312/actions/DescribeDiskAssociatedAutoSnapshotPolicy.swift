@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DescribeDiskAssociatedAutoSnapshotPolicy请求参数结构体
-    public struct DescribeDiskAssociatedAutoSnapshotPolicyRequest: TCRequestModel {
+    public struct DescribeDiskAssociatedAutoSnapshotPolicyRequest: TCRequest {
         /// 要查询的云硬盘ID。
         public let diskId: String
 
@@ -34,7 +34,7 @@ extension Cbs {
     }
 
     /// DescribeDiskAssociatedAutoSnapshotPolicy返回参数结构体
-    public struct DescribeDiskAssociatedAutoSnapshotPolicyResponse: TCResponseModel {
+    public struct DescribeDiskAssociatedAutoSnapshotPolicyResponse: TCResponse {
         /// 云盘绑定的定期快照数量。
         public let totalCount: UInt64
 

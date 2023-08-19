@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeProjects请求参数结构体
-    public struct DescribeProjectsRequest: TCRequestModel {
+    public struct DescribeProjectsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeProjects返回参数结构体
-    public struct DescribeProjectsResponse: TCResponseModel {
+    public struct DescribeProjectsResponse: TCResponse {
         /// 项目列表
         public let projects: [Project]
 

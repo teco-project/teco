@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DeleteCustomImages请求参数结构体
-    public struct DeleteCustomImagesRequest: TCRequestModel {
+    public struct DeleteCustomImagesRequest: TCRequest {
         /// 准备删除的镜像ID列表
         public let imageIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// DeleteCustomImages返回参数结构体
-    public struct DeleteCustomImagesResponse: TCResponseModel {
+    public struct DeleteCustomImagesResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

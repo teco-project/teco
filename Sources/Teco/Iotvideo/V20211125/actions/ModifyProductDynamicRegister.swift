@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// ModifyProductDynamicRegister请求参数结构体
-    public struct ModifyProductDynamicRegisterRequest: TCRequestModel {
+    public struct ModifyProductDynamicRegisterRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// ModifyProductDynamicRegister返回参数结构体
-    public struct ModifyProductDynamicRegisterResponse: TCResponseModel {
+    public struct ModifyProductDynamicRegisterResponse: TCResponse {
         /// 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
         public let registerType: UInt64
 

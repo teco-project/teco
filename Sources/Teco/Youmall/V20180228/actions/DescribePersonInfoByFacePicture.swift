@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Youmall {
     /// DescribePersonInfoByFacePicture请求参数结构体
-    public struct DescribePersonInfoByFacePictureRequest: TCRequestModel {
+    public struct DescribePersonInfoByFacePictureRequest: TCRequest {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
         public let companyId: String
 
@@ -46,7 +46,7 @@ extension Youmall {
     }
 
     /// DescribePersonInfoByFacePicture返回参数结构体
-    public struct DescribePersonInfoByFacePictureResponse: TCResponseModel {
+    public struct DescribePersonInfoByFacePictureResponse: TCResponse {
         /// 集团id
         public let companyId: String
 

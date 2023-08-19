@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DeleteMaterial请求参数结构体
-    public struct DeleteMaterialRequest: TCRequestModel {
+    public struct DeleteMaterialRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -44,7 +44,7 @@ extension Cme {
     }
 
     /// DeleteMaterial返回参数结构体
-    public struct DeleteMaterialResponse: TCResponseModel {
+    public struct DeleteMaterialResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

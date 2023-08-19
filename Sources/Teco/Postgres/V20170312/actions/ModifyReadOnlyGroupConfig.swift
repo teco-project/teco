@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyReadOnlyGroupConfig请求参数结构体
-    public struct ModifyReadOnlyGroupConfigRequest: TCRequestModel {
+    public struct ModifyReadOnlyGroupConfigRequest: TCRequest {
         /// 只读组ID
         public let readOnlyGroupId: String
 
@@ -69,7 +69,7 @@ extension Postgres {
     }
 
     /// ModifyReadOnlyGroupConfig返回参数结构体
-    public struct ModifyReadOnlyGroupConfigResponse: TCResponseModel {
+    public struct ModifyReadOnlyGroupConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

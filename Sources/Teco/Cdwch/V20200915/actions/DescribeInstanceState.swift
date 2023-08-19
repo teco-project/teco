@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeInstanceState请求参数结构体
-    public struct DescribeInstanceStateRequest: TCRequestModel {
+    public struct DescribeInstanceStateRequest: TCRequest {
         /// 集群实例名称
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DescribeInstanceState返回参数结构体
-    public struct DescribeInstanceStateResponse: TCResponseModel {
+    public struct DescribeInstanceStateResponse: TCResponse {
         /// 集群状态，例如：Serving
         public let instanceState: String
 

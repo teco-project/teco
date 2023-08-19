@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBinlogBackupOverview请求参数结构体
-    public struct DescribeBinlogBackupOverviewRequest: TCRequestModel {
+    public struct DescribeBinlogBackupOverviewRequest: TCRequest {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
         public let product: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeBinlogBackupOverview返回参数结构体
-    public struct DescribeBinlogBackupOverviewResponse: TCResponseModel {
+    public struct DescribeBinlogBackupOverviewResponse: TCResponse {
         /// 总的日志备份容量，包含异地日志备份（单位为字节）。
         public let binlogBackupVolume: Int64
 

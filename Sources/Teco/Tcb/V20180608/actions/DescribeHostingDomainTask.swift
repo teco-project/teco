@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeHostingDomainTask请求参数结构体
-    public struct DescribeHostingDomainTaskRequest: TCRequestModel {
+    public struct DescribeHostingDomainTaskRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeHostingDomainTask返回参数结构体
-    public struct DescribeHostingDomainTaskResponse: TCResponseModel {
+    public struct DescribeHostingDomainTaskResponse: TCResponse {
         /// todo/doing/done/error
         public let status: String
 

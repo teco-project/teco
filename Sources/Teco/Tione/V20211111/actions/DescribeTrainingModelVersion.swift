@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeTrainingModelVersion请求参数结构体
-    public struct DescribeTrainingModelVersionRequest: TCRequestModel {
+    public struct DescribeTrainingModelVersionRequest: TCRequest {
         /// 模型版本ID
         public let trainingModelVersionId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeTrainingModelVersion返回参数结构体
-    public struct DescribeTrainingModelVersionResponse: TCResponseModel {
+    public struct DescribeTrainingModelVersionResponse: TCResponse {
         /// 模型版本
         public let trainingModelVersion: TrainingModelVersionDTO
 

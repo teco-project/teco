@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DescribeCustomPersonDetail请求参数结构体
-    public struct DescribeCustomPersonDetailRequest: TCRequestModel {
+    public struct DescribeCustomPersonDetailRequest: TCRequest {
         /// 自定义人物Id
         public let personId: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// DescribeCustomPersonDetail返回参数结构体
-    public struct DescribeCustomPersonDetailResponse: TCResponseModel {
+    public struct DescribeCustomPersonDetailResponse: TCResponse {
         /// 自定义人物信息
         public let personInfo: CustomPersonInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateBackupMigration请求参数结构体
-    public struct CreateBackupMigrationRequest: TCRequestModel {
+    public struct CreateBackupMigrationRequest: TCRequest {
         /// 导入目标实例ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Sqlserver {
     }
 
     /// CreateBackupMigration返回参数结构体
-    public struct CreateBackupMigrationResponse: TCResponseModel {
+    public struct CreateBackupMigrationResponse: TCResponse {
         /// 备份导入任务ID
         public let backupMigrationId: String
 

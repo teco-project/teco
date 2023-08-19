@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// CreateHourDCDBInstance请求参数结构体
-    public struct CreateHourDCDBInstanceRequest: TCRequestModel {
+    public struct CreateHourDCDBInstanceRequest: TCRequest {
         /// 分片内存大小，单位：GB，可以通过 DescribeShardSpec
         ///  查询实例规格获得。
         public let shardMemory: Int64
@@ -138,7 +138,7 @@ extension Dcdb {
     }
 
     /// CreateHourDCDBInstance返回参数结构体
-    public struct CreateHourDCDBInstanceResponse: TCResponseModel {
+    public struct CreateHourDCDBInstanceResponse: TCResponse {
         /// 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
         public let instanceIds: [String]
 

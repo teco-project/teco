@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DeleteModelService请求参数结构体
-    public struct DeleteModelServiceRequest: TCRequestModel {
+    public struct DeleteModelServiceRequest: TCRequest {
         /// 服务id
         public let serviceId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DeleteModelService返回参数结构体
-    public struct DeleteModelServiceResponse: TCResponseModel {
+    public struct DeleteModelServiceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

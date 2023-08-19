@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// StopLogging请求参数结构体
-    public struct StopLoggingRequest: TCRequestModel {
+    public struct StopLoggingRequest: TCRequest {
         /// 跟踪集名称
         public let auditName: String
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// StopLogging返回参数结构体
-    public struct StopLoggingResponse: TCResponseModel {
+    public struct StopLoggingResponse: TCResponse {
         /// 是否关闭成功
         public let isSuccess: Int64
 

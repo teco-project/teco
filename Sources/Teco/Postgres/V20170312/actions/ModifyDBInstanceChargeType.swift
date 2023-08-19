@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyDBInstanceChargeType请求参数结构体
-    public struct ModifyDBInstanceChargeTypeRequest: TCRequestModel {
+    public struct ModifyDBInstanceChargeTypeRequest: TCRequest {
         /// 实例ID，形如postgres-6fego161
         public let dbInstanceId: String
 
@@ -68,7 +68,7 @@ extension Postgres {
     }
 
     /// ModifyDBInstanceChargeType返回参数结构体
-    public struct ModifyDBInstanceChargeTypeResponse: TCResponseModel {
+    public struct ModifyDBInstanceChargeTypeResponse: TCResponse {
         /// 订单名
         public let dealName: String
 

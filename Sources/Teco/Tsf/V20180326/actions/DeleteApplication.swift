@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteApplication请求参数结构体
-    public struct DeleteApplicationRequest: TCRequestModel {
+    public struct DeleteApplicationRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteApplication返回参数结构体
-    public struct DeleteApplicationResponse: TCResponseModel {
+    public struct DeleteApplicationResponse: TCResponse {
         /// 删除应用操作是否成功。
         /// true：操作成功。
         /// false：操作失败。

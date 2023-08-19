@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CreateBaseBackup请求参数结构体
-    public struct CreateBaseBackupRequest: TCRequestModel {
+    public struct CreateBaseBackupRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -34,7 +34,7 @@ extension Postgres {
     }
 
     /// CreateBaseBackup返回参数结构体
-    public struct CreateBaseBackupResponse: TCResponseModel {
+    public struct CreateBaseBackupResponse: TCResponse {
         /// 基础备份集ID
         public let baseBackupId: String
 

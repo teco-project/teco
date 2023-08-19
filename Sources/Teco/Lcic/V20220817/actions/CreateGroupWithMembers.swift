@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// CreateGroupWithMembers请求参数结构体
-    public struct CreateGroupWithMembersRequest: TCRequestModel {
+    public struct CreateGroupWithMembersRequest: TCRequest {
         /// 待创建群组名称
         public let groupName: String
 
@@ -49,7 +49,7 @@ extension Lcic {
     }
 
     /// CreateGroupWithMembers返回参数结构体
-    public struct CreateGroupWithMembersResponse: TCResponseModel {
+    public struct CreateGroupWithMembersResponse: TCResponse {
         /// 创建成功群组ID
         public let groupId: String
 

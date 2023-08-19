@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribePrivilegeEventInfo请求参数结构体
-    public struct DescribePrivilegeEventInfoRequest: TCRequestModel {
+    public struct DescribePrivilegeEventInfoRequest: TCRequest {
         /// 事件id
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribePrivilegeEventInfo返回参数结构体
-    public struct DescribePrivilegeEventInfoResponse: TCResponseModel {
+    public struct DescribePrivilegeEventInfoResponse: TCResponse {
         /// 本地提权详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privilegeEventInfo: PrivilegeEventInfo?

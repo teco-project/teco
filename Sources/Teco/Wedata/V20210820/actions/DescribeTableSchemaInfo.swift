@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTableSchemaInfo请求参数结构体
-    public struct DescribeTableSchemaInfoRequest: TCRequestModel {
+    public struct DescribeTableSchemaInfoRequest: TCRequest {
         /// 表名称
         public let name: String
 
@@ -59,7 +59,7 @@ extension Wedata {
     }
 
     /// DescribeTableSchemaInfo返回参数结构体
-    public struct DescribeTableSchemaInfoResponse: TCResponseModel {
+    public struct DescribeTableSchemaInfoResponse: TCResponse {
         /// 123
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaInfoList: [SchemaDetail]?

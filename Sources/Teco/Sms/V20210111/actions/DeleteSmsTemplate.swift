@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// DeleteSmsTemplate请求参数结构体
-    public struct DeleteSmsTemplateRequest: TCRequestModel {
+    public struct DeleteSmsTemplateRequest: TCRequest {
         /// 待删除的模板 ID。
         public let templateId: UInt64
 
@@ -34,7 +34,7 @@ extension Sms {
     }
 
     /// DeleteSmsTemplate返回参数结构体
-    public struct DeleteSmsTemplateResponse: TCResponseModel {
+    public struct DeleteSmsTemplateResponse: TCResponse {
         /// 删除模板响应
         public let deleteTemplateStatus: DeleteTemplateStatus
 

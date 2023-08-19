@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAvailableExpertServiceDetail请求参数结构体
-    public struct DescribeAvailableExpertServiceDetailRequest: TCRequestModel {
+    public struct DescribeAvailableExpertServiceDetailRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAvailableExpertServiceDetail返回参数结构体
-    public struct DescribeAvailableExpertServiceDetailResponse: TCResponseModel {
+    public struct DescribeAvailableExpertServiceDetailResponse: TCResponse {
         /// 安全管家订单
         public let expertService: [ExpertServiceOrderInfo]
 

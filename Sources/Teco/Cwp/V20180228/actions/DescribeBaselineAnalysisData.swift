@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineAnalysisData请求参数结构体
-    public struct DescribeBaselineAnalysisDataRequest: TCRequestModel {
+    public struct DescribeBaselineAnalysisDataRequest: TCRequest {
         /// 基线策略id
         public let strategyId: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineAnalysisData返回参数结构体
-    public struct DescribeBaselineAnalysisDataResponse: TCResponseModel {
+    public struct DescribeBaselineAnalysisDataResponse: TCResponse {
         /// 最后检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let latestScanTime: String?

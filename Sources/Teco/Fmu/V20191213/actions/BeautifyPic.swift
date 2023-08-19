@@ -20,7 +20,7 @@ import TecoCore
 
 extension Fmu {
     /// BeautifyPic请求参数结构体
-    public struct BeautifyPicRequest: TCRequestModel {
+    public struct BeautifyPicRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
@@ -69,7 +69,7 @@ extension Fmu {
     }
 
     /// BeautifyPic返回参数结构体
-    public struct BeautifyPicResponse: TCResponseModel {
+    public struct BeautifyPicResponse: TCResponse {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImage: String?

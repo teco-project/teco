@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateDataTransform请求参数结构体
-    public struct CreateDataTransformRequest: TCRequestModel {
+    public struct CreateDataTransformRequest: TCRequest {
         /// 任务类型. 1: 指定主题；2:动态创建
         public let funcType: Int64
 
@@ -69,7 +69,7 @@ extension Cls {
     }
 
     /// CreateDataTransform返回参数结构体
-    public struct CreateDataTransformResponse: TCResponseModel {
+    public struct CreateDataTransformResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

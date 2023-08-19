@@ -20,7 +20,7 @@ import TecoCore
 
 extension Soe {
     /// KeywordEvaluate请求参数结构体
-    public struct KeywordEvaluateRequest: TCRequestModel {
+    public struct KeywordEvaluateRequest: TCRequest {
         /// 流式数据包的序号，从1开始，当IsEnd字段为1后后续序号无意义，非流式模式时无意义。
         /// 注意：序号上限为3000，不能超过上限。
         public let seqId: UInt64
@@ -83,7 +83,7 @@ extension Soe {
     }
 
     /// KeywordEvaluate返回参数结构体
-    public struct KeywordEvaluateResponse: TCResponseModel {
+    public struct KeywordEvaluateResponse: TCResponse {
         /// 关键词得分
         public let keywordScores: [KeywordScore]
 

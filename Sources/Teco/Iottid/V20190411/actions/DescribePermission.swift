@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iottid {
     /// DescribePermission请求参数结构体
-    public struct DescribePermissionRequest: TCRequestModel {
+    public struct DescribePermissionRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePermission返回参数结构体
-    public struct DescribePermissionResponse: TCResponseModel {
+    public struct DescribePermissionResponse: TCResponse {
         /// 企业用户
         public let enterpriseUser: Bool
 

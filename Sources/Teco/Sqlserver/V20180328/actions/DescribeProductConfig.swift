@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeProductConfig请求参数结构体
-    public struct DescribeProductConfigRequest: TCRequestModel {
+    public struct DescribeProductConfigRequest: TCRequest {
         /// 可用区英文ID，形如ap-guangzhou-1
         public let zone: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// DescribeProductConfig返回参数结构体
-    public struct DescribeProductConfigResponse: TCResponseModel {
+    public struct DescribeProductConfigResponse: TCResponse {
         /// 规格信息数组
         public let specInfoList: [SpecInfo]
 

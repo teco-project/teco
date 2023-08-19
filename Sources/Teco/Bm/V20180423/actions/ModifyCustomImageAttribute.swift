@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ModifyCustomImageAttribute请求参数结构体
-    public struct ModifyCustomImageAttributeRequest: TCRequestModel {
+    public struct ModifyCustomImageAttributeRequest: TCRequest {
         /// 镜像ID
         public let imageId: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// ModifyCustomImageAttribute返回参数结构体
-    public struct ModifyCustomImageAttributeResponse: TCResponseModel {
+    public struct ModifyCustomImageAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

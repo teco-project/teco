@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRuleExecHistory请求参数结构体
-    public struct DescribeRuleExecHistoryRequest: TCRequestModel {
+    public struct DescribeRuleExecHistoryRequest: TCRequest {
         /// 规则Id
         public let ruleId: UInt64?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeRuleExecHistory返回参数结构体
-    public struct DescribeRuleExecHistoryResponse: TCResponseModel {
+    public struct DescribeRuleExecHistoryResponse: TCResponse {
         /// 规则执行结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [RuleExecResult]?

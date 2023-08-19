@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ModifyPayModePre2Post请求参数结构体
-    public struct ModifyPayModePre2PostRequest: TCRequestModel {
+    public struct ModifyPayModePre2PostRequest: TCRequest {
         /// 需要修改的设备ID列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// ModifyPayModePre2Post返回参数结构体
-    public struct ModifyPayModePre2PostResponse: TCResponseModel {
+    public struct ModifyPayModePre2PostResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

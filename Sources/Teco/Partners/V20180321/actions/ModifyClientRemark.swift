@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// ModifyClientRemark请求参数结构体
-    public struct ModifyClientRemarkRequest: TCRequestModel {
+    public struct ModifyClientRemarkRequest: TCRequest {
         /// 客户备注名称
         public let clientRemark: String
 
@@ -39,7 +39,7 @@ extension Partners {
     }
 
     /// ModifyClientRemark返回参数结构体
-    public struct ModifyClientRemarkResponse: TCResponseModel {
+    public struct ModifyClientRemarkResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

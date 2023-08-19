@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tkgdq {
     /// DescribeRelation请求参数结构体
-    public struct DescribeRelationRequest: TCRequestModel {
+    public struct DescribeRelationRequest: TCRequest {
         /// 输入第一个实体
         public let leftEntityName: String
 
@@ -39,7 +39,7 @@ extension Tkgdq {
     }
 
     /// DescribeRelation返回参数结构体
-    public struct DescribeRelationResponse: TCResponseModel {
+    public struct DescribeRelationResponse: TCResponse {
         /// 返回查询实体间的关系
         public let content: [EntityRelationContent]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateAIRecognitionTemplate请求参数结构体
-    public struct CreateAIRecognitionTemplateRequest: TCRequestModel {
+    public struct CreateAIRecognitionTemplateRequest: TCRequest {
         /// **点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。**
         public let subAppId: UInt64?
 
@@ -89,7 +89,7 @@ extension Vod {
     }
 
     /// CreateAIRecognitionTemplate返回参数结构体
-    public struct CreateAIRecognitionTemplateResponse: TCResponseModel {
+    public struct CreateAIRecognitionTemplateResponse: TCResponse {
         /// 音视频内容识别模板唯一标识。
         public let definition: Int64
 

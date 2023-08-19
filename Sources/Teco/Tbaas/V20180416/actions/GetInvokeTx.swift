@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// GetInvokeTx请求参数结构体
-    public struct GetInvokeTxRequest: TCRequestModel {
+    public struct GetInvokeTxRequest: TCRequest {
         /// 模块名，固定字段：transaction
         public let module: String
 
@@ -69,7 +69,7 @@ extension Tbaas {
     }
 
     /// GetInvokeTx返回参数结构体
-    public struct GetInvokeTxResponse: TCResponseModel {
+    public struct GetInvokeTxResponse: TCResponse {
         /// 交易执行状态码
         public let txValidationCode: Int64
 

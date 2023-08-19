@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitConversationTask请求参数结构体
-    public struct SubmitConversationTaskRequest: TCRequestModel {
+    public struct SubmitConversationTaskRequest: TCRequest {
         /// 音频源的语言，默认0为英文，1为中文
         public let lang: Int64
 
@@ -64,7 +64,7 @@ extension Tci {
     }
 
     /// SubmitConversationTask返回参数结构体
-    public struct SubmitConversationTaskResponse: TCResponseModel {
+    public struct SubmitConversationTaskResponse: TCResponse {
         /// 查询结果时指名的jobid。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
         public let jobId: Int64
 

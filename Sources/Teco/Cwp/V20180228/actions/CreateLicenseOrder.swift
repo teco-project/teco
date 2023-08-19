@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateLicenseOrder请求参数结构体
-    public struct CreateLicenseOrderRequest: TCRequestModel {
+    public struct CreateLicenseOrderRequest: TCRequest {
         /// 标签数组, 空则表示不需要绑定标签
         public let tags: [Tags]?
 
@@ -80,7 +80,7 @@ extension Cwp {
     }
 
     /// CreateLicenseOrder返回参数结构体
-    public struct CreateLicenseOrderResponse: TCResponseModel {
+    public struct CreateLicenseOrderResponse: TCResponse {
         /// 订单号列表
         public let dealNames: [String]
 

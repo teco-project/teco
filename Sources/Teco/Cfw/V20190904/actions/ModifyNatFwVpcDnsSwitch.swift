@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyNatFwVpcDnsSwitch请求参数结构体
-    public struct ModifyNatFwVpcDnsSwitchRequest: TCRequestModel {
+    public struct ModifyNatFwVpcDnsSwitchRequest: TCRequest {
         /// nat 防火墙 id
         public let natFwInsId: String
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// ModifyNatFwVpcDnsSwitch返回参数结构体
-    public struct ModifyNatFwVpcDnsSwitchResponse: TCResponseModel {
+    public struct ModifyNatFwVpcDnsSwitchResponse: TCResponse {
         /// 修改成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnMsg: String?

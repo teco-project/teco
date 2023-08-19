@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DeleteModule请求参数结构体
-    public struct DeleteModuleRequest: TCRequestModel {
+    public struct DeleteModuleRequest: TCRequest {
         /// 模块ID。如：em-qn46snq8
         public let moduleId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DeleteModule返回参数结构体
-    public struct DeleteModuleResponse: TCResponseModel {
+    public struct DeleteModuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

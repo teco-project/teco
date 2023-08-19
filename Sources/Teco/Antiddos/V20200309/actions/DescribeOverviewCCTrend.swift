@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Antiddos {
     /// DescribeOverviewCCTrend请求参数结构体
-    public struct DescribeOverviewCCTrendRequest: TCRequestModel {
+    public struct DescribeOverviewCCTrendRequest: TCRequest {
         /// 统计粒度，取值[300(5分钟)，3600(小时)，86400(天)]
         public let period: Int64
 
@@ -72,7 +72,7 @@ extension Antiddos {
     }
 
     /// DescribeOverviewCCTrend返回参数结构体
-    public struct DescribeOverviewCCTrendResponse: TCResponseModel {
+    public struct DescribeOverviewCCTrendResponse: TCResponse {
         /// 值个数
         public let count: UInt64
 

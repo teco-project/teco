@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Trtc {
     /// DescribeRecordStatistic请求参数结构体
-    public struct DescribeRecordStatisticRequest: TCRequestModel {
+    public struct DescribeRecordStatisticRequest: TCRequest {
         /// 查询开始日期，格式为YYYY-MM-DD。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -53,7 +53,7 @@ extension Trtc {
     }
 
     /// DescribeRecordStatistic返回参数结构体
-    public struct DescribeRecordStatisticResponse: TCResponseModel {
+    public struct DescribeRecordStatisticResponse: TCResponse {
         /// 应用的用量信息数组。
         public let sdkAppIdUsages: [SdkAppIdRecordUsage]
 

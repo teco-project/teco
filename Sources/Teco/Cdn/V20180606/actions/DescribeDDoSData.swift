@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeDDoSData请求参数结构体
-    public struct DescribeDDoSDataRequest: TCRequestModel {
+    public struct DescribeDDoSDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         public let startTime: String
 
@@ -48,7 +48,7 @@ extension Cdn {
     }
 
     /// DescribeDDoSData返回参数结构体
-    public struct DescribeDDoSDataResponse: TCResponseModel {
+    public struct DescribeDDoSDataResponse: TCResponse {
         /// DDoS统计数据数组
         public let data: [DDoSStatsData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DeleteScript请求参数结构体
-    public struct DeleteScriptRequest: TCRequestModel {
+    public struct DeleteScriptRequest: TCRequest {
         /// 脚本id，其可以通过DescribeScripts接口提取
         public let scriptIds: [String]
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DeleteScript返回参数结构体
-    public struct DeleteScriptResponse: TCResponseModel {
+    public struct DeleteScriptResponse: TCResponse {
         /// 删除的脚本数量
         public let scriptsAffected: Int64
 

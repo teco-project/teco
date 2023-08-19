@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// OpenProVersion请求参数结构体
-    public struct OpenProVersionRequest: TCRequestModel {
+    public struct OpenProVersionRequest: TCRequest {
         /// 云主机类型。
         /// - CVM：表示虚拟主机
         /// - BM:  表示黑石物理机
@@ -53,7 +53,7 @@ extension Yunjing {
     }
 
     /// OpenProVersion返回参数结构体
-    public struct OpenProVersionResponse: TCResponseModel {
+    public struct OpenProVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

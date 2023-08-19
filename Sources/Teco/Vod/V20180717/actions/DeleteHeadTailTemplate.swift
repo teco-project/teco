@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteHeadTailTemplate请求参数结构体
-    public struct DeleteHeadTailTemplateRequest: TCRequestModel {
+    public struct DeleteHeadTailTemplateRequest: TCRequest {
         /// 片头片尾模板号。
         public let definition: Int64
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteHeadTailTemplate返回参数结构体
-    public struct DeleteHeadTailTemplateResponse: TCResponseModel {
+    public struct DeleteHeadTailTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DeletePolicyGroup请求参数结构体
-    public struct DeletePolicyGroupRequest: TCRequestModel {
+    public struct DeletePolicyGroupRequest: TCRequest {
         /// 固定值，为"monitor"
         public let module: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DeletePolicyGroup返回参数结构体
-    public struct DeletePolicyGroupResponse: TCResponseModel {
+    public struct DeletePolicyGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

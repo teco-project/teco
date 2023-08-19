@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AllocateIp6AddressesBandwidth请求参数结构体
-    public struct AllocateIp6AddressesBandwidthRequest: TCRequestModel {
+    public struct AllocateIp6AddressesBandwidthRequest: TCRequest {
         /// 需要开通公网访问能力的IPV6地址
         public let ip6Addresses: [String]
 
@@ -49,7 +49,7 @@ extension Vpc {
     }
 
     /// AllocateIp6AddressesBandwidth返回参数结构体
-    public struct AllocateIp6AddressesBandwidthResponse: TCResponseModel {
+    public struct AllocateIp6AddressesBandwidthResponse: TCResponse {
         /// 弹性公网 IPV6 的唯一 ID 列表。
         public let addressSet: [String]
 

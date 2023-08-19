@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// DescribeTags请求参数结构体
-    public struct DescribeTagsRequest: TCRequestModel {
+    public struct DescribeTagsRequest: TCRequest {
         /// 标签名称
         public let name: String?
 
@@ -34,7 +34,7 @@ extension Hasim {
     }
 
     /// DescribeTags返回参数结构体
-    public struct DescribeTagsResponse: TCResponseModel {
+    public struct DescribeTagsResponse: TCResponse {
         /// 列表
         public let data: TagInfos
 

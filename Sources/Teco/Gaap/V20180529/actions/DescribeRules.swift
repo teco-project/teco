@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeRules请求参数结构体
-    public struct DescribeRulesRequest: TCRequestModel {
+    public struct DescribeRulesRequest: TCRequest {
         /// 7层监听器Id。
         public let listenerId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeRules返回参数结构体
-    public struct DescribeRulesResponse: TCResponseModel {
+    public struct DescribeRulesResponse: TCResponse {
         /// 按照域名分类的规则信息列表
         public let domainRuleSet: [DomainRuleSet]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Irp {
     /// RecommendContent请求参数结构体
-    public struct RecommendContentRequest: TCRequestModel {
+    public struct RecommendContentRequest: TCRequest {
         /// 业务id
         public let bid: String
 
@@ -74,7 +74,7 @@ extension Irp {
     }
 
     /// RecommendContent返回参数结构体
-    public struct RecommendContentResponse: TCResponseModel {
+    public struct RecommendContentResponse: TCResponse {
         /// 推荐追踪id，用于行为上报。每次接口调用返回的traceId不同
         public let recTraceId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcbr {
     /// CreateCloudRunServer请求参数结构体
-    public struct CreateCloudRunServerRequest: TCRequestModel {
+    public struct CreateCloudRunServerRequest: TCRequest {
         /// 环境Id
         public let envId: String
 
@@ -49,7 +49,7 @@ extension Tcbr {
     }
 
     /// CreateCloudRunServer返回参数结构体
-    public struct CreateCloudRunServerResponse: TCResponseModel {
+    public struct CreateCloudRunServerResponse: TCResponse {
         /// 一键部署任务Id，微信云托管，暂时用不到
         public let taskId: Int64
 

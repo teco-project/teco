@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateRiskDnsEventExportJob请求参数结构体
-    public struct CreateRiskDnsEventExportJobRequest: TCRequestModel {
+    public struct CreateRiskDnsEventExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - EventStatus- String - 是否必填：否 - 事件状态，待处理：EVENT_UNDEAL，EVENT_DEALED：已处理，已忽略：EVENT_IGNORE， EVENT_ADD_WHITE：已加白
         /// - ContainerStatus- String - 是否必填：否 - 容器运行状态筛选，已创建：CREATED,正常运行：RUNNING, 暂定运行：PAUSED, 停止运行：	STOPPED，重启中：RESTARTING, 迁移中：REMOVING, 销毁：DESTROYED
@@ -68,7 +68,7 @@ extension Tcss {
     }
 
     /// CreateRiskDnsEventExportJob返回参数结构体
-    public struct CreateRiskDnsEventExportJobResponse: TCResponseModel {
+    public struct CreateRiskDnsEventExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

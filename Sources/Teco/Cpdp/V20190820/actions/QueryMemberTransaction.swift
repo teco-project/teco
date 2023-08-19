@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryMemberTransaction请求参数结构体
-    public struct QueryMemberTransactionRequest: TCRequestModel {
+    public struct QueryMemberTransactionRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -119,7 +119,7 @@ extension Cpdp {
     }
 
     /// QueryMemberTransaction返回参数结构体
-    public struct QueryMemberTransactionResponse: TCResponseModel {
+    public struct QueryMemberTransactionResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

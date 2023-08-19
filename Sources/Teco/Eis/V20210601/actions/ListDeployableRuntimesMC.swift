@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// ListDeployableRuntimesMC请求参数结构体
-    public struct ListDeployableRuntimesMCRequest: TCRequestModel {
+    public struct ListDeployableRuntimesMCRequest: TCRequest {
         /// 应用id
         public let projectId: Int64?
 
@@ -44,7 +44,7 @@ extension Eis {
     }
 
     /// ListDeployableRuntimesMC返回参数结构体
-    public struct ListDeployableRuntimesMCResponse: TCResponseModel {
+    public struct ListDeployableRuntimesMCResponse: TCResponse {
         /// 运行时列表
         public let runtimes: [AbstractRuntimeMC]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateUserRoles请求参数结构体
-    public struct ChannelCreateUserRolesRequest: TCRequestModel {
+    public struct ChannelCreateUserRolesRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -62,7 +62,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateUserRoles返回参数结构体
-    public struct ChannelCreateUserRolesResponse: TCResponseModel {
+    public struct ChannelCreateUserRolesResponse: TCResponse {
         /// 绑定失败的用户角色列表
         public let failedCreateRoleData: [FailedCreateRoleData]
 

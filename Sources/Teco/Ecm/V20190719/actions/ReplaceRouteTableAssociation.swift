@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// ReplaceRouteTableAssociation请求参数结构体
-    public struct ReplaceRouteTableAssociationRequest: TCRequestModel {
+    public struct ReplaceRouteTableAssociationRequest: TCRequest {
         /// 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。
         public let subnetId: String
 
@@ -44,7 +44,7 @@ extension Ecm {
     }
 
     /// ReplaceRouteTableAssociation返回参数结构体
-    public struct ReplaceRouteTableAssociationResponse: TCResponseModel {
+    public struct ReplaceRouteTableAssociationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeAPIService请求参数结构体
-    public struct DescribeAPIServiceRequest: TCRequestModel {
+    public struct DescribeAPIServiceRequest: TCRequest {
         /// 目前支持的Service为cos:GetService，cdn:DescribeDomainsConfig
         public let service: String
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeAPIService返回参数结构体
-    public struct DescribeAPIServiceResponse: TCResponseModel {
+    public struct DescribeAPIServiceResponse: TCResponse {
         /// Json格式的响应数据
         public let responseData: String
 

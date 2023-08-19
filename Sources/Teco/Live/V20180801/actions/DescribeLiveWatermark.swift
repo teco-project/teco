@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveWatermark请求参数结构体
-    public struct DescribeLiveWatermarkRequest: TCRequestModel {
+    public struct DescribeLiveWatermarkRequest: TCRequest {
         /// DescribeLiveWatermarks接口返回的水印 ID。
         public let watermarkId: UInt64
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLiveWatermark返回参数结构体
-    public struct DescribeLiveWatermarkResponse: TCResponseModel {
+    public struct DescribeLiveWatermarkResponse: TCResponse {
         /// 水印信息。
         public let watermark: WatermarkInfo
 

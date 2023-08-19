@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateDBDiagReportUrl请求参数结构体
-    public struct CreateDBDiagReportUrlRequest: TCRequestModel {
+    public struct CreateDBDiagReportUrlRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// CreateDBDiagReportUrl返回参数结构体
-    public struct CreateDBDiagReportUrlResponse: TCResponseModel {
+    public struct CreateDBDiagReportUrlResponse: TCResponse {
         /// 健康报告浏览地址。
         public let reportUrl: String
 

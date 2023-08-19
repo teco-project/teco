@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateCustAcctId请求参数结构体
-    public struct CreateCustAcctIdRequest: TCRequestModel {
+    public struct CreateCustAcctIdRequest: TCRequest {
         /// STRING(2)，功能标志（1: 开户; 3: 销户）
         public let functionFlag: String
 
@@ -104,7 +104,7 @@ extension Cpdp {
     }
 
     /// CreateCustAcctId返回参数结构体
-    public struct CreateCustAcctIdResponse: TCResponseModel {
+    public struct CreateCustAcctIdResponse: TCResponse {
         /// STRING(50)，见证子账户的账号（平台需要记录下来，后续所有接口交互都会用到）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAcctNo: String?

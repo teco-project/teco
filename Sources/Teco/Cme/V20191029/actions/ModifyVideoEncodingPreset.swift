@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ModifyVideoEncodingPreset请求参数结构体
-    public struct ModifyVideoEncodingPresetRequest: TCRequestModel {
+    public struct ModifyVideoEncodingPresetRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -72,7 +72,7 @@ extension Cme {
     }
 
     /// ModifyVideoEncodingPreset返回参数结构体
-    public struct ModifyVideoEncodingPresetResponse: TCResponseModel {
+    public struct ModifyVideoEncodingPresetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

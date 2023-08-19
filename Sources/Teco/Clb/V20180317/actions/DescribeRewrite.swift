@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeRewrite请求参数结构体
-    public struct DescribeRewriteRequest: TCRequestModel {
+    public struct DescribeRewriteRequest: TCRequest {
         /// 负载均衡实例ID。
         public let loadBalancerId: String
 
@@ -44,7 +44,7 @@ extension Clb {
     }
 
     /// DescribeRewrite返回参数结构体
-    public struct DescribeRewriteResponse: TCResponseModel {
+    public struct DescribeRewriteResponse: TCResponse {
         /// 重定向转发规则构成的数组，若无重定向规则，则返回空数组。
         public let rewriteSet: [RuleOutput]
 

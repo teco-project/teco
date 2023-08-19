@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// ReportBatchCallbackStatus请求参数结构体
-    public struct ReportBatchCallbackStatusRequest: TCRequestModel {
+    public struct ReportBatchCallbackStatusRequest: TCRequest {
         /// 业务加密入参。
         public let businessSecurityData: InputEncryptData
 
@@ -34,7 +34,7 @@ extension Trp {
     }
 
     /// ReportBatchCallbackStatus返回参数结构体
-    public struct ReportBatchCallbackStatusResponse: TCResponseModel {
+    public struct ReportBatchCallbackStatusResponse: TCResponse {
         /// 业务出参。
         public let data: OutputAuthorizedTransfer
 

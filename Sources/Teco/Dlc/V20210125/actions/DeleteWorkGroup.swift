@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DeleteWorkGroup请求参数结构体
-    public struct DeleteWorkGroupRequest: TCRequestModel {
+    public struct DeleteWorkGroupRequest: TCRequest {
         /// 要删除的工作组Id集合
         public let workGroupIds: [Int64]
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DeleteWorkGroup返回参数结构体
-    public struct DeleteWorkGroupResponse: TCResponseModel {
+    public struct DeleteWorkGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// SplitMedia请求参数结构体
-    public struct SplitMediaRequest: TCRequestModel {
+    public struct SplitMediaRequest: TCRequest {
         /// 视频的 ID。
         public let fileId: String
 
@@ -59,7 +59,7 @@ extension Vod {
     }
 
     /// SplitMedia返回参数结构体
-    public struct SplitMediaResponse: TCResponseModel {
+    public struct SplitMediaResponse: TCResponse {
         /// 视频拆条的任务 ID，可以通过该 ID 查询拆条任务（任务类型为 SplitMedia）的状态。
         public let taskId: String
 

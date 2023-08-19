@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryTrade请求参数结构体
-    public struct QueryTradeRequest: TCRequestModel {
+    public struct QueryTradeRequest: TCRequest {
         /// 贸易材料流水号
         public let tradeFileId: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// QueryTrade返回参数结构体
-    public struct QueryTradeResponse: TCResponseModel {
+    public struct QueryTradeResponse: TCResponse {
         /// 贸易材料明细查询结果
         public let result: QueryTradeResult
 

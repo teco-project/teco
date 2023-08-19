@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitHighlights请求参数结构体
-    public struct SubmitHighlightsRequest: TCRequestModel {
+    public struct SubmitHighlightsRequest: TCRequest {
         /// 表情配置开关项。
         public let functions: HLFunction
 
@@ -74,7 +74,7 @@ extension Tci {
     }
 
     /// SubmitHighlights返回参数结构体
-    public struct SubmitHighlightsResponse: TCResponseModel {
+    public struct SubmitHighlightsResponse: TCResponse {
         /// 视频拆条任务ID，用来唯一标识视频拆条任务。
         public let jobId: Int64
 

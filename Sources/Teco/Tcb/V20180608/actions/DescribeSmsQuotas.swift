@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeSmsQuotas请求参数结构体
-    public struct DescribeSmsQuotasRequest: TCRequestModel {
+    public struct DescribeSmsQuotasRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeSmsQuotas返回参数结构体
-    public struct DescribeSmsQuotasResponse: TCResponseModel {
+    public struct DescribeSmsQuotasResponse: TCResponse {
         /// 短信免费量信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let smsFreeQuotaList: [SmsFreeQuota]?

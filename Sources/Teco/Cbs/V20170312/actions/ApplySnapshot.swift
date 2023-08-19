@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// ApplySnapshot请求参数结构体
-    public struct ApplySnapshotRequest: TCRequestModel {
+    public struct ApplySnapshotRequest: TCRequest {
         /// 快照ID, 可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotId: String
 
@@ -49,7 +49,7 @@ extension Cbs {
     }
 
     /// ApplySnapshot返回参数结构体
-    public struct ApplySnapshotResponse: TCResponseModel {
+    public struct ApplySnapshotResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

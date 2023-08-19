@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DetachPlugin请求参数结构体
-    public struct DetachPluginRequest: TCRequestModel {
+    public struct DetachPluginRequest: TCRequest {
         /// 要解绑的API网关插件ID。
         public let pluginId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// DetachPlugin返回参数结构体
-    public struct DetachPluginResponse: TCResponseModel {
+    public struct DetachPluginResponse: TCResponse {
         /// 解绑操作是否成功。
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// IsolateHourDCDBInstance请求参数结构体
-    public struct IsolateHourDCDBInstanceRequest: TCRequestModel {
+    public struct IsolateHourDCDBInstanceRequest: TCRequest {
         /// 待升级的实例ID列表。形如：["dcdbt-ow728lmc"]，可以通过 DescribeDCDBInstances 查询实例详情获得。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Dcdb {
     }
 
     /// IsolateHourDCDBInstance返回参数结构体
-    public struct IsolateHourDCDBInstanceResponse: TCResponseModel {
+    public struct IsolateHourDCDBInstanceResponse: TCResponse {
         /// 隔离成功的实例id列表
         public let successInstanceIds: [String]
 

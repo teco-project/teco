@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// CreateUsualLoginPlaces请求参数结构体
-    public struct CreateUsualLoginPlacesRequest: TCRequestModel {
+    public struct CreateUsualLoginPlacesRequest: TCRequest {
         /// 云镜客户端UUID数组。
         public let uuids: [String]
 
@@ -39,7 +39,7 @@ extension Yunjing {
     }
 
     /// CreateUsualLoginPlaces返回参数结构体
-    public struct CreateUsualLoginPlacesResponse: TCResponseModel {
+    public struct CreateUsualLoginPlacesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyIPStrategy请求参数结构体
-    public struct ModifyIPStrategyRequest: TCRequestModel {
+    public struct ModifyIPStrategyRequest: TCRequest {
         /// 待修改的策略所属服务的唯一ID。
         public let serviceId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// ModifyIPStrategy返回参数结构体
-    public struct ModifyIPStrategyResponse: TCResponseModel {
+    public struct ModifyIPStrategyResponse: TCResponse {
         /// 修改操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

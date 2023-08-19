@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ModifyTableGroupName请求参数结构体
-    public struct ModifyTableGroupNameRequest: TCRequestModel {
+    public struct ModifyTableGroupNameRequest: TCRequest {
         /// 表格组所属的集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tcaplusdb {
     }
 
     /// ModifyTableGroupName返回参数结构体
-    public struct ModifyTableGroupNameResponse: TCResponseModel {
+    public struct ModifyTableGroupNameResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

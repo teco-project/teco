@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// CreateAuditLogFile请求参数结构体
-    public struct CreateAuditLogFileRequest: TCRequestModel {
+    public struct CreateAuditLogFileRequest: TCRequest {
         /// 服务产品类型，支持值包括： "dcdb" - 云数据库 Tdsql， "mariadb" - 云数据库 MariaDB for MariaDB。
         public let product: String
 
@@ -67,7 +67,7 @@ extension Dbbrain {
     }
 
     /// CreateAuditLogFile返回参数结构体
-    public struct CreateAuditLogFileResponse: TCResponseModel {
+    public struct CreateAuditLogFileResponse: TCResponse {
         /// 审计日志文件下载的任务ID
         public let asyncRequestId: Int64
 

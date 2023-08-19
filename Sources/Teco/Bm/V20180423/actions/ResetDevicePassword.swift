@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// ResetDevicePassword请求参数结构体
-    public struct ResetDevicePasswordRequest: TCRequestModel {
+    public struct ResetDevicePasswordRequest: TCRequest {
         /// 需要重置密码的服务器ID列表
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Bm {
     }
 
     /// ResetDevicePassword返回参数结构体
-    public struct ResetDevicePasswordResponse: TCResponseModel {
+    public struct ResetDevicePasswordResponse: TCResponse {
         /// 黑石异步任务ID
         public let taskId: UInt64
 

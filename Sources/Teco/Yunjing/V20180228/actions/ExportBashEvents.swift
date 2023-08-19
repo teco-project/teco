@@ -20,13 +20,13 @@ import TecoCore
 
 extension Yunjing {
     /// ExportBashEvents请求参数结构体
-    public struct ExportBashEventsRequest: TCRequestModel {
+    public struct ExportBashEventsRequest: TCRequest {
         public init() {
         }
     }
 
     /// ExportBashEvents返回参数结构体
-    public struct ExportBashEventsResponse: TCResponseModel {
+    public struct ExportBashEventsResponse: TCResponse {
         /// 导出文件下载链接地址。
         public let downloadUrl: String
 

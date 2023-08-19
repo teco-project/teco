@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// AssociateConfigWithGroup请求参数结构体
-    public struct AssociateConfigWithGroupRequest: TCRequestModel {
+    public struct AssociateConfigWithGroupRequest: TCRequest {
         /// 配置项id
         public let configId: String
 
@@ -59,7 +59,7 @@ extension Tsf {
     }
 
     /// AssociateConfigWithGroup返回参数结构体
-    public struct AssociateConfigWithGroupResponse: TCResponseModel {
+    public struct AssociateConfigWithGroupResponse: TCResponse {
         /// 绑定是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

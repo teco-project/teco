@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// AddUserToGroup请求参数结构体
-    public struct AddUserToGroupRequest: TCRequestModel {
+    public struct AddUserToGroupRequest: TCRequest {
         /// 添加的子用户 UIN/UID 和用户组 ID 关联关系
         public let info: [GroupIdOfUidInfo]
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// AddUserToGroup返回参数结构体
-    public struct AddUserToGroupResponse: TCResponseModel {
+    public struct AddUserToGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

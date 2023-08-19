@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// UnbindRsList请求参数结构体
-    public struct UnbindRsListRequest: TCRequestModel {
+    public struct UnbindRsListRequest: TCRequest {
         /// 物理机绑定的EIP列表
         public let eipRsList: [EipRsMap]
 
@@ -34,7 +34,7 @@ extension Bmeip {
     }
 
     /// UnbindRsList返回参数结构体
-    public struct UnbindRsListResponse: TCResponseModel {
+    public struct UnbindRsListResponse: TCResponse {
         /// 解绑操作的异步任务ID，可以通过查询EIP任务状态查询任务状态
         public let taskId: Int64
 

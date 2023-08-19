@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateCCCSkillGroup请求参数结构体
-    public struct CreateCCCSkillGroupRequest: TCRequestModel {
+    public struct CreateCCCSkillGroupRequest: TCRequest {
         /// 应用 ID（必填）
         public let sdkAppId: Int64
 
@@ -50,7 +50,7 @@ extension Ccc {
     }
 
     /// CreateCCCSkillGroup返回参数结构体
-    public struct CreateCCCSkillGroupResponse: TCResponseModel {
+    public struct CreateCCCSkillGroupResponse: TCResponse {
         /// 技能组ID
         public let skillGroupId: Int64
 

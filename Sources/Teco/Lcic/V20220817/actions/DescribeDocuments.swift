@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeDocuments请求参数结构体
-    public struct DescribeDocumentsRequest: TCRequestModel {
+    public struct DescribeDocumentsRequest: TCRequest {
         /// 学校id
         public let schoolId: UInt64
 
@@ -64,7 +64,7 @@ extension Lcic {
     }
 
     /// DescribeDocuments返回参数结构体
-    public struct DescribeDocumentsResponse: TCResponseModel {
+    public struct DescribeDocumentsResponse: TCResponse {
         /// 符合查询条件文档总数
         public let total: Int64
 

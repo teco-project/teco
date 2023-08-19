@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// CreateSubnet请求参数结构体
-    public struct CreateSubnetRequest: TCRequestModel {
+    public struct CreateSubnetRequest: TCRequest {
         /// 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         public let vpcId: String
 
@@ -59,7 +59,7 @@ extension Ecm {
     }
 
     /// CreateSubnet返回参数结构体
-    public struct CreateSubnetResponse: TCResponseModel {
+    public struct CreateSubnetResponse: TCResponse {
         /// 子网对象。
         public let subnet: Subnet
 

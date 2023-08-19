@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DeleteAlarmNotice请求参数结构体
-    public struct DeleteAlarmNoticeRequest: TCRequestModel {
+    public struct DeleteAlarmNoticeRequest: TCRequest {
         /// 通知渠道组ID
         public let alarmNoticeId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DeleteAlarmNotice返回参数结构体
-    public struct DeleteAlarmNoticeResponse: TCResponseModel {
+    public struct DeleteAlarmNoticeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

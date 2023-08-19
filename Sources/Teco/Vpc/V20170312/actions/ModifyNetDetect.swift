@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyNetDetect请求参数结构体
-    public struct ModifyNetDetectRequest: TCRequestModel {
+    public struct ModifyNetDetectRequest: TCRequest {
         /// 网络探测实例`ID`。形如：`netd-12345678`
         public let netDetectId: String
 
@@ -73,7 +73,7 @@ extension Vpc {
     }
 
     /// ModifyNetDetect返回参数结构体
-    public struct ModifyNetDetectResponse: TCResponseModel {
+    public struct ModifyNetDetectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

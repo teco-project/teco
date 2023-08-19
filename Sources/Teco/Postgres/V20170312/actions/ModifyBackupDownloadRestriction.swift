@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyBackupDownloadRestriction请求参数结构体
-    public struct ModifyBackupDownloadRestrictionRequest: TCRequestModel {
+    public struct ModifyBackupDownloadRestrictionRequest: TCRequest {
         /// 备份文件下载限制类型，NONE 无限制，内外网都可以下载；INTRANET 只允许内网下载；CUSTOMIZE 自定义限制下载的vpc或ip。
         public let restrictionType: String
 
@@ -54,7 +54,7 @@ extension Postgres {
     }
 
     /// ModifyBackupDownloadRestriction返回参数结构体
-    public struct ModifyBackupDownloadRestrictionResponse: TCResponseModel {
+    public struct ModifyBackupDownloadRestrictionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

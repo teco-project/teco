@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// BatchUpdateIntegrationTasks请求参数结构体
-    public struct BatchUpdateIntegrationTasksRequest: TCRequestModel {
+    public struct BatchUpdateIntegrationTasksRequest: TCRequest {
         /// 任务id
         public let taskIds: [String]
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// BatchUpdateIntegrationTasks返回参数结构体
-    public struct BatchUpdateIntegrationTasksResponse: TCResponseModel {
+    public struct BatchUpdateIntegrationTasksResponse: TCResponse {
         /// 操作成功的任务数
         public let successCount: Int64
 

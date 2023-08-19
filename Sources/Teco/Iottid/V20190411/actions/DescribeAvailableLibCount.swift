@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// DescribeAvailableLibCount请求参数结构体
-    public struct DescribeAvailableLibCountRequest: TCRequestModel {
+    public struct DescribeAvailableLibCountRequest: TCRequest {
         /// 订单编号
         public let orderId: String
 
@@ -34,7 +34,7 @@ extension Iottid {
     }
 
     /// DescribeAvailableLibCount返回参数结构体
-    public struct DescribeAvailableLibCountResponse: TCResponseModel {
+    public struct DescribeAvailableLibCountResponse: TCResponse {
         /// 可空发的白盒密钥数量
         public let quantity: UInt64
 

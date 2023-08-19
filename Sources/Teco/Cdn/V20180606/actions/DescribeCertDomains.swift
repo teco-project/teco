@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeCertDomains请求参数结构体
-    public struct DescribeCertDomainsRequest: TCRequestModel {
+    public struct DescribeCertDomainsRequest: TCRequest {
         /// PEM格式证书Base64编码后的字符串
         public let cert: String?
 
@@ -44,7 +44,7 @@ extension Cdn {
     }
 
     /// DescribeCertDomains返回参数结构体
-    public struct DescribeCertDomainsResponse: TCResponseModel {
+    public struct DescribeCertDomainsResponse: TCResponse {
         /// 已接入CDN的域名列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domains: [String]?

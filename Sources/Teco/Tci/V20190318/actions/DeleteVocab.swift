@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DeleteVocab请求参数结构体
-    public struct DeleteVocabRequest: TCRequestModel {
+    public struct DeleteVocabRequest: TCRequest {
         /// 要删除词汇的词汇库名
         public let vocabLibName: String
 
@@ -39,7 +39,7 @@ extension Tci {
     }
 
     /// DeleteVocab返回参数结构体
-    public struct DeleteVocabResponse: TCResponseModel {
+    public struct DeleteVocabResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

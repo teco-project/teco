@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListAttachedGroupPolicies请求参数结构体
-    public struct ListAttachedGroupPoliciesRequest: TCRequestModel {
+    public struct ListAttachedGroupPoliciesRequest: TCRequest {
         /// 用户组ID
         public let targetGroupId: UInt64
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// ListAttachedGroupPolicies返回参数结构体
-    public struct ListAttachedGroupPoliciesResponse: TCResponseModel {
+    public struct ListAttachedGroupPoliciesResponse: TCResponse {
         /// 策略总数。取值范围大于等于0。
         public let totalNum: UInt64
 

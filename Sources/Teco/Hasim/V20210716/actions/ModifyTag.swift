@@ -20,7 +20,7 @@ import TecoCore
 
 extension Hasim {
     /// ModifyTag请求参数结构体
-    public struct ModifyTagRequest: TCRequestModel {
+    public struct ModifyTagRequest: TCRequest {
         /// 名称
         public let name: String
 
@@ -44,7 +44,7 @@ extension Hasim {
     }
 
     /// ModifyTag返回参数结构体
-    public struct ModifyTagResponse: TCResponseModel {
+    public struct ModifyTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

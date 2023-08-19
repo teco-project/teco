@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// RevokeCertificate请求参数结构体
-    public struct RevokeCertificateRequest: TCRequestModel {
+    public struct RevokeCertificateRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -39,7 +39,7 @@ extension Ssl {
     }
 
     /// RevokeCertificate返回参数结构体
-    public struct RevokeCertificateResponse: TCResponseModel {
+    public struct RevokeCertificateResponse: TCResponse {
         /// 吊销证书域名验证信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let revokeDomainValidateAuths: [RevokeDomainValidateAuths]?

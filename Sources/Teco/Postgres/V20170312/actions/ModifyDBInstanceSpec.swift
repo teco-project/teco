@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifyDBInstanceSpec请求参数结构体
-    public struct ModifyDBInstanceSpecRequest: TCRequestModel {
+    public struct ModifyDBInstanceSpecRequest: TCRequest {
         /// 实例ID，形如：postgres-6bwgamo3。
         public let dbInstanceId: String
 
@@ -83,7 +83,7 @@ extension Postgres {
     }
 
     /// ModifyDBInstanceSpec返回参数结构体
-    public struct ModifyDBInstanceSpecResponse: TCResponseModel {
+    public struct ModifyDBInstanceSpecResponse: TCResponse {
         /// 订单号。
         public let dealName: String
 

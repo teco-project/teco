@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// DescribeData请求参数结构体
-    public struct DescribeDataRequest: TCRequestModel {
+    public struct DescribeDataRequest: TCRequest {
         /// 起始时间，单位：秒
         public let startTime: Int64
 
@@ -49,7 +49,7 @@ extension Gpm {
     }
 
     /// DescribeData返回参数结构体
-    public struct DescribeDataResponse: TCResponseModel {
+    public struct DescribeDataResponse: TCResponse {
         /// 匹配概况
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let overviewData: ReportOverviewData?

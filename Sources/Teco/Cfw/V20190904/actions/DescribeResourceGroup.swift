@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeResourceGroup请求参数结构体
-    public struct DescribeResourceGroupRequest: TCRequestModel {
+    public struct DescribeResourceGroupRequest: TCRequest {
         /// 查询类型 网络结构 vpc，业务识别- resource ，资源标签-tag
         public let queryType: String
 
@@ -39,7 +39,7 @@ extension Cfw {
     }
 
     /// DescribeResourceGroup返回参数结构体
-    public struct DescribeResourceGroupResponse: TCResponseModel {
+    public struct DescribeResourceGroupResponse: TCResponse {
         /// 返回树形结构
         public let data: String
 

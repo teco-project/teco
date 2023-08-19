@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iai {
     /// SearchPersonsReturnsByGroup请求参数结构体
-    public struct SearchPersonsReturnsByGroupRequest: TCRequestModel {
+    public struct SearchPersonsReturnsByGroupRequest: TCRequest {
         /// 希望搜索的人员库列表，上限60个。数组元素取值为创建人员库接口中的GroupId
         public let groupIds: [String]
 
@@ -96,7 +96,7 @@ extension Iai {
     }
 
     /// SearchPersonsReturnsByGroup返回参数结构体
-    public struct SearchPersonsReturnsByGroupResponse: TCResponseModel {
+    public struct SearchPersonsReturnsByGroupResponse: TCResponse {
         /// 搜索的人员库中包含的人员数。若输入图片中所有人脸均不符合质量要求，则返回0。
         public let personNum: UInt64
 

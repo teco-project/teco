@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateSparkApp请求参数结构体
-    public struct CreateSparkAppRequest: TCRequestModel {
+    public struct CreateSparkAppRequest: TCRequest {
         /// spark作业名
         public let appName: String
 
@@ -174,7 +174,7 @@ extension Dlc {
     }
 
     /// CreateSparkApp返回参数结构体
-    public struct CreateSparkAppResponse: TCResponseModel {
+    public struct CreateSparkAppResponse: TCResponse {
         /// App唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sparkAppId: String?

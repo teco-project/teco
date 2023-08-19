@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// DeleteMountPoint请求参数结构体
-    public struct DeleteMountPointRequest: TCRequestModel {
+    public struct DeleteMountPointRequest: TCRequest {
         /// 挂载点ID
         public let mountPointId: String
 
@@ -34,7 +34,7 @@ extension Chdfs {
     }
 
     /// DeleteMountPoint返回参数结构体
-    public struct DeleteMountPointResponse: TCResponseModel {
+    public struct DeleteMountPointResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveDomainPlayInfoList请求参数结构体
-    public struct DescribeLiveDomainPlayInfoListRequest: TCRequestModel {
+    public struct DescribeLiveDomainPlayInfoListRequest: TCRequest {
         /// 播放域名列表。
         public let playDomains: [String]?
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLiveDomainPlayInfoList返回参数结构体
-    public struct DescribeLiveDomainPlayInfoListResponse: TCResponseModel {
+    public struct DescribeLiveDomainPlayInfoListResponse: TCResponse {
         /// 数据时间，格式为yyyy-mm-dd HH:MM:SS。
         public let time: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// CreateAudioModerationTask请求参数结构体
-    public struct CreateAudioModerationTaskRequest: TCRequestModel {
+    public struct CreateAudioModerationTaskRequest: TCRequest {
         /// 该字段表示输入的音频审核任务信息，具体输入内容请参见TaskInput数据结构的详细描述。
         ///
         /// 备注：最多同时可创建**10个任务**。
@@ -60,7 +60,7 @@ extension Ams {
     }
 
     /// CreateAudioModerationTask返回参数结构体
-    public struct CreateAudioModerationTaskResponse: TCResponseModel {
+    public struct CreateAudioModerationTaskResponse: TCResponse {
         /// 该字段用于返回任务创建的结果，具体输出内容请参见TaskResult数据结构的详细描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let results: [TaskResult]?

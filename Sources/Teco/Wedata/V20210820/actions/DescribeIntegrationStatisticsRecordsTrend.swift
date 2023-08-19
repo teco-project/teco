@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeIntegrationStatisticsRecordsTrend请求参数结构体
-    public struct DescribeIntegrationStatisticsRecordsTrendRequest: TCRequestModel {
+    public struct DescribeIntegrationStatisticsRecordsTrendRequest: TCRequest {
         /// 任务类型（实时：201，离线：202）
         public let taskType: Int64
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeIntegrationStatisticsRecordsTrend返回参数结构体
-    public struct DescribeIntegrationStatisticsRecordsTrendResponse: TCResponseModel {
+    public struct DescribeIntegrationStatisticsRecordsTrendResponse: TCResponse {
         /// 统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trendsData: [IntegrationStatisticsTrendResult]?

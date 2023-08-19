@@ -20,7 +20,7 @@ import TecoCore
 
 extension Domain {
     /// CheckBatchStatus请求参数结构体
-    public struct CheckBatchStatusRequest: TCRequestModel {
+    public struct CheckBatchStatusRequest: TCRequest {
         /// 操作日志 ID数组，最多 200 个
         public let logIds: [UInt64]
 
@@ -34,7 +34,7 @@ extension Domain {
     }
 
     /// CheckBatchStatus返回参数结构体
-    public struct CheckBatchStatusResponse: TCResponseModel {
+    public struct CheckBatchStatusResponse: TCResponse {
         /// 批量任务状态集
         public let statusSet: [BatchStatus]
 

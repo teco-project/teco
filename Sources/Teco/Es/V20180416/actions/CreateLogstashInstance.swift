@@ -20,7 +20,7 @@ import TecoCore
 
 extension Es {
     /// CreateLogstashInstance请求参数结构体
-    public struct CreateLogstashInstanceRequest: TCRequestModel {
+    public struct CreateLogstashInstanceRequest: TCRequest {
         /// 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
         public let instanceName: String
 
@@ -141,7 +141,7 @@ extension Es {
     }
 
     /// CreateLogstashInstance返回参数结构体
-    public struct CreateLogstashInstanceResponse: TCResponseModel {
+    public struct CreateLogstashInstanceResponse: TCResponse {
         /// 实例ID
         public let instanceId: String
 

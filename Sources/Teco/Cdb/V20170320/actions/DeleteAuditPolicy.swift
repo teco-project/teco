@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DeleteAuditPolicy请求参数结构体
-    public struct DeleteAuditPolicyRequest: TCRequestModel {
+    public struct DeleteAuditPolicyRequest: TCRequest {
         /// 审计策略 ID。
         public let policyId: String
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// DeleteAuditPolicy返回参数结构体
-    public struct DeleteAuditPolicyResponse: TCResponseModel {
+    public struct DeleteAuditPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

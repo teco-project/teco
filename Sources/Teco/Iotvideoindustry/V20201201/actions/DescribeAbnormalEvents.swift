@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeAbnormalEvents请求参数结构体
-    public struct DescribeAbnormalEventsRequest: TCRequestModel {
+    public struct DescribeAbnormalEventsRequest: TCRequest {
         /// 开始时间
         public let startTime: Int64
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// DescribeAbnormalEvents返回参数结构体
-    public struct DescribeAbnormalEventsResponse: TCResponseModel {
+    public struct DescribeAbnormalEventsResponse: TCResponse {
         /// 异动事件走势列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [AbnormalEvents]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DescribeInstanceShards请求参数结构体
-    public struct DescribeInstanceShardsRequest: TCRequestModel {
+    public struct DescribeInstanceShardsRequest: TCRequest {
         /// 集群实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DescribeInstanceShards返回参数结构体
-    public struct DescribeInstanceShardsResponse: TCResponseModel {
+    public struct DescribeInstanceShardsResponse: TCResponse {
         /// 实例shard信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceShardsList: String?

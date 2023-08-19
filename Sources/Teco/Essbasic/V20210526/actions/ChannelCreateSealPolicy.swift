@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelCreateSealPolicy请求参数结构体
-    public struct ChannelCreateSealPolicyRequest: TCRequestModel {
+    public struct ChannelCreateSealPolicyRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -62,7 +62,7 @@ extension Essbasic {
     }
 
     /// ChannelCreateSealPolicy返回参数结构体
-    public struct ChannelCreateSealPolicyResponse: TCResponseModel {
+    public struct ChannelCreateSealPolicyResponse: TCResponse {
         /// 最终授权成功的电子签系统用户ID数组。其他的跳过的是已经授权了的。
         /// 请求参数填写OpenId时，返回授权成功的 Openid。
         public let userIds: [String]

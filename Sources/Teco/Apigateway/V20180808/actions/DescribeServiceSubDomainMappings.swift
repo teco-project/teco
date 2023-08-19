@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DescribeServiceSubDomainMappings请求参数结构体
-    public struct DescribeServiceSubDomainMappingsRequest: TCRequestModel {
+    public struct DescribeServiceSubDomainMappingsRequest: TCRequest {
         /// 服务唯一 ID。
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// DescribeServiceSubDomainMappings返回参数结构体
-    public struct DescribeServiceSubDomainMappingsResponse: TCResponseModel {
+    public struct DescribeServiceSubDomainMappingsResponse: TCResponse {
         /// 自定义路径映射列表。
         public let result: ServiceSubDomainMappings
 

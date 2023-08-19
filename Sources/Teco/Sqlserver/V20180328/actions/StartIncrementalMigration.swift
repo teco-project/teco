@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// StartIncrementalMigration请求参数结构体
-    public struct StartIncrementalMigrationRequest: TCRequestModel {
+    public struct StartIncrementalMigrationRequest: TCRequest {
         /// 导入目标实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// StartIncrementalMigration返回参数结构体
-    public struct StartIncrementalMigrationResponse: TCResponseModel {
+    public struct StartIncrementalMigrationResponse: TCResponse {
         /// 流程ID
         public let flowId: UInt64
 

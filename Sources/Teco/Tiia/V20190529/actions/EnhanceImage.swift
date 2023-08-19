@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// EnhanceImage请求参数结构体
-    public struct EnhanceImageRequest: TCRequestModel {
+    public struct EnhanceImageRequest: TCRequest {
         /// 图片URL地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG。
@@ -47,7 +47,7 @@ extension Tiia {
     }
 
     /// EnhanceImage返回参数结构体
-    public struct EnhanceImageResponse: TCResponseModel {
+    public struct EnhanceImageResponse: TCResponse {
         /// 增强后图片的base64编码。
         public let enhancedImage: String
 

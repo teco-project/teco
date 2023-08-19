@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// ModifyServiceGroupWeights请求参数结构体
-    public struct ModifyServiceGroupWeightsRequest: TCRequestModel {
+    public struct ModifyServiceGroupWeightsRequest: TCRequest {
         /// 服务组id
         public let serviceGroupId: String
 
@@ -39,7 +39,7 @@ extension Tione {
     }
 
     /// ModifyServiceGroupWeights返回参数结构体
-    public struct ModifyServiceGroupWeightsResponse: TCResponseModel {
+    public struct ModifyServiceGroupWeightsResponse: TCResponse {
         /// 更新权重后的服务组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceGroup: ServiceGroup?

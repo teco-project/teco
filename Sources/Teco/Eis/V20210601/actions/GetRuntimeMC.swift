@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// GetRuntimeMC请求参数结构体
-    public struct GetRuntimeMCRequest: TCRequestModel {
+    public struct GetRuntimeMCRequest: TCRequest {
         /// 环境id
         public let runtimeId: Int64
 
@@ -44,7 +44,7 @@ extension Eis {
     }
 
     /// GetRuntimeMC返回参数结构体
-    public struct GetRuntimeMCResponse: TCResponseModel {
+    public struct GetRuntimeMCResponse: TCResponse {
         /// 运行时详情
         public let runtime: RuntimeMC
 

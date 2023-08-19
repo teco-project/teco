@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// BindIpsToNatGateway请求参数结构体
-    public struct BindIpsToNatGatewayRequest: TCRequestModel {
+    public struct BindIpsToNatGatewayRequest: TCRequest {
         /// NAT网关ID，例如：nat-kdm476mp
         public let natId: String
 
@@ -44,7 +44,7 @@ extension Bmvpc {
     }
 
     /// BindIpsToNatGateway返回参数结构体
-    public struct BindIpsToNatGatewayResponse: TCResponseModel {
+    public struct BindIpsToNatGatewayResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

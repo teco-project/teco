@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ModifyRepositoryInfoPersonal请求参数结构体
-    public struct ModifyRepositoryInfoPersonalRequest: TCRequestModel {
+    public struct ModifyRepositoryInfoPersonalRequest: TCRequest {
         /// 仓库名称
         public let repoName: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// ModifyRepositoryInfoPersonal返回参数结构体
-    public struct ModifyRepositoryInfoPersonalResponse: TCResponseModel {
+    public struct ModifyRepositoryInfoPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DeleteIgnoreVul请求参数结构体
-    public struct DeleteIgnoreVulRequest: TCRequestModel {
+    public struct DeleteIgnoreVulRequest: TCRequest {
         /// 漏洞PocID 信息列表
         public let list: [ModifyIgnoreVul]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DeleteIgnoreVul返回参数结构体
-    public struct DeleteIgnoreVulResponse: TCResponseModel {
+    public struct DeleteIgnoreVulResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

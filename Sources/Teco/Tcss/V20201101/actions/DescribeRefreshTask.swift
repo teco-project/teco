@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeRefreshTask请求参数结构体
-    public struct DescribeRefreshTaskRequest: TCRequestModel {
+    public struct DescribeRefreshTaskRequest: TCRequest {
         /// 任务ID
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeRefreshTask返回参数结构体
-    public struct DescribeRefreshTaskResponse: TCResponseModel {
+    public struct DescribeRefreshTaskResponse: TCResponse {
         /// 刷新任务状态，可能为：Task_New,Task_Running,Task_Finish,Task_Error,Task_NoExist
         public let taskStatus: String
 

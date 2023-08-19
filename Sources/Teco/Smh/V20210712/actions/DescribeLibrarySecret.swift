@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smh {
     /// DescribeLibrarySecret请求参数结构体
-    public struct DescribeLibrarySecretRequest: TCRequestModel {
+    public struct DescribeLibrarySecretRequest: TCRequest {
         /// 媒体库 ID
         public let libraryId: String
 
@@ -34,7 +34,7 @@ extension Smh {
     }
 
     /// DescribeLibrarySecret返回参数结构体
-    public struct DescribeLibrarySecretResponse: TCResponseModel {
+    public struct DescribeLibrarySecretResponse: TCResponse {
         /// 查询的媒体库 ID
         public let libraryId: String
 

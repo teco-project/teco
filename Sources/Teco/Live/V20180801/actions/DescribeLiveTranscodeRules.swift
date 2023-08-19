@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTranscodeRules请求参数结构体
-    public struct DescribeLiveTranscodeRulesRequest: TCRequestModel {
+    public struct DescribeLiveTranscodeRulesRequest: TCRequest {
         /// 要筛选的模板ID数组。
         public let templateIds: [Int64]?
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// DescribeLiveTranscodeRules返回参数结构体
-    public struct DescribeLiveTranscodeRulesResponse: TCResponseModel {
+    public struct DescribeLiveTranscodeRulesResponse: TCResponse {
         /// 转码规则列表。
         public let rules: [RuleInfo]
 

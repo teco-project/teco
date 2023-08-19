@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// DescribeStreamAuth请求参数结构体
-    public struct DescribeStreamAuthRequest: TCRequestModel {
+    public struct DescribeStreamAuthRequest: TCRequest {
         public init() {
         }
     }
 
     /// 查询推拉流鉴权返回数据结构
-    public struct DescribeStreamAuthResponse: TCResponseModel {
+    public struct DescribeStreamAuthResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

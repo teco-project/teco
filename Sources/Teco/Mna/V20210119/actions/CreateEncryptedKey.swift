@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mna {
     /// CreateEncryptedKey请求参数结构体
-    public struct CreateEncryptedKeyRequest: TCRequestModel {
+    public struct CreateEncryptedKeyRequest: TCRequest {
         public init() {
         }
     }
 
     /// CreateEncryptedKey返回参数结构体
-    public struct CreateEncryptedKeyResponse: TCResponseModel {
+    public struct CreateEncryptedKeyResponse: TCResponse {
         /// 预置密钥
         public let encryptedKey: String
 

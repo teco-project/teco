@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribePublicIpAssets请求参数结构体
-    public struct DescribePublicIpAssetsRequest: TCRequestModel {
+    public struct DescribePublicIpAssetsRequest: TCRequest {
         /// filte过滤条件
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribePublicIpAssets返回参数结构体
-    public struct DescribePublicIpAssetsResponse: TCResponseModel {
+    public struct DescribePublicIpAssetsResponse: TCResponse {
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [IpAssetListVO]?

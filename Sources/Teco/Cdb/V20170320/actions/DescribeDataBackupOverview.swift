@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDataBackupOverview请求参数结构体
-    public struct DescribeDataBackupOverviewRequest: TCRequestModel {
+    public struct DescribeDataBackupOverviewRequest: TCRequest {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
         public let product: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeDataBackupOverview返回参数结构体
-    public struct DescribeDataBackupOverviewResponse: TCResponseModel {
+    public struct DescribeDataBackupOverviewResponse: TCResponse {
         /// 当前地域的数据备份总容量（包含自动备份和手动备份，单位为字节）。
         public let dataBackupVolume: Int64
 

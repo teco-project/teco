@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateAddressTemplate请求参数结构体
-    public struct CreateAddressTemplateRequest: TCRequestModel {
+    public struct CreateAddressTemplateRequest: TCRequest {
         /// IP地址模板名称。
         public let addressTemplateName: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// CreateAddressTemplate返回参数结构体
-    public struct CreateAddressTemplateResponse: TCResponseModel {
+    public struct CreateAddressTemplateResponse: TCResponse {
         /// IP地址模板对象。
         public let addressTemplate: AddressTemplate
 

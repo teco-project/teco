@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DescribeApi请求参数结构体
-    public struct DescribeApiRequest: TCRequestModel {
+    public struct DescribeApiRequest: TCRequest {
         /// API 所在的服务唯一 ID。
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// DescribeApi返回参数结构体
-    public struct DescribeApiResponse: TCResponseModel {
+    public struct DescribeApiResponse: TCResponse {
         /// API 详情。
         public let result: ApiInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// CreateAgeDetectTask请求参数结构体
-    public struct CreateAgeDetectTaskRequest: TCRequestModel {
+    public struct CreateAgeDetectTaskRequest: TCRequest {
         /// 应用id
         public let bizId: Int64
 
@@ -46,7 +46,7 @@ extension Gme {
     }
 
     /// CreateAgeDetectTask返回参数结构体
-    public struct CreateAgeDetectTaskResponse: TCResponseModel {
+    public struct CreateAgeDetectTaskResponse: TCResponse {
         /// 本次任务提交后唯一id，用于获取任务运行结果
         public let taskId: String
 

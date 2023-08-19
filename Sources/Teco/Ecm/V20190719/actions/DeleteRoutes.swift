@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DeleteRoutes请求参数结构体
-    public struct DeleteRoutesRequest: TCRequestModel {
+    public struct DeleteRoutesRequest: TCRequest {
         /// 路由表唯一ID。
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// DeleteRoutes返回参数结构体
-    public struct DeleteRoutesResponse: TCResponseModel {
+    public struct DeleteRoutesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

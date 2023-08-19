@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DeleteScenarios请求参数结构体
-    public struct DeleteScenariosRequest: TCRequestModel {
+    public struct DeleteScenariosRequest: TCRequest {
         /// 场景ID数组
         public let scenarioIds: [String]
 
@@ -44,7 +44,7 @@ extension Pts {
     }
 
     /// DeleteScenarios返回参数结构体
-    public struct DeleteScenariosResponse: TCResponseModel {
+    public struct DeleteScenariosResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

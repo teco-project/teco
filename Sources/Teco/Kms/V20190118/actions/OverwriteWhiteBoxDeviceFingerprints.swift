@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// OverwriteWhiteBoxDeviceFingerprints请求参数结构体
-    public struct OverwriteWhiteBoxDeviceFingerprintsRequest: TCRequestModel {
+    public struct OverwriteWhiteBoxDeviceFingerprintsRequest: TCRequest {
         /// 白盒密钥ID
         public let keyId: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// OverwriteWhiteBoxDeviceFingerprints返回参数结构体
-    public struct OverwriteWhiteBoxDeviceFingerprintsResponse: TCResponseModel {
+    public struct OverwriteWhiteBoxDeviceFingerprintsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

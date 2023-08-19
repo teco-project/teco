@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DeleteIpAccessControl请求参数结构体
-    public struct DeleteIpAccessControlRequest: TCRequestModel {
+    public struct DeleteIpAccessControlRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -49,7 +49,7 @@ extension Waf {
     }
 
     /// DeleteIpAccessControl返回参数结构体
-    public struct DeleteIpAccessControlResponse: TCResponseModel {
+    public struct DeleteIpAccessControlResponse: TCResponse {
         /// 删除失败的条目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedItems: String?

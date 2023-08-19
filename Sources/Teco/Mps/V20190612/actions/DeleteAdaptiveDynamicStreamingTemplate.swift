@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DeleteAdaptiveDynamicStreamingTemplate请求参数结构体
-    public struct DeleteAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
+    public struct DeleteAdaptiveDynamicStreamingTemplateRequest: TCRequest {
         /// 自适应转码模板唯一标识。
         public let definition: UInt64
 
@@ -34,7 +34,7 @@ extension Mps {
     }
 
     /// DeleteAdaptiveDynamicStreamingTemplate返回参数结构体
-    public struct DeleteAdaptiveDynamicStreamingTemplateResponse: TCResponseModel {
+    public struct DeleteAdaptiveDynamicStreamingTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

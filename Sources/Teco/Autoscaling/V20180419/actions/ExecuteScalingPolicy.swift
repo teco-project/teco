@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// ExecuteScalingPolicy请求参数结构体
-    public struct ExecuteScalingPolicyRequest: TCRequestModel {
+    public struct ExecuteScalingPolicyRequest: TCRequest {
         /// 告警伸缩策略ID，不支持目标追踪策略。
         public let autoScalingPolicyId: String
 
@@ -44,7 +44,7 @@ extension As {
     }
 
     /// ExecuteScalingPolicy返回参数结构体
-    public struct ExecuteScalingPolicyResponse: TCResponseModel {
+    public struct ExecuteScalingPolicyResponse: TCResponse {
         /// 伸缩活动ID
         public let activityId: String
 

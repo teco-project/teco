@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// DescribeRotationDetail请求参数结构体
-    public struct DescribeRotationDetailRequest: TCRequestModel {
+    public struct DescribeRotationDetailRequest: TCRequest {
         /// 指定需要获取凭据轮转详细信息的凭据名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// DescribeRotationDetail返回参数结构体
-    public struct DescribeRotationDetailResponse: TCResponseModel {
+    public struct DescribeRotationDetailResponse: TCResponse {
         /// 否允许轮转，true表示开启轮转，false表示禁止轮转。
         public let enableRotation: Bool
 

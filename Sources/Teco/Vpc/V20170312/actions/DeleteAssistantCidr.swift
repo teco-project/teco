@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteAssistantCidr请求参数结构体
-    public struct DeleteAssistantCidrRequest: TCRequestModel {
+    public struct DeleteAssistantCidrRequest: TCRequest {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`。
         public let vpcId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DeleteAssistantCidr返回参数结构体
-    public struct DeleteAssistantCidrResponse: TCResponseModel {
+    public struct DeleteAssistantCidrResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

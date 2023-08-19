@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeTraceDataById请求参数结构体
-    public struct DescribeTraceDataByIdRequest: TCRequestModel {
+    public struct DescribeTraceDataByIdRequest: TCRequest {
         /// 溯源ID
         public let id: String
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeTraceDataById返回参数结构体
-    public struct DescribeTraceDataByIdResponse: TCResponseModel {
+    public struct DescribeTraceDataByIdResponse: TCResponse {
         public let traceData: TraceData
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

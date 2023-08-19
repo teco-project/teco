@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateMultiDevicesTask请求参数结构体
-    public struct CreateMultiDevicesTaskRequest: TCRequestModel {
+    public struct CreateMultiDevicesTaskRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -59,7 +59,7 @@ extension Iotcloud {
     }
 
     /// CreateMultiDevicesTask返回参数结构体
-    public struct CreateMultiDevicesTaskResponse: TCResponseModel {
+    public struct CreateMultiDevicesTaskResponse: TCResponse {
         /// 任务ID
         public let id: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// ModifyPicture请求参数结构体
-    public struct ModifyPictureRequest: TCRequestModel {
+    public struct ModifyPictureRequest: TCRequest {
         /// 图片id
         public let pictureId: UInt64
 
@@ -59,7 +59,7 @@ extension Trtc {
     }
 
     /// ModifyPicture返回参数结构体
-    public struct ModifyPictureResponse: TCResponseModel {
+    public struct ModifyPictureResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

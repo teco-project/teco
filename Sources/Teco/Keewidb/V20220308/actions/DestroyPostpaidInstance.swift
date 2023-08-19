@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// DestroyPostpaidInstance请求参数结构体
-    public struct DestroyPostpaidInstanceRequest: TCRequestModel {
+    public struct DestroyPostpaidInstanceRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Keewidb {
     }
 
     /// DestroyPostpaidInstance返回参数结构体
-    public struct DestroyPostpaidInstanceResponse: TCResponseModel {
+    public struct DestroyPostpaidInstanceResponse: TCResponse {
         /// 任务 ID。
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeApplication请求参数结构体
-    public struct DescribeApplicationRequest: TCRequestModel {
+    public struct DescribeApplicationRequest: TCRequest {
         /// 应用id，是应用的全局唯一标识，与ClientId参数不能同时为空。
         public let applicationId: String?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DescribeApplication返回参数结构体
-    public struct DescribeApplicationResponse: TCResponseModel {
+    public struct DescribeApplicationResponse: TCResponse {
         /// 密钥id。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyId: String?

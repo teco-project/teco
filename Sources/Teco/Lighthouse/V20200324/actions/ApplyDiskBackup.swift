@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// ApplyDiskBackup请求参数结构体
-    public struct ApplyDiskBackupRequest: TCRequestModel {
+    public struct ApplyDiskBackupRequest: TCRequest {
         /// 云硬盘ID，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。
         public let diskId: String
 
@@ -39,7 +39,7 @@ extension Lighthouse {
     }
 
     /// ApplyDiskBackup返回参数结构体
-    public struct ApplyDiskBackupResponse: TCResponseModel {
+    public struct ApplyDiskBackupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

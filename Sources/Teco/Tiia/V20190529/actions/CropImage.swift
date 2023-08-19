@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// CropImage请求参数结构体
-    public struct CropImageRequest: TCRequestModel {
+    public struct CropImageRequest: TCRequest {
         /// 需要裁剪区域的宽度，与Height共同组成所需裁剪的图片宽高比例。
         /// 输入数字请大于0、小于图片宽度的像素值。
         public let width: Int64
@@ -61,7 +61,7 @@ extension Tiia {
     }
 
     /// CropImage返回参数结构体
-    public struct CropImageResponse: TCResponseModel {
+    public struct CropImageResponse: TCResponse {
         /// 裁剪区域左上角X坐标值
         public let x: Int64
 

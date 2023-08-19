@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// DeleteFace请求参数结构体
-    public struct DeleteFaceRequest: TCRequestModel {
+    public struct DeleteFaceRequest: TCRequest {
         /// 人脸标识符数组
         public let faceIdSet: [String]
 
@@ -44,7 +44,7 @@ extension Tci {
     }
 
     /// DeleteFace返回参数结构体
-    public struct DeleteFaceResponse: TCResponseModel {
+    public struct DeleteFaceResponse: TCResponse {
         /// 人脸操作结果
         public let faceInfoSet: [FaceInfo]
 

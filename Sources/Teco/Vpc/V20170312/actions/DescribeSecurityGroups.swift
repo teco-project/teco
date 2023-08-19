@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeSecurityGroups请求参数结构体
-    public struct DescribeSecurityGroupsRequest: TCRequestModel {
+    public struct DescribeSecurityGroupsRequest: TCRequest {
         /// 安全组实例ID，例如：sg-33ocnj9n。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
         public let securityGroupIds: [String]?
 
@@ -64,7 +64,7 @@ extension Vpc {
     }
 
     /// DescribeSecurityGroups返回参数结构体
-    public struct DescribeSecurityGroupsResponse: TCResponseModel {
+    public struct DescribeSecurityGroupsResponse: TCResponse {
         /// 安全组对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityGroupSet: [SecurityGroup]?

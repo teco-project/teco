@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// StartBatchRollback请求参数结构体
-    public struct StartBatchRollbackRequest: TCRequestModel {
+    public struct StartBatchRollbackRequest: TCRequest {
         /// 用于回档的实例详情信息。
         public let instances: [RollbackInstancesInfo]
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// StartBatchRollback返回参数结构体
-    public struct StartBatchRollbackResponse: TCResponseModel {
+    public struct StartBatchRollbackResponse: TCResponse {
         /// 异步任务的请求 ID，可使用此 ID 查询异步任务的执行结果。
         public let asyncRequestId: String
 

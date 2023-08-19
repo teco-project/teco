@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitApplicationPodContainers请求参数结构体
-    public struct DescribeEdgeUnitApplicationPodContainersRequest: TCRequestModel {
+    public struct DescribeEdgeUnitApplicationPodContainersRequest: TCRequest {
         /// 单元ID
         public let edgeUnitId: UInt64
 
@@ -44,7 +44,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitApplicationPodContainers返回参数结构体
-    public struct DescribeEdgeUnitApplicationPodContainersResponse: TCResponseModel {
+    public struct DescribeEdgeUnitApplicationPodContainersResponse: TCResponse {
         /// 容器列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerSet: [ContainerStatus]?

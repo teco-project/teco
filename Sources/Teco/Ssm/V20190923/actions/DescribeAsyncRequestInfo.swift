@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// DescribeAsyncRequestInfo请求参数结构体
-    public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
+    public struct DescribeAsyncRequestInfoRequest: TCRequest {
         /// 异步任务ID号。
         public let flowID: Int64
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// DescribeAsyncRequestInfo返回参数结构体
-    public struct DescribeAsyncRequestInfoResponse: TCResponseModel {
+    public struct DescribeAsyncRequestInfoResponse: TCResponse {
         /// 0:处理中，1:处理成功，2:处理失败
         public let taskStatus: Int64
 

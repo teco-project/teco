@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveCert请求参数结构体
-    public struct DescribeLiveCertRequest: TCRequestModel {
+    public struct DescribeLiveCertRequest: TCRequest {
         /// DescribeLiveCerts接口获取到的证书Id。
         public let certId: Int64
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLiveCert返回参数结构体
-    public struct DescribeLiveCertResponse: TCResponseModel {
+    public struct DescribeLiveCertResponse: TCResponse {
         /// 证书信息。
         public let certInfo: CertInfo
 

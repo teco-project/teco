@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UpdateEKSContainerInstance请求参数结构体
-    public struct UpdateEKSContainerInstanceRequest: TCRequestModel {
+    public struct UpdateEKSContainerInstanceRequest: TCRequest {
         /// 容器实例 ID
         public let eksCiId: String
 
@@ -64,7 +64,7 @@ extension Tke {
     }
 
     /// UpdateEKSContainerInstance返回参数结构体
-    public struct UpdateEKSContainerInstanceResponse: TCResponseModel {
+    public struct UpdateEKSContainerInstanceResponse: TCResponse {
         /// 容器实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eksCiId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeAlarmNotice请求参数结构体
-    public struct DescribeAlarmNoticeRequest: TCRequestModel {
+    public struct DescribeAlarmNoticeRequest: TCRequest {
         /// 模块名，这里填“monitor”
         public let module: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribeAlarmNotice返回参数结构体
-    public struct DescribeAlarmNoticeResponse: TCResponseModel {
+    public struct DescribeAlarmNoticeResponse: TCResponse {
         /// 告警通知模板详细信息
         public let notice: AlarmNotice
 

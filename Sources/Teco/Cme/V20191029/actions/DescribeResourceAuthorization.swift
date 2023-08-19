@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DescribeResourceAuthorization请求参数结构体
-    public struct DescribeResourceAuthorizationRequest: TCRequestModel {
+    public struct DescribeResourceAuthorizationRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -49,7 +49,7 @@ extension Cme {
     }
 
     /// DescribeResourceAuthorization返回参数结构体
-    public struct DescribeResourceAuthorizationResponse: TCResponseModel {
+    public struct DescribeResourceAuthorizationResponse: TCResponse {
         /// 符合条件的资源授权记录总数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

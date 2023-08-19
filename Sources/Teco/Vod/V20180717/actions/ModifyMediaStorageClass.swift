@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyMediaStorageClass请求参数结构体
-    public struct ModifyMediaStorageClassRequest: TCRequestModel {
+    public struct ModifyMediaStorageClassRequest: TCRequest {
         /// 媒体文件唯一标识列表。
         public let fileIds: [String]
 
@@ -61,7 +61,7 @@ extension Vod {
     }
 
     /// ModifyMediaStorageClass返回参数结构体
-    public struct ModifyMediaStorageClassResponse: TCResponseModel {
+    public struct ModifyMediaStorageClassResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateExtension请求参数结构体
-    public struct CreateExtensionRequest: TCRequestModel {
+    public struct CreateExtensionRequest: TCRequest {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
 
@@ -54,7 +54,7 @@ extension Ccc {
     }
 
     /// CreateExtension返回参数结构体
-    public struct CreateExtensionResponse: TCResponseModel {
+    public struct CreateExtensionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

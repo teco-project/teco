@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAssetHostTotalCount请求参数结构体
-    public struct DescribeAssetHostTotalCountRequest: TCRequestModel {
+    public struct DescribeAssetHostTotalCountRequest: TCRequest {
         /// 主机Uuid
         public let uuid: String
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// DescribeAssetHostTotalCount返回参数结构体
-    public struct DescribeAssetHostTotalCountResponse: TCResponseModel {
+    public struct DescribeAssetHostTotalCountResponse: TCResponse {
         /// 各项资源数量
         /// system : 资源监控
         /// account: 账号

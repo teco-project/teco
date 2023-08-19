@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// Liveness请求参数结构体
-    public struct LivenessRequest: TCRequestModel {
+    public struct LivenessRequest: TCRequest {
         /// 用于活体检测的视频，视频的BASE64值；
         /// BASE64编码后的大小不超过8M，支持mp4、avi、flv格式。
         public let videoBase64: String
@@ -56,7 +56,7 @@ extension Faceid {
     }
 
     /// Liveness返回参数结构体
-    public struct LivenessResponse: TCResponseModel {
+    public struct LivenessResponse: TCResponse {
         /// 验证通过后的视频最佳截图照片，照片为BASE64编码后的值，jpg格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bestFrameBase64: String?

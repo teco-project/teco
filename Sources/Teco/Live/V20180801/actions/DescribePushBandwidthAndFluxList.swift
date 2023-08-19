@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribePushBandwidthAndFluxList请求参数结构体
-    public struct DescribePushBandwidthAndFluxListRequest: TCRequestModel {
+    public struct DescribePushBandwidthAndFluxListRequest: TCRequest {
         /// 起始时间点，格式为 yyyy-mm-dd HH:MM:SS。
         public let startTime: String
 
@@ -81,7 +81,7 @@ extension Live {
     }
 
     /// DescribePushBandwidthAndFluxList返回参数结构体
-    public struct DescribePushBandwidthAndFluxListResponse: TCResponseModel {
+    public struct DescribePushBandwidthAndFluxListResponse: TCResponse {
         /// 峰值带宽所在时间点，格式为 yyyy-mm-dd HH:MM:SS。
         public let peakBandwidthTime: String
 

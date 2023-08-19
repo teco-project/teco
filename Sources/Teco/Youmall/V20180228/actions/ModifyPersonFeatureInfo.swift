@@ -20,7 +20,7 @@ import TecoCore
 
 extension Youmall {
     /// ModifyPersonFeatureInfo请求参数结构体
-    public struct ModifyPersonFeatureInfoRequest: TCRequestModel {
+    public struct ModifyPersonFeatureInfoRequest: TCRequest {
         /// 集团ID
         public let companyId: String
 
@@ -59,7 +59,7 @@ extension Youmall {
     }
 
     /// ModifyPersonFeatureInfo返回参数结构体
-    public struct ModifyPersonFeatureInfoResponse: TCResponseModel {
+    public struct ModifyPersonFeatureInfoResponse: TCResponse {
         /// 集团ID
         public let companyId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Vpc {
     /// DescribeCustomerGatewayVendors请求参数结构体
-    public struct DescribeCustomerGatewayVendorsRequest: TCRequestModel {
+    public struct DescribeCustomerGatewayVendorsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCustomerGatewayVendors返回参数结构体
-    public struct DescribeCustomerGatewayVendorsResponse: TCResponseModel {
+    public struct DescribeCustomerGatewayVendorsResponse: TCResponse {
         /// 对端网关厂商信息对象。
         public let customerGatewayVendorSet: [CustomerGatewayVendor]
 

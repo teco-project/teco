@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// ModifyInstanceKeyValConfigs请求参数结构体
-    public struct ModifyInstanceKeyValConfigsRequest: TCRequestModel {
+    public struct ModifyInstanceKeyValConfigsRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Cdwch {
     }
 
     /// ModifyInstanceKeyValConfigs返回参数结构体
-    public struct ModifyInstanceKeyValConfigsResponse: TCResponseModel {
+    public struct ModifyInstanceKeyValConfigsResponse: TCResponse {
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?

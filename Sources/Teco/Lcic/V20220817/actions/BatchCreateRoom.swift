@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchCreateRoom请求参数结构体
-    public struct BatchCreateRoomRequest: TCRequestModel {
+    public struct BatchCreateRoomRequest: TCRequest {
         /// 低代码平台的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Lcic {
     }
 
     /// BatchCreateRoom返回参数结构体
-    public struct BatchCreateRoomResponse: TCResponseModel {
+    public struct BatchCreateRoomResponse: TCResponse {
         /// 创建成功课堂ID，与传入课堂信息顺序一致
         public let roomIds: [UInt64]
 

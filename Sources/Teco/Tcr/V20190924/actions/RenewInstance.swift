@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// RenewInstance请求参数结构体
-    public struct RenewInstanceRequest: TCRequestModel {
+    public struct RenewInstanceRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -44,7 +44,7 @@ extension Tcr {
     }
 
     /// RenewInstance返回参数结构体
-    public struct RenewInstanceResponse: TCResponseModel {
+    public struct RenewInstanceResponse: TCResponse {
         /// 企业版实例Id
         public let registryId: String
 

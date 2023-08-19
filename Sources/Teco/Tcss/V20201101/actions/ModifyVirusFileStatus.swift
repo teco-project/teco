@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyVirusFileStatus请求参数结构体
-    public struct ModifyVirusFileStatusRequest: TCRequestModel {
+    public struct ModifyVirusFileStatusRequest: TCRequest {
         /// 处理事件id
         public let eventIdSet: [String]
 
@@ -56,7 +56,7 @@ extension Tcss {
     }
 
     /// ModifyVirusFileStatus返回参数结构体
-    public struct ModifyVirusFileStatusResponse: TCResponseModel {
+    public struct ModifyVirusFileStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

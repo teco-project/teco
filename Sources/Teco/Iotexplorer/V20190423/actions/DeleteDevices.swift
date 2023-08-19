@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DeleteDevices请求参数结构体
-    public struct DeleteDevicesRequest: TCRequestModel {
+    public struct DeleteDevicesRequest: TCRequest {
         /// 多个设备标识
         public let devicesItems: [DevicesItem]
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// DeleteDevices返回参数结构体
-    public struct DeleteDevicesResponse: TCResponseModel {
+    public struct DeleteDevicesResponse: TCResponse {
         /// 删除的结果代码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultCode: String?

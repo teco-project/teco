@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyRebuildMediaTemplate请求参数结构体
-    public struct ModifyRebuildMediaTemplateRequest: TCRequestModel {
+    public struct ModifyRebuildMediaTemplateRequest: TCRequest {
         /// 视频重生模板号。
         public let definition: Int64
 
@@ -88,7 +88,7 @@ extension Vod {
     }
 
     /// ModifyRebuildMediaTemplate返回参数结构体
-    public struct ModifyRebuildMediaTemplateResponse: TCResponseModel {
+    public struct ModifyRebuildMediaTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

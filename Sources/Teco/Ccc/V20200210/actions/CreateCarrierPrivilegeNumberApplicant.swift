@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// CreateCarrierPrivilegeNumberApplicant请求参数结构体
-    public struct CreateCarrierPrivilegeNumberApplicantRequest: TCRequestModel {
+    public struct CreateCarrierPrivilegeNumberApplicantRequest: TCRequest {
         /// SdkAppId
         public let sdkAppId: UInt64
 
@@ -49,7 +49,7 @@ extension Ccc {
     }
 
     /// CreateCarrierPrivilegeNumberApplicant返回参数结构体
-    public struct CreateCarrierPrivilegeNumberApplicantResponse: TCResponseModel {
+    public struct CreateCarrierPrivilegeNumberApplicantResponse: TCResponse {
         /// 申请单Id
         public let applicantId: UInt64
 

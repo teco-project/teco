@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateAbnormalProcessRulesExportJob请求参数结构体
-    public struct CreateAbnormalProcessRulesExportJobRequest: TCRequestModel {
+    public struct CreateAbnormalProcessRulesExportJobRequest: TCRequest {
         /// 过滤条件。
         /// - RuleType - string  - 是否必填: 否 -规则类型
         /// - Status - string  - 是否必填: 否 -状态
@@ -51,7 +51,7 @@ extension Tcss {
     }
 
     /// CreateAbnormalProcessRulesExportJob返回参数结构体
-    public struct CreateAbnormalProcessRulesExportJobResponse: TCResponseModel {
+    public struct CreateAbnormalProcessRulesExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

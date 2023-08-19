@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// EvaluateSentenceSimilarity请求参数结构体
-    public struct EvaluateSentenceSimilarityRequest: TCRequestModel {
+    public struct EvaluateSentenceSimilarityRequest: TCRequest {
         /// 待分析的句子对数组。句子对应不超过1对，仅支持中文文本，原句子与目标句子均应不超过500字符。
         public let sentencePairList: [SentencePair]
 
@@ -34,7 +34,7 @@ extension Nlp {
     }
 
     /// EvaluateSentenceSimilarity返回参数结构体
-    public struct EvaluateSentenceSimilarityResponse: TCResponseModel {
+    public struct EvaluateSentenceSimilarityResponse: TCResponse {
         /// 每个句子对的相似度分值。
         public let scoreList: [Float]
 

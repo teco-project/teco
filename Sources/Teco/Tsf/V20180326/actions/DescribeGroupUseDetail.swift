@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tsf {
     /// DescribeGroupUseDetail请求参数结构体
-    public struct DescribeGroupUseDetailRequest: TCRequestModel {
+    public struct DescribeGroupUseDetailRequest: TCRequest {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
 
@@ -62,7 +62,7 @@ extension Tsf {
     }
 
     /// DescribeGroupUseDetail返回参数结构体
-    public struct DescribeGroupUseDetailResponse: TCResponseModel {
+    public struct DescribeGroupUseDetailResponse: TCResponse {
         /// 日使用统计对象
         public let result: GroupDailyUseStatistics
 

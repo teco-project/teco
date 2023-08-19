@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ape {
     /// DescribeImage请求参数结构体
-    public struct DescribeImageRequest: TCRequestModel {
+    public struct DescribeImageRequest: TCRequest {
         /// 图片ID
         public let imageId: UInt64
 
@@ -34,7 +34,7 @@ extension Ape {
     }
 
     /// DescribeImage返回参数结构体
-    public struct DescribeImageResponse: TCResponseModel {
+    public struct DescribeImageResponse: TCResponse {
         /// 图片ID
         public let imageId: UInt64
 

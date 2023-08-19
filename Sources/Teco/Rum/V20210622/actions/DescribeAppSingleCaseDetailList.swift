@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeAppSingleCaseDetailList请求参数结构体
-    public struct DescribeAppSingleCaseDetailListRequest: TCRequestModel {
+    public struct DescribeAppSingleCaseDetailListRequest: TCRequest {
         /// app 项目ID
         public let projectID: Int64
 
@@ -74,7 +74,7 @@ extension Rum {
     }
 
     /// DescribeAppSingleCaseDetailList返回参数结构体
-    public struct DescribeAppSingleCaseDetailListResponse: TCResponseModel {
+    public struct DescribeAppSingleCaseDetailListResponse: TCResponse {
         /// 查询数据返回
         public let data: String
 

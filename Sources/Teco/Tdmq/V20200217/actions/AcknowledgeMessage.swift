@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// AcknowledgeMessage请求参数结构体
-    public struct AcknowledgeMessageRequest: TCRequestModel {
+    public struct AcknowledgeMessageRequest: TCRequest {
         /// 用作标识消息的唯一的ID（可从 receiveMessage 的返回值中获得）
         public let messageId: String
 
@@ -44,7 +44,7 @@ extension Tdmq {
     }
 
     /// AcknowledgeMessage返回参数结构体
-    public struct AcknowledgeMessageResponse: TCResponseModel {
+    public struct AcknowledgeMessageResponse: TCResponse {
         /// 如果为“”，则说明没有错误返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?

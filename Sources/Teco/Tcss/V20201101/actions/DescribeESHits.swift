@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeESHits请求参数结构体
-    public struct DescribeESHitsRequest: TCRequestModel {
+    public struct DescribeESHitsRequest: TCRequest {
         /// ES查询条件JSON
         public let query: String
 
@@ -44,7 +44,7 @@ extension Tcss {
     }
 
     /// DescribeESHits返回参数结构体
-    public struct DescribeESHitsResponse: TCResponseModel {
+    public struct DescribeESHitsResponse: TCResponse {
         /// ES查询结果JSON
         public let data: String
 

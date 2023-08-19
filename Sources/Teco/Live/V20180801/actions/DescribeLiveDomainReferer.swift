@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveDomainReferer请求参数结构体
-    public struct DescribeLiveDomainRefererRequest: TCRequestModel {
+    public struct DescribeLiveDomainRefererRequest: TCRequest {
         /// 播放域名。
         public let domainName: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLiveDomainReferer返回参数结构体
-    public struct DescribeLiveDomainRefererResponse: TCResponseModel {
+    public struct DescribeLiveDomainRefererResponse: TCResponse {
         /// 域名 Referer 黑白名单配置。
         public let refererAuthConfig: RefererAuthConfig
 

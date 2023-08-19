@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListPoliciesGrantingServiceAccess请求参数结构体
-    public struct ListPoliciesGrantingServiceAccessRequest: TCRequestModel {
+    public struct ListPoliciesGrantingServiceAccessRequest: TCRequest {
         /// 子账号uin，与RoleId、GroupId三选一必传
         public let targetUin: UInt64?
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// ListPoliciesGrantingServiceAccess返回参数结构体
-    public struct ListPoliciesGrantingServiceAccessResponse: TCResponseModel {
+    public struct ListPoliciesGrantingServiceAccessResponse: TCResponse {
         /// 列表
         public let list: [ListGrantServiceAccessNode]
 

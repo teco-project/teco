@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeTopData请求参数结构体
-    public struct DescribeTopDataRequest: TCRequestModel {
+    public struct DescribeTopDataRequest: TCRequest {
         /// 查询起始日期：yyyy-MM-dd HH:mm:ss
         /// 仅支持按天粒度的数据查询，取入参中的天信息作为起始日期
         /// 返回大于等于起始日期当天 00:00:00 点产生的数据，如 StartTime为2018-09-04 10:40:00，返回数据的起始时间为2018-09-04 00:00:00
@@ -85,7 +85,7 @@ extension Cdn {
     }
 
     /// DescribeTopData返回参数结构体
-    public struct DescribeTopDataResponse: TCResponseModel {
+    public struct DescribeTopDataResponse: TCResponse {
         /// 各个资源的Top 访问数据详情。
         public let data: [TopDataMore]
 

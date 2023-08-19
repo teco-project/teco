@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateTaskFlow请求参数结构体
-    public struct CreateTaskFlowRequest: TCRequestModel {
+    public struct CreateTaskFlowRequest: TCRequest {
         /// 工作流名称
         public let flowName: String
 
@@ -53,7 +53,7 @@ extension Tsf {
     }
 
     /// CreateTaskFlow返回参数结构体
-    public struct CreateTaskFlowResponse: TCResponseModel {
+    public struct CreateTaskFlowResponse: TCResponse {
         /// 工作流 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

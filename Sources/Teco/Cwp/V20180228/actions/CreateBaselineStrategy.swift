@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateBaselineStrategy请求参数结构体
-    public struct CreateBaselineStrategyRequest: TCRequestModel {
+    public struct CreateBaselineStrategyRequest: TCRequest {
         /// 策略名称
         public let strategyName: String
 
@@ -74,7 +74,7 @@ extension Cwp {
     }
 
     /// CreateBaselineStrategy返回参数结构体
-    public struct CreateBaselineStrategyResponse: TCResponseModel {
+    public struct CreateBaselineStrategyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// SetCustomizedConfigForLoadBalancer请求参数结构体
-    public struct SetCustomizedConfigForLoadBalancerRequest: TCRequestModel {
+    public struct SetCustomizedConfigForLoadBalancerRequest: TCRequest {
         /// 操作类型：'ADD', 'DELETE', 'UPDATE', 'BIND', 'UNBIND'
         public let operationType: String
 
@@ -54,7 +54,7 @@ extension Clb {
     }
 
     /// SetCustomizedConfigForLoadBalancer返回参数结构体
-    public struct SetCustomizedConfigForLoadBalancerResponse: TCResponseModel {
+    public struct SetCustomizedConfigForLoadBalancerResponse: TCResponse {
         /// 个性化配置ID，如：pz-1234abcd
         public let configId: String
 

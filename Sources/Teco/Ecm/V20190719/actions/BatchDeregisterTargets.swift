@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// BatchDeregisterTargets请求参数结构体
-    public struct BatchDeregisterTargetsRequest: TCRequestModel {
+    public struct BatchDeregisterTargetsRequest: TCRequest {
         /// 负载均衡ID
         public let loadBalancerId: String
 
@@ -39,7 +39,7 @@ extension Ecm {
     }
 
     /// BatchDeregisterTargets返回参数结构体
-    public struct BatchDeregisterTargetsResponse: TCResponseModel {
+    public struct BatchDeregisterTargetsResponse: TCResponse {
         /// 解绑失败的监听器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failListenerIdSet: [String]?

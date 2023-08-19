@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CreateDedicatedClusterDBInstance请求参数结构体
-    public struct CreateDedicatedClusterDBInstanceRequest: TCRequestModel {
+    public struct CreateDedicatedClusterDBInstanceRequest: TCRequest {
         /// 分配实例个数
         public let goodsNum: Int64
 
@@ -154,7 +154,7 @@ extension Mariadb {
     }
 
     /// CreateDedicatedClusterDBInstance返回参数结构体
-    public struct CreateDedicatedClusterDBInstanceResponse: TCResponseModel {
+    public struct CreateDedicatedClusterDBInstanceResponse: TCResponse {
         /// 分配资源ID数组
         public let instanceIds: [String]
 

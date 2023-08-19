@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateOpsMakePlan请求参数结构体
-    public struct CreateOpsMakePlanRequest: TCRequestModel {
+    public struct CreateOpsMakePlanRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -147,7 +147,7 @@ extension Wedata {
     }
 
     /// CreateOpsMakePlan返回参数结构体
-    public struct CreateOpsMakePlanResponse: TCResponseModel {
+    public struct CreateOpsMakePlanResponse: TCResponse {
         /// 结果
         public let data: CommonIdOpsDto
 

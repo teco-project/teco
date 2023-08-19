@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// GetPayRollAuth请求参数结构体
-    public struct GetPayRollAuthRequest: TCRequestModel {
+    public struct GetPayRollAuthRequest: TCRequest {
         /// 用户在商户对应appid下的唯一标识
         public let openId: String
 
@@ -51,7 +51,7 @@ extension Cpdp {
     }
 
     /// GetPayRollAuth返回参数结构体
-    public struct GetPayRollAuthResponse: TCResponseModel {
+    public struct GetPayRollAuthResponse: TCResponse {
         /// 授权状态：
         /// UNAUTHORIZED：未授权
         /// AUTHORIZED：已授权

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CheckIntegrationTaskNameExists请求参数结构体
-    public struct CheckIntegrationTaskNameExistsRequest: TCRequestModel {
+    public struct CheckIntegrationTaskNameExistsRequest: TCRequest {
         /// 任务名称
         public let taskName: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// CheckIntegrationTaskNameExists返回参数结构体
-    public struct CheckIntegrationTaskNameExistsResponse: TCResponseModel {
+    public struct CheckIntegrationTaskNameExistsResponse: TCResponse {
         /// true表示存在，false表示不存在
         public let data: Bool
 

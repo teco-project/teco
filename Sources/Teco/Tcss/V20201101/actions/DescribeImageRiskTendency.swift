@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcss {
     /// DescribeImageRiskTendency请求参数结构体
-    public struct DescribeImageRiskTendencyRequest: TCRequestModel {
+    public struct DescribeImageRiskTendencyRequest: TCRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Tcss {
     }
 
     /// DescribeImageRiskTendency返回参数结构体
-    public struct DescribeImageRiskTendencyResponse: TCResponseModel {
+    public struct DescribeImageRiskTendencyResponse: TCResponse {
         /// 本地镜像新增风险趋势信息列表
         public let imageRiskTendencySet: [ImageRiskTendencyInfo]
 

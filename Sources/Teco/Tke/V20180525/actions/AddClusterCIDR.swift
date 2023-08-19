@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// AddClusterCIDR请求参数结构体
-    public struct AddClusterCIDRRequest: TCRequestModel {
+    public struct AddClusterCIDRRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// AddClusterCIDR返回参数结构体
-    public struct AddClusterCIDRResponse: TCResponseModel {
+    public struct AddClusterCIDRResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

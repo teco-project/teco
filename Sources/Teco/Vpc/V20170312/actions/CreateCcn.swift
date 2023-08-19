@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateCcn请求参数结构体
-    public struct CreateCcnRequest: TCRequestModel {
+    public struct CreateCcnRequest: TCRequest {
         /// CCN名称，最大长度不能超过60个字节。
         public let ccnName: String
 
@@ -59,7 +59,7 @@ extension Vpc {
     }
 
     /// CreateCcn返回参数结构体
-    public struct CreateCcnResponse: TCResponseModel {
+    public struct CreateCcnResponse: TCResponse {
         /// 云联网（CCN）对象。
         public let ccn: CCN
 

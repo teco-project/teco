@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// DescribeApplicationsStatus请求参数结构体
-    public struct DescribeApplicationsStatusRequest: TCRequestModel {
+    public struct DescribeApplicationsStatusRequest: TCRequest {
         /// 来源渠道
         public let sourceChannel: Int64?
 
@@ -39,7 +39,7 @@ extension Tem {
     }
 
     /// DescribeApplicationsStatus返回参数结构体
-    public struct DescribeApplicationsStatusResponse: TCResponseModel {
+    public struct DescribeApplicationsStatusResponse: TCResponse {
         /// 返回结果
         public let result: [ServiceVersionBrief]
 

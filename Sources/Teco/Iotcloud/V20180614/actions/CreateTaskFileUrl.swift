@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateTaskFileUrl请求参数结构体
-    public struct CreateTaskFileUrlRequest: TCRequestModel {
+    public struct CreateTaskFileUrlRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotcloud {
     }
 
     /// CreateTaskFileUrl返回参数结构体
-    public struct CreateTaskFileUrlResponse: TCResponseModel {
+    public struct CreateTaskFileUrlResponse: TCResponse {
         /// 任务文件上传链接
         public let url: String
 

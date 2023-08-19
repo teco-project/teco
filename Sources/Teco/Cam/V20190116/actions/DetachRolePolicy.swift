@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// DetachRolePolicy请求参数结构体
-    public struct DetachRolePolicyRequest: TCRequestModel {
+    public struct DetachRolePolicyRequest: TCRequest {
         /// 策略ID，入参PolicyId与PolicyName二选一
         public let policyId: UInt64?
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// DetachRolePolicy返回参数结构体
-    public struct DetachRolePolicyResponse: TCResponseModel {
+    public struct DetachRolePolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

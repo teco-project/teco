@@ -20,7 +20,7 @@ import TecoCore
 
 extension Thpc {
     /// DescribeAutoScalingConfiguration请求参数结构体
-    public struct DescribeAutoScalingConfigurationRequest: TCRequestModel {
+    public struct DescribeAutoScalingConfigurationRequest: TCRequest {
         /// 集群ID。
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Thpc {
     }
 
     /// DescribeAutoScalingConfiguration返回参数结构体
-    public struct DescribeAutoScalingConfigurationResponse: TCResponseModel {
+    public struct DescribeAutoScalingConfigurationResponse: TCResponse {
         /// 集群ID。
         public let clusterId: String
 

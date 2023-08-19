@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectProduct请求参数结构体
-    public struct DetectProductRequest: TCRequestModel {
+    public struct DetectProductRequest: TCRequest {
         /// 图片URL地址。
         /// 图片限制：
         /// • 图片格式：PNG、JPG、JPEG。
@@ -47,7 +47,7 @@ extension Tiia {
     }
 
     /// DetectProduct返回参数结构体
-    public struct DetectProductResponse: TCResponseModel {
+    public struct DetectProductResponse: TCResponse {
         /// 商品识别结果数组
         public let products: [Product]
 

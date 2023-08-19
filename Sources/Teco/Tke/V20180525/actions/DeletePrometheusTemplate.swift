@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DeletePrometheusTemplate请求参数结构体
-    public struct DeletePrometheusTemplateRequest: TCRequestModel {
+    public struct DeletePrometheusTemplateRequest: TCRequest {
         /// 模板id
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DeletePrometheusTemplate返回参数结构体
-    public struct DeletePrometheusTemplateResponse: TCResponseModel {
+    public struct DeletePrometheusTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

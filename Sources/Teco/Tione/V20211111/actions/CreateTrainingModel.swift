@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// CreateTrainingModel请求参数结构体
-    public struct CreateTrainingModelRequest: TCRequestModel {
+    public struct CreateTrainingModelRequest: TCRequest {
         /// 导入方式
         /// MODEL：导入新模型
         /// VERSION：导入新版本
@@ -164,7 +164,7 @@ extension Tione {
     }
 
     /// CreateTrainingModel返回参数结构体
-    public struct CreateTrainingModelResponse: TCResponseModel {
+    public struct CreateTrainingModelResponse: TCResponse {
         /// 模型ID，TrainingModel ID
         public let id: String
 

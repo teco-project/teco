@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// AddFlexPhoneNo请求参数结构体
-    public struct AddFlexPhoneNoRequest: TCRequestModel {
+    public struct AddFlexPhoneNoRequest: TCRequest {
         /// 手机号
         public let phoneNo: String
 
@@ -48,7 +48,7 @@ extension Cpdp {
     }
 
     /// AddFlexPhoneNo返回参数结构体
-    public struct AddFlexPhoneNoResponse: TCResponseModel {
+    public struct AddFlexPhoneNoResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

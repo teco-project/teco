@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// UpdateApply请求参数结构体
-    public struct UpdateApplyRequest: TCRequestModel {
+    public struct UpdateApplyRequest: TCRequest {
         /// 申请单状态
         public let applyStatus: [ApplyStatus]
 
@@ -34,7 +34,7 @@ extension Tcaplusdb {
     }
 
     /// UpdateApply返回参数结构体
-    public struct UpdateApplyResponse: TCResponseModel {
+    public struct UpdateApplyResponse: TCResponse {
         /// 已更新的申请单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applyResults: [ApplyResult]?

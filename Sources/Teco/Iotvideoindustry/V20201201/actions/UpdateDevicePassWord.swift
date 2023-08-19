@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// UpdateDevicePassWord请求参数结构体
-    public struct UpdateDevicePassWordRequest: TCRequestModel {
+    public struct UpdateDevicePassWordRequest: TCRequest {
         /// 设备密码
         public let passWord: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// UpdateDevicePassWord返回参数结构体
-    public struct UpdateDevicePassWordResponse: TCResponseModel {
+    public struct UpdateDevicePassWordResponse: TCResponse {
         /// 操作结果，“OK”表示成功，其他表示失败。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

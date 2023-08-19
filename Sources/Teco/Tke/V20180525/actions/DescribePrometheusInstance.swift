@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribePrometheusInstance请求参数结构体
-    public struct DescribePrometheusInstanceRequest: TCRequestModel {
+    public struct DescribePrometheusInstanceRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribePrometheusInstance返回参数结构体
-    public struct DescribePrometheusInstanceResponse: TCResponseModel {
+    public struct DescribePrometheusInstanceResponse: TCResponse {
         /// 实例id
         public let instanceId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// EnableRoutes请求参数结构体
-    public struct EnableRoutesRequest: TCRequestModel {
+    public struct EnableRoutesRequest: TCRequest {
         /// 路由表唯一ID。
         public let routeTableId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// EnableRoutes返回参数结构体
-    public struct EnableRoutesResponse: TCResponseModel {
+    public struct EnableRoutesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

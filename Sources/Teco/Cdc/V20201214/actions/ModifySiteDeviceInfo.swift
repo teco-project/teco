@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdc {
     /// ModifySiteDeviceInfo请求参数结构体
-    public struct ModifySiteDeviceInfoRequest: TCRequestModel {
+    public struct ModifySiteDeviceInfoRequest: TCRequest {
         /// 机房ID
         public let siteId: String
 
@@ -112,7 +112,7 @@ extension Cdc {
     }
 
     /// ModifySiteDeviceInfo返回参数结构体
-    public struct ModifySiteDeviceInfoResponse: TCResponseModel {
+    public struct ModifySiteDeviceInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

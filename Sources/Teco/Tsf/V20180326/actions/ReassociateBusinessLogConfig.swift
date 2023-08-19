@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ReassociateBusinessLogConfig请求参数结构体
-    public struct ReassociateBusinessLogConfigRequest: TCRequestModel {
+    public struct ReassociateBusinessLogConfigRequest: TCRequest {
         /// 原关联日志配置ID
         public let configId: String
 
@@ -49,7 +49,7 @@ extension Tsf {
     }
 
     /// ReassociateBusinessLogConfig返回参数结构体
-    public struct ReassociateBusinessLogConfigResponse: TCResponseModel {
+    public struct ReassociateBusinessLogConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

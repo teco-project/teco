@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// KillScheduleInstances请求参数结构体
-    public struct KillScheduleInstancesRequest: TCRequestModel {
+    public struct KillScheduleInstancesRequest: TCRequest {
         /// 实例列表
         public let instances: [InstanceOpsDto]?
 
@@ -119,7 +119,7 @@ extension Wedata {
     }
 
     /// KillScheduleInstances返回参数结构体
-    public struct KillScheduleInstancesResponse: TCResponseModel {
+    public struct KillScheduleInstancesResponse: TCResponse {
         /// 结果
         public let data: BatchOperateResultOpsDto
 

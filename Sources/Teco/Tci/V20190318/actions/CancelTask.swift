@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// CancelTask请求参数结构体
-    public struct CancelTaskRequest: TCRequestModel {
+    public struct CancelTaskRequest: TCRequest {
         /// 待取消任务标志符。
         public let jobId: Int64?
 
@@ -34,7 +34,7 @@ extension Tci {
     }
 
     /// CancelTask返回参数结构体
-    public struct CancelTaskResponse: TCResponseModel {
+    public struct CancelTaskResponse: TCResponse {
         /// 取消任务标志符。
         public let jobId: Int64
 

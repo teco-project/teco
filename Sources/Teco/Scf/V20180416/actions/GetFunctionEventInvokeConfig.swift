@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// GetFunctionEventInvokeConfig请求参数结构体
-    public struct GetFunctionEventInvokeConfigRequest: TCRequestModel {
+    public struct GetFunctionEventInvokeConfigRequest: TCRequest {
         /// 函数名称
         public let functionName: String
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// GetFunctionEventInvokeConfig返回参数结构体
-    public struct GetFunctionEventInvokeConfigResponse: TCResponseModel {
+    public struct GetFunctionEventInvokeConfigResponse: TCResponse {
         /// 异步重试配置信息
         public let asyncTriggerConfig: AsyncTriggerConfig
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcbr {
     /// CreateCloudRunEnv请求参数结构体
-    public struct CreateCloudRunEnvRequest: TCRequestModel {
+    public struct CreateCloudRunEnvRequest: TCRequest {
         /// Trial,Standard,Professional,Enterprise
         public let packageType: String
 
@@ -81,7 +81,7 @@ extension Tcbr {
     }
 
     /// CreateCloudRunEnv返回参数结构体
-    public struct CreateCloudRunEnvResponse: TCResponseModel {
+    public struct CreateCloudRunEnvResponse: TCResponse {
         /// 环境Id
         public let envId: String
 

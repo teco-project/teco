@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// UpgradeGateway请求参数结构体
-    public struct UpgradeGatewayRequest: TCRequestModel {
+    public struct UpgradeGatewayRequest: TCRequest {
         /// 网关索引ID（从获取网关列表ListGateways接口中获取）
         public let gatewayId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// UpgradeGateway返回参数结构体
-    public struct UpgradeGatewayResponse: TCResponseModel {
+    public struct UpgradeGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

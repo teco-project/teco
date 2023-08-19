@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// CreateSpotDevice请求参数结构体
-    public struct CreateSpotDeviceRequest: TCRequestModel {
+    public struct CreateSpotDeviceRequest: TCRequest {
         /// 可用区名称。如ap-guangzhou-bls-1, 通过DescribeRegions获取
         public let zone: String
 
@@ -74,7 +74,7 @@ extension Bm {
     }
 
     /// CreateSpotDevice返回参数结构体
-    public struct CreateSpotDeviceResponse: TCResponseModel {
+    public struct CreateSpotDeviceResponse: TCResponse {
         /// 创建的服务器ID
         public let resourceIds: [String]
 

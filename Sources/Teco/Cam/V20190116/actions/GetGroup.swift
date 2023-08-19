@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetGroup请求参数结构体
-    public struct GetGroupRequest: TCRequestModel {
+    public struct GetGroupRequest: TCRequest {
         /// 用户组 ID
         public let groupId: UInt64
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// GetGroup返回参数结构体
-    public struct GetGroupResponse: TCResponseModel {
+    public struct GetGroupResponse: TCResponse {
         /// 用户组 ID
         public let groupId: UInt64
 

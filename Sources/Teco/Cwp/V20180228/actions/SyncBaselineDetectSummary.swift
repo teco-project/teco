@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// SyncBaselineDetectSummary请求参数结构体
-    public struct SyncBaselineDetectSummaryRequest: TCRequestModel {
+    public struct SyncBaselineDetectSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// SyncBaselineDetectSummary返回参数结构体
-    public struct SyncBaselineDetectSummaryResponse: TCResponseModel {
+    public struct SyncBaselineDetectSummaryResponse: TCResponse {
         /// 处理进度
         public let progressRate: Int64
 

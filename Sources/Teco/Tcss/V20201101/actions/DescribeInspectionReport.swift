@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeInspectionReport请求参数结构体
-    public struct DescribeInspectionReportRequest: TCRequestModel {
+    public struct DescribeInspectionReportRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInspectionReport返回参数结构体
-    public struct DescribeInspectionReportResponse: TCResponseModel {
+    public struct DescribeInspectionReportResponse: TCResponse {
         /// 报告名称
         public let reportName: String
 

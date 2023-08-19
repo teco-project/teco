@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeInstancesDeniedActions请求参数结构体
-    public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
+    public struct DescribeInstancesDeniedActionsRequest: TCRequest {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeInstancesDeniedActions返回参数结构体
-    public struct DescribeInstancesDeniedActionsResponse: TCResponseModel {
+    public struct DescribeInstancesDeniedActionsResponse: TCResponse {
         /// 实例操作限制列表详细信息。
         public let instanceDeniedActionSet: [InstanceDeniedActions]
 

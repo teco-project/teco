@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnReleaseService请求参数结构体
-    public struct UnReleaseServiceRequest: TCRequestModel {
+    public struct UnReleaseServiceRequest: TCRequest {
         /// 待下线服务的唯一 ID。
         public let serviceId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// UnReleaseService返回参数结构体
-    public struct UnReleaseServiceResponse: TCResponseModel {
+    public struct UnReleaseServiceResponse: TCResponse {
         /// 下线操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

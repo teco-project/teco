@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// BatchUpdateFirmware请求参数结构体
-    public struct BatchUpdateFirmwareRequest: TCRequestModel {
+    public struct BatchUpdateFirmwareRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -74,7 +74,7 @@ extension Iotcloud {
     }
 
     /// BatchUpdateFirmware返回参数结构体
-    public struct BatchUpdateFirmwareResponse: TCResponseModel {
+    public struct BatchUpdateFirmwareResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

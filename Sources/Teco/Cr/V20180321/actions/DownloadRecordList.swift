@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DownloadRecordList请求参数结构体
-    public struct DownloadRecordListRequest: TCRequestModel {
+    public struct DownloadRecordListRequest: TCRequest {
         /// 模块名，本接口取值：Record
         public let module: String
 
@@ -54,7 +54,7 @@ extension Cr {
     }
 
     /// DownloadRecordList返回参数结构体
-    public struct DownloadRecordListResponse: TCResponseModel {
+    public struct DownloadRecordListResponse: TCResponse {
         /// 录音列表下载地址
         public let recordListUrl: String
 

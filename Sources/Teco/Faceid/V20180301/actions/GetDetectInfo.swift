@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// GetDetectInfo请求参数结构体
-    public struct GetDetectInfoRequest: TCRequestModel {
+    public struct GetDetectInfoRequest: TCRequest {
         /// 人脸核身流程的标识，调用DetectAuth接口时生成。
         public let bizToken: String
 
@@ -46,7 +46,7 @@ extension Faceid {
     }
 
     /// GetDetectInfo返回参数结构体
-    public struct GetDetectInfoResponse: TCResponseModel {
+    public struct GetDetectInfoResponse: TCResponse {
         /// JSON字符串。
         /// {
         ///   // 文本类信息

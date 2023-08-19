@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeCloudStorageStreamData请求参数结构体
-    public struct DescribeCloudStorageStreamDataRequest: TCRequestModel {
+    public struct DescribeCloudStorageStreamDataRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeCloudStorageStreamData返回参数结构体
-    public struct DescribeCloudStorageStreamDataResponse: TCResponseModel {
+    public struct DescribeCloudStorageStreamDataResponse: TCResponse {
         /// 图片流视频地址
         public let videoStream: String
 

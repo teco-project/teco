@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeRecordRetrieveTask请求参数结构体
-    public struct DescribeRecordRetrieveTaskRequest: TCRequestModel {
+    public struct DescribeRecordRetrieveTaskRequest: TCRequest {
         /// 云录像取回任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// 查询云录像取回任务详情返回数据
-    public struct DescribeRecordRetrieveTaskResponse: TCResponseModel {
+    public struct DescribeRecordRetrieveTaskResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

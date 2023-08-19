@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bri {
     /// DescribeBRI请求参数结构体
-    public struct DescribeBRIRequest: TCRequestModel {
+    public struct DescribeBRIRequest: TCRequest {
         /// 业务风险情报请求体
         public let requestData: BRIRequest
 
@@ -39,7 +39,7 @@ extension Bri {
     }
 
     /// DescribeBRI返回参数结构体
-    public struct DescribeBRIResponse: TCResponseModel {
+    public struct DescribeBRIResponse: TCResponse {
         /// 业务风险情报响应体
         public let responseData: BRIResponse
 

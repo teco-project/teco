@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wav {
     /// CreateCorpTag请求参数结构体
-    public struct CreateCorpTagRequest: TCRequestModel {
+    public struct CreateCorpTagRequest: TCRequest {
         /// 标签组名称，最长为15个字符
         public let groupName: String
 
@@ -44,7 +44,7 @@ extension Wav {
     }
 
     /// CreateCorpTag返回参数结构体
-    public struct CreateCorpTagResponse: TCResponseModel {
+    public struct CreateCorpTagResponse: TCResponse {
         /// 标签组信息
         public let tagGroup: TagGroup
 

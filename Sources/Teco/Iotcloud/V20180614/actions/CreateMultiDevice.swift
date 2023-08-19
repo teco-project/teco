@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateMultiDevice请求参数结构体
-    public struct CreateMultiDeviceRequest: TCRequestModel {
+    public struct CreateMultiDeviceRequest: TCRequest {
         /// 产品 ID。创建产品时腾讯云为用户分配全局唯一的 ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// CreateMultiDevice返回参数结构体
-    public struct CreateMultiDeviceResponse: TCResponseModel {
+    public struct CreateMultiDeviceResponse: TCResponse {
         /// 任务ID，腾讯云生成全局唯一的任务 ID，有效期一个月，一个月之后任务失效。可以调用获取创建多设备任务状态接口获取该任务的执行状态，当状态为成功时，可以调用获取创建多设备任务结果接口获取该任务的结果
         public let taskId: String
 

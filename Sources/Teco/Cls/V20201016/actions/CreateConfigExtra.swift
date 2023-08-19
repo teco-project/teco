@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateConfigExtra请求参数结构体
-    public struct CreateConfigExtraRequest: TCRequestModel {
+    public struct CreateConfigExtraRequest: TCRequest {
         /// 采集配置规程名称，最长63个字符，只能包含小写字符、数字及分隔符（“-”），且必须以小写字符开头，数字或小写字符结尾
         public let name: String
 
@@ -123,7 +123,7 @@ extension Cls {
     }
 
     /// CreateConfigExtra返回参数结构体
-    public struct CreateConfigExtraResponse: TCResponseModel {
+    public struct CreateConfigExtraResponse: TCResponse {
         /// 采集配置扩展信息ID
         public let configExtraId: String
 

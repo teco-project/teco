@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// CreateFunction请求参数结构体
-    public struct CreateFunctionRequest: TCRequestModel {
+    public struct CreateFunctionRequest: TCRequest {
         /// 创建的函数名称，函数名称支持26个英文字母大小写、数字、连接符和下划线，第一个字符只能以字母开头，最后一个字符不能为连接符或者下划线，名称长度2-60
         public let functionName: String
 
@@ -174,7 +174,7 @@ extension Scf {
     }
 
     /// CreateFunction返回参数结构体
-    public struct CreateFunctionResponse: TCResponseModel {
+    public struct CreateFunctionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

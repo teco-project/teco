@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// CreateInstance请求参数结构体
-    public struct CreateInstanceRequest: TCRequestModel {
+    public struct CreateInstanceRequest: TCRequest {
         /// 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
         /// - 16：表示EMR-V2.3.0。
         /// - 20：表示EMR-V2.5.0。
@@ -227,7 +227,7 @@ extension Emr {
     }
 
     /// CreateInstance返回参数结构体
-    public struct CreateInstanceResponse: TCResponseModel {
+    public struct CreateInstanceResponse: TCResponse {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?

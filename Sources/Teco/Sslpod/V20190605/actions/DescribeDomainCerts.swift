@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sslpod {
     /// DescribeDomainCerts请求参数结构体
-    public struct DescribeDomainCertsRequest: TCRequestModel {
+    public struct DescribeDomainCertsRequest: TCRequest {
         /// 域名ID，可通过搜索域名接口获得
         public let domainId: Int64
 
@@ -34,7 +34,7 @@ extension Sslpod {
     }
 
     /// DescribeDomainCerts返回参数结构体
-    public struct DescribeDomainCertsResponse: TCResponseModel {
+    public struct DescribeDomainCertsResponse: TCResponse {
         /// 证书信息
         public let data: [CertInfo]
 

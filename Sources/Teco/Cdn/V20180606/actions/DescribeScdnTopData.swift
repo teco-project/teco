@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// DescribeScdnTopData请求参数结构体
-    public struct DescribeScdnTopDataRequest: TCRequestModel {
+    public struct DescribeScdnTopDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -103,7 +103,7 @@ extension Cdn {
     }
 
     /// DescribeScdnTopData返回参数结构体
-    public struct DescribeScdnTopDataResponse: TCResponseModel {
+    public struct DescribeScdnTopDataResponse: TCResponse {
         /// WAF 攻击类型统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topTypeData: [ScdnTypeData]?

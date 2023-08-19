@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// GetMostSuitableImageCache请求参数结构体
-    public struct GetMostSuitableImageCacheRequest: TCRequestModel {
+    public struct GetMostSuitableImageCacheRequest: TCRequest {
         /// 容器镜像列表
         public let images: [String]
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// GetMostSuitableImageCache返回参数结构体
-    public struct GetMostSuitableImageCacheResponse: TCResponseModel {
+    public struct GetMostSuitableImageCacheResponse: TCResponse {
         /// 是否有匹配的镜像缓存
         public let found: Bool
 

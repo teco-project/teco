@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// ModifyDiskExtraPerformance请求参数结构体
-    public struct ModifyDiskExtraPerformanceRequest: TCRequestModel {
+    public struct ModifyDiskExtraPerformanceRequest: TCRequest {
         /// 额外购买的云硬盘性能值，单位MB/s。
         public let throughputPerformance: UInt64
 
@@ -39,7 +39,7 @@ extension Cbs {
     }
 
     /// ModifyDiskExtraPerformance返回参数结构体
-    public struct ModifyDiskExtraPerformanceResponse: TCResponseModel {
+    public struct ModifyDiskExtraPerformanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

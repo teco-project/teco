@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// RunUserCmd请求参数结构体
-    public struct RunUserCmdRequest: TCRequestModel {
+    public struct RunUserCmdRequest: TCRequest {
         /// 自定义脚本ID
         public let cmdId: String
 
@@ -54,7 +54,7 @@ extension Bm {
     }
 
     /// RunUserCmd返回参数结构体
-    public struct RunUserCmdResponse: TCResponseModel {
+    public struct RunUserCmdResponse: TCResponse {
         /// 运行成功的任务信息列表
         public let successTaskInfoSet: [SuccessTaskInfo]
 

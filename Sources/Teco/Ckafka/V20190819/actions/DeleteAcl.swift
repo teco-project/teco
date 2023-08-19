@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DeleteAcl请求参数结构体
-    public struct DeleteAclRequest: TCRequestModel {
+    public struct DeleteAclRequest: TCRequest {
         /// 实例id信息
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Ckafka {
     }
 
     /// DeleteAcl返回参数结构体
-    public struct DeleteAclResponse: TCResponseModel {
+    public struct DeleteAclResponse: TCResponse {
         /// 返回结果
         public let result: JgwOperateResponse
 

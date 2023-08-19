@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ape {
     /// CreateOrderAndDownloads请求参数结构体
-    public struct CreateOrderAndDownloadsRequest: TCRequestModel {
+    public struct CreateOrderAndDownloadsRequest: TCRequest {
         /// ImageId必填，单张购买，所有必填，会员身份可以省略部分参数
         public let imageInfos: [ImageInfo]
 
@@ -34,7 +34,7 @@ extension Ape {
     }
 
     /// CreateOrderAndDownloads返回参数结构体
-    public struct CreateOrderAndDownloadsResponse: TCResponseModel {
+    public struct CreateOrderAndDownloadsResponse: TCResponse {
         /// 成功核销后可以获取图片基本信息和原图地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadInfos: [DownloadInfo]?

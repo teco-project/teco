@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// AddLiveWatermark请求参数结构体
-    public struct AddLiveWatermarkRequest: TCRequestModel {
+    public struct AddLiveWatermarkRequest: TCRequest {
         /// 水印图片 URL。
         /// URL中禁止包含的字符：
         ///  ;(){}$>`#"\'|
@@ -72,7 +72,7 @@ extension Live {
     }
 
     /// AddLiveWatermark返回参数结构体
-    public struct AddLiveWatermarkResponse: TCResponseModel {
+    public struct AddLiveWatermarkResponse: TCResponse {
         /// 水印ID。
         public let watermarkId: UInt64
 

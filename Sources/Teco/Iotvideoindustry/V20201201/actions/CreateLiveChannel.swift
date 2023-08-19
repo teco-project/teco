@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// CreateLiveChannel请求参数结构体
-    public struct CreateLiveChannelRequest: TCRequestModel {
+    public struct CreateLiveChannelRequest: TCRequest {
         /// 直播频道名称
         public let liveChannelName: String
 
@@ -39,7 +39,7 @@ extension Iotvideoindustry {
     }
 
     /// CreateLiveChannel返回参数结构体
-    public struct CreateLiveChannelResponse: TCResponseModel {
+    public struct CreateLiveChannelResponse: TCResponse {
         /// 直播频道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveChannelId: String?

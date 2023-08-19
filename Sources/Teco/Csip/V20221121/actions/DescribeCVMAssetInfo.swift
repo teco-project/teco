@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeCVMAssetInfo请求参数结构体
-    public struct DescribeCVMAssetInfoRequest: TCRequestModel {
+    public struct DescribeCVMAssetInfoRequest: TCRequest {
         /// -
         public let assetId: String
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeCVMAssetInfo返回参数结构体
-    public struct DescribeCVMAssetInfoResponse: TCResponseModel {
+    public struct DescribeCVMAssetInfoResponse: TCResponse {
         /// -
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: AssetBaseInfoResponse?

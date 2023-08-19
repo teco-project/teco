@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// GetAllFirmwareVersion请求参数结构体
-    public struct GetAllFirmwareVersionRequest: TCRequestModel {
+    public struct GetAllFirmwareVersionRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// GetAllFirmwareVersion返回参数结构体
-    public struct GetAllFirmwareVersionResponse: TCResponseModel {
+    public struct GetAllFirmwareVersionResponse: TCResponse {
         /// 固件可用版本列表
         public let version: [String]
 

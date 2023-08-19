@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeBatch请求参数结构体
-    public struct DescribeBatchRequest: TCRequestModel {
+    public struct DescribeBatchRequest: TCRequest {
         /// 批次ID
         public let batchId: UInt64
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeBatch返回参数结构体
-    public struct DescribeBatchResponse: TCResponseModel {
+    public struct DescribeBatchResponse: TCResponse {
         /// 批次详情
         public let data: VideoBatch
 

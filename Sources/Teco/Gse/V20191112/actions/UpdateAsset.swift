@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateAsset请求参数结构体
-    public struct UpdateAssetRequest: TCRequestModel {
+    public struct UpdateAssetRequest: TCRequest {
         /// 生成包ID
         public let assetId: String
 
@@ -44,7 +44,7 @@ extension Gse {
     }
 
     /// UpdateAsset返回参数结构体
-    public struct UpdateAssetResponse: TCResponseModel {
+    public struct UpdateAssetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

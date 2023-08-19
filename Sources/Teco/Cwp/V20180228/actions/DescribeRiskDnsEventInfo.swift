@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeRiskDnsEventInfo请求参数结构体
-    public struct DescribeRiskDnsEventInfoRequest: TCRequestModel {
+    public struct DescribeRiskDnsEventInfoRequest: TCRequest {
         /// 恶意请求事件Id
         public let id: Int64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeRiskDnsEventInfo返回参数结构体
-    public struct DescribeRiskDnsEventInfoResponse: TCResponseModel {
+    public struct DescribeRiskDnsEventInfoResponse: TCResponse {
         /// 恶意请求事件详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let info: RiskDnsEvent?

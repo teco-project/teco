@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListEntitiesForPolicy请求参数结构体
-    public struct ListEntitiesForPolicyRequest: TCRequestModel {
+    public struct ListEntitiesForPolicyRequest: TCRequest {
         /// 策略 id
         public let policyId: UInt64
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// ListEntitiesForPolicy返回参数结构体
-    public struct ListEntitiesForPolicyResponse: TCResponseModel {
+    public struct ListEntitiesForPolicyResponse: TCResponse {
         /// 实体总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalNum: UInt64?

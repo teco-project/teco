@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeVpcTaskResult请求参数结构体
-    public struct DescribeVpcTaskResultRequest: TCRequestModel {
+    public struct DescribeVpcTaskResultRequest: TCRequest {
         /// 异步任务请求返回的RequestId。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeVpcTaskResult返回参数结构体
-    public struct DescribeVpcTaskResultResponse: TCResponseModel {
+    public struct DescribeVpcTaskResultResponse: TCResponse {
         /// 异步任务执行结果。结果：SUCCESS、FAILED、RUNNING。3者其中之一。其中SUCCESS表示任务执行成功，FAILED表示任务执行失败，RUNNING表示任务执行中。
         public let status: String
 

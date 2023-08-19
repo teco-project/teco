@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// ModifyMatch请求参数结构体
-    public struct ModifyMatchRequest: TCRequestModel {
+    public struct ModifyMatchRequest: TCRequest {
         /// 匹配名称，[a-zA-Z0-9-\.]* 长度128
         public let matchName: String
 
@@ -99,7 +99,7 @@ extension Gpm {
     }
 
     /// ModifyMatch返回参数结构体
-    public struct ModifyMatchResponse: TCResponseModel {
+    public struct ModifyMatchResponse: TCResponse {
         /// 匹配信息
         public let matchInfo: MatchInfo
 

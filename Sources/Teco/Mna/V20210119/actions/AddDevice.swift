@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// AddDevice请求参数结构体
-    public struct AddDeviceRequest: TCRequestModel {
+    public struct AddDeviceRequest: TCRequest {
         /// 新建设备的名称
         public let deviceName: String
 
@@ -49,7 +49,7 @@ extension Mna {
     }
 
     /// AddDevice返回参数结构体
-    public struct AddDeviceResponse: TCResponseModel {
+    public struct AddDeviceResponse: TCResponse {
         /// 经过加密算法加密后的base64格式密钥
         public let dataKey: String
 

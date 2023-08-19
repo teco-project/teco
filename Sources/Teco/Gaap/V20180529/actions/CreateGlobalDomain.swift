@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// CreateGlobalDomain请求参数结构体
-    public struct CreateGlobalDomainRequest: TCRequestModel {
+    public struct CreateGlobalDomainRequest: TCRequest {
         /// 域名所属项目ID
         public let projectId: Int64
 
@@ -49,7 +49,7 @@ extension Gaap {
     }
 
     /// CreateGlobalDomain返回参数结构体
-    public struct CreateGlobalDomainResponse: TCResponseModel {
+    public struct CreateGlobalDomainResponse: TCResponse {
         /// 域名ID
         public let domainId: String
 

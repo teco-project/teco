@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePrometheusMultiTenantInstancePostPayMode请求参数结构体
-    public struct CreatePrometheusMultiTenantInstancePostPayModeRequest: TCRequestModel {
+    public struct CreatePrometheusMultiTenantInstancePostPayModeRequest: TCRequest {
         /// 实例名
         public let instanceName: String
 
@@ -64,7 +64,7 @@ extension Monitor {
     }
 
     /// CreatePrometheusMultiTenantInstancePostPayMode返回参数结构体
-    public struct CreatePrometheusMultiTenantInstancePostPayModeResponse: TCResponseModel {
+    public struct CreatePrometheusMultiTenantInstancePostPayModeResponse: TCResponse {
         /// 实例 ID
         public let instanceId: String
 

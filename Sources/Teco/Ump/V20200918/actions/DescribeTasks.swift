@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ump {
     /// DescribeTasks请求参数结构体
-    public struct DescribeTasksRequest: TCRequestModel {
+    public struct DescribeTasksRequest: TCRequest {
         /// 集团编码
         public let groupCode: String
 
@@ -45,7 +45,7 @@ extension Ump {
     }
 
     /// DescribeTasks返回参数结构体
-    public struct DescribeTasksResponse: TCResponseModel {
+    public struct DescribeTasksResponse: TCResponse {
         /// 任务列表
         public let tasks: [Task]
 

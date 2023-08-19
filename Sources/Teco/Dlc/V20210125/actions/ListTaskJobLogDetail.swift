@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// ListTaskJobLogDetail请求参数结构体
-    public struct ListTaskJobLogDetailRequest: TCRequestModel {
+    public struct ListTaskJobLogDetailRequest: TCRequest {
         /// 列表返回的Id
         public let taskId: String
 
@@ -69,7 +69,7 @@ extension Dlc {
     }
 
     /// ListTaskJobLogDetail返回参数结构体
-    public struct ListTaskJobLogDetailResponse: TCResponseModel {
+    public struct ListTaskJobLogDetailResponse: TCResponse {
         /// 下一次分页参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let context: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeMediaProcessUsageData请求参数结构体
-    public struct DescribeMediaProcessUsageDataRequest: TCRequestModel {
+    public struct DescribeMediaProcessUsageDataRequest: TCRequest {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -61,7 +61,7 @@ extension Vod {
     }
 
     /// DescribeMediaProcessUsageData返回参数结构体
-    public struct DescribeMediaProcessUsageDataResponse: TCResponseModel {
+    public struct DescribeMediaProcessUsageDataResponse: TCResponse {
         /// 视频处理统计数据概览，展示所查询任务的概览以及详细数据。
         public let mediaProcessDataSet: [TaskStatData]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteAddressTemplate请求参数结构体
-    public struct DeleteAddressTemplateRequest: TCRequestModel {
+    public struct DeleteAddressTemplateRequest: TCRequest {
         /// IP地址模板实例ID，例如：ipm-09o5m8kc。
         public let addressTemplateId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DeleteAddressTemplate返回参数结构体
-    public struct DeleteAddressTemplateResponse: TCResponseModel {
+    public struct DeleteAddressTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

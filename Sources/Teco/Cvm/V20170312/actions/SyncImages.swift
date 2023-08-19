@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// SyncImages请求参数结构体
-    public struct SyncImagesRequest: TCRequestModel {
+    public struct SyncImagesRequest: TCRequest {
         /// 镜像ID列表 ，镜像ID可以通过如下方式获取：
         ///
         /// - 通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。
@@ -70,7 +70,7 @@ extension Cvm {
     }
 
     /// SyncImages返回参数结构体
-    public struct SyncImagesResponse: TCResponseModel {
+    public struct SyncImagesResponse: TCResponse {
         /// 目的地域的镜像ID信息。
         public let imageSet: [SyncImage]?
 

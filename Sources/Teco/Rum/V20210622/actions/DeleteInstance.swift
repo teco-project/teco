@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteInstance请求参数结构体
-    public struct DeleteInstanceRequest: TCRequestModel {
+    public struct DeleteInstanceRequest: TCRequest {
         /// 需要删除的实例id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// DeleteInstance返回参数结构体
-    public struct DeleteInstanceResponse: TCResponseModel {
+    public struct DeleteInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

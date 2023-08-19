@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyRule请求参数结构体
-    public struct ModifyRuleRequest: TCRequestModel {
+    public struct ModifyRuleRequest: TCRequest {
         /// 项目Id
         public let projectId: String?
 
@@ -144,7 +144,7 @@ extension Wedata {
     }
 
     /// ModifyRule返回参数结构体
-    public struct ModifyRuleResponse: TCResponseModel {
+    public struct ModifyRuleResponse: TCResponse {
         /// 是否更新成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

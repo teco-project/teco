@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeDBLogFiles请求参数结构体
-    public struct DescribeDBLogFilesRequest: TCRequestModel {
+    public struct DescribeDBLogFilesRequest: TCRequest {
         /// 实例 ID，形如：tdsql-ow728lmc。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// DescribeDBLogFiles返回参数结构体
-    public struct DescribeDBLogFilesResponse: TCResponseModel {
+    public struct DescribeDBLogFilesResponse: TCResponse {
         /// 实例 ID，形如：tdsql-ow728lmc。
         public let instanceId: String
 

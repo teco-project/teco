@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// ModifyNotificationConfiguration请求参数结构体
-    public struct ModifyNotificationConfigurationRequest: TCRequestModel {
+    public struct ModifyNotificationConfigurationRequest: TCRequest {
         /// 待修改的通知ID。
         public let autoScalingNotificationId: String
 
@@ -60,7 +60,7 @@ extension As {
     }
 
     /// ModifyNotificationConfiguration返回参数结构体
-    public struct ModifyNotificationConfigurationResponse: TCResponseModel {
+    public struct ModifyNotificationConfigurationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

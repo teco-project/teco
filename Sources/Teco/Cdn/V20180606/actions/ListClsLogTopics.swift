@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListClsLogTopics请求参数结构体
-    public struct ListClsLogTopicsRequest: TCRequestModel {
+    public struct ListClsLogTopicsRequest: TCRequest {
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
 
@@ -34,7 +34,7 @@ extension Cdn {
     }
 
     /// ListClsLogTopics返回参数结构体
-    public struct ListClsLogTopicsResponse: TCResponseModel {
+    public struct ListClsLogTopicsResponse: TCResponse {
         /// 上海区域日志集信息
         public let logset: LogSetInfo
 

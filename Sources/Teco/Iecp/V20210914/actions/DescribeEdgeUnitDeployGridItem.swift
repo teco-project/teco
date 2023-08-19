@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DescribeEdgeUnitDeployGridItem请求参数结构体
-    public struct DescribeEdgeUnitDeployGridItemRequest: TCRequestModel {
+    public struct DescribeEdgeUnitDeployGridItemRequest: TCRequest {
         /// 边缘单元ID
         public let edgeUnitId: UInt64
 
@@ -54,7 +54,7 @@ extension Iecp {
     }
 
     /// DescribeEdgeUnitDeployGridItem返回参数结构体
-    public struct DescribeEdgeUnitDeployGridItemResponse: TCResponseModel {
+    public struct DescribeEdgeUnitDeployGridItemResponse: TCResponse {
         /// 记录总数
         public let totalCount: Int64
 

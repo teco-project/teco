@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// SmartStructuralOCRV2请求参数结构体
-    public struct SmartStructuralOCRV2Request: TCRequestModel {
+    public struct SmartStructuralOCRV2Request: TCRequest {
         /// 图片的 Url 地址。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -81,7 +81,7 @@ extension Ocr {
     }
 
     /// SmartStructuralOCRV2返回参数结构体
-    public struct SmartStructuralOCRV2Response: TCResponseModel {
+    public struct SmartStructuralOCRV2Response: TCResponse {
         /// 图片旋转角度(角度制)，文本的水平方向
         /// 为 0；顺时针为正，逆时针为负
         public let angle: Float

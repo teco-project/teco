@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DeleteConsumer请求参数结构体
-    public struct DeleteConsumerRequest: TCRequestModel {
+    public struct DeleteConsumerRequest: TCRequest {
         /// 投递任务绑定的日志主题 ID
         public let topicId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DeleteConsumer返回参数结构体
-    public struct DeleteConsumerResponse: TCResponseModel {
+    public struct DeleteConsumerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

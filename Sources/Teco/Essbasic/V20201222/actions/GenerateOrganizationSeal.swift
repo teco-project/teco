@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// GenerateOrganizationSeal请求参数结构体
-    public struct GenerateOrganizationSealRequest: TCRequestModel {
+    public struct GenerateOrganizationSealRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -65,7 +65,7 @@ extension Essbasic {
     }
 
     /// GenerateOrganizationSeal返回参数结构体
-    public struct GenerateOrganizationSealResponse: TCResponseModel {
+    public struct GenerateOrganizationSealResponse: TCResponse {
         /// 电子印章Id
         public let sealId: String
 

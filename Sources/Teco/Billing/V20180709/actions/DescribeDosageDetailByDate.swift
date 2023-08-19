@@ -20,7 +20,7 @@ import TecoCore
 
 extension Billing {
     /// DescribeDosageDetailByDate请求参数结构体
-    public struct DescribeDosageDetailByDateRequest: TCRequestModel {
+    public struct DescribeDosageDetailByDateRequest: TCRequest {
         /// 查询账单开始日期，如 2019-01-01
         public let startDate: String
 
@@ -73,7 +73,7 @@ extension Billing {
     }
 
     /// DescribeDosageDetailByDate返回参数结构体
-    public struct DescribeDosageDetailByDateResponse: TCResponseModel {
+    public struct DescribeDosageDetailByDateResponse: TCResponse {
         /// 计量单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?

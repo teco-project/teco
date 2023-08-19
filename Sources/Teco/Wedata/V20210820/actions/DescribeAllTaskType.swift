@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeAllTaskType请求参数结构体
-    public struct DescribeAllTaskTypeRequest: TCRequestModel {
+    public struct DescribeAllTaskTypeRequest: TCRequest {
         /// 项目ID
         public let projectId: String?
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DescribeAllTaskType返回参数结构体
-    public struct DescribeAllTaskTypeResponse: TCResponseModel {
+    public struct DescribeAllTaskTypeResponse: TCResponse {
         /// 任务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TaskTypeOpsDto]?

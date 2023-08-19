@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// UpgradeDBInstanceKernelVersion请求参数结构体
-    public struct UpgradeDBInstanceKernelVersionRequest: TCRequestModel {
+    public struct UpgradeDBInstanceKernelVersionRequest: TCRequest {
         /// 实例ID。
         public let dbInstanceId: String
 
@@ -68,7 +68,7 @@ extension Postgres {
     }
 
     /// UpgradeDBInstanceKernelVersion返回参数结构体
-    public struct UpgradeDBInstanceKernelVersionResponse: TCResponseModel {
+    public struct UpgradeDBInstanceKernelVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

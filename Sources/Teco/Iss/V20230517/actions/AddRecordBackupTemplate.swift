@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddRecordBackupTemplate请求参数结构体
-    public struct AddRecordBackupTemplateRequest: TCRequestModel {
+    public struct AddRecordBackupTemplateRequest: TCRequest {
         /// 模板名称（仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复）
         public let templateName: String
 
@@ -49,7 +49,7 @@ extension Iss {
     }
 
     /// 新增录像上云模版返回数据
-    public struct AddRecordBackupTemplateResponse: TCResponseModel {
+    public struct AddRecordBackupTemplateResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

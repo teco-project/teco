@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListGroups请求参数结构体
-    public struct ListGroupsRequest: TCRequestModel {
+    public struct ListGroupsRequest: TCRequest {
         /// 页码。默认为1。
         public let page: UInt64?
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// ListGroups返回参数结构体
-    public struct ListGroupsResponse: TCResponseModel {
+    public struct ListGroupsResponse: TCResponse {
         /// 用户组总数。
         public let totalNum: UInt64
 

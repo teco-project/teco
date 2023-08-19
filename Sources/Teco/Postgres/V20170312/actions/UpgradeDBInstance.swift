@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// UpgradeDBInstance请求参数结构体
-    public struct UpgradeDBInstanceRequest: TCRequestModel {
+    public struct UpgradeDBInstanceRequest: TCRequest {
         /// 升级后的实例内存大小，单位GB
         public let memory: Int64
 
@@ -74,7 +74,7 @@ extension Postgres {
     }
 
     /// UpgradeDBInstance返回参数结构体
-    public struct UpgradeDBInstanceResponse: TCResponseModel {
+    public struct UpgradeDBInstanceResponse: TCResponse {
         /// 交易名字。
         public let dealName: String
 

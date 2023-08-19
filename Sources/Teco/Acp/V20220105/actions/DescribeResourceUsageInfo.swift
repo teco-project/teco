@@ -20,7 +20,7 @@ import TecoCore
 
 extension Acp {
     /// DescribeResourceUsageInfo请求参数结构体
-    public struct DescribeResourceUsageInfoRequest: TCRequestModel {
+    public struct DescribeResourceUsageInfoRequest: TCRequest {
         /// 资源计费项名称(为空时，则根据Source，TaskType和Platform进行查询)
         public let priceName: String?
 
@@ -49,7 +49,7 @@ extension Acp {
     }
 
     /// DescribeResourceUsageInfo返回参数结构体
-    public struct DescribeResourceUsageInfoResponse: TCResponseModel {
+    public struct DescribeResourceUsageInfoResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义，暂时未定
         public let result: Int64
 

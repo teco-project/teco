@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UploadFile请求参数结构体
-    public struct UploadFileRequest: TCRequestModel {
+    public struct UploadFileRequest: TCRequest {
         /// 文件名
         public let fileName: String
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// UploadFile返回参数结构体
-    public struct UploadFileResponse: TCResponseModel {
+    public struct UploadFileResponse: TCResponse {
         /// 文件ID
         public let fileId: String
 

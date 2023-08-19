@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// CreateCustomPerson请求参数结构体
-    public struct CreateCustomPersonRequest: TCRequestModel {
+    public struct CreateCustomPersonRequest: TCRequest {
         /// 自定义人物姓名
         public let name: String
 
@@ -54,7 +54,7 @@ extension Ivld {
     }
 
     /// CreateCustomPerson返回参数结构体
-    public struct CreateCustomPersonResponse: TCResponseModel {
+    public struct CreateCustomPersonResponse: TCResponse {
         /// 自定义人物Id
         public let personId: String
 

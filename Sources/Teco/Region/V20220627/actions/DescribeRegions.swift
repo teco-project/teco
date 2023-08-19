@@ -20,7 +20,7 @@ import TecoCore
 
 extension Region {
     /// DescribeRegions请求参数结构体
-    public struct DescribeRegionsRequest: TCRequestModel {
+    public struct DescribeRegionsRequest: TCRequest {
         /// 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
         public let product: String
 
@@ -39,7 +39,7 @@ extension Region {
     }
 
     /// DescribeRegions返回参数结构体
-    public struct DescribeRegionsResponse: TCResponseModel {
+    public struct DescribeRegionsResponse: TCResponse {
         /// 地域数量
         public let totalCount: UInt64
 

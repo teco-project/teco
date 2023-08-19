@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tts {
     /// DescribeTtsTaskStatus请求参数结构体
-    public struct DescribeTtsTaskStatusRequest: TCRequestModel {
+    public struct DescribeTtsTaskStatusRequest: TCRequest {
         /// 任务id
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tts {
     }
 
     /// DescribeTtsTaskStatus返回参数结构体
-    public struct DescribeTtsTaskStatusResponse: TCResponseModel {
+    public struct DescribeTtsTaskStatusResponse: TCResponse {
         /// 任务状态返回
         public let data: DescribeTtsTaskStatusRespData
 

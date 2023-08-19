@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyVulDefenceSetting请求参数结构体
-    public struct ModifyVulDefenceSettingRequest: TCRequestModel {
+    public struct ModifyVulDefenceSettingRequest: TCRequest {
         /// 是否开启:0: 关闭 1:开启
         public let isEnabled: Int64
 
@@ -54,7 +54,7 @@ extension Tcss {
     }
 
     /// ModifyVulDefenceSetting返回参数结构体
-    public struct ModifyVulDefenceSettingResponse: TCResponseModel {
+    public struct ModifyVulDefenceSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateAclRule请求参数结构体
-    public struct CreateAclRuleRequest: TCRequestModel {
+    public struct CreateAclRuleRequest: TCRequest {
         /// 实例id信息
         public let instanceId: String
 
@@ -69,7 +69,7 @@ extension Ckafka {
     }
 
     /// CreateAclRule返回参数结构体
-    public struct CreateAclRuleResponse: TCResponseModel {
+    public struct CreateAclRuleResponse: TCResponse {
         /// 规则的唯一表示Key
         public let result: Int64
 

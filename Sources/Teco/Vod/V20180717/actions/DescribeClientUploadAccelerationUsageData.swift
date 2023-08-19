@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeClientUploadAccelerationUsageData请求参数结构体
-    public struct DescribeClientUploadAccelerationUsageDataRequest: TCRequestModel {
+    public struct DescribeClientUploadAccelerationUsageDataRequest: TCRequest {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -53,7 +53,7 @@ extension Vod {
     }
 
     /// DescribeClientUploadAccelerationUsageData返回参数结构体
-    public struct DescribeClientUploadAccelerationUsageDataResponse: TCResponseModel {
+    public struct DescribeClientUploadAccelerationUsageDataResponse: TCResponse {
         /// 客户端上传加速统计数据。
         public let clientUploadAccelerationUsageDataSet: [StatDataItem]
 

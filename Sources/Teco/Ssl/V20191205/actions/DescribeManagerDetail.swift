@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeManagerDetail请求参数结构体
-    public struct DescribeManagerDetailRequest: TCRequestModel {
+    public struct DescribeManagerDetailRequest: TCRequest {
         /// 管理人ID
         public let managerId: Int64
 
@@ -44,7 +44,7 @@ extension Ssl {
     }
 
     /// DescribeManagerDetail返回参数结构体
-    public struct DescribeManagerDetailResponse: TCResponseModel {
+    public struct DescribeManagerDetailResponse: TCResponse {
         /// 状态: audit: 审核中 ok: 审核通过 invalid: 失效 expiring: 即将过期 expired: 已过期
         public let status: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Gse {
     /// DescribeFleetStatisticSummary请求参数结构体
-    public struct DescribeFleetStatisticSummaryRequest: TCRequestModel {
+    public struct DescribeFleetStatisticSummaryRequest: TCRequest {
         /// 服务器舰队ID
         public let fleetId: String?
 
@@ -52,7 +52,7 @@ extension Gse {
     }
 
     /// DescribeFleetStatisticSummary返回参数结构体
-    public struct DescribeFleetStatisticSummaryResponse: TCResponseModel {
+    public struct DescribeFleetStatisticSummaryResponse: TCResponse {
         /// 总时长，单位秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalUsedTimeSeconds: String?

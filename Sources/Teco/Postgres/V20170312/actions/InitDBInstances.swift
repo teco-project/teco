@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// InitDBInstances请求参数结构体
-    public struct InitDBInstancesRequest: TCRequestModel {
+    public struct InitDBInstancesRequest: TCRequest {
         /// 实例ID集合。
         public let dbInstanceIdSet: [String]
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// InitDBInstances返回参数结构体
-    public struct InitDBInstancesResponse: TCResponseModel {
+    public struct InitDBInstancesResponse: TCResponse {
         /// 实例ID集合。
         public let dbInstanceIdSet: [String]
 

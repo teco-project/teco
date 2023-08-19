@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeStatisticData请求参数结构体
-    public struct DescribeStatisticDataRequest: TCRequestModel {
+    public struct DescribeStatisticDataRequest: TCRequest {
         /// 所属模块，固定值，为monitor
         public let module: String
 
@@ -74,7 +74,7 @@ extension Monitor {
     }
 
     /// DescribeStatisticData返回参数结构体
-    public struct DescribeStatisticDataResponse: TCResponseModel {
+    public struct DescribeStatisticDataResponse: TCResponse {
         /// 统计周期
         public let period: UInt64
 

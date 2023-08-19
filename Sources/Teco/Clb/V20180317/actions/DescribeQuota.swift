@@ -20,13 +20,13 @@ import TecoCore
 
 extension Clb {
     /// DescribeQuota请求参数结构体
-    public struct DescribeQuotaRequest: TCRequestModel {
+    public struct DescribeQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeQuota返回参数结构体
-    public struct DescribeQuotaResponse: TCResponseModel {
+    public struct DescribeQuotaResponse: TCResponse {
         /// 配额列表
         public let quotaSet: [Quota]
 

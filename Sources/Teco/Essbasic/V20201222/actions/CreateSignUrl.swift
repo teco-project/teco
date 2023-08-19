@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateSignUrl请求参数结构体
-    public struct CreateSignUrlRequest: TCRequestModel {
+    public struct CreateSignUrlRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -66,7 +66,7 @@ extension Essbasic {
     }
 
     /// CreateSignUrl返回参数结构体
-    public struct CreateSignUrlResponse: TCResponseModel {
+    public struct CreateSignUrlResponse: TCResponse {
         /// 合同签署链接
         public let signUrl: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportWebPageEventList请求参数结构体
-    public struct ExportWebPageEventListRequest: TCRequestModel {
+    public struct ExportWebPageEventListRequest: TCRequest {
         /// 过滤条件
         /// - IpOrAlias - String - 是否必填：否 - 主机ip或别名筛选
         /// - EventType - String - 是否必填：否 - 事件类型
@@ -47,7 +47,7 @@ extension Cwp {
     }
 
     /// ExportWebPageEventList返回参数结构体
-    public struct ExportWebPageEventListResponse: TCResponseModel {
+    public struct ExportWebPageEventListResponse: TCResponse {
         /// 任务id 可通过 ExportTasks接口下载
         public let taskId: String
 

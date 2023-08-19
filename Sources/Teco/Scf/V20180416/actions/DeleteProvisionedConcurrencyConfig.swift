@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// DeleteProvisionedConcurrencyConfig请求参数结构体
-    public struct DeleteProvisionedConcurrencyConfigRequest: TCRequestModel {
+    public struct DeleteProvisionedConcurrencyConfigRequest: TCRequest {
         /// 需要删除预置并发的函数的名称
         public let functionName: String
 
@@ -44,7 +44,7 @@ extension Scf {
     }
 
     /// DeleteProvisionedConcurrencyConfig返回参数结构体
-    public struct DeleteProvisionedConcurrencyConfigResponse: TCResponseModel {
+    public struct DeleteProvisionedConcurrencyConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

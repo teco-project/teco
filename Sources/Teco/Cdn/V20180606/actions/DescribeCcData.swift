@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeCcData请求参数结构体
-    public struct DescribeCcDataRequest: TCRequestModel {
+    public struct DescribeCcDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         public let startTime: String
 
@@ -76,7 +76,7 @@ extension Cdn {
     }
 
     /// DescribeCcData返回参数结构体
-    public struct DescribeCcDataResponse: TCResponseModel {
+    public struct DescribeCcDataResponse: TCResponse {
         /// 指定执行动作的请求数数据，如果指定类型为空，表示所有类型的请求总数
         public let data: [TimestampData]
 

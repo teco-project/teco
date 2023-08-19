@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeImageConfig请求参数结构体
-    public struct DescribeImageConfigRequest: TCRequestModel {
+    public struct DescribeImageConfigRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Cdn {
     }
 
     /// DescribeImageConfig返回参数结构体
-    public struct DescribeImageConfigResponse: TCResponseModel {
+    public struct DescribeImageConfigResponse: TCResponse {
         /// WebpAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webpAdapter: WebpAdapter?

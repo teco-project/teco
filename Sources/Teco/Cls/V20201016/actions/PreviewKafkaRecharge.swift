@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// PreviewKafkaRecharge请求参数结构体
-    public struct PreviewKafkaRechargeRequest: TCRequestModel {
+    public struct PreviewKafkaRechargeRequest: TCRequest {
         /// 预览类型，1:源数据预览，2:导出结果预览
         public let previewType: UInt64
 
@@ -79,7 +79,7 @@ extension Cls {
     }
 
     /// PreviewKafkaRecharge返回参数结构体
-    public struct PreviewKafkaRechargeResponse: TCResponseModel {
+    public struct PreviewKafkaRechargeResponse: TCResponse {
         /// 日志样例，PreviewType为2时返回
         public let logSample: String
 

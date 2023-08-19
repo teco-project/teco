@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// InquiryPriceRenewHosts请求参数结构体
-    public struct InquiryPriceRenewHostsRequest: TCRequestModel {
+    public struct InquiryPriceRenewHostsRequest: TCRequest {
         /// 一个或多个待操作的`CDH`实例`ID`。可通过[`DescribeHosts`](https://cloud.tencent.com/document/api/213/16474)接口返回值中的`HostId`获取。每次请求批量实例的上限为100。
         public let hostIds: [String]
 
@@ -49,7 +49,7 @@ extension Cvm {
     }
 
     /// InquiryPriceRenewHosts返回参数结构体
-    public struct InquiryPriceRenewHostsResponse: TCResponseModel {
+    public struct InquiryPriceRenewHostsResponse: TCResponse {
         /// CDH实例续费价格信息
         public let price: HostPriceInfo
 

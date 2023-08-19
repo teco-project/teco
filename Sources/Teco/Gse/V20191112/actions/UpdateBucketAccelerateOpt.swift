@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// UpdateBucketAccelerateOpt请求参数结构体
-    public struct UpdateBucketAccelerateOptRequest: TCRequestModel {
+    public struct UpdateBucketAccelerateOptRequest: TCRequest {
         /// true为开启全球加速，false为关闭
         public let allowed: Bool
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// UpdateBucketAccelerateOpt返回参数结构体
-    public struct UpdateBucketAccelerateOptResponse: TCResponseModel {
+    public struct UpdateBucketAccelerateOptResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

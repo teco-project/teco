@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// SpeechTranslate请求参数结构体
-    public struct SpeechTranslateRequest: TCRequestModel {
+    public struct SpeechTranslateRequest: TCRequest {
         /// 一段完整的语音对应一个SessionUuid
         public let sessionUuid: String
 
@@ -83,7 +83,7 @@ extension Tmt {
     }
 
     /// SpeechTranslate返回参数结构体
-    public struct SpeechTranslateResponse: TCResponseModel {
+    public struct SpeechTranslateResponse: TCResponse {
         /// 请求的SessionUuid直接返回
         public let sessionUuid: String
 

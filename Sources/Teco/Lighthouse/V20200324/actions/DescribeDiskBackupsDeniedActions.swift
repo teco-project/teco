@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeDiskBackupsDeniedActions请求参数结构体
-    public struct DescribeDiskBackupsDeniedActionsRequest: TCRequestModel {
+    public struct DescribeDiskBackupsDeniedActionsRequest: TCRequest {
         /// 云硬盘备份点 ID 列表, 可通过 DescribeDiskBackups 接口查询。
         public let diskBackupIds: [String]
 
@@ -34,7 +34,7 @@ extension Lighthouse {
     }
 
     /// DescribeDiskBackupsDeniedActions返回参数结构体
-    public struct DescribeDiskBackupsDeniedActionsResponse: TCResponseModel {
+    public struct DescribeDiskBackupsDeniedActionsResponse: TCResponse {
         /// 云硬盘备份点操作限制列表详细信息。
         public let diskBackupDeniedActionSet: [DiskBackupDeniedActions]
 

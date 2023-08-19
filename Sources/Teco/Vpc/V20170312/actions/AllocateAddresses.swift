@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AllocateAddresses请求参数结构体
-    public struct AllocateAddressesRequest: TCRequestModel {
+    public struct AllocateAddressesRequest: TCRequest {
         /// EIP数量。默认值：1。
         public let addressCount: Int64?
 
@@ -148,7 +148,7 @@ extension Vpc {
     }
 
     /// AllocateAddresses返回参数结构体
-    public struct AllocateAddressesResponse: TCResponseModel {
+    public struct AllocateAddressesResponse: TCResponse {
         /// 申请到的 EIP 的唯一 ID 列表。
         public let addressSet: [String]
 

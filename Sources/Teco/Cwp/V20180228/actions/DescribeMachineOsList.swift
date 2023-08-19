@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeMachineOsList请求参数结构体
-    public struct DescribeMachineOsListRequest: TCRequestModel {
+    public struct DescribeMachineOsListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeMachineOsList返回参数结构体
-    public struct DescribeMachineOsListResponse: TCResponseModel {
+    public struct DescribeMachineOsListResponse: TCResponse {
         /// 操作系统列表
         public let list: [OsName]
 

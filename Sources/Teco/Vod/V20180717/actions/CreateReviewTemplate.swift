@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateReviewTemplate请求参数结构体
-    public struct CreateReviewTemplateRequest: TCRequestModel {
+    public struct CreateReviewTemplateRequest: TCRequest {
         /// 需要返回的违规标签列表，可选值为：
         /// - Porn：色情；
         /// - Terror：暴力；
@@ -56,7 +56,7 @@ extension Vod {
     }
 
     /// CreateReviewTemplate返回参数结构体
-    public struct CreateReviewTemplateResponse: TCResponseModel {
+    public struct CreateReviewTemplateResponse: TCResponse {
         /// 审核模板唯一标识。
         public let definition: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateInLongAgent请求参数结构体
-    public struct CreateInLongAgentRequest: TCRequestModel {
+    public struct CreateInLongAgentRequest: TCRequest {
         /// 采集器类型，1：TKE Agent，2：BOSS SDK，默认：1
         public let agentType: UInt64
 
@@ -59,7 +59,7 @@ extension Wedata {
     }
 
     /// CreateInLongAgent返回参数结构体
-    public struct CreateInLongAgentResponse: TCResponseModel {
+    public struct CreateInLongAgentResponse: TCResponse {
         /// 采集器ID
         public let agentId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeVipInfo请求参数结构体
-    public struct DescribeVipInfoRequest: TCRequestModel {
+    public struct DescribeVipInfoRequest: TCRequest {
         /// waf实例id列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Waf {
     }
 
     /// DescribeVipInfo返回参数结构体
-    public struct DescribeVipInfoResponse: TCResponseModel {
+    public struct DescribeVipInfoResponse: TCResponse {
         /// VIP信息
         public let vipInfo: [VipInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateStreamLinkEvent请求参数结构体
-    public struct CreateStreamLinkEventRequest: TCRequestModel {
+    public struct CreateStreamLinkEventRequest: TCRequest {
         /// 事件名称。
         public let eventName: String
 
@@ -39,7 +39,7 @@ extension Mps {
     }
 
     /// CreateStreamLinkEvent返回参数结构体
-    public struct CreateStreamLinkEventResponse: TCResponseModel {
+    public struct CreateStreamLinkEventResponse: TCResponse {
         /// 创建的Event信息。
         public let info: DescribeEvent
 

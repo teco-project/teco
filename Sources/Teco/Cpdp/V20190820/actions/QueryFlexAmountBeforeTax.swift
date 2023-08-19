@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexAmountBeforeTax请求参数结构体
-    public struct QueryFlexAmountBeforeTaxRequest: TCRequestModel {
+    public struct QueryFlexAmountBeforeTaxRequest: TCRequest {
         /// 收款用户ID
         public let payeeId: String
 
@@ -55,7 +55,7 @@ extension Cpdp {
     }
 
     /// QueryFlexAmountBeforeTax返回参数结构体
-    public struct QueryFlexAmountBeforeTaxResponse: TCResponseModel {
+    public struct QueryFlexAmountBeforeTaxResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

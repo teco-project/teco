@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// CreateConsumer请求参数结构体
-    public struct CreateConsumerRequest: TCRequestModel {
+    public struct CreateConsumerRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// CreateConsumer返回参数结构体
-    public struct CreateConsumerResponse: TCResponseModel {
+    public struct CreateConsumerResponse: TCResponse {
         /// 创建group描述
         public let result: JgwOperateResponse
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tione {
     /// DescribeTrainingFrameworks请求参数结构体
-    public struct DescribeTrainingFrameworksRequest: TCRequestModel {
+    public struct DescribeTrainingFrameworksRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTrainingFrameworks返回参数结构体
-    public struct DescribeTrainingFrameworksResponse: TCResponseModel {
+    public struct DescribeTrainingFrameworksResponse: TCResponse {
         /// 框架信息列表
         public let frameworkInfos: [FrameworkInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBaselineBasicInfo请求参数结构体
-    public struct DescribeBaselineBasicInfoRequest: TCRequestModel {
+    public struct DescribeBaselineBasicInfoRequest: TCRequest {
         /// 基线名称
         public let baselineName: String?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBaselineBasicInfo返回参数结构体
-    public struct DescribeBaselineBasicInfoResponse: TCResponseModel {
+    public struct DescribeBaselineBasicInfoResponse: TCResponse {
         /// 基线基础信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baselineBasicInfoList: [BaselineBasicInfo]?

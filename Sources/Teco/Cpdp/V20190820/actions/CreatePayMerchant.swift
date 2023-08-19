@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreatePayMerchant请求参数结构体
-    public struct CreatePayMerchantRequest: TCRequestModel {
+    public struct CreatePayMerchantRequest: TCRequest {
         /// 平台编号
         public let platformCode: String
 
@@ -55,7 +55,7 @@ extension Cpdp {
     }
 
     /// CreatePayMerchant返回参数结构体
-    public struct CreatePayMerchantResponse: TCResponseModel {
+    public struct CreatePayMerchantResponse: TCResponse {
         /// 分配给商户的 AppId。该 AppId 为后续各项 交易的商户标识。
         public let merchantAppId: String
 

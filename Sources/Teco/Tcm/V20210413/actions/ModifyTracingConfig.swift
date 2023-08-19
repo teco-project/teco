@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcm {
     /// ModifyTracingConfig请求参数结构体
-    public struct ModifyTracingConfigRequest: TCRequestModel {
+    public struct ModifyTracingConfigRequest: TCRequest {
         /// mesh名字
         public let meshId: String
 
@@ -54,7 +54,7 @@ extension Tcm {
     }
 
     /// ModifyTracingConfig返回参数结构体
-    public struct ModifyTracingConfigResponse: TCResponseModel {
+    public struct ModifyTracingConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

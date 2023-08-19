@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// IdCardVerification请求参数结构体
-    public struct IdCardVerificationRequest: TCRequestModel {
+    public struct IdCardVerificationRequest: TCRequest {
         /// 身份证号
         public let idCard: String
 
@@ -44,7 +44,7 @@ extension Faceid {
     }
 
     /// IdCardVerification返回参数结构体
-    public struct IdCardVerificationResponse: TCResponseModel {
+    public struct IdCardVerificationResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 姓名和身份证号一致

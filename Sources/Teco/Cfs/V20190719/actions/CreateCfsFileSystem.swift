@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// CreateCfsFileSystem请求参数结构体
-    public struct CreateCfsFileSystemRequest: TCRequestModel {
+    public struct CreateCfsFileSystemRequest: TCRequest {
         /// 可用区名称，例如ap-beijing-1，请参考 [概览](https://cloud.tencent.com/document/product/582/13225) 文档中的地域与可用区列表
         public let zone: String
 
@@ -114,7 +114,7 @@ extension Cfs {
     }
 
     /// CreateCfsFileSystem返回参数结构体
-    public struct CreateCfsFileSystemResponse: TCResponseModel {
+    public struct CreateCfsFileSystemResponse: TCResponse {
         /// 文件系统创建时间
         public let creationTime: String
 

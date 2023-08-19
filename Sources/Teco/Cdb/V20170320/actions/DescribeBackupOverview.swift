@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeBackupOverview请求参数结构体
-    public struct DescribeBackupOverviewRequest: TCRequestModel {
+    public struct DescribeBackupOverviewRequest: TCRequest {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
         public let product: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeBackupOverview返回参数结构体
-    public struct DescribeBackupOverviewResponse: TCResponseModel {
+    public struct DescribeBackupOverviewResponse: TCResponse {
         /// 用户在当前地域备份的总个数（包含数据备份和日志备份）。
         public let backupCount: Int64
 

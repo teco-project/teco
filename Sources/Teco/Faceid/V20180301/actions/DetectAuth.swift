@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// DetectAuth请求参数结构体
-    public struct DetectAuthRequest: TCRequestModel {
+    public struct DetectAuthRequest: TCRequest {
         /// 用于细分客户使用场景，申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。如有疑问，请添加[腾讯云人脸核身小助手](https://cloud.tencent.com/document/product/1007/56130)进行咨询。
         public let ruleId: String
 
@@ -86,7 +86,7 @@ extension Faceid {
     }
 
     /// DetectAuth返回参数结构体
-    public struct DetectAuthResponse: TCResponseModel {
+    public struct DetectAuthResponse: TCResponse {
         /// 用于发起核身流程的URL，仅微信H5场景使用。
         public let url: String
 

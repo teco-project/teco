@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// ListClusterInspectionResultsItems请求参数结构体
-    public struct ListClusterInspectionResultsItemsRequest: TCRequestModel {
+    public struct ListClusterInspectionResultsItemsRequest: TCRequest {
         /// 目标集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// ListClusterInspectionResultsItems返回参数结构体
-    public struct ListClusterInspectionResultsItemsResponse: TCResponseModel {
+    public struct ListClusterInspectionResultsItemsResponse: TCResponse {
         /// 巡检结果历史列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inspectionResultsItems: [KubeJarvisStateInspectionResultsItem]?

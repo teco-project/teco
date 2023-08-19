@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ModifyAnimatedGraphicsTemplate请求参数结构体
-    public struct ModifyAnimatedGraphicsTemplateRequest: TCRequestModel {
+    public struct ModifyAnimatedGraphicsTemplateRequest: TCRequest {
         /// 转动图模板唯一标识。
         public let definition: UInt64
 
@@ -90,7 +90,7 @@ extension Mps {
     }
 
     /// ModifyAnimatedGraphicsTemplate返回参数结构体
-    public struct ModifyAnimatedGraphicsTemplateResponse: TCResponseModel {
+    public struct ModifyAnimatedGraphicsTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

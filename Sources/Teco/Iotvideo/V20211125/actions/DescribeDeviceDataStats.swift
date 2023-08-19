@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeDeviceDataStats请求参数结构体
-    public struct DescribeDeviceDataStatsRequest: TCRequestModel {
+    public struct DescribeDeviceDataStatsRequest: TCRequest {
         /// 开始日期
         public let startDate: String
 
@@ -44,7 +44,7 @@ extension Iotvideo {
     }
 
     /// DescribeDeviceDataStats返回参数结构体
-    public struct DescribeDeviceDataStatsResponse: TCResponseModel {
+    public struct DescribeDeviceDataStatsResponse: TCResponse {
         /// 累计注册设备数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registerCnt: UInt64?

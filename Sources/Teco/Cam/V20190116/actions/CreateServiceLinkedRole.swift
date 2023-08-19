@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreateServiceLinkedRole请求参数结构体
-    public struct CreateServiceLinkedRoleRequest: TCRequestModel {
+    public struct CreateServiceLinkedRoleRequest: TCRequest {
         /// 授权服务，附加了此角色的腾讯云服务主体。
         public let qcsServiceName: [String]
 
@@ -49,7 +49,7 @@ extension Cam {
     }
 
     /// CreateServiceLinkedRole返回参数结构体
-    public struct CreateServiceLinkedRoleResponse: TCResponseModel {
+    public struct CreateServiceLinkedRoleResponse: TCResponse {
         /// 角色ID
         public let roleId: String
 

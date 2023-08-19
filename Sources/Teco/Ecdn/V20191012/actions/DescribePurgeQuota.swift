@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ecdn {
     /// DescribePurgeQuota请求参数结构体
-    public struct DescribePurgeQuotaRequest: TCRequestModel {
+    public struct DescribePurgeQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePurgeQuota返回参数结构体
-    public struct DescribePurgeQuotaResponse: TCResponseModel {
+    public struct DescribePurgeQuotaResponse: TCResponse {
         /// Url刷新用量及配额。
         public let urlPurge: Quota
 

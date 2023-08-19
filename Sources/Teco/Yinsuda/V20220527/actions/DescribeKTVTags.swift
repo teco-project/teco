@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yinsuda {
     /// DescribeKTVTags请求参数结构体
-    public struct DescribeKTVTagsRequest: TCRequestModel {
+    public struct DescribeKTVTagsRequest: TCRequest {
         /// 应用名称。
         public let appName: String
 
@@ -39,7 +39,7 @@ extension Yinsuda {
     }
 
     /// DescribeKTVTags返回参数结构体
-    public struct DescribeKTVTagsResponse: TCResponseModel {
+    public struct DescribeKTVTagsResponse: TCResponse {
         /// 标签分组列表。
         public let tagGroupInfoSet: [KTVTagGroupInfo]
 

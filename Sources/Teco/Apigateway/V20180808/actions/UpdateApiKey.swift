@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UpdateApiKey请求参数结构体
-    public struct UpdateApiKeyRequest: TCRequestModel {
+    public struct UpdateApiKeyRequest: TCRequest {
         /// 待更换的密钥 ID。
         public let accessKeyId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// UpdateApiKey返回参数结构体
-    public struct UpdateApiKeyResponse: TCResponseModel {
+    public struct UpdateApiKeyResponse: TCResponse {
         /// 更换后的密钥详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ApiKey?

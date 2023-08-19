@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rce {
     /// DescribeRiskTrends请求参数结构体
-    public struct DescribeRiskTrendsRequest: TCRequestModel {
+    public struct DescribeRiskTrendsRequest: TCRequest {
         /// 业务入参
         public let businessSecurityData: InputFrontRisk
 
@@ -34,7 +34,7 @@ extension Rce {
     }
 
     /// DescribeRiskTrends返回参数结构体
-    public struct DescribeRiskTrendsResponse: TCResponseModel {
+    public struct DescribeRiskTrendsResponse: TCResponse {
         /// 业务出参
         public let data: OutputFrontRiskData
 

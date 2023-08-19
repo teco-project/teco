@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// UploadFile请求参数结构体
-    public struct UploadFileRequest: TCRequestModel {
+    public struct UploadFileRequest: TCRequest {
         /// 模块名
         public let module: String
 
@@ -59,7 +59,7 @@ extension Cr {
     }
 
     /// UploadFile返回参数结构体
-    public struct UploadFileResponse: TCResponseModel {
+    public struct UploadFileResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

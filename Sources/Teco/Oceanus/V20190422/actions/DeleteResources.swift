@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DeleteResources请求参数结构体
-    public struct DeleteResourcesRequest: TCRequestModel {
+    public struct DeleteResourcesRequest: TCRequest {
         /// 待删除资源ID列表
         public let resourceIds: [String]
 
@@ -39,7 +39,7 @@ extension Oceanus {
     }
 
     /// DeleteResources返回参数结构体
-    public struct DeleteResourcesResponse: TCResponseModel {
+    public struct DeleteResourcesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

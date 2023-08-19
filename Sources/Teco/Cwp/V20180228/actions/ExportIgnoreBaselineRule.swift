@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportIgnoreBaselineRule请求参数结构体
-    public struct ExportIgnoreBaselineRuleRequest: TCRequestModel {
+    public struct ExportIgnoreBaselineRuleRequest: TCRequest {
         /// 检测项名称
         public let ruleName: String?
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ExportIgnoreBaselineRule返回参数结构体
-    public struct ExportIgnoreBaselineRuleResponse: TCResponseModel {
+    public struct ExportIgnoreBaselineRuleResponse: TCResponse {
         /// 该参数已废弃
         public let downloadUrl: String
 

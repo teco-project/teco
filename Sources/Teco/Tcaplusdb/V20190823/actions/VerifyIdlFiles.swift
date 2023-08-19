@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// VerifyIdlFiles请求参数结构体
-    public struct VerifyIdlFilesRequest: TCRequestModel {
+    public struct VerifyIdlFilesRequest: TCRequest {
         /// 待创建表格的集群ID
         public let clusterId: String
 
@@ -49,7 +49,7 @@ extension Tcaplusdb {
     }
 
     /// VerifyIdlFiles返回参数结构体
-    public struct VerifyIdlFilesResponse: TCResponseModel {
+    public struct VerifyIdlFilesResponse: TCResponse {
         /// 本次上传校验所有的IDL文件信息列表
         public let idlFiles: [IdlFileInfo]
 

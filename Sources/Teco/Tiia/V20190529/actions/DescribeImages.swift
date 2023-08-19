@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DescribeImages请求参数结构体
-    public struct DescribeImagesRequest: TCRequestModel {
+    public struct DescribeImagesRequest: TCRequest {
         /// 图库名称。
         public let groupId: String
 
@@ -44,7 +44,7 @@ extension Tiia {
     }
 
     /// DescribeImages返回参数结构体
-    public struct DescribeImagesResponse: TCResponseModel {
+    public struct DescribeImagesResponse: TCResponse {
         /// 图库名称。
         public let groupId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// GetParametersForImport请求参数结构体
-    public struct GetParametersForImportRequest: TCRequestModel {
+    public struct GetParametersForImportRequest: TCRequest {
         /// CMK的唯一标识，获取密钥参数的CMK必须是EXTERNAL类型，即在CreateKey时指定Type=2 类型的CMK。
         public let keyId: String
 
@@ -44,7 +44,7 @@ extension Kms {
     }
 
     /// GetParametersForImport返回参数结构体
-    public struct GetParametersForImportResponse: TCResponseModel {
+    public struct GetParametersForImportResponse: TCResponse {
         /// CMK的唯一标识，用于指定目标导入密钥材料的CMK。
         public let keyId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// AddReplicationInstance请求参数结构体
-    public struct AddReplicationInstanceRequest: TCRequestModel {
+    public struct AddReplicationInstanceRequest: TCRequest {
         /// 复制组ID。
         public let groupId: String
 
@@ -46,7 +46,7 @@ extension Redis {
     }
 
     /// AddReplicationInstance返回参数结构体
-    public struct AddReplicationInstanceResponse: TCResponseModel {
+    public struct AddReplicationInstanceResponse: TCResponse {
         /// 异步流程ID。
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DescribeCfsFileSystemClients请求参数结构体
-    public struct DescribeCfsFileSystemClientsRequest: TCRequestModel {
+    public struct DescribeCfsFileSystemClientsRequest: TCRequest {
         /// 文件系统 ID。
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Cfs {
     }
 
     /// DescribeCfsFileSystemClients返回参数结构体
-    public struct DescribeCfsFileSystemClientsResponse: TCResponseModel {
+    public struct DescribeCfsFileSystemClientsResponse: TCResponse {
         /// 客户端列表
         public let clientList: [FileSystemClient]
 

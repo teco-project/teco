@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterSecurity请求参数结构体
-    public struct DescribeClusterSecurityRequest: TCRequestModel {
+    public struct DescribeClusterSecurityRequest: TCRequest {
         /// 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterSecurity返回参数结构体
-    public struct DescribeClusterSecurityResponse: TCResponseModel {
+    public struct DescribeClusterSecurityResponse: TCResponse {
         /// 集群的账号名称
         public let userName: String
 

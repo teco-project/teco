@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DeleteManager请求参数结构体
-    public struct DeleteManagerRequest: TCRequestModel {
+    public struct DeleteManagerRequest: TCRequest {
         /// 管理人ID
         public let managerId: Int64
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// DeleteManager返回参数结构体
-    public struct DeleteManagerResponse: TCResponseModel {
+    public struct DeleteManagerResponse: TCResponse {
         /// 管理人ID
         public let managerId: Int64
 

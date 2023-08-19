@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOrderStatus请求参数结构体
-    public struct QueryOrderStatusRequest: TCRequestModel {
+    public struct QueryOrderStatusRequest: TCRequest {
         /// 使用门店OpenId
         public let openId: String
 
@@ -54,7 +54,7 @@ extension Cpdp {
     }
 
     /// QueryOrderStatus返回参数结构体
-    public struct QueryOrderStatusResponse: TCResponseModel {
+    public struct QueryOrderStatusResponse: TCResponse {
         /// 业务系统返回码，0表示成功，其他表示失败。
         public let errCode: String
 

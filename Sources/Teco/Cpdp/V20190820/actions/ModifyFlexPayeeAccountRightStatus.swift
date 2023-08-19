@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ModifyFlexPayeeAccountRightStatus请求参数结构体
-    public struct ModifyFlexPayeeAccountRightStatusRequest: TCRequestModel {
+    public struct ModifyFlexPayeeAccountRightStatusRequest: TCRequest {
         /// 收款用户ID
         public let payeeId: String
 
@@ -57,7 +57,7 @@ extension Cpdp {
     }
 
     /// ModifyFlexPayeeAccountRightStatus返回参数结构体
-    public struct ModifyFlexPayeeAccountRightStatusResponse: TCResponseModel {
+    public struct ModifyFlexPayeeAccountRightStatusResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

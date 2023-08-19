@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// WithdrawsWatermark请求参数结构体
-    public struct WithdrawsWatermarkRequest: TCRequestModel {
+    public struct WithdrawsWatermarkRequest: TCRequest {
         /// 输入媒体文件存储信息。
         public let inputInfo: MediaInputInfo
 
@@ -44,7 +44,7 @@ extension Mps {
     }
 
     /// WithdrawsWatermark返回参数结构体
-    public struct WithdrawsWatermarkResponse: TCResponseModel {
+    public struct WithdrawsWatermarkResponse: TCResponse {
         /// 任务 ID，可以通过该 ID 查询任务状态和结果。
         public let taskId: String
 

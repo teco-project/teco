@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// UpgradeDBInstanceHour请求参数结构体
-    public struct UpgradeDBInstanceHourRequest: TCRequestModel {
+    public struct UpgradeDBInstanceHourRequest: TCRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Mongodb {
     }
 
     /// UpgradeDBInstanceHour返回参数结构体
-    public struct UpgradeDBInstanceHourResponse: TCResponseModel {
+    public struct UpgradeDBInstanceHourResponse: TCResponse {
         /// 订单ID
         public let dealId: String
 

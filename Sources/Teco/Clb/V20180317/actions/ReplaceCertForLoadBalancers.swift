@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ReplaceCertForLoadBalancers请求参数结构体
-    public struct ReplaceCertForLoadBalancersRequest: TCRequestModel {
+    public struct ReplaceCertForLoadBalancersRequest: TCRequest {
         /// 需要被替换的证书的ID，可以是服务端证书或客户端证书
         public let oldCertificateId: String
 
@@ -39,7 +39,7 @@ extension Clb {
     }
 
     /// ReplaceCertForLoadBalancers返回参数结构体
-    public struct ReplaceCertForLoadBalancersResponse: TCResponseModel {
+    public struct ReplaceCertForLoadBalancersResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

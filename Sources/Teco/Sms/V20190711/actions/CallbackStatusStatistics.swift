@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// CallbackStatusStatistics请求参数结构体
-    public struct CallbackStatusStatisticsRequest: TCRequestModel {
+    public struct CallbackStatusStatisticsRequest: TCRequest {
         /// 开始时间，yyyymmddhh 需要拉取的起始时间，精确到小时。
         public let startDateTime: UInt64
 
@@ -57,7 +57,7 @@ extension Sms {
     }
 
     /// CallbackStatusStatistics返回参数结构体
-    public struct CallbackStatusStatisticsResponse: TCResponseModel {
+    public struct CallbackStatusStatisticsResponse: TCResponse {
         /// 回执数据统计响应包体。
         public let callbackStatusStatistics: CallbackStatusStatistics
 

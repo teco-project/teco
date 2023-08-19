@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeDiagnoseReport请求参数结构体
-    public struct DescribeDiagnoseReportRequest: TCRequestModel {
+    public struct DescribeDiagnoseReportRequest: TCRequest {
         /// 报告ID
         public let reportId: String
 
@@ -34,7 +34,7 @@ extension Cdn {
     }
 
     /// DescribeDiagnoseReport返回参数结构体
-    public struct DescribeDiagnoseReportResponse: TCResponseModel {
+    public struct DescribeDiagnoseReportResponse: TCResponse {
         /// 诊断报告基础信息
         public let baskInfo: DiagnoseData
 

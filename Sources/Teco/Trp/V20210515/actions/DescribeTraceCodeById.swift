@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeTraceCodeById请求参数结构体
-    public struct DescribeTraceCodeByIdRequest: TCRequestModel {
+    public struct DescribeTraceCodeByIdRequest: TCRequest {
         /// 企业ID
         public let corpId: UInt64?
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeTraceCodeById返回参数结构体
-    public struct DescribeTraceCodeByIdResponse: TCResponseModel {
+    public struct DescribeTraceCodeByIdResponse: TCResponse {
         public let traceCode: TraceCode
 
         /// 码路径，如level是2，则为 [1级, 2级]

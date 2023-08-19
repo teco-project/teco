@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DisassociateInstancesKeyPairs请求参数结构体
-    public struct DisassociateInstancesKeyPairsRequest: TCRequestModel {
+    public struct DisassociateInstancesKeyPairsRequest: TCRequest {
         /// 一个或多个待操作的实例ID，每次请求批量实例的上限为100。
         ///
         /// 可以通过以下方式获取可用的实例ID：
@@ -59,7 +59,7 @@ extension Cvm {
     }
 
     /// DisassociateInstancesKeyPairs返回参数结构体
-    public struct DisassociateInstancesKeyPairsResponse: TCResponseModel {
+    public struct DisassociateInstancesKeyPairsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryOpenBankSubMerchantRateConfigure请求参数结构体
-    public struct QueryOpenBankSubMerchantRateConfigureRequest: TCRequestModel {
+    public struct QueryOpenBankSubMerchantRateConfigureRequest: TCRequest {
         /// 渠道进件序列号。
         public let channelRegistrationNo: String
 
@@ -71,7 +71,7 @@ extension Cpdp {
     }
 
     /// QueryOpenBankSubMerchantRateConfigure返回参数结构体
-    public struct QueryOpenBankSubMerchantRateConfigureResponse: TCResponseModel {
+    public struct QueryOpenBankSubMerchantRateConfigureResponse: TCResponse {
         /// 错误码。
         /// __SUCCESS__: 成功
         /// __其他__: 见附录-错误码表

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeDownloadInfo请求参数结构体
-    public struct DescribeDownloadInfoRequest: TCRequestModel {
+    public struct DescribeDownloadInfoRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -49,7 +49,7 @@ extension Tsf {
     }
 
     /// DescribeDownloadInfo返回参数结构体
-    public struct DescribeDownloadInfoResponse: TCResponseModel {
+    public struct DescribeDownloadInfoResponse: TCResponse {
         /// COS鉴权信息
         public let result: CosDownloadInfo
 

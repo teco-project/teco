@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeContainerSecEventSummary请求参数结构体
-    public struct DescribeContainerSecEventSummaryRequest: TCRequestModel {
+    public struct DescribeContainerSecEventSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeContainerSecEventSummary返回参数结构体
-    public struct DescribeContainerSecEventSummaryResponse: TCResponseModel {
+    public struct DescribeContainerSecEventSummaryResponse: TCResponse {
         /// 未处理逃逸事件
         public let unhandledEscapeCnt: UInt64
 

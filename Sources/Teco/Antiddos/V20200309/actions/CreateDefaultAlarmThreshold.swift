@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// CreateDefaultAlarmThreshold请求参数结构体
-    public struct CreateDefaultAlarmThresholdRequest: TCRequestModel {
+    public struct CreateDefaultAlarmThresholdRequest: TCRequest {
         /// 默认告警阈值配置
         public let defaultAlarmConfig: DefaultAlarmThreshold
 
@@ -42,7 +42,7 @@ extension Antiddos {
     }
 
     /// CreateDefaultAlarmThreshold返回参数结构体
-    public struct CreateDefaultAlarmThresholdResponse: TCResponseModel {
+    public struct CreateDefaultAlarmThresholdResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

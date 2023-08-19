@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// EMR产品版本名称如EMR-V2.3.0 表示2.3.0版本的EMR， 当前支持产品版本名称查询：[产品版本名称](https://cloud.tencent.com/document/product/589/66338)
         public let productVersion: String
 
@@ -149,7 +149,7 @@ extension Emr {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?

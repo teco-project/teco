@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifySecurityGroupItemRuleStatus请求参数结构体
-    public struct ModifySecurityGroupItemRuleStatusRequest: TCRequestModel {
+    public struct ModifySecurityGroupItemRuleStatusRequest: TCRequest {
         /// 方向，0：出站，1：入站，默认1
         public let direction: UInt64
 
@@ -44,7 +44,7 @@ extension Cfw {
     }
 
     /// ModifySecurityGroupItemRuleStatus返回参数结构体
-    public struct ModifySecurityGroupItemRuleStatusResponse: TCResponseModel {
+    public struct ModifySecurityGroupItemRuleStatusResponse: TCResponse {
         /// 状态值，0：修改成功，非0：修改失败
         public let status: Int64
 

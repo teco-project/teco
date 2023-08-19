@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeWorkspaceEnvList请求参数结构体
-    public struct DescribeWorkspaceEnvListRequest: TCRequestModel {
+    public struct DescribeWorkspaceEnvListRequest: TCRequest {
         /// 用户所属组
         public let cloudStudioSessionTeam: String
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// DescribeWorkspaceEnvList返回参数结构体
-    public struct DescribeWorkspaceEnvListResponse: TCResponseModel {
+    public struct DescribeWorkspaceEnvListResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ImageUserDTO]?

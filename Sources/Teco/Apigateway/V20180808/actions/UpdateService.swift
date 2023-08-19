@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UpdateService请求参数结构体
-    public struct UpdateServiceRequest: TCRequestModel {
+    public struct UpdateServiceRequest: TCRequest {
         /// 待切换服务的唯一 Id。
         public let serviceId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// UpdateService返回参数结构体
-    public struct UpdateServiceResponse: TCResponseModel {
+    public struct UpdateServiceResponse: TCResponse {
         /// 切换版本操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

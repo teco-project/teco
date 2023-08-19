@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateCluster请求参数结构体
-    public struct CreateClusterRequest: TCRequestModel {
+    public struct CreateClusterRequest: TCRequest {
         /// 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
         public let clusterType: String
 
@@ -74,7 +74,7 @@ extension Tke {
     }
 
     /// CreateCluster返回参数结构体
-    public struct CreateClusterResponse: TCResponseModel {
+    public struct CreateClusterResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

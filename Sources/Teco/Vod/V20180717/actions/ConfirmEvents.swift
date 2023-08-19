@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ConfirmEvents请求参数结构体
-    public struct ConfirmEventsRequest: TCRequestModel {
+    public struct ConfirmEventsRequest: TCRequest {
         /// 事件句柄，即 [拉取事件通知](/document/product/266/33433) 接口输出参数中的 EventSet. EventHandle 字段。
         /// 数组长度限制：16。
         public let eventHandles: [String]
@@ -45,7 +45,7 @@ extension Vod {
     }
 
     /// ConfirmEvents返回参数结构体
-    public struct ConfirmEventsResponse: TCResponseModel {
+    public struct ConfirmEventsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// DescribeL4ListenerInfo请求参数结构体
-    public struct DescribeL4ListenerInfoRequest: TCRequestModel {
+    public struct DescribeL4ListenerInfoRequest: TCRequest {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
         public let loadBalancerId: String
 
@@ -44,7 +44,7 @@ extension Bmlb {
     }
 
     /// DescribeL4ListenerInfo返回参数结构体
-    public struct DescribeL4ListenerInfoResponse: TCResponseModel {
+    public struct DescribeL4ListenerInfoResponse: TCResponse {
         /// 返回的四层监听器列表。
         public let listenerSet: [L4ListenerInfo]
 

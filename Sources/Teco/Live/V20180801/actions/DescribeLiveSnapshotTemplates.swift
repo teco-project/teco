@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveSnapshotTemplates请求参数结构体
-    public struct DescribeLiveSnapshotTemplatesRequest: TCRequestModel {
+    public struct DescribeLiveSnapshotTemplatesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveSnapshotTemplates返回参数结构体
-    public struct DescribeLiveSnapshotTemplatesResponse: TCResponseModel {
+    public struct DescribeLiveSnapshotTemplatesResponse: TCResponse {
         /// 截图模板列表。
         public let templates: [SnapshotTemplateInfo]
 

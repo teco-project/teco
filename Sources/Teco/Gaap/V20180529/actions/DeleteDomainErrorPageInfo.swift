@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DeleteDomainErrorPageInfo请求参数结构体
-    public struct DeleteDomainErrorPageInfoRequest: TCRequestModel {
+    public struct DeleteDomainErrorPageInfoRequest: TCRequest {
         /// 定制错误响应页的唯一ID，请参考CreateDomainErrorPageInfo的响应
         public let errorPageId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DeleteDomainErrorPageInfo返回参数结构体
-    public struct DeleteDomainErrorPageInfoResponse: TCResponseModel {
+    public struct DeleteDomainErrorPageInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DownloadDeviceResource请求参数结构体
-    public struct DownloadDeviceResourceRequest: TCRequestModel {
+    public struct DownloadDeviceResourceRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -44,7 +44,7 @@ extension Iotcloud {
     }
 
     /// DownloadDeviceResource返回参数结构体
-    public struct DownloadDeviceResourceResponse: TCResponseModel {
+    public struct DownloadDeviceResourceResponse: TCResponse {
         /// 设备资源的cos链接
         public let url: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateSqlFilter请求参数结构体
-    public struct CreateSqlFilterRequest: TCRequestModel {
+    public struct CreateSqlFilterRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -64,7 +64,7 @@ extension Dbbrain {
     }
 
     /// CreateSqlFilter返回参数结构体
-    public struct CreateSqlFilterResponse: TCResponseModel {
+    public struct CreateSqlFilterResponse: TCResponse {
         /// 限流任务ID。
         public let filterId: Int64
 

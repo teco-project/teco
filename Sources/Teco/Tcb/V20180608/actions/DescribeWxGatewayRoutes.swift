@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeWxGatewayRoutes请求参数结构体
-    public struct DescribeWxGatewayRoutesRequest: TCRequestModel {
+    public struct DescribeWxGatewayRoutesRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -49,7 +49,7 @@ extension Tcb {
     }
 
     /// DescribeWxGatewayRoutes返回参数结构体
-    public struct DescribeWxGatewayRoutesResponse: TCResponseModel {
+    public struct DescribeWxGatewayRoutesResponse: TCResponse {
         /// 返回的服务个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

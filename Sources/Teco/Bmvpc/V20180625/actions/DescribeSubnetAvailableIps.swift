@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// DescribeSubnetAvailableIps请求参数结构体
-    public struct DescribeSubnetAvailableIpsRequest: TCRequestModel {
+    public struct DescribeSubnetAvailableIpsRequest: TCRequest {
         /// 私有网络子网ID
         public let subnetId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// DescribeSubnetAvailableIps返回参数结构体
-    public struct DescribeSubnetAvailableIpsResponse: TCResponseModel {
+    public struct DescribeSubnetAvailableIpsResponse: TCResponse {
         /// 可用IP的范围列表
         public let ipSet: [String]
 

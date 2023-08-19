@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ChangeApiUsableStatus请求参数结构体
-    public struct ChangeApiUsableStatusRequest: TCRequestModel {
+    public struct ChangeApiUsableStatusRequest: TCRequest {
         /// API ID
         public let apiId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// ChangeApiUsableStatus返回参数结构体
-    public struct ChangeApiUsableStatusResponse: TCResponseModel {
+    public struct ChangeApiUsableStatusResponse: TCResponse {
         /// API 信息
         public let result: ApiDetailInfo
 

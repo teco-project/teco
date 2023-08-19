@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cdn {
     /// DescribePushQuota请求参数结构体
-    public struct DescribePushQuotaRequest: TCRequestModel {
+    public struct DescribePushQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePushQuota返回参数结构体
-    public struct DescribePushQuotaResponse: TCResponseModel {
+    public struct DescribePushQuotaResponse: TCResponse {
         /// Url预热用量及配额。
         public let urlPush: [Quota]
 

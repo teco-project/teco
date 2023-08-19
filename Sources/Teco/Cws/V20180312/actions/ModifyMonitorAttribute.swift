@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cws {
     /// ModifyMonitorAttribute请求参数结构体
-    public struct ModifyMonitorAttributeRequest: TCRequestModel {
+    public struct ModifyMonitorAttributeRequest: TCRequest {
         /// 监测任务ID
         public let monitorId: UInt64
 
@@ -74,7 +74,7 @@ extension Cws {
     }
 
     /// ModifyMonitorAttribute返回参数结构体
-    public struct ModifyMonitorAttributeResponse: TCResponseModel {
+    public struct ModifyMonitorAttributeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateUserPersonal请求参数结构体
-    public struct CreateUserPersonalRequest: TCRequestModel {
+    public struct CreateUserPersonalRequest: TCRequest {
         /// 用户密码，密码必须为8到16位
         public let password: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// CreateUserPersonal返回参数结构体
-    public struct CreateUserPersonalResponse: TCResponseModel {
+    public struct CreateUserPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

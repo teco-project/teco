@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeDDoSNetEvInfo请求参数结构体
-    public struct DescribeDDoSNetEvInfoRequest: TCRequestModel {
+    public struct DescribeDDoSNetEvInfoRequest: TCRequest {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 
@@ -57,7 +57,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSNetEvInfo返回参数结构体
-    public struct DescribeDDoSNetEvInfoResponse: TCResponseModel {
+    public struct DescribeDDoSNetEvInfoResponse: TCResponse {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 

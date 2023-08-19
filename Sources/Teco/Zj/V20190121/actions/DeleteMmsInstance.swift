@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// DeleteMmsInstance请求参数结构体
-    public struct DeleteMmsInstanceRequest: TCRequestModel {
+    public struct DeleteMmsInstanceRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -39,7 +39,7 @@ extension Zj {
     }
 
     /// DeleteMmsInstance返回参数结构体
-    public struct DeleteMmsInstanceResponse: TCResponseModel {
+    public struct DeleteMmsInstanceResponse: TCResponse {
         /// 删除信息返回
         public let data: DelMmsInstanceData
 

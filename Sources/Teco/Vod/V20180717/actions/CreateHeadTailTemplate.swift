@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateHeadTailTemplate请求参数结构体
-    public struct CreateHeadTailTemplateRequest: TCRequestModel {
+    public struct CreateHeadTailTemplateRequest: TCRequest {
         /// 模板名，长度限制 64 个字符。
         public let name: String
 
@@ -65,7 +65,7 @@ extension Vod {
     }
 
     /// CreateHeadTailTemplate返回参数结构体
-    public struct CreateHeadTailTemplateResponse: TCResponseModel {
+    public struct CreateHeadTailTemplateResponse: TCResponse {
         /// 片头片尾模板号。
         public let definition: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectLabel请求参数结构体
-    public struct DetectLabelRequest: TCRequestModel {
+    public struct DetectLabelRequest: TCRequest {
         /// 图片 Base64 编码数据。
         /// 与ImageUrl同时存在时优先使用ImageUrl字段。
         /// 图片限制：
@@ -63,7 +63,7 @@ extension Tiia {
     }
 
     /// DetectLabel返回参数结构体
-    public struct DetectLabelResponse: TCResponseModel {
+    public struct DetectLabelResponse: TCResponse {
         /// Web网络版标签结果数组。如未选择WEB场景，则为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [DetectLabelItem]?

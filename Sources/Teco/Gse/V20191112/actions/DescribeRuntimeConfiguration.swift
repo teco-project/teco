@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeRuntimeConfiguration请求参数结构体
-    public struct DescribeRuntimeConfigurationRequest: TCRequestModel {
+    public struct DescribeRuntimeConfigurationRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeRuntimeConfiguration返回参数结构体
-    public struct DescribeRuntimeConfigurationResponse: TCResponseModel {
+    public struct DescribeRuntimeConfigurationResponse: TCResponse {
         /// 服务器舰队运行配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runtimeConfiguration: RuntimeConfiguration?

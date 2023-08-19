@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateUserAutoSignEnableUrl请求参数结构体
-    public struct CreateUserAutoSignEnableUrlRequest: TCRequestModel {
+    public struct CreateUserAutoSignEnableUrlRequest: TCRequest {
         /// 操作人信息,UserId必填
         public let `operator`: UserInfo
 
@@ -75,7 +75,7 @@ extension Ess {
     }
 
     /// CreateUserAutoSignEnableUrl返回参数结构体
-    public struct CreateUserAutoSignEnableUrlResponse: TCResponseModel {
+    public struct CreateUserAutoSignEnableUrlResponse: TCResponse {
         /// 跳转短链
         public let url: String
 

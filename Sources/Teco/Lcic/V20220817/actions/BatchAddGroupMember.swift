@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchAddGroupMember请求参数结构体
-    public struct BatchAddGroupMemberRequest: TCRequestModel {
+    public struct BatchAddGroupMemberRequest: TCRequest {
         /// 待添加群组ID列表，最大值100
         public let groupIds: [String]
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// BatchAddGroupMember返回参数结构体
-    public struct BatchAddGroupMemberResponse: TCResponseModel {
+    public struct BatchAddGroupMemberResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// ScanVoice请求参数结构体
-    public struct ScanVoiceRequest: TCRequestModel {
+    public struct ScanVoiceRequest: TCRequest {
         /// 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
         public let bizId: UInt64
 
@@ -61,7 +61,7 @@ extension Gme {
     }
 
     /// ScanVoice返回参数结构体
-    public struct ScanVoiceResponse: TCResponseModel {
+    public struct ScanVoiceResponse: TCResponse {
         /// 语音检测返回。Data 字段是 JSON 数组，每一个元素包含：
         /// - DataId： 请求中对应的 DataId。
         /// - TaskID ：该检测任务的 ID，用于轮询语音检测结果。

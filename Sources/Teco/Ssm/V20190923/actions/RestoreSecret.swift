@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// RestoreSecret请求参数结构体
-    public struct RestoreSecretRequest: TCRequestModel {
+    public struct RestoreSecretRequest: TCRequest {
         /// 指定需要恢复的凭据名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// RestoreSecret返回参数结构体
-    public struct RestoreSecretResponse: TCResponseModel {
+    public struct RestoreSecretResponse: TCResponse {
         /// 凭据名称。
         public let secretName: String
 

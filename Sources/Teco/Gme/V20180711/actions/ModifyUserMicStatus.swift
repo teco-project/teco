@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// ModifyUserMicStatus请求参数结构体
-    public struct ModifyUserMicStatusRequest: TCRequestModel {
+    public struct ModifyUserMicStatusRequest: TCRequest {
         /// 来自 [腾讯云控制台](https://console.cloud.tencent.com/gamegme) 的 GME 服务提供的 AppID，获取请参考 [语音服务开通指引](https://cloud.tencent.com/document/product/607/10782#.E9.87.8D.E7.82.B9.E5.8F.82.E6.95.B0)。
         public let bizId: Int64
 
@@ -44,7 +44,7 @@ extension Gme {
     }
 
     /// ModifyUserMicStatus返回参数结构体
-    public struct ModifyUserMicStatusResponse: TCResponseModel {
+    public struct ModifyUserMicStatusResponse: TCResponse {
         /// 返回结果：0为成功，非0为失败。
         public let result: Int64
 

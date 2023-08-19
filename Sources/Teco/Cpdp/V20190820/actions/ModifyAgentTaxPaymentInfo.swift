@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ModifyAgentTaxPaymentInfo请求参数结构体
-    public struct ModifyAgentTaxPaymentInfoRequest: TCRequestModel {
+    public struct ModifyAgentTaxPaymentInfoRequest: TCRequest {
         /// 批次号
         public let batchNum: Int64
 
@@ -49,7 +49,7 @@ extension Cpdp {
     }
 
     /// ModifyAgentTaxPaymentInfo返回参数结构体
-    public struct ModifyAgentTaxPaymentInfoResponse: TCResponseModel {
+    public struct ModifyAgentTaxPaymentInfoResponse: TCResponse {
         /// 代理商完税证明批次信息
         public let agentTaxPaymentBatch: AgentTaxPaymentBatch
 

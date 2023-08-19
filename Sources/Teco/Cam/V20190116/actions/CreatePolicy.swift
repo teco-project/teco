@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// CreatePolicy请求参数结构体
-    public struct CreatePolicyRequest: TCRequestModel {
+    public struct CreatePolicyRequest: TCRequest {
         /// 策略名称。长度为1~128个字符，可包含英文字母、数字和+=,.@-_。
         public let policyName: String
 
@@ -44,7 +44,7 @@ extension Cam {
     }
 
     /// CreatePolicy返回参数结构体
-    public struct CreatePolicyResponse: TCResponseModel {
+    public struct CreatePolicyResponse: TCResponse {
         /// 新增策略ID
         public let policyId: UInt64
 

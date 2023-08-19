@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asw {
     /// CreateFlowService请求参数结构体
-    public struct CreateFlowServiceRequest: TCRequestModel {
+    public struct CreateFlowServiceRequest: TCRequest {
         /// 定义文本（JSON格式）
         public let definition: String
 
@@ -74,7 +74,7 @@ extension Asw {
     }
 
     /// CreateFlowService返回参数结构体
-    public struct CreateFlowServiceResponse: TCResponseModel {
+    public struct CreateFlowServiceResponse: TCResponse {
         /// 状态机所属服务资源
         public let flowServiceResource: String
 

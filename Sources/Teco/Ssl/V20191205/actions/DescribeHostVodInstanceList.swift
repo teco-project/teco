@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostVodInstanceList请求参数结构体
-    public struct DescribeHostVodInstanceListRequest: TCRequestModel {
+    public struct DescribeHostVodInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -54,7 +54,7 @@ extension Ssl {
     }
 
     /// DescribeHostVodInstanceList返回参数结构体
-    public struct DescribeHostVodInstanceListResponse: TCResponseModel {
+    public struct DescribeHostVodInstanceListResponse: TCResponse {
         /// Vod实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [VodInstanceDetail]?

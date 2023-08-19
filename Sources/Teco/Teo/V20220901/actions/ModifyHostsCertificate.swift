@@ -20,7 +20,7 @@ import TecoCore
 
 extension Teo {
     /// ModifyHostsCertificate请求参数结构体
-    public struct ModifyHostsCertificateRequest: TCRequestModel {
+    public struct ModifyHostsCertificateRequest: TCRequest {
         /// 站点 ID。
         public let zoneId: String
 
@@ -52,7 +52,7 @@ extension Teo {
     }
 
     /// ModifyHostsCertificate返回参数结构体
-    public struct ModifyHostsCertificateResponse: TCResponseModel {
+    public struct ModifyHostsCertificateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

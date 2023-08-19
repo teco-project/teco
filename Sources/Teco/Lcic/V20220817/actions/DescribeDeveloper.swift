@@ -20,13 +20,13 @@ import TecoCore
 
 extension Lcic {
     /// DescribeDeveloper请求参数结构体
-    public struct DescribeDeveloperRequest: TCRequestModel {
+    public struct DescribeDeveloperRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDeveloper返回参数结构体
-    public struct DescribeDeveloperResponse: TCResponseModel {
+    public struct DescribeDeveloperResponse: TCResponse {
         /// 开发商ID
         public let developerId: String
 

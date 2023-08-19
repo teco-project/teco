@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteResourceFile请求参数结构体
-    public struct DeleteResourceFileRequest: TCRequestModel {
+    public struct DeleteResourceFileRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteResourceFile返回参数结构体
-    public struct DeleteResourceFileResponse: TCResponseModel {
+    public struct DeleteResourceFileResponse: TCResponse {
         /// 资源删除结果
         public let data: Bool
 

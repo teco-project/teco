@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// CancelInvocation请求参数结构体
-    public struct CancelInvocationRequest: TCRequestModel {
+    public struct CancelInvocationRequest: TCRequest {
         /// 执行活动ID
         public let invocationId: String
 
@@ -41,7 +41,7 @@ extension Tat {
     }
 
     /// CancelInvocation返回参数结构体
-    public struct CancelInvocationResponse: TCResponseModel {
+    public struct CancelInvocationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

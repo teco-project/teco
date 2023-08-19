@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// ResolveAlias请求参数结构体
-    public struct ResolveAliasRequest: TCRequestModel {
+    public struct ResolveAliasRequest: TCRequest {
         /// 要获取fleetId的别名ID
         public let aliasId: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// ResolveAlias返回参数结构体
-    public struct ResolveAliasResponse: TCResponseModel {
+    public struct ResolveAliasResponse: TCResponse {
         /// 别名指向的fleet的唯一标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetId: String?

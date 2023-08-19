@@ -20,13 +20,13 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeCcnAttachedInstances请求参数结构体
-    public struct DescribeCcnAttachedInstancesRequest: TCRequestModel {
+    public struct DescribeCcnAttachedInstancesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCcnAttachedInstances返回参数结构体
-    public struct DescribeCcnAttachedInstancesResponse: TCResponseModel {
+    public struct DescribeCcnAttachedInstancesResponse: TCResponse {
         /// 云联网关联的实例列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnAttachedInstanceSet: [CcnAttachedInstance]?

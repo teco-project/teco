@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// CancelCertificateOrder请求参数结构体
-    public struct CancelCertificateOrderRequest: TCRequestModel {
+    public struct CancelCertificateOrderRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// CancelCertificateOrder返回参数结构体
-    public struct CancelCertificateOrderResponse: TCResponseModel {
+    public struct CancelCertificateOrderResponse: TCResponse {
         /// 取消订单成功的证书 ID。
         public let certificateId: String
 

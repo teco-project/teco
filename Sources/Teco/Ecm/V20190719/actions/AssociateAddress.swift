@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// AssociateAddress请求参数结构体
-    public struct AssociateAddressRequest: TCRequestModel {
+    public struct AssociateAddressRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -54,7 +54,7 @@ extension Ecm {
     }
 
     /// AssociateAddress返回参数结构体
-    public struct AssociateAddressResponse: TCResponseModel {
+    public struct AssociateAddressResponse: TCResponse {
         /// 异步任务TaskId。可以使用DescribeTaskResult接口查询任务状态。
         public let taskId: String
 

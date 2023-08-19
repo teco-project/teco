@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// AnalyzeAuditLogs请求参数结构体
-    public struct AnalyzeAuditLogsRequest: TCRequestModel {
+    public struct AnalyzeAuditLogsRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Cdb {
     }
 
     /// AnalyzeAuditLogs返回参数结构体
-    public struct AnalyzeAuditLogsResponse: TCResponseModel {
+    public struct AnalyzeAuditLogsResponse: TCResponse {
         /// 返回的聚合桶信息集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [AuditLogAggregationResult]?

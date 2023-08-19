@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeEngineUsageInfo请求参数结构体
-    public struct DescribeEngineUsageInfoRequest: TCRequestModel {
+    public struct DescribeEngineUsageInfoRequest: TCRequest {
         /// 数据引擎ID
         public let dataEngineId: String
 
@@ -34,7 +34,7 @@ extension Dlc {
     }
 
     /// DescribeEngineUsageInfo返回参数结构体
-    public struct DescribeEngineUsageInfoResponse: TCResponseModel {
+    public struct DescribeEngineUsageInfoResponse: TCResponse {
         /// 集群总规格
         public let total: Int64
 

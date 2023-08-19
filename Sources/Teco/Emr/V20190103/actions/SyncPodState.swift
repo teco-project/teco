@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// SyncPodState请求参数结构体
-    public struct SyncPodStateRequest: TCRequestModel {
+    public struct SyncPodStateRequest: TCRequest {
         /// EmrService中pod状态信息
         public let message: PodState
 
@@ -34,7 +34,7 @@ extension Emr {
     }
 
     /// SyncPodState返回参数结构体
-    public struct SyncPodStateResponse: TCResponseModel {
+    public struct SyncPodStateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

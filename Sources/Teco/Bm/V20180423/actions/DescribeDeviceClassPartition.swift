@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDeviceClassPartition请求参数结构体
-    public struct DescribeDeviceClassPartitionRequest: TCRequestModel {
+    public struct DescribeDeviceClassPartitionRequest: TCRequest {
         /// 设备类型代号。代号通过接口[查询设备型号(DescribeDeviceClass)](https://cloud.tencent.com/document/api/386/32911)查询。标准机型需要传入此参数。虽是可选参数，但DeviceClassCode和InstanceId参数，必须要填写一个。
         public let deviceClassCode: String?
 
@@ -74,7 +74,7 @@ extension Bm {
     }
 
     /// DescribeDeviceClassPartition返回参数结构体
-    public struct DescribeDeviceClassPartitionResponse: TCResponseModel {
+    public struct DescribeDeviceClassPartitionResponse: TCResponse {
         /// 支持的RAID格式列表
         public let deviceClassPartitionInfoSet: [DeviceClassPartitionInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// ModifySwitchTimePeriod请求参数结构体
-    public struct ModifySwitchTimePeriodRequest: TCRequestModel {
+    public struct ModifySwitchTimePeriodRequest: TCRequest {
         /// 处于等待切换状态中的实例ID
         public let dbInstanceId: String
 
@@ -39,7 +39,7 @@ extension Postgres {
     }
 
     /// ModifySwitchTimePeriod返回参数结构体
-    public struct ModifySwitchTimePeriodResponse: TCResponseModel {
+    public struct ModifySwitchTimePeriodResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeK8sApiAbnormalSummary请求参数结构体
-    public struct DescribeK8sApiAbnormalSummaryRequest: TCRequestModel {
+    public struct DescribeK8sApiAbnormalSummaryRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeK8sApiAbnormalSummary返回参数结构体
-    public struct DescribeK8sApiAbnormalSummaryResponse: TCResponseModel {
+    public struct DescribeK8sApiAbnormalSummaryResponse: TCResponse {
         /// 待处理事件个数
         public let unhandleEventCount: UInt64
 

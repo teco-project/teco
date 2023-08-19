@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeDeliveryConfig请求参数结构体
-    public struct DescribeDeliveryConfigRequest: TCRequestModel {
+    public struct DescribeDeliveryConfigRequest: TCRequest {
         /// 投递配置id
         public let configId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeDeliveryConfig返回参数结构体
-    public struct DescribeDeliveryConfigResponse: TCResponseModel {
+    public struct DescribeDeliveryConfigResponse: TCResponse {
         /// 投递kafka配置
         public let result: KafkaDeliveryConfig
 

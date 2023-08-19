@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitTraditionalClassTask请求参数结构体
-    public struct SubmitTraditionalClassTaskRequest: TCRequestModel {
+    public struct SubmitTraditionalClassTaskRequest: TCRequest {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
         public let fileContent: String
 
@@ -49,7 +49,7 @@ extension Tci {
     }
 
     /// SubmitTraditionalClassTask返回参数结构体
-    public struct SubmitTraditionalClassTaskResponse: TCResponseModel {
+    public struct SubmitTraditionalClassTaskResponse: TCResponse {
         /// 图像任务直接返回结果，包括： ActionInfo、FaceAttr、 FaceExpression、 FaceIdentify、 FaceInfo、 FacePose、 TimeInfo
         public let imageResults: [ImageTaskResult]
 

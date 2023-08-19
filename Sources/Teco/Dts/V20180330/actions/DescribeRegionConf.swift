@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dts {
     /// DescribeRegionConf请求参数结构体
-    public struct DescribeRegionConfRequest: TCRequestModel {
+    public struct DescribeRegionConfRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRegionConf返回参数结构体
-    public struct DescribeRegionConfResponse: TCResponseModel {
+    public struct DescribeRegionConfResponse: TCResponse {
         /// 可售卖地域的数量
         public let totalCount: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// InquireCkafkaPrice请求参数结构体
-    public struct InquireCkafkaPriceRequest: TCRequestModel {
+    public struct InquireCkafkaPriceRequest: TCRequest {
         /// 国内站标准版填写standards2, 国际站标准版填写standard，专业版填写profession
         public let instanceType: String
 
@@ -94,7 +94,7 @@ extension Ckafka {
     }
 
     /// InquireCkafkaPrice返回参数结构体
-    public struct InquireCkafkaPriceResponse: TCResponseModel {
+    public struct InquireCkafkaPriceResponse: TCResponse {
         /// 出参
         public let result: InquireCkafkaPriceResp
 

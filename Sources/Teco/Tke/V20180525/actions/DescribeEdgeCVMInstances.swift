@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEdgeCVMInstances请求参数结构体
-    public struct DescribeEdgeCVMInstancesRequest: TCRequestModel {
+    public struct DescribeEdgeCVMInstancesRequest: TCRequest {
         /// 集群id
         public let clusterID: String
 
@@ -40,7 +40,7 @@ extension Tke {
     }
 
     /// DescribeEdgeCVMInstances返回参数结构体
-    public struct DescribeEdgeCVMInstancesResponse: TCResponseModel {
+    public struct DescribeEdgeCVMInstancesResponse: TCResponse {
         /// 返回的实例相关信息列表的长度
         public let totalCount: Int64
 

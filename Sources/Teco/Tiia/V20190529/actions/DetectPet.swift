@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectPet请求参数结构体
-    public struct DetectPetRequest: TCRequestModel {
+    public struct DetectPetRequest: TCRequest {
         /// 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 图片大小的限制为4M，图片像素的限制为4k。
@@ -43,7 +43,7 @@ extension Tiia {
     }
 
     /// DetectPet返回参数结构体
-    public struct DetectPetResponse: TCResponseModel {
+    public struct DetectPetResponse: TCResponse {
         /// 识别出图片中的宠物信息列表。
         public let pets: [Pet]
 

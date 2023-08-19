@@ -20,13 +20,13 @@ import TecoCore
 
 extension Bma {
     /// DescribeBPCompanyInfo请求参数结构体
-    public struct DescribeBPCompanyInfoRequest: TCRequestModel {
+    public struct DescribeBPCompanyInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBPCompanyInfo返回参数结构体
-    public struct DescribeBPCompanyInfoResponse: TCResponseModel {
+    public struct DescribeBPCompanyInfoResponse: TCResponse {
         /// 企业名称
         public let companyName: String
 

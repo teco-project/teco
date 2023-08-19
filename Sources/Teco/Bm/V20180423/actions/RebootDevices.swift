@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// RebootDevices请求参数结构体
-    public struct RebootDevicesRequest: TCRequestModel {
+    public struct RebootDevicesRequest: TCRequest {
         /// 需要重启的设备ID列表
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Bm {
     }
 
     /// RebootDevices返回参数结构体
-    public struct RebootDevicesResponse: TCResponseModel {
+    public struct RebootDevicesResponse: TCResponse {
         /// 异步任务ID
         public let taskId: UInt64
 

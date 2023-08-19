@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CreateJobConfig请求参数结构体
-    public struct CreateJobConfigRequest: TCRequestModel {
+    public struct CreateJobConfigRequest: TCRequest {
         /// 作业Id
         public let jobId: String
 
@@ -139,7 +139,7 @@ extension Oceanus {
     }
 
     /// CreateJobConfig返回参数结构体
-    public struct CreateJobConfigResponse: TCResponseModel {
+    public struct CreateJobConfigResponse: TCResponse {
         /// 作业配置版本号
         public let version: UInt64
 

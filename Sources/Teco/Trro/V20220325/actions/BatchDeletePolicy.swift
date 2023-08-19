@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// BatchDeletePolicy请求参数结构体
-    public struct BatchDeletePolicyRequest: TCRequestModel {
+    public struct BatchDeletePolicyRequest: TCRequest {
         /// 删除权限配置的项目ID
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Trro {
     }
 
     /// BatchDeletePolicy返回参数结构体
-    public struct BatchDeletePolicyResponse: TCResponseModel {
+    public struct BatchDeletePolicyResponse: TCResponse {
         /// 删除权限配置失败的远端设备ID列表
         public let failedRemoteDeviceIds: [String]
 

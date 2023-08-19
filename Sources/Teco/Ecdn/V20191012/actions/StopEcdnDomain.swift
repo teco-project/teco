@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// StopEcdnDomain请求参数结构体
-    public struct StopEcdnDomainRequest: TCRequestModel {
+    public struct StopEcdnDomainRequest: TCRequest {
         /// 待停用域名。
         public let domain: String
 
@@ -34,7 +34,7 @@ extension Ecdn {
     }
 
     /// StopEcdnDomain返回参数结构体
-    public struct StopEcdnDomainResponse: TCResponseModel {
+    public struct StopEcdnDomainResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

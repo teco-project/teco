@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateCosSecKeyInstance请求参数结构体
-    public struct CreateCosSecKeyInstanceRequest: TCRequestModel {
+    public struct CreateCosSecKeyInstanceRequest: TCRequest {
         /// 地域信息，例如广州：ap-guangzhou，上海：ap-shanghai，默认为广州。
         public let cosRegion: String?
 
@@ -39,7 +39,7 @@ extension Ms {
     }
 
     /// CreateCosSecKeyInstance返回参数结构体
-    public struct CreateCosSecKeyInstanceResponse: TCResponseModel {
+    public struct CreateCosSecKeyInstanceResponse: TCResponse {
         /// COS密钥对应的AppId
         public let cosAppid: UInt64
 

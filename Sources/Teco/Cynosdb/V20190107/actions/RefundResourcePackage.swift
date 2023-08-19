@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// RefundResourcePackage请求参数结构体
-    public struct RefundResourcePackageRequest: TCRequestModel {
+    public struct RefundResourcePackageRequest: TCRequest {
         /// 资源包唯一ID
         public let packageId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// RefundResourcePackage返回参数结构体
-    public struct RefundResourcePackageResponse: TCResponseModel {
+    public struct RefundResourcePackageResponse: TCResponse {
         /// 每个物品对应一个dealName，业务需要根据dealName保证发货接口幂等
         public let dealNames: [String]
 

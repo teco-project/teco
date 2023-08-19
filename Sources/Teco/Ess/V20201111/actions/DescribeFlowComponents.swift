@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// DescribeFlowComponents请求参数结构体
-    public struct DescribeFlowComponentsRequest: TCRequestModel {
+    public struct DescribeFlowComponentsRequest: TCRequest {
         /// 操作者信息
         public let `operator`: UserInfo
 
@@ -44,7 +44,7 @@ extension Ess {
     }
 
     /// DescribeFlowComponents返回参数结构体
-    public struct DescribeFlowComponentsResponse: TCResponseModel {
+    public struct DescribeFlowComponentsResponse: TCResponse {
         /// 流程关联的填写控件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recipientComponentInfos: [RecipientComponentInfo]?

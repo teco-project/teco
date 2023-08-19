@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DeleteLocalGateway请求参数结构体
-    public struct DeleteLocalGatewayRequest: TCRequestModel {
+    public struct DeleteLocalGatewayRequest: TCRequest {
         /// 本地网关实例ID。
         public let localGatewayId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// DeleteLocalGateway返回参数结构体
-    public struct DeleteLocalGatewayResponse: TCResponseModel {
+    public struct DeleteLocalGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// CreateAlarmNotice请求参数结构体
-    public struct CreateAlarmNoticeRequest: TCRequestModel {
+    public struct CreateAlarmNoticeRequest: TCRequest {
         /// 通知渠道组名称。
         public let name: String
 
@@ -52,7 +52,7 @@ extension Cls {
     }
 
     /// CreateAlarmNotice返回参数结构体
-    public struct CreateAlarmNoticeResponse: TCResponseModel {
+    public struct CreateAlarmNoticeResponse: TCResponse {
         /// 告警模板ID
         public let alarmNoticeId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribePayType请求参数结构体
-    public struct DescribePayTypeRequest: TCRequestModel {
+    public struct DescribePayTypeRequest: TCRequest {
         /// 指定服务地域查询
         /// mainland：境内计费方式查询
         /// overseas：境外计费方式查询
@@ -51,7 +51,7 @@ extension Cdn {
     }
 
     /// DescribePayType返回参数结构体
-    public struct DescribePayTypeResponse: TCResponseModel {
+    public struct DescribePayTypeResponse: TCResponse {
         /// 计费类型
         /// flux：流量计费
         /// bandwidth：带宽计费

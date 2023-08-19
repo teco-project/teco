@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UnifiedCloudOrder请求参数结构体
-    public struct UnifiedCloudOrderRequest: TCRequestModel {
+    public struct UnifiedCloudOrderRequest: TCRequest {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -294,7 +294,7 @@ extension Cpdp {
     }
 
     /// UnifiedCloudOrder返回参数结构体
-    public struct UnifiedCloudOrderResponse: TCResponseModel {
+    public struct UnifiedCloudOrderResponse: TCResponse {
         /// 米大师的交易订单号。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transactionId: String?

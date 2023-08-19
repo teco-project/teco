@@ -20,7 +20,7 @@ import TecoCore
 
 extension Thpc {
     /// ModifyInitNodeScripts请求参数结构体
-    public struct ModifyInitNodeScriptsRequest: TCRequestModel {
+    public struct ModifyInitNodeScriptsRequest: TCRequest {
         /// 集群ID。
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Thpc {
     }
 
     /// ModifyInitNodeScripts返回参数结构体
-    public struct ModifyInitNodeScriptsResponse: TCResponseModel {
+    public struct ModifyInitNodeScriptsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// UploadFiles请求参数结构体
-    public struct UploadFilesRequest: TCRequestModel {
+    public struct UploadFilesRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -73,7 +73,7 @@ extension Essbasic {
     }
 
     /// UploadFiles返回参数结构体
-    public struct UploadFilesResponse: TCResponseModel {
+    public struct UploadFilesResponse: TCResponse {
         /// 文件id数组
         public let fileIds: [String]
 

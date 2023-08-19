@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// DescribeShieldResult请求参数结构体
-    public struct DescribeShieldResultRequest: TCRequestModel {
+    public struct DescribeShieldResultRequest: TCRequest {
         /// 任务唯一标识
         public let itemId: String
 
@@ -34,7 +34,7 @@ extension Ms {
     }
 
     /// DescribeShieldResult返回参数结构体
-    public struct DescribeShieldResultResponse: TCResponseModel {
+    public struct DescribeShieldResultResponse: TCResponse {
         /// 任务状态: 0-请返回,1-已完成,2-处理中,3-处理出错,4-处理超时
         public let taskStatus: UInt64
 

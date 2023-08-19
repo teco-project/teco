@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CreateSyncJob请求参数结构体
-    public struct CreateSyncJobRequest: TCRequestModel {
+    public struct CreateSyncJobRequest: TCRequest {
         /// 付款类型, 如：PrePay(表示包年包月)、PostPay(表示按时按量)
         public let payMode: String
 
@@ -89,7 +89,7 @@ extension Dts {
     }
 
     /// CreateSyncJob返回参数结构体
-    public struct CreateSyncJobResponse: TCResponseModel {
+    public struct CreateSyncJobResponse: TCResponse {
         /// 同步任务ids
         public let jobIds: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryMerchantOrder请求参数结构体
-    public struct QueryMerchantOrderRequest: TCRequestModel {
+    public struct QueryMerchantOrderRequest: TCRequest {
         /// 进件成功后返给商户方的AppId。
         public let merchantAppId: String
 
@@ -39,7 +39,7 @@ extension Cpdp {
     }
 
     /// QueryMerchantOrder返回参数结构体
-    public struct QueryMerchantOrderResponse: TCResponseModel {
+    public struct QueryMerchantOrderResponse: TCResponse {
         /// 进件成功后返给商户方的AppId。
         public let merchantAppId: String
 

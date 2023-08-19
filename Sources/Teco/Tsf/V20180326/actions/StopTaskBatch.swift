@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// StopTaskBatch请求参数结构体
-    public struct StopTaskBatchRequest: TCRequestModel {
+    public struct StopTaskBatchRequest: TCRequest {
         /// 批次ID
         public let batchId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// StopTaskBatch返回参数结构体
-    public struct StopTaskBatchResponse: TCResponseModel {
+    public struct StopTaskBatchResponse: TCResponse {
         /// 操作成功 or 失败
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// TagResources请求参数结构体
-    public struct TagResourcesRequest: TCRequestModel {
+    public struct TagResourcesRequest: TCRequest {
         /// 资源六段式列表。腾讯云使用资源六段式描述一个资源。可参考[访问管理](https://cloud.tencent.com/document/product/598/67350)-概览-接口列表-资源六段式信息
         /// 例如：ResourceList.1 = qcs::${ServiceType}:${Region}:uin/${Account}:${ResourcePrefix}/${ResourceId}。
         /// N取值范围：0~9
@@ -45,7 +45,7 @@ extension Tag {
     }
 
     /// TagResources返回参数结构体
-    public struct TagResourcesResponse: TCResponseModel {
+    public struct TagResourcesResponse: TCResponse {
         /// 失败资源信息。
         /// 创建并绑定标签成功时，返回的FailedResources为空。
         /// 创建并绑定标签失败或部分失败时，返回的FailedResources会显示失败资源的详细信息。

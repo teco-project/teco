@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DeleteMachine请求参数结构体
-    public struct DeleteMachineRequest: TCRequestModel {
+    public struct DeleteMachineRequest: TCRequest {
         /// 云镜客户端Uuid。
         public let uuid: String
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DeleteMachine返回参数结构体
-    public struct DeleteMachineResponse: TCResponseModel {
+    public struct DeleteMachineResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

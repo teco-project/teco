@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// ModifyDomainWhiteRule请求参数结构体
-    public struct ModifyDomainWhiteRuleRequest: TCRequestModel {
+    public struct ModifyDomainWhiteRuleRequest: TCRequest {
         /// 需要更改的规则的域名
         public let domain: String?
 
@@ -59,7 +59,7 @@ extension Waf {
     }
 
     /// ModifyDomainWhiteRule返回参数结构体
-    public struct ModifyDomainWhiteRuleResponse: TCResponseModel {
+    public struct ModifyDomainWhiteRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// CreateOrganization请求参数结构体
-    public struct CreateOrganizationRequest: TCRequestModel {
+    public struct CreateOrganizationRequest: TCRequest {
         /// 组织类型（目前固定为1）
         public let orgType: UInt64
 
@@ -34,7 +34,7 @@ extension Organization {
     }
 
     /// CreateOrganization返回参数结构体
-    public struct CreateOrganizationResponse: TCResponseModel {
+    public struct CreateOrganizationResponse: TCResponse {
         /// 企业组织ID
         public let orgId: UInt64
 

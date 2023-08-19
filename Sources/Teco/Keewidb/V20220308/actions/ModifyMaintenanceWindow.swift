@@ -20,7 +20,7 @@ import TecoCore
 
 extension Keewidb {
     /// ModifyMaintenanceWindow请求参数结构体
-    public struct ModifyMaintenanceWindowRequest: TCRequestModel {
+    public struct ModifyMaintenanceWindowRequest: TCRequest {
         /// 实例 ID，如：kee-6ubh****。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Keewidb {
     }
 
     /// ModifyMaintenanceWindow返回参数结构体
-    public struct ModifyMaintenanceWindowResponse: TCResponseModel {
+    public struct ModifyMaintenanceWindowResponse: TCResponse {
         /// 执行结果。
         /// - success：修改成功。
         /// - failed：修改失败。

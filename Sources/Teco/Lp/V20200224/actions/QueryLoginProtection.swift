@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lp {
     /// QueryLoginProtection请求参数结构体
-    public struct QueryLoginProtectionRequest: TCRequestModel {
+    public struct QueryLoginProtectionRequest: TCRequest {
         /// 登录来源的外网 IP。
         public let loginIp: String
 
@@ -206,7 +206,7 @@ extension Lp {
     }
 
     /// QueryLoginProtection返回参数结构体
-    public struct QueryLoginProtectionResponse: TCResponseModel {
+    public struct QueryLoginProtectionResponse: TCResponse {
         /// AssociateAccount
         ///
         /// accountType 是 QQ 或微信开放账号时，用于标识 QQ 或微信用户登录后关联业务自身的账号 ID。

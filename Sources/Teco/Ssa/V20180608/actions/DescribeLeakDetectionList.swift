@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeLeakDetectionList请求参数结构体
-    public struct DescribeLeakDetectionListRequest: TCRequestModel {
+    public struct DescribeLeakDetectionListRequest: TCRequest {
         /// 筛选条件
         public let filters: [Filter]
 
@@ -54,7 +54,7 @@ extension Ssa {
     }
 
     /// DescribeLeakDetectionList返回参数结构体
-    public struct DescribeLeakDetectionListResponse: TCResponseModel {
+    public struct DescribeLeakDetectionListResponse: TCResponse {
         /// 总数
         public let totalCount: Int64
 

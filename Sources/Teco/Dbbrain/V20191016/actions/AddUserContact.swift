@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// AddUserContact请求参数结构体
-    public struct AddUserContactRequest: TCRequestModel {
+    public struct AddUserContactRequest: TCRequest {
         /// 联系人姓名，大小写字母+数字+下划线，最小 2 位最大 60 位的长度， 不能以"_"开头，且联系人名保持唯一。
         public let name: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// AddUserContact返回参数结构体
-    public struct AddUserContactResponse: TCResponseModel {
+    public struct AddUserContactResponse: TCResponse {
         /// 添加成功的联系人id。
         public let id: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// DeleteCustomization请求参数结构体
-    public struct DeleteCustomizationRequest: TCRequestModel {
+    public struct DeleteCustomizationRequest: TCRequest {
         /// 删除的模型ID
         public let modelId: String
 
@@ -39,7 +39,7 @@ extension Gme {
     }
 
     /// DeleteCustomization返回参数结构体
-    public struct DeleteCustomizationResponse: TCResponseModel {
+    public struct DeleteCustomizationResponse: TCResponse {
         /// 返回值。0为成功，非0为失败。
         public let errorCode: Int64
 

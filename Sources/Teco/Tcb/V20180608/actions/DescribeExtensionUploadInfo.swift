@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeExtensionUploadInfo请求参数结构体
-    public struct DescribeExtensionUploadInfoRequest: TCRequestModel {
+    public struct DescribeExtensionUploadInfoRequest: TCRequest {
         /// 待上传的文件
         public let extensionFiles: [ExtensionFile]
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeExtensionUploadInfo返回参数结构体
-    public struct DescribeExtensionUploadInfoResponse: TCResponseModel {
+    public struct DescribeExtensionUploadInfoResponse: TCResponse {
         /// 待上传文件的信息数组
         public let filesData: [ExtensionFileInfo]
 

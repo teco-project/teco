@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeResourceManagePathTrees请求参数结构体
-    public struct DescribeResourceManagePathTreesRequest: TCRequestModel {
+    public struct DescribeResourceManagePathTreesRequest: TCRequest {
         /// 项目ID
         public let projectId: String?
 
@@ -54,7 +54,7 @@ extension Wedata {
     }
 
     /// DescribeResourceManagePathTrees返回参数结构体
-    public struct DescribeResourceManagePathTreesResponse: TCResponseModel {
+    public struct DescribeResourceManagePathTreesResponse: TCResponse {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ResourcePathTree]?

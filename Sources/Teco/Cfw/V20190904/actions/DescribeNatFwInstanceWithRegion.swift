@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeNatFwInstanceWithRegion请求参数结构体
-    public struct DescribeNatFwInstanceWithRegionRequest: TCRequestModel {
+    public struct DescribeNatFwInstanceWithRegionRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNatFwInstanceWithRegion返回参数结构体
-    public struct DescribeNatFwInstanceWithRegionResponse: TCResponseModel {
+    public struct DescribeNatFwInstanceWithRegionResponse: TCResponse {
         /// 实例数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let natinsLst: [NatFwInstance]?

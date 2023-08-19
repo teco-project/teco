@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// AssignClientsToSales请求参数结构体
-    public struct AssignClientsToSalesRequest: TCRequestModel {
+    public struct AssignClientsToSalesRequest: TCRequest {
         /// 代客/申请中代客uin列表，最大50条
         public let clientUins: [String]
 
@@ -49,7 +49,7 @@ extension Partners {
     }
 
     /// AssignClientsToSales返回参数结构体
-    public struct AssignClientsToSalesResponse: TCResponseModel {
+    public struct AssignClientsToSalesResponse: TCResponse {
         /// 处理成功的代客uin列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succeedUins: [String]?

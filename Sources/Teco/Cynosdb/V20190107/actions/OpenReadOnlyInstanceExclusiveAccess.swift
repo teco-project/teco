@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// OpenReadOnlyInstanceExclusiveAccess请求参数结构体
-    public struct OpenReadOnlyInstanceExclusiveAccessRequest: TCRequestModel {
+    public struct OpenReadOnlyInstanceExclusiveAccessRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Cynosdb {
     }
 
     /// OpenReadOnlyInstanceExclusiveAccess返回参数结构体
-    public struct OpenReadOnlyInstanceExclusiveAccessResponse: TCResponseModel {
+    public struct OpenReadOnlyInstanceExclusiveAccessResponse: TCResponse {
         /// 开通流程ID
         public let flowId: Int64
 

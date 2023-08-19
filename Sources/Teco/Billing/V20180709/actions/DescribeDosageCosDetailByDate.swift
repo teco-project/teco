@@ -20,7 +20,7 @@ import TecoCore
 
 extension Billing {
     /// DescribeDosageCosDetailByDate请求参数结构体
-    public struct DescribeDosageCosDetailByDateRequest: TCRequestModel {
+    public struct DescribeDosageCosDetailByDateRequest: TCRequest {
         /// 查询用量开始时间，例如：2020-09-01
         public let startDate: String
 
@@ -44,7 +44,7 @@ extension Billing {
     }
 
     /// DescribeDosageCosDetailByDate返回参数结构体
-    public struct DescribeDosageCosDetailByDateResponse: TCResponseModel {
+    public struct DescribeDosageCosDetailByDateResponse: TCResponse {
         /// 用量数组
         public let detailSets: [CosDetailSets]
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeWarningRules请求参数结构体
-    public struct DescribeWarningRulesRequest: TCRequestModel {
+    public struct DescribeWarningRulesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeWarningRules返回参数结构体
-    public struct DescribeWarningRulesResponse: TCResponseModel {
+    public struct DescribeWarningRulesResponse: TCResponse {
         /// 告警策略列表
         public let warningRules: [WarningRule]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeCmqTopicDetail请求参数结构体
-    public struct DescribeCmqTopicDetailRequest: TCRequestModel {
+    public struct DescribeCmqTopicDetailRequest: TCRequest {
         /// 精确匹配TopicName。
         public let topicName: String?
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DescribeCmqTopicDetail返回参数结构体
-    public struct DescribeCmqTopicDetailResponse: TCResponseModel {
+    public struct DescribeCmqTopicDetailResponse: TCResponse {
         /// 主题详情
         public let topicDescribe: CmqTopic
 

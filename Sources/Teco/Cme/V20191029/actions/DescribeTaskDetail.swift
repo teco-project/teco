@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DescribeTaskDetail请求参数结构体
-    public struct DescribeTaskDetailRequest: TCRequestModel {
+    public struct DescribeTaskDetailRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -44,7 +44,7 @@ extension Cme {
     }
 
     /// DescribeTaskDetail返回参数结构体
-    public struct DescribeTaskDetailResponse: TCResponseModel {
+    public struct DescribeTaskDetailResponse: TCResponse {
         /// 任务状态，取值有：
         /// - PROCESSING：处理中：
         /// - SUCCESS：成功；

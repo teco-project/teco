@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tdmq {
     /// DescribeBindClusters请求参数结构体
-    public struct DescribeBindClustersRequest: TCRequestModel {
+    public struct DescribeBindClustersRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBindClusters返回参数结构体
-    public struct DescribeBindClustersResponse: TCResponseModel {
+    public struct DescribeBindClustersResponse: TCResponse {
         /// 专享集群的数量
         public let totalCount: Int64
 

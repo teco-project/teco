@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeInstanceVncUrl请求参数结构体
-    public struct DescribeInstanceVncUrlRequest: TCRequestModel {
+    public struct DescribeInstanceVncUrlRequest: TCRequest {
         /// 一个操作的实例ID。可通过DescribeInstances API返回值中的InstanceId获取。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeInstanceVncUrl返回参数结构体
-    public struct DescribeInstanceVncUrlResponse: TCResponseModel {
+    public struct DescribeInstanceVncUrlResponse: TCResponse {
         /// 实例的管理终端地址。
         public let instanceVncUrl: String
 

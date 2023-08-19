@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// CreateSnapshotTask请求参数结构体
-    public struct CreateSnapshotTaskRequest: TCRequestModel {
+    public struct CreateSnapshotTaskRequest: TCRequest {
         /// 白板相关参数
         public let whiteboard: SnapshotWhiteboard
 
@@ -65,7 +65,7 @@ extension Tiw {
     }
 
     /// CreateSnapshotTask返回参数结构体
-    public struct CreateSnapshotTaskResponse: TCResponseModel {
+    public struct CreateSnapshotTaskResponse: TCResponse {
         /// 白板板书生成任务ID，只有任务创建成功的时候才会返回此字段
         public let taskID: String
 

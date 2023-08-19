@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateScreenshotTask请求参数结构体
-    public struct CreateScreenshotTaskRequest: TCRequestModel {
+    public struct CreateScreenshotTaskRequest: TCRequest {
         /// 流名称。
         public let streamName: String
 
@@ -71,7 +71,7 @@ extension Live {
     }
 
     /// CreateScreenshotTask返回参数结构体
-    public struct CreateScreenshotTaskResponse: TCResponseModel {
+    public struct CreateScreenshotTaskResponse: TCResponse {
         /// 任务ID，全局唯一标识截图任务。返回TaskId字段说明截图任务创建成功。
         public let taskId: String
 

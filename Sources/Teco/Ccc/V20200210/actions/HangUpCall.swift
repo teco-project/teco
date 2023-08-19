@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ccc {
     /// HangUpCall请求参数结构体
-    public struct HangUpCallRequest: TCRequestModel {
+    public struct HangUpCallRequest: TCRequest {
         /// TCCC 实例应用 ID
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Ccc {
     }
 
     /// HangUpCall返回参数结构体
-    public struct HangUpCallResponse: TCResponseModel {
+    public struct HangUpCallResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

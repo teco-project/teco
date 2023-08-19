@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// CreateUserCmd请求参数结构体
-    public struct CreateUserCmdRequest: TCRequestModel {
+    public struct CreateUserCmdRequest: TCRequest {
         /// 用户自定义脚本的名称
         public let alias: String
 
@@ -44,7 +44,7 @@ extension Bm {
     }
 
     /// CreateUserCmd返回参数结构体
-    public struct CreateUserCmdResponse: TCResponseModel {
+    public struct CreateUserCmdResponse: TCResponse {
         /// 脚本ID
         public let cmdId: String
 

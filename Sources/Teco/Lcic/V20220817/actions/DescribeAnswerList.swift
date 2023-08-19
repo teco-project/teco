@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DescribeAnswerList请求参数结构体
-    public struct DescribeAnswerListRequest: TCRequestModel {
+    public struct DescribeAnswerListRequest: TCRequest {
         /// 问题ID
         public let questionId: String
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// DescribeAnswerList返回参数结构体
-    public struct DescribeAnswerListResponse: TCResponseModel {
+    public struct DescribeAnswerListResponse: TCResponse {
         /// 符合查询条件的房间答案总数
         public let total: UInt64
 

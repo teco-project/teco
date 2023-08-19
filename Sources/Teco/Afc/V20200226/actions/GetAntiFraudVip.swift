@@ -20,7 +20,7 @@ import TecoCore
 
 extension Afc {
     /// GetAntiFraudVip请求参数结构体
-    public struct GetAntiFraudVipRequest: TCRequestModel {
+    public struct GetAntiFraudVipRequest: TCRequest {
         /// 默认不传，约定用原始业务
         /// 入参(二选一BusinessSecurityData 或
         /// BusinessCryptoData)。
@@ -44,7 +44,7 @@ extension Afc {
     }
 
     /// GetAntiFraudVip返回参数结构体
-    public struct GetAntiFraudVipResponse: TCResponseModel {
+    public struct GetAntiFraudVipResponse: TCResponse {
         /// 反欺诈评分接口结果
         public let data: AntiFraudVipRecord
 

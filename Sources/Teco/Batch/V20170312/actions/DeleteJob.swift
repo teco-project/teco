@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// DeleteJob请求参数结构体
-    public struct DeleteJobRequest: TCRequestModel {
+    public struct DeleteJobRequest: TCRequest {
         /// 作业ID
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Batch {
     }
 
     /// DeleteJob返回参数结构体
-    public struct DeleteJobResponse: TCResponseModel {
+    public struct DeleteJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

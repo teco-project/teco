@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyDBInstanceProject请求参数结构体
-    public struct ModifyDBInstanceProjectRequest: TCRequestModel {
+    public struct ModifyDBInstanceProjectRequest: TCRequest {
         /// 实例 ID 数组，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// ModifyDBInstanceProject返回参数结构体
-    public struct ModifyDBInstanceProjectResponse: TCResponseModel {
+    public struct ModifyDBInstanceProjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

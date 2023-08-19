@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gs {
     /// DescribeInstancesCount请求参数结构体
-    public struct DescribeInstancesCountRequest: TCRequestModel {
+    public struct DescribeInstancesCountRequest: TCRequest {
         /// 游戏ID
         public let gameId: String?
 
@@ -51,7 +51,7 @@ extension Gs {
     }
 
     /// DescribeInstancesCount返回参数结构体
-    public struct DescribeInstancesCountResponse: TCResponseModel {
+    public struct DescribeInstancesCountResponse: TCResponse {
         /// 客户的实例总数
         public let total: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RefundCloudOrder请求参数结构体
-    public struct RefundCloudOrderRequest: TCRequestModel {
+    public struct RefundCloudOrderRequest: TCRequest {
         /// 米大师分配的支付主MidasAppId
         public let midasAppId: String
 
@@ -100,7 +100,7 @@ extension Cpdp {
     }
 
     /// RefundCloudOrder返回参数结构体
-    public struct RefundCloudOrderResponse: TCResponseModel {
+    public struct RefundCloudOrderResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

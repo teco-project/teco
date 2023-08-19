@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateTraceCodes请求参数结构体
-    public struct CreateTraceCodesRequest: TCRequestModel {
+    public struct CreateTraceCodesRequest: TCRequest {
         /// 批次ID
         public let batchId: String
 
@@ -58,7 +58,7 @@ extension Trp {
     }
 
     /// CreateTraceCodes返回参数结构体
-    public struct CreateTraceCodesResponse: TCResponseModel {
+    public struct CreateTraceCodesResponse: TCResponse {
         /// 批次ID
         public let batchId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateClusterCheckTask请求参数结构体
-    public struct CreateClusterCheckTaskRequest: TCRequestModel {
+    public struct CreateClusterCheckTaskRequest: TCRequest {
         /// 指定要扫描的集群信息
         public let clusterCheckTaskList: [ClusterCheckTaskItem]
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// CreateClusterCheckTask返回参数结构体
-    public struct CreateClusterCheckTaskResponse: TCResponseModel {
+    public struct CreateClusterCheckTaskResponse: TCResponse {
         /// 返回创建的集群检查任务的ID，为0表示创建失败。
         public let taskId: UInt64
 

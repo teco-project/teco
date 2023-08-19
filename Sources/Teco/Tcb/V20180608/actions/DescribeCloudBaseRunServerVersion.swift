@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunServerVersion请求参数结构体
-    public struct DescribeCloudBaseRunServerVersionRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunServerVersionRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -44,7 +44,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunServerVersion返回参数结构体
-    public struct DescribeCloudBaseRunServerVersionResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunServerVersionResponse: TCResponse {
         /// 版本名称
         public let versionName: String
 

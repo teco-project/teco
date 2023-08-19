@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// InquirePriceRenew请求参数结构体
-    public struct InquirePriceRenewRequest: TCRequestModel {
+    public struct InquirePriceRenewRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Cynosdb {
     }
 
     /// InquirePriceRenew返回参数结构体
-    public struct InquirePriceRenewResponse: TCResponseModel {
+    public struct InquirePriceRenewResponse: TCResponse {
         /// 集群ID
         public let clusterId: String
 

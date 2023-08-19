@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// ModifyProject请求参数结构体
-    public struct ModifyProjectRequest: TCRequestModel {
+    public struct ModifyProjectRequest: TCRequest {
         /// 目标修改项目的项目ID
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Trro {
     }
 
     /// ModifyProject返回参数结构体
-    public struct ModifyProjectResponse: TCResponseModel {
+    public struct ModifyProjectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

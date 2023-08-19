@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ModifyAIAnalysisTemplate请求参数结构体
-    public struct ModifyAIAnalysisTemplateRequest: TCRequestModel {
+    public struct ModifyAIAnalysisTemplateRequest: TCRequest {
         /// 视频内容分析模板唯一标识。
         public let definition: Int64
 
@@ -64,7 +64,7 @@ extension Mps {
     }
 
     /// ModifyAIAnalysisTemplate返回参数结构体
-    public struct ModifyAIAnalysisTemplateResponse: TCResponseModel {
+    public struct ModifyAIAnalysisTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

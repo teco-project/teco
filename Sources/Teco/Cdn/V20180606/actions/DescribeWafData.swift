@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DescribeWafData请求参数结构体
-    public struct DescribeWafDataRequest: TCRequestModel {
+    public struct DescribeWafDataRequest: TCRequest {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         public let startTime: String
 
@@ -99,7 +99,7 @@ extension Cdn {
     }
 
     /// DescribeWafData返回参数结构体
-    public struct DescribeWafDataResponse: TCResponseModel {
+    public struct DescribeWafDataResponse: TCResponse {
         /// 粒度数据
         public let data: [TimestampData]
 

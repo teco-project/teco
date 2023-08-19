@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveCerts请求参数结构体
-    public struct DescribeLiveCertsRequest: TCRequestModel {
+    public struct DescribeLiveCertsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveCerts返回参数结构体
-    public struct DescribeLiveCertsResponse: TCResponseModel {
+    public struct DescribeLiveCertsResponse: TCResponse {
         /// 证书信息列表。
         public let certInfoSet: [CertInfo]
 

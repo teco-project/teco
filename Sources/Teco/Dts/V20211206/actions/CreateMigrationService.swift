@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// CreateMigrationService请求参数结构体
-    public struct CreateMigrationServiceRequest: TCRequestModel {
+    public struct CreateMigrationServiceRequest: TCRequest {
         /// 源实例数据库类型，如mysql,redis,percona,mongodb,postgresql,sqlserver,mariadb,cynosdbmysql
         public let srcDatabaseType: String
 
@@ -69,7 +69,7 @@ extension Dts {
     }
 
     /// CreateMigrationService返回参数结构体
-    public struct CreateMigrationServiceResponse: TCResponseModel {
+    public struct CreateMigrationServiceResponse: TCResponse {
         /// 下单成功随机生成的迁移任务id列表，形如：dts-c1f6rs21
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobIds: [String]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeCcnRegionBandwidthLimits请求参数结构体
-    public struct DescribeCcnRegionBandwidthLimitsRequest: TCRequestModel {
+    public struct DescribeCcnRegionBandwidthLimitsRequest: TCRequest {
         /// CCN实例ID，形如：ccn-f49l6u0z。
         public let ccnId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// DescribeCcnRegionBandwidthLimits返回参数结构体
-    public struct DescribeCcnRegionBandwidthLimitsResponse: TCResponseModel {
+    public struct DescribeCcnRegionBandwidthLimitsResponse: TCResponse {
         /// 云联网（CCN）各地域出带宽上限
         public let ccnRegionBandwidthLimitSet: [CcnRegionBandwidthLimit]
 

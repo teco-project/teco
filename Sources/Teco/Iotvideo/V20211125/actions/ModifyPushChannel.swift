@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// ModifyPushChannel请求参数结构体
-    public struct ModifyPushChannelRequest: TCRequestModel {
+    public struct ModifyPushChannelRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -64,7 +64,7 @@ extension Iotvideo {
     }
 
     /// ModifyPushChannel返回参数结构体
-    public struct ModifyPushChannelResponse: TCResponseModel {
+    public struct ModifyPushChannelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

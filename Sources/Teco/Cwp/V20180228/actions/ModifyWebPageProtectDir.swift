@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyWebPageProtectDir请求参数结构体
-    public struct ModifyWebPageProtectDirRequest: TCRequestModel {
+    public struct ModifyWebPageProtectDirRequest: TCRequest {
         /// 网站防护目录地址
         public let protectDirAddr: String
 
@@ -49,7 +49,7 @@ extension Cwp {
     }
 
     /// ModifyWebPageProtectDir返回参数结构体
-    public struct ModifyWebPageProtectDirResponse: TCResponseModel {
+    public struct ModifyWebPageProtectDirResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

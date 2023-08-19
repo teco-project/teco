@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeReservedInstancesConfigInfos请求参数结构体
-    public struct DescribeReservedInstancesConfigInfosRequest: TCRequestModel {
+    public struct DescribeReservedInstancesConfigInfosRequest: TCRequest {
         /// zone
         /// 按照预留实例计费可购买的可用区进行过滤。形如：ap-guangzhou-1。
         /// 类型：String
@@ -51,7 +51,7 @@ extension Cvm {
     }
 
     /// DescribeReservedInstancesConfigInfos返回参数结构体
-    public struct DescribeReservedInstancesConfigInfosResponse: TCResponseModel {
+    public struct DescribeReservedInstancesConfigInfosResponse: TCResponse {
         /// 预留实例静态配置信息列表。
         public let reservedInstanceConfigInfos: [ReservedInstanceConfigInfoItem]
 

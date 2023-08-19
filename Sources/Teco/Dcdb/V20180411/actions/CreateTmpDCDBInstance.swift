@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// CreateTmpDCDBInstance请求参数结构体
-    public struct CreateTmpDCDBInstanceRequest: TCRequestModel {
+    public struct CreateTmpDCDBInstanceRequest: TCRequest {
         /// 回档实例的ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// CreateTmpDCDBInstance返回参数结构体
-    public struct CreateTmpDCDBInstanceResponse: TCResponseModel {
+    public struct CreateTmpDCDBInstanceResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

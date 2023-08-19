@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tat {
     /// InvokeCommand请求参数结构体
-    public struct InvokeCommandRequest: TCRequestModel {
+    public struct InvokeCommandRequest: TCRequest {
         /// 待触发的命令ID。
         public let commandId: String
 
@@ -77,7 +77,7 @@ extension Tat {
     }
 
     /// InvokeCommand返回参数结构体
-    public struct InvokeCommandResponse: TCResponseModel {
+    public struct InvokeCommandResponse: TCResponse {
         /// 执行活动ID。
         public let invocationId: String
 

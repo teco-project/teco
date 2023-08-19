@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeAccountPrivileges请求参数结构体
-    public struct DescribeAccountPrivilegesRequest: TCRequestModel {
+    public struct DescribeAccountPrivilegesRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -59,7 +59,7 @@ extension Cynosdb {
     }
 
     /// DescribeAccountPrivileges返回参数结构体
-    public struct DescribeAccountPrivilegesResponse: TCResponseModel {
+    public struct DescribeAccountPrivilegesResponse: TCResponse {
         /// 权限列表，示例值为：["select","update","delete","create","drop","references","index","alter","show_db","create_tmp_table","lock_tables","execute","create_view","show_view","create_routine","alter_routine","event","trigger"]
         public let privileges: [String]
 

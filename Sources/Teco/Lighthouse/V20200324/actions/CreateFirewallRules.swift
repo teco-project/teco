@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// CreateFirewallRules请求参数结构体
-    public struct CreateFirewallRulesRequest: TCRequestModel {
+    public struct CreateFirewallRulesRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Lighthouse {
     }
 
     /// CreateFirewallRules返回参数结构体
-    public struct CreateFirewallRulesResponse: TCResponseModel {
+    public struct CreateFirewallRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

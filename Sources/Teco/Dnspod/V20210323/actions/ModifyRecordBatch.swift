@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// ModifyRecordBatch请求参数结构体
-    public struct ModifyRecordBatchRequest: TCRequestModel {
+    public struct ModifyRecordBatchRequest: TCRequest {
         /// 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
         public let recordIdList: [UInt64]
 
@@ -54,7 +54,7 @@ extension Dnspod {
     }
 
     /// ModifyRecordBatch返回参数结构体
-    public struct ModifyRecordBatchResponse: TCResponseModel {
+    public struct ModifyRecordBatchResponse: TCResponse {
         /// 批量任务ID
         public let jobId: UInt64
 

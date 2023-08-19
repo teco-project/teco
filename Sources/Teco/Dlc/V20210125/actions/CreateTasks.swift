@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateTasks请求参数结构体
-    public struct CreateTasksRequest: TCRequestModel {
+    public struct CreateTasksRequest: TCRequest {
         /// 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库（注：当提交建库sql时，该字段传空字符串）。
         public let databaseName: String
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// CreateTasks返回参数结构体
-    public struct CreateTasksResponse: TCResponseModel {
+    public struct CreateTasksResponse: TCResponse {
         /// 本批次提交的任务的批次Id
         public let batchId: String
 

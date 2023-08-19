@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeNode请求参数结构体
-    public struct DescribeNodeRequest: TCRequestModel {
+    public struct DescribeNodeRequest: TCRequest {
         /// 过滤条件，name取值为： InstanceFamily-实例系列
         public let filters: [Filter]?
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeNode返回参数结构体
-    public struct DescribeNodeResponse: TCResponseModel {
+    public struct DescribeNodeResponse: TCResponse {
         /// 节点详细信息的列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSet: [Node]?

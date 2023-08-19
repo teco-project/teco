@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gse {
     /// GetUploadFederationToken请求参数结构体
-    public struct GetUploadFederationTokenRequest: TCRequestModel {
+    public struct GetUploadFederationTokenRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetUploadFederationToken返回参数结构体
-    public struct GetUploadFederationTokenResponse: TCResponseModel {
+    public struct GetUploadFederationTokenResponse: TCResponse {
         /// 临时证书的过期时间，Unix 时间戳，精确到秒
         public let expiredTime: UInt64
 

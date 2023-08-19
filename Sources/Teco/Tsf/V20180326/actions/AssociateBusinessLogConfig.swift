@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// AssociateBusinessLogConfig请求参数结构体
-    public struct AssociateBusinessLogConfigRequest: TCRequestModel {
+    public struct AssociateBusinessLogConfigRequest: TCRequest {
         /// TSF分组ID
         public let groupId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// AssociateBusinessLogConfig返回参数结构体
-    public struct AssociateBusinessLogConfigResponse: TCResponseModel {
+    public struct AssociateBusinessLogConfigResponse: TCResponse {
         /// 操作结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

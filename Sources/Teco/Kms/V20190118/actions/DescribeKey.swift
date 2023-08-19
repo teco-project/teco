@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DescribeKey请求参数结构体
-    public struct DescribeKeyRequest: TCRequestModel {
+    public struct DescribeKeyRequest: TCRequest {
         /// CMK全局唯一标识符
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DescribeKey返回参数结构体
-    public struct DescribeKeyResponse: TCResponseModel {
+    public struct DescribeKeyResponse: TCResponse {
         /// 密钥属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyMetadata: KeyMetadata?

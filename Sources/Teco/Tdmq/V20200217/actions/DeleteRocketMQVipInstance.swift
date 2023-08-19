@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteRocketMQVipInstance请求参数结构体
-    public struct DeleteRocketMQVipInstanceRequest: TCRequestModel {
+    public struct DeleteRocketMQVipInstanceRequest: TCRequest {
         /// 实例的集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DeleteRocketMQVipInstance返回参数结构体
-    public struct DeleteRocketMQVipInstanceResponse: TCResponseModel {
+    public struct DeleteRocketMQVipInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

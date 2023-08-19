@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CheckMobileAndName请求参数结构体
-    public struct CheckMobileAndNameRequest: TCRequestModel {
+    public struct CheckMobileAndNameRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -44,7 +44,7 @@ extension Essbasic {
     }
 
     /// CheckMobileAndName返回参数结构体
-    public struct CheckMobileAndNameResponse: TCResponseModel {
+    public struct CheckMobileAndNameResponse: TCResponse {
         /// 检测结果
         /// 计费结果码：
         ///   0:  验证结果一致

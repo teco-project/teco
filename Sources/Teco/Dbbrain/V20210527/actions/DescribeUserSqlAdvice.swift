@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DescribeUserSqlAdvice请求参数结构体
-    public struct DescribeUserSqlAdviceRequest: TCRequestModel {
+    public struct DescribeUserSqlAdviceRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// DescribeUserSqlAdvice返回参数结构体
-    public struct DescribeUserSqlAdviceResponse: TCResponseModel {
+    public struct DescribeUserSqlAdviceResponse: TCResponse {
         /// SQL优化建议，可解析为JSON数组，无需优化时输出为空。
         public let advices: String
 

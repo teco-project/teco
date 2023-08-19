@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// ModifyPolicy请求参数结构体
-    public struct ModifyPolicyRequest: TCRequestModel {
+    public struct ModifyPolicyRequest: TCRequest {
         /// 修改权限配置的项目ID
         public let projectId: String
 
@@ -54,7 +54,7 @@ extension Trro {
     }
 
     /// ModifyPolicy返回参数结构体
-    public struct ModifyPolicyResponse: TCResponseModel {
+    public struct ModifyPolicyResponse: TCResponse {
         /// 添加关联失败的现场设备ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failedInsertIds: [String]?

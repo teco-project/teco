@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// TransformAddress请求参数结构体
-    public struct TransformAddressRequest: TCRequestModel {
+    public struct TransformAddressRequest: TCRequest {
         /// 待操作有普通公网 IP 的实例 ID。实例 ID 形如：`ins-11112222`。可通过登录[控制台](https://console.cloud.tencent.com/cvm)查询，也可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/9389) 接口返回值中的`InstanceId`获取。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// TransformAddress返回参数结构体
-    public struct TransformAddressResponse: TCResponseModel {
+    public struct TransformAddressResponse: TCResponse {
         /// 异步任务TaskId。可以使用[DescribeTaskResult](https://cloud.tencent.com/document/api/215/36271)接口查询任务状态。
         public let taskId: UInt64
 

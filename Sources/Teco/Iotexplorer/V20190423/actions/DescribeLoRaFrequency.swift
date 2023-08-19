@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DescribeLoRaFrequency请求参数结构体
-    public struct DescribeLoRaFrequencyRequest: TCRequestModel {
+    public struct DescribeLoRaFrequencyRequest: TCRequest {
         /// 频点唯一ID
         public let freqId: String?
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// DescribeLoRaFrequency返回参数结构体
-    public struct DescribeLoRaFrequencyResponse: TCResponseModel {
+    public struct DescribeLoRaFrequencyResponse: TCResponse {
         /// 返回详情项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: LoRaFrequencyEntry?

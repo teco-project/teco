@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Iot {
     /// GetDeviceLog请求参数结构体
-    public struct GetDeviceLogRequest: TCRequestModel {
+    public struct GetDeviceLogRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -77,7 +77,7 @@ extension Iot {
     }
 
     /// GetDeviceLog返回参数结构体
-    public struct GetDeviceLogResponse: TCResponseModel {
+    public struct GetDeviceLogResponse: TCResponse {
         /// 设备日志
         public let deviceLog: [DeviceLogEntry]
 

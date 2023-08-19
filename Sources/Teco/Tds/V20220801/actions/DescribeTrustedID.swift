@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tds {
     /// DescribeTrustedID请求参数结构体
-    public struct DescribeTrustedIDRequest: TCRequestModel {
+    public struct DescribeTrustedIDRequest: TCRequest {
         /// 客户端通过SDK获取的设备Token
         public let deviceToken: String
 
@@ -34,7 +34,7 @@ extension Tds {
     }
 
     /// DescribeTrustedID返回参数结构体
-    public struct DescribeTrustedIDResponse: TCResponseModel {
+    public struct DescribeTrustedIDResponse: TCResponse {
         /// 设备匿名标识
         public let openid: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeImageRegistryTimingScanTask请求参数结构体
-    public struct DescribeImageRegistryTimingScanTaskRequest: TCRequestModel {
+    public struct DescribeImageRegistryTimingScanTaskRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImageRegistryTimingScanTask返回参数结构体
-    public struct DescribeImageRegistryTimingScanTaskResponse: TCResponseModel {
+    public struct DescribeImageRegistryTimingScanTaskResponse: TCResponse {
         /// 定时扫描开关
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Bool?

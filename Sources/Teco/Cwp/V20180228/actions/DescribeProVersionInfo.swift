@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeProVersionInfo请求参数结构体
-    public struct DescribeProVersionInfoRequest: TCRequestModel {
+    public struct DescribeProVersionInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeProVersionInfo返回参数结构体
-    public struct DescribeProVersionInfoResponse: TCResponseModel {
+    public struct DescribeProVersionInfoResponse: TCResponse {
         /// 后付费昨日扣费
         public let postPayCost: UInt64
 

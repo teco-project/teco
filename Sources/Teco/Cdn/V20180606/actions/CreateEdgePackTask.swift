@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// CreateEdgePackTask请求参数结构体
-    public struct CreateEdgePackTaskRequest: TCRequestModel {
+    public struct CreateEdgePackTaskRequest: TCRequest {
         /// apk 所在的 cos 存储桶, 如 edgepack-xxxxxxxx
         public let cosBucket: String
 
@@ -49,7 +49,7 @@ extension Cdn {
     }
 
     /// CreateEdgePackTask返回参数结构体
-    public struct CreateEdgePackTaskResponse: TCResponseModel {
+    public struct CreateEdgePackTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

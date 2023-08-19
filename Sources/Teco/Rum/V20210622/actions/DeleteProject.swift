@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteProject请求参数结构体
-    public struct DeleteProjectRequest: TCRequestModel {
+    public struct DeleteProjectRequest: TCRequest {
         /// 需要删除的项目 ID
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// DeleteProject返回参数结构体
-    public struct DeleteProjectResponse: TCResponseModel {
+    public struct DeleteProjectResponse: TCResponse {
         /// 操作信息
         public let msg: String
 

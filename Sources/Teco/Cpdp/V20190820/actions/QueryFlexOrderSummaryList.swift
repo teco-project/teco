@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexOrderSummaryList请求参数结构体
-    public struct QueryFlexOrderSummaryListRequest: TCRequestModel {
+    public struct QueryFlexOrderSummaryListRequest: TCRequest {
         /// 汇总日期:yyyy-MM-dd
         public let summaryDate: String
 
@@ -58,7 +58,7 @@ extension Cpdp {
     }
 
     /// QueryFlexOrderSummaryList返回参数结构体
-    public struct QueryFlexOrderSummaryListResponse: TCResponseModel {
+    public struct QueryFlexOrderSummaryListResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

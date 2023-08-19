@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DeleteScanTask请求参数结构体
-    public struct DeleteScanTaskRequest: TCRequestModel {
+    public struct DeleteScanTaskRequest: TCRequest {
         /// 任务Id
         public let taskId: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// DeleteScanTask返回参数结构体
-    public struct DeleteScanTaskResponse: TCResponseModel {
+    public struct DeleteScanTaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

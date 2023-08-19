@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyVirusAutoIsolateSetting请求参数结构体
-    public struct ModifyVirusAutoIsolateSettingRequest: TCRequestModel {
+    public struct ModifyVirusAutoIsolateSettingRequest: TCRequest {
         /// 自动隔离开关(true:开 false:关)
         public let autoIsolateSwitch: Bool
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// ModifyVirusAutoIsolateSetting返回参数结构体
-    public struct ModifyVirusAutoIsolateSettingResponse: TCResponseModel {
+    public struct ModifyVirusAutoIsolateSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// CreateDBInstance请求参数结构体
-    public struct CreateDBInstanceRequest: TCRequestModel {
+    public struct CreateDBInstanceRequest: TCRequest {
         /// 实例内存大小，单位：MB，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的内存规格。
         public let memory: Int64
 
@@ -219,7 +219,7 @@ extension Cdb {
     }
 
     /// CreateDBInstance返回参数结构体
-    public struct CreateDBInstanceResponse: TCResponseModel {
+    public struct CreateDBInstanceResponse: TCResponse {
         /// 计费子订单 ID。
         public let dealIds: [String]
 

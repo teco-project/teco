@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DescribeRecordingUsage请求参数结构体
-    public struct DescribeRecordingUsageRequest: TCRequestModel {
+    public struct DescribeRecordingUsageRequest: TCRequest {
         /// 查询开始时间，格式为YYYY-MM-DD。
         public let startTime: String
 
@@ -50,7 +50,7 @@ extension Trtc {
     }
 
     /// DescribeRecordingUsage返回参数结构体
-    public struct DescribeRecordingUsageResponse: TCResponseModel {
+    public struct DescribeRecordingUsageResponse: TCResponse {
         /// 用量类型，与UsageValue中各个位置的值对应。
         public let usageKey: [String]
 

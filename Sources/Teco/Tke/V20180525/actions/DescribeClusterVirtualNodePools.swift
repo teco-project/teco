@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterVirtualNodePools请求参数结构体
-    public struct DescribeClusterVirtualNodePoolsRequest: TCRequestModel {
+    public struct DescribeClusterVirtualNodePoolsRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeClusterVirtualNodePools返回参数结构体
-    public struct DescribeClusterVirtualNodePoolsResponse: TCResponseModel {
+    public struct DescribeClusterVirtualNodePoolsResponse: TCResponse {
         /// 节点池总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// CreateCodePack请求参数结构体
-    public struct CreateCodePackRequest: TCRequestModel {
+    public struct CreateCodePackRequest: TCRequest {
         /// 商户ID
         public let merchantId: String
 
@@ -79,7 +79,7 @@ extension Trp {
     }
 
     /// CreateCodePack返回参数结构体
-    public struct CreateCodePackResponse: TCResponseModel {
+    public struct CreateCodePackResponse: TCResponse {
         /// 码包ID
         public let packId: String
 

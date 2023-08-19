@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DeleteGameServerSessionQueue请求参数结构体
-    public struct DeleteGameServerSessionQueueRequest: TCRequestModel {
+    public struct DeleteGameServerSessionQueueRequest: TCRequest {
         /// 游戏服务器会话队列名字，长度1~128
         public let name: String
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DeleteGameServerSessionQueue返回参数结构体
-    public struct DeleteGameServerSessionQueueResponse: TCResponseModel {
+    public struct DeleteGameServerSessionQueueResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

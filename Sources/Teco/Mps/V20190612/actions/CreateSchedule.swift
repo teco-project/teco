@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateSchedule请求参数结构体
-    public struct CreateScheduleRequest: TCRequestModel {
+    public struct CreateScheduleRequest: TCRequest {
         /// 编排名称，最多128字符。同一个用户该名称唯一。
         public let scheduleName: String
 
@@ -60,7 +60,7 @@ extension Mps {
     }
 
     /// CreateSchedule返回参数结构体
-    public struct CreateScheduleResponse: TCResponseModel {
+    public struct CreateScheduleResponse: TCResponse {
         /// 编排 ID。
         public let scheduleId: Int64
 

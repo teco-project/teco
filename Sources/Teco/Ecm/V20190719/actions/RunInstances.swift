@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// RunInstances请求参数结构体
-    public struct RunInstancesRequest: TCRequestModel {
+    public struct RunInstancesRequest: TCRequest {
         /// 需要创建实例的可用区及创建数目及运营商的列表。在单次请求的过程中，单个region下的请求创建实例数上限为100
         public let zoneInstanceCountISPSet: [ZoneInstanceCountISP]
 
@@ -157,7 +157,7 @@ extension Ecm {
     }
 
     /// RunInstances返回参数结构体
-    public struct RunInstancesResponse: TCResponseModel {
+    public struct RunInstancesResponse: TCResponse {
         /// 创建中的实例ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceIdSet: [String]?

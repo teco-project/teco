@@ -20,13 +20,13 @@ import TecoCore
 
 extension Sts {
     /// GetCallerIdentity请求参数结构体
-    public struct GetCallerIdentityRequest: TCRequestModel {
+    public struct GetCallerIdentityRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetCallerIdentity返回参数结构体
-    public struct GetCallerIdentityResponse: TCResponseModel {
+    public struct GetCallerIdentityResponse: TCResponse {
         /// 当前调用者ARN。
         public let arn: String
 

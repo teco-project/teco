@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bsca {
     /// DescribeKBComponent请求参数结构体
-    public struct DescribeKBComponentRequest: TCRequestModel {
+    public struct DescribeKBComponentRequest: TCRequest {
         /// 组件的PURL
         public let purl: PURL
 
@@ -34,7 +34,7 @@ extension Bsca {
     }
 
     /// DescribeKBComponent返回参数结构体
-    public struct DescribeKBComponentResponse: TCResponseModel {
+    public struct DescribeKBComponentResponse: TCResponse {
         /// 匹配的组件信息
         public let component: Component
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// GetOfflineInstanceList请求参数结构体
-    public struct GetOfflineInstanceListRequest: TCRequestModel {
+    public struct GetOfflineInstanceListRequest: TCRequest {
         /// 第几页
         public let pageIndex: String
 
@@ -48,7 +48,7 @@ extension Wedata {
     }
 
     /// GetOfflineInstanceList返回参数结构体
-    public struct GetOfflineInstanceListResponse: TCResponseModel {
+    public struct GetOfflineInstanceListResponse: TCResponse {
         /// 总条数
         public let total: UInt64
 

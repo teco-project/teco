@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreateGrafanaNotificationChannel请求参数结构体
-    public struct CreateGrafanaNotificationChannelRequest: TCRequestModel {
+    public struct CreateGrafanaNotificationChannelRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Monitor {
     }
 
     /// CreateGrafanaNotificationChannel返回参数结构体
-    public struct CreateGrafanaNotificationChannelResponse: TCResponseModel {
+    public struct CreateGrafanaNotificationChannelResponse: TCResponse {
         /// 通道 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let channelId: String?

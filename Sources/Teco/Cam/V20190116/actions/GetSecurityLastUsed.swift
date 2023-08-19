@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetSecurityLastUsed请求参数结构体
-    public struct GetSecurityLastUsedRequest: TCRequestModel {
+    public struct GetSecurityLastUsedRequest: TCRequest {
         /// 查询密钥ID列表。最多支持10个。
         public let secretIdList: [String]
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// GetSecurityLastUsed返回参数结构体
-    public struct GetSecurityLastUsedResponse: TCResponseModel {
+    public struct GetSecurityLastUsedResponse: TCResponse {
         /// 密钥ID最近访问列表
         public let secretIdLastUsedRows: [SecretIdLastUsed]
 

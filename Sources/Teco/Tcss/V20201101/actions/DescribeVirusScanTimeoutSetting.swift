@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusScanTimeoutSetting请求参数结构体
-    public struct DescribeVirusScanTimeoutSettingRequest: TCRequestModel {
+    public struct DescribeVirusScanTimeoutSettingRequest: TCRequest {
         /// 设置类型0一键检测，1定时检测
         public let scanType: UInt64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusScanTimeoutSetting返回参数结构体
-    public struct DescribeVirusScanTimeoutSettingResponse: TCResponseModel {
+    public struct DescribeVirusScanTimeoutSettingResponse: TCResponse {
         /// 超时时长单位小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: UInt64?

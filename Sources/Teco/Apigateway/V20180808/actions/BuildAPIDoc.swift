@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// BuildAPIDoc请求参数结构体
-    public struct BuildAPIDocRequest: TCRequestModel {
+    public struct BuildAPIDocRequest: TCRequest {
         /// API文档ID
         public let apiDocId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// BuildAPIDoc返回参数结构体
-    public struct BuildAPIDocResponse: TCResponseModel {
+    public struct BuildAPIDocResponse: TCResponse {
         /// 操作是否成功
         public let result: Bool
 

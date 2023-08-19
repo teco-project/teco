@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vrs {
     /// CancelVRSTask请求参数结构体
-    public struct CancelVRSTaskRequest: TCRequestModel {
+    public struct CancelVRSTaskRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Vrs {
     }
 
     /// CancelVRSTask返回参数结构体
-    public struct CancelVRSTaskResponse: TCResponseModel {
+    public struct CancelVRSTaskResponse: TCResponse {
         /// 任务ID
         public let data: CancelVRSTaskRsp
 

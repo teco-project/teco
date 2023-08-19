@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyUploadInfo请求参数结构体
-    public struct ModifyUploadInfoRequest: TCRequestModel {
+    public struct ModifyUploadInfoRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -64,7 +64,7 @@ extension Tsf {
     }
 
     /// ModifyUploadInfo返回参数结构体
-    public struct ModifyUploadInfoResponse: TCResponseModel {
+    public struct ModifyUploadInfoResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

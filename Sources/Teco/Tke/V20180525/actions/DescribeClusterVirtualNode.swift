@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterVirtualNode请求参数结构体
-    public struct DescribeClusterVirtualNodeRequest: TCRequestModel {
+    public struct DescribeClusterVirtualNodeRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DescribeClusterVirtualNode返回参数结构体
-    public struct DescribeClusterVirtualNodeResponse: TCResponseModel {
+    public struct DescribeClusterVirtualNodeResponse: TCResponse {
         /// 节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodes: [VirtualNode]?

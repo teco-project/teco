@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// DescribeDataRepositoryTaskStatus请求参数结构体
-    public struct DescribeDataRepositoryTaskStatusRequest: TCRequestModel {
+    public struct DescribeDataRepositoryTaskStatusRequest: TCRequest {
         /// task id
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Goosefs {
     }
 
     /// DescribeDataRepositoryTaskStatus返回参数结构体
-    public struct DescribeDataRepositoryTaskStatusResponse: TCResponseModel {
+    public struct DescribeDataRepositoryTaskStatusResponse: TCResponse {
         /// 任务id
         public let taskId: String
 

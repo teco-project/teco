@@ -20,7 +20,7 @@ import TecoCore
 
 extension Privatedns {
     /// ModifyRecordsStatus请求参数结构体
-    public struct ModifyRecordsStatusRequest: TCRequestModel {
+    public struct ModifyRecordsStatusRequest: TCRequest {
         /// 私有域ID
         public let zoneId: String
 
@@ -44,7 +44,7 @@ extension Privatedns {
     }
 
     /// ModifyRecordsStatus返回参数结构体
-    public struct ModifyRecordsStatusResponse: TCResponseModel {
+    public struct ModifyRecordsStatusResponse: TCResponse {
         /// 私有域ID
         public let zoneId: String
 

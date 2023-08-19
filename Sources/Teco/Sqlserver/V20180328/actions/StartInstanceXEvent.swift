@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// StartInstanceXEvent请求参数结构体
-    public struct StartInstanceXEventRequest: TCRequestModel {
+    public struct StartInstanceXEventRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// StartInstanceXEvent返回参数结构体
-    public struct StartInstanceXEventResponse: TCResponseModel {
+    public struct StartInstanceXEventResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

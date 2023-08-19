@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// VerifyUser请求参数结构体
-    public struct VerifyUserRequest: TCRequestModel {
+    public struct VerifyUserRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -45,7 +45,7 @@ extension Essbasic {
     }
 
     /// VerifyUser返回参数结构体
-    public struct VerifyUserResponse: TCResponseModel {
+    public struct VerifyUserResponse: TCResponse {
         /// 电子签平台用户ID
         public let userId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// DownloadContract请求参数结构体
-    public struct DownloadContractRequest: TCRequestModel {
+    public struct DownloadContractRequest: TCRequest {
         /// 模块名ContractMng
         public let module: String
 
@@ -44,7 +44,7 @@ extension Ds {
     }
 
     /// DownloadContract返回参数结构体
-    public struct DownloadContractResponse: TCResponseModel {
+    public struct DownloadContractResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

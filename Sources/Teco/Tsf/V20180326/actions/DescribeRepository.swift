@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeRepository请求参数结构体
-    public struct DescribeRepositoryRequest: TCRequestModel {
+    public struct DescribeRepositoryRequest: TCRequest {
         /// 仓库ID
         public let repositoryId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeRepository返回参数结构体
-    public struct DescribeRepositoryResponse: TCResponseModel {
+    public struct DescribeRepositoryResponse: TCResponse {
         /// 查询的仓库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: RepositoryInfo?

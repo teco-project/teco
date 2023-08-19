@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// ModifyConfigMap请求参数结构体
-    public struct ModifyConfigMapRequest: TCRequestModel {
+    public struct ModifyConfigMapRequest: TCRequest {
         /// 单元ID
         public let edgeUnitID: UInt64
 
@@ -49,7 +49,7 @@ extension Iecp {
     }
 
     /// ModifyConfigMap返回参数结构体
-    public struct ModifyConfigMapResponse: TCResponseModel {
+    public struct ModifyConfigMapResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

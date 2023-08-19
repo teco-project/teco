@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// CloseDBExtranetAccess请求参数结构体
-    public struct CloseDBExtranetAccessRequest: TCRequestModel {
+    public struct CloseDBExtranetAccessRequest: TCRequest {
         /// 待关闭外网访问的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Mariadb {
     }
 
     /// CloseDBExtranetAccess返回参数结构体
-    public struct CloseDBExtranetAccessResponse: TCResponseModel {
+    public struct CloseDBExtranetAccessResponse: TCResponse {
         /// 异步任务ID，可通过 DescribeFlow 查询任务状态。
         public let flowId: Int64
 

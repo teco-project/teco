@@ -20,13 +20,13 @@ import TecoCore
 
 extension Postgres {
     /// DescribeBackupOverview请求参数结构体
-    public struct DescribeBackupOverviewRequest: TCRequestModel {
+    public struct DescribeBackupOverviewRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBackupOverview返回参数结构体
-    public struct DescribeBackupOverviewResponse: TCResponseModel {
+    public struct DescribeBackupOverviewResponse: TCResponse {
         /// 总免费空间大小，单位byte。
         public let totalFreeSize: UInt64
 

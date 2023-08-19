@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveWatermarkRule请求参数结构体
-    public struct CreateLiveWatermarkRuleRequest: TCRequestModel {
+    public struct CreateLiveWatermarkRuleRequest: TCRequest {
         /// 推流域名。
         public let domainName: String
 
@@ -49,7 +49,7 @@ extension Live {
     }
 
     /// CreateLiveWatermarkRule返回参数结构体
-    public struct CreateLiveWatermarkRuleResponse: TCResponseModel {
+    public struct CreateLiveWatermarkRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

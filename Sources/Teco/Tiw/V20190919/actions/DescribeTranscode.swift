@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeTranscode请求参数结构体
-    public struct DescribeTranscodeRequest: TCRequestModel {
+    public struct DescribeTranscodeRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// DescribeTranscode返回参数结构体
-    public struct DescribeTranscodeResponse: TCResponseModel {
+    public struct DescribeTranscodeResponse: TCResponse {
         /// 文档的总页数
         public let pages: Int64
 

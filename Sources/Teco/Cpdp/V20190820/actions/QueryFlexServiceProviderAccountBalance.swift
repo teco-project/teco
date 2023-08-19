@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexServiceProviderAccountBalance请求参数结构体
-    public struct QueryFlexServiceProviderAccountBalanceRequest: TCRequestModel {
+    public struct QueryFlexServiceProviderAccountBalanceRequest: TCRequest {
         /// 服务商ID
         public let serviceProviderId: String
 
@@ -43,7 +43,7 @@ extension Cpdp {
     }
 
     /// QueryFlexServiceProviderAccountBalance返回参数结构体
-    public struct QueryFlexServiceProviderAccountBalanceResponse: TCResponseModel {
+    public struct QueryFlexServiceProviderAccountBalanceResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

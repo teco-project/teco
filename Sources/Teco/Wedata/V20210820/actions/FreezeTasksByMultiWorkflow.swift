@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// FreezeTasksByMultiWorkflow请求参数结构体
-    public struct FreezeTasksByMultiWorkflowRequest: TCRequestModel {
+    public struct FreezeTasksByMultiWorkflowRequest: TCRequest {
         /// 工作流Id集合
         public let workFlowIds: [String]
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// FreezeTasksByMultiWorkflow返回参数结构体
-    public struct FreezeTasksByMultiWorkflowResponse: TCResponseModel {
+    public struct FreezeTasksByMultiWorkflowResponse: TCResponse {
         /// 操作结果
         public let data: OperateResult
 

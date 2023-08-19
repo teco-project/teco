@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeGroupInfo请求参数结构体
-    public struct DescribeGroupInfoRequest: TCRequestModel {
+    public struct DescribeGroupInfoRequest: TCRequest {
         /// （过滤条件）按照实例 ID 过滤。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Ckafka {
     }
 
     /// DescribeGroupInfo返回参数结构体
-    public struct DescribeGroupInfoResponse: TCResponseModel {
+    public struct DescribeGroupInfoResponse: TCResponse {
         /// 返回的结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [GroupInfoResponse]?

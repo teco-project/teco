@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// GetDownloadFlowUrl请求参数结构体
-    public struct GetDownloadFlowUrlRequest: TCRequestModel {
+    public struct GetDownloadFlowUrlRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -50,7 +50,7 @@ extension Essbasic {
     }
 
     /// GetDownloadFlowUrl返回参数结构体
-    public struct GetDownloadFlowUrlResponse: TCResponseModel {
+    public struct GetDownloadFlowUrlResponse: TCResponse {
         /// 合同（流程）下载地址
         public let downLoadUrl: String
 

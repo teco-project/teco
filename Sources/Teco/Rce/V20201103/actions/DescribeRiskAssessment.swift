@@ -20,13 +20,13 @@ import TecoCore
 
 extension Rce {
     /// DescribeRiskAssessment请求参数结构体
-    public struct DescribeRiskAssessmentRequest: TCRequestModel {
+    public struct DescribeRiskAssessmentRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRiskAssessment返回参数结构体
-    public struct DescribeRiskAssessmentResponse: TCResponseModel {
+    public struct DescribeRiskAssessmentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

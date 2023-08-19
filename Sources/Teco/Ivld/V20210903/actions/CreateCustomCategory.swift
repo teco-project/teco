@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// CreateCustomCategory请求参数结构体
-    public struct CreateCustomCategoryRequest: TCRequestModel {
+    public struct CreateCustomCategoryRequest: TCRequest {
         /// 自定义一级类型
         public let l1Category: String
 
@@ -39,7 +39,7 @@ extension Ivld {
     }
 
     /// CreateCustomCategory返回参数结构体
-    public struct CreateCustomCategoryResponse: TCResponseModel {
+    public struct CreateCustomCategoryResponse: TCResponse {
         /// 自定义分类信息ID
         public let categoryId: String
 

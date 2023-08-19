@@ -20,7 +20,7 @@ import TecoCore
 
 extension Captcha {
     /// DescribeCaptchaMiniData请求参数结构体
-    public struct DescribeCaptchaMiniDataRequest: TCRequestModel {
+    public struct DescribeCaptchaMiniDataRequest: TCRequest {
         /// 验证码应用ID
         public let captchaAppId: Int64
 
@@ -49,7 +49,7 @@ extension Captcha {
     }
 
     /// DescribeCaptchaMiniData返回参数结构体
-    public struct DescribeCaptchaMiniDataResponse: TCResponseModel {
+    public struct DescribeCaptchaMiniDataResponse: TCResponse {
         /// 返回码 0 成功 其它失败
         public let captchaCode: Int64
 

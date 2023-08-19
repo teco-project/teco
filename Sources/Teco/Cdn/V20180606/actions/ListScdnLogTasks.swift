@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// ListScdnLogTasks请求参数结构体
-    public struct ListScdnLogTasksRequest: TCRequestModel {
+    public struct ListScdnLogTasksRequest: TCRequest {
         /// 产品来源 cdn/ecdn
         public let source: String?
 
@@ -39,7 +39,7 @@ extension Cdn {
     }
 
     /// ListScdnLogTasks返回参数结构体
-    public struct ListScdnLogTasksResponse: TCResponseModel {
+    public struct ListScdnLogTasksResponse: TCResponse {
         /// 日志下载任务详情
         public let taskList: [ScdnLogTaskDetail]
 

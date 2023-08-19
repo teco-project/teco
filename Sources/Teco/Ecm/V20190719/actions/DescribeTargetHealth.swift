@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeTargetHealth请求参数结构体
-    public struct DescribeTargetHealthRequest: TCRequestModel {
+    public struct DescribeTargetHealthRequest: TCRequest {
         /// 要查询的负载均衡实例 ID列表
         public let loadBalancerIds: [String]
 
@@ -34,7 +34,7 @@ extension Ecm {
     }
 
     /// DescribeTargetHealth返回参数结构体
-    public struct DescribeTargetHealthResponse: TCResponseModel {
+    public struct DescribeTargetHealthResponse: TCResponse {
         /// 负载均衡实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancers: [LoadBalancerHealth]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// UploadContent请求参数结构体
-    public struct UploadContentRequest: TCRequestModel {
+    public struct UploadContentRequest: TCRequest {
         /// 脚本上传信息
         public let scriptRequestInfo: ScriptRequestInfo
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// UploadContent返回参数结构体
-    public struct UploadContentResponse: TCResponseModel {
+    public struct UploadContentResponse: TCResponse {
         /// 脚本信息响应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptInfo: ScriptInfoResponse?

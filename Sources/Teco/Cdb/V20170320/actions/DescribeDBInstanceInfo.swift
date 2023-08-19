@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeDBInstanceInfo请求参数结构体
-    public struct DescribeDBInstanceInfoRequest: TCRequestModel {
+    public struct DescribeDBInstanceInfoRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeDBInstanceInfo返回参数结构体
-    public struct DescribeDBInstanceInfoResponse: TCResponseModel {
+    public struct DescribeDBInstanceInfoResponse: TCResponse {
         /// 实例 ID 。
         public let instanceId: String
 

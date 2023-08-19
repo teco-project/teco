@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// PurchaseReservedInstancesOffering请求参数结构体
-    public struct PurchaseReservedInstancesOfferingRequest: TCRequestModel {
+    public struct PurchaseReservedInstancesOfferingRequest: TCRequest {
         /// 购买预留实例计费数量
         public let instanceCount: Int64
 
@@ -59,7 +59,7 @@ extension Cvm {
     }
 
     /// PurchaseReservedInstancesOffering返回参数结构体
-    public struct PurchaseReservedInstancesOfferingResponse: TCResponseModel {
+    public struct PurchaseReservedInstancesOfferingResponse: TCResponse {
         /// 已购买预留实例计费ID
         public let reservedInstanceId: String
 

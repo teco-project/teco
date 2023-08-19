@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Ssl {
     /// DescribeCertificateDetail请求参数结构体
-    public struct DescribeCertificateDetailRequest: TCRequestModel {
+    public struct DescribeCertificateDetailRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -36,7 +36,7 @@ extension Ssl {
     }
 
     /// DescribeCertificateDetail返回参数结构体
-    public struct DescribeCertificateDetailResponse: TCResponseModel {
+    public struct DescribeCertificateDetailResponse: TCResponse {
         /// 用户 UIN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerUin: String?

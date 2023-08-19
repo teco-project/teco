@@ -20,7 +20,7 @@ import TecoCore
 
 extension Batch {
     /// DeleteComputeEnv请求参数结构体
-    public struct DeleteComputeEnvRequest: TCRequestModel {
+    public struct DeleteComputeEnvRequest: TCRequest {
         /// 计算环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Batch {
     }
 
     /// DeleteComputeEnv返回参数结构体
-    public struct DeleteComputeEnvResponse: TCResponseModel {
+    public struct DeleteComputeEnvResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

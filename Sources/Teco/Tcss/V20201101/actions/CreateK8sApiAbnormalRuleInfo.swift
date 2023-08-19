@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateK8sApiAbnormalRuleInfo请求参数结构体
-    public struct CreateK8sApiAbnormalRuleInfoRequest: TCRequestModel {
+    public struct CreateK8sApiAbnormalRuleInfoRequest: TCRequest {
         /// 规则详情
         public let ruleInfo: K8sApiAbnormalRuleInfo
 
@@ -44,7 +44,7 @@ extension Tcss {
     }
 
     /// CreateK8sApiAbnormalRuleInfo返回参数结构体
-    public struct CreateK8sApiAbnormalRuleInfoResponse: TCResponseModel {
+    public struct CreateK8sApiAbnormalRuleInfoResponse: TCResponse {
         /// 规则ID
         public let ruleID: String
 

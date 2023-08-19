@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// OpenProxies请求参数结构体
-    public struct OpenProxiesRequest: TCRequestModel {
+    public struct OpenProxiesRequest: TCRequest {
         /// （旧参数，请切换到ProxyIds）通道的实例ID列表。
         public let instanceIds: [String]?
 
@@ -45,7 +45,7 @@ extension Gaap {
     }
 
     /// OpenProxies返回参数结构体
-    public struct OpenProxiesResponse: TCResponseModel {
+    public struct OpenProxiesResponse: TCResponse {
         /// 非关闭状态下的通道实例ID列表，不可开启。
         public let invalidStatusInstanceSet: [String]
 

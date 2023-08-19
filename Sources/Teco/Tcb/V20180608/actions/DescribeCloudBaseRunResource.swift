@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunResource请求参数结构体
-    public struct DescribeCloudBaseRunResourceRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunResourceRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunResource返回参数结构体
-    public struct DescribeCloudBaseRunResourceResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunResourceResponse: TCResponse {
         /// 集群状态(creating/succ)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterStatus: String?

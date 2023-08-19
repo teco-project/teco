@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// SetTaskAlarmNew请求参数结构体
-    public struct SetTaskAlarmNewRequest: TCRequestModel {
+    public struct SetTaskAlarmNewRequest: TCRequest {
         /// 设置任务超时告警和失败告警信息
         public let alarmInfoList: [AlarmInfo]
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// SetTaskAlarmNew返回参数结构体
-    public struct SetTaskAlarmNewResponse: TCResponseModel {
+    public struct SetTaskAlarmNewResponse: TCResponse {
         /// 返回批量操作成功个数、失败个数、操作总数
         public let data: BatchOperateResult
 

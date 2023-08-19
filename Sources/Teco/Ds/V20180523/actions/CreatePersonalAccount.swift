@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// CreatePersonalAccount请求参数结构体
-    public struct CreatePersonalAccountRequest: TCRequestModel {
+    public struct CreatePersonalAccountRequest: TCRequest {
         /// 模块名AccountMng
         public let module: String
 
@@ -59,7 +59,7 @@ extension Ds {
     }
 
     /// CreatePersonalAccount返回参数结构体
-    public struct CreatePersonalAccountResponse: TCResponseModel {
+    public struct CreatePersonalAccountResponse: TCResponse {
         /// 账号ID
         public let accountResId: String
 

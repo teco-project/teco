@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// DeleteSmsSign请求参数结构体
-    public struct DeleteSmsSignRequest: TCRequestModel {
+    public struct DeleteSmsSignRequest: TCRequest {
         /// 待删除的签名 ID。
         public let signId: UInt64
 
@@ -34,7 +34,7 @@ extension Sms {
     }
 
     /// DeleteSmsSign返回参数结构体
-    public struct DeleteSmsSignResponse: TCResponseModel {
+    public struct DeleteSmsSignResponse: TCResponse {
         /// 删除签名响应
         public let deleteSignStatus: DeleteSignStatus
 

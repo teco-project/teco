@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// SetWhiteboardPushCallbackKey请求参数结构体
-    public struct SetWhiteboardPushCallbackKeyRequest: TCRequestModel {
+    public struct SetWhiteboardPushCallbackKeyRequest: TCRequest {
         /// 应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// SetWhiteboardPushCallbackKey返回参数结构体
-    public struct SetWhiteboardPushCallbackKeyResponse: TCResponseModel {
+    public struct SetWhiteboardPushCallbackKeyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

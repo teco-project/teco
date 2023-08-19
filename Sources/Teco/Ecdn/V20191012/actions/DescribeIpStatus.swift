@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecdn {
     /// DescribeIpStatus请求参数结构体
-    public struct DescribeIpStatusRequest: TCRequestModel {
+    public struct DescribeIpStatusRequest: TCRequest {
         /// 加速域名
         public let domain: String
 
@@ -42,7 +42,7 @@ extension Ecdn {
     }
 
     /// DescribeIpStatus返回参数结构体
-    public struct DescribeIpStatusResponse: TCResponseModel {
+    public struct DescribeIpStatusResponse: TCResponse {
         /// 节点列表
         public let ips: [IpStatus]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBashEventsInfoNew请求参数结构体
-    public struct DescribeBashEventsInfoNewRequest: TCRequestModel {
+    public struct DescribeBashEventsInfoNewRequest: TCRequest {
         /// 事件id
         public let id: UInt64
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// DescribeBashEventsInfoNew返回参数结构体
-    public struct DescribeBashEventsInfoNewResponse: TCResponseModel {
+    public struct DescribeBashEventsInfoNewResponse: TCResponse {
         /// 事件详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bashEventsInfo: BashEventsInfoNew?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// SyncProxyOrganizationOperators请求参数结构体
-    public struct SyncProxyOrganizationOperatorsRequest: TCRequestModel {
+    public struct SyncProxyOrganizationOperatorsRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.AppId 和 Agent.ProxyOrganizationOpenId必填。
         public let agent: Agent
 
@@ -56,7 +56,7 @@ extension Essbasic {
     }
 
     /// SyncProxyOrganizationOperators返回参数结构体
-    public struct SyncProxyOrganizationOperatorsResponse: TCResponseModel {
+    public struct SyncProxyOrganizationOperatorsResponse: TCResponse {
         /// Status 同步状态,全部同步失败接口会直接报错
         /// 1-成功
         /// 2-部分成功

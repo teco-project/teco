@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wav {
     /// CreateLead请求参数结构体
-    public struct CreateLeadRequest: TCRequestModel {
+    public struct CreateLeadRequest: TCRequest {
         /// 来源ID
         public let channelId: UInt64
 
@@ -104,7 +104,7 @@ extension Wav {
     }
 
     /// CreateLead返回参数结构体
-    public struct CreateLeadResponse: TCResponseModel {
+    public struct CreateLeadResponse: TCResponse {
         /// 线索处理状态码： 0-表示创建成功， 1-表示线索合并，2-表示线索重复
         public let businessCode: Int64
 

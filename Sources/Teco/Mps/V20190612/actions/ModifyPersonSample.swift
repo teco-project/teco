@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ModifyPersonSample请求参数结构体
-    public struct ModifyPersonSampleRequest: TCRequestModel {
+    public struct ModifyPersonSampleRequest: TCRequest {
         /// 素材 ID。
         public let personId: String
 
@@ -62,7 +62,7 @@ extension Mps {
     }
 
     /// ModifyPersonSample返回参数结构体
-    public struct ModifyPersonSampleResponse: TCResponseModel {
+    public struct ModifyPersonSampleResponse: TCResponse {
         /// 素材信息。
         public let person: AiSamplePerson
 

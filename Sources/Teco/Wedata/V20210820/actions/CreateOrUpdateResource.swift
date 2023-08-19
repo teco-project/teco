@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateOrUpdateResource请求参数结构体
-    public struct CreateOrUpdateResourceRequest: TCRequestModel {
+    public struct CreateOrUpdateResourceRequest: TCRequest {
         /// 项目ID，必填项
         public let projectId: String?
 
@@ -64,7 +64,7 @@ extension Wedata {
     }
 
     /// CreateOrUpdateResource返回参数结构体
-    public struct CreateOrUpdateResourceResponse: TCResponseModel {
+    public struct CreateOrUpdateResourceResponse: TCResponse {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [UserFileDTO]?

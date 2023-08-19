@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// ModifyWorkGroup请求参数结构体
-    public struct ModifyWorkGroupRequest: TCRequestModel {
+    public struct ModifyWorkGroupRequest: TCRequest {
         /// 工作组Id
         public let workGroupId: Int64
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// ModifyWorkGroup返回参数结构体
-    public struct ModifyWorkGroupResponse: TCResponseModel {
+    public struct ModifyWorkGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

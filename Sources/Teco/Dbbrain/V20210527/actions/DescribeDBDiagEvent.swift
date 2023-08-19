@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dbbrain {
     /// DescribeDBDiagEvent请求参数结构体
-    public struct DescribeDBDiagEventRequest: TCRequestModel {
+    public struct DescribeDBDiagEventRequest: TCRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -46,7 +46,7 @@ extension Dbbrain {
     }
 
     /// DescribeDBDiagEvent返回参数结构体
-    public struct DescribeDBDiagEventResponse: TCResponseModel {
+    public struct DescribeDBDiagEventResponse: TCResponse {
         /// 诊断项。
         public let diagItem: String
 

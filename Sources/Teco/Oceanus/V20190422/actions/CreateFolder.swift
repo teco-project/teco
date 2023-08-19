@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// CreateFolder请求参数结构体
-    public struct CreateFolderRequest: TCRequestModel {
+    public struct CreateFolderRequest: TCRequest {
         /// 新建文件夹名
         public let folderName: String
 
@@ -49,7 +49,7 @@ extension Oceanus {
     }
 
     /// CreateFolder返回参数结构体
-    public struct CreateFolderResponse: TCResponseModel {
+    public struct CreateFolderResponse: TCResponse {
         /// 新建文件夹的唯一ID
         public let folderId: String
 

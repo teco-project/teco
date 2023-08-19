@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeDomainAssets请求参数结构体
-    public struct DescribeDomainAssetsRequest: TCRequestModel {
+    public struct DescribeDomainAssetsRequest: TCRequest {
         /// -
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeDomainAssets返回参数结构体
-    public struct DescribeDomainAssetsResponse: TCResponseModel {
+    public struct DescribeDomainAssetsResponse: TCResponse {
         /// -
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeActivityRecord请求参数结构体
-    public struct DescribeActivityRecordRequest: TCRequestModel {
+    public struct DescribeActivityRecordRequest: TCRequest {
         /// 渠道加密token
         public let channelToken: String
 
@@ -59,7 +59,7 @@ extension Tcb {
     }
 
     /// DescribeActivityRecord返回参数结构体
-    public struct DescribeActivityRecordResponse: TCResponseModel {
+    public struct DescribeActivityRecordResponse: TCResponse {
         /// 活动记录详情
         public let activityRecords: [ActivityRecordItem]
 

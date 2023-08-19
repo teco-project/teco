@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcaplusdb {
     /// DescribeUinInWhitelist请求参数结构体
-    public struct DescribeUinInWhitelistRequest: TCRequestModel {
+    public struct DescribeUinInWhitelistRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUinInWhitelist返回参数结构体
-    public struct DescribeUinInWhitelistResponse: TCResponseModel {
+    public struct DescribeUinInWhitelistResponse: TCResponse {
         /// 查询结果：`FALSE` 否；`TRUE` 是
         public let result: String
 

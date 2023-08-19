@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RecognizeTableAccurateOCR请求参数结构体
-    public struct RecognizeTableAccurateOCRRequest: TCRequestModel {
+    public struct RecognizeTableAccurateOCRRequest: TCRequest {
         /// 图片/PDF的 Base64 值。
         /// 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
         /// 图片支持的像素范围：需介于20-10000px之间。
@@ -51,7 +51,7 @@ extension Ocr {
     }
 
     /// RecognizeTableAccurateOCR返回参数结构体
-    public struct RecognizeTableAccurateOCRResponse: TCResponseModel {
+    public struct RecognizeTableAccurateOCRResponse: TCResponse {
         /// 检测到的文本信息，具体内容请点击左侧链接。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableDetections: [TableInfo]?

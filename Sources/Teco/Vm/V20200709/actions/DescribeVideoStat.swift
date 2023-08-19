@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vm {
     /// DescribeVideoStat请求参数结构体
-    public struct DescribeVideoStatRequest: TCRequestModel {
+    public struct DescribeVideoStatRequest: TCRequest {
         /// 审核类型 1: 机器审核; 2: 人工审核
         public let auditType: Int64
 
@@ -39,7 +39,7 @@ extension Vm {
     }
 
     /// DescribeVideoStat返回参数结构体
-    public struct DescribeVideoStatResponse: TCResponseModel {
+    public struct DescribeVideoStatResponse: TCResponse {
         /// 识别结果统计
         public let overview: Overview
 

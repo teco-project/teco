@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyDBInstanceVipVport请求参数结构体
-    public struct ModifyDBInstanceVipVportRequest: TCRequestModel {
+    public struct ModifyDBInstanceVipVportRequest: TCRequest {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c2nl9rpv 或者 cdbrg-c3nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
         public let instanceId: String
 
@@ -59,7 +59,7 @@ extension Cdb {
     }
 
     /// ModifyDBInstanceVipVport返回参数结构体
-    public struct ModifyDBInstanceVipVportResponse: TCResponseModel {
+    public struct ModifyDBInstanceVipVportResponse: TCResponse {
         /// 异步任务ID。(该返回字段目前已废弃)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asyncRequestId: String?

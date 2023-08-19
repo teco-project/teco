@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateUploadPath请求参数结构体
-    public struct CreateUploadPathRequest: TCRequestModel {
+    public struct CreateUploadPathRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// CreateUploadPath返回参数结构体
-    public struct CreateUploadPathResponse: TCResponseModel {
+    public struct CreateUploadPathResponse: TCResponse {
         /// 固件上传地址URL，用户可将本地的固件文件通过该URL以PUT的请求方式上传。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

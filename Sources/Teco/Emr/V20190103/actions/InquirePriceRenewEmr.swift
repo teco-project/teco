@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// InquirePriceRenewEmr请求参数结构体
-    public struct InquirePriceRenewEmrRequest: TCRequestModel {
+    public struct InquirePriceRenewEmrRequest: TCRequest {
         /// 实例续费的时长。需要结合TimeUnit一起使用。1表示续费一个月
         public let timeSpan: UInt64
 
@@ -61,7 +61,7 @@ extension Emr {
     }
 
     /// InquirePriceRenewEmr返回参数结构体
-    public struct InquirePriceRenewEmrResponse: TCResponseModel {
+    public struct InquirePriceRenewEmrResponse: TCResponse {
         /// 原价，单位为元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalCost: Float?

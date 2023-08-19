@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// RemoveAssetImageRegistryRegistryDetail请求参数结构体
-    public struct RemoveAssetImageRegistryRegistryDetailRequest: TCRequestModel {
+    public struct RemoveAssetImageRegistryRegistryDetailRequest: TCRequest {
         /// 仓库唯一id
         public let registryId: Int64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// RemoveAssetImageRegistryRegistryDetail返回参数结构体
-    public struct RemoveAssetImageRegistryRegistryDetailResponse: TCResponseModel {
+    public struct RemoveAssetImageRegistryRegistryDetailResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

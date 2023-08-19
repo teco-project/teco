@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DeleteClusterAsGroups请求参数结构体
-    public struct DeleteClusterAsGroupsRequest: TCRequestModel {
+    public struct DeleteClusterAsGroupsRequest: TCRequest {
         /// 集群ID，通过[DescribeClusters](https://cloud.tencent.com/document/api/457/31862)接口获取。
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DeleteClusterAsGroups返回参数结构体
-    public struct DeleteClusterAsGroupsResponse: TCResponseModel {
+    public struct DeleteClusterAsGroupsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

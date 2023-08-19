@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sms {
     /// ModifySmsSign请求参数结构体
-    public struct ModifySmsSignRequest: TCRequestModel {
+    public struct ModifySmsSignRequest: TCRequest {
         /// 待修改的签名 ID。
         public let signId: UInt64
 
@@ -98,7 +98,7 @@ extension Sms {
     }
 
     /// ModifySmsSign返回参数结构体
-    public struct ModifySmsSignResponse: TCResponseModel {
+    public struct ModifySmsSignResponse: TCResponse {
         /// 修改签名响应
         public let modifySignStatus: ModifySignStatus
 

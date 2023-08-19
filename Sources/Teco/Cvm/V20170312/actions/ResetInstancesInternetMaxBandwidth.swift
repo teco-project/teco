@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// ResetInstancesInternetMaxBandwidth请求参数结构体
-    public struct ResetInstancesInternetMaxBandwidthRequest: TCRequestModel {
+    public struct ResetInstancesInternetMaxBandwidthRequest: TCRequest {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的 `InstanceId` 获取。 每次请求批量实例的上限为100。当调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽时，只支持一个实例。
         public let instanceIds: [String]
 
@@ -49,7 +49,7 @@ extension Cvm {
     }
 
     /// ResetInstancesInternetMaxBandwidth返回参数结构体
-    public struct ResetInstancesInternetMaxBandwidthResponse: TCResponseModel {
+    public struct ResetInstancesInternetMaxBandwidthResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

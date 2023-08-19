@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// DescribeProcessTaskStatus请求参数结构体
-    public struct DescribeProcessTaskStatusRequest: TCRequestModel {
+    public struct DescribeProcessTaskStatusRequest: TCRequest {
         /// 云镜客户端唯一Uuid。
         public let uuid: String
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// DescribeProcessTaskStatus返回参数结构体
-    public struct DescribeProcessTaskStatusResponse: TCResponseModel {
+    public struct DescribeProcessTaskStatusResponse: TCResponse {
         /// 任务状态。
         /// - COMPLETE：完成（此时可以调用DescribeProcesses接口获取实时进程列表）
         /// - AGENT_OFFLINE：云镜客户端离线

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DescribeRecordTemplate请求参数结构体
-    public struct DescribeRecordTemplateRequest: TCRequestModel {
+    public struct DescribeRecordTemplateRequest: TCRequest {
         /// 模板ID
         public let templateId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DescribeRecordTemplate返回参数结构体
-    public struct DescribeRecordTemplateResponse: TCResponseModel {
+    public struct DescribeRecordTemplateResponse: TCResponse {
         /// 返回结果
         public let data: RecordTemplateInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// BankCardOCR请求参数结构体
-    public struct BankCardOCRRequest: TCRequestModel {
+    public struct BankCardOCRRequest: TCRequest {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
         /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         public let imageBase64: String?
@@ -71,7 +71,7 @@ extension Ocr {
     }
 
     /// BankCardOCR返回参数结构体
-    public struct BankCardOCRResponse: TCResponseModel {
+    public struct BankCardOCRResponse: TCResponse {
         /// 卡号
         public let cardNo: String
 

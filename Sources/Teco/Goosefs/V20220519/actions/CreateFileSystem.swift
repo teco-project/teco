@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// CreateFileSystem请求参数结构体
-    public struct CreateFileSystemRequest: TCRequestModel {
+    public struct CreateFileSystemRequest: TCRequest {
         /// 文件系统类型, 可填goosefs和goosefsx
         public let type: String
 
@@ -69,7 +69,7 @@ extension Goosefs {
     }
 
     /// CreateFileSystem返回参数结构体
-    public struct CreateFileSystemResponse: TCResponseModel {
+    public struct CreateFileSystemResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

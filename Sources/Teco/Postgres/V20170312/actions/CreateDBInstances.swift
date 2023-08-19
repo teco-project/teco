@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CreateDBInstances请求参数结构体
-    public struct CreateDBInstancesRequest: TCRequestModel {
+    public struct CreateDBInstancesRequest: TCRequest {
         /// 售卖规格ID。该参数可以通过调用DescribeClasses的返回值中的SpecCode字段来获取。
         public let specCode: String
 
@@ -129,7 +129,7 @@ extension Postgres {
     }
 
     /// CreateDBInstances返回参数结构体
-    public struct CreateDBInstancesResponse: TCResponseModel {
+    public struct CreateDBInstancesResponse: TCResponse {
         /// 订单号列表。每个实例对应一个订单号。
         public let dealNames: [String]
 

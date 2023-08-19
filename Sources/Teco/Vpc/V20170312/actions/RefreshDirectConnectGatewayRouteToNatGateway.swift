@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// RefreshDirectConnectGatewayRouteToNatGateway请求参数结构体
-    public struct RefreshDirectConnectGatewayRouteToNatGatewayRequest: TCRequestModel {
+    public struct RefreshDirectConnectGatewayRouteToNatGatewayRequest: TCRequest {
         /// vpc的ID
         public let vpcId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// RefreshDirectConnectGatewayRouteToNatGateway返回参数结构体
-    public struct RefreshDirectConnectGatewayRouteToNatGatewayResponse: TCResponseModel {
+    public struct RefreshDirectConnectGatewayRouteToNatGatewayResponse: TCResponse {
         /// IDC子网信息
         public let directConnectSubnetSet: [DirectConnectSubnet]
 

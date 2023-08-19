@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteCustomFunction请求参数结构体
-    public struct DeleteCustomFunctionRequest: TCRequestModel {
+    public struct DeleteCustomFunctionRequest: TCRequest {
         /// 集群实例 ID
         public let clusterIdentifier: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DeleteCustomFunction返回参数结构体
-    public struct DeleteCustomFunctionResponse: TCResponseModel {
+    public struct DeleteCustomFunctionResponse: TCResponse {
         /// 函数 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let functionId: String?

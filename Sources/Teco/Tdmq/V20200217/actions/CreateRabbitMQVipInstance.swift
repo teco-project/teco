@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRabbitMQVipInstance请求参数结构体
-    public struct CreateRabbitMQVipInstanceRequest: TCRequestModel {
+    public struct CreateRabbitMQVipInstanceRequest: TCRequest {
         /// 可用区
         public let zoneIds: [Int64]
 
@@ -79,7 +79,7 @@ extension Tdmq {
     }
 
     /// CreateRabbitMQVipInstance返回参数结构体
-    public struct CreateRabbitMQVipInstanceResponse: TCResponseModel {
+    public struct CreateRabbitMQVipInstanceResponse: TCResponse {
         /// 订单号Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tranId: String?

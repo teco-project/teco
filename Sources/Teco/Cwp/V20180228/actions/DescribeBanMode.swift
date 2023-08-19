@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeBanMode请求参数结构体
-    public struct DescribeBanModeRequest: TCRequestModel {
+    public struct DescribeBanModeRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeBanMode返回参数结构体
-    public struct DescribeBanModeResponse: TCResponseModel {
+    public struct DescribeBanModeResponse: TCResponse {
         /// 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
         public let mode: String
 

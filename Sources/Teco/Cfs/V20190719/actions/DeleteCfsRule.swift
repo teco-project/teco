@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfs {
     /// DeleteCfsRule请求参数结构体
-    public struct DeleteCfsRuleRequest: TCRequestModel {
+    public struct DeleteCfsRuleRequest: TCRequest {
         /// 权限组 ID
         public let pGroupId: String
 
@@ -39,7 +39,7 @@ extension Cfs {
     }
 
     /// DeleteCfsRule返回参数结构体
-    public struct DeleteCfsRuleResponse: TCResponseModel {
+    public struct DeleteCfsRuleResponse: TCResponse {
         /// 规则 ID
         public let ruleId: String
 

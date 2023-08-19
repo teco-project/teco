@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDatabaseObjects请求参数结构体
-    public struct DescribeDatabaseObjectsRequest: TCRequestModel {
+    public struct DescribeDatabaseObjectsRequest: TCRequest {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dcdb {
     }
 
     /// DescribeDatabaseObjects返回参数结构体
-    public struct DescribeDatabaseObjectsResponse: TCResponseModel {
+    public struct DescribeDatabaseObjectsResponse: TCResponse {
         /// 透传入参。
         public let instanceId: String
 

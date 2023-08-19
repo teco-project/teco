@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteLaneRule请求参数结构体
-    public struct DeleteLaneRuleRequest: TCRequestModel {
+    public struct DeleteLaneRuleRequest: TCRequest {
         /// 泳道规则Id
         public let ruleId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DeleteLaneRule返回参数结构体
-    public struct DeleteLaneRuleResponse: TCResponseModel {
+    public struct DeleteLaneRuleResponse: TCResponse {
         /// 操作状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

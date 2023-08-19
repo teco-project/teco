@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cms {
     /// CreateKeywordsSamples请求参数结构体
-    public struct CreateKeywordsSamplesRequest: TCRequestModel {
+    public struct CreateKeywordsSamplesRequest: TCRequest {
         /// 关键词库信息：单次限制写入2000个，词库总容量不可超过10000个。
         public let userKeywords: [UserKeyword]
 
@@ -39,7 +39,7 @@ extension Cms {
     }
 
     /// CreateKeywordsSamples返回参数结构体
-    public struct CreateKeywordsSamplesResponse: TCResponseModel {
+    public struct CreateKeywordsSamplesResponse: TCResponse {
         /// 添加成功的关键词ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sampleIDs: [String]?

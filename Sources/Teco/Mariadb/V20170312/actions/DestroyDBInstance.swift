@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DestroyDBInstance请求参数结构体
-    public struct DestroyDBInstanceRequest: TCRequestModel {
+    public struct DestroyDBInstanceRequest: TCRequest {
         /// 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// DestroyDBInstance返回参数结构体
-    public struct DestroyDBInstanceResponse: TCResponseModel {
+    public struct DestroyDBInstanceResponse: TCResponse {
         /// 实例 ID，与入参InstanceId一致。
         public let instanceId: String
 

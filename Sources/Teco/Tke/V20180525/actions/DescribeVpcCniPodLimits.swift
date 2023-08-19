@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeVpcCniPodLimits请求参数结构体
-    public struct DescribeVpcCniPodLimitsRequest: TCRequestModel {
+    public struct DescribeVpcCniPodLimitsRequest: TCRequest {
         /// 查询的机型所在可用区，如：ap-guangzhou-3，默认为空，即不按可用区过滤信息
         public let zone: String?
 
@@ -44,7 +44,7 @@ extension Tke {
     }
 
     /// DescribeVpcCniPodLimits返回参数结构体
-    public struct DescribeVpcCniPodLimitsResponse: TCResponseModel {
+    public struct DescribeVpcCniPodLimitsResponse: TCResponse {
         /// 机型数据数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

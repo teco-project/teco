@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bma {
     /// CreateBPFalseTicket请求参数结构体
-    public struct CreateBPFalseTicketRequest: TCRequestModel {
+    public struct CreateBPFalseTicketRequest: TCRequest {
         /// 仿冒网址
         public let fakeURL: String?
 
@@ -34,7 +34,7 @@ extension Bma {
     }
 
     /// CreateBPFalseTicket返回参数结构体
-    public struct CreateBPFalseTicketResponse: TCResponseModel {
+    public struct CreateBPFalseTicketResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

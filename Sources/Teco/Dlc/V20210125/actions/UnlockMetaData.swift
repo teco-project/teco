@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// UnlockMetaData请求参数结构体
-    public struct UnlockMetaDataRequest: TCRequestModel {
+    public struct UnlockMetaDataRequest: TCRequest {
         /// 锁ID
         public let lockId: Int64
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// UnlockMetaData返回参数结构体
-    public struct UnlockMetaDataResponse: TCResponseModel {
+    public struct UnlockMetaDataResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

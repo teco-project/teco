@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ft {
     /// ChangeAgePic请求参数结构体
-    public struct ChangeAgePicRequest: TCRequestModel {
+    public struct ChangeAgePicRequest: TCRequest {
         /// 人脸变老变年轻信息。
         /// 您可以输入最多3个 AgeInfo 来实现给一张图中的最多3张人脸变老变年轻。
         public let ageInfos: [AgeInfo]
@@ -55,7 +55,7 @@ extension Ft {
     }
 
     /// ChangeAgePic返回参数结构体
-    public struct ChangeAgePicResponse: TCResponseModel {
+    public struct ChangeAgePicResponse: TCResponse {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
         public let resultImage: String
 

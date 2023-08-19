@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcr {
     /// CreateCustomAccount请求参数结构体
-    public struct CreateCustomAccountRequest: TCRequestModel {
+    public struct CreateCustomAccountRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -66,7 +66,7 @@ extension Tcr {
     }
 
     /// CreateCustomAccount返回参数结构体
-    public struct CreateCustomAccountResponse: TCResponseModel {
+    public struct CreateCustomAccountResponse: TCResponse {
         /// 自定义用户名（会自动加上前缀tcr$）
         public let name: String
 

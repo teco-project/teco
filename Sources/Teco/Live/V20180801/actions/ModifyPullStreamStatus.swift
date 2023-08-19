@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ModifyPullStreamStatus请求参数结构体
-    public struct ModifyPullStreamStatusRequest: TCRequestModel {
+    public struct ModifyPullStreamStatusRequest: TCRequest {
         /// 配置 ID 列表。
         public let configIds: [String]
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// ModifyPullStreamStatus返回参数结构体
-    public struct ModifyPullStreamStatusResponse: TCResponseModel {
+    public struct ModifyPullStreamStatusResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

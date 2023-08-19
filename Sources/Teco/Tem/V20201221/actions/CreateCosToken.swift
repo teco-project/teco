@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateCosToken请求参数结构体
-    public struct CreateCosTokenRequest: TCRequestModel {
+    public struct CreateCosTokenRequest: TCRequest {
         /// 服务ID
         public let serviceId: String
 
@@ -54,7 +54,7 @@ extension Tem {
     }
 
     /// CreateCosToken返回参数结构体
-    public struct CreateCosTokenResponse: TCResponseModel {
+    public struct CreateCosTokenResponse: TCResponse {
         /// 成功时为CosToken对象，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: CosToken?

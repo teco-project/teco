@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// CreateVideoGenerationTask请求参数结构体
-    public struct CreateVideoGenerationTaskRequest: TCRequestModel {
+    public struct CreateVideoGenerationTaskRequest: TCRequest {
         /// 录制任务的TaskId
         public let onlineRecordTaskId: String
 
@@ -72,7 +72,7 @@ extension Tiw {
     }
 
     /// CreateVideoGenerationTask返回参数结构体
-    public struct CreateVideoGenerationTaskResponse: TCResponseModel {
+    public struct CreateVideoGenerationTaskResponse: TCResponse {
         /// 视频生成的任务Id
         public let taskId: String
 

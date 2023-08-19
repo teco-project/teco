@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// CreateAutoSnapshotPolicy请求参数结构体
-    public struct CreateAutoSnapshotPolicyRequest: TCRequestModel {
+    public struct CreateAutoSnapshotPolicyRequest: TCRequest {
         /// 定期快照的执行策略。
         public let policy: [Policy]
 
@@ -59,7 +59,7 @@ extension Cbs {
     }
 
     /// CreateAutoSnapshotPolicy返回参数结构体
-    public struct CreateAutoSnapshotPolicyResponse: TCResponseModel {
+    public struct CreateAutoSnapshotPolicyResponse: TCResponse {
         /// 新创建的定期快照策略ID。
         public let autoSnapshotPolicyId: String
 

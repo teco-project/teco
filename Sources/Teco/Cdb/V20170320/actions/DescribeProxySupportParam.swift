@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeProxySupportParam请求参数结构体
-    public struct DescribeProxySupportParamRequest: TCRequestModel {
+    public struct DescribeProxySupportParamRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeProxySupportParam返回参数结构体
-    public struct DescribeProxySupportParamResponse: TCResponseModel {
+    public struct DescribeProxySupportParamResponse: TCResponse {
         /// 支持最大代理版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyVersion: String?

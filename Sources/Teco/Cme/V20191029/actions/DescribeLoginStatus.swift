@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// DescribeLoginStatus请求参数结构体
-    public struct DescribeLoginStatusRequest: TCRequestModel {
+    public struct DescribeLoginStatusRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -39,7 +39,7 @@ extension Cme {
     }
 
     /// DescribeLoginStatus返回参数结构体
-    public struct DescribeLoginStatusResponse: TCResponseModel {
+    public struct DescribeLoginStatusResponse: TCResponse {
         /// 用户登录状态列表。
         public let loginStatusInfoSet: [LoginStatusInfo]
 

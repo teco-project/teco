@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcb {
     /// DescribeEnvLimit请求参数结构体
-    public struct DescribeEnvLimitRequest: TCRequestModel {
+    public struct DescribeEnvLimitRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEnvLimit返回参数结构体
-    public struct DescribeEnvLimitResponse: TCResponseModel {
+    public struct DescribeEnvLimitResponse: TCResponse {
         /// 环境总数上限
         public let maxEnvNum: Int64
 

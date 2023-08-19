@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// CreateProxySessionKillTask请求参数结构体
-    public struct CreateProxySessionKillTaskRequest: TCRequestModel {
+    public struct CreateProxySessionKillTaskRequest: TCRequest {
         /// 实例 ID。
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Dbbrain {
     }
 
     /// CreateProxySessionKillTask返回参数结构体
-    public struct CreateProxySessionKillTaskResponse: TCResponseModel {
+    public struct CreateProxySessionKillTaskResponse: TCResponse {
         /// 创建 kill 会话任务返回的异步任务 id
         public let asyncRequestId: Int64
 

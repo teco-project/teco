@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeModelServiceCallInfo请求参数结构体
-    public struct DescribeModelServiceCallInfoRequest: TCRequestModel {
+    public struct DescribeModelServiceCallInfoRequest: TCRequest {
         /// 服务组id
         public let serviceGroupId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeModelServiceCallInfo返回参数结构体
-    public struct DescribeModelServiceCallInfoResponse: TCResponseModel {
+    public struct DescribeModelServiceCallInfoResponse: TCResponse {
         /// 服务调用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceCallInfo: ServiceCallInfo?

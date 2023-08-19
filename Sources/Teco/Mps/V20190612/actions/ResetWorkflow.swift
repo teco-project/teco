@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// ResetWorkflow请求参数结构体
-    public struct ResetWorkflowRequest: TCRequestModel {
+    public struct ResetWorkflowRequest: TCRequest {
         /// 工作流 ID。
         public let workflowId: Int64
 
@@ -84,7 +84,7 @@ extension Mps {
     }
 
     /// ResetWorkflow返回参数结构体
-    public struct ResetWorkflowResponse: TCResponseModel {
+    public struct ResetWorkflowResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

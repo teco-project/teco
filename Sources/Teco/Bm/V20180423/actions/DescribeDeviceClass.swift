@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// DescribeDeviceClass请求参数结构体
-    public struct DescribeDeviceClassRequest: TCRequestModel {
+    public struct DescribeDeviceClassRequest: TCRequest {
         /// 是否仅查询在售标准机型配置信息。取值0：查询所有机型；1：查询在售机型。默认为1
         public let onSale: UInt64?
 
@@ -39,7 +39,7 @@ extension Bm {
     }
 
     /// DescribeDeviceClass返回参数结构体
-    public struct DescribeDeviceClassResponse: TCResponseModel {
+    public struct DescribeDeviceClassResponse: TCResponse {
         /// 物理机设备类型列表
         public let deviceClassSet: [DeviceClass]
 

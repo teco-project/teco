@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// AssignIpv6Addresses请求参数结构体
-    public struct AssignIpv6AddressesRequest: TCRequestModel {
+    public struct AssignIpv6AddressesRequest: TCRequest {
         /// ECM 地域
         public let ecmRegion: String
 
@@ -72,7 +72,7 @@ extension Ecm {
     }
 
     /// AssignIpv6Addresses返回参数结构体
-    public struct AssignIpv6AddressesResponse: TCResponseModel {
+    public struct AssignIpv6AddressesResponse: TCResponse {
         /// 分配给弹性网卡的IPv6地址列表。
         public let ipv6AddressSet: [Ipv6Address]
 

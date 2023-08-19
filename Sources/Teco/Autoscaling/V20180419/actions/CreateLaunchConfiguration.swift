@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CreateLaunchConfiguration请求参数结构体
-    public struct CreateLaunchConfigurationRequest: TCRequestModel {
+    public struct CreateLaunchConfigurationRequest: TCRequest {
         /// 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
         public let launchConfigurationName: String
 
@@ -183,7 +183,7 @@ extension As {
     }
 
     /// CreateLaunchConfiguration返回参数结构体
-    public struct CreateLaunchConfigurationResponse: TCResponseModel {
+    public struct CreateLaunchConfigurationResponse: TCResponse {
         /// 当通过本接口来创建启动配置时会返回该参数，表示启动配置ID。
         public let launchConfigurationId: String
 

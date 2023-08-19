@@ -20,13 +20,13 @@ import TecoCore
 
 extension Keewidb {
     /// DescribeProductInfo请求参数结构体
-    public struct DescribeProductInfoRequest: TCRequestModel {
+    public struct DescribeProductInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeProductInfo返回参数结构体
-    public struct DescribeProductInfoResponse: TCResponseModel {
+    public struct DescribeProductInfoResponse: TCResponse {
         /// 地域售卖信息
         public let regionSet: [RegionConf]
 

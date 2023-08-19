@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// UpgradeDBInstance请求参数结构体
-    public struct UpgradeDBInstanceRequest: TCRequestModel {
+    public struct UpgradeDBInstanceRequest: TCRequest {
         /// 实例ID，形如mssql-j8kv137v
         public let instanceId: String
 
@@ -79,7 +79,7 @@ extension Sqlserver {
     }
 
     /// UpgradeDBInstance返回参数结构体
-    public struct UpgradeDBInstanceResponse: TCResponseModel {
+    public struct UpgradeDBInstanceResponse: TCResponse {
         /// 订单名称
         public let dealName: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cvm {
     /// DescribeDisasterRecoverGroupQuota请求参数结构体
-    public struct DescribeDisasterRecoverGroupQuotaRequest: TCRequestModel {
+    public struct DescribeDisasterRecoverGroupQuotaRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDisasterRecoverGroupQuota返回参数结构体
-    public struct DescribeDisasterRecoverGroupQuotaResponse: TCResponseModel {
+    public struct DescribeDisasterRecoverGroupQuotaResponse: TCResponse {
         /// 可创建置放群组数量的上限。
         public let groupQuota: Int64
 

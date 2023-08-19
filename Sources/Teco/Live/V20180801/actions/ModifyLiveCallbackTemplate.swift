@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ModifyLiveCallbackTemplate请求参数结构体
-    public struct ModifyLiveCallbackTemplateRequest: TCRequestModel {
+    public struct ModifyLiveCallbackTemplateRequest: TCRequest {
         /// DescribeLiveCallbackTemplates接口返回的模板 ID。
         public let templateId: Int64
 
@@ -85,7 +85,7 @@ extension Live {
     }
 
     /// ModifyLiveCallbackTemplate返回参数结构体
-    public struct ModifyLiveCallbackTemplateResponse: TCResponseModel {
+    public struct ModifyLiveCallbackTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

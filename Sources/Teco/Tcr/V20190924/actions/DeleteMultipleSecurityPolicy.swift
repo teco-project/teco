@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DeleteMultipleSecurityPolicy请求参数结构体
-    public struct DeleteMultipleSecurityPolicyRequest: TCRequestModel {
+    public struct DeleteMultipleSecurityPolicyRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -39,7 +39,7 @@ extension Tcr {
     }
 
     /// DeleteMultipleSecurityPolicy返回参数结构体
-    public struct DeleteMultipleSecurityPolicyResponse: TCResponseModel {
+    public struct DeleteMultipleSecurityPolicyResponse: TCResponse {
         /// 实例Id
         public let registryId: String
 

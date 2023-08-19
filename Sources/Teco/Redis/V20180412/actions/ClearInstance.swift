@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// ClearInstance请求参数结构体
-    public struct ClearInstanceRequest: TCRequestModel {
+    public struct ClearInstanceRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Redis {
     }
 
     /// ClearInstance返回参数结构体
-    public struct ClearInstanceResponse: TCResponseModel {
+    public struct ClearInstanceResponse: TCResponse {
         /// 任务ID
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyVpcEndPointServiceWhiteList请求参数结构体
-    public struct ModifyVpcEndPointServiceWhiteListRequest: TCRequestModel {
+    public struct ModifyVpcEndPointServiceWhiteListRequest: TCRequest {
         /// 用户UIN。
         public let userUin: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyVpcEndPointServiceWhiteList返回参数结构体
-    public struct ModifyVpcEndPointServiceWhiteListResponse: TCResponseModel {
+    public struct ModifyVpcEndPointServiceWhiteListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

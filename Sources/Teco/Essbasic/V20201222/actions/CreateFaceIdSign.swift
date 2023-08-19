@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateFaceIdSign请求参数结构体
-    public struct CreateFaceIdSignRequest: TCRequestModel {
+    public struct CreateFaceIdSignRequest: TCRequest {
         /// 调用方信息; 必选
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// CreateFaceIdSign返回参数结构体
-    public struct CreateFaceIdSignResponse: TCResponseModel {
+    public struct CreateFaceIdSignResponse: TCResponse {
         /// 慧眼API签名
         public let sign: String
 

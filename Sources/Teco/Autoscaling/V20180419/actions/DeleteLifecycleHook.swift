@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DeleteLifecycleHook请求参数结构体
-    public struct DeleteLifecycleHookRequest: TCRequestModel {
+    public struct DeleteLifecycleHookRequest: TCRequest {
         /// 生命周期挂钩ID
         public let lifecycleHookId: String
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DeleteLifecycleHook返回参数结构体
-    public struct DeleteLifecycleHookResponse: TCResponseModel {
+    public struct DeleteLifecycleHookResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

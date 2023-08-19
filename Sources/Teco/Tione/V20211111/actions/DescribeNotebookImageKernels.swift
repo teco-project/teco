@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// DescribeNotebookImageKernels请求参数结构体
-    public struct DescribeNotebookImageKernelsRequest: TCRequestModel {
+    public struct DescribeNotebookImageKernelsRequest: TCRequest {
         /// notebook id
         public let notebookId: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// DescribeNotebookImageKernels返回参数结构体
-    public struct DescribeNotebookImageKernelsResponse: TCResponseModel {
+    public struct DescribeNotebookImageKernelsResponse: TCResponse {
         /// 镜像kernel数组
         public let kernels: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyWebPageProtectSwitch请求参数结构体
-    public struct ModifyWebPageProtectSwitchRequest: TCRequestModel {
+    public struct ModifyWebPageProtectSwitchRequest: TCRequest {
         /// 开关类型 1 防护开关  2 自动恢复开关 3 移除防护目录
         public let switchType: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// ModifyWebPageProtectSwitch返回参数结构体
-    public struct ModifyWebPageProtectSwitchResponse: TCResponseModel {
+    public struct ModifyWebPageProtectSwitchResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

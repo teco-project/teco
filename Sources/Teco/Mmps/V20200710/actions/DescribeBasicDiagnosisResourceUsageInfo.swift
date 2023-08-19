@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mmps {
     /// DescribeBasicDiagnosisResourceUsageInfo请求参数结构体
-    public struct DescribeBasicDiagnosisResourceUsageInfoRequest: TCRequestModel {
+    public struct DescribeBasicDiagnosisResourceUsageInfoRequest: TCRequest {
         /// 诊断模式 1:基础诊断，2:深度诊断
         public let mode: Int64
 
@@ -34,7 +34,7 @@ extension Mmps {
     }
 
     /// DescribeBasicDiagnosisResourceUsageInfo返回参数结构体
-    public struct DescribeBasicDiagnosisResourceUsageInfoResponse: TCResponseModel {
+    public struct DescribeBasicDiagnosisResourceUsageInfoResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
 

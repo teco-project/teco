@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// MobileStatus请求参数结构体
-    public struct MobileStatusRequest: TCRequestModel {
+    public struct MobileStatusRequest: TCRequest {
         /// 手机号码
         public let mobile: String
 
@@ -39,7 +39,7 @@ extension Faceid {
     }
 
     /// MobileStatus返回参数结构体
-    public struct MobileStatusResponse: TCResponseModel {
+    public struct MobileStatusResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0：成功

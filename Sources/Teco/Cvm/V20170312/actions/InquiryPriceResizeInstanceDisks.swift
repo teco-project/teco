@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// InquiryPriceResizeInstanceDisks请求参数结构体
-    public struct InquiryPriceResizeInstanceDisksRequest: TCRequestModel {
+    public struct InquiryPriceResizeInstanceDisksRequest: TCRequest {
         /// 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
         public let instanceId: String
 
@@ -51,7 +51,7 @@ extension Cvm {
     }
 
     /// InquiryPriceResizeInstanceDisks返回参数结构体
-    public struct InquiryPriceResizeInstanceDisksResponse: TCResponseModel {
+    public struct InquiryPriceResizeInstanceDisksResponse: TCResponse {
         /// 该参数表示磁盘扩容成对应配置的价格。
         public let price: Price
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Advisor {
     /// DescribeStrategies请求参数结构体
-    public struct DescribeStrategiesRequest: TCRequestModel {
+    public struct DescribeStrategiesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeStrategies返回参数结构体
-    public struct DescribeStrategiesResponse: TCResponseModel {
+    public struct DescribeStrategiesResponse: TCResponse {
         /// 评估项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strategies: [DescribeStrategie]?

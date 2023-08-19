@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dc {
     /// DescribeInternetAddressStatistics请求参数结构体
-    public struct DescribeInternetAddressStatisticsRequest: TCRequestModel {
+    public struct DescribeInternetAddressStatisticsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeInternetAddressStatistics返回参数结构体
-    public struct DescribeInternetAddressStatisticsResponse: TCResponseModel {
+    public struct DescribeInternetAddressStatisticsResponse: TCResponse {
         /// 互联网公网地址统计信息数量
         public let totalCount: Int64
 

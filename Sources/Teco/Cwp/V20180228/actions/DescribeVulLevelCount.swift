@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVulLevelCount请求参数结构体
-    public struct DescribeVulLevelCountRequest: TCRequestModel {
+    public struct DescribeVulLevelCountRequest: TCRequest {
         /// 1:web-cms 漏洞，2.应用漏洞 3:安全基线 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞，不填或者填0时返回 1，2，4，5 的总统计数据
         public let vulCategory: UInt64?
 
@@ -39,7 +39,7 @@ extension Cwp {
     }
 
     /// DescribeVulLevelCount返回参数结构体
-    public struct DescribeVulLevelCountResponse: TCResponseModel {
+    public struct DescribeVulLevelCountResponse: TCResponse {
         /// 统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulLevelList: [VulLevelInfo]?

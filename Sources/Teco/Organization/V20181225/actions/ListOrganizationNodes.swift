@@ -20,13 +20,13 @@ import TecoCore
 
 extension Organization {
     /// ListOrganizationNodes请求参数结构体
-    public struct ListOrganizationNodesRequest: TCRequestModel {
+    public struct ListOrganizationNodesRequest: TCRequest {
         public init() {
         }
     }
 
     /// ListOrganizationNodes返回参数结构体
-    public struct ListOrganizationNodesResponse: TCResponseModel {
+    public struct ListOrganizationNodesResponse: TCResponse {
         /// 企业组织单元列表
         public let nodes: [OrgNode]
 

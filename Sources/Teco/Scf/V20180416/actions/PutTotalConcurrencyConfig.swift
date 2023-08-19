@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// PutTotalConcurrencyConfig请求参数结构体
-    public struct PutTotalConcurrencyConfigRequest: TCRequestModel {
+    public struct PutTotalConcurrencyConfigRequest: TCRequest {
         /// 账号并发内存配额，注：账号并发内存配额下限：用户已用并发内存总额 + 12800
         public let totalConcurrencyMem: UInt64
 
@@ -39,7 +39,7 @@ extension Scf {
     }
 
     /// PutTotalConcurrencyConfig返回参数结构体
-    public struct PutTotalConcurrencyConfigResponse: TCResponseModel {
+    public struct PutTotalConcurrencyConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

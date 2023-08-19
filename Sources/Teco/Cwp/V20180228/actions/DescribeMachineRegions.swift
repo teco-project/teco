@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeMachineRegions请求参数结构体
-    public struct DescribeMachineRegionsRequest: TCRequestModel {
+    public struct DescribeMachineRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeMachineRegions返回参数结构体
-    public struct DescribeMachineRegionsResponse: TCResponseModel {
+    public struct DescribeMachineRegionsResponse: TCResponse {
         /// CVM 云服务器地域列表
         public let cvm: [RegionInfo]
 

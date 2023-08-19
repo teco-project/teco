@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyDBInstanceRenewFlag请求参数结构体
-    public struct ModifyDBInstanceRenewFlagRequest: TCRequestModel {
+    public struct ModifyDBInstanceRenewFlagRequest: TCRequest {
         /// 实例续费状态标记信息
         public let renewFlags: [InstanceRenewInfo]
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// ModifyDBInstanceRenewFlag返回参数结构体
-    public struct ModifyDBInstanceRenewFlagResponse: TCResponseModel {
+    public struct ModifyDBInstanceRenewFlagResponse: TCResponse {
         /// 修改成功的个数
         public let count: Int64
 

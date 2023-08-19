@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// ListUserByProperty请求参数结构体
-    public struct ListUserByPropertyRequest: TCRequestModel {
+    public struct ListUserByPropertyRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -54,7 +54,7 @@ extension Ciam {
     }
 
     /// ListUserByProperty返回参数结构体
-    public struct ListUserByPropertyResponse: TCResponseModel {
+    public struct ListUserByPropertyResponse: TCResponse {
         /// 用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let users: [User]?

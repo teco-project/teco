@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dlc {
     /// DescribeStoreLocation请求参数结构体
-    public struct DescribeStoreLocationRequest: TCRequestModel {
+    public struct DescribeStoreLocationRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeStoreLocation返回参数结构体
-    public struct DescribeStoreLocationResponse: TCResponseModel {
+    public struct DescribeStoreLocationResponse: TCResponse {
         /// 返回用户设置的结果存储位置路径，如果未设置则返回空字符串：""
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storeLocation: String?

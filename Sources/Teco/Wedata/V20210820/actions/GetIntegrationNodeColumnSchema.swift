@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// GetIntegrationNodeColumnSchema请求参数结构体
-    public struct GetIntegrationNodeColumnSchemaRequest: TCRequestModel {
+    public struct GetIntegrationNodeColumnSchemaRequest: TCRequest {
         /// 字段示例（json格式）
         public let columnContent: String?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// GetIntegrationNodeColumnSchema返回参数结构体
-    public struct GetIntegrationNodeColumnSchemaResponse: TCResponseModel {
+    public struct GetIntegrationNodeColumnSchemaResponse: TCResponse {
         /// 字段列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemas: [IntegrationNodeSchema]?

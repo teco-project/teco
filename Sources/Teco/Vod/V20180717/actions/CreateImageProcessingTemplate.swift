@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateImageProcessingTemplate请求参数结构体
-    public struct CreateImageProcessingTemplateRequest: TCRequestModel {
+    public struct CreateImageProcessingTemplateRequest: TCRequest {
         /// 图片处理操作数组，操作将以其在数组中的顺序执行。
         /// - 长度限制：10。
         public let operations: [ImageOperation]
@@ -50,7 +50,7 @@ extension Vod {
     }
 
     /// CreateImageProcessingTemplate返回参数结构体
-    public struct CreateImageProcessingTemplateResponse: TCResponseModel {
+    public struct CreateImageProcessingTemplateResponse: TCResponse {
         /// 图片处理模板唯一标识。
         public let definition: UInt64
 

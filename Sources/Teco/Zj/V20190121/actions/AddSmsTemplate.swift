@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// AddSmsTemplate请求参数结构体
-    public struct AddSmsTemplateRequest: TCRequestModel {
+    public struct AddSmsTemplateRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -81,7 +81,7 @@ extension Zj {
     }
 
     /// AddSmsTemplate返回参数结构体
-    public struct AddSmsTemplateResponse: TCResponseModel {
+    public struct AddSmsTemplateResponse: TCResponse {
         /// 短信模板创建接口返回
         public let data: AddSmsTemplateDataStruct
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulTopRanking请求参数结构体
-    public struct DescribeVulTopRankingRequest: TCRequestModel {
+    public struct DescribeVulTopRankingRequest: TCRequest {
         /// 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
         public let categoryType: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVulTopRanking返回参数结构体
-    public struct DescribeVulTopRankingResponse: TCResponseModel {
+    public struct DescribeVulTopRankingResponse: TCResponse {
         /// 漏洞Top排名信息列表
         public let list: [VulTopRankingInfo]
 

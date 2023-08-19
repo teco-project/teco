@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyImageAuthorized请求参数结构体
-    public struct ModifyImageAuthorizedRequest: TCRequestModel {
+    public struct ModifyImageAuthorizedRequest: TCRequest {
         /// 本地镜像是否全部授权的标识，优先权高于根据本地镜像ids授权。等于true时需UpdatedLocalImageCnt大于0。
         public let allLocalImages: Bool
 
@@ -89,7 +89,7 @@ extension Tcss {
     }
 
     /// ModifyImageAuthorized返回参数结构体
-    public struct ModifyImageAuthorizedResponse: TCResponseModel {
+    public struct ModifyImageAuthorizedResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

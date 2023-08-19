@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeInstances请求参数结构体
-    public struct DescribeInstancesRequest: TCRequestModel {
+    public struct DescribeInstancesRequest: TCRequest {
         /// 集群筛选策略。取值范围：
         /// - clusterList：表示查询除了已销毁集群之外的集群列表。
         /// - monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。
@@ -75,7 +75,7 @@ extension Emr {
     }
 
     /// DescribeInstances返回参数结构体
-    public struct DescribeInstancesResponse: TCResponseModel {
+    public struct DescribeInstancesResponse: TCResponse {
         /// 符合条件的实例总数。
         public let totalCnt: Int64
 

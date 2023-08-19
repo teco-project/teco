@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// ForwardTKEEdgeApplicationRequestV3请求参数结构体
-    public struct ForwardTKEEdgeApplicationRequestV3Request: TCRequestModel {
+    public struct ForwardTKEEdgeApplicationRequestV3Request: TCRequest {
         /// 请求集群addon的访问
         public let method: String
 
@@ -64,7 +64,7 @@ extension Tke {
     }
 
     /// ForwardTKEEdgeApplicationRequestV3返回参数结构体
-    public struct ForwardTKEEdgeApplicationRequestV3Response: TCResponseModel {
+    public struct ForwardTKEEdgeApplicationRequestV3Response: TCResponse {
         /// 请求集群addon后返回的数据
         public let responseBody: String
 

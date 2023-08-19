@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribePrometheusTargets请求参数结构体
-    public struct DescribePrometheusTargetsRequest: TCRequestModel {
+    public struct DescribePrometheusTargetsRequest: TCRequest {
         /// 实例id
         public let instanceId: String
 
@@ -51,7 +51,7 @@ extension Tke {
     }
 
     /// DescribePrometheusTargets返回参数结构体
-    public struct DescribePrometheusTargetsResponse: TCResponseModel {
+    public struct DescribePrometheusTargetsResponse: TCResponse {
         /// 所有Job的targets信息
         public let jobs: [PrometheusJobTargets]
 

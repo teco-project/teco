@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ModifyUser请求参数结构体
-    public struct ModifyUserRequest: TCRequestModel {
+    public struct ModifyUserRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -59,7 +59,7 @@ extension Essbasic {
     }
 
     /// ModifyUser返回参数结构体
-    public struct ModifyUserResponse: TCResponseModel {
+    public struct ModifyUserResponse: TCResponse {
         /// 腾讯电子签平台用户唯一标识
         public let userId: String
 

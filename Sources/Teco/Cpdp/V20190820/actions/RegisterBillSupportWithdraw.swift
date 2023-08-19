@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RegisterBillSupportWithdraw请求参数结构体
-    public struct RegisterBillSupportWithdrawRequest: TCRequestModel {
+    public struct RegisterBillSupportWithdrawRequest: TCRequest {
         /// STRING(32)，交易网会员代码
         public let tranNetMemberCode: String
 
@@ -79,7 +79,7 @@ extension Cpdp {
     }
 
     /// RegisterBillSupportWithdraw返回参数结构体
-    public struct RegisterBillSupportWithdrawResponse: TCResponseModel {
+    public struct RegisterBillSupportWithdrawResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

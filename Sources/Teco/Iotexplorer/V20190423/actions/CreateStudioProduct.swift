@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CreateStudioProduct请求参数结构体
-    public struct CreateStudioProductRequest: TCRequestModel {
+    public struct CreateStudioProductRequest: TCRequest {
         /// 产品名称，名称不能和已经存在的产品名称重复。命名规则：[a-zA-Z0-9:_-]{1,32}
         public let productName: String
 
@@ -69,7 +69,7 @@ extension Iotexplorer {
     }
 
     /// CreateStudioProduct返回参数结构体
-    public struct CreateStudioProductResponse: TCResponseModel {
+    public struct CreateStudioProductResponse: TCResponse {
         /// 产品描述
         public let product: ProductEntry
 

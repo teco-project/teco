@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteProjectParamDs请求参数结构体
-    public struct DeleteProjectParamDsRequest: TCRequestModel {
+    public struct DeleteProjectParamDsRequest: TCRequest {
         /// 参数名
         public let paramKey: String?
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteProjectParamDs返回参数结构体
-    public struct DeleteProjectParamDsResponse: TCResponseModel {
+    public struct DeleteProjectParamDsResponse: TCResponse {
         /// 结果
         public let data: Bool
 

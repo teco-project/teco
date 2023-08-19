@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// CreateCmdTemplate请求参数结构体
-    public struct CreateCmdTemplateRequest: TCRequestModel {
+    public struct CreateCmdTemplateRequest: TCRequest {
         /// 模板名，最大长度32字符，不能包含空白字符
         public let name: String
 
@@ -46,7 +46,7 @@ extension Dasb {
     }
 
     /// CreateCmdTemplate返回参数结构体
-    public struct CreateCmdTemplateResponse: TCResponseModel {
+    public struct CreateCmdTemplateResponse: TCResponse {
         /// 新建成功后返回的记录ID
         public let id: UInt64
 

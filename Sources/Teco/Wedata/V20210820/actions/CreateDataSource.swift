@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// CreateDataSource请求参数结构体
-    public struct CreateDataSourceRequest: TCRequestModel {
+    public struct CreateDataSourceRequest: TCRequest {
         /// 数据源名称，在相同SpaceName下，数据源名称不能为空
         public let name: String
 
@@ -114,7 +114,7 @@ extension Wedata {
     }
 
     /// CreateDataSource返回参数结构体
-    public struct CreateDataSourceResponse: TCResponseModel {
+    public struct CreateDataSourceResponse: TCResponse {
         /// 主键ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: UInt64?

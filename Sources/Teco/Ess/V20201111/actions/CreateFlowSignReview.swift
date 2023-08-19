@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowSignReview请求参数结构体
-    public struct CreateFlowSignReviewRequest: TCRequestModel {
+    public struct CreateFlowSignReviewRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -75,7 +75,7 @@ extension Ess {
     }
 
     /// CreateFlowSignReview返回参数结构体
-    public struct CreateFlowSignReviewResponse: TCResponseModel {
+    public struct CreateFlowSignReviewResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

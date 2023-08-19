@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreatePrepareFlow请求参数结构体
-    public struct CreatePrepareFlowRequest: TCRequestModel {
+    public struct CreatePrepareFlowRequest: TCRequest {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
 
@@ -136,7 +136,7 @@ extension Ess {
     }
 
     /// CreatePrepareFlow返回参数结构体
-    public struct CreatePrepareFlowResponse: TCResponseModel {
+    public struct CreatePrepareFlowResponse: TCResponse {
         /// 快速发起预览链接，有效期5分钟
         public let url: String
 

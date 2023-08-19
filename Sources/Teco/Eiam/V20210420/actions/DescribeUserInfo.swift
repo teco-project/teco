@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeUserInfo请求参数结构体
-    public struct DescribeUserInfoRequest: TCRequestModel {
+    public struct DescribeUserInfoRequest: TCRequest {
         /// 用户名，长度限制：64个字符。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
         public let userName: String?
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DescribeUserInfo返回参数结构体
-    public struct DescribeUserInfoResponse: TCResponseModel {
+    public struct DescribeUserInfoResponse: TCResponse {
         /// 用户名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// GetSSHKeyPairValue请求参数结构体
-    public struct GetSSHKeyPairValueRequest: TCRequestModel {
+    public struct GetSSHKeyPairValueRequest: TCRequest {
         /// 凭据名称，此凭据只能为SSH密钥对凭据类型。
         public let secretName: String?
 
@@ -39,7 +39,7 @@ extension Ssm {
     }
 
     /// GetSSHKeyPairValue返回参数结构体
-    public struct GetSSHKeyPairValueResponse: TCResponseModel {
+    public struct GetSSHKeyPairValueResponse: TCResponse {
         /// SSH密钥对ID。
         public let sshKeyID: String
 

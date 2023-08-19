@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAbnormalProcessRuleDetail请求参数结构体
-    public struct DescribeAbnormalProcessRuleDetailRequest: TCRequestModel {
+    public struct DescribeAbnormalProcessRuleDetailRequest: TCRequest {
         /// 策略唯一id
         public let ruleId: String?
 
@@ -49,7 +49,7 @@ extension Tcss {
     }
 
     /// DescribeAbnormalProcessRuleDetail返回参数结构体
-    public struct DescribeAbnormalProcessRuleDetailResponse: TCResponseModel {
+    public struct DescribeAbnormalProcessRuleDetailResponse: TCResponse {
         /// 异常进程策略详细信息
         public let ruleDetail: AbnormalProcessRuleInfo
 

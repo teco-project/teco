@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusGlobalConfig请求参数结构体
-    public struct DescribePrometheusGlobalConfigRequest: TCRequestModel {
+    public struct DescribePrometheusGlobalConfigRequest: TCRequest {
         /// 实例级别抓取配置
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusGlobalConfig返回参数结构体
-    public struct DescribePrometheusGlobalConfigResponse: TCResponseModel {
+    public struct DescribePrometheusGlobalConfigResponse: TCResponse {
         /// 配置内容
         public let config: String
 

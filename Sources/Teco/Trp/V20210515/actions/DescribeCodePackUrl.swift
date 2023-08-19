@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeCodePackUrl请求参数结构体
-    public struct DescribeCodePackUrlRequest: TCRequestModel {
+    public struct DescribeCodePackUrlRequest: TCRequest {
         /// 码包ID
         public let packId: String
 
@@ -39,7 +39,7 @@ extension Trp {
     }
 
     /// DescribeCodePackUrl返回参数结构体
-    public struct DescribeCodePackUrlResponse: TCResponseModel {
+    public struct DescribeCodePackUrlResponse: TCResponse {
         /// 文字码包地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?

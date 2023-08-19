@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smh {
     /// VerifySmsCode请求参数结构体
-    public struct VerifySmsCodeRequest: TCRequestModel {
+    public struct VerifySmsCodeRequest: TCRequest {
         /// 验证码目的，当前支持换绑超级管理员账号，BindSuperAdmin；体验版企业升级验证ChannelUpdateVerify，等
         public let purpose: String
 
@@ -54,7 +54,7 @@ extension Smh {
     }
 
     /// VerifySmsCode返回参数结构体
-    public struct VerifySmsCodeResponse: TCResponseModel {
+    public struct VerifySmsCodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

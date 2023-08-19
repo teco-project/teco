@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DeleteMigration请求参数结构体
-    public struct DeleteMigrationRequest: TCRequestModel {
+    public struct DeleteMigrationRequest: TCRequest {
         /// 迁移任务ID
         public let migrateId: UInt64
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DeleteMigration返回参数结构体
-    public struct DeleteMigrationResponse: TCResponseModel {
+    public struct DeleteMigrationResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

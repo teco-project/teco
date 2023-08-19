@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// UpdateTimeTemplate请求参数结构体
-    public struct UpdateTimeTemplateRequest: TCRequestModel {
+    public struct UpdateTimeTemplateRequest: TCRequest {
         /// 时间模板ID
         public let templateId: String
 
@@ -50,7 +50,7 @@ extension Iotvideoindustry {
     }
 
     /// UpdateTimeTemplate返回参数结构体
-    public struct UpdateTimeTemplateResponse: TCResponseModel {
+    public struct UpdateTimeTemplateResponse: TCResponse {
         /// 操作结果，“OK”表示成功，其他表示失败。
         public let status: String
 

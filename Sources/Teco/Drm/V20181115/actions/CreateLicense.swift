@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// CreateLicense请求参数结构体
-    public struct CreateLicenseRequest: TCRequestModel {
+    public struct CreateLicenseRequest: TCRequest {
         /// DRM方案类型，接口取值：WIDEVINE，FAIRPLAY。
         public let drmType: String
 
@@ -55,7 +55,7 @@ extension Drm {
     }
 
     /// CreateLicense返回参数结构体
-    public struct CreateLicenseResponse: TCResponseModel {
+    public struct CreateLicenseResponse: TCResponse {
         /// Base64 编码的许可证二进制数据。
         public let license: String
 

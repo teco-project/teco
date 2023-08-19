@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeAgentInstallCommand请求参数结构体
-    public struct DescribeAgentInstallCommandRequest: TCRequestModel {
+    public struct DescribeAgentInstallCommandRequest: TCRequest {
         /// 是否是腾讯云
         public let isCloud: Bool
 
@@ -59,7 +59,7 @@ extension Tcss {
     }
 
     /// DescribeAgentInstallCommand返回参数结构体
-    public struct DescribeAgentInstallCommandResponse: TCResponseModel {
+    public struct DescribeAgentInstallCommandResponse: TCResponse {
         /// linux系统安装命令
         public let linuxCommand: String
 

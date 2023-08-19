@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunsou {
     /// DataManipulation请求参数结构体
-    public struct DataManipulationRequest: TCRequestModel {
+    public struct DataManipulationRequest: TCRequest {
         /// 操作类型，add或del
         public let opType: String
 
@@ -49,7 +49,7 @@ extension Yunsou {
     }
 
     /// DataManipulation返回参数结构体
-    public struct DataManipulationResponse: TCResponseModel {
+    public struct DataManipulationResponse: TCResponse {
         /// 数据操作结果
         public let data: DataManipulationResult
 

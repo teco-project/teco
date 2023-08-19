@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// DescribeImageSharePermission请求参数结构体
-    public struct DescribeImageSharePermissionRequest: TCRequestModel {
+    public struct DescribeImageSharePermissionRequest: TCRequest {
         /// 需要共享的镜像Id
         public let imageId: String
 
@@ -34,7 +34,7 @@ extension Cvm {
     }
 
     /// DescribeImageSharePermission返回参数结构体
-    public struct DescribeImageSharePermissionResponse: TCResponseModel {
+    public struct DescribeImageSharePermissionResponse: TCResponse {
         /// 镜像共享信息
         public let sharePermissionSet: [SharePermission]
 

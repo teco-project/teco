@@ -20,7 +20,7 @@ import TecoCore
 
 extension Btoe {
     /// CreateHashDepositNoCert请求参数结构体
-    public struct CreateHashDepositNoCertRequest: TCRequestModel {
+    public struct CreateHashDepositNoCertRequest: TCRequest {
         /// 数据hash
         public let evidenceHash: String
 
@@ -44,7 +44,7 @@ extension Btoe {
     }
 
     /// CreateHashDepositNoCert返回参数结构体
-    public struct CreateHashDepositNoCertResponse: TCResponseModel {
+    public struct CreateHashDepositNoCertResponse: TCResponse {
         /// 透传字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let businessId: String?

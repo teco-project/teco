@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeInstanceMonitorSIP请求参数结构体
-    public struct DescribeInstanceMonitorSIPRequest: TCRequestModel {
+    public struct DescribeInstanceMonitorSIPRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeInstanceMonitorSIP返回参数结构体
-    public struct DescribeInstanceMonitorSIPResponse: TCResponseModel {
+    public struct DescribeInstanceMonitorSIPResponse: TCResponse {
         /// 访问来源信息
         public let data: [SourceInfo]
 

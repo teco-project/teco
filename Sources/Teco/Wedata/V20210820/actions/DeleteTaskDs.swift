@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteTaskDs请求参数结构体
-    public struct DeleteTaskDsRequest: TCRequestModel {
+    public struct DeleteTaskDsRequest: TCRequest {
         /// 项目Id
         public let projectId: String?
 
@@ -64,7 +64,7 @@ extension Wedata {
     }
 
     /// DeleteTaskDs返回参数结构体
-    public struct DeleteTaskDsResponse: TCResponseModel {
+    public struct DeleteTaskDsResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: Bool?

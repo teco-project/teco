@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLogDownloadList请求参数结构体
-    public struct DescribeLogDownloadListRequest: TCRequestModel {
+    public struct DescribeLogDownloadListRequest: TCRequest {
         /// 开始时间，北京时间。
         /// 格式：yyyy-mm-dd HH:MM:SS。
         /// 注：此字段为北京时间（UTC+8时区）。
@@ -54,7 +54,7 @@ extension Live {
     }
 
     /// DescribeLogDownloadList返回参数结构体
-    public struct DescribeLogDownloadListResponse: TCResponseModel {
+    public struct DescribeLogDownloadListResponse: TCResponse {
         /// 日志信息列表。
         public let logInfoList: [LogInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteRoles请求参数结构体
-    public struct DeleteRolesRequest: TCRequestModel {
+    public struct DeleteRolesRequest: TCRequest {
         /// 角色名称数组。
         public let roleNames: [String]
 
@@ -39,7 +39,7 @@ extension Tdmq {
     }
 
     /// DeleteRoles返回参数结构体
-    public struct DeleteRolesResponse: TCResponseModel {
+    public struct DeleteRolesResponse: TCResponse {
         /// 成功删除的角色名称数组。
         public let roleNames: [String]
 

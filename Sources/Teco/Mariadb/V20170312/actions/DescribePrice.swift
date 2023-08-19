@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribePrice请求参数结构体
-    public struct DescribePriceRequest: TCRequestModel {
+    public struct DescribePriceRequest: TCRequest {
         /// 欲新购实例的可用区ID。
         public let zone: String
 
@@ -74,7 +74,7 @@ extension Mariadb {
     }
 
     /// DescribePrice返回参数结构体
-    public struct DescribePriceResponse: TCResponseModel {
+    public struct DescribePriceResponse: TCResponse {
         /// 原价
         /// * 单位：默认为分，若请求参数带有AmountUnit，参考AmountUnit描述
         /// * 币种：国内站为人民币，国际站为美元

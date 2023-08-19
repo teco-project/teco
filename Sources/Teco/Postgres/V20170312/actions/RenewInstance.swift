@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// RenewInstance请求参数结构体
-    public struct RenewInstanceRequest: TCRequestModel {
+    public struct RenewInstanceRequest: TCRequest {
         /// 实例ID，形如postgres-6fego161
         public let dbInstanceId: String
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// RenewInstance返回参数结构体
-    public struct RenewInstanceResponse: TCResponseModel {
+    public struct RenewInstanceResponse: TCResponse {
         /// 订单名
         public let dealName: String
 

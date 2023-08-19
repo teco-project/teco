@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ape {
     /// BatchDescribeOrderCertificate请求参数结构体
-    public struct BatchDescribeOrderCertificateRequest: TCRequestModel {
+    public struct BatchDescribeOrderCertificateRequest: TCRequest {
         /// 要下载授权书的订单id
         public let orderIds: [String]
 
@@ -34,7 +34,7 @@ extension Ape {
     }
 
     /// BatchDescribeOrderCertificate返回参数结构体
-    public struct BatchDescribeOrderCertificateResponse: TCResponseModel {
+    public struct BatchDescribeOrderCertificateResponse: TCResponse {
         /// 授权书的下载地址
         public let certificateUrls: [String]
 

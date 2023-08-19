@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeGatewayAllGroupApis请求参数结构体
-    public struct DescribeGatewayAllGroupApisRequest: TCRequestModel {
+    public struct DescribeGatewayAllGroupApisRequest: TCRequest {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DescribeGatewayAllGroupApis返回参数结构体
-    public struct DescribeGatewayAllGroupApisResponse: TCResponseModel {
+    public struct DescribeGatewayAllGroupApisResponse: TCResponse {
         /// 网关分组和API列表信息
         public let result: GatewayVo
 

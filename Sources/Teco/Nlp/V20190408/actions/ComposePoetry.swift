@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// ComposePoetry请求参数结构体
-    public struct ComposePoetryRequest: TCRequestModel {
+    public struct ComposePoetryRequest: TCRequest {
         /// 生成诗词的关键词。
         public let text: String
 
@@ -44,7 +44,7 @@ extension Nlp {
     }
 
     /// ComposePoetry返回参数结构体
-    public struct ComposePoetryResponse: TCResponseModel {
+    public struct ComposePoetryResponse: TCResponse {
         /// 诗题，即输入的生成诗词的关键词。
         public let title: String
 

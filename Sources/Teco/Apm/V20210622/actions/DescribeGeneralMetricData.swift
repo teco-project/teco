@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apm {
     /// DescribeGeneralMetricData请求参数结构体
-    public struct DescribeGeneralMetricDataRequest: TCRequestModel {
+    public struct DescribeGeneralMetricDataRequest: TCRequest {
         /// 要过滤的维度信息：
         /// service_metric视图支持：service.name（服务名）、span.kind（客户端/服务端视角）为维度进行过滤，service.name（服务名）必填。
         /// span.kind:
@@ -97,7 +97,7 @@ extension Apm {
     }
 
     /// DescribeGeneralMetricData返回参数结构体
-    public struct DescribeGeneralMetricDataResponse: TCResponseModel {
+    public struct DescribeGeneralMetricDataResponse: TCResponse {
         /// 指标结果集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let records: [Line]?

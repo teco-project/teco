@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// ModifyRule请求参数结构体
-    public struct ModifyRuleRequest: TCRequestModel {
+    public struct ModifyRuleRequest: TCRequest {
         /// 规则code
         public let ruleCode: String
 
@@ -49,7 +49,7 @@ extension Gpm {
     }
 
     /// ModifyRule返回参数结构体
-    public struct ModifyRuleResponse: TCResponseModel {
+    public struct ModifyRuleResponse: TCResponse {
         /// 规则信息
         public let ruleInfo: RuleInfo
 

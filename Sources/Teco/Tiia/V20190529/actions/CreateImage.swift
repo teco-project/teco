@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// CreateImage请求参数结构体
-    public struct CreateImageRequest: TCRequestModel {
+    public struct CreateImageRequest: TCRequest {
         /// 图库ID。
         public let groupId: String
 
@@ -105,7 +105,7 @@ extension Tiia {
     }
 
     /// CreateImage返回参数结构体
-    public struct CreateImageResponse: TCResponseModel {
+    public struct CreateImageResponse: TCResponse {
         /// 输入图的主体信息。
         /// 若启用主体识别且在请求中指定了类目ID或主体区域，以指定的主体为准。若启用主体识别且没有指定，以最大面积主体为准。
         /// **_注意：仅服务类型为商品图像搜索时才生效。_**

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeDailyMostPlayedStat请求参数结构体
-    public struct DescribeDailyMostPlayedStatRequest: TCRequestModel {
+    public struct DescribeDailyMostPlayedStatRequest: TCRequest {
         /// 查询日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。该参数仅日期部分有效。
         public let date: String
 
@@ -53,7 +53,7 @@ extension Vod {
     }
 
     /// DescribeDailyMostPlayedStat返回参数结构体
-    public struct DescribeDailyMostPlayedStatResponse: TCResponseModel {
+    public struct DescribeDailyMostPlayedStatResponse: TCResponse {
         /// 媒体文件播放统计信息。
         public let dailyPlayStatInfoSet: [DailyPlayStatInfo]
 

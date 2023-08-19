@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DescribeDeviceLocationSolve请求参数结构体
-    public struct DescribeDeviceLocationSolveRequest: TCRequestModel {
+    public struct DescribeDeviceLocationSolveRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -54,7 +54,7 @@ extension Iotexplorer {
     }
 
     /// DescribeDeviceLocationSolve返回参数结构体
-    public struct DescribeDeviceLocationSolveResponse: TCResponseModel {
+    public struct DescribeDeviceLocationSolveResponse: TCResponse {
         /// 经度
         public let longitude: Float
 

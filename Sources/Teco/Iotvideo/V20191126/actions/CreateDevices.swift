@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateDevices请求参数结构体
-    public struct CreateDevicesRequest: TCRequestModel {
+    public struct CreateDevicesRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotvideo {
     }
 
     /// CreateDevices返回参数结构体
-    public struct CreateDevicesResponse: TCResponseModel {
+    public struct CreateDevicesResponse: TCResponse {
         /// 新创建设备的认证信息
         public let data: [DeviceCertificate]
 

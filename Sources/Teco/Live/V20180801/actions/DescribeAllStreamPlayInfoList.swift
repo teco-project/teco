@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeAllStreamPlayInfoList请求参数结构体
-    public struct DescribeAllStreamPlayInfoListRequest: TCRequestModel {
+    public struct DescribeAllStreamPlayInfoListRequest: TCRequest {
         /// 查询时间点，精确到分钟粒度，支持最近1个月的数据查询，数据延迟为5分钟左右，如果要查询实时的数据，建议传递5分钟前的时间点，格式为yyyy-mm-dd HH:MM:00。（只精确至分钟，秒数填00）。
         public let queryTime: String
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// DescribeAllStreamPlayInfoList返回参数结构体
-    public struct DescribeAllStreamPlayInfoListResponse: TCResponseModel {
+    public struct DescribeAllStreamPlayInfoListResponse: TCResponse {
         /// 查询时间点，回传的输入参数中的查询时间。
         public let queryTime: String
 

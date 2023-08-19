@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeBatchTask请求参数结构体
-    public struct DescribeBatchTaskRequest: TCRequestModel {
+    public struct DescribeBatchTaskRequest: TCRequest {
         /// 任务ID。操作批量接口时会返回JobId
         public let jobId: UInt64
 
@@ -34,7 +34,7 @@ extension Dnspod {
     }
 
     /// DescribeBatchTask返回参数结构体
-    public struct DescribeBatchTaskResponse: TCResponseModel {
+    public struct DescribeBatchTaskResponse: TCResponse {
         /// 批量任务详情
         public let detailList: [DescribeBatchTaskDetail]
 

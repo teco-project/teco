@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Gaap {
     /// DescribeProxyStatistics请求参数结构体
-    public struct DescribeProxyStatisticsRequest: TCRequestModel {
+    public struct DescribeProxyStatisticsRequest: TCRequest {
         /// 通道ID
         public let proxyId: String
 
@@ -70,7 +70,7 @@ extension Gaap {
     }
 
     /// DescribeProxyStatistics返回参数结构体
-    public struct DescribeProxyStatisticsResponse: TCResponseModel {
+    public struct DescribeProxyStatisticsResponse: TCResponse {
         /// 通道统计数据
         public let statisticsData: [MetricStatisticsInfo]
 

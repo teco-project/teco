@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeWxCloudBaseRunEnvs请求参数结构体
-    public struct DescribeWxCloudBaseRunEnvsRequest: TCRequestModel {
+    public struct DescribeWxCloudBaseRunEnvsRequest: TCRequest {
         /// wx应用Id
         public let wxAppId: String?
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeWxCloudBaseRunEnvs返回参数结构体
-    public struct DescribeWxCloudBaseRunEnvsResponse: TCResponseModel {
+    public struct DescribeWxCloudBaseRunEnvsResponse: TCResponse {
         /// env列表
         public let envList: [EnvInfo]
 

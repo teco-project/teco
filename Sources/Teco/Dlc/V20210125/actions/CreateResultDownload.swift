@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateResultDownload请求参数结构体
-    public struct CreateResultDownloadRequest: TCRequestModel {
+    public struct CreateResultDownloadRequest: TCRequest {
         /// 查询结果任务Id
         public let taskId: String
 
@@ -44,7 +44,7 @@ extension Dlc {
     }
 
     /// CreateResultDownload返回参数结构体
-    public struct CreateResultDownloadResponse: TCResponseModel {
+    public struct CreateResultDownloadResponse: TCResponse {
         /// 下载任务Id
         public let downloadId: String
 

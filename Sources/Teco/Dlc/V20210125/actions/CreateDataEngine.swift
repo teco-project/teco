@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateDataEngine请求参数结构体
-    public struct CreateDataEngineRequest: TCRequestModel {
+    public struct CreateDataEngineRequest: TCRequest {
         /// 引擎类型spark/presto
         public let engineType: String
 
@@ -212,7 +212,7 @@ extension Dlc {
     }
 
     /// CreateDataEngine返回参数结构体
-    public struct CreateDataEngineResponse: TCResponseModel {
+    public struct CreateDataEngineResponse: TCResponse {
         /// 虚拟引擎id
         public let dataEngineId: String
 

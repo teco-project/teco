@@ -20,7 +20,7 @@ import TecoCore
 
 extension Privatedns {
     /// DeletePrivateDNSAccount请求参数结构体
-    public struct DeletePrivateDNSAccountRequest: TCRequestModel {
+    public struct DeletePrivateDNSAccountRequest: TCRequest {
         /// 私有域解析账号
         public let account: PrivateDNSAccount
 
@@ -34,7 +34,7 @@ extension Privatedns {
     }
 
     /// DeletePrivateDNSAccount返回参数结构体
-    public struct DeletePrivateDNSAccountResponse: TCResponseModel {
+    public struct DeletePrivateDNSAccountResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dc {
     /// DescribeDirectConnectTunnelExtra请求参数结构体
-    public struct DescribeDirectConnectTunnelExtraRequest: TCRequestModel {
+    public struct DescribeDirectConnectTunnelExtraRequest: TCRequest {
         /// 专用通道ID
         public let directConnectTunnelId: String
 
@@ -34,7 +34,7 @@ extension Dc {
     }
 
     /// DescribeDirectConnectTunnelExtra返回参数结构体
-    public struct DescribeDirectConnectTunnelExtraResponse: TCResponseModel {
+    public struct DescribeDirectConnectTunnelExtraResponse: TCResponse {
         /// 专用通道扩展信息
         public let directConnectTunnelExtra: DirectConnectTunnelExtra
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeCdnLogs请求参数结构体
-    public struct DescribeCdnLogsRequest: TCRequestModel {
+    public struct DescribeCdnLogsRequest: TCRequest {
         /// 域名。
         public let domainName: String
 
@@ -59,7 +59,7 @@ extension Vod {
     }
 
     /// DescribeCdnLogs返回参数结构体
-    public struct DescribeCdnLogsResponse: TCResponseModel {
+    public struct DescribeCdnLogsResponse: TCResponse {
         /// 日志下载链接总数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: UInt64?

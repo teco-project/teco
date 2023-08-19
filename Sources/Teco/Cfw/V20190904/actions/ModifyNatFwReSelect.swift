@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyNatFwReSelect请求参数结构体
-    public struct ModifyNatFwReSelectRequest: TCRequestModel {
+    public struct ModifyNatFwReSelectRequest: TCRequest {
         /// 模式 1：接入模式；0：新增模式
         public let mode: Int64
 
@@ -54,7 +54,7 @@ extension Cfw {
     }
 
     /// ModifyNatFwReSelect返回参数结构体
-    public struct ModifyNatFwReSelectResponse: TCResponseModel {
+    public struct ModifyNatFwReSelectResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

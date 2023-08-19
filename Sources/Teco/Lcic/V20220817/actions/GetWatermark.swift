@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// GetWatermark请求参数结构体
-    public struct GetWatermarkRequest: TCRequestModel {
+    public struct GetWatermarkRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: UInt64
 
@@ -34,7 +34,7 @@ extension Lcic {
     }
 
     /// GetWatermark返回参数结构体
-    public struct GetWatermarkResponse: TCResponseModel {
+    public struct GetWatermarkResponse: TCResponse {
         /// 老师视频区域的水印参数配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let teacherLogo: WatermarkConfig?

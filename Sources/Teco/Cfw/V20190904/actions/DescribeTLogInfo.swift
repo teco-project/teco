@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeTLogInfo请求参数结构体
-    public struct DescribeTLogInfoRequest: TCRequestModel {
+    public struct DescribeTLogInfoRequest: TCRequest {
         /// 开始时间
         public let startTime: String
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// DescribeTLogInfo返回参数结构体
-    public struct DescribeTLogInfoResponse: TCResponseModel {
+    public struct DescribeTLogInfoResponse: TCResponse {
         /// "NetworkNum":网络扫描探测
         ///  "HandleNum": 待处理事件
         /// "BanNum":

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BatchCreateGroupWithMembers请求参数结构体
-    public struct BatchCreateGroupWithMembersRequest: TCRequestModel {
+    public struct BatchCreateGroupWithMembersRequest: TCRequest {
         /// 低代码平台应用ID
         public let sdkAppId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// BatchCreateGroupWithMembers返回参数结构体
-    public struct BatchCreateGroupWithMembersResponse: TCResponseModel {
+    public struct BatchCreateGroupWithMembersResponse: TCResponse {
         /// 新创建群组ID列表，与输入创建参数顺序一致
         public let groupIds: [String]
 

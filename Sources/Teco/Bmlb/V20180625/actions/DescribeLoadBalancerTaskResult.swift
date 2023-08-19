@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmlb {
     /// DescribeLoadBalancerTaskResult请求参数结构体
-    public struct DescribeLoadBalancerTaskResultRequest: TCRequestModel {
+    public struct DescribeLoadBalancerTaskResultRequest: TCRequest {
         /// 任务ID。由具体的异步操作接口提供。
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Bmlb {
     }
 
     /// DescribeLoadBalancerTaskResult返回参数结构体
-    public struct DescribeLoadBalancerTaskResultResponse: TCResponseModel {
+    public struct DescribeLoadBalancerTaskResultResponse: TCResponse {
         /// 任务当前状态。0：成功，1：失败，2：进行中。
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DownloadCertificate请求参数结构体
-    public struct DownloadCertificateRequest: TCRequestModel {
+    public struct DownloadCertificateRequest: TCRequest {
         /// 证书 ID。
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// DownloadCertificate返回参数结构体
-    public struct DownloadCertificateResponse: TCResponseModel {
+    public struct DownloadCertificateResponse: TCResponse {
         /// ZIP base64 编码内容，base64 解码后可保存为 ZIP 文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: String?

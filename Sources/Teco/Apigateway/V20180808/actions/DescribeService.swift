@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Apigateway {
     /// DescribeService请求参数结构体
-    public struct DescribeServiceRequest: TCRequestModel {
+    public struct DescribeServiceRequest: TCRequest {
         /// 待查询的服务唯一 ID。
         public let serviceId: String
 
@@ -36,7 +36,7 @@ extension Apigateway {
     }
 
     /// DescribeService返回参数结构体
-    public struct DescribeServiceResponse: TCResponseModel {
+    public struct DescribeServiceResponse: TCResponse {
         /// 服务唯一ID。
         public let serviceId: String
 

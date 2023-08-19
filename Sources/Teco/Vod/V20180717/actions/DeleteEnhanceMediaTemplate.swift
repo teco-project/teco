@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DeleteEnhanceMediaTemplate请求参数结构体
-    public struct DeleteEnhanceMediaTemplateRequest: TCRequestModel {
+    public struct DeleteEnhanceMediaTemplateRequest: TCRequest {
         /// 音画质重生模板号。
         public let definition: Int64
 
@@ -39,7 +39,7 @@ extension Vod {
     }
 
     /// DeleteEnhanceMediaTemplate返回参数结构体
-    public struct DeleteEnhanceMediaTemplateResponse: TCResponseModel {
+    public struct DeleteEnhanceMediaTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

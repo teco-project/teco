@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// ModifyLoadBalancerAttributes请求参数结构体
-    public struct ModifyLoadBalancerAttributesRequest: TCRequestModel {
+    public struct ModifyLoadBalancerAttributesRequest: TCRequest {
         /// 负载均衡的唯一ID
         public let loadBalancerId: String
 
@@ -69,7 +69,7 @@ extension Clb {
     }
 
     /// ModifyLoadBalancerAttributes返回参数结构体
-    public struct ModifyLoadBalancerAttributesResponse: TCResponseModel {
+    public struct ModifyLoadBalancerAttributesResponse: TCResponse {
         /// 切换负载均衡计费方式时，可用此参数查询切换任务是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dealName: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// GetAttributeKey请求参数结构体
-    public struct GetAttributeKeyRequest: TCRequestModel {
+    public struct GetAttributeKeyRequest: TCRequest {
         /// 网站类型，取值范围是zh和en。如果不传值默认zh
         public let websiteType: String?
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// GetAttributeKey返回参数结构体
-    public struct GetAttributeKeyResponse: TCResponseModel {
+    public struct GetAttributeKeyResponse: TCResponse {
         /// AttributeKey的有效取值范围
         public let attributeKeyDetails: [AttributeKeyDetail]
 

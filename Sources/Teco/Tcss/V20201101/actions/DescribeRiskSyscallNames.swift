@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeRiskSyscallNames请求参数结构体
-    public struct DescribeRiskSyscallNamesRequest: TCRequestModel {
+    public struct DescribeRiskSyscallNamesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeRiskSyscallNames返回参数结构体
-    public struct DescribeRiskSyscallNamesResponse: TCResponseModel {
+    public struct DescribeRiskSyscallNamesResponse: TCResponse {
         /// 事件总数量
         public let totalCount: UInt64
 

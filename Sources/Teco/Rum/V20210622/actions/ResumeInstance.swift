@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// ResumeInstance请求参数结构体
-    public struct ResumeInstanceRequest: TCRequestModel {
+    public struct ResumeInstanceRequest: TCRequest {
         /// 需要恢复的实例id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// ResumeInstance返回参数结构体
-    public struct ResumeInstanceResponse: TCResponseModel {
+    public struct ResumeInstanceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

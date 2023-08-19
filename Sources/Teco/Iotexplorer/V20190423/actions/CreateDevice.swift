@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// CreateDevice请求参数结构体
-    public struct CreateDeviceRequest: TCRequestModel {
+    public struct CreateDeviceRequest: TCRequest {
         /// 产品ID。
         public let productId: String
 
@@ -69,7 +69,7 @@ extension Iotexplorer {
     }
 
     /// CreateDevice返回参数结构体
-    public struct CreateDeviceResponse: TCResponseModel {
+    public struct CreateDeviceResponse: TCResponse {
         /// 设备参数描述。
         public let data: DeviceData
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RevResigterBillSupportWithdraw请求参数结构体
-    public struct RevResigterBillSupportWithdrawRequest: TCRequestModel {
+    public struct RevResigterBillSupportWithdrawRequest: TCRequest {
         /// String(22)，商户号（签约客户号）
         public let mrchCode: String
 
@@ -79,7 +79,7 @@ extension Cpdp {
     }
 
     /// RevResigterBillSupportWithdraw返回参数结构体
-    public struct RevResigterBillSupportWithdrawResponse: TCResponseModel {
+    public struct RevResigterBillSupportWithdrawResponse: TCResponse {
         /// String(20)，返回码
         public let txnReturnCode: String
 

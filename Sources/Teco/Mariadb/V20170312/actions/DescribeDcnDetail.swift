@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// DescribeDcnDetail请求参数结构体
-    public struct DescribeDcnDetailRequest: TCRequestModel {
+    public struct DescribeDcnDetailRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mariadb {
     }
 
     /// DescribeDcnDetail返回参数结构体
-    public struct DescribeDcnDetailResponse: TCResponseModel {
+    public struct DescribeDcnDetailResponse: TCResponse {
         /// DCN同步详情
         public let dcnDetails: [DcnDetailItem]
 

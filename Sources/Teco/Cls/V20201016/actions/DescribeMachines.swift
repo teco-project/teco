@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeMachines请求参数结构体
-    public struct DescribeMachinesRequest: TCRequestModel {
+    public struct DescribeMachinesRequest: TCRequest {
         /// 查询的机器组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeMachines返回参数结构体
-    public struct DescribeMachinesResponse: TCResponseModel {
+    public struct DescribeMachinesResponse: TCResponse {
         /// 机器状态信息组
         public let machines: [MachineInfo]
 

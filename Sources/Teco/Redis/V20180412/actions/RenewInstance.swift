@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// RenewInstance请求参数结构体
-    public struct RenewInstanceRequest: TCRequestModel {
+    public struct RenewInstanceRequest: TCRequest {
         /// 购买时长，单位：月。
         public let period: UInt64
 
@@ -46,7 +46,7 @@ extension Redis {
     }
 
     /// RenewInstance返回参数结构体
-    public struct RenewInstanceResponse: TCResponseModel {
+    public struct RenewInstanceResponse: TCResponse {
         /// 交易ID。
         public let dealId: String
 

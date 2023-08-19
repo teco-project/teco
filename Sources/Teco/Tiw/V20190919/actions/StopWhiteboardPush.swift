@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// StopWhiteboardPush请求参数结构体
-    public struct StopWhiteboardPushRequest: TCRequestModel {
+    public struct StopWhiteboardPushRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -39,7 +39,7 @@ extension Tiw {
     }
 
     /// StopWhiteboardPush返回参数结构体
-    public struct StopWhiteboardPushResponse: TCResponseModel {
+    public struct StopWhiteboardPushResponse: TCResponse {
         /// 备份任务相关参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backup: String?

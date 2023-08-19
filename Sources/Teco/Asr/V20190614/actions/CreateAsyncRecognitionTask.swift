@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// CreateAsyncRecognitionTask请求参数结构体
-    public struct CreateAsyncRecognitionTaskRequest: TCRequestModel {
+    public struct CreateAsyncRecognitionTaskRequest: TCRequest {
         /// 引擎模型类型。
         /// • 16k_zh：中文普通话通用；
         /// • 16k_en：英语；
@@ -94,7 +94,7 @@ extension Asr {
     }
 
     /// CreateAsyncRecognitionTask返回参数结构体
-    public struct CreateAsyncRecognitionTaskResponse: TCResponseModel {
+    public struct CreateAsyncRecognitionTaskResponse: TCResponse {
         /// 请求返回结果，包含本次的任务ID(TaskId)
         public let data: Task
 

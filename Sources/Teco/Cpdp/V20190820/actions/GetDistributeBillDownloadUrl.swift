@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// GetDistributeBillDownloadUrl请求参数结构体
-    public struct GetDistributeBillDownloadUrlRequest: TCRequestModel {
+    public struct GetDistributeBillDownloadUrlRequest: TCRequest {
         /// 收单系统分配的开放ID
         public let openId: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// GetDistributeBillDownloadUrl返回参数结构体
-    public struct GetDistributeBillDownloadUrlResponse: TCResponseModel {
+    public struct GetDistributeBillDownloadUrlResponse: TCResponse {
         /// 业务系统返回码
         public let errCode: String
 

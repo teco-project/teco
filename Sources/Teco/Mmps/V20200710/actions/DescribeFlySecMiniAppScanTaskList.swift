@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mmps {
     /// DescribeFlySecMiniAppScanTaskList请求参数结构体
-    public struct DescribeFlySecMiniAppScanTaskListRequest: TCRequestModel {
+    public struct DescribeFlySecMiniAppScanTaskListRequest: TCRequest {
         /// 诊断方式 1:基础诊断，2:深度诊断
         public let mode: Int64
 
@@ -49,7 +49,7 @@ extension Mmps {
     }
 
     /// DescribeFlySecMiniAppScanTaskList返回参数结构体
-    public struct DescribeFlySecMiniAppScanTaskListResponse: TCResponseModel {
+    public struct DescribeFlySecMiniAppScanTaskListResponse: TCResponse {
         /// 返回值, 0:成功, 其他值请查看“返回值”定义
         public let ret: Int64
 

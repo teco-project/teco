@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DeleteWebhookTrigger请求参数结构体
-    public struct DeleteWebhookTriggerRequest: TCRequestModel {
+    public struct DeleteWebhookTriggerRequest: TCRequest {
         /// 实例Id
         public let registryId: String
 
@@ -44,7 +44,7 @@ extension Tcr {
     }
 
     /// DeleteWebhookTrigger返回参数结构体
-    public struct DeleteWebhookTriggerResponse: TCResponseModel {
+    public struct DeleteWebhookTriggerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

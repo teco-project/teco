@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cdn {
     /// DescribeCdnOriginIp请求参数结构体
-    public struct DescribeCdnOriginIpRequest: TCRequestModel {
+    public struct DescribeCdnOriginIpRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCdnOriginIp返回参数结构体
-    public struct DescribeCdnOriginIpResponse: TCResponseModel {
+    public struct DescribeCdnOriginIpResponse: TCResponse {
         /// 回源节点IP详情。
         public let ips: [OriginIp]
 

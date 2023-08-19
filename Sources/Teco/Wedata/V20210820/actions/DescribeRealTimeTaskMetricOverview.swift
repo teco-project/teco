@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeRealTimeTaskMetricOverview请求参数结构体
-    public struct DescribeRealTimeTaskMetricOverviewRequest: TCRequestModel {
+    public struct DescribeRealTimeTaskMetricOverviewRequest: TCRequest {
         /// 要查看的实时任务的任务Id
         public let taskId: String
 
@@ -48,7 +48,7 @@ extension Wedata {
     }
 
     /// DescribeRealTimeTaskMetricOverview返回参数结构体
-    public struct DescribeRealTimeTaskMetricOverviewResponse: TCResponseModel {
+    public struct DescribeRealTimeTaskMetricOverviewResponse: TCResponse {
         /// 总读取记录数
         public let totalRecordNumOfRead: UInt64
 

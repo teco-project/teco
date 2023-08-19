@@ -20,13 +20,13 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// GetCountryCodes请求参数结构体
-    public struct GetCountryCodesRequest: TCRequestModel {
+    public struct GetCountryCodesRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetCountryCodes返回参数结构体
-    public struct GetCountryCodesResponse: TCResponseModel {
+    public struct GetCountryCodesResponse: TCResponse {
         /// 国家地区代码列表
         public let data: [CountryCodeItem]
 

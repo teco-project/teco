@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// CreateInstances请求参数结构体
-    public struct CreateInstancesRequest: TCRequestModel {
+    public struct CreateInstancesRequest: TCRequest {
         /// 实例类型。
         ///
         /// - 2：Redis 2.8 内存版（标准架构）。
@@ -193,7 +193,7 @@ extension Redis {
     }
 
     /// CreateInstances返回参数结构体
-    public struct CreateInstancesResponse: TCResponseModel {
+    public struct CreateInstancesResponse: TCResponse {
         /// 交易的ID。
         public let dealId: String
 

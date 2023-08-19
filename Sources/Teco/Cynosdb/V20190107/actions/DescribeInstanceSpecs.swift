@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeInstanceSpecs请求参数结构体
-    public struct DescribeInstanceSpecsRequest: TCRequestModel {
+    public struct DescribeInstanceSpecsRequest: TCRequest {
         /// 数据库类型，取值范围:
         /// - MYSQL
         public let dbType: String
@@ -40,7 +40,7 @@ extension Cynosdb {
     }
 
     /// DescribeInstanceSpecs返回参数结构体
-    public struct DescribeInstanceSpecsResponse: TCResponseModel {
+    public struct DescribeInstanceSpecsResponse: TCResponse {
         /// 规格信息
         public let instanceSpecSet: [InstanceSpec]
 

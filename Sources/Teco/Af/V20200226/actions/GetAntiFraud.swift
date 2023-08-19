@@ -20,7 +20,7 @@ import TecoCore
 
 extension Af {
     /// GetAntiFraud请求参数结构体
-    public struct GetAntiFraudRequest: TCRequestModel {
+    public struct GetAntiFraudRequest: TCRequest {
         /// 默认不传，约定用原始业务
         /// 入参(二选一BusinessSecurityData 或
         /// BusinessCryptoData)。
@@ -44,7 +44,7 @@ extension Af {
     }
 
     /// GetAntiFraud返回参数结构体
-    public struct GetAntiFraudResponse: TCResponseModel {
+    public struct GetAntiFraudResponse: TCResponse {
         /// 反欺诈评分接口结果
         public let data: AntiFraudRecord
 

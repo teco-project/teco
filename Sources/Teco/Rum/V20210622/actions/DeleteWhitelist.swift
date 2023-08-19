@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteWhitelist请求参数结构体
-    public struct DeleteWhitelistRequest: TCRequestModel {
+    public struct DeleteWhitelistRequest: TCRequest {
         /// 实例ID
         public let instanceID: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// DeleteWhitelist返回参数结构体
-    public struct DeleteWhitelistResponse: TCResponseModel {
+    public struct DeleteWhitelistResponse: TCResponse {
         /// 消息success
         public let msg: String
 

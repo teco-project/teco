@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteNamespace请求参数结构体
-    public struct DeleteNamespaceRequest: TCRequestModel {
+    public struct DeleteNamespaceRequest: TCRequest {
         /// 命名空间ID
         public let namespaceId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// DeleteNamespace返回参数结构体
-    public struct DeleteNamespaceResponse: TCResponseModel {
+    public struct DeleteNamespaceResponse: TCResponse {
         /// 删除命名空间是否成功。
         /// true：删除成功。
         /// false：删除失败。

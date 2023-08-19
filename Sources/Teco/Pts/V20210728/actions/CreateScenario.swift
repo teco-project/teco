@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// CreateScenario请求参数结构体
-    public struct CreateScenarioRequest: TCRequestModel {
+    public struct CreateScenarioRequest: TCRequest {
         /// 场景名
         public let name: String
 
@@ -119,7 +119,7 @@ extension Pts {
     }
 
     /// CreateScenario返回参数结构体
-    public struct CreateScenarioResponse: TCResponseModel {
+    public struct CreateScenarioResponse: TCResponse {
         /// 场景ID
         public let scenarioId: String
 

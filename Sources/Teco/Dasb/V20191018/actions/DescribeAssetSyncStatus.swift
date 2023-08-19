@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dasb {
     /// DescribeAssetSyncStatus请求参数结构体
-    public struct DescribeAssetSyncStatusRequest: TCRequestModel {
+    public struct DescribeAssetSyncStatusRequest: TCRequest {
         /// 查询的资产同步类型。1 -主机资产， 2 - 数据库资产
         public let category: UInt64
 
@@ -34,7 +34,7 @@ extension Dasb {
     }
 
     /// DescribeAssetSyncStatus返回参数结构体
-    public struct DescribeAssetSyncStatusResponse: TCResponseModel {
+    public struct DescribeAssetSyncStatusResponse: TCResponse {
         /// 资产同步结果
         public let status: AssetSyncStatus
 

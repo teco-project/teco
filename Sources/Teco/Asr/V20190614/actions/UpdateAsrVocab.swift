@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// UpdateAsrVocab请求参数结构体
-    public struct UpdateAsrVocabRequest: TCRequestModel {
+    public struct UpdateAsrVocabRequest: TCRequest {
         /// 热词表ID
         public let vocabId: String
 
@@ -55,7 +55,7 @@ extension Asr {
     }
 
     /// UpdateAsrVocab返回参数结构体
-    public struct UpdateAsrVocabResponse: TCResponseModel {
+    public struct UpdateAsrVocabResponse: TCResponse {
         /// 热词表ID
         public let vocabId: String
 

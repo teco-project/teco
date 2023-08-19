@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiia {
     /// DetectProductBeta请求参数结构体
-    public struct DetectProductBetaRequest: TCRequestModel {
+    public struct DetectProductBetaRequest: TCRequest {
         /// 图片限制：内测版仅支持jpg、jpeg，图片大小不超过1M，分辨率在25万到100万之间。
         /// 建议先对图片进行压缩，以便提升处理速度。
         public let imageUrl: String?
@@ -46,7 +46,7 @@ extension Tiia {
     }
 
     /// DetectProductBeta返回参数结构体
-    public struct DetectProductBetaResponse: TCResponseModel {
+    public struct DetectProductBetaResponse: TCResponse {
         /// 检测到的图片中的商品位置和品类预测。
         /// 当图片中存在多个商品时，输出多组坐标，按照__显著性__排序（综合考虑面积、是否在中心、检测算法置信度）。
         /// 最多可以输出__3组__检测结果。

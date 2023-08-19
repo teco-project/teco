@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// DeleteUserGroups请求参数结构体
-    public struct DeleteUserGroupsRequest: TCRequestModel {
+    public struct DeleteUserGroupsRequest: TCRequest {
         /// 用户组ID数组
         public let userGroupIds: [String]
 
@@ -39,7 +39,7 @@ extension Ciam {
     }
 
     /// DeleteUserGroups返回参数结构体
-    public struct DeleteUserGroupsResponse: TCResponseModel {
+    public struct DeleteUserGroupsResponse: TCResponse {
         /// 删除的用户组关联的应用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userGroupDeletedInfo: UserGroupDeleteResp?

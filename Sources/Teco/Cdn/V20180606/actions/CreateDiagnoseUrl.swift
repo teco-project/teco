@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// CreateDiagnoseUrl请求参数结构体
-    public struct CreateDiagnoseUrlRequest: TCRequestModel {
+    public struct CreateDiagnoseUrlRequest: TCRequest {
         /// 需诊断的url，形如：http://www.test.com/test.txt。
         public let url: String
 
@@ -39,7 +39,7 @@ extension Cdn {
     }
 
     /// CreateDiagnoseUrl返回参数结构体
-    public struct CreateDiagnoseUrlResponse: TCResponseModel {
+    public struct CreateDiagnoseUrlResponse: TCResponse {
         /// 系统生成的诊断链接，一个诊断链接最多可访问10次，有效期为24h。
         public let diagnoseLink: String
 

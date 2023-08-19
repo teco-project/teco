@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeResourceUsage请求参数结构体
-    public struct DescribeResourceUsageRequest: TCRequestModel {
+    public struct DescribeResourceUsageRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeResourceUsage返回参数结构体
-    public struct DescribeResourceUsageResponse: TCResponseModel {
+    public struct DescribeResourceUsageResponse: TCResponse {
         /// CRD使用量
         public let crdUsage: ResourceUsage
 

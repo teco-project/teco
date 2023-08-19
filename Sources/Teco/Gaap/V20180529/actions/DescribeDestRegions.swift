@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gaap {
     /// DescribeDestRegions请求参数结构体
-    public struct DescribeDestRegionsRequest: TCRequestModel {
+    public struct DescribeDestRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDestRegions返回参数结构体
-    public struct DescribeDestRegionsResponse: TCResponseModel {
+    public struct DescribeDestRegionsResponse: TCResponse {
         /// 源站区域总数
         public let totalCount: UInt64
 

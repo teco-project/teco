@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulDefenceSetting请求参数结构体
-    public struct DescribeVulDefenceSettingRequest: TCRequestModel {
+    public struct DescribeVulDefenceSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVulDefenceSetting返回参数结构体
-    public struct DescribeVulDefenceSettingResponse: TCResponseModel {
+    public struct DescribeVulDefenceSettingResponse: TCResponse {
         /// 是否开启:0: 关闭 1:开启
         public let isEnabled: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DescribeCCLevelPolicy请求参数结构体
-    public struct DescribeCCLevelPolicyRequest: TCRequestModel {
+    public struct DescribeCCLevelPolicyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Antiddos {
     }
 
     /// DescribeCCLevelPolicy返回参数结构体
-    public struct DescribeCCLevelPolicyResponse: TCResponseModel {
+    public struct DescribeCCLevelPolicyResponse: TCResponse {
         /// CC防护等级，可取值loose表示宽松，strict表示严格，normal表示适中， emergency表示攻击紧急， sup_loose表示超级宽松，default表示默认策略（无频控配置下发），customized表示自定义策略
         public let level: String
 

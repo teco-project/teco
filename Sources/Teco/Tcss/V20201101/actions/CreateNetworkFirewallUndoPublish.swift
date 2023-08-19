@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateNetworkFirewallUndoPublish请求参数结构体
-    public struct CreateNetworkFirewallUndoPublishRequest: TCRequestModel {
+    public struct CreateNetworkFirewallUndoPublishRequest: TCRequest {
         /// 集群Id
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// CreateNetworkFirewallUndoPublish返回参数结构体
-    public struct CreateNetworkFirewallUndoPublishResponse: TCResponseModel {
+    public struct CreateNetworkFirewallUndoPublishResponse: TCResponse {
         /// 返回创建的任务的ID，为0表示创建失败。
         public let taskId: UInt64
 

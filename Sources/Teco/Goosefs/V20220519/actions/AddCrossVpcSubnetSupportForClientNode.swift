@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// AddCrossVpcSubnetSupportForClientNode请求参数结构体
-    public struct AddCrossVpcSubnetSupportForClientNodeRequest: TCRequestModel {
+    public struct AddCrossVpcSubnetSupportForClientNodeRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -39,7 +39,7 @@ extension Goosefs {
     }
 
     /// AddCrossVpcSubnetSupportForClientNode返回参数结构体
-    public struct AddCrossVpcSubnetSupportForClientNodeResponse: TCResponseModel {
+    public struct AddCrossVpcSubnetSupportForClientNodeResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

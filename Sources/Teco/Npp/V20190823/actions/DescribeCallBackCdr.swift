@@ -20,7 +20,7 @@ import TecoCore
 
 extension Npp {
     /// DescribeCallBackCdr请求参数结构体
-    public struct DescribeCallBackCdrRequest: TCRequestModel {
+    public struct DescribeCallBackCdrRequest: TCRequest {
         /// 业务appid
         public let bizAppId: String
 
@@ -54,7 +54,7 @@ extension Npp {
     }
 
     /// DescribeCallBackCdr返回参数结构体
-    public struct DescribeCallBackCdrResponse: TCResponseModel {
+    public struct DescribeCallBackCdrResponse: TCResponse {
         /// 话单列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdr: [CallBackCdr]?

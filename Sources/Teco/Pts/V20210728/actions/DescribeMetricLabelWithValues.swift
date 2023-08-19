@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DescribeMetricLabelWithValues请求参数结构体
-    public struct DescribeMetricLabelWithValuesRequest: TCRequestModel {
+    public struct DescribeMetricLabelWithValuesRequest: TCRequest {
         /// job id
         public let jobId: String
 
@@ -44,7 +44,7 @@ extension Pts {
     }
 
     /// DescribeMetricLabelWithValues返回参数结构体
-    public struct DescribeMetricLabelWithValuesResponse: TCResponseModel {
+    public struct DescribeMetricLabelWithValuesResponse: TCResponse {
         /// 指标所有的label和values数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricLabelWithValuesSet: [MetricLabelWithValues]?

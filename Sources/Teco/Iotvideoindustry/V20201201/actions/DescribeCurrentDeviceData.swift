@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DescribeCurrentDeviceData请求参数结构体
-    public struct DescribeCurrentDeviceDataRequest: TCRequestModel {
+    public struct DescribeCurrentDeviceDataRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeCurrentDeviceData返回参数结构体
-    public struct DescribeCurrentDeviceDataResponse: TCResponseModel {
+    public struct DescribeCurrentDeviceDataResponse: TCResponse {
         /// 通道数
         public let channels: Int64
 

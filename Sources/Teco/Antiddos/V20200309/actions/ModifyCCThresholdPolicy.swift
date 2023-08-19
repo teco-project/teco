@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyCCThresholdPolicy请求参数结构体
-    public struct ModifyCCThresholdPolicyRequest: TCRequestModel {
+    public struct ModifyCCThresholdPolicyRequest: TCRequest {
         /// 实例Id
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Antiddos {
     }
 
     /// ModifyCCThresholdPolicy返回参数结构体
-    public struct ModifyCCThresholdPolicyResponse: TCResponseModel {
+    public struct ModifyCCThresholdPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

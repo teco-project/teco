@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// DeleteMessageRoute请求参数结构体
-    public struct DeleteMessageRouteRequest: TCRequestModel {
+    public struct DeleteMessageRouteRequest: TCRequest {
         public let routeID: Int64
 
         public init(routeID: Int64) {
@@ -33,7 +33,7 @@ extension Iecp {
     }
 
     /// DeleteMessageRoute返回参数结构体
-    public struct DeleteMessageRouteResponse: TCResponseModel {
+    public struct DeleteMessageRouteResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

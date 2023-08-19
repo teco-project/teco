@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ms {
     /// CreateOrderInstance请求参数结构体
-    public struct CreateOrderInstanceRequest: TCRequestModel {
+    public struct CreateOrderInstanceRequest: TCRequest {
         /// 平台类型枚举值：1-android加固  ；2-ios源码混淆 ； 3-sdk加固 ； 4-applet小程序加固
         public let platformType: Int64
 
@@ -45,7 +45,7 @@ extension Ms {
     }
 
     /// CreateOrderInstance返回参数结构体
-    public struct CreateOrderInstanceResponse: TCResponseModel {
+    public struct CreateOrderInstanceResponse: TCResponse {
         /// 订单Id
         public let orderId: String
 

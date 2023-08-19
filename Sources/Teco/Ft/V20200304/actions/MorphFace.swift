@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ft {
     /// MorphFace请求参数结构体
-    public struct MorphFaceRequest: TCRequestModel {
+    public struct MorphFaceRequest: TCRequest {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// 人员人脸总数量至少2张，不可超过5张。
@@ -73,7 +73,7 @@ extension Ft {
     }
 
     /// MorphFace返回参数结构体
-    public struct MorphFaceResponse: TCResponseModel {
+    public struct MorphFaceResponse: TCResponse {
         /// 人像渐变任务的Job id
         public let jobId: String
 

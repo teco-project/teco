@@ -20,7 +20,7 @@ import TecoCore
 
 extension Casb {
     /// CopyCryptoColumnPolicy请求参数结构体
-    public struct CopyCryptoColumnPolicyRequest: TCRequestModel {
+    public struct CopyCryptoColumnPolicyRequest: TCRequest {
         /// 实例Id
         public let casbId: String
 
@@ -59,7 +59,7 @@ extension Casb {
     }
 
     /// CopyCryptoColumnPolicy返回参数结构体
-    public struct CopyCryptoColumnPolicyResponse: TCResponseModel {
+    public struct CopyCryptoColumnPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

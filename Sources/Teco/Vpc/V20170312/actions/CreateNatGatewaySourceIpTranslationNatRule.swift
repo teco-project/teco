@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateNatGatewaySourceIpTranslationNatRule请求参数结构体
-    public struct CreateNatGatewaySourceIpTranslationNatRuleRequest: TCRequestModel {
+    public struct CreateNatGatewaySourceIpTranslationNatRuleRequest: TCRequest {
         /// NAT网关的ID，形如："nat-df45454"
         public let natGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// CreateNatGatewaySourceIpTranslationNatRule返回参数结构体
-    public struct CreateNatGatewaySourceIpTranslationNatRuleResponse: TCResponseModel {
+    public struct CreateNatGatewaySourceIpTranslationNatRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

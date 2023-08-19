@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusSampleDownloadUrl请求参数结构体
-    public struct DescribeVirusSampleDownloadUrlRequest: TCRequestModel {
+    public struct DescribeVirusSampleDownloadUrlRequest: TCRequest {
         /// 木马id
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVirusSampleDownloadUrl返回参数结构体
-    public struct DescribeVirusSampleDownloadUrlResponse: TCResponseModel {
+    public struct DescribeVirusSampleDownloadUrlResponse: TCResponse {
         /// 样本下载地址
         public let fileUrl: String
 

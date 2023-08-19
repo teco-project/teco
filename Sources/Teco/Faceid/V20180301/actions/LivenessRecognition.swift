@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// LivenessRecognition请求参数结构体
-    public struct LivenessRecognitionRequest: TCRequestModel {
+    public struct LivenessRecognitionRequest: TCRequest {
         /// 身份证号
         public let idCard: String
 
@@ -80,7 +80,7 @@ extension Faceid {
     }
 
     /// LivenessRecognition返回参数结构体
-    public struct LivenessRecognitionResponse: TCResponseModel {
+    public struct LivenessRecognitionResponse: TCResponse {
         /// 验证通过后的视频最佳截图照片，照片为BASE64编码后的值，jpg格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bestFrameBase64: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VerifyBizLicense请求参数结构体
-    public struct VerifyBizLicenseRequest: TCRequestModel {
+    public struct VerifyBizLicenseRequest: TCRequest {
         /// 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
@@ -69,7 +69,7 @@ extension Ocr {
     }
 
     /// VerifyBizLicense返回参数结构体
-    public struct VerifyBizLicenseResponse: TCResponseModel {
+    public struct VerifyBizLicenseResponse: TCResponse {
         /// 状态码
         public let errorCode: Int64
 

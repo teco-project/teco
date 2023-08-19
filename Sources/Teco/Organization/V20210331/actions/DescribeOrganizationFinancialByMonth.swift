@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// DescribeOrganizationFinancialByMonth请求参数结构体
-    public struct DescribeOrganizationFinancialByMonthRequest: TCRequestModel {
+    public struct DescribeOrganizationFinancialByMonthRequest: TCRequest {
         /// 查询月数。取值范围：1~6，默认值：6
         public let limit: Int64?
 
@@ -49,7 +49,7 @@ extension Organization {
     }
 
     /// DescribeOrganizationFinancialByMonth返回参数结构体
-    public struct DescribeOrganizationFinancialByMonthResponse: TCResponseModel {
+    public struct DescribeOrganizationFinancialByMonthResponse: TCResponse {
         /// 产品消耗详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [OrgFinancialByMonth]?

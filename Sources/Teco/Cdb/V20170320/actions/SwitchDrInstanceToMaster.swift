@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// SwitchDrInstanceToMaster请求参数结构体
-    public struct SwitchDrInstanceToMasterRequest: TCRequestModel {
+    public struct SwitchDrInstanceToMasterRequest: TCRequest {
         /// 灾备实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// SwitchDrInstanceToMaster返回参数结构体
-    public struct SwitchDrInstanceToMasterResponse: TCResponseModel {
+    public struct SwitchDrInstanceToMasterResponse: TCResponse {
         /// 异步任务的请求ID，可使用此ID查询异步任务的执行结果。
         public let asyncRequestId: String
 

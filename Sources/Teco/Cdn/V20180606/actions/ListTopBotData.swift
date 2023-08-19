@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// ListTopBotData请求参数结构体
-    public struct ListTopBotDataRequest: TCRequestModel {
+    public struct ListTopBotDataRequest: TCRequest {
         /// 获取Top量，取值范围[1-10]
         public let topCount: Int64
 
@@ -70,7 +70,7 @@ extension Cdn {
     }
 
     /// ListTopBotData返回参数结构体
-    public struct ListTopBotDataResponse: TCResponseModel {
+    public struct ListTopBotDataResponse: TCResponse {
         /// 域名BOT次数列表
         public let data: [DomainBotCount]
 

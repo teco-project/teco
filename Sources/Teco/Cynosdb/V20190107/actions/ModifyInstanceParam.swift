@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyInstanceParam请求参数结构体
-    public struct ModifyInstanceParamRequest: TCRequestModel {
+    public struct ModifyInstanceParamRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Cynosdb {
     }
 
     /// ModifyInstanceParam返回参数结构体
-    public struct ModifyInstanceParamResponse: TCResponseModel {
+    public struct ModifyInstanceParamResponse: TCResponse {
         /// 任务ID
         public let flowId: Int64
 

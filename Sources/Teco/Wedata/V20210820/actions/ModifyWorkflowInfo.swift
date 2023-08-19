@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// ModifyWorkflowInfo请求参数结构体
-    public struct ModifyWorkflowInfoRequest: TCRequestModel {
+    public struct ModifyWorkflowInfoRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -84,7 +84,7 @@ extension Wedata {
     }
 
     /// ModifyWorkflowInfo返回参数结构体
-    public struct ModifyWorkflowInfoResponse: TCResponseModel {
+    public struct ModifyWorkflowInfoResponse: TCResponse {
         /// true代表成功，false代表失败
         public let data: Bool
 

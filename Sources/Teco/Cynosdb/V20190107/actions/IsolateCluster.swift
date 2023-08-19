@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// IsolateCluster请求参数结构体
-    public struct IsolateClusterRequest: TCRequestModel {
+    public struct IsolateClusterRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// IsolateCluster返回参数结构体
-    public struct IsolateClusterResponse: TCResponseModel {
+    public struct IsolateClusterResponse: TCResponse {
         /// 任务流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowId: Int64?

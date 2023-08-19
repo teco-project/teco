@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// DescribeStreamLinkFlowStatistics请求参数结构体
-    public struct DescribeStreamLinkFlowStatisticsRequest: TCRequestModel {
+    public struct DescribeStreamLinkFlowStatisticsRequest: TCRequest {
         /// 传输流ID。
         public let flowId: String
 
@@ -66,7 +66,7 @@ extension Mps {
     }
 
     /// DescribeStreamLinkFlowStatistics返回参数结构体
-    public struct DescribeStreamLinkFlowStatisticsResponse: TCResponseModel {
+    public struct DescribeStreamLinkFlowStatisticsResponse: TCResponse {
         /// 传输流的媒体数据列表。
         public let infos: [FlowStatisticsArray]
 

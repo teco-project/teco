@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// CheckCertificateChain请求参数结构体
-    public struct CheckCertificateChainRequest: TCRequestModel {
+    public struct CheckCertificateChainRequest: TCRequest {
         /// 待检查的证书链
         public let certificateChain: String
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// CheckCertificateChain返回参数结构体
-    public struct CheckCertificateChainResponse: TCResponseModel {
+    public struct CheckCertificateChainResponse: TCResponse {
         /// true为通过检查，false为未通过检查。
         public let isValid: Bool
 

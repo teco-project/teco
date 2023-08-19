@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeComplianceTaskAssetSummary请求参数结构体
-    public struct DescribeComplianceTaskAssetSummaryRequest: TCRequestModel {
+    public struct DescribeComplianceTaskAssetSummaryRequest: TCRequest {
         /// 资产类型列表。
         /// ASSET_CONTAINER, 容器
         /// ASSET_IMAGE, 镜像
@@ -38,7 +38,7 @@ extension Tcss {
     }
 
     /// DescribeComplianceTaskAssetSummary返回参数结构体
-    public struct DescribeComplianceTaskAssetSummaryResponse: TCResponseModel {
+    public struct DescribeComplianceTaskAssetSummaryResponse: TCResponse {
         /// 返回用户的状态，
         ///
         /// USER_UNINIT: 用户未初始化。

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Mps {
     /// DescribeStreamLinkRegions请求参数结构体
-    public struct DescribeStreamLinkRegionsRequest: TCRequestModel {
+    public struct DescribeStreamLinkRegionsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeStreamLinkRegions返回参数结构体
-    public struct DescribeStreamLinkRegionsResponse: TCResponseModel {
+    public struct DescribeStreamLinkRegionsResponse: TCResponse {
         /// 媒体传输地区信息。
         public let info: StreamLinkRegionInfo
 

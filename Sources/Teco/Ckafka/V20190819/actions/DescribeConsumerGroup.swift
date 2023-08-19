@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// DescribeConsumerGroup请求参数结构体
-    public struct DescribeConsumerGroupRequest: TCRequestModel {
+    public struct DescribeConsumerGroupRequest: TCRequest {
         /// ckafka实例id。
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Ckafka {
     }
 
     /// DescribeConsumerGroup返回参数结构体
-    public struct DescribeConsumerGroupResponse: TCResponseModel {
+    public struct DescribeConsumerGroupResponse: TCResponse {
         /// 返回的消费分组信息
         public let result: ConsumerGroupResponse
 

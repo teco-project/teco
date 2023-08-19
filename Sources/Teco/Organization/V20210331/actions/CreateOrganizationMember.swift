@@ -20,7 +20,7 @@ import TecoCore
 
 extension Organization {
     /// CreateOrganizationMember请求参数结构体
-    public struct CreateOrganizationMemberRequest: TCRequestModel {
+    public struct CreateOrganizationMemberRequest: TCRequest {
         /// 成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
         public let name: String
 
@@ -79,7 +79,7 @@ extension Organization {
     }
 
     /// CreateOrganizationMember返回参数结构体
-    public struct CreateOrganizationMemberResponse: TCResponseModel {
+    public struct CreateOrganizationMemberResponse: TCResponse {
         /// 成员Uin。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: Int64?

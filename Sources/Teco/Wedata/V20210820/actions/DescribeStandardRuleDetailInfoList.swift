@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeStandardRuleDetailInfoList请求参数结构体
-    public struct DescribeStandardRuleDetailInfoListRequest: TCRequestModel {
+    public struct DescribeStandardRuleDetailInfoListRequest: TCRequest {
         /// 空间、项目id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DescribeStandardRuleDetailInfoList返回参数结构体
-    public struct DescribeStandardRuleDetailInfoListResponse: TCResponseModel {
+    public struct DescribeStandardRuleDetailInfoListResponse: TCResponse {
         /// 返回值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let standardRuleDetailList: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// TextTranslateBatch请求参数结构体
-    public struct TextTranslateBatchRequest: TCRequestModel {
+    public struct TextTranslateBatchRequest: TCRequest {
         /// 源语言，支持：
         /// auto：自动识别（识别为一种语言）
         /// zh：简体中文
@@ -87,7 +87,7 @@ extension Tmt {
     }
 
     /// TextTranslateBatch返回参数结构体
-    public struct TextTranslateBatchResponse: TCResponseModel {
+    public struct TextTranslateBatchResponse: TCResponse {
         /// 源语言，详见入参Source
         public let source: String
 

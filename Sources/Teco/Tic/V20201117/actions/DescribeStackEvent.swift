@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tic {
     /// DescribeStackEvent请求参数结构体
-    public struct DescribeStackEventRequest: TCRequestModel {
+    public struct DescribeStackEventRequest: TCRequest {
         /// 事件ID
         public let eventId: String
 
@@ -34,7 +34,7 @@ extension Tic {
     }
 
     /// DescribeStackEvent返回参数结构体
-    public struct DescribeStackEventResponse: TCResponseModel {
+    public struct DescribeStackEventResponse: TCResponse {
         /// 事件ID
         public let eventId: String
 

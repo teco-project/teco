@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterNodePoolDetail请求参数结构体
-    public struct DescribeClusterNodePoolDetailRequest: TCRequestModel {
+    public struct DescribeClusterNodePoolDetailRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeClusterNodePoolDetail返回参数结构体
-    public struct DescribeClusterNodePoolDetailResponse: TCResponseModel {
+    public struct DescribeClusterNodePoolDetailResponse: TCResponse {
         /// 节点池详情
         public let nodePool: NodePool
 

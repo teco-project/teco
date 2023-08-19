@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeTrendStat请求参数结构体
-    public struct DescribeTrendStatRequest: TCRequestModel {
+    public struct DescribeTrendStatRequest: TCRequest {
         /// Project id
         public let projectId: String
 
@@ -44,7 +44,7 @@ extension Wedata {
     }
 
     /// DescribeTrendStat返回参数结构体
-    public struct DescribeTrendStatResponse: TCResponseModel {
+    public struct DescribeTrendStatResponse: TCResponse {
         /// 结果
         public let data: [RuleExecDateStat]
 

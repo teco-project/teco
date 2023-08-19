@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// ModifyInstanceVip请求参数结构体
-    public struct ModifyInstanceVipRequest: TCRequestModel {
+    public struct ModifyInstanceVipRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Mariadb {
     }
 
     /// ModifyInstanceVip返回参数结构体
-    public struct ModifyInstanceVipResponse: TCResponseModel {
+    public struct ModifyInstanceVipResponse: TCResponse {
         /// 异步任务流程ID
         public let flowId: Int64
 

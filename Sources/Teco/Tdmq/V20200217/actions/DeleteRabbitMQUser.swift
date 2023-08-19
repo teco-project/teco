@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteRabbitMQUser请求参数结构体
-    public struct DeleteRabbitMQUserRequest: TCRequestModel {
+    public struct DeleteRabbitMQUserRequest: TCRequest {
         /// 集群实例Id
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Tdmq {
     }
 
     /// DeleteRabbitMQUser返回参数结构体
-    public struct DeleteRabbitMQUserResponse: TCResponseModel {
+    public struct DeleteRabbitMQUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveDelayInfoList请求参数结构体
-    public struct DescribeLiveDelayInfoListRequest: TCRequestModel {
+    public struct DescribeLiveDelayInfoListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeLiveDelayInfoList返回参数结构体
-    public struct DescribeLiveDelayInfoListResponse: TCResponseModel {
+    public struct DescribeLiveDelayInfoListResponse: TCResponse {
         /// 延播信息列表。
         public let delayInfoList: [DelayInfo]
 

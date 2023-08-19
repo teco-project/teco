@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateVpnGatewayRoutes请求参数结构体
-    public struct CreateVpnGatewayRoutesRequest: TCRequestModel {
+    public struct CreateVpnGatewayRoutesRequest: TCRequest {
         /// VPN网关的ID
         public let vpnGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// CreateVpnGatewayRoutes返回参数结构体
-    public struct CreateVpnGatewayRoutesResponse: TCResponseModel {
+    public struct CreateVpnGatewayRoutesResponse: TCResponse {
         /// VPN网关目的路由
         public let routes: [VpnGatewayRoute]
 

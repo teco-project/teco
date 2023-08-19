@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// DescribeTags请求参数结构体
-    public struct DescribeTagsRequest: TCRequestModel {
+    public struct DescribeTagsRequest: TCRequest {
         /// 云主机类型。
         /// - CVM：表示云服务器
         /// - BM:  表示黑石物理机
@@ -55,7 +55,7 @@ extension Cwp {
     }
 
     /// DescribeTags返回参数结构体
-    public struct DescribeTagsResponse: TCResponseModel {
+    public struct DescribeTagsResponse: TCResponse {
         /// 列表信息
         public let list: [Tag]
 

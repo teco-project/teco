@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// InquirePriceRenewInstances请求参数结构体
-    public struct InquirePriceRenewInstancesRequest: TCRequestModel {
+    public struct InquirePriceRenewInstancesRequest: TCRequest {
         /// 待续费的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573 )接口返回值中的InstanceId获取。每次请求批量实例的上限为50。
         public let instanceIds: [String]
 
@@ -49,7 +49,7 @@ extension Lighthouse {
     }
 
     /// InquirePriceRenewInstances返回参数结构体
-    public struct InquirePriceRenewInstancesResponse: TCResponseModel {
+    public struct InquirePriceRenewInstancesResponse: TCResponse {
         /// 询价信息。默认为列表中第一个实例的价格信息。
         public let price: Price
 

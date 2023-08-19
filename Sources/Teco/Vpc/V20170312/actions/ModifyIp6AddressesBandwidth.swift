@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// ModifyIp6AddressesBandwidth请求参数结构体
-    public struct ModifyIp6AddressesBandwidthRequest: TCRequestModel {
+    public struct ModifyIp6AddressesBandwidthRequest: TCRequest {
         /// 修改的目标带宽，单位Mbps
         public let internetMaxBandwidthOut: Int64
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// ModifyIp6AddressesBandwidth返回参数结构体
-    public struct ModifyIp6AddressesBandwidthResponse: TCResponseModel {
+    public struct ModifyIp6AddressesBandwidthResponse: TCResponse {
         /// 任务ID
         public let taskId: String
 

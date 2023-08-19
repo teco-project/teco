@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DescribeAutoDenyIP请求参数结构体
-    public struct DescribeAutoDenyIPRequest: TCRequestModel {
+    public struct DescribeAutoDenyIPRequest: TCRequest {
         /// 域名
         public let domain: String
 
@@ -89,7 +89,7 @@ extension Waf {
     }
 
     /// DescribeAutoDenyIP返回参数结构体
-    public struct DescribeAutoDenyIPResponse: TCResponseModel {
+    public struct DescribeAutoDenyIPResponse: TCResponse {
         /// 查询IP封禁状态返回结果
         public let data: IpHitItemsData
 

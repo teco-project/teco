@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeDatabaseACL请求参数结构体
-    public struct DescribeDatabaseACLRequest: TCRequestModel {
+    public struct DescribeDatabaseACLRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeDatabaseACL返回参数结构体
-    public struct DescribeDatabaseACLResponse: TCResponseModel {
+    public struct DescribeDatabaseACLResponse: TCResponse {
         /// 权限标签。包含以下取值：
         /// - READONLY：所有用户可读，仅创建者和管理员可写
         /// - PRIVATE：仅创建者及管理员可读写

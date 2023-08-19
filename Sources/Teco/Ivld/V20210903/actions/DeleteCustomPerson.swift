@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ivld {
     /// DeleteCustomPerson请求参数结构体
-    public struct DeleteCustomPersonRequest: TCRequestModel {
+    public struct DeleteCustomPersonRequest: TCRequest {
         /// 待删除的自定义人物ID
         public let personId: String
 
@@ -34,7 +34,7 @@ extension Ivld {
     }
 
     /// DeleteCustomPerson返回参数结构体
-    public struct DeleteCustomPersonResponse: TCResponseModel {
+    public struct DeleteCustomPersonResponse: TCResponse {
         /// 已删除的自定义人物Id
         public let personId: String
 

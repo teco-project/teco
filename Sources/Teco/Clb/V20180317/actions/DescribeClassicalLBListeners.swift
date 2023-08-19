@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeClassicalLBListeners请求参数结构体
-    public struct DescribeClassicalLBListenersRequest: TCRequestModel {
+    public struct DescribeClassicalLBListenersRequest: TCRequest {
         /// 负载均衡实例ID。
         public let loadBalancerId: String
 
@@ -54,7 +54,7 @@ extension Clb {
     }
 
     /// DescribeClassicalLBListeners返回参数结构体
-    public struct DescribeClassicalLBListenersResponse: TCResponseModel {
+    public struct DescribeClassicalLBListenersResponse: TCResponse {
         /// 监听器列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listeners: [ClassicalListener]?

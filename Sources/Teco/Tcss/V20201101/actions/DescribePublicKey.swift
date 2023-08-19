@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribePublicKey请求参数结构体
-    public struct DescribePublicKeyRequest: TCRequestModel {
+    public struct DescribePublicKeyRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePublicKey返回参数结构体
-    public struct DescribePublicKeyResponse: TCResponseModel {
+    public struct DescribePublicKeyResponse: TCResponse {
         /// 公钥
         public let publicKey: String
 

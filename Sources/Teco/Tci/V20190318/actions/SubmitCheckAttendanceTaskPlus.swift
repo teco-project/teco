@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tci {
     /// SubmitCheckAttendanceTaskPlus请求参数结构体
-    public struct SubmitCheckAttendanceTaskPlusRequest: TCRequestModel {
+    public struct SubmitCheckAttendanceTaskPlusRequest: TCRequest {
         /// 输入数据
         public let fileContent: [String]
 
@@ -76,7 +76,7 @@ extension Tci {
     }
 
     /// SubmitCheckAttendanceTaskPlus返回参数结构体
-    public struct SubmitCheckAttendanceTaskPlusResponse: TCResponseModel {
+    public struct SubmitCheckAttendanceTaskPlusResponse: TCResponse {
         /// 任务标识符
         public let jobId: Int64
 

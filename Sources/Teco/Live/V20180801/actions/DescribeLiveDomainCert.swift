@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveDomainCert请求参数结构体
-    public struct DescribeLiveDomainCertRequest: TCRequestModel {
+    public struct DescribeLiveDomainCertRequest: TCRequest {
         /// 播放域名。
         public let domainName: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLiveDomainCert返回参数结构体
-    public struct DescribeLiveDomainCertResponse: TCResponseModel {
+    public struct DescribeLiveDomainCertResponse: TCResponse {
         /// 证书信息。
         public let domainCertInfo: DomainCertInfo
 

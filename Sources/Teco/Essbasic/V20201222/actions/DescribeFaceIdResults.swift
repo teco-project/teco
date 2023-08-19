@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFaceIdResults请求参数结构体
-    public struct DescribeFaceIdResultsRequest: TCRequestModel {
+    public struct DescribeFaceIdResultsRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// DescribeFaceIdResults返回参数结构体
-    public struct DescribeFaceIdResultsResponse: TCResponseModel {
+    public struct DescribeFaceIdResultsResponse: TCResponse {
         /// 核身结果列表
         public let results: [FaceIdResult]
 

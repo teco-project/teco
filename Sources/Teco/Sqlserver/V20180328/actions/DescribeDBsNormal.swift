@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeDBsNormal请求参数结构体
-    public struct DescribeDBsNormalRequest: TCRequestModel {
+    public struct DescribeDBsNormalRequest: TCRequest {
         /// 实例ID，形如mssql-7vfv3rk3
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Sqlserver {
     }
 
     /// DescribeDBsNormal返回参数结构体
-    public struct DescribeDBsNormalResponse: TCResponseModel {
+    public struct DescribeDBsNormalResponse: TCResponse {
         /// 表示当前实例下的数据库总个数
         public let totalCount: Int64
 

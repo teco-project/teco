@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// CreateNotificationConfiguration请求参数结构体
-    public struct CreateNotificationConfigurationRequest: TCRequestModel {
+    public struct CreateNotificationConfigurationRequest: TCRequest {
         /// 伸缩组ID。
         public let autoScalingGroupId: String
 
@@ -73,7 +73,7 @@ extension As {
     }
 
     /// CreateNotificationConfiguration返回参数结构体
-    public struct CreateNotificationConfigurationResponse: TCResponseModel {
+    public struct CreateNotificationConfigurationResponse: TCResponse {
         /// 通知ID。
         public let autoScalingNotificationId: String
 

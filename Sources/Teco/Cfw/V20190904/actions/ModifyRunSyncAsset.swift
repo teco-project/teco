@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifyRunSyncAsset请求参数结构体
-    public struct ModifyRunSyncAssetRequest: TCRequestModel {
+    public struct ModifyRunSyncAssetRequest: TCRequest {
         /// 0: 互联网防火墙开关，1：vpc 防火墙开关
         public let type: UInt64?
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// ModifyRunSyncAsset返回参数结构体
-    public struct ModifyRunSyncAssetResponse: TCResponseModel {
+    public struct ModifyRunSyncAssetResponse: TCResponse {
         /// 0：同步成功，1：资产更新中，2：后台同步调用失败
         public let status: Int64
 

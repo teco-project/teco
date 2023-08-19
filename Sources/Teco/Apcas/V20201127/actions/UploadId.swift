@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apcas {
     /// UploadId请求参数结构体
-    public struct UploadIdRequest: TCRequestModel {
+    public struct UploadIdRequest: TCRequest {
         /// id标志的类型: 0:imei 7:IDFA 8:MD5(imei)
         public let type: UInt64
 
@@ -44,7 +44,7 @@ extension Apcas {
     }
 
     /// UploadId返回参数结构体
-    public struct UploadIdResponse: TCResponseModel {
+    public struct UploadIdResponse: TCResponse {
         /// 画像洞察任务ID等信息
         public let taskData: TaskData
 

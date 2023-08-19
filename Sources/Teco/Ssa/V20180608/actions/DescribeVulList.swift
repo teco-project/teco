@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeVulList请求参数结构体
-    public struct DescribeVulListRequest: TCRequestModel {
+    public struct DescribeVulListRequest: TCRequest {
         /// 查询过滤参数
         public let params: String
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeVulList返回参数结构体
-    public struct DescribeVulListResponse: TCResponseModel {
+    public struct DescribeVulListResponse: TCResponse {
         /// 漏洞列表
         public let data: VulList
 

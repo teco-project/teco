@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Tcss {
     /// DescribeVulTendency请求参数结构体
-    public struct DescribeVulTendencyRequest: TCRequestModel {
+    public struct DescribeVulTendencyRequest: TCRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -54,7 +54,7 @@ extension Tcss {
     }
 
     /// DescribeVulTendency返回参数结构体
-    public struct DescribeVulTendencyResponse: TCResponseModel {
+    public struct DescribeVulTendencyResponse: TCResponse {
         /// 漏洞趋势列表
         public let vulTendencySet: [VulTendencyInfo]
 

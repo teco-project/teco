@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudaudit {
     /// DescribeAudit请求参数结构体
-    public struct DescribeAuditRequest: TCRequestModel {
+    public struct DescribeAuditRequest: TCRequest {
         /// 跟踪集名称
         public let auditName: String
 
@@ -34,7 +34,7 @@ extension Cloudaudit {
     }
 
     /// DescribeAudit返回参数结构体
-    public struct DescribeAuditResponse: TCResponseModel {
+    public struct DescribeAuditResponse: TCResponse {
         /// 是否开启cmq消息通知。1：是，0：否。
         public let isEnableCmqNotify: Int64
 

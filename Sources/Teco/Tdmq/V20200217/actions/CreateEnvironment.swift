@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateEnvironment请求参数结构体
-    public struct CreateEnvironmentRequest: TCRequestModel {
+    public struct CreateEnvironmentRequest: TCRequest {
         /// 环境（命名空间）名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
         public let environmentId: String
 
@@ -59,7 +59,7 @@ extension Tdmq {
     }
 
     /// CreateEnvironment返回参数结构体
-    public struct CreateEnvironmentResponse: TCResponseModel {
+    public struct CreateEnvironmentResponse: TCResponse {
         /// 环境（命名空间）名称。
         public let environmentId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// DeleteDDoSGeoIPBlockConfig请求参数结构体
-    public struct DeleteDDoSGeoIPBlockConfigRequest: TCRequestModel {
+    public struct DeleteDDoSGeoIPBlockConfigRequest: TCRequest {
         /// 资源实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Antiddos {
     }
 
     /// DeleteDDoSGeoIPBlockConfig返回参数结构体
-    public struct DeleteDDoSGeoIPBlockConfigResponse: TCResponseModel {
+    public struct DeleteDDoSGeoIPBlockConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

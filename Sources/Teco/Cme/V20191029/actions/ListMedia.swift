@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// ListMedia请求参数结构体
-    public struct ListMediaRequest: TCRequestModel {
+    public struct ListMediaRequest: TCRequest {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
         public let platform: String
 
@@ -59,7 +59,7 @@ extension Cme {
     }
 
     /// ListMedia返回参数结构体
-    public struct ListMediaResponse: TCResponseModel {
+    public struct ListMediaResponse: TCResponse {
         /// 符合条件的媒体记录总数。
         public let materialTotalCount: Int64
 

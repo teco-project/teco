@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// ModifyRouteTable请求参数结构体
-    public struct ModifyRouteTableRequest: TCRequestModel {
+    public struct ModifyRouteTableRequest: TCRequest {
         /// 路由表ID
         public let routeTableId: String
 
@@ -39,7 +39,7 @@ extension Bmvpc {
     }
 
     /// ModifyRouteTable返回参数结构体
-    public struct ModifyRouteTableResponse: TCResponseModel {
+    public struct ModifyRouteTableResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

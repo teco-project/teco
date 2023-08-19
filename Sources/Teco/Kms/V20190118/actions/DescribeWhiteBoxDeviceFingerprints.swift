@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// DescribeWhiteBoxDeviceFingerprints请求参数结构体
-    public struct DescribeWhiteBoxDeviceFingerprintsRequest: TCRequestModel {
+    public struct DescribeWhiteBoxDeviceFingerprintsRequest: TCRequest {
         /// 白盒密钥ID
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// DescribeWhiteBoxDeviceFingerprints返回参数结构体
-    public struct DescribeWhiteBoxDeviceFingerprintsResponse: TCResponseModel {
+    public struct DescribeWhiteBoxDeviceFingerprintsResponse: TCResponse {
         /// 设备指纹列表
         public let deviceFingerprints: [DeviceFingerprint]
 

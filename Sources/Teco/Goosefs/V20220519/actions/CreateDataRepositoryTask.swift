@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// CreateDataRepositoryTask请求参数结构体
-    public struct CreateDataRepositoryTaskRequest: TCRequestModel {
+    public struct CreateDataRepositoryTaskRequest: TCRequest {
         /// 数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)
         public let taskType: String
 
@@ -64,7 +64,7 @@ extension Goosefs {
     }
 
     /// CreateDataRepositoryTask返回参数结构体
-    public struct CreateDataRepositoryTaskResponse: TCResponseModel {
+    public struct CreateDataRepositoryTaskResponse: TCResponse {
         /// 任务ID
         public let taskId: String
 

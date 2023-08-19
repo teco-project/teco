@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Apigateway {
     /// DescribeLogSearch请求参数结构体
-    public struct DescribeLogSearchRequest: TCRequestModel {
+    public struct DescribeLogSearchRequest: TCRequest {
         /// 日志开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -104,7 +104,7 @@ extension Apigateway {
     }
 
     /// DescribeLogSearch返回参数结构体
-    public struct DescribeLogSearchResponse: TCResponseModel {
+    public struct DescribeLogSearchResponse: TCResponse {
         /// 获取更多检索结果的游标，值为""表示无后续结果
         public let conText: String
 

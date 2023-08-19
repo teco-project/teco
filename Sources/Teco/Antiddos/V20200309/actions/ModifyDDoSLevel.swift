@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyDDoSLevel请求参数结构体
-    public struct ModifyDDoSLevelRequest: TCRequestModel {
+    public struct ModifyDDoSLevelRequest: TCRequest {
         /// 资源ID
         public let id: String
 
@@ -49,7 +49,7 @@ extension Antiddos {
     }
 
     /// ModifyDDoSLevel返回参数结构体
-    public struct ModifyDDoSLevelResponse: TCResponseModel {
+    public struct ModifyDDoSLevelResponse: TCResponse {
         /// 防护等级，取值[low,middle,high]
         public let dDoSLevel: String
 

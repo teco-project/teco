@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cr {
     /// DownloadBotRecord请求参数结构体
-    public struct DownloadBotRecordRequest: TCRequestModel {
+    public struct DownloadBotRecordRequest: TCRequest {
         /// 模块：AiApi
         public let module: String
 
@@ -49,7 +49,7 @@ extension Cr {
     }
 
     /// DownloadBotRecord返回参数结构体
-    public struct DownloadBotRecordResponse: TCResponseModel {
+    public struct DownloadBotRecordResponse: TCResponse {
         /// 录音地址。请求后30分钟内有效
         public let recordCosUrl: String
 

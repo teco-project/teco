@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rp {
     /// QueryRegisterProtection请求参数结构体
-    public struct QueryRegisterProtectionRequest: TCRequestModel {
+    public struct QueryRegisterProtectionRequest: TCRequest {
         /// 注册来源的外网 IP。
         public let registerIp: String
 
@@ -192,7 +192,7 @@ extension Rp {
     }
 
     /// QueryRegisterProtection返回参数结构体
-    public struct QueryRegisterProtectionResponse: TCResponseModel {
+    public struct QueryRegisterProtectionResponse: TCResponse {
         /// 业务侧错误码，成功时返回 Success，错误时返回具体业务错误原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeDesc: String?

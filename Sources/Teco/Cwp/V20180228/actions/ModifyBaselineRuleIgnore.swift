@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyBaselineRuleIgnore请求参数结构体
-    public struct ModifyBaselineRuleIgnoreRequest: TCRequestModel {
+    public struct ModifyBaselineRuleIgnoreRequest: TCRequest {
         /// 规则名称
         public let ruleName: String
 
@@ -69,7 +69,7 @@ extension Cwp {
     }
 
     /// ModifyBaselineRuleIgnore返回参数结构体
-    public struct ModifyBaselineRuleIgnoreResponse: TCResponseModel {
+    public struct ModifyBaselineRuleIgnoreResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

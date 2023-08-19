@@ -20,7 +20,7 @@ import TecoCore
 
 extension Clb {
     /// DescribeClassicalLBHealthStatus请求参数结构体
-    public struct DescribeClassicalLBHealthStatusRequest: TCRequestModel {
+    public struct DescribeClassicalLBHealthStatusRequest: TCRequest {
         /// 负载均衡实例ID。
         public let loadBalancerId: String
 
@@ -39,7 +39,7 @@ extension Clb {
     }
 
     /// DescribeClassicalLBHealthStatus返回参数结构体
-    public struct DescribeClassicalLBHealthStatusResponse: TCResponseModel {
+    public struct DescribeClassicalLBHealthStatusResponse: TCResponse {
         /// 后端健康状态列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthList: [ClassicalHealth]?

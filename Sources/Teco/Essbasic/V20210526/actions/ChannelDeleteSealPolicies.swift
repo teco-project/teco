@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// ChannelDeleteSealPolicies请求参数结构体
-    public struct ChannelDeleteSealPoliciesRequest: TCRequestModel {
+    public struct ChannelDeleteSealPoliciesRequest: TCRequest {
         /// 应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 必填。
         public let agent: Agent
 
@@ -62,7 +62,7 @@ extension Essbasic {
     }
 
     /// ChannelDeleteSealPolicies返回参数结构体
-    public struct ChannelDeleteSealPoliciesResponse: TCResponseModel {
+    public struct ChannelDeleteSealPoliciesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

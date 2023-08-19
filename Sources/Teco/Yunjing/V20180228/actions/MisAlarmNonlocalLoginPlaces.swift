@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// MisAlarmNonlocalLoginPlaces请求参数结构体
-    public struct MisAlarmNonlocalLoginPlacesRequest: TCRequestModel {
+    public struct MisAlarmNonlocalLoginPlacesRequest: TCRequest {
         /// 异地登录事件Id数组。
         public let ids: [UInt64]
 
@@ -34,7 +34,7 @@ extension Yunjing {
     }
 
     /// MisAlarmNonlocalLoginPlaces返回参数结构体
-    public struct MisAlarmNonlocalLoginPlacesResponse: TCResponseModel {
+    public struct MisAlarmNonlocalLoginPlacesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

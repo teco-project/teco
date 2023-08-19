@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// ScaleOutClusterMaster请求参数结构体
-    public struct ScaleOutClusterMasterRequest: TCRequestModel {
+    public struct ScaleOutClusterMasterRequest: TCRequest {
         /// 集群实例ID
         public let clusterId: String
 
@@ -54,7 +54,7 @@ extension Tke {
     }
 
     /// ScaleOutClusterMaster返回参数结构体
-    public struct ScaleOutClusterMasterResponse: TCResponseModel {
+    public struct ScaleOutClusterMasterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

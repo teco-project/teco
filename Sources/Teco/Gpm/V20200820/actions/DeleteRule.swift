@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// DeleteRule请求参数结构体
-    public struct DeleteRuleRequest: TCRequestModel {
+    public struct DeleteRuleRequest: TCRequest {
         /// 规则code
         public let ruleCode: String
 
@@ -34,7 +34,7 @@ extension Gpm {
     }
 
     /// DeleteRule返回参数结构体
-    public struct DeleteRuleResponse: TCResponseModel {
+    public struct DeleteRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

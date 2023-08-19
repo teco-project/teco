@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateTopicPolicy请求参数结构体
-    public struct CreateTopicPolicyRequest: TCRequestModel {
+    public struct CreateTopicPolicyRequest: TCRequest {
         /// 产品自身ID
         public let productID: String
 
@@ -49,7 +49,7 @@ extension Iotcloud {
     }
 
     /// CreateTopicPolicy返回参数结构体
-    public struct CreateTopicPolicyResponse: TCResponseModel {
+    public struct CreateTopicPolicyResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

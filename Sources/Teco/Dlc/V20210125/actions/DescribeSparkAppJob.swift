@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeSparkAppJob请求参数结构体
-    public struct DescribeSparkAppJobRequest: TCRequestModel {
+    public struct DescribeSparkAppJobRequest: TCRequest {
         /// spark作业Id，与JobName同时存在时，JobName无效，JobId与JobName至少存在一个
         public let jobId: String?
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// DescribeSparkAppJob返回参数结构体
-    public struct DescribeSparkAppJobResponse: TCResponseModel {
+    public struct DescribeSparkAppJobResponse: TCResponse {
         /// spark作业详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let job: SparkJobInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// InheritCloudStorageUser请求参数结构体
-    public struct InheritCloudStorageUserRequest: TCRequestModel {
+    public struct InheritCloudStorageUserRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -49,7 +49,7 @@ extension Iotvideo {
     }
 
     /// InheritCloudStorageUser返回参数结构体
-    public struct InheritCloudStorageUserResponse: TCResponseModel {
+    public struct InheritCloudStorageUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

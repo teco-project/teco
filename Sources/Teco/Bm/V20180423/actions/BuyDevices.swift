@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bm {
     /// BuyDevices请求参数结构体
-    public struct BuyDevicesRequest: TCRequestModel {
+    public struct BuyDevicesRequest: TCRequest {
         /// 可用区ID。通过接口[查询地域以及可用区(DescribeRegions)](https://cloud.tencent.com/document/api/386/33564)获取可用区信息
         public let zone: String
 
@@ -236,7 +236,7 @@ extension Bm {
     }
 
     /// BuyDevices返回参数结构体
-    public struct BuyDevicesResponse: TCResponseModel {
+    public struct BuyDevicesResponse: TCResponse {
         /// 购买的物理机实例ID列表
         public let instanceIds: [String]
 

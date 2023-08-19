@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// AppUpdateUser请求参数结构体
-    public struct AppUpdateUserRequest: TCRequestModel {
+    public struct AppUpdateUserRequest: TCRequest {
         /// 访问Token
         public let accessToken: String
 
@@ -39,7 +39,7 @@ extension Iot {
     }
 
     /// AppUpdateUser返回参数结构体
-    public struct AppUpdateUserResponse: TCResponseModel {
+    public struct AppUpdateUserResponse: TCResponse {
         /// 应用用户
         public let appUser: AppUser
 

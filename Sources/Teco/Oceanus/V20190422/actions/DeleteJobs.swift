@@ -20,7 +20,7 @@ import TecoCore
 
 extension Oceanus {
     /// DeleteJobs请求参数结构体
-    public struct DeleteJobsRequest: TCRequestModel {
+    public struct DeleteJobsRequest: TCRequest {
         /// 作业Id列表
         public let jobIds: [String]
 
@@ -39,7 +39,7 @@ extension Oceanus {
     }
 
     /// DeleteJobs返回参数结构体
-    public struct DeleteJobsResponse: TCResponseModel {
+    public struct DeleteJobsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Gaap {
     /// DescribeAuthSignature请求参数结构体
-    public struct DescribeAuthSignatureRequest: TCRequestModel {
+    public struct DescribeAuthSignatureRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAuthSignature返回参数结构体
-    public struct DescribeAuthSignatureResponse: TCResponseModel {
+    public struct DescribeAuthSignatureResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateAIRecognitionTemplate请求参数结构体
-    public struct CreateAIRecognitionTemplateRequest: TCRequestModel {
+    public struct CreateAIRecognitionTemplateRequest: TCRequest {
         /// 视频内容识别模板名称，长度限制：64 个字符。
         public let name: String?
 
@@ -69,7 +69,7 @@ extension Mps {
     }
 
     /// CreateAIRecognitionTemplate返回参数结构体
-    public struct CreateAIRecognitionTemplateResponse: TCResponseModel {
+    public struct CreateAIRecognitionTemplateResponse: TCResponse {
         /// 视频内容识别模板唯一标识。
         public let definition: Int64
 

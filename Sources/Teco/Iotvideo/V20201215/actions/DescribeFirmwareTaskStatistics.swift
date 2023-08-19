@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeFirmwareTaskStatistics请求参数结构体
-    public struct DescribeFirmwareTaskStatisticsRequest: TCRequestModel {
+    public struct DescribeFirmwareTaskStatisticsRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// DescribeFirmwareTaskStatistics返回参数结构体
-    public struct DescribeFirmwareTaskStatisticsResponse: TCResponseModel {
+    public struct DescribeFirmwareTaskStatisticsResponse: TCResponse {
         /// 升级成功的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successTotal: UInt64?

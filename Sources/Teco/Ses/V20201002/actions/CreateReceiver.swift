@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// CreateReceiver请求参数结构体
-    public struct CreateReceiverRequest: TCRequestModel {
+    public struct CreateReceiverRequest: TCRequest {
         /// 收件人列表名称
         public let receiversName: String
 
@@ -39,7 +39,7 @@ extension Ses {
     }
 
     /// CreateReceiver返回参数结构体
-    public struct CreateReceiverResponse: TCResponseModel {
+    public struct CreateReceiverResponse: TCResponse {
         /// 收件人列表id，后续根据收件人列表id上传收件人地址
         public let receiverId: UInt64
 

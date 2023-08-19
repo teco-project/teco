@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreatePullStreamConfig请求参数结构体
-    public struct CreatePullStreamConfigRequest: TCRequestModel {
+    public struct CreatePullStreamConfigRequest: TCRequest {
         /// 源 Url ，用于拉流的地址。目前可支持直播流及点播文件。
         /// 注意：
         /// 1. 多个点播url之间使用空格拼接。
@@ -83,7 +83,7 @@ extension Live {
     }
 
     /// CreatePullStreamConfig返回参数结构体
-    public struct CreatePullStreamConfigResponse: TCResponseModel {
+    public struct CreatePullStreamConfigResponse: TCResponse {
         /// 配置成功后的 ID。
         public let configId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DeleteFirmware请求参数结构体
-    public struct DeleteFirmwareRequest: TCRequestModel {
+    public struct DeleteFirmwareRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// DeleteFirmware返回参数结构体
-    public struct DeleteFirmwareResponse: TCResponseModel {
+    public struct DeleteFirmwareResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

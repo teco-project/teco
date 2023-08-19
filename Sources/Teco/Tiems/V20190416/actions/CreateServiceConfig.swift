@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// CreateServiceConfig请求参数结构体
-    public struct CreateServiceConfigRequest: TCRequestModel {
+    public struct CreateServiceConfigRequest: TCRequest {
         /// 配置名称
         public let name: String
 
@@ -49,7 +49,7 @@ extension Tiems {
     }
 
     /// CreateServiceConfig返回参数结构体
-    public struct CreateServiceConfigResponse: TCResponseModel {
+    public struct CreateServiceConfigResponse: TCResponse {
         /// 服务配置
         public let serviceConfig: Config
 

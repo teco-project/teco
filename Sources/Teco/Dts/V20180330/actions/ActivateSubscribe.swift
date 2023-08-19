@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// ActivateSubscribe请求参数结构体
-    public struct ActivateSubscribeRequest: TCRequestModel {
+    public struct ActivateSubscribeRequest: TCRequest {
         /// 订阅实例ID。
         public let subscribeId: String
 
@@ -59,7 +59,7 @@ extension Dts {
     }
 
     /// ActivateSubscribe返回参数结构体
-    public struct ActivateSubscribeResponse: TCResponseModel {
+    public struct ActivateSubscribeResponse: TCResponse {
         /// 配置数据订阅任务ID。
         public let asyncRequestId: String
 

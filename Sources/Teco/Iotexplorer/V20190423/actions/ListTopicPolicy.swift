@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// ListTopicPolicy请求参数结构体
-    public struct ListTopicPolicyRequest: TCRequestModel {
+    public struct ListTopicPolicyRequest: TCRequest {
         /// 产品ID
         public let productId: String
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// ListTopicPolicy返回参数结构体
-    public struct ListTopicPolicyResponse: TCResponseModel {
+    public struct ListTopicPolicyResponse: TCResponse {
         /// Topic列表
         public let topics: [TopicItem]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeSchedulerInstanceStatus请求参数结构体
-    public struct DescribeSchedulerInstanceStatusRequest: TCRequestModel {
+    public struct DescribeSchedulerInstanceStatusRequest: TCRequest {
         /// 项目ID
         public let projectId: String
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeSchedulerInstanceStatus返回参数结构体
-    public struct DescribeSchedulerInstanceStatusResponse: TCResponseModel {
+    public struct DescribeSchedulerInstanceStatusResponse: TCResponse {
         /// 响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [ScreenInstanceInfo]?

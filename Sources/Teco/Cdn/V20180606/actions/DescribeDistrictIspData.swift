@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cdn {
     /// DescribeDistrictIspData请求参数结构体
-    public struct DescribeDistrictIspDataRequest: TCRequestModel {
+    public struct DescribeDistrictIspDataRequest: TCRequest {
         /// 域名列表，最多支持20个域名
         public let domains: [String]
 
@@ -104,7 +104,7 @@ extension Cdn {
     }
 
     /// DescribeDistrictIspData返回参数结构体
-    public struct DescribeDistrictIspDataResponse: TCResponseModel {
+    public struct DescribeDistrictIspDataResponse: TCResponse {
         /// 地区运营商数据明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [DistrictIspInfo]?

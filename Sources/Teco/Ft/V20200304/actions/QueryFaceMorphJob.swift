@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ft {
     /// QueryFaceMorphJob请求参数结构体
-    public struct QueryFaceMorphJobRequest: TCRequestModel {
+    public struct QueryFaceMorphJobRequest: TCRequest {
         /// 人像渐变任务Job id
         public let jobId: String
 
@@ -34,7 +34,7 @@ extension Ft {
     }
 
     /// QueryFaceMorphJob返回参数结构体
-    public struct QueryFaceMorphJobResponse: TCResponseModel {
+    public struct QueryFaceMorphJobResponse: TCResponse {
         /// 当前任务状态：排队中、处理中、处理失败或者处理完成
         public let jobStatus: String
 

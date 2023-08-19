@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vm {
     /// DescribeTaskDetail请求参数结构体
-    public struct DescribeTaskDetailRequest: TCRequestModel {
+    public struct DescribeTaskDetailRequest: TCRequest {
         /// 任务ID，创建任务后返回的TaskId字段
         public let taskId: String
 
@@ -39,7 +39,7 @@ extension Vm {
     }
 
     /// DescribeTaskDetail返回参数结构体
-    public struct DescribeTaskDetailResponse: TCResponseModel {
+    public struct DescribeTaskDetailResponse: TCResponse {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

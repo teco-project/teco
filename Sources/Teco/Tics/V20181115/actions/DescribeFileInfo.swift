@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tics {
     /// DescribeFileInfo请求参数结构体
-    public struct DescribeFileInfoRequest: TCRequestModel {
+    public struct DescribeFileInfoRequest: TCRequest {
         /// 要查询文件的MD5
         public let key: String
 
@@ -39,7 +39,7 @@ extension Tics {
     }
 
     /// DescribeFileInfo返回参数结构体
-    public struct DescribeFileInfoResponse: TCResponseModel {
+    public struct DescribeFileInfoResponse: TCResponse {
         /// 是否有数据，0代表有数据，1代表没有数据
         public let returnCode: UInt64
 

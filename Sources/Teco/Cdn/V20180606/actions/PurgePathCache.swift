@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// PurgePathCache请求参数结构体
-    public struct PurgePathCacheRequest: TCRequestModel {
+    public struct PurgePathCacheRequest: TCRequest {
         /// 目录列表，需要包含协议头部 http:// 或 https://
         public let paths: [String]
 
@@ -55,7 +55,7 @@ extension Cdn {
     }
 
     /// PurgePathCache返回参数结构体
-    public struct PurgePathCacheResponse: TCResponseModel {
+    public struct PurgePathCacheResponse: TCResponse {
         /// 刷新任务 ID，同一批次提交的目录共用一个任务 ID
         public let taskId: String
 

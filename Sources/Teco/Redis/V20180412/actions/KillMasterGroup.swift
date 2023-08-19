@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// KillMasterGroup请求参数结构体
-    public struct KillMasterGroupRequest: TCRequestModel {
+    public struct KillMasterGroupRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -47,7 +47,7 @@ extension Redis {
     }
 
     /// KillMasterGroup返回参数结构体
-    public struct KillMasterGroupResponse: TCResponseModel {
+    public struct KillMasterGroupResponse: TCResponse {
         /// 异步任务ID。
         public let taskId: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// VerifyUserAccount请求参数结构体
-    public struct VerifyUserAccountRequest: TCRequestModel {
+    public struct VerifyUserAccountRequest: TCRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Dbbrain {
     }
 
     /// VerifyUserAccount返回参数结构体
-    public struct VerifyUserAccountResponse: TCResponseModel {
+    public struct VerifyUserAccountResponse: TCResponse {
         /// 会话token，有效期为5分钟。
         public let sessionToken: String
 

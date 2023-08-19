@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// DeleteLiveChannel请求参数结构体
-    public struct DeleteLiveChannelRequest: TCRequestModel {
+    public struct DeleteLiveChannelRequest: TCRequest {
         /// 直播频道ID
         public let liveChannelId: String
 
@@ -34,7 +34,7 @@ extension Iotvideoindustry {
     }
 
     /// DeleteLiveChannel返回参数结构体
-    public struct DeleteLiveChannelResponse: TCResponseModel {
+    public struct DeleteLiveChannelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

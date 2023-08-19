@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// ModifyAccountHost请求参数结构体
-    public struct ModifyAccountHostRequest: TCRequestModel {
+    public struct ModifyAccountHostRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Cynosdb {
     }
 
     /// ModifyAccountHost返回参数结构体
-    public struct ModifyAccountHostResponse: TCResponseModel {
+    public struct ModifyAccountHostResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

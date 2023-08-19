@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// DescribeAgentCorps请求参数结构体
-    public struct DescribeAgentCorpsRequest: TCRequestModel {
+    public struct DescribeAgentCorpsRequest: TCRequest {
         /// 每页数量
         public let pageSize: UInt64?
 
@@ -49,7 +49,7 @@ extension Trp {
     }
 
     /// DescribeAgentCorps返回参数结构体
-    public struct DescribeAgentCorpsResponse: TCResponseModel {
+    public struct DescribeAgentCorpsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// CreateAdaptiveDynamicStreamingTemplate请求参数结构体
-    public struct CreateAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
+    public struct CreateAdaptiveDynamicStreamingTemplateRequest: TCRequest {
         /// 自适应转码格式，取值范围：
         /// - HLS；
         /// - MPEG-DASH。
@@ -103,7 +103,7 @@ extension Vod {
     }
 
     /// CreateAdaptiveDynamicStreamingTemplate返回参数结构体
-    public struct CreateAdaptiveDynamicStreamingTemplateResponse: TCResponseModel {
+    public struct CreateAdaptiveDynamicStreamingTemplateResponse: TCResponse {
         /// 自适应转码模板唯一标识。
         public let definition: UInt64
 

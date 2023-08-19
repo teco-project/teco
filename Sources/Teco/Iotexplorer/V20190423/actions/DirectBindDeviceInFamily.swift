@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DirectBindDeviceInFamily请求参数结构体
-    public struct DirectBindDeviceInFamilyRequest: TCRequestModel {
+    public struct DirectBindDeviceInFamilyRequest: TCRequest {
         /// 小程序appid
         public let iotAppID: String
 
@@ -59,7 +59,7 @@ extension Iotexplorer {
     }
 
     /// DirectBindDeviceInFamily返回参数结构体
-    public struct DirectBindDeviceInFamilyResponse: TCResponseModel {
+    public struct DirectBindDeviceInFamilyResponse: TCResponse {
         /// 返回设备信息
         public let appDeviceInfo: AppDeviceInfo
 

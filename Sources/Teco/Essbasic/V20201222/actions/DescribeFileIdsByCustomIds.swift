@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// DescribeFileIdsByCustomIds请求参数结构体
-    public struct DescribeFileIdsByCustomIdsRequest: TCRequestModel {
+    public struct DescribeFileIdsByCustomIdsRequest: TCRequest {
         /// 调用方信息, OrganizationId必填
         public let caller: Caller
 
@@ -39,7 +39,7 @@ extension Essbasic {
     }
 
     /// DescribeFileIdsByCustomIds返回参数结构体
-    public struct DescribeFileIdsByCustomIdsResponse: TCResponseModel {
+    public struct DescribeFileIdsByCustomIdsResponse: TCResponse {
         /// <自定义Id,文件id>数组
         public let customIdList: [CustomFileIdMap]
 

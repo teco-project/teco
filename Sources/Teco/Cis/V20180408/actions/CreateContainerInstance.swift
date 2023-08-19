@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cis {
     /// CreateContainerInstance请求参数结构体
-    public struct CreateContainerInstanceRequest: TCRequestModel {
+    public struct CreateContainerInstanceRequest: TCRequest {
         /// 可用区
         public let zone: String
 
@@ -59,7 +59,7 @@ extension Cis {
     }
 
     /// CreateContainerInstance返回参数结构体
-    public struct CreateContainerInstanceResponse: TCResponseModel {
+    public struct CreateContainerInstanceResponse: TCResponse {
         /// 容器实例ID
         public let instanceId: String
 

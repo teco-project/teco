@@ -20,7 +20,7 @@ import TecoCore
 
 extension Scf {
     /// PutProvisionedConcurrencyConfig请求参数结构体
-    public struct PutProvisionedConcurrencyConfigRequest: TCRequestModel {
+    public struct PutProvisionedConcurrencyConfigRequest: TCRequest {
         /// 需要设置预置并发的函数的名称
         public let functionName: String
 
@@ -79,7 +79,7 @@ extension Scf {
     }
 
     /// PutProvisionedConcurrencyConfig返回参数结构体
-    public struct PutProvisionedConcurrencyConfigResponse: TCResponseModel {
+    public struct PutProvisionedConcurrencyConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

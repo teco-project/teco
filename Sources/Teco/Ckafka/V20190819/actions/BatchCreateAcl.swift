@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ckafka {
     /// BatchCreateAcl请求参数结构体
-    public struct BatchCreateAclRequest: TCRequestModel {
+    public struct BatchCreateAclRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Ckafka {
     }
 
     /// BatchCreateAcl返回参数结构体
-    public struct BatchCreateAclResponse: TCResponseModel {
+    public struct BatchCreateAclResponse: TCResponse {
         /// 状态码
         public let result: Int64
 

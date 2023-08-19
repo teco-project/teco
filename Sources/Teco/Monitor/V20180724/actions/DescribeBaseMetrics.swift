@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeBaseMetrics请求参数结构体
-    public struct DescribeBaseMetricsRequest: TCRequestModel {
+    public struct DescribeBaseMetricsRequest: TCRequest {
         /// 业务命名空间，各个云产品的业务命名空间不同。如需获取业务命名空间，请前往各产品监控指标文档，例如云服务器的命名空间，可参见 [云服务器监控指标](https://cloud.tencent.com/document/product/248/6843)
         public let namespace: String
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// DescribeBaseMetrics返回参数结构体
-    public struct DescribeBaseMetricsResponse: TCResponseModel {
+    public struct DescribeBaseMetricsResponse: TCResponse {
         /// 查询得到的指标描述列表
         public let metricSet: [MetricSet]
 

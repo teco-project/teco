@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iecp {
     /// CreateMessageRoute请求参数结构体
-    public struct CreateMessageRouteRequest: TCRequestModel {
+    public struct CreateMessageRouteRequest: TCRequest {
         /// 路由名称
         public let routeName: String
 
@@ -39,7 +39,7 @@ extension Iecp {
     }
 
     /// CreateMessageRoute返回参数结构体
-    public struct CreateMessageRouteResponse: TCResponseModel {
+    public struct CreateMessageRouteResponse: TCResponse {
         /// 路由id
         public let routeID: Int64
 

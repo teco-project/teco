@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// CreateEmailIdentity请求参数结构体
-    public struct CreateEmailIdentityRequest: TCRequestModel {
+    public struct CreateEmailIdentityRequest: TCRequest {
         /// 您的发信域名，建议使用三级以上域名。例如：mail.qcloud.com。
         public let emailIdentity: String
 
@@ -34,7 +34,7 @@ extension Ses {
     }
 
     /// CreateEmailIdentity返回参数结构体
-    public struct CreateEmailIdentityResponse: TCResponseModel {
+    public struct CreateEmailIdentityResponse: TCResponse {
         /// 验证类型。固定值：DOMAIN
         public let identityType: String
 

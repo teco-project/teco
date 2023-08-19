@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DisassociateNatGatewayAddress请求参数结构体
-    public struct DisassociateNatGatewayAddressRequest: TCRequestModel {
+    public struct DisassociateNatGatewayAddressRequest: TCRequest {
         /// NAT网关的ID，形如：`nat-df45454`。
         public let natGatewayId: String
 
@@ -39,7 +39,7 @@ extension Vpc {
     }
 
     /// DisassociateNatGatewayAddress返回参数结构体
-    public struct DisassociateNatGatewayAddressResponse: TCResponseModel {
+    public struct DisassociateNatGatewayAddressResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

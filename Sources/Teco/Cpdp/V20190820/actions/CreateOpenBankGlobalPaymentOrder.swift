@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateOpenBankGlobalPaymentOrder请求参数结构体
-    public struct CreateOpenBankGlobalPaymentOrderRequest: TCRequestModel {
+    public struct CreateOpenBankGlobalPaymentOrderRequest: TCRequest {
         /// 渠道商户号
         public let channelMerchantId: String
 
@@ -112,7 +112,7 @@ extension Cpdp {
     }
 
     /// CreateOpenBankGlobalPaymentOrder返回参数结构体
-    public struct CreateOpenBankGlobalPaymentOrderResponse: TCResponseModel {
+    public struct CreateOpenBankGlobalPaymentOrderResponse: TCResponse {
         /// 业务系统返回码，SUCCESS表示成功，其他表示失败。
         public let errCode: String
 

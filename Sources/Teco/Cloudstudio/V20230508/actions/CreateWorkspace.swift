@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// CreateWorkspace请求参数结构体
-    public struct CreateWorkspaceRequest: TCRequestModel {
+    public struct CreateWorkspaceRequest: TCRequest {
         /// 工作空间名称
         public let name: String
 
@@ -69,7 +69,7 @@ extension Cloudstudio {
     }
 
     /// CreateWorkspace返回参数结构体
-    public struct CreateWorkspaceResponse: TCResponseModel {
+    public struct CreateWorkspaceResponse: TCResponse {
         /// 工作空间 SpaceKey
         public let spaceKey: String
 

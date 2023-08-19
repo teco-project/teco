@@ -20,13 +20,13 @@ import TecoCore
 
 extension Monitor {
     /// DescribePluginOverviews请求参数结构体
-    public struct DescribePluginOverviewsRequest: TCRequestModel {
+    public struct DescribePluginOverviewsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePluginOverviews返回参数结构体
-    public struct DescribePluginOverviewsResponse: TCResponseModel {
+    public struct DescribePluginOverviewsResponse: TCResponse {
         /// 插件列表
         public let pluginSet: [GrafanaPlugin]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// DescribeNotebookSessionStatements请求参数结构体
-    public struct DescribeNotebookSessionStatementsRequest: TCRequestModel {
+    public struct DescribeNotebookSessionStatementsRequest: TCRequest {
         /// Session唯一标识
         public let sessionId: String
 
@@ -39,7 +39,7 @@ extension Dlc {
     }
 
     /// DescribeNotebookSessionStatements返回参数结构体
-    public struct DescribeNotebookSessionStatementsResponse: TCResponseModel {
+    public struct DescribeNotebookSessionStatementsResponse: TCResponse {
         /// Session Statement详情
         public let notebookSessionStatements: NotebookSessionStatementBatchInformation
 

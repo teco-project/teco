@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeVersionStatistics请求参数结构体
-    public struct DescribeVersionStatisticsRequest: TCRequestModel {
+    public struct DescribeVersionStatisticsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVersionStatistics返回参数结构体
-    public struct DescribeVersionStatisticsResponse: TCResponseModel {
+    public struct DescribeVersionStatisticsResponse: TCResponse {
         /// 基础版数量
         public let basicVersionNum: UInt64
 

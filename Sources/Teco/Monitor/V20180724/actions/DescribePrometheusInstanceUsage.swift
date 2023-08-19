@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribePrometheusInstanceUsage请求参数结构体
-    public struct DescribePrometheusInstanceUsageRequest: TCRequestModel {
+    public struct DescribePrometheusInstanceUsageRequest: TCRequest {
         /// 按照一个或者多个实例ID查询。实例ID形如：prom-xxxxxxxx。请求的实例的上限为100。
         public let instanceIds: [String]
 
@@ -44,7 +44,7 @@ extension Monitor {
     }
 
     /// DescribePrometheusInstanceUsage返回参数结构体
-    public struct DescribePrometheusInstanceUsageResponse: TCResponseModel {
+    public struct DescribePrometheusInstanceUsageResponse: TCResponse {
         /// 用量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usageSet: [PrometheusInstanceTenantUsage]?

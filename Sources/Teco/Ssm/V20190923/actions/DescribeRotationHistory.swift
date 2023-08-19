@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// DescribeRotationHistory请求参数结构体
-    public struct DescribeRotationHistoryRequest: TCRequestModel {
+    public struct DescribeRotationHistoryRequest: TCRequest {
         /// 指定需要获取凭据轮转历史的凭据名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// DescribeRotationHistory返回参数结构体
-    public struct DescribeRotationHistoryResponse: TCResponseModel {
+    public struct DescribeRotationHistoryResponse: TCResponse {
         /// 版本号列表。
         public let versionIDs: [String]
 

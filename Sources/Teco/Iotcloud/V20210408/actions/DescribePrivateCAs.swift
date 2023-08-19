@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribePrivateCAs请求参数结构体
-    public struct DescribePrivateCAsRequest: TCRequestModel {
+    public struct DescribePrivateCAsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribePrivateCAs返回参数结构体
-    public struct DescribePrivateCAsResponse: TCResponseModel {
+    public struct DescribePrivateCAsResponse: TCResponse {
         /// 私有CA证书列表
         public let cAs: [CertInfo]
 

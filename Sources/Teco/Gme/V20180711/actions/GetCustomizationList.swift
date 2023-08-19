@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gme {
     /// GetCustomizationList请求参数结构体
-    public struct GetCustomizationListRequest: TCRequestModel {
+    public struct GetCustomizationListRequest: TCRequest {
         /// 应用 ID，登录控制台创建应用得到的AppID
         public let bizId: Int64
 
@@ -34,7 +34,7 @@ extension Gme {
     }
 
     /// GetCustomizationList返回参数结构体
-    public struct GetCustomizationListResponse: TCResponseModel {
+    public struct GetCustomizationListResponse: TCResponse {
         /// 语音消息转文本热句模型配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customizationConfigs: [CustomizationConfigs]?

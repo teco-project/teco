@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// DescribeAutoBackupConfig请求参数结构体
-    public struct DescribeAutoBackupConfigRequest: TCRequestModel {
+    public struct DescribeAutoBackupConfigRequest: TCRequest {
         /// 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Redis {
     }
 
     /// DescribeAutoBackupConfig返回参数结构体
-    public struct DescribeAutoBackupConfigResponse: TCResponseModel {
+    public struct DescribeAutoBackupConfigResponse: TCResponse {
         /// 该参数因兼容性问题暂时保留，请忽略。
         public let autoBackupType: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// MinorsVerification请求参数结构体
-    public struct MinorsVerificationRequest: TCRequestModel {
+    public struct MinorsVerificationRequest: TCRequest {
         /// 参与校验的参数类型。
         /// 0：使用手机号进行校验；
         /// 1：使用姓名与身份证号进行校验。
@@ -58,7 +58,7 @@ extension Faceid {
     }
 
     /// MinorsVerification返回参数结构体
-    public struct MinorsVerificationResponse: TCResponseModel {
+    public struct MinorsVerificationResponse: TCResponse {
         /// 结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 成年

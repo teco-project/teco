@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateDocument请求参数结构体
-    public struct CreateDocumentRequest: TCRequestModel {
+    public struct CreateDocumentRequest: TCRequest {
         /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId代发合同。
         public let `operator`: UserInfo
 
@@ -75,7 +75,7 @@ extension Ess {
     }
 
     /// CreateDocument返回参数结构体
-    public struct CreateDocumentResponse: TCResponseModel {
+    public struct CreateDocumentResponse: TCResponse {
         /// 签署流程电子文档ID
         public let documentId: String
 

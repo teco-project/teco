@@ -20,7 +20,7 @@ import TecoCore
 
 extension Npp {
     /// DelVirtualNum请求参数结构体
-    public struct DelVirtualNumRequest: TCRequestModel {
+    public struct DelVirtualNumRequest: TCRequest {
         /// 业务appid
         public let bizAppId: String
 
@@ -44,7 +44,7 @@ extension Npp {
     }
 
     /// DelVirtualNum返回参数结构体
-    public struct DelVirtualNumResponse: TCResponseModel {
+    public struct DelVirtualNumResponse: TCResponse {
         /// 错误码
         public let errorCode: String
 

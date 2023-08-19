@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// EditReverseShellRule请求参数结构体
-    public struct EditReverseShellRuleRequest: TCRequestModel {
+    public struct EditReverseShellRuleRequest: TCRequest {
         /// 规则ID(新增时请留空)
         public let id: UInt64?
 
@@ -64,7 +64,7 @@ extension Yunjing {
     }
 
     /// EditReverseShellRule返回参数结构体
-    public struct EditReverseShellRuleResponse: TCResponseModel {
+    public struct EditReverseShellRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lighthouse {
     /// DescribeDiskDiscount请求参数结构体
-    public struct DescribeDiskDiscountRequest: TCRequestModel {
+    public struct DescribeDiskDiscountRequest: TCRequest {
         /// 云硬盘类型, 取值: "CLOUD_PREMIUM"。
         public let diskType: String
 
@@ -44,7 +44,7 @@ extension Lighthouse {
     }
 
     /// DescribeDiskDiscount返回参数结构体
-    public struct DescribeDiskDiscountResponse: TCResponseModel {
+    public struct DescribeDiskDiscountResponse: TCResponse {
         /// 币种：CNY人民币，USD 美元。
         public let currency: String
 

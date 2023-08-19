@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// AddEditRiskSyscallWhiteList请求参数结构体
-    public struct AddEditRiskSyscallWhiteListRequest: TCRequestModel {
+    public struct AddEditRiskSyscallWhiteListRequest: TCRequest {
         /// 仅在添加事件白名单时候使用
         public let eventId: String?
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// AddEditRiskSyscallWhiteList返回参数结构体
-    public struct AddEditRiskSyscallWhiteListResponse: TCResponseModel {
+    public struct AddEditRiskSyscallWhiteListResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

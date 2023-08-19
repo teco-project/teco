@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tione {
     /// StartNotebook请求参数结构体
-    public struct StartNotebookRequest: TCRequestModel {
+    public struct StartNotebookRequest: TCRequest {
         /// notebook id
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tione {
     }
 
     /// StartNotebook返回参数结构体
-    public struct StartNotebookResponse: TCResponseModel {
+    public struct StartNotebookResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

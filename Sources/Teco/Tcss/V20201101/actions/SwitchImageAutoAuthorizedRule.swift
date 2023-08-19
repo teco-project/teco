@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// SwitchImageAutoAuthorizedRule请求参数结构体
-    public struct SwitchImageAutoAuthorizedRuleRequest: TCRequestModel {
+    public struct SwitchImageAutoAuthorizedRuleRequest: TCRequest {
         /// 规则是否生效，0:不生效，1:已生效
         public let isEnabled: Int64
 
@@ -39,7 +39,7 @@ extension Tcss {
     }
 
     /// SwitchImageAutoAuthorizedRule返回参数结构体
-    public struct SwitchImageAutoAuthorizedRuleResponse: TCResponseModel {
+    public struct SwitchImageAutoAuthorizedRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

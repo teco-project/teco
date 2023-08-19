@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeSubnetAssets请求参数结构体
-    public struct DescribeSubnetAssetsRequest: TCRequestModel {
+    public struct DescribeSubnetAssetsRequest: TCRequest {
         /// 过滤参数
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeSubnetAssets返回参数结构体
-    public struct DescribeSubnetAssetsResponse: TCResponseModel {
+    public struct DescribeSubnetAssetsResponse: TCResponse {
         /// 列表
         public let data: [SubnetAsset]
 

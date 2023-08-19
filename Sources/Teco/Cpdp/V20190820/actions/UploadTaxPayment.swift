@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// UploadTaxPayment请求参数结构体
-    public struct UploadTaxPaymentRequest: TCRequestModel {
+    public struct UploadTaxPaymentRequest: TCRequest {
         /// 平台渠道
         public let channel: Int64
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// UploadTaxPayment返回参数结构体
-    public struct UploadTaxPaymentResponse: TCResponseModel {
+    public struct UploadTaxPaymentResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

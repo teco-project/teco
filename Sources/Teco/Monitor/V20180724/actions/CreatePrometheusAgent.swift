@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// CreatePrometheusAgent请求参数结构体
-    public struct CreatePrometheusAgentRequest: TCRequestModel {
+    public struct CreatePrometheusAgentRequest: TCRequest {
         /// 实例 ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Monitor {
     }
 
     /// CreatePrometheusAgent返回参数结构体
-    public struct CreatePrometheusAgentResponse: TCResponseModel {
+    public struct CreatePrometheusAgentResponse: TCResponse {
         /// 创建成功的 Agent Id
         public let agentId: String
 

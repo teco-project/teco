@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// ImageTranslate请求参数结构体
-    public struct ImageTranslateRequest: TCRequestModel {
+    public struct ImageTranslateRequest: TCRequest {
         /// 唯一id，返回时原样返回
         public let sessionUuid: String
 
@@ -88,7 +88,7 @@ extension Tmt {
     }
 
     /// ImageTranslate返回参数结构体
-    public struct ImageTranslateResponse: TCResponseModel {
+    public struct ImageTranslateResponse: TCResponse {
         /// 请求的SessionUuid返回
         public let sessionUuid: String
 

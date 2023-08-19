@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DeleteDBDiagReportTasks请求参数结构体
-    public struct DeleteDBDiagReportTasksRequest: TCRequestModel {
+    public struct DeleteDBDiagReportTasksRequest: TCRequest {
         /// 需要删除的任务id列表
         public let asyncRequestIds: [Int64]
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// DeleteDBDiagReportTasks返回参数结构体
-    public struct DeleteDBDiagReportTasksResponse: TCResponseModel {
+    public struct DeleteDBDiagReportTasksResponse: TCResponse {
         /// 任务删除状态, 0-删除成功
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Smh {
     /// CreateLibrary请求参数结构体
-    public struct CreateLibraryRequest: TCRequestModel {
+    public struct CreateLibraryRequest: TCRequest {
         /// 媒体库名称，最多 50 个字符
         public let name: String
 
@@ -54,7 +54,7 @@ extension Smh {
     }
 
     /// CreateLibrary返回参数结构体
-    public struct CreateLibraryResponse: TCResponseModel {
+    public struct CreateLibraryResponse: TCResponse {
         /// 媒体库 ID
         public let libraryId: String
 

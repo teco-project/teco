@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// CreateRocketMQTopic请求参数结构体
-    public struct CreateRocketMQTopicRequest: TCRequestModel {
+    public struct CreateRocketMQTopicRequest: TCRequest {
         /// 主题名称，3-64个字符，只能包含字母、数字、“-”及“_”
         public let topic: String
 
@@ -59,7 +59,7 @@ extension Tdmq {
     }
 
     /// CreateRocketMQTopic返回参数结构体
-    public struct CreateRocketMQTopicResponse: TCResponseModel {
+    public struct CreateRocketMQTopicResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

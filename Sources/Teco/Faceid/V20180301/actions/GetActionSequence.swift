@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// GetActionSequence请求参数结构体
-    public struct GetActionSequenceRequest: TCRequestModel {
+    public struct GetActionSequenceRequest: TCRequest {
         /// 默认不需要使用
         public let actionType: String?
 
@@ -34,7 +34,7 @@ extension Faceid {
     }
 
     /// GetActionSequence返回参数结构体
-    public struct GetActionSequenceResponse: TCResponseModel {
+    public struct GetActionSequenceResponse: TCResponse {
         /// 动作顺序(2,1 or 1,2) 。1代表张嘴，2代表闭眼。
         public let actionSequence: String
 

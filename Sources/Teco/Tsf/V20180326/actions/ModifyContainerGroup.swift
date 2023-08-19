@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyContainerGroup请求参数结构体
-    public struct ModifyContainerGroupRequest: TCRequestModel {
+    public struct ModifyContainerGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String?
 
@@ -64,7 +64,7 @@ extension Tsf {
     }
 
     /// ModifyContainerGroup返回参数结构体
-    public struct ModifyContainerGroupResponse: TCResponseModel {
+    public struct ModifyContainerGroupResponse: TCResponse {
         /// 更新部署组是否成功。
         /// true：成功。
         /// false：失败。

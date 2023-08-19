@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DescribeAppDimensionMetrics请求参数结构体
-    public struct DescribeAppDimensionMetricsRequest: TCRequestModel {
+    public struct DescribeAppDimensionMetricsRequest: TCRequest {
         /// app 项目ID
         public let projectID: Int64
 
@@ -79,7 +79,7 @@ extension Rum {
     }
 
     /// DescribeAppDimensionMetrics返回参数结构体
-    public struct DescribeAppDimensionMetricsResponse: TCResponseModel {
+    public struct DescribeAppDimensionMetricsResponse: TCResponse {
         /// 查询数据返回
         public let data: String
 

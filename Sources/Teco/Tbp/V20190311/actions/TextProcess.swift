@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbp {
     /// TextProcess请求参数结构体
-    public struct TextProcessRequest: TCRequestModel {
+    public struct TextProcessRequest: TCRequest {
         /// 机器人标识，用于定义抽象机器人。
         public let botId: String
 
@@ -54,7 +54,7 @@ extension Tbp {
     }
 
     /// TextProcess返回参数结构体
-    public struct TextProcessResponse: TCResponseModel {
+    public struct TextProcessResponse: TCResponse {
         /// 当前会话状态{会话开始: START; 会话中: COUTINUE; 会话结束: COMPLETE}。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dialogStatus: String?

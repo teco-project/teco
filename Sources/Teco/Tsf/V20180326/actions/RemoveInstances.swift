@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// RemoveInstances请求参数结构体
-    public struct RemoveInstancesRequest: TCRequestModel {
+    public struct RemoveInstancesRequest: TCRequest {
         /// 集群 ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// RemoveInstances返回参数结构体
-    public struct RemoveInstancesResponse: TCResponseModel {
+    public struct RemoveInstancesResponse: TCResponse {
         /// 集群移除机器是否成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// ApplyFlexWechatPreAuth请求参数结构体
-    public struct ApplyFlexWechatPreAuthRequest: TCRequestModel {
+    public struct ApplyFlexWechatPreAuthRequest: TCRequest {
         /// 商家核身单号
         public let authNo: String
 
@@ -83,7 +83,7 @@ extension Cpdp {
     }
 
     /// ApplyFlexWechatPreAuth返回参数结构体
-    public struct ApplyFlexWechatPreAuthResponse: TCResponseModel {
+    public struct ApplyFlexWechatPreAuthResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

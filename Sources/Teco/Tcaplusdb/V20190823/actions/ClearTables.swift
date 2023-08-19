@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ClearTables请求参数结构体
-    public struct ClearTablesRequest: TCRequestModel {
+    public struct ClearTablesRequest: TCRequest {
         /// 表所属集群实例ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tcaplusdb {
     }
 
     /// ClearTables返回参数结构体
-    public struct ClearTablesResponse: TCResponseModel {
+    public struct ClearTablesResponse: TCResponse {
         /// 清除表结果数量
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeDataForwardList请求参数结构体
-    public struct DescribeDataForwardListRequest: TCRequestModel {
+    public struct DescribeDataForwardListRequest: TCRequest {
         /// 产品ID列表
         public let productIds: String
 
@@ -34,7 +34,7 @@ extension Iotvideo {
     }
 
     /// DescribeDataForwardList返回参数结构体
-    public struct DescribeDataForwardListResponse: TCResponseModel {
+    public struct DescribeDataForwardListResponse: TCResponse {
         /// 数据转发列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataForwardList: [DataForward]?

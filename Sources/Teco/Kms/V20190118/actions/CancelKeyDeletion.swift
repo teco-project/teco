@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// CancelKeyDeletion请求参数结构体
-    public struct CancelKeyDeletionRequest: TCRequestModel {
+    public struct CancelKeyDeletionRequest: TCRequest {
         /// 需要被取消删除的CMK的唯一标志
         public let keyId: String
 
@@ -34,7 +34,7 @@ extension Kms {
     }
 
     /// CancelKeyDeletion返回参数结构体
-    public struct CancelKeyDeletionResponse: TCResponseModel {
+    public struct CancelKeyDeletionResponse: TCResponse {
         /// 唯一标志被取消删除的CMK。
         public let keyId: String
 

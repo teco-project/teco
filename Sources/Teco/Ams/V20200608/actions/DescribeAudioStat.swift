@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// DescribeAudioStat请求参数结构体
-    public struct DescribeAudioStatRequest: TCRequestModel {
+    public struct DescribeAudioStatRequest: TCRequest {
         /// 审核类型 1: 机器审核; 2: 人工审核
         public let auditType: Int64
 
@@ -39,7 +39,7 @@ extension Ams {
     }
 
     /// DescribeAudioStat返回参数结构体
-    public struct DescribeAudioStatResponse: TCResponseModel {
+    public struct DescribeAudioStatResponse: TCResponse {
         /// 识别结果统计
         public let overview: Overview
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cme {
     /// CopyProject请求参数结构体
-    public struct CopyProjectRequest: TCRequestModel {
+    public struct CopyProjectRequest: TCRequest {
         /// 平台名称，指定访问的平台。
         public let platform: String
 
@@ -54,7 +54,7 @@ extension Cme {
     }
 
     /// CopyProject返回参数结构体
-    public struct CopyProjectResponse: TCResponseModel {
+    public struct CopyProjectResponse: TCResponse {
         /// 复制后的项目 ID。
         public let projectId: String
 

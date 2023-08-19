@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeExportJobDownloadURL请求参数结构体
-    public struct DescribeExportJobDownloadURLRequest: TCRequestModel {
+    public struct DescribeExportJobDownloadURLRequest: TCRequest {
         /// 任务ID
         public let jobID: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeExportJobDownloadURL返回参数结构体
-    public struct DescribeExportJobDownloadURLResponse: TCResponseModel {
+    public struct DescribeExportJobDownloadURLResponse: TCResponse {
         /// 下载链接
         public let downloadURL: String
 

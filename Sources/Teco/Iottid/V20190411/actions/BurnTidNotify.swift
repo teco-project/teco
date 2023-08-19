@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// BurnTidNotify请求参数结构体
-    public struct BurnTidNotifyRequest: TCRequestModel {
+    public struct BurnTidNotifyRequest: TCRequest {
         /// 订单编号
         public let orderId: String
 
@@ -39,7 +39,7 @@ extension Iottid {
     }
 
     /// BurnTidNotify返回参数结构体
-    public struct BurnTidNotifyResponse: TCResponseModel {
+    public struct BurnTidNotifyResponse: TCResponse {
         /// 接收回执成功的TID
         public let tid: String
 

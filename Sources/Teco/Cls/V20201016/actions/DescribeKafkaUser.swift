@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeKafkaUser请求参数结构体
-    public struct DescribeKafkaUserRequest: TCRequestModel {
+    public struct DescribeKafkaUserRequest: TCRequest {
         /// kafka消费用户名
         public let userName: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeKafkaUser返回参数结构体
-    public struct DescribeKafkaUserResponse: TCResponseModel {
+    public struct DescribeKafkaUserResponse: TCResponse {
         /// kafka消费用户名
         public let userName: String
 

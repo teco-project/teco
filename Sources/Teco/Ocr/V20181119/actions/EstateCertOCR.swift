@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// EstateCertOCR请求参数结构体
-    public struct EstateCertOCRRequest: TCRequestModel {
+    public struct EstateCertOCRRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 3M。图片下载时间不超过 3 秒。
@@ -46,7 +46,7 @@ extension Ocr {
     }
 
     /// EstateCertOCR返回参数结构体
-    public struct EstateCertOCRResponse: TCResponseModel {
+    public struct EstateCertOCRResponse: TCResponse {
         /// 权利人
         public let obligee: String
 

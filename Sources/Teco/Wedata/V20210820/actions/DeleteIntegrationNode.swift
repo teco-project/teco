@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteIntegrationNode请求参数结构体
-    public struct DeleteIntegrationNodeRequest: TCRequestModel {
+    public struct DeleteIntegrationNodeRequest: TCRequest {
         /// 节点id
         public let id: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// DeleteIntegrationNode返回参数结构体
-    public struct DeleteIntegrationNodeResponse: TCResponseModel {
+    public struct DeleteIntegrationNodeResponse: TCResponse {
         /// 删除返回是否成功标识
         public let data: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateBinding请求参数结构体
-    public struct CreateBindingRequest: TCRequestModel {
+    public struct CreateBindingRequest: TCRequest {
         /// 终端用户在IoT Video上的唯一标识ID
         public let accessId: String
 
@@ -59,7 +59,7 @@ extension Iotvideo {
     }
 
     /// CreateBinding返回参数结构体
-    public struct CreateBindingResponse: TCResponseModel {
+    public struct CreateBindingResponse: TCResponse {
         /// 访问设备的AccessToken
         public let accessToken: String
 

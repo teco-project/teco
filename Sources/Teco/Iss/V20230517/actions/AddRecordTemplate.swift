@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// AddRecordTemplate请求参数结构体
-    public struct AddRecordTemplateRequest: TCRequestModel {
+    public struct AddRecordTemplateRequest: TCRequest {
         /// 模板名称， 仅支持中文、英文、数字、_、-，长度不超过32个字符，模板名称全局唯一，不能为空，不能重复
         public let templateName: String
 
@@ -39,7 +39,7 @@ extension Iss {
     }
 
     /// AddRecordTemplate返回参数结构体
-    public struct AddRecordTemplateResponse: TCResponseModel {
+    public struct AddRecordTemplateResponse: TCResponse {
         /// 返回结果
         public let data: RecordTemplateInfo
 

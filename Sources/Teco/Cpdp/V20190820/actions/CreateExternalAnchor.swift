@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// CreateExternalAnchor请求参数结构体
-    public struct CreateExternalAnchorRequest: TCRequestModel {
+    public struct CreateExternalAnchorRequest: TCRequest {
         /// 平台业务系统唯一标示的主播id
         public let uid: String
 
@@ -59,7 +59,7 @@ extension Cpdp {
     }
 
     /// CreateExternalAnchor返回参数结构体
-    public struct CreateExternalAnchorResponse: TCResponseModel {
+    public struct CreateExternalAnchorResponse: TCResponse {
         /// 错误码。响应成功："SUCCESS"，其他为不成功。
         public let errCode: String
 

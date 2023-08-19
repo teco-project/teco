@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iss {
     /// DescribeGatewayProtocol请求参数结构体
-    public struct DescribeGatewayProtocolRequest: TCRequestModel {
+    public struct DescribeGatewayProtocolRequest: TCRequest {
         public init() {
         }
     }
 
     /// 查询网关所支持的接入协议
-    public struct DescribeGatewayProtocolResponse: TCResponseModel {
+    public struct DescribeGatewayProtocolResponse: TCResponse {
         private let data: Wrapped
 
         private struct Wrapped: Codable {

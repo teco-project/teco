@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cii {
     /// DescribeStructCompareData请求参数结构体
-    public struct DescribeStructCompareDataRequest: TCRequestModel {
+    public struct DescribeStructCompareDataRequest: TCRequest {
         /// 主任务号
         public let mainTaskId: String?
 
@@ -39,7 +39,7 @@ extension Cii {
     }
 
     /// DescribeStructCompareData返回参数结构体
-    public struct DescribeStructCompareDataResponse: TCResponseModel {
+    public struct DescribeStructCompareDataResponse: TCResponse {
         /// 保单号
         public let policyId: String
 

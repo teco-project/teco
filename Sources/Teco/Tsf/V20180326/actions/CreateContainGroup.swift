@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// CreateContainGroup请求参数结构体
-    public struct CreateContainGroupRequest: TCRequestModel {
+    public struct CreateContainGroupRequest: TCRequest {
         /// 分组所属应用ID
         public let applicationId: String
 
@@ -149,7 +149,7 @@ extension Tsf {
     }
 
     /// CreateContainGroup返回参数结构体
-    public struct CreateContainGroupResponse: TCResponseModel {
+    public struct CreateContainGroupResponse: TCResponse {
         /// 返回创建成功的部署组ID，返回null表示失败
         public let result: String
 

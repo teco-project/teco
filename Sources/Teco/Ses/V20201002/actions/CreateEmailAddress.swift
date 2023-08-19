@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ses {
     /// CreateEmailAddress请求参数结构体
-    public struct CreateEmailAddressRequest: TCRequestModel {
+    public struct CreateEmailAddressRequest: TCRequest {
         /// 您的发信地址（发信地址总数上限为10个）
         public let emailAddress: String
 
@@ -39,7 +39,7 @@ extension Ses {
     }
 
     /// CreateEmailAddress返回参数结构体
-    public struct CreateEmailAddressResponse: TCResponseModel {
+    public struct CreateEmailAddressResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

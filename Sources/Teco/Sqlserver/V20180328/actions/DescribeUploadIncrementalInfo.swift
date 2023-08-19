@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// DescribeUploadIncrementalInfo请求参数结构体
-    public struct DescribeUploadIncrementalInfoRequest: TCRequestModel {
+    public struct DescribeUploadIncrementalInfoRequest: TCRequest {
         /// 导入目标实例ID
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Sqlserver {
     }
 
     /// DescribeUploadIncrementalInfo返回参数结构体
-    public struct DescribeUploadIncrementalInfoResponse: TCResponseModel {
+    public struct DescribeUploadIncrementalInfoResponse: TCResponse {
         /// 存储桶名称
         public let bucketName: String
 

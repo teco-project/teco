@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// ListAttachedRolePolicies请求参数结构体
-    public struct ListAttachedRolePoliciesRequest: TCRequestModel {
+    public struct ListAttachedRolePoliciesRequest: TCRequest {
         /// 页码，从 1 开始
         public let page: UInt64
 
@@ -59,7 +59,7 @@ extension Cam {
     }
 
     /// ListAttachedRolePolicies返回参数结构体
-    public struct ListAttachedRolePoliciesResponse: TCResponseModel {
+    public struct ListAttachedRolePoliciesResponse: TCResponse {
         /// 角色关联的策略列表
         public let list: [AttachedPolicyOfRole]
 

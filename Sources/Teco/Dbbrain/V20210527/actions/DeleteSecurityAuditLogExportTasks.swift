@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dbbrain {
     /// DeleteSecurityAuditLogExportTasks请求参数结构体
-    public struct DeleteSecurityAuditLogExportTasksRequest: TCRequestModel {
+    public struct DeleteSecurityAuditLogExportTasksRequest: TCRequest {
         /// 安全审计组Id。
         public let secAuditGroupId: String
 
@@ -44,7 +44,7 @@ extension Dbbrain {
     }
 
     /// DeleteSecurityAuditLogExportTasks返回参数结构体
-    public struct DeleteSecurityAuditLogExportTasksResponse: TCResponseModel {
+    public struct DeleteSecurityAuditLogExportTasksResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

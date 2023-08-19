@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apm {
     /// DescribeApmAgent请求参数结构体
-    public struct DescribeApmAgentRequest: TCRequestModel {
+    public struct DescribeApmAgentRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Apm {
     }
 
     /// DescribeApmAgent返回参数结构体
-    public struct DescribeApmAgentResponse: TCResponseModel {
+    public struct DescribeApmAgentResponse: TCResponse {
         /// Agent信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apmAgent: ApmAgentInfo?

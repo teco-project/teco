@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Dayu {
     /// DescribeDDoSCount请求参数结构体
-    public struct DescribeDDoSCountRequest: TCRequestModel {
+    public struct DescribeDDoSCountRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
@@ -67,7 +67,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSCount返回参数结构体
-    public struct DescribeDDoSCountResponse: TCResponseModel {
+    public struct DescribeDDoSCountResponse: TCResponse {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 

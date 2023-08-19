@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLivePushAuthKey请求参数结构体
-    public struct DescribeLivePushAuthKeyRequest: TCRequestModel {
+    public struct DescribeLivePushAuthKeyRequest: TCRequest {
         /// 推流域名。
         public let domainName: String
 
@@ -34,7 +34,7 @@ extension Live {
     }
 
     /// DescribeLivePushAuthKey返回参数结构体
-    public struct DescribeLivePushAuthKeyResponse: TCResponseModel {
+    public struct DescribeLivePushAuthKeyResponse: TCResponse {
         /// 推流鉴权key信息。
         public let pushAuthKeyInfo: PushAuthKeyInfo
 

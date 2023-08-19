@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeUserQuota请求参数结构体
-    public struct DescribeUserQuotaRequest: TCRequestModel {
+    public struct DescribeUserQuotaRequest: TCRequest {
         /// 资源类型
         public let resourceType: UInt64?
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeUserQuota返回参数结构体
-    public struct DescribeUserQuotaResponse: TCResponseModel {
+    public struct DescribeUserQuotaResponse: TCResponse {
         /// 配额资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quotaResource: QuotaResource?

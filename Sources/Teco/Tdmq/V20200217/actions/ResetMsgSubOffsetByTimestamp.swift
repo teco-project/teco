@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// ResetMsgSubOffsetByTimestamp请求参数结构体
-    public struct ResetMsgSubOffsetByTimestampRequest: TCRequestModel {
+    public struct ResetMsgSubOffsetByTimestampRequest: TCRequest {
         /// 命名空间名称。
         public let environmentId: String
 
@@ -54,7 +54,7 @@ extension Tdmq {
     }
 
     /// ResetMsgSubOffsetByTimestamp返回参数结构体
-    public struct ResetMsgSubOffsetByTimestampResponse: TCResponseModel {
+    public struct ResetMsgSubOffsetByTimestampResponse: TCResponse {
         /// 结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

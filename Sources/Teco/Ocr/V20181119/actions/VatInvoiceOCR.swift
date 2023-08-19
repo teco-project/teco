@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// VatInvoiceOCR请求参数结构体
-    public struct VatInvoiceOCRRequest: TCRequestModel {
+    public struct VatInvoiceOCRRequest: TCRequest {
         /// 图片/PDF的 Base64 值。
         /// 支持的文件格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         /// 支持的图片/PDF大小：所下载文件经Base64编码后不超过 7M。文件下载时间不超过 3 秒。
@@ -58,7 +58,7 @@ extension Ocr {
     }
 
     /// VatInvoiceOCR返回参数结构体
-    public struct VatInvoiceOCRResponse: TCResponseModel {
+    public struct VatInvoiceOCRResponse: TCResponse {
         /// 检测到的文本信息，具体内容请点击左侧链接。
         public let vatInvoiceInfos: [TextVatInvoice]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeEnableVpcCniProgress请求参数结构体
-    public struct DescribeEnableVpcCniProgressRequest: TCRequestModel {
+    public struct DescribeEnableVpcCniProgressRequest: TCRequest {
         /// 开启vpc-cni的集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeEnableVpcCniProgress返回参数结构体
-    public struct DescribeEnableVpcCniProgressResponse: TCResponseModel {
+    public struct DescribeEnableVpcCniProgressResponse: TCResponse {
         /// 任务进度的描述：Running/Succeed/Failed
         public let status: String
 

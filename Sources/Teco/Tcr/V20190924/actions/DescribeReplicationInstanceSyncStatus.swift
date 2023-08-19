@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// DescribeReplicationInstanceSyncStatus请求参数结构体
-    public struct DescribeReplicationInstanceSyncStatusRequest: TCRequestModel {
+    public struct DescribeReplicationInstanceSyncStatusRequest: TCRequest {
         /// 主实例Id
         public let registryId: String
 
@@ -59,7 +59,7 @@ extension Tcr {
     }
 
     /// DescribeReplicationInstanceSyncStatus返回参数结构体
-    public struct DescribeReplicationInstanceSyncStatusResponse: TCResponseModel {
+    public struct DescribeReplicationInstanceSyncStatusResponse: TCResponse {
         /// 同步状态
         public let replicationStatus: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dts {
     /// DestroyMigrateJob请求参数结构体
-    public struct DestroyMigrateJobRequest: TCRequestModel {
+    public struct DestroyMigrateJobRequest: TCRequest {
         /// 任务id
         public let jobId: String?
 
@@ -34,7 +34,7 @@ extension Dts {
     }
 
     /// DestroyMigrateJob返回参数结构体
-    public struct DestroyMigrateJobResponse: TCResponseModel {
+    public struct DestroyMigrateJobResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

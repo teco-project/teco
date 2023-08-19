@@ -20,7 +20,7 @@ import TecoCore
 
 extension Kms {
     /// PostQuantumCryptoSign请求参数结构体
-    public struct PostQuantumCryptoSignRequest: TCRequestModel {
+    public struct PostQuantumCryptoSignRequest: TCRequest {
         /// Base64 编码的消息原文。消息原文的长度（Base64编码前的长度）不超过4096字节。
         public let message: String
 
@@ -39,7 +39,7 @@ extension Kms {
     }
 
     /// PostQuantumCryptoSign返回参数结构体
-    public struct PostQuantumCryptoSignResponse: TCResponseModel {
+    public struct PostQuantumCryptoSignResponse: TCResponse {
         /// 签名值，Base64编码。可使用 PostQuantumCryptoVerify接口对签名值进行验证。
         public let signature: String
 

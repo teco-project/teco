@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeAuthDomains请求参数结构体
-    public struct DescribeAuthDomainsRequest: TCRequestModel {
+    public struct DescribeAuthDomainsRequest: TCRequest {
         /// 环境ID
         public let envId: String
 
@@ -34,7 +34,7 @@ extension Tcb {
     }
 
     /// DescribeAuthDomains返回参数结构体
-    public struct DescribeAuthDomainsResponse: TCResponseModel {
+    public struct DescribeAuthDomainsResponse: TCResponse {
         /// 安全域名列表
         public let domains: [AuthDomain]
 

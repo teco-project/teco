@@ -20,13 +20,13 @@ import TecoCore
 
 extension Wedata {
     /// DescribeFunctionKinds请求参数结构体
-    public struct DescribeFunctionKindsRequest: TCRequestModel {
+    public struct DescribeFunctionKindsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeFunctionKinds返回参数结构体
-    public struct DescribeFunctionKindsResponse: TCResponseModel {
+    public struct DescribeFunctionKindsResponse: TCResponse {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kinds: [FunctionTypeOrKind]?

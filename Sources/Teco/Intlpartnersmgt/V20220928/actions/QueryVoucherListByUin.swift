@@ -20,7 +20,7 @@ import TecoCore
 
 extension Intlpartnersmgt {
     /// QueryVoucherListByUin请求参数结构体
-    public struct QueryVoucherListByUinRequest: TCRequestModel {
+    public struct QueryVoucherListByUinRequest: TCRequest {
         /// 子客uin列表
         public let clientUins: [UInt64]
 
@@ -39,7 +39,7 @@ extension Intlpartnersmgt {
     }
 
     /// QueryVoucherListByUin返回参数结构体
-    public struct QueryVoucherListByUinResponse: TCResponseModel {
+    public struct QueryVoucherListByUinResponse: TCResponse {
         /// 子客代金券数据
         public let data: [QueryVoucherListByUinItem]
 

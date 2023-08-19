@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// DescribeBoardSDKLog请求参数结构体
-    public struct DescribeBoardSDKLogRequest: TCRequestModel {
+    public struct DescribeBoardSDKLogRequest: TCRequest {
         /// 白板应用的SdkAppId
         public let sdkAppId: Int64
 
@@ -69,7 +69,7 @@ extension Tiw {
     }
 
     /// DescribeBoardSDKLog返回参数结构体
-    public struct DescribeBoardSDKLogResponse: TCResponseModel {
+    public struct DescribeBoardSDKLogResponse: TCResponse {
         /// 总共能查到日志条数
         public let total: Int64
 

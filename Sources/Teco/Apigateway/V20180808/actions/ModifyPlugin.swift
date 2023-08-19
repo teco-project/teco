@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyPlugin请求参数结构体
-    public struct ModifyPluginRequest: TCRequestModel {
+    public struct ModifyPluginRequest: TCRequest {
         /// 要修改的插件ID。
         public let pluginId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// ModifyPlugin返回参数结构体
-    public struct ModifyPluginResponse: TCResponseModel {
+    public struct ModifyPluginResponse: TCResponse {
         /// 修改操作是否成功。
         public let result: Bool
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// OpenBackUp请求参数结构体
-    public struct OpenBackUpRequest: TCRequestModel {
+    public struct OpenBackUpRequest: TCRequest {
         /// 集群id
         public let instanceId: String
 
@@ -44,7 +44,7 @@ extension Cdwch {
     }
 
     /// OpenBackUp返回参数结构体
-    public struct OpenBackUpResponse: TCResponseModel {
+    public struct OpenBackUpResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

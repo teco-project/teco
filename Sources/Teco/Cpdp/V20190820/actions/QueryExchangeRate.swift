@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryExchangeRate请求参数结构体
-    public struct QueryExchangeRateRequest: TCRequestModel {
+    public struct QueryExchangeRateRequest: TCRequest {
         /// 源币种 (默认CNY)
         public let sourceCurrency: String
 
@@ -44,7 +44,7 @@ extension Cpdp {
     }
 
     /// QueryExchangeRate返回参数结构体
-    public struct QueryExchangeRateResponse: TCResponseModel {
+    public struct QueryExchangeRateResponse: TCResponse {
         /// 查询汇率结果
         public let result: QueryExchangerateResult
 

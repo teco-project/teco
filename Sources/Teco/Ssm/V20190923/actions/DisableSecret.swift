@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssm {
     /// DisableSecret请求参数结构体
-    public struct DisableSecretRequest: TCRequestModel {
+    public struct DisableSecretRequest: TCRequest {
         /// 指定停用的凭据名称。
         public let secretName: String
 
@@ -34,7 +34,7 @@ extension Ssm {
     }
 
     /// DisableSecret返回参数结构体
-    public struct DisableSecretResponse: TCResponseModel {
+    public struct DisableSecretResponse: TCResponse {
         /// 停用的凭据名称。
         public let secretName: String
 

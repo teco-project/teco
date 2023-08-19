@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mongodb {
     /// DescribeAccountUsers请求参数结构体
-    public struct DescribeAccountUsersRequest: TCRequestModel {
+    public struct DescribeAccountUsersRequest: TCRequest {
         /// 指定待获取账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Mongodb {
     }
 
     /// DescribeAccountUsers返回参数结构体
-    public struct DescribeAccountUsersResponse: TCResponseModel {
+    public struct DescribeAccountUsersResponse: TCResponse {
         /// 实例账号列表。
         public let users: [UserInfo]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// DescribeLiveTimeShiftBillInfoList请求参数结构体
-    public struct DescribeLiveTimeShiftBillInfoListRequest: TCRequestModel {
+    public struct DescribeLiveTimeShiftBillInfoListRequest: TCRequest {
         /// UTC开始时间，支持最近三个月的查询，查询时间最长跨度为一个月。
         ///
         /// 使用 UTC 格式时间，
@@ -52,7 +52,7 @@ extension Live {
     }
 
     /// DescribeLiveTimeShiftBillInfoList返回参数结构体
-    public struct DescribeLiveTimeShiftBillInfoListResponse: TCResponseModel {
+    public struct DescribeLiveTimeShiftBillInfoListResponse: TCResponse {
         /// 时移计费明细数据。
         public let dataInfoList: [TimeShiftBillData]
 

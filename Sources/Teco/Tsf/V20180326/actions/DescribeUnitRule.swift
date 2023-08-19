@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeUnitRule请求参数结构体
-    public struct DescribeUnitRuleRequest: TCRequestModel {
+    public struct DescribeUnitRuleRequest: TCRequest {
         /// 单元化规则ID
         public let id: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeUnitRule返回参数结构体
-    public struct DescribeUnitRuleResponse: TCResponseModel {
+    public struct DescribeUnitRuleResponse: TCResponse {
         /// 单元化规则对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: UnitRule?

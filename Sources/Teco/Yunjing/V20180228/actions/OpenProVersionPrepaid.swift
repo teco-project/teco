@@ -20,7 +20,7 @@ import TecoCore
 
 extension Yunjing {
     /// OpenProVersionPrepaid请求参数结构体
-    public struct OpenProVersionPrepaidRequest: TCRequestModel {
+    public struct OpenProVersionPrepaidRequest: TCRequest {
         /// 购买相关参数。
         public let chargePrepaid: ChargePrepaid
 
@@ -39,7 +39,7 @@ extension Yunjing {
     }
 
     /// OpenProVersionPrepaid返回参数结构体
-    public struct OpenProVersionPrepaidResponse: TCResponseModel {
+    public struct OpenProVersionPrepaidResponse: TCResponse {
         /// 订单ID列表。
         public let dealIds: [String]
 

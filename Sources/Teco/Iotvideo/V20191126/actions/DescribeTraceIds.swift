@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeTraceIds请求参数结构体
-    public struct DescribeTraceIdsRequest: TCRequestModel {
+    public struct DescribeTraceIdsRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeTraceIds返回参数结构体
-    public struct DescribeTraceIdsResponse: TCResponseModel {
+    public struct DescribeTraceIdsResponse: TCResponse {
         /// 设备TID列表，列表元素之间以“,”分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Wedata {
     /// DescribeEventIsAlarmTypes请求参数结构体
-    public struct DescribeEventIsAlarmTypesRequest: TCRequestModel {
+    public struct DescribeEventIsAlarmTypesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeEventIsAlarmTypes返回参数结构体
-    public struct DescribeEventIsAlarmTypesResponse: TCResponseModel {
+    public struct DescribeEventIsAlarmTypesResponse: TCResponse {
         /// 是否告警.取值范围
         ///
         /// - yes : 表示告警

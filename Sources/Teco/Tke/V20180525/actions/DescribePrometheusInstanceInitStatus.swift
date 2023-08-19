@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribePrometheusInstanceInitStatus请求参数结构体
-    public struct DescribePrometheusInstanceInitStatusRequest: TCRequestModel {
+    public struct DescribePrometheusInstanceInitStatusRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribePrometheusInstanceInitStatus返回参数结构体
-    public struct DescribePrometheusInstanceInitStatusResponse: TCResponseModel {
+    public struct DescribePrometheusInstanceInitStatusResponse: TCResponse {
         /// 实例初始化状态，取值：
         /// uninitialized 未初始化
         /// initializing 初始化中

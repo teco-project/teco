@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// ModifyVirusMonitorSetting请求参数结构体
-    public struct ModifyVirusMonitorSettingRequest: TCRequestModel {
+    public struct ModifyVirusMonitorSettingRequest: TCRequest {
         /// 是否开启定期扫描
         public let enableScan: Bool
 
@@ -57,7 +57,7 @@ extension Tcss {
     }
 
     /// ModifyVirusMonitorSetting返回参数结构体
-    public struct ModifyVirusMonitorSettingResponse: TCResponseModel {
+    public struct ModifyVirusMonitorSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

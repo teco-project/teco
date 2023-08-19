@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// DescribeClassicLinkInstances请求参数结构体
-    public struct DescribeClassicLinkInstancesRequest: TCRequestModel {
+    public struct DescribeClassicLinkInstancesRequest: TCRequest {
         /// 过滤条件。
         /// - vpc-id - String - （过滤条件）VPC实例ID。
         /// - vm-ip - String - （过滤条件）基础网络云服务器IP。
@@ -46,7 +46,7 @@ extension Vpc {
     }
 
     /// DescribeClassicLinkInstances返回参数结构体
-    public struct DescribeClassicLinkInstancesResponse: TCResponseModel {
+    public struct DescribeClassicLinkInstancesResponse: TCResponse {
         /// 符合条件的实例数量。
         public let totalCount: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateImageCache请求参数结构体
-    public struct CreateImageCacheRequest: TCRequestModel {
+    public struct CreateImageCacheRequest: TCRequest {
         /// 用于制作镜像缓存的容器镜像列表
         public let images: [String]
 
@@ -101,7 +101,7 @@ extension Tke {
     }
 
     /// CreateImageCache返回参数结构体
-    public struct CreateImageCacheResponse: TCResponseModel {
+    public struct CreateImageCacheResponse: TCResponse {
         /// 镜像缓存Id
         public let imageCacheId: String
 

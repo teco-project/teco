@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVirusMonitorSetting请求参数结构体
-    public struct DescribeVirusMonitorSettingRequest: TCRequestModel {
+    public struct DescribeVirusMonitorSettingRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeVirusMonitorSetting返回参数结构体
-    public struct DescribeVirusMonitorSettingResponse: TCResponseModel {
+    public struct DescribeVirusMonitorSettingResponse: TCResponse {
         /// 是否开启实时监控
         public let enableScan: Bool
 

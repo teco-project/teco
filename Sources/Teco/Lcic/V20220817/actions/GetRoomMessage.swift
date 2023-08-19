@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// GetRoomMessage请求参数结构体
-    public struct GetRoomMessageRequest: TCRequestModel {
+    public struct GetRoomMessageRequest: TCRequest {
         /// 低代码互动课堂的SdkAppId。
         public let sdkAppId: Int64
 
@@ -49,7 +49,7 @@ extension Lcic {
     }
 
     /// GetRoomMessage返回参数结构体
-    public struct GetRoomMessageResponse: TCResponseModel {
+    public struct GetRoomMessageResponse: TCResponse {
         /// 消息列表
         public let messages: [MessageList]
 

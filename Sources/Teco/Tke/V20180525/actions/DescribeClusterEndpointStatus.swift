@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeClusterEndpointStatus请求参数结构体
-    public struct DescribeClusterEndpointStatusRequest: TCRequestModel {
+    public struct DescribeClusterEndpointStatusRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tke {
     }
 
     /// DescribeClusterEndpointStatus返回参数结构体
-    public struct DescribeClusterEndpointStatusResponse: TCResponseModel {
+    public struct DescribeClusterEndpointStatusResponse: TCResponse {
         /// 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

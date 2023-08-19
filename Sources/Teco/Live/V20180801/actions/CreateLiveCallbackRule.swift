@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// CreateLiveCallbackRule请求参数结构体
-    public struct CreateLiveCallbackRuleRequest: TCRequestModel {
+    public struct CreateLiveCallbackRuleRequest: TCRequest {
         /// 推流域名。
         public let domainName: String
 
@@ -44,7 +44,7 @@ extension Live {
     }
 
     /// CreateLiveCallbackRule返回参数结构体
-    public struct CreateLiveCallbackRuleResponse: TCResponseModel {
+    public struct CreateLiveCallbackRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

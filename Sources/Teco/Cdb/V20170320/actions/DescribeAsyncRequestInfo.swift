@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// DescribeAsyncRequestInfo请求参数结构体
-    public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
+    public struct DescribeAsyncRequestInfoRequest: TCRequest {
         /// 异步任务的请求 ID。
         public let asyncRequestId: String
 
@@ -34,7 +34,7 @@ extension Cdb {
     }
 
     /// DescribeAsyncRequestInfo返回参数结构体
-    public struct DescribeAsyncRequestInfoResponse: TCResponseModel {
+    public struct DescribeAsyncRequestInfoResponse: TCResponse {
         /// 任务执行结果。可能的取值：INITIAL - 初始化，RUNNING - 运行中，SUCCESS - 执行成功，FAILED - 执行失败，KILLED - 已终止，REMOVED - 已删除，PAUSED - 终止中。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?

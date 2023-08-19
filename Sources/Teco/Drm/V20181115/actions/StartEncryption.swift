@@ -20,7 +20,7 @@ import TecoCore
 
 extension Drm {
     /// StartEncryption请求参数结构体
-    public struct StartEncryptionRequest: TCRequestModel {
+    public struct StartEncryptionRequest: TCRequest {
         /// cos的end point。
         public let cosEndPoint: String
 
@@ -59,7 +59,7 @@ extension Drm {
     }
 
     /// StartEncryption返回参数结构体
-    public struct StartEncryptionResponse: TCResponseModel {
+    public struct StartEncryptionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Waf {
     /// SearchAttackLog请求参数结构体
-    public struct SearchAttackLogRequest: TCRequestModel {
+    public struct SearchAttackLogRequest: TCRequest {
         /// 查询的域名，所有域名使用all
         public let domain: String
 
@@ -77,7 +77,7 @@ extension Waf {
     }
 
     /// SearchAttackLog返回参数结构体
-    public struct SearchAttackLogResponse: TCResponseModel {
+    public struct SearchAttackLogResponse: TCResponse {
         /// 当前返回的攻击日志条数
         public let count: UInt64
 

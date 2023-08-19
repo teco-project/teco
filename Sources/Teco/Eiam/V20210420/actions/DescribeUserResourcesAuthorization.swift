@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeUserResourcesAuthorization请求参数结构体
-    public struct DescribeUserResourcesAuthorizationRequest: TCRequestModel {
+    public struct DescribeUserResourcesAuthorizationRequest: TCRequest {
         /// 应用ID。
         public let applicationId: String
 
@@ -49,7 +49,7 @@ extension Eiam {
     }
 
     /// DescribeUserResourcesAuthorization返回参数结构体
-    public struct DescribeUserResourcesAuthorizationResponse: TCResponseModel {
+    public struct DescribeUserResourcesAuthorizationResponse: TCResponse {
         /// 应用的唯一ID。
         public let applicationId: String
 

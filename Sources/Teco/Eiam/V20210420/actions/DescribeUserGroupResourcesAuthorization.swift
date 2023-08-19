@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eiam {
     /// DescribeUserGroupResourcesAuthorization请求参数结构体
-    public struct DescribeUserGroupResourcesAuthorizationRequest: TCRequestModel {
+    public struct DescribeUserGroupResourcesAuthorizationRequest: TCRequest {
         /// 应用ID
         public let applicationId: String
 
@@ -39,7 +39,7 @@ extension Eiam {
     }
 
     /// DescribeUserGroupResourcesAuthorization返回参数结构体
-    public struct DescribeUserGroupResourcesAuthorizationResponse: TCResponseModel {
+    public struct DescribeUserGroupResourcesAuthorizationResponse: TCResponse {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?

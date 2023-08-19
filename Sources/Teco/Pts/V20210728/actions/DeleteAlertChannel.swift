@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pts {
     /// DeleteAlertChannel请求参数结构体
-    public struct DeleteAlertChannelRequest: TCRequestModel {
+    public struct DeleteAlertChannelRequest: TCRequest {
         /// 项目 ID
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Pts {
     }
 
     /// DeleteAlertChannel返回参数结构体
-    public struct DeleteAlertChannelResponse: TCResponseModel {
+    public struct DeleteAlertChannelResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

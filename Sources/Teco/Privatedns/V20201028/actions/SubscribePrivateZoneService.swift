@@ -20,13 +20,13 @@ import TecoCore
 
 extension Privatedns {
     /// SubscribePrivateZoneService请求参数结构体
-    public struct SubscribePrivateZoneServiceRequest: TCRequestModel {
+    public struct SubscribePrivateZoneServiceRequest: TCRequest {
         public init() {
         }
     }
 
     /// SubscribePrivateZoneService返回参数结构体
-    public struct SubscribePrivateZoneServiceResponse: TCResponseModel {
+    public struct SubscribePrivateZoneServiceResponse: TCResponse {
         /// 私有域解析服务开通状态
         public let serviceStatus: String
 

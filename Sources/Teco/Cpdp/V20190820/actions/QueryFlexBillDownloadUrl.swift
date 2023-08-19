@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryFlexBillDownloadUrl请求参数结构体
-    public struct QueryFlexBillDownloadUrlRequest: TCRequestModel {
+    public struct QueryFlexBillDownloadUrlRequest: TCRequest {
         /// 对账单日期
         public let billDate: String
 
@@ -53,7 +53,7 @@ extension Cpdp {
     }
 
     /// QueryFlexBillDownloadUrl返回参数结构体
-    public struct QueryFlexBillDownloadUrlResponse: TCResponseModel {
+    public struct QueryFlexBillDownloadUrlResponse: TCResponse {
         /// 错误码。SUCCESS为成功，其他为失败
         public let errCode: String
 

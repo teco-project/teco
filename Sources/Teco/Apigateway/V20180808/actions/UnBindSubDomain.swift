@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnBindSubDomain请求参数结构体
-    public struct UnBindSubDomainRequest: TCRequestModel {
+    public struct UnBindSubDomainRequest: TCRequest {
         /// 服务唯一 ID。
         public let serviceId: String
 
@@ -39,7 +39,7 @@ extension Apigateway {
     }
 
     /// UnBindSubDomain返回参数结构体
-    public struct UnBindSubDomainResponse: TCResponseModel {
+    public struct UnBindSubDomainResponse: TCResponse {
         /// 解绑自定义域名操作是否成功。
         public let result: Bool
 

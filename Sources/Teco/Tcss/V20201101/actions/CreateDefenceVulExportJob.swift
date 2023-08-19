@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// CreateDefenceVulExportJob请求参数结构体
-    public struct CreateDefenceVulExportJobRequest: TCRequestModel {
+    public struct CreateDefenceVulExportJobRequest: TCRequest {
         /// 需要返回的数量，默认为10000，最大值为10000
         public let limit: UInt64?
 
@@ -57,7 +57,7 @@ extension Tcss {
     }
 
     /// CreateDefenceVulExportJob返回参数结构体
-    public struct CreateDefenceVulExportJobResponse: TCResponseModel {
+    public struct CreateDefenceVulExportJobResponse: TCResponse {
         /// 导出任务ID，前端拿着任务ID查询任务进度
         public let jobId: String
 

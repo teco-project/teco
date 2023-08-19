@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tag {
     /// CreateTag请求参数结构体
-    public struct CreateTagRequest: TCRequestModel {
+    public struct CreateTagRequest: TCRequest {
         /// 标签键
         public let tagKey: String
 
@@ -39,7 +39,7 @@ extension Tag {
     }
 
     /// CreateTag返回参数结构体
-    public struct CreateTagResponse: TCResponseModel {
+    public struct CreateTagResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

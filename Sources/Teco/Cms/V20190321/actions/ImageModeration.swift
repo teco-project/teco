@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cms {
     /// ImageModeration请求参数结构体
-    public struct ImageModerationRequest: TCRequestModel {
+    public struct ImageModerationRequest: TCRequest {
         /// 文件地址
         public let fileUrl: String?
 
@@ -44,7 +44,7 @@ extension Cms {
     }
 
     /// ImageModeration返回参数结构体
-    public struct ImageModerationResponse: TCResponseModel {
+    public struct ImageModerationResponse: TCResponse {
         /// 业务返回码
         public let businessCode: Int64
 

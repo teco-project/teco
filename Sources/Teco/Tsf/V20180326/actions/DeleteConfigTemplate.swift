@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DeleteConfigTemplate请求参数结构体
-    public struct DeleteConfigTemplateRequest: TCRequestModel {
+    public struct DeleteConfigTemplateRequest: TCRequest {
         public let configTemplateId: String
 
         public init(configTemplateId: String) {
@@ -33,7 +33,7 @@ extension Tsf {
     }
 
     /// DeleteConfigTemplate返回参数结构体
-    public struct DeleteConfigTemplateResponse: TCResponseModel {
+    public struct DeleteConfigTemplateResponse: TCResponse {
         /// true：删除成功；false：删除失败
         public let result: Bool
 

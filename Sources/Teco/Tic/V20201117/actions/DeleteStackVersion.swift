@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tic {
     /// DeleteStackVersion请求参数结构体
-    public struct DeleteStackVersionRequest: TCRequestModel {
+    public struct DeleteStackVersionRequest: TCRequest {
         /// 待删除的版本ID
         public let versionId: String
 
@@ -34,7 +34,7 @@ extension Tic {
     }
 
     /// DeleteStackVersion返回参数结构体
-    public struct DeleteStackVersionResponse: TCResponseModel {
+    public struct DeleteStackVersionResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

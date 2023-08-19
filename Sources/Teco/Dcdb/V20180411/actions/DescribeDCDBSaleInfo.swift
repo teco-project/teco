@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dcdb {
     /// DescribeDCDBSaleInfo请求参数结构体
-    public struct DescribeDCDBSaleInfoRequest: TCRequestModel {
+    public struct DescribeDCDBSaleInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDCDBSaleInfo返回参数结构体
-    public struct DescribeDCDBSaleInfoResponse: TCResponseModel {
+    public struct DescribeDCDBSaleInfoResponse: TCResponse {
         /// 可售卖地域信息列表
         public let regionList: [RegionInfo]
 

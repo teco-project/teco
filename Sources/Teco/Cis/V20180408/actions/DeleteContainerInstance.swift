@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cis {
     /// DeleteContainerInstance请求参数结构体
-    public struct DeleteContainerInstanceRequest: TCRequestModel {
+    public struct DeleteContainerInstanceRequest: TCRequest {
         /// 容器实例名称
         public let instanceName: String
 
@@ -34,7 +34,7 @@ extension Cis {
     }
 
     /// DeleteContainerInstance返回参数结构体
-    public struct DeleteContainerInstanceResponse: TCResponseModel {
+    public struct DeleteContainerInstanceResponse: TCResponse {
         /// 操作信息
         public let msg: String
 

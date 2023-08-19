@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iss {
     /// DeleteAITask请求参数结构体
-    public struct DeleteAITaskRequest: TCRequestModel {
+    public struct DeleteAITaskRequest: TCRequest {
         /// AI任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Iss {
     }
 
     /// DeleteAITask返回参数结构体
-    public struct DeleteAITaskResponse: TCResponseModel {
+    public struct DeleteAITaskResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

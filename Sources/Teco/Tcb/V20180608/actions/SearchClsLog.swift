@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// SearchClsLog请求参数结构体
-    public struct SearchClsLogRequest: TCRequestModel {
+    public struct SearchClsLogRequest: TCRequest {
         /// 环境唯一ID
         public let envId: String
 
@@ -69,7 +69,7 @@ extension Tcb {
     }
 
     /// SearchClsLog返回参数结构体
-    public struct SearchClsLogResponse: TCResponseModel {
+    public struct SearchClsLogResponse: TCResponse {
         /// 日志内容结果
         public let logResults: LogResObject
 

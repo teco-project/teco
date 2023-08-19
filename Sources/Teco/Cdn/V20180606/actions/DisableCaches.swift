@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdn {
     /// DisableCaches请求参数结构体
-    public struct DisableCachesRequest: TCRequestModel {
+    public struct DisableCachesRequest: TCRequest {
         /// 禁用的 URL 列表（分协议生效，必须包含http://或https://）
         /// 每次最多可提交 100 条，每日最多可提交 3000 条
         public let urls: [String]
@@ -35,7 +35,7 @@ extension Cdn {
     }
 
     /// DisableCaches返回参数结构体
-    public struct DisableCachesResponse: TCResponseModel {
+    public struct DisableCachesResponse: TCResponse {
         /// 提交结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cacheOptResult: CacheOptResult?

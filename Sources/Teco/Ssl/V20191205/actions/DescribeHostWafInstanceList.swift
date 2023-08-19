@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostWafInstanceList请求参数结构体
-    public struct DescribeHostWafInstanceListRequest: TCRequestModel {
+    public struct DescribeHostWafInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -54,7 +54,7 @@ extension Ssl {
     }
 
     /// DescribeHostWafInstanceList返回参数结构体
-    public struct DescribeHostWafInstanceListResponse: TCResponseModel {
+    public struct DescribeHostWafInstanceListResponse: TCResponse {
         /// WAF实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [LiveInstanceDetail]?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeTLogIpList请求参数结构体
-    public struct DescribeTLogIpListRequest: TCRequestModel {
+    public struct DescribeTLogIpListRequest: TCRequest {
         /// 开始时间
         public let startTime: String
 
@@ -54,7 +54,7 @@ extension Cfw {
     }
 
     /// DescribeTLogIpList返回参数结构体
-    public struct DescribeTLogIpListResponse: TCResponseModel {
+    public struct DescribeTLogIpListResponse: TCResponse {
         /// 数据集合
         public let data: [StaticInfo]
 

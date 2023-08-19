@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportAttackLogs请求参数结构体
-    public struct ExportAttackLogsRequest: TCRequestModel {
+    public struct ExportAttackLogsRequest: TCRequest {
         /// 过滤条件。
         /// - HttpMethod - String - 是否必填：否 - 攻击方法(POST|GET)
         /// - DateRange - String - 是否必填：否 - 时间范围(存储最近3个月的数据)，如最近一个月["2019-11-17", "2019-12-17"]
@@ -51,7 +51,7 @@ extension Cwp {
     }
 
     /// ExportAttackLogs返回参数结构体
-    public struct ExportAttackLogsResponse: TCResponseModel {
+    public struct ExportAttackLogsResponse: TCResponse {
         /// 已废弃
         public let downloadUrl: String
 

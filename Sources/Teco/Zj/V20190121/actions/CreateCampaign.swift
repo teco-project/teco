@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// CreateCampaign请求参数结构体
-    public struct CreateCampaignRequest: TCRequestModel {
+    public struct CreateCampaignRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -64,7 +64,7 @@ extension Zj {
     }
 
     /// CreateCampaign返回参数结构体
-    public struct CreateCampaignResponse: TCResponseModel {
+    public struct CreateCampaignResponse: TCResponse {
         /// 活动信息
         public let data: SmsCreateCampaignResponse
 

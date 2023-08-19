@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyCdbProxyAddressVipAndVPort请求参数结构体
-    public struct ModifyCdbProxyAddressVipAndVPortRequest: TCRequestModel {
+    public struct ModifyCdbProxyAddressVipAndVPortRequest: TCRequest {
         /// 代理组ID
         public let proxyGroupId: String
 
@@ -64,7 +64,7 @@ extension Cdb {
     }
 
     /// ModifyCdbProxyAddressVipAndVPort返回参数结构体
-    public struct ModifyCdbProxyAddressVipAndVPortResponse: TCResponseModel {
+    public struct ModifyCdbProxyAddressVipAndVPortResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

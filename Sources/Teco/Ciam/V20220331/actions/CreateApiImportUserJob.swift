@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// CreateApiImportUserJob请求参数结构体
-    public struct CreateApiImportUserJobRequest: TCRequestModel {
+    public struct CreateApiImportUserJobRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -39,7 +39,7 @@ extension Ciam {
     }
 
     /// CreateApiImportUserJob返回参数结构体
-    public struct CreateApiImportUserJobResponse: TCResponseModel {
+    public struct CreateApiImportUserJobResponse: TCResponse {
         /// 数据流任务
         public let job: Job
 

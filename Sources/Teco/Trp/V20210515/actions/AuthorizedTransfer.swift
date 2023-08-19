@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trp {
     /// AuthorizedTransfer请求参数结构体
-    public struct AuthorizedTransferRequest: TCRequestModel {
+    public struct AuthorizedTransferRequest: TCRequest {
         /// 业务加密入参。
         public let businessSecurityData: InputEncryptData
 
@@ -34,7 +34,7 @@ extension Trp {
     }
 
     /// AuthorizedTransfer返回参数结构体
-    public struct AuthorizedTransferResponse: TCResponseModel {
+    public struct AuthorizedTransferResponse: TCResponse {
         /// 业务出参。
         public let data: OutputAuthorizedTransfer
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// BindDocumentToRoom请求参数结构体
-    public struct BindDocumentToRoomRequest: TCRequestModel {
+    public struct BindDocumentToRoomRequest: TCRequest {
         /// 房间ID。
         public let roomId: UInt64
 
@@ -44,7 +44,7 @@ extension Lcic {
     }
 
     /// BindDocumentToRoom返回参数结构体
-    public struct BindDocumentToRoomResponse: TCResponseModel {
+    public struct BindDocumentToRoomResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

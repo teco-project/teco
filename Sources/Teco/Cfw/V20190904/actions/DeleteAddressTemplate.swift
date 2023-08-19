@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DeleteAddressTemplate请求参数结构体
-    public struct DeleteAddressTemplateRequest: TCRequestModel {
+    public struct DeleteAddressTemplateRequest: TCRequest {
         /// 模板id
         public let uuid: String
 
@@ -34,7 +34,7 @@ extension Cfw {
     }
 
     /// DeleteAddressTemplate返回参数结构体
-    public struct DeleteAddressTemplateResponse: TCResponseModel {
+    public struct DeleteAddressTemplateResponse: TCResponse {
         /// 删除结果,0成功
         public let status: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// DeleteResourceGroup请求参数结构体
-    public struct DeleteResourceGroupRequest: TCRequestModel {
+    public struct DeleteResourceGroupRequest: TCRequest {
         /// 要删除的资源组 ID
         public let resourceGroupId: String
 
@@ -34,7 +34,7 @@ extension Tiems {
     }
 
     /// DeleteResourceGroup返回参数结构体
-    public struct DeleteResourceGroupResponse: TCResponseModel {
+    public struct DeleteResourceGroupResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

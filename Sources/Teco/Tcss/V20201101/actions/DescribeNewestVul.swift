@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tcss {
     /// DescribeNewestVul请求参数结构体
-    public struct DescribeNewestVulRequest: TCRequestModel {
+    public struct DescribeNewestVulRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeNewestVul返回参数结构体
-    public struct DescribeNewestVulResponse: TCResponseModel {
+    public struct DescribeNewestVulResponse: TCResponse {
         /// 漏洞PocID
         public let pocID: String
 

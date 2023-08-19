@@ -20,7 +20,7 @@ import TecoCore
 
 extension Csip {
     /// DescribeRiskCenterAssetViewVULRiskList请求参数结构体
-    public struct DescribeRiskCenterAssetViewVULRiskListRequest: TCRequestModel {
+    public struct DescribeRiskCenterAssetViewVULRiskListRequest: TCRequest {
         /// 过滤内容
         public let filter: Filter?
 
@@ -34,7 +34,7 @@ extension Csip {
     }
 
     /// DescribeRiskCenterAssetViewVULRiskList返回参数结构体
-    public struct DescribeRiskCenterAssetViewVULRiskListResponse: TCResponseModel {
+    public struct DescribeRiskCenterAssetViewVULRiskListResponse: TCResponse {
         /// 总条数
         public let totalCount: Int64
 

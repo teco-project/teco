@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateIntegrationDepartment请求参数结构体
-    public struct CreateIntegrationDepartmentRequest: TCRequestModel {
+    public struct CreateIntegrationDepartmentRequest: TCRequest {
         /// 操作人信息，UserId必填且需拥有组织架构管理权限
         public let `operator`: UserInfo
 
@@ -59,7 +59,7 @@ extension Ess {
     }
 
     /// CreateIntegrationDepartment返回参数结构体
-    public struct CreateIntegrationDepartmentResponse: TCResponseModel {
+    public struct CreateIntegrationDepartmentResponse: TCResponse {
         /// 电子签部门ID
         public let deptId: String
 

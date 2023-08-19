@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcaplusdb {
     /// ImportSnapshots请求参数结构体
-    public struct ImportSnapshotsRequest: TCRequestModel {
+    public struct ImportSnapshotsRequest: TCRequest {
         /// 表格所属的集群id
         public let clusterId: String
 
@@ -64,7 +64,7 @@ extension Tcaplusdb {
     }
 
     /// ImportSnapshots返回参数结构体
-    public struct ImportSnapshotsResponse: TCResponseModel {
+    public struct ImportSnapshotsResponse: TCResponse {
         /// TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// AlterDMSDatabase请求参数结构体
-    public struct AlterDMSDatabaseRequest: TCRequestModel {
+    public struct AlterDMSDatabaseRequest: TCRequest {
         /// 当前名称
         public let currentName: String?
 
@@ -49,7 +49,7 @@ extension Dlc {
     }
 
     /// AlterDMSDatabase返回参数结构体
-    public struct AlterDMSDatabaseResponse: TCResponseModel {
+    public struct AlterDMSDatabaseResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

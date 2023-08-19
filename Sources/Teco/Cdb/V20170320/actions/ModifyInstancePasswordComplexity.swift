@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdb {
     /// ModifyInstancePasswordComplexity请求参数结构体
-    public struct ModifyInstancePasswordComplexityRequest: TCRequestModel {
+    public struct ModifyInstancePasswordComplexityRequest: TCRequest {
         /// 实例短 ID 列表。
         public let instanceIds: [String]
 
@@ -39,7 +39,7 @@ extension Cdb {
     }
 
     /// ModifyInstancePasswordComplexity返回参数结构体
-    public struct ModifyInstancePasswordComplexityResponse: TCResponseModel {
+    public struct ModifyInstancePasswordComplexityResponse: TCResponse {
         /// 异步任务 ID，可用于查询任务进度。
         public let asyncRequestId: String
 

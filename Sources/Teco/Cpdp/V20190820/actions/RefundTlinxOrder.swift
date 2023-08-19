@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// RefundTlinxOrder请求参数结构体
-    public struct RefundTlinxOrderRequest: TCRequestModel {
+    public struct RefundTlinxOrderRequest: TCRequest {
         /// 使用门店OpenId
         public let openId: String
 
@@ -74,7 +74,7 @@ extension Cpdp {
     }
 
     /// RefundTlinxOrder返回参数结构体
-    public struct RefundTlinxOrderResponse: TCResponseModel {
+    public struct RefundTlinxOrderResponse: TCResponse {
         /// 业务系统返回码，0表示成功，其他表示失败。
         public let errCode: String
 

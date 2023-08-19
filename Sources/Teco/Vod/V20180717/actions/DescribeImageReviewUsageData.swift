@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// DescribeImageReviewUsageData请求参数结构体
-    public struct DescribeImageReviewUsageDataRequest: TCRequestModel {
+    public struct DescribeImageReviewUsageDataRequest: TCRequest {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
         public let startTime: String
 
@@ -44,7 +44,7 @@ extension Vod {
     }
 
     /// DescribeImageReviewUsageData返回参数结构体
-    public struct DescribeImageReviewUsageDataResponse: TCResponseModel {
+    public struct DescribeImageReviewUsageDataResponse: TCResponse {
         /// 图片审核次数统计数据，展示查询时间范围内的图片审核次数的概览数据。
         public let imageReviewUsageDataSet: [ImageReviewUsageDataItem]
 

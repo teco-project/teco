@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// DescribeDeviceStatusLog请求参数结构体
-    public struct DescribeDeviceStatusLogRequest: TCRequestModel {
+    public struct DescribeDeviceStatusLogRequest: TCRequest {
         /// 开始时间（毫秒）
         public let minTime: UInt64
 
@@ -59,7 +59,7 @@ extension Iotvideo {
     }
 
     /// DescribeDeviceStatusLog返回参数结构体
-    public struct DescribeDeviceStatusLogResponse: TCResponseModel {
+    public struct DescribeDeviceStatusLogResponse: TCResponse {
         /// 数据是否已全部返回，true 表示数据全部返回，false 表示还有数据待返回，可将 Context 作为入参，继续查询返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listover: Bool?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// DescribeClientNodes请求参数结构体
-    public struct DescribeClientNodesRequest: TCRequestModel {
+    public struct DescribeClientNodesRequest: TCRequest {
         /// 文件系统Id
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Goosefs {
     }
 
     /// DescribeClientNodes返回参数结构体
-    public struct DescribeClientNodesResponse: TCResponseModel {
+    public struct DescribeClientNodesResponse: TCResponse {
         /// 客户端节点数组
         public let clientNodes: [ClientNodeAttribute]
 

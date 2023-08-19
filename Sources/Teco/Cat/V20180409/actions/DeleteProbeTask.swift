@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cat {
     /// DeleteProbeTask请求参数结构体
-    public struct DeleteProbeTaskRequest: TCRequestModel {
+    public struct DeleteProbeTaskRequest: TCRequest {
         /// 任务 ID
         public let taskIds: [String]
 
@@ -34,7 +34,7 @@ extension Cat {
     }
 
     /// DeleteProbeTask返回参数结构体
-    public struct DeleteProbeTaskResponse: TCResponseModel {
+    public struct DeleteProbeTaskResponse: TCResponse {
         /// 任务总量
         public let total: Int64
 

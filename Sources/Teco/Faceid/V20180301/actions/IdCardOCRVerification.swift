@@ -20,7 +20,7 @@ import TecoCore
 
 extension Faceid {
     /// IdCardOCRVerification请求参数结构体
-    public struct IdCardOCRVerificationRequest: TCRequestModel {
+    public struct IdCardOCRVerificationRequest: TCRequest {
         /// 身份证号
         /// 姓名和身份证号、ImageBase64、ImageUrl三者必须提供其中之一。若都提供了，则按照姓名和身份证号>ImageBase64>ImageUrl的优先级使用参数。
         public let idCard: String?
@@ -61,7 +61,7 @@ extension Faceid {
     }
 
     /// IdCardOCRVerification返回参数结构体
-    public struct IdCardOCRVerificationResponse: TCResponseModel {
+    public struct IdCardOCRVerificationResponse: TCResponse {
         /// 认证结果码，收费情况如下。
         /// 收费结果码：
         /// 0: 姓名和身份证号一致

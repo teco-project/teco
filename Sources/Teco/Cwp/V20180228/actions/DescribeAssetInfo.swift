@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cwp {
     /// DescribeAssetInfo请求参数结构体
-    public struct DescribeAssetInfoRequest: TCRequestModel {
+    public struct DescribeAssetInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAssetInfo返回参数结构体
-    public struct DescribeAssetInfoResponse: TCResponseModel {
+    public struct DescribeAssetInfoResponse: TCResponse {
         /// 主机数
         public let machineCount: UInt64
 

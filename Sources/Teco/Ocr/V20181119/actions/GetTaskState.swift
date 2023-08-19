@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// GetTaskState请求参数结构体
-    public struct GetTaskStateRequest: TCRequestModel {
+    public struct GetTaskStateRequest: TCRequest {
         /// 智慧表单任务唯一身份ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Ocr {
     }
 
     /// GetTaskState返回参数结构体
-    public struct GetTaskStateResponse: TCResponseModel {
+    public struct GetTaskStateResponse: TCResponse {
         /// 1:任务识别完成，还未提交
         /// 2:任务已手动关闭
         /// 3:任务已提交

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wav {
     /// QueryExternalUserMappingInfo请求参数结构体
-    public struct QueryExternalUserMappingInfoRequest: TCRequestModel {
+    public struct QueryExternalUserMappingInfoRequest: TCRequest {
         /// 企业主体对应的外部联系人id列表，列表长度限制最大为50。
         public let corpExternalUserIdList: [String]
 
@@ -34,7 +34,7 @@ extension Wav {
     }
 
     /// QueryExternalUserMappingInfo返回参数结构体
-    public struct QueryExternalUserMappingInfoResponse: TCResponseModel {
+    public struct QueryExternalUserMappingInfoResponse: TCResponse {
         /// 外部联系人映射信息, 只返回映射成功的记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalUserIdMapping: [ExternalUserMappingInfo]?

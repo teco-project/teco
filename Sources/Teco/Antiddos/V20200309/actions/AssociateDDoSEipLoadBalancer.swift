@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// AssociateDDoSEipLoadBalancer请求参数结构体
-    public struct AssociateDDoSEipLoadBalancerRequest: TCRequestModel {
+    public struct AssociateDDoSEipLoadBalancerRequest: TCRequest {
         /// 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
         public let instanceId: String
 
@@ -54,7 +54,7 @@ extension Antiddos {
     }
 
     /// AssociateDDoSEipLoadBalancer返回参数结构体
-    public struct AssociateDDoSEipLoadBalancerResponse: TCResponseModel {
+    public struct AssociateDDoSEipLoadBalancerResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

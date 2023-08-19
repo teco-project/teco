@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// CreateRecTask请求参数结构体
-    public struct CreateRecTaskRequest: TCRequestModel {
+    public struct CreateRecTaskRequest: TCRequest {
         /// 引擎模型类型。注意：非电话场景请务必使用16k的引擎。
         /// 电话场景：
         /// • 8k_zh：中文电话通用；
@@ -159,7 +159,7 @@ extension Asr {
     }
 
     /// CreateRecTask返回参数结构体
-    public struct CreateRecTaskResponse: TCResponseModel {
+    public struct CreateRecTaskResponse: TCResponse {
         /// 录音文件识别的请求返回结果，包含结果查询需要的TaskId
         public let data: Task
 

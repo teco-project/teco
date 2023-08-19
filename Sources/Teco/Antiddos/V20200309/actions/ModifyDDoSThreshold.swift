@@ -20,7 +20,7 @@ import TecoCore
 
 extension Antiddos {
     /// ModifyDDoSThreshold请求参数结构体
-    public struct ModifyDDoSThresholdRequest: TCRequestModel {
+    public struct ModifyDDoSThresholdRequest: TCRequest {
         /// DDoS清洗阈值，取值[0, 60, 80, 100, 150, 200, 250, 300, 400, 500, 700, 1000];
         /// 当设置值为0时，表示采用默认值；
         public let threshold: UInt64
@@ -100,7 +100,7 @@ extension Antiddos {
     }
 
     /// ModifyDDoSThreshold返回参数结构体
-    public struct ModifyDDoSThresholdResponse: TCResponseModel {
+    public struct ModifyDDoSThresholdResponse: TCResponse {
         /// 成功码
         public let success: SuccessCode
 

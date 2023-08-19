@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// GetServiceLinkedRoleDeletionStatus请求参数结构体
-    public struct GetServiceLinkedRoleDeletionStatusRequest: TCRequestModel {
+    public struct GetServiceLinkedRoleDeletionStatusRequest: TCRequest {
         /// 删除任务ID
         public let deletionTaskId: String
 
@@ -34,7 +34,7 @@ extension Cam {
     }
 
     /// GetServiceLinkedRoleDeletionStatus返回参数结构体
-    public struct GetServiceLinkedRoleDeletionStatusResponse: TCResponseModel {
+    public struct GetServiceLinkedRoleDeletionStatusResponse: TCResponse {
         /// 状态：NOT_STARTED，IN_PROGRESS，SUCCEEDED，FAILED
         public let status: String
 

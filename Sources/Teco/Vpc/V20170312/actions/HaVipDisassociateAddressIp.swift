@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// HaVipDisassociateAddressIp请求参数结构体
-    public struct HaVipDisassociateAddressIpRequest: TCRequestModel {
+    public struct HaVipDisassociateAddressIpRequest: TCRequest {
         /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是已绑定`EIP`的`HAVIP`。
         public let haVipId: String
 
@@ -34,7 +34,7 @@ extension Vpc {
     }
 
     /// HaVipDisassociateAddressIp返回参数结构体
-    public struct HaVipDisassociateAddressIpResponse: TCResponseModel {
+    public struct HaVipDisassociateAddressIpResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

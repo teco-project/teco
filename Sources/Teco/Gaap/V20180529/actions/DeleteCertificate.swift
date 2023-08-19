@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DeleteCertificate请求参数结构体
-    public struct DeleteCertificateRequest: TCRequestModel {
+    public struct DeleteCertificateRequest: TCRequest {
         /// 需要删除的证书ID。
         public let certificateId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DeleteCertificate返回参数结构体
-    public struct DeleteCertificateResponse: TCResponseModel {
+    public struct DeleteCertificateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

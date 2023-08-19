@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vod {
     /// ModifyContentReviewTemplate请求参数结构体
-    public struct ModifyContentReviewTemplateRequest: TCRequestModel {
+    public struct ModifyContentReviewTemplateRequest: TCRequest {
         /// 内容审核模板唯一标识。
         public let definition: Int64
 
@@ -88,7 +88,7 @@ extension Vod {
     }
 
     /// ModifyContentReviewTemplate返回参数结构体
-    public struct ModifyContentReviewTemplateResponse: TCResponseModel {
+    public struct ModifyContentReviewTemplateResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

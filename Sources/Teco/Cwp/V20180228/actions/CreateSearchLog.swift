@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// CreateSearchLog请求参数结构体
-    public struct CreateSearchLogRequest: TCRequestModel {
+    public struct CreateSearchLogRequest: TCRequest {
         /// 搜索内容
         public let searchContent: String
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// CreateSearchLog返回参数结构体
-    public struct CreateSearchLogResponse: TCResponseModel {
+    public struct CreateSearchLogResponse: TCResponse {
         /// 0：成功，非0：失败
         public let status: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CreateRule请求参数结构体
-    public struct CreateRuleRequest: TCRequestModel {
+    public struct CreateRuleRequest: TCRequest {
         /// 参考：[事件模式](https://cloud.tencent.com/document/product/1359/56084)
         public let eventPattern: String
 
@@ -54,7 +54,7 @@ extension Eb {
     }
 
     /// CreateRule返回参数结构体
-    public struct CreateRuleResponse: TCResponseModel {
+    public struct CreateRuleResponse: TCResponse {
         /// 事件规则ID
         public let ruleId: String
 

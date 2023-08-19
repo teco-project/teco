@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulDefenceEventDetail请求参数结构体
-    public struct DescribeVulDefenceEventDetailRequest: TCRequestModel {
+    public struct DescribeVulDefenceEventDetailRequest: TCRequest {
         /// 事件ID
         public let eventID: Int64
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVulDefenceEventDetail返回参数结构体
-    public struct DescribeVulDefenceEventDetailResponse: TCResponseModel {
+    public struct DescribeVulDefenceEventDetailResponse: TCResponse {
         /// 漏洞防御事件详细
         public let eventDetail: VulDefenceEventDetail
 

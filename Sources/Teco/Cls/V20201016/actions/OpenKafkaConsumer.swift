@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// OpenKafkaConsumer请求参数结构体
-    public struct OpenKafkaConsumerRequest: TCRequestModel {
+    public struct OpenKafkaConsumerRequest: TCRequest {
         /// 日志主题ID
         public let fromTopicId: String
 
@@ -44,7 +44,7 @@ extension Cls {
     }
 
     /// OpenKafkaConsumer返回参数结构体
-    public struct OpenKafkaConsumerResponse: TCResponseModel {
+    public struct OpenKafkaConsumerResponse: TCResponse {
         /// KafkaConsumer 消费时使用的Topic参数
         public let topicID: String
 

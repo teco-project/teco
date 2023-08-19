@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// CreateOfflineLogConfig请求参数结构体
-    public struct CreateOfflineLogConfigRequest: TCRequestModel {
+    public struct CreateOfflineLogConfigRequest: TCRequest {
         /// 项目唯一上报 key
         public let projectKey: String
 
@@ -39,7 +39,7 @@ extension Rum {
     }
 
     /// CreateOfflineLogConfig返回参数结构体
-    public struct CreateOfflineLogConfigResponse: TCResponseModel {
+    public struct CreateOfflineLogConfigResponse: TCResponse {
         /// 接口返回信息
         public let msg: String
 

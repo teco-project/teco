@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// StopLiveRecord请求参数结构体
-    public struct StopLiveRecordRequest: TCRequestModel {
+    public struct StopLiveRecordRequest: TCRequest {
         /// 流名称。
         public let streamName: String
 
@@ -39,7 +39,7 @@ extension Live {
     }
 
     /// StopLiveRecord返回参数结构体
-    public struct StopLiveRecordResponse: TCResponseModel {
+    public struct StopLiveRecordResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyWebPageProtectSetting请求参数结构体
-    public struct ModifyWebPageProtectSettingRequest: TCRequestModel {
+    public struct ModifyWebPageProtectSettingRequest: TCRequest {
         /// 需要操作的类型1 目录名称 2 防护文件类型
         public let modifyType: UInt64
 
@@ -44,7 +44,7 @@ extension Cwp {
     }
 
     /// ModifyWebPageProtectSetting返回参数结构体
-    public struct ModifyWebPageProtectSettingResponse: TCResponseModel {
+    public struct ModifyWebPageProtectSettingResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

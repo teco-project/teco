@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eb {
     /// CreateTarget请求参数结构体
-    public struct CreateTargetRequest: TCRequestModel {
+    public struct CreateTargetRequest: TCRequest {
         /// 事件集ID
         public let eventBusId: String
 
@@ -49,7 +49,7 @@ extension Eb {
     }
 
     /// CreateTarget返回参数结构体
-    public struct CreateTargetResponse: TCResponseModel {
+    public struct CreateTargetResponse: TCResponse {
         /// 目标ID
         public let targetId: String
 

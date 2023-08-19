@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// CreateBandwidthPackage请求参数结构体
-    public struct CreateBandwidthPackageRequest: TCRequestModel {
+    public struct CreateBandwidthPackageRequest: TCRequest {
         /// 带宽包类型, 默认值: BGP, 可选值:
         /// - BGP: 普通BGP共享带宽包
         /// - HIGH_QUALITY_BGP: 精品BGP共享带宽包
@@ -74,7 +74,7 @@ extension Vpc {
     }
 
     /// CreateBandwidthPackage返回参数结构体
-    public struct CreateBandwidthPackageResponse: TCResponseModel {
+    public struct CreateBandwidthPackageResponse: TCResponse {
         /// 带宽包唯一ID。
         public let bandwidthPackageId: String
 

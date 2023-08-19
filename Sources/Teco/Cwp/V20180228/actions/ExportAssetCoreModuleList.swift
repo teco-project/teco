@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ExportAssetCoreModuleList请求参数结构体
-    public struct ExportAssetCoreModuleListRequest: TCRequestModel {
+    public struct ExportAssetCoreModuleListRequest: TCRequest {
         /// 服务器Uuid
         public let uuid: String?
 
@@ -56,7 +56,7 @@ extension Cwp {
     }
 
     /// ExportAssetCoreModuleList返回参数结构体
-    public struct ExportAssetCoreModuleListResponse: TCResponseModel {
+    public struct ExportAssetCoreModuleListResponse: TCResponse {
         /// 异步下载任务ID，需要配合ExportTasks接口使用
         public let taskId: String
 

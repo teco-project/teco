@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mariadb {
     /// UpgradeDBInstance请求参数结构体
-    public struct UpgradeDBInstanceRequest: TCRequestModel {
+    public struct UpgradeDBInstanceRequest: TCRequest {
         /// 待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
         public let instanceId: String
 
@@ -61,7 +61,7 @@ extension Mariadb {
     }
 
     /// UpgradeDBInstance返回参数结构体
-    public struct UpgradeDBInstanceResponse: TCResponseModel {
+    public struct UpgradeDBInstanceResponse: TCResponse {
         /// 长订单号。可以据此调用 DescribeOrders
         ///  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
         public let dealName: String

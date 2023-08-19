@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cfw {
     /// DescribeGuideScanInfo请求参数结构体
-    public struct DescribeGuideScanInfoRequest: TCRequestModel {
+    public struct DescribeGuideScanInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeGuideScanInfo返回参数结构体
-    public struct DescribeGuideScanInfoResponse: TCResponseModel {
+    public struct DescribeGuideScanInfoResponse: TCResponse {
         /// 扫描信息
         public let data: ScanInfo
 

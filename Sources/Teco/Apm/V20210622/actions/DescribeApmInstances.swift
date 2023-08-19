@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apm {
     /// DescribeApmInstances请求参数结构体
-    public struct DescribeApmInstancesRequest: TCRequestModel {
+    public struct DescribeApmInstancesRequest: TCRequest {
         /// Tag列表
         public let tags: [ApmTag]?
 
@@ -54,7 +54,7 @@ extension Apm {
     }
 
     /// DescribeApmInstances返回参数结构体
-    public struct DescribeApmInstancesResponse: TCResponseModel {
+    public struct DescribeApmInstancesResponse: TCResponse {
         /// apm实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instances: [ApmInstanceDetail]?

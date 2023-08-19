@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// ModifyCustomizationState请求参数结构体
-    public struct ModifyCustomizationStateRequest: TCRequestModel {
+    public struct ModifyCustomizationStateRequest: TCRequest {
         /// 自学习模型ID
         public let modelId: String
 
@@ -39,7 +39,7 @@ extension Asr {
     }
 
     /// ModifyCustomizationState返回参数结构体
-    public struct ModifyCustomizationStateResponse: TCResponseModel {
+    public struct ModifyCustomizationStateResponse: TCResponse {
         /// 自学习模型ID
         public let modelId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mna {
     /// GetDevice请求参数结构体
-    public struct GetDeviceRequest: TCRequestModel {
+    public struct GetDeviceRequest: TCRequest {
         /// 搜索指定设备的id
         public let deviceId: String
 
@@ -34,7 +34,7 @@ extension Mna {
     }
 
     /// GetDevice返回参数结构体
-    public struct GetDeviceResponse: TCResponseModel {
+    public struct GetDeviceResponse: TCResponse {
         /// 设备详细信息
         public let deviceDetails: DeviceDetails
 

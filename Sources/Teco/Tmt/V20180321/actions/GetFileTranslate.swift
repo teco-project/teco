@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tmt {
     /// GetFileTranslate请求参数结构体
-    public struct GetFileTranslateRequest: TCRequestModel {
+    public struct GetFileTranslateRequest: TCRequest {
         /// 任务ID
         public let taskId: String
 
@@ -34,7 +34,7 @@ extension Tmt {
     }
 
     /// GetFileTranslate返回参数结构体
-    public struct GetFileTranslateResponse: TCResponseModel {
+    public struct GetFileTranslateResponse: TCResponse {
         /// 任务id
         public let data: GetFileTranslateData
 

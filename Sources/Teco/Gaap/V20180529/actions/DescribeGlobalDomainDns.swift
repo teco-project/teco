@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gaap {
     /// DescribeGlobalDomainDns请求参数结构体
-    public struct DescribeGlobalDomainDnsRequest: TCRequestModel {
+    public struct DescribeGlobalDomainDnsRequest: TCRequest {
         /// 域名ID
         public let domainId: String
 
@@ -34,7 +34,7 @@ extension Gaap {
     }
 
     /// DescribeGlobalDomainDns返回参数结构体
-    public struct DescribeGlobalDomainDnsResponse: TCResponseModel {
+    public struct DescribeGlobalDomainDnsResponse: TCResponse {
         /// DNS解析记录详细信息列表
         public let globalDnsList: [GlobalDns]
 

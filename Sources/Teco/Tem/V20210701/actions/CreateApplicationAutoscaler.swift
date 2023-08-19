@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateApplicationAutoscaler请求参数结构体
-    public struct CreateApplicationAutoscalerRequest: TCRequestModel {
+    public struct CreateApplicationAutoscalerRequest: TCRequest {
         /// 服务id
         public let applicationId: String
 
@@ -49,7 +49,7 @@ extension Tem {
     }
 
     /// CreateApplicationAutoscaler返回参数结构体
-    public struct CreateApplicationAutoscalerResponse: TCResponseModel {
+    public struct CreateApplicationAutoscalerResponse: TCResponse {
         /// 弹性伸缩策略组合ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?

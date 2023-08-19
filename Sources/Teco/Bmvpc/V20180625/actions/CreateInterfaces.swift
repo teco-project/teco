@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmvpc {
     /// CreateInterfaces请求参数结构体
-    public struct CreateInterfacesRequest: TCRequestModel {
+    public struct CreateInterfacesRequest: TCRequest {
         /// 物理机实例ID列表
         public let instanceIds: [String]
 
@@ -44,7 +44,7 @@ extension Bmvpc {
     }
 
     /// CreateInterfaces返回参数结构体
-    public struct CreateInterfacesResponse: TCResponseModel {
+    public struct CreateInterfacesResponse: TCResponse {
         /// 任务ID
         public let taskId: UInt64
 

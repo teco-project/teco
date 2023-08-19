@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// RepairTaskControl请求参数结构体
-    public struct RepairTaskControlRequest: TCRequestModel {
+    public struct RepairTaskControlRequest: TCRequest {
         /// 待授权任务实例对应的产品类型，支持取值：
         ///
         /// - `CVM`：云服务器
@@ -63,7 +63,7 @@ extension Cvm {
     }
 
     /// RepairTaskControl返回参数结构体
-    public struct RepairTaskControlResponse: TCResponseModel {
+    public struct RepairTaskControlResponse: TCResponse {
         /// 已完成授权的维修任务ID。
         public let taskId: String
 

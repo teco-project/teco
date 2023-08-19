@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// DescribePushResourceTaskStatistics请求参数结构体
-    public struct DescribePushResourceTaskStatisticsRequest: TCRequestModel {
+    public struct DescribePushResourceTaskStatisticsRequest: TCRequest {
         /// 产品ID
         public let productID: String
 
@@ -39,7 +39,7 @@ extension Iotcloud {
     }
 
     /// DescribePushResourceTaskStatistics返回参数结构体
-    public struct DescribePushResourceTaskStatisticsResponse: TCResponseModel {
+    public struct DescribePushResourceTaskStatisticsResponse: TCResponse {
         /// 推送成功的设备总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successTotal: UInt64?

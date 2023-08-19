@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// CreateWorkspaceTemporaryToken请求参数结构体
-    public struct CreateWorkspaceTemporaryTokenRequest: TCRequestModel {
+    public struct CreateWorkspaceTemporaryTokenRequest: TCRequest {
         /// 创建工作空间凭证 DTO
         public let workspaceTokenDTO: WorkspaceTokenDTO
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// CreateWorkspaceTemporaryToken返回参数结构体
-    public struct CreateWorkspaceTemporaryTokenResponse: TCResponseModel {
+    public struct CreateWorkspaceTemporaryTokenResponse: TCResponse {
         /// 工作空间临时访问 token 信息
         public let data: WorkspaceTokenInfoV0
 

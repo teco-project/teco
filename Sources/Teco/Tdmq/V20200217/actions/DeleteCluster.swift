@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdmq {
     /// DeleteCluster请求参数结构体
-    public struct DeleteClusterRequest: TCRequestModel {
+    public struct DeleteClusterRequest: TCRequest {
         /// 集群Id，传入需要删除的集群Id。
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tdmq {
     }
 
     /// DeleteCluster返回参数结构体
-    public struct DeleteClusterResponse: TCResponseModel {
+    public struct DeleteClusterResponse: TCResponse {
         /// 集群的ID
         public let clusterId: String
 

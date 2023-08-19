@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iot {
     /// AddProduct请求参数结构体
-    public struct AddProductRequest: TCRequestModel {
+    public struct AddProductRequest: TCRequest {
         /// 产品名称，同一区域产品名称需唯一，支持中文、英文字母、中划线和下划线，长度不超过31个字符，中文占两个字符
         public let name: String
 
@@ -64,7 +64,7 @@ extension Iot {
     }
 
     /// AddProduct返回参数结构体
-    public struct AddProductResponse: TCResponseModel {
+    public struct AddProductResponse: TCResponse {
         /// 产品信息
         public let product: Product
 

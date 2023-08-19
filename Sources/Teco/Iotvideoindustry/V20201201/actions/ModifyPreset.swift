@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideoindustry {
     /// ModifyPreset请求参数结构体
-    public struct ModifyPresetRequest: TCRequestModel {
+    public struct ModifyPresetRequest: TCRequest {
         /// 通道ID
         public let channelId: String
 
@@ -49,7 +49,7 @@ extension Iotvideoindustry {
     }
 
     /// ModifyPreset返回参数结构体
-    public struct ModifyPresetResponse: TCResponseModel {
+    public struct ModifyPresetResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

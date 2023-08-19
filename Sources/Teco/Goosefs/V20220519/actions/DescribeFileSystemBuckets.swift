@@ -20,7 +20,7 @@ import TecoCore
 
 extension Goosefs {
     /// DescribeFileSystemBuckets请求参数结构体
-    public struct DescribeFileSystemBucketsRequest: TCRequestModel {
+    public struct DescribeFileSystemBucketsRequest: TCRequest {
         /// 文件系统ID
         public let fileSystemId: String
 
@@ -34,7 +34,7 @@ extension Goosefs {
     }
 
     /// DescribeFileSystemBuckets返回参数结构体
-    public struct DescribeFileSystemBucketsResponse: TCResponseModel {
+    public struct DescribeFileSystemBucketsResponse: TCResponse {
         /// bucket列表
         public let bucketList: [MappedBucket]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cls {
     /// DescribeConsumer请求参数结构体
-    public struct DescribeConsumerRequest: TCRequestModel {
+    public struct DescribeConsumerRequest: TCRequest {
         /// 投递任务绑定的日志主题 ID
         public let topicId: String
 
@@ -34,7 +34,7 @@ extension Cls {
     }
 
     /// DescribeConsumer返回参数结构体
-    public struct DescribeConsumerResponse: TCResponseModel {
+    public struct DescribeConsumerResponse: TCResponse {
         /// 投递任务是否生效
         public let effective: Bool
 

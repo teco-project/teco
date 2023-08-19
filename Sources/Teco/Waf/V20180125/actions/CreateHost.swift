@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// CreateHost请求参数结构体
-    public struct CreateHostRequest: TCRequestModel {
+    public struct CreateHostRequest: TCRequest {
         /// 防护域名配置信息
         public let host: HostRecord
 
@@ -39,7 +39,7 @@ extension Waf {
     }
 
     /// CreateHost返回参数结构体
-    public struct CreateHostResponse: TCResponseModel {
+    public struct CreateHostResponse: TCResponse {
         /// 新增防护域名ID
         public let domainId: String
 

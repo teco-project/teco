@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ds {
     /// CreateSeal请求参数结构体
-    public struct CreateSealRequest: TCRequestModel {
+    public struct CreateSealRequest: TCRequest {
         /// 模块名SealMng
         public let module: String
 
@@ -54,7 +54,7 @@ extension Ds {
     }
 
     /// CreateSeal返回参数结构体
-    public struct CreateSealResponse: TCResponseModel {
+    public struct CreateSealResponse: TCResponse {
         /// 签章ID
         public let sealResId: String
 

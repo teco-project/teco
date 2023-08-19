@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// InquiryPriceCreateInstance请求参数结构体
-    public struct InquiryPriceCreateInstanceRequest: TCRequestModel {
+    public struct InquiryPriceCreateInstanceRequest: TCRequest {
         /// 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
         public let typeId: UInt64
 
@@ -85,7 +85,7 @@ extension Redis {
     }
 
     /// InquiryPriceCreateInstance返回参数结构体
-    public struct InquiryPriceCreateInstanceResponse: TCResponseModel {
+    public struct InquiryPriceCreateInstanceResponse: TCResponse {
         /// 价格，单位：分
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let price: Float?

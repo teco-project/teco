@@ -20,7 +20,7 @@ import TecoCore
 
 extension Monitor {
     /// DescribeGrafanaWhiteList请求参数结构体
-    public struct DescribeGrafanaWhiteListRequest: TCRequestModel {
+    public struct DescribeGrafanaWhiteListRequest: TCRequest {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Monitor {
     }
 
     /// DescribeGrafanaWhiteList返回参数结构体
-    public struct DescribeGrafanaWhiteListResponse: TCResponseModel {
+    public struct DescribeGrafanaWhiteListResponse: TCResponse {
         /// 数组
         public let whiteList: [String]
 

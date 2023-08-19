@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// CreateLoraDevice请求参数结构体
-    public struct CreateLoraDeviceRequest: TCRequestModel {
+    public struct CreateLoraDeviceRequest: TCRequest {
         /// 产品Id ，创建产品时腾讯云为用户分配全局唯一的Id
         public let productId: String
 
@@ -69,7 +69,7 @@ extension Iotcloud {
     }
 
     /// CreateLoraDevice返回参数结构体
-    public struct CreateLoraDeviceResponse: TCResponseModel {
+    public struct CreateLoraDeviceResponse: TCResponse {
         /// LoRa应用UUID
         public let appEui: String
 

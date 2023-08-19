@@ -20,7 +20,7 @@ import TecoCore
 
 extension Live {
     /// ModifyLiveDomainCertBindings请求参数结构体
-    public struct ModifyLiveDomainCertBindingsRequest: TCRequestModel {
+    public struct ModifyLiveDomainCertBindingsRequest: TCRequest {
         /// 要绑定证书的播放域名/状态 信息列表。
         /// 如果CloudCertId和证书公钥私钥对均不传，且域名列表已有绑定规则，只批量更新域名https规则的启用状态，并把未上传至腾讯云ssl的已有自有证书上传。
         public let domainInfos: [LiveCertDomainInfo]
@@ -58,7 +58,7 @@ extension Live {
     }
 
     /// ModifyLiveDomainCertBindings返回参数结构体
-    public struct ModifyLiveDomainCertBindingsResponse: TCResponseModel {
+    public struct ModifyLiveDomainCertBindingsResponse: TCResponse {
         /// DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。
         public let mismatchedDomainNames: [String]
 

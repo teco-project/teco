@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyBaselineRule请求参数结构体
-    public struct ModifyBaselineRuleRequest: TCRequestModel {
+    public struct ModifyBaselineRuleRequest: TCRequest {
         public let data: BaselineRule
 
         /// 是否过滤全选
@@ -43,7 +43,7 @@ extension Cwp {
     }
 
     /// ModifyBaselineRule返回参数结构体
-    public struct ModifyBaselineRuleResponse: TCResponseModel {
+    public struct ModifyBaselineRuleResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

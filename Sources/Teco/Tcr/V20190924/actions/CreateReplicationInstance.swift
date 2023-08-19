@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// CreateReplicationInstance请求参数结构体
-    public struct CreateReplicationInstanceRequest: TCRequestModel {
+    public struct CreateReplicationInstanceRequest: TCRequest {
         /// 主实例iD
         public let registryId: String
 
@@ -49,7 +49,7 @@ extension Tcr {
     }
 
     /// CreateReplicationInstance返回参数结构体
-    public struct CreateReplicationInstanceResponse: TCResponseModel {
+    public struct CreateReplicationInstanceResponse: TCResponse {
         /// 企业版复制实例Id
         public let replicationRegistryId: String
 

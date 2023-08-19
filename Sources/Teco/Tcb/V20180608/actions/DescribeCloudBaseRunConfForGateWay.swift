@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DescribeCloudBaseRunConfForGateWay请求参数结构体
-    public struct DescribeCloudBaseRunConfForGateWayRequest: TCRequestModel {
+    public struct DescribeCloudBaseRunConfForGateWayRequest: TCRequest {
         /// 环境ID
         public let envID: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DescribeCloudBaseRunConfForGateWay返回参数结构体
-    public struct DescribeCloudBaseRunConfForGateWayResponse: TCResponseModel {
+    public struct DescribeCloudBaseRunConfForGateWayResponse: TCResponse {
         /// 最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastUpTime: String?

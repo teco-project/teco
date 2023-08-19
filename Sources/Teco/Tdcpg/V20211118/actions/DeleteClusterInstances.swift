@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tdcpg {
     /// DeleteClusterInstances请求参数结构体
-    public struct DeleteClusterInstancesRequest: TCRequestModel {
+    public struct DeleteClusterInstancesRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Tdcpg {
     }
 
     /// DeleteClusterInstances返回参数结构体
-    public struct DeleteClusterInstancesResponse: TCResponseModel {
+    public struct DeleteClusterInstancesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

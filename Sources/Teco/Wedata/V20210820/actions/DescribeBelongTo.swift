@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeBelongTo请求参数结构体
-    public struct DescribeBelongToRequest: TCRequestModel {
+    public struct DescribeBelongToRequest: TCRequest {
         /// 项目id
         public let projectId: String
 
@@ -34,7 +34,7 @@ extension Wedata {
     }
 
     /// DescribeBelongTo返回参数结构体
-    public struct DescribeBelongToResponse: TCResponseModel {
+    public struct DescribeBelongToResponse: TCResponse {
         /// 所属任务/基线
         public let data: [String]
 

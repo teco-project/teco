@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostLighthouseInstanceList请求参数结构体
-    public struct DescribeHostLighthouseInstanceListRequest: TCRequestModel {
+    public struct DescribeHostLighthouseInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -49,7 +49,7 @@ extension Ssl {
     }
 
     /// DescribeHostLighthouseInstanceList返回参数结构体
-    public struct DescribeHostLighthouseInstanceListResponse: TCResponseModel {
+    public struct DescribeHostLighthouseInstanceListResponse: TCResponse {
         /// Lighthouse实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [LighthouseInstanceDetail]?

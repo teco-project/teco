@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateFlowByFiles请求参数结构体
-    public struct CreateFlowByFilesRequest: TCRequestModel {
+    public struct CreateFlowByFilesRequest: TCRequest {
         /// 调用方用户信息，userId 必填。支持填入集团子公司经办人 userId 代发合同
         public let `operator`: UserInfo
 
@@ -148,7 +148,7 @@ extension Ess {
     }
 
     /// CreateFlowByFiles返回参数结构体
-    public struct CreateFlowByFilesResponse: TCResponseModel {
+    public struct CreateFlowByFilesResponse: TCResponse {
         /// 签署流程编号。
         ///
         /// 注：如入参 是否需要预览 NeedPreview 设置为 true，不会正式发起合同，此处不会有值返回；如入参 是否需要预览 NeedPreview 设置为 false，此处会正常返回签署流程编号 FlowId。

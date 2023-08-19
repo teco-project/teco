@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cbs {
     /// DescribeInstancesDiskNum请求参数结构体
-    public struct DescribeInstancesDiskNumRequest: TCRequestModel {
+    public struct DescribeInstancesDiskNumRequest: TCRequest {
         /// 云服务器实例ID，通过[DescribeInstances](/document/product/213/15728)接口查询。
         public let instanceIds: [String]
 
@@ -34,7 +34,7 @@ extension Cbs {
     }
 
     /// DescribeInstancesDiskNum返回参数结构体
-    public struct DescribeInstancesDiskNumResponse: TCResponseModel {
+    public struct DescribeInstancesDiskNumResponse: TCResponse {
         /// 各个云服务器已挂载和可挂载弹性云盘的数量。
         public let attachDetail: [AttachDetail]
 

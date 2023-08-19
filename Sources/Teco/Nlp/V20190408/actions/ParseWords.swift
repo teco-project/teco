@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// ParseWords请求参数结构体
-    public struct ParseWordsRequest: TCRequestModel {
+    public struct ParseWordsRequest: TCRequest {
         /// 待分析的文本（支持中英文文本，不超过500字符）
         public let text: String
 
@@ -34,7 +34,7 @@ extension Nlp {
     }
 
     /// ParseWords返回参数结构体
-    public struct ParseWordsResponse: TCResponseModel {
+    public struct ParseWordsResponse: TCResponse {
         /// 输入文本正则化的结果。（包括对英文文本中的开头和实体进行大写等）
         public let normalText: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Eis {
     /// GetRuntimeResourceMonitorMetricMC请求参数结构体
-    public struct GetRuntimeResourceMonitorMetricMCRequest: TCRequestModel {
+    public struct GetRuntimeResourceMonitorMetricMCRequest: TCRequest {
         /// 运行时id
         public let runtimeId: Int64
 
@@ -64,7 +64,7 @@ extension Eis {
     }
 
     /// GetRuntimeResourceMonitorMetricMC返回参数结构体
-    public struct GetRuntimeResourceMonitorMetricMCResponse: TCResponseModel {
+    public struct GetRuntimeResourceMonitorMetricMCResponse: TCResponse {
         /// 指标名称，K8sWorkloadCpuCoreUsed，K8sWorkloadMemUsageBytes，K8sWorkloadNetworkReceiveBytesBw，K8sWorkloadNetworkTransmitBytesBw
         public let metricType: String
 

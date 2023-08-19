@@ -20,7 +20,7 @@ import TecoCore
 
 extension Waf {
     /// DeleteCustomWhiteRule请求参数结构体
-    public struct DeleteCustomWhiteRuleRequest: TCRequestModel {
+    public struct DeleteCustomWhiteRuleRequest: TCRequest {
         /// 删除的域名
         public let domain: String
 
@@ -39,7 +39,7 @@ extension Waf {
     }
 
     /// DeleteCustomWhiteRule返回参数结构体
-    public struct DeleteCustomWhiteRuleResponse: TCResponseModel {
+    public struct DeleteCustomWhiteRuleResponse: TCResponse {
         /// 操作的状态码，如果所有的资源操作成功则返回的是成功的状态码，如果有资源操作失败则需要解析Message的内容来查看哪个资源失败
         public let success: ResponseCode
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DescribeInstances请求参数结构体
-    public struct DescribeInstancesRequest: TCRequestModel {
+    public struct DescribeInstancesRequest: TCRequest {
         /// 项目id
         public let projectId: String?
 
@@ -49,7 +49,7 @@ extension Wedata {
     }
 
     /// DescribeInstances返回参数结构体
-    public struct DescribeInstancesResponse: TCResponseModel {
+    public struct DescribeInstancesResponse: TCResponse {
         /// Json 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: String?

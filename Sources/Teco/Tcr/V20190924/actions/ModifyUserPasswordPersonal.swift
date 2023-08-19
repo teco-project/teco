@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcr {
     /// ModifyUserPasswordPersonal请求参数结构体
-    public struct ModifyUserPasswordPersonalRequest: TCRequestModel {
+    public struct ModifyUserPasswordPersonalRequest: TCRequest {
         /// 更新后的密码
         public let password: String
 
@@ -34,7 +34,7 @@ extension Tcr {
     }
 
     /// ModifyUserPasswordPersonal返回参数结构体
-    public struct ModifyUserPasswordPersonalResponse: TCResponseModel {
+    public struct ModifyUserPasswordPersonalResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

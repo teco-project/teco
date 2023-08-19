@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// DescribeSubProject请求参数结构体
-    public struct DescribeSubProjectRequest: TCRequestModel {
+    public struct DescribeSubProjectRequest: TCRequest {
         /// 子项目id
         public let subProjectId: String
 
@@ -34,7 +34,7 @@ extension Solar {
     }
 
     /// DescribeSubProject返回参数结构体
-    public struct DescribeSubProjectResponse: TCResponseModel {
+    public struct DescribeSubProjectResponse: TCResponse {
         /// 作品信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productInfo: ProductInfo?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiems {
     /// DeleteServiceConfig请求参数结构体
-    public struct DeleteServiceConfigRequest: TCRequestModel {
+    public struct DeleteServiceConfigRequest: TCRequest {
         /// 服务配置Id
         public let serviceConfigId: String?
 
@@ -39,7 +39,7 @@ extension Tiems {
     }
 
     /// DeleteServiceConfig返回参数结构体
-    public struct DeleteServiceConfigResponse: TCResponseModel {
+    public struct DeleteServiceConfigResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

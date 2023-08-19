@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcss {
     /// DescribeVulDetail请求参数结构体
-    public struct DescribeVulDetailRequest: TCRequestModel {
+    public struct DescribeVulDetailRequest: TCRequest {
         /// 漏洞PocID
         public let pocID: String
 
@@ -34,7 +34,7 @@ extension Tcss {
     }
 
     /// DescribeVulDetail返回参数结构体
-    public struct DescribeVulDetailResponse: TCResponseModel {
+    public struct DescribeVulDetailResponse: TCResponse {
         /// 漏洞详情信息
         public let vulInfo: VulDetailInfo
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateContentReviewTemplate请求参数结构体
-    public struct CreateContentReviewTemplateRequest: TCRequestModel {
+    public struct CreateContentReviewTemplateRequest: TCRequest {
         /// 内容审核模板名称，长度限制：64 个字符。
         public let name: String?
 
@@ -68,7 +68,7 @@ extension Mps {
     }
 
     /// CreateContentReviewTemplate返回参数结构体
-    public struct CreateContentReviewTemplateResponse: TCResponseModel {
+    public struct CreateContentReviewTemplateResponse: TCResponse {
         /// 内容审核模板唯一标识。
         public let definition: Int64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tem {
     /// CreateResource请求参数结构体
-    public struct CreateResourceRequest: TCRequestModel {
+    public struct CreateResourceRequest: TCRequest {
         /// 环境 Id
         public let environmentId: String
 
@@ -59,7 +59,7 @@ extension Tem {
     }
 
     /// CreateResource返回参数结构体
-    public struct CreateResourceResponse: TCResponseModel {
+    public struct CreateResourceResponse: TCResponse {
         /// 成功与否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

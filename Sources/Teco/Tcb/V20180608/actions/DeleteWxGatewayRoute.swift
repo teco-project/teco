@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tcb {
     /// DeleteWxGatewayRoute请求参数结构体
-    public struct DeleteWxGatewayRouteRequest: TCRequestModel {
+    public struct DeleteWxGatewayRouteRequest: TCRequest {
         /// 环境id
         public let envId: String
 
@@ -39,7 +39,7 @@ extension Tcb {
     }
 
     /// DeleteWxGatewayRoute返回参数结构体
-    public struct DeleteWxGatewayRouteResponse: TCResponseModel {
+    public struct DeleteWxGatewayRouteResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Partners {
     /// CreatePayRelationForClient请求参数结构体
-    public struct CreatePayRelationForClientRequest: TCRequestModel {
+    public struct CreatePayRelationForClientRequest: TCRequest {
         /// 客户账号ID
         public let clientUin: String
 
@@ -34,7 +34,7 @@ extension Partners {
     }
 
     /// CreatePayRelationForClient返回参数结构体
-    public struct CreatePayRelationForClientResponse: TCResponseModel {
+    public struct CreatePayRelationForClientResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

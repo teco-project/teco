@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cr {
     /// QueryInstantData请求参数结构体
-    public struct QueryInstantDataRequest: TCRequestModel {
+    public struct QueryInstantDataRequest: TCRequest {
         /// 模块名，本接口取值：Data
         public let module: String
 
@@ -59,7 +59,7 @@ extension Cr {
     }
 
     /// QueryInstantData返回参数结构体
-    public struct QueryInstantDataResponse: TCResponseModel {
+    public struct QueryInstantDataResponse: TCResponse {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCount: Int64?

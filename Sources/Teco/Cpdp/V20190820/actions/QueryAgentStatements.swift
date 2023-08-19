@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cpdp {
     /// QueryAgentStatements请求参数结构体
-    public struct QueryAgentStatementsRequest: TCRequestModel {
+    public struct QueryAgentStatementsRequest: TCRequest {
         /// 结算单日期，月结算单填每月1日
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -45,7 +45,7 @@ extension Cpdp {
     }
 
     /// QueryAgentStatements返回参数结构体
-    public struct QueryAgentStatementsResponse: TCResponseModel {
+    public struct QueryAgentStatementsResponse: TCResponse {
         /// 文件下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileUrl: String?

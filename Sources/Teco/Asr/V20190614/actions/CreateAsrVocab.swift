@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// CreateAsrVocab请求参数结构体
-    public struct CreateAsrVocabRequest: TCRequestModel {
+    public struct CreateAsrVocabRequest: TCRequest {
         /// 热词表名称，长度在1-255之间
         public let name: String
 
@@ -50,7 +50,7 @@ extension Asr {
     }
 
     /// CreateAsrVocab返回参数结构体
-    public struct CreateAsrVocabResponse: TCResponseModel {
+    public struct CreateAsrVocabResponse: TCResponse {
         /// 词表ID，可用于获取词表信息
         public let vocabId: String
 

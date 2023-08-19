@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// DescribeContainerGroupAttribute请求参数结构体
-    public struct DescribeContainerGroupAttributeRequest: TCRequestModel {
+    public struct DescribeContainerGroupAttributeRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// DescribeContainerGroupAttribute返回参数结构体
-    public struct DescribeContainerGroupAttributeResponse: TCResponseModel {
+    public struct DescribeContainerGroupAttributeResponse: TCResponse {
         /// 部署组列表-其它字段
         public let result: ContainerGroupOther
 

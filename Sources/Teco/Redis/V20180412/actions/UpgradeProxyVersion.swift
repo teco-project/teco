@@ -20,7 +20,7 @@ import TecoCore
 
 extension Redis {
     /// UpgradeProxyVersion请求参数结构体
-    public struct UpgradeProxyVersionRequest: TCRequestModel {
+    public struct UpgradeProxyVersionRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -49,7 +49,7 @@ extension Redis {
     }
 
     /// UpgradeProxyVersion返回参数结构体
-    public struct UpgradeProxyVersionResponse: TCResponseModel {
+    public struct UpgradeProxyVersionResponse: TCResponse {
         /// 异步流程ID
         public let flowId: Int64
 

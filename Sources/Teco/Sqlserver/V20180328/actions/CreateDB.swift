@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// CreateDB请求参数结构体
-    public struct CreateDBRequest: TCRequestModel {
+    public struct CreateDBRequest: TCRequest {
         /// 实例ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// CreateDB返回参数结构体
-    public struct CreateDBResponse: TCResponseModel {
+    public struct CreateDBResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

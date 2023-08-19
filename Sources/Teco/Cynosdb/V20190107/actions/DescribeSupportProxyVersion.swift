@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeSupportProxyVersion请求参数结构体
-    public struct DescribeSupportProxyVersionRequest: TCRequestModel {
+    public struct DescribeSupportProxyVersionRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Cynosdb {
     }
 
     /// DescribeSupportProxyVersion返回参数结构体
-    public struct DescribeSupportProxyVersionResponse: TCResponseModel {
+    public struct DescribeSupportProxyVersionResponse: TCResponse {
         /// 支持的数据库代理版本集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let supportProxyVersions: [String]?

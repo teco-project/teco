@@ -20,13 +20,13 @@ import TecoCore
 
 extension Cloudstudio {
     /// DescribeImages请求参数结构体
-    public struct DescribeImagesRequest: TCRequestModel {
+    public struct DescribeImagesRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeImages返回参数结构体
-    public struct DescribeImagesResponse: TCResponseModel {
+    public struct DescribeImagesResponse: TCResponse {
         /// 镜像列表
         public let images: [Image]
 

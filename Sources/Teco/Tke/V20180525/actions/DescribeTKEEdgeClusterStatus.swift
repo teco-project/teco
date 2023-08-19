@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeTKEEdgeClusterStatus请求参数结构体
-    public struct DescribeTKEEdgeClusterStatusRequest: TCRequestModel {
+    public struct DescribeTKEEdgeClusterStatusRequest: TCRequest {
         /// 边缘计算容器集群Id
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeTKEEdgeClusterStatus返回参数结构体
-    public struct DescribeTKEEdgeClusterStatusResponse: TCResponseModel {
+    public struct DescribeTKEEdgeClusterStatusResponse: TCResponse {
         /// 集群当前状态
         public let phase: String
 

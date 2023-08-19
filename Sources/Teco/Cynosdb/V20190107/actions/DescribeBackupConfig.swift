@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cynosdb {
     /// DescribeBackupConfig请求参数结构体
-    public struct DescribeBackupConfigRequest: TCRequestModel {
+    public struct DescribeBackupConfigRequest: TCRequest {
         /// 集群ID
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Cynosdb {
     }
 
     /// DescribeBackupConfig返回参数结构体
-    public struct DescribeBackupConfigResponse: TCResponseModel {
+    public struct DescribeBackupConfigResponse: TCResponse {
         /// 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
         public let backupTimeBeg: UInt64
 

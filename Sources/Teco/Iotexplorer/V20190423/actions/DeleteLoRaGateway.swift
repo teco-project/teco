@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotexplorer {
     /// DeleteLoRaGateway请求参数结构体
-    public struct DeleteLoRaGatewayRequest: TCRequestModel {
+    public struct DeleteLoRaGatewayRequest: TCRequest {
         /// LoRa 网关 Id
         public let gatewayId: String
 
@@ -34,7 +34,7 @@ extension Iotexplorer {
     }
 
     /// DeleteLoRaGateway返回参数结构体
-    public struct DeleteLoRaGatewayResponse: TCResponseModel {
+    public struct DeleteLoRaGatewayResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

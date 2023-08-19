@@ -20,7 +20,7 @@ import TecoCore
 
 extension Emr {
     /// DescribeCvmQuota请求参数结构体
-    public struct DescribeCvmQuotaRequest: TCRequestModel {
+    public struct DescribeCvmQuotaRequest: TCRequest {
         /// EMR集群ID
         public let clusterId: String
 
@@ -39,7 +39,7 @@ extension Emr {
     }
 
     /// DescribeCvmQuota返回参数结构体
-    public struct DescribeCvmQuotaResponse: TCResponseModel {
+    public struct DescribeCvmQuotaResponse: TCResponse {
         /// 后付费配额列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postPaidQuotaSet: [QuotaEntity]?

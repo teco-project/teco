@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// ModifySequenceRules请求参数结构体
-    public struct ModifySequenceRulesRequest: TCRequestModel {
+    public struct ModifySequenceRulesRequest: TCRequest {
         /// 边Id值
         public let edgeId: String?
 
@@ -49,7 +49,7 @@ extension Cfw {
     }
 
     /// ModifySequenceRules返回参数结构体
-    public struct ModifySequenceRulesResponse: TCResponseModel {
+    public struct ModifySequenceRulesResponse: TCResponse {
         /// 0: 修改成功, 非0: 修改失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cvm {
     /// RunInstances请求参数结构体
-    public struct RunInstancesRequest: TCRequestModel {
+    public struct RunInstancesRequest: TCRequest {
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。
         ///
         /// - PREPAID：预付费，即包年包月
@@ -213,7 +213,7 @@ extension Cvm {
     }
 
     /// RunInstances返回参数结构体
-    public struct RunInstancesResponse: TCResponseModel {
+    public struct RunInstancesResponse: TCResponse {
         /// 当通过本接口来创建实例时会返回该参数，表示一个或多个实例`ID`。返回实例`ID`列表并不代表实例创建成功，可根据 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) 接口查询返回的InstancesSet中对应实例的`ID`的状态来判断创建是否完成；如果实例状态由“PENDING(创建中)”变为“RUNNING(运行中)”，则为创建成功。
         public let instanceIdSet: [String]
 

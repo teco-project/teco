@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cdwch {
     /// DestroyInstance请求参数结构体
-    public struct DestroyInstanceRequest: TCRequestModel {
+    public struct DestroyInstanceRequest: TCRequest {
         /// 集群id
         public let instanceId: String
 
@@ -34,7 +34,7 @@ extension Cdwch {
     }
 
     /// DestroyInstance返回参数结构体
-    public struct DestroyInstanceResponse: TCResponseModel {
+    public struct DestroyInstanceResponse: TCResponse {
         /// 作业id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flowID: String?

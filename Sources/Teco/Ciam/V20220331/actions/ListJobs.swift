@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ciam {
     /// ListJobs请求参数结构体
-    public struct ListJobsRequest: TCRequestModel {
+    public struct ListJobsRequest: TCRequest {
         /// 用户目录ID
         public let userStoreId: String
 
@@ -39,7 +39,7 @@ extension Ciam {
     }
 
     /// ListJobs返回参数结构体
-    public struct ListJobsResponse: TCResponseModel {
+    public struct ListJobsResponse: TCResponse {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSet: [Job]?

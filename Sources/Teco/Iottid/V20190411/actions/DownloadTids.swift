@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iottid {
     /// DownloadTids请求参数结构体
-    public struct DownloadTidsRequest: TCRequestModel {
+    public struct DownloadTidsRequest: TCRequest {
         /// 订单编号
         public let orderId: String
 
@@ -39,7 +39,7 @@ extension Iottid {
     }
 
     /// DownloadTids返回参数结构体
-    public struct DownloadTidsResponse: TCResponseModel {
+    public struct DownloadTidsResponse: TCResponse {
         /// 下载的TID信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tidSet: [TidKeysInfo]?

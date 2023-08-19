@@ -20,7 +20,7 @@ import TecoCore
 
 extension Chdfs {
     /// CreateAccessRules请求参数结构体
-    public struct CreateAccessRulesRequest: TCRequestModel {
+    public struct CreateAccessRulesRequest: TCRequest {
         /// 多个权限规则，上限为10
         public let accessRules: [AccessRule]
 
@@ -39,7 +39,7 @@ extension Chdfs {
     }
 
     /// CreateAccessRules返回参数结构体
-    public struct CreateAccessRulesResponse: TCResponseModel {
+    public struct CreateAccessRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

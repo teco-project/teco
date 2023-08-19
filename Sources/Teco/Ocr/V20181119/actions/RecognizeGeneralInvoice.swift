@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// RecognizeGeneralInvoice请求参数结构体
-    public struct RecognizeGeneralInvoiceRequest: TCRequestModel {
+    public struct RecognizeGeneralInvoiceRequest: TCRequest {
         /// 图片的 Base64 值。
         /// 支持的图片格式：PNG、JPG、JPEG、PDF，暂不支持 GIF 格式。
         /// 支持的图片大小：所下载图片经Base64编码后不超过 8M。图片下载时间不超过 3 秒。
@@ -94,7 +94,7 @@ extension Ocr {
     }
 
     /// RecognizeGeneralInvoice返回参数结构体
-    public struct RecognizeGeneralInvoiceResponse: TCResponseModel {
+    public struct RecognizeGeneralInvoiceResponse: TCResponse {
         /// 混贴票据识别结果，具体内容请点击左侧链接。
         public let mixedInvoiceItems: [InvoiceItem]
 

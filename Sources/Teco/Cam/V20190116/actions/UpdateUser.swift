@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// UpdateUser请求参数结构体
-    public struct UpdateUserRequest: TCRequestModel {
+    public struct UpdateUserRequest: TCRequest {
         /// 子用户用户名
         public let name: String
 
@@ -69,7 +69,7 @@ extension Cam {
     }
 
     /// UpdateUser返回参数结构体
-    public struct UpdateUserResponse: TCResponseModel {
+    public struct UpdateUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

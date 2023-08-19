@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotvideo {
     /// CreateAppUsr请求参数结构体
-    public struct CreateAppUsrRequest: TCRequestModel {
+    public struct CreateAppUsrRequest: TCRequest {
         /// 标识用户的唯一ID，防止同一个用户多次注册
         public let cunionId: String
 
@@ -39,7 +39,7 @@ extension Iotvideo {
     }
 
     /// CreateAppUsr返回参数结构体
-    public struct CreateAppUsrResponse: TCResponseModel {
+    public struct CreateAppUsrResponse: TCResponse {
         /// 厂商云标识用户的唯一ID
         public let cunionId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// DeleteUpstream请求参数结构体
-    public struct DeleteUpstreamRequest: TCRequestModel {
+    public struct DeleteUpstreamRequest: TCRequest {
         /// 待删除的后端通道ID
         public let upstreamId: String
 
@@ -34,7 +34,7 @@ extension Apigateway {
     }
 
     /// DeleteUpstream返回参数结构体
-    public struct DeleteUpstreamResponse: TCResponseModel {
+    public struct DeleteUpstreamResponse: TCResponse {
         /// 成功删除的后端通道ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let upstreamId: String?

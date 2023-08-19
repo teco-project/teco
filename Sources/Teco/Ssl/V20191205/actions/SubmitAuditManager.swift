@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// SubmitAuditManager请求参数结构体
-    public struct SubmitAuditManagerRequest: TCRequestModel {
+    public struct SubmitAuditManagerRequest: TCRequest {
         /// 管理人ID
         public let managerId: Int64
 
@@ -34,7 +34,7 @@ extension Ssl {
     }
 
     /// SubmitAuditManager返回参数结构体
-    public struct SubmitAuditManagerResponse: TCResponseModel {
+    public struct SubmitAuditManagerResponse: TCResponse {
         /// 管理人ID
         public let managerId: Int64
 

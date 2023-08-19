@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tbaas {
     /// QueryChainMakerBlockTransaction请求参数结构体
-    public struct QueryChainMakerBlockTransactionRequest: TCRequestModel {
+    public struct QueryChainMakerBlockTransactionRequest: TCRequest {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
 
@@ -44,7 +44,7 @@ extension Tbaas {
     }
 
     /// QueryChainMakerBlockTransaction返回参数结构体
-    public struct QueryChainMakerBlockTransactionResponse: TCResponseModel {
+    public struct QueryChainMakerBlockTransactionResponse: TCResponse {
         /// 区块交易
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [ChainMakerTransactionResult]?

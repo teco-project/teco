@@ -20,13 +20,13 @@ import TecoCore
 
 extension Dnspod {
     /// DescribeDomainGroupList请求参数结构体
-    public struct DescribeDomainGroupListRequest: TCRequestModel {
+    public struct DescribeDomainGroupListRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeDomainGroupList返回参数结构体
-    public struct DescribeDomainGroupListResponse: TCResponseModel {
+    public struct DescribeDomainGroupListResponse: TCResponse {
         /// 分组列表
         public let groupList: [GroupInfo]
 

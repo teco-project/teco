@@ -20,7 +20,7 @@ import TecoCore
 
 extension Zj {
     /// GetCrowdUploadInfo请求参数结构体
-    public struct GetCrowdUploadInfoRequest: TCRequestModel {
+    public struct GetCrowdUploadInfoRequest: TCRequest {
         /// 商户证书
         public let license: String
 
@@ -39,7 +39,7 @@ extension Zj {
     }
 
     /// GetCrowdUploadInfo返回参数结构体
-    public struct GetCrowdUploadInfoResponse: TCResponseModel {
+    public struct GetCrowdUploadInfoResponse: TCResponse {
         /// 返回信息
         public let data: SmsGetCrowdUploadInfoResponse
 

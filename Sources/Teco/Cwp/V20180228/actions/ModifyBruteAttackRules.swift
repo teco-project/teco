@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cwp {
     /// ModifyBruteAttackRules请求参数结构体
-    public struct ModifyBruteAttackRulesRequest: TCRequestModel {
+    public struct ModifyBruteAttackRulesRequest: TCRequest {
         /// 暴力破解判断规则
         public let rules: [BruteAttackRule]
 
@@ -34,7 +34,7 @@ extension Cwp {
     }
 
     /// ModifyBruteAttackRules返回参数结构体
-    public struct ModifyBruteAttackRulesResponse: TCResponseModel {
+    public struct ModifyBruteAttackRulesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

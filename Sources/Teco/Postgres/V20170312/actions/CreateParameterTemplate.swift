@@ -20,7 +20,7 @@ import TecoCore
 
 extension Postgres {
     /// CreateParameterTemplate请求参数结构体
-    public struct CreateParameterTemplateRequest: TCRequestModel {
+    public struct CreateParameterTemplateRequest: TCRequest {
         /// 模板名称，长度为1～60个字符，仅支持数字,英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@
         public let templateName: String
 
@@ -49,7 +49,7 @@ extension Postgres {
     }
 
     /// CreateParameterTemplate返回参数结构体
-    public struct CreateParameterTemplateResponse: TCResponseModel {
+    public struct CreateParameterTemplateResponse: TCResponse {
         /// 参数模板ID，用于唯一确认参数模板
         public let templateId: String
 

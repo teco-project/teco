@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// DescribeTKEEdgeExternalKubeconfig请求参数结构体
-    public struct DescribeTKEEdgeExternalKubeconfigRequest: TCRequestModel {
+    public struct DescribeTKEEdgeExternalKubeconfigRequest: TCRequest {
         /// 集群id
         public let clusterId: String
 
@@ -34,7 +34,7 @@ extension Tke {
     }
 
     /// DescribeTKEEdgeExternalKubeconfig返回参数结构体
-    public struct DescribeTKEEdgeExternalKubeconfigResponse: TCResponseModel {
+    public struct DescribeTKEEdgeExternalKubeconfigResponse: TCResponse {
         /// kubeconfig文件内容
         public let kubeconfig: String
 

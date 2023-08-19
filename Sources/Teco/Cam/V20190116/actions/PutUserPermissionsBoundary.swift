@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cam {
     /// PutUserPermissionsBoundary请求参数结构体
-    public struct PutUserPermissionsBoundaryRequest: TCRequestModel {
+    public struct PutUserPermissionsBoundaryRequest: TCRequest {
         /// 子账号Uin
         public let targetUin: Int64
 
@@ -39,7 +39,7 @@ extension Cam {
     }
 
     /// PutUserPermissionsBoundary返回参数结构体
-    public struct PutUserPermissionsBoundaryResponse: TCResponseModel {
+    public struct PutUserPermissionsBoundaryResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Nlp {
     /// TextEmbellish请求参数结构体
-    public struct TextEmbellishRequest: TCRequestModel {
+    public struct TextEmbellishRequest: TCRequest {
         /// 待润色的文本。中文文本长度需<=50字符；英文文本长度需<=30个单词。
         public let text: String
 
@@ -58,7 +58,7 @@ extension Nlp {
     }
 
     /// TextEmbellish返回参数结构体
-    public struct TextEmbellishResponse: TCResponseModel {
+    public struct TextEmbellishResponse: TCResponse {
         /// 润色结果列表。
         public let embellishList: [Embellish]
 

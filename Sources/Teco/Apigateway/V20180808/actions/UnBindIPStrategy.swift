@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// UnBindIPStrategy请求参数结构体
-    public struct UnBindIPStrategyRequest: TCRequestModel {
+    public struct UnBindIPStrategyRequest: TCRequest {
         /// 待解绑的服务唯一ID。
         public let serviceId: String
 
@@ -49,7 +49,7 @@ extension Apigateway {
     }
 
     /// UnBindIPStrategy返回参数结构体
-    public struct UnBindIPStrategyResponse: TCResponseModel {
+    public struct UnBindIPStrategyResponse: TCResponse {
         /// 解绑操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

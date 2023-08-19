@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// DeleteWorkflowNew请求参数结构体
-    public struct DeleteWorkflowNewRequest: TCRequestModel {
+    public struct DeleteWorkflowNewRequest: TCRequest {
         /// 工作流id
         public let workFlowId: String
 
@@ -51,7 +51,7 @@ extension Wedata {
     }
 
     /// DeleteWorkflowNew返回参数结构体
-    public struct DeleteWorkflowNewResponse: TCResponseModel {
+    public struct DeleteWorkflowNewResponse: TCResponse {
         /// 返回删除结果
         public let data: OperateResult
 

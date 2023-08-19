@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cfw {
     /// DescribeLogs请求参数结构体
-    public struct DescribeLogsRequest: TCRequestModel {
+    public struct DescribeLogsRequest: TCRequest {
         /// 日志类型标识
         /// 流量日志：互联网边界防火墙netflow_border，NAT边界防火墙netflow_nat，VPC间防火墙vpcnetflow，内网流量日志netflow_fl
         /// 入侵防御日志rule_threatinfo
@@ -63,7 +63,7 @@ extension Cfw {
     }
 
     /// DescribeLogs返回参数结构体
-    public struct DescribeLogsResponse: TCResponseModel {
+    public struct DescribeLogsResponse: TCResponse {
         /// 日志列表
         public let data: String
 

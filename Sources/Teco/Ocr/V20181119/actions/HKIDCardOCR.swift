@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ocr {
     /// HKIDCardOCR请求参数结构体
-    public struct HKIDCardOCRRequest: TCRequestModel {
+    public struct HKIDCardOCRRequest: TCRequest {
         /// 是否鉴伪。
         public let detectFake: Bool
 
@@ -55,7 +55,7 @@ extension Ocr {
     }
 
     /// HKIDCardOCR返回参数结构体
-    public struct HKIDCardOCRResponse: TCResponseModel {
+    public struct HKIDCardOCRResponse: TCResponse {
         /// 中文姓名
         public let cnName: String
 

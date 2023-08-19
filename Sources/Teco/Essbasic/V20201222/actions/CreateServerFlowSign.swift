@@ -20,7 +20,7 @@ import TecoCore
 
 extension Essbasic {
     /// CreateServerFlowSign请求参数结构体
-    public struct CreateServerFlowSignRequest: TCRequestModel {
+    public struct CreateServerFlowSignRequest: TCRequest {
         /// 调用方信息
         public let caller: Caller
 
@@ -49,7 +49,7 @@ extension Essbasic {
     }
 
     /// CreateServerFlowSign返回参数结构体
-    public struct CreateServerFlowSignResponse: TCResponseModel {
+    public struct CreateServerFlowSignResponse: TCResponse {
         /// 任务状态：
         /// 0：失败
         /// 1：成功

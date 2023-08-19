@@ -20,7 +20,7 @@ import TecoCore
 
 extension Bmeip {
     /// DescribeEipTask请求参数结构体
-    public struct DescribeEipTaskRequest: TCRequestModel {
+    public struct DescribeEipTaskRequest: TCRequest {
         /// EIP查询任务ID
         public let taskId: UInt64
 
@@ -34,7 +34,7 @@ extension Bmeip {
     }
 
     /// DescribeEipTask返回参数结构体
-    public struct DescribeEipTaskResponse: TCResponseModel {
+    public struct DescribeEipTaskResponse: TCResponse {
         /// 当前任务状态码：0-成功，1-失败，2-进行中
         public let status: Int64
 

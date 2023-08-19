@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// UpdateTKEEdgeCluster请求参数结构体
-    public struct UpdateTKEEdgeClusterRequest: TCRequestModel {
+    public struct UpdateTKEEdgeClusterRequest: TCRequest {
         /// 边缘计算集群ID
         public let clusterId: String
 
@@ -94,7 +94,7 @@ extension Tke {
     }
 
     /// UpdateTKEEdgeCluster返回参数结构体
-    public struct UpdateTKEEdgeClusterResponse: TCResponseModel {
+    public struct UpdateTKEEdgeClusterResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

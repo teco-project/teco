@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sts {
     /// AssumeRoleWithSAML请求参数结构体
-    public struct AssumeRoleWithSAMLRequest: TCRequestModel {
+    public struct AssumeRoleWithSAMLRequest: TCRequest {
         /// base64 编码的 SAML 断言信息
         public let samlAssertion: String
 
@@ -54,7 +54,7 @@ extension Sts {
     }
 
     /// AssumeRoleWithSAML返回参数结构体
-    public struct AssumeRoleWithSAMLResponse: TCResponseModel {
+    public struct AssumeRoleWithSAMLResponse: TCResponse {
         /// 对象里面包含 Token，TmpSecretId，TmpSecretKey 三元组
         public let credentials: Credentials
 

@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Cwp {
     /// DescribeAssetRecentMachineInfo请求参数结构体
-    public struct DescribeAssetRecentMachineInfoRequest: TCRequestModel {
+    public struct DescribeAssetRecentMachineInfoRequest: TCRequest {
         /// 开始时间，如：2020-09-22
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -47,7 +47,7 @@ extension Cwp {
     }
 
     /// DescribeAssetRecentMachineInfo返回参数结构体
-    public struct DescribeAssetRecentMachineInfoResponse: TCResponseModel {
+    public struct DescribeAssetRecentMachineInfoResponse: TCResponse {
         /// 总数量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalList: [AssetKeyVal]?

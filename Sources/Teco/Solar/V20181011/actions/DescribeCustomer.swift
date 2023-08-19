@@ -20,7 +20,7 @@ import TecoCore
 
 extension Solar {
     /// DescribeCustomer请求参数结构体
-    public struct DescribeCustomerRequest: TCRequestModel {
+    public struct DescribeCustomerRequest: TCRequest {
         /// 用户ID
         public let userId: String
 
@@ -34,7 +34,7 @@ extension Solar {
     }
 
     /// DescribeCustomer返回参数结构体
-    public struct DescribeCustomerResponse: TCResponseModel {
+    public struct DescribeCustomerResponse: TCResponse {
         /// 地址列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let addressList: [String]?

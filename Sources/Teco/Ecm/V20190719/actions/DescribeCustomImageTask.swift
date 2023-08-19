@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ecm {
     /// DescribeCustomImageTask请求参数结构体
-    public struct DescribeCustomImageTaskRequest: TCRequestModel {
+    public struct DescribeCustomImageTaskRequest: TCRequest {
         /// 支持key,value查询
         /// task-id: 异步任务ID
         /// image-id: 镜像ID
@@ -37,7 +37,7 @@ extension Ecm {
     }
 
     /// DescribeCustomImageTask返回参数结构体
-    public struct DescribeCustomImageTaskResponse: TCResponseModel {
+    public struct DescribeCustomImageTaskResponse: TCResponse {
         /// 导入任务详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageTaskSet: [ImageTask]?

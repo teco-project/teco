@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tiw {
     /// CreateTranscode请求参数结构体
-    public struct CreateTranscodeRequest: TCRequestModel {
+    public struct CreateTranscodeRequest: TCRequest {
         /// 客户的SdkAppId
         public let sdkAppId: Int64
 
@@ -100,7 +100,7 @@ extension Tiw {
     }
 
     /// CreateTranscode返回参数结构体
-    public struct CreateTranscodeResponse: TCResponseModel {
+    public struct CreateTranscodeResponse: TCResponse {
         /// 文档转码任务的唯一标识Id，用于查询该任务的进度以及转码结果
         public let taskId: String
 

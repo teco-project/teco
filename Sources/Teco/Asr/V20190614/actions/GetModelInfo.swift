@@ -20,7 +20,7 @@ import TecoCore
 
 extension Asr {
     /// GetModelInfo请求参数结构体
-    public struct GetModelInfoRequest: TCRequestModel {
+    public struct GetModelInfoRequest: TCRequest {
         /// 模型id
         public let modelId: String
 
@@ -34,7 +34,7 @@ extension Asr {
     }
 
     /// GetModelInfo返回参数结构体
-    public struct GetModelInfoResponse: TCResponseModel {
+    public struct GetModelInfoResponse: TCResponse {
         /// 模型信息
         public let data: Model
 

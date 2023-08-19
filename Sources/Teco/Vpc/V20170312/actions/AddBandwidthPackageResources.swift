@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AddBandwidthPackageResources请求参数结构体
-    public struct AddBandwidthPackageResourcesRequest: TCRequestModel {
+    public struct AddBandwidthPackageResourcesRequest: TCRequest {
         /// 资源唯一ID，当前支持EIP资源和LB资源，形如'eip-xxxx', 'lb-xxxx'
         public let resourceIds: [String]
 
@@ -54,7 +54,7 @@ extension Vpc {
     }
 
     /// AddBandwidthPackageResources返回参数结构体
-    public struct AddBandwidthPackageResourcesResponse: TCResponseModel {
+    public struct AddBandwidthPackageResourcesResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

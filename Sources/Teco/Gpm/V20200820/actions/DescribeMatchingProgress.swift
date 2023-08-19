@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gpm {
     /// DescribeMatchingProgress请求参数结构体
-    public struct DescribeMatchingProgressRequest: TCRequestModel {
+    public struct DescribeMatchingProgressRequest: TCRequest {
         /// 匹配票据 ID列表, 列表长度 12。
         public let matchTicketIds: [MTicket]
 
@@ -34,7 +34,7 @@ extension Gpm {
     }
 
     /// DescribeMatchingProgress返回参数结构体
-    public struct DescribeMatchingProgressResponse: TCResponseModel {
+    public struct DescribeMatchingProgressResponse: TCResponse {
         /// 匹配票据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchTickets: [MatchTicket]?

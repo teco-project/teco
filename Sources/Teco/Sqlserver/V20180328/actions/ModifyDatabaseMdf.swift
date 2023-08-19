@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// ModifyDatabaseMdf请求参数结构体
-    public struct ModifyDatabaseMdfRequest: TCRequestModel {
+    public struct ModifyDatabaseMdfRequest: TCRequest {
         /// 数据库名数组
         public let dbNames: [String]
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// ModifyDatabaseMdf返回参数结构体
-    public struct ModifyDatabaseMdfResponse: TCResponseModel {
+    public struct ModifyDatabaseMdfResponse: TCResponse {
         /// 流程ID
         public let flowId: Int64
 

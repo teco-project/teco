@@ -22,7 +22,7 @@ import TecoDateHelpers
 
 extension Asr {
     /// GetAsrVocab请求参数结构体
-    public struct GetAsrVocabRequest: TCRequestModel {
+    public struct GetAsrVocabRequest: TCRequest {
         /// 热词表ID
         public let vocabId: String
 
@@ -36,7 +36,7 @@ extension Asr {
     }
 
     /// GetAsrVocab返回参数结构体
-    public struct GetAsrVocabResponse: TCResponseModel {
+    public struct GetAsrVocabResponse: TCResponse {
         /// 热词表名称
         public let name: String
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trro {
     /// DescribeDeviceSessionDetails请求参数结构体
-    public struct DescribeDeviceSessionDetailsRequest: TCRequestModel {
+    public struct DescribeDeviceSessionDetailsRequest: TCRequest {
         /// 会话ID
         public let sessionId: String
 
@@ -34,7 +34,7 @@ extension Trro {
     }
 
     /// DescribeDeviceSessionDetails返回参数结构体
-    public struct DescribeDeviceSessionDetailsResponse: TCResponseModel {
+    public struct DescribeDeviceSessionDetailsResponse: TCResponse {
         /// 按设备区分的会话详细数据
         public let details: [SessionDeviceDetail]
 

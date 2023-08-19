@@ -20,7 +20,7 @@ import TecoCore
 
 extension As {
     /// DescribeAutoScalingAdvices请求参数结构体
-    public struct DescribeAutoScalingAdvicesRequest: TCRequestModel {
+    public struct DescribeAutoScalingAdvicesRequest: TCRequest {
         /// 待查询的伸缩组列表，上限100。
         public let autoScalingGroupIds: [String]
 
@@ -34,7 +34,7 @@ extension As {
     }
 
     /// DescribeAutoScalingAdvices返回参数结构体
-    public struct DescribeAutoScalingAdvicesResponse: TCResponseModel {
+    public struct DescribeAutoScalingAdvicesResponse: TCResponse {
         /// 伸缩组配置建议集合。
         public let autoScalingAdviceSet: [AutoScalingAdvice]
 

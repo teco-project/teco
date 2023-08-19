@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cloudstudio {
     /// StopWorkspace请求参数结构体
-    public struct StopWorkspaceRequest: TCRequestModel {
+    public struct StopWorkspaceRequest: TCRequest {
         /// 工作空间 SpaceKey
         public let spaceKey: String
 
@@ -34,7 +34,7 @@ extension Cloudstudio {
     }
 
     /// StopWorkspace返回参数结构体
-    public struct StopWorkspaceResponse: TCResponseModel {
+    public struct StopWorkspaceResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

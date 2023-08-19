@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// SetCcnRegionBandwidthLimits请求参数结构体
-    public struct SetCcnRegionBandwidthLimitsRequest: TCRequestModel {
+    public struct SetCcnRegionBandwidthLimitsRequest: TCRequest {
         /// CCN实例ID，形如：ccn-f49l6u0z。
         public let ccnId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// SetCcnRegionBandwidthLimits返回参数结构体
-    public struct SetCcnRegionBandwidthLimitsResponse: TCResponseModel {
+    public struct SetCcnRegionBandwidthLimitsResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

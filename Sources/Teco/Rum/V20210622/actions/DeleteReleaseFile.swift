@@ -20,7 +20,7 @@ import TecoCore
 
 extension Rum {
     /// DeleteReleaseFile请求参数结构体
-    public struct DeleteReleaseFileRequest: TCRequestModel {
+    public struct DeleteReleaseFileRequest: TCRequest {
         /// 文件 id
         public let id: Int64
 
@@ -34,7 +34,7 @@ extension Rum {
     }
 
     /// DeleteReleaseFile返回参数结构体
-    public struct DeleteReleaseFileResponse: TCResponseModel {
+    public struct DeleteReleaseFileResponse: TCResponse {
         /// 接口请求返回字符串
         public let msg: String
 

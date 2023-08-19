@@ -20,7 +20,7 @@ import TecoCore
 
 extension Lcic {
     /// DeleteSupervisor请求参数结构体
-    public struct DeleteSupervisorRequest: TCRequestModel {
+    public struct DeleteSupervisorRequest: TCRequest {
         /// 应用ID
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Lcic {
     }
 
     /// DeleteSupervisor返回参数结构体
-    public struct DeleteSupervisorResponse: TCResponseModel {
+    public struct DeleteSupervisorResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

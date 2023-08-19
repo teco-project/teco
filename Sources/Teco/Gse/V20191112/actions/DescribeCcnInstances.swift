@@ -20,7 +20,7 @@ import TecoCore
 
 extension Gse {
     /// DescribeCcnInstances请求参数结构体
-    public struct DescribeCcnInstancesRequest: TCRequestModel {
+    public struct DescribeCcnInstancesRequest: TCRequest {
         /// 服务器舰队 Id
         public let fleetId: String?
 
@@ -34,7 +34,7 @@ extension Gse {
     }
 
     /// DescribeCcnInstances返回参数结构体
-    public struct DescribeCcnInstancesResponse: TCResponseModel {
+    public struct DescribeCcnInstancesResponse: TCResponse {
         /// 云联网实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ccnInstanceSets: [CcnInstanceSets]?

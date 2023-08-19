@@ -20,13 +20,13 @@ import TecoCore
 
 extension Ms {
     /// DescribeUserBaseInfoInstance请求参数结构体
-    public struct DescribeUserBaseInfoInstanceRequest: TCRequestModel {
+    public struct DescribeUserBaseInfoInstanceRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeUserBaseInfoInstance返回参数结构体
-    public struct DescribeUserBaseInfoInstanceResponse: TCResponseModel {
+    public struct DescribeUserBaseInfoInstanceResponse: TCResponse {
         /// 用户uin信息
         public let userUin: UInt64
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Cpdp {
     /// QueryTransferDetail请求参数结构体
-    public struct QueryTransferDetailRequest: TCRequestModel {
+    public struct QueryTransferDetailRequest: TCRequest {
         /// 商户号。
         /// 示例值：129284394
         public let merchantId: String
@@ -73,7 +73,7 @@ extension Cpdp {
     }
 
     /// QueryTransferDetail返回参数结构体
-    public struct QueryTransferDetailResponse: TCResponseModel {
+    public struct QueryTransferDetailResponse: TCResponse {
         /// 商户号。
         /// 示例值：19300009329
         public let merchantId: String

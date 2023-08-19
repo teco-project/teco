@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dnspod {
     /// PayOrderWithBalance请求参数结构体
-    public struct PayOrderWithBalanceRequest: TCRequestModel {
+    public struct PayOrderWithBalanceRequest: TCRequest {
         /// 需要支付的大订单号数组
         public let bigDealIdList: [String]
 
@@ -39,7 +39,7 @@ extension Dnspod {
     }
 
     /// PayOrderWithBalance返回参数结构体
-    public struct PayOrderWithBalanceResponse: TCResponseModel {
+    public struct PayOrderWithBalanceResponse: TCResponse {
         /// 此次操作支付成功的订单id数组
         public let dealIdList: [String]
 

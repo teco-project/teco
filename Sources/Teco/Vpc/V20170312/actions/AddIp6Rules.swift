@@ -20,7 +20,7 @@ import TecoCore
 
 extension Vpc {
     /// AddIp6Rules请求参数结构体
-    public struct AddIp6RulesRequest: TCRequestModel {
+    public struct AddIp6RulesRequest: TCRequest {
         /// IPV6转换实例唯一ID，形如ip6-xxxxxxxx
         public let ip6TranslatorId: String
 
@@ -44,7 +44,7 @@ extension Vpc {
     }
 
     /// AddIp6Rules返回参数结构体
-    public struct AddIp6RulesResponse: TCResponseModel {
+    public struct AddIp6RulesResponse: TCResponse {
         /// IPV6转换规则唯一ID数组，形如rule6-xxxxxxxx
         public let ip6RuleSet: [String]
 

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ModifyMicroservice请求参数结构体
-    public struct ModifyMicroserviceRequest: TCRequestModel {
+    public struct ModifyMicroserviceRequest: TCRequest {
         /// 微服务 ID
         public let microserviceId: String
 
@@ -39,7 +39,7 @@ extension Tsf {
     }
 
     /// ModifyMicroservice返回参数结构体
-    public struct ModifyMicroserviceResponse: TCResponseModel {
+    public struct ModifyMicroserviceResponse: TCResponse {
         /// 修改微服务详情是否成功。
         /// true：操作成功。
         /// false：操作失败。

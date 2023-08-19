@@ -20,7 +20,7 @@ import TecoCore
 
 extension Sqlserver {
     /// RecycleReadOnlyGroup请求参数结构体
-    public struct RecycleReadOnlyGroupRequest: TCRequestModel {
+    public struct RecycleReadOnlyGroupRequest: TCRequest {
         /// 主实例的ID
         public let instanceId: String
 
@@ -39,7 +39,7 @@ extension Sqlserver {
     }
 
     /// RecycleReadOnlyGroup返回参数结构体
-    public struct RecycleReadOnlyGroupResponse: TCResponseModel {
+    public struct RecycleReadOnlyGroupResponse: TCResponse {
         /// 任务流ID
         public let flowId: Int64
 

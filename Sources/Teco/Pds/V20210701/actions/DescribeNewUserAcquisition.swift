@@ -20,7 +20,7 @@ import TecoCore
 
 extension Pds {
     /// DescribeNewUserAcquisition请求参数结构体
-    public struct DescribeNewUserAcquisitionRequest: TCRequestModel {
+    public struct DescribeNewUserAcquisitionRequest: TCRequest {
         /// 用户信息
         public let serviceParams: UserInfos
 
@@ -34,7 +34,7 @@ extension Pds {
     }
 
     /// DescribeNewUserAcquisition返回参数结构体
-    public struct DescribeNewUserAcquisitionResponse: TCResponseModel {
+    public struct DescribeNewUserAcquisitionResponse: TCResponse {
         /// 用户信誉分，1-5从低到高
         public let serviceRsp: Score
 

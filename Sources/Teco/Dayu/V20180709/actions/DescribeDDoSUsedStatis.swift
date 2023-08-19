@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dayu {
     /// DescribeDDoSUsedStatis请求参数结构体
-    public struct DescribeDDoSUsedStatisRequest: TCRequestModel {
+    public struct DescribeDDoSUsedStatisRequest: TCRequest {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
 
@@ -34,7 +34,7 @@ extension Dayu {
     }
 
     /// DescribeDDoSUsedStatis返回参数结构体
-    public struct DescribeDDoSUsedStatisResponse: TCResponseModel {
+    public struct DescribeDDoSUsedStatisResponse: TCResponse {
         /// 字段值，如下：
         /// Days：高防资源使用天数
         /// Attacks：DDoS防护次数

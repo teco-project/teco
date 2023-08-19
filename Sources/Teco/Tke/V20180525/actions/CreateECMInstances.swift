@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tke {
     /// CreateECMInstances请求参数结构体
-    public struct CreateECMInstancesRequest: TCRequestModel {
+    public struct CreateECMInstancesRequest: TCRequest {
         /// 集群id
         public let clusterID: String
 
@@ -89,7 +89,7 @@ extension Tke {
     }
 
     /// CreateECMInstances返回参数结构体
-    public struct CreateECMInstancesResponse: TCResponseModel {
+    public struct CreateECMInstancesResponse: TCResponse {
         /// ecm id 列表
         public let ecmIdSet: [String]
 

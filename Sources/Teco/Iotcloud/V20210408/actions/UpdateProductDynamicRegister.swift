@@ -20,7 +20,7 @@ import TecoCore
 
 extension Iotcloud {
     /// UpdateProductDynamicRegister请求参数结构体
-    public struct UpdateProductDynamicRegisterRequest: TCRequestModel {
+    public struct UpdateProductDynamicRegisterRequest: TCRequest {
         /// 产品Id
         public let productId: String
 
@@ -44,7 +44,7 @@ extension Iotcloud {
     }
 
     /// UpdateProductDynamicRegister返回参数结构体
-    public struct UpdateProductDynamicRegisterResponse: TCResponseModel {
+    public struct UpdateProductDynamicRegisterResponse: TCResponse {
         /// 动态注册类型，0-关闭 1-预创建设备 2-自动创建设备
         public let registerType: UInt64
 

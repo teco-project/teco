@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tia {
     /// QueryLogs请求参数结构体
-    public struct QueryLogsRequest: TCRequestModel {
+    public struct QueryLogsRequest: TCRequest {
         /// 任务的名称
         public let jobName: String
 
@@ -59,7 +59,7 @@ extension Tia {
     }
 
     /// QueryLogs返回参数结构体
-    public struct QueryLogsResponse: TCResponseModel {
+    public struct QueryLogsResponse: TCResponse {
         /// 日志查询上下文，用于加载更多日志
         public let context: String
 

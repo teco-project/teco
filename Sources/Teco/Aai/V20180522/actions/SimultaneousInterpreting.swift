@@ -20,7 +20,7 @@ import TecoCore
 
 extension Aai {
     /// SimultaneousInterpreting请求参数结构体
-    public struct SimultaneousInterpretingRequest: TCRequestModel {
+    public struct SimultaneousInterpretingRequest: TCRequest {
         /// 腾讯云项目 ID，可填 0，总长度不超过 1024 字节。
         public let projectId: UInt64
 
@@ -89,7 +89,7 @@ extension Aai {
     }
 
     /// SimultaneousInterpreting返回参数结构体
-    public struct SimultaneousInterpretingResponse: TCResponseModel {
+    public struct SimultaneousInterpretingResponse: TCResponse {
         /// 语音识别的结果
         public let asrText: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Iotcloud {
     /// GetUserResourceInfo请求参数结构体
-    public struct GetUserResourceInfoRequest: TCRequestModel {
+    public struct GetUserResourceInfoRequest: TCRequest {
         public init() {
         }
     }
 
     /// GetUserResourceInfo返回参数结构体
-    public struct GetUserResourceInfoResponse: TCResponseModel {
+    public struct GetUserResourceInfoResponse: TCResponse {
         /// 已使用的资源字节数
         public let usedSize: UInt64
 

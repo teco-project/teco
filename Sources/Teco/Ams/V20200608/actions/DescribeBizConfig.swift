@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ams {
     /// DescribeBizConfig请求参数结构体
-    public struct DescribeBizConfigRequest: TCRequestModel {
+    public struct DescribeBizConfigRequest: TCRequest {
         /// 审核业务类类型
         public let bizType: String
 
@@ -34,7 +34,7 @@ extension Ams {
     }
 
     /// DescribeBizConfig返回参数结构体
-    public struct DescribeBizConfigResponse: TCResponseModel {
+    public struct DescribeBizConfigResponse: TCResponse {
         /// 业务类型
         public let bizType: String
 

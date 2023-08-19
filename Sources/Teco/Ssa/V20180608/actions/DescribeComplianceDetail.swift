@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssa {
     /// DescribeComplianceDetail请求参数结构体
-    public struct DescribeComplianceDetailRequest: TCRequestModel {
+    public struct DescribeComplianceDetailRequest: TCRequest {
         /// 检查项uuid
         public let id: String
 
@@ -34,7 +34,7 @@ extension Ssa {
     }
 
     /// DescribeComplianceDetail返回参数结构体
-    public struct DescribeComplianceDetailResponse: TCResponseModel {
+    public struct DescribeComplianceDetailResponse: TCResponse {
         /// 合规管理检查项详情
         public let checkConfigDetail: ComplianceCheckDetail
 

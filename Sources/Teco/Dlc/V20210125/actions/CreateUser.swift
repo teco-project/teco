@@ -20,7 +20,7 @@ import TecoCore
 
 extension Dlc {
     /// CreateUser请求参数结构体
-    public struct CreateUserRequest: TCRequestModel {
+    public struct CreateUserRequest: TCRequest {
         /// 需要授权的子用户uin，可以通过腾讯云控制台右上角 → “账号信息” → “账号ID进行查看”。
         public let userId: String
 
@@ -59,7 +59,7 @@ extension Dlc {
     }
 
     /// CreateUser返回参数结构体
-    public struct CreateUserResponse: TCResponseModel {
+    public struct CreateUserResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

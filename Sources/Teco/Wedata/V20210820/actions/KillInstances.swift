@@ -20,7 +20,7 @@ import TecoCore
 
 extension Wedata {
     /// KillInstances请求参数结构体
-    public struct KillInstancesRequest: TCRequestModel {
+    public struct KillInstancesRequest: TCRequest {
         /// 项目Id
         public let projectId: String
 
@@ -39,7 +39,7 @@ extension Wedata {
     }
 
     /// KillInstances返回参数结构体
-    public struct KillInstancesResponse: TCResponseModel {
+    public struct KillInstancesResponse: TCResponse {
         /// 返回实例批量终止结果
         public let data: OperateResult
 

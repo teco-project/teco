@@ -20,7 +20,7 @@ import TecoCore
 
 extension Mps {
     /// CreateImageSpriteTemplate请求参数结构体
-    public struct CreateImageSpriteTemplateRequest: TCRequestModel {
+    public struct CreateImageSpriteTemplateRequest: TCRequest {
         /// 采样类型，取值：
         /// - Percent：按百分比。
         /// - Time：按时间间隔。
@@ -108,7 +108,7 @@ extension Mps {
     }
 
     /// CreateImageSpriteTemplate返回参数结构体
-    public struct CreateImageSpriteTemplateResponse: TCResponseModel {
+    public struct CreateImageSpriteTemplateResponse: TCResponse {
         /// 雪碧图模板唯一标识。
         public let definition: UInt64
 

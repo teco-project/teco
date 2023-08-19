@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ssl {
     /// DescribeHostTeoInstanceList请求参数结构体
-    public struct DescribeHostTeoInstanceListRequest: TCRequestModel {
+    public struct DescribeHostTeoInstanceListRequest: TCRequest {
         /// 待部署的证书ID
         public let certificateId: String
 
@@ -54,7 +54,7 @@ extension Ssl {
     }
 
     /// DescribeHostTeoInstanceList返回参数结构体
-    public struct DescribeHostTeoInstanceListResponse: TCResponseModel {
+    public struct DescribeHostTeoInstanceListResponse: TCResponse {
         /// teo实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceList: [TeoInstanceDetail]?

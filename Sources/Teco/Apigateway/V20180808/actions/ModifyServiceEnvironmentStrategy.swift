@@ -20,7 +20,7 @@ import TecoCore
 
 extension Apigateway {
     /// ModifyServiceEnvironmentStrategy请求参数结构体
-    public struct ModifyServiceEnvironmentStrategyRequest: TCRequestModel {
+    public struct ModifyServiceEnvironmentStrategyRequest: TCRequest {
         /// 服务的唯一ID。
         public let serviceId: String
 
@@ -44,7 +44,7 @@ extension Apigateway {
     }
 
     /// ModifyServiceEnvironmentStrategy返回参数结构体
-    public struct ModifyServiceEnvironmentStrategyResponse: TCResponseModel {
+    public struct ModifyServiceEnvironmentStrategyResponse: TCResponse {
         /// 修改操作是否成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?

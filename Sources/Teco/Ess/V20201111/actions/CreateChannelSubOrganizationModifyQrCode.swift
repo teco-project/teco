@@ -20,7 +20,7 @@ import TecoCore
 
 extension Ess {
     /// CreateChannelSubOrganizationModifyQrCode请求参数结构体
-    public struct CreateChannelSubOrganizationModifyQrCodeRequest: TCRequestModel {
+    public struct CreateChannelSubOrganizationModifyQrCodeRequest: TCRequest {
         /// 操作人信息，userId必填
         public let `operator`: UserInfo
 
@@ -39,7 +39,7 @@ extension Ess {
     }
 
     /// CreateChannelSubOrganizationModifyQrCode返回参数结构体
-    public struct CreateChannelSubOrganizationModifyQrCodeResponse: TCResponseModel {
+    public struct CreateChannelSubOrganizationModifyQrCodeResponse: TCResponse {
         /// 二维码下载链接
         public let qrCodeUrl: String
 

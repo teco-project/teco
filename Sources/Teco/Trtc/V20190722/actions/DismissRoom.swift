@@ -20,7 +20,7 @@ import TecoCore
 
 extension Trtc {
     /// DismissRoom请求参数结构体
-    public struct DismissRoomRequest: TCRequestModel {
+    public struct DismissRoomRequest: TCRequest {
         /// TRTC的SDKAppId。
         public let sdkAppId: UInt64
 
@@ -39,7 +39,7 @@ extension Trtc {
     }
 
     /// DismissRoom返回参数结构体
-    public struct DismissRoomResponse: TCResponseModel {
+    public struct DismissRoomResponse: TCResponse {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 

@@ -20,13 +20,13 @@ import TecoCore
 
 extension Tsw {
     /// DescribeAgentShell请求参数结构体
-    public struct DescribeAgentShellRequest: TCRequestModel {
+    public struct DescribeAgentShellRequest: TCRequest {
         public init() {
         }
     }
 
     /// DescribeAgentShell返回参数结构体
-    public struct DescribeAgentShellResponse: TCResponseModel {
+    public struct DescribeAgentShellResponse: TCResponse {
         /// 接入信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: AgentShell?

@@ -20,7 +20,7 @@ import TecoCore
 
 extension Tsf {
     /// ShrinkGroup请求参数结构体
-    public struct ShrinkGroupRequest: TCRequestModel {
+    public struct ShrinkGroupRequest: TCRequest {
         /// 部署组ID
         public let groupId: String
 
@@ -34,7 +34,7 @@ extension Tsf {
     }
 
     /// ShrinkGroup返回参数结构体
-    public struct ShrinkGroupResponse: TCResponseModel {
+    public struct ShrinkGroupResponse: TCResponse {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TaskId?
